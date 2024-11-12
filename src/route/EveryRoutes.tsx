@@ -1,6 +1,7 @@
-import type {Singleton}        from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
-import {lazy}                  from 'react'
+import {findFirstOrNullByArray, forEachByArray} from '@joookiwi/collection'
+import type {Singleton}                         from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                    from '@joookiwi/enumerable'
+import {lazy}                                   from 'react'
 
 import type {ClassUsedInRoute}                                                                                                                                                                  from 'route/ClassUsedInRoute'
 import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
@@ -282,20 +283,10 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const viewDisplays = ViewDisplays.CompanionEnum.get.values
             const routes = new Array<SimpleRoute>(516,) // From: (31 + 16 + 16 + 31 + 16 + 31 + 31) * 3
             let index = -1
-            let index_viewDisplay = -1
-            while (++index_viewDisplay < 3) {
-                const viewDisplay = viewDisplays[index_viewDisplay]!
+            viewDisplays.forEach(viewDisplay => {
                 const urlValue = viewDisplay.urlValue
 
-                let index_gamePossibility = -1
-                while (++index_gamePossibility < 7) {
-                    const gamePossibility = gamePossibilities[index_gamePossibility]!
-                    const games = gamePossibility[0]
-                    const gamesName = gamePossibility[1]
-                    const gamesPath = gamePossibility[2]
-                    const gameStylePossibilities = gamePossibility[3]
-                    const gameStylePossibilitiesAmount = gamePossibility[4]
-
+                forEachByArray(gamePossibilities, ([games, gamesName, gamesPath, gameStylePossibilities, gameStylePossibilitiesAmount,],) => {
                     let index_gameStylePossibility = -1
                     while (++index_gameStylePossibility < gameStylePossibilitiesAmount) {
                         const gameStylePossibility = gameStylePossibilities[index_gameStylePossibility]!
@@ -303,8 +294,8 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                         const gameStylePath = gameStylePossibility[2]
                         routes[++index] = new SimpleRoute(`${simpleName} (${urlValue} ${gamesName} ${gameStyleName})`, `/${gamesPath}/${gameStylePath}/${urlValue}${simplePath}`, games, gameStylePossibility[0], viewDisplay, routeCallback,)
                     }
-                }
-            }
+                },)
+            },)
             return routes
         }
 
@@ -506,26 +497,12 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                 return this.#everyRoute
 
             const routes: SimpleRoute[] = []
-            this.values.forEach(it => {
-                const valuesToAdd = it.everyRoute
-                const size = valuesToAdd.length
-                let index = -1
-                while (++index < size)
-                    routes.push(valuesToAdd[index]!,)
-            },)
+            this.values.forEach(it => forEachByArray(it.everyRoute, it => routes.push(it,),),)
             return this.#everyRoute = routes
         }
 
         public getValueInUrl(url: string,): NullOr<EveryRoutes> {
-            const values = this.values
-            const size = values.size
-            let index = -1
-            while (++index < size) {
-                const value = values[index]!
-                if (url.endsWith(value.simplePath,))
-                    return value
-            }
-            return null
+            return this.values.findFirstOrNull(it => url.endsWith(it.simplePath,),)
         }
 
         public getRouteFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
@@ -533,37 +510,17 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const currentGames = Games.CompanionEnum.get.currentOrNull?.toArray() ?? null
             const currentGameStyles = GameStyles.CompanionEnum.get.currentOrNull?.toArray() ?? null
             const currentViewDisplay = ViewDisplays.CompanionEnum.get.currentOrNull
-            const values = this.values
-            const size1 = values.size
-            let index1 = -1
-            while (++index1 < size1) {
-                const value = values[index1]!
+            for (const value of this.values) {
                 if (value.simpleName === name) {
                     const everyRoute = value.everyRoute
-                    //region -------------------- Route by direct name --------------------
-
-                    const size2 = everyRoute.length
-                    let index2 = -1
-                    while (++index2 < size2) {
-                        const route = everyRoute[index2]!
-                        if (route.name === name)
-                            return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
-                    }
-
-                    //endregion -------------------- Route by direct name --------------------
-                    //region -------------------- Route by direct path --------------------
+                    const routeFoundByName = findFirstOrNullByArray(everyRoute, it => it.name === name,)
+                    if (routeFoundByName != null)
+                        return value.getPath(language, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.viewDisplay,)
 
                     const pathToFind = `${value._getPartialPathFromGames(currentGames,)}${value._getPartialPathFromGameStyles(currentGameStyles,)}${value._getPartialPathFromViewDisplay(currentViewDisplay,)}${value.simplePath}`
-
-                    let index3 = -1
-                    while (++index3 < size2) {
-                        const route = everyRoute[index3]!
-                        if (route.path === pathToFind)
-                            return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
-                    }
-
-                    //endregion -------------------- Route by direct path --------------------
-
+                    const routeFoundByPath = findFirstOrNullByArray(everyRoute, it => it.path === pathToFind,)
+                    if (routeFoundByPath != null)
+                        return value.getPath(language, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the direct name "${name}".`,)
                 }
 
@@ -573,15 +530,9 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
                 if (name.startsWith(`${value.simpleName} `,)) {
                     const pathToFind = `${value._getPartialPathFromGames(this.#getGamesInName(name,),)}${value._getPartialPathFromGameStyles(this.#getGameStylesInName(name,),)}${value._getPartialPathFromViewDisplay(this.#getViewDisplayInName(name,),)}${value.simplePath}`
-
-                    const everyRoute = value.everyRoute
-                    const size2 = everyRoute.length
-                    let index2 = -1
-                    while (++index2 < size2) {
-                        const route = everyRoute[index2]!
-                        if (route.path === pathToFind)
-                            return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
-                    }
+                    const routeFound = findFirstOrNullByArray(value.everyRoute, it => it.path === pathToFind,)
+                    if (routeFound != null)
+                        return value.getPath(language, routeFound.games, routeFound.gameStyles, routeFound.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the name starting by "${name}".`,)
                 }
             }
