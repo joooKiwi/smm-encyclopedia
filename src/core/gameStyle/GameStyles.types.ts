@@ -23,7 +23,7 @@ export type PossibleEnglishName = PossibleEnglishName_GameStyle
 
 /** The possible acronym that are used within the file system of the {@link Games Super Mario Maker games} */
 export type PossibleAcronym_InFile = | PossibleAcronym_InFile_SMM1 | '3W'
-/** The possible acronym that are used within the file system of the {@link Games.SUPER_MARIO_MAKER_1 Super Mario Maker 1 game} */
+/** The possible acronym that are used within the file system of the {@link SMM1} */
 export type PossibleAcronym_InFile_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
 
 //endregion -------------------- Acronym / name / image --------------------
@@ -43,7 +43,7 @@ type GroupUrlName_SMM1 = | PossibleSimpleValue_SMM1
                          | 'all'
 /** Every possibility for any group of {@link GameStyles} (as a full name) */
 export type FullGroupUrlName = `GameStyle=${GroupUrlName}`
-/** Every possibility for any group of {@link GameStyles} (as a full name in {@link Games.SUPER_MARIO_MAKER SMM} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}) */
+/** Every possibility for any group of {@link GameStyles} (as a full name in {@link SMM1} or {@link SMM3DS}) */
 export type FullGroupUrlName_SMM1 = `GameStyle=${GroupUrlName_SMM1}`
 
 
@@ -61,7 +61,7 @@ type GroupUrlValue_SMM1 = | PossibleUrlValue_SMM1
                           | 'all'
 /** Every possibility for any group of {@link GameStyles} (for a full url value) */
 export type FullUrlValue = `game-style-${GroupUrlValue}`
-/** Every possibility for any group of {@link GameStyles} (as a full url value in {@link Games.SUPER_MARIO_MAKER SMM} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}) */
+/** Every possibility for any group of {@link GameStyles} (as a full url value in {@link SMM1} or {@link SMM3DS}) */
 export type FullUrlValue_SMM1 = `game-style-${GroupUrlValue_SMM1}`
 
 //endregion -------------------- URL --------------------

@@ -45,11 +45,11 @@ export class ReferenceLinks {
      * @param englishName The name to associate to each other references
      * @param dayReferences The {@link Times.DAY} references
      * @param nightReferences The {@link Times.NIGHT} references
-     * @param smbReferences The {@link GameStyles.SUPER_MARIO_BROS} references
-     * @param smb3References The {@link GameStyles.SUPER_MARIO_BROS_3} references
-     * @param smwReferences The {@link GameStyles.SUPER_MARIO_WORLD} references
-     * @param nsmbuReferences The {@link GameStyles.NEW_SUPER_MARIO_BROS_U} references
-     * @param sm3dwReferences The {@link GameStyles.SUPER_MARIO_3D_WORLD} references
+     * @param smbReferences The {@link SMB} references
+     * @param smb3References The {@link SMB3} references
+     * @param smwReferences The {@link SMW} references
+     * @param nsmbuReferences The {@link NSMBU} references
+     * @param sm3dwReferences The {@link SM3DW} references
      * @param groundStyleReferences The {@link Themes.GROUND} references
      * @param undergroundReferences The {@link Themes.UNDERGROUND} references
      * @param underwaterReferences The {@link Themes.UNDERWATER} references

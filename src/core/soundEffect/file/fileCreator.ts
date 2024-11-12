@@ -10,7 +10,7 @@ import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeat
  * Create an {@link ReadonlyArray array} of {@link SMM1SoundEffectImageFile} from the {@link imageNumbers} provided
  *
  * @param englishName The {@link SoundEffects} {@link SoundEffects.englishName english name}
- * @param imageNumbers The {@link Games.SUPER_MARIO_MAKER_1 SMM1} image numbers
+ * @param imageNumbers The {@link SMM1} image numbers
  */
 export function smm1ImageFiles(englishName: PossibleEnglishName, imageNumbers: | SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,],): readonly [SMM1SoundEffectImageFile,] | readonly [SMM1SoundEffectImageFile, SMM1SoundEffectImageFile,] {
     if (typeof imageNumbers == 'string')
@@ -22,7 +22,7 @@ export function smm1ImageFiles(englishName: PossibleEnglishName, imageNumbers: |
  * Create a {@link SMM2SoundEffectImageFile} from the {@link imageName} provided
  *
  * @param englishName The {@link SoundEffects} {@link SoundEffects.englishName english name}
- * @param imageName The {@link Games.SUPER_MARIO_MAKER_2 SMM2} image numbers
+ * @param imageName The {@link SMM2} image numbers
  */
 export function smm2ImageFile(englishName: PossibleEnglishName, imageName: SoundEffectImageName_SMM2,): SMM2SoundEffectImageFile {
     return new SimpleImageFile('sound effect', `Lyt_E_P_SE_${imageName}`, 'tiff', englishName,)

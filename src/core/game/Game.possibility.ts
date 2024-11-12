@@ -13,23 +13,23 @@ export namespace GamePossibility {
 
     //region -------------------- Singular --------------------
 
-    /** An {@link ReadonlyArray Array} representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
+    /** An {@link ReadonlyArray Array} representing the games with only {@link SMM1} */
     export const SMM1_ONLY = [SMM1,] as const
-    /** An {@link ReadonlyArray Array} representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} */
+    /** An {@link ReadonlyArray Array} representing the games with only {@link SMM3DS} */
     export const SMM3DS_ONLY = [SMM3DS,] as const
-    /** An {@link ReadonlyArray Array} representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
+    /** An {@link ReadonlyArray Array} representing the games with only {@link SMM2} */
     export const SMM2_ONLY = [SMM2,] as const
 
-    /** An {@link ReadonlyArray Array} representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} */
+    /** An {@link ReadonlyArray Array} representing the games with {@link SMM1} & {@link SMM3DS} */
     export const SMM1_AND_3DS = [SMM1, SMM3DS,] as const
-    /** An {@link ReadonlyArray Array} representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+    /** An {@link ReadonlyArray Array} representing the games with {@link SMM1} & {@link SMM2} */
     export const SMM1_AND_2 = [SMM1, SMM2,] as const
-    /** An {@link ReadonlyArray Array} representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+    /** An {@link ReadonlyArray Array} representing the games with {@link SMM3DS} & {@link SMM2} */
     export const SMM3DS_AND_2 = [SMM3DS, SMM2,] as const
 
     /**
-     * An {@link ReadonlyArray Array} representing the games with every SMM games
-     * ({@link Games.SUPER_MARIO_MAKER_1 1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2})
+     * An {@link ReadonlyArray Array} representing the games with every game
+     * ({@link SMM1}, {@link SMM3DS} & {@link SMM2})
      */
     export const ALL_GAMES = [SMM1, SMM3DS, SMM2,] as const
 

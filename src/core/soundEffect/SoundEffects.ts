@@ -1216,7 +1216,7 @@ export abstract class SoundEffects
         return null
     }
 
-    /** The "sound effect" exclusive sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
+    /** The "sound effect" exclusive sounds (in a container) of the {@link SMM1} game (& {@link SMM3DS} inclusively) */
     public get soundsContainer_exclusiveSmm1(): SMM1ExclusiveSoundEffectSound {
         if (this.#sounds_exclusiveSmm1 != null)
             return this.#sounds_exclusiveSmm1
@@ -1229,7 +1229,7 @@ export abstract class SoundEffects
         return this.#sounds_exclusiveSmm1 = value
     }
 
-    /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
+    /** The "sound effect" sounds (in a container) of the {@link SMM1} game (& {@link SMM3DS} inclusively) */
     public get soundsContainer_standaloneSMM1(): SMM1StandaloneSoundEffectSound {
         if (this.#sounds_standaloneSmm1 != null)
             return this.#sounds_standaloneSmm1
@@ -1248,20 +1248,17 @@ export abstract class SoundEffects
         return this.#sounds_standaloneSmm1 = new SMM1StandaloneSound(smm1.sounds, smm1.editorSound, smm1, EmptySound.get,)
     }
 
-    /** Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} exclusively */
+    /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS} exclusively */
     public get sounds_exclusiveSmm1(): readonly SMM1SoundEffectSoundFile[] {
         return this.soundsContainer_exclusiveSmm1.sounds
     }
 
-    /**
-     * Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS},
-     * but utilizing some {@link Games.SUPER_MARIO_MAKER_2 SMM2} sounds
-     */
+    /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS}, but using some {@link SMM2} sounds */
     public get sounds_standaloneSmm1(): readonly SoundEffectSoundFile[] {
         return this.soundsContainer_standaloneSMM1.sounds
     }
 
-    /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} when placed in the editor */
+    /** The "sound effect" sound for a {@link SMM1}/{@link SMM3DS} when placed in the editor */
     public get editorSound_smm1(): NullOr<SoundEffectSoundFile> {
         return this.soundsContainer_standaloneSMM1.editorSound
     }
@@ -1297,7 +1294,7 @@ export abstract class SoundEffects
         return null
     }
 
-    /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game */
+    /** The "sound effect" sounds (in a container) of the {@link SMM2} game */
     public get soundsContainer_smm2(): | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor {
         if (this.#sounds_smm2 != null)
             return this.#sounds_smm2
@@ -1317,7 +1314,7 @@ export abstract class SoundEffects
         return this.soundsContainer_smm2.sounds
     }
 
-    /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_2 SMM2} when placed in the editor */
+    /** The "sound effect" sound for a {@link SMM2} when placed in the editor */
     public get editorSound_smm2(): NullOr<| SMM2SoundEffectSoundFile | PossibleSoundEffectMusicEditorName> {
         return this.soundsContainer_smm2.editorSound
     }

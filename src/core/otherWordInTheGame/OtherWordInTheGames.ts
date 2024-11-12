@@ -62,7 +62,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
 
     }
     /**
-     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link Games.SUPER_MARIO_MAKER_1 SMM} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}).
+     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link SMM1} & {@link SMM3DS}).
      *
      * Meaning that translations from chinese ({@link ProjectLanguages.SIMPLIFIED_CHINESE simplified} or {@link ProjectLanguages.TRADITIONAL_CHINESE traditional}) or {@link ProjectLanguages.KOREAN korean}
      * are defaulted to the {@link ProjectLanguages.AMERICAN_ENGLISH american english} value.
@@ -97,7 +97,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
 
     }
     /**
-     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link Games.SUPER_MARIO_MAKER_1 SMM} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}).
+     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link SMM1} & {@link SMM3DS}).
      *
      * Meaning that translations from portuguese ({@link ProjectLanguages.AMERICAN_PORTUGUESE american} or {@link ProjectLanguages.EUROPEAN_PORTUGUESE european})
      * are defaulted to the english ({@link ProjectLanguages.AMERICAN_ENGLISH american} or {@link ProjectLanguages.EUROPEAN_PORTUGUESE european}) value respectively.

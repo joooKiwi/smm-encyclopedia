@@ -57,7 +57,7 @@ export function gameContentTranslation<V extends GameContentTranslationKey, REPL
 /**
  * Get a translation of a game content.
  * Those translations are related to the Super Mario Maker games specifically
- * ({@link Games.SUPER_MARIO_MAKER_1 SMM1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}).
+ * ({@link SMM1}, {@link SMM3DS} & {@link SMM2}).
  *
  * @param value The translation key (that should not have any "{{}}" in them)
  */

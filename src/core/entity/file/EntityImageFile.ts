@@ -102,7 +102,7 @@ export type EditorImageFileAsBlueVariant<FILE_NAME extends string, NUMBER extend
       | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, `${FILE_NAME}_0${NUMBER}`, NAME>
 /**
  * An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time},
- * but not in {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}
+ * but not in {@link SM3DW}
  */
 export type EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
     = | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
@@ -110,7 +110,7 @@ export type EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME extends string,
       | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, `${FILE_NAME}_0${NUMBER}`, NAME>
 
 /**
- * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+ * An {@link EditorImageFile} template for 2 images in only {@link SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
  * The others are only in the {@link Themes.GROUND ground theme}
  */
@@ -118,15 +118,15 @@ export type EditorImageFileAsNightSnowInSmb3<FILE_NAME_1 extends string, FILE_NA
     = | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
       | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>
 /**
- * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+ * An {@link EditorImageFile} template for 2 images in only {@link SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
- * The others (excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}) are only in the {@link Themes.GROUND ground theme}
+ * The others (excluding {@link SM3DW}) are only in the {@link Themes.GROUND ground theme}
  */
 export type EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
     = | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
       | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>
 /**
- * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+ * An {@link EditorImageFile} template for 2 images in only {@link SMB} and {@link SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
  * The others are only in the {@link Themes.GROUND ground theme}
  */
@@ -134,9 +134,9 @@ export type EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1 extends string, F
     = | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
       | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>
 /**
- * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+ * An {@link EditorImageFile} template for 2 images in only {@link SMB} and {@link SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
- * The others (excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}) are only in the {@link Themes.GROUND ground theme}
+ * The others (excluding {@link SM3DW}) are only in the {@link Themes.GROUND ground theme}
  */
 export type EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
     = | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
@@ -232,7 +232,7 @@ export type PossibleUnusedEntityImageFiles = NonNullable<ReturnType<typeof Unuse
 
 /**
  * An unused Big Mushroom ({@link Entities.BIG_MUSHROOM_CLASSIC classic} / {@link Entities.BIG_MUSHROOM_MODERN modern}) {@link ImageFile}
- * in {@link GameStyles.SUPER_MARIO_BROS SMB} only for {@link Games.SUPER_MARIO_MAKER_1 SMM1}
+ * in {@link SMB} only for {@link SMM1}
  */
 export type UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
     = ImageFile<`entity/unused/M1 A - Enemy - ${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (unused Big Mushroom)`>

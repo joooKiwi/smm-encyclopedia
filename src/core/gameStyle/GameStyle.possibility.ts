@@ -15,75 +15,73 @@ export namespace GameStylePossibility {
 
     //region -------------------- Singular --------------------
 
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB} */
     export const SMB_ONLY = [SMB,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3} */
     export const SMB3_ONLY = [SMB3,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMW} */
     export const SMW_ONLY = [SMW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link NSMBU} */
     export const NSMBU_ONLY = [NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SM3DW} */
     export const SM3DW_ONLY = [SM3DW,] as const
 
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB} & {@link SMB3} */
     export const SMB_AND_SMB3 = [SMB, SMB3,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB} & {@link SMW} */
     export const SMB_AND_SMW = [SMB, SMW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB} & {@link NSMBU} */
     export const SMB_AND_NSMBU = [SMB, NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB} & {@link SM3DW} */
     export const SMB_AND_SM3DW = [SMB, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3} & {@link SMW} */
     export const SMB3_AND_SMW = [SMB3, SMW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3} & {@link NSMBU} */
     export const SMB3_AND_NSMBU = [SMB3, NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3} & {@link SM3DW} */
     export const SMB3_AND_SM3DW = [SMB3, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMW} & {@link NSMBU} */
     export const SMW_AND_NSMBU = [SMW, NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMW} & {@link SM3DW} */
     export const SMW_AND_SM3DW = [SMW, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link NSMBU} & {@link SM3DW} */
     export const NSMBU_AND_SM3DW = [NSMBU, SM3DW,] as const
 
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB}, {@link SMB3} & {@link SMW} */
     export const SMB_AND_SMB3_AND_SMW = [SMB, SMB3, SMW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB}, {@link SMB3} & {@link NSMBU} */
     export const SMB_AND_SMB3_AND_NSMBU = [SMB, SMB3, NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB}, {@link SMB3} & {@link SM3DW} */
     export const SMB_AND_SMB3_AND_SM3DW = [SMB, SMB3, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB}, {@link SMW} & {@link NSMBU} */
     export const SMB_AND_SMW_AND_NSMBU = [SMB, SMW, NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB}, {@link SMW} & {@link SM3DW} */
     export const SMB_AND_SMW_AND_SM3DW = [SMB, SMW, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB}, {@link NSMBU} & {@link SM3DW} */
     export const SMB_AND_NSMBU_AND_SM3DW = [SMB, NSMBU, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3}, {@link SMW} & {@link NSMBU} */
     export const SMB3_AND_SMW_AND_NSMBU = [SMB3, SMW, NSMBU,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3}, {@link SMW} & {@link SM3DW} */
     export const SMB3_AND_SMW_AND_SM3DW = [SMB3, SMW, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB3}, {@link NSMBU} & {@link SM3DW} */
     export const SMB3_AND_NSMBU_AND_SM3DW = [SMB3, NSMBU, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMW}, {@link NSMBU} & {@link SM3DW} */
     export const SMW_AND_NSMBU_AND_SM3DW = [SMW, NSMBU, SM3DW,] as const
 
-    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link SMB} */
     export const NOT_SMB = [SMB3, SMW, NSMBU, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
+    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link SMB3} */
     export const NOT_SMB3 = [SMB, SMW, NSMBU, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link SMW} */
     export const NOT_SMW = [SMB, SMB3, NSMBU, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link NSMBU} */
     export const NOT_NSMBU = [SMB, SMB3, SMW, SM3DW,] as const
-    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** An {@link ReadonlyArray Array} representing the game styles excluding {@link SM3DW} */
     export const NOT_SM3DW = [SMB, SMB3, SMW, NSMBU,] as const
 
     /**
      * An {@link ReadonlyArray Array} representing every game style
-     * ({@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3},
-     * {@link GameStyles.SUPER_MARIO_WORLD SMW}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} &
-     * {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW})
+     * ({@link SMB}, {@link SMB3}, {@link SMW}, {@link NSMBU} & {@link SM3DW})
      */
     export const ALL_GAME_STYLES = [SMB, SMB3, SMW, NSMBU, SM3DW,] as const
 

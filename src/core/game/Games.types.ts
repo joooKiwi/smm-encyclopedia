@@ -28,9 +28,9 @@ type GroupUrlName_WithNotSMM2 = | '1' | '3DS' | '1&3DS'
 type GroupUrlName_WithSMM2 = | '2' | '1&2' | '3DS&2' | 'all'
 /** Every possibility for any group of {@link Games} (as a full name) */
 export type FullGroupUrlName = `Game=${GroupUrlName}`
-/** Every possibility for any group of {@link Games} (as a full name in {@link Games.SUPER_MARIO_MAKER SMM} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}) */
+/** Every possibility for any group of {@link Games} (as a full name in {@link SMM1} or {@link SMM3DS}) */
 export type FullGroupUrlName_WithNotSMM2 = `Game=${GroupUrlName_WithNotSMM2}`
-/** Every possibility for any group of {@link Games} (as a full name in {@link Games.SUPER_MARIO_MAKER_2 SMM2}) */
+/** Every possibility for any group of {@link Games} (as a full name in {@link SMM2}) */
 export type FullGroupUrlName_WithSMM2 = `Game=${GroupUrlName_WithSMM2}`
 
 export type PossibleUrlValue = | '1' | '2' | '3ds'
@@ -40,9 +40,9 @@ type GroupUrlValue_WithNotSMM2 = | '1' | '3ds' | '1,3ds'
 type GroupUrlValue_WithSMM2 = | '2' | '1,2' | '3ds,2' | 'all'
 /** Every possibility for any group of {@link Games} (for a full url value) */
 export type FullUrlValue = `game-${GroupUrlValue}`
-/** Every possibility for any group of {@link Games} (as a full url value in {@link Games.SUPER_MARIO_MAKER SMM} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}) */
+/** Every possibility for any group of {@link Games} (as a full url value in {@link SMM1} or {@link SMM3DS}) */
 export type FullUrlValue_WithNotSMM2 = `game-${GroupUrlValue_WithNotSMM2}`
-/** Every possibility for any group of {@link Games} (as a full url value in {@link Games.SUPER_MARIO_MAKER_2 SMM2}) */
+/** Every possibility for any group of {@link Games} (as a full url value in {@link SMM2}) */
 export type FullUrlValue_WithSMM2 = `game-${GroupUrlValue_WithSMM2}`
 
 //endregion -------------------- URL --------------------

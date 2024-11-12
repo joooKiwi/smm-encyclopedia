@@ -110,7 +110,7 @@ const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
 
 //region -------------------- Possibility group constants --------------------
 
-/** Every {@link GameStylePossibility} applicable to the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game group */
+/** Every {@link GameStylePossibility} applicable to the {@link SMM2} game group */
 const gameStylePossibilitiesWithSmm2 = [
     [ALL_GAME_STYLES,          'GameStyle=all',       'game-style-all',],
     [SMB_ONLY,                 'GameStyle=1',         'game-style-1',],
@@ -145,8 +145,8 @@ const gameStylePossibilitiesWithSmm2 = [
     [NOT_SMB,                  'GameStyle=3&W&U&3DW', 'game-style-3,w,u,3dw',],
 ] as const
 /**
- * Every {@link GameStylePossibility} applicable not related to the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game group.
- * Meaning, it does not contain the {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} game style.
+ * Every {@link GameStylePossibility} applicable not related to the {@link SMM2} game group.
+ * Meaning, it does not contain the {@link SM3DW} game style.
  */
 const gameStylePossibilitiesWithNotSmm2 = [
     [ALL_GAME_STYLES,        'GameStyle=all',     'game-style-all',],
@@ -330,7 +330,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
 
     }
-    /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
+    /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM1} */
     private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
@@ -367,7 +367,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
 
     }
-    /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
+    /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM2} */
     private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {

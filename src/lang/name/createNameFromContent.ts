@@ -15,9 +15,9 @@ import {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageCont
 type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' | 'notSMM3DS'
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean
 
-/** The exclusive {@link Games.SUPER_MARIO_MAKER_1 SMM1} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} (excluding the complete & optional languages) languages */
+/** The exclusive {@link SMM1} or {@link SMM3DS} (excluding the complete & optional languages) languages */
 const SMM1_OR_SMM3DS_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,]
-/** The exclusive {@link Games.SUPER_MARIO_MAKER_2 SMM2} (excluding the complete & optional languages) languages */
+/** The exclusive {@link SMM2} (excluding the complete & optional languages) languages */
 const SMM2_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,]
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM1_OR_SMM3DS: IsACompleteNameCallback = language => SMM1_OR_SMM3DS_LANGUAGES.includes(language,)
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM2: IsACompleteNameCallback = language => SMM2_LANGUAGES.includes(language,)
