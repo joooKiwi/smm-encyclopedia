@@ -22,11 +22,14 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
+
+import ALL_GAMES = GamePossibility.ALL_GAMES
 
 class CharacterNameAppInterpreter
     implements AppInterpreterWithTable<CharacterNames, CharacterNameAppOption> {
@@ -106,15 +109,13 @@ const viewDisplayAndRouteName = [
 ] as const satisfies readonly ViewAndRouteName[]
 const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
-    const game = intersect(allGames, games,).length === 3
+    const game = intersect(ALL_GAMES, games,).length === 3
         ? CharacterNameGames.ALL_GAMES
         : games.hasSMM2
             ? CharacterNameGames.SUPER_MARIO_MAKER_2

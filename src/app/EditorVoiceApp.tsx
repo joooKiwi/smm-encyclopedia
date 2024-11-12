@@ -18,6 +18,7 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -29,6 +30,8 @@ import LinkText                                     from 'app/tools/text/LinkTex
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
+
+import ALL_GAMES = GamePossibility.ALL_GAMES
 
 class EditorVoiceAppInterpreter
     implements AppInterpreterWithTable<EditorVoices, EditorVoiceAppOption> {
@@ -107,15 +110,13 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyEditorVoice (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {
-    const game = intersect(allGames, games,).length === 3
+    const game = intersect(ALL_GAMES, games,).length === 3
         ? EditorVoiceGames.ALL_GAMES
         : games.hasSMM2
             ? EditorVoiceGames.SUPER_MARIO_MAKER_2

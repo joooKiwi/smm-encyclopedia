@@ -1,0 +1,50 @@
+import {Games} from 'core/game/Games'
+
+/**
+ * An encapsulation on the possibilities of the {@link Games} grouped in {@link ReadonlyArray Array}
+ *
+ * @recursiveReference<{@link Games}>
+ */
+export namespace GamePossibility {
+
+    //region -------------------- Singular --------------------
+
+    /** An {@link ReadonlyArray Array} representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
+    export const SMM1_ONLY = [Games.SUPER_MARIO_MAKER_1,] as const
+    /** An {@link ReadonlyArray Array} representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} */
+    export const SMM3DS_ONLY = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+    /** An {@link ReadonlyArray Array} representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
+    export const SMM2_ONLY = [Games.SUPER_MARIO_MAKER_2,] as const
+
+    /** An {@link ReadonlyArray Array} representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} */
+    export const SMM1_AND_3DS = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+    /** An {@link ReadonlyArray Array} representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+    export const SMM1_AND_2 = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,] as const
+    /** An {@link ReadonlyArray Array} representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+    export const SMM3DS_AND_2 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
+    /**
+     * An {@link ReadonlyArray Array} representing the games with every SMM games
+     * ({@link Games.SUPER_MARIO_MAKER_1 1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2})
+     */
+    export const ALL_GAMES = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
+    //endregion -------------------- Singular --------------------
+    //region -------------------- Group --------------------
+
+    /** Every single (1x) {@link Games} fields in the {@link GamePossibility} */
+    export const EVERY_SINGLE_GAME = [SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,] as const
+
+    /** Every double (2x) {@link Games} fields in the {@link GamePossibility} */
+    export const EVERY_DOUBLE_GAME = [SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,] as const
+
+    /** Every {@link Games} fields in the {@link GamePossibility} */
+    export const EVERY_GAME = [
+        ALL_GAMES,
+        SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,
+        SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,
+    ] as const
+
+    //endregion -------------------- Group --------------------
+
+}

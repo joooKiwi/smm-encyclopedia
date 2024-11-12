@@ -17,11 +17,14 @@ import {SoundEffectGames}                           from 'app/property/SoundEffe
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
+
+import ALL_GAMES = GamePossibility.ALL_GAMES
 
 class SoundEffectAppInterpreter
     implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -160,14 +163,12 @@ interface SoundEffectAsideContentProperties
 
 }
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
 function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentProperties,) {
-    const soundEffectGame = intersect(allGames, games,).length === 3
+    const soundEffectGame = intersect(ALL_GAMES, games,).length === 3
         ? SoundEffectGames.ALL_GAMES
         : games.hasSMM2
             ? SoundEffectGames.SUPER_MARIO_MAKER_2

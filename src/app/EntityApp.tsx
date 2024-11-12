@@ -25,6 +25,7 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                                   from 'core/entity/Entities'
+import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {GameStylePossibility}                       from 'core/gameStyle/GameStyle.possibility'
@@ -35,6 +36,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
 
 import ALL_GAME_STYLES = GameStylePossibility.ALL_GAME_STYLES
+import ALL_GAMES =       GamePossibility.ALL_GAMES
 
 class EntityAppInterpreter
     implements AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -207,8 +209,6 @@ function EntityAsideContent({viewDisplay, games, gameStyles,}: EntityAsideConten
 const GameCompanion = Games.CompanionEnum.get
 const GameStyleCompanion = GameStyles.CompanionEnum.get
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
@@ -216,7 +216,7 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 /** @reactComponent */
 function GameAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentProperties,) {
     const gameStyleName = `GameStyle=${GameStyleCompanion.getGroupUrlName(gameStyles,)}` satisfies FullGroupUrlName_GameStyle
-    const entityGame = intersect(allGames, games,).length === 3
+    const entityGame = intersect(ALL_GAMES, games,).length === 3
         ? EntityGames.ALL_GAMES
         : games.hasSMM2
             ? EntityGames.SUPER_MARIO_MAKER_2

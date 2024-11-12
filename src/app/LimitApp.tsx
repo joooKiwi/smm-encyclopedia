@@ -24,10 +24,13 @@ import TextOrLink                                   from 'app/tools/text/TextOrL
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
+
+import ALL_GAMES = GamePossibility.ALL_GAMES
 
 class LimitAppInterpreter
     implements AppInterpreterWithTable<Limits, LimitAppOption>,
@@ -137,8 +140,6 @@ class LimitAppInterpreter
 
 }
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
@@ -152,7 +153,7 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
         [ViewDisplays.TABLE, `${routeName} (table)`,],
     ] as const satisfies readonly ViewAndRouteName[]
 
-    const game = intersect(allGames, games,).length === 3
+    const game = intersect(ALL_GAMES, games,).length === 3
         ? LimitGames.ALL_GAMES
         : games.hasSMM2
             ? LimitGames.SUPER_MARIO_MAKER_2
