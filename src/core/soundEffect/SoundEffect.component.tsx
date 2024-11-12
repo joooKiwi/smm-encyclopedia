@@ -9,6 +9,8 @@ import {Games}           from 'core/game/Games'
 import SoundEffectImage  from 'core/soundEffect/SoundEffectImage'
 import {StringContainer} from 'util/StringContainer'
 
+import SMM1 = Games.SMM1
+
 interface SoundEffectProperties
     extends ReactProperties {
 
@@ -25,7 +27,7 @@ interface SoundEffectProperties
  * @reactComponent
  */
 export default function SoundEffectComponent({reference, game, name,}: SoundEffectProperties,) {
-    if (game === Games.SUPER_MARIO_MAKER_1) {
+    if (game === SMM1) {
         const [imageFile1, imageFile2,] = reference.SMM1ImageFiles!
         if (imageFile2 == null)
             return <SoundEffectImage reference={reference} file={imageFile1}/>

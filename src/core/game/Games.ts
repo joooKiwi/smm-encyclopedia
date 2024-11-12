@@ -268,6 +268,17 @@ export abstract class Games
 
 }
 
+export namespace Games {
+
+    /** An alias of {@link Games.SUPER_MARIO_MAKER_1} */
+    export const SMM1 = Games.SUPER_MARIO_MAKER_1
+    /** An alias of {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS} */
+    export const SMM3DS = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+    /** An alias of {@link Games.SUPER_MARIO_MAKER_2} */
+    export const SMM2 = Games.SUPER_MARIO_MAKER_2
+
+}
+
 // TODO remove this test variable when the application will be complete
 // @ts-ignore
 (window.test ??= {}).Games = Games

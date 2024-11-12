@@ -27,6 +27,8 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
+import SMM2 = Games.SMM2
+
 class CourseTagAppInterpreter
     implements AppInterpreterWithTable<CourseTags>,
         ClassWithType<CourseTagTypes> {
@@ -185,7 +187,7 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
                 MakerCentralLink: <Link key="Maker Central link" to={MAKER_CENTRAL_LEVEL_LINK} id="makerCentralLink" className="link-primary fw-bold">Maker Central</Link>,
                 course: course, courses: courses,
                 tag: tag, tags: tags,
-                smm2Image: <GameImage key="smm2 image" reference={Games.SUPER_MARIO_MAKER_2}/>,
+                smm2Image: <GameImage key="smm2 image" reference={SMM2}/>,
             },)}
             {gameContentTranslation('course tag.description.intro references', {
                 course: course, courses: courses,

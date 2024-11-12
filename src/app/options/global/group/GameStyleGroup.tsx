@@ -15,6 +15,8 @@ import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 
+import SMM2 = Games.SMM2
+
 /** @reactComponent */
 export default function GameStyleGroup() {
     const gameStyles = useCurrentGameStyles('game style group',)
@@ -23,7 +25,7 @@ export default function GameStyleGroup() {
         return null
     if (gameStyles.isEmpty)
         return null
-    const isSmm2Selected = games.has(Games.SUPER_MARIO_MAKER_2,)
+    const isSmm2Selected = games.has(SMM2,)
 
     return <div key="option container (Game styles)" id="gameStyles-option-container">
         <div className="btn-group-vertical d-lg-none">

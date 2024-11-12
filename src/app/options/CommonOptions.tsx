@@ -18,6 +18,10 @@ import {contentTranslation, gameContentTranslation}      from 'lang/components/t
 import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
 import NameComponent                                     from 'lang/name/component/Name.component'
 
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+
 /** @singleton */
 export class CommonOptions {
 
@@ -91,10 +95,10 @@ export class CommonOptions {
     }
 
     public get smm1And3dsGameHeader(): SimpleImageHeader {
-        return this.#smm1And3DSGameHeader ??= {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,}//TODO create a animated image for both games (SMM1 & SMM3DS)
+        return this.#smm1And3DSGameHeader ??= {key: 'isInSuperMarioMaker1And3DS', alt: SMM1.imageFile.fallbackName, path: SMM1.imageFile.fullName,}//TODO create a animated image for both games (SMM1 & SMM3DS)
     }
     public get smm2GameHeader(): SimpleImageHeader {
-        return this.#smm2GameHeader ??= {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,}
+        return this.#smm2GameHeader ??= {key: 'isInSuperMarioMaker2', alt: SMM2.imageFile.fallbackName, path: SMM2.imageFile.fullName,}
     }
 
     /**
@@ -107,9 +111,9 @@ export class CommonOptions {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
-            {reference.isInSuperMarioMaker1 ? <GameImage reference={Games.SUPER_MARIO_MAKER_1}/> : null}
-            {reference.isInSuperMarioMakerFor3DS ? <GameImage reference={Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS}/> : null}
-            {reference.isInSuperMarioMaker2 ? <GameImage reference={Games.SUPER_MARIO_MAKER_2}/> : null}
+            {reference.isInSuperMarioMaker1 ? <GameImage reference={SMM1}/> : null}
+            {reference.isInSuperMarioMakerFor3DS ? <GameImage reference={SMM3DS}/> : null}
+            {reference.isInSuperMarioMaker2 ? <GameImage reference={SMM2}/> : null}
         </div>
     }
 
@@ -138,8 +142,8 @@ export class CommonOptions {
     public get completeEditorLimitInSmm1And3dsHeader(): SingleHeaderContent {
         return this.#completeEditorLimitInSmm1And3dsHeader ??= {
             key: 'limit-editor-smm1-and-smm3ds', element: gameContentTranslation('limit.editor.complete in SMM1&3DS', {
-                Name1: Games.SUPER_MARIO_MAKER_1.acronym,
-                Name3ds: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.acronym,
+                Name1: SMM1.acronym,
+                Name3ds: SMM3DS.acronym,
             }),
         }
     }
@@ -147,7 +151,7 @@ export class CommonOptions {
     public get completeEditorLimitInSmm2Header(): SingleHeaderContent {
         return this.#completeEditorLimitInSmm2Header ??= {
             key: 'limit-editor-smm2', element: gameContentTranslation('limit.editor.complete in SMM2', {
-                Name: Games.SUPER_MARIO_MAKER_2.acronym,
+                Name: SMM2.acronym,
             }),
         }
     }

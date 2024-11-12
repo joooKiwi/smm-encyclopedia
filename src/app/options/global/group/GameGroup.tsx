@@ -12,6 +12,10 @@ import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+
 interface GameLinkProperties
     extends ReactProperties {
 
@@ -30,9 +34,9 @@ export default function GameGroup() {
         return null
 
     return <div key={`option container (Games = ${games.toString()})`} id="games-option-container" className="btn-group" role="group">
-        <GameLink game={Games.SUPER_MARIO_MAKER_1} selected={games}/>
-        <GameLink game={Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS} selected={games}/>
-        <GameLink game={Games.SUPER_MARIO_MAKER_2} selected={games}/>
+        <GameLink game={SMM1} selected={games}/>
+        <GameLink game={SMM3DS} selected={games}/>
+        <GameLink game={SMM2} selected={games}/>
     </div>
 }
 

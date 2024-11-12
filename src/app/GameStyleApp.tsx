@@ -28,6 +28,10 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}                                 from 'util/utilitiesMethods'
 
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+
 class GameStyleAppInterpreter
     implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
@@ -104,10 +108,6 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyGameStyle (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
-
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
     const game = games.hasSMM2
@@ -160,13 +160,13 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
         <p>
             {gameContentTranslation('game style.description.intro page', {
                 gameStyles: <em key="gameStyles">{gameContentTranslation('game style.plural',).toLowerCase()}</em>,
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1OrSmm3dsLink}><GameImage reference={smm1}/></TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1OrSmm3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1OrSmm3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1OrSmm3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro sm3dw', {
                 sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/></LinkText>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro entity', {
                 entityLink: <LinkText key="entityLink"  partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
@@ -203,11 +203,11 @@ interface GameStyleAsideContentProperties
 function GameStyleAsideContent({viewDisplay, game,}: GameStyleAsideContentProperties,) {
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(viewDisplay,)} color={game.smm1Or3dsColor}>
-            <GameImage reference={smm1}/>
-            <GameImage reference={smm3ds}/>
+            <GameImage reference={SMM1}/>
+            <GameImage reference={SMM3DS}/>
         </LinkButton>
         <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}>
-            <GameImage reference={smm2}/>
+            <GameImage reference={SMM2}/>
         </LinkButton>
     </div>
 }

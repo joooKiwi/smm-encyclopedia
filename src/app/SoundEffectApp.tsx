@@ -25,6 +25,9 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
 import ALL_GAMES = GamePossibility.ALL_GAMES
+import SMM1 =      Games.SMM1
+import SMM2 =      Games.SMM2
+import SMM3DS =    Games.SMM3DS
 
 class SoundEffectAppInterpreter
     implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -163,10 +166,6 @@ interface SoundEffectAsideContentProperties
 
 }
 
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
-
 function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentProperties,) {
     const soundEffectGame = intersect(ALL_GAMES, games,).length === 3
         ? SoundEffectGames.ALL_GAMES
@@ -178,11 +177,11 @@ function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentP
         <LinkButton partialId="allGameLimit" routeName={soundEffectGame.getAllRouteName(viewDisplay,)} color={soundEffectGame.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="soundEffect-gamesButton-singularGame-container" className="btn-group btn-group-sm">
             <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.getSmm1Or3dsRouteName(viewDisplay,)} color={soundEffectGame.smm1Or3dsColor}>
-                <GameImage reference={smm1}/>
-                <GameImage reference={smm3ds}/>
+                <GameImage reference={SMM1}/>
+                <GameImage reference={SMM3DS}/>
             </LinkButton>
             <LinkButton partialId="smm2Game" routeName={soundEffectGame.getSmm2RouteName(viewDisplay,)} color={soundEffectGame.smm2Color}>
-                <GameImage reference={smm2}/>
+                <GameImage reference={SMM2}/>
             </LinkButton>
         </div>
     </div>

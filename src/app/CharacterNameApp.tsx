@@ -30,6 +30,9 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
 import ALL_GAMES = GamePossibility.ALL_GAMES
+import SMM1 =      Games.SMM1
+import SMM2 =      Games.SMM2
+import SMM3DS =    Games.SMM3DS
 
 class CharacterNameAppInterpreter
     implements AppInterpreterWithTable<CharacterNames, CharacterNameAppOption> {
@@ -109,10 +112,6 @@ const viewDisplayAndRouteName = [
 ] as const satisfies readonly ViewAndRouteName[]
 const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
-
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
     const game = intersect(ALL_GAMES, games,).length === 3
@@ -168,17 +167,17 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     return <>
         <p>
             {gameContentTranslation('character name.description.intro page', {
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={smm1}/></TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={SMM1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
                 StoryMode: <em key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</em>,//TODO: Add a mystery mushroom "character name" link
                 mysteryMushroom: <em key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</em>,
                 MysteryMushroom: <em key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</em>,
-                smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={smm1}/></span>,
-                smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={smm2}/></span>,
+                smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={SMM1}/></span>,
+                smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={SMM2}/></span>,
             },)}
         </p>
         <p>{gameContentTranslation('character name.description.viewable', {
@@ -206,9 +205,9 @@ function CharacterNameAsideContent({viewDisplay, game,}: CharacterNameAsideConte
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="characterName-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}><GameImage reference={smm1}/></LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}><GameImage reference={smm3ds}/></LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}><GameImage reference={smm2}/></LinkButton>
+            <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
         </div>
     </div>
 }

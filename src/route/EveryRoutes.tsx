@@ -30,6 +30,8 @@ import SMM3DS_ONLY_ARRAY =                 GamePossibility.SMM3DS_ONLY
 import SMM3DS_AND_2_ARRAY =                GamePossibility.SMM3DS_AND_2
 import SMM2_ONLY_ARRAY =                   GamePossibility.SMM2_ONLY
 import ALL_GAMES_ARRAY =                   GamePossibility.ALL_GAMES
+import SMM1 =                              Games.SMM1
+import SMM2 =                              Games.SMM2
 import ALL_GAME_STYLES =                   GameStylePossibility.ALL_GAME_STYLES
 import NOT_NSMBU =                         GameStylePossibility.NOT_NSMBU
 import NOT_SMB =                           GameStylePossibility.NOT_SMB
@@ -223,7 +225,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly ListCardTable_AnyGame_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): readonly SimpleRoute[] {
@@ -267,7 +269,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly ListCardTable_AnyGame_AnyGameStyle_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
         }
 
         protected override _createEveryRoutes(): readonly SimpleRoute[] {
@@ -299,7 +301,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyGame_EveryRoutes = class AnyGame_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: GameRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, (_, games,) => routeCallback(games,),)
+            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, (_, games,) => routeCallback(games,),)
         }
 
 
@@ -332,7 +334,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -369,7 +371,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 

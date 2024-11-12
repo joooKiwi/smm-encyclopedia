@@ -15,6 +15,9 @@ import SoundEffectComponent                     from 'core/soundEffect/SoundEffe
 import SoundEffectSoundsComponent               from 'core/soundEffect/SoundEffectSounds.component'
 import {SoundEffectCategories}                  from 'core/soundEffectCategory/SoundEffectCategories'
 
+import SMM1 = Games.SMM1
+import SMM2 = Games.SMM2
+
 export abstract class SoundEffectAppOption
     extends Enum<Ordinals, Names>
     implements AppOption<SoundEffects> {
@@ -167,13 +170,13 @@ export abstract class SoundEffectAppOption
     public static renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
         const reference = enumerable.reference
 
-        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_1}/> : null
+        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM1}/> : null
     }
 
     public static renderSMM2Image(enumerable: SoundEffects,): ReactElement {
         const reference = enumerable.reference
 
-        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_2}/> : null
+        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM2}/> : null
     }
 
     protected abstract _createContentOption(enumeration: SoundEffects,): ReactElement

@@ -28,6 +28,10 @@ import ThemeImage                                        from 'core/theme/ThemeI
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {filterGame}                                      from 'util/utilitiesMethods'
 
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+
 class ThemeAppInterpreter
     implements AppInterpreterWithTable<Themes, ThemeAppOption>,
         ClassWithType<ThemeTypes> {
@@ -201,10 +205,6 @@ function TypeAsideContent({viewDisplay, type,}: ThemeTypeAsideContentProperties,
     </div>
 }
 
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
-
 /** @reactComponent */
 function GameAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperties,) {
     const themeGame = games.hasSMM2
@@ -213,11 +213,11 @@ function GameAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperti
 
     return <div id="theme-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type, viewDisplay,)} color={themeGame.smm1Or3dsColor}>
-            <GameImage reference={smm1}/>
-            <GameImage reference={smm3ds}/>
+            <GameImage reference={SMM1}/>
+            <GameImage reference={SMM3DS}/>
         </LinkButton>
         <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type, viewDisplay,)} color={themeGame.smm2Color}>
-            <GameImage reference={smm2}/>
+            <GameImage reference={SMM2}/>
         </LinkButton>
     </div>
 }

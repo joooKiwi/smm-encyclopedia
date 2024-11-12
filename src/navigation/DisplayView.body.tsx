@@ -11,13 +11,16 @@ import {OtherWordInTheGames}                             from 'core/otherWordInT
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
 
+import SMM1 = Games.SMM1
+import SMM2 = Games.SMM2
+
 /** @reactComponent */
 export default function DisplayViewBody() {
     const games = useCurrentGames('display view body',) ?? CollectionConstants.EMPTY_COLLECTION_HOLDER
 
-    const isSMM1Selected = games.has(Games.SUPER_MARIO_MAKER_1,)
-    // const isSMM3DSSelected = games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-    const isSMM2Selected = games.has(Games.SUPER_MARIO_MAKER_2,)
+    const isSMM1Selected = games.has(SMM1,)
+    // const isSMM3DSSelected = games.has(SMM3DS,)
+    const isSMM2Selected = games.has(SMM2,)
     const tag = OtherWordInTheGames.TAG.singularNameOnReference
     const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     // const tags = OtherWordInTheGames.TAG.pluralNameOnReference

@@ -31,6 +31,9 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
 import ALL_GAMES = GamePossibility.ALL_GAMES
+import SMM1 =      Games.SMM1
+import SMM2 =      Games.SMM2
+import SMM3DS =    Games.SMM3DS
 
 class LimitAppInterpreter
     implements AppInterpreterWithTable<Limits, LimitAppOption>,
@@ -140,10 +143,6 @@ class LimitAppInterpreter
 
 }
 
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
-
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties,) {
     const routeName = type.routeName
@@ -205,14 +204,14 @@ function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties
     return <>
         <p>
             {gameContentTranslation(`limit.description.intro page (${type.type})`, {
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Or3dsLink}><GameImage reference={smm1}/></TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1Or3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Or3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1Or3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('limit.description.intro game changes', {
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={smm1}/></TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-gameChanges-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-gameChanges-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('limit.description.intro other entities',)}
             {gameContentTranslation('limit.description.intro references', {
@@ -278,11 +277,11 @@ function GameAsideContent({viewDisplay, type, game,}: LimitAsideContentPropertie
         <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(type, viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="limit-gamesButton-singularGame-container" className="btn-group btn-group-sm">
             <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(type, viewDisplay,)} color={game.smm1Or3dsColor}>
-                <GameImage reference={smm1}/>
-                <GameImage reference={smm3ds}/>
+                <GameImage reference={SMM1}/>
+                <GameImage reference={SMM3DS}/>
             </LinkButton>
             <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(type, viewDisplay,)} color={game.smm2Color}>
-                <GameImage reference={smm2}/>
+                <GameImage reference={SMM2}/>
             </LinkButton>
         </div>
     </div>

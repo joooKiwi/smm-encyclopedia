@@ -59,6 +59,10 @@ import {Versions}              from 'core/version/Versions'
 import {CourseTags}            from 'core/courseTag/CourseTags'
 import {INFINITY}              from 'util/commonVariables'
 
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+
 /**
  * @singleton
  * @see GameReferences
@@ -560,15 +564,15 @@ export class EveryTypes {
     }
 
     public get everyPossibleName_version_smm() {
-        return this.#everyPossibleName_version_smm ??= Versions.CompanionEnum.get.values.filter(it => it.game === Games.SUPER_MARIO_MAKER_1,).map(it => it.simpleName as PossibleName_Version_SMM,).toArray()
+        return this.#everyPossibleName_version_smm ??= Versions.CompanionEnum.get.values.filter(it => it.game === SMM1,).map(it => it.simpleName as PossibleName_Version_SMM,).toArray()
     }
 
     public get everyPossibleName_version_smm3ds() {
-        return this.#everyPossibleName_version_smm3ds ??= Versions.CompanionEnum.get.values.filter(it => it.game === Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,).map(it => it.simpleName as PossibleName_Version_SMM3DS,).toArray()
+        return this.#everyPossibleName_version_smm3ds ??= Versions.CompanionEnum.get.values.filter(it => it.game === SMM3DS,).map(it => it.simpleName as PossibleName_Version_SMM3DS,).toArray()
     }
 
     public get everyPossibleName_version_smm2() {
-        return this.#everyPossibleName_version_smm2 ??= Versions.CompanionEnum.get.values.filter(it => it.game === Games.SUPER_MARIO_MAKER_2,).map(it => it.simpleName as PossibleName_Version_SMM2,).toArray()
+        return this.#everyPossibleName_version_smm2 ??= Versions.CompanionEnum.get.values.filter(it => it.game === SMM2,).map(it => it.simpleName as PossibleName_Version_SMM2,).toArray()
     }
 
     //endregion -------------------- Version --------------------
