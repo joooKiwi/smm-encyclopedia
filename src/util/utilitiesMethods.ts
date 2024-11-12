@@ -1,6 +1,6 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import {isCollectionHolder}    from '@joookiwi/collection'
-import {AssertionError}        from 'assert'
+import {CollectionHolder}                     from '@joookiwi/collection'
+import {forEach, isArray, isCollectionHolder} from '@joookiwi/collection'
+import {AssertionError}                       from 'assert'
 
 import type {ClassWithReference}                                                                                  from 'core/ClassWithReference'
 import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
@@ -38,8 +38,8 @@ export function isArrayEquals(first: readonly unknown[], second: readonly unknow
     for (let i = 0; i < size; i++) {
         const elementInFirst = first[i]
         const elementInSecond = second[i]
-        if (elementInFirst instanceof Array)
-            if (elementInSecond instanceof Array)
+        if (isArray(elementInFirst,))
+            if (isArray(elementInSecond,))
                 if (!isArrayEquals(elementInFirst, elementInSecond,))
                     return false
         if (isCollectionHolder(elementInFirst,))
@@ -72,8 +72,8 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     for (let i = 0; i < size; i++) {
         const elementInFirst = first[i]
         const elementInSecond = second[i]
-        if (elementInFirst instanceof Array)
-            if (elementInSecond instanceof Array)
+        if (isArray(elementInFirst,))
+            if (isArray(elementInSecond,))
                 if (!isArrayEquals(elementInFirst, elementInSecond,))
                     return false
         if (isCollectionHolder(elementInFirst,))
@@ -111,17 +111,15 @@ export function map<const K1, const K2, const V1, const V2, >(values: ReadonlyMa
 
 export function mapValue<const K, const V1, const V2, >(values: ReadonlyMap<K, V1>, transform: (value: V1,) => V2,): ReadonlyMap<K, V2> {
     const map = new Map<K, V2>()
-    values.forEach((value, key,) => {
-        map.set(key, transform(value,),)
-    },)
+    values.forEach((value, key,) =>
+        map.set(key, transform(value,),),)
     return map
 }
 
 export function mapKey<const K1, const K2, const V, >(values: ReadonlyMap<K1, V>, transform: (key: K1,) => K2,): ReadonlyMap<K2, V> {
     const map = new Map<K2, V>()
-    values.forEach((value, key,) => {
-        map.set(transform(key,), value,)
-    },)
+    values.forEach((value, key,) =>
+            map.set(transform(key,), value,),)
     return map
 }
 
@@ -161,7 +159,7 @@ export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[]
         return EMPTY_ARRAY
 
     const secondSize = second.length
-    const newArray = [] as T[]
+    const newArray: T[] = []
     let firstIndex = -1
     while (++firstIndex < firstSize) {
         const firstValue = first[firstIndex] as T
@@ -201,17 +199,14 @@ export function filterGame<const T extends ClassWithReference<GameProperty>, >(v
     if (gameSize === 0)
         return values instanceof Array ? values : values.toArray()
 
-    const newArray = [] as T[]
-    let valuesIndex = -1
-    while (++valuesIndex < valuesSize) {
-        const value = values[valuesIndex] as T
-        let gameIndex = -1
-        while (++gameIndex < gameSize)
-            if (games[gameIndex]!.get(value.reference,)) {
+    const newArray: T[] = []
+    forEach(values, value => {
+        for (const it of games)
+            if (it.get(value.reference,)) {
                 newArray.push(value,)
                 break
             }
-    }
+    },)
     return newArray
 }
 
@@ -238,17 +233,14 @@ export function filterGameStyle<const T extends ClassWithReference<GameStyleProp
     if (gameSize === 0)
         return values instanceof Array ? values : values.toArray()
 
-    const newArray = [] as T[]
-    let valuesIndex = -1
-    while (++valuesIndex < valuesSize) {
-        const value = values[valuesIndex] as T
-        let gameIndex = -1
-        while (++gameIndex < gameSize)
-            if (gameStyles[gameIndex]!.get(value.reference,)) {
+    const newArray: T[] = []
+    forEach(values, value => {
+        for (const it of gameStyles)
+            if (it.get(value.reference,)) {
                 newArray.push(value,)
                 break
             }
-    }
+    },)
     return newArray
 }
 
