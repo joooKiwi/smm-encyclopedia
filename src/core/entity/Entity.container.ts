@@ -177,7 +177,7 @@ export class EntityContainer
         isInCollectedCoinLimit: BooleanOrNotApplicable,
         otherLimit: NullOr<| NotApplicable | Limits>, otherLimitComment: NullOr<PossibleOtherLimitComment>, isUnknownInOtherLimit: boolean,
 
-        instruments: Lazy<readonly Instrument[]>, canMakeASoundOutOfAMusicBlock: BooleanOrNotApplicable, canMakeASoundOutOfAMusicBlockComment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
+        instruments: Lazy<readonly Instrument[]>, canMakeASoundOutOfAMusicBlock: boolean, canMakeASoundOutOfAMusicBlockComment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
 
         referencesInSuperMarioBrosStyle: Lazy<PossibleOtherEntities>, referencesInSuperMarioBros3Style: Lazy<PossibleOtherEntities>, referencesInSuperMarioWorldStyle: Lazy<PossibleOtherEntities>, referencesInNewSuperMarioBrosUStyle: Lazy<PossibleOtherEntities>, referencesInSuperMario3DWorldStyle: Lazy<PossibleOtherEntities>,
         referencesInGroundTheme: Lazy<PossibleOtherEntities>, referencesInUndergroundTheme: Lazy<PossibleOtherEntities>, referencesInUnderwaterTheme: Lazy<PossibleOtherEntities>, referencesInDesertTheme: Lazy<PossibleOtherEntities>, referencesInSnowTheme: Lazy<PossibleOtherEntities>, referencesInSkyTheme: Lazy<PossibleOtherEntities>, referencesInForestTheme: Lazy<PossibleOtherEntities>, referencesInGhostHouseTheme: Lazy<PossibleOtherEntities>, referencesInAirshipTheme: Lazy<PossibleOtherEntities>, referencesInCastleTheme: Lazy<PossibleOtherEntities>,

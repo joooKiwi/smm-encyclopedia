@@ -133,7 +133,7 @@ export class EmptyEntity
     //region -------------------- Instrument --------------------
 
     public readonly instruments = EMPTY_ARRAY
-    public readonly canMakeASoundOutOfAMusicBlock = NOT_APPLICABLE
+    public readonly canMakeASoundOutOfAMusicBlock = false
     public readonly canMakeASoundOutOfAMusicBlockComment = null
 
     //endregion -------------------- Instrument --------------------
