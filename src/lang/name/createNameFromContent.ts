@@ -34,7 +34,7 @@ const IS_NOT_A_COMPLETE_NAME: IsACompleteNameCallback = () => false
 export function createNameFromContent(content: LanguageContent, game: PossibleGame, isACompleteName: boolean,): Name<string> {
     const isACompleteNameCallback = getIsACompleteNameCallback(game, isACompleteName,)
 
-    const originalLanguages = [] as EveryLanguages[]
+    const originalLanguages: EveryLanguages[] = []
     return new NameContainer(
         originalLanguages,
         getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.ENGLISH, content.english, content.americanEnglish, content.europeanEnglish,),
@@ -59,7 +59,7 @@ export function createNameFromContent(content: LanguageContent, game: PossibleGa
 export function createNameFromContentDescription(content: DescriptionLanguageContent, game: PossibleGame, isACompleteName: boolean,): Name<string> {
     const isACompleteNameCallback = getIsACompleteNameCallback(game, isACompleteName,)
 
-    const originalLanguages = [] as EveryLanguages[]
+    const originalLanguages: EveryLanguages[] = []
     return new NameContainer(
         originalLanguages,
         getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.ENGLISH, content.english_description, content.americanEnglish_description, content.europeanEnglish_description,),

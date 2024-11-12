@@ -31,7 +31,7 @@ export default function CourseThemeComponent({reference, name, displayAllAsText,
             <ThemeImage reference={courseTheme}/>,)}</div>
     }
 
-    const enumInstances = [] as Themes[]
+    const enumInstances: Themes[] = []
     reference.toCourseThemeMap().forEach((isInEnumInstance, enumInstance,) => {
         if (isInEnumInstance)
             enumInstances.push(enumInstance)

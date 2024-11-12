@@ -24,7 +24,7 @@ export default function GameStyleComponent({reference, name, displayAllAsText,}:
             <GameStyleImage reference={it}/>,)}</div>
     }
 
-    const gameStyles = [] as GameStyles[]
+    const gameStyles: GameStyles[] = []
     reference.toGameStyleMap().forEach((isSelected, gameStyle,) => {
         if (isSelected)
             gameStyles.push(gameStyle,)

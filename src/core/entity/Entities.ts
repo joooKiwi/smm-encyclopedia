@@ -612,7 +612,7 @@ export class Entities
             return value
 
         //@ts-ignore: This is only to verify if it exists by its name (it is faster than using the companion enum)
-        const reference = EditorVoices[this.name] as UndefinedOr<EditorVoices>
+        const reference: UndefinedOr<EditorVoices> = EditorVoices[this.name]
         if (reference != null)
             return this.#editorVoiceReference = reference
 

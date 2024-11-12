@@ -10,7 +10,7 @@ import {ProjectLanguages}    from 'lang/ProjectLanguages'
 export default function NameListComponent({id, listId, name, doesDisplayPopover,}: NameListProperties,) {
     const languagesToDisplay = name.originalLanguages.filter(it => !it.isCurrent)
 
-    const content = [] as ReactElement[]
+    const content: ReactElement[] = []
     const nameMap = name.toNameMap()
     for (const [language, value,] of nameMap) {
         if (!languagesToDisplay.includes(language,))

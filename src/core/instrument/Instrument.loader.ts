@@ -94,7 +94,7 @@ function createReference(content: Content, entityMap: EntityMap,): Instrument {
 }
 
 function retrieveEntity(content: Content, entityMap: EntityMap,): readonly Entity[] {
-    const entities = [] as Entity[]
+    const entities: Entity[] = []
     if (content.entityReference1 != null)
         entities.push(entityMap.get(content.entityReference1,)!,)
     if (content.entityReference2 != null)

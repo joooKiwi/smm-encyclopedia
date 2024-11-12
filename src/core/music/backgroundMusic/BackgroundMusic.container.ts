@@ -92,11 +92,11 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
         if (this.#everyMusic != null)
             return this.#everyMusic
 
-        const all = [] as NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                                      | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                                      | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                                      | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                                      | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[]
+        const all: NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                               | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                               | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                               | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                               | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[] = []
 
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
