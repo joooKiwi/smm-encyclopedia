@@ -13,7 +13,8 @@ describe('Theme (file test)', () => {
     const everyNames = types.everyPossibleName_theme
     const excludedLanguages_SMM1 = ['portuguese',] as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isSMM1Exclusive = it.isInSuperMarioMaker2 && !it.isInSuperMarioMaker1And3DS
         const isWorldOnly = !it.isInCourseTheme && it.isInWorldTheme
         //TODO Complete the german, italian, dutch, spanish, portuguese & russian for the game reference:
@@ -32,6 +33,6 @@ describe('Theme (file test)', () => {
                 : test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeOneOf(everyNames_nightEffect,),)// eslint-disable-line jest/no-identical-title
             testOnlyEnglish(it, everyNames,)
         },)
-    },),)
+    },)},)
 
 },)

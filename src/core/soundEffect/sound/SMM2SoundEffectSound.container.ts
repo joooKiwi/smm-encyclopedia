@@ -29,11 +29,11 @@ export class SMM2SoundEffectSoundContainer<const SOUNDS extends Array<SMM2SoundE
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public override get linkSounds(): LINK_SOUNDS {
+    public override get linkSounds() {
         return this.#linkSounds
     }
 
-    public override get smb2Sounds(): SMB2_SOUNDS {
+    public override get smb2Sounds() {
         return this.#smb2Sounds
     }
 

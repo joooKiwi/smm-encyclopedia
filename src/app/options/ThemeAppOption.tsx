@@ -43,7 +43,7 @@ export abstract class ThemeAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario'),}//TODO add Endless Mario
+            return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario',),}//TODO add Endless Mario
         }
 
     }()
@@ -52,10 +52,10 @@ export abstract class ThemeAppOption
         protected override _createContentOption(enumeration: Themes,) {
             return <div className="nameWithContent-container">
                 <div className="col-10">
-                    {CommonOptions.get.getGameContent(enumeration)}
-                    {CommonOptions.get.getNameContent(enumeration)}
+                    {CommonOptions.get.getGameContent(enumeration,)}
+                    {CommonOptions.get.getNameContent(enumeration,)}
                 </div>
-                <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+                <div className="col-2">{CommonOptions.get.getThemeContent(enumeration,)}</div>
             </div>
         }
 

@@ -18,7 +18,9 @@ const {STANDBY, PAUSED, PLAYING, EXCEPTION,} = SoundStates
  * @see https://www.w3schools.com/tags/ref_av_dom.asp Audio DOM reference (W3School.com)
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio Embed audio element (Mozilla.org)
  */
-export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile, const TITLE extends string = string, const DOES_LOOP extends boolean = false, >
+export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile,
+    const TITLE extends string = string,
+    const DOES_LOOP extends boolean = false, >
     extends AbstractSoundPlayer<SOURCE['key']> {
 
     //region -------------------- Fields --------------------

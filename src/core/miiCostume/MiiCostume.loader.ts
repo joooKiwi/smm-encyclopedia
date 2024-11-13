@@ -42,7 +42,7 @@ export class MiiCostumeLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, MiiCostume>
+    #map?: ReadonlyMap<PossibleEnglishName, MiiCostume>
 
     public load(): ReadonlyMap<PossibleEnglishName, MiiCostume> {
         if (this.#map != null)

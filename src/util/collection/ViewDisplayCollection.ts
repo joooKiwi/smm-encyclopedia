@@ -24,27 +24,27 @@ export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
      * type in its values
      */
     public get hasAllViewDisplay(): boolean {
-        return this.#hasAllViewDisplay ??= this.hasAll([ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST, ViewDisplays.TABLE,],)
+        return this.#hasAllViewDisplay ??= this.hasAll([ViewDisplays.SIMPLE_LIST as unknown as T, ViewDisplays.CARD_LIST as unknown as T, ViewDisplays.TABLE as unknown as T,],)
     }
 
     /** The collection has the {@link ViewDisplays.SIMPLE_LIST} type in its values */
     public get hasSimpleList(): boolean {
-        return this.#hasSimpleList ??= this.has(ViewDisplays.SIMPLE_LIST,)
+        return this.#hasSimpleList ??= this.has(ViewDisplays.SIMPLE_LIST as unknown as T,)
     }
 
     /** The collection has the {@link ViewDisplays.CARD_LIST} type in its values */
     public get hasCardList(): boolean {
-        return this.#hasCardList ??= this.has(ViewDisplays.CARD_LIST,)
+        return this.#hasCardList ??= this.has(ViewDisplays.CARD_LIST as unknown as T,)
     }
 
     /** The collection has the {@link ViewDisplays.SIMPLE_LIST} or {@link ViewDisplays.CARD_LIST} type in its values */
     public get hasSimpleOrCardList(): boolean {
-        return this.#hasSimpleOrCardList ??= this.hasOne([ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,],)
+        return this.#hasSimpleOrCardList ??= this.hasOne([ViewDisplays.SIMPLE_LIST as unknown as T, ViewDisplays.CARD_LIST as unknown as T,],)
     }
 
     /** The collection has the {@link ViewDisplays.TABLE} type in its values */
     public get hasSMM2(): boolean {
-        return this.#hasTable ??= this.has(ViewDisplays.TABLE,)
+        return this.#hasTable ??= this.has(ViewDisplays.TABLE as unknown as T,)
     }
 
     //endregion -------------------- Getter methods --------------------

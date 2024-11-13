@@ -49,7 +49,7 @@ export abstract class SoundEffectAppOption
     public static readonly NAME =                 new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
-            return CommonOptions.get.getNameContent(enumeration)
+            return CommonOptions.get.getNameContent(enumeration,)
         }
 
         protected override _createTableHeaderOption() {
@@ -77,7 +77,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'player behaviour', element: unfinishedText('Player behaviour'),}//TODO add Player behaviour
+            return {key: 'player behaviour', element: unfinishedText('Player behaviour',),}//TODO add Player behaviour
         }
 
     }('playerBehaviour',)

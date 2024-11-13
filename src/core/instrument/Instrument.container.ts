@@ -14,7 +14,7 @@ export class InstrumentContainer
 
     //region -------------------- Fields --------------------
 
-    readonly #entitiesHolder
+    readonly #entities
 
     readonly #isInSuperMarioMaker1
     readonly #isInSuperMarioMakerFor3DS
@@ -26,7 +26,7 @@ export class InstrumentContainer
     public constructor(name: Name<string>, entities: Array<Entity>,
                        isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean,) {
         super(name,)
-        this.#entitiesHolder = entities
+        this.#entities = entities
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
         this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
     }
@@ -34,8 +34,8 @@ export class InstrumentContainer
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-        return this.#entitiesHolder
     public get entities(): Array<Entity> {
+        return this.#entities
     }
 
     public get isInSuperMarioMaker1(): boolean {

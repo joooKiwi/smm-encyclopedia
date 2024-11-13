@@ -60,7 +60,7 @@ export class EntityLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, Entity>
+    #map?: ReadonlyMap<PossibleEnglishName, Entity>
 
     public load(): ReadonlyMap<PossibleEnglishName, Entity> {
         if (this.#map != null)

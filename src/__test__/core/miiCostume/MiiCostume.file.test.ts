@@ -16,7 +16,8 @@ describe('Mii costume (file test)', () => {
     const everyCategories = types.everyPossibleName_MiiCostumeCategory
     const excludedLanguages = ['portuguese',]                                                             as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)
 
         describe('Type validations', () => {
@@ -26,5 +27,5 @@ describe('Mii costume (file test)', () => {
             test('Category', () => expect(it.category,).toBeOneOf(everyCategories,),)
             testEnglish(it, everyNames,)
         },)
-    },),)
+    },)},)
 },)

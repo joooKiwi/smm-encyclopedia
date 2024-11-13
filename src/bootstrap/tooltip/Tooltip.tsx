@@ -8,9 +8,8 @@ import {TooltipInstance}                 from 'bootstrap/tooltip/TooltipInstance
 import {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
 import {EMPTY_CALLBACK}                  from 'util/emptyVariables'
 
-
 interface TooltipProperties
-    extends SimpleReactPropertiesWithOptionalChildren<Nullable<ReactElement>> {
+    extends SimpleReactPropertiesWithOptionalChildren<ReactElement> {
 
     readonly option: Partial<TooltipFromBootstrap.Options>
 

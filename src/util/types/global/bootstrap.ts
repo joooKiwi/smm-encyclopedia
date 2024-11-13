@@ -15,6 +15,11 @@ declare global {
                                | 'blue' | 'indigo' | 'purple' | 'pink' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'cyan'
 
     type PossibleTooltipPlacement = | 'top' | 'bottom' | 'left' | 'right'
+
+    type PossiblePopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right'
+
+    type PossibleOffcanvasOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right'
+
     /** The possible dimension (on a column) on bootstrap */
     type PossibleBootstrapDimension = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
     /** The possible dimension (on a column) on bootstrap or the automatic value */

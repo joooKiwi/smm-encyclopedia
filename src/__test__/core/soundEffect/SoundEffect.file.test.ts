@@ -13,7 +13,8 @@ describe('Sound effect (file test)', () => {
     const everyCategoryNames = [null, ...types.everyPossibleName_soundEffectCategory,] as const
     const excludedLanguages = ['portuguese',]                                          as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         //TODO add the sound effect names for the sound effect with no category
         // (Bird's Chirping, Distortion, Telephone, Festive Music, Rave Music, Bird's Tweeting Noise & Chicken Clucking Noise)
         // in German, Spanish, Italian, Dutch, Portuguese, Russian, Japanese, Chine & Korean
@@ -36,6 +37,6 @@ describe('Sound effect (file test)', () => {
             testOnlyEnglish(it, everyNames,)
             test('Category', () => expect(it.category,).toBeOneOf(everyCategoryNames,),)
         },)
-    },),)
+    },)},)
 
 },)

@@ -32,7 +32,7 @@ export class TranslationUtility {
     }
 
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<StringOrNumeric>,): string
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): ReactElement
+    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): NonNullReactElement
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
         let argumentsFound: MutableArray<string> = []

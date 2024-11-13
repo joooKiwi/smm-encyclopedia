@@ -28,7 +28,8 @@ describe('Mystery Mushroom (file test)', () => {
     const everyNames = types.everyPossibleUniqueEnglishName_mysteryMushroom
     const excludedLanguages = ['chinese', 'korean',]                                                                                                                                             as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isMysteryMushroom = it.uniqueName === 'Mystery Mushroom'
 
         testLanguages(it, excludedLanguages,)
@@ -37,7 +38,7 @@ describe('Mystery Mushroom (file test)', () => {
             test('Condition to unlock it', () => expect(it.conditionToUnlockIt,).toBeOneOf(everyConditionToUnlock,),)
             test('Can be unlocked by an Amiibo', () => expect(it.canBeUnlockedByAnAmiibo,).toBeBoolean(),)
             if (it.firstAppearanceInMarioMaker == null) //TODO make the test work for a non-null value instead of ignoring it
-                test.skip('First appearance (skipped)',() => { throw new Error('This test should not work in normal circumstance!',) },)
+                test.skip('First appearance (skipped)', () => { throw new Error('This test should not work in normal circumstance!',) },)
             else
                 test('First appearance', () => expect(it.firstAppearanceInMarioMaker,).toBeOneOf(everyVersionOrDate,),)
             test('Reference', () => expect(it.reference).toBeOneOf(everyGameReferenceAcronymWithPokemon,),)
@@ -120,5 +121,5 @@ describe('Mystery Mushroom (file test)', () => {
 
             testEnglish(it, everyNames,)
         },)
-    },),)
+    },)},)
 },)

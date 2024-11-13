@@ -10,7 +10,8 @@ describe('Game style (file test)', () => {
     const possibleNightWindDirection = ['←', '↔', '→',]                as const satisfies Array<PossibleNightDesertWindDirection>
     const possibleNightWindFrequency = ['periodic', 'constant',]       as const satisfies Array<PossibleNightDesertWindFrequency>
 
-    file.forEach(it => describe(it.reference, () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(it.reference, () => {// eslint-disable-line jest/valid-title
         const isSM3DW = it.reference === 'SM3DW'
 
         describe('Type validations', () => {
@@ -36,5 +37,5 @@ describe('Game style (file test)', () => {
             }
 
         },)
-    },),)
+    },)},)
 },)

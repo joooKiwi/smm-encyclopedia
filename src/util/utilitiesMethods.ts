@@ -62,7 +62,7 @@ export function isArrayEquals(first: Array<unknown>, second: Array<unknown>,): b
  * @param first The first {@link CollectionHolder} to compare
  * @param second The second {@link CollectionHolder} to compare
  */
-export function isCollectionEquals(first: CollectionHolder<unknown>, second: CollectionHolder<unknown>,): boolean {
+export function isCollectionEquals(first: CollectionHolder, second: CollectionHolder,): boolean {
     if (first === second)
         return true
     if (first.size !== second.size)

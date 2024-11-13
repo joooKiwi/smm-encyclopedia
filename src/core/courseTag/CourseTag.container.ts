@@ -24,7 +24,7 @@ export class CourseTagContainer
                        isAnOfficialTag: boolean,
                        makerCentralName: NullOr<PossibleMakerCentralName>,
                        firstAppearance: NullOr<Versions>,) {
-        super(name)
+        super(name,)
         this.#isAnOfficialTag = isAnOfficialTag
         this.#makerCentralName = makerCentralName
         this.#firstAppearance = firstAppearance

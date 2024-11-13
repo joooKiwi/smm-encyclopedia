@@ -40,7 +40,7 @@ export class GameStyleLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, GameStyle>
+    #map?: ReadonlyMap<PossibleEnglishName, GameStyle>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameStyle> {
         if (this.#map != null)

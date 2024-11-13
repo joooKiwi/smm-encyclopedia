@@ -9,7 +9,6 @@ import {EveryTypes}                                                             
 import {getEnglishName, testLanguages, testLanguagesDescription, testOnlyEnglish} from '__test__/helperMethods'
 import {UNKNOWN_REFERENCE}                                                        from 'util/commonVariables'
 
-
 describe('Official course (file test)', () => {
     const types = EveryTypes.get
 
@@ -22,7 +21,8 @@ describe('Official course (file test)', () => {
     const possibleNullableTheme = [null, ...types.everyPossibleName_courseTheme_smm1,]                       as const
     const excludedLanguages = ['chinese', 'korean',]                                                         as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
 
         testLanguages(it, excludedLanguages,)
         testLanguagesDescription(it, excludedLanguages,)
@@ -63,5 +63,5 @@ describe('Official course (file test)', () => {
                 test('Korean', () => expect(it.korean,).toBeNull(),)
             },)
         },)
-    },),)
+    },)},)
 },)

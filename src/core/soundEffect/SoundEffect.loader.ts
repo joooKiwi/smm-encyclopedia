@@ -38,7 +38,7 @@ export class SoundEffectLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, SoundEffect>
+    #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>
 
     public load(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
         if (this.#map != null)

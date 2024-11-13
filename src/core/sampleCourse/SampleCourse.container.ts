@@ -43,27 +43,27 @@ export class SampleCourseContainer
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get worldNumber(): PossibleWorldNumber {
+    public get worldNumber() {
         return this.#worldNumber
     }
 
-    public get firstNumberInFirst10MarioChallenges(): PossibleFirstNumberInFirst10MarioChallenges {
+    public get firstNumberInFirst10MarioChallenges() {
         return this.#firstNumberInFirst10MarioChallenges
     }
 
-    public get gameStyle(): GameStyles {
+    public get gameStyle() {
         return this.#gameStyle
     }
 
-    public get themeInMainArea(): Themes {
+    public get themeInMainArea() {
         return this.#themeInMainArea
     }
 
-    public get themeInSubArea(): NullOr<Themes> {
+    public get themeInSubArea() {
         return this.#themeInSubArea
     }
 
-    public get amountOfTime(): PossibleAmountOfTime {
+    public get amountOfTime() {
         return this.#amountOfTime
     }
 

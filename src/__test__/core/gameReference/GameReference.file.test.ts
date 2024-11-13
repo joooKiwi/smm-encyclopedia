@@ -13,7 +13,8 @@ describe('Game reference (file test)', () => {
     const everyNames = types.everyPossibleName_gameReference
     const excludedLanguages = ['japanese', 'chinese', 'korean',] as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         //TODO Complete the german, italian, dutch, spanish, portuguese & russian for the game reference:
         //  - (Pokémon Green Version)
         //  - Zelda II: The Adventure of Link
@@ -23,5 +24,5 @@ describe('Game reference (file test)', () => {
             test('Acronym', () => expect(it.acronym,).toBeOneOf(everyAcronyms,),)
             testEnglish(it, everyNames,)
         },)
-    },))
+    },)},)
 },)

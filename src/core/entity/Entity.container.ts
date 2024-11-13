@@ -22,7 +22,7 @@ import {LimitMapHolder}                   from 'util/collection/LimitMapHolder'
 import {ThemeMap}                         from 'util/collection/ThemeMap'
 import {TimeMap}                          from 'util/collection/TimeMap'
 
-/** A class made to be a representation of the csv data of an {@link Entities} */
+/** A class made to be a representation of the csv data on an {@link Entities} */
 export class EntityContainer
     extends ClassContainingANameAndACategory<string, string, EntityCategory>
     implements Entity {

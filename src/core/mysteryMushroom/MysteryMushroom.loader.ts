@@ -38,7 +38,7 @@ export class MysteryMushroomLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleUniqueEnglishName, MysteryMushroom>
+    #map?: ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
         if (this.#map != null)

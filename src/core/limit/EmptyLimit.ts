@@ -1,6 +1,6 @@
 import {lazy} from '@joookiwi/lazy'
 
-import type {Limit}                                      from 'core/limit/Limit'
+import type {AlternativeLimit, Limit}                    from 'core/limit/Limit'
 import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
@@ -12,7 +12,9 @@ import {assert}                               from 'util/utilitiesMethods'
 /** @singleton */
 export class EmptyLimit
     extends ClassContainingANameAndAnAlternative<string, string, EmptyLimit>
-    implements Limit, ClassWithNullObjectPattern<EmptyLimitName> {
+    implements Limit,
+        AlternativeLimit,
+        ClassWithNullObjectPattern<EmptyLimitName> {
 
     //region -------------------- Singleton usage --------------------
 

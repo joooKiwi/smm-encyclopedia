@@ -3,7 +3,7 @@
  *
  * @nullObjectPattern
  */
-export interface ClassWithNullObjectPattern<NAME extends EveryPossibleEmptyName = EveryPossibleEmptyName, > {
+export interface ClassWithNullObjectPattern<out NAME extends EveryPossibleEmptyName = EveryPossibleEmptyName, > {
 
     toString(): NAME
 

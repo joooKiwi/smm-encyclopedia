@@ -4,6 +4,6 @@ import type {HTMLDivProperties}                            from 'util/react/html
 interface ModalBodyProperties
     extends ReactProperties, HTMLDivProperties {}
 
-export default function ModalBody({className, children, ...otherProperties}: ReactPropertiesWithChildren<ModalBodyProperties, | ReactElement | readonly ReactElement[]>,) {
+export default function ModalBody({className, children, ...otherProperties}: ReactPropertiesWithChildren<ModalBodyProperties, ReactElementOrArray>,) {
     return <div {...otherProperties} className={`modal-body ${className ?? ''}`}>{children}</div>
 }

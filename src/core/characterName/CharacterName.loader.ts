@@ -29,7 +29,7 @@ export class CharacterNameLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleUniqueEnglishName, CharacterName>
+    #map?: ReadonlyMap<PossibleUniqueEnglishName, CharacterName>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, CharacterName> {
         if (this.#map != null)

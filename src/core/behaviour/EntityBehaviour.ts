@@ -6,7 +6,8 @@ import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/Enti
 import type {Entity}                                   from 'core/entity/Entity'
 
 export interface EntityBehaviour
-    extends ClassWithTranslationKey<PossibleTranslationKeys>, ClassWithAcronym<PossibleAcronym> {
+    extends ClassWithTranslationKey<PossibleTranslationKeys>,
+        ClassWithAcronym<PossibleAcronym> {
 
     //region -------------------- Is in only --------------------
 

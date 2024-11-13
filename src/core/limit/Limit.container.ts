@@ -56,11 +56,11 @@ export class LimitContainer
         return this.#type
     }
 
-    public get acronym(): NullOr<PossibleAcronym> {
+    public get acronym() {
         return this.#acronym
     }
 
-    public get amountComment(): NullOr<PossibleLimitAmount_Comment> {
+    public get amountComment() {
         return this.#amountComment
     }
 

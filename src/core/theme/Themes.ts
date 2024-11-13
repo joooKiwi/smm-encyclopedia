@@ -3,9 +3,9 @@ import {Enum}        from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                   from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter} from 'core/PropertyGetter'
-import type {Entity, PossibleOtherEntities}           from 'core/entity/Entity'
-import type {ThemeProperty}                           from 'core/entity/properties/theme/ThemeProperty'
+import type {PropertyGetter, PropertyReferenceGetter}                              from 'core/PropertyGetter'
+import type {Entity, PossibleOtherEntities}                                        from 'core/entity/Entity'
+import type {ThemeProperty}                                                        from 'core/entity/properties/theme/ThemeProperty'
 import type {CourseTheme}                                                          from 'core/theme/CourseTheme'
 import type {Names, Ordinals, PossibleEnglishName, PossibleName_InFile}            from 'core/theme/Themes.types'
 import type {CourseAndWorldTheme}                                                  from 'core/theme/CourseAndWorldTheme'
@@ -141,7 +141,7 @@ export abstract class Themes
 
     public static readonly VOLCANO =     new class Themes_Volcano extends Themes {
 
-        public override get(property: ThemeProperty,) {
+        public override get() {
             return false
         }
 
@@ -152,7 +152,7 @@ export abstract class Themes
     }('Volcano', 'magma',)
     public static readonly SPACE =       new class Themes_Space extends Themes   {
 
-        public override get(property: ThemeProperty,) {
+        public override get() {
             return false
         }
 

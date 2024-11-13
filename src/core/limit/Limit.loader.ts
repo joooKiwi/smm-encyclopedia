@@ -39,7 +39,7 @@ export class LimitLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, Limit>
+    #map?: ReadonlyMap<PossibleEnglishName, Limit>
 
     public load(): ReadonlyMap<PossibleEnglishName, Limit> {
         if (this.#map != null)

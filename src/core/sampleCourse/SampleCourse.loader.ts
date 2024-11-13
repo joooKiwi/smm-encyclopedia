@@ -39,7 +39,7 @@ export class SampleCourseLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, SampleCourse>
+    #map?: ReadonlyMap<PossibleEnglishName, SampleCourse>
 
     public load(): ReadonlyMap<PossibleEnglishName, SampleCourse> {
         if (this.#map != null)

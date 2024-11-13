@@ -34,7 +34,7 @@ export class CourseTagLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, CourseTag>
+    #map?: ReadonlyMap<PossibleEnglishName, CourseTag>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseTag> {
         if (this.#map != null)

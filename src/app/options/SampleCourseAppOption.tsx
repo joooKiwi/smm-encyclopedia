@@ -21,7 +21,7 @@ export abstract class SampleCourseAppOption
 
     public static readonly NUMBER = new class SampleCourseAppOption_Number extends SampleCourseAppOption {
 
-        protected override _createContentOption({reference: {worldNumber, firstNumberInFirst10MarioChallenges,}}: SampleCourses,): ReactElement {
+        protected override _createContentOption({reference: {worldNumber, firstNumberInFirst10MarioChallenges,}}: SampleCourses,): NonNullReactElement {
             if (firstNumberInFirst10MarioChallenges == null)
                 return <span className="number-container">{worldNumber}</span>
             return <span className="number-container">{worldNumber}<sub className="opacity-75">({firstNumberInFirst10MarioChallenges})</sub></span>
@@ -49,7 +49,7 @@ export abstract class SampleCourseAppOption
     }()
     public static readonly GAME_STYLE_AND_AREAS = new class SampleCourseAppOption_GameStyleAndAreas extends SampleCourseAppOption {
 
-        protected override _createContentOption({reference,}: SampleCourses,): ReactElement {
+        protected override _createContentOption({reference,}: SampleCourses,): NonNullReactElement {
             const themeInSubArea = reference.themeInSubArea
             if (themeInSubArea == null)
                 return <div className="gameStyleAndAreas-container d-flex">
@@ -78,7 +78,7 @@ export abstract class SampleCourseAppOption
     }()
     public static readonly TIME = new class SampleCourseAppOption_Time extends SampleCourseAppOption {
 
-        protected override _createContentOption({reference,}: SampleCourses,): ReactElement {
+        protected override _createContentOption({reference,}: SampleCourses,): NonNullReactElement {
             return <span>{reference.amountOfTime} <UnfinishedText>seconds</UnfinishedText></span>
         }
 

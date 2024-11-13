@@ -17,7 +17,8 @@ describe('Other word in the game (file test)', () => {
     const excludedLanguages_pluralAndSmm1And3ds = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'chinese', 'korean',] as const satisfies Array<PossibleExcludedLanguages>
     const excludedLanguages_plural = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian',]                                   as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isSMM1And3DSExclusive = (it.isInSuperMarioMaker1 || it.isInSuperMarioMakerFor3DS) && !it.isInSuperMarioMaker2
         const isSMM2Exclusive = !it.isInSuperMarioMaker1 && !it.isInSuperMarioMakerFor3DS && it.isInSuperMarioMaker2
         const isPluralForm = it.isPlural
@@ -44,5 +45,5 @@ describe('Other word in the game (file test)', () => {
 
             testEnglish(it, isPluralForm ? everyPluralNames : everySingularNames,)
         },)
-    },),)
+    },)},)
 },)

@@ -15,7 +15,8 @@ describe('Character name (file test)', () => {
     const excludedNames_smm1 = ['chinese', 'korean',] as const satisfies Array<PossibleExcludedLanguages>
     const excludedNames_smm2 = ['portuguese',]        as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isAddedLuigiToadOrToadette = luigiToadOrToadette.test(it.uniqueName,)
         isAddedLuigiToadOrToadette
             ? testOnlyEnglishAndFrench(it,)//TODO add other languages on the added (Luigi, Toad & Toadette) for the non-English & english
@@ -34,5 +35,5 @@ describe('Character name (file test)', () => {
             test('Unique name', () => expect(it.uniqueName,).toBeOneOf(everyUniqueNames,),)
             testEnglish(it, everyNames,)
         },)
-    },),)
+    },)},)
 },)

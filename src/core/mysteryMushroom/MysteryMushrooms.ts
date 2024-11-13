@@ -340,18 +340,23 @@ export class MysteryMushrooms
         public override get powerUpCollectedSound() {
             return null
         }
+
         public override get jumpSounds() {
             return EMPTY_ARRAY
         }
+
         public override get onGroundAfterJumpASound() {
             return null
         }
+
         public override get turningSound() {
             return null
         }
+
         public override get goalPoleSound() {
             return null
         }
+
         public override get lostALifeSound() {
             return null
         }
@@ -443,12 +448,15 @@ export class MysteryMushrooms
         public override get powerUpCollectedSound() {
             return null
         }
+
         public override get tauntSound(){
             return null
         }
+
         public override get onGroundAfterJumpASound() {
             return null
         }
+
         public override get turningSound() {
             return null
         }

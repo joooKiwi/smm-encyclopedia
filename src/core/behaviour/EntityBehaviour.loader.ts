@@ -33,7 +33,7 @@ export class EntityBehaviourLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleTranslationKeys, EntityBehaviour>
+    #map?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>
 
     public load(): ReadonlyMap<PossibleTranslationKeys, EntityBehaviour> {
         if (this.#map != null)

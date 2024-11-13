@@ -1,4 +1,4 @@
-import type {Enumerable} from '@joookiwi/enumerable/dist/types'
+import type {Enumerable} from '@joookiwi/enumerable'
 
 import type {SimpleImageHeader, SimpleReactHeader, SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {ClassWithEnglishName}                                      from 'core/ClassWithEnglishName'
@@ -58,7 +58,7 @@ export class CommonOptions {
         return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name',),}
     }
 
-    public getNameContent(enumeration: EnumerationWithReference,): ReactElement {
+    public getNameContent(enumeration: EnumerationWithReference,): NonNullReactElement {
         return <NameComponent id="name" name={enumeration.reference} popoverOrientation="left"/>
     }
 
@@ -107,7 +107,7 @@ export class CommonOptions {
      *
      * @param enumeration The enumerable to retrieve the {@link Games} properties & {@link ClassWithEnglishName english name}.
      */
-    public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): ReactElement {
+    public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): NonNullReactElement {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
@@ -118,7 +118,7 @@ export class CommonOptions {
     }
 
 
-    public getThemeContent(enumeration: Themes,): ReactElement {
+    public getThemeContent(enumeration: Themes,): NonNullReactElement {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (theme content images)`} id={`${enumeration.englishNameInHtml}-themeContentImages-container`} className="themeContentImages-container">

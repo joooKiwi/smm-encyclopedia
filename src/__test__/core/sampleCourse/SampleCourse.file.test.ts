@@ -18,7 +18,8 @@ describe('Sample course (file test)', () => {
     const everyAmountOfTime = [50, 100, 300, 500,]                                     as const satisfies Array<PossibleAmountOfTime>
     const excludedLanguages = ['chinese', 'korean',]                                   as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)
 
         describe('Type validation', () => {
@@ -31,5 +32,5 @@ describe('Sample course (file test)', () => {
 
             test('Amount of time', () => expect(it.amountOfTime,).toBeOneOf(everyAmountOfTime,),)
         },)
-    },),)
+    },)},)
 },)

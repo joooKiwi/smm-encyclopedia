@@ -15,7 +15,8 @@ describe('Course tag (file test)', () => {
     const possibleFirstAppearance = [null, 'v1.0.0', 'v3.0.0',]                             as const satisfies Array<PossibleFirstAppearanceInMarioMaker>
     const excludedNames = ['portuguese',]                                                   as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         it.isAnOfficialTag
             ? testLanguages(it, excludedNames,)
             : testOnlyEnglishAndFrench(it)
@@ -27,5 +28,5 @@ describe('Course tag (file test)', () => {
 
             testOnlyEnglish(it, everyNames,)
         },)
-    },),)
+    },)},)
 },)

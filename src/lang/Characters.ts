@@ -121,27 +121,27 @@ export class Characters
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    static readonly #POINTS: Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,]
+    static readonly #POINTS: Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,] as const
     static #POINTS_STRING?: Points_Array
     static #POINTS_SPACE_EVEN?: Points_SpaceEven_Array
     static #POINTS_SPACE_UNEVEN?: Points_SpaceUneven_Array
 
-    static readonly #PARENTHESES: Parentheses = [this.STARTING_PARENTHESIS, this.ENDING_PARENTHESIS,]
+    static readonly #PARENTHESES: Parentheses = [this.STARTING_PARENTHESIS, this.ENDING_PARENTHESIS,] as const
     static #PARENTHESES_STRING?: Parentheses_Array
     static #PARENTHESES_SPACE_EVEN?: Parentheses_SpaceEven_Array
     static #PARENTHESES_SPACE_UNEVEN?: Parentheses_SpaceUneven_Array
 
-    static readonly #BRACKETS: Brackets = [this.STARTING_BRACKET, this.ENDING_BRACKET,]
+    static readonly #BRACKETS: Brackets = [this.STARTING_BRACKET, this.ENDING_BRACKET,] as const
     static #BRACKETS_STRING?: Brackets_Array
     static #BRACKETS_SPACE_EVEN?: Brackets_SpaceEven_Array
     static #BRACKETS_SPACE_UNEVEN?: Brackets_SpaceUneven_Array
 
-    static readonly #BRACES: Braces = [this.STARTING_BRACE, this.ENDING_BRACE,]
+    static readonly #BRACES: Braces = [this.STARTING_BRACE, this.ENDING_BRACE,] as const
     static #BRACES_STRING?: Braces_Array
     static #BRACES_SPACE_EVEN?: Braces_SpaceEven_Array
     static #BRACES_SPACE_UNEVEN?: Braces_SpaceUneven_Array
 
-    static readonly #SLASHES: Slashes = [this.SLASH, this.VERTICAL_SLASH,]
+    static readonly #SLASHES: Slashes = [this.SLASH, this.VERTICAL_SLASH,] as const
     static #SLASHES_STRING?: Slashes_Array
     static #SLASHES_SPACE_EVEN?: Slashes_SpaceEven_Array
     static #SLASHES_SPACE_UNEVEN?: Slashes_SpaceUneven_Array
@@ -153,7 +153,7 @@ export class Characters
         this.LETTER_P, this.LETTER_Q, this.LETTER_R, this.LETTER_S, this.LETTER_T,
         this.LETTER_U, this.LETTER_V, this.LETTER_W, this.LETTER_X, this.LETTER_Y,
         this.LETTER_Z,
-    ]
+    ] as const
     static #LETTERS_STRING?: Letters_Array
     static #LETTERS_SPACE_EVEN?: RomainAlphabet_SpaceEven_Array
     static #LETTERS_SPACE_UNEVEN?: RomainAlphabet_SpaceUneven_Array
@@ -167,7 +167,7 @@ export class Characters
     static readonly #NUMBERS: Numbers = [
         this.NUMBER_0, this.NUMBER_1, this.NUMBER_2, this.NUMBER_3, this.NUMBER_4,
         this.NUMBER_5, this.NUMBER_6, this.NUMBER_7, this.NUMBER_8, this.NUMBER_9,
-    ]
+    ] as const
     static #NUMBERS_STRING?: Numbers_Array
     static #NUMBERS_SPACE_EVEN?: Numbers_SpaceEven_Array
     static #NUMBERS_SPACE_UNEVEN?: Numbers_SpaceUneven_Array

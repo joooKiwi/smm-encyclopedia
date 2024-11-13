@@ -43,7 +43,7 @@ export class LanguageContainer<const T,
 
     public get(): S
     public get<INDEX extends number = number, >(index: INDEX,): | NonNullable<A[INDEX]> | S
-    public get<INDEX extends number = number, >(index?: INDEX,) {
+    public get(index?: number,) {
         if (index == null)
             return this._singleValue ?? this._arrayValue[0]
         return this._arrayValue[index] ?? this._singleValue

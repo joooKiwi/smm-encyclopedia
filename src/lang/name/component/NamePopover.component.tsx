@@ -3,7 +3,6 @@ import type {Dispatch, SetStateAction}    from 'react'
 import Popover                            from 'bootstrap/js/dist/popover'
 import {Component}                        from 'react'
 
-import type {PopoverOrientation}                                       from 'bootstrap/popover/PopoverInstance.declaration'
 import type {Name}                                                     from 'lang/name/Name'
 import type {NamePopoverProperties, NamePopoverStates, NameProperties} from 'lang/name/component/Name.properties'
 import type {ReactComponent}                                           from 'util/react/ReactComponent'
@@ -56,7 +55,7 @@ export default class NamePopoverComponent
         return this.otherProperties.name
     }
 
-    public get popoverOrientation(): | PopoverOrientation | undefined {
+    public get popoverOrientation(): UndefinedOr<PossiblePopoverOrientation> {
         return this.otherProperties.popoverOrientation
     }
 
@@ -87,7 +86,7 @@ export default class NamePopoverComponent
  * @param popoverOrientation the {@link Popover popover} orientation
  * @param title popover title
  */
-function createOption(elementId: string, popoverOrientation: NullableString<PopoverOrientation>, title: string,): Partial<Popover.Options> {
+function createOption(elementId: string, popoverOrientation: NullableString<PossiblePopoverOrientation>, title: string,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: title,
         content: document.getElementById(elementId)!,

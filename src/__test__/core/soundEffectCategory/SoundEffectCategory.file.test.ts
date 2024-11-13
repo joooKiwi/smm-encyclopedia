@@ -12,11 +12,12 @@ describe('Sound effect category (file test)', () => {
     const everyNames = types.everyPossibleName_soundEffectCategory
     const excludedLanguages = ['portuguese',] as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)
 
         describe('Type validations', () => {
             testOnlyEnglish(it, everyNames,)//TODO add german value on the Feelings, Stingers & Music
         },)
-    },))
+    },)},)
 },)

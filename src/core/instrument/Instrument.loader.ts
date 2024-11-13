@@ -33,7 +33,7 @@ export class InstrumentLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, Instrument>
+    #map?: ReadonlyMap<PossibleEnglishName, Instrument>
 
     public load(): ReadonlyMap<PossibleEnglishName, Instrument> {
         if (this.#map != null)

@@ -25,7 +25,7 @@ export abstract class OfficialCourseAppOption
 
     public static readonly REWARD = new class OfficialCourseAppOption_Reward extends OfficialCourseAppOption {
 
-        protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
+        protected override _createContentOption(enumeration: OfficialCourses,): NonNullReactElement {
             const englishName = enumeration.englishName
 
             return <Fragment key={`Reward (${englishName})`}>{enumeration.reference.reward.map(it =>
@@ -50,7 +50,7 @@ export abstract class OfficialCourseAppOption
     }('name',)
     public static readonly DESCRIPTION = new class OfficialCourseAppOption_Description extends OfficialCourseAppOption {
 
-        protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
+        protected override _createContentOption(enumeration: OfficialCourses,): NonNullReactElement {
             const reference = enumeration.reference
             const value = reference.descriptionLanguageValue
 
@@ -66,7 +66,7 @@ export abstract class OfficialCourseAppOption
     }('description',)
     public static readonly GAME_STYLE_AND_THEMES = new class OfficialCourseAppOption_GameStyleAndThemes extends OfficialCourseAppOption {
 
-        protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
+        protected override _createContentOption(enumeration: OfficialCourses,): NonNullReactElement {
             const reference = enumeration.reference
             const courseThemeInSubArea = reference.courseThemeInTheSubArea
 
@@ -95,7 +95,7 @@ export abstract class OfficialCourseAppOption
     }('gameStyleAndThemes',)
     public static readonly TIME = new class OfficialCourseAppOption_Time extends OfficialCourseAppOption {
 
-        protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
+        protected override _createContentOption(enumeration: OfficialCourses,): NonNullReactElement {
             return <span>{enumeration.reference.amountOfTime} <UnfinishedText>seconds</UnfinishedText></span>
         }
 
@@ -106,7 +106,7 @@ export abstract class OfficialCourseAppOption
     }('time',)
     public static readonly AVAILABILITY = new class OfficialCourseAppOption_Availability extends OfficialCourseAppOption {
 
-        protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
+        protected override _createContentOption(enumeration: OfficialCourses,): NonNullReactElement {
             const reference = enumeration.reference
             const releaseDate = reference.releaseDate
             const removalDate = reference.removalDate

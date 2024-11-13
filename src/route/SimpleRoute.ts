@@ -41,27 +41,27 @@ export class SimpleRoute<const NAME extends string = string,
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get name(): NAME {
+    public get name() {
         return this.#name
     }
 
-    public get path(): PATH {
+    public get path() {
         return this.#path
     }
 
-    public get viewDisplay(): NullOr<ViewDisplays> {
+    public get viewDisplay() {
         return this.#viewDisplay
     }
 
-    public get games(): NullOr<readonly Games[]> {
+    public get games() {
         return this.#games
     }
 
-    public get gameStyles(): NullOr<readonly GameStyles[]> {
+    public get gameStyles() {
         return this.#gameStyles
     }
 
-    public get renderCallback(): RouteCallback {
+    public get renderCallback() {
         return this.#renderCallback
     }
 

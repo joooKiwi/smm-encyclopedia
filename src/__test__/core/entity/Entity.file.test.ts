@@ -56,7 +56,8 @@ describe('Entity (file test)', () => {
     const possibleHasNameReferencedInMarioMaker = [null, true, false, UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',]                                          as const satisfies Array<HasAReferenceInMarioMaker>
     const excludedLanguages = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'japanese', 'chinese', 'korean',]                                       as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)
 
         describe('Type validation', () => {
@@ -266,5 +267,5 @@ describe('Entity (file test)', () => {
 
             testEnglish(it, everyNames,)
         },)
-    },))
+    },)},)
 },)

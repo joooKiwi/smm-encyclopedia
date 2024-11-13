@@ -45,7 +45,7 @@ export class ThemeLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, CourseAndWorldTheme>
+    #map?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
         if (this.#map != null)

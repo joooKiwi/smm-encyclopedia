@@ -8,19 +8,14 @@ import type {NameTrait}                                                         
 export interface SampleCourse
     extends NameTrait<string> {
 
-    get worldNumber(): PossibleWorldNumber
+    readonly worldNumber: PossibleWorldNumber
+    readonly firstNumberInFirst10MarioChallenges: PossibleFirstNumberInFirst10MarioChallenges
 
-    get firstNumberInFirst10MarioChallenges(): PossibleFirstNumberInFirst10MarioChallenges
+    readonly gameStyle: GameStyles
 
+    readonly themeInMainArea: Themes
+    readonly themeInSubArea: NullOr<Themes>
 
-    get gameStyle(): GameStyles
-
-
-    get themeInMainArea(): Themes
-
-    get themeInSubArea(): NullOr<Themes>
-
-
-    get amountOfTime(): PossibleAmountOfTime
+    readonly amountOfTime: PossibleAmountOfTime
 
 }

@@ -1,6 +1,8 @@
 import './AnimatedImages.scss'
 import './VariableImage.scss'
 
+import {getFirstByArray} from '@joookiwi/collection'
+
 import type {AnimatedImagesProperties}    from 'app/tools/images/properties/AnimatedImagesProperties'
 import type {ImageFromFileProperties}     from 'app/tools/images/properties/ImageFromFileProperties'
 import type {ImageFromVariableProperties} from 'app/tools/images/properties/ImageFromVariableProperties'
@@ -50,7 +52,7 @@ function AnimatedImages({partialId, className = '', images, displayAnimations = 
     assert(images.length >= MINIMUM_AMOUNT_OF_IMAGES && images.length <= MAXIMUM_AMOUNT_OF_IMAGES, `The array received for "${partialId}" is required to have between than ${MINIMUM_AMOUNT_OF_IMAGES} & ${MAXIMUM_AMOUNT_OF_IMAGES} items. The length received is ${images.length}.`,)
 
     if (!displayEveryImages)
-        return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...images[0]}/></div>
+        return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...getFirstByArray(images,)}/></div>
 
     if (!displayAnimations)
         return <div key={`${partialId} - not animated`} id={partialId} className={`${className} non-animated-image non-animated-image-${images.length}`} {...otherParameters}>
