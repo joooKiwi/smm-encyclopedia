@@ -893,16 +893,16 @@ export default function MusicApp() {
 //region -------------------- Get image --------------------
 
 function getLinkImage() {
-    return Entities.MASTER_SWORD.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]
+    return Entities.MASTER_SWORD.editorImage.get(SMB, Themes.GROUND, Times.DAY,).getFirst()
 }
 
 function getSmb2Image() {
-    return Entities.SMB2_MUSHROOM.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]
+    return Entities.SMB2_MUSHROOM.editorImage.get(SMB, Themes.GROUND, Times.DAY,).getFirst()
 }
 
 function getYoshiImage(gameStyle: GameStyles,) {
     if (gameStyle === SMW)
-        return Entities.YOSHI_EGG.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,)[0]
+        return Entities.YOSHI_EGG.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
     if (gameStyle === NSMBU)
         return Entities.YOSHI_EGG.clearConditionImage.get(gameStyle,)
     throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)

@@ -8,10 +8,10 @@ import NSMBU = GameStyles.NSMBU
 
 export namespace ImageCallbacks {
 
-    export const FIRST_EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0]!,]
+    export const FIRST_EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [entity.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst(),]
     export const FIRST_IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)[0]!,]
 
-    export const EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,)
+    export const EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,).toArray()
 
     export const IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(gameStyle,)
 
