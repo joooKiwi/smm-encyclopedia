@@ -355,11 +355,6 @@ export class EntityAppOption
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    static #gameStyles?: readonly GameStyles[]
-    static #gameStyles_unusedImages?: | readonly [GameStyles,] | EmptyArray
-    static #times?: readonly Times[]
-    static #themes?: readonly Themes[]
-
     readonly #associatedClass
     readonly #additionalClasses
 
@@ -380,23 +375,6 @@ export class EntityAppOption
 
     public get additionalClasses(): readonly [string,] {
         return this.#additionalClasses
-    }
-
-
-    protected static get _gameStyles(): readonly GameStyles[] {
-        return this.#gameStyles ??= GameStyles.CompanionEnum.get.values.toArray()
-    }
-
-    protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | EmptyArray {
-        return this.#gameStyles_unusedImages ??= [SMB,]
-    }
-
-    protected static get times(): readonly Times[] {
-        return this.#times ??= Times.CompanionEnum.get.values.toArray()
-    }
-
-    protected static get themes(): readonly Themes[] {
-        return this.#themes ??= Themes.courseThemes
     }
 
     //endregion -------------------- Getter methods --------------------

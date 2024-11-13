@@ -539,21 +539,6 @@ export abstract class EveryLanguages
             return valueFound
         }
 
-        public getValueByNameOrAcronym(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
-            if (value == null)
-                throw new TypeError(`No "${this.instance.name}" could be found by a null name or acronym.`,)
-            if (value instanceof this.instance)
-                return value
-            const valueFound = this.values.findFirstOrNull(it =>
-                it.projectAcronym === value
-                || it.internationalAcronym === value
-                || it.englishName === value
-                || it.originalName === value)
-            if (valueFound == null)
-                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
-            return valueFound
-        }
-
     }
 
     //endregion -------------------- Companion enum --------------------

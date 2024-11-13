@@ -79,13 +79,13 @@ export class GlobalThemeOption {
         return this.onNight()
     }
 
-    public get addNight(): GlobalThemeOption {
-        return this.onNight(true)
-    }
-
-    public get removeNight(): GlobalThemeOption {
-        return this.onNight(false)
-    }
+    // public get addNight(): GlobalThemeOption {
+    //     return this.onNight(true)
+    // }
+    //
+    // public get removeNight(): GlobalThemeOption {
+    //     return this.onNight(false)
+    // }
 
 
     /**
@@ -121,13 +121,13 @@ export class GlobalThemeOption {
         return this.onDay()
     }
 
-    public get addDay(): GlobalThemeOption {
-        return this.onDay(true)
-    }
-
-    public get removeDay(): GlobalThemeOption {
-        return this.onDay(false)
-    }
+    // public get addDay(): GlobalThemeOption {
+    //     return this.onDay(true)
+    // }
+    //
+    // public get removeDay(): GlobalThemeOption {
+    //     return this.onDay(false)
+    // }
 
 
     /**

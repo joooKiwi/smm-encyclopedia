@@ -101,7 +101,4 @@ export interface OffcanvasInstanceDeclaration<ELEMENT extends Element = Element,
 
 }
 
-
-export type OffcanvasOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right'
-
 export type OffcanvasEventCallback<I extends OffcanvasInstanceDeclaration<any, any> = OffcanvasInstanceDeclaration, > = (instance: I, event: Event,) => void

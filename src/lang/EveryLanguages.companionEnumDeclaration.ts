@@ -10,6 +10,4 @@ export interface CompanionEnumDeclaration_EveryLanguages
 
     getValueByAcronym(value: Nullable<| EveryLanguages | string>,): EveryLanguages
 
-    getValueByNameOrAcronym(value: Nullable<| EveryLanguages | string>,): EveryLanguages
-
 }

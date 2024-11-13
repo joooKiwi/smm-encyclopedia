@@ -334,8 +334,6 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    static #imagesAndSounds?: readonly MysteryMushroomAppOption[]
-
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>
 
     readonly #type

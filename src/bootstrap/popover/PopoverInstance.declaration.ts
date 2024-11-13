@@ -126,6 +126,4 @@ export interface PopoverInstanceDeclaration<ELEMENT extends HTMLElement = HTMLEl
 }
 
 
-export type PopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right'
-
 export type PopoverEventCallback<I extends PopoverInstanceDeclaration<any, any> = PopoverInstanceDeclaration, > = (instance: I, event: Event,) => void
