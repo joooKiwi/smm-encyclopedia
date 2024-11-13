@@ -179,9 +179,9 @@ export class MiiCostumes
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.englishName === value
-                || enumerable.__imageName === value,)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.englishName === value
+                || it.__imageName === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound

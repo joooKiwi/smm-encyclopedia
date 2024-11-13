@@ -515,11 +515,11 @@ export abstract class EveryLanguages
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.projectAcronym === value
-                || enumerable.internationalAcronym === value
-                || enumerable.englishName === value
-                || enumerable.originalName === value)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.projectAcronym === value
+                || it.internationalAcronym === value
+                || it.englishName === value
+                || it.originalName === value)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -530,9 +530,9 @@ export abstract class EveryLanguages
                 throw new TypeError(`No "${this.instance.name}" could be found by a null acronym.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.projectAcronym === value
-                || enumerable.internationalAcronym === value)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.projectAcronym === value
+                || it.internationalAcronym === value)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this acronym "${value}".`,)
             return valueFound
@@ -543,11 +543,11 @@ export abstract class EveryLanguages
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name or acronym.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.projectAcronym === value
-                || enumerable.internationalAcronym === value
-                || enumerable.englishName === value
-                || enumerable.originalName === value)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.projectAcronym === value
+                || it.internationalAcronym === value
+                || it.englishName === value
+                || it.originalName === value)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound

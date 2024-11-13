@@ -286,7 +286,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it =>
+            const valueFound = this.values.findFirstOrNull(it =>
                 it.singularEnglishName === value
                 || it.pluralEnglishName === value,)
             if (valueFound == null)

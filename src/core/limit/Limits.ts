@@ -395,7 +395,7 @@ export class Limits
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it =>
+            const valueFound = this.values.findFirstOrNull(it =>
                 it.englishName === value
                 || it.englishName.replace(' Limit', EMPTY_STRING,) === value
                 || it.englishName.replace(' Limit (Editor)', EMPTY_STRING,) === value

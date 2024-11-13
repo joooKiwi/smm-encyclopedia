@@ -42,7 +42,7 @@ export abstract class RepeatableTypes
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it => it.simpleName === value,)
+            const valueFound = this.values.findFirstOrNull(it => it.simpleName === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound

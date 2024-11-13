@@ -377,8 +377,8 @@ export class Musics
             if (value instanceof this.instance)
                 return value
             const valueFound = value instanceof Import.Themes
-                ? this.values.find(it => it.themeReference === value,)
-                : this.values.find(it => it.soundEffectReference === value,)
+                ? this.values.findFirstOrNull(it => it.themeReference === value,)
+                : this.values.findFirstOrNull(it => it.soundEffectReference === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this reference "${value}".`,)
             return valueFound

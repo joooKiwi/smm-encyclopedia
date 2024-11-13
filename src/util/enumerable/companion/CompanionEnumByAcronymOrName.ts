@@ -26,7 +26,7 @@ export class CompanionEnumByAcronymOrName<const ENUM extends EnumerableWithEngli
             throw new TypeError(`No "${this.instance.name}" could be found by a null name or acronym.`,)
         if (value instanceof this.instance)
             return value
-        const valueFound = this.values.find(it =>
+        const valueFound = this.values.findFirstOrNull(it =>
             it.acronym === value
             || it.englishName === value,)
         if (valueFound == null)

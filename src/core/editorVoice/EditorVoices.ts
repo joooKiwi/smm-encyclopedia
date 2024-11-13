@@ -559,11 +559,11 @@ export abstract class EditorVoices
         }
 
         #findByEntity(value: Entities,): NullOr<EditorVoices> {
-            return this.values.find(it => hasByArray(it.entityReferences, value,),)
+            return this.values.findFirstOrNull(it => hasByArray(it.entityReferences, value,),)
         }
 
         #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-            return this.values.find(it => hasByArray(it.characterNameReferences, value,),)
+            return this.values.findFirstOrNull(it => hasByArray(it.characterNameReferences, value,),)
         }
 
     }

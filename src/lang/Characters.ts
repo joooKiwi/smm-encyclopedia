@@ -107,7 +107,7 @@ export class Characters
                 throw new TypeError(`No "${this.instance.name}" could be found by a null character.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it =>
+            const valueFound = this.values.findFirstOrNull(it =>
                 it.spaceEvenCharacters.includes(value as never,)
                 || it.spaceUnevenCharacters.includes(value as never,),)
             if (valueFound == null)

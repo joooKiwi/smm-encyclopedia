@@ -12,7 +12,7 @@ export class CompanionEnumByTranslationKey<const ENUM extends EnumerableWithTran
             throw new TypeError(`No "${this.instance.name}" could be found by a null translation key.`,)
         if (value instanceof this.instance)
             return value as ENUM
-        const valueFound = this.values.find(it => it.translationKey === value,)
+        const valueFound = this.values.findFirstOrNull(it => it.translationKey === value,)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
         return valueFound

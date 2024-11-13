@@ -110,7 +110,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             if (value instanceof this.instance)
                 return value
             const stringValue = `${value}`
-            const valueFound = this.values.find(it => it.simpleValue === stringValue,)
+            const valueFound = this.values.findFirstOrNull(it => it.simpleValue === stringValue,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound

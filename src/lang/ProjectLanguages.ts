@@ -141,7 +141,7 @@ export class ProjectLanguages
 
         public getValueByLanguage(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): ProjectLanguages {
             if (value instanceof EveryLanguages) {
-                const valueFound = this.values.find(it => it.language === value,)
+                const valueFound = this.values.findFirstOrNull(it => it.language === value,)
                 if (valueFound == null)
                     throw new NullReferenceException(`No "${this.instance.name}" could be found by this value "${value}".`, value,)
                 return valueFound

@@ -36,7 +36,7 @@ export abstract class CompanionEnumDualRetrievableInUrl<const ENUM extends Enume
         const lowerCasedUrl = url.toLowerCase()
         const prefix = this.PREFIX?.toLowerCase() ?? EMPTY_STRING
         if (this.SINGLE_URL_REGEX.test(url,)) {
-            const valueFound = this.values.find(it => lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
+            const valueFound = this.values.findFirstOrNull(it => lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" was found by the url "${url}".`,)
             return [valueFound,]
