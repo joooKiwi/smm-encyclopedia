@@ -14,4 +14,4 @@ export type Names = keyof typeof Enum
 
 export type PossibleType = 'all' | 'power-up' | 'ride' | 'hat' | `power-up & ${| 'ride' | 'hat'}` | 'ride & hat'
 /** A possible route name (not forwarded to the {@link EveryPossibleRouteNames variable}) */
-export type PossibleRouteName = `every${| `PowerUp${| '' | `&${| `Ride${| '' | '&Hat'}` | 'Hat'}`}` | `Ride${| '' | '&Hat'}` | 'Hat'}Priority` | 'noPriority'
+export type PossibleRouteName = `every${| `PowerUp${| EmptyString | `&${| `Ride${| EmptyString | '&Hat'}` | 'Hat'}`}` | `Ride${| EmptyString | '&Hat'}` | 'Hat'}Priority` | 'noPriority'

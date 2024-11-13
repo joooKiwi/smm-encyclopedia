@@ -1,14 +1,14 @@
 export type PossibleExcludedLanguages =
-    | `english${| '' | ` (${| 'america' | 'europe'})`}`
-    | `french${| '' | ` (${| 'canada' | 'europe'})`}`
+    | `english${| EmptyString | ` (${| 'america' | 'europe'})`}`
+    | `french${| EmptyString | ` (${| 'canada' | 'europe'})`}`
     | 'german'
-    | `spanish${| '' | ` (${| 'america' | 'europe'})`}`
+    | `spanish${| EmptyString | ` (${| 'america' | 'europe'})`}`
     | 'italian'
     | 'dutch'
-    | `portuguese${| '' | ` (${| 'america' | 'europe'})`}`
+    | `portuguese${| EmptyString | ` (${| 'america' | 'europe'})`}`
     | 'russian'
     | 'japanese'
-    | `${| '' | `${| 'traditional' | 'simplified'} `}chinese`
+    | `${| EmptyString | `${| 'traditional' | 'simplified'} `}chinese`
     | 'korean'
 // | 'hebrew'
 // | 'polish'

@@ -501,7 +501,7 @@ export class Limits
     }
 
     public get alternativeEnglishNameInHtml(): string {
-        return this.#alternativeEnglishName?.getInHtml ?? ''
+        return this.#alternativeEnglishName?.getInHtml ?? EMPTY_STRING
     }
 
 

@@ -102,7 +102,7 @@ export type PossibleEnglishName =
 
     | 'Mokugyo' | 'Kazoo' | 'Music box'
 
-    | 'Marimba' | 'Vibraphone' | `Timpani${| '' | ' roll'}`
+    | 'Marimba' | 'Vibraphone' | `Timpani${| EmptyString | ' roll'}`
     | 'Timbales' | 'Tubular bell' | 'Organ' | 'Pipe organ'
 
     | 'Guitar (long)' | `${| 'Electric' | 'Acoustic'} guitar`
@@ -112,7 +112,7 @@ export type PossibleEnglishName =
     | `Piano ${| 1 | 2 | '(4th A)'}` | `${| 'Reverse' | 'Honky-Tonk'} piano`
     | `"${| 'Pizzicato' | 'Staccato'}" string` | 'Harpsichord'
 
-    | 'Recorder' | `Synthesizer${| '' | ' chord'}` | 'Chord CM?'
+    | 'Recorder' | `Synthesizer${| EmptyString | ' chord'}` | 'Chord CM?'
 
     | 'Flute' | 'Saxophone'
     | 'Trombone' | 'Horn' | 'Synthetic brass'
@@ -131,7 +131,7 @@ export type PossibleEnglishName =
 //endregion -------------------- English name --------------------
 //region -------------------- Instrument file name --------------------
 
-type ReverbCowbell = `Gamelan${| '' | `_${| `L${| 1 | 5 | 6}` | 'M1_pi' | `S${| 1 | 6}`}`}`
+type ReverbCowbell = `Gamelan${| EmptyString | `_${| `L${| 1 | 5 | 6}` | 'M1_pi' | `S${| 1 | 6}`}`}`
 type SpecificReverbCowbell<T extends ReverbCowbell = ReverbCowbell, > = `INST_${T}`
 type GlissandoBass = `SE7_BassGliss${| 1 | 2}`
 type SpecificGlissandoBass<T extends GlissandoBass = GlissandoBass, > = `INST_${T}`
@@ -158,8 +158,8 @@ export type PossibleFileName =
               | 'HonkyTonk'
               | 'Horn'
 
-              | 'Marimba' | 'Vibraphone' | `${| '' | 'Pipe'}Organ` | 'TublerBell'
-              | `Epiano${| '' | 2}` | 'Piano.a4'
+              | 'Marimba' | 'Vibraphone' | `${| EmptyString | 'Pipe'}Organ` | 'TublerBell'
+              | `Epiano${| EmptyString | 2}` | 'Piano.a4'
               | 'GONG' | `${| 'Bass' | 'Snare'}Drum` | 'Cymbal' | 'HIHAT'
               | 'handbell' | 'WindChime' | 'Cowbell' | 'Kazoo'
               | ReverbCowbell

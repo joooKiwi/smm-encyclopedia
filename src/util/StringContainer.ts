@@ -1,3 +1,7 @@
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
+
 export class StringContainer<T extends string, T_HTML extends string = string, > {
 
     /**
@@ -51,18 +55,18 @@ export class StringContainer<T extends string, T_HTML extends string = string, >
             return this.#ALREADY_CONVERTED_VALUES.get(value)!
 
         const splitValues = value.toLowerCase()
-            .replaceAll(this.#REMOVAL_REGEX, '',)
+            .replaceAll(this.#REMOVAL_REGEX, EMPTY_STRING,)
             .split(this.#WORD_SEPARATOR_REGEX)
             .map(stringValue => this.#REPLACE_CHARACTERS.get(stringValue as never) ?? stringValue)
             .map(stringValue => {
                 this.#REPLACE_CHARACTERS.forEach((replacementText, characterToReplace,) => {
                     if (stringValue.includes(characterToReplace))
-                        stringValue = stringValue.replace(characterToReplace, '')
+                        stringValue = stringValue.replace(characterToReplace, EMPTY_STRING,)
                 })
                 return stringValue
             }).flat(2)
 
-        const returnedValue = splitValues.shift() + splitValues.map(stringValue => stringValue.charAt(0).toUpperCase() + stringValue.substring(1)).join('')
+        const returnedValue = splitValues.shift() + splitValues.map(stringValue => stringValue.charAt(0).toUpperCase() + stringValue.substring(1)).join(EMPTY_STRING,)
         this.#ALREADY_CONVERTED_VALUES.set(value, returnedValue,)
         return returnedValue
     }

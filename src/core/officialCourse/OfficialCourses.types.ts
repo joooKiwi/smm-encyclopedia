@@ -80,7 +80,7 @@ export type PossibleEnglishName =
     | `Cat ${| 'Mario' | 'Peach'}'s Course`
     | 'SUPER MARIO KUN 25th Anniversary'
     | 'Tri Force Heroes'
-    | `Arino Maker${| '' | ' Returns'}` | 'New! Arino Maker'
+    | `Arino Maker${| EmptyString | ' Returns'}` | 'New! Arino Maker'
     | 'Super Bakarhythm Land'
     | 'Ship Love'
 

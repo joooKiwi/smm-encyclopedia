@@ -199,11 +199,11 @@ export type GameRouteCallback = (games: GameCollection,) => ReactJSXElement
 export type NothingRouteCallback = () => ReactJSXElement
 
 /** The partial path of a {@link EveryRoutes} made from a {@link ViewDisplays} */
-export type PossibleViewDisplayPath = | '' | `/${PossibleUrlValue}`
+export type PossibleViewDisplayPath = | EmptyString | `/${PossibleUrlValue}`
 /** The partial path of a {@link EveryRoutes} made from the {@link Games} */
-export type PossibleGamePath = | '' | `/${FullValidUrlValue_Game}`
+export type PossibleGamePath = | EmptyString | `/${FullValidUrlValue_Game}`
 /** The partial path of a {@link EveryRoutes} made from the {@link GameStyles} */
-export type PossibleGameStylePath = | '' | `/${FullValidUrlValue_GameStyle}`
+export type PossibleGameStylePath = | EmptyString | `/${FullValidUrlValue_GameStyle}`
 
 
 export type EveryPossibleRoutes = `/${PossibleAcronym}${PossibleRoutePath}`

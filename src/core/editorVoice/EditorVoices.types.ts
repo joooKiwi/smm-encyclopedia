@@ -199,8 +199,8 @@ export type PossibleReference = | Entity | CharacterName
 
 //region -------------------- English name --------------------
 
-type PossibleEnglishName_Projectile = ''//TODO change to every projectile name
-type PossibleEnglishName_Object = ''//TODO change to every object name
+type PossibleEnglishName_Projectile = EmptyString//TODO change to every projectile name
+type PossibleEnglishName_Object = EmptyString//TODO change to every object name
 export type PossibleEnglishName_OnlyEntity =
     Exclude<PossibleEnglishName_Entity,
         | PossibleEnglishName_BigMushroom | PossibleEnglishName_Shoe | PossibleEnglishName_Yoshi
@@ -214,6 +214,6 @@ export type PossibleEnglishName_OnlyEntity =
         | PossibleEnglishName_Projectile | PossibleEnglishName_Object>//TODO create a type in "Entities.types" to have the possible name with editor voice instead
 export type PossibleEnglishName = | PossibleEnglishName_OnlyEntity
                                   | PossibleEnglishName_PlayableCharacter
-                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| '' | 2})` | 'Sun'
+                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| EmptyString | 2})` | 'Sun'
 
 //endregion -------------------- English name --------------------

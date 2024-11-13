@@ -30,6 +30,6 @@ export default function ModalHeader({className = EMPTY_STRING, modalTitle,
                                         ...otherProperties}: ModalHeaderProperties,) {
     return <div {...otherProperties} className={`modal-header ${className}`}>
         <h4 {...otherTitleProperties} className={`modal-title w-100 text-center ${titleClassName}`}>{modalTitle}</h4>
-        <button {...otherCloseButtonProperties} type="button" className={`btn-close ${closeButtonClassName ?? ''}`} data-bs-dismiss="modal" aria-label="Close"/>
+        <button {...otherCloseButtonProperties} type="button" className={`btn-close ${closeButtonClassName}`} data-bs-dismiss="modal" aria-label="Close"/>
     </div>
 }

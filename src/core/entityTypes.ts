@@ -15,7 +15,7 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = NullOrBoolean
 
-/** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | UnknownCharacter | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground'
+/** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | UnknownCharacter | `Castle${| EmptyString | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground'
 
 /** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle'
 /** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed'

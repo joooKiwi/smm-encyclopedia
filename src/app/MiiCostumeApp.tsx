@@ -19,6 +19,9 @@ import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+import {Empty}                  from 'util/emptyVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 class MiiCostumeAppInterpreter
     implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
@@ -48,7 +51,7 @@ class MiiCostumeAppInterpreter
     }
 
     public createCardListContent({reference, imageFile,}: MiiCostumes,) {
-        const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
+        const category = reference.categoryEnglish === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
         return <div className={category}>
             <Image file={imageFile}/>
         </div>

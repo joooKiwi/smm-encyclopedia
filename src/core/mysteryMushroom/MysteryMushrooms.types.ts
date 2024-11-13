@@ -154,26 +154,26 @@ export type PossibleFileName =
     | 'Arwing' | 'Ashley'
     | 'Blackey' | WithLeftVariant<'Block'> | `Boss0${`${| 0 | 1 | 2 | 3 | 4}${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | `5${| 0 | 1}`}` | WithLeftVariant<`Boss04${| 5 | 6}`>
     | 'Charizard' | 'ChibiRobo'
-    | 'DarkPit' | 'Dedede' | 'DiddyKong' | 'DiyMario' | `DonkeyKong${| '' | 'Jr'}` | 'DrMario' | 'DuckHunt'
+    | 'DarkPit' | 'Dedede' | 'DiddyKong' | 'DiyMario' | `DonkeyKong${| EmptyString | 'Jr'}` | 'DrMario' | 'DuckHunt'
     | 'Falco' | 'Falcon' | 'Fightfly' | 'Fit' | 'Fox' | 'Fuko' | 'Futa'
     | 'GameWatch' | 'Ganon' | 'Greninja'
     | 'Heiho'
     | 'Ike'
-    | 'Kaizo' | 'Kappei' | 'Kento' | 'Kinopio' | 'Kinuyo' | 'Kirby' | `Koopa${| '' | 'Jr'}` | 'Kuribo'
+    | 'Kaizo' | 'Kappei' | 'Kento' | 'Kinopio' | 'Kinuyo' | 'Kirby' | `Koopa${| EmptyString | 'Jr'}` | 'Kuribo'
     | 'Link' | 'Lisa' | 'LittleMac' | 'Lucario' | 'Lucas' | 'Lucina' | 'Luigi'
-    | 'MahjongTile' | `Mario${| '' | 'Gold' | 'Kart' | 'Original' | 'Silver'}` | 'Marth' | 'MegaMan' | 'MetaKnight' | 'Mewtwo' | 'MishiNeko' | 'MrHakari' | 'Murabito'
+    | 'MahjongTile' | `Mario${| EmptyString | 'Gold' | 'Kart' | 'Original' | 'Silver'}` | 'Marth' | 'MegaMan' | 'MetaKnight' | 'Mewtwo' | 'MishiNeko' | 'MrHakari' | 'Murabito'
     | 'Ness' | 'Nikki'
     | 'Orima'
     | 'PackMan' | 'Palutena' | 'Peach' | 'Peppy' | 'Pikachu' | 'Pikmin' | 'Pit' | 'Pudding'
-    | 'ResetSan' | 'Robin' | 'Robot' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| '' | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | `Spla${| '' | 't'}Ika`
+    | 'ResetSan' | 'Robin' | 'Robot' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| EmptyString | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | `Spla${| EmptyString | 't'}Ika`
     | 'Takumi' | 'Tanuki' | 'ThunLink' | 'Tincle' | 'Totakeke' | 'Trampoline' | 'TsubuMame'
     | 'Waluigi' | 'Wario' | 'Wiibo' | `WoolYoshi${| 'Aqua' | 'Big' | 'Green' | 'Pink'}`
     | 'Yoshi'
     | 'Zelda' | 'ZeroSams'
 
 type WithOnlyUnderwaterVariant<T extends string, > = `${T} W`
-type WithUnderwaterVariant<T extends string, > = `${T}${| '' | ' W'}`
-type WithLeftVariant<T extends string, > = `${T}${| '' | ' L'}`
+type WithUnderwaterVariant<T extends string, > = `${T}${| EmptyString | ' W'}`
+type WithLeftVariant<T extends string, > = `${T}${| EmptyString | ' L'}`
 type WithJapaneseVariant<T extends string, > = `${T} ${| 'JP' | 'USEU'}`
 
 
@@ -196,10 +196,10 @@ export type PossibleEnglishName =
     | 'Rosalina'
     | 'Luigi'
     | 'Professor E. Gadd'
-    | `Toad${| '' | 'ette'}` | 'Captain Toad'
+    | `Toad${| EmptyString | 'ette'}` | 'Captain Toad'
     | 'Yoshi' | 'Birdo'
     | 'Wario' | 'Ashley' | 'Waluigi'
-    | `Bowser${| '' | ' Jr.'}` | 'Goomba' | 'Shy Guy' | 'Nabbit'
+    | `Bowser${| EmptyString | ' Jr.'}` | 'Goomba' | 'Shy Guy' | 'Nabbit'
     | `Mario ${| `(${| 'Silver' | 'Gold'})` | 'Trio'}`
     | `${| 'Builder' | 'Dr.' | 'Frog' | 'Statue' | 'Kart'} Mario`
     | `Cat ${| 'Mario' | 'Peach'}`
@@ -210,7 +210,7 @@ export type PossibleEnglishName =
 
     | `${| 'Green' | 'Pink' | 'Light-Blue' | 'Mega'} Yarn Yoshi`
 
-    | `Donkey Kong${| '' | ' Jr.'}` | 'Diddy Kong'
+    | `Donkey Kong${| EmptyString | ' Jr.'}` | 'Diddy Kong'
 
     | 'Little Mac'
 
@@ -232,7 +232,7 @@ export type PossibleEnglishName =
     | 'Ganondorf'
     | `${| 'Wolf' | 'Totem'} Link`
 
-    | `${| '' | 'Zero Suit '}Samus`
+    | `${| EmptyString | 'Zero Suit '}Samus`
 
     | 'Volleyball Player'
 

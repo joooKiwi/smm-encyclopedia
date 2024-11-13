@@ -35,8 +35,10 @@ import GameStyleImage                               from 'core/gameStyle/GameSty
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {Empty}                                      from 'util/emptyVariables'
 import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
 
+import EMPTY_STRING =    Empty.EMPTY_STRING
 import ALL_GAMES =       GamePossibility.ALL_GAMES
 import SMM1 =            Games.SMM1
 import SMM2 =            Games.SMM2
@@ -91,7 +93,7 @@ class EntityAppInterpreter
 
     public createCardListContent({englishName: name, reference, editorVoiceSoundFileHolder,}: Entities,) {
         //TODO encapsulate the voiceSound into a sound interpreter.
-        const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
+        const category = reference.categoryEnglish === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
         return <div className={`${category}`}>
             <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
         </div>

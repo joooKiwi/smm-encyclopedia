@@ -171,7 +171,7 @@ type Possible_FastMusic = | PossibleSMB_FastMusic | PossibleLink_FastMusic | Pos
                           | PossibleOther_FastMusic
 
 
-type _GetFromRegularBackgroundMusic<GAME extends | 'smb' | 'link' | 'smb2' | 'smb3' | `${| 'smw' | 'nsmbu'}${| '' | ' (yoshi)'}` | `sm3dw${| '' | ' (underwater)'}`, > = MusicTemplateMap[| 'Bonus' | 'Boss' | 'Final Boss'][GAME]
+type _GetFromRegularBackgroundMusic<GAME extends | 'smb' | 'link' | 'smb2' | 'smb3' | `${| 'smw' | 'nsmbu'}${| EmptyString | ' (yoshi)'}` | `sm3dw${| EmptyString | ' (underwater)'}`, > = MusicTemplateMap[| 'Bonus' | 'Boss' | 'Final Boss'][GAME]
 
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_Music = | PossibleSMB_EditorMusic | PossibleSMB_RegularMusic | PossibleSMB_FastMusic
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_EditorMusic = _GetFromRegularBackgroundMusic<'smb'>['editor']

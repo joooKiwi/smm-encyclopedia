@@ -1,7 +1,10 @@
 import type {GroupProperties} from 'app/options/global/group/Group.types'
 import type {Times}           from 'core/time/Times'
 
-import Image from 'app/tools/images/Image'
+import Image   from 'app/tools/images/Image'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  * @todo Change the time group to not be global
@@ -18,7 +21,7 @@ export default function TimeGroup({isHidden = false, elements,}: GroupProperties
 
             const isDisabled2 = isDisabled == null ? false : typeof isDisabled == 'boolean' ? isDisabled : isDisabled[0]
             return <Image key={`option input (${element.englishName})`} id={`optionInput-${element.englishNameInHtml}`}
-                          className={`btn btn${option.get ? '' : '-outline'}-secondary  ${isDisabled2 ? 'disabled' : ''}`} data-bs-toggle="button"
+                          className={`btn btn${option.get ? EMPTY_STRING : '-outline'}-secondary  ${isDisabled2 ? 'disabled' : EMPTY_STRING}`} data-bs-toggle="button"
                           file={element.imageFile}
                           onClick={() => {
                               option.set(!option.get,)

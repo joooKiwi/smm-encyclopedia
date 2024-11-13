@@ -14,13 +14,15 @@ import {Games}                    from 'core/game/Games'
 import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
+import {Empty}                    from 'util/emptyVariables'
 
-import SMM2 =  Games.SMM2
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
+import EMPTY_STRING = Empty.EMPTY_STRING
+import SMM2 =         Games.SMM2
+import NSMBU =        GameStyles.NSMBU
+import SMB =          GameStyles.SMB
+import SMB3 =         GameStyles.SMB3
+import SMW =          GameStyles.SMW
+import SM3DW =        GameStyles.SM3DW
 
 /** @reactComponent */
 export default function GameStyleGroup() {
@@ -93,7 +95,7 @@ function GameStyleLink({gameStyle, disabled = false, selected,}: GameStyleLinkPr
     }
 
 
-    return <Link type="button" id={id} className={`btn btn${isSelected ? '' : '-outline'}-secondary link-button ${disabled ? 'disabled' : ''}`} to={newPath}
+    return <Link type="button" id={id} className={`btn btn${isSelected ? EMPTY_STRING : '-outline'}-secondary link-button ${disabled ? 'disabled' : EMPTY_STRING}`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID,)?.instance.hide()}>
         <GameStyleImage reference={gameStyle}/>
     </Link>

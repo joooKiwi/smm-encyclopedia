@@ -12,4 +12,4 @@ enum Enum {
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
-export type PossibleContainer = `arrow${| '' | 's'}-container`
+export type PossibleContainer = `arrow${| EmptyString | 's'}-container`

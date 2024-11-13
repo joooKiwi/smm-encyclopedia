@@ -33,7 +33,7 @@ export type PossibleMysteryMushroomType =
                  | 'walk'
                  | 'running'
                  | 'swimming'
-                 | `${| '' | `${| 'falling' | 'ground'} after a `}jump`
+                 | `${| EmptyString | `${| 'falling' | 'ground'} after a `}jump`
                  | 'turning'
                  | 'climbing'
                  | 'goal pole'

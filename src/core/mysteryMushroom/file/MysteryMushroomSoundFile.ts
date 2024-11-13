@@ -33,7 +33,7 @@ type SoundFileName_Taunt = 'appeal'
 
 export type JumpSoundFile = MysteryMushroomSoundFile<SoundFileName_Jump>
 
-export type SoundFileNumber = | '' | 2
+export type SoundFileNumber = | EmptyString | 2
 type SoundFileName_Jump = `jump${SoundFileNumber}`
 
 //endregion -------------------- Jump --------------------

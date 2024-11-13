@@ -14,7 +14,7 @@ export interface ImageFromVariableProperties
 
 export type PossibleVariableImage =
     | `smm${| 1 | '3ds' | 2}`
-    | `${|'music'}-block` | `question-block${| '' | '-sm3dw'}`
+    | `${|'music'}-block` | `question-block${| EmptyString | '-sm3dw'}`
     | `${| 'super' | 'weird' | 'mystery' | 'big' | 'smb2' | 'propeller'}-mushroom` | 'big-mushroom-classic'
     | `${| 'fire' | 'superball' | 'boomerang'}-flower`
     | 'master-sword'
@@ -22,7 +22,7 @@ export type PossibleVariableImage =
     | 'cape-feather' | 'power-balloon'
     | `super-${| 'acorn' | 'bell' | 'hammer'}`
     | 'shoe' | 'stiletto'
-    | `${| '' | 'red-'}yoshi`
+    | `${| EmptyString | 'red-'}yoshi`
     | `${| 'dry-bones' | 'buzzy' | 'spiny'}-shell`
     | 'lakitu-cloud' | 'clown-car'
     | 'swinging-claw'

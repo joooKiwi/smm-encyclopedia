@@ -82,7 +82,7 @@ export type SoundEffectImageNumber_SMM1 = `${`0${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export type SoundEffectImageName_SMM2 =
     | 'Shock' | 'Scream'
-    | `${| '' | 'Loud'}Laughter` | 'Boo'
+    | `${| EmptyString | 'Loud'}Laughter` | 'Boo'
     | 'Cheer' | 'Baby'
     | 'Cracker' | 'Applause'
     | 'Incident' | 'Clatter' | 'Drama'
@@ -103,7 +103,7 @@ export type SoundEffectImageName_SMM2 =
     | 'Calm' | 'Unrest'
     | 'Heartbeat' | 'Silence'
 
-    | 'Bonus' | `${| '' | 'Last'}Boss`
+    | 'Bonus' | `${| EmptyString | 'Last'}Boss`
     | `Mario0${| 0 | 1 | 2 | 3}`
 
 //endregion -------------------- Image (SMM2) --------------------

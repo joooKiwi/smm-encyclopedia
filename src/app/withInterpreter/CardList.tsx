@@ -5,6 +5,9 @@ import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWit
 import type {ReactProperties}            from 'util/react/ReactProperties'
 
 import NameComponent from 'lang/name/component/Name.component'
+import {Empty}       from 'util/emptyVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface CardListProperties<CONTENT extends Content, >
     extends ReactProperties {
@@ -53,5 +56,5 @@ function createDimension(interpreter: AppInterpreterWithCardList,): string {
     const xl = dimensions.extraLarge
     const xxl = dimensions.extraExtraLarge
 
-    return `row-cols-${df}${sm == null ? '' : ` row-cols-sm-${sm}`}${md == null ? '' : ` row-cols-md-${md}`}${lg == null ? '' : ` row-cols-lg-${lg}`}${xl == null ? '' : ` row-cols-xl-${xl}`}${xxl == null ? '' : ` row-cols-xxl-${xxl}`}`
+    return `row-cols-${df}${sm == null ? EMPTY_STRING : ` row-cols-sm-${sm}`}${md == null ? EMPTY_STRING : ` row-cols-md-${md}`}${lg == null ? EMPTY_STRING : ` row-cols-lg-${lg}`}${xl == null ? EMPTY_STRING : ` row-cols-xl-${xl}`}${xxl == null ? EMPTY_STRING : ` row-cols-xxl-${xxl}`}`
 }

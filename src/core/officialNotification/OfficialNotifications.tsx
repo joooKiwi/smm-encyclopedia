@@ -684,12 +684,12 @@ export class OfficialNotifications
     }
 
 
-    protected _addRank(rank: | 'C' | 'B' | 'A' | `S${| '' | '⁺'}`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+    protected _addRank(rank: | 'C' | 'B' | 'A' | `S${| EmptyString | '⁺'}`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         keyMap['rank'] = <Fragment key={`${key} - rank`}>{rank}</Fragment>
         return keyMap
     }
 
-    protected _addDifficulty(difficulty: | 'easy' | 'normal' | `${| '' | 'super '}expert`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+    protected _addDifficulty(difficulty: | 'easy' | 'normal' | `${| EmptyString | 'super '}expert`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         if (difficulty === 'easy')
             keyMap['difficulty'] = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EASY.singularNameOnReference.toLowerCase()}/>
         else if (difficulty === 'normal')

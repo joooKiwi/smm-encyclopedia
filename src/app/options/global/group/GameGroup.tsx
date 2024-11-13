@@ -11,10 +11,12 @@ import {Games}                    from 'core/game/Games'
 import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
+import {Empty}                    from 'util/emptyVariables'
 
-import SMM1 =   Games.SMM1
-import SMM2 =   Games.SMM2
-import SMM3DS = Games.SMM3DS
+import EMPTY_STRING = Empty.EMPTY_STRING
+import SMM1 =         Games.SMM1
+import SMM2 =         Games.SMM2
+import SMM3DS =       Games.SMM3DS
 
 interface GameLinkProperties
     extends ReactProperties {
@@ -63,7 +65,7 @@ function GameLink({game, selected,}: GameLinkProperties,) {
         newPath = pathname.replace(languagesInPath, `${languagesInPath}/${pathToReplace}`,)
     }
 
-    return <Link type="button" id={id} className={`btn btn-${isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
+    return <Link type="button" id={id} className={`btn btn-${isSelected ? EMPTY_STRING : 'outline-'}secondary link-button`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID,)?.instance.hide()}>
         <GameImage reference={game}/>
     </Link>

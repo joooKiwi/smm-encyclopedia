@@ -41,7 +41,7 @@ export default function ModalContainer({modalReference, id, className = EMPTY_ST
                                            modalContentProperties: {className: modalContentClassName = EMPTY_STRING, ...otherModalContentProperties} = EMPTY_OBJECT,
                                            ...otherProperties}: ReactPropertiesWithOptionalChildren<ModalContainerProperties, ReactElementOrArray>,) {
     return <div ref={modalReference} {...otherProperties} key={`${id} - modal`} id={id} className={`modal fade ${className}`}>
-        <div {...otherModalDialogProperties} key={`${id} - modal dialog`} className={`modal-dialog ${verticallyCentered ? 'modal-dialog-centered' : ''} ${modalSize !== DEFAULT_SIZE ? `modal-${modalSize}` : ''} ${modalDialogClassName}`}>
+        <div {...otherModalDialogProperties} key={`${id} - modal dialog`} className={`modal-dialog ${verticallyCentered ? 'modal-dialog-centered' : EMPTY_STRING} ${modalSize !== DEFAULT_SIZE ? `modal-${modalSize}` : EMPTY_STRING} ${modalDialogClassName}`}>
             <div {...otherModalContentProperties} className={`modal-content ${modalContentClassName}`}>{children}</div>
         </div>
     </div>

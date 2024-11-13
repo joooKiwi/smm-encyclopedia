@@ -8,7 +8,10 @@ import type {ImageFromFileProperties}     from 'app/tools/images/properties/Imag
 import type {ImageFromVariableProperties} from 'app/tools/images/properties/ImageFromVariableProperties'
 import type {ImageProperties}             from 'app/tools/images/properties/ImageProperties'
 
+import {Empty}  from 'util/emptyVariables'
 import {assert} from 'util/utilitiesMethods'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  *
@@ -34,10 +37,10 @@ function ImageFromFile({file, ...imageProperties}: ImageFromFileProperties,) {
     return <SingleImage key={key} source={fullName} fallbackName={fallbackName} {...imageProperties}/>
 }
 
-function ImageFromVariable({variable, isSquared, className, style, ...imagesProperties}: ImageFromVariableProperties,) {
+function ImageFromVariable({variable, isSquared, className = EMPTY_STRING, style, ...imagesProperties}: ImageFromVariableProperties,) {
     const appliedStyle = style ?? {}
     appliedStyle['--image-source'] = `var(--${variable}-image)`
-    return <em className={`image-from-variable ${isSquared ? 'square-image-from-variable' : ''} ${className ?? ''}`} style={appliedStyle} {...imagesProperties}/>
+    return <em className={`image-from-variable ${isSquared ? 'square-image-from-variable' : EMPTY_STRING} ${className}`} style={appliedStyle} {...imagesProperties}/>
 }
 
 function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties,) {
@@ -48,7 +51,7 @@ function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties
 const MINIMUM_AMOUNT_OF_IMAGES = 2
 const MAXIMUM_AMOUNT_OF_IMAGES = 10
 
-function AnimatedImages({partialId, className = '', images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
+function AnimatedImages({partialId, className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
     assert(images.length >= MINIMUM_AMOUNT_OF_IMAGES && images.length <= MAXIMUM_AMOUNT_OF_IMAGES, `The array received for "${partialId}" is required to have between than ${MINIMUM_AMOUNT_OF_IMAGES} & ${MAXIMUM_AMOUNT_OF_IMAGES} items. The length received is ${images.length}.`,)
 
     if (!displayEveryImages)

@@ -542,7 +542,7 @@ export abstract class InGameEntityImages
     private static readonly ExistantAsFireBar = class ExistantAsMagicBallInGameEntityImages
         extends InGameEntityImages.Existant<'Fire Bar', | InGameImageFile<`${| 'M1' | 'M3'} Object - Firebar`, | 'block' | 'fire.0', 'Fire Bar'>
                                                         | InGameImageFile<'MW Object - Firebar', | 'block' | `fire.${| 0 | 1 | 2}`, 'Fire Bar'>
-                                                        | InGameImageFile<'WU Object - Firebar', | 'center_firebar_Alb.000' | `firebar${| '' | '_core'}`, 'Fire Bar'>> {
+                                                        | InGameImageFile<'WU Object - Firebar', | 'center_firebar_Alb.000' | `firebar${| EmptyString | '_core'}`, 'Fire Bar'>> {
 
         public constructor() { super('Fire Bar',) }
 
@@ -629,7 +629,7 @@ export abstract class InGameEntityImages
     /** A subclass of an {@link InGameEntityImages} for only the {@link BUBBLE} */
     private static readonly ExistantAsBubble = class ExistantAsBubbleInGameEntityImages
         extends InGameEntityImages.Existant<'Bubble', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Balloon`, 'balloon.0', 'Bubble'>
-                                                      | InGameImageFile<'WU Object - Balloon', `balloon${| '' | 2}.0`, 'Bubble'>
+                                                      | InGameImageFile<'WU Object - Balloon', `balloon${| EmptyString | 2}.0`, 'Bubble'>
                                                       | InGameImageFile<'3W Object - Balloon', 'TractorBubble_Alb', 'Bubble'>> {
 
         public constructor() { super('Bubble',) }

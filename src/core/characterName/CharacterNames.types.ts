@@ -86,15 +86,15 @@ export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
-export type PossibleUniqueEnglishName = Exclude<PossibleEnglishName, | 'Undodog' | 'Soundfrog'> | `${| 'Undodog' | 'Soundfrog'} (SMM${| '' | 2})`
-export type PossibleEnglishName_PlayableCharacter = | `${| '' | `${| 'Small' | 'Super'
-                                                                   | 'Fire' | 'Superball'
-                                                                   | 'Giant' | 'SMB2'
-                                                                   | 'Raccoon' | 'Frog'
-                                                                   | 'Cape' | 'Balloon'
-                                                                   | 'Propeller' | 'Flying Squirrel'
-                                                                   | 'Cat' | 'Builder' | 'Boomerang'
-                                                                   | 'Buzzy' | 'Spiny'} `}${| 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`
+export type PossibleUniqueEnglishName = Exclude<PossibleEnglishName, | 'Undodog' | 'Soundfrog'> | `${| 'Undodog' | 'Soundfrog'} (SMM${| EmptyString | 2})`
+export type PossibleEnglishName_PlayableCharacter = | `${| EmptyString | `${| 'Small' | 'Super'
+                                                                       | 'Fire' | 'Superball'
+                                                                       | 'Giant' | 'SMB2'
+                                                                       | 'Raccoon' | 'Frog'
+                                                                       | 'Cape' | 'Balloon'
+                                                                       | 'Propeller' | 'Flying Squirrel'
+                                                                       | 'Cat' | 'Builder' | 'Boomerang'
+                                                                       | 'Buzzy' | 'Spiny'} `}${| 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`
                                                     | `${| 'Weird' | 'Costume'} Mario`
 
                                                     | 'Link'

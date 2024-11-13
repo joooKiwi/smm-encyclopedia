@@ -947,11 +947,11 @@ export abstract class EditorEntityImages
     /** A subclass of an {@link EditorEntityImages} for only the {@link GROUND}, {@link STEEP_SLOPE} and {@link GENTLE_SLOPE} */
     private static readonly ExistantAsGroundOrSlope = class ExistantAsGroundOrSlope<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends EditorEntityImages.Existant<NAME, | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
-                                                  | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle' | 'castle_night'}`}_00`, NAME>
-                                                  | EditorImageFile<GameStyles_SMW, `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'water_night' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>
-                                                  | EditorImageFile<GameStyles_NSMBU, `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
-                                                  | EditorImageFile<GameStyles_SM3DW, `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
+                                                  | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle' | 'castle_night'}`}_00`, NAME>
+                                                  | EditorImageFile<GameStyles_SMW, `${FILE_NAME}${| EmptyString | `_${| 'underground' | 'water' | 'water_night' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>
+                                                  | EditorImageFile<GameStyles_NSMBU, `${FILE_NAME}${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
+                                                  | EditorImageFile<GameStyles_SM3DW, `${FILE_NAME}${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>> {
 
         readonly #fileName
 
@@ -1045,7 +1045,7 @@ export abstract class EditorEntityImages
     /** A subclass of an {@link EditorEntityImages} for only the {@link PIPE} */
     private static readonly ExistantAsPipe = class ExistantAsPipe
         extends EditorEntityImages.Existant<'Pipe', | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, `Dokan_0${| 0 | 1 | 2 | 3}`, 'Pipe'>
-                                                    | EditorImageFile<GameStyles_SMB3, `Dokan${| '' | '_snow_night'}_0${| 0 | 1 | 2 | 3}`, 'Pipe'>> {
+                                                    | EditorImageFile<GameStyles_SMB3, `Dokan${| EmptyString | '_snow_night'}_0${| 0 | 1 | 2 | 3}`, 'Pipe'>> {
 
         public constructor() { super('Pipe',) }
 
@@ -1090,7 +1090,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link MUSHROOM_PLATFORM} */
     private static readonly ExistantAsMushroomPlatform = class ExistantAsMushroomPlatform
-        extends EditorEntityImages.Existant<'Mushroom Platform', EditorImageFile<| GameStyles_SMB | GameStyles_SMB3 | GameStyles_SMW | GameStyles_NSMBU, `GroundMushroom${| '' | `_${| 'water' | 'snow' | 'snow_night' | 'airship'}`}_0${| 0 | 1 | 2}`, 'Mushroom Platform'>> {
+        extends EditorEntityImages.Existant<'Mushroom Platform', EditorImageFile<| GameStyles_SMB | GameStyles_SMB3 | GameStyles_SMW | GameStyles_NSMBU, `GroundMushroom${| EmptyString | `_${| 'water' | 'snow' | 'snow_night' | 'airship'}`}_0${| 0 | 1 | 2}`, 'Mushroom Platform'>> {
 
         public constructor() { super('Mushroom Platform',) }
 
@@ -1172,9 +1172,9 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link SEMISOLID_PLATFORM} */
     private static readonly ExistantAsSemisolidPlatform = class ExistantAsSemisolidPlatform
-        extends EditorEntityImages.Existant<'Semisolid Platform', | EditorImageFile<GameStyles_SMB, `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}` | 'GroundBox_airship_night_01', 'Semisolid Platform'>
-                                                                  | EditorImageFile<| GameStyles_SMB3 | GameStyles_SMW | GameStyles_NSMBU, `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}`, 'Semisolid Platform'>
-                                                                  | EditorImageFile<GameStyles_SM3DW, `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Semisolid Platform'>> {
+        extends EditorEntityImages.Existant<'Semisolid Platform', | EditorImageFile<GameStyles_SMB, `GroundBox${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}` | 'GroundBox_airship_night_01', 'Semisolid Platform'>
+                                                                  | EditorImageFile<| GameStyles_SMB3 | GameStyles_SMW | GameStyles_NSMBU, `GroundBox${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}`, 'Semisolid Platform'>
+                                                                  | EditorImageFile<GameStyles_SM3DW, `GroundBox${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Semisolid Platform'>> {
 
         public constructor() { super('Semisolid Platform',) }
 
@@ -1346,10 +1346,10 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link BRIDGE} */
     private static readonly ExistantAsBridge = class ExistantAsBridge
-        extends EditorEntityImages.Existant<'Bridge', | EditorImageFile<GameStyles_SMB, `Bridge${| '' | `_${| 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>
-                                                      | EditorImageFile<GameStyles_SMB3, `Bridge${| '' | `_${| 'snow' | 'snow_night'}`}_00`, 'Bridge'>
-                                                      | EditorImageFile<GameStyles_SMW, `Bridge${| '' | `_${| 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods'}`}_00`, 'Bridge'>
-                                                      | EditorImageFile<GameStyles_NSMBU, `Bridge${| '' | `_${| 'underground' | 'water' | 'snow' | 'snow_night' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>> {
+        extends EditorEntityImages.Existant<'Bridge', | EditorImageFile<GameStyles_SMB, `Bridge${| EmptyString | `_${| 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>
+                                                      | EditorImageFile<GameStyles_SMB3, `Bridge${| EmptyString | `_${| 'snow' | 'snow_night'}`}_00`, 'Bridge'>
+                                                      | EditorImageFile<GameStyles_SMW, `Bridge${| EmptyString | `_${| 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods'}`}_00`, 'Bridge'>
+                                                      | EditorImageFile<GameStyles_NSMBU, `Bridge${| EmptyString | `_${| 'underground' | 'water' | 'snow' | 'snow_night' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>> {
 
         public constructor() { super('Bridge',) }
 
@@ -1401,8 +1401,8 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link BRICK_BLOCK} */
     private static readonly ExistantAsBrickBlock = class ExistantAsBrickBlock
-        extends EditorEntityImages.Existant<'Brick Block', | EditorImageFile<GameStyles_SMB, `RengaBlock${| '' | `_${| 'underground' | 'snow' | 'snow_night' | 'hauntedhouse' | 'castle'}`}_00`, 'Brick Block'>
-                                                           | EditorImageFile<GameStyles_SMB3, `RengaBlock${| '' | '_snow_night'}_00`, 'Brick Block'>
+        extends EditorEntityImages.Existant<'Brick Block', | EditorImageFile<GameStyles_SMB, `RengaBlock${| EmptyString | `_${| 'underground' | 'snow' | 'snow_night' | 'hauntedhouse' | 'castle'}`}_00`, 'Brick Block'>
+                                                           | EditorImageFile<GameStyles_SMB3, `RengaBlock${| EmptyString | '_snow_night'}_00`, 'Brick Block'>
                                                            | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, `RengaBlock_00`, 'Brick Block'>> {
 
         public constructor() { super('Brick Block',) }
@@ -1454,10 +1454,10 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link HARD_BLOCK} */
     private static readonly ExistantAsHardBlock = class ExistantAsHardBlock
-        extends EditorEntityImages.Existant<'Hard Block', | EditorImageFile<GameStyles_SMB, `HardBlock${| '' | `_${| 'underground' | 'underground_night' | 'water' | 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Hard Block'>
-                                                          | EditorImageFile<GameStyles_SMB3, `HardBlock${| '' | `_${| 'snow' | 'snow_night'}`}_00`, 'Hard Block'>
-                                                          | EditorImageFile<GameStyles_SMW, `HardBlock${| '' | `_${| 'hauntedhouse' | 'airship' | 'airship_night'}`}_00`, 'Hard Block'>
-                                                          | EditorImageFile<GameStyles_NSMBU, `HardBlock${| '' | `_${| 'underground' | 'water' | 'snow' | 'athletic' | 'woods' | 'castle'}`}_00`, 'Hard Block'>> {
+        extends EditorEntityImages.Existant<'Hard Block', | EditorImageFile<GameStyles_SMB, `HardBlock${| EmptyString | `_${| 'underground' | 'underground_night' | 'water' | 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Hard Block'>
+                                                          | EditorImageFile<GameStyles_SMB3, `HardBlock${| EmptyString | `_${| 'snow' | 'snow_night'}`}_00`, 'Hard Block'>
+                                                          | EditorImageFile<GameStyles_SMW, `HardBlock${| EmptyString | `_${| 'hauntedhouse' | 'airship' | 'airship_night'}`}_00`, 'Hard Block'>
+                                                          | EditorImageFile<GameStyles_NSMBU, `HardBlock${| EmptyString | `_${| 'underground' | 'water' | 'snow' | 'athletic' | 'woods' | 'castle'}`}_00`, 'Hard Block'>> {
 
         public constructor() { super('Hard Block',) }
 
@@ -1507,8 +1507,8 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CLOUD_BLOCK} */
     private static readonly ExistantAsCloudBlock = class ExistantAsCloudBlock
-        extends EditorEntityImages.Existant<'Cloud Block', | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, `KumoBlock${| '' | `_${| 'water' | 'snow_night'}`}_00`, 'Cloud Block'>
-                                                           | EditorImageFile<GameStyles_SMW, `KumoBlock${| '' | '_water'}_00`, 'Cloud Block'>
+        extends EditorEntityImages.Existant<'Cloud Block', | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, `KumoBlock${| EmptyString | `_${| 'water' | 'snow_night'}`}_00`, 'Cloud Block'>
+                                                           | EditorImageFile<GameStyles_SMW, `KumoBlock${| EmptyString | '_water'}_00`, 'Cloud Block'>
                                                            | EditorImageFile<| GameStyles_NSMBU | GameStyles_SM3DW, 'KumoBlock_00', 'Cloud Block'>> {
 
         public constructor() { super('Cloud Block',) }
@@ -1569,7 +1569,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link SPIKE_BALL} */
     private static readonly ExistantAsSpikeBall = class ExistantAsSpikeBall
-        extends EditorEntityImages.Existant<'Spike Ball', | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, `Gabon${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_01`, 'Spike Ball'>
+        extends EditorEntityImages.Existant<'Spike Ball', | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, `Gabon${| EmptyString | `_${| 'plain_night' | 'underground' | 'water' | 'desert_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_01`, 'Spike Ball'>
                                                           | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, 'Gabon_01', 'Spike Ball'>> {
 
         public constructor() { super('Spike Ball',) }
@@ -1621,7 +1621,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link TRACK} */
     private static readonly ExistantAsTrack = class ExistantAsTrack
-        extends EditorEntityImages.Existant<'Track', EditorImageFile<| GameStyles_SMB | GameStyles_SMB3 | GameStyles_SMW | GameStyles_NSMBU, `Rail${| '' | 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}_00`, 'Track'>> {
+        extends EditorEntityImages.Existant<'Track', EditorImageFile<| GameStyles_SMB | GameStyles_SMB3 | GameStyles_SMW | GameStyles_NSMBU, `Rail${| EmptyString | 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}_00`, 'Track'>> {
 
         public constructor() { super('Track',) }
 
@@ -1695,7 +1695,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link TREE} */
     private static readonly ExistantAsTree = class ExistantAsTree
-        extends EditorEntityImages.Existant<'Tree', EditorImageFile<GameStyles_SM3DW, `BellTree${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'woods'}`}_00`, 'Tree'>> {
+        extends EditorEntityImages.Existant<'Tree', EditorImageFile<GameStyles_SM3DW, `BellTree${| EmptyString | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'woods'}`}_00`, 'Tree'>> {
 
         public constructor() { super('Tree',) }
 
