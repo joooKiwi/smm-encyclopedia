@@ -8,6 +8,7 @@ import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Entities}            from 'core/entity/Entities'
 
+import {isInProduction}                 from 'variables'
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import Image                            from 'app/tools/images/Image'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
@@ -56,8 +57,11 @@ export class EntityAppOption
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
             const imageFiles = image.get(SMB,)
-            if (imageFiles == null)
+            if (imageFiles == null) {
+                if (!isInProduction)
+                    console.warn("The images were null when attempting to retrieve the SMB images", image,)
                 return null
+            }
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
@@ -74,8 +78,11 @@ export class EntityAppOption
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
             const imageFiles = image.get(SMB3,)
-            if (imageFiles == null)
+            if (imageFiles == null) {
+                if (!isInProduction)
+                    console.warn("The images were null when attempting to retrieve the SMB3 images", image,)
                 return null
+            }
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
@@ -92,8 +99,11 @@ export class EntityAppOption
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
             const imageFiles = image.get(SMW,)
-            if (imageFiles == null)
+            if (imageFiles == null) {
+                if (!isInProduction)
+                    console.warn("The images were null when attempting to retrieve the SMW images", image,)
                 return null
+            }
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
@@ -110,8 +120,11 @@ export class EntityAppOption
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
             const imageFiles = image.get(NSMBU,)
-            if (imageFiles == null)
+            if (imageFiles == null) {
+                if (!isInProduction)
+                    console.warn("The images were null when attempting to retrieve the NSMBU images", image,)
                 return null
+            }
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
@@ -128,8 +141,11 @@ export class EntityAppOption
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
             const imageFiles = image.get(SM3DW,)
-            if (imageFiles == null)
+            if (imageFiles == null) {
+                if (!isInProduction)
+                    console.warn("The images were null when attempting to retrieve the SM3DW images", image,)
                 return null
+            }
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
