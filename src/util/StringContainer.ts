@@ -6,16 +6,14 @@ export class StringContainer<T extends string, T_HTML extends string = string, >
 
     /**
      * A regex containing the characters that should be removed direclty
-     * <ol>
-     *  <li>:</li>
-     *  <li>(</li>
-     *  <li>)</li>
-     *  <li>[</li>
-     *  <li>]</li>
-     *  <li>-</li>
-     *  <li>|</li>
-     *  <li>'s</li>
-     * </ol>
+     * 1. :
+     * 2. (
+     * 3. )
+     * 4. [
+     * 5. ]
+     * 6. \-
+     * 7. |
+     * 8. 's
      */
     static readonly #REMOVAL_REGEX = /[.:()[\]\-|]|('s)/g
 
