@@ -5,16 +5,12 @@ import type {EveryLanguages}                                                    
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 
 /**
- * <p>
- *     A class with every language including the simple language.
- *     The English & French are included in the first type
- *     since they are always complete in the current project.
- * </p>
+ * A class with every language including the simple language.
+ * The English & French are included in the first type
+ * since they are always complete in the current project.
  *
- * <p>
- *     As a reference, this class utilise the simple language without the region as well
- *     as every language included inside {@link ClassWithOnlyProjectLanguages}
- * </p>
+ * As a reference, this class utilise the simple language without the region as well
+ * as every language included inside {@link ClassWithOnlyProjectLanguages}
  */
 export interface ClassWithEveryLanguages<out T,
     out GERMAN extends NullOr<T> = NullOr<T>,

@@ -80,6 +80,11 @@ export abstract class RepeatableTypes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
+    /**
+     * Set the loop value based on the {@link RepeatableTypes instance} {@link RepeatableTypes.doesLoopAtTheEnd value}
+     *
+     * @param element The {@link HTMLAudioElement} to change the {@link HTMLAudioElement.loop loop} field
+     */
     public setLoopField<T extends HTMLAudioElement, >(element: T,): T {
         element.loop = this.doesLoopAtTheEnd
         return element

@@ -214,15 +214,15 @@ export function filterGame<const T extends ClassWithReference<GameProperty>, >(v
 /**
  * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
  *
- * @param values The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+ * @param values     The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
+ * @param gameStyles The {@link CollectionHolder Collection} of game to get if they can be used
  */
 export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: CollectionHolder<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
 /**
  * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
  *
- * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+ * @param values     The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
+ * @param gameStyles The {@link CollectionHolder Collection} of game to get if they can be used
  */
 export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: Array<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
 export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | Array<T>, gameStyles: CollectionHolder<GameStyles>,) {

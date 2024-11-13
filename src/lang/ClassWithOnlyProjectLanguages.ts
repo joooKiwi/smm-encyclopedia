@@ -1,15 +1,11 @@
 import type {NullOr} from '@joookiwi/type'
 
 /**
- * <p>
- *     A class with every language used in the project.
- *     But, it does not contain every simple languages.
- * </p>
+ * A class with every language used in the project.
+ * But, it does not contain every straight language.
  *
- * <p>
- *     As an example, the english language only contain the America and the Europe,
- *     but not the simple language.
- * </p>
+ * As an example, the english language only contains the American and European,
+ * but not the straight language.
  */
 export interface ClassWithOnlyProjectLanguages<T,
     GERMAN extends NullOr<T> = NullOr<T>,
