@@ -115,7 +115,7 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
         //region -------------------- Add every other music (without duplication) --------------------
 
         /**
-         * Simply add the {@link value} if it is not <b>null</b> and
+         * Add the {@link value} if it is not <b>null</b> and
          * is not contained in the {@link array}
          *
          * @param value The value to possibly add

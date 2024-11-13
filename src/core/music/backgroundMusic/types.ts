@@ -1,5 +1,5 @@
 /**
- * The base map (not exported) for every type of music for a "sound effect" or simply for a "background music".
+ * The base map (not exported) for every type of music for a "sound effect" or only for a "background music".
  *
  * It can be from a sound effect that is also a game ({@link SoundEffects.SUPER_MARIO_KART_MUSIC Super Mario Kart}, {@link SoundEffects.SUPER_MARIO_64_MUSIC Super Mario 64},
  * {@link SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC Super Mario Sunshine}, {@link SoundEffects.SUPER_MARIO_GALAXY_MUSIC Super Mario Galaxy}).
