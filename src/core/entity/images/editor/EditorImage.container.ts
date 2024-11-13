@@ -1,5 +1,5 @@
-import type {Array, MutableArray}                      from '@joookiwi/type'
 import {filterByArray, forEachByArray, isEmptyByArray} from '@joookiwi/collection'
+import type {Array, MutableArray, Nullable}                                     from '@joookiwi/type'
 
 import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
 import type {EditorImage}     from 'core/entity/images/editor/EditorImage'
@@ -38,7 +38,7 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(gameStyle?: Nullable<GameStyles>, theme?: Nullable<Themes>, time?: Nullable<Times>,): Array<T> {
+    public get(gameStyle?: Nullable<GameStyles>, theme?: Nullable<Themes>, time?: Nullable<Times>,): CollectionHolder<T> {
         if (gameStyle == null && theme == null && time == null)
             return EMPTY_ARRAY
 
@@ -83,19 +83,19 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
         return imagesFound
     }
 
-    public getFromGameStyle(gameStyle: Nullable<GameStyles>,): Array<T> {
+    public getFromGameStyle(gameStyle: Nullable<GameStyles>,): CollectionHolder<T> {
         if (gameStyle == null)
             return EMPTY_ARRAY
         return filterByArray(this.imagesWithAssociation, it => it[1] === gameStyle,).map(it => it[3],).toArray()
     }
 
-    public getFromTheme(theme: Nullable<Themes>,): Array<T> {
+    public getFromTheme(theme: Nullable<Themes>,): CollectionHolder<T> {
         if (theme == null)
             return EMPTY_ARRAY
         return filterByArray(this.imagesWithAssociation, it => it[2] === theme,).map(it => it[3],).toArray()
     }
 
-    public getFromTime(time: Nullable<Times>,): Array<T> {
+    public getFromTime(time: Nullable<Times>,): CollectionHolder<T> {
         if (time == null)
             return EMPTY_ARRAY
         return filterByArray(this.imagesWithAssociation, it => it[0] === time,).map(it => it[3],).toArray()

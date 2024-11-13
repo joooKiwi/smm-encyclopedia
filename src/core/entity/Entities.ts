@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, Nullable, NullOr, UndefinedOr} from '@joookiwi/type'
+import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                        from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                          from 'core/ClassWithReference'
@@ -517,7 +518,7 @@ export class Entities
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Entity>
-    static #everyEnglishNames?: readonly PossibleEnglishName[]
+    static #everyEnglishNames?: Array<PossibleEnglishName>
 
     #reference?: Entity
     readonly #englishNameContainer
@@ -639,7 +640,7 @@ export class Entities
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
+    public static get everyEnglishNames(): Array<PossibleEnglishName> {
         return this.#everyEnglishNames ??= this.CompanionEnum.get.values.map(it => it.englishName,).toArray()
     }
 

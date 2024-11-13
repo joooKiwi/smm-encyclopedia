@@ -1,4 +1,5 @@
-import type {Enumerable} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import type {Enumerable}    from '@joookiwi/enumerable'
 
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
@@ -9,7 +10,7 @@ import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
  */
 export interface AppOption<out T extends Enumerable, > {
 
-    renderContent(enumeration: T,): readonly ReactElement[]
+    renderContent(enumeration: T,): Array<ReactElement>
 
     renderTableHeader(): NullOr<SingleHeaderContent>
 

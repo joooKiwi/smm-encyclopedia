@@ -1,4 +1,5 @@
 import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {NullOr}                                                                                 from '@joookiwi/type'
 import type {Dispatch, SetStateAction}                                                               from 'react'
 import {CompanionEnum}                                                                               from '@joookiwi/enumerable'
 

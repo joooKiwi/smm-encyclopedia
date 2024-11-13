@@ -1,6 +1,7 @@
 import './GameReferenceApp.scss'
 
-import {Fragment} from 'react'
+import type {Array} from '@joookiwi/type'
+import {Fragment}   from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
 
@@ -38,7 +39,7 @@ const otherGameReferences = (() => {
     const alreadyIncludedNames = [
         ...Games.CompanionEnum.get.values.map(game => game.englishName,),
         ...GameStyles.CompanionEnum.get.values.map(game => game.englishName,),
-        ...SoundEffects.soundEffect_games.map(game => game.englishName,) as PossibleEnglishName_Games[],
+        ...SoundEffects.soundEffect_games.map(game => game.englishName,) as Array<PossibleEnglishName_Games>,
     ]
     return GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),)
 })()

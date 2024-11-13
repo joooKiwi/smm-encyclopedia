@@ -1,5 +1,7 @@
+import type {Array} from '@joookiwi/type'
+
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader
-export type SingleHeadersContent = readonly SingleHeaderContent[]
+export type SingleHeadersContent = Array<SingleHeaderContent>
 
 export interface SimpleHeader {
 

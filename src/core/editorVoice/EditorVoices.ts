@@ -1,5 +1,6 @@
 import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {getFirstByArray, hasByArray}               from '@joookiwi/collection'
+import type {Array, NullOr}                        from '@joookiwi/type'
+import {getFirstByArray, hasByArray, isArray}      from '@joookiwi/collection'
 import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
@@ -572,10 +573,10 @@ export abstract class EditorVoices
     //region -------------------- Fields --------------------
 
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>
-    #references?: readonly PossibleReference[]
+    #references?: Array<PossibleReference>
     #reference?: PossibleReference
-    #characterNameReference?: readonly CharacterNames[]
-    #entityReferences?: readonly Entities[]
+    #characterNameReference?: Array<CharacterNames>
+    #entityReferences?: Array<Entities>
     readonly #editorVoiceSoundHolder
 
     //endregion -------------------- Fields --------------------
@@ -612,24 +613,24 @@ export abstract class EditorVoices
     protected abstract _retrieveReference(): PossibleReference
 
 
-    public get references(): readonly PossibleReference[] {
+    public get references(): Array<PossibleReference> {
         return this.#references ??= this._retrieveReferences()
     }
 
-    protected abstract _retrieveReferences(): readonly PossibleReference[]
+    protected abstract _retrieveReferences(): Array<PossibleReference>
 
     //region -------------------- Character name references --------------------
 
-    protected _createCharacterNameReference():  | PossibleEnglishName | readonly CharacterNames[] {
+    protected _createCharacterNameReference():  | PossibleEnglishName | Array<CharacterNames> {
         return this.englishName
     }
 
-    public get characterNameReferences(): readonly CharacterNames[] {
+    public get characterNameReferences(): Array<CharacterNames> {
         if (this.#characterNameReference != null)
             return this.#characterNameReference
 
         const reference = this._createCharacterNameReference()
-        if (reference instanceof Array)
+        if (isArray(reference,))
             return this.#characterNameReference = reference
         if (Import.CharacterNames.CompanionEnum.get.hasValueByName(reference,))
             return this.#characterNameReference = [Import.CharacterNames.CompanionEnum.get.getValueByName(reference,),]
@@ -646,7 +647,7 @@ export abstract class EditorVoices
      * @protected
      * @onlyCalledOnce
      */
-    protected _createEntityReferences(): | PossibleEnglishName | readonly Entities[] {
+    protected _createEntityReferences(): | PossibleEnglishName | Array<Entities> {
         return this.englishName
     }
 
@@ -657,7 +658,7 @@ export abstract class EditorVoices
      *  a single {@link Entities entity instance} similar to {@link EditorVoices this instance} or
      *  multiple {@link Entities entity instance} (from 2 to 4) associated to {@link EditorVoices this instance}.
      */
-    public get entityReferences(): readonly Entities[] {
+    public get entityReferences(): Array<Entities> {
         if (this.#entityReferences != null)
             return this.#entityReferences
 

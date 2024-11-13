@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 /**
  * <p>
  *     A class with every language used in the project.

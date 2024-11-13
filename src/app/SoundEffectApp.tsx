@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './SoundEffectApp.scss'
 
+import type {Array, MutableArray} from '@joookiwi/type'
+
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -85,12 +87,12 @@ class SoundEffectAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('sound effect.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly SoundEffectAppOption[] {
+    public get tableOptions(): Array<SoundEffectAppOption> {
         const games = this.#games
         const hasSMM1Or3DS = games.hasSMM1Or3DS
         const hasSMM2 = games.hasSMM2
 
-        const options = [] as SoundEffectAppOption[]
+        const options: MutableArray<SoundEffectAppOption> = []
         if (hasSMM1Or3DS)
             options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
         if (hasSMM2)
@@ -133,7 +135,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffect (list)',],
     [ViewDisplays.CARD_LIST, 'everySoundEffect (card)',],
     [ViewDisplays.TABLE, 'everySoundEffect (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {

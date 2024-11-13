@@ -1,5 +1,6 @@
-import type {Singleton}      from '@joookiwi/enumerable'
-import {CompanionEnum, Enum} from '@joookiwi/enumerable'
+import type {Singleton}                    from '@joookiwi/enumerable'
+import type {Array, Nullable, StringArray} from '@joookiwi/type'
+import {CompanionEnum, Enum}               from '@joookiwi/enumerable'
 
 import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, Braces, Brackets, Numbers, Parentheses, Points, RomainAlphabet, Slashes, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleUppercaseRomainAlphabet_Array, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean} from 'lang/Characters.types'
 import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/Characters.companionEnumDeclaration'
@@ -207,16 +208,16 @@ export class Characters
 
     //region -------------------- Specific characters --------------------
 
-    static #getBothEvenAndUnevenCharacters<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
-        return array.map(it => [it.spaceUnevenCharacters[index], it.spaceEvenCharacters[index],]).flat() as unknown as A
+    static #getBothEvenAndUnevenCharacters<A extends StringArray, >(array: Array<Characters>, index: | 0 | 1,): A {
+        return array.map(it => [it.spaceUnevenCharacters[index], it.spaceEvenCharacters[index],],).flat() as unknown as A
     }
 
-    static #getOnlyUnevenCharacter<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
-        return array.map(it => it.spaceUnevenCharacters[index]) as unknown as A
+    static #getOnlyUnevenCharacter<A extends StringArray, >(array: Array<Characters>, index: | 0 | 1,): A {
+        return array.map(it => it.spaceUnevenCharacters[index],) as unknown as A
     }
 
-    static #getOnlyEvenCharacter<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
-        return array.map(it => it.spaceEvenCharacters[index]).flat() as unknown as A
+    static #getOnlyEvenCharacter<A extends StringArray, >(array: Array<Characters>, index: | 0 | 1,): A {
+        return array.map(it => it.spaceEvenCharacters[index],).flat() as unknown as A
     }
 
     //region -------------------- Specific characters (points) --------------------

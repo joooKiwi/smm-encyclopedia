@@ -1,3 +1,5 @@
+import type {EmptyArray, NullOr, StringArray} from '@joookiwi/type'
+
 import type {PossibleEnglishName} from 'core/soundEffect/SoundEffects.types'
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
@@ -162,13 +164,16 @@ type SoundEffectSoundNamesForHorror = readonly [
 //endregion -------------------- Name for ... --------------------
 //region -------------------- Value for map --------------------
 
-type PossibleEditorValue<NAMES extends readonly string[], > = NullOr<NAMES[number]>
-type PossibleValueOnLinkOrSMB2Value<NAMES extends readonly string[], > =
+type PossibleEditorValue<NAMES extends StringArray, > = NullOr<NAMES[number]>
+type PossibleValueOnLinkOrSMB2Value<NAMES extends StringArray, > =
     | EmptyArray
     | readonly [NAMES[number],]
     | readonly [NAMES[number], NAMES[number],]
 
-interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR extends PossibleEditorValue<SOUNDS>, LINK_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, SMB2_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, > {
+interface SoundEffectSound<SOUNDS extends StringArray,
+    NAME_IN_EDITOR extends PossibleEditorValue<SOUNDS>,
+    LINK_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>,
+    SMB2_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, > {
     sounds: SOUNDS
     editorName: NAME_IN_EDITOR
     linkNames: LINK_NAMES
@@ -176,21 +181,21 @@ interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR exte
 }
 
 type SoundEffectFromSoundEffect<SOUND extends SoundEffectSound<any, any, any, any>, > = SOUND
-type NoSoundEffectSound = SoundEffectSound<[], null, [], []>
+type NoSoundEffectSound = SoundEffectSound<EmptyArray, null, EmptyArray, EmptyArray>
 
 //region -------------------- Sound effect --------------------
 
-type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, [], []>>
-type SoundEffectSound_NoEditor<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, [], []>>
-type SoundEffectSound_Editor1<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [], []>>
-type SoundEffectSound_Editor2<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[1], [], []>>
-type SoundEffectSound_Editor3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[2], [], []>>
-// type SoundEffectSound_Editor4<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[3], [], []>>
-type SoundEffectSound_Editor5<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[4], [], []>>
-// type SoundEffectSound_Editor6<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[5], [], []>>
-type SoundEffectSound_Editor7<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[6], [], []>>
-type SoundEffectSound_Editor10<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], [], []>>
-type SoundEffectSound_Editor1_Link3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], []>>
+type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, EmptyArray, EmptyArray>>
+type SoundEffectSound_NoEditor<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor1<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor2<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[1], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor3<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[2], EmptyArray, EmptyArray>>
+// type SoundEffectSound_Editor4<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[3], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor5<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[4], EmptyArray, EmptyArray>>
+// type SoundEffectSound_Editor6<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[5], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor7<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[6], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor10<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor1_Link3<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], EmptyArray>>
 
 //endregion -------------------- Sound effect --------------------
 

@@ -1,3 +1,5 @@
+import type {StringArray} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages}  from '__test__/helperMethods.types'
 import type {LanguageContent}            from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageContent'
@@ -158,7 +160,7 @@ export function testLanguagesDescription({
  * @param content The content with the english reference retrieved
  * @param possibleNames The possible names of the english reference
  */
-export function testEnglish({english, americanEnglish,}: LanguageContent, possibleNames: readonly string[],) {
+export function testEnglish({english, americanEnglish,}: LanguageContent, possibleNames: StringArray,) {
     test('English name (base or american)', () => expect(english ?? americanEnglish).toBeOneOf(possibleNames),)
 }
 
@@ -168,6 +170,6 @@ export function testEnglish({english, americanEnglish,}: LanguageContent, possib
  * @param content The content with the english reference retrieved
  * @param possibleNames The possible names of the english reference
  */
-export function testOnlyEnglish({english,}: LanguageContent, possibleNames: readonly string[],) {
+export function testOnlyEnglish({english,}: LanguageContent, possibleNames: StringArray,) {
     test('English name (base only)', () => expect(english).toBeOneOf(possibleNames),)
 }

@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './InstrumentApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -81,7 +83,7 @@ class InstrumentAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('instrument.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly InstrumentAppOption[] {
+    public get tableOptions(): Array<InstrumentAppOption> {
         return [InstrumentAppOption.NAME, InstrumentAppOption.SOUND,]
     }
 
@@ -106,7 +108,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyInstrument (list)',],
     [ViewDisplays.CARD_LIST, 'everyInstrument (card)',],
     [ViewDisplays.TABLE, 'everyInstrument (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProperties,) {

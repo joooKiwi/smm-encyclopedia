@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
 import type {Games}         from 'core/game/Games'
 import type {GameStyles}    from 'core/gameStyle/GameStyles'
@@ -27,7 +29,7 @@ export class SimpleRoute<const NAME extends string = string,
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: NAME, path: PATH, games: NullOr<readonly Games[]>, gameStyles: NullOr<readonly GameStyles[]>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
+    public constructor(name: NAME, path: PATH, games: NullOrArray<Games>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay

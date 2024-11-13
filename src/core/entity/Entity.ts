@@ -1,3 +1,5 @@
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+
 import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {GameProperty}                                                                                                                                                      from 'core/entity/properties/game/GameProperty'
 import type {GameStyleProperty}                                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -26,10 +28,10 @@ export interface Entity
     readonly hasAMushroomVariant: boolean
 
     readonly canBeInAParachute: boolean
-    readonly canBeInAParachuteComment: NullOr<LCL_Play>
+    readonly canBeInAParachuteComment: NullOrString<LCL_Play>
 
     readonly canHaveWings: boolean
-    readonly canHaveWingsComment: NullOr<LCL_Play>
+    readonly canHaveWingsComment: NullOrString<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
     //region -------------------- Directly affected properties --------------------
@@ -37,7 +39,7 @@ export interface Entity
     readonly canContainOrSpawnAKey: boolean //TODO add Chain Chomp comment to tell that only the "Unchained" contain it. Only the head of the Pokey is affected
 
     readonly isAffectDirectlyByAnOnOffState: boolean
-    readonly isAffectDirectlyByAnOnOffStateComment: NullOr<OnlySomeVariants>
+    readonly isAffectDirectlyByAnOnOffStateComment: NullOrString<OnlySomeVariants>
 
     // can be put on a Track (+ limit editor/in game)
     readonly canSpawnOutOfAPipe: boolean//TODO add amount in a bunch + maximum amount
@@ -78,32 +80,32 @@ export interface Entity
     readonly isUnknown_editorLimit_smm2: boolean
 
     readonly isInGeneralLimit: BooleanOrNotApplicable
-    readonly isInGeneralLimitComment: NullOr<PossibleGeneralLimitComment>
+    readonly isInGeneralLimitComment: NullOrString<PossibleGeneralLimitComment>
 
     readonly isInGlobalGeneralLimit: BooleanOrNotApplicable
-    readonly isInGlobalGeneralLimitComment: NullOr<PossibleGeneralGlobalLimitComment>
+    readonly isInGlobalGeneralLimitComment: NullOrString<PossibleGeneralGlobalLimitComment>
 
     readonly isInPowerUpLimit: NullOrBooleanOrNotApplicable
 
     readonly isInProjectileLimit: NullOrBooleanOrNotApplicable
-    readonly isInProjectileLimitComment: NullOr<PossibleProjectileLimitComment>
+    readonly isInProjectileLimitComment: NullOrString<PossibleProjectileLimitComment>
 
     readonly isInRenderedObjectLimit: NullOrBooleanOrNotApplicable
-    readonly isInRenderedObjectLimitComment: NullOr<PossibleRenderedObjectLimitTypeComment>
+    readonly isInRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>
 
     readonly isInCollectedCoinLimit: NullOrBooleanOrNotApplicable
 
     readonly otherLimit: NullOr<| Limits | NotApplicable>
-    readonly otherLimitComment: NullOr<PossibleOtherLimitComment>
+    readonly otherLimitComment: NullOrString<PossibleOtherLimitComment>
     readonly isUnknown_otherLimit: boolean
 
     //endregion -------------------- Limit properties --------------------
     //region -------------------- Instrument properties --------------------
 
-    readonly instruments: readonly Instrument[]
+    readonly instruments: Array<Instrument>
 
     readonly canMakeASoundOutOfAMusicBlock: boolean
-    readonly canMakeASoundOutOfAMusicBlockComment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
+    readonly canMakeASoundOutOfAMusicBlockComment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
 
     //endregion -------------------- Instrument properties --------------------
     //region -------------------- Reference properties --------------------
@@ -137,10 +139,10 @@ export interface Entity
     getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
 
 
-    readonly everyReferences: readonly Entity[]
-    readonly everyGameStyleReferences: readonly Entity[]
-    readonly everyThemeReferences: readonly Entity[]
-    readonly everyTimeReferences: readonly Entity[]
+    readonly everyReferences: Array<Entity>
+    readonly everyGameStyleReferences: Array<Entity>
+    readonly everyThemeReferences: Array<Entity>
+    readonly everyTimeReferences: Array<Entity>
 
     //endregion -------------------- Reference properties --------------------
 

@@ -1,7 +1,8 @@
-import {findFirstOrNullByArray, forEachByArray} from '@joookiwi/collection'
-import type {Singleton}                         from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                    from '@joookiwi/enumerable'
-import {lazy}                                   from 'react'
+import type {Singleton}                             from '@joookiwi/enumerable'
+import type {Array, MutableArray, Nullable, NullOr} from '@joookiwi/type'
+import {findFirstOrNullByArray, forEachByArray}     from '@joookiwi/collection'
+import {CompanionEnum, Enum}                        from '@joookiwi/enumerable'
+import {lazy}                                       from 'react'
 
 import type {ClassUsedInRoute}                                                                                                                                                                  from 'route/ClassUsedInRoute'
 import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
@@ -204,7 +205,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
 
 
-        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
             return [new SimpleRoute(this.simpleName, this.simplePath, null, null, null, this.routeCallback,),]
         }
 
@@ -228,7 +229,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
-        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
             const simpleName = this.simpleName
             const simplePath = this.simplePath
             const routeCallback = this.routeCallback
@@ -272,7 +273,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
         }
 
-        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
             const simpleName = this.simpleName
             const simplePath = this.simplePath
             const routeCallback = this.routeCallback
@@ -305,7 +306,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
 
 
-        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
             const simpleName = this.simpleName
             const simplePath = this.simplePath
             const routeCallback = this.routeCallback
@@ -338,7 +339,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
 
 
-        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
             const simpleName = this.simpleName
             const simplePath = this.simplePath
             const routeCallback = this.routeCallback
@@ -375,7 +376,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
 
 
-        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
             const simpleName = this.simpleName
             const simplePath = this.simplePath
             const routeCallback = this.routeCallback
@@ -487,13 +488,13 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
         //endregion -------------------- Singleton usage --------------------
 
-        #everyRoute?: readonly SimpleRoute[]
+        #everyRoute?: Array<SimpleRoute>
 
-        public get everyRoute(): readonly SimpleRoute[] {
+        public get everyRoute(): Array<SimpleRoute> {
             if (this.#everyRoute != null)
                 return this.#everyRoute
 
-            const routes: SimpleRoute[] = []
+            const routes: MutableArray<SimpleRoute> = []
             this.values.forEach(it => forEachByArray(it.everyRoute, it => routes.push(it,),),)
             return this.#everyRoute = routes
         }
@@ -566,7 +567,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
          * @param name The name to retrieve the {@link Games}
          * @arrayReutilization
          */
-        #getGamesInName(name: PossibleRouteName,): readonly Games[] {
+        #getGamesInName(name: PossibleRouteName,): Array<Games> {
             const startingIndex = name.indexOf('Game=',)
             if (startingIndex === -1)
                 return EMPTY_ARRAY
@@ -598,7 +599,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
          * @param name The name to retrieve the {@link GameStyles}
          * @arrayReutilization
          */
-        #getGameStylesInName(name: PossibleRouteName,): readonly GameStyles[] {
+        #getGameStylesInName(name: PossibleRouteName,): Array<GameStyles> {
             const startingIndex = name.indexOf('GameStyle=',)
             if (startingIndex === -1)
                 return EMPTY_ARRAY
@@ -704,7 +705,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     readonly #defaultGameStyles
     readonly #routeCallback
 
-    #everyRoutes?: readonly SimpleRoute[]
+    #everyRoutes?: Array<SimpleRoute>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -712,7 +713,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private constructor(name: SIMPLE_NAME, path: SIMPLE_PATH,
                         viewDisplays: ViewDisplayCollection, defaultViewDisplay: NullOr<ViewDisplays>,
                         games: GameCollection, defaultGame: NullOr<Games>,
-                        gameStyles: GameStyleCollection, defaultGameStyles: NullOr<readonly GameStyles[]>,
+                        gameStyles: GameStyleCollection, defaultGameStyles: NullOrArray<GameStyles>,
                         routeCallback: RouteCallback,) {
         super()
         this.#simpleName = name
@@ -761,7 +762,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         return this.#gameStyles
     }
 
-    public get defaultGameStyles(): NullOr<readonly GameStyles[]> {
+    public get defaultGameStyles(): NullOrArray<GameStyles> {
         return this.#defaultGameStyles
     }
 
@@ -770,11 +771,11 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     }
 
 
-    public get everyRoute(): readonly SimpleRoute[] {
+    public get everyRoute(): Array<SimpleRoute> {
         return this.#everyRoutes ??= this._createEveryRoutes()
     }
 
-    protected abstract _createEveryRoutes(): readonly SimpleRoute[]
+    protected abstract _createEveryRoutes(): Array<SimpleRoute>
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -784,7 +785,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
      *
      * @param value The {@link Games} to retrieve its {@link Games.urlValue}
      */
-    protected _getPartialPathFromGames(value: NullOr<readonly Games[]>,): PossibleGamePath {
+    protected _getPartialPathFromGames(value: NullOrArray<Games>,): PossibleGamePath {
         const GameCompanion = Games.CompanionEnum.get
         if (value == null) {
             const currentGames = GameCompanion.currentOrNull
@@ -812,7 +813,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
      *
      * @param values The {@link GameStyles} to retrieve their {@link GameStyles.urlValue}
      */
-    protected _getPartialPathFromGameStyles(values: NullOr<readonly GameStyles[]>,): PossibleGameStylePath {
+    protected _getPartialPathFromGameStyles(values: NullOrArray<GameStyles>,): PossibleGameStylePath {
         const GameStyleCompanion = GameStyles.CompanionEnum.get
         if (values == null) {
             const currentGameStyles = GameStyleCompanion.currentOrNull
@@ -850,7 +851,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: NullOr<ProjectLanguages>, games: NullOr<readonly Games[]>, gameStyles: NullOr<readonly GameStyles[]>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
+    public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
         if (language == null)
             language = ProjectLanguages.CompanionEnum.get.current
         return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.simplePath}` as unknown as EveryPossibleRoutes

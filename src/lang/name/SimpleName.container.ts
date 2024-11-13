@@ -1,5 +1,5 @@
-import type {Array, MutableArray} from '@joookiwi/type'
-import {isArray}                  from '@joookiwi/collection'
+import type {Array, MutableArray, Nullable, NullOr} from '@joookiwi/type'
+import {isArray}                                    from '@joookiwi/collection'
 
 import type {EmptyableOptionalLanguage}                                                                                                                         from 'lang/name/containers/EmptyableOptionalLanguage'
 import type {EmptyableLanguage}                                                                                                                                 from 'lang/name/containers/EmptyableLanguage'

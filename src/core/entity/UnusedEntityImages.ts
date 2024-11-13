@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import type {Array}                              from '@joookiwi/type'
 import {forEachByArray}                          from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
@@ -83,7 +84,7 @@ export abstract class UnusedEntityImages
         readonly #folderName
         readonly #fileNames
 
-        public constructor(englishName: NAME, gameStyle: GameStyles, folderName: FOLDER_NAME, ...fileNames: readonly FILE_NAME[]) {
+        public constructor(englishName: NAME, gameStyle: GameStyles, folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
             super(englishName,)
             this.#gameStyle = gameStyle
             this.#folderName = folderName
@@ -123,8 +124,8 @@ export abstract class UnusedEntityImages
         readonly #fileNames2
 
         public constructor(englishName: NAME,
-                           gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: readonly FILE_NAME_1[],
-                           gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: readonly FILE_NAME_2[],) {
+                           gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: Array<FILE_NAME_1>,
+                           gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: Array<FILE_NAME_2>,) {
             super(englishName,)
             this.#gameStyle1 = gameStyle1
             this.#folderName1 = folderName1
@@ -178,9 +179,9 @@ export abstract class UnusedEntityImages
         readonly #fileNames3
 
         public constructor(englishName: NAME,
-                           gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: readonly FILE_NAME_1[],
-                           gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: readonly FILE_NAME_2[],
-                           gameStyle3: GameStyles, folderName3: FOLDER_NAME_3, fileNames3: readonly FILE_NAME_3[],) {
+                           gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: Array<FILE_NAME_1>,
+                           gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: Array<FILE_NAME_2>,
+                           gameStyle3: GameStyles, folderName3: FOLDER_NAME_3, fileNames3: Array<FILE_NAME_3>,) {
             super(englishName,)
             this.#gameStyle1 = gameStyle1
             this.#folderName1 = folderName1

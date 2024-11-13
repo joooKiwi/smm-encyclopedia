@@ -1,4 +1,5 @@
 import type {CompanionEnum} from '@joookiwi/enumerable'
+import type {Nullable}      from '@joookiwi/type'
 
 import type {Characters}                                                                       from 'lang/Characters'
 import type {PossibleSingleCharacter, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'

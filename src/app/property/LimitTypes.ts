@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -120,7 +121,7 @@ export abstract class LimitTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly Limits[]
+    public abstract get content(): Array<Limits>
 
     //region -------------------- Link button methods --------------------
 

@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParent, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Nullable, NullOr}                                   from '@joookiwi/type'
 
 import type {EveryLanguages}   from 'lang/EveryLanguages'
 import type {ProjectLanguages} from 'lang/ProjectLanguages'

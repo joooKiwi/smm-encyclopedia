@@ -1,4 +1,5 @@
 import type {CompanionEnumDeclaration, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Array, NullOrString}                             from '@joookiwi/type'
 import {CompanionEnum}                                        from '@joookiwi/enumerable'
 
 import type {EnumerableUsedInRoute} from 'util/enumerable/Enumerable.types'
@@ -26,7 +27,7 @@ export abstract class CompanionEnumDualRetrievableInUrl<const ENUM extends Enume
      * @param url The url to find the values
      * @throws {ReferenceError} A fail-safe error on a value that was not found
      */
-    public getValueInUrl(url: string,): readonly ENUM[] {
+    public getValueInUrl(url: string,): Array<ENUM> {
         if (!this.URL_REGEX.test(url,))
             return EMPTY_ARRAY
 

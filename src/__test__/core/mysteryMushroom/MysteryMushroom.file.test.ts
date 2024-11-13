@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages}                                                                                                                           from '__test__/helperMethods.types'
 import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, PossibleAmountOfSoundEffectOnJump, SoundEffectOnMovement, SpecialMusicInStarMode, TypeOfSoundOnDeath, TypeOfSoundOnGoalPole} from 'core/mysteryMushroom/MysteryMushroom.types'
 
@@ -16,15 +18,15 @@ describe('Mystery Mushroom (file test)', () => {
     const everyGameReferenceAcronymsWithNull = [null, ...types.everyPossibleAcronym_gameReference,]                                                                                              as const
     const everySoundEffectOnGoalPoleSmallDefinition = [null, UNKNOWN_REFERENCE, ...types.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom,]                                    as const
     const everySoundEffectOnDeathSmallDefinition = [null, UNKNOWN_REFERENCE, ...types.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom,]                                          as const
-    const possibleAmountOfSoundEffectOnJump = [0, 1, 2, 3,]                                                                                                                                      as const satisfies readonly PossibleAmountOfSoundEffectOnJump[]
-    const possibleSoundEffectOnMovement = [null, 'Twinkle', 'Engine sound',]                                                                                                                     as const satisfies readonly NullOr<SoundEffectOnMovement>[]
-    const possibleSpecialMusicInStarMode = [null, 'Flying Mario', 'Metal Mario', 'Super Star',]                                                                                                  as const satisfies readonly NullOr<SpecialMusicInStarMode>[]
-    const possibleSoundEffectOnGoalPoleType = [null, 'Marimba', 'Rock',]                                                                                                                         as const satisfies readonly NullOr<TypeOfSoundOnGoalPole>[]
-    const possibleSoundEffectOnGoalPole = [null, '+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',]                                                        as const satisfies readonly NullOr<AdditionalSoundOnGoalPole>[]
-    const possibleSoundEffectOnDeathType = [null, 'Marimba', 'Techno',]                                                                                                                          as const satisfies readonly NullOr<TypeOfSoundOnDeath>[]
-    const possibleSoundEffectOnDeath = [null, '+ "Rooo…"', '+ "Oh no!"', '+ "Nooo!"', '+ "Woah!"', '+ "Yaha!"',]                                                                                 as const satisfies readonly NullOr<AdditionalSoundOnDeath>[]
+    const possibleAmountOfSoundEffectOnJump = [0, 1, 2, 3,]                                                                                                                                      as const satisfies Array<PossibleAmountOfSoundEffectOnJump>
+    const possibleSoundEffectOnMovement = [null, 'Twinkle', 'Engine sound',]                                                                                                                     as const satisfies Array<NullOr<SoundEffectOnMovement>>
+    const possibleSpecialMusicInStarMode = [null, 'Flying Mario', 'Metal Mario', 'Super Star',]                                                                                                  as const satisfies Array<NullOr<SpecialMusicInStarMode>>
+    const possibleSoundEffectOnGoalPoleType = [null, 'Marimba', 'Rock',]                                                                                                                         as const satisfies Array<NullOr<TypeOfSoundOnGoalPole>>
+    const possibleSoundEffectOnGoalPole = [null, '+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',]                                                        as const satisfies Array<NullOr<AdditionalSoundOnGoalPole>>
+    const possibleSoundEffectOnDeathType = [null, 'Marimba', 'Techno',]                                                                                                                          as const satisfies Array<NullOr<TypeOfSoundOnDeath>>
+    const possibleSoundEffectOnDeath = [null, '+ "Rooo…"', '+ "Oh no!"', '+ "Nooo!"', '+ "Woah!"', '+ "Yaha!"',]                                                                                 as const satisfies Array<NullOr<AdditionalSoundOnDeath>>
     const everyNames = types.everyPossibleUniqueEnglishName_mysteryMushroom
-    const excludedLanguages: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
+    const excludedLanguages = ['chinese', 'korean',]                                                                                                                                             as const satisfies Array<PossibleExcludedLanguages>
 
     file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isMysteryMushroom = it.uniqueName === 'Mystery Mushroom'

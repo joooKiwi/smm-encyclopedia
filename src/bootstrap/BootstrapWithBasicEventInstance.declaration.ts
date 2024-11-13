@@ -1,4 +1,5 @@
-import type BaseComponent from 'bootstrap/js/dist/base-component'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import type BaseComponent      from 'bootstrap/js/dist/base-component'
 
 import type {BootstrapInstanceDeclaration} from 'bootstrap/BootstrapInstance.declaration'
 import type {EventHolder}                  from 'bootstrap/event/EventHolder'

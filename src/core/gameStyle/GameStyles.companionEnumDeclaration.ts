@@ -1,4 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
+import type {Array, Nullable}  from '@joookiwi/type'
 
 import type {GameStyles}                                             from 'core/gameStyle/GameStyles'
 import type {GroupUrlName, GroupUrlValue}                            from 'core/gameStyle/GameStyles.types'
@@ -23,11 +24,11 @@ export interface CompanionEnumDeclaration_GameStyles
     readonly PREFIX_WITHOUT_SLASH: 'game-style-'
     readonly ALL_PREFIX_GROUP: '/game-style-all/'
 
-    getValueInUrl(url: string,): readonly GameStyles[]
+    getValueInUrl(url: string,): Array<GameStyles>
 
-    getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue
+    getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue
 
-    getGroupUrlName(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlName
+    getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName
 
     getValueBySimpleValue(value: Nullable<| GameStyles | string | number>,): GameStyles
 

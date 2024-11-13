@@ -1,3 +1,5 @@
+import {Array, MutableArray, Nullable} from '@joookiwi/type'
+
 import {HistoryState} from 'util/file/sound/history/HistoryState'
 import {SoundStates}  from 'util/file/sound/player/SoundStates'
 
@@ -5,7 +7,7 @@ export class SoundStateHistory {
 
     //region -------------------- Fields --------------------
 
-    readonly #history: HistoryState[]
+    readonly #history: MutableArray<HistoryState>
     #last?: HistoryState
     #current!: HistoryState
 
@@ -22,11 +24,11 @@ export class SoundStateHistory {
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get history(): readonly HistoryState[] {
+    public get history(): Array<HistoryState> {
         return this.#history
     }
 
-    protected get _history(): HistoryState[] {
+    protected get _history(): MutableArray<HistoryState> {
         return this.#history
     }
 

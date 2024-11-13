@@ -1,4 +1,5 @@
-import Modal from 'bootstrap/js/dist/modal'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import Modal                   from 'bootstrap/js/dist/modal'
 
 import type {EventHolder}                                  from 'bootstrap/event/EventHolder'
 import type {ModalEventCallback, ModalInstanceDeclaration} from 'bootstrap/modal/ModalInstance.declaration'

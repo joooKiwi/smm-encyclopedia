@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -54,7 +56,7 @@ class SampleCourseInterpreter
         return gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},) satisfies ReactElementOrString
     }
 
-    public get tableOptions(): readonly SampleCourseAppOption[] {
+    public get tableOptions(): Array<SampleCourseAppOption> {
         return [
             SampleCourseAppOption.NUMBER,
             SampleCourseAppOption.NAME,
@@ -79,7 +81,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySampleCourse (list)',],
     [ViewDisplays.CARD_LIST, 'everySampleCourse (card)',],
     [ViewDisplays.TABLE, 'everySampleCourse (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new SampleCourseInterpreter()
 
 /** @reactComponent */

@@ -1,4 +1,5 @@
 import type {ImpossibleNames, PossibleEnumerableValue, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import type {Nullable, NullOr}                                                               from '@joookiwi/type'
 import {Enum, NullReferenceException}                                                        from '@joookiwi/enumerable'
 
 import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/ClassInAnySuperMarioMakerGame'

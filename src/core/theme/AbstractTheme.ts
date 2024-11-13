@@ -1,3 +1,5 @@
+import type {NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+
 import type {Theme} from 'core/theme/Theme'
 import type {Games} from 'core/game/Games'
 import type {Name}  from 'lang/name/Name'

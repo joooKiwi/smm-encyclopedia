@@ -1,4 +1,5 @@
 import type {PossibleEnumerableValueBy, Singleton}                                                 from '@joookiwi/enumerable'
+import type {Nullable, NullOr}                                                                     from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent, NullEnumerableException, UnhandledValueException} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                           from 'lang/ProjectLanguages.types'

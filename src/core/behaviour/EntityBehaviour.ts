@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {ClassWithAcronym}                         from 'core/ClassWithAcronym'
 import type {ClassWithTranslationKey}                  from 'lang/ClassWithTranslationKey'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'

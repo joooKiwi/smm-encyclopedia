@@ -1,5 +1,6 @@
-import type {Singleton} from '@joookiwi/enumerable'
-import {Enum}           from '@joookiwi/enumerable'
+import type {Singleton}                            from '@joookiwi/enumerable'
+import type {NullableString, NullOr, NullOrString} from '@joookiwi/type'
+import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {CompanionEnumDeclaration_ViewDisplays}   from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
 import type {Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'

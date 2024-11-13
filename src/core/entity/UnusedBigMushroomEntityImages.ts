@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import type {Array}                              from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -55,7 +56,7 @@ export abstract class UnusedBigMushroomEntityImages
         readonly #folderName
         readonly #fileNames
 
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, ...fileNames: readonly FILE_NAME[]) {
+        public constructor(englishName: NAME, folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
             super()
             this.#englishName = englishName
             this.#folderName = folderName

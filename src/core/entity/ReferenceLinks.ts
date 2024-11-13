@@ -1,5 +1,5 @@
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
 
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
@@ -65,23 +65,23 @@ export class ReferenceLinks {
      * @param castleReferences The {@link Themes.CASTLE} references
      */
     public addSubReference(englishName: PossibleEnglishName,
-                           dayReferences: NullOr<EntityLink>,
-                           nightReferences: NullOr<EntityLink>,
-                           smbReferences: NullOr<EntityLink>,
-                           smb3References: NullOr<EntityLink>,
-                           smwReferences: NullOr<EntityLink>,
-                           nsmbuReferences: NullOr<EntityLink>,
-                           sm3dwReferences: NullOr<EntityLink>,
-                           groundStyleReferences: NullOr<EntityLink>,
-                           undergroundReferences: NullOr<EntityLink>,
-                           underwaterReferences: NullOr<EntityLink>,
-                           desertReferences: NullOr<EntityLink>,
-                           snowReferences: NullOr<EntityLink>,
-                           skyReferences: NullOr<EntityLink>,
-                           forestReferences: NullOr<EntityLink>,
-                           ghostHouseReferences: NullOr<EntityLink>,
-                           airshipReferences: NullOr<EntityLink>,
-                           castleReferences: NullOr<EntityLink>,
+                           dayReferences: NullOrString<EntityLink>,
+                           nightReferences: NullOrString<EntityLink>,
+                           smbReferences: NullOrString<EntityLink>,
+                           smb3References: NullOrString<EntityLink>,
+                           smwReferences: NullOrString<EntityLink>,
+                           nsmbuReferences: NullOrString<EntityLink>,
+                           sm3dwReferences: NullOrString<EntityLink>,
+                           groundStyleReferences: NullOrString<EntityLink>,
+                           undergroundReferences: NullOrString<EntityLink>,
+                           underwaterReferences: NullOrString<EntityLink>,
+                           desertReferences: NullOrString<EntityLink>,
+                           snowReferences: NullOrString<EntityLink>,
+                           skyReferences: NullOrString<EntityLink>,
+                           forestReferences: NullOrString<EntityLink>,
+                           ghostHouseReferences: NullOrString<EntityLink>,
+                           airshipReferences: NullOrString<EntityLink>,
+                           castleReferences: NullOrString<EntityLink>,
     ): void {
         const allLinks = new Set<PossibleEnglishName>()
         let timeLinks = new Set<PossibleEnglishName>()
@@ -119,7 +119,7 @@ export class ReferenceLinks {
         },)
     }
 
-    protected _addReferenceTo(englishName: PossibleEnglishName, content: NullOr<EntityLink>, allLinks: Set<PossibleEnglishName>, links: Set<PossibleEnglishName>,): void {
+    protected _addReferenceTo(englishName: PossibleEnglishName, content: NullOrString<EntityLink>, allLinks: Set<PossibleEnglishName>, links: Set<PossibleEnglishName>,): void {
         if (content == null)
             return
         if (content === 'this')

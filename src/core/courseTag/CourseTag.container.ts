@@ -1,3 +1,5 @@
+import type {NullOr, NullOrString} from '@joookiwi/type'
+
 import type {CourseTag}                from 'core/courseTag/CourseTag'
 import type {PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
 import type {Versions}                 from 'core/version/Versions'
@@ -35,7 +37,7 @@ export class CourseTagContainer
         return this.#isAnOfficialTag
     }
 
-    public get makerCentralName(): NullOr<PossibleMakerCentralName> {
+    public get makerCentralName(): NullOrString<PossibleMakerCentralName> {
         return this.#makerCentralName
     }
 

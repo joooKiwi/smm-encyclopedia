@@ -1,5 +1,5 @@
 import type {PossibleEnumerableValueBy}           from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}            from 'react'
+import type {Nullable, NullOr}                    from '@joookiwi/type'
 import {ImpossibleNames, PossibleEnumerableValue} from '@joookiwi/enumerable'
 
 import type {ProjectLanguages}              from 'lang/ProjectLanguages'

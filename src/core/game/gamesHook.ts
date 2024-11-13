@@ -1,4 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOr}           from '@joookiwi/type'
 import {useState}              from 'react'
 
 import {Games} from 'core/game/Games'

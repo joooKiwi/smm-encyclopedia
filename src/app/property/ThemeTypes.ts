@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -120,7 +121,7 @@ export abstract class ThemeTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly Themes[]
+    public abstract get content(): Array<Themes>
 
     //region -------------------- Link button methods --------------------
 

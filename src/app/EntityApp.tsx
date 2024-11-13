@@ -3,6 +3,8 @@ import 'app/_GameStyleAsideContent.scss'
 import './EntityApp.scss'
 import 'app/options/EntityAppOption.scss'
 
+import type {Array, MutableArray} from '@joookiwi/type'
+
 import type {EntityProperties}                               from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}                        from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}                                from 'app/interpreter/DimensionOnList'
@@ -106,12 +108,12 @@ class EntityAppInterpreter
         return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
     }
 
-    public get tableOptions(): readonly EntityAppOption[] {
+    public get tableOptions(): Array<EntityAppOption> {
         const games = this.#games
         const gameStyles = this.#gameStyles
         const hasSMM2 = games.hasSMM2
 
-        const options: EntityAppOption[] = []
+        const options: MutableArray<EntityAppOption> = []
         if (gameStyles.hasSMB)
             options.push(EntityAppOption.IMAGE_IN_SMB,)
         if (gameStyles.hasSMB3)
@@ -163,7 +165,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEntity (list)',],
     [ViewDisplays.CARD_LIST, 'everyEntity (card)',],
     [ViewDisplays.TABLE, 'everyEntity (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles,}: EntityProperties,) {

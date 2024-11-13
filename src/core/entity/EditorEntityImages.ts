@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import type {Array}                              from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                      from 'core/ClassWithEnglishName'
@@ -66,7 +67,7 @@ export abstract class EditorEntityImages
 
             public override get image(): EditorImage<IMAGE_FILE> { return this.#image ??= new EditorImageContainer(this._createImageFiles(),) }
 
-            protected abstract _createImageFiles(): readonly (readonly [Times, GameStyles, Themes, IMAGE_FILE,])[]
+            protected abstract _createImageFiles(): Array<readonly [Times, GameStyles, Themes, IMAGE_FILE,]>
 
         }
 

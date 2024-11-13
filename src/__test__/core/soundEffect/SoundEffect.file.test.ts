@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Sound effect.json'
 
+import type {Array} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
 
 import {EveryTypes}                                     from '__test__/EveryTypes'
@@ -9,7 +11,7 @@ describe('Sound effect (file test)', () => {
     const types = EveryTypes.get
     const everyNames = types.everyPossibleName_soundEffect
     const everyCategoryNames = [null, ...types.everyPossibleName_soundEffectCategory,] as const
-    const excludedLanguages: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const excludedLanguages = ['portuguese',]                                          as const satisfies Array<PossibleExcludedLanguages>
 
     file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         //TODO add the sound effect names for the sound effect with no category

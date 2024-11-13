@@ -1,4 +1,5 @@
-import Tooltip from 'bootstrap/js/dist/tooltip'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import Tooltip                 from 'bootstrap/js/dist/tooltip'
 
 import type {EventHolder}                                      from 'bootstrap/event/EventHolder'
 import type {TooltipEvents}                                    from 'bootstrap/tooltip/TooltipEvents'

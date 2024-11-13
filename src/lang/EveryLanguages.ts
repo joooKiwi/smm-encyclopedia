@@ -1,5 +1,6 @@
-import type {Singleton} from '@joookiwi/enumerable'
-import {Enum}           from '@joookiwi/enumerable'
+import type {Singleton}                      from '@joookiwi/enumerable'
+import type {Nullable, NullOr, NullOrString} from '@joookiwi/type'
+import {Enum}                                from '@joookiwi/enumerable'
 import i18n             from 'i18next'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
@@ -18,7 +19,7 @@ import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/compan
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
-    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOr<PossibleDifferentWord>>,
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOrString<PossibleDifferentWord>>,
         ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
@@ -571,7 +572,7 @@ export abstract class EveryLanguages
     readonly #internationalAcronym: PossibleInternationalAcronym
     readonly #englishName: PossibleEnglishName
     readonly #originalName: PossibleOriginalName
-    readonly #differentWords: NullOr<PossibleDifferentWord>
+    readonly #differentWords: NullOrString<PossibleDifferentWord>
     readonly #parent: NullOr<EveryLanguages>
     #children?: PossibleChildrenLanguages
 
@@ -595,7 +596,7 @@ export abstract class EveryLanguages
     private constructor(isACompleteLanguage: boolean, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, differenceWords: PossibleDifferentWord, parent: EveryLanguages,)
-    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: NullOr<PossibleDifferentWord> = null, parent: NullOr<EveryLanguages> = null,) {
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: NullOrString<PossibleDifferentWord> = null, parent: NullOr<EveryLanguages> = null,) {
         super()
         this.#isACompleteLanguage = isACompleteLanguage
         this.#projectAcronym = projectAcronym
@@ -663,7 +664,7 @@ export abstract class EveryLanguages
         return this.#originalName
     }
 
-    public get differentWords(): NullOr<PossibleDifferentWord> {
+    public get differentWords(): NullOrString<PossibleDifferentWord> {
         return this.#differentWords
     }
 

@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {Entity}     from 'core/entity/Entity'
 import type {Instrument} from 'core/instrument/Instrument'
 import type {Name}       from 'lang/name/Name'
@@ -21,7 +23,7 @@ export class InstrumentContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: Name<string>, entities: readonly Entity[],
+    public constructor(name: Name<string>, entities: Array<Entity>,
                        isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean,) {
         super(name,)
         this.#entitiesHolder = entities
@@ -32,8 +34,8 @@ export class InstrumentContainer
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get entities(): readonly Entity[] {
         return this.#entitiesHolder
+    public get entities(): Array<Entity> {
     }
 
     public get isInSuperMarioMaker1(): boolean {

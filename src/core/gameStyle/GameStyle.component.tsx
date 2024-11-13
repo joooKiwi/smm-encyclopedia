@@ -1,4 +1,5 @@
-import {getFirstByArray} from '@joookiwi/collection'
+import type {MutableArray} from '@joookiwi/type'
+import {getFirstByArray}   from '@joookiwi/collection'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {GameStyleProperty}        from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -24,7 +25,7 @@ export default function GameStyleComponent({reference, name, displayAllAsText,}:
             <GameStyleImage reference={it}/>,)}</div>
     }
 
-    const gameStyles: GameStyles[] = []
+    const gameStyles: MutableArray<GameStyles> = []
     reference.toGameStyleMap().forEach((isSelected, gameStyle,) => {
         if (isSelected)
             gameStyles.push(gameStyle,)

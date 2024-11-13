@@ -1,3 +1,5 @@
+import type {Array, Nullable} from '@joookiwi/type'
+
 import type {EditorImageFile}   from 'core/entity/file/EntityImageFile'
 import type {EditorEntityImage} from 'core/entity/images/EditorEntityImage'
 import type {EditorImage}       from 'core/entity/images/editor/EditorImage'
@@ -22,19 +24,19 @@ export class EditorEntityImageContainer<const out T extends EditorImageFile, >
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get images(): readonly T[] {
+    public get images(): Array<T> {
         return this.#reference.images
     }
 
-    public get imagesWithAssociation(): readonly (readonly [Times, GameStyles, Themes, T,])[] {
+    public get imagesWithAssociation(): Array<readonly [Times, GameStyles, Themes, T,]> {
         return this.#reference.imagesWithAssociation
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(gameStyle?: Nullable<GameStyles>,): readonly T[] {
         return this.#reference.getFromGameStyle(gameStyle,)
+    public get(gameStyle?: Nullable<GameStyles>,): Array<T> {
     }
 
     //endregion -------------------- Methods --------------------

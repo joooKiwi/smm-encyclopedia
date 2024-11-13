@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 /** A class with an "acronym" on the getter method */
 export interface ClassWithAcronym<out ACRONYM extends string, >
     extends ClassWithNullableAcronym<ACRONYM> {

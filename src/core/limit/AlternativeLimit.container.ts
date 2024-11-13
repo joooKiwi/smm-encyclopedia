@@ -1,4 +1,5 @@
 import type {Lazy} from '@joookiwi/lazy'
+import type {NullOr} from '@joookiwi/type'
 import {lazy}      from '@joookiwi/lazy'
 
 import type {Games}                      from 'core/game/Games'

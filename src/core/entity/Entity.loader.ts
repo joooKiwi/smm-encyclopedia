@@ -1,9 +1,9 @@
 import file from 'resources/compiled/Entity.json'
 
-import type {Lazy}        from '@joookiwi/lazy'
-import type {Array}       from '@joookiwi/type'
-import {forEachByArray}   from '@joookiwi/collection'
-import {CommonLazy, lazy} from '@joookiwi/lazy'
+import type {Lazy}                          from '@joookiwi/lazy'
+import type {Array, NullableString, NullOr} from '@joookiwi/type'
+import {forEachByArray}                     from '@joookiwi/collection'
+import {CommonLazy, lazy}                   from '@joookiwi/lazy'
 
 import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
 import type {LanguageContent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/_template/LanguageContent'
@@ -320,10 +320,10 @@ const EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
 function createReference(content: Content, referenceLinks: ReferenceLinks, entityCategoryMap: EntityCategoryMap, limitCompanion: LimitCompanion,): Entity {
     const englishName = (content.english ?? content.americanEnglish)!
 
-    let everyGameStyleReferences: Lazy<readonly Entity[]>
-    let everyThemeReferences: Lazy<readonly Entity[]>
-    let everyTimeReferences: Lazy<readonly Entity[]>
-    let everyReferences: Lazy<readonly Entity[]>
+    let everyGameStyleReferences: Lazy<Array<Entity>>
+    let everyThemeReferences: Lazy<Array<Entity>>
+    let everyTimeReferences: Lazy<Array<Entity>>
+    let everyReferences: Lazy<Array<Entity>>
     if (referenceLinks.hasAnyReferences(englishName,)) {
         everyGameStyleReferences = getOrCreateGroupReference(referenceLinks.getGameStyleReferenceLinks(englishName,),)
         everyThemeReferences = getOrCreateGroupReference(referenceLinks.getThemeReferenceLinks(englishName,),)
@@ -425,7 +425,7 @@ function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplica
 //endregion -------------------- Create limit --------------------
 //region -------------------- Create instrument --------------------
 
-function createInstruments(content: Content,): Lazy<readonly Instrument[]> {
+function createInstruments(content: Content,): Lazy<Array<Instrument>> {
     const value = content.instrument
     if (value == null)
         return CommonLazy.EMPTY_ARRAY
@@ -457,7 +457,7 @@ function getOtherEntityReferences(link: NullableString<EntityLink>, name: Possib
     return lazy(() => (link.split(' / ').map(splitLink => Entities.CompanionEnum.get.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
 }
 
-function getOrCreateGroupReference(references: readonly PossibleEnglishName[],): Lazy<readonly Entity[]> {
+function getOrCreateGroupReference(references: Array<PossibleEnglishName>,): Lazy<Array<Entity>> {
     if (references == null)
         return CommonLazy.EMPTY_ARRAY
     return lazy(() => references.map(it => Entities.CompanionEnum.get.getValueByName(it,).reference,),)

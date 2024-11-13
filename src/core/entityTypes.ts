@@ -1,3 +1,5 @@
+import type {NullOrBoolean, NullOr} from '@joookiwi/type'
+
 /** @temporaryVariable */
 export type PossibleGroupName = string
 

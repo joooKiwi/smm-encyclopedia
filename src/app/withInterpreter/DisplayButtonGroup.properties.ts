@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
 import type {PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}   from 'util/react/ReactProperties'
@@ -9,7 +11,7 @@ export interface DisplayButtonGroupProperties
     readonly reactKey: string
 
     /** The views applicable to the button group (with its own route name) */
-    readonly views: readonly ViewAndRouteName[]
+    readonly views: Array<ViewAndRouteName>
 
     /** The current type used for the group (if the route is the default one) */
     readonly currentView: ViewDisplays

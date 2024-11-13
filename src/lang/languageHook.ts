@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import type {NullOr} from '@joookiwi/type'
+import {useState}    from 'react'
 
 import {EveryLanguages} from 'lang/EveryLanguages'
 

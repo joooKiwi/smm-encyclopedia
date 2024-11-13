@@ -1,8 +1,9 @@
-import type {Enumerable} from '@joookiwi/enumerable/dist/types'
+import type {Enumerable}                                           from '@joookiwi/enumerable'
+import type {Array, Nullable, NullableString, NullOr, StringArray} from '@joookiwi/type'
 
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {Content}                    from 'app/interpreter/AppInterpreter'
-import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
 /**
  * An application interpreter when using a {@link ViewDisplays.TABLE} as the visual represented
@@ -22,14 +23,14 @@ export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
      *
      * Any {@link Nullable nullable value} will be ignored in the final content.
      */
-    get tableOptions(): readonly Nullable<OPTION>[]
+    get tableOptions(): Array<Nullable<OPTION>>
 
     /**
      * Get the additional {@link Element.classList classes} for a selected {@link option}
      *
      * @param option The application option
      */
-    getAdditionalClass?(option: OPTION,): readonly string[]
+    getAdditionalClass?(option: OPTION,): StringArray
 
     /**
      * Get the table content as an array of {@link ReactElement}
@@ -38,7 +39,7 @@ export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
      * @param content The content to display
      * @param option the application option
      */
-    createTableContent(content: CONTENT, option: OPTION,): readonly ReactElement[]
+    createTableContent(content: CONTENT, option: OPTION,): Array<ReactElement>
 
     /**
      * Get the {@link SingleHeaderContent table header} or null

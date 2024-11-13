@@ -1,4 +1,5 @@
-import {lazyOf} from '@joookiwi/lazy'
+import type {NullOrString} from '@joookiwi/type'
+import {lazyOf}            from '@joookiwi/lazy'
 
 import type {Games}                                                                                               from 'core/game/Games'
 import type {AlternativeLimit, Limit, LimitWithPossibleAlternativeLimit}                                          from 'core/limit/Limit'
@@ -32,12 +33,12 @@ export class LimitContainer
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
-                       acronym: NullOr<PossibleAcronym>,
+                       acronym: NullOrString<PossibleAcronym>,
                        alternative: AlternativeLimit,
                        type: LimitTypes,
                        limitAmountInSMM1AndSMM3DS: | PossibleLimitAmount_SMM1And3DS_Amount | NotApplicable, isUnknownLimitInSMM1AndSMM3DS: boolean,
                        limitAmountInSMM2: PossibleLimitAmount_SMM2_Amount, isUnknownLimitInSMM2: boolean,
-                       amountComment: NullOr<PossibleLimitAmount_Comment>,) {
+                       amountComment: NullOrString<PossibleLimitAmount_Comment>,) {
         super(name, lazyOf(alternative,),)
         this.#acronym = acronym
         this.#type = type

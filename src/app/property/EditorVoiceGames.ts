@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}           from '@joookiwi/enumerable'
+import type {NullOr}                                     from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithNullableParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EditorVoiceGames.types'

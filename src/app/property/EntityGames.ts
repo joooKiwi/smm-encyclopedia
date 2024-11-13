@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}           from '@joookiwi/enumerable'
+import type {NullOrString}                               from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithNullableParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EntityGames.types'
@@ -126,21 +127,21 @@ export class EntityGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOr<PossibleRouteName> {
+    public getAllRouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
         return `everyEntity (${viewDisplay.urlValue} Game=all ${gameStyleName})`
     }
 
-    public getSmm1RouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOr<PossibleRouteName> {
+    public getSmm1RouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
         // README: We imply that the game cannot be in SM3DW with SMM1 for this path in the EntityApp itself
         return `everyEntity (${viewDisplay.urlValue} Game=1 ${gameStyleName})` as PossibleRouteName
     }
 
-    public getSmm3dsRouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOr<PossibleRouteName> {
+    public getSmm3dsRouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
         // README: We imply that the game cannot be in SM3DW with SMM3DS for this path in the EntityApp itself
         return `everyEntity (${viewDisplay.urlValue} Game=3DS ${gameStyleName})` as PossibleRouteName
     }
 
-    public getSmm2RouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOr<PossibleRouteName> {
+    public getSmm2RouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
         return `everyEntity (${viewDisplay.urlValue} Game=2 ${gameStyleName})`
     }
 

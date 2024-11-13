@@ -1,3 +1,5 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
+
 import type {SoundFile}                                                                                                                                                                                                                                                                                                                                                                                                          from 'util/file/sound/SoundFile'
 import type {OnAfterPauseSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback, OnPauseEventSoundPlayerCallback, OnPlayEventSoundPlayerCallback, OnPlayingEventSoundPlayerCallback} from 'util/file/sound/player/types'
 

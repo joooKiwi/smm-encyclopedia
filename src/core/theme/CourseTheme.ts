@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {Entity}       from 'core/entity/Entity'
 import type {NightEffects} from 'core/nightEffect/NightEffects'
 import type {Theme}        from 'core/theme/Theme'
@@ -5,7 +7,7 @@ import type {Theme}        from 'core/theme/Theme'
 export interface CourseTheme
     extends Theme {
 
-    get entities(): readonly Entity[]
+    get entities(): Array<Entity>
 
     get effect(): NullOr<NightEffects>
 

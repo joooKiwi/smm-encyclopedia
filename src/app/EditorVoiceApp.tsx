@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './EditorVoiceApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {EditorVoiceProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -86,7 +88,7 @@ class EditorVoiceAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('editor voice.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly EditorVoiceAppOption[] {
+    public get tableOptions(): Array<EditorVoiceAppOption> {
         return [EditorVoiceAppOption.NAME, EditorVoiceAppOption.EDITOR_VOICE,]
     }
 
@@ -111,7 +113,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEditorVoice (list)',],
     [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
     [ViewDisplays.TABLE, 'everyEditorVoice (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {

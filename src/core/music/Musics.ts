@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                          from 'core/music/Musics.types'
 import type {BackgroundMusic}                                          from 'core/music/backgroundMusic/BackgroundMusic'

@@ -1,5 +1,6 @@
 import type {CollectionHolder}                from '@joookiwi/collection'
 import type {Singleton}                       from '@joookiwi/enumerable'
+import type {Array, Nullable}                 from '@joookiwi/type'
 import {getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
 import {Enum}                                 from '@joookiwi/enumerable'
 
@@ -157,7 +158,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
 
-        public getValueInUrl(url: string,): readonly GameStyles[] {
+        public getValueInUrl(url: string,): Array<GameStyles> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return Import.GameStylePossibility.ALL_GAME_STYLES
@@ -254,7 +255,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
             return EMPTY_ARRAY
         }
 
-        public getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue {
+        public getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue {
             const isGameStylesArray = isArray(gameStyles,)
             const withSmb = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
             const withSmb3 = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS_3,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
@@ -342,7 +343,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
             throw new ReferenceError('No game style group url value is findable from empty array or collection.',)
         }
 
-        public getGroupUrlName(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlName {
+        public getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName {
             const isGameStylesArray = isArray(gameStyles,)
             const withSmb = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
             const withSmb3 = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS_3,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)

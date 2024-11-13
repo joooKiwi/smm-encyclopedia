@@ -53,7 +53,7 @@ export default function Table({id, interpreter,}: TableProperties,) {
     </div>
 }
 
-function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleHeaderContent[],]>,) {
+function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [StringArray, Array<SingleHeaderContent>,]>,) {
     const columns = new Array<ReactJSXElement>(headers.length,)
     forEachByArray(headers, (it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
@@ -65,7 +65,7 @@ function TableHeader({children: [additionalClasses, headers,],}: SimpleReactProp
     return <div className="theader">{columns}</div>
 }
 
-function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleTableContent[]]>,) {
+function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [StringArray, Array<SingleTableContent>]>,) {
     const tableContent = new Array<ReactJSXElement>(contents.length,)
     forEachByArray(contents, (content, i,) => {
         const rowContentKey = content[0]
@@ -83,7 +83,7 @@ function TableContent({children: [additionalClasses, contents,],}: SimpleReactPr
     return <div className="tcontent">{tableContent}</div>
 }
 
-function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleHeaderContent[],]>,) {
+function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [StringArray, Array<SingleHeaderContent>,]>,) {
     const columns = new Array<ReactJSXElement>(headers.length,)
     forEachByArray(headers, (it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
@@ -145,7 +145,7 @@ function getHeaderKey(header: SingleHeaderContent,): string {
  * @param options The displayed options in the table
  * @private
  */
-function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly string[] {
+function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: Array<Enumerable>,): StringArray {
     if (getAdditionalClass == null)
         return Array.from({length: options.length,}, () => EMPTY_STRING,)
     return mapByArray(options, it => joinToStringByArray(getAdditionalClass(it,), SPACE, EMPTY_STRING, EMPTY_STRING,),).toArray()
@@ -158,7 +158,7 @@ function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTabl
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleTableContent[] {
+function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: Array<Enumerable>,): Array<SingleTableContent> {
     return mapByArray(content, (contentValue, i,) => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
         forEachByArray(options, option =>
@@ -175,8 +175,8 @@ function retrieveContent({content, createTableContent,}: AppInterpreterWithTable
  * @param options The displayed options in the table
  * @private
  */
-function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleHeaderContent[] {
-    const headerContent: SingleHeaderContent[] = []
+function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: Array<Enumerable>,): Array<SingleHeaderContent> {
+    const headerContent: MutableArray<SingleHeaderContent> = []
     forEachByArray(options, it => {
         const tableHeader = createTableHeader(it,)
         if (tableHeader == null)

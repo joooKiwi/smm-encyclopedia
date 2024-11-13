@@ -1,3 +1,5 @@
+import type {NullOrString} from '@joookiwi/type'
+
 import type {GameReferences} from 'core/gameReference/GameReferences'
 
 export type MysteryMushroomGames = | readonly [GameReferences,]
@@ -23,7 +25,7 @@ export type TranslationKeyOnGoalPole = | 'Introduction' | 'Startup' | 'Game over
                                        | 'Bowser\'s arrival' | 'Link meets Zelda for the 1st time' | 'Ganon encounter'
                                        | '3DS preview jingle'
 /** @todo Remove once the unknown reference is no longer present */
-export type PossibleTranslationKeyOnGoalPole = NullOr<| TranslationKeyOnGoalPole | UnknownReference>
+export type PossibleTranslationKeyOnGoalPole = NullOrString<| TranslationKeyOnGoalPole | UnknownReference>
 export type TypeOfSoundOnGoalPole = | 'Marimba' | 'Rock'
 
 export type AdditionalSoundOnDeath = '+ "Rooo…"' | '+ "Oh no!"' | '+ "Nooo!"' | '+ "Woah!"' | '+ "Yaha!"'
@@ -34,5 +36,5 @@ export type TranslationKeyOnDeath = | 'Game over' | 'Defeated' | 'Error sound'
                                     | 'Minigame lost' | 'Round lost'
                                     | 'Timed event failed' | 'Ran out of energy' | 'Practice Catcher result jingle'
                                     | 'Bowser\'s death' | 'Mario saying "Mama mia"' | 'Zelda\'s Lullaby' | 'Link caught by Moblins' | 'K.K. howling' | 'Pikmin death'
-export type PossibleTranslationKeyOnDeath = NullOr<| TranslationKeyOnDeath | UnknownReference>
+export type PossibleTranslationKeyOnDeath = NullOrString<| TranslationKeyOnDeath | UnknownReference>
 export type TypeOfSoundOnDeath = | 'Marimba' | 'Techno'

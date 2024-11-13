@@ -1,3 +1,5 @@
+import type {UndefinedOr} from '@joookiwi/type'
+
 import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
 import {Times} from 'core/time/Times'

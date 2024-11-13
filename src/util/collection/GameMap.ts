@@ -1,3 +1,5 @@
+import type {UndefinedOr} from '@joookiwi/type'
+
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
 import {Games} from 'core/game/Games'

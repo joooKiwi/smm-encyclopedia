@@ -1,5 +1,6 @@
-import {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOr}                 from '@joookiwi/type'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals} from 'core/music/IndividualMusics.types'
 import type {RepeatableSoundFile}                from 'util/file/sound/RepeatableSoundFile'

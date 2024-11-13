@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './CharacterNameApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {CharacterNameProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -84,7 +86,7 @@ class CharacterNameAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('character name.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly CharacterNameAppOption[] {
+    public get tableOptions(): Array<CharacterNameAppOption> {
         return [CharacterNameAppOption.NAME,]
     }
 
@@ -109,7 +111,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyCharacterName (list)',],
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
     [ViewDisplays.TABLE, 'everyCharacterName (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */

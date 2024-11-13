@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {ClassWithReference}                                                        from 'core/ClassWithReference'

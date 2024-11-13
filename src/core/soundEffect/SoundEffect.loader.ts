@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Sound effect.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
 
 import type {LanguageContent}                                     from 'core/_template/LanguageContent'
 import type {GameContentFrom1And2}                                from 'core/game/Loader.types'
@@ -83,7 +83,7 @@ interface Content
 
     //endregion -------------------- Triggers --------------------
 
-    readonly category: NullOr<PossibleEnglishName_Category>
+    readonly category: NullOrString<PossibleEnglishName_Category>
 
 }
 

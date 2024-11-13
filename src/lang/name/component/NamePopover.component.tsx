@@ -1,6 +1,7 @@
-import type {Dispatch, SetStateAction} from 'react'
-import Popover                         from 'bootstrap/js/dist/popover'
-import {Component}                     from 'react'
+import type {NullableString, UndefinedOr} from '@joookiwi/type'
+import type {Dispatch, SetStateAction}    from 'react'
+import Popover                            from 'bootstrap/js/dist/popover'
+import {Component}                        from 'react'
 
 import type {PopoverOrientation}                                       from 'bootstrap/popover/PopoverInstance.declaration'
 import type {Name}                                                     from 'lang/name/Name'

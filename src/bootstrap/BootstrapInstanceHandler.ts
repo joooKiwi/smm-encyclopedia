@@ -1,3 +1,5 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
+
 import {ModalInstance}     from 'bootstrap/modal/ModalInstance'
 import {OffcanvasInstance} from 'bootstrap/offcanvas/OffcanvasInstance'
 import {PopoverInstance}   from 'bootstrap/popover/PopoverInstance'

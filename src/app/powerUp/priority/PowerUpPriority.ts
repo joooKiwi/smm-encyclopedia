@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {Entities}                      from 'core/entity/Entities'
 import type {EntityImageFile}               from 'core/entity/file/EntityImageFile'
 import type {ClassInAnySuperMarioMakerGame} from 'core/game/ClassInAnySuperMarioMakerGame'
@@ -8,7 +10,7 @@ export interface PowerUpPriority {
 
     get name(): Name<string>
 
-    get images(): readonly EntityImageFile[]
+    get images(): Array<EntityImageFile>
 
     get isIn(): ClassInAnySuperMarioMakerGame
 
@@ -17,35 +19,35 @@ export interface PowerUpPriority {
 export interface SMBPowerUpPriority
     extends PowerUpPriority {
 
-    get smbImages(): readonly EntityImageFile[]
+    get smbImages(): Array<EntityImageFile>
 
 }
 
 export interface SMB3PowerUpPriority
     extends PowerUpPriority {
 
-    get smb3Images(): readonly EntityImageFile[]
+    get smb3Images(): Array<EntityImageFile>
 
 }
 
 export interface SMWPowerUpPriority
     extends PowerUpPriority {
 
-    get smwImages(): readonly EntityImageFile[]
+    get smwImages(): Array<EntityImageFile>
 
 }
 
 export interface NSMBUPowerUpPriority
     extends PowerUpPriority {
 
-    get nsmbuImages(): readonly EntityImageFile[]
+    get nsmbuImages(): Array<EntityImageFile>
 
 }
 
 export interface SM3DWPowerUpPriority
     extends PowerUpPriority {
 
-    get sm3dwImages(): readonly EntityImageFile[]
+    get sm3dwImages(): Array<EntityImageFile>
 
 }
 
@@ -61,6 +63,6 @@ export interface PowerUpByAllGameStylesPriority
         SM3DWPowerUpPriority {}
 
 export type PossibleGameStyles = | readonly [GameStyles, GameStyles,] | readonly [GameStyles, GameStyles, GameStyles,] | readonly [GameStyles, GameStyles, GameStyles, GameStyles,]
-export type ImagesCallback = () => readonly EntityImageFile[]
-export type ImagesCallbackByPriority<T extends PowerUpPriority, > = (priority: T,) => readonly EntityImageFile[]
-export type ImagesRetrieverCallback = (entity: Entities, gameStyle: GameStyles,) => readonly EntityImageFile[]
+export type ImagesCallback = () => Array<EntityImageFile>
+export type ImagesCallbackByPriority<T extends PowerUpPriority, > = (priority: T,) => Array<EntityImageFile>
+export type ImagesRetrieverCallback = (entity: Entities, gameStyle: GameStyles,) => Array<EntityImageFile>

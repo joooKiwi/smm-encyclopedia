@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {GameStyles}           from 'core/gameStyle/GameStyles'
 import type {MysteryMushrooms}     from 'core/mysteryMushroom/MysteryMushrooms'
 import type {PossibleAmountOfTime} from 'core/officialCourse/loader.types'
@@ -26,7 +28,7 @@ export class OfficialCourseContainer
 
     public constructor(
         name: Name<string>, description: Name<string>,
-        reward: readonly MysteryMushrooms[],
+        reward: Array<MysteryMushrooms>,
         releaseDate: Date, removalDate: NullOr<| Date | UnknownReference>,
         gameStyle: GameStyles,
         courseThemeInMainArea: Themes, courseThemeInSubArea: NullOr<Themes>,

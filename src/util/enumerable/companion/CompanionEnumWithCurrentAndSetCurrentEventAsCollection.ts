@@ -1,6 +1,8 @@
-import {CollectionHolder, GenericCollectionHolder}                        from '@joookiwi/collection'
+import type {CollectionHolder}                                            from '@joookiwi/collection'
 import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Array, NullOr}                                               from '@joookiwi/type'
 import type {Dispatch, SetStateAction}                                    from 'react'
+import {GenericCollectionHolder, isArray}                                 from '@joookiwi/collection'
 import {CompanionEnum}                                                    from '@joookiwi/enumerable'
 
 import {EMPTY_MAP}          from 'util/emptyVariables'
@@ -43,7 +45,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
      *
      * @param value The {@link Enumerable instances} to set as the selected one
      */
-    public set current(value: | CollectionHolder<ENUM> | readonly ENUM[],) {
+    public set current(value: | CollectionHolder<ENUM> | Array<ENUM>,) {
         const current = this.currentOrNull
         if (value === current)
             return

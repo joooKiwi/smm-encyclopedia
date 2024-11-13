@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {ClassWithOnlyProjectLanguages}                                           from 'lang/ClassWithOnlyProjectLanguages'
 import type {EveryLanguages}                                                          from 'lang/EveryLanguages'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
@@ -69,7 +71,7 @@ export interface ClassWithEveryLanguages<out T,
     /**
      * The original languages used when the instance was constructed.
      */
-    get originalLanguages(): readonly EveryLanguages[]
+    get originalLanguages(): Array<EveryLanguages>
 
 
     /**

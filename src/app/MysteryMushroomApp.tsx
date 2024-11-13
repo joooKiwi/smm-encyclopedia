@@ -1,5 +1,7 @@
 import './MysteryMushroomApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
@@ -80,7 +82,7 @@ class MysteryMushroomAppInterpreter
         pluralName: OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName,).toLowerCase(),
     },) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly MysteryMushroomAppOption[] {
+    public get tableOptions(): Array<MysteryMushroomAppOption> {
         return [
             MysteryMushroomAppOption.CONDITION_TO_UNLOCK_IT,
             MysteryMushroomAppOption.GAME,
@@ -120,7 +122,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMysteryMushroom (list)',],
     [ViewDisplays.CARD_LIST, 'everyMysteryMushroom (card)',],
     [ViewDisplays.TABLE, 'everyMysteryMushroom (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MysteryMushroomAppInterpreter()
 const keyRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
 

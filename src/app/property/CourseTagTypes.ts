@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -152,7 +153,7 @@ export abstract class CourseTagTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly CourseTags[]
+    public abstract get content(): Array<CourseTags>
 
     //region -------------------- Link button methods --------------------
 

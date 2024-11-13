@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullableString, NullOr, NullOrNumber, NullOrString} from '@joookiwi/type'
+import {forEachByArray}                                                 from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                                                                                                                                                                                                                       from 'core/_template/LanguageContent'
 import type {UniqueNameContent}                                                                                                                                                                                                                                                                     from 'core/_template/UniqueNameContent'
@@ -73,39 +73,39 @@ interface Content
     readonly reference: | PossibleAcronym_GameReference | PokemonGeneration
 
 
-    readonly haveASoundEffectWhenCollected_game: NullOr<PossibleAcronym_GameReference>
+    readonly haveASoundEffectWhenCollected_game: NullOrString<PossibleAcronym_GameReference>
     readonly haveASoundEffectWhenCollected: BooleanOrNotApplicable
 
-    readonly haveASoundEffectOnTaunt_game: NullOr<PossibleAcronym_GameReference>
+    readonly haveASoundEffectOnTaunt_game: NullOrString<PossibleAcronym_GameReference>
     readonly haveASoundEffectOnTaunt: BooleanOrNotApplicable
 
-    readonly haveASoundEffectOnJump_game: NullOr<PossibleAcronym_GameReference>
-    readonly haveASoundEffectOnJump_amount: NullOr<PossibleAmountOfSoundEffectOnJump>
+    readonly haveASoundEffectOnJump_game: NullOrString<PossibleAcronym_GameReference>
+    readonly haveASoundEffectOnJump_amount: NullOrNumber<PossibleAmountOfSoundEffectOnJump>
     readonly haveASoundEffectOnJump_multipleImage: BooleanOrNotApplicable
     readonly haveASoundEffectOnJump: BooleanOrNotApplicable
 
-    readonly haveASoundEffectOnGroundAfterJump_game: NullOr<PossibleAcronym_GameReference>
+    readonly haveASoundEffectOnGroundAfterJump_game: NullOrString<PossibleAcronym_GameReference>
     readonly haveASoundEffectOnGroundAfterJump: BooleanOrNotApplicable
 
-    readonly soundEffectOnMovement_sound: NullOr<SoundEffectOnMovement>
+    readonly soundEffectOnMovement_sound: NullOrString<SoundEffectOnMovement>
     readonly soundEffectOnMovement: BooleanOrNotApplicable
 
     readonly haveASoundEffectOnTurnAfterRun: BooleanOrNotApplicable
 
-    readonly haveASpecialMusicInStarMode_game: NullOr<GameInStarMode>
-    readonly haveASpecialMusicInStarMode_music: NullOr<SpecialMusicInStarMode>
+    readonly haveASpecialMusicInStarMode_game: NullOrString<GameInStarMode>
+    readonly haveASpecialMusicInStarMode_music: NullOrString<SpecialMusicInStarMode>
     readonly haveASpecialMusicInStarMode: BooleanOrNotApplicable
 
-    readonly haveASoundEffectWhenOnGoalPole_game: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>
-    readonly haveASoundEffectWhenOnGoalPole_type: NullOr<TypeOfSoundOnGoalPole>
+    readonly haveASoundEffectWhenOnGoalPole_game: NullOrString<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>
+    readonly haveASoundEffectWhenOnGoalPole_type: NullOrString<TypeOfSoundOnGoalPole>
     readonly haveASoundEffectWhenOnGoalPole_smallDefinition: PossibleTranslationKeyOnGoalPole
-    readonly haveASoundEffectWhenOnGoalPole_plus: NullOr<AdditionalSoundOnGoalPole>
+    readonly haveASoundEffectWhenOnGoalPole_plus: NullOrString<AdditionalSoundOnGoalPole>
     readonly haveASoundEffectWhenOnGoalPole: BooleanOrNotApplicable
 
-    readonly haveASoundEffectOnDeath_game: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>
-    readonly haveASoundEffectOnDeath_type: NullOr<TypeOfSoundOnDeath>
+    readonly haveASoundEffectOnDeath_game: NullOrString<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>
+    readonly haveASoundEffectOnDeath_type: NullOrString<TypeOfSoundOnDeath>
     readonly haveASoundEffectOnDeath_smallDefinition: PossibleTranslationKeyOnDeath
-    readonly haveASoundEffectOnDeath_plus: NullOr<AdditionalSoundOnDeath>
+    readonly haveASoundEffectOnDeath_plus: NullOrString<AdditionalSoundOnDeath>
     readonly haveASoundEffectOnDeath: BooleanOrNotApplicable
 
 }
@@ -144,13 +144,13 @@ function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneratio
     }
 }
 
-function retrieveGameReference(value: Nullable<PossibleAcronym_GameReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
+function retrieveGameReference(value: NullableString<PossibleAcronym_GameReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
     if (value == null)
         return null
     return gameReferenceCompanion.getValueByAcronym(value,)
 }
 
-function retrieveGameReferenceOrPokemonGenerationOrUnknown(value: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
+function retrieveGameReferenceOrPokemonGenerationOrUnknown(value: NullOrString<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
     if (value == null)
         return null
     if (value === UNKNOWN_REFERENCE)

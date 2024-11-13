@@ -1,3 +1,5 @@
+import type {Nullable, NullableBoolean} from '@joookiwi/type'
+
 import type {ReactProperties}    from 'util/react/ReactProperties'
 import type {HTMLSpanProperties} from 'util/react/html/HTMLSpanProperties'
 
@@ -20,4 +22,4 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
 
 }
 
-export type PossibleTextContent = | ReactElement | string | NotApplicable | UnknownReference | number | boolean
+export type PossibleTextContent = | ReactElementOrString | NotApplicable | UnknownReference | number | boolean

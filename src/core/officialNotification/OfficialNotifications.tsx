@@ -1,9 +1,10 @@
 import './OfficialNotifications.scss'
 
-import type {Lazy} from '@joookiwi/lazy'
-import {Enum}      from '@joookiwi/enumerable'
-import {lazy}      from '@joookiwi/lazy'
-import {Fragment}  from 'react'
+import type {Lazy}                                    from '@joookiwi/lazy'
+import type {Array, Nullable, NullableNumber, NullOr} from '@joookiwi/type'
+import {Enum}                                         from '@joookiwi/enumerable'
+import {lazy}                                         from '@joookiwi/lazy'
+import {Fragment}                                     from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
@@ -25,17 +26,17 @@ import {CompanionEnumByName}                                                    
 
 //region -------------------- Constructor constants --------------------
 
-const translationKey_finishAllCharacterJob: PossibleTranslationKey = 'finish all 3 job (character)'
-const translationKey_finishSelectedPeachJob: PossibleTranslationKey = 'finish X job (Peach)'
-const translationKey_receiveFeedback: PossibleTranslationKey = 'course.receive feedback (a lot)'
-const translationKey_rank: PossibleTranslationKey = 'rank'
-const translationKey_highScore: PossibleTranslationKey = 'high score'
-const translationKey_medal: PossibleTranslationKey = 'medal'
-const translationKey_place: PossibleTranslationKey = 'place'
-const translationKey_stamp: PossibleTranslationKey = 'stamp'
+const translationKey_finishAllCharacterJob = 'finish all 3 job (character)' satisfies PossibleTranslationKey
+const translationKey_finishSelectedPeachJob = 'finish X job (Peach)'        satisfies PossibleTranslationKey
+const translationKey_receiveFeedback = 'course.receive feedback (a lot)'    satisfies PossibleTranslationKey
+const translationKey_rank = 'rank'                                          satisfies PossibleTranslationKey
+const translationKey_highScore = 'high score'                               satisfies PossibleTranslationKey
+const translationKey_medal = 'medal'                                        satisfies PossibleTranslationKey
+const translationKey_place = 'place'                                        satisfies PossibleTranslationKey
+const translationKey_stamp = 'stamp'                                        satisfies PossibleTranslationKey
 
-const possibleAmountInEndlessMarioEasyOrNormal: readonly PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal[] = [10, 100, 300, 500, 1000,]
-const possibleAmountInEndlessMarioExpertOrSuperExpert: readonly PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert[] = [10, 100,]
+const possibleAmountInEndlessMarioEasyOrNormal = [10, 100, 300, 500, 1000,] as const satisfies Array<PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal>
+const possibleAmountInEndlessMarioExpertOrSuperExpert = [10, 100,]          as const satisfies Array<PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert>
 
 //endregion -------------------- Constructor constants --------------------
 
@@ -511,7 +512,7 @@ export class OfficialNotifications
     //region -------------------- Fields --------------------
 
     readonly #englishName
-    readonly #additionalEnglishName: readonly PossibleEnglishNameWithEveryAmount[]
+    readonly #additionalEnglishName: Array<PossibleEnglishNameWithEveryAmount>
 
     readonly #translationKey
     #additionalTranslationKeyHolder: Lazy<NullOr<PossibleAdditionalTranslationKey>>
@@ -520,9 +521,9 @@ export class OfficialNotifications
     //region -------------------- Constructor --------------------
 
     private constructor(englishName: Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount>, translationKey: PossibleTranslationKey,)
-    private constructor(englishName: PossibleEnglishNameWithAmount<'#'>, translationKey: PossibleTranslationKey, ...amount: readonly PossibleAmount[])
+    private constructor(englishName: PossibleEnglishNameWithAmount<'#'>, translationKey: PossibleTranslationKey, ...amount: Array<PossibleAmount>)
     private constructor(englishName: PossibleEnglishNameWithAmount<1>, translationKey: PossibleTranslationKey, amount: 1,)
-    private constructor(englishName: PossibleEnglishName, translationKey: PossibleTranslationKey, ...amount: readonly PossibleAmount[]) {
+    private constructor(englishName: PossibleEnglishName, translationKey: PossibleTranslationKey, ...amount: Array<PossibleAmount>) {
         super()
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
@@ -543,7 +544,7 @@ export class OfficialNotifications
         return this.#englishName.getInHtml
     }
 
-    public get additionalEnglishName(): readonly PossibleEnglishNameWithEveryAmount[] {
+    public get additionalEnglishName(): Array<PossibleEnglishNameWithEveryAmount> {
         return this.#additionalEnglishName
     }
 
@@ -709,7 +710,7 @@ export class OfficialNotifications
 
     //endregion -------------------- Add argument to "key map" --------------------
 
-    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): ReactElement {
+    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): NonNullReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
         if (amount != null)
             keyMap.amount = <Fragment key={`${key} - amount`}>{amount}</Fragment>

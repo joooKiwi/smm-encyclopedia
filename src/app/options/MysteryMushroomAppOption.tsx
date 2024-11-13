@@ -1,4 +1,5 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {Array, Nullable}        from '@joookiwi/type'
 import {getFirstByArray}             from '@joookiwi/collection'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
@@ -381,7 +382,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <SimpleSoundComponent file={soundFile} title={`${englishName} - ${type}`}/>,)
     }
 
-    protected _createSounds(enumeration: MysteryMushrooms, soundFiles: readonly SoundFile[], callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSounds(enumeration: MysteryMushrooms, soundFiles: Array<SoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         const englishName = enumeration.englishName
         const type = this._mysteryMushroomType
 
@@ -390,7 +391,7 @@ export abstract class MysteryMushroomAppOption
         )}</>,)
     }
 
-    protected _createImage(enumeration: MysteryMushrooms, imageFiles: readonly ImageFile[], renderDiv: boolean,): ReactElement {
+    protected _createImage(enumeration: MysteryMushrooms, imageFiles: Array<ImageFile>, renderDiv: boolean,): ReactElement {
         const uniqueEnglishName = enumeration.uniqueEnglishName
 
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <>{imageFiles.map((value, index,) =>
@@ -398,7 +399,7 @@ export abstract class MysteryMushroomAppOption
         )}</>,)
     }
 
-    protected _createAnimatedImages(enumeration: MysteryMushrooms, imageFiles: readonly (readonly ImageFile[])[], renderDiv: boolean,): ReactElement {
+    protected _createAnimatedImages(enumeration: MysteryMushrooms, imageFiles: Array<Array<ImageFile>>, renderDiv: boolean,): ReactElement {
         const uniqueEnglishName = enumeration.uniqueEnglishName
         const englishNameInHtml = enumeration.englishNameInHtml
 

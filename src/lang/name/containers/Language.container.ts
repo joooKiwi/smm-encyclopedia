@@ -1,8 +1,13 @@
+import type {Array, EmptyArray, NullOr} from '@joookiwi/type'
+import {isArray}                        from '@joookiwi/collection'
+
 import type {Language} from 'lang/name/containers/Language'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-export class LanguageContainer<const out T, const out S extends T = T, const out A extends readonly T[] = EmptyArray, >
+export class LanguageContainer<const T,
+    const S extends T = T,
+    const A extends Array<T> = EmptyArray, >
     implements Language<T, S, A> {
 
     //region -------------------- Fields --------------------

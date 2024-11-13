@@ -1,3 +1,4 @@
+import type {Array, MutableArray, Nullable} from '@joookiwi/type'
 import {forEachByArray} from '@joookiwi/collection'
 
 import type {BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer} from 'core/music/backgroundMusic/BackgroundMusic'
@@ -37,11 +38,11 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
 
     //region -------------------- Fields --------------------
 
-    #everyMusic?: readonly NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                                       | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                                       | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                                       | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                                       | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[]
+    #everyMusic?: Array<NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                                    | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                                    | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                                    | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                                    | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>>
 
     readonly #editorMusic
     readonly #regularMusic
@@ -84,19 +85,19 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
     //region -------------------- Getter methods --------------------
 
 
-    public get everyMusics(): readonly NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                                                   | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                                                   | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                                                   | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                                                   | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[] {
+    public get everyMusics(): Array<NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                                                | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                                                | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                                                | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                                                | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>> {
         if (this.#everyMusic != null)
             return this.#everyMusic
 
-        const all: NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                               | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                               | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                               | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                               | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[] = []
+        const all: MutableArray<NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                                            | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                                            | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                                            | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                                            | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>> = []
 
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
@@ -121,7 +122,7 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
          * @param value The value to possibly add
          * @param array The {@link Array mutable array} to possibly add the value
          */
-        function add<const T, >(array: T[], value: Nullable<T>,) {
+        function add<const T, >(array: MutableArray<T>, value: Nullable<T>,) {
             if (value == null)
                 return
             if (array.includes(value,))

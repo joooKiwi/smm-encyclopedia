@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Entity behaviour.json'
 
-import type {Array}       from '@joookiwi/type'
-import {forEachByArray}   from '@joookiwi/collection'
-import {CommonLazy, lazy} from '@joookiwi/lazy'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
+import {CommonLazy, lazy}         from '@joookiwi/lazy'
 
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
@@ -66,8 +66,8 @@ interface Content {
     isOnlineOnly: boolean
     isMultiplayerOnly: boolean
 
-    link_group: NullOr<PossibleGroupName>
-    link_entity: NullOr<EntityName>
+    link_group: NullOrString<PossibleGroupName>
+    link_entity: NullOrString<EntityName>
 
 }
 

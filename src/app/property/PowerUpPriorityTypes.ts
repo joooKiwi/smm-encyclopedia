@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {NullOr} from '@joookiwi/type'
+import {Enum}        from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/PowerUpPriorityTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'

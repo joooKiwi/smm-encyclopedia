@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -110,7 +112,7 @@ class ThemeAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('theme.all.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly ThemeAppOption[] {
+    public get tableOptions(): Array<ThemeAppOption> {
         return [
             ThemeAppOption.ICON,
             ThemeAppOption.ENDLESS_MARIO_ICON,
@@ -139,7 +141,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
         [ViewDisplays.SIMPLE_LIST, `${routeName} (list)`,],
         [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
         [ViewDisplays.TABLE, `${routeName} (table)`,],
-    ] as const satisfies readonly ViewAndRouteName[]
+    ] as const satisfies Array<ViewAndRouteName>
 
     return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('theme.all.all',)}

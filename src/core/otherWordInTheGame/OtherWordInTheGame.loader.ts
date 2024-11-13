@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Other word in the game.json'
 
-import type {Array}        from '@joookiwi/type'
-import {toReversedByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {toReversedByArray}        from '@joookiwi/collection'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {GameContentFromAllGames}                                                       from 'core/game/Loader.types'
@@ -64,11 +64,11 @@ export class OtherWordInTheGameLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
-    readonly english: NullOr<PossibleEnglishName>
-    readonly americanEnglish: NullOr<PossibleEnglishName>
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
 
     readonly isPlural: boolean
-    readonly pluralForm: NullOr<PossibleEnglishName_Plural>
+    readonly pluralForm: NullOrString<PossibleEnglishName_Plural>
 
 }
 

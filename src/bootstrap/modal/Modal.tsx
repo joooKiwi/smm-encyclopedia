@@ -1,3 +1,4 @@
+import type {NullOr}                         from '@joookiwi/type'
 import type {MutableRefObject, ReactElement} from 'react'
 import {useEffect}                           from 'react'
 

@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {MusicSoundFile}                                                                                                                                                                                                                         from 'core/music/file/MusicSoundFile'
 import type {Possible_Music}                                                                                                                                                                                                                         from 'core/music/backgroundMusic/types'
 import type {PossibleSoundEffectEditorOnly_EditorName as PossibleSoundEffectEditorOnly_EditorName_SoundEffectMusicWithDifferentEditor, PossibleSoundEffectEditorOnly_Name as PossibleSoundEffectEditorOnly_Name_SoundEffectMusicWithDifferentEditor} from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
@@ -8,7 +10,7 @@ import type {PossibleSoundEffectName as PossibleSoundEffectName_SingleSoundEffec
  *
  * They are located in the public folder (<i>public/music/SMB2/*.wav</i>)
  */
-export interface Music<out ALL extends readonly MusicSoundFile[] = readonly MusicSoundFile[], > {
+export interface Music<out ALL extends Array<MusicSoundFile> = Array<MusicSoundFile>, > {
 
     get everyMusics(): ALL
 

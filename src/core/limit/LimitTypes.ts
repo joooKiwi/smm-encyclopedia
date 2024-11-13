@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable} from '@joookiwi/type'
+import {Enum}          from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/limit/LimitTypes.types'
 import type {CompanionEnumByNameSingleton}                                    from 'util/enumerable/Singleton.types'

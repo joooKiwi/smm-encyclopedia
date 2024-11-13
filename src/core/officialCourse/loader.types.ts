@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {PossibleEnglishName} from 'core/mysteryMushroom/MysteryMushrooms.types'
 
 /** The {@link MysteryMushrooms} reward of an official course */

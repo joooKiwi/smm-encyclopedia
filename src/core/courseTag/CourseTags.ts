@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array} from '@joookiwi/type'
+import {Enum}       from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
@@ -79,9 +80,9 @@ export class CourseTags
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseTag>
-    static #officialCourseTags?: readonly CourseTags[]
-    static #unofficialCourseTags?: readonly CourseTags[]
-    static #makerCentralCourseTags?: readonly CourseTags[]
+    static #officialCourseTags?: Array<CourseTags>
+    static #unofficialCourseTags?: Array<CourseTags>
+    static #makerCentralCourseTags?: Array<CourseTags>
 
     #reference?: CourseTag
     readonly #englishNameContainer
@@ -120,7 +121,7 @@ export class CourseTags
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get officialCourseTags(): readonly CourseTags[] {
+    public static get officialCourseTags(): Array<CourseTags> {
         return this.#officialCourseTags ??= [
             this.NONE, this.STANDARD, this.PUZZLE_SOLVING, this.SPEEDRUN,
             this.AUTOSCROLL, this.AUTO_MARIO,
@@ -131,11 +132,11 @@ export class CourseTags
         ]
     }
 
-    public static get unofficialCourseTags(): readonly CourseTags[] {
+    public static get unofficialCourseTags(): Array<CourseTags> {
         return this.#unofficialCourseTags ??= this.CompanionEnum.get.values.filter(it => !this.officialCourseTags.includes(it)).toArray()
     }
 
-    public static get makerCentralCourseTags(): readonly CourseTags[] {
+    public static get makerCentralCourseTags(): Array<CourseTags> {
         return this.#makerCentralCourseTags ??= this.CompanionEnum.get.values.filter(it => it.reference.makerCentralName != null).toArray()
     }
 

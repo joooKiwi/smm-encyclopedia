@@ -1,5 +1,7 @@
 import './MedalApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -49,7 +51,7 @@ class MedalAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('medal.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly MedalAppOption[] {
+    public get tableOptions(): Array<MedalAppOption> {
         return [MedalAppOption.ICON, MedalAppOption.NAME,]
     }
 
@@ -74,7 +76,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMedal (list)',],
     [ViewDisplays.CARD_LIST, 'everyMedal (card)',],
     [ViewDisplays.TABLE, 'everyMedal (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MedalAppInterpreter()
 
 /** @reactComponent */

@@ -30,7 +30,7 @@ export class SingleBackgroundMusicContainer<const out SMB_MUSIC extends Possible
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get all(): PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]> {
+    public get all(): PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]> {
         return this.#all
     }
 

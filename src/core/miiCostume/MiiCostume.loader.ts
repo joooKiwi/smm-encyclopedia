@@ -1,6 +1,6 @@
 import file from 'resources/compiled/Mii Costume (SMM2).json'
 
-import type {Array}                             from '@joookiwi/type'
+import type {Array, NullOrString}               from '@joookiwi/type'
 import {findFirstOrNullByArray, forEachByArray} from '@joookiwi/collection'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
@@ -72,7 +72,7 @@ export class MiiCostumeLoader
 interface Content
     extends LanguageContent {
 
-    readonly notificationIfUnlocked: NullOr<PossibleEnglishName_OfficialNotification>
+    readonly notificationIfUnlocked: NullOrString<PossibleEnglishName_OfficialNotification>
 
     readonly MM2_version: PossibleMarioMakerVersion
     readonly category: PossibleEnglishName_Category

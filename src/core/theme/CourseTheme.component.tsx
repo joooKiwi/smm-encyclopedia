@@ -1,4 +1,5 @@
-import {getFirstByArray} from '@joookiwi/collection'
+import type {MutableArray} from '@joookiwi/type'
+import {getFirstByArray}   from '@joookiwi/collection'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {ThemeProperty}            from 'core/entity/properties/theme/ThemeProperty'
@@ -31,7 +32,7 @@ export default function CourseThemeComponent({reference, name, displayAllAsText,
             <ThemeImage reference={courseTheme}/>,)}</div>
     }
 
-    const enumInstances: Themes[] = []
+    const enumInstances: MutableArray<Themes> = []
     reference.toCourseThemeMap().forEach((isInEnumInstance, enumInstance,) => {
         if (isInEnumInstance)
             enumInstances.push(enumInstance)

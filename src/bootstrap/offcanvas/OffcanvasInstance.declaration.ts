@@ -1,4 +1,5 @@
-import type {Offcanvas} from 'bootstrap'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import type {Offcanvas}        from 'bootstrap'
 
 import type {BootstrapWithBasicEventInstanceDeclaration} from 'bootstrap/BootstrapWithBasicEventInstance.declaration'
 import type {EventHolder}                                from 'bootstrap/event/EventHolder'

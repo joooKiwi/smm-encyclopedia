@@ -1,9 +1,10 @@
+import type {NullOrString}  from '@joookiwi/type'
 import type {GameStructure} from 'core/game/GameStructure'
 
 import {SimpleNameBuilder} from 'lang/name/SimpleName.builder'
 
 type MarioWikiLinkOnSMM1 = `${MarioWikiStartingUrl}.${MarioWikiDomain}/Super_Mario_Maker`
-type MarioWikiLinkOnSMM3DS = NullOr<`${MarioWikiStartingUrl}.${Exclude<MarioWikiDomain, 'net'>}/Super_Mario_Maker_for_Nintendo_3DS`>
+type MarioWikiLinkOnSMM3DS = NullOrString<`${MarioWikiStartingUrl}.${Exclude<MarioWikiDomain, 'net'>}/Super_Mario_Maker_for_Nintendo_3DS`>
 type MarioWikiLinkOnSMM2 = `${MarioWikiStartingUrl}.${MarioWikiDomain}/Super_Mario_Maker_2`
 type MarioWikiStartingUrl = 'https://www.mariowiki'
 type MarioWikiDomain = | 'com' | 'net' | 'it'

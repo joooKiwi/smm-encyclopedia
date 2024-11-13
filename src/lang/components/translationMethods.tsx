@@ -1,5 +1,5 @@
-import type {StringOrNumeric} from '@joookiwi/type'
-import i18next                from 'i18next'
+import type {Nullable, StringOrNumeric} from '@joookiwi/type'
+import i18next                          from 'i18next'
 
 import type {ContentTranslationKey, EntityContentTranslationKey, GameContentTranslationKey, LanguageTranslationKey, Namespace, SingleTranslationKey, TranslationReplaceKeysMap, TranslationReturnValue} from 'lang/components/TranslationProperty'
 

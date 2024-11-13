@@ -1,5 +1,7 @@
 import './EditorVoiceSound.component.scss'
 
+import type {Nullable} from '@joookiwi/type'
+
 import type {EditorVoiceSound} from 'core/editorVoice/sound/EditorVoiceSound'
 import type {ReactProperties}  from 'util/react/ReactProperties'
 

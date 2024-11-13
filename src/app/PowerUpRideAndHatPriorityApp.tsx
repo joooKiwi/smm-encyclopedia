@@ -1,6 +1,7 @@
 import 'app/PowerUpRideAndHatPriorityApp.scss'
 
-import {Component} from 'react'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {Component}             from 'react'
 
 import type {PowerUpAndRidePriorityProperties}                                                                                                                                         from 'app/AppProperties.types'
 import type {NSMBUPowerUpPriority, PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, SM3DWPowerUpPriority, SMB3PowerUpPriority, SMBPowerUpPriority, SMWPowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'

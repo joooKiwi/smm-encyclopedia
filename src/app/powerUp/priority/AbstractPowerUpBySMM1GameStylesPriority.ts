@@ -1,4 +1,6 @@
 import type {Lazy}        from '@joookiwi/lazy'
+import type {Array}       from '@joookiwi/type'
+import {isArray}          from '@joookiwi/collection'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {ImagesRetrieverCallback, PossibleGameStyles, PowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
@@ -20,10 +22,10 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
 
     //region -------------------- Fields --------------------
 
-    readonly #smbImagesHolder: Lazy<readonly EntityImageFile[]>
-    readonly #smb3ImagesHolder: Lazy<readonly EntityImageFile[]>
-    readonly #smwImagesHolder: Lazy<readonly EntityImageFile[]>
-    readonly #nsmbuImagesHolder: Lazy<readonly EntityImageFile[]>
+    readonly #smbImagesHolder: Lazy<Array<EntityImageFile>>
+    readonly #smb3ImagesHolder: Lazy<Array<EntityImageFile>>
+    readonly #smwImagesHolder: Lazy<Array<EntityImageFile>>
+    readonly #nsmbuImagesHolder: Lazy<Array<EntityImageFile>>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -44,19 +46,19 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get smbImages(): readonly EntityImageFile[] {
+    public get smbImages(): Array<EntityImageFile> {
         return this.#smbImagesHolder.value
     }
 
-    public get smb3Images(): readonly EntityImageFile[] {
+    public get smb3Images(): Array<EntityImageFile> {
         return this.#smb3ImagesHolder.value
     }
 
-    public get smwImages(): readonly EntityImageFile[] {
+    public get smwImages(): Array<EntityImageFile> {
         return this.#smwImagesHolder.value
     }
 
-    public get nsmbuImages(): readonly EntityImageFile[] {
+    public get nsmbuImages(): Array<EntityImageFile> {
         return this.#nsmbuImagesHolder.value
     }
 

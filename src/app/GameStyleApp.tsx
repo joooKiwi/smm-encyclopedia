@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './GameStyleApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -87,7 +89,7 @@ class GameStyleAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('game style.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly GameStyleAppOption[] {
+    public get tableOptions(): Array<GameStyleAppOption> {
         return [
             GameStyleAppOption.ICON,
             GameStyleAppOption.NAME,
@@ -111,7 +113,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyGameStyle (list)',],
     [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
     [ViewDisplays.TABLE, 'everyGameStyle (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {

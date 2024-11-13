@@ -1,10 +1,11 @@
-import type {MutableArray, StringOrNumeric}     from '@joookiwi/type'
-import type {TOptions}                          from 'i18next'
-import {filterByArray, hasByArray, joinByArray} from '@joookiwi/collection'
+import type {MutableArray, StringOrNumeric, UndefinedOr} from '@joookiwi/type'
+import type {TOptions}                                   from 'i18next'
+import {filterByArray, hasByArray, joinByArray}          from '@joookiwi/collection'
 
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
 import {isInProduction} from 'variables'
+import {EMPTY_STRING}   from 'util/emptyVariables'
 import {assert}         from 'util/utilitiesMethods'
 
 export class TranslationUtility {
@@ -34,7 +35,7 @@ export class TranslationUtility {
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): ReactElement
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
-        let argumentsFound: string[] = []
+        let argumentsFound: MutableArray<string> = []
         for (const replaceKey of value.matchAll(this.STARTING_REGEX,)) {
             const startingIndex = replaceKey.index!
             const endingIndex = value.indexOf(this.ENDING_CHARACTER, startingIndex,)
@@ -83,7 +84,7 @@ export class TranslationUtility {
      * @param splitArgument the split argument
      * @param replacementArgument the replacement argument
      */
-    static #addArgumentToArray(finalArguments: ReactElementOrStringOrNumeric[], splitArgument: string, replacementArgument: UndefinedOr<ReactElementOrStringOrNumeric>,): void {
+    static #addArgumentToArray(finalArguments: MutableArray<ReactElementOrStringOrNumeric>, splitArgument: string, replacementArgument: UndefinedOr<ReactElementOrStringOrNumeric>,): void {
         finalArguments.push(splitArgument,)
         if (replacementArgument == null)
             return

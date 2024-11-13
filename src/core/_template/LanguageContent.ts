@@ -1,3 +1,5 @@
+import type {NullOrString} from '@joookiwi/type'
+
 /**
  * A content that has every possible language
  * with optional languages (Hebrew, Polish, Ukrainian & Greek)
@@ -7,44 +9,44 @@
  */
 export interface LanguageContent {
 
-    readonly english: NullOr<string>
-    readonly americanEnglish: NullOr<string>
-    readonly europeanEnglish: NullOr<string>
+    readonly english: NullOrString
+    readonly americanEnglish: NullOrString
+    readonly europeanEnglish: NullOrString
 
-    readonly french: NullOr<string>
-    readonly canadianFrench: NullOr<string>
-    readonly europeanFrench: NullOr<string>
+    readonly french: NullOrString
+    readonly canadianFrench: NullOrString
+    readonly europeanFrench: NullOrString
 
-    readonly german: NullOr<string>
+    readonly german: NullOrString
 
-    readonly spanish: NullOr<string>
-    readonly americanSpanish: NullOr<string>
-    readonly europeanSpanish: NullOr<string>
+    readonly spanish: NullOrString
+    readonly americanSpanish: NullOrString
+    readonly europeanSpanish: NullOrString
 
-    readonly italian: NullOr<string>
+    readonly italian: NullOrString
 
-    readonly dutch: NullOr<string>
+    readonly dutch: NullOrString
 
-    readonly portuguese: NullOr<string>
-    readonly americanPortuguese: NullOr<string>
-    readonly europeanPortuguese: NullOr<string>
+    readonly portuguese: NullOrString
+    readonly americanPortuguese: NullOrString
+    readonly europeanPortuguese: NullOrString
 
-    readonly russian: NullOr<string>
+    readonly russian: NullOrString
 
-    readonly japanese: NullOr<string>
+    readonly japanese: NullOrString
 
-    readonly chinese: NullOr<string>
-    readonly traditionalChinese: NullOr<string>
-    readonly simplifiedChinese: NullOr<string>
+    readonly chinese: NullOrString
+    readonly traditionalChinese: NullOrString
+    readonly simplifiedChinese: NullOrString
 
-    readonly korean: NullOr<string>
+    readonly korean: NullOrString
 
-    readonly hebrew?: NullOr<string>
+    readonly hebrew?: NullOrString
 
-    readonly polish?: NullOr<string>
+    readonly polish?: NullOrString
 
-    readonly ukrainian?: NullOr<string>
+    readonly ukrainian?: NullOrString
 
-    readonly greek?: NullOr<string>
+    readonly greek?: NullOrString
 
 }

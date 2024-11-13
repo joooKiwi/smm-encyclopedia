@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {Games}                    from 'core/game/Games'
 import type {OtherPluralWordInTheGame} from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
 import type {OtherWordInTheGame}       from 'core/otherWordInTheGame/OtherWordInTheGame'

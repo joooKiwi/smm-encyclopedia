@@ -1,6 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './LimitApp.scss'
 
+import type {Array, MutableArray} from '@joookiwi/type'
+
 import type {LimitAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -112,10 +114,10 @@ class LimitAppInterpreter
         return gameContentTranslation(`limit.${this.type.type}.all`,) satisfies ReactElementOrString
     }
 
-    public get tableOptions(): readonly LimitAppOption[] {
+    public get tableOptions(): Array<LimitAppOption> {
         const games = this.#games
 
-        const options: LimitAppOption[] = [
+        const options: MutableArray<LimitAppOption> = [
             LimitAppOption.ACRONYM,
             LimitAppOption.NAME,
         ]
@@ -150,7 +152,7 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
         [ViewDisplays.SIMPLE_LIST, `${routeName} (list)`,],
         [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
         [ViewDisplays.TABLE, `${routeName} (table)`,],
-    ] as const satisfies readonly ViewAndRouteName[]
+    ] as const satisfies Array<ViewAndRouteName>
 
     const game = intersect(ALL_GAMES, games,).length === 3
         ? LimitGames.ALL_GAMES

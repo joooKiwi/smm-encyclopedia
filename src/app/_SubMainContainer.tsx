@@ -1,5 +1,7 @@
 import './_SubMainContainer.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {ViewAndRouteName}                  from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
@@ -12,7 +14,7 @@ interface SubMainContainerProperties
 
     readonly reactKey: string
 
-    readonly viewDisplayAndRouteName: readonly ViewAndRouteName[]
+    readonly viewDisplayAndRouteName: Array<ViewAndRouteName>
 
     readonly viewDisplay: ViewDisplays
 

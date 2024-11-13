@@ -1,5 +1,7 @@
 import './PredefinedMessageApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -53,7 +55,7 @@ class PredefinedMessageAppInterpreter
         pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
     },) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly PredefinedMessageAppOption[] {
+    public get tableOptions(): Array<PredefinedMessageAppOption> {
         return [PredefinedMessageAppOption.NAME,]
     }
 
@@ -78,7 +80,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyPredefinedMessage (list)',],
     [ViewDisplays.CARD_LIST, 'everyPredefinedMessage (card)',],
     [ViewDisplays.TABLE, 'everyPredefinedMessage (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new PredefinedMessageAppInterpreter()
 
 /** @reactComponent */

@@ -1,3 +1,5 @@
+import type {Array, EmptyArray} from '@joookiwi/type'
+
 import type {SoundEffectSoundFile}           from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {SMM1ExclusiveSoundEffectSound}  from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
 import type {SMM1StandaloneSoundEffectSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
@@ -7,8 +9,8 @@ import type {PossibleEditorValue}            from 'core/soundEffect/sound/SoundE
 import {AbstractSoundEffectSound} from 'core/soundEffect/sound/AbstractSoundEffectSound'
 import {EMPTY_ARRAY}              from 'util/emptyVariables'
 
-export class SMM1StandaloneSoundEffectSoundContainer<const out SOUNDS extends readonly SoundEffectSoundFile[],
-    const out EDITOR_SOUND extends PossibleEditorValue<SOUNDS>, >
+export class SMM1StandaloneSoundEffectSoundContainer<const SOUNDS extends Array<SoundEffectSoundFile>,
+    const EDITOR_SOUND extends PossibleEditorValue<SOUNDS>, >
     extends AbstractSoundEffectSound<SOUNDS, EDITOR_SOUND, EmptyArray, EmptyArray>
     implements SMM1StandaloneSoundEffectSound<SOUNDS, EDITOR_SOUND> {
 

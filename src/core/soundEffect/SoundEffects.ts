@@ -1,6 +1,6 @@
-import type {Array}      from '@joookiwi/type'
-import {getFirstByArray} from '@joookiwi/collection'
-import {Enum}            from '@joookiwi/enumerable'
+import type {Array, NullOr}       from '@joookiwi/type'
+import {getFirstByArray, isArray} from '@joookiwi/collection'
+import {Enum}                     from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
@@ -924,7 +924,7 @@ export abstract class SoundEffects
     public static readonly BIRD_TWEETING_NOISE =        new class SoundEffects_BirdTweetingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return ['13_00', '14_00',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
+            return ['13_00', '14_00',] as const satisfies Array<SoundEffectImageNumber_SMM1>
         }
 
 
@@ -936,7 +936,7 @@ export abstract class SoundEffects
     public static readonly CHICKEN_CLUCKING_NOISE =     new class SoundEffects_ChickenCluckingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return ['13_01', '14_01',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
+            return ['13_01', '14_01',] as const satisfies Array<SoundEffectImageNumber_SMM1>
         }
 
 
@@ -1226,7 +1226,7 @@ export abstract class SoundEffects
         const value = this._createExclusiveSMM1Sounds()
         if (value == null)
             return this.#sounds_exclusiveSmm1 = EmptySound.get
-        if (value instanceof Array)
+        if (isArray(value,))
             return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, getFirstByArray(value,),)
         return this.#sounds_exclusiveSmm1 = value
     }
@@ -1304,7 +1304,7 @@ export abstract class SoundEffects
         const value = this._createSMM2Sounds()
         if (value == null)
             return this.#sounds_smm2 = EmptySound.get
-        if (value instanceof Array)
+        if (isArray(value,))
             return this.#sounds_smm2 = new SMM2Sound(value, getFirstByArray(value,), EMPTY_ARRAY, EMPTY_ARRAY,)
         if (value instanceof Import.Musics)
             return this.#sounds_smm2 = new SoundEffectFromMusicAdaptorContainer(value,)

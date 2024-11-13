@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import type {NullOrString}                       from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/InstrumentGames.types'
@@ -93,15 +94,15 @@ export abstract class InstrumentGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getSmm1RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
+    public getSmm1RouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
         return `everyInstrument (${viewDisplay.urlValue as | 'list' | 'card'} Game=1)`
     }
 
-    public getSmm3dsRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
+    public getSmm3dsRouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
         return `everyInstrument (${viewDisplay.urlValue as | 'list' | 'card'} Game=3DS)`
     }
 
-    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
+    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
         return `everyInstrument (${viewDisplay.urlValue as | 'list' | 'card'} Game=2)`
     }
 

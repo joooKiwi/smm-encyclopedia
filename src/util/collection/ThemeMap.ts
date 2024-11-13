@@ -1,3 +1,5 @@
+import type {UndefinedOr} from '@joookiwi/type'
+
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 
 import {Themes} from 'core/theme/Themes'

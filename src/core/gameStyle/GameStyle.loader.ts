@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Game style.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
-import {lazy}           from '@joookiwi/lazy'
+import type {Array, NullOrBoolean} from '@joookiwi/type'
+import {forEachByArray}            from '@joookiwi/collection'
+import {lazy}                      from '@joookiwi/lazy'
 
 import type {GameContentFrom1And2}                                               from 'core/game/Loader.types'
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'

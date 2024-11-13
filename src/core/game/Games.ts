@@ -1,5 +1,6 @@
 import type {CollectionHolder}                from '@joookiwi/collection'
 import type {Singleton}                       from '@joookiwi/enumerable'
+import type {Array, Nullable}                 from '@joookiwi/type'
 import {getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
 import {Enum}                                 from '@joookiwi/enumerable'
 
@@ -117,7 +118,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         }
 
 
-        public getValueInUrl(url: string,): readonly Games[] {
+        public getValueInUrl(url: string,): Array<Games> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return Import.GamePossibility.ALL_GAMES
@@ -152,7 +153,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             return EMPTY_ARRAY
         }
 
-        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+        public getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue {
             const isGamesArray = isArray(games,)
             const withSmm1 = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_1,) : games.has(Games.SUPER_MARIO_MAKER_1,)
             const withSmm3ds = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,) : games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
@@ -178,7 +179,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             throw new ReferenceError('No game group url value is findable from empty array or collection.',)
         }
 
-        public getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName {
+        public getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName {
             const isGamesArray = isArray(games,)
             const withSmm1 = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_1,) : games.has(Games.SUPER_MARIO_MAKER_1,)
             const withSmm3ds = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,) : games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)

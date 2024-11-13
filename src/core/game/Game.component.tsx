@@ -1,4 +1,5 @@
-import {getFirstByArray} from '@joookiwi/collection'
+import type {MutableArray} from '@joookiwi/type'
+import {getFirstByArray}   from '@joookiwi/collection'
 
 import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
@@ -20,7 +21,7 @@ export default function GameComponent({reference, name, displayAllAsText,}: Enti
             <GameImage reference={it}/>,)}</div>
     }
 
-    const games: Games[] = []
+    const games: MutableArray<Games> = []
     reference.toGameMap().forEach((isSelected, game,) => {
         if (isSelected)
             games.push(game,)

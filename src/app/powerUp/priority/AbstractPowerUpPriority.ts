@@ -1,5 +1,7 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
+import type {Lazy}  from '@joookiwi/lazy'
+import type {Array} from '@joookiwi/type'
+import {isArray}    from '@joookiwi/collection'
+import {lazy}       from '@joookiwi/lazy'
 
 import type {ImagesCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                            from 'core/entity/Entities'
@@ -18,7 +20,7 @@ export abstract class AbstractPowerUpPriority
     //region -------------------- Fields --------------------
 
     readonly #nameHolder: Lazy<Name<string>>
-    readonly #imagesHolder: Lazy<readonly EntityImageFile[]>
+    readonly #imagesHolder: Lazy<Array<EntityImageFile>>
     readonly #isIn
 
     //endregion -------------------- Fields --------------------
@@ -39,7 +41,7 @@ export abstract class AbstractPowerUpPriority
         return this.#nameHolder.value
     }
 
-    public get images(): readonly EntityImageFile[] {
+    public get images(): Array<EntityImageFile> {
         return this.#imagesHolder.value
     }
 
@@ -48,8 +50,8 @@ export abstract class AbstractPowerUpPriority
     }
 
 
-    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): readonly EntityImageFile[] {
         return (gameStyles instanceof Array ? gameStyles : [gameStyles])
+    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): Array<EntityImageFile> {
             .map(gameStyle => EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
     }
 

@@ -1,3 +1,5 @@
+import type {NullOr, NullOrString} from '@joookiwi/type'
+
 import type {CharactersTrait}                                                                                                                                                                                                                                   from 'lang/CharactersTrait'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                              from 'lang/ClassWithEveryLanguages'
 import type {PossibleAcronym as PossibleAcronym_All, PossibleEnglishName as PossibleEnglishName_All, PossibleInternationalAcronym as PossibleInternationalAcronym_All, PossibleOriginalName as PossibleOriginalName_All, PossibleSpaceCharacter}                from 'lang/EveryLanguages.types'
@@ -9,7 +11,7 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
     INTERNATIONAL_ACRONYM extends | PossibleInternationalAcronym_All | PossibleInternationalAcronym_Project,
     ENGLISH_NAME extends | PossibleEnglishName_All | PossibleEnglishName_Project,
     ORIGINAL_NAME extends | PossibleOriginalName_All | PossibleOriginalName_Project,
-    DIFFERENT_WORDS extends NullOr<PossibleDifferentWord>, >
+    DIFFERENT_WORDS extends NullOrString<PossibleDifferentWord>, >
     extends CharactersTrait,
         ClassWithIsCurrent {
 

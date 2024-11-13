@@ -1,5 +1,7 @@
 import './SoundEffectCategoryApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -50,7 +52,7 @@ class SoundEffectCategoryAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('sound effect category.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly SoundEffectCategoryAppOption[] {
+    public get tableOptions(): Array<SoundEffectCategoryAppOption> {
         return [SoundEffectCategoryAppOption.ICON, SoundEffectCategoryAppOption.NAME,]
     }
 
@@ -75,7 +77,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffectCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everySoundEffectCategory (card)',],
     [ViewDisplays.TABLE, 'everySoundEffectCategory (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new SoundEffectCategoryAppInterpreter()
 
 /** @reactComponent */

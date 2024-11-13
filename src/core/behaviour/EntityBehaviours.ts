@@ -1,4 +1,5 @@
 import type {Singleton} from '@joookiwi/enumerable'
+import type {Nullable}  from '@joookiwi/type'
 import {Enum}           from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'

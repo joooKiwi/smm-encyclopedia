@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
 import type {UnusedImage}                     from 'core/entity/images/unused/UnusedImage'
 
@@ -8,6 +10,6 @@ import type {UnusedImage}                     from 'core/entity/images/unused/Un
 export interface UnusedImage_BigMushroom<out T extends UnusedSmm1ImageFile_BigMushroom = UnusedSmm1ImageFile_BigMushroom, >
     extends UnusedImage {
 
-    readonly all: readonly T[]
+    readonly all: Array<T>
 
 }

@@ -1,5 +1,6 @@
-import {Enum}                 from '@joookiwi/enumerable'
-import type {StringOrNumeric} from '@joookiwi/type'
+import type {Array, Nullable, NullOr, StringOrNumeric} from '@joookiwi/type'
+import {Enum}                                          from '@joookiwi/enumerable'
+import {isArray}                                       from '@joookiwi/collection'
 
 import type {ClassWithNullableAcronym}                                                                                                              from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                  from 'core/ClassWithEnglishName'
@@ -413,8 +414,8 @@ export class Limits
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Limit>
-    static #playLimits?: readonly Limits[]
-    static #editorLimits?: readonly Limits[]
+    static #playLimits?: Array<Limits>
+    static #editorLimits?: Array<Limits>
 
     #reference?: LimitWithPossibleAlternativeLimit
     readonly #isEditorLimit
@@ -558,11 +559,11 @@ export class Limits
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get playLimits(): readonly Limits[] {
+    public static get playLimits(): Array<Limits> {
         return this.#playLimits ??= this.CompanionEnum.get.values.filter(it => !it.isEditorLimit,).toArray()
     }
 
-    public static get editorLimits(): readonly Limits[] {
+    public static get editorLimits(): Array<Limits> {
         return this.#editorLimits ??= this.CompanionEnum.get.values.filter(it => it.isEditorLimit,).toArray()
     }
 

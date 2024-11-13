@@ -1,3 +1,5 @@
+import type {NullOr, NullOrString} from '@joookiwi/type'
+
 import type {PossibleEnglishName} from 'core/limit/Limits.types'
 
 //region -------------------- Limit amount --------------------
@@ -27,7 +29,7 @@ export type PossibleOtherLimitComment = 'Only falling coin'
 //endregion -------------------- Entity limit --------------------
 //region -------------------- Spawning / Despawning range --------------------
 
-export type OffscreenSpawningAndDespawningReferencePoint = NullOr<| `${| 'Center' | 'Anything'}${| '' | '\n(excluding path)'}` | 'Edge' | Infinity | UnknownCharacter>
+export type OffscreenSpawningAndDespawningReferencePoint = NullOrString<| `${| 'Center' | 'Anything'}${| '' | '\n(excluding path)'}` | 'Edge' | Infinity | UnknownCharacter>
 
 export type OffscreenSpawningHorizontalRangeLimitType = NullOr<| number | `${number} / ${number}` | 'Variable' | Infinity | UnknownCharacter>
 export type OffscreenDespawningHorizontalRangeLimitType = NullOr<| number | `${number} / ${number}` | 'Variable' | UnknownCharacter>

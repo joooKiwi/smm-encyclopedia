@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Character name.json'
 
+import type {Array} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
 
 import {EveryTypes}                                                           from '__test__/EveryTypes'
@@ -10,8 +12,8 @@ describe('Character name (file test)', () => {
     const everyNames = types.everyPossibleName_characterName
     const everyUniqueNames = types.everyPossibleUniqueName_characterName
     const luigiToadOrToadette = / (Luigi)|(Toad)|(Toadette)/
-    const excludedNames_smm1: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
-    const excludedNames_smm2: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const excludedNames_smm1 = ['chinese', 'korean',] as const satisfies Array<PossibleExcludedLanguages>
+    const excludedNames_smm2 = ['portuguese',]        as const satisfies Array<PossibleExcludedLanguages>
 
     file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isAddedLuigiToadOrToadette = luigiToadOrToadette.test(it.uniqueName,)

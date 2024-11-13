@@ -1,5 +1,6 @@
 import {Fragment} from 'react'
 
+import type {Array} from '@joookiwi/type'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {Limits}           from 'core/limit/Limits'
@@ -39,7 +40,7 @@ export default function LimitComponent({id, limits, displayAcronymIfApplicable,}
         )}</>
 }
 
-function createReturnOfLine(selectedLimits: readonly Limits[], index: number,) {
+function createReturnOfLine(selectedLimits: Array<Limits>, index: number,) {
     return index === selectedLimits.length - 1 ? <></> : <>{ProjectLanguages.current.comma}<br/></>
 }
 

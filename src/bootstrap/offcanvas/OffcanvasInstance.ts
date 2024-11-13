@@ -1,3 +1,4 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 import Offcanvas               from 'bootstrap/js/dist/offcanvas'
 

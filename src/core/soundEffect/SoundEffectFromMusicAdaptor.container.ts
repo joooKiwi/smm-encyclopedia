@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {Musics}                      from 'core/music/Musics'
 import type {MusicSoundFile}              from 'core/music/file/MusicSoundFile'
 import type {SoundEffectFromMusicAdaptor} from 'core/soundEffect/SoundEffectFromMusicAdaptor'
@@ -25,7 +27,7 @@ export class SoundEffectFromMusicAdaptorContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get sounds(): readonly MusicSoundFile[] {
+    public get sounds(): Array<MusicSoundFile> {
         return this.#musicContainer.everyMusics
     }
 

@@ -1,7 +1,7 @@
-import {ReactElement, RefObject, useEffect} from 'react'
-
+import type {Nullable}                                  from '@joookiwi/type'
 import type {TooltipEvents}                             from 'bootstrap/tooltip/TooltipEvents'
 import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import {RefObject, useEffect}                           from 'react'
 
 import {BootstrapInstanceHandler}        from 'bootstrap/BootstrapInstanceHandler'
 import {TooltipInstance}                 from 'bootstrap/tooltip/TooltipInstance'

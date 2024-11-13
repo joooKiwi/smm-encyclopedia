@@ -1,4 +1,4 @@
-import type {Array, MutableArray} from '@joookiwi/type'
+import type {Array, MutableArray, NullableString, NullOrString} from '@joookiwi/type'
 
 import type {Language}                  from 'lang/name/containers/Language'
 import type {Name}                      from 'lang/name/Name'
@@ -111,13 +111,13 @@ function getIsACompleteNameCallback(game: PossibleGame, isACompleteName: boolean
 }
 
 
-// function getFromCompletedLanguageFrom1Value(language: EveryLanguages, value: NullOr<string>,): | string {
+// function getFromCompletedLanguageFrom1Value(language: EveryLanguages, value: NullOrString,): | string {
 //     if (value == null)
 //         throw new TypeError(`The value of ${language.englishName} cannot be null.`,)
 //     return value
 // }
 
-function getFromCompletedLanguageFrom3Values(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>,): Language<string, string, | readonly [string, string,]> {
+function getFromCompletedLanguageFrom3Values(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value1: NullOrString, value2: NullOrString, value3: NullOrString,): Language<string, string, | readonly [string, string,]> {
     if (value1 == null) {
         if (value2 == null) {
             if (value3 == null)
@@ -134,7 +134,7 @@ function getFromCompletedLanguageFrom3Values(originalLanguages: MutableArray<Eve
 }
 
 
-function getFromIncompleteLanguageFrom1Value(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, never> {
+function getFromIncompleteLanguageFrom1Value(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value: NullOrString, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, never> {
     if (value == null) {
         if (isACompleteName(language,))
             throw new TypeError(`The value of ${language.englishName} cannot be null.`,)
@@ -144,7 +144,7 @@ function getFromIncompleteLanguageFrom1Value(originalLanguages: MutableArray<Eve
     return new LanguageContainer<string, string, never>(value,)
 }
 
-function getFromIncompleteLanguageFrom3Values(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, readonly [string, string,]> {
+function getFromIncompleteLanguageFrom3Values(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value1: NullOrString, value2: NullOrString, value3: NullOrString, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, readonly [string, string,]> {
     if (value1 == null) {
         if (value2 == null) {
             if (value3 == null) {
@@ -164,7 +164,7 @@ function getFromIncompleteLanguageFrom3Values(originalLanguages: MutableArray<Ev
 }
 
 
-function getFromOptionalLanguage(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value: Nullable<string>,): EmptyableOptionalLanguage<string, string, never> {
+function getFromOptionalLanguage(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value: NullableString,): EmptyableOptionalLanguage<string, string, never> {
     if (value == null)
         return EmptyLanguageContainer.get
     originalLanguages.push(language,)

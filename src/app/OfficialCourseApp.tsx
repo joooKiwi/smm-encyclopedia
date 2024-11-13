@@ -1,5 +1,7 @@
 import './OfficialCourseApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -65,7 +67,7 @@ class EventCourseAppInterpreter
         pluralName: OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase(),
     },) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly OfficialCourseAppOption[] {
+    public get tableOptions(): Array<OfficialCourseAppOption> {
         return [
             OfficialCourseAppOption.REWARD,
             OfficialCourseAppOption.NAME,
@@ -97,7 +99,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyOfficialCourse (list)',],
     [ViewDisplays.CARD_LIST, 'everyOfficialCourse (card)',],
     [ViewDisplays.TABLE, 'everyOfficialCourse (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new EventCourseAppInterpreter()
 
 /** @reactComponent */

@@ -1,4 +1,6 @@
-import {Fragment} from 'react'
+import type {Array} from '@joookiwi/type'
+import {isArray}    from '@joookiwi/collection'
+import {Fragment}   from 'react'
 
 import type {ImagesCallbackByPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {ReactProperties}                           from 'util/react/ReactProperties'
@@ -10,7 +12,7 @@ interface PowerUpPriorityProperties<T extends PowerUpPriority, >
 
     readonly id: string
 
-    readonly value: | T | readonly T[]
+    readonly value: | T | Array<T>
 
     readonly images?: ImagesCallbackByPriority<T>
 

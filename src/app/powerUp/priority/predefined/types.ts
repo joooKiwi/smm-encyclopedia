@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {NSMBUPowerUpPriority, PowerUpPriority, SM3DWPowerUpPriority, SMB3PowerUpPriority, SMBPowerUpPriority, SMWPowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {GameStyles}                                                                                                               from 'core/gameStyle/GameStyles'
 import type {GameCollection}                                                                                                           from 'util/collection/GameCollection'
@@ -80,7 +82,7 @@ export interface SimplePowerUpPriorityBySingleGameStyleProperties<T extends Powe
 
 }
 
-export interface PropertiesWithGames<T extends readonly PowerUpPriority[], >
+export interface PropertiesWithGames<T extends Array<PowerUpPriority>, >
     extends SimpleReactPropertiesWithChildren<T> {
 
     readonly games: GameCollection

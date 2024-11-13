@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Sample course (SMM).json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOr} from '@joookiwi/type'
+import {forEachByArray}     from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                        from 'core/_template/LanguageContent'
 import type {PossibleAcronym_GameStyle_SMM1}                                                         from 'core/gameReference/GameReferences.types'

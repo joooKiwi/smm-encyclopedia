@@ -1,3 +1,4 @@
+import type {NullOr}           from '@joookiwi/type'
 import type {MutableRefObject} from 'react'
 
 import type {PossibleModalSize}                                    from 'bootstrap/modal/ModalInstance.declaration'

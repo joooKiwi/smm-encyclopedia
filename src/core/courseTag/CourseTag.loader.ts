@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Course tag (SMM2).json'
 
-import type {Array}     from "@joookiwi/type"
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
 
 import type {LanguageContent}                               from 'core/_template/LanguageContent'
 import type {CourseTag}                                     from 'core/courseTag/CourseTag'
@@ -64,7 +64,7 @@ interface Content
     extends LanguageContent {
 
     readonly isAnOfficialTag: boolean
-    readonly makerCentralName: NullOr<PossibleMakerCentralName>
+    readonly makerCentralName: NullOrString<PossibleMakerCentralName>
     readonly firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
 
 }

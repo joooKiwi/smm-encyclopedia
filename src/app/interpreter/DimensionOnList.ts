@@ -1,3 +1,5 @@
+import type {Nullable} from '@joookiwi/type'
+
 export interface DimensionOnList {
     readonly default: PossibleBootstrapRowDimensionOrAutomatic
     readonly small?: Nullable<PossibleBootstrapRowDimensionOrAutomatic>

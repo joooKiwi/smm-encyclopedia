@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Instrument.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
+import {forEachByArray}                         from '@joookiwi/collection'
 
 import type {LanguageContent}                                   from 'core/_template/LanguageContent'
 import type {Entity}                                            from 'core/entity/Entity'
@@ -74,11 +74,11 @@ interface Content
 
     readonly isInSuperMarioMaker2: true
 
-    readonly entityReference1: NullOr<PossibleEnglishName_Entity>
-    readonly entityReference2: NullOr<PossibleEnglishName_Entity>
-    readonly entityReference3: NullOr<PossibleEnglishName_Entity>
-    readonly entityReference4: NullOr<PossibleEnglishName_Entity>
-    readonly indirectEntityReference: NullOr<PossibleEnglishName_Entity>
+    readonly entityReference1: NullOrString<PossibleEnglishName_Entity>
+    readonly entityReference2: NullOrString<PossibleEnglishName_Entity>
+    readonly entityReference3: NullOrString<PossibleEnglishName_Entity>
+    readonly entityReference4: NullOrString<PossibleEnglishName_Entity>
+    readonly indirectEntityReference: NullOrString<PossibleEnglishName_Entity>
 
 }
 
@@ -93,8 +93,8 @@ function createReference(content: Content, entityMap: EntityMap,): Instrument {
     )
 }
 
-function retrieveEntity(content: Content, entityMap: EntityMap,): readonly Entity[] {
-    const entities: Entity[] = []
+function retrieveEntity(content: Content, entityMap: EntityMap,): Array<Entity> {
+    const entities: MutableArray<Entity> = []
     if (content.entityReference1 != null)
         entities.push(entityMap.get(content.entityReference1,)!,)
     if (content.entityReference2 != null)

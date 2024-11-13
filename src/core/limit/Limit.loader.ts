@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Entity limit.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
-import {lazy}           from '@joookiwi/lazy'
+import type {Array, NullableString, NullOr, NullOrBoolean} from '@joookiwi/type'
+import {forEachByArray}                                    from '@joookiwi/collection'
+import {lazy}                                              from '@joookiwi/lazy'
 
 import type {LanguageContent}                                                                                     from 'core/_template/LanguageContent'
 import type {AlternativeLimit, Limit}                                                                             from 'core/limit/Limit'

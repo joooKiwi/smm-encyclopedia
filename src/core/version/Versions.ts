@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {GameStyles_SM3DW}              from 'core/gameStyle/GameStyles.types'
 import type {Names, Ordinals, PossibleName} from 'core/version/Versions.types'

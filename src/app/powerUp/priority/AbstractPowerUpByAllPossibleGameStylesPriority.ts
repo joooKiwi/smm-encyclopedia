@@ -1,4 +1,5 @@
 import type {Lazy}        from '@joookiwi/lazy'
+import type {Array}       from '@joookiwi/type'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {ImagesRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
@@ -17,7 +18,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
 
     //region -------------------- Fields --------------------
 
-    readonly #sm3dwImagesHolder: Lazy<readonly EntityImageFile[]>
+    readonly #sm3dwImagesHolder: Lazy<Array<EntityImageFile>>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -33,7 +34,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get sm3dwImages(): readonly EntityImageFile[] {
+    public get sm3dwImages(): Array<EntityImageFile> {
         return this.#sm3dwImagesHolder.value
     }
 

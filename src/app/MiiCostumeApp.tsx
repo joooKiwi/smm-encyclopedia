@@ -1,5 +1,7 @@
 import './MiiCostumeApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -62,7 +64,7 @@ class MiiCostumeAppInterpreter
         pluralName: <TextComponent key="miiCostume-pluralName" content={OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)} className="text-decoration-underline"/>,
     },) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly MiiCostumeAppOption[] {
+    public get tableOptions(): Array<MiiCostumeAppOption> {
         return [
             MiiCostumeAppOption.IMAGE,
             MiiCostumeAppOption.NAME,
@@ -88,7 +90,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMiiCostume (list)',],
     [ViewDisplays.CARD_LIST, 'everyMiiCostume (card)',],
     [ViewDisplays.TABLE, 'everyMiiCostume (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MiiCostumeAppInterpreter()
 
 /** @reactComponent */

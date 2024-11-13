@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {GameStyles}                                                                             from 'core/gameStyle/GameStyles'
 import type {SampleCourse}                                                                           from 'core/sampleCourse/SampleCourse'
 import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, PossibleWorldNumber} from 'core/sampleCourse/loader.types'

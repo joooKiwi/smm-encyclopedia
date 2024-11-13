@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {ClassWithNullableAcronym}                                                                            from 'core/ClassWithAcronym'
 import type {ClassWithType}                                                                                       from 'core/ClassWithType'
 import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'

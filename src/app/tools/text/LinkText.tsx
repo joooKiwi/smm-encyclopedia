@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom'
+import type {NullableString} from '@joookiwi/type'
+import {Link}                from 'react-router-dom'
 
 import type {PossibleRouteName}                            from 'route/EveryRoutes.types'
 import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'

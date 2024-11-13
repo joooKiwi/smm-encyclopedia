@@ -1,3 +1,5 @@
+import type {EmptyArray} from '@joookiwi/type'
+
 import type {InGameImage}                                      from 'core/entity/images/inGame/InGameImage'
 import type {ClassWithNullObjectPattern, EmptyInGameImageName} from 'util/ClassWithNullObjectPattern'
 

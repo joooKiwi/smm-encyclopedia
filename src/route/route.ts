@@ -1,3 +1,4 @@
+import type {Nullable} from '@joookiwi/type'
 import type {Location} from 'history'
 
 import type {EveryPossibleRoutes, PossibleRouteName} from 'route/EveryRoutes.types'

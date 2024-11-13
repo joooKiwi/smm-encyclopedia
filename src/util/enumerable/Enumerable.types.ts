@@ -1,4 +1,5 @@
-import type {Enumerable} from '@joookiwi/enumerable'
+import type {Enumerable}   from '@joookiwi/enumerable'
+import type {NullOrString} from '@joookiwi/type'
 
 import type {ClassWithAcronym, ClassWithNullableAcronym} from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                       from 'core/ClassWithEnglishName'

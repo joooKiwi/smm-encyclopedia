@@ -1,5 +1,7 @@
 import './MiiCostumeCategoryApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -58,7 +60,7 @@ class MiiCostumeCategoryAppInterpreter
         return gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},) satisfies ReactElementOrString
     }
 
-    public get tableOptions(): readonly MiiCostumeCategoryAppOption[] {
+    public get tableOptions(): Array<MiiCostumeCategoryAppOption> {
         return [MiiCostumeCategoryAppOption.ICON, MiiCostumeCategoryAppOption.NAME,]
     }
 
@@ -83,7 +85,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMiiCostumeCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everyMiiCostumeCategory (card)',],
     [ViewDisplays.TABLE, 'everyMiiCostumeCategory (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MiiCostumeCategoryAppInterpreter()
 
 /** @reactComponent */

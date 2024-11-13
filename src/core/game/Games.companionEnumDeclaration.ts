@@ -1,4 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
+import type {Array, Nullable}  from '@joookiwi/type'
 
 import type {Games}                                                  from 'core/game/Games'
 import type {GroupUrlName, GroupUrlValue}                            from 'core/game/Games.types'
@@ -25,11 +26,11 @@ export interface CompanionEnumDeclaration_Games
     readonly PREFIX_WITHOUT_SLASH: 'game-'
     readonly ALL_PREFIX_GROUP: '/game-all/'
 
-    getValueInUrl(url: string,): readonly Games[]
+    getValueInUrl(url: string,): Array<Games>
 
-    getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue
+    getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue
 
-    getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName
+    getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName
 
     getValueBySimpleValue(value: Nullable<| Games | string | number>,): Games
 

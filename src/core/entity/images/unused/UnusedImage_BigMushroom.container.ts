@@ -1,3 +1,5 @@
+import type {Array} from '@joookiwi/type'
+
 import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
 import type {UnusedImage_BigMushroom}         from 'core/entity/images/unused/UnusedImage_BigMushroom'
 
@@ -6,11 +8,11 @@ export class UnusedImage_BigMushroomContainer<const out T extends UnusedSmm1Imag
 
     readonly #all
 
-    public constructor(images: readonly T[],) {
+    public constructor(images: Array<T>,) {
         this.#all = images
     }
 
-    public get all(): readonly T[] {
+    public get all(): Array<T> {
         return this.#all
     }
 

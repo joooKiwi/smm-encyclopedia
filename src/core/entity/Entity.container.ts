@@ -1,5 +1,6 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazyOf}    from '@joookiwi/lazy'
+import type {Lazy}                        from '@joookiwi/lazy'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import {lazyOf}                           from '@joookiwi/lazy'
 
 import type {Entity, PossibleOtherEntities}                                                                                                                                     from 'core/entity/Entity'
 import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
@@ -148,11 +149,11 @@ export class EntityContainer
         name: Name<string>, category: EntityCategory,
 
         hasAMushroomVariant: boolean,
-        canBeInAParachute: boolean, canBeInAParachuteComment: NullOr<LCL_Play>,
-        canHaveWings: boolean, canHaveWingsComment: NullOr<LCL_Play>,
+        canBeInAParachute: boolean, canBeInAParachuteComment: NullOrString<LCL_Play>,
+        canHaveWings: boolean, canHaveWingsComment: NullOrString<LCL_Play>,
 
         canContainOrSpawnAKey: boolean,
-        isAffectDirectlyByAnOnOffState: boolean, isAffectDirectlyByAnOnOffStateComment: NullOr<OnlySomeVariants>,
+        isAffectDirectlyByAnOnOffState: boolean, isAffectDirectlyByAnOnOffStateComment: NullOrString<OnlySomeVariants>,
         canSpawnOutOfAPipe: boolean,
         canBePutOnASwingingClaw: boolean,
         canBeThrownByALakitu: BooleanOrUnknownCharacter,
@@ -169,20 +170,20 @@ export class EntityContainer
         isInDayTime: boolean, isInNightTime: BooleanOrNotApplicable,
 
         editorLimitInSuperMarioMaker1And3DS: NullOr<| NotApplicable | Limits>, editorLimitInSuperMarioMaker2: NullOr<| NotApplicable | Limits>, isUnknownInEditorLimitInSuperMarioMaker2: boolean,
-        isInGeneralLimit: BooleanOrNotApplicable, isInGeneralLimitComment: NullOr<PossibleGeneralLimitComment>,
-        isInGlobalGeneralLimit: BooleanOrNotApplicable, isInGlobalGeneralLimitComment: NullOr<PossibleGeneralGlobalLimitComment>,
+        isInGeneralLimit: BooleanOrNotApplicable, isInGeneralLimitComment: NullOrString<PossibleGeneralLimitComment>,
+        isInGlobalGeneralLimit: BooleanOrNotApplicable, isInGlobalGeneralLimitComment: NullOrString<PossibleGeneralGlobalLimitComment>,
         isInPowerUpLimit: BooleanOrNotApplicable,
-        isInProjectileLimit: BooleanOrNotApplicable, isInProjectileLimitComment: NullOr<PossibleProjectileLimitComment>,
-        isInRenderedObjectLimit: BooleanOrNotApplicable, isInRenderedObjectLimitComment: NullOr<PossibleRenderedObjectLimitTypeComment>,
+        isInProjectileLimit: BooleanOrNotApplicable, isInProjectileLimitComment: NullOrString<PossibleProjectileLimitComment>,
+        isInRenderedObjectLimit: BooleanOrNotApplicable, isInRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>,
         isInCollectedCoinLimit: BooleanOrNotApplicable,
-        otherLimit: NullOr<| NotApplicable | Limits>, otherLimitComment: NullOr<PossibleOtherLimitComment>, isUnknownInOtherLimit: boolean,
+        otherLimit: NullOr<| NotApplicable | Limits>, otherLimitComment: NullOrString<PossibleOtherLimitComment>, isUnknownInOtherLimit: boolean,
 
-        instruments: Lazy<readonly Instrument[]>, canMakeASoundOutOfAMusicBlock: boolean, canMakeASoundOutOfAMusicBlockComment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
+        instruments: Lazy<Array<Instrument>>, canMakeASoundOutOfAMusicBlock: boolean, canMakeASoundOutOfAMusicBlockComment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
 
         referencesInSuperMarioBrosStyle: Lazy<PossibleOtherEntities>, referencesInSuperMarioBros3Style: Lazy<PossibleOtherEntities>, referencesInSuperMarioWorldStyle: Lazy<PossibleOtherEntities>, referencesInNewSuperMarioBrosUStyle: Lazy<PossibleOtherEntities>, referencesInSuperMario3DWorldStyle: Lazy<PossibleOtherEntities>,
         referencesInGroundTheme: Lazy<PossibleOtherEntities>, referencesInUndergroundTheme: Lazy<PossibleOtherEntities>, referencesInUnderwaterTheme: Lazy<PossibleOtherEntities>, referencesInDesertTheme: Lazy<PossibleOtherEntities>, referencesInSnowTheme: Lazy<PossibleOtherEntities>, referencesInSkyTheme: Lazy<PossibleOtherEntities>, referencesInForestTheme: Lazy<PossibleOtherEntities>, referencesInGhostHouseTheme: Lazy<PossibleOtherEntities>, referencesInAirshipTheme: Lazy<PossibleOtherEntities>, referencesInCastleTheme: Lazy<PossibleOtherEntities>,
         referencesInDayTime: Lazy<PossibleOtherEntities>, referencesInNightTime: Lazy<PossibleOtherEntities>,
-        everyGameStyleReferences: Lazy<readonly Entity[]>, everyThemeReferences: Lazy<readonly Entity[]>, everyTimeReferences: Lazy<readonly Entity[]>, everyReferences: Lazy<readonly Entity[]>,
+        everyGameStyleReferences: Lazy<Array<Entity>>, everyThemeReferences: Lazy<Array<Entity>>, everyTimeReferences: Lazy<Array<Entity>>, everyReferences: Lazy<Array<Entity>>,
     ) {
         super(name, lazyOf(category,),)
         this.#hasAMushroomVariant = hasAMushroomVariant

@@ -1,4 +1,5 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOr} from "@joookiwi/type"
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {AppOption}           from 'app/options/AppOption'

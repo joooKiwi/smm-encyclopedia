@@ -1,4 +1,5 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOrString}           from '@joookiwi/type'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/SoundEffectGames.types'
@@ -96,15 +97,15 @@ export class SoundEffectGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
+    public getAllRouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
         return `everySoundEffect (${viewDisplay.urlValue} Game=all)`
     }
 
-    public getSmm1Or3dsRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
+    public getSmm1Or3dsRouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
         return `everySoundEffect (${viewDisplay.urlValue} Game=1)`
     }
 
-    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
+    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
         return `everySoundEffect (${viewDisplay.urlValue} Game=2)`
     }
 

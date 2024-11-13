@@ -1,5 +1,7 @@
 import './EntityCategoryApp.scss'
 
+import type {Array} from '@joookiwi/type'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -57,7 +59,7 @@ class EntityCategoryAppInterpreter
         return gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
     }
 
-    public get tableOptions(): readonly EntityCategoryAppOption[] {
+    public get tableOptions(): Array<EntityCategoryAppOption> {
         return [EntityCategoryAppOption.ICON, EntityCategoryAppOption.NAME,]
     }
 
@@ -82,7 +84,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEntityCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everyEntityCategory (card)',],
     [ViewDisplays.TABLE, 'everyEntityCategory (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new EntityCategoryAppInterpreter()
 
 /** @reactComponent */

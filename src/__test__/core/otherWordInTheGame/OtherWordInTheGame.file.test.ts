@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Other word in the game.json'
 
+import type {Array} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
 
 import {EveryTypes}                                 from '__test__/EveryTypes'
@@ -9,11 +11,11 @@ describe('Other word in the game (file test)', () => {
     const types = EveryTypes.get
     const everySingularNames = types.everyPossibleSingularName_otherWordInTheGame
     const everyPluralNames = types.everyPossiblePluralName_otherWordInTheGame
-    const everyPluralNamesOrNull = [...types.everyPossiblePluralName_otherWordInTheGame, null,] as const
-    const excludedLanguages_smm1And3ds: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
-    const excludedLanguages_smm2: readonly PossibleExcludedLanguages[] = ['portuguese',]
-    const excludedLanguages_pluralAndSmm1And3ds: readonly PossibleExcludedLanguages[] = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'chinese', 'korean',]
-    const excludedLanguages_plural: readonly PossibleExcludedLanguages[] = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian',]
+    const everyPluralNamesOrNull = [null, ...types.everyPossiblePluralName_otherWordInTheGame,]                                            as const
+    const excludedLanguages_smm1And3ds = ['chinese', 'korean',]                                                                            as const satisfies Array<PossibleExcludedLanguages>
+    const excludedLanguages_smm2 = ['portuguese',]                                                                                         as const satisfies Array<PossibleExcludedLanguages>
+    const excludedLanguages_pluralAndSmm1And3ds = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'chinese', 'korean',] as const satisfies Array<PossibleExcludedLanguages>
+    const excludedLanguages_plural = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian',]                                   as const satisfies Array<PossibleExcludedLanguages>
 
     file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isSMM1And3DSExclusive = (it.isInSuperMarioMaker1 || it.isInSuperMarioMakerFor3DS) && !it.isInSuperMarioMaker2

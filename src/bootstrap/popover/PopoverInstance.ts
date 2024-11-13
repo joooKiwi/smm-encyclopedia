@@ -1,4 +1,5 @@
-import Popover from 'bootstrap/js/dist/popover'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import Popover                 from 'bootstrap/js/dist/popover'
 
 import type {EventHolder}                                      from 'bootstrap/event/EventHolder'
 import type {PopoverEvents}                                    from 'bootstrap/popover/PopoverEvents'

@@ -1,9 +1,12 @@
+import type {Array} from '@joookiwi/type'
+
 import type {SoundEffectSoundFile}                                                  from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {PossibleEditorValue, PossibleValueOnLinkOrSMB2Value, SoundEffectSound} from 'core/soundEffect/sound/SoundEffectSound'
 
-export abstract class AbstractSoundEffectSound<const out SOUNDS extends readonly SoundEffectSoundFile[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>,
-    const out LINK_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>,
-    const out SMB2_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, >
+export abstract class AbstractSoundEffectSound<const SOUNDS extends Array<SoundEffectSoundFile>,
+    const EDITOR_SOUND extends PossibleEditorValue<SOUNDS>,
+    const LINK_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>,
+    const SMB2_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, >
     implements SoundEffectSound<SOUNDS, EDITOR_SOUND> {
 
     //region -------------------- Fields --------------------

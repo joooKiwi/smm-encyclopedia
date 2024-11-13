@@ -1,6 +1,7 @@
 import './CourseTagApp.scss'
 
-import {Link} from 'react-router-dom'
+import type {Array} from '@joookiwi/type'
+import {Link}       from 'react-router-dom'
 
 import type {CourseTagAppProperties}  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -94,7 +95,7 @@ class CourseTagAppInterpreter
         },) satisfies ReactElementOrString
     }
 
-    public get tableOptions(): readonly CourseTagAppOption[] {
+    public get tableOptions(): Array<CourseTagAppOption> {
         return [CourseTagAppOption.NAME, CourseTagAppOption.FIRST_APPEARANCE,]
     }
 
@@ -126,7 +127,7 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
         [ViewDisplays.SIMPLE_LIST, `${type.routeName} (list)`,],
         [ViewDisplays.CARD_LIST, `${type.routeName} (card)`,],
         [ViewDisplays.TABLE, `${type.routeName} (table)`,],
-    ] as const satisfies readonly ViewAndRouteName[]
+    ] as const satisfies Array<ViewAndRouteName>
 
     return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('course tag.all', {

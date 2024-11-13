@@ -1,3 +1,5 @@
+import type {Nullable} from '@joookiwi/type'
+
 import type {EveryLanguages}                             from 'lang/EveryLanguages'
 import type {CompanionEnumByName}                        from 'util/enumerable/companion/CompanionEnumByName'
 import type {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'

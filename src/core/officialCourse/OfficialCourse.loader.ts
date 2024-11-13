@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Official course (SMM).json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOr} from '@joookiwi/type'
+import {forEachByArray}     from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent}                                                     from 'core/_template/DescriptionLanguageContent'
@@ -138,7 +138,7 @@ function createReference(content: Content, GameStyleCompanion: GameStyleCompanio
 }
 
 
-function retrieveReward(value: PossibleReward, MysteryMushroomCompanion: MysteryMushroomCompanionType,): readonly MysteryMushrooms[] {
+function retrieveReward(value: PossibleReward, MysteryMushroomCompanion: MysteryMushroomCompanionType,): Array<MysteryMushrooms> {
     if (value == null)
         return EMPTY_ARRAY
     if (value === 'Bulbasaur / Charmander / Squirtle')

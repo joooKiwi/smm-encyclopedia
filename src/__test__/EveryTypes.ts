@@ -1,4 +1,5 @@
-import {filterNotNull} from '@joookiwi/collection'
+import type {Array, StringArray} from '@joookiwi/type'
+import {filterNotNull}           from '@joookiwi/collection'
 
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'core/behaviour/EntityBehaviours.types'
@@ -105,87 +106,87 @@ export class EveryTypes {
 
     //region -------------------- Fields --------------------
 
-    #everyPossibleAcronym_gameReference?: readonly PossibleAcronym_GameReference[]
-    #everyPossiblePokemonGeneration_gameReference?: readonly PokemonGeneration[]
-    #everyPossibleName_gameReference?: readonly PossibleEnglishName_GameReference[]
+    #everyPossibleAcronym_gameReference?: Array<PossibleAcronym_GameReference>
+    #everyPossiblePokemonGeneration_gameReference?: Array<PokemonGeneration>
+    #everyPossibleName_gameReference?: Array<PossibleEnglishName_GameReference>
 
-    #everyPossibleAcronym_gameStyle?: readonly PossibleAcronym_GameStyle[]
-    #everyPossibleAcronym_gameStyle_smm1?: readonly PossibleAcronym_GameStyle[]
+    #everyPossibleAcronym_gameStyle?: Array<PossibleAcronym_GameStyle>
+    #everyPossibleAcronym_gameStyle_smm1?: Array<PossibleAcronym_GameStyle>
 
-    #everyPossibleName_characterName?: readonly PossibleEnglishName_CharacterName[]
-    #everyPossibleUniqueName_characterName?: readonly PossibleUniqueEnglishName_CharacterName[]
+    #everyPossibleName_characterName?: Array<PossibleEnglishName_CharacterName>
+    #everyPossibleUniqueName_characterName?: Array<PossibleUniqueEnglishName_CharacterName>
 
-    #everyPossibleName_entity?: readonly PossibleEnglishName_Entity[]
-    #everyPossibleWeight_entity?: readonly NonNullable<Exclude<PossibleWeight, UnknownCharacter>>[]
-    #everyPossibleLightSource_entity?: readonly NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>[]
-    #everyPossibleSurviveConditionInDeadlyLiquid_entity?: readonly NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>[]
-    #everyPossibleLimitAmountType_entity?: readonly NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>[]
-    #everyPossibleGELComment_entity?: readonly PossibleGeneralLimitComment[]
-    #everyPossibleGELGlobalComment_entity?: readonly PossibleGeneralGlobalLimitComment[]
-    #everyPossiblePJLComment_entity?: readonly PossibleProjectileLimitComment[]
-    #everyPossibleObjectRenderedLimitComment_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
-    #everyPossibleOtherLimitComment_entity?: readonly PossibleOtherLimitComment[]
+    #everyPossibleName_entity?: Array<PossibleEnglishName_Entity>
+    #everyPossibleWeight_entity?: Array<NonNullable<Exclude<PossibleWeight, UnknownCharacter>>>
+    #everyPossibleLightSource_entity?: Array<NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>>
+    #everyPossibleSurviveConditionInDeadlyLiquid_entity?: Array<NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>>
+    #everyPossibleLimitAmountType_entity?: Array<NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>>
+    #everyPossibleGELComment_entity?: Array<PossibleGeneralLimitComment>
+    #everyPossibleGELGlobalComment_entity?: Array<PossibleGeneralGlobalLimitComment>
+    #everyPossiblePJLComment_entity?: Array<PossibleProjectileLimitComment>
+    #everyPossibleObjectRenderedLimitComment_entity?: Array<PossibleRenderedObjectLimitTypeComment>
+    #everyPossibleOtherLimitComment_entity?: Array<PossibleOtherLimitComment>
 
-    #everyPossibleAcronym_entityBehaviour?: readonly PossibleAcronym_EntityBehaviour[]
-    #everyPossibleTranslationKey_entityBehaviour?: readonly PossibleTranslationKey_EntityBehaviour[]
+    #everyPossibleAcronym_entityBehaviour?: Array<PossibleAcronym_EntityBehaviour>
+    #everyPossibleTranslationKey_entityBehaviour?: Array<PossibleTranslationKey_EntityBehaviour>
 
     #everyPossibleName_entityGroup?: EveryPossibleName_EntityGroup
 
-    #everyPossibleName_theme?: readonly PossibleEnglishName_Theme[]
-    #everyPossibleName_courseTheme_smm1?: readonly PossibleEnglishName_Theme[]
-    #everyPossibleName_themeNightEffect?: readonly PossibleEnglishName_Theme_NightEffect[]
+    #everyPossibleName_theme?: Array<PossibleEnglishName_Theme>
+    #everyPossibleName_courseTheme_smm1?: Array<PossibleEnglishName_Theme>
+    #everyPossibleName_themeNightEffect?: Array<PossibleEnglishName_Theme_NightEffect>
 
-    #everyPossibleName_entityCategory?: readonly PossibleEnglishName_EntityCategory[]
+    #everyPossibleName_entityCategory?: Array<PossibleEnglishName_EntityCategory>
 
-    #everyPossibleAcronym_limit?: readonly PossibleAcronym_Limit[]
-    #everyPossibleAlternativeAcronym_limit?: readonly PossibleAlternativeAcronym_Limit[]
-    #everyPossibleName_limit?: readonly PossibleEnglishName_Limit[]
-    #everyPossibleName_editorLimit?: readonly PossibleEnglishName_Limit[]
-    #everyPossibleName_playLimit?: readonly PossibleEnglishName_Limit[]
-    #everyPossibleAlternativeName_limit?: readonly PossibleAlternativeEnglishName_Limit[]
-    #everyPossibleAmount_smm1And3ds_limit?: readonly PossibleLimitAmount_SMM1And3DS_Amount[]
-    #everyPossibleAmount_smm2_limit?: readonly PossibleLimitAmount_SMM2_Amount[]
-    #everyPossibleComment_limit?: readonly NonNullable<PossibleLimitAmount_Comment>[]
-    #everyPossibleName_limitType?: readonly PossibleEnglishName_LimitType[]
+    #everyPossibleAcronym_limit?: Array<PossibleAcronym_Limit>
+    #everyPossibleAlternativeAcronym_limit?: Array<PossibleAlternativeAcronym_Limit>
+    #everyPossibleName_limit?: Array<PossibleEnglishName_Limit>
+    #everyPossibleName_editorLimit?: Array<PossibleEnglishName_Limit>
+    #everyPossibleName_playLimit?: Array<PossibleEnglishName_Limit>
+    #everyPossibleAlternativeName_limit?: Array<PossibleAlternativeEnglishName_Limit>
+    #everyPossibleAmount_smm1And3ds_limit?: Array<PossibleLimitAmount_SMM1And3DS_Amount>
+    #everyPossibleAmount_smm2_limit?: Array<PossibleLimitAmount_SMM2_Amount>
+    #everyPossibleComment_limit?: Array<NonNullable<PossibleLimitAmount_Comment>>
+    #everyPossibleName_limitType?: Array<PossibleEnglishName_LimitType>
 
-    #everyPossibleName_soundEffect?: readonly PossibleEnglishName_SoundEffect[]
-    #everyPossibleName_soundEffectCategory?: readonly PossibleEnglishName_SoundEffectCategory[]
+    #everyPossibleName_soundEffect?: Array<PossibleEnglishName_SoundEffect>
+    #everyPossibleName_soundEffectCategory?: Array<PossibleEnglishName_SoundEffectCategory>
 
-    #everyPossibleName_courseTag?: readonly PossibleEnglishName_CourseTag[]
-    #everyPossibleMakerCentralName_courseTag?: readonly PossibleMakerCentralName[]
+    #everyPossibleName_courseTag?: Array<PossibleEnglishName_CourseTag>
+    #everyPossibleMakerCentralName_courseTag?: Array<PossibleMakerCentralName>
 
-    #everyPossibleName_MiiCostume?: readonly PossibleEnglishName_MiiCostume[]
-    #everyPossibleName_MiiCostumeCategory?: readonly PossibleEnglishName_MiiCostumeCategory[]
+    #everyPossibleName_MiiCostume?: Array<PossibleEnglishName_MiiCostume>
+    #everyPossibleName_MiiCostumeCategory?: Array<PossibleEnglishName_MiiCostumeCategory>
 
-    #everyPossibleEnglishNameOnFile_mysteryMushroom?: readonly UniqueEnglishName_MysteryMushroom[]
-    #everyPossibleConditionToUnlockIt_mysteryMushroom?: readonly PossibleConditionToUnlockIt_MysteryMushroom[]
-    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom[]
-    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom[]
+    #everyPossibleEnglishNameOnFile_mysteryMushroom?: Array<UniqueEnglishName_MysteryMushroom>
+    #everyPossibleConditionToUnlockIt_mysteryMushroom?: Array<PossibleConditionToUnlockIt_MysteryMushroom>
+    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: Array<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom>
+    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: Array<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom>
 
-    #everyPossibleEnglishName_officialCourse?: readonly PossibleEnglishName_OfficialCourse[]
-    #everyPossibleReward_officialCourse?: readonly PossibleReward_OfficialCourse[]
-    #everyPossibleReleaseDate_officialCourse?: readonly PossibleReleaseDate_OfficialCourse[]
-    #everyPossibleRemovalDate_officialCourse?: readonly NonNullable<Exclude<PossibleRemovalDate_OfficialCourse, UnknownReference>>[]
+    #everyPossibleEnglishName_officialCourse?: Array<PossibleEnglishName_OfficialCourse>
+    #everyPossibleReward_officialCourse?: Array<PossibleReward_OfficialCourse>
+    #everyPossibleReleaseDate_officialCourse?: Array<PossibleReleaseDate_OfficialCourse>
+    #everyPossibleRemovalDate_officialCourse?: Array<NonNullable<Exclude<PossibleRemovalDate_OfficialCourse, UnknownReference>>>
 
-    #everyPossibleNameWithAmount_officialNotification?: readonly PossibleNameWithEveryAmount_OfficialNotification[]
+    #everyPossibleNameWithAmount_officialNotification?: Array<PossibleNameWithEveryAmount_OfficialNotification>
 
-    #everyPossibleName_predefinedMessage?: readonly PossibleEnglishName_PredefinedMessage[]
+    #everyPossibleName_predefinedMessage?: Array<PossibleEnglishName_PredefinedMessage>
 
-    #everyPossibleWorldNumber_SampleCourse?: readonly PossibleWorldNumber_SampleCourse[]
+    #everyPossibleWorldNumber_SampleCourse?: Array<PossibleWorldNumber_SampleCourse>
 
-    #everyPossibleName_medal?: readonly PossibleEnglishName_Medal[]
+    #everyPossibleName_medal?: Array<PossibleEnglishName_Medal>
 
-    #everyPossibleName_instrument?: readonly PossibleEnglishName_Instrument[]
-    #everyPossibleMixedName_instrument?: readonly PossibleMixedName_Instrument[]
+    #everyPossibleName_instrument?: Array<PossibleEnglishName_Instrument>
+    #everyPossibleMixedName_instrument?: Array<PossibleMixedName_Instrument>
 
-    #everyPossibleName_version?: readonly PossibleName_Version[]
-    #everyPossibleName_version_smm?: readonly PossibleName_Version_SMM[]
-    #everyPossibleName_version_smm3ds?: readonly PossibleName_Version_SMM3DS[]
-    #everyPossibleName_version_smm2?: readonly PossibleName_Version_SMM2[]
+    #everyPossibleName_version?: Array<PossibleName_Version>
+    #everyPossibleName_version_smm?: Array<PossibleName_Version_SMM>
+    #everyPossibleName_version_smm3ds?: Array<PossibleName_Version_SMM3DS>
+    #everyPossibleName_version_smm2?: Array<PossibleName_Version_SMM2>
 
-    #everyPossibleName_otherWordInTheGame?: readonly PossibleEnglishName_OtherWordInTheGame[]
-    #everyPossibleSingularName_otherWordInTheGame?: readonly PossibleSingularEnglishName_OtherWordInTheGame[]
-    #everyPossiblePluralName_otherWordInTheGame?: readonly PossiblePluralEnglishName_OtherWordInTheGame[]
+    #everyPossibleName_otherWordInTheGame?: Array<PossibleEnglishName_OtherWordInTheGame>
+    #everyPossibleSingularName_otherWordInTheGame?: Array<PossibleSingularEnglishName_OtherWordInTheGame>
+    #everyPossiblePluralName_otherWordInTheGame?: Array<PossiblePluralEnglishName_OtherWordInTheGame>
 
     //endregion -------------------- Fields --------------------
 
@@ -596,7 +597,7 @@ export class EveryTypes {
 
 //region -------------------- External types --------------------
 
-type EveryPossibleName_EntityGroup = readonly string[]
+type EveryPossibleName_EntityGroup = StringArray
 
 //region -------------------- Official notification --------------------
 

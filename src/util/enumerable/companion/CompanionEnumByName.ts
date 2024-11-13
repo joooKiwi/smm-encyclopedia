@@ -1,4 +1,5 @@
 import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Nullable}                                                    from '@joookiwi/type'
 import {CompanionEnum}                                                    from '@joookiwi/enumerable'
 
 export abstract class CompanionEnumByName<const ENUM extends Enumerable,
