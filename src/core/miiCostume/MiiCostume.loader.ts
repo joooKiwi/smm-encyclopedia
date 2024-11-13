@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Mii Costume (SMM2).json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array}                             from '@joookiwi/type'
+import {findFirstOrNullByArray, forEachByArray} from '@joookiwi/collection'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {MiiCostume}                                                                    from 'core/miiCostume/MiiCostume'
@@ -107,7 +107,7 @@ function createReference(content: Content, versionCompanion: VersionCompanion, m
             miiCostumeCategoryMap.get(content.category,)!,
         )
 
-    const numberFoundInOfficialNotificationFound = notificationIfUnlocked.split(SPACE,).find(value => NUMBER_ONLY_REGEX.test(value,),)
+    const numberFoundInOfficialNotificationFound = findFirstOrNullByArray(notificationIfUnlocked.split(SPACE,), it => NUMBER_ONLY_REGEX.test(it,),)
     return new MiiCostumeContainer(
         createNameFromContent(content, 2, true,),
         officialNotification, numberFoundInOfficialNotificationFound == null ? null : Number(numberFoundInOfficialNotificationFound,),

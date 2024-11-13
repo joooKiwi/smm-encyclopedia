@@ -1,5 +1,6 @@
-import type {StringOrNumeric} from '@joookiwi/type'
-import type {TOptions} from 'i18next'
+import type {MutableArray, StringOrNumeric}     from '@joookiwi/type'
+import type {TOptions}                          from 'i18next'
+import {filterByArray, hasByArray, joinByArray} from '@joookiwi/collection'
 
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
@@ -60,13 +61,15 @@ export class TranslationUtility {
             break
         }
 
-        const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX,).filter(splitValue => !argumentsFound.includes(splitValue,),)
-        let finalArguments: ReactElementOrStringOrNumeric[] = []
-        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
-            this.#addArgumentToArray(finalArguments, splitArguments[j]!, keyMap[argumentsFound[i]!],)
+        const splitArguments = filterByArray(value.split(this.STARTING_OR_ENDING_REGEX,), it => !hasByArray(argumentsFound, it,),)
+        const splitArgumentsSize = splitArguments.size
+        const argumentsFoundSize = argumentsFound.length
+        let finalArguments: MutableArray<ReactElementOrStringOrNumeric> = []
+        for (let i = 0, j = 0; i < argumentsFoundSize || j < splitArgumentsSize; i++, j++)
+            this.#addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound[i]!],)
 
         if (containsOnlyStringOrNumeric)
-            return finalArguments.join('',)
+            return joinByArray(finalArguments, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)
         return <>{finalArguments}</>
     }
 

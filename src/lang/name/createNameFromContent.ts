@@ -1,3 +1,5 @@
+import type {Array, MutableArray} from '@joookiwi/type'
+
 import type {Language}                  from 'lang/name/containers/Language'
 import type {Name}                      from 'lang/name/Name'
 import type {LanguageContent}           from 'core/_template/LanguageContent'
@@ -16,9 +18,9 @@ type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' 
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean
 
 /** The exclusive {@link SMM1} or {@link SMM3DS} (excluding the complete & optional languages) languages */
-const SMM1_OR_SMM3DS_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,]
+const SMM1_OR_SMM3DS_LANGUAGES: Array<EveryLanguages> = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,]
 /** The exclusive {@link SMM2} (excluding the complete & optional languages) languages */
-const SMM2_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,]
+const SMM2_LANGUAGES: Array<EveryLanguages> = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,]
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM1_OR_SMM3DS: IsACompleteNameCallback = language => SMM1_OR_SMM3DS_LANGUAGES.includes(language,)
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM2: IsACompleteNameCallback = language => SMM2_LANGUAGES.includes(language,)
 const IS_A_COMPLETE_NAME: IsACompleteNameCallback = () => true
@@ -34,7 +36,7 @@ const IS_NOT_A_COMPLETE_NAME: IsACompleteNameCallback = () => false
 export function createNameFromContent(content: LanguageContent, game: PossibleGame, isACompleteName: boolean,): Name<string> {
     const isACompleteNameCallback = getIsACompleteNameCallback(game, isACompleteName,)
 
-    const originalLanguages: EveryLanguages[] = []
+    const originalLanguages: MutableArray<EveryLanguages> = []
     return new NameContainer(
         originalLanguages,
         getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.ENGLISH, content.english, content.americanEnglish, content.europeanEnglish,),
@@ -59,7 +61,7 @@ export function createNameFromContent(content: LanguageContent, game: PossibleGa
 export function createNameFromContentDescription(content: DescriptionLanguageContent, game: PossibleGame, isACompleteName: boolean,): Name<string> {
     const isACompleteNameCallback = getIsACompleteNameCallback(game, isACompleteName,)
 
-    const originalLanguages: EveryLanguages[] = []
+    const originalLanguages: MutableArray<EveryLanguages> = []
     return new NameContainer(
         originalLanguages,
         getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.ENGLISH, content.english_description, content.americanEnglish_description, content.europeanEnglish_description,),
@@ -115,7 +117,7 @@ function getIsACompleteNameCallback(game: PossibleGame, isACompleteName: boolean
 //     return value
 // }
 
-function getFromCompletedLanguageFrom3Values(originalLanguages: EveryLanguages[], language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>,): Language<string, string, | readonly [string, string,]> {
+function getFromCompletedLanguageFrom3Values(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>,): Language<string, string, | readonly [string, string,]> {
     if (value1 == null) {
         if (value2 == null) {
             if (value3 == null)
@@ -132,7 +134,7 @@ function getFromCompletedLanguageFrom3Values(originalLanguages: EveryLanguages[]
 }
 
 
-function getFromIncompleteLanguageFrom1Value(originalLanguages: EveryLanguages[], language: EveryLanguages, value: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, never> {
+function getFromIncompleteLanguageFrom1Value(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, never> {
     if (value == null) {
         if (isACompleteName(language,))
             throw new TypeError(`The value of ${language.englishName} cannot be null.`,)
@@ -142,7 +144,7 @@ function getFromIncompleteLanguageFrom1Value(originalLanguages: EveryLanguages[]
     return new LanguageContainer<string, string, never>(value,)
 }
 
-function getFromIncompleteLanguageFrom3Values(originalLanguages: EveryLanguages[], language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, readonly [string, string,]> {
+function getFromIncompleteLanguageFrom3Values(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, readonly [string, string,]> {
     if (value1 == null) {
         if (value2 == null) {
             if (value3 == null) {
@@ -162,7 +164,7 @@ function getFromIncompleteLanguageFrom3Values(originalLanguages: EveryLanguages[
 }
 
 
-function getFromOptionalLanguage(originalLanguages: EveryLanguages[], language: EveryLanguages, value: Nullable<string>,): EmptyableOptionalLanguage<string, string, never> {
+function getFromOptionalLanguage(originalLanguages: MutableArray<EveryLanguages>, language: EveryLanguages, value: Nullable<string>,): EmptyableOptionalLanguage<string, string, never> {
     if (value == null)
         return EmptyLanguageContainer.get
     originalLanguages.push(language,)

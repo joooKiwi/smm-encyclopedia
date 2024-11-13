@@ -1,7 +1,8 @@
 import './Table.scss'
 
-import type {Enumerable}                                    from '@joookiwi/enumerable'
-import {filterNotNull, forEachByArray, joinToStringByArray} from '@joookiwi/collection'
+import type {Enumerable}                                                from '@joookiwi/enumerable'
+import type {Array, MutableArray, StringArray}                          from '@joookiwi/type'
+import {filterNotNull, forEachByArray, joinToStringByArray, mapByArray} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
@@ -147,10 +148,7 @@ function getHeaderKey(header: SingleHeaderContent,): string {
 function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly string[] {
     if (getAdditionalClass == null)
         return Array.from({length: options.length,}, () => EMPTY_STRING,)
-
-    const additionalClasses = new Array<string>(options.length,)
-    forEachByArray(options, (it, i,) => additionalClasses[i] = joinToStringByArray(getAdditionalClass(it,), SPACE, EMPTY_STRING, EMPTY_STRING,),)
-    return additionalClasses
+    return mapByArray(options, it => joinToStringByArray(getAdditionalClass(it,), SPACE, EMPTY_STRING, EMPTY_STRING,),).toArray()
 }
 
 /**
@@ -161,14 +159,12 @@ function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTabl
  * @private
  */
 function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleTableContent[] {
-    const tableContents = new Array<SingleTableContent>(content.length,)
-    forEachByArray(content, (contentValue, i,) => {
+    return mapByArray(content, (contentValue, i,) => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
         forEachByArray(options, option =>
             forEachByArray(createTableContent(contentValue, option,), it => tableContent.push(it,),),)
-        tableContents[i] = tableContent
-    },)
-    return tableContents
+        return tableContent
+    },).toArray()
 }
 
 /**
