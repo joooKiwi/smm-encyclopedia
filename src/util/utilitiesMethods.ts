@@ -15,8 +15,11 @@ import type {CompanionEnumByType}                                               
 import type {CompanionEnumByUrlValue}                                                                             from 'util/enumerable/companion/CompanionEnumByUrlValue'
 import type {CompanionEnumRetrievableInUrl}                                                                       from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
-import {isInProduction}            from 'variables'
-import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
+import {isInProduction} from 'variables'
+import {Empty}          from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 //region -------------------- is --------------------
 

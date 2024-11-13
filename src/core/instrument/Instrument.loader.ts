@@ -15,7 +15,9 @@ import {isInProduction}        from 'variables'
 import {EntityLoader}          from 'core/entity/Entity.loader'
 import {InstrumentContainer}   from 'core/instrument/Instrument.container'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
-import {EMPTY_ARRAY}           from 'util/emptyVariables'
+import {Empty}                 from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /** @singleton */
 export class InstrumentLoader

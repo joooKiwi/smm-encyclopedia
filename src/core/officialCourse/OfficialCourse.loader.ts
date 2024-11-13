@@ -21,7 +21,9 @@ import {OfficialCourseContainer}                                 from 'core/offi
 import {Themes}                                                  from 'core/theme/Themes'
 import {createNameFromContent, createNameFromContentDescription} from 'lang/name/createNameFromContent'
 import {UNKNOWN_REFERENCE}                                       from 'util/commonVariables'
-import {EMPTY_ARRAY}                                             from 'util/emptyVariables'
+import {Empty}                                                   from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @singleton

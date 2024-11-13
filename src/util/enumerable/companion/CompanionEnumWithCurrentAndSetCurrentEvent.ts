@@ -3,7 +3,9 @@ import type {NullOr}                                                            
 import type {Dispatch, SetStateAction}                                                               from 'react'
 import {CompanionEnum}                                                                               from '@joookiwi/enumerable'
 
-import {EMPTY_MAP} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_MAP = Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" value as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enumerable,

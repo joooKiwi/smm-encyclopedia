@@ -28,9 +28,11 @@ import {SMM1ExclusiveSoundEffectSoundContainer as SMM1ExclusiveSound}   from 'co
 import {SMM1StandaloneSoundEffectSoundContainer as SMM1StandaloneSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'
 import {SMM2SoundEffectSoundContainer as SMM2Sound}                     from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
 import {Import}                                                         from 'util/DynamicImporter'
+import {Empty}                                                          from 'util/emptyVariables'
 import {StringContainer}                                                from 'util/StringContainer'
-import {EMPTY_ARRAY}                                                    from 'util/emptyVariables'
 import {CompanionEnumByEnglishNameOnly}                                 from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @recursiveReference<{@link Musics}>

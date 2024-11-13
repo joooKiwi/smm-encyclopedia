@@ -4,7 +4,9 @@ import type {PossibleEditorValue_SMM1, SMM1ExclusiveSoundEffectSound} from 'core
 import type {SMM1SoundEffectSoundFile}                                from 'core/soundEffect/file/SoundEffectSoundFile'
 
 import {AbstractSoundEffectSound} from 'core/soundEffect/sound/AbstractSoundEffectSound'
-import {EMPTY_ARRAY}              from 'util/emptyVariables'
+import {Empty}                    from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class SMM1ExclusiveSoundEffectSoundContainer<const SOUNDS extends Array<SMM1SoundEffectSoundFile>,
     const EDITOR_SOUNDS extends PossibleEditorValue_SMM1<SOUNDS>, >

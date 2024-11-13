@@ -6,7 +6,10 @@ import {LAZY_EMPTY_ENTITY_CATEGORY}       from 'core/entityCategory/EmptyEntityC
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 import {EmptyStringName}                  from 'lang/name/EmptyStringName'
 import {NOT_APPLICABLE}                   from 'util/commonVariables'
-import {EMPTY_ARRAY, EMPTY_MAP}           from 'util/emptyVariables'
+import {Empty}                            from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_MAP =   Empty.EMPTY_MAP
 
 /**
  * An empty entity with the default values of nothing

@@ -5,8 +5,10 @@ import {filterByArray, hasByArray, joinByArray}          from '@joookiwi/collect
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
 import {isInProduction} from 'variables'
-import {EMPTY_STRING}   from 'util/emptyVariables'
+import {Empty}          from 'util/emptyVariables'
 import {assert}         from 'util/utilitiesMethods'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 export class TranslationUtility {
 

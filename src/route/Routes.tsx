@@ -12,9 +12,11 @@ import {EveryRoutes}                 from 'route/EveryRoutes'
 import {redirectTo, redirectToByUrl} from 'route/redirectionMethods'
 import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
-import {EMPTY_ARRAY}                 from 'util/emptyVariables'
+import {Empty}                       from 'util/emptyVariables'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 const ProjectLanguageCompanion = ProjectLanguages.CompanionEnum.get
 const EveryRouteCompanion = EveryRoutes.CompanionEnum.get

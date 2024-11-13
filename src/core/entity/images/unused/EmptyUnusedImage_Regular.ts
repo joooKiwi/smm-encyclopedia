@@ -1,7 +1,9 @@
 import type {UnusedImage_Regular}                              from 'core/entity/images/unused/UnusedImage_Regular'
 import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_MAP} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_MAP = Empty.EMPTY_MAP
 
 export class EmptyUnusedImage_Regular
     implements UnusedImage_Regular, ClassWithNullObjectPattern<EmptyUnusedImageName> {

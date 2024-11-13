@@ -20,9 +20,12 @@ import {FIRST_PLACE_IMAGE_FILE, SECOND_PLACE_IMAGE_FILE, THIRD_PLACE_IMAGE_FILE}
 import {BRONZE_MEDAL_IMAGE_FILE, GOLD_MEDAL_IMAGE_FILE, SILVER_MEDAL_IMAGE_FILE} from 'core/officialNotification/file/imageFiles'
 import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/imageFiles'
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {EMPTY_ARRAY, EMPTY_STRING}                                               from 'util/emptyVariables'
+import {Empty}                                                                   from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
 import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
+
+import EMPTY_ARRAY  = Empty.EMPTY_ARRAY
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 //region -------------------- Constructor constants --------------------
 

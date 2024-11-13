@@ -15,9 +15,11 @@ import type {CompanionEnumByNameSingleton}                                      
 
 import {ThemeLoader}                    from 'core/theme/Theme.loader'
 import * as FileCreator                 from 'core/theme/file/fileCreator'
-import {EMPTY_ARRAY}                    from 'util/emptyVariables'
+import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export abstract class Themes
     extends Enum<Ordinals, Names>

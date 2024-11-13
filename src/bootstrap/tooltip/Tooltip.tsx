@@ -6,7 +6,9 @@ import {RefObject, useEffect}                           from 'react'
 import {BootstrapInstanceHandler}        from 'bootstrap/BootstrapInstanceHandler'
 import {TooltipInstance}                 from 'bootstrap/tooltip/TooltipInstance'
 import {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
-import {EMPTY_CALLBACK}                  from 'util/emptyVariables'
+import {Empty}                           from 'util/emptyVariables'
+
+import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
 
 interface TooltipProperties
     extends SimpleReactPropertiesWithOptionalChildren<ReactElement> {

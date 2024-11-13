@@ -5,8 +5,10 @@ import type {Dispatch, SetStateAction}                                    from '
 import {GenericCollectionHolder, isArray}                                 from '@joookiwi/collection'
 import {CompanionEnum}                                                    from '@joookiwi/enumerable'
 
-import {EMPTY_MAP}          from 'util/emptyVariables'
+import {Empty}              from 'util/emptyVariables'
 import {isCollectionEquals} from 'util/utilitiesMethods'
+
+import EMPTY_MAP = Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" values ({@link CollectionHolder}) as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM extends Enumerable,

@@ -5,7 +5,9 @@ import {EmptyCourseTheme}     from 'core/theme/EmptyCourseTheme'
 import {EmptyWorldTheme}      from 'core/theme/EmptyWorldTheme'
 import {EmptyStringName}      from 'lang/name/EmptyStringName'
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
-import {EMPTY_MAP}            from 'util/emptyVariables'
+import {Empty}                from 'util/emptyVariables'
+
+import EMPTY_MAP = Empty.EMPTY_MAP
 
 /** @singleton */
 export class EmptyCourseAndWorldTheme

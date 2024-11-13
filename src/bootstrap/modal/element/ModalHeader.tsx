@@ -3,7 +3,10 @@ import type {HTMLDivProperties}     from 'util/react/html/HTMLDivProperties'
 import type {HTMLButtonProperties}  from 'util/react/html/HTMLButtonProperties'
 import type {HTMLHeadingProperties} from 'util/react/html/HTMLHeadingProperties'
 
-import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_OBJECT = Empty.EMPTY_OBJECT
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalHeaderProperties
     extends ReactProperties, HTMLDivProperties {

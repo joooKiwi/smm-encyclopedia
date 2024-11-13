@@ -1,9 +1,12 @@
 import type {CourseTheme}                                      from 'core/theme/CourseTheme'
 import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName}   from 'lang/name/ClassContainingAName'
-import {EmptyStringName}        from 'lang/name/EmptyStringName'
-import {EMPTY_ARRAY, EMPTY_MAP} from 'util/emptyVariables'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
+import {Empty}                from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_MAP =   Empty.EMPTY_MAP
 
 /** @singleton */
 export class EmptyCourseTheme

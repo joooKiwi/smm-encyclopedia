@@ -10,13 +10,17 @@ import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, Possi
 import type {TranslationReplaceKeysMap}                                                                                                             from 'lang/components/TranslationProperty'
 import type {CompanionEnumByNameSingleton}                                                                                                          from 'util/enumerable/Singleton.types'
 
-import type {Entities}                           from 'core/entity/Entities'
-import {OtherWordInTheGames}                     from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {LimitLoader}                             from 'core/limit/Limit.loader'
-import {Import}                                  from 'util/DynamicImporter'
-import {EMPTY_ARRAY, EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
-import {StringContainer}                         from 'util/StringContainer'
-import {CompanionEnumByName}                     from 'util/enumerable/companion/CompanionEnumByName'
+import type {Entities}       from 'core/entity/Entities'
+import {OtherWordInTheGames} from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {LimitLoader}         from 'core/limit/Limit.loader'
+import {Import}              from 'util/DynamicImporter'
+import {Empty}               from 'util/emptyVariables'
+import {StringContainer}     from 'util/StringContainer'
+import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
+
+import EMPTY_ARRAY  = Empty.EMPTY_ARRAY
+import EMPTY_OBJECT = Empty.EMPTY_OBJECT
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  * @classWithDynamicImport<{@link Entities}>

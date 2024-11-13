@@ -1,7 +1,7 @@
 import type {Singleton}                      from '@joookiwi/enumerable'
 import type {Nullable, NullOr, NullOrString} from '@joookiwi/type'
 import {Enum}                                from '@joookiwi/enumerable'
-import i18n             from 'i18next'
+import i18n                                  from 'i18next'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
@@ -14,8 +14,10 @@ import type {ClassWithIsCurrent}                                                
 
 import {Characters}                                 from 'lang/Characters'
 import {SPACE}                                      from 'util/commonVariables'
-import {EMPTY_STRING}                               from 'util/emptyVariables'
+import {Empty}                                      from 'util/emptyVariables'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>

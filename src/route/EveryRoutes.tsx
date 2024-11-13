@@ -8,22 +8,24 @@ import type {ClassUsedInRoute}                                                  
 import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
 import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                              from 'route/EveryRoutes.companionEnumDeclaration'
 
-import {CourseTagTypes}            from 'app/property/CourseTagTypes'
-import {LimitTypes}                from 'app/property/LimitTypes'
-import {PowerUpPriorityTypes}      from 'app/property/PowerUpPriorityTypes'
-import {ThemeTypes}                from 'app/property/ThemeTypes'
-import {ViewDisplays}              from 'app/withInterpreter/ViewDisplays'
-import {GamePossibility}           from 'core/game/Game.possibility'
-import {Games}                     from 'core/game/Games'
-import {GameStylePossibility}      from 'core/gameStyle/GameStyle.possibility'
-import {GameStyles}                from 'core/gameStyle/GameStyles'
-import {ProjectLanguages}          from 'lang/ProjectLanguages'
-import {SimpleRoute}               from 'route/SimpleRoute'
-import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
-import {GameCollection}            from 'util/collection/GameCollection'
-import {GameStyleCollection}       from 'util/collection/GameStyleCollection'
-import {ViewDisplayCollection}     from 'util/collection/ViewDisplayCollection'
+import {CourseTagTypes}        from 'app/property/CourseTagTypes'
+import {LimitTypes}            from 'app/property/LimitTypes'
+import {PowerUpPriorityTypes}  from 'app/property/PowerUpPriorityTypes'
+import {ThemeTypes}            from 'app/property/ThemeTypes'
+import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
+import {GamePossibility}       from 'core/game/Game.possibility'
+import {Games}                 from 'core/game/Games'
+import {GameStylePossibility}  from 'core/gameStyle/GameStyle.possibility'
+import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {ProjectLanguages}      from 'lang/ProjectLanguages'
+import {SimpleRoute}           from 'route/SimpleRoute'
+import {Empty}                 from 'util/emptyVariables'
+import {GameCollection}        from 'util/collection/GameCollection'
+import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
+import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
+import EMPTY_ARRAY =                       Empty.EMPTY_ARRAY
+import EMPTY_STRING =                      Empty.EMPTY_STRING
 import SMM1_ONLY_ARRAY =                   GamePossibility.SMM1_ONLY
 import SMM1_AND_3DS_ARRAY =                GamePossibility.SMM1_AND_3DS
 import SMM1_AND_2_ARRAY =                  GamePossibility.SMM1_AND_2

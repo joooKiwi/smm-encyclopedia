@@ -1,12 +1,12 @@
 import type {COMMA_SPACE, INFINITY, NOT_APPLICABLE, SPACE, SUSPENSION_POINT, UNKNOWN_CHARACTER, UNKNOWN_REFERENCE} from 'util/commonVariables'
-import type {EMPTY_ARRAY, EMPTY_MAP, EMPTY_OBJECT, EMPTY_STRING}                                                   from 'util/emptyVariables'
+import type {Empty}                                                                                                from 'util/emptyVariables'
 
 declare global {
 
-    type EmptyString = typeof EMPTY_STRING
-    type EmptyArray = typeof EMPTY_ARRAY
-    type EmptyMap = typeof EMPTY_MAP
-    type EmptyObject = typeof EMPTY_OBJECT
+    type EmptyString = typeof Empty['EMPTY_STRING']
+    type EmptyArray = typeof Empty['EMPTY_ARRAY']
+    type EmptyMap = typeof Empty['EMPTY_MAP']
+    type EmptyObject = typeof Empty['EMPTY_OBJECT']
 
     type Space = typeof SPACE
     type CommaSpace = typeof COMMA_SPACE

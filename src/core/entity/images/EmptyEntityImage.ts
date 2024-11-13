@@ -1,6 +1,8 @@
 import type {EntityImage} from 'core/entity/images/EntityImage'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class EmptyEntityImage
     implements EntityImage<never> {

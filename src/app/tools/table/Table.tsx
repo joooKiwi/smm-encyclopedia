@@ -11,10 +11,12 @@ import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactProperties
 
 import Image             from 'app/tools/images/Image'
 import Tooltip           from 'bootstrap/tooltip/Tooltip'
-import {EMPTY_STRING}    from 'util/emptyVariables'
+import {Empty}           from 'util/emptyVariables'
+import {SPACE}           from 'util/commonVariables'
 import {StringContainer} from 'util/StringContainer'
 import {assert}          from 'util/utilitiesMethods'
-import {SPACE}           from 'util/commonVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface TableProperties
     extends ReactProperties {

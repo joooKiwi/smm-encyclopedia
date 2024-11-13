@@ -6,7 +6,9 @@ import type {ClearConditionEntityImage} from 'core/entity/images/ClearConditionE
 import type {ClearConditionImage}       from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {GameStyles}                from 'core/gameStyle/GameStyles'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class ClearConditionEntityImageContainer<const out T extends ClearConditionImageFile>
     implements ClearConditionEntityImage<T> {

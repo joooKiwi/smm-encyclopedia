@@ -1,7 +1,11 @@
 import type {Name}                                      from 'lang/name/Name'
 import type {ClassWithNullObjectPattern, EmptyNameName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY  = Empty.EMPTY_ARRAY
+import EMPTY_MAP    = Empty.EMPTY_MAP
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /** @singleton */
 export class EmptyStringName

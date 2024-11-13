@@ -17,9 +17,11 @@ import type {ClassWithImageFile}                                                
 import {gameImage}                                                    from 'core/game/file/fileCreator'
 import {StringContainer}                                              from 'util/StringContainer'
 import {Import}                                                       from 'util/DynamicImporter'
-import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
+import {Empty}                                                        from 'util/emptyVariables'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @recursiveReference<{@link GamePossibility}>

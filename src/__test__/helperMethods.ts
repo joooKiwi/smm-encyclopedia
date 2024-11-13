@@ -4,7 +4,9 @@ import type {PossibleExcludedLanguages}  from '__test__/helperMethods.types'
 import type {LanguageContent}            from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageContent'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * Retrieve the english name from the content to get final value for the reference

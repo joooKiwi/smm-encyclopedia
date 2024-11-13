@@ -1,5 +1,5 @@
-import {Enum}     from '@joookiwi/enumerable'
-import {Link}     from 'react-router-dom'
+import {Enum} from '@joookiwi/enumerable'
+import {Link} from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
@@ -15,9 +15,11 @@ import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import {routeFromName}                  from 'route/route'
 import {Import}                         from 'util/DynamicImporter'
-import {EMPTY_OBJECT}                   from 'util/emptyVariables'
+import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_OBJECT = Empty.EMPTY_OBJECT
 
 //region -------------------- Import from deconstruction --------------------
 

@@ -12,13 +12,15 @@ import type {FileName, PossibleImageFileNames}                                  
 import type {CompanionEnumByNameSingleton}                                                                                                                                                                                   from 'util/enumerable/Singleton.types'
 
 import {MysteryMushroomLoader}                 from 'core/mysteryMushroom/MysteryMushroom.loader'
+import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
 import {DualFileNameContainer as DualFile}     from 'core/mysteryMushroom/file/name/DualFileName.container'
 import {EmptyFileName as EmptyFile}            from 'core/mysteryMushroom/file/name/EmptyFileName'
 import {SingleFileNameContainer as SingleFile} from 'core/mysteryMushroom/file/name/SingleFileName.container'
-import {EMPTY_ARRAY}                           from 'util/emptyVariables'
+import {Empty}                                 from 'util/emptyVariables'
 import {StringContainer}                       from 'util/StringContainer'
-import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
 import {CompanionEnumByName}                   from 'util/enumerable/companion/CompanionEnumByName'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>

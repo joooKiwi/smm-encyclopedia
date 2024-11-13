@@ -1,7 +1,9 @@
 import type {SingleBackgroundMusic}                                      from 'core/music/backgroundMusic/SingleBackgroundMusic'
 import type {ClassWithNullObjectPattern, EmptySingleBackgroundMusicName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @singleton

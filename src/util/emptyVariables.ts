@@ -1,30 +1,19 @@
 import type {EmptyArray, EmptyMap, EmptyObject, EmptySet, EmptyString} from '@joookiwi/type'
+import {CollectionConstants}                                           from '@joookiwi/collection'
 
-/** An empty string */
-export const EMPTY_STRING: EmptyString = Object.freeze('' as const,)
+/** A zone to encapculate the empty fields and to be used directly in an "import" statement */
+export namespace Empty {
 
-/**
- * An empty array with no values that is not modifiable.
- *
- * @note It is an empty array to ensure any possible values is possible.
- */
-export const EMPTY_ARRAY: EmptyArray = Object.freeze([],)
-/**
- * An empty array with no values that is not modifiable.
- *
- * @note It is an empty array to ensure any possible values is possible.
- */
-export const EMPTY_SET: EmptySet = Object.freeze(new Set<never>(),)
+    /** An empty string */
+    export const EMPTY_STRING               = '' as const satisfies EmptyString
+    /** An empty object with nothing (and not modifiable) */
+    export const EMPTY_OBJECT: EmptyObject  = Object.freeze({},)
+    /** An empty callback */
+    export const EMPTY_CALLBACK: () => void = Object.freeze(() => {},)
 
-/**
- * An empty {@link Map} with any values that should always return undefined as a value.
- *
- * @note It use "any" as a type to enable every values
- */
-export const EMPTY_MAP: EmptyMap<never> = Object.freeze(new Map<never, never>(),)
+    export const EMPTY_ARRAY                = CollectionConstants.EMPTY_ARRAY
+    export const EMPTY_SET                  = CollectionConstants.EMPTY_SET
+    export const EMPTY_MAP                  = CollectionConstants.EMPTY_MAP
+    export const EMPTY_COLLECTION_HOLDER    = CollectionConstants.EMPTY_COLLECTION_HOLDER
 
-/** An empty object with nothing (and not modifiable) */
-export const EMPTY_OBJECT: EmptyObject = Object.freeze({},)
-
-/** An empty callback*/
-export const EMPTY_CALLBACK: () => void = Object.freeze(() => {},)
+}

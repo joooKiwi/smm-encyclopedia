@@ -4,7 +4,9 @@ import {forEachByArray}           from '@joookiwi/collection'
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 interface ReferenceHolder {
 

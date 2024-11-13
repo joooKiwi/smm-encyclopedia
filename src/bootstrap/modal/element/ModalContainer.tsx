@@ -5,7 +5,10 @@ import type {PossibleModalSize}                                    from 'bootstr
 import type {HTMLDivProperties}                                    from 'util/react/html/HTMLDivProperties'
 import type {ReactProperties, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
-import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_OBJECT = Empty.EMPTY_OBJECT
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalContainerProperties
     extends ReactProperties, Omit<HTMLDivProperties, 'key'> {

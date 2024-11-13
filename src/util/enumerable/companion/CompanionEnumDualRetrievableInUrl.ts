@@ -4,7 +4,10 @@ import {CompanionEnum}                                        from '@joookiwi/en
 
 import type {EnumerableUsedInRoute} from 'util/enumerable/Enumerable.types'
 
-import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY =  Empty.EMPTY_ARRAY
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  * A {@link CompanionEnum} that is in the project url and can be retrievable

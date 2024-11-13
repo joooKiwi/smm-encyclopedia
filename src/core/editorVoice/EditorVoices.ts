@@ -14,9 +14,11 @@ import type {CharacterNames}            from 'core/characterName/CharacterNames'
 import * as SoundCreator                from 'core/editorVoice/sound/soundCreator'
 import type {Entities}                  from 'core/entity/Entities'
 import {Import}                         from 'util/DynamicImporter'
-import {EMPTY_ARRAY}                    from 'util/emptyVariables'
+import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @todo change the english name to the enum name for the _createEntityReference

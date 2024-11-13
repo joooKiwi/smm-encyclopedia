@@ -1,8 +1,11 @@
 import type {Instrument} from 'core/instrument/Instrument'
 
-import {ClassContainingAName}   from 'lang/name/ClassContainingAName'
-import {EmptyStringName}        from 'lang/name/EmptyStringName'
-import {EMPTY_ARRAY, EMPTY_MAP} from 'util/emptyVariables'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
+import {Empty}                from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_MAP =   Empty.EMPTY_MAP
 
 export class EmptyInstrument
     extends ClassContainingAName<string>

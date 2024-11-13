@@ -3,7 +3,9 @@ import {isArray}                        from '@joookiwi/collection'
 
 import type {Language} from 'lang/name/containers/Language'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class LanguageContainer<const T,
     const S extends T = T,

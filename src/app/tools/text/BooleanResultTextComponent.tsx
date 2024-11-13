@@ -1,6 +1,9 @@
 import type {BooleanResultTextProperties, TextColor} from 'app/tools/text/properties/BooleanResultTextProperties'
 
 import BooleanTextComponent from 'app/tools/text/BooleanTextComponent'
+import {Empty}        from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 const TRUE_DEFAULT_COLOR: TextColor = 'text-success'
 const FALSE_DEFAULT_COLOR: TextColor = 'text-danger'
@@ -16,5 +19,5 @@ export default function BooleanResultTextComponent({boolean, classes, true: _tru
     const [trueValue, trueColor,] = typeof _true == 'string' ? [_true, TRUE_DEFAULT_COLOR] : _true
     const [falseValue, falseColor,] = typeof _false == 'string' ? [_false, FALSE_DEFAULT_COLOR] : _false
 
-    return <BooleanTextComponent classes={[...(classes ?? []), (boolean ? trueColor : falseColor)]} boolean={boolean} true={trueValue} false={falseValue} {...otherProperties}/>
+    return <BooleanTextComponent classes={[...(classes ?? EMPTY_ARRAY), (boolean ? trueColor : falseColor)]} boolean={boolean} true={trueValue} false={falseValue} {...otherProperties}/>
 }

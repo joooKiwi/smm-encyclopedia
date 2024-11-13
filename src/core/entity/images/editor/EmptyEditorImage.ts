@@ -1,11 +1,11 @@
 import type {EmptyCollectionHolder} from '@joookiwi/collection'
-import {CollectionConstants} from '@joookiwi/collection'
 
 import type {EditorImage}                                      from 'core/entity/images/editor/EditorImage'
 import type {ClassWithNullObjectPattern, EmptyEditorImageName} from 'util/ClassWithNullObjectPattern'
 
-import {Empty, EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
 
+import EMPTY_ARRAY =             Empty.EMPTY_ARRAY
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 /** @singleton */
@@ -29,9 +29,9 @@ export class EmptyEditorImage
     public readonly imagesWithAssociation = EMPTY_ARRAY
 
     public get(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
-    public getFromTheme(): EmptyCollectionHolder { return CollectionConstants.EMPTY_COLLECTION_HOLDER }
-    public getFromGameStyle(): EmptyCollectionHolder { return CollectionConstants.EMPTY_COLLECTION_HOLDER }
-    public getFromTime(): EmptyCollectionHolder { return CollectionConstants.EMPTY_COLLECTION_HOLDER }
+    public getFromTheme(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getFromGameStyle(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getFromTime(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
 
     public toString(): EmptyEditorImageName { return 'Empty editor image' }
 

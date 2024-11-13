@@ -1,7 +1,9 @@
 import type {ClearConditionImage}                                      from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {ClassWithNullObjectPattern, EmptyClearConditionImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class EmptyClearConditionImage
     implements ClearConditionImage, ClassWithNullObjectPattern<EmptyClearConditionImageName> {

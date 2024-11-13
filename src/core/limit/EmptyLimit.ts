@@ -6,8 +6,10 @@ import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNul
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {EmptyStringName}                      from 'lang/name/EmptyStringName'
 import {NOT_APPLICABLE}                       from 'util/commonVariables'
-import {EMPTY_MAP}                            from 'util/emptyVariables'
+import {Empty}                                from 'util/emptyVariables'
 import {assert}                               from 'util/utilitiesMethods'
+
+import EMPTY_MAP = Empty.EMPTY_MAP
 
 /** @singleton */
 export class EmptyLimit

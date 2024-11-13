@@ -4,8 +4,11 @@ import type {ReactProperties}      from 'util/react/ReactProperties'
 import type {HTMLButtonProperties} from 'util/react/html/HTMLButtonProperties'
 import type {HTMLDivProperties}    from 'util/react/html/HTMLDivProperties'
 
-import {contentTranslation}         from 'lang/components/translationMethods'
-import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
+import {contentTranslation} from 'lang/components/translationMethods'
+import {Empty}              from 'util/emptyVariables'
+
+import EMPTY_OBJECT = Empty.EMPTY_OBJECT
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalFooterProperties
     extends ReactProperties, HTMLDivProperties {
