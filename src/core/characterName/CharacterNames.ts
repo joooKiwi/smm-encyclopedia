@@ -202,7 +202,7 @@ export class CharacterNames
                 return false
             if (value instanceof this.instance)
                 return true
-            return this.instance.everyEnglishNames.includes(value as never,)
+            return hasByArray(this.instance.everyEnglishNames, value,)
         }
 
     }

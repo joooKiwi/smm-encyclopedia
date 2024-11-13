@@ -35,7 +35,7 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
                           callback: ImagesRetrieverCallback,
                           isIn: ClassInAnySuperMarioMakerGame,) {
         super(() => entity.reference.nameContainer,
-            () => (gameStylesDisplayed instanceof Array ? gameStylesDisplayed : [gameStylesDisplayed]).map(gameStyle => callback(entity, gameStyle)).flat(),
+            () => (isArray(gameStylesDisplayed,) ? gameStylesDisplayed : [gameStylesDisplayed]).map(gameStyle => callback(entity, gameStyle)).flat(),
             isIn,)
         this.#smbImagesHolder = entity.reference.isInSuperMarioBrosStyle ? lazy(() => callback(entity, SMB,),) : CommonLazy.EMPTY_ARRAY
         this.#smb3ImagesHolder = entity.reference.isInSuperMarioBros3Style ? lazy(() => callback(entity, SMB3,),) : CommonLazy.EMPTY_ARRAY

@@ -49,7 +49,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
         const current = this.currentOrNull
         if (value === current)
             return
-        if (value instanceof Array)
+        if (isArray(value,))
             value = new GenericCollectionHolder(value,)
         if (current != null)
             if (isCollectionEquals(value, current,))

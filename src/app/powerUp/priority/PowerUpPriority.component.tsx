@@ -25,7 +25,7 @@ const DEFAULT_CALLBACK = (priority: PowerUpPriority,) => priority.images
  * @reactComponent
  */
 export default function PowerUpPriorityComponent<T extends PowerUpPriority, >({id, value, images: imagesCallback = DEFAULT_CALLBACK,}: PowerUpPriorityProperties<T>,) {
-    const priorities = value instanceof Array ? value : [value]
+    const priorities = isArray(value,) ? value : [value]
     return <div key={`Power-up priority (${id})`} id={id}>
         {priorities.map((priority, index,) => {
                 const priorityName = priority.name

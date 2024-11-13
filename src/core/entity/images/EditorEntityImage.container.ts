@@ -35,8 +35,8 @@ export class EditorEntityImageContainer<const out T extends EditorImageFile, >
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-        return this.#reference.getFromGameStyle(gameStyle,)
     public get(gameStyle?: Nullable<GameStyles>,): Array<T> {
+        return this.#reference.getFromGameStyle(gameStyle,).toArray()
     }
 
     //endregion -------------------- Methods --------------------

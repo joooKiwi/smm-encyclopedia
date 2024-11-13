@@ -663,7 +663,7 @@ export abstract class EditorVoices
             return this.#entityReferences
 
         const reference = this._createEntityReferences()
-        if (reference instanceof Array)
+        if (isArray(reference,))
             return this.#entityReferences = reference
         if (Import.Entities.CompanionEnum.get.hasValueByName(reference,))
             return this.#entityReferences = [Import.Entities.CompanionEnum.get.getValueByName(reference,),]

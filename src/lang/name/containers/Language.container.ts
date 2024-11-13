@@ -20,7 +20,7 @@ export class LanguageContainer<const T,
 
     public constructor(value: | S | A,) {
         this.#original = value
-        if (value instanceof Array) {
+        if (isArray(value,)) {
             this.#singleValue = null
             this.#arrayValue = value
         } else {

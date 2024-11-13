@@ -549,7 +549,7 @@ export class Limits
         const link = this._entityLink
         return this.#entityLink = link == null
             ? EMPTY_ARRAY
-            : link instanceof Array
+            : isArray(link,)
                 ? [link[0].reference, link[1].reference,]
                 : [link.reference,]
     }
