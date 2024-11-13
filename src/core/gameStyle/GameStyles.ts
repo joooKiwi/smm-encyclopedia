@@ -511,15 +511,6 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
     public abstract getReference(entity: Entity,): PossibleOtherEntities
 
-
-    public static get gameStyles_smm1(): GameStyles_ArrayInSMM1 {
-        return this.#GAME_STYLES_SMM1 ??= [this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U,]
-    }
-
-    public static get gameStyles_smm2(): GameStyles_ArrayInSMM2 {
-        return this.#GAME_STYLES_SMM2 ??= this.CompanionEnum.get.values.toArray() as GameStyles_ArrayInSMM2
-    }
-
     //endregion -------------------- Methods --------------------
 
 }
@@ -536,6 +527,11 @@ export namespace GameStyles {
     export const NSMBU = GameStyles.NEW_SUPER_MARIO_BROS_U
     /** An alias of {@link GameStyles.SUPER_MARIO_3D_WORLD} */
     export const SM3DW = GameStyles.SUPER_MARIO_3D_WORLD
+
+    /** The {@link GameStyles} present in {@link SMM1} */
+    export const gameStyles_smm1: GameStyles_ArrayInSMM1 = [SMB, SMB3, SMW, NSMBU,]
+    /** The {@link GameStyles} present in {@link SMM2} */
+    export const gameStyle_smm2: GameStyles_ArrayInSMM2 = [SMB, SMB3, SMW, NSMBU, SM3DW,]
 
 }
 

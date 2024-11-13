@@ -1079,7 +1079,6 @@ export abstract class SoundEffects
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffect>
-    static #soundEffect_games?: SoundEffectGames
 
     #reference?: SoundEffect
     readonly #englishName
@@ -1333,16 +1332,24 @@ export abstract class SoundEffects
 
     //endregion -------------------- Getter methods (SMM2 sound) --------------------
 
-    //endregion -------------------- Getter methods (sound) --------------------
-
-    /** Every {@link SoundEffects} that is also a {@link GameReferences} */
-    public static get soundEffect_games(): SoundEffectGames {
-        return this.#soundEffect_games ??= [this.SUPER_MARIO_KART_MUSIC, this.SUPER_MARIO_64_MUSIC, this.SUPER_MARIO_SUNSHINE_MUSIC, this.SUPER_MARIO_GALAXY_MUSIC,]
-    }
-
-    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace SoundEffects {
+
+    /** An alias of {@link SoundEffects.SUPER_MARIO_KART_MUSIC} */
+    export const SMK = SoundEffects.SUPER_MARIO_KART_MUSIC
+    /** An alias of {@link SoundEffects.SUPER_MARIO_64_MUSIC} */
+    export const SM64 = SoundEffects.SUPER_MARIO_64_MUSIC
+    /** An alias of {@link SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC} */
+    export const SMS = SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC
+    /** An alias of {@link SoundEffects.SUPER_MARIO_GALAXY_MUSIC} */
+    export const SMG = SoundEffects.SUPER_MARIO_GALAXY_MUSIC
+
+    /** Every {@link SoundEffects} that is also a {@link GameReferences} */
+    export const soundEffect_games: SoundEffectGames = [SMK, SM64, SMS, SMG,]
 
 }
 

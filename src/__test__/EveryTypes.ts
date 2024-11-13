@@ -60,9 +60,10 @@ import {Versions}              from 'core/version/Versions'
 import {CourseTags}            from 'core/courseTag/CourseTags'
 import {INFINITY}              from 'util/commonVariables'
 
-import SMM1 =   Games.SMM1
-import SMM2 =   Games.SMM2
-import SMM3DS = Games.SMM3DS
+import SMM1 =            Games.SMM1
+import SMM2 =            Games.SMM2
+import SMM3DS =          Games.SMM3DS
+import gameStyles_smm1 = GameStyles.gameStyles_smm1
 
 /**
  * @singleton
@@ -212,7 +213,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleAcronym_gameStyle_smm1() {
-        return this.#everyPossibleAcronym_gameStyle_smm1 ??= GameStyles.gameStyles_smm1.map(limit => limit.acronym,)
+        return this.#everyPossibleAcronym_gameStyle_smm1 ??= gameStyles_smm1.map(limit => limit.acronym,)
     }
 
     //endregion -------------------- Game style --------------------

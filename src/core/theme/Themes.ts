@@ -188,9 +188,6 @@ export abstract class Themes
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>
-    static #COURSES: readonly Themes[]
-    static #COURSES_SMM1: readonly Themes[]
-    static #WORLDS: readonly Themes[]
 
     #reference?: CourseAndWorldTheme
     readonly #englishName
@@ -266,46 +263,46 @@ export abstract class Themes
         return EMPTY_ARRAY
     }
 
-
-    public static get courseThemes(): readonly Themes[] {
-        return this.#COURSES ??= [
-            this.GROUND,
-            this.UNDERGROUND,
-            this.UNDERWATER,
-            this.DESERT,
-            this.SNOW,
-            this.SKY,
-            this.FOREST,
-            this.GHOST_HOUSE,
-            this.AIRSHIP,
-            this.CASTLE,
-        ]
-    }
-
-    public static get courseThemes_smm1(): readonly Themes[] {
-        return this.#COURSES_SMM1 ??= [
-            this.GROUND,
-            this.UNDERGROUND,
-            this.UNDERWATER,
-            this.GHOST_HOUSE,
-            this.AIRSHIP,
-            this.CASTLE,
-        ]
-    }
-
-    public static get worldThemes(): readonly Themes[] {
-        return this.#WORLDS ??= [
-            this.GROUND,
-            this.UNDERGROUND,
-            this.DESERT,
-            this.SNOW,
-            this.SKY,
-            this.FOREST,
-            this.VOLCANO,
-            this.SPACE,
-        ]
-    }
-
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace Themes {
+
+    /** All the course themes (in any "Super Mario Maker" game)*/
+    export const courseThemes = [
+        Themes.GROUND,
+        Themes.UNDERGROUND,
+        Themes.UNDERWATER,
+        Themes.DESERT,
+        Themes.SNOW,
+        Themes.SKY,
+        Themes.FOREST,
+        Themes.GHOST_HOUSE,
+        Themes.AIRSHIP,
+        Themes.CASTLE,
+    ] as const
+
+    /** All the course themes (in {@link SMM1}) */
+    export const courseThemes_smm1 = [
+        Themes.GROUND,
+        Themes.UNDERGROUND,
+        Themes.UNDERWATER,
+        Themes.GHOST_HOUSE,
+        Themes.AIRSHIP,
+        Themes.CASTLE,
+    ] as const
+
+    /** All the world themes (only in {@link SMM2}) */
+    export const worldThemes = [
+        Themes.GROUND,
+        Themes.UNDERGROUND,
+        Themes.DESERT,
+        Themes.SNOW,
+        Themes.SKY,
+        Themes.FOREST,
+        Themes.VOLCANO,
+        Themes.SPACE,
+    ] as const
 
 }

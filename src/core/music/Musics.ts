@@ -453,4 +453,17 @@ export class Musics
 
 }
 
+export namespace Musics {
+
+    /** An alias of {@link Musics.SUPER_MARIO_KART} */
+    export const SMK = Musics.SUPER_MARIO_KART
+    /** An alias of {@link Musics.SUPER_MARIO_64} */
+    export const SM64 = Musics.SUPER_MARIO_64
+    /** An alias of {@link Musics.SUPER_MARIO_SUNSHINE} */
+    export const SMS = Musics.SUPER_MARIO_SUNSHINE
+    /** An alias of {@link Musics.SUPER_MARIO_GALAXY} */
+    export const SMG = Musics.SUPER_MARIO_GALAXY
+
+}
+
 type PossibleMusic = | SingleSoundEffectMusic | SoundEffectMusicWithDifferentEditor | BackgroundMusic | NonChangeableSoundEffectBackgroundMusic | SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect
