@@ -13,6 +13,7 @@ enum Enum {
     STARTING_PARENTHESIS, ENDING_PARENTHESIS,
     STARTING_BRACKET, ENDING_BRACKET,
     STARTING_BRACE, ENDING_BRACE,
+    STARTING_CHEVRON, ENDING_CHEVRON,
 
     SLASH, VERTICAL_SLASH,
 
@@ -38,9 +39,10 @@ export type VariableCharactersByBoolean<B extends boolean, > = VariableValueByBo
 export type VariableCharacterByCharacter<B extends boolean, C extends PossibleSingleCharacter, > = VariableValueByBoolean<B, SpaceEvenCharacterFromEquivalenceMap<C>, SpaceUnevenCharacterFromEquivalenceMap<C>>
 export type VariableCharacterByString<B extends boolean, C extends string, > = C extends PossibleSingleCharacter ? VariableCharacterByCharacter<B, C> : PossibleSingleCharacter
 
-export type TextInParentheses<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceUnevenCharacter_StartingParenthesis}${S}${SpaceUnevenCharacter_EndingParenthesis}`, `${SpaceEvenCharacter_StartingParenthesis}${S}${SpaceEvenCharacter_EndingParenthesis}`>
-export type TextInBrackets<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceUnevenCharacter_StartingBrace}${S}${SpaceUnevenCharacter_EndingBrace}`, `${SpaceEvenCharacter_StartingBrace}${S}${SpaceEvenCharacter_EndingBrace}`>
-export type TextInBraces<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceUnevenCharacter_StartingBracket}${S}${SpaceUnevenCharacter_EndingBracket}`, `${SpaceEvenCharacter_StartingBracket}${S}${SpaceEvenCharacter_EndingBracket}`>
+export type TextInParentheses<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceEvenCharacter_StartingParenthesis}${S}${SpaceEvenCharacter_EndingParenthesis}`, `${SpaceUnevenCharacter_StartingParenthesis}${S}${SpaceUnevenCharacter_EndingParenthesis}`>
+export type TextInBrackets<B extends boolean, S extends string, > =    VariableValueByBoolean<B, `${SpaceEvenCharacter_StartingBracket    }${S}${SpaceEvenCharacter_EndingBracket}`,     `${SpaceUnevenCharacter_StartingBracket    }${S}${SpaceUnevenCharacter_EndingBracket}`>
+export type TextInBraces<B extends boolean, S extends string, > =      VariableValueByBoolean<B, `${SpaceEvenCharacter_StartingBrace      }${S}${SpaceEvenCharacter_EndingBrace}`,       `${SpaceUnevenCharacter_StartingBrace      }${S}${SpaceUnevenCharacter_EndingBrace}`>
+export type TextInChevrons<B extends boolean, S extends string, > =    VariableValueByBoolean<B, `${SpaceEvenCharacter_StartingChevron    }${S}${SpaceEvenCharacter_EndingChevron}`,     `${SpaceUnevenCharacter_StartingChevron    }${S}${SpaceUnevenCharacter_EndingChevron}`>
 
 //endregion -------------------- Utility types --------------------
 //region -------------------- Character types --------------------
@@ -405,6 +407,8 @@ export interface CharactersEquivalencesMap {
     ']': '］'
     '{': '｛'
     '}': '｝'
+    '⟨': '＜'
+    '⟩': '＞'
 
     'a': 'ａ'
     'b': 'ｂ'
@@ -488,6 +492,8 @@ export interface CharactersEquivalencesMap {
     '］': ']'
     '｛': '{'
     '｝': '}'
+    '＜': '⟨'
+    '＞': '⟩'
 
     '＆': '&'
 

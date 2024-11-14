@@ -2,8 +2,8 @@ import type {Singleton}                    from '@joookiwi/enumerable'
 import type {Array, Nullable, StringArray} from '@joookiwi/type'
 import {CompanionEnum, Enum}               from '@joookiwi/enumerable'
 
-import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, Braces, Brackets, Numbers, Parentheses, Points, RomainAlphabet, Slashes, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleUppercaseRomainAlphabet_Array, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean} from 'lang/Characters.types'
-import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/Characters.companionEnumDeclaration'
+import type {CharactersEquivalencesMap, Names, Ordinals, PossibleSingleCharacter, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString, VariableValueByBoolean, SpaceUnevenCharacter, SpaceEvenCharacter, TextInChevrons} from 'lang/Characters.types'
+import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                 from 'lang/Characters.companionEnumDeclaration'
 
 export class Characters
     extends Enum<Ordinals, Names> {
@@ -22,10 +22,12 @@ export class Characters
 
     public static readonly STARTING_PARENTHESIS = new Characters('(',  '（',)
     public static readonly ENDING_PARENTHESIS =   new Characters(')',  '）',)
-    public static readonly STARTING_BRACKET =     new Characters('(',  '（',)
-    public static readonly ENDING_BRACKET =       new Characters(')',  '）',)
-    public static readonly STARTING_BRACE =       new Characters('(',  '（',)
-    public static readonly ENDING_BRACE =         new Characters(')',  '）',)
+    public static readonly STARTING_BRACKET =     new Characters('[',  '［',)
+    public static readonly ENDING_BRACKET =       new Characters(']',  '］',)
+    public static readonly STARTING_BRACE =       new Characters('{',  '｛',)
+    public static readonly ENDING_BRACE =         new Characters('}',  '｝',)
+    public static readonly STARTING_CHEVRON =     new Characters('⟨',  '＜',)
+    public static readonly ENDING_CHEVRON =       new Characters('⟩',  '＞',)
 
     public static readonly SLASH =                new Characters('/',  '／',)
     public static readonly VERTICAL_SLASH =       new Characters('|',  '｜',)
