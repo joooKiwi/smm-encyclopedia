@@ -11,6 +11,8 @@ import ThemeImage                from 'core/theme/ThemeImage'
 import {Themes}                  from 'core/theme/Themes'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
+import COURSE_THEMES = Themes.COURSE_THEMES
+
 /**
  * @deprecated This should be replaced with something else
  * @reactComponent
@@ -28,7 +30,7 @@ export default function CourseThemeComponent({reference, name, displayAllAsText,
         && reference.isInCastleTheme) {
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('theme.course.all', {courseThemeImage: <Image file={COURSE_THEME_IMAGE_FILE}/>,},)}/>
-        return <div key={`${name.english} (every course themes)`}>{Themes.courseThemes.map(courseTheme =>
+        return <div key={`${name.english} (every course themes)`}>{COURSE_THEMES.map(courseTheme =>
             <ThemeImage reference={courseTheme}/>,)}</div>
     }
 

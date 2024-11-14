@@ -4,6 +4,8 @@ import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 
 import {Themes} from 'core/theme/Themes'
 
+import COURSE_THEMES = Themes.COURSE_THEMES
+
 /**
  * A map made to be handled the same way as a {@link Map},
  * but with a specification about the {@link Themes}
@@ -22,7 +24,7 @@ export class ThemeMap<const out REFERENCE extends ThemeProperty = ThemeProperty,
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Themes.courseThemes.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(COURSE_THEMES.map(it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

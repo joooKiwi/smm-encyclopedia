@@ -13,7 +13,7 @@ export default function GlobalOptionComponent() {
     // const isNoGame = !smm1Value && !smm3dsValue && !smm2Value
     // const isSmm1Or3DSExclusive = (smm1Value || smm3dsValue) && !smm2Value
 
-    // const everyThemeOptions = Themes.courseThemes.map(({name,}) => GlobalAppOption.getValue(name) as GlobalAppOption<GlobalThemeOption>)
+    // const everyThemeOptions = Themes.COURSE_THEMES.map(({name,}) => GlobalAppOption.getValue(name) as GlobalAppOption<GlobalThemeOption>)
 
     return <div id="parameter-container" className="container-fluid">
         {/*<div key="option container (texts, images & sounds)" id="textsAndImagesAndSounds-option-container" className="container-fluid">*/}

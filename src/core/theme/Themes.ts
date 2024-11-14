@@ -271,8 +271,11 @@ export abstract class Themes
 
 export namespace Themes {
 
+    /** All the themes (in any "Super Mario Maker" game)*/
+    export const ALL = Themes.CompanionEnum.get.values.toArray()
+
     /** All the course themes (in any "Super Mario Maker" game)*/
-    export const courseThemes = [
+    export const COURSE_THEMES = [
         Themes.GROUND,
         Themes.UNDERGROUND,
         Themes.UNDERWATER,
@@ -286,7 +289,7 @@ export namespace Themes {
     ] as const
 
     /** All the course themes (in {@link SMM1}) */
-    export const courseThemes_smm1 = [
+    export const COURSE_THEMES_SMM1 = [
         Themes.GROUND,
         Themes.UNDERGROUND,
         Themes.UNDERWATER,
@@ -296,7 +299,7 @@ export namespace Themes {
     ] as const
 
     /** All the world themes (only in {@link SMM2}) */
-    export const worldThemes = [
+    export const WORLD_THEMES = [
         Themes.GROUND,
         Themes.UNDERGROUND,
         Themes.DESERT,

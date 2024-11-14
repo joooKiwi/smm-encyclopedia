@@ -309,11 +309,11 @@ export class EveryTypes {
     //region -------------------- Theme --------------------
 
     public get everyPossibleName_theme() {
-        return this.#everyPossibleName_theme ??= Themes.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_theme ??= Themes.ALL.map(it => it.englishName,)
     }
 
     public get everyPossibleName_courseTheme_smm1() {
-        return this.#everyPossibleName_courseTheme_smm1 ??= Themes.courseThemes_smm1.map(it => it.englishName,)
+        return this.#everyPossibleName_courseTheme_smm1 ??= Themes.COURSE_THEMES_SMM1.map(it => it.englishName,)
     }
 
     //endregion -------------------- Theme --------------------
