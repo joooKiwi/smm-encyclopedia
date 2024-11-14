@@ -739,6 +739,7 @@ export abstract class EveryLanguages
         return this.parentheses[1]
     }
 
+
     public get brackets(): PossibleBrackets_Array {
         return this.#brackets ??= getBrackets(this.isASpaceEvenLanguage,)
     }
@@ -750,6 +751,7 @@ export abstract class EveryLanguages
     public get endingBrackets(): PossibleEndingBracket {
         return this.brackets[1]
     }
+
 
     public get braces(): PossibleBraces_Array {
         return this.#braces ??= getBraces(this.isASpaceEvenLanguage,)

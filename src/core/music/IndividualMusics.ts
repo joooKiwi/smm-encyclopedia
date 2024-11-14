@@ -666,7 +666,7 @@ export class IndividualMusics<const FILE extends PossibleSoundFile = PossibleSou
 
     //endregion -------------------- Enum instances (sml) --------------------
 
-    //region -------------------- Enum instances (course world) --------------------
+    //region -------------------- Enum instances (world) --------------------
 
     public static readonly GROUND_WORLD_EDITOR =      new IndividualMusics('editor world music (ground)',      repeatableAtTheEnd('BGM_WorldMap_Plain_Edit',),)
     public static readonly GROUND_WORLD =             new IndividualMusics('world music (ground)',             repeatableAtTheEnd('BGM_WorldMap_Plain_Play',),)
@@ -685,7 +685,7 @@ export class IndividualMusics<const FILE extends PossibleSoundFile = PossibleSou
     public static readonly SPACE_WORLD_EDITOR =       new IndividualMusics('editor world music (space)',       repeatableDuringThePlay('BGM_WorldMap_Night_Edit', 150_496,),)
     public static readonly SPACE_WORLD =              new IndividualMusics('world music (space)',              repeatableDuringThePlay('BGM_WorldMap_Night_Play', 150_496,),)
 
-    //endregion -------------------- Enum instances (course world) --------------------
+    //endregion -------------------- Enum instances (world) --------------------
 
     public static readonly P_SWITCH = new IndividualMusics('p-switch', null,)
 
