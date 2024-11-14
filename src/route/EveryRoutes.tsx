@@ -231,6 +231,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
 
     }
+
     /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays} and {@link GameCollection}) */
     private static readonly ListCardTable_AnyGame_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const SIMPLE_NAME extends string,
         const SIMPLE_PATH extends string, >
@@ -311,6 +312,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
 
     }
+
     /** A representation of an {@link EveryRoutes} instance with only the {@link GameCollection} in its route */
     private static readonly AnyGame_EveryRoutes = class AnyGame_EveryRoutes<const SIMPLE_NAME extends string,
         const SIMPLE_PATH extends string, >
@@ -346,6 +348,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
 
     }
+
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM1} */
     private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const SIMPLE_NAME extends string,
         const SIMPLE_PATH extends string, >

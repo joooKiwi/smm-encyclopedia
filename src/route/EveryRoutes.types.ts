@@ -121,11 +121,11 @@ interface SimpleRouteMap {
     EVERY_ROUTE: Of<'EVERY_ROUTE'>
 }
 
-//region -------------------- Simple route map types --------------------
+//region -------------------- Route types --------------------
 
 type PossibleViewDisplay = | 'table' | 'card' | 'list'
 
-//region -------------------- Simple route map types (name) --------------------
+//region -------------------- Route name --------------------
 
 /** The union of both the first and second value both separately and joined with a space */
 type NameJoin1<NAME extends string, FIRST extends string, > = | NAME | `${NAME} (${FIRST})`
@@ -148,8 +148,9 @@ type NameInOnlySmm2<NAME extends string, > =                       NameJoin2<NAM
 type NameInTableAndAnyGame<NAME extends string, > =                NameJoin2<NAME, PossibleViewDisplay, NameInAllGame>
 type NameInTableAndAnyGameAndAnyGameStyle<NAME extends string, > = | NameJoin3<NAME, PossibleViewDisplay, NameInSMM1Or3DS, NameInAllGameStyleInSMM1Or3DS>
                                                                    | NameJoin3<NAME, PossibleViewDisplay, NameInAllGameOrRelatedToSMM2, NameInAllGameStyle>
-//endregion -------------------- Simple route map types (name) --------------------
-//region -------------------- Simple route map types (path) --------------------
+
+//endregion -------------------- Route name --------------------
+//region -------------------- Route path --------------------
 
 /** The union of both the first value both separately and joined with a slash */
 type PathJoin1<PATH extends string, FIRST extends string, > = | PATH | `/${FIRST}${PATH}`
@@ -172,8 +173,9 @@ type PathInOnlySmm2<PATH extends string, > =                    PathJoin2<PATH, 
 type PathInTableAndAnyGame<PATH extends string, > =             PathJoin2<PATH, PossibleViewDisplay, PathInAllGame>
 type PathInTableAndAnyGameAndGameStyle<PATH extends string, > = | PathJoin3<PATH, PossibleViewDisplay, PathInSMM1Or3DS, PathInAllGameStyleInSMM1Or3DS>
                                                                 | PathJoin3<PATH, PossibleViewDisplay, PathInAllGameOrRelatedToSMM2, PathInAllGameStyle>
-//endregion -------------------- Simple route map types (path) --------------------
-//region -------------------- Simple route map types (name + path) --------------------
+
+//endregion -------------------- Route path --------------------
+//region -------------------- Route (name + path) --------------------
 
 /** The routes directly from the arguments */
 type Of<NAME extends Names, > =  readonly [typeof EveryRoutes[NAME]['simpleName'], typeof EveryRoutes[NAME]['simplePath'],]
@@ -184,9 +186,9 @@ type InOnlySmm2<NAME extends Names, > =                       readonly [NameInOn
 type InTableAndAnyGame<NAME extends Names, > =                readonly [NameInTableAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>,                PathInTableAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
 type InTableAndAnyGameAndAnyGameStyle<NAME extends Names, > = readonly [NameInTableAndAnyGameAndAnyGameStyle<typeof EveryRoutes[NAME]['simpleName']>, PathInTableAndAnyGameAndGameStyle<typeof EveryRoutes[NAME]['simplePath']>,]
 
-//endregion -------------------- Simple route map types (name + path) --------------------
+//endregion -------------------- Route (name + path) --------------------
 
-//endregion -------------------- Simple route map types --------------------
+//endregion -------------------- Route types --------------------
 
 /** The possible name for a route with nothing surrounding it */
 export type PossibleSimpleRouteName = typeof EveryRoutes[Names]['simpleName']
