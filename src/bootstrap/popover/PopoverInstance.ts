@@ -7,6 +7,7 @@ import type {PopoverEventCallback, PopoverInstanceDeclaration} from 'bootstrap/p
 
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
+import {TooltipInstance}                  from 'bootstrap/tooltip/TooltipInstance'
 
 /**
  * An instance holder for a {@link bootstrap.Popover Popover}
@@ -19,18 +20,6 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
     implements PopoverInstanceDeclaration<ELEMENT, ID> {
 
     //region -------------------- Fields --------------------
-
-    public static DEFAULT_OPTIONS: Partial<Popover.Options> = {}
-    /** @see Popover.Events.show */
-    public static readonly SHOW_EVENT = `show${Popover.EVENT_KEY}` as Popover.Events.show
-    /** @see Popover.Events.shown */
-    public static readonly SHOWN_EVENT = `shown${Popover.EVENT_KEY}` as Popover.Events.shown
-    /** @see Popover.Events.hide */
-    public static readonly HIDE_EVENT = `hide${Popover.EVENT_KEY}` as Popover.Events.hide
-    /** @see Popover.Events.hidden */
-    public static readonly HIDDEN_EVENT = `hidden${Popover.EVENT_KEY}` as Popover.Events.hidden
-    /** @see Popover.Events.inserted */
-    public static readonly INSERTED_EVENT = `inserted${Popover.EVENT_KEY}` as Popover.Events.inserted
 
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Popover.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Popover.Events.shown>>
@@ -165,5 +154,21 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace PopoverInstance {
+
+    export let DEFAULT_OPTIONS: Partial<Popover.Options> = {}
+    /** @see Popover.Events.show */
+    export const SHOW_EVENT = `show${Popover.EVENT_KEY}` as Popover.Events.show
+    /** @see Popover.Events.shown */
+    export const SHOWN_EVENT = `shown${Popover.EVENT_KEY}` as Popover.Events.shown
+    /** @see Popover.Events.hide */
+    export const HIDE_EVENT = `hide${Popover.EVENT_KEY}` as Popover.Events.hide
+    /** @see Popover.Events.hidden */
+    export const HIDDEN_EVENT = `hidden${Popover.EVENT_KEY}` as Popover.Events.hidden
+    /** @see Popover.Events.inserted */
+    export const INSERTED_EVENT = `inserted${Popover.EVENT_KEY}` as Popover.Events.inserted
 
 }

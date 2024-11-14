@@ -5,14 +5,17 @@ import type {ContentTranslationKey, EntityContentTranslationKey, GameContentTran
 
 import {TranslationUtility} from 'lang/components/TranslationUtility'
 
+import replaceInTranslation = TranslationUtility.replaceInTranslation
+import testTranslation =      TranslationUtility.testTranslation
+
 function translateFromAny<const N extends Namespace, const V extends SingleTranslationKey<N> = SingleTranslationKey<N>, const REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: Nullable<REPLACE> = null,): ReactElementOrString {
     if (replace == null)
         // @ts-ignore
         return i18next.t(value, {ns: namespace,},)
 
-    const valueFromTranslation = TranslationUtility.testTranslation(i18next.t(value, {ns: namespace, returnObjects: true, interpolation: {skipOnVariables: true,},})) as string
+    const valueFromTranslation = testTranslation(i18next.t(value, {ns: namespace, returnObjects: true, interpolation: {skipOnVariables: true,},})) as string
 
-    return TranslationUtility.replaceInTranslation(valueFromTranslation, replace,)
+    return replaceInTranslation(valueFromTranslation, replace,)
 }
 
 /**

@@ -792,183 +792,6 @@ export class IndividualMusics<const FILE extends PossibleSoundFile = PossibleSou
     readonly #file: FILE
     readonly #titleName: TITLE_NAME
 
-    //region -------------------- Fields (editor) --------------------
-
-    public static readonly SMB_GROUND_EDITORS = [IndividualMusics.GROUND_SMB_EDITOR_1, IndividualMusics.GROUND_SMB_EDITOR_2, IndividualMusics.GROUND_SMB_EDITOR_3, IndividualMusics.GROUND_SMB_EDITOR_4, IndividualMusics.GROUND_SMB_EDITOR_5, IndividualMusics.GROUND_SMB_EDITOR_6, IndividualMusics.GROUND_SMB_EDITOR_7,] as const
-    public static readonly SMB3_GROUND_EDITORS = [IndividualMusics.GROUND_SMB3_EDITOR_1, IndividualMusics.GROUND_SMB3_EDITOR_2, IndividualMusics.GROUND_SMB3_EDITOR_3, IndividualMusics.GROUND_SMB3_EDITOR_4, IndividualMusics.GROUND_SMB3_EDITOR_5, IndividualMusics.GROUND_SMB3_EDITOR_6, IndividualMusics.GROUND_SMB3_EDITOR_7,] as const
-    public static readonly SMW_GROUND_EDITORS = [IndividualMusics.GROUND_SMW_EDITOR_1, IndividualMusics.GROUND_SMW_EDITOR_2, IndividualMusics.GROUND_SMW_EDITOR_3, IndividualMusics.GROUND_SMW_EDITOR_4, IndividualMusics.GROUND_SMW_EDITOR_5, IndividualMusics.GROUND_SMW_EDITOR_6, IndividualMusics.GROUND_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_GROUND_EDITORS = [IndividualMusics.GROUND_NSMBU_EDITOR_1, IndividualMusics.GROUND_NSMBU_EDITOR_2, IndividualMusics.GROUND_NSMBU_EDITOR_3, IndividualMusics.GROUND_NSMBU_EDITOR_4, IndividualMusics.GROUND_NSMBU_EDITOR_5, IndividualMusics.GROUND_NSMBU_EDITOR_6, IndividualMusics.GROUND_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_GROUND_EDITORS = [IndividualMusics.GROUND_SM3DW_EDITOR_1, IndividualMusics.GROUND_SM3DW_EDITOR_2, IndividualMusics.GROUND_SM3DW_EDITOR_3, IndividualMusics.GROUND_SM3DW_EDITOR_4, IndividualMusics.GROUND_SM3DW_EDITOR_5, IndividualMusics.GROUND_SM3DW_EDITOR_6, IndividualMusics.GROUND_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_SMB_EDITOR_1, IndividualMusics.UNDERGROUND_SMB_EDITOR_2, IndividualMusics.UNDERGROUND_SMB_EDITOR_3, IndividualMusics.UNDERGROUND_SMB_EDITOR_4, IndividualMusics.UNDERGROUND_SMB_EDITOR_5, IndividualMusics.UNDERGROUND_SMB_EDITOR_6, IndividualMusics.UNDERGROUND_SMB_EDITOR_7,] as const
-    public static readonly SMB3_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_SMB3_EDITOR_1, IndividualMusics.UNDERGROUND_SMB3_EDITOR_2, IndividualMusics.UNDERGROUND_SMB3_EDITOR_3, IndividualMusics.UNDERGROUND_SMB3_EDITOR_4, IndividualMusics.UNDERGROUND_SMB3_EDITOR_5, IndividualMusics.UNDERGROUND_SMB3_EDITOR_6, IndividualMusics.UNDERGROUND_SMB3_EDITOR_7,] as const
-    public static readonly SMW_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_SMW_EDITOR_1, IndividualMusics.UNDERGROUND_SMW_EDITOR_2, IndividualMusics.UNDERGROUND_SMW_EDITOR_3, IndividualMusics.UNDERGROUND_SMW_EDITOR_4, IndividualMusics.UNDERGROUND_SMW_EDITOR_5, IndividualMusics.UNDERGROUND_SMW_EDITOR_6, IndividualMusics.UNDERGROUND_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_NSMBU_EDITOR_1, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_2, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_3, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_4, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_5, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_6, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_SM3DW_EDITOR_1, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_2, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_3, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_4, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_5, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_6, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_SMB_EDITOR_1, IndividualMusics.UNDERWATER_SMB_EDITOR_2, IndividualMusics.UNDERWATER_SMB_EDITOR_3, IndividualMusics.UNDERWATER_SMB_EDITOR_4, IndividualMusics.UNDERWATER_SMB_EDITOR_5, IndividualMusics.UNDERWATER_SMB_EDITOR_6, IndividualMusics.UNDERWATER_SMB_EDITOR_7,] as const
-    public static readonly SMB3_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_SMB3_EDITOR_1, IndividualMusics.UNDERWATER_SMB3_EDITOR_2, IndividualMusics.UNDERWATER_SMB3_EDITOR_3, IndividualMusics.UNDERWATER_SMB3_EDITOR_4, IndividualMusics.UNDERWATER_SMB3_EDITOR_5, IndividualMusics.UNDERWATER_SMB3_EDITOR_6, IndividualMusics.UNDERWATER_SMB3_EDITOR_7,] as const
-    public static readonly SMW_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_SMW_EDITOR_1, IndividualMusics.UNDERWATER_SMW_EDITOR_2, IndividualMusics.UNDERWATER_SMW_EDITOR_3, IndividualMusics.UNDERWATER_SMW_EDITOR_4, IndividualMusics.UNDERWATER_SMW_EDITOR_5, IndividualMusics.UNDERWATER_SMW_EDITOR_6, IndividualMusics.UNDERWATER_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_NSMBU_EDITOR_1, IndividualMusics.UNDERWATER_NSMBU_EDITOR_2, IndividualMusics.UNDERWATER_NSMBU_EDITOR_3, IndividualMusics.UNDERWATER_NSMBU_EDITOR_4, IndividualMusics.UNDERWATER_NSMBU_EDITOR_5, IndividualMusics.UNDERWATER_NSMBU_EDITOR_6, IndividualMusics.UNDERWATER_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_SM3DW_EDITOR_1, IndividualMusics.UNDERWATER_SM3DW_EDITOR_2, IndividualMusics.UNDERWATER_SM3DW_EDITOR_3, IndividualMusics.UNDERWATER_SM3DW_EDITOR_4, IndividualMusics.UNDERWATER_SM3DW_EDITOR_5, IndividualMusics.UNDERWATER_SM3DW_EDITOR_6, IndividualMusics.UNDERWATER_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_DESERT_EDITORS = [IndividualMusics.DESERT_SMB_EDITOR_1, IndividualMusics.DESERT_SMB_EDITOR_2, IndividualMusics.DESERT_SMB_EDITOR_3, IndividualMusics.DESERT_SMB_EDITOR_4, IndividualMusics.DESERT_SMB_EDITOR_5, IndividualMusics.DESERT_SMB_EDITOR_6, IndividualMusics.DESERT_SMB_EDITOR_7,] as const
-    public static readonly SMB3_DESERT_EDITORS = [IndividualMusics.DESERT_SMB3_EDITOR_1, IndividualMusics.DESERT_SMB3_EDITOR_2, IndividualMusics.DESERT_SMB3_EDITOR_3, IndividualMusics.DESERT_SMB3_EDITOR_4, IndividualMusics.DESERT_SMB3_EDITOR_5, IndividualMusics.DESERT_SMB3_EDITOR_6, IndividualMusics.DESERT_SMB3_EDITOR_7,] as const
-    public static readonly SMW_DESERT_EDITORS = [IndividualMusics.DESERT_SMW_EDITOR_1, IndividualMusics.DESERT_SMW_EDITOR_2, IndividualMusics.DESERT_SMW_EDITOR_3, IndividualMusics.DESERT_SMW_EDITOR_4, IndividualMusics.DESERT_SMW_EDITOR_5, IndividualMusics.DESERT_SMW_EDITOR_6, IndividualMusics.DESERT_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_DESERT_EDITORS = [IndividualMusics.DESERT_NSMBU_EDITOR_1, IndividualMusics.DESERT_NSMBU_EDITOR_2, IndividualMusics.DESERT_NSMBU_EDITOR_3, IndividualMusics.DESERT_NSMBU_EDITOR_4, IndividualMusics.DESERT_NSMBU_EDITOR_5, IndividualMusics.DESERT_NSMBU_EDITOR_6, IndividualMusics.DESERT_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_DESERT_EDITORS = [IndividualMusics.DESERT_SM3DW_EDITOR_1, IndividualMusics.DESERT_SM3DW_EDITOR_2, IndividualMusics.DESERT_SM3DW_EDITOR_3, IndividualMusics.DESERT_SM3DW_EDITOR_4, IndividualMusics.DESERT_SM3DW_EDITOR_5, IndividualMusics.DESERT_SM3DW_EDITOR_6, IndividualMusics.DESERT_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_SNOW_EDITORS = [IndividualMusics.SNOW_SMB_EDITOR_1, IndividualMusics.SNOW_SMB_EDITOR_2, IndividualMusics.SNOW_SMB_EDITOR_3, IndividualMusics.SNOW_SMB_EDITOR_4, IndividualMusics.SNOW_SMB_EDITOR_5, IndividualMusics.SNOW_SMB_EDITOR_6, IndividualMusics.SNOW_SMB_EDITOR_7,] as const
-    public static readonly SMB3_SNOW_EDITORS = [IndividualMusics.SNOW_SMB3_EDITOR_1, IndividualMusics.SNOW_SMB3_EDITOR_2, IndividualMusics.SNOW_SMB3_EDITOR_3, IndividualMusics.SNOW_SMB3_EDITOR_4, IndividualMusics.SNOW_SMB3_EDITOR_5, IndividualMusics.SNOW_SMB3_EDITOR_6, IndividualMusics.SNOW_SMB3_EDITOR_7,] as const
-    public static readonly SMW_SNOW_EDITORS = [IndividualMusics.SNOW_SMW_EDITOR_1, IndividualMusics.SNOW_SMW_EDITOR_2, IndividualMusics.SNOW_SMW_EDITOR_3, IndividualMusics.SNOW_SMW_EDITOR_4, IndividualMusics.SNOW_SMW_EDITOR_5, IndividualMusics.SNOW_SMW_EDITOR_6, IndividualMusics.SNOW_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_SNOW_EDITORS = [IndividualMusics.SNOW_NSMBU_EDITOR_1, IndividualMusics.SNOW_NSMBU_EDITOR_2, IndividualMusics.SNOW_NSMBU_EDITOR_3, IndividualMusics.SNOW_NSMBU_EDITOR_4, IndividualMusics.SNOW_NSMBU_EDITOR_5, IndividualMusics.SNOW_NSMBU_EDITOR_6, IndividualMusics.SNOW_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_SNOW_EDITORS = [IndividualMusics.SNOW_SM3DW_EDITOR_1, IndividualMusics.SNOW_SM3DW_EDITOR_2, IndividualMusics.SNOW_SM3DW_EDITOR_3, IndividualMusics.SNOW_SM3DW_EDITOR_4, IndividualMusics.SNOW_SM3DW_EDITOR_5, IndividualMusics.SNOW_SM3DW_EDITOR_6, IndividualMusics.SNOW_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_SKY_EDITORS = [IndividualMusics.SKY_SMB_EDITOR_1, IndividualMusics.SKY_SMB_EDITOR_2, IndividualMusics.SKY_SMB_EDITOR_3, IndividualMusics.SKY_SMB_EDITOR_4, IndividualMusics.SKY_SMB_EDITOR_5, IndividualMusics.SKY_SMB_EDITOR_6, IndividualMusics.SKY_SMB_EDITOR_7,] as const
-    public static readonly SMB3_SKY_EDITORS = [IndividualMusics.SKY_SMB3_EDITOR_1, IndividualMusics.SKY_SMB3_EDITOR_2, IndividualMusics.SKY_SMB3_EDITOR_3, IndividualMusics.SKY_SMB3_EDITOR_4, IndividualMusics.SKY_SMB3_EDITOR_5, IndividualMusics.SKY_SMB3_EDITOR_6, IndividualMusics.SKY_SMB3_EDITOR_7,] as const
-    public static readonly SMW_SKY_EDITORS = [IndividualMusics.SKY_SMW_EDITOR_1, IndividualMusics.SKY_SMW_EDITOR_2, IndividualMusics.SKY_SMW_EDITOR_3, IndividualMusics.SKY_SMW_EDITOR_4, IndividualMusics.SKY_SMW_EDITOR_5, IndividualMusics.SKY_SMW_EDITOR_6, IndividualMusics.SKY_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_SKY_EDITORS = [IndividualMusics.SKY_NSMBU_EDITOR_1, IndividualMusics.SKY_NSMBU_EDITOR_2, IndividualMusics.SKY_NSMBU_EDITOR_3, IndividualMusics.SKY_NSMBU_EDITOR_4, IndividualMusics.SKY_NSMBU_EDITOR_5, IndividualMusics.SKY_NSMBU_EDITOR_6, IndividualMusics.SKY_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_SKY_EDITORS = [IndividualMusics.SKY_SM3DW_EDITOR_1, IndividualMusics.SKY_SM3DW_EDITOR_2, IndividualMusics.SKY_SM3DW_EDITOR_3, IndividualMusics.SKY_SM3DW_EDITOR_4, IndividualMusics.SKY_SM3DW_EDITOR_5, IndividualMusics.SKY_SM3DW_EDITOR_6, IndividualMusics.SKY_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_FOREST_EDITORS = [IndividualMusics.FOREST_SMB_EDITOR_1, IndividualMusics.FOREST_SMB_EDITOR_2, IndividualMusics.FOREST_SMB_EDITOR_3, IndividualMusics.FOREST_SMB_EDITOR_4, IndividualMusics.FOREST_SMB_EDITOR_5, IndividualMusics.FOREST_SMB_EDITOR_6, IndividualMusics.FOREST_SMB_EDITOR_7,] as const
-    public static readonly SMB3_FOREST_EDITORS = [IndividualMusics.FOREST_SMB3_EDITOR_1, IndividualMusics.FOREST_SMB3_EDITOR_2, IndividualMusics.FOREST_SMB3_EDITOR_3, IndividualMusics.FOREST_SMB3_EDITOR_4, IndividualMusics.FOREST_SMB3_EDITOR_5, IndividualMusics.FOREST_SMB3_EDITOR_6, IndividualMusics.FOREST_SMB3_EDITOR_7,] as const
-    public static readonly SMW_FOREST_EDITORS = [IndividualMusics.FOREST_SMW_EDITOR_1, IndividualMusics.FOREST_SMW_EDITOR_2, IndividualMusics.FOREST_SMW_EDITOR_3, IndividualMusics.FOREST_SMW_EDITOR_4, IndividualMusics.FOREST_SMW_EDITOR_5, IndividualMusics.FOREST_SMW_EDITOR_6, IndividualMusics.FOREST_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_FOREST_EDITORS = [IndividualMusics.FOREST_NSMBU_EDITOR_1, IndividualMusics.FOREST_NSMBU_EDITOR_2, IndividualMusics.FOREST_NSMBU_EDITOR_3, IndividualMusics.FOREST_NSMBU_EDITOR_4, IndividualMusics.FOREST_NSMBU_EDITOR_5, IndividualMusics.FOREST_NSMBU_EDITOR_6, IndividualMusics.FOREST_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_FOREST_EDITORS = [IndividualMusics.FOREST_SM3DW_EDITOR_1, IndividualMusics.FOREST_SM3DW_EDITOR_2, IndividualMusics.FOREST_SM3DW_EDITOR_3, IndividualMusics.FOREST_SM3DW_EDITOR_4, IndividualMusics.FOREST_SM3DW_EDITOR_5, IndividualMusics.FOREST_SM3DW_EDITOR_6, IndividualMusics.FOREST_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_SMB_EDITOR_1, IndividualMusics.GHOST_HOUSE_SMB_EDITOR_2, IndividualMusics.GHOST_HOUSE_SMB_EDITOR_3, IndividualMusics.GHOST_HOUSE_SMB_EDITOR_4, IndividualMusics.GHOST_HOUSE_SMB_EDITOR_5, IndividualMusics.GHOST_HOUSE_SMB_EDITOR_6, IndividualMusics.GHOST_HOUSE_SMB_EDITOR_7,] as const
-    public static readonly SMB3_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_1, IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_2, IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_3, IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_4, IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_5, IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_6, IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_7,] as const
-    public static readonly SMW_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_SMW_EDITOR_1, IndividualMusics.GHOST_HOUSE_SMW_EDITOR_2, IndividualMusics.GHOST_HOUSE_SMW_EDITOR_3, IndividualMusics.GHOST_HOUSE_SMW_EDITOR_4, IndividualMusics.GHOST_HOUSE_SMW_EDITOR_5, IndividualMusics.GHOST_HOUSE_SMW_EDITOR_6, IndividualMusics.GHOST_HOUSE_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_1, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_2, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_3, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_4, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_5, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_6, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_1, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_2, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_3, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_4, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_5, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_6, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_SMB_EDITOR_1, IndividualMusics.AIRSHIP_SMB_EDITOR_2, IndividualMusics.AIRSHIP_SMB_EDITOR_3, IndividualMusics.AIRSHIP_SMB_EDITOR_4, IndividualMusics.AIRSHIP_SMB_EDITOR_5, IndividualMusics.AIRSHIP_SMB_EDITOR_6, IndividualMusics.AIRSHIP_SMB_EDITOR_7,] as const
-    public static readonly SMB3_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_SMB3_EDITOR_1, IndividualMusics.AIRSHIP_SMB3_EDITOR_2, IndividualMusics.AIRSHIP_SMB3_EDITOR_3, IndividualMusics.AIRSHIP_SMB3_EDITOR_4, IndividualMusics.AIRSHIP_SMB3_EDITOR_5, IndividualMusics.AIRSHIP_SMB3_EDITOR_6, IndividualMusics.AIRSHIP_SMB3_EDITOR_7,] as const
-    public static readonly SMW_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_SMW_EDITOR_1, IndividualMusics.AIRSHIP_SMW_EDITOR_2, IndividualMusics.AIRSHIP_SMW_EDITOR_3, IndividualMusics.AIRSHIP_SMW_EDITOR_4, IndividualMusics.AIRSHIP_SMW_EDITOR_5, IndividualMusics.AIRSHIP_SMW_EDITOR_6, IndividualMusics.AIRSHIP_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_NSMBU_EDITOR_1, IndividualMusics.AIRSHIP_NSMBU_EDITOR_2, IndividualMusics.AIRSHIP_NSMBU_EDITOR_3, IndividualMusics.AIRSHIP_NSMBU_EDITOR_4, IndividualMusics.AIRSHIP_NSMBU_EDITOR_5, IndividualMusics.AIRSHIP_NSMBU_EDITOR_6, IndividualMusics.AIRSHIP_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_SM3DW_EDITOR_1, IndividualMusics.AIRSHIP_SM3DW_EDITOR_2, IndividualMusics.AIRSHIP_SM3DW_EDITOR_3, IndividualMusics.AIRSHIP_SM3DW_EDITOR_4, IndividualMusics.AIRSHIP_SM3DW_EDITOR_5, IndividualMusics.AIRSHIP_SM3DW_EDITOR_6, IndividualMusics.AIRSHIP_SM3DW_EDITOR_7,] as const
-
-    public static readonly SMB_CASTLE_EDITORS = [IndividualMusics.CASTLE_SMB_EDITOR_1, IndividualMusics.CASTLE_SMB_EDITOR_2, IndividualMusics.CASTLE_SMB_EDITOR_3, IndividualMusics.CASTLE_SMB_EDITOR_4, IndividualMusics.CASTLE_SMB_EDITOR_5, IndividualMusics.CASTLE_SMB_EDITOR_6, IndividualMusics.CASTLE_SMB_EDITOR_7,] as const
-    public static readonly SMB3_CASTLE_EDITORS = [IndividualMusics.CASTLE_SMB3_EDITOR_1, IndividualMusics.CASTLE_SMB3_EDITOR_2, IndividualMusics.CASTLE_SMB3_EDITOR_3, IndividualMusics.CASTLE_SMB3_EDITOR_4, IndividualMusics.CASTLE_SMB3_EDITOR_5, IndividualMusics.CASTLE_SMB3_EDITOR_6, IndividualMusics.CASTLE_SMB3_EDITOR_7,] as const
-    public static readonly SMW_CASTLE_EDITORS = [IndividualMusics.CASTLE_SMW_EDITOR_1, IndividualMusics.CASTLE_SMW_EDITOR_2, IndividualMusics.CASTLE_SMW_EDITOR_3, IndividualMusics.CASTLE_SMW_EDITOR_4, IndividualMusics.CASTLE_SMW_EDITOR_5, IndividualMusics.CASTLE_SMW_EDITOR_6, IndividualMusics.CASTLE_SMW_EDITOR_7,] as const
-    public static readonly NSMBU_CASTLE_EDITORS = [IndividualMusics.CASTLE_NSMBU_EDITOR_1, IndividualMusics.CASTLE_NSMBU_EDITOR_2, IndividualMusics.CASTLE_NSMBU_EDITOR_3, IndividualMusics.CASTLE_NSMBU_EDITOR_4, IndividualMusics.CASTLE_NSMBU_EDITOR_5, IndividualMusics.CASTLE_NSMBU_EDITOR_6, IndividualMusics.CASTLE_NSMBU_EDITOR_7,] as const
-    public static readonly SM3DW_CASTLE_EDITORS = [IndividualMusics.CASTLE_SM3DW_EDITOR_1, IndividualMusics.CASTLE_SM3DW_EDITOR_2, IndividualMusics.CASTLE_SM3DW_EDITOR_3, IndividualMusics.CASTLE_SM3DW_EDITOR_4, IndividualMusics.CASTLE_SM3DW_EDITOR_5, IndividualMusics.CASTLE_SM3DW_EDITOR_6, IndividualMusics.CASTLE_SM3DW_EDITOR_7,] as const
-
-    //endregion -------------------- Fields (editor) --------------------
-    //region -------------------- Fields (lesson editor) --------------------
-
-    public static readonly GROUND_LESSON_EDITORS = [IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_1, IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_2, IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_3, IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_4,] as const
-    public static readonly UNDERWATER_LESSON_EDITORS = [IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_1, IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_2, IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_3, IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_4,] as const
-    public static readonly FOREST_LESSON_EDITORS = [IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_1, IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_2, IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_3, IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_4,] as const
-    public static readonly GHOST_HOUSE_LESSON_EDITORS = [IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_1, IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_2, IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_3, IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_4,] as const
-    public static readonly CASTLE_LESSON_EDITORS = [IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_1, IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_2, IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_3, IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_4,] as const
-
-    //endregion -------------------- Fields (lesson editor) --------------------
-    //region -------------------- Fields (time) --------------------
-
-    public static readonly SMB_GROUND_TIMES = [IndividualMusics.GROUND_SMB, IndividualMusics.GROUND_SMB_FAST, IndividualMusics.GROUND_SMB_NIGHT, IndividualMusics.GROUND_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMB3_GROUND_TIMES = [IndividualMusics.GROUND_SMB3, IndividualMusics.GROUND_SMB3_FAST, IndividualMusics.GROUND_SMB3_NIGHT, IndividualMusics.GROUND_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_GROUND_TIMES = [IndividualMusics.GROUND_SMW_STANDALONE, IndividualMusics.GROUND_SMW_STANDALONE_FAST, IndividualMusics.GROUND_SMW_NIGHT, IndividualMusics.GROUND_SMW_NIGHT_FAST, IndividualMusics.GROUND_SMW_YOSHI, IndividualMusics.GROUND_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_GROUND_TIMES = [IndividualMusics.GROUND_NSMBU_STANDALONE, IndividualMusics.GROUND_NSMBU_STANDALONE_FAST, IndividualMusics.GROUND_NSMBU_NIGHT, IndividualMusics.GROUND_NSMBU_NIGHT_FAST, IndividualMusics.GROUND_NSMBU_YOSHI, IndividualMusics.GROUND_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_GROUND_TIMES = [IndividualMusics.GROUND_SM3DW, IndividualMusics.GROUND_SM3DW_FAST,] as const
-
-    public static readonly SMB_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_SMB, IndividualMusics.UNDERGROUND_SMB_FAST, IndividualMusics.UNDERGROUND_SMB_NIGHT, IndividualMusics.UNDERGROUND_SMB_NIGHT_FAST, IndividualMusics.UNDERGROUND_LINK, IndividualMusics.UNDERGROUND_LINK_FAST, IndividualMusics.UNDERGROUND_SMB2, IndividualMusics.UNDERGROUND_SMB2_FAST,] as const
-    public static readonly SMB3_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_SMB3, IndividualMusics.UNDERGROUND_SMB3_FAST, IndividualMusics.UNDERGROUND_SMB3_NIGHT, IndividualMusics.UNDERGROUND_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_SMW_STANDALONE, IndividualMusics.UNDERGROUND_SMW_STANDALONE_FAST, IndividualMusics.UNDERGROUND_SMW_NIGHT, IndividualMusics.UNDERGROUND_SMW_NIGHT_FAST, IndividualMusics.UNDERGROUND_SMW_YOSHI, IndividualMusics.UNDERGROUND_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_NSMBU_STANDALONE, IndividualMusics.UNDERGROUND_NSMBU_STANDALONE_FAST, IndividualMusics.UNDERGROUND_NSMBU_NIGHT, IndividualMusics.UNDERGROUND_NSMBU_NIGHT_FAST, IndividualMusics.UNDERGROUND_NSMBU_YOSHI, IndividualMusics.UNDERGROUND_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_SM3DW, IndividualMusics.UNDERGROUND_SM3DW_FAST,] as const
-
-    public static readonly SMB_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_SMB, IndividualMusics.UNDERWATER_SMB_FAST, IndividualMusics.UNDERWATER_SMB_NIGHT, IndividualMusics.UNDERWATER_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMB3_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_SMB3, IndividualMusics.UNDERWATER_SMB3_FAST, IndividualMusics.UNDERWATER_SMB3_NIGHT, IndividualMusics.UNDERWATER_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_SMW_STANDALONE, IndividualMusics.UNDERWATER_SMW_STANDALONE_FAST, IndividualMusics.UNDERWATER_SMW_NIGHT, IndividualMusics.UNDERWATER_SMW_NIGHT_FAST, IndividualMusics.UNDERWATER_SMW_YOSHI, IndividualMusics.UNDERWATER_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_NSMBU_STANDALONE, IndividualMusics.UNDERWATER_NSMBU_STANDALONE_FAST, IndividualMusics.UNDERWATER_NSMBU_NIGHT, IndividualMusics.UNDERWATER_NSMBU_NIGHT_FAST, IndividualMusics.UNDERWATER_NSMBU_YOSHI, IndividualMusics.UNDERWATER_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_SM3DW, IndividualMusics.UNDERWATER_SM3DW_FAST,] as const
-
-    public static readonly SMB_DESERT_TIMES = [IndividualMusics.DESERT_SMB, IndividualMusics.DESERT_SMB_FAST, IndividualMusics.DESERT_SMB_NIGHT, IndividualMusics.DESERT_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMW_DESERT_TIMES = [IndividualMusics.DESERT_SMW_STANDALONE, IndividualMusics.DESERT_SMW_STANDALONE_FAST, IndividualMusics.DESERT_SMW_NIGHT, IndividualMusics.DESERT_SMW_NIGHT_FAST, IndividualMusics.DESERT_SMW_YOSHI, IndividualMusics.DESERT_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_DESERT_TIMES = [IndividualMusics.DESERT_NSMBU_STANDALONE, IndividualMusics.DESERT_NSMBU_STANDALONE_FAST, IndividualMusics.DESERT_NSMBU_NIGHT, IndividualMusics.DESERT_NSMBU_NIGHT_FAST, IndividualMusics.DESERT_NSMBU_YOSHI, IndividualMusics.DESERT_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_DESERT_TIMES = [IndividualMusics.DESERT_SM3DW, IndividualMusics.DESERT_SM3DW_FAST,] as const
-
-    public static readonly SMB_SNOW_TIMES = [IndividualMusics.SNOW_SMB, IndividualMusics.SNOW_SMB_FAST, IndividualMusics.SNOW_SMB_NIGHT, IndividualMusics.SNOW_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMB3_SNOW_TIMES = [IndividualMusics.SNOW_SMB3, IndividualMusics.SNOW_SMB3_FAST, IndividualMusics.SNOW_SMB3_NIGHT, IndividualMusics.SNOW_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_SNOW_TIMES = [IndividualMusics.SNOW_SMW_STANDALONE, IndividualMusics.SNOW_SMW_STANDALONE_FAST, IndividualMusics.SNOW_SMW_NIGHT, IndividualMusics.SNOW_SMW_NIGHT_FAST, IndividualMusics.SNOW_SMW_YOSHI, IndividualMusics.SNOW_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_SNOW_TIMES = [IndividualMusics.SNOW_NSMBU_STANDALONE, IndividualMusics.SNOW_NSMBU_STANDALONE_FAST, IndividualMusics.SNOW_NSMBU_NIGHT, IndividualMusics.SNOW_NSMBU_NIGHT_FAST, IndividualMusics.SNOW_NSMBU_YOSHI, IndividualMusics.SNOW_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_SNOW_TIMES = [IndividualMusics.SNOW_SM3DW, IndividualMusics.SNOW_SM3DW_FAST,] as const
-
-    public static readonly SMB_SKY_TIMES = [IndividualMusics.SKY_SMB, IndividualMusics.SKY_SMB_FAST, IndividualMusics.SKY_SMB_NIGHT, IndividualMusics.SKY_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMB3_SKY_TIMES = [IndividualMusics.SKY_SMB3, IndividualMusics.SKY_SMB3_FAST, IndividualMusics.SKY_SMB3_NIGHT, IndividualMusics.SKY_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_SKY_TIMES = [IndividualMusics.SKY_SMW_STANDALONE, IndividualMusics.SKY_SMW_STANDALONE_FAST, IndividualMusics.SKY_SMW_NIGHT, IndividualMusics.SKY_SMW_NIGHT_FAST, IndividualMusics.SKY_SMW_YOSHI, IndividualMusics.SKY_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_SKY_TIMES = [IndividualMusics.SKY_NSMBU_STANDALONE, IndividualMusics.SKY_NSMBU_STANDALONE_FAST, IndividualMusics.SKY_NSMBU_NIGHT, IndividualMusics.SKY_NSMBU_NIGHT_FAST, IndividualMusics.SKY_NSMBU_YOSHI, IndividualMusics.SKY_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_SKY_TIMES = [IndividualMusics.SKY_SM3DW, IndividualMusics.SKY_SM3DW_FAST,] as const
-
-    public static readonly SMB_FOREST_TIMES = [IndividualMusics.FOREST_SMB, IndividualMusics.FOREST_SMB_FAST, IndividualMusics.FOREST_SMB_NIGHT, IndividualMusics.FOREST_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMW_FOREST_TIMES = [IndividualMusics.FOREST_SMW_STANDALONE, IndividualMusics.FOREST_SMW_STANDALONE_FAST, IndividualMusics.FOREST_SMW_NIGHT, IndividualMusics.FOREST_SMW_NIGHT_FAST, IndividualMusics.FOREST_SMW_YOSHI, IndividualMusics.FOREST_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_FOREST_TIMES = [IndividualMusics.FOREST_NSMBU_STANDALONE, IndividualMusics.FOREST_NSMBU_STANDALONE_FAST, IndividualMusics.FOREST_NSMBU_NIGHT, IndividualMusics.FOREST_NSMBU_NIGHT_FAST, IndividualMusics.FOREST_NSMBU_YOSHI, IndividualMusics.FOREST_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_FOREST_TIMES = [IndividualMusics.FOREST_SM3DW, IndividualMusics.FOREST_SM3DW_FAST, IndividualMusics.FOREST_SM3DW_UNDERWATER, IndividualMusics.FOREST_SM3DW_UNDERWATER_FAST,] as const
-
-    public static readonly SMB_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_SMB, IndividualMusics.GHOST_HOUSE_SMB_FAST, IndividualMusics.GHOST_HOUSE_SMB_NIGHT, IndividualMusics.GHOST_HOUSE_SMB_NIGHT_FAST, IndividualMusics.UNDERGROUND_LINK, IndividualMusics.UNDERGROUND_LINK_FAST, IndividualMusics.UNDERGROUND_SMB2, IndividualMusics.UNDERGROUND_SMB2_FAST,] as const
-    public static readonly SMB3_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_SMB3, IndividualMusics.GHOST_HOUSE_SMB3_FAST, IndividualMusics.GHOST_HOUSE_SMB3_NIGHT, IndividualMusics.GHOST_HOUSE_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_SMW_STANDALONE, IndividualMusics.GHOST_HOUSE_SMW_STANDALONE_FAST, IndividualMusics.GHOST_HOUSE_SMW_NIGHT, IndividualMusics.GHOST_HOUSE_SMW_NIGHT_FAST, IndividualMusics.GHOST_HOUSE_SMW_YOSHI, IndividualMusics.GHOST_HOUSE_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_NSMBU_STANDALONE, IndividualMusics.GHOST_HOUSE_NSMBU_STANDALONE_FAST, IndividualMusics.GHOST_HOUSE_NSMBU_NIGHT, IndividualMusics.GHOST_HOUSE_NSMBU_NIGHT_FAST, IndividualMusics.GHOST_HOUSE_NSMBU_YOSHI, IndividualMusics.GHOST_HOUSE_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_SM3DW, IndividualMusics.GHOST_HOUSE_SM3DW_FAST,] as const
-
-    public static readonly SMB_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_SMB, IndividualMusics.AIRSHIP_SMB_FAST, IndividualMusics.AIRSHIP_SMB_NIGHT, IndividualMusics.AIRSHIP_SMB_NIGHT_FAST, IndividualMusics.CASTLE_LINK, IndividualMusics.CASTLE_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
-    public static readonly SMB3_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_SMB3, IndividualMusics.AIRSHIP_SMB3_FAST, IndividualMusics.AIRSHIP_SMB3_NIGHT, IndividualMusics.AIRSHIP_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_SMW_STANDALONE, IndividualMusics.AIRSHIP_SMW_STANDALONE_FAST, IndividualMusics.AIRSHIP_SMW_NIGHT, IndividualMusics.AIRSHIP_SMW_NIGHT_FAST, IndividualMusics.AIRSHIP_SMW_YOSHI, IndividualMusics.AIRSHIP_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_NSMBU_STANDALONE, IndividualMusics.AIRSHIP_NSMBU_STANDALONE_FAST, IndividualMusics.AIRSHIP_NSMBU_NIGHT, IndividualMusics.AIRSHIP_NSMBU_NIGHT_FAST, IndividualMusics.AIRSHIP_NSMBU_YOSHI, IndividualMusics.AIRSHIP_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_SM3DW, IndividualMusics.AIRSHIP_SM3DW_FAST,] as const
-
-    public static readonly SMB_CASTLE_TIMES = [IndividualMusics.CASTLE_SMB, IndividualMusics.CASTLE_SMB_FAST, IndividualMusics.CASTLE_SMB_NIGHT, IndividualMusics.CASTLE_SMB_NIGHT_FAST, IndividualMusics.CASTLE_LINK, IndividualMusics.CASTLE_LINK_FAST, IndividualMusics.UNDERGROUND_SMB2, IndividualMusics.UNDERGROUND_SMB2_FAST,] as const
-    public static readonly SMB3_CASTLE_TIMES = [IndividualMusics.CASTLE_SMB3, IndividualMusics.CASTLE_SMB3_FAST, IndividualMusics.CASTLE_SMB3_NIGHT, IndividualMusics.CASTLE_SMB3_NIGHT_FAST,] as const
-    public static readonly SMW_CASTLE_TIMES = [IndividualMusics.CASTLE_SMW_STANDALONE, IndividualMusics.CASTLE_SMW_STANDALONE_FAST, IndividualMusics.CASTLE_SMW_NIGHT, IndividualMusics.CASTLE_SMW_NIGHT_FAST, IndividualMusics.CASTLE_SMW_YOSHI, IndividualMusics.CASTLE_SMW_YOSHI_FAST,] as const
-    public static readonly NSMBU_CASTLE_TIMES = [IndividualMusics.CASTLE_NSMBU_STANDALONE, IndividualMusics.CASTLE_NSMBU_STANDALONE_FAST, IndividualMusics.CASTLE_NSMBU_NIGHT, IndividualMusics.CASTLE_NSMBU_NIGHT_FAST, IndividualMusics.CASTLE_NSMBU_YOSHI, IndividualMusics.CASTLE_NSMBU_YOSHI_FAST,] as const
-    public static readonly SM3DW_CASTLE_TIMES = [IndividualMusics.CASTLE_SM3DW, IndividualMusics.CASTLE_SM3DW_FAST,] as const
-
-    //endregion -------------------- Fields (time) --------------------
-    //region -------------------- Fields (sound effect) --------------------
-
-    public static readonly PEACEFUL = [IndividualMusics.PEACEFUL_LINK, IndividualMusics.PEACEFUL_SMB2,] as const
-    public static readonly LINK_PEACEFUL = [IndividualMusics.PEACEFUL_LINK,] as const
-    public static readonly SMB2_PEACEFUL = [IndividualMusics.PEACEFUL_SMB2,] as const
-
-
-    public static readonly SMB_BONUSES = [IndividualMusics.BONUS_SMB, IndividualMusics.BONUS_SMB_FAST, IndividualMusics.BONUS_LINK, IndividualMusics.BONUS_LINK_FAST, IndividualMusics.BONUS_SMB2, IndividualMusics.BONUS_SMB2_FAST,] as const
-    public static readonly SMB3_BONUSES = [IndividualMusics.BONUS_SMB3, IndividualMusics.BONUS_SMB3_FAST,] as const
-    public static readonly SMW_BONUSES = [IndividualMusics.BONUS_SMW, IndividualMusics.BONUS_SMW_FAST,] as const
-    public static readonly NSMBU_BONUSES = [IndividualMusics.BONUS_NSMBU, IndividualMusics.BONUS_NSMBU_FAST,] as const
-    public static readonly SM3DW_BONUSES = [IndividualMusics.BONUS_SM3DW, IndividualMusics.BONUS_SM3DW_FAST,] as const
-
-    public static readonly LINK_BONUSES = [IndividualMusics.BONUS_LINK, IndividualMusics.BONUS_LINK_FAST,] as const
-    public static readonly SMB2_BONUSES = [IndividualMusics.BONUS_SMB2, IndividualMusics.BONUS_SMB2_FAST,] as const
-
-
-    public static readonly SMB_BOSSES = [IndividualMusics.BOSS_SMB, IndividualMusics.BOSS_SMB_FAST, IndividualMusics.BOSS_LINK, IndividualMusics.BOSS_LINK_FAST, IndividualMusics.BOSS_SMB2, IndividualMusics.BOSS_SMB2_FAST,] as const
-    public static readonly SMB3_BOSSES = [IndividualMusics.BOSS_SMB3, IndividualMusics.BOSS_SMB3_FAST,] as const
-    public static readonly SMW_BOSSES = [IndividualMusics.BOSS_SMW, IndividualMusics.BOSS_SMW_FAST,] as const
-    public static readonly NSMBU_BOSSES = [IndividualMusics.BOSS_NSMBU, IndividualMusics.BOSS_NSMBU_FAST,] as const
-    public static readonly SM3DW_BOSSES = [IndividualMusics.BOSS_SM3DW, IndividualMusics.BOSS_SM3DW_FAST,] as const
-
-    public static readonly LINK_BOSSES = [IndividualMusics.BOSS_LINK, IndividualMusics.BOSS_LINK_FAST,] as const
-    public static readonly SMB2_BOSSES = [IndividualMusics.BOSS_SMB2, IndividualMusics.BOSS_SMB2_FAST,] as const
-
-
-    public static readonly SMB_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SMB3, IndividualMusics.FINAL_BOSS_SMB3_FAST, IndividualMusics.FINAL_BOSS_LINK, IndividualMusics.FINAL_BOSS_LINK_FAST, IndividualMusics.FINAL_BOSS_SMB2, IndividualMusics.FINAL_BOSS_SMB2_FAST,] as const
-    public static readonly SMB3_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SMB3, IndividualMusics.FINAL_BOSS_SMB3_FAST,] as const
-    public static readonly SMW_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SMW, IndividualMusics.FINAL_BOSS_SMW_FAST,] as const
-    public static readonly NSMBU_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_NSMBU, IndividualMusics.FINAL_BOSS_NSMBU_FAST,] as const
-    public static readonly SM3DW_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SM3DW, IndividualMusics.FINAL_BOSS_SM3DW_FAST,] as const
-
-    public static readonly LINK_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_LINK, IndividualMusics.FINAL_BOSS_LINK_FAST,] as const
-    public static readonly SMB2_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SMB2, IndividualMusics.FINAL_BOSS_SMB2_FAST,] as const
-
-
-    public static readonly SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES = [IndividualMusics.BONUS_SMB3, IndividualMusics.BONUS_SMB3_FAST, IndividualMusics.BOSS_SMB3, IndividualMusics.BOSS_SMB3_FAST, IndividualMusics.FINAL_BOSS_SMB3, IndividualMusics.FINAL_BOSS_SMB3_FAST,] as const
-    public static readonly SMW_BONUSES_BOSSES_AND_FINAL_BOSSES = [IndividualMusics.BONUS_SMW, IndividualMusics.BONUS_SMW_FAST, IndividualMusics.BOSS_SMW, IndividualMusics.BOSS_SMW_FAST, IndividualMusics.FINAL_BOSS_SMW, IndividualMusics.FINAL_BOSS_SMW_FAST,] as const
-    public static readonly NSMBU_BONUSES_BOSSES_AND_FINAL_BOSSES = [IndividualMusics.BONUS_NSMBU, IndividualMusics.BONUS_NSMBU_FAST, IndividualMusics.BONUS_NSMBU_YOSHI, IndividualMusics.BONUS_NSMBU_YOSHI_FAST, IndividualMusics.BOSS_NSMBU, IndividualMusics.BOSS_NSMBU_FAST, IndividualMusics.FINAL_BOSS_NSMBU, IndividualMusics.FINAL_BOSS_NSMBU_FAST,] as const
-    public static readonly SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES = [IndividualMusics.BONUS_SM3DW, IndividualMusics.BONUS_SM3DW_FAST, IndividualMusics.BOSS_SM3DW, IndividualMusics.BOSS_SM3DW_FAST, IndividualMusics.FINAL_BOSS_SM3DW, IndividualMusics.FINAL_BOSS_SM3DW_FAST,] as const
-
-    //endregion -------------------- Fields (sound effect) --------------------
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -991,9 +814,188 @@ export class IndividualMusics<const FILE extends PossibleSoundFile = PossibleSou
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace IndividualMusics {
+
+    //region -------------------- Fields (editor) --------------------
+
+    export const SMB_GROUND_EDITORS =   [IndividualMusics.GROUND_SMB_EDITOR_1,   IndividualMusics.GROUND_SMB_EDITOR_2,   IndividualMusics.GROUND_SMB_EDITOR_3,   IndividualMusics.GROUND_SMB_EDITOR_4,   IndividualMusics.GROUND_SMB_EDITOR_5,   IndividualMusics.GROUND_SMB_EDITOR_6,   IndividualMusics.GROUND_SMB_EDITOR_7,  ] as const
+    export const SMB3_GROUND_EDITORS =  [IndividualMusics.GROUND_SMB3_EDITOR_1,  IndividualMusics.GROUND_SMB3_EDITOR_2,  IndividualMusics.GROUND_SMB3_EDITOR_3,  IndividualMusics.GROUND_SMB3_EDITOR_4,  IndividualMusics.GROUND_SMB3_EDITOR_5,  IndividualMusics.GROUND_SMB3_EDITOR_6,  IndividualMusics.GROUND_SMB3_EDITOR_7, ] as const
+    export const SMW_GROUND_EDITORS =   [IndividualMusics.GROUND_SMW_EDITOR_1,   IndividualMusics.GROUND_SMW_EDITOR_2,   IndividualMusics.GROUND_SMW_EDITOR_3,   IndividualMusics.GROUND_SMW_EDITOR_4,   IndividualMusics.GROUND_SMW_EDITOR_5,   IndividualMusics.GROUND_SMW_EDITOR_6,   IndividualMusics.GROUND_SMW_EDITOR_7,  ] as const
+    export const NSMBU_GROUND_EDITORS = [IndividualMusics.GROUND_NSMBU_EDITOR_1, IndividualMusics.GROUND_NSMBU_EDITOR_2, IndividualMusics.GROUND_NSMBU_EDITOR_3, IndividualMusics.GROUND_NSMBU_EDITOR_4, IndividualMusics.GROUND_NSMBU_EDITOR_5, IndividualMusics.GROUND_NSMBU_EDITOR_6, IndividualMusics.GROUND_NSMBU_EDITOR_7,] as const
+    export const SM3DW_GROUND_EDITORS = [IndividualMusics.GROUND_SM3DW_EDITOR_1, IndividualMusics.GROUND_SM3DW_EDITOR_2, IndividualMusics.GROUND_SM3DW_EDITOR_3, IndividualMusics.GROUND_SM3DW_EDITOR_4, IndividualMusics.GROUND_SM3DW_EDITOR_5, IndividualMusics.GROUND_SM3DW_EDITOR_6, IndividualMusics.GROUND_SM3DW_EDITOR_7,] as const
+
+    export const SMB_UNDERGROUND_EDITORS =   [IndividualMusics.UNDERGROUND_SMB_EDITOR_1,   IndividualMusics.UNDERGROUND_SMB_EDITOR_2,   IndividualMusics.UNDERGROUND_SMB_EDITOR_3,   IndividualMusics.UNDERGROUND_SMB_EDITOR_4,   IndividualMusics.UNDERGROUND_SMB_EDITOR_5,   IndividualMusics.UNDERGROUND_SMB_EDITOR_6,   IndividualMusics.UNDERGROUND_SMB_EDITOR_7,  ] as const
+    export const SMB3_UNDERGROUND_EDITORS =  [IndividualMusics.UNDERGROUND_SMB3_EDITOR_1,  IndividualMusics.UNDERGROUND_SMB3_EDITOR_2,  IndividualMusics.UNDERGROUND_SMB3_EDITOR_3,  IndividualMusics.UNDERGROUND_SMB3_EDITOR_4,  IndividualMusics.UNDERGROUND_SMB3_EDITOR_5,  IndividualMusics.UNDERGROUND_SMB3_EDITOR_6,  IndividualMusics.UNDERGROUND_SMB3_EDITOR_7, ] as const
+    export const SMW_UNDERGROUND_EDITORS =   [IndividualMusics.UNDERGROUND_SMW_EDITOR_1,   IndividualMusics.UNDERGROUND_SMW_EDITOR_2,   IndividualMusics.UNDERGROUND_SMW_EDITOR_3,   IndividualMusics.UNDERGROUND_SMW_EDITOR_4,   IndividualMusics.UNDERGROUND_SMW_EDITOR_5,   IndividualMusics.UNDERGROUND_SMW_EDITOR_6,   IndividualMusics.UNDERGROUND_SMW_EDITOR_7,  ] as const
+    export const NSMBU_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_NSMBU_EDITOR_1, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_2, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_3, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_4, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_5, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_6, IndividualMusics.UNDERGROUND_NSMBU_EDITOR_7,] as const
+    export const SM3DW_UNDERGROUND_EDITORS = [IndividualMusics.UNDERGROUND_SM3DW_EDITOR_1, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_2, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_3, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_4, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_5, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_6, IndividualMusics.UNDERGROUND_SM3DW_EDITOR_7,] as const
+
+    export const SMB_UNDERWATER_EDITORS =   [IndividualMusics.UNDERWATER_SMB_EDITOR_1,   IndividualMusics.UNDERWATER_SMB_EDITOR_2,   IndividualMusics.UNDERWATER_SMB_EDITOR_3,   IndividualMusics.UNDERWATER_SMB_EDITOR_4,   IndividualMusics.UNDERWATER_SMB_EDITOR_5,   IndividualMusics.UNDERWATER_SMB_EDITOR_6,   IndividualMusics.UNDERWATER_SMB_EDITOR_7,  ] as const
+    export const SMB3_UNDERWATER_EDITORS =  [IndividualMusics.UNDERWATER_SMB3_EDITOR_1,  IndividualMusics.UNDERWATER_SMB3_EDITOR_2,  IndividualMusics.UNDERWATER_SMB3_EDITOR_3,  IndividualMusics.UNDERWATER_SMB3_EDITOR_4,  IndividualMusics.UNDERWATER_SMB3_EDITOR_5,  IndividualMusics.UNDERWATER_SMB3_EDITOR_6,  IndividualMusics.UNDERWATER_SMB3_EDITOR_7, ] as const
+    export const SMW_UNDERWATER_EDITORS =   [IndividualMusics.UNDERWATER_SMW_EDITOR_1,   IndividualMusics.UNDERWATER_SMW_EDITOR_2,   IndividualMusics.UNDERWATER_SMW_EDITOR_3,   IndividualMusics.UNDERWATER_SMW_EDITOR_4,   IndividualMusics.UNDERWATER_SMW_EDITOR_5,   IndividualMusics.UNDERWATER_SMW_EDITOR_6,   IndividualMusics.UNDERWATER_SMW_EDITOR_7,  ] as const
+    export const NSMBU_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_NSMBU_EDITOR_1, IndividualMusics.UNDERWATER_NSMBU_EDITOR_2, IndividualMusics.UNDERWATER_NSMBU_EDITOR_3, IndividualMusics.UNDERWATER_NSMBU_EDITOR_4, IndividualMusics.UNDERWATER_NSMBU_EDITOR_5, IndividualMusics.UNDERWATER_NSMBU_EDITOR_6, IndividualMusics.UNDERWATER_NSMBU_EDITOR_7,] as const
+    export const SM3DW_UNDERWATER_EDITORS = [IndividualMusics.UNDERWATER_SM3DW_EDITOR_1, IndividualMusics.UNDERWATER_SM3DW_EDITOR_2, IndividualMusics.UNDERWATER_SM3DW_EDITOR_3, IndividualMusics.UNDERWATER_SM3DW_EDITOR_4, IndividualMusics.UNDERWATER_SM3DW_EDITOR_5, IndividualMusics.UNDERWATER_SM3DW_EDITOR_6, IndividualMusics.UNDERWATER_SM3DW_EDITOR_7,] as const
+
+    export const SMB_DESERT_EDITORS =   [IndividualMusics.DESERT_SMB_EDITOR_1,   IndividualMusics.DESERT_SMB_EDITOR_2,   IndividualMusics.DESERT_SMB_EDITOR_3,   IndividualMusics.DESERT_SMB_EDITOR_4,   IndividualMusics.DESERT_SMB_EDITOR_5,   IndividualMusics.DESERT_SMB_EDITOR_6,   IndividualMusics.DESERT_SMB_EDITOR_7,  ] as const
+    export const SMB3_DESERT_EDITORS =  [IndividualMusics.DESERT_SMB3_EDITOR_1,  IndividualMusics.DESERT_SMB3_EDITOR_2,  IndividualMusics.DESERT_SMB3_EDITOR_3,  IndividualMusics.DESERT_SMB3_EDITOR_4,  IndividualMusics.DESERT_SMB3_EDITOR_5,  IndividualMusics.DESERT_SMB3_EDITOR_6,  IndividualMusics.DESERT_SMB3_EDITOR_7, ] as const
+    export const SMW_DESERT_EDITORS =   [IndividualMusics.DESERT_SMW_EDITOR_1,   IndividualMusics.DESERT_SMW_EDITOR_2,   IndividualMusics.DESERT_SMW_EDITOR_3,   IndividualMusics.DESERT_SMW_EDITOR_4,   IndividualMusics.DESERT_SMW_EDITOR_5,   IndividualMusics.DESERT_SMW_EDITOR_6,   IndividualMusics.DESERT_SMW_EDITOR_7,  ] as const
+    export const NSMBU_DESERT_EDITORS = [IndividualMusics.DESERT_NSMBU_EDITOR_1, IndividualMusics.DESERT_NSMBU_EDITOR_2, IndividualMusics.DESERT_NSMBU_EDITOR_3, IndividualMusics.DESERT_NSMBU_EDITOR_4, IndividualMusics.DESERT_NSMBU_EDITOR_5, IndividualMusics.DESERT_NSMBU_EDITOR_6, IndividualMusics.DESERT_NSMBU_EDITOR_7,] as const
+    export const SM3DW_DESERT_EDITORS = [IndividualMusics.DESERT_SM3DW_EDITOR_1, IndividualMusics.DESERT_SM3DW_EDITOR_2, IndividualMusics.DESERT_SM3DW_EDITOR_3, IndividualMusics.DESERT_SM3DW_EDITOR_4, IndividualMusics.DESERT_SM3DW_EDITOR_5, IndividualMusics.DESERT_SM3DW_EDITOR_6, IndividualMusics.DESERT_SM3DW_EDITOR_7,] as const
+
+    export const SMB_SNOW_EDITORS =   [IndividualMusics.SNOW_SMB_EDITOR_1,   IndividualMusics.SNOW_SMB_EDITOR_2,   IndividualMusics.SNOW_SMB_EDITOR_3,   IndividualMusics.SNOW_SMB_EDITOR_4,   IndividualMusics.SNOW_SMB_EDITOR_5,   IndividualMusics.SNOW_SMB_EDITOR_6,   IndividualMusics.SNOW_SMB_EDITOR_7,  ] as const
+    export const SMB3_SNOW_EDITORS =  [IndividualMusics.SNOW_SMB3_EDITOR_1,  IndividualMusics.SNOW_SMB3_EDITOR_2,  IndividualMusics.SNOW_SMB3_EDITOR_3,  IndividualMusics.SNOW_SMB3_EDITOR_4,  IndividualMusics.SNOW_SMB3_EDITOR_5,  IndividualMusics.SNOW_SMB3_EDITOR_6,  IndividualMusics.SNOW_SMB3_EDITOR_7, ] as const
+    export const SMW_SNOW_EDITORS =   [IndividualMusics.SNOW_SMW_EDITOR_1,   IndividualMusics.SNOW_SMW_EDITOR_2,   IndividualMusics.SNOW_SMW_EDITOR_3,   IndividualMusics.SNOW_SMW_EDITOR_4,   IndividualMusics.SNOW_SMW_EDITOR_5,   IndividualMusics.SNOW_SMW_EDITOR_6,   IndividualMusics.SNOW_SMW_EDITOR_7,  ] as const
+    export const NSMBU_SNOW_EDITORS = [IndividualMusics.SNOW_NSMBU_EDITOR_1, IndividualMusics.SNOW_NSMBU_EDITOR_2, IndividualMusics.SNOW_NSMBU_EDITOR_3, IndividualMusics.SNOW_NSMBU_EDITOR_4, IndividualMusics.SNOW_NSMBU_EDITOR_5, IndividualMusics.SNOW_NSMBU_EDITOR_6, IndividualMusics.SNOW_NSMBU_EDITOR_7,] as const
+    export const SM3DW_SNOW_EDITORS = [IndividualMusics.SNOW_SM3DW_EDITOR_1, IndividualMusics.SNOW_SM3DW_EDITOR_2, IndividualMusics.SNOW_SM3DW_EDITOR_3, IndividualMusics.SNOW_SM3DW_EDITOR_4, IndividualMusics.SNOW_SM3DW_EDITOR_5, IndividualMusics.SNOW_SM3DW_EDITOR_6, IndividualMusics.SNOW_SM3DW_EDITOR_7,] as const
+
+    export const SMB_SKY_EDITORS =   [IndividualMusics.SKY_SMB_EDITOR_1,   IndividualMusics.SKY_SMB_EDITOR_2,   IndividualMusics.SKY_SMB_EDITOR_3,   IndividualMusics.SKY_SMB_EDITOR_4,   IndividualMusics.SKY_SMB_EDITOR_5,   IndividualMusics.SKY_SMB_EDITOR_6,   IndividualMusics.SKY_SMB_EDITOR_7,  ] as const
+    export const SMB3_SKY_EDITORS =  [IndividualMusics.SKY_SMB3_EDITOR_1,  IndividualMusics.SKY_SMB3_EDITOR_2,  IndividualMusics.SKY_SMB3_EDITOR_3,  IndividualMusics.SKY_SMB3_EDITOR_4,  IndividualMusics.SKY_SMB3_EDITOR_5,  IndividualMusics.SKY_SMB3_EDITOR_6,  IndividualMusics.SKY_SMB3_EDITOR_7, ] as const
+    export const SMW_SKY_EDITORS =   [IndividualMusics.SKY_SMW_EDITOR_1,   IndividualMusics.SKY_SMW_EDITOR_2,   IndividualMusics.SKY_SMW_EDITOR_3,   IndividualMusics.SKY_SMW_EDITOR_4,   IndividualMusics.SKY_SMW_EDITOR_5,   IndividualMusics.SKY_SMW_EDITOR_6,   IndividualMusics.SKY_SMW_EDITOR_7,  ] as const
+    export const NSMBU_SKY_EDITORS = [IndividualMusics.SKY_NSMBU_EDITOR_1, IndividualMusics.SKY_NSMBU_EDITOR_2, IndividualMusics.SKY_NSMBU_EDITOR_3, IndividualMusics.SKY_NSMBU_EDITOR_4, IndividualMusics.SKY_NSMBU_EDITOR_5, IndividualMusics.SKY_NSMBU_EDITOR_6, IndividualMusics.SKY_NSMBU_EDITOR_7,] as const
+    export const SM3DW_SKY_EDITORS = [IndividualMusics.SKY_SM3DW_EDITOR_1, IndividualMusics.SKY_SM3DW_EDITOR_2, IndividualMusics.SKY_SM3DW_EDITOR_3, IndividualMusics.SKY_SM3DW_EDITOR_4, IndividualMusics.SKY_SM3DW_EDITOR_5, IndividualMusics.SKY_SM3DW_EDITOR_6, IndividualMusics.SKY_SM3DW_EDITOR_7,] as const
+
+    export const SMB_FOREST_EDITORS =   [IndividualMusics.FOREST_SMB_EDITOR_1,   IndividualMusics.FOREST_SMB_EDITOR_2,   IndividualMusics.FOREST_SMB_EDITOR_3,   IndividualMusics.FOREST_SMB_EDITOR_4,   IndividualMusics.FOREST_SMB_EDITOR_5,   IndividualMusics.FOREST_SMB_EDITOR_6,   IndividualMusics.FOREST_SMB_EDITOR_7,  ] as const
+    export const SMB3_FOREST_EDITORS =  [IndividualMusics.FOREST_SMB3_EDITOR_1,  IndividualMusics.FOREST_SMB3_EDITOR_2,  IndividualMusics.FOREST_SMB3_EDITOR_3,  IndividualMusics.FOREST_SMB3_EDITOR_4,  IndividualMusics.FOREST_SMB3_EDITOR_5,  IndividualMusics.FOREST_SMB3_EDITOR_6,  IndividualMusics.FOREST_SMB3_EDITOR_7, ] as const
+    export const SMW_FOREST_EDITORS =   [IndividualMusics.FOREST_SMW_EDITOR_1,   IndividualMusics.FOREST_SMW_EDITOR_2,   IndividualMusics.FOREST_SMW_EDITOR_3,   IndividualMusics.FOREST_SMW_EDITOR_4,   IndividualMusics.FOREST_SMW_EDITOR_5,   IndividualMusics.FOREST_SMW_EDITOR_6,   IndividualMusics.FOREST_SMW_EDITOR_7,  ] as const
+    export const NSMBU_FOREST_EDITORS = [IndividualMusics.FOREST_NSMBU_EDITOR_1, IndividualMusics.FOREST_NSMBU_EDITOR_2, IndividualMusics.FOREST_NSMBU_EDITOR_3, IndividualMusics.FOREST_NSMBU_EDITOR_4, IndividualMusics.FOREST_NSMBU_EDITOR_5, IndividualMusics.FOREST_NSMBU_EDITOR_6, IndividualMusics.FOREST_NSMBU_EDITOR_7,] as const
+    export const SM3DW_FOREST_EDITORS = [IndividualMusics.FOREST_SM3DW_EDITOR_1, IndividualMusics.FOREST_SM3DW_EDITOR_2, IndividualMusics.FOREST_SM3DW_EDITOR_3, IndividualMusics.FOREST_SM3DW_EDITOR_4, IndividualMusics.FOREST_SM3DW_EDITOR_5, IndividualMusics.FOREST_SM3DW_EDITOR_6, IndividualMusics.FOREST_SM3DW_EDITOR_7,] as const
+
+    export const SMB_GHOST_HOUSE_EDITORS =   [IndividualMusics.GHOST_HOUSE_SMB_EDITOR_1,   IndividualMusics.GHOST_HOUSE_SMB_EDITOR_2,   IndividualMusics.GHOST_HOUSE_SMB_EDITOR_3,   IndividualMusics.GHOST_HOUSE_SMB_EDITOR_4,   IndividualMusics.GHOST_HOUSE_SMB_EDITOR_5,   IndividualMusics.GHOST_HOUSE_SMB_EDITOR_6,   IndividualMusics.GHOST_HOUSE_SMB_EDITOR_7,  ] as const
+    export const SMB3_GHOST_HOUSE_EDITORS =  [IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_1,  IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_2,  IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_3,  IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_4,  IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_5,  IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_6,  IndividualMusics.GHOST_HOUSE_SMB3_EDITOR_7, ] as const
+    export const SMW_GHOST_HOUSE_EDITORS =   [IndividualMusics.GHOST_HOUSE_SMW_EDITOR_1,   IndividualMusics.GHOST_HOUSE_SMW_EDITOR_2,   IndividualMusics.GHOST_HOUSE_SMW_EDITOR_3,   IndividualMusics.GHOST_HOUSE_SMW_EDITOR_4,   IndividualMusics.GHOST_HOUSE_SMW_EDITOR_5,   IndividualMusics.GHOST_HOUSE_SMW_EDITOR_6,   IndividualMusics.GHOST_HOUSE_SMW_EDITOR_7,  ] as const
+    export const NSMBU_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_1, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_2, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_3, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_4, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_5, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_6, IndividualMusics.GHOST_HOUSE_NSMBU_EDITOR_7,] as const
+    export const SM3DW_GHOST_HOUSE_EDITORS = [IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_1, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_2, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_3, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_4, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_5, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_6, IndividualMusics.GHOST_HOUSE_SM3DW_EDITOR_7,] as const
+
+    export const SMB_AIRSHIP_EDITORS =   [IndividualMusics.AIRSHIP_SMB_EDITOR_1,   IndividualMusics.AIRSHIP_SMB_EDITOR_2,   IndividualMusics.AIRSHIP_SMB_EDITOR_3,   IndividualMusics.AIRSHIP_SMB_EDITOR_4,   IndividualMusics.AIRSHIP_SMB_EDITOR_5,   IndividualMusics.AIRSHIP_SMB_EDITOR_6,   IndividualMusics.AIRSHIP_SMB_EDITOR_7,  ] as const
+    export const SMB3_AIRSHIP_EDITORS =  [IndividualMusics.AIRSHIP_SMB3_EDITOR_1,  IndividualMusics.AIRSHIP_SMB3_EDITOR_2,  IndividualMusics.AIRSHIP_SMB3_EDITOR_3,  IndividualMusics.AIRSHIP_SMB3_EDITOR_4,  IndividualMusics.AIRSHIP_SMB3_EDITOR_5,  IndividualMusics.AIRSHIP_SMB3_EDITOR_6,  IndividualMusics.AIRSHIP_SMB3_EDITOR_7, ] as const
+    export const SMW_AIRSHIP_EDITORS =   [IndividualMusics.AIRSHIP_SMW_EDITOR_1,   IndividualMusics.AIRSHIP_SMW_EDITOR_2,   IndividualMusics.AIRSHIP_SMW_EDITOR_3,   IndividualMusics.AIRSHIP_SMW_EDITOR_4,   IndividualMusics.AIRSHIP_SMW_EDITOR_5,   IndividualMusics.AIRSHIP_SMW_EDITOR_6,   IndividualMusics.AIRSHIP_SMW_EDITOR_7,  ] as const
+    export const NSMBU_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_NSMBU_EDITOR_1, IndividualMusics.AIRSHIP_NSMBU_EDITOR_2, IndividualMusics.AIRSHIP_NSMBU_EDITOR_3, IndividualMusics.AIRSHIP_NSMBU_EDITOR_4, IndividualMusics.AIRSHIP_NSMBU_EDITOR_5, IndividualMusics.AIRSHIP_NSMBU_EDITOR_6, IndividualMusics.AIRSHIP_NSMBU_EDITOR_7,] as const
+    export const SM3DW_AIRSHIP_EDITORS = [IndividualMusics.AIRSHIP_SM3DW_EDITOR_1, IndividualMusics.AIRSHIP_SM3DW_EDITOR_2, IndividualMusics.AIRSHIP_SM3DW_EDITOR_3, IndividualMusics.AIRSHIP_SM3DW_EDITOR_4, IndividualMusics.AIRSHIP_SM3DW_EDITOR_5, IndividualMusics.AIRSHIP_SM3DW_EDITOR_6, IndividualMusics.AIRSHIP_SM3DW_EDITOR_7,] as const
+
+    export const SMB_CASTLE_EDITORS =   [IndividualMusics.CASTLE_SMB_EDITOR_1,   IndividualMusics.CASTLE_SMB_EDITOR_2,   IndividualMusics.CASTLE_SMB_EDITOR_3,   IndividualMusics.CASTLE_SMB_EDITOR_4,   IndividualMusics.CASTLE_SMB_EDITOR_5,   IndividualMusics.CASTLE_SMB_EDITOR_6,   IndividualMusics.CASTLE_SMB_EDITOR_7,  ] as const
+    export const SMB3_CASTLE_EDITORS =  [IndividualMusics.CASTLE_SMB3_EDITOR_1,  IndividualMusics.CASTLE_SMB3_EDITOR_2,  IndividualMusics.CASTLE_SMB3_EDITOR_3,  IndividualMusics.CASTLE_SMB3_EDITOR_4,  IndividualMusics.CASTLE_SMB3_EDITOR_5,  IndividualMusics.CASTLE_SMB3_EDITOR_6,  IndividualMusics.CASTLE_SMB3_EDITOR_7, ] as const
+    export const SMW_CASTLE_EDITORS =   [IndividualMusics.CASTLE_SMW_EDITOR_1,   IndividualMusics.CASTLE_SMW_EDITOR_2,   IndividualMusics.CASTLE_SMW_EDITOR_3,   IndividualMusics.CASTLE_SMW_EDITOR_4,   IndividualMusics.CASTLE_SMW_EDITOR_5,   IndividualMusics.CASTLE_SMW_EDITOR_6,   IndividualMusics.CASTLE_SMW_EDITOR_7,  ] as const
+    export const NSMBU_CASTLE_EDITORS = [IndividualMusics.CASTLE_NSMBU_EDITOR_1, IndividualMusics.CASTLE_NSMBU_EDITOR_2, IndividualMusics.CASTLE_NSMBU_EDITOR_3, IndividualMusics.CASTLE_NSMBU_EDITOR_4, IndividualMusics.CASTLE_NSMBU_EDITOR_5, IndividualMusics.CASTLE_NSMBU_EDITOR_6, IndividualMusics.CASTLE_NSMBU_EDITOR_7,] as const
+    export const SM3DW_CASTLE_EDITORS = [IndividualMusics.CASTLE_SM3DW_EDITOR_1, IndividualMusics.CASTLE_SM3DW_EDITOR_2, IndividualMusics.CASTLE_SM3DW_EDITOR_3, IndividualMusics.CASTLE_SM3DW_EDITOR_4, IndividualMusics.CASTLE_SM3DW_EDITOR_5, IndividualMusics.CASTLE_SM3DW_EDITOR_6, IndividualMusics.CASTLE_SM3DW_EDITOR_7,] as const
+
+    //endregion -------------------- Fields (editor) --------------------
+    //region -------------------- Fields (lesson editor) --------------------
+
+    export const GROUND_LESSON_EDITORS =      [IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_1,      IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_2,      IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_3,      IndividualMusics.GROUND_NSMBU_LESSON_EDITOR_4,     ] as const
+    export const UNDERWATER_LESSON_EDITORS =  [IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_1,  IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_2,  IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_3,  IndividualMusics.UNDERWATER_NSMBU_LESSON_EDITOR_4, ] as const
+    export const FOREST_LESSON_EDITORS =      [IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_1,      IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_2,      IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_3,      IndividualMusics.FOREST_NSMBU_LESSON_EDITOR_4,     ] as const
+    export const GHOST_HOUSE_LESSON_EDITORS = [IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_1, IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_2, IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_3, IndividualMusics.GHOST_HOUSE_NSMBU_LESSON_EDITOR_4,] as const
+    export const CASTLE_LESSON_EDITORS =      [IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_1,      IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_2,      IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_3,      IndividualMusics.CASTLE_NSMBU_LESSON_EDITOR_4,     ] as const
+
+    //endregion -------------------- Fields (lesson editor) --------------------
+    //region -------------------- Fields (time) --------------------
+
+    export const SMB_GROUND_TIMES =   [IndividualMusics.GROUND_SMB,              IndividualMusics.GROUND_SMB_FAST,              IndividualMusics.GROUND_SMB_NIGHT,   IndividualMusics.GROUND_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMB3_GROUND_TIMES =  [IndividualMusics.GROUND_SMB3,             IndividualMusics.GROUND_SMB3_FAST,             IndividualMusics.GROUND_SMB3_NIGHT,  IndividualMusics.GROUND_SMB3_NIGHT_FAST,] as const
+    export const SMW_GROUND_TIMES =   [IndividualMusics.GROUND_SMW_STANDALONE,   IndividualMusics.GROUND_SMW_STANDALONE_FAST,   IndividualMusics.GROUND_SMW_NIGHT,   IndividualMusics.GROUND_SMW_NIGHT_FAST,   IndividualMusics.GROUND_SMW_YOSHI,   IndividualMusics.GROUND_SMW_YOSHI_FAST, ] as const
+    export const NSMBU_GROUND_TIMES = [IndividualMusics.GROUND_NSMBU_STANDALONE, IndividualMusics.GROUND_NSMBU_STANDALONE_FAST, IndividualMusics.GROUND_NSMBU_NIGHT, IndividualMusics.GROUND_NSMBU_NIGHT_FAST, IndividualMusics.GROUND_NSMBU_YOSHI, IndividualMusics.GROUND_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_GROUND_TIMES = [IndividualMusics.GROUND_SM3DW,            IndividualMusics.GROUND_SM3DW_FAST,] as const
+
+    export const SMB_UNDERGROUND_TIMES =   [IndividualMusics.UNDERGROUND_SMB,              IndividualMusics.UNDERGROUND_SMB_FAST,              IndividualMusics.UNDERGROUND_SMB_NIGHT,   IndividualMusics.UNDERGROUND_SMB_NIGHT_FAST, IndividualMusics.UNDERGROUND_LINK, IndividualMusics.UNDERGROUND_LINK_FAST, IndividualMusics.UNDERGROUND_SMB2, IndividualMusics.UNDERGROUND_SMB2_FAST,] as const
+    export const SMB3_UNDERGROUND_TIMES =  [IndividualMusics.UNDERGROUND_SMB3,             IndividualMusics.UNDERGROUND_SMB3_FAST,             IndividualMusics.UNDERGROUND_SMB3_NIGHT,  IndividualMusics.UNDERGROUND_SMB3_NIGHT_FAST,] as const
+    export const SMW_UNDERGROUND_TIMES =   [IndividualMusics.UNDERGROUND_SMW_STANDALONE,   IndividualMusics.UNDERGROUND_SMW_STANDALONE_FAST,   IndividualMusics.UNDERGROUND_SMW_NIGHT,   IndividualMusics.UNDERGROUND_SMW_NIGHT_FAST,   IndividualMusics.UNDERGROUND_SMW_YOSHI,   IndividualMusics.UNDERGROUND_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_NSMBU_STANDALONE, IndividualMusics.UNDERGROUND_NSMBU_STANDALONE_FAST, IndividualMusics.UNDERGROUND_NSMBU_NIGHT, IndividualMusics.UNDERGROUND_NSMBU_NIGHT_FAST, IndividualMusics.UNDERGROUND_NSMBU_YOSHI, IndividualMusics.UNDERGROUND_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_UNDERGROUND_TIMES = [IndividualMusics.UNDERGROUND_SM3DW,            IndividualMusics.UNDERGROUND_SM3DW_FAST,] as const
+
+    export const SMB_UNDERWATER_TIMES =   [IndividualMusics.UNDERWATER_SMB,              IndividualMusics.UNDERWATER_SMB_FAST,              IndividualMusics.UNDERWATER_SMB_NIGHT,   IndividualMusics.UNDERWATER_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMB3_UNDERWATER_TIMES =  [IndividualMusics.UNDERWATER_SMB3,             IndividualMusics.UNDERWATER_SMB3_FAST,             IndividualMusics.UNDERWATER_SMB3_NIGHT,  IndividualMusics.UNDERWATER_SMB3_NIGHT_FAST,] as const
+    export const SMW_UNDERWATER_TIMES =   [IndividualMusics.UNDERWATER_SMW_STANDALONE,   IndividualMusics.UNDERWATER_SMW_STANDALONE_FAST,   IndividualMusics.UNDERWATER_SMW_NIGHT,   IndividualMusics.UNDERWATER_SMW_NIGHT_FAST,   IndividualMusics.UNDERWATER_SMW_YOSHI,   IndividualMusics.UNDERWATER_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_NSMBU_STANDALONE, IndividualMusics.UNDERWATER_NSMBU_STANDALONE_FAST, IndividualMusics.UNDERWATER_NSMBU_NIGHT, IndividualMusics.UNDERWATER_NSMBU_NIGHT_FAST, IndividualMusics.UNDERWATER_NSMBU_YOSHI, IndividualMusics.UNDERWATER_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_UNDERWATER_TIMES = [IndividualMusics.UNDERWATER_SM3DW,            IndividualMusics.UNDERWATER_SM3DW_FAST,] as const
+
+    export const SMB_DESERT_TIMES =   [IndividualMusics.DESERT_SMB,              IndividualMusics.DESERT_SMB_FAST,              IndividualMusics.DESERT_SMB_NIGHT,   IndividualMusics.DESERT_SMB_NIGHT_FAST,   IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMW_DESERT_TIMES =   [IndividualMusics.DESERT_SMW_STANDALONE,   IndividualMusics.DESERT_SMW_STANDALONE_FAST,   IndividualMusics.DESERT_SMW_NIGHT,   IndividualMusics.DESERT_SMW_NIGHT_FAST,   IndividualMusics.DESERT_SMW_YOSHI,   IndividualMusics.DESERT_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_DESERT_TIMES = [IndividualMusics.DESERT_NSMBU_STANDALONE, IndividualMusics.DESERT_NSMBU_STANDALONE_FAST, IndividualMusics.DESERT_NSMBU_NIGHT, IndividualMusics.DESERT_NSMBU_NIGHT_FAST, IndividualMusics.DESERT_NSMBU_YOSHI, IndividualMusics.DESERT_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_DESERT_TIMES = [IndividualMusics.DESERT_SM3DW,            IndividualMusics.DESERT_SM3DW_FAST,] as const
+
+    export const SMB_SNOW_TIMES =   [IndividualMusics.SNOW_SMB,              IndividualMusics.SNOW_SMB_FAST,              IndividualMusics.SNOW_SMB_NIGHT,   IndividualMusics.SNOW_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMB3_SNOW_TIMES =  [IndividualMusics.SNOW_SMB3,             IndividualMusics.SNOW_SMB3_FAST,             IndividualMusics.SNOW_SMB3_NIGHT,  IndividualMusics.SNOW_SMB3_NIGHT_FAST,] as const
+    export const SMW_SNOW_TIMES =   [IndividualMusics.SNOW_SMW_STANDALONE,   IndividualMusics.SNOW_SMW_STANDALONE_FAST,   IndividualMusics.SNOW_SMW_NIGHT,   IndividualMusics.SNOW_SMW_NIGHT_FAST,   IndividualMusics.SNOW_SMW_YOSHI,   IndividualMusics.SNOW_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_SNOW_TIMES = [IndividualMusics.SNOW_NSMBU_STANDALONE, IndividualMusics.SNOW_NSMBU_STANDALONE_FAST, IndividualMusics.SNOW_NSMBU_NIGHT, IndividualMusics.SNOW_NSMBU_NIGHT_FAST, IndividualMusics.SNOW_NSMBU_YOSHI, IndividualMusics.SNOW_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_SNOW_TIMES = [IndividualMusics.SNOW_SM3DW,            IndividualMusics.SNOW_SM3DW_FAST,] as const
+
+    export const SMB_SKY_TIMES =   [IndividualMusics.SKY_SMB,              IndividualMusics.SKY_SMB_FAST,              IndividualMusics.SKY_SMB_NIGHT,   IndividualMusics.SKY_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMB3_SKY_TIMES =  [IndividualMusics.SKY_SMB3,             IndividualMusics.SKY_SMB3_FAST,             IndividualMusics.SKY_SMB3_NIGHT,  IndividualMusics.SKY_SMB3_NIGHT_FAST,] as const
+    export const SMW_SKY_TIMES =   [IndividualMusics.SKY_SMW_STANDALONE,   IndividualMusics.SKY_SMW_STANDALONE_FAST,   IndividualMusics.SKY_SMW_NIGHT,   IndividualMusics.SKY_SMW_NIGHT_FAST,   IndividualMusics.SKY_SMW_YOSHI,   IndividualMusics.SKY_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_SKY_TIMES = [IndividualMusics.SKY_NSMBU_STANDALONE, IndividualMusics.SKY_NSMBU_STANDALONE_FAST, IndividualMusics.SKY_NSMBU_NIGHT, IndividualMusics.SKY_NSMBU_NIGHT_FAST, IndividualMusics.SKY_NSMBU_YOSHI, IndividualMusics.SKY_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_SKY_TIMES = [IndividualMusics.SKY_SM3DW,            IndividualMusics.SKY_SM3DW_FAST,] as const
+
+    export const SMB_FOREST_TIMES =   [IndividualMusics.FOREST_SMB,              IndividualMusics.FOREST_SMB_FAST,              IndividualMusics.FOREST_SMB_NIGHT,        IndividualMusics.FOREST_SMB_NIGHT_FAST, IndividualMusics.GROUND_LINK, IndividualMusics.GROUND_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMW_FOREST_TIMES =   [IndividualMusics.FOREST_SMW_STANDALONE,   IndividualMusics.FOREST_SMW_STANDALONE_FAST,   IndividualMusics.FOREST_SMW_NIGHT,        IndividualMusics.FOREST_SMW_NIGHT_FAST,   IndividualMusics.FOREST_SMW_YOSHI,   IndividualMusics.FOREST_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_FOREST_TIMES = [IndividualMusics.FOREST_NSMBU_STANDALONE, IndividualMusics.FOREST_NSMBU_STANDALONE_FAST, IndividualMusics.FOREST_NSMBU_NIGHT,      IndividualMusics.FOREST_NSMBU_NIGHT_FAST, IndividualMusics.FOREST_NSMBU_YOSHI, IndividualMusics.FOREST_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_FOREST_TIMES = [IndividualMusics.FOREST_SM3DW,            IndividualMusics.FOREST_SM3DW_FAST,            IndividualMusics.FOREST_SM3DW_UNDERWATER, IndividualMusics.FOREST_SM3DW_UNDERWATER_FAST,] as const
+
+    export const SMB_GHOST_HOUSE_TIMES =   [IndividualMusics.GHOST_HOUSE_SMB, IndividualMusics.GHOST_HOUSE_SMB_FAST, IndividualMusics.GHOST_HOUSE_SMB_NIGHT, IndividualMusics.GHOST_HOUSE_SMB_NIGHT_FAST, IndividualMusics.UNDERGROUND_LINK, IndividualMusics.UNDERGROUND_LINK_FAST, IndividualMusics.UNDERGROUND_SMB2, IndividualMusics.UNDERGROUND_SMB2_FAST,] as const
+    export const SMB3_GHOST_HOUSE_TIMES =  [IndividualMusics.GHOST_HOUSE_SMB3, IndividualMusics.GHOST_HOUSE_SMB3_FAST, IndividualMusics.GHOST_HOUSE_SMB3_NIGHT, IndividualMusics.GHOST_HOUSE_SMB3_NIGHT_FAST,] as const
+    export const SMW_GHOST_HOUSE_TIMES =   [IndividualMusics.GHOST_HOUSE_SMW_STANDALONE, IndividualMusics.GHOST_HOUSE_SMW_STANDALONE_FAST, IndividualMusics.GHOST_HOUSE_SMW_NIGHT, IndividualMusics.GHOST_HOUSE_SMW_NIGHT_FAST, IndividualMusics.GHOST_HOUSE_SMW_YOSHI, IndividualMusics.GHOST_HOUSE_SMW_YOSHI_FAST,] as const
+    export const NSMBU_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_NSMBU_STANDALONE, IndividualMusics.GHOST_HOUSE_NSMBU_STANDALONE_FAST, IndividualMusics.GHOST_HOUSE_NSMBU_NIGHT, IndividualMusics.GHOST_HOUSE_NSMBU_NIGHT_FAST, IndividualMusics.GHOST_HOUSE_NSMBU_YOSHI, IndividualMusics.GHOST_HOUSE_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_GHOST_HOUSE_TIMES = [IndividualMusics.GHOST_HOUSE_SM3DW, IndividualMusics.GHOST_HOUSE_SM3DW_FAST,] as const
+
+    export const SMB_AIRSHIP_TIMES =   [IndividualMusics.AIRSHIP_SMB,              IndividualMusics.AIRSHIP_SMB_FAST,              IndividualMusics.AIRSHIP_SMB_NIGHT,   IndividualMusics.AIRSHIP_SMB_NIGHT_FAST, IndividualMusics.CASTLE_LINK, IndividualMusics.CASTLE_LINK_FAST, IndividualMusics.GROUND_SMB2, IndividualMusics.GROUND_SMB2_FAST,] as const
+    export const SMB3_AIRSHIP_TIMES =  [IndividualMusics.AIRSHIP_SMB3,             IndividualMusics.AIRSHIP_SMB3_FAST,             IndividualMusics.AIRSHIP_SMB3_NIGHT,  IndividualMusics.AIRSHIP_SMB3_NIGHT_FAST,] as const
+    export const SMW_AIRSHIP_TIMES =   [IndividualMusics.AIRSHIP_SMW_STANDALONE,   IndividualMusics.AIRSHIP_SMW_STANDALONE_FAST,   IndividualMusics.AIRSHIP_SMW_NIGHT,   IndividualMusics.AIRSHIP_SMW_NIGHT_FAST,   IndividualMusics.AIRSHIP_SMW_YOSHI,   IndividualMusics.AIRSHIP_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_NSMBU_STANDALONE, IndividualMusics.AIRSHIP_NSMBU_STANDALONE_FAST, IndividualMusics.AIRSHIP_NSMBU_NIGHT, IndividualMusics.AIRSHIP_NSMBU_NIGHT_FAST, IndividualMusics.AIRSHIP_NSMBU_YOSHI, IndividualMusics.AIRSHIP_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_AIRSHIP_TIMES = [IndividualMusics.AIRSHIP_SM3DW,            IndividualMusics.AIRSHIP_SM3DW_FAST,] as const
+
+    export const SMB_CASTLE_TIMES =   [IndividualMusics.CASTLE_SMB,              IndividualMusics.CASTLE_SMB_FAST,              IndividualMusics.CASTLE_SMB_NIGHT,   IndividualMusics.CASTLE_SMB_NIGHT_FAST, IndividualMusics.CASTLE_LINK, IndividualMusics.CASTLE_LINK_FAST, IndividualMusics.UNDERGROUND_SMB2, IndividualMusics.UNDERGROUND_SMB2_FAST,] as const
+    export const SMB3_CASTLE_TIMES =  [IndividualMusics.CASTLE_SMB3,             IndividualMusics.CASTLE_SMB3_FAST,             IndividualMusics.CASTLE_SMB3_NIGHT,  IndividualMusics.CASTLE_SMB3_NIGHT_FAST,] as const
+    export const SMW_CASTLE_TIMES =   [IndividualMusics.CASTLE_SMW_STANDALONE,   IndividualMusics.CASTLE_SMW_STANDALONE_FAST,   IndividualMusics.CASTLE_SMW_NIGHT,   IndividualMusics.CASTLE_SMW_NIGHT_FAST,   IndividualMusics.CASTLE_SMW_YOSHI,   IndividualMusics.CASTLE_SMW_YOSHI_FAST,  ] as const
+    export const NSMBU_CASTLE_TIMES = [IndividualMusics.CASTLE_NSMBU_STANDALONE, IndividualMusics.CASTLE_NSMBU_STANDALONE_FAST, IndividualMusics.CASTLE_NSMBU_NIGHT, IndividualMusics.CASTLE_NSMBU_NIGHT_FAST, IndividualMusics.CASTLE_NSMBU_YOSHI, IndividualMusics.CASTLE_NSMBU_YOSHI_FAST,] as const
+    export const SM3DW_CASTLE_TIMES = [IndividualMusics.CASTLE_SM3DW,            IndividualMusics.CASTLE_SM3DW_FAST,] as const
+
+    //endregion -------------------- Fields (time) --------------------
+    //region -------------------- Fields (sound effect) --------------------
+
+    export const PEACEFUL =      [IndividualMusics.PEACEFUL_LINK, IndividualMusics.PEACEFUL_SMB2,] as const
+    export const LINK_PEACEFUL = [IndividualMusics.PEACEFUL_LINK,] as const
+    export const SMB2_PEACEFUL = [IndividualMusics.PEACEFUL_SMB2,] as const
+
+
+    export const SMB_BONUSES =   [IndividualMusics.BONUS_SMB,   IndividualMusics.BONUS_SMB_FAST, IndividualMusics.BONUS_LINK, IndividualMusics.BONUS_LINK_FAST, IndividualMusics.BONUS_SMB2, IndividualMusics.BONUS_SMB2_FAST,] as const
+    export const SMB3_BONUSES =  [IndividualMusics.BONUS_SMB3,  IndividualMusics.BONUS_SMB3_FAST, ] as const
+    export const SMW_BONUSES =   [IndividualMusics.BONUS_SMW,   IndividualMusics.BONUS_SMW_FAST,  ] as const
+    export const NSMBU_BONUSES = [IndividualMusics.BONUS_NSMBU, IndividualMusics.BONUS_NSMBU_FAST,] as const
+    export const SM3DW_BONUSES = [IndividualMusics.BONUS_SM3DW, IndividualMusics.BONUS_SM3DW_FAST,] as const
+
+    export const LINK_BONUSES = [IndividualMusics.BONUS_LINK, IndividualMusics.BONUS_LINK_FAST,] as const
+    export const SMB2_BONUSES = [IndividualMusics.BONUS_SMB2, IndividualMusics.BONUS_SMB2_FAST,] as const
+
+
+    export const SMB_BOSSES =   [IndividualMusics.BOSS_SMB,   IndividualMusics.BOSS_SMB_FAST,   IndividualMusics.BOSS_LINK, IndividualMusics.BOSS_LINK_FAST, IndividualMusics.BOSS_SMB2, IndividualMusics.BOSS_SMB2_FAST,] as const
+    export const SMB3_BOSSES =  [IndividualMusics.BOSS_SMB3,  IndividualMusics.BOSS_SMB3_FAST, ] as const
+    export const SMW_BOSSES =   [IndividualMusics.BOSS_SMW,   IndividualMusics.BOSS_SMW_FAST,  ] as const
+    export const NSMBU_BOSSES = [IndividualMusics.BOSS_NSMBU, IndividualMusics.BOSS_NSMBU_FAST,] as const
+    export const SM3DW_BOSSES = [IndividualMusics.BOSS_SM3DW, IndividualMusics.BOSS_SM3DW_FAST,] as const
+
+    export const LINK_BOSSES = [IndividualMusics.BOSS_LINK, IndividualMusics.BOSS_LINK_FAST,] as const
+    export const SMB2_BOSSES = [IndividualMusics.BOSS_SMB2, IndividualMusics.BOSS_SMB2_FAST,] as const
+
+
+    export const SMB_FINAL_BOSSES =   [IndividualMusics.FINAL_BOSS_SMB3,  IndividualMusics.FINAL_BOSS_SMB3_FAST, IndividualMusics.FINAL_BOSS_LINK, IndividualMusics.FINAL_BOSS_LINK_FAST, IndividualMusics.FINAL_BOSS_SMB2, IndividualMusics.FINAL_BOSS_SMB2_FAST,] as const
+    export const SMB3_FINAL_BOSSES =  [IndividualMusics.FINAL_BOSS_SMB3,  IndividualMusics.FINAL_BOSS_SMB3_FAST, ] as const
+    export const SMW_FINAL_BOSSES =   [IndividualMusics.FINAL_BOSS_SMW,   IndividualMusics.FINAL_BOSS_SMW_FAST,  ] as const
+    export const NSMBU_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_NSMBU, IndividualMusics.FINAL_BOSS_NSMBU_FAST,] as const
+    export const SM3DW_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SM3DW, IndividualMusics.FINAL_BOSS_SM3DW_FAST,] as const
+
+    export const LINK_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_LINK, IndividualMusics.FINAL_BOSS_LINK_FAST,] as const
+    export const SMB2_FINAL_BOSSES = [IndividualMusics.FINAL_BOSS_SMB2, IndividualMusics.FINAL_BOSS_SMB2_FAST,] as const
+
+
+    export const SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES =  [IndividualMusics.BONUS_SMB3,  IndividualMusics.BONUS_SMB3_FAST,                                                                               IndividualMusics.BOSS_SMB3,  IndividualMusics.BOSS_SMB3_FAST,  IndividualMusics.FINAL_BOSS_SMB3,  IndividualMusics.FINAL_BOSS_SMB3_FAST, ] as const
+    export const SMW_BONUSES_BOSSES_AND_FINAL_BOSSES =   [IndividualMusics.BONUS_SMW,   IndividualMusics.BONUS_SMW_FAST,                                                                                IndividualMusics.BOSS_SMW,   IndividualMusics.BOSS_SMW_FAST,   IndividualMusics.FINAL_BOSS_SMW,   IndividualMusics.FINAL_BOSS_SMW_FAST,  ] as const
+    export const NSMBU_BONUSES_BOSSES_AND_FINAL_BOSSES = [IndividualMusics.BONUS_NSMBU, IndividualMusics.BONUS_NSMBU_FAST, IndividualMusics.BONUS_NSMBU_YOSHI, IndividualMusics.BONUS_NSMBU_YOSHI_FAST, IndividualMusics.BOSS_NSMBU, IndividualMusics.BOSS_NSMBU_FAST, IndividualMusics.FINAL_BOSS_NSMBU, IndividualMusics.FINAL_BOSS_NSMBU_FAST,] as const
+    export const SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES = [IndividualMusics.BONUS_SM3DW, IndividualMusics.BONUS_SM3DW_FAST,                                                                              IndividualMusics.BOSS_SM3DW, IndividualMusics.BOSS_SM3DW_FAST, IndividualMusics.FINAL_BOSS_SM3DW, IndividualMusics.FINAL_BOSS_SM3DW_FAST,] as const
+
+    //endregion -------------------- Fields (sound effect) --------------------
 
 }
 

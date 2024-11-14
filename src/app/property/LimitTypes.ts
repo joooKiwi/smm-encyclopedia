@@ -8,6 +8,10 @@ import type {CompanionEnumByTypeSingleton}                     from 'util/enumer
 import {Limits}              from 'core/limit/Limits'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
+import all =          Limits.all
+import editorLimits = Limits.editorLimits
+import playLimits =   Limits.playLimits
+
 /** @usedByTheRouting */
 export abstract class LimitTypes
     extends Enum<Ordinals, Names>
@@ -18,7 +22,7 @@ export abstract class LimitTypes
     public static readonly ALL = new class LimitTypes_All extends LimitTypes {
 
         public override get content() {
-            return Limits.CompanionEnum.get.values.toArray()
+            return all
         }
 
 
@@ -30,7 +34,7 @@ export abstract class LimitTypes
     public static readonly PLAY = new class LimitTypes_Play extends LimitTypes {
 
         public override get content() {
-            return Limits.playLimits
+            return playLimits
         }
 
 
@@ -50,7 +54,7 @@ export abstract class LimitTypes
     public static readonly EDITOR = new class LimitTypes_Editor extends LimitTypes {
 
         public override get content() {
-            return Limits.editorLimits
+            return editorLimits
         }
 
 

@@ -504,7 +504,6 @@ export class Limits
         return this.#alternativeEnglishName?.getInHtml ?? EMPTY_STRING
     }
 
-
     //endregion -------------------- Acronym / english name --------------------
     //region -------------------- Translation --------------------
 
@@ -562,16 +561,17 @@ export class Limits
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get playLimits(): Array<Limits> {
-        return this.#playLimits ??= this.CompanionEnum.get.values.filter(it => !it.isEditorLimit,).toArray()
-    }
-
-    public static get editorLimits(): Array<Limits> {
-        return this.#editorLimits ??= this.CompanionEnum.get.values.filter(it => it.isEditorLimit,).toArray()
-    }
-
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace Limits {
+
+    const values = Limits.CompanionEnum.get.values
+
+    export const all = values.toArray()
+    export const playLimits = values.filter(it => !it.isEditorLimit,).toArray()
+    export const editorLimits = values.filter(it => it.isEditorLimit,).toArray()
 
 }
 

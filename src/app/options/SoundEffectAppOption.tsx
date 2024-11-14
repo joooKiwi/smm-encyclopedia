@@ -167,18 +167,6 @@ export abstract class SoundEffectAppOption
 
     //region -------------------- App option - content --------------------
 
-    public static renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
-        const reference = enumerable.reference
-
-        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM1}/> : null
-    }
-
-    public static renderSMM2Image(enumerable: SoundEffects,): ReactElement {
-        const reference = enumerable.reference
-
-        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM2}/> : null
-    }
-
     protected abstract _createContentOption(enumeration: SoundEffects,): ReactElement
 
     public renderContent(enumeration: SoundEffects,): readonly [ReactElement,] {
@@ -197,5 +185,21 @@ export abstract class SoundEffectAppOption
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace SoundEffectAppOption {
+
+    export function renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
+        const reference = enumerable.reference
+
+        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM1}/> : null
+    }
+
+    export function renderSMM2Image(enumerable: SoundEffects,): ReactElement {
+        const reference = enumerable.reference
+
+        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM2}/> : null
+    }
 
 }

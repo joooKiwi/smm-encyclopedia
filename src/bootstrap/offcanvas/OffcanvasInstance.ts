@@ -21,16 +21,6 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
     //region -------------------- Fields --------------------
 
-    public static DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
-    /** @see Offcanvas.Events.show */
-    public static readonly SHOW_EVENT = `show${Offcanvas.EVENT_KEY}` as Offcanvas.Events.show
-    /** @see Offcanvas.Events.shown */
-    public static readonly SHOWN_EVENT = `shown${Offcanvas.EVENT_KEY}` as Offcanvas.Events.shown
-    /** @see Offcanvas.Events.hide */
-    public static readonly HIDE_EVENT = `hide${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hide
-    /** @see Offcanvas.Events.hidden */
-    public static readonly HIDDEN_EVENT = `hidden${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hidden
-
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.shown>>
     #onHideEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.hide>>
@@ -139,5 +129,19 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace OffcanvasInstance {
+
+    export let DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
+    /** @see Offcanvas.Events.show */
+    export const SHOW_EVENT = `show${Offcanvas.EVENT_KEY}` as Offcanvas.Events.show
+    /** @see Offcanvas.Events.shown */
+    export const SHOWN_EVENT = `shown${Offcanvas.EVENT_KEY}` as Offcanvas.Events.shown
+    /** @see Offcanvas.Events.hide */
+    export const HIDE_EVENT = `hide${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hide
+    /** @see Offcanvas.Events.hidden */
+    export const HIDDEN_EVENT = `hidden${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hidden
 
 }

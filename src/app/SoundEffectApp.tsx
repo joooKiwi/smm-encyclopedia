@@ -26,10 +26,12 @@ import {SoundEffects}                               from 'core/soundEffect/Sound
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
-import ALL_GAMES = GamePossibility.ALL_GAMES
-import SMM1 =      Games.SMM1
-import SMM2 =      Games.SMM2
-import SMM3DS =    Games.SMM3DS
+import ALL_GAMES =             GamePossibility.ALL_GAMES
+import renderSMM1And3DSImage = SoundEffectAppOption.renderSMM1And3DSImage
+import renderSMM2Image =       SoundEffectAppOption.renderSMM2Image
+import SMM1 =                  Games.SMM1
+import SMM2 =                  Games.SMM2
+import SMM3DS =                Games.SMM3DS
 
 class SoundEffectAppInterpreter
     implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -75,8 +77,8 @@ class SoundEffectAppInterpreter
     public createCardListContent(enumerable: SoundEffects,) {
         return <div>
             <div className="soundEffect-images-container">
-                {SoundEffectAppOption.renderSMM1And3DSImage(enumerable,)}
-                {SoundEffectAppOption.renderSMM2Image(enumerable,)}
+                {renderSMM1And3DSImage(enumerable,)}
+                {renderSMM2Image(enumerable,)}
             </div>
         </div>
     }

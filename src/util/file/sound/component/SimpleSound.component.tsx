@@ -12,9 +12,11 @@ import type {IsSourceFoundCallback} from 'util/file/sound/player/Validators.type
 import {HistoryState}           from 'util/file/sound/history/HistoryState'
 import {SoundSubElementsHolder} from 'util/file/sound/holder/SoundSubElementsHolder'
 import {AbstractSoundPlayer}    from 'util/file/sound/player/AbstractSoundPlayer'
-import {SoundPlayerFactory}     from 'util/file/sound/player/SoundPlayer.factory'
+import {SimpleSoundPlayer}      from 'util/file/sound/player/SimpleSoundPlayer'
 import {SoundStates}            from 'util/file/sound/player/SoundStates'
 import {Validators}             from 'util/file/sound/player/Validators'
+
+import allSoundPlayer = AbstractSoundPlayer.allSoundPlayer
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -111,7 +113,7 @@ export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFi
         if (audio == null)
             return
         audio.setState(new HistoryState(STANDBY, false, false,),)
-        AbstractSoundPlayer.map.delete(audio.source.key)
+        allSoundPlayer.delete(audio.source.key)
     }
 
     public override render(): ReactJSXElement {

@@ -1,5 +1,4 @@
-import type {Array} from '@joookiwi/type'
-import {Enum}       from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
@@ -80,9 +79,6 @@ export class CourseTags
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseTag>
-    static #officialCourseTags?: Array<CourseTags>
-    static #unofficialCourseTags?: Array<CourseTags>
-    static #makerCentralCourseTags?: Array<CourseTags>
 
     #reference?: CourseTag
     readonly #englishNameContainer
@@ -120,26 +116,36 @@ export class CourseTags
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get officialCourseTags(): Array<CourseTags> {
-        return this.#officialCourseTags ??= [
-            this.NONE, this.STANDARD, this.PUZZLE_SOLVING, this.SPEEDRUN,
-            this.AUTOSCROLL, this.AUTO_MARIO,
-            this.SHORT_AND_SWEET, this.SHOOTER,
-            this.SINGLE_PLAYER, this.MULTIPLAYER_VERSUS,
-            this.THEMED, this.MUSIC, this.ART, this.TECHNICAL,
-            this.BOSS_BATTLE, this.LINK,
-        ]
-    }
-
-    public static get unofficialCourseTags(): Array<CourseTags> {
-        return this.#unofficialCourseTags ??= this.CompanionEnum.get.values.filter(it => !this.officialCourseTags.includes(it)).toArray()
-    }
-
-    public static get makerCentralCourseTags(): Array<CourseTags> {
-        return this.#makerCentralCourseTags ??= this.CompanionEnum.get.values.filter(it => it.reference.makerCentralName != null).toArray()
-    }
-
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace CourseTags {
+
+    export const OFFICIAL_COURSE_TAGS = [
+        CourseTags.NONE, CourseTags.STANDARD, CourseTags.PUZZLE_SOLVING, CourseTags.SPEEDRUN,
+        CourseTags.AUTOSCROLL, CourseTags.AUTO_MARIO,
+        CourseTags.SHORT_AND_SWEET, CourseTags.SHOOTER,
+        CourseTags.SINGLE_PLAYER, CourseTags.MULTIPLAYER_VERSUS,
+        CourseTags.THEMED, CourseTags.MUSIC, CourseTags.ART, CourseTags.TECHNICAL,
+        CourseTags.BOSS_BATTLE, CourseTags.LINK,
+    ] as const
+
+    export const UNOFFICIAL_COURSE_TAGS = [
+        CourseTags.ONE_SCREEN,
+        CourseTags.PRECISION,
+        CourseTags.MULTIPLAYER, CourseTags.LOCAL_MULTIPLAYER, CourseTags.ONLINE_MULTIPLAYER, CourseTags.MULTIPLAYER_COOP,
+        CourseTags.PIXEL_ART, CourseTags.SHOWCASE, CourseTags.STORY, CourseTags.EXPLORATION,
+        CourseTags.GLITCH, CourseTags.TROLL, CourseTags.KAIZO,
+    ] as const
+
+    export const MAKER_CENTRAL_COURSE_TAGS = [
+        CourseTags.STANDARD, CourseTags.PUZZLE_SOLVING, CourseTags.SPEEDRUN,
+        CourseTags.AUTOSCROLL, CourseTags.AUTO_MARIO,
+        CourseTags.SHORT_AND_SWEET, CourseTags.SHOOTER,
+        CourseTags.SINGLE_PLAYER, CourseTags.MULTIPLAYER,
+        CourseTags.THEMED, CourseTags.MUSIC, CourseTags.PIXEL_ART, CourseTags.TECHNICAL,
+        CourseTags.BOSS_BATTLE, CourseTags.LINK,
+    ] as const
 
 }

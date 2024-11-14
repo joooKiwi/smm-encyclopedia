@@ -15,18 +15,6 @@ export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
     //region -------------------- Fields --------------------
 
-    public static DEFAULT_OPTIONS: Modal.Options = Modal.Default
-    /** @see Modal.Events.show */
-    public static readonly SHOW_EVENT = 'show.bs.modal' as Modal.Events.show
-    /** @see Modal.Events.shown */
-    public static readonly SHOWN_EVENT = 'shown.bs.modal' as Modal.Events.shown
-    /** @see Modal.Events.hide */
-    public static readonly HIDE_EVENT = 'hide.bs.modal' as Modal.Events.hide
-    /** @see Modal.Events.hidden */
-    public static readonly HIDDEN_EVENT = 'hidden.bs.modal' as Modal.Events.hidden
-    /** @see Modal.Events.hidePrevented */
-    public static readonly HIDE_PREVENTED_EVENT = 'hidePrevented.bs.modal' as Modal.Events.hidePrevented
-
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.shown>>
     #onHideEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.hide>>
@@ -160,5 +148,21 @@ export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace ModalInstance {
+
+    export let DEFAULT_OPTIONS: Modal.Options = Modal.Default
+    /** @see Modal.Events.show */
+    export const SHOW_EVENT = 'show.bs.modal' as Modal.Events.show
+    /** @see Modal.Events.shown */
+    export const SHOWN_EVENT = 'shown.bs.modal' as Modal.Events.shown
+    /** @see Modal.Events.hide */
+    export const HIDE_EVENT = 'hide.bs.modal' as Modal.Events.hide
+    /** @see Modal.Events.hidden */
+    export const HIDDEN_EVENT = 'hidden.bs.modal' as Modal.Events.hidden
+    /** @see Modal.Events.hidePrevented */
+    export const HIDE_PREVENTED_EVENT = 'hidePrevented.bs.modal' as Modal.Events.hidePrevented
 
 }

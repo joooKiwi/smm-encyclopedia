@@ -8,6 +8,10 @@ import type {CompanionEnumByTypeSingleton}                     from 'util/enumer
 import {CourseTags}          from 'core/courseTag/CourseTags'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
+import MAKER_CENTRAL_COURSE_TAGS = CourseTags.MAKER_CENTRAL_COURSE_TAGS
+import OFFICIAL_COURSE_TAGS =      CourseTags.OFFICIAL_COURSE_TAGS
+import UNOFFICIAL_COURSE_TAGS =    CourseTags.UNOFFICIAL_COURSE_TAGS
+
 /** @usedByTheRouting */
 export abstract class CourseTagTypes
     extends Enum<Ordinals, Names>
@@ -30,7 +34,7 @@ export abstract class CourseTagTypes
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.officialCourseTags
+            return OFFICIAL_COURSE_TAGS
         }
 
 
@@ -54,7 +58,7 @@ export abstract class CourseTagTypes
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.unofficialCourseTags
+            return UNOFFICIAL_COURSE_TAGS
         }
 
 
@@ -78,7 +82,7 @@ export abstract class CourseTagTypes
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.makerCentralCourseTags
+            return MAKER_CENTRAL_COURSE_TAGS
         }
 
 
@@ -170,7 +174,7 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the official {@link CourseTags}
      *
-     * @see CourseTags.officialCourseTags
+     * @see CourseTags.OFFICIAL_COURSE_TAGS
      */
     public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTag'>> {
         return 'officialCourseTag'
@@ -184,7 +188,7 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the unofficial {@link CourseTags}
      *
-     * @see CourseTags.unofficialCourseTags
+     * @see CourseTags.UNOFFICIAL_COURSE_TAGS
      */
     public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTag'>> {
         return 'unofficialCourseTag'
@@ -198,7 +202,7 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the "Maker Central" {@link CourseTags}
      *
-     * @see CourseTags.makerCentralCourseTags
+     * @see CourseTags.MAKER_CENTRAL_COURSE_TAGS
      */
     public get makerCentralRouteName(): NullOr<Extract<PossibleRouteName, 'makerCentralCourseTag'>> {
         return 'makerCentralCourseTag'

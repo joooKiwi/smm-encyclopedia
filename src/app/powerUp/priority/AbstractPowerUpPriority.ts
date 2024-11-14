@@ -49,12 +49,11 @@ export abstract class AbstractPowerUpPriority
         return this.#isIn
     }
 
-
-    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): Array<EntityImageFile> {
-        return (isArray(gameStyles,) ? gameStyles : [gameStyles])
-            .map(gameStyle => EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
-    }
-
     //endregion -------------------- Getter methods --------------------
 
+}
+
+export function getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): Array<EntityImageFile> {//TODO relocate elsewhere
+    return (isArray(gameStyles,) ? gameStyles : [gameStyles])
+        .map(gameStyle => EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
 }

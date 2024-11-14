@@ -17,7 +17,19 @@ import {SPACE}                                      from 'util/commonVariables'
 import {Empty}                                      from 'util/emptyVariables'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
-import EMPTY_STRING = Empty.EMPTY_STRING
+import EMPTY_STRING =        Empty.EMPTY_STRING
+import getBraces =           Characters.getBraces
+import getBrackets =         Characters.getBrackets
+import getChevrons =         Characters.getChevrons
+import getLowercaseLetters = Characters.getLowercaseLetters
+import getNumbers =          Characters.getNumbers
+import getParentheses =      Characters.getParentheses
+import getSlashes =          Characters.getSlashes
+import getUppercaseLetters = Characters.getUppercaseLetters
+import textInBraces =        Characters.textInBraces
+import textInBrackets =      Characters.textInBrackets
+import textInChevrons =      Characters.textInChevrons
+import textInParentheses =   Characters.textInParentheses
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
@@ -702,21 +714,21 @@ export abstract class EveryLanguages
     }
 
     public get comma(): PossibleComma {
-        return this.#comma ??= Characters.COMMA.getCharacters(this.isASpaceEvenLanguage)[0] as PossibleComma
+        return this.#comma ??= Characters.COMMA.getCharacter(this.isASpaceEvenLanguage,)
     }
 
     public get unionTrait(): PossibleUnionTrait {
-        return this.#unionTrait ??= Characters.UNION_TRAIT.getCharacters(this.isASpaceEvenLanguage)[0] as PossibleUnionTrait
+        return this.#unionTrait ??= Characters.UNION_TRAIT.getCharacter(this.isASpaceEvenLanguage,)
     }
 
 
     public get commercialAnd(): PossibleCommercialAnd {
-        return this.#commercialAnd ??= Characters.COMMERCIAL_AND.getCharacters(this.isASpaceEvenLanguage)[0] as PossibleCommercialAnd
+        return this.#commercialAnd ??= Characters.COMMERCIAL_AND.getCharacter(this.isASpaceEvenLanguage,)
     }
 
 
     public get parentheses(): PossibleParentheses_Array {
-        return this.#parentheses ??= Characters.getParentheses(this.isASpaceEvenLanguage)
+        return this.#parentheses ??= getParentheses(this.isASpaceEvenLanguage,)
     }
 
     public get startingParenthesis(): PossibleStartingParentheses {
@@ -728,7 +740,7 @@ export abstract class EveryLanguages
     }
 
     public get brackets(): PossibleBrackets_Array {
-        return this.#brackets ??= Characters.getBrackets(this.isASpaceEvenLanguage)
+        return this.#brackets ??= getBrackets(this.isASpaceEvenLanguage,)
     }
 
     public get startingBrackets(): PossibleStartingBracket {
@@ -740,7 +752,7 @@ export abstract class EveryLanguages
     }
 
     public get braces(): PossibleBraces_Array {
-        return this.#braces ??= Characters.getBraces(this.isASpaceEvenLanguage)
+        return this.#braces ??= getBraces(this.isASpaceEvenLanguage,)
     }
 
     public get startingBraces(): PossibleStartingBrace {
@@ -766,7 +778,7 @@ export abstract class EveryLanguages
 
 
     public get slashes(): PossibleSlashes_Array {
-        return this.#slashes ??= Characters.getSlashes(this.isASpaceEvenLanguage)
+        return this.#slashes ??= getSlashes(this.isASpaceEvenLanguage,)
     }
 
     public get slash(): PossibleSlash {
@@ -779,16 +791,16 @@ export abstract class EveryLanguages
 
 
     public get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Array {
-        return this.#romainLowercaseAlphabet ??= Characters.getLowercaseLetters(this.isASpaceEvenLanguage)
+        return this.#romainLowercaseAlphabet ??= getLowercaseLetters(this.isASpaceEvenLanguage,)
     }
 
     public get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Array {
-        return this.#romainUppercaseAlphabet ??= Characters.getUppercaseLetters(this.isASpaceEvenLanguage)
+        return this.#romainUppercaseAlphabet ??= getUppercaseLetters(this.isASpaceEvenLanguage,)
     }
 
 
     public get numbers(): PossibleNumbers_Array {
-        return this.#numbers ??= Characters.getNumbers(this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace)
+        return this.#numbers ??= getNumbers(this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace,)
     }
 
 
@@ -832,12 +844,12 @@ export abstract class EveryLanguages
 
     public textInParentheses<S extends string, >(text: S,): TextInParentheses<this['isASpaceEvenLanguage'], S>
     public textInParentheses(text: string,) {
-        return Characters.textInParentheses(this.isASpaceEvenLanguage, text,)
+        return textInParentheses(this.isASpaceEvenLanguage, text,)
     }
 
     public textInBrackets<S extends string, >(text: S,): TextInBrackets<this['isASpaceEvenLanguage'], S>
     public textInBrackets(text: string,) {
-        return Characters.textInBrackets(this.isASpaceEvenLanguage, text,)
+        return textInBrackets(this.isASpaceEvenLanguage, text,)
     }
 
     public textInBraces<S extends string, >(text: S,): TextInBraces<this['isASpaceEvenLanguage'], S>

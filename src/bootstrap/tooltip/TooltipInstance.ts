@@ -20,18 +20,6 @@ export class TooltipInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
     //region -------------------- Fields --------------------
 
-    public static DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
-    /** @see Tooltip.Events.show */
-    public static readonly SHOW_EVENT = `show${Tooltip.EVENT_KEY}` as Tooltip.Events.show
-    /** @see Tooltip.Events.shown */
-    public static readonly SHOWN_EVENT = `shown${Tooltip.EVENT_KEY}` as Tooltip.Events.shown
-    /** @see Tooltip.Events.hide */
-    public static readonly HIDE_EVENT = `hide${Tooltip.EVENT_KEY}` as Tooltip.Events.hide
-    /** @see Tooltip.Events.hidden */
-    public static readonly HIDDEN_EVENT = `hidden${Tooltip.EVENT_KEY}` as Tooltip.Events.hidden
-    /** @see Tooltip.Events.inserted */
-    public static readonly INSERTED_EVENT = `inserted${Tooltip.EVENT_KEY}` as Tooltip.Events.inserted
-
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Tooltip.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Tooltip.Events.shown>>
     #onHideEvent?: NullOr<EventHolder<ELEMENT, Tooltip.Events.hide>>
@@ -165,5 +153,21 @@ export class TooltipInstance<const ELEMENT extends HTMLElement = HTMLElement,
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace TooltipInstance {
+
+    export let DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
+    /** @see Tooltip.Events.show */
+    export const SHOW_EVENT = `show${Tooltip.EVENT_KEY}` as Tooltip.Events.show
+    /** @see Tooltip.Events.shown */
+    export const SHOWN_EVENT = `shown${Tooltip.EVENT_KEY}` as Tooltip.Events.shown
+    /** @see Tooltip.Events.hide */
+    export const HIDE_EVENT = `hide${Tooltip.EVENT_KEY}` as Tooltip.Events.hide
+    /** @see Tooltip.Events.hidden */
+    export const HIDDEN_EVENT = `hidden${Tooltip.EVENT_KEY}` as Tooltip.Events.hidden
+    /** @see Tooltip.Events.inserted */
+    export const INSERTED_EVENT = `inserted${Tooltip.EVENT_KEY}` as Tooltip.Events.inserted
 
 }
