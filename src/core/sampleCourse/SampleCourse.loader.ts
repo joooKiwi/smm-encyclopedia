@@ -45,11 +45,11 @@ export class SampleCourseLoader
         if (this.#map != null)
             return this.#map
 
-        const gameStyleCompanion = GameStyles.CompanionEnum.get
-        const themeCompanion = Themes.CompanionEnum.get
+        const GameStyleCompanion = GameStyles.CompanionEnum.get
+        const ThemeCompanion = Themes.CompanionEnum.get
         const references = new Map<PossibleEnglishName, SampleCourse>()
         forEachByArray(file as Array<Content>, content =>
-            references.set(`Level ${content.worldNumber}`, createReference(content, gameStyleCompanion, themeCompanion,),),)
+            references.set(`Level ${content.worldNumber}`, createReference(content, GameStyleCompanion, ThemeCompanion,),),)
 
         if (!isInProduction)
             console.info(
