@@ -6,7 +6,6 @@ import type {ReactComponent}        from 'util/react/ReactComponent'
 import type {SoundFile}             from 'util/file/sound/SoundFile'
 import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
 import type {SimpleSoundState}      from 'util/file/sound/component/state/SimpleSound.state'
-import type {SimpleSoundPlayer}     from 'util/file/sound/player/SimpleSoundPlayer'
 import type {IsSourceFoundCallback} from 'util/file/sound/player/Validators.types'
 
 import {HistoryState}           from 'util/file/sound/history/HistoryState'
@@ -95,7 +94,7 @@ export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFi
             return this.#audio
 
         const source = this.file
-        return this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
+        return this.#audio = new SimpleSoundPlayer(source, this.title,)
             .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
             .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
     }
