@@ -9,6 +9,6 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  * @param name The image name
  * @param englishName The fallback name
  */
-export function timeImage(name: PossibleSimpleImagePath, englishName: PossibleEnglishName,): TimeImageFile {
+export function timeImage<const T extends PossibleSimpleImagePath,>(name: T, englishName: PossibleEnglishName,): TimeImageFile<T> {
     return new SimpleImageFile('time', name, 'png', englishName,)
 }

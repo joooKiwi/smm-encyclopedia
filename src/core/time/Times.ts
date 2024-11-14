@@ -13,16 +13,17 @@ import {timeImage}                      from 'core/time/file/fileCreator'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-export abstract class Times
+export abstract class Times<const NAME extends PossibleEnglishName = PossibleEnglishName,
+    const IMAGE_NAME extends PossibleSimpleImagePath = PossibleSimpleImagePath,>
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImageFile<TimeImageFile>,
+    implements ClassWithEnglishName<NAME>,
+        ClassWithImageFile<TimeImageFile<IMAGE_NAME>>,
         PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<TimeProperty> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly DAY =   new class Times_Day extends Times {
+    public static readonly DAY =   new class Times_Day extends Times<'Day', 'Sun'> {
 
         public override get(property: TimeProperty,) {
             return property.isInDayTheme
@@ -33,7 +34,7 @@ export abstract class Times
         }
 
     }('Day', 'Sun',)
-    public static readonly NIGHT = new class Times_Night extends Times {
+    public static readonly NIGHT = new class Times_Night extends Times<'Night', 'Moon'> {
 
         public override get(property: TimeProperty,) {
             return property.isInNightTheme === true
@@ -71,22 +72,22 @@ export abstract class Times
     //region -------------------- Fields --------------------
 
     readonly #englishName
-    readonly #simpleImagePath: PossibleSimpleImagePath
-    #imageFile?: TimeImageFile
+    readonly #imageName
+    #imageFile?: TimeImageFile<IMAGE_NAME>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName: PossibleEnglishName, imagePath: PossibleSimpleImagePath,) {
+    private constructor(englishName: NAME, imagePath: IMAGE_NAME,) {
         super()
-        this.#englishName = new StringContainer(englishName)
-        this.#simpleImagePath = imagePath
+        this.#englishName = new StringContainer(englishName,)
+        this.#imageName = imagePath
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get englishName(): PossibleEnglishName {
+    public get englishName(): NAME {
         return this.#englishName.get
     }
 
@@ -94,8 +95,13 @@ export abstract class Times
         return this.#englishName.getInHtml
     }
 
-    public get imageFile(): TimeImageFile {
-        return this.#imageFile ??= timeImage(this.#simpleImagePath, this.englishName,)
+
+    public get imageName(): IMAGE_NAME {
+        return this.#imageName
+    }
+
+    public get imageFile(): TimeImageFile<IMAGE_NAME> {
+        return this.#imageFile ??= timeImage(this.imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
