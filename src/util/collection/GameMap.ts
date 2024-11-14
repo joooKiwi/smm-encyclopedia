@@ -24,7 +24,7 @@ export class GameMap<const out T extends boolean = boolean, const out REFERENCE 
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Games.CompanionEnum.get.values.map(it => [it, it.get(reference,) as T,],),)).size
+        this.size = (this.#internalStructure = new Map(Games.ALL.map(it => [it, it.get(reference,) as T,],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

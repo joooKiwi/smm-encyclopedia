@@ -1,8 +1,10 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import type {Array}                                                                    from '@joookiwi/type'
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
 
+import ALL =    Games.ALL
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
@@ -24,7 +26,7 @@ export class GameCollection<const T extends Games = Games,
 
     /** The collection has every game ({@link SMM1}, {@link SMM3DS} & {@link SMM2}) type in its values */
     public get hasAllGames(): boolean {
-        return this.#hasAllGames ??= this.hasAll([SMM1 as T, SMM3DS as T, SMM2 as T,],)
+        return this.#hasAllGames ??= this._hasAllByArray(ALL as unknown as Array<T>,)
     }
 
     /** The collection has the {@link SMM1} type in its values */

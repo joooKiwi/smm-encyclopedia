@@ -73,23 +73,4 @@ export type GameStyles_SMW = typeof GameStyles['SUPER_MARIO_WORLD']
 export type GameStyles_NSMBU = typeof GameStyles['NEW_SUPER_MARIO_BROS_U']
 export type GameStyles_SM3DW = typeof GameStyles['SUPER_MARIO_3D_WORLD']
 
-//region -------------------- Array types --------------------
-
-export type GameStyles_ArrayInSMM2 = readonly [
-    typeof GameStyles['SUPER_MARIO_BROS'],
-    typeof GameStyles['SUPER_MARIO_BROS_3'],
-    typeof GameStyles['SUPER_MARIO_WORLD'],
-    typeof GameStyles['NEW_SUPER_MARIO_BROS_U'],
-    typeof GameStyles['SUPER_MARIO_3D_WORLD'],
-]
-
-export type GameStyles_ArrayInSMM1 = readonly [
-    typeof GameStyles['SUPER_MARIO_BROS'],
-    typeof GameStyles['SUPER_MARIO_BROS_3'],
-    typeof GameStyles['SUPER_MARIO_WORLD'],
-    typeof GameStyles['NEW_SUPER_MARIO_BROS_U'],
-]
-
-//endregion -------------------- Array types --------------------
-
 //endregion -------------------- Types --------------------

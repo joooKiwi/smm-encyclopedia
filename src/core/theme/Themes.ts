@@ -271,43 +271,37 @@ export abstract class Themes
 
 export namespace Themes {
 
-    /** All the themes (in any "Super Mario Maker" game)*/
-    export const ALL = Themes.CompanionEnum.get.values.toArray()
+    /** All the {@link Themes} (in any "Super Mario Maker" game) */
+    export const ALL = [
+        Themes.GROUND, Themes.UNDERGROUND,
+        Themes.UNDERWATER, Themes.DESERT,
+        Themes.SNOW, Themes.SKY,
+        Themes.FOREST, Themes.GHOST_HOUSE,
+        Themes.AIRSHIP, Themes.CASTLE,
+        Themes.VOLCANO, Themes.SPACE,
+    ] as const
 
-    /** All the course themes (in any "Super Mario Maker" game)*/
+    /** All the course {@link Themes} (in any "Super Mario Maker" game) */
     export const COURSE_THEMES = [
-        Themes.GROUND,
-        Themes.UNDERGROUND,
-        Themes.UNDERWATER,
-        Themes.DESERT,
-        Themes.SNOW,
-        Themes.SKY,
-        Themes.FOREST,
-        Themes.GHOST_HOUSE,
-        Themes.AIRSHIP,
-        Themes.CASTLE,
+        Themes.GROUND, Themes.UNDERGROUND,
+        Themes.UNDERWATER, Themes.DESERT,
+        Themes.SNOW, Themes.SKY,
+        Themes.FOREST, Themes.GHOST_HOUSE,
+        Themes.AIRSHIP, Themes.CASTLE,
     ] as const
 
-    /** All the course themes (in {@link SMM1}) */
+    /** All the course {@link Themes} (in {@link SMM1}) */
     export const COURSE_THEMES_SMM1 = [
-        Themes.GROUND,
-        Themes.UNDERGROUND,
-        Themes.UNDERWATER,
-        Themes.GHOST_HOUSE,
-        Themes.AIRSHIP,
-        Themes.CASTLE,
+        Themes.GROUND, Themes.UNDERGROUND, Themes.UNDERWATER,
+        Themes.GHOST_HOUSE, Themes.AIRSHIP, Themes.CASTLE,
     ] as const
 
-    /** All the world themes (only in {@link SMM2}) */
+    /** All the world {@link Themes} (only in {@link SMM2}) */
     export const WORLD_THEMES = [
-        Themes.GROUND,
-        Themes.UNDERGROUND,
-        Themes.DESERT,
-        Themes.SNOW,
-        Themes.SKY,
-        Themes.FOREST,
-        Themes.VOLCANO,
-        Themes.SPACE,
+        Themes.GROUND, Themes.UNDERGROUND,
+        Themes.DESERT, Themes.SNOW,
+        Themes.SKY, Themes.FOREST,
+        Themes.VOLCANO, Themes.SPACE,
     ] as const
 
 }

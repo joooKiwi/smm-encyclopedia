@@ -30,6 +30,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}                                 from 'util/utilitiesMethods'
 
+import ALL =    GameStyles.ALL
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
@@ -56,7 +57,7 @@ class GameStyleAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(GameStyles.CompanionEnum.get.values, this.#games,)
+        return filterGame(ALL, this.#games,)
     }
 
     //region -------------------- List interpreter --------------------

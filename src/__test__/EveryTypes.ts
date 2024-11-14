@@ -60,10 +60,13 @@ import {Versions}              from 'core/version/Versions'
 import {CourseTags}            from 'core/courseTag/CourseTags'
 import {INFINITY}              from 'util/commonVariables'
 
-import SMM1 =            Games.SMM1
-import SMM2 =            Games.SMM2
-import SMM3DS =          Games.SMM3DS
-import gameStyles_smm1 = GameStyles.gameStyles_smm1
+import ALL_GAME_STYLES =      GameStyles.ALL
+import ALL_GAME_STYLES_SMM1 = GameStyles.ALL_SMM1
+import ALL_THEMES =           Themes.ALL
+import COURSE_THEMES_SMM1 =   Themes.COURSE_THEMES_SMM1
+import SMM1 =                 Games.SMM1
+import SMM2 =                 Games.SMM2
+import SMM3DS =               Games.SMM3DS
 
 /**
  * @singleton
@@ -209,11 +212,11 @@ export class EveryTypes {
     //region -------------------- Game style --------------------
 
     public get everyPossibleAcronym_gameStyle() {
-        return this.#everyPossibleAcronym_gameStyle ??= GameStyles.CompanionEnum.get.values.map(limit => limit.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameStyle ??= ALL_GAME_STYLES.map(limit => limit.acronym,)
     }
 
     public get everyPossibleAcronym_gameStyle_smm1() {
-        return this.#everyPossibleAcronym_gameStyle_smm1 ??= gameStyles_smm1.map(limit => limit.acronym,)
+        return this.#everyPossibleAcronym_gameStyle_smm1 ??= ALL_GAME_STYLES_SMM1.map(limit => limit.acronym,)
     }
 
     //endregion -------------------- Game style --------------------
@@ -309,11 +312,11 @@ export class EveryTypes {
     //region -------------------- Theme --------------------
 
     public get everyPossibleName_theme() {
-        return this.#everyPossibleName_theme ??= Themes.ALL.map(it => it.englishName,)
+        return this.#everyPossibleName_theme ??= ALL_THEMES.map(it => it.englishName,)
     }
 
     public get everyPossibleName_courseTheme_smm1() {
-        return this.#everyPossibleName_courseTheme_smm1 ??= Themes.COURSE_THEMES_SMM1.map(it => it.englishName,)
+        return this.#everyPossibleName_courseTheme_smm1 ??= COURSE_THEMES_SMM1.map(it => it.englishName,)
     }
 
     //endregion -------------------- Theme --------------------

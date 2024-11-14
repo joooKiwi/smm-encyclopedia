@@ -9,6 +9,8 @@ import GameImage                from 'core/game/GameImage'
 import {Games}                  from 'core/game/Games'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+import ALL = Games.ALL
+
 /**
  * @deprecated This component should be replaced to something else
  * @reactComponent
@@ -17,7 +19,7 @@ export default function GameComponent({reference, name, displayAllAsText,}: Enti
     if (reference.isInSuperMarioMaker1 && reference.isInSuperMarioMakerFor3DS && reference.isInSuperMarioMaker2) {
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('game.all',)}/>
-        return <div key={`${name.english} (every games)`}>{Games.CompanionEnum.get.values.map(it =>
+        return <div key={`${name.english} (every games)`}>{ALL.map(it =>
             <GameImage reference={it}/>,)}</div>
     }
 

@@ -15,6 +15,8 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
+import ALL_GAMES =       Games.ALL
+import ALL_GAME_STYLES = GameStyles.ALL
 
 /** Every {@link GameReferences} that will do a return of line after its rendering */
 const RETURN_OF_LINES = [
@@ -37,9 +39,9 @@ const RETURN_OF_LINES = [
 
 const otherGameReferences = (() => {
     const alreadyIncludedNames = [
-        ...Games.CompanionEnum.get.values.map(game => game.englishName,),
-        ...GameStyles.CompanionEnum.get.values.map(game => game.englishName,),
-        ...SoundEffects.soundEffect_games.map(game => game.englishName,) as Array<PossibleEnglishName_Games>,
+        ...ALL_GAMES.map(it => it.englishName,),
+        ...ALL_GAME_STYLES.map(it => it.englishName,),
+        ...SoundEffects.soundEffect_games.map(it => it.englishName,) as Array<PossibleEnglishName_Games>,
     ]
     return GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),)
 })()
@@ -51,7 +53,7 @@ export default function GameReferenceApp() {
         <div id="game-names-container" className="names-container">
             <h3 id="game-names-title" className="names-title">{gameContentTranslation('game.plural',)}</h3>
             <div id="game-name-container" className="container-fluid name-container">
-                {Games.CompanionEnum.get.values.map(it =>
+                {ALL_GAMES.map(it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameImage reference={it}/>
@@ -63,7 +65,7 @@ export default function GameReferenceApp() {
         <div id="gameStyle-names-container" className="names-container">
             <h3 id="gameStyle-names-title" className="names-title">{gameContentTranslation('game style.plural',)}</h3>
             <div id="gameStyle-name-container" className="container-fluid name-container">
-                {GameStyles.CompanionEnum.get.values.map(it =>
+                {ALL_GAME_STYLES.map(it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>

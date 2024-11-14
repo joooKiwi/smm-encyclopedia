@@ -22,7 +22,7 @@ export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameSt
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(GameStyles.CompanionEnum.get.values.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(GameStyles.ALL.map(it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

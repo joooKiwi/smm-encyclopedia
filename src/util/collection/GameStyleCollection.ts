@@ -1,13 +1,16 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import type {Array}                                                                    from '@joookiwi/type'
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
+import ALL =      GameStyles.ALL
+import ALL_SMM1 = GameStyles.ALL_SMM1
+import NSMBU =    GameStyles.NSMBU
+import SMB =      GameStyles.SMB
+import SMB3 =     GameStyles.SMB3
+import SMW =      GameStyles.SMW
+import SM3DW =    GameStyles.SM3DW
 
 export class GameStyleCollection<const T extends GameStyles = GameStyles,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>>
@@ -32,7 +35,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStyles(): boolean {
-        return this.#hasAllGameStyles ??= this.hasAll([SMB as T, SMB3 as T, SMW as T, NSMBU as T, SM3DW as T,],)
+        return this.#hasAllGameStyles ??= this._hasAllByArray(ALL as unknown as Array<T>,)
     }
 
 
@@ -42,7 +45,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStylesInSMM1(): boolean {
-        return this.#hasAllGameStylesInSMM1 ??= this.hasAll([SMB as T, SMB3 as T, SMW as T, NSMBU as T,],)
+        return this.#hasAllGameStylesInSMM1 ??= this._hasAllByArray(ALL_SMM1 as unknown as Array<T>,)
     }
 
     /** The collection has the {@link SMB} type in its values */

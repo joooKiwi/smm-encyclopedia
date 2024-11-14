@@ -6,6 +6,8 @@ import TimeImage                from 'core/time/TimeImage'
 import {Times}                  from 'core/time/Times'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+import ALL = Times.ALL
+
 /**
  * @deprecated This component should be replaced with something else
  * @reactComponent
@@ -14,7 +16,7 @@ export default function TimeComponent({reference, name, displayAllAsText,}: Enti
     if (reference.isInDayTheme && reference.isInNightTheme === true) {
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('time.all',)}/>
-        return <div key={`Every times images (${name.english})`}>{Times.CompanionEnum.get.values.map(it =>
+        return <div key={`Every times images (${name.english})`}>{ALL.map(it =>
             <TimeImage reference={it}/>,)}</div>
     }
 

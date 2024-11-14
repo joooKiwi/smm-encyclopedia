@@ -269,6 +269,9 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
 
 export namespace Games {
 
+    /** All the {@link Games} */
+    export const ALL = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
     /** An alias of {@link Games.SUPER_MARIO_MAKER_1} */
     export const SMM1 = Games.SUPER_MARIO_MAKER_1
     /** An alias of {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS} */

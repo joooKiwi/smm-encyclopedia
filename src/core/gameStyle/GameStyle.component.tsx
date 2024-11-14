@@ -9,6 +9,8 @@ import GameStyleImage           from 'core/gameStyle/GameStyleImage'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+import ALL = GameStyles.ALL
+
 /**
  * @deprecated This component should be replaced to something else
  * @reactComponent
@@ -21,7 +23,7 @@ export default function GameStyleComponent({reference, name, displayAllAsText,}:
         && reference.isInSuperMario3DWorldStyle === true) {
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('game style.all',)}/>
-        return <div key={`${name.english} (every game styles)`}>{GameStyles.CompanionEnum.get.values.map(it =>
+        return <div key={`${name.english} (every game styles)`}>{ALL.map(it =>
             <GameStyleImage reference={it}/>,)}</div>
     }
 

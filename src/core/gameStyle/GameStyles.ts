@@ -4,18 +4,18 @@ import type {Array, Nullable}                 from '@joookiwi/type'
 import {getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
 import {Enum}                                 from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                                                                                                  from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                                                                              from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                           from 'core/PropertyGetter'
-import type {CompanionEnumDeclaration_GameStyles}                                                                                                                                                               from 'core/gameStyle/GameStyles.companionEnumDeclaration'
-import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleSimpleValue, PossibleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                                                                                                         from 'core/gameStyle/GameStyle'
-import type {GameStyleImageFile}                                                                                                                                                                                from 'core/gameStyle/file/GameStyleImageFile'
-import type {Entity, PossibleOtherEntities}                                                                                                                                                                     from 'core/entity/Entity'
-import type {GameStyleProperty}                                                                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {ClassUsedInRoute}                                                                                                                                                                                  from 'route/ClassUsedInRoute'
-import type {ClassWithImageFile}                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
+import type {ClassWithAcronym}                                                                                                                                  from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                                              from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                           from 'core/PropertyGetter'
+import type {CompanionEnumDeclaration_GameStyles}                                                                                                               from 'core/gameStyle/GameStyles.companionEnumDeclaration'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleSimpleValue, PossibleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                                                         from 'core/gameStyle/GameStyle'
+import type {GameStyleImageFile}                                                                                                                                from 'core/gameStyle/file/GameStyleImageFile'
+import type {Entity, PossibleOtherEntities}                                                                                                                     from 'core/entity/Entity'
+import type {GameStyleProperty}                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {ClassUsedInRoute}                                                                                                                                  from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                                                                                from 'util/file/image/ClassWithImageFile'
 
 import {GameStyleLoader}                                              from 'core/gameStyle/GameStyle.loader'
 import {gameStyleImage}                                               from 'core/gameStyle/file/fileCreator'
@@ -441,8 +441,6 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>
-    static #GAME_STYLES_SMM1?: GameStyles_ArrayInSMM1
-    static #GAME_STYLES_SMM2?: GameStyles_ArrayInSMM2
 
     #reference?: GameStyle
     readonly #acronym
@@ -521,6 +519,13 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
 export namespace GameStyles {
 
+    /** All the {@link GameStyles} present in {@link SMM2} */
+    export const ALL = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
+
+    /** The {@link GameStyles} present in {@link SMM1} */
+    export const ALL_SMM1 = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
+
+
     /** An alias of {@link GameStyles.SUPER_MARIO_BROS} */
     export const SMB = GameStyles.SUPER_MARIO_BROS
     /** An alias of {@link GameStyles.SUPER_MARIO_BROS_3} */
@@ -531,11 +536,6 @@ export namespace GameStyles {
     export const NSMBU = GameStyles.NEW_SUPER_MARIO_BROS_U
     /** An alias of {@link GameStyles.SUPER_MARIO_3D_WORLD} */
     export const SM3DW = GameStyles.SUPER_MARIO_3D_WORLD
-
-    /** The {@link GameStyles} present in {@link SMM1} */
-    export const gameStyles_smm1: GameStyles_ArrayInSMM1 = [SMB, SMB3, SMW, NSMBU,]
-    /** The {@link GameStyles} present in {@link SMM2} */
-    export const gameStyle_smm2: GameStyles_ArrayInSMM2 = [SMB, SMB3, SMW, NSMBU, SM3DW,]
 
 }
 

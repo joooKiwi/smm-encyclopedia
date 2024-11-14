@@ -108,3 +108,10 @@ export abstract class Times
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace Times {
+
+    /** All the {@link Times} */
+    export const ALL = [Times.DAY, Times.NIGHT,] as const
+
+}
