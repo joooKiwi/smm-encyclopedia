@@ -1,11 +1,12 @@
-import type {Singleton}                    from '@joookiwi/enumerable'
-import type {Array, Nullable, StringArray} from '@joookiwi/type'
-import {CompanionEnum, Enum}               from '@joookiwi/enumerable'
+import type {Singleton}       from '@joookiwi/enumerable'
+import type {Array, Nullable} from '@joookiwi/type'
+import {CompanionEnum, Enum}  from '@joookiwi/enumerable'
 
 import type {CharactersEquivalencesMap, Names, Ordinals, PossibleSingleCharacter, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString, VariableValueByBoolean, SpaceUnevenCharacter, SpaceEvenCharacter, TextInChevrons} from 'lang/Characters.types'
 import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                 from 'lang/Characters.companionEnumDeclaration'
 
-export class Characters
+export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacter = SpaceUnevenCharacter,
+    const SPACE_EVEN_CHARACTER extends SpaceEvenCharacter = SpaceEvenCharacter,>
     extends Enum<Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
@@ -32,32 +33,58 @@ export class Characters
     public static readonly SLASH =                new Characters('/',  '／',)
     public static readonly VERTICAL_SLASH =       new Characters('|',  '｜',)
 
-    public static readonly LETTER_A =             new Characters('Aa', 'Ａａ',)
-    public static readonly LETTER_B =             new Characters('Bb', 'Ｂｂ',)
-    public static readonly LETTER_C =             new Characters('Cc', 'Ｃｃ',)
-    public static readonly LETTER_D =             new Characters('Dd', 'Ｄｄ',)
-    public static readonly LETTER_E =             new Characters('Ee', 'Ｅｅ',)
-    public static readonly LETTER_F =             new Characters('Ff', 'Ｆｆ',)
-    public static readonly LETTER_G =             new Characters('Gg', 'Ｇｇ',)
-    public static readonly LETTER_H =             new Characters('Hh', 'Ｈｈ',)
-    public static readonly LETTER_I =             new Characters('Ii', 'Ｉｉ',)
-    public static readonly LETTER_J =             new Characters('Jj', 'Ｊｊ',)
-    public static readonly LETTER_K =             new Characters('Kk', 'Ｋｋ',)
-    public static readonly LETTER_L =             new Characters('Ll', 'Ｌｌ',)
-    public static readonly LETTER_M =             new Characters('Mm', 'Ｍｍ',)
-    public static readonly LETTER_N =             new Characters('Nn', 'Ｎｎ',)
-    public static readonly LETTER_O =             new Characters('Oo', 'Ｏｏ',)
-    public static readonly LETTER_P =             new Characters('Pp', 'Ｐｐ',)
-    public static readonly LETTER_Q =             new Characters('Qq', 'Ｑｑ',)
-    public static readonly LETTER_R =             new Characters('Rr', 'Ｒｒ',)
-    public static readonly LETTER_S =             new Characters('Ss', 'Ｓｓ',)
-    public static readonly LETTER_T =             new Characters('Tt', 'Ｔｔ',)
-    public static readonly LETTER_U =             new Characters('Uu', 'Ｕｕ',)
-    public static readonly LETTER_V =             new Characters('Vv', 'Ｖｖ',)
-    public static readonly LETTER_W =             new Characters('Ww', 'Ｗｗ',)
-    public static readonly LETTER_X =             new Characters('Xx', 'Ｘｘ',)
-    public static readonly LETTER_Y =             new Characters('Yy', 'Ｙｙ',)
-    public static readonly LETTER_Z =             new Characters('Zz', 'Ｚｚ',)
+    public static readonly UPPER_LETTER_A =       new Characters('A', 'Ａ',)
+    public static readonly LOWER_LETTER_A =       new Characters('a', 'ａ',)
+    public static readonly UPPER_LETTER_B =       new Characters('B', 'Ｂ',)
+    public static readonly LOWER_LETTER_B =       new Characters('b', 'ｂ',)
+    public static readonly UPPER_LETTER_C =       new Characters('C', 'Ｃ',)
+    public static readonly LOWER_LETTER_C =       new Characters('c', 'ｃ',)
+    public static readonly UPPER_LETTER_D =       new Characters('D', 'Ｄ',)
+    public static readonly LOWER_LETTER_D =       new Characters('d', 'ｄ',)
+    public static readonly UPPER_LETTER_E =       new Characters('E', 'Ｅ',)
+    public static readonly LOWER_LETTER_E =       new Characters('e', 'ｅ',)
+    public static readonly UPPER_LETTER_F =       new Characters('F', 'Ｆ',)
+    public static readonly LOWER_LETTER_F =       new Characters('f', 'ｆ',)
+    public static readonly UPPER_LETTER_G =       new Characters('G', 'Ｇ',)
+    public static readonly LOWER_LETTER_G =       new Characters('g', 'ｇ',)
+    public static readonly UPPER_LETTER_H =       new Characters('H', 'Ｈ',)
+    public static readonly LOWER_LETTER_H =       new Characters('h', 'ｈ',)
+    public static readonly UPPER_LETTER_I =       new Characters('I', 'Ｉ',)
+    public static readonly LOWER_LETTER_I =       new Characters('i', 'ｉ',)
+    public static readonly UPPER_LETTER_J =       new Characters('J', 'Ｊ',)
+    public static readonly LOWER_LETTER_J =       new Characters('j', 'ｊ',)
+    public static readonly UPPER_LETTER_K =       new Characters('K', 'Ｋ',)
+    public static readonly LOWER_LETTER_K =       new Characters('k', 'ｋ',)
+    public static readonly UPPER_LETTER_L =       new Characters('L', 'Ｌ',)
+    public static readonly LOWER_LETTER_L =       new Characters('l', 'ｌ',)
+    public static readonly UPPER_LETTER_M =       new Characters('M', 'Ｍ',)
+    public static readonly LOWER_LETTER_M =       new Characters('m', 'ｍ',)
+    public static readonly UPPER_LETTER_N =       new Characters('N', 'Ｎ',)
+    public static readonly LOWER_LETTER_N =       new Characters('n', 'ｎ',)
+    public static readonly UPPER_LETTER_O =       new Characters('O', 'Ｏ',)
+    public static readonly LOWER_LETTER_O =       new Characters('o', 'ｏ',)
+    public static readonly UPPER_LETTER_P =       new Characters('P', 'Ｐ',)
+    public static readonly LOWER_LETTER_P =       new Characters('p', 'ｐ',)
+    public static readonly UPPER_LETTER_Q =       new Characters('Q', 'Ｑ',)
+    public static readonly LOWER_LETTER_Q =       new Characters('q', 'ｑ',)
+    public static readonly UPPER_LETTER_R =       new Characters('R', 'Ｒ',)
+    public static readonly LOWER_LETTER_R =       new Characters('r', 'ｒ',)
+    public static readonly UPPER_LETTER_S =       new Characters('S', 'Ｓ',)
+    public static readonly LOWER_LETTER_S =       new Characters('s', 'ｓ',)
+    public static readonly UPPER_LETTER_T =       new Characters('T', 'Ｔ',)
+    public static readonly LOWER_LETTER_T =       new Characters('t', 'ｔ',)
+    public static readonly UPPER_LETTER_U =       new Characters('U', 'Ｕ',)
+    public static readonly LOWER_LETTER_U =       new Characters('u', 'ｕ',)
+    public static readonly UPPER_LETTER_V =       new Characters('V', 'Ｖ',)
+    public static readonly LOWER_LETTER_V =       new Characters('v', 'ｖ',)
+    public static readonly UPPER_LETTER_W =       new Characters('W', 'Ｗ',)
+    public static readonly LOWER_LETTER_W =       new Characters('w', 'ｗ',)
+    public static readonly UPPER_LETTER_X =       new Characters('X', 'Ｘ',)
+    public static readonly LOWER_LETTER_X =       new Characters('x', 'ｘ',)
+    public static readonly UPPER_LETTER_Y =       new Characters('Y', 'Ｙ',)
+    public static readonly LOWER_LETTER_Y =       new Characters('y', 'ｙ',)
+    public static readonly UPPER_LETTER_Z =       new Characters('Z', 'Ｚ',)
+    public static readonly LOWER_LETTER_Z =       new Characters('z', 'ｚ',)
 
     public static readonly NUMBER_0 =             new Characters('0',  '０',)
     public static readonly NUMBER_1 =             new Characters('1',  '１',)
@@ -95,14 +122,7 @@ export class Characters
         public getCharacter<const B extends boolean, const C extends PossibleSingleCharacter, >(isSpaceEven: B, value: C,): VariableCharacterByCharacter<B, C>
         public getCharacter<const B extends boolean, const C extends string, >(isSpaceEven: B, value: C,): VariableCharacterByString<B, C>
         public getCharacter(isSpaceEven: boolean, value: string,) {
-            const enumValue = this.getValueByCharacter(value,)
-            const isUppercase = value === value.toUpperCase()
-            const isLowercase = value === value.toLowerCase()
-            if (!isUppercase && !isLowercase)//. ? ! , - & / | ( ) [ ] { } [0 to 9]
-                return enumValue.getCharacters(isSpaceEven,)[0]
-
-            const characters = enumValue.getCharacters(isSpaceEven,)//[a to z] [A to Z]
-            return isUppercase ? characters[0] : characters[1]
+            return this.getValueByCharacter(value,).getCharacter(isSpaceEven,)
         }
 
         public getValueByCharacter(value: Nullable<| Characters | string>,): Characters {
@@ -111,8 +131,8 @@ export class Characters
             if (value instanceof this.instance)
                 return value
             const valueFound = this.values.findFirstOrNull(it =>
-                it.spaceEvenCharacters.includes(value as never,)
-                || it.spaceUnevenCharacters.includes(value as never,),)
+                it.spaceEvenCharacter === value
+                || it.spaceUnevenCharacter === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by ths value "${value}".`,)
             return valueFound
@@ -177,35 +197,21 @@ export class Characters
 
     static #SPACE_EVEN_OBJECT_MAP?: CharactersEquivalencesMap
 
-
-    readonly #spaceEvenCharacters: PossibleSpaceEvenCharacters
-    readonly #spaceUnevenCharacters: PossibleSpaceUnevenCharacters
+    readonly #spaceEvenCharacter: SPACE_EVEN_CHARACTER
+    readonly #spaceUnevenCharacter: SPACE_UNEVEN_CHARACTER
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(spaceUnevenCharacter: PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, spaceEvenCharacter: PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet,)
-    private constructor(spaceUnevenCharacters: PossibleMixedSpaceUnevenCharacter_RomainAlphabet, spaceEvenCharacters: PossibleMixedSpaceEvenCharacter_RomainAlphabet,)
-    private constructor(spaceUnevenCharacter: SpaceUnevenCharacterReceived, spaceEvenCharacter: SpaceEvenCharacterReceived,) {
+    private constructor(spaceUnevenCharacter: SPACE_UNEVEN_CHARACTER, spaceEvenCharacter: SPACE_EVEN_CHARACTER,) {
         super()
-        if (spaceUnevenCharacter.length === 1) {
-            this.#spaceEvenCharacters = [spaceEvenCharacter as PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet]
-            this.#spaceUnevenCharacters = [spaceUnevenCharacter as PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet]
-        } else {
-            this.#spaceEvenCharacters = [spaceEvenCharacter[0] as Uppercase<SpaceEvenCharacter_RomainAlphabet>, spaceEvenCharacter[1] as Lowercase<SpaceEvenCharacter_RomainAlphabet>,]
-            this.#spaceUnevenCharacters = [spaceUnevenCharacter[0] as Uppercase<SpaceUnevenCharacter_RomainAlphabet>, spaceUnevenCharacter[1] as Lowercase<SpaceUnevenCharacter_RomainAlphabet>,]
-        }
+        this.#spaceEvenCharacter = spaceEvenCharacter
+        this.#spaceUnevenCharacter = spaceUnevenCharacter
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get spaceEvenCharacters(): PossibleSpaceEvenCharacters {
-        return this.#spaceEvenCharacters
-    }
-
-    public get spaceUnevenCharacters(): PossibleSpaceUnevenCharacters {
-        return this.#spaceUnevenCharacters
     }
 
     //region -------------------- Specific characters --------------------
@@ -244,10 +250,14 @@ export class Characters
 
     public static get parentheses_enum(): Parentheses {
         return this.#PARENTHESES
+    public get spaceEvenCharacter(): SPACE_EVEN_CHARACTER {
+        return this.#spaceEvenCharacter
     }
 
     public static get parentheses(): Parentheses_Array {
         return this.#PARENTHESES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.parentheses_enum, 0,)
+    public get spaceUnevenCharacter(): SPACE_UNEVEN_CHARACTER {
+        return this.#spaceUnevenCharacter
     }
 
     public static getParentheses<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array>
@@ -377,9 +387,9 @@ export class Characters
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getCharacters<B extends boolean, >(isSpaceEven: B,): VariableCharactersByBoolean<B>
-    public getCharacters(isSpaceEven: boolean,) {
-        return isSpaceEven ? this.spaceEvenCharacters : this.spaceUnevenCharacters
+    public getCharacter<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, SPACE_EVEN_CHARACTER, SPACE_UNEVEN_CHARACTER>
+    public getCharacter(isSpaceEven: boolean,) {
+        return isSpaceEven ? this.spaceEvenCharacter : this.spaceUnevenCharacter
     }
 
     /**
@@ -391,14 +401,10 @@ export class Characters
 
         const spaceEvenObjectMap: Partial<CharactersEquivalencesMap> = {}
         this.CompanionEnum.get.values.forEach(it => {
-            const [spaceEvenCharacter1, spaceEvenCharacter2,] = it.spaceEvenCharacters
-            const [spaceUnevenCharacter1, spaceUnevenCharacter2,] = it.spaceUnevenCharacters
-            Reflect.set(spaceEvenObjectMap, spaceEvenCharacter1, spaceUnevenCharacter1,)
-            Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter1, spaceEvenCharacter1,)
-            if (spaceUnevenCharacter2 != null) {
-                Reflect.set(spaceEvenObjectMap, spaceEvenCharacter2!, spaceUnevenCharacter2,)
-                Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter2, spaceEvenCharacter2,)
-            }
+            const spaceEvenCharacter = it.spaceEvenCharacter
+            const spaceUnevenCharacter = it.spaceUnevenCharacter
+            Reflect.set(spaceEvenObjectMap, spaceEvenCharacter, spaceUnevenCharacter,)
+            Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter, spaceEvenCharacter,)
         },)
         return this.#SPACE_EVEN_OBJECT_MAP = spaceEvenObjectMap as CharactersEquivalencesMap
     }
