@@ -3,7 +3,8 @@ import type {NullOr}                                                            
 import type {Dispatch, SetStateAction}                                                               from 'react'
 import {CompanionEnum}                                                                               from '@joookiwi/enumerable'
 
-import {Empty} from 'util/emptyVariables'
+import {Empty}        from 'util/emptyVariables'
+import {forEachValue} from 'util/utilitiesMethods'
 
 import EMPTY_MAP = Empty.EMPTY_MAP
 
@@ -47,7 +48,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
         const selectedValue = this.getValue(value,) as ENUM
         if (selectedValue === this.currentOrNull)
             return
-        this.onSetCurrentEventOrEmpty.forEach(it => it(selectedValue,),)
+        forEachValue(this.onSetCurrentEventOrEmpty, it => it(selectedValue,),)
         this._onSetCurrent(selectedValue,)
         this.#current = selectedValue
     }

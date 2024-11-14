@@ -5,8 +5,8 @@ import type {Dispatch, SetStateAction}                                    from '
 import {GenericCollectionHolder, isArray}                                 from '@joookiwi/collection'
 import {CompanionEnum}                                                    from '@joookiwi/enumerable'
 
-import {Empty}              from 'util/emptyVariables'
-import {isCollectionEquals} from 'util/utilitiesMethods'
+import {Empty}                            from 'util/emptyVariables'
+import {forEachValue, isCollectionEquals} from 'util/utilitiesMethods'
 
 import EMPTY_MAP = Empty.EMPTY_MAP
 
@@ -56,7 +56,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
         if (current != null)
             if (isCollectionEquals(value, current,))
                 return
-        this.onSetCurrentEventOrEmpty.forEach(it => it(value as CollectionHolder<ENUM>,),)
+        forEachValue(this.onSetCurrentEventOrEmpty, it => it(value as CollectionHolder<ENUM>,),)
         this._onSetCurrent(value,)
         this.#current = value
     }
