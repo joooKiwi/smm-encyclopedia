@@ -101,7 +101,8 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
 
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
-        const regularMusics = this.regularMusic.all
+        const regularMusic = this.regularMusic
+        const regularMusics = regularMusic.all
         forEachByArray(this.editorMusic.all, it => {
             if (it == null)
                 return
