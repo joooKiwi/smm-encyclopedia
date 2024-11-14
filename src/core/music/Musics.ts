@@ -372,6 +372,8 @@ export class Musics
 
         //endregion -------------------- Singleton usage --------------------
 
+        protected override readonly _EXCLUDED_NAMES = ['SMK', 'SM64', 'SMS', 'SMG',]
+
         public override getValueByReference(value: Nullable<| Musics | Themes | SoundEffects>,): Musics {
             if (value == null)
                 throw new TypeError(`No "${this.instance.name}" could be found by a null reference.`,)

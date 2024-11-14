@@ -1075,6 +1075,8 @@ export abstract class SoundEffects
 
         //endregion -------------------- Singleton usage --------------------
 
+        protected override readonly _EXCLUDED_NAMES = ['SMK', 'SM64', 'SMS', 'SMG',]
+
     }
 
     //endregion -------------------- Companion enum --------------------
