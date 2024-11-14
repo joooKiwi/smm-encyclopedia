@@ -105,8 +105,18 @@ export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyS
 //region -------------------- for each --------------------
 
 export function forEach<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K, value: V,) => void,): void {
-    for (const [key, value,] of values)
-        action(key, value,)
+    for (const it of values)
+        action(it[0], it[1],)
+}
+
+export function forEachKey<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K,) => void,) {
+    for (const it of values)
+        action(it[0],)
+}
+
+export function forEachValue<const K, const V,>(values: ReadonlyMap<K, V>, action: (value: V,) => void,) {
+    for (const it of values)
+        action(it[1],)
 }
 
 //endregion -------------------- for each --------------------
