@@ -20,6 +20,8 @@ export class TooltipInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
     //region -------------------- Fields --------------------
 
+    public static DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
+
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Tooltip.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Tooltip.Events.shown>>
     #onHideEvent?: NullOr<EventHolder<ELEMENT, Tooltip.Events.hide>>
@@ -158,7 +160,7 @@ export class TooltipInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 export namespace TooltipInstance {
 
-    export let DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
+    // export let DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
     /** @see Tooltip.Events.show */
     export const SHOW_EVENT = `show${Tooltip.EVENT_KEY}` as Tooltip.Events.show
     /** @see Tooltip.Events.shown */

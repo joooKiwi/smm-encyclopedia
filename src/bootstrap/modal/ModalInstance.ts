@@ -15,6 +15,8 @@ export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
     //region -------------------- Fields --------------------
 
+    public static DEFAULT_OPTIONS: Modal.Options = Modal.Default
+
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.shown>>
     #onHideEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.hide>>
@@ -153,7 +155,7 @@ export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 export namespace ModalInstance {
 
-    export let DEFAULT_OPTIONS: Modal.Options = Modal.Default
+    // export let DEFAULT_OPTIONS: Modal.Options = Modal.Default
     /** @see Modal.Events.show */
     export const SHOW_EVENT = 'show.bs.modal' as Modal.Events.show
     /** @see Modal.Events.shown */

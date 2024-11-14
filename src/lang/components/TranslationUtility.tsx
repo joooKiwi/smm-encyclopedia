@@ -10,6 +10,12 @@ import {assert}         from 'util/utilitiesMethods'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
+export class TranslationUtility {
+
+    public static OPTION_TO_RETURN_OBJECT: TOptions = {returnObjects: true, interpolation: {skipOnVariables: true,},}
+
+}
+
 export namespace TranslationUtility {
 
     export const STARTING_CHARACTER = '{'
@@ -21,7 +27,7 @@ export namespace TranslationUtility {
     export const ENDING_CHARACTER_LENGTH = ENDING_CHARACTER.length
     export const ENDING_REGEX = /}}/g
     export const ENDING_LENGTH = '}}'.length
-    export let OPTION_TO_RETURN_OBJECT: TOptions = {returnObjects: true, interpolation: {skipOnVariables: true,},}
+    // export let OPTION_TO_RETURN_OBJECT: TOptions = {returnObjects: true, interpolation: {skipOnVariables: true,},}
 
 
     export function testTranslation<T, >(value: T,): T & string {

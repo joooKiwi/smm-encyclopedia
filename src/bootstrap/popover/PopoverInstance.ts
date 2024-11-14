@@ -7,7 +7,6 @@ import type {PopoverEventCallback, PopoverInstanceDeclaration} from 'bootstrap/p
 
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
-import {TooltipInstance}                  from 'bootstrap/tooltip/TooltipInstance'
 
 /**
  * An instance holder for a {@link bootstrap.Popover Popover}
@@ -20,6 +19,8 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
     implements PopoverInstanceDeclaration<ELEMENT, ID> {
 
     //region -------------------- Fields --------------------
+
+    public static DEFAULT_OPTIONS: Partial<Popover.Options> = {}
 
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Popover.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Popover.Events.shown>>
@@ -159,7 +160,7 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 export namespace PopoverInstance {
 
-    export let DEFAULT_OPTIONS: Partial<Popover.Options> = {}
+    // export let DEFAULT_OPTIONS: Partial<Popover.Options> = {}
     /** @see Popover.Events.show */
     export const SHOW_EVENT = `show${Popover.EVENT_KEY}` as Popover.Events.show
     /** @see Popover.Events.shown */

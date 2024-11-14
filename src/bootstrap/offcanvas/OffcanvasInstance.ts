@@ -21,6 +21,8 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
     //region -------------------- Fields --------------------
 
+    public static DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
+
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.shown>>
     #onHideEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.hide>>
@@ -134,7 +136,7 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 export namespace OffcanvasInstance {
 
-    export let DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
+    // export let DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
     /** @see Offcanvas.Events.show */
     export const SHOW_EVENT = `show${Offcanvas.EVENT_KEY}` as Offcanvas.Events.show
     /** @see Offcanvas.Events.shown */
