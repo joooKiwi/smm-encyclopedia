@@ -1,5 +1,4 @@
-import type {MutableArray} from '@joookiwi/type'
-import {getFirstByArray}   from '@joookiwi/collection'
+import {allByArray, filterByArray} from '@joookiwi/collection'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {GameStyleProperty}        from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -16,23 +15,14 @@ import ALL = GameStyles.ALL
  * @reactComponent
  */
 export default function GameStyleComponent({reference, name, displayAllAsText,}: EntityPropertyProperties<GameStyleProperty>,) {
-    if (reference.isInSuperMarioBrosStyle
-        && reference.isInSuperMarioBros3Style
-        && reference.isInSuperMarioWorldStyle
-        && reference.isInNewSuperMarioBrosUStyle
-        && reference.isInSuperMario3DWorldStyle === true) {
+    if (allByArray(ALL, it => it.get(reference,),))
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('game style.all',)}/>
-        return <div key={`${name.english} (every game styles)`}>{ALL.map(it =>
-            <GameStyleImage reference={it}/>,)}</div>
-    }
+        else
+            return <div key={`${name.english} (every game styles)`}>{ALL.map(it => <GameStyleImage reference={it}/>,)}</div>
 
-    const gameStyles: MutableArray<GameStyles> = []
-    reference.toGameStyleMap().forEach((isSelected, gameStyle,) => {
-        if (isSelected)
-            gameStyles.push(gameStyle,)
-    },)
+    const gameStyles = filterByArray(ALL, it => it.get(reference,),)
     if (gameStyles.length === 1)
-        return <GameStyleImage reference={getFirstByArray(gameStyles,)}/>
+        return <GameStyleImage reference={gameStyles.getFirst()}/>
     return <div key={`${name.english} - group`}>{gameStyles.map(it => <GameStyleImage reference={it}/>)}</div>
 }

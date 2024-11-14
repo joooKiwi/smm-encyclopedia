@@ -1,5 +1,4 @@
-import type {MutableArray} from '@joookiwi/type'
-import {getFirstByArray}   from '@joookiwi/collection'
+import {allByArray, filterByArray} from '@joookiwi/collection'
 
 import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
@@ -16,19 +15,14 @@ import ALL = Games.ALL
  * @reactComponent
  */
 export default function GameComponent({reference, name, displayAllAsText,}: EntityPropertyProperties<GameProperty>,) {
-    if (reference.isInSuperMarioMaker1 && reference.isInSuperMarioMakerFor3DS && reference.isInSuperMarioMaker2) {
+    if (allByArray(ALL, it => it.get(reference,),))
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('game.all',)}/>
-        return <div key={`${name.english} (every games)`}>{ALL.map(it =>
-            <GameImage reference={it}/>,)}</div>
-    }
+        else
+            return <div key={`${name.english} (every games)`}>{ALL.map(it => <GameImage reference={it}/>,)}</div>
 
-    const games: MutableArray<Games> = []
-    reference.toGameMap().forEach((isSelected, game,) => {
-        if (isSelected)
-            games.push(game,)
-    },)
+    const games = filterByArray(ALL, it => it.get(reference,),)
     if (games.length === 1)
-        return <GameImage reference={getFirstByArray(games,)}/>
+        return <GameImage reference={games.getFirst()}/>
     return <div key={`${name.english} - group`}>{games.map(it => <GameImage reference={it}/>)}</div>
 }
