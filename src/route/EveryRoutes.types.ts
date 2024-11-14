@@ -1,13 +1,13 @@
 import type {EmptyString} from '@joookiwi/type'
 
-import type {ViewDisplays}                                                                                                                                                                                            from 'app/withInterpreter/ViewDisplays'
-import type {PossibleUrlValue}                                                                                                                                                                                        from 'app/withInterpreter/ViewDisplays.types'
-import type {FullGroupUrlName as FullGroupValidUrlSimpleValue_Game, FullGroupUrlName_WithNotSMM2, FullGroupUrlName_WithSMM2, FullUrlValue as FullValidUrlValue_Game, FullUrlValue_WithNotSMM2, FullUrlValue_WithSMM2} from 'core/game/Games.types'
-import type {FullGroupUrlName as FullGroupValidUrlSimpleValue_GameStyle, FullGroupUrlName_SMM1, FullUrlValue as FullValidUrlValue_GameStyle, FullUrlValue_SMM1}                                                       from 'core/gameStyle/GameStyles.types'
-import type {PossibleAcronym}                                                                                                                                                                                         from 'lang/ProjectLanguages.types'
-import type {EveryRoutes}                                                                                                                                                                                             from 'route/EveryRoutes'
-import type {GameCollection}                                                                                                                                                                                          from 'util/collection/GameCollection'
-import type {GameStyleCollection}                                                                                                                                                                                     from 'util/collection/GameStyleCollection'
+import type {ViewDisplays}                                                                                                                                                                      from 'app/withInterpreter/ViewDisplays'
+import type {PossibleUrlValue}                                                                                                                                                                  from 'app/withInterpreter/ViewDisplays.types'
+import type {FullGroupUrlName as FullUrlName_Game, FullGroupUrlName_WithNotSMM2, FullGroupUrlName_WithSMM2, FullUrlValue as FullUrlValue_Game, FullUrlValue_WithNotSMM2, FullUrlValue_WithSMM2} from 'core/game/Games.types'
+import type {FullGroupUrlName as FullUrlName_GameStyle, FullGroupUrlName_SMM1, FullUrlValue as FullUrlValue_GameStyle, FullUrlValue_SMM1}                                                       from 'core/gameStyle/GameStyles.types'
+import type {PossibleAcronym}                                                                                                                                                                   from 'lang/ProjectLanguages.types'
+import type {EveryRoutes}                                                                                                                                                                       from 'route/EveryRoutes'
+import type {GameCollection}                                                                                                                                                                    from 'util/collection/GameCollection'
+import type {GameStyleCollection}                                                                                                                                                               from 'util/collection/GameStyleCollection'
 
 enum Enum {
     HOME,
@@ -136,11 +136,11 @@ type NameJoin3<NAME extends string, FIRST extends string, SECOND extends string,
 
 type NameInSMM1 = 'Game=1'
 type NameInSMM2 = 'Game=2'
-type NameInAllGame = FullGroupValidUrlSimpleValue_Game
+type NameInAllGame = FullUrlName_Game
 type NameInSMM1Or3DS = FullGroupUrlName_WithNotSMM2
 type NameInAllGameOrRelatedToSMM2 = FullGroupUrlName_WithSMM2
 type NameInAllGameStyleInSMM1Or3DS = FullGroupUrlName_SMM1
-type NameInAllGameStyle = FullGroupValidUrlSimpleValue_GameStyle
+type NameInAllGameStyle = FullUrlName_GameStyle
 
 type NameInAnyGame<NAME extends string, > =                        NameJoin1<NAME, NameInAllGame>
 type NameInOnlySmm1<NAME extends string, > =                       NameJoin2<NAME, PossibleViewDisplay, NameInSMM1>
@@ -161,11 +161,11 @@ type PathJoin3<PATH extends string, FIRST extends string, SECOND extends string,
 
 type PathInSMM1 = 'game-1'
 type PathInSMM2 = 'game-2'
-type PathInAllGame = FullValidUrlValue_Game
+type PathInAllGame = FullUrlValue_Game
 type PathInSMM1Or3DS = FullUrlValue_WithNotSMM2
 type PathInAllGameOrRelatedToSMM2 = FullUrlValue_WithSMM2
 type PathInAllGameStyleInSMM1Or3DS = FullUrlValue_SMM1
-type PathInAllGameStyle = FullValidUrlValue_GameStyle
+type PathInAllGameStyle = FullUrlValue_GameStyle
 
 type PathInAnyGame<PATH extends string, > =                     PathJoin1<PATH , PathInAllGame>
 type PathInOnlySmm1<PATH extends string, > =                    PathJoin2<PATH, PossibleViewDisplay, PathInSMM1>
@@ -205,9 +205,9 @@ export type NothingRouteCallback = () => ReactJSXElement
 /** The partial path of a {@link EveryRoutes} made from a {@link ViewDisplays} */
 export type PossibleViewDisplayPath = | EmptyString | `/${PossibleUrlValue}`
 /** The partial path of a {@link EveryRoutes} made from the {@link Games} */
-export type PossibleGamePath = | EmptyString | `/${FullValidUrlValue_Game}`
+export type PossibleGamePath = | EmptyString | `/${FullUrlValue_Game}`
 /** The partial path of a {@link EveryRoutes} made from the {@link GameStyles} */
-export type PossibleGameStylePath = | EmptyString | `/${FullValidUrlValue_GameStyle}`
+export type PossibleGameStylePath = | EmptyString | `/${FullUrlValue_GameStyle}`
 
 
 export type EveryPossibleRoutes = `/${PossibleAcronym}${PossibleRoutePath}`
