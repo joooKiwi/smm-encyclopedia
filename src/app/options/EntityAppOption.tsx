@@ -38,8 +38,6 @@ import PlayLimitComponent               from 'core/limit/PlayLimit.component'
 import SMM1And3DSEditorLimitComponent   from 'core/limit/SMM1And3DSEditorLimit.component'
 import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.component'
 import CourseThemeComponent             from 'core/theme/CourseTheme.component'
-import {Themes}                         from 'core/theme/Themes'
-import {Times}                          from 'core/time/Times'
 import TimeComponent                    from 'core/time/Time.component'
 
 import NSMBU = GameStyles.NSMBU
