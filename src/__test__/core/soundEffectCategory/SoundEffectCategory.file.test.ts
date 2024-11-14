@@ -17,7 +17,7 @@ describe('Sound effect category (file test)', () => {
         testLanguages(it, excludedLanguages,)
 
         describe('Type validations', () => {
-            testOnlyEnglish(it, everyNames,)//TODO add german value on the Feelings, Stingers & Music
+            testOnlyEnglish(it, everyNames,)
         },)
     },)},)
 },)
