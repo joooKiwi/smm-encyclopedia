@@ -38,7 +38,6 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
         return this.#hasAllGameStyles ??= this._hasAllByArray(ALL as unknown as Array<T>,)
     }
 
-
     /**
      * The collection has all {@link GameStyles} in {@link SMM1}
      * ({@link SMB}, {@link SMB3}, {@link SMW} & {@link NSMBU})
@@ -47,6 +46,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     public get hasAllGameStylesInSMM1(): boolean {
         return this.#hasAllGameStylesInSMM1 ??= this._hasAllByArray(ALL_SMM1 as unknown as Array<T>,)
     }
+
 
     /** The collection has the {@link SMB} type in its values */
     public get hasSMB(): boolean {
