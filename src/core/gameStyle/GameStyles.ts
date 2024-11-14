@@ -520,7 +520,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 export namespace GameStyles {
 
     /** All the {@link GameStyles} present in {@link SMM2} */
-    export const ALL = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
+    export const ALL = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
 
     /** The {@link GameStyles} present in {@link SMM1} */
     export const ALL_SMM1 = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
