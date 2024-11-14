@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {PossibleFileName}       from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {NonRepeatableSoundFile} from 'util/file/sound/NonRepeatableSoundFile'
 

@@ -1,7 +1,7 @@
-import type {Singleton}                      from '@joookiwi/enumerable'
-import type {Nullable, NullOr, NullOrString} from '@joookiwi/type'
-import {Enum}                                from '@joookiwi/enumerable'
-import i18n                                  from 'i18next'
+import type {Singleton}                                  from '@joookiwi/enumerable'
+import type {EmptyArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
+import {Enum}                                            from '@joookiwi/enumerable'
+import i18n                                              from 'i18next'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleChevrons_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInChevrons, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from 'lang/ClassWithEveryLanguages'

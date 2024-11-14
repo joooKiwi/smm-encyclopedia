@@ -1,7 +1,7 @@
-import type {CollectionHolder}                            from '@joookiwi/collection'
-import type {Array, MutableArray, Nullable, NullOr}       from '@joookiwi/type'
-import {forEach as forEach2, isArray, isCollectionHolder} from '@joookiwi/collection'
-import {AssertionError}                                   from 'assert'
+import type {CollectionHolder}                                   from '@joookiwi/collection'
+import type {Array, EmptyString, MutableArray, Nullable, NullOr} from '@joookiwi/type'
+import {forEach as forEach2, isArray, isCollectionHolder}        from '@joookiwi/collection'
+import {AssertionError}                                          from 'assert'
 
 import type {ClassWithReference}                                                                                  from 'core/ClassWithReference'
 import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'

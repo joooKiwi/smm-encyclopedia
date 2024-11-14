@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {ReactProperties} from 'util/react/ReactProperties'
 import type {HTMLIProperties} from 'util/react/html/HTMLIProperties'
 

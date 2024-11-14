@@ -1,3 +1,5 @@
+import type {EmptyArray, EmptyMap} from '@joookiwi/type'
+
 import type {Entity}                                      from 'core/entity/Entity'
 import type {EmptyEntityCategory}                         from 'core/entityCategory/EmptyEntityCategory'
 import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
@@ -177,31 +179,31 @@ export class EmptyEntity
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap(): EmptyMap {
+    public toGameMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toGameStyleMap(): EmptyMap {
+    public toGameStyleMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toCourseThemeMap(): EmptyMap {
+    public toCourseThemeMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toTimeMap(): EmptyMap {
+    public toTimeMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toLimitMap(): EmptyMap {
+    public toLimitMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toEditorLimitMap(): EmptyMap {
+    public toEditorLimitMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toPlayLimitMap(): EmptyMap {
+    public toPlayLimitMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 

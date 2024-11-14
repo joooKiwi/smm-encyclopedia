@@ -1,5 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import type {Array}                              from '@joookiwi/type'
+import type {Array, EmptyString}                 from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                      from 'core/ClassWithEnglishName'

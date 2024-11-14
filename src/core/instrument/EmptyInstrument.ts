@@ -1,3 +1,5 @@
+import type {EmptyMap} from '@joookiwi/type'
+
 import type {Instrument} from 'core/instrument/Instrument'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
@@ -30,7 +32,7 @@ export class EmptyInstrument
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false
 
-    public toGameMap(): EmptyMap {
+    public toGameMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 

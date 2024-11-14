@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
     NWC_2017,
     DR_KAWASHIMA_ATHLETIC_TRAINING,

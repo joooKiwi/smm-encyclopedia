@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
 
     FINISH_ALL_JOBS,

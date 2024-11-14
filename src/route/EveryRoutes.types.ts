@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {ViewDisplays}                                                                                                                                                                                            from 'app/withInterpreter/ViewDisplays'
 import type {PossibleUrlValue}                                                                                                                                                                                        from 'app/withInterpreter/ViewDisplays.types'
 import type {FullGroupUrlName as FullGroupValidUrlSimpleValue_Game, FullGroupUrlName_WithNotSMM2, FullGroupUrlName_WithSMM2, FullUrlValue as FullValidUrlValue_Game, FullUrlValue_WithNotSMM2, FullUrlValue_WithSMM2} from 'core/game/Games.types'

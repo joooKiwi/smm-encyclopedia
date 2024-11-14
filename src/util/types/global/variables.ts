@@ -3,9 +3,6 @@ import type {Empty}                                                             
 
 declare global {
 
-    type EmptyString = typeof Empty['EMPTY_STRING']
-    type EmptyArray = typeof Empty['EMPTY_ARRAY']
-    type EmptyMap = typeof Empty['EMPTY_MAP']
     type EmptyObject = typeof Empty['EMPTY_OBJECT']
 
     type Space = typeof SPACE

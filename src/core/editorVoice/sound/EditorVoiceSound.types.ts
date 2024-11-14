@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 //region -------------------- Starting name --------------------
 
 //region -------------------- Starting name (voice before) --------------------

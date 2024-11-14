@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 /**
  * The base map (not exported) for every type of music for a "sound effect" or only for a "background music".
  *

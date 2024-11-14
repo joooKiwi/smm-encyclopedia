@@ -1,3 +1,5 @@
+import type {EmptyArray} from '@joookiwi/type'
+
 import type {EntityImage} from 'core/entity/images/EntityImage'
 
 import {Empty} from 'util/emptyVariables'

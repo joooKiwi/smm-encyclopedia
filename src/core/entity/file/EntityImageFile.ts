@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {ClearConditionEntityImages}                                                                                  from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}                                                                                          from 'core/entity/EditorEntityImages'
 import type {PossibleEnglishName}                                                                                         from 'core/entity/Entities.types'

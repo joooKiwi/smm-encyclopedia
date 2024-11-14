@@ -1,4 +1,4 @@
-import type {NullOr} from '@joookiwi/type'
+import type {EmptyString, NullOr} from '@joookiwi/type'
 
 import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
 import type {SoundEffects}                    from 'core/soundEffect/SoundEffects'

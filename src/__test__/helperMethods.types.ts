@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 export type PossibleExcludedLanguages =
     | `english${| EmptyString | ` (${| 'america' | 'europe'})`}`
     | `french${| EmptyString | ` (${| 'canada' | 'europe'})`}`

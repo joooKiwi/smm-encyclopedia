@@ -1,3 +1,5 @@
+import type {EmptyArray, EmptyString} from '@joookiwi/type'
+
 import type {Entity} from 'core/entity/Entity'
 
 enum Enum {

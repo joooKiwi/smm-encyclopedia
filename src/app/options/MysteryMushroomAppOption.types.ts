@@ -1,4 +1,4 @@
-import type {NullOrString} from '@joookiwi/type'
+import type {EmptyString, NullOrString} from '@joookiwi/type'
 
 enum Enum {
 

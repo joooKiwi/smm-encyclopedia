@@ -1,4 +1,4 @@
-import type {NullOr, NullOrString} from '@joookiwi/type'
+import type {EmptyString, NullOr, NullOrString} from '@joookiwi/type'
 
 import type {PossibleEnglishName} from 'core/limit/Limits.types'
 

@@ -1,4 +1,4 @@
-import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import type {Array, EmptyArray, NullOr, NullOrString} from '@joookiwi/type'
 
 import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {GameProperty}                                                                                                                                                      from 'core/entity/properties/game/GameProperty'

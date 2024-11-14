@@ -1,3 +1,5 @@
+import type {EmptyArray} from '@joookiwi/type'
+
 import type {FileName} from 'core/mysteryMushroom/file/name/FileName'
 
 import {Empty} from 'util/emptyVariables'

@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
     ALL,
     POWER_UP_AND_RIDE,
