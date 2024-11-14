@@ -30,7 +30,6 @@ import {Entities}                                   from 'core/entity/Entities'
 import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
-import {GameStylePossibility}                       from 'core/gameStyle/GameStyle.possibility'
 import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -43,7 +42,7 @@ import ALL_GAMES =       GamePossibility.ALL_GAMES
 import SMM1 =            Games.SMM1
 import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS
-import ALL_GAME_STYLES = GameStylePossibility.ALL_GAME_STYLES
+import ALL_GAME_STYLES = GameStyles.ALL
 import NSMBU =           GameStyles.NSMBU
 import SMB =             GameStyles.SMB
 import SMB3 =            GameStyles.SMB3

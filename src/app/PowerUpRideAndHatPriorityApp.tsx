@@ -24,20 +24,19 @@ import {Arrows}                                     from 'app/tools/arrow/Arrows
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
 import {Entities}                                   from 'core/entity/Entities'
-import {GameStylePossibility}                       from 'core/gameStyle/GameStyle.possibility'
 import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
-import SMB_AND_SMB3 =                                              GameStylePossibility.SMB_AND_SMB3
-import SMW_AND_NSMBU =                                             GameStylePossibility.SMW_AND_NSMBU
-import SMB_AND_SMB3_AND_SMW =                                      GameStylePossibility.SMB_AND_SMB3_AND_SMW
-import NOT_SM3DW =                                                 GameStylePossibility.NOT_SM3DW
+import NOT_SM3DW =                                                 GameStyles.NOT_SM3DW
 import NSMBU =                                                     GameStyles.NSMBU
 import SMB =                                                       GameStyles.SMB
+import SMB_AND_SMB3 =                                              GameStyles.SMB_AND_SMB3
+import SMB_AND_SMB3_AND_SMW =                                      GameStyles.SMB_AND_SMB3_AND_SMW
 import SMB3 =                                                      GameStyles.SMB3
 import SMW =                                                       GameStyles.SMW
+import SMW_AND_NSMBU =                                             GameStyles.SMW_AND_NSMBU
 import SM3DW =                                                     GameStyles.SM3DW
 import EDITOR_IMAGE_CALLBACK =                                     ImageCallbacks.EDITOR_IMAGE_CALLBACK
 import FIRST_EDITOR_IMAGE_CALLBACK =                               ImageCallbacks.FIRST_EDITOR_IMAGE_CALLBACK

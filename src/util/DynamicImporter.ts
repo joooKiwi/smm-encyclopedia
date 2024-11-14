@@ -13,7 +13,6 @@ import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomE
 import type {GamePossibility}               from 'core/game/Game.possibility'
 import type {Games}                         from 'core/game/Games'
 import type {GameReferences}                from 'core/gameReference/GameReferences'
-import type {GameStylePossibility}          from 'core/gameStyle/GameStyle.possibility'
 import type {GameStyles}                    from 'core/gameStyle/GameStyles'
 import type {Instruments}                   from 'core/instrument/Instruments'
 import type {Limits}                        from 'core/limit/Limits'
@@ -115,7 +114,6 @@ export class DynamicImporter {
     //region -------------------- "Game style" fields --------------------
 
     #GameStyles?: typeof GameStyles
-    #GameStylePossibility?: typeof GameStylePossibility
 
     //endregion -------------------- "Game style" fields --------------------
     //region -------------------- "Entity behaviour" fields --------------------
@@ -279,10 +277,6 @@ export class DynamicImporter {
 
     public get GameStyles(): typeof GameStyles {
         return this.#GameStyles ??= require('../core/gameStyle/GameStyles').GameStyles
-    }
-
-    public get GameStylePossibility(): typeof GameStylePossibility {
-        return this.#GameStylePossibility ??= require('../core/gameStyle/GameStyle.possibility').GameStylePossibility
     }
 
     //endregion -------------------- Game getter methods --------------------
