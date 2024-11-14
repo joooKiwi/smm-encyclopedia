@@ -34,10 +34,10 @@ export default function ShellAndYoshiMountablePriority<T extends PowerUpPriority
     return hasSMM2
         ? <GroupOf5PowerUpPriority id={`powerUpPriority-group-${lowerCaseAcronym}-shellAndMountable`}>
             <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Dry Bones Shell)`} id={`powerUpPriority-${lowerCaseAcronym}-dryBonesShell`} value={dryBonesShell} images={images}/>
-            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Buzzy Shell)`}      id={`powerUpPriority-${lowerCaseAcronym}-buzzyShell`}   value={buzzyShell}    images={images}/>
-            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Spiny Shell)`}      id={`powerUpPriority-${lowerCaseAcronym}-spinyShell`}   value={spinyShell}    images={images}/>
-            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Yoshi)`}            id={`powerUpPriority-${lowerCaseAcronym}-yoshi`}        value={yoshi}         images={images}/>
-            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Red Yoshi)`}        id={`powerUpPriority-${lowerCaseAcronym}-redYoshi`}     value={redYoshi}      images={images}/>
+            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Buzzy Shell)`}     id={`powerUpPriority-${lowerCaseAcronym}-buzzyShell`}    value={buzzyShell}    images={images}/>
+            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Spiny Shell)`}     id={`powerUpPriority-${lowerCaseAcronym}-spinyShell`}    value={spinyShell}    images={images}/>
+            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Yoshi)`}           id={`powerUpPriority-${lowerCaseAcronym}-yoshi`}         value={yoshi}         images={images}/>
+            <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Red Yoshi)`}       id={`powerUpPriority-${lowerCaseAcronym}-redYoshi`}      value={redYoshi}      images={images}/>
         </GroupOf5PowerUpPriority>
         : <GroupOf4PowerUpPriority id={`powerUpPriority-group-${lowerCaseAcronym}-shellAndMountable`}>
             <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Buzzy Shell)`}      id={`powerUpPriority-${lowerCaseAcronym}-buzzyShell`}   value={buzzyShell}    images={images}/>
