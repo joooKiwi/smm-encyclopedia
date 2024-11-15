@@ -115,7 +115,7 @@ const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
 
 //region -------------------- Possibility group constants --------------------
 
-/** Every {@link GameStylePossibility} applicable to the {@link SMM2} game group */
+/** Every {@link GameStyles} possibilities applicable to the {@link SMM2} game group */
 const gameStylePossibilitiesWithSmm2 = [
     [ALL_GAME_STYLES,          'GameStyle=all',       'game-style-all',],
     [SMB_ONLY,                 'GameStyle=1',         'game-style-1',],
@@ -150,7 +150,7 @@ const gameStylePossibilitiesWithSmm2 = [
     [NOT_SMB,                  'GameStyle=3&W&U&3DW', 'game-style-3,w,u,3dw',],
 ] as const
 /**
- * Every {@link GameStylePossibility} applicable not related to the {@link SMM2} game group.
+ * Every {@link GameStyles} possibilities applicable not related to the {@link SMM2} game group.
  * Meaning, it does not contain the {@link SM3DW} game style.
  */
 const gameStylePossibilitiesWithNotSmm2 = [
@@ -172,7 +172,7 @@ const gameStylePossibilitiesWithNotSmm2 = [
     [NOT_SM3DW,              'GameStyle=1&3&W&U', 'game-style-1,3,w,u',],
 ] as const
 
-/** Every {@link GamePossibility} */
+/** Every {@link Games} possibilities */
 const gamePossibilities = [
     [ALL_GAMES,    'Game=all',   'game-all',   gameStylePossibilitiesWithSmm2,    31,],
     [SMM1_ONLY,    'Game=1',     'game-1',     gameStylePossibilitiesWithNotSmm2, 16,],
