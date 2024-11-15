@@ -123,7 +123,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         //endregion -------------------- Singleton usage --------------------
         //region -------------------- Fields --------------------
 
-        protected override readonly _EXCLUDED_NAMES = ['SMB', 'SMB3', 'SMW', 'NSMBU', 'SM3DW',]
+        protected override readonly _EXCLUDED_NAMES = ['SMB', 'SMB3', 'SMW', 'NSMBU', 'SM3DW',] as const satisfies Array<keyof typeof GameStyles>
 
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','

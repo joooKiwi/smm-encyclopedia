@@ -372,7 +372,7 @@ export class Musics
 
         //endregion -------------------- Singleton usage --------------------
 
-        protected override readonly _EXCLUDED_NAMES = ['SMK', 'SM64', 'SMS', 'SMG',]
+        protected override readonly _EXCLUDED_NAMES = ['SMK', 'SM64', 'SMS', 'SMG',] as const satisfies Array<keyof typeof Musics>
 
         public override getValueByReference(value: Nullable<| Musics | Themes | SoundEffects>,): Musics {
             if (value == null)

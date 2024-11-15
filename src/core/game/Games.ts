@@ -83,7 +83,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         //endregion -------------------- Singleton usage --------------------
         //region -------------------- Fields --------------------
 
-        protected override readonly _EXCLUDED_NAMES = ['SMM1', 'SMM2', 'SMM3DS',]
+        protected override readonly _EXCLUDED_NAMES = ['SMM1', 'SMM2', 'SMM3DS',] as const satisfies Array<keyof typeof Games>
 
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','
