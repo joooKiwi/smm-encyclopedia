@@ -214,7 +214,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
-            return [new SimpleRoute(this.simpleName, this.simplePath, null, null, null, this.routeCallback,),]
+            return [new SimpleRoute(this.urlName, this.urlValue, null, null, null, this.routeCallback,),]
         }
 
         protected override _getPartialPathFromGames() {
@@ -241,34 +241,34 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const simpleName = this.simpleName
-            const simplePath = this.simplePath
+            const name = this.urlName
+            const path = this.urlValue
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=all)`,    `/game-all/list${simplePath}`,    ALL_GAMES_ARRAY,    null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1)`,      `/game-1/list${simplePath}`,      SMM1_ONLY_ARRAY,    null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=3DS)`,    `/game-3ds/list${simplePath}`,    SMM3DS_ONLY_ARRAY,  null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=2)`,      `/game-2/list${simplePath}`,      SMM2_ONLY_ARRAY,    null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1&3DS)`,  `/game-1,3ds/list${simplePath}`,  SMM1_AND_3DS_ARRAY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1&2)`,    `/game-1,2/list${simplePath}`,    SMM1_AND_2_ARRAY,   null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=3DS&2)`,  `/game-3ds,2/list${simplePath}`,  SMM3DS_AND_2_ARRAY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all)`,    `/game-all/list${path}`,    ALL_GAMES_ARRAY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1)`,      `/game-1/list${path}`,      SMM1_ONLY_ARRAY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS)`,    `/game-3ds/list${path}`,    SMM3DS_ONLY_ARRAY,  null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2)`,      `/game-2/list${path}`,      SMM2_ONLY_ARRAY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS)`,  `/game-1,3ds/list${path}`,  SMM1_AND_3DS_ARRAY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2)`,    `/game-1,2/list${path}`,    SMM1_AND_2_ARRAY,   null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2)`,  `/game-3ds,2/list${path}`,  SMM3DS_AND_2_ARRAY, null, LIST,  routeCallback,),
 
-                new SimpleRoute(`${simpleName} (card Game=all)`,    `/game-all/card${simplePath}`,    ALL_GAMES_ARRAY,    null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1)`,      `/game-1/card${simplePath}`,      SMM1_ONLY_ARRAY,    null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=3DS)`,    `/game-3ds/card${simplePath}`,    SMM3DS_ONLY_ARRAY,  null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=2)`,      `/game-2/card${simplePath}`,      SMM2_ONLY_ARRAY,    null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1&3DS)`,  `/game-1,3ds/card${simplePath}`,  SMM1_AND_3DS_ARRAY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1&2)`,    `/game-1,2/card${simplePath}`,    SMM1_AND_2_ARRAY,   null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=3DS&2)`,  `/game-3ds,2/card${simplePath}`,  SMM3DS_AND_2_ARRAY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all)`,    `/game-all/card${path}`,    ALL_GAMES_ARRAY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1)`,      `/game-1/card${path}`,      SMM1_ONLY_ARRAY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS)`,    `/game-3ds/card${path}`,    SMM3DS_ONLY_ARRAY,  null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2)`,      `/game-2/card${path}`,      SMM2_ONLY_ARRAY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS)`,  `/game-1,3ds/card${path}`,  SMM1_AND_3DS_ARRAY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2)`,    `/game-1,2/card${path}`,    SMM1_AND_2_ARRAY,   null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2)`,  `/game-3ds,2/card${path}`,  SMM3DS_AND_2_ARRAY, null, CARD,  routeCallback,),
 
-                new SimpleRoute(`${simpleName} (table Game=all)`,   `/game-all/table${simplePath}`,   ALL_GAMES_ARRAY,    null, TABLE, routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1)`,     `/game-1/table${simplePath}`,     SMM1_ONLY_ARRAY,    null, TABLE, routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=3DS)`,   `/game-3ds/table${simplePath}`,   SMM3DS_ONLY_ARRAY,  null, TABLE, routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=2)`,     `/game-2/table${simplePath}`,     SMM2_ONLY_ARRAY,    null, TABLE, routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1&3DS)`, `/game-1,3ds/table${simplePath}`, SMM1_AND_3DS_ARRAY, null, TABLE, routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1&2)`,   `/game-1,2/table${simplePath}`,   SMM1_AND_2_ARRAY,   null, TABLE, routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=3DS&2)`, `/game-3ds,2/table${simplePath}`, SMM3DS_AND_2_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all)`,   `/game-all/table${path}`,   ALL_GAMES_ARRAY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1)`,     `/game-1/table${path}`,     SMM1_ONLY_ARRAY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS)`,   `/game-3ds/table${path}`,   SMM3DS_ONLY_ARRAY,  null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2)`,     `/game-2/table${path}`,     SMM2_ONLY_ARRAY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS)`, `/game-1,3ds/table${path}`, SMM1_AND_3DS_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2)`,   `/game-1,2/table${path}`,   SMM1_AND_2_ARRAY,   null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2)`, `/game-3ds,2/table${path}`, SMM3DS_AND_2_ARRAY, null, TABLE, routeCallback,),
             ]
         }
 
@@ -287,8 +287,8 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const simpleName = this.simpleName
-            const simplePath = this.simplePath
+            const name = this.urlName
+            const path = this.urlValue
             const routeCallback = this.routeCallback
 
             const viewDisplays = ViewDisplays.CompanionEnum.get.values
@@ -303,7 +303,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
                         const gameStylePossibility = gameStylePossibilities[index_gameStylePossibility]!
                         const gameStyleName = gameStylePossibility[1]
                         const gameStylePath = gameStylePossibility[2]
-                        routes[++index] = new SimpleRoute(`${simpleName} (${urlValue} ${gamesName} ${gameStyleName})`, `/${gamesPath}/${gameStylePath}/${urlValue}${simplePath}`, games, gameStylePossibility[0], viewDisplay, routeCallback,)
+                        routes[++index] = new SimpleRoute(`${name} (${urlValue} ${gamesName} ${gameStyleName})`, `/${gamesPath}/${gameStylePath}/${urlValue}${path}`, games, gameStylePossibility[0], viewDisplay, routeCallback,)
                     }
                 },)
             },)
@@ -323,18 +323,18 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const simpleName = this.simpleName
-            const simplePath = this.simplePath
+            const name = this.urlName
+            const path = this.urlValue
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (Game=all)`,   `/game-all${simplePath}`,   ALL_GAMES_ARRAY,    null, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=1)`,     `/game-1${simplePath}`,     SMM1_ONLY_ARRAY,    null, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=3DS)`,   `/game-3ds${simplePath}`,   SMM3DS_ONLY_ARRAY,  null, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=2)`,     `/game-2${simplePath}`,     SMM2_ONLY_ARRAY,    null, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=1&3DS)`, `/game-1,3ds${simplePath}`, SMM1_AND_3DS_ARRAY, null, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=1&2)`,   `/game-1,2${simplePath}`,   SMM1_AND_2_ARRAY,   null, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=3DS&2)`, `/game-3ds,2${simplePath}`, SMM3DS_AND_2_ARRAY, null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=all)`,   `/game-all${path}`,   ALL_GAMES_ARRAY,    null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=1)`,     `/game-1${path}`,     SMM1_ONLY_ARRAY,    null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=3DS)`,   `/game-3ds${path}`,   SMM3DS_ONLY_ARRAY,  null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=2)`,     `/game-2${path}`,     SMM2_ONLY_ARRAY,    null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=1&3DS)`, `/game-1,3ds${path}`, SMM1_AND_3DS_ARRAY, null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=1&2)`,   `/game-1,2${path}`,   SMM1_AND_2_ARRAY,   null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=3DS&2)`, `/game-3ds,2${path}`, SMM3DS_AND_2_ARRAY, null, null, routeCallback,),
             ]
         }
 
@@ -359,14 +359,14 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const simpleName = this.simpleName
-            const simplePath = this.simplePath
+            const name = this.urlName
+            const path = this.urlValue
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=1)`,  `/game-1/list${simplePath}`,  SMM1_ONLY_ARRAY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1)`,  `/game-1/card${simplePath}`,  SMM1_ONLY_ARRAY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1)`, `/game-1/table${simplePath}`, SMM1_ONLY_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (list Game=1)`,  `/game-1/list${path}`,  SMM1_ONLY_ARRAY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1)`,  `/game-1/card${path}`,  SMM1_ONLY_ARRAY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (table Game=1)`, `/game-1/table${path}`, SMM1_ONLY_ARRAY, null, TABLE, routeCallback,),
             ]
         }
 
@@ -398,14 +398,14 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const simpleName = this.simpleName
-            const simplePath = this.simplePath
+            const name = this.urlName
+            const path = this.urlValue
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=2)`,  `/game-2/list${simplePath}`,  SMM2_ONLY_ARRAY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=2)`,  `/game-2/card${simplePath}`,  SMM2_ONLY_ARRAY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=2)`, `/game-2/table${simplePath}`, SMM2_ONLY_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (list Game=2)`,  `/game-2/list${path}`,  SMM2_ONLY_ARRAY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2)`,  `/game-2/card${path}`,  SMM2_ONLY_ARRAY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (table Game=2)`, `/game-2/table${path}`, SMM2_ONLY_ARRAY, null, TABLE, routeCallback,),
             ]
         }
 
@@ -521,7 +521,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
 
         public getValueInUrl(url: string,): NullOr<EveryRoutes> {
-            return this.values.findFirstOrNull(it => url.endsWith(it.simplePath,),)
+            return this.values.findFirstOrNull(it => url.endsWith(it.urlValue,),)
         }
 
         public getRouteFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
@@ -530,13 +530,14 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
             const currentGameStyles = GameStyles.CompanionEnum.get.currentOrNull?.toArray() ?? null
             const currentViewDisplay = ViewDisplays.CompanionEnum.get.currentOrNull
             for (const value of this.values) {
-                if (value.simpleName === name) {
+                const urlName = value.urlName
+                if (urlName === name) {
                     const everyRoute = value.everyRoute
                     const routeFoundByName = findFirstOrNullByArray(everyRoute, it => it.name === name,)
                     if (routeFoundByName != null)
                         return value.getPath(language, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.viewDisplay,)
 
-                    const pathToFind = `${value._getPartialPathFromGames(currentGames,)}${value._getPartialPathFromGameStyles(currentGameStyles,)}${value._getPartialPathFromViewDisplay(currentViewDisplay,)}${value.simplePath}`
+                    const pathToFind = `${value._getPartialPathFromGames(currentGames,)}${value._getPartialPathFromGameStyles(currentGameStyles,)}${value._getPartialPathFromViewDisplay(currentViewDisplay,)}${value.urlValue}`
                     const routeFoundByPath = findFirstOrNullByArray(everyRoute, it => it.path === pathToFind,)
                     if (routeFoundByPath != null)
                         return value.getPath(language, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.viewDisplay,)
@@ -547,8 +548,8 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
                 if (routeFromOnlyViewDisplay != null)
                     return routeFromOnlyViewDisplay
 
-                if (name.startsWith(`${value.simpleName} `,)) {
-                    const pathToFind = `${value._getPartialPathFromGames(this.#getGamesInName(name,),)}${value._getPartialPathFromGameStyles(this.#getGameStylesInName(name,),)}${value._getPartialPathFromViewDisplay(this.#getViewDisplayInName(name,),)}${value.simplePath}`
+                if (name.startsWith(`${urlName} `,)) {
+                    const pathToFind = `${value._getPartialPathFromGames(this.#getGamesInName(name,),)}${value._getPartialPathFromGameStyles(this.#getGameStylesInName(name,),)}${value._getPartialPathFromViewDisplay(this.#getViewDisplayInName(name,),)}${value.urlValue}`
                     const routeFound = findFirstOrNullByArray(value.everyRoute, it => it.path === pathToFind,)
                     if (routeFound != null)
                         return value.getPath(language, routeFound.games, routeFound.gameStyles, routeFound.viewDisplay,)
@@ -570,14 +571,16 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
             const viewDisplays = value.viewDisplays
             if (viewDisplays.isEmpty)
                 return null
+
+            const urlName = value.urlName
             if (viewDisplays.hasSimpleList)
-                if (`${value.simpleName} (list)` === name)
+                if (`${urlName} (list)` === name)
                     return value.getPath(language, null, null, LIST,)
             if (viewDisplays.hasCardList)
-                if (`${value.simpleName} (card)` === name)
+                if (`${urlName} (card)` === name)
                     return value.getPath(language, null, null, CARD,)
             if (viewDisplays.hasCardList)
-                if (`${value.simpleName} (table)` === name)
+                if (`${urlName} (table)` === name)
                     return value.getPath(language, null, null, TABLE,)
             return null
         }
@@ -716,8 +719,9 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    readonly #simpleName
-    readonly #simplePath
+    readonly #urlName
+    readonly #urlPath
+
     readonly #viewDisplays
     readonly #defaultViewDisplay
     readonly #games
@@ -737,8 +741,8 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
                         gameStyles: GameStyleCollection, defaultGameStyles: NullOrArray<GameStyles>,
                         routeCallback: RouteCallback,) {
         super()
-        this.#simpleName = name
-        this.#simplePath = path
+        this.#urlName = name
+        this.#urlPath = path
         this.#viewDisplays = viewDisplays
         this.#defaultViewDisplay = defaultViewDisplay
         this.#games = games
@@ -751,17 +755,14 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get simpleName(): SIMPLE_NAME {
-        return this.#simpleName
+    public get urlName(): URL_NAME {
+        return this.#urlName
     }
 
-    public get simplePath(): SIMPLE_PATH {
-        return this.#simplePath
+    public get urlValue(): URL_PATH {
+        return this.#urlPath
     }
 
-    public get urlValue(): SIMPLE_PATH {
-        return this.simplePath
-    }
 
     public get viewDisplays(): ViewDisplayCollection {
         return this.#viewDisplays
@@ -875,7 +876,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
         if (language == null)
             language = ProjectLanguages.CompanionEnum.get.current
-        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.simplePath}` as unknown as EveryPossibleRoutes
+        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.urlValue}` as unknown as EveryPossibleRoutes
     }
 
     //endregion -------------------- Methods --------------------

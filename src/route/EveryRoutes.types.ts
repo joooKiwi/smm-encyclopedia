@@ -178,23 +178,24 @@ type PathInTableAndAnyGameAndGameStyle<PATH extends string, > = | PathJoin3<PATH
 //region -------------------- Route (name + path) --------------------
 
 /** The routes directly from the arguments */
-type Of<NAME extends Names, > =  readonly [typeof EveryRoutes[NAME]['simpleName'], typeof EveryRoutes[NAME]['simplePath'],]
+type Of<NAME extends Names, > =  readonly [typeof EveryRoutes[NAME]['urlName'], typeof EveryRoutes[NAME]['urlValue'],]
 
-type InAnyGame<NAME extends Names, > =                        readonly [NameInAnyGame<typeof EveryRoutes[NAME]['simpleName']>,                        PathInAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
-type InOnlySmm1<NAME extends Names, > =                       readonly [NameInOnlySmm1<typeof EveryRoutes[NAME]['simpleName']>,                       PathInOnlySmm1<typeof EveryRoutes[NAME]['simplePath']>,]
-type InOnlySmm2<NAME extends Names, > =                       readonly [NameInOnlySmm2<typeof EveryRoutes[NAME]['simpleName']>,                       PathInOnlySmm2<typeof EveryRoutes[NAME]['simplePath']>,]
-type InTableAndAnyGame<NAME extends Names, > =                readonly [NameInTableAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>,                PathInTableAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
-type InTableAndAnyGameAndAnyGameStyle<NAME extends Names, > = readonly [NameInTableAndAnyGameAndAnyGameStyle<typeof EveryRoutes[NAME]['simpleName']>, PathInTableAndAnyGameAndGameStyle<typeof EveryRoutes[NAME]['simplePath']>,]
+type InAnyGame<NAME extends Names, > =                        readonly [NameInAnyGame<typeof EveryRoutes[NAME]['urlName']>,                        PathInAnyGame<typeof EveryRoutes[NAME]['urlValue']>,]
+type InOnlySmm1<NAME extends Names, > =                       readonly [NameInOnlySmm1<typeof EveryRoutes[NAME]['urlName']>,                       PathInOnlySmm1<typeof EveryRoutes[NAME]['urlValue']>,]
+type InOnlySmm2<NAME extends Names, > =                       readonly [NameInOnlySmm2<typeof EveryRoutes[NAME]['urlName']>,                       PathInOnlySmm2<typeof EveryRoutes[NAME]['urlValue']>,]
+type InTableAndAnyGame<NAME extends Names, > =                readonly [NameInTableAndAnyGame<typeof EveryRoutes[NAME]['urlName']>,                PathInTableAndAnyGame<typeof EveryRoutes[NAME]['urlValue']>,]
+type InTableAndGameAndTime<NAME extends Names, > =            readonly [NameInTableAndGameAndTime<typeof EveryRoutes[NAME]['urlName']>,            PathInTableAndGameAndTime<typeof EveryRoutes[NAME]['urlValue']>,]
+type InTableAndAnyGameAndAnyGameStyle<NAME extends Names, > = readonly [NameInTableAndAnyGameAndAnyGameStyle<typeof EveryRoutes[NAME]['urlName']>, PathInTableAndAnyGameAndGameStyle<typeof EveryRoutes[NAME]['urlValue']>,]
 
 //endregion -------------------- Route (name + path) --------------------
 
 //endregion -------------------- Route types --------------------
 
 /** The possible name for a route with nothing surrounding it */
-export type PossibleSimpleRouteName = typeof EveryRoutes[Names]['simpleName']
+export type PossibleStraightRouteName = typeof EveryRoutes[Names]['urlName']
 export type PossibleRouteName = SimpleRouteMap[Names][0]
 /** The possible path for a route with nothing surrounding it */
-export type PossibleSimpleRoutePath = typeof EveryRoutes[Names]['simplePath']
+export type PossibleStraightRoutePath = typeof EveryRoutes[Names]['urlValue']
 export type PossibleRoutePath = SimpleRouteMap[Names][1]
 
 

@@ -57,7 +57,7 @@ const router = createHashRouter([{
         //region -------------------- Path from route path --------------------
 
         ...everyRouteInstance.map<RouteObject>(routeInstance =>
-            new StraightRouteObject(routeInstance.simplePath, () => redirectTo(routeInstance,),),),
+            new StraightRouteObject(routeInstance.urlValue, () => redirectTo(routeInstance,),),),
 
         //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
