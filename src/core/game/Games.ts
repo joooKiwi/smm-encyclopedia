@@ -24,32 +24,33 @@ import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /** @usedByTheRouting */
 export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcronym,
+    const URL_NAME extends PossibleSimpleValue = PossibleSimpleValue,
     const URL_VALUE extends PossibleUrlValue = PossibleUrlValue,
     const NAME extends PossibleEnglishName = PossibleEnglishName,>
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName>,
+    implements ClassWithEnglishName<NAME>,
         ClassWithAcronym<ACRONYM>,
-        ClassWithImageFile<GameImageFile>,
-        ClassUsedInRoute<PossibleUrlValue>,
+        ClassWithImageFile<GameImageFile<NAME>>,
+        ClassUsedInRoute<URL_VALUE, URL_NAME>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games<'SMM', '1', 'Super Mario Maker'> {
+    public static readonly SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games<'SMM', '1', '1', 'Super Mario Maker'> {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMaker1
         }
 
     }('SMM', '1', '1', 'Super Mario Maker',)
-    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games<'SMM3DS', '3ds', 'Super Mario Maker for Nintendo 3DS'> {
+    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games<'SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS'> {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMakerFor3DS
         }
 
     }('SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS',)
-    public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games<'SMM2', '2', 'Super Mario Maker 2'> {
+    public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games<'SMM2', '2', '2', 'Super Mario Maker 2'> {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMaker2
@@ -212,18 +213,18 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
 
     readonly #acronym
     readonly #englishName
-    readonly #simpleValue
-    #imageFile?: GameImageFile
+    readonly #urlName
     readonly #urlValue
+    #imageFile?: GameImageFile<NAME>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: ACRONYM, simpleValue: PossibleSimpleValue, urlValue: URL_VALUE, englishName: NAME,) {
+    private constructor(acronym: ACRONYM, urlName: URL_NAME, urlValue: URL_VALUE, englishName: NAME,) {
         super()
         this.#acronym = acronym
         this.#englishName = new StringContainer(englishName,)
-        this.#simpleValue = simpleValue
+        this.#urlName = urlName
         this.#urlValue = urlValue
     }
 
@@ -242,16 +243,16 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         return this.#englishName.getInHtml
     }
 
-    public get simpleValue(): PossibleSimpleValue {
-        return this.#simpleValue
-    }
-
-    public get imageFile(): GameImageFile {
-        return this.#imageFile ??= gameImage(this.englishName,)
+    public get urlName(): URL_NAME {
+        return this.#urlName
     }
 
     public get urlValue(): URL_VALUE {
         return this.#urlValue
+    }
+
+    public get imageFile(): GameImageFile<NAME> {
+        return this.#imageFile ??= gameImage(this.englishName,)
     }
 
     //endregion -------------------- Getter & setter methods --------------------

@@ -8,6 +8,6 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  *
  * @param englishName The {@link Games} {@link Games.englishName english name}
  */
-export function gameImage(englishName: PossibleEnglishName,): GameImageFile {
+export function gameImage<const T extends PossibleEnglishName, >(englishName: T,): GameImageFile<T> {
     return new SimpleImageFile('game', englishName, 'svg', englishName,)
 }
