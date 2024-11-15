@@ -99,6 +99,18 @@ export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyS
 }
 
 //endregion -------------------- is --------------------
+//region -------------------- set --------------------
+
+export function getOrPut<const K, const V, >(values: Map<K, V>, key: K, defaultValue: (key: K,) => V,): V {
+    if (values.has(key,))
+        return values.get(key,) as V
+
+    const value = defaultValue(key,)
+    values.set(key, value,)
+    return value
+}
+
+//endregion -------------------- set --------------------
 //region -------------------- for each --------------------
 
 export function forEach<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K, value: V,) => void,): void {
