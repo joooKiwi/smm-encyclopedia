@@ -19,19 +19,45 @@ export interface CompanionEnumDeclaration_Games
     /** The separator the names */
     readonly NAME_ARGUMENT_SEPARATOR: ','
 
-    readonly URL_REGEX: RegExp
-    readonly SINGLE_URL_REGEX: RegExp
-    readonly DOUBLE_URL_REGEX: RegExp
     readonly PREFIX: '/game-'
     readonly PREFIX_WITHOUT_SLASH: 'game-'
     readonly ALL_PREFIX_GROUP: '/game-all/'
 
+    /**
+     * Get a value by the {@link Games.urlValue}
+     *
+     * @param value The value to find
+     */
+    getValueByUrlValue(value: Nullable<| Games | string | number>,): Games
+
+    /**
+     * Get a value by the {@link Games.urlName}
+     *
+     * @param value The value to find
+     */
+    getValueByUrlName(value: Nullable<| Games | string | number>,): Games
+
+
+    /**
+     * Find all the {@link Games} values present in the {@link url} received
+     *
+     * @param url The url to find the {@link Games} present
+     */
     getValueInUrl(url: string,): Array<Games>
 
+
+    /**
+     * Generate a {@link GroupUrlValue} for the {@link Games} from the {@link games} received
+     *
+     * @param games The given {@link Games}
+     */
     getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue
 
+    /**
+     * Generate a {@link GroupUrlName} for the {@link Games} from the {@link games} received
+     *
+     * @param games The given {@link Games}
+     */
     getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName
-
-    getValueBySimpleValue(value: Nullable<| Games | string | number>,): Games
 
 }

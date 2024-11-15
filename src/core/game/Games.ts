@@ -84,17 +84,29 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','
 
-        public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))*|(all))(\/|$)/i
-        public readonly SINGLE_URL_REGEX = /.*\/game-(1|3ds|2)(\/|$)/i
-        public readonly DOUBLE_URL_REGEX = /.*\/game-(1|3ds),2(\/|$)/i
+        // public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))*|(all))(\/|$)/i
+        // public readonly SINGLE_URL_REGEX = /.*\/game-(1|3ds|2)(\/|$)/i
+        // public readonly DOUBLE_URL_REGEX = /.*\/game-(1|3ds),2(\/|$)/i
         public readonly PREFIX_WITHOUT_SLASH = 'game-'
         public readonly PREFIX = '/game-'
         public readonly ALL_PREFIX_GROUP = '/game-all/'
 
         //endregion -------------------- Fields --------------------
 
-        public getValueByUrlValue(value: Nullable<| Games | string>,): Games {
-            return getValueByUrlValue(value, this,)
+        public getValueByUrlValue(value: Nullable<| Games | string | number>,): Games {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null url value.`,)
+            if (value instanceof this.instance)
+                return value
+            return getValueByUrlValue(`${value}`, this,)
+        }
+
+        public getValueByUrlName(value: Nullable<| Games | string | number>,): Games {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null url name.`,)
+            if (value instanceof this.instance)
+                return value
+            return getValueByUrlName(`${value}`, this,)
         }
 
         public getValueByAcronym(value: Nullable<| Games | string>,): Games {
@@ -103,18 +115,6 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
 
         public getValueByName(value: Nullable<| Games | string>,): Games {
             return getValueByEnglishName(value, this,)
-        }
-
-        public getValueBySimpleValue(value: Nullable<| Games | string | number>,): Games {
-            if (value == null)
-                throw new TypeError(`No "${this.instance.name}" could be found by a null simple value.`,)
-            if (value instanceof this.instance)
-                return value
-            const stringValue = `${value}`
-            const valueFound = this.values.findFirstOrNull(it => it.simpleValue === stringValue,)
-            if (valueFound == null)
-                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
-            return valueFound
         }
 
 
