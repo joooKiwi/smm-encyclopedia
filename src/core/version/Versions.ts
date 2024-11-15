@@ -97,7 +97,7 @@ export class Versions
     private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle?: GameStyles_SM3DW,) {
         super()
         this.#name = name
-        this.#game = Games.CompanionEnum.get.getValueBySimpleValue(game,)
+        this.#game = Games.CompanionEnum.get.getValueByUrlName(game,)
         this.#releaseDate = releaseDate
         this.#gameStyle = gameStyle ?? null
     }
