@@ -17,12 +17,12 @@ import type {GameStyleProperty}                                                 
 import type {ClassUsedInRoute}                                                                                                                                  from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                from 'util/file/image/ClassWithImageFile'
 
-import {GameStyleLoader}                                              from 'core/gameStyle/GameStyle.loader'
-import {gameStyleImage}                                               from 'core/gameStyle/file/fileCreator'
-import {StringContainer}                                              from 'util/StringContainer'
-import {Empty}                                                        from 'util/emptyVariables'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
-import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {GameStyleLoader}                                                                 from 'core/gameStyle/GameStyle.loader'
+import {gameStyleImage}                                                                  from 'core/gameStyle/file/fileCreator'
+import {StringContainer}                                                                 from 'util/StringContainer'
+import {Empty}                                                                           from 'util/emptyVariables'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlName, getValueByUrlValue} from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                          from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -32,6 +32,7 @@ import EMPTY_ARRAY = Empty.EMPTY_ARRAY
  */
 export abstract class GameStyles<const ACRONYM extends PossibleAcronym = PossibleAcronym,
     const ACRONYM_IN_FILE extends PossibleAcronym_InFile = PossibleAcronym_InFile,
+    const URL_NAME extends PossibleSimpleValue = PossibleSimpleValue,
     const URL_VALUE extends PossibleUrlValue = PossibleUrlValue,
     const NAME extends PossibleEnglishName = PossibleEnglishName, >
     extends Enum<Ordinals, Names>
@@ -39,13 +40,13 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         ClassWithAcronym<ACRONYM>,
         ClassWithEnglishName<NAME>,
         ClassWithImageFile<GameStyleImageFile>,
-        ClassUsedInRoute<URL_VALUE>,
+        ClassUsedInRoute<URL_VALUE, URL_NAME>,
         PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<GameStyleProperty> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles<'SMB', 'M1', '1', 'Super Mario Bros.'> {
+    public static readonly SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles<'SMB', 'M1', '1', '1', 'Super Mario Bros.'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMarioBrosStyle
@@ -56,7 +57,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
     }('SMB', 'M1', '1', '1', 'Super Mario Bros.',)
-    public static readonly SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles<'SMB3', 'M3', '3', 'Super Mario Bros. 3'> {
+    public static readonly SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles<'SMB3', 'M3', '3', '3', 'Super Mario Bros. 3'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMarioBros3Style
@@ -67,7 +68,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
     }('SMB3', 'M3', '3', '3', 'Super Mario Bros. 3',)
-    public static readonly SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles<'SMW', 'MW', 'w', 'Super Mario World'> {
+    public static readonly SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles<'SMW', 'MW', 'W', 'w', 'Super Mario World'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMarioWorldStyle
@@ -78,7 +79,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
     }('SMW', 'MW', 'W', 'w', 'Super Mario World',)
-    public static readonly NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles<'NSMBU', 'WU', 'u', 'New Super Mario Bros. U'> {
+    public static readonly NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles<'NSMBU', 'WU', 'U', 'u', 'New Super Mario Bros. U'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInNewSuperMarioBrosUStyle
@@ -89,7 +90,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
     }('NSMBU', 'WU',  'U', 'u', 'New Super Mario Bros. U',)
-    public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles<'SM3DW', '3W', '3dw', 'Super Mario 3D World'> {
+    public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles<'SM3DW', '3W', '3DW', '3dw', 'Super Mario 3D World'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMario3DWorldStyle === true
@@ -452,7 +453,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: ACRONYM, acronymInFile: ACRONYM_IN_FILE, simpleValue: PossibleSimpleValue, urlValue: URL_VALUE, englishName: NAME,) {
+    private constructor(acronym: ACRONYM, acronymInFile: ACRONYM_IN_FILE, simpleValue: URL_NAME, urlValue: URL_VALUE, englishName: NAME,) {
         super()
         this.#acronym = acronym
         this.#acronymInFile = acronymInFile
@@ -493,16 +494,16 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         return this.#englishName.getInHtml
     }
 
-    public get simpleValue(): PossibleSimpleValue {
+    public get urlValue(): URL_VALUE {
+        return this.#urlValue
+    }
+
+    public get urlName(): URL_NAME {
         return this.#simpleValue
     }
 
     public get imageFile(): GameStyleImageFile {
         return this.#imageFile ??= gameStyleImage(this.acronymInFile, this.englishName,)
-    }
-
-    public get urlValue(): URL_VALUE {
-        return this.#urlValue
     }
 
     //endregion -------------------- Getter methods --------------------
