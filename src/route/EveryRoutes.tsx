@@ -807,16 +807,16 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
      * @param value The {@link Games} to retrieve its {@link Games.urlValue}
      */
     protected _getPartialPathFromGames(value: NullOrArray<Games>,): PossibleGamePath {
-        const GameCompanion = Games.CompanionEnum.get
+        const Companion = Games.CompanionEnum.get
         if (value == null) {
-            const currentGames = GameCompanion.currentOrNull
+            const currentGames = Companion.currentOrNull
             if (currentGames == null) {
                 const defaultGame = this.defaultGame
                 if (defaultGame == null)
                     return EMPTY_STRING
                 return `/game-${defaultGame.urlValue}`
             }
-            return `/game-${GameCompanion.getGroupUrlValue(currentGames,)}`
+            return `/game-${Companion.getGroupUrlValue(currentGames,)}`
         }
         if (value.length === 0) {
             const defaultGame = this.defaultGame
@@ -826,7 +826,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         }
         if (value.length === 0)
             return EMPTY_STRING
-        return `/game-${GameCompanion.getGroupUrlValue(value,)}`
+        return `/game-${Companion.getGroupUrlValue(value,)}`
     }
 
     /**
@@ -835,26 +835,26 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
      * @param values The {@link GameStyles} to retrieve their {@link GameStyles.urlValue}
      */
     protected _getPartialPathFromGameStyles(values: NullOrArray<GameStyles>,): PossibleGameStylePath {
-        const GameStyleCompanion = GameStyles.CompanionEnum.get
+        const Companion = GameStyles.CompanionEnum.get
         if (values == null) {
-            const currentGameStyles = GameStyleCompanion.currentOrNull
+            const currentGameStyles = Companion.currentOrNull
             if (currentGameStyles == null) {
                 const defaultGameStyles = this.defaultGameStyles
                 if (defaultGameStyles == null)
                     return EMPTY_STRING
-                return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
+                return `/game-style-${Companion.getGroupUrlValue(defaultGameStyles,)}`
             }
-            return `/game-style-${GameStyleCompanion.getGroupUrlValue(currentGameStyles,)}`
+            return `/game-style-${Companion.getGroupUrlValue(currentGameStyles,)}`
         }
         if (values.length === 0) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
                 return EMPTY_STRING
-            return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
+            return `/game-style-${Companion.getGroupUrlValue(defaultGameStyles,)}`
         }
         if (values.length === 0)
             return EMPTY_STRING
-        return `/game-style-${GameStyleCompanion.getGroupUrlValue(values,)}`
+        return `/game-style-${Companion.getGroupUrlValue(values,)}`
     }
 
     /**
