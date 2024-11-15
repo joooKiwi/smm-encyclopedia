@@ -19,17 +19,45 @@ export interface CompanionEnumDeclaration_GameStyles
     /** The separator the names */
     readonly NAME_ARGUMENT_SEPARATOR: ','
 
-    readonly URL_REGEX: RegExp
     readonly PREFIX: '/game-style-'
     readonly PREFIX_WITHOUT_SLASH: 'game-style-'
     readonly ALL_PREFIX_GROUP: '/game-style-all/'
 
+    /**
+     * Get a value by the {@link GameStyles.urlValue}
+     *
+     * @param value The value to find
+     */
+    getValueByUrlValue(value: Nullable<| GameStyles | string | number>,): GameStyles
+
+    /**
+     * Get a value by the {@link GameStyles.urlName}
+     *
+     * @param value The value to find
+     */
+    getValueByUrlName(value: Nullable<| GameStyles | string | number>,): GameStyles
+
+
+    /**
+     * Find all the {@link GameStyles} values present in the {@link url} received
+     *
+     * @param url The url to find the {@link GameStyles} present
+     */
     getValueInUrl(url: string,): Array<GameStyles>
 
+
+    /**
+     * Generate a {@link GroupUrlValue} for the {@link GameStyles} from the {@link gameStyles} received
+     *
+     * @param gameStyles The given {@link GameStyles}
+     */
     getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue
 
+    /**
+     * Generate a {@link GroupUrlName} for the {@link GameStyles} from the {@link gameStyles} received
+     *
+     * @param gameStyles The given {@link GameStyles}
+     */
     getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName
-
-    getValueBySimpleValue(value: Nullable<| GameStyles | string | number>,): GameStyles
 
 }

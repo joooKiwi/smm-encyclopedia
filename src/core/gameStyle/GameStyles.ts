@@ -128,15 +128,28 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','
 
-        public readonly URL_REGEX = /.*\/game-style-((1|3|w|u|3dw)(,(1|3|w|u|3dw))*|(all))(\/|$)/i
+        // public readonly URL_REGEX = /.*\/game-style-((1|3|w|u|3dw)(,(1|3|w|u|3dw))*|(all))(\/|$)/i
+        // public readonly SINGLE_URL_REGEX = /.*\/game-style-(1|3|w|u|3dw)(\/|$)/i
         public readonly PREFIX_WITHOUT_SLASH = 'game-style-'
         public readonly PREFIX = '/game-style-'
         public readonly ALL_PREFIX_GROUP = '/game-style-all/'
 
         //endregion -------------------- Fields --------------------
 
-        public getValueByUrlValue(value: Nullable<| GameStyles | string>,): GameStyles {
-            return getValueByUrlValue(value, this,)
+        public getValueByUrlValue(value: Nullable<| GameStyles | string | number>,): GameStyles {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null url value.`,)
+            if (value instanceof this.instance)
+                return value
+            return getValueByUrlValue(`${value}`, this,)
+        }
+
+        public getValueByUrlName(value: Nullable<| GameStyles | string | number>,): GameStyles {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null url name.`,)
+            if (value instanceof this.instance)
+                return value
+            return getValueByUrlName(`${value}`, this,)
         }
 
         public getValueByAcronym(value: Nullable<| GameStyles | string>,): GameStyles {
@@ -145,18 +158,6 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
         public getValueByName(value: Nullable<| GameStyles | string>,): GameStyles {
             return getValueByEnglishName(value, this,)
-        }
-
-        public getValueBySimpleValue(value: Nullable<| GameStyles | string | number>,): GameStyles {
-            if (value == null)
-                throw new TypeError(`No "${this.instance.name}" could be found by a null simple value.`,)
-            if (value instanceof this.instance)
-                return value
-            const stringValue = `${value}`
-            const valueFound = this.values.findFirstOrNull(it => it.simpleValue === stringValue,)
-            if (valueFound == null)
-                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
-            return valueFound
         }
 
 
