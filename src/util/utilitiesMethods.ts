@@ -315,6 +315,17 @@ export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(valu
     return valueFound
 }
 
+export function getValueByUrlName<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+    if (value == null)
+        throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url name.`,)
+    if (value instanceof companionEnum.instance)
+        return value as T
+    const valueFound = companionEnum.values.findFirstOrNull(it => it.urlName === value,)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
+    return valueFound
+}
+
 export function getValueInUrl<const T extends EnumerableUsedInRoute, >(url: string, companionEnum: CompanionEnumRetrievableInUrl<T, any>,): NullOr<T> {
     if (!companionEnum.URL_REGEX.test(url,))
         return null
