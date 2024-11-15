@@ -26,4 +26,4 @@ export type EnumerableWithTranslationKey<TRANSLATION_KEY extends NullOrString = 
 export type EnumerableWithValue<T, > = & Enumerable & ClassWithValue<T>
 export type EnumerableWithType<T, > = & Enumerable & ClassWithType<T>
 
-export type EnumerableUsedInRoute<URL_VALUE extends string = string, > = & Enumerable & ClassUsedInRoute<URL_VALUE>
+export type EnumerableUsedInRoute = & Enumerable & ClassUsedInRoute<string, string>

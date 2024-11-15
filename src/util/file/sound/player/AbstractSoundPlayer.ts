@@ -30,6 +30,6 @@ export namespace AbstractSoundPlayer {
 
     export const DEFAULT_DOES_LOOP = false
 
-    export const allSoundPlayer = new Map<string, SoundPlayer>();
+    export const allSoundPlayer = new Map<string, SoundPlayer>()
 
 }

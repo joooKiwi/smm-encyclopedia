@@ -771,6 +771,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
         return this.#defaultViewDisplay
     }
 
+
     public get games(): GameCollection {
         return this.#games
     }
@@ -778,6 +779,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     public get defaultGame(): NullOr<Games> {
         return this.#defaultGame
     }
+
 
     public get gameStyles(): GameStyleCollection {
         return this.#gameStyles
