@@ -30,14 +30,11 @@ import type {Times}                         from 'core/time/Times'
 import type {Versions}                      from 'core/version/Versions'
 
 /**
- * <p>
  * A class that has for purpose to dynamically import some class
  * that have some heavy dependencies or some recursive dependencies (not direct recursive, but indirect one).
- * </p>
- * <p>
- *     By importing this class, no other classes are imported, they will be imported once the specific method is used.
- *     But to use <u>object deconstruction</u> defeat the whole purpose of this class.
- * </p>
+ *
+ * By importing this class, no other classes are imported, they will be imported once the specific method is used.
+ * But to use <u>object deconstruction</u> defeat the whole purpose of this class.
  *
  * @singleton
  */
