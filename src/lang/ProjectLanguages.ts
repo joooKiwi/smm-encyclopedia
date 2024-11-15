@@ -54,7 +54,7 @@ export class ProjectLanguages
     extends Enum<Ordinals, Names>
     implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, PossibleDifferentWord>,
         ClassWithIsCurrent,
-        ClassUsedInRoute<PossibleAcronym>,
+        ClassUsedInRoute<PossibleAcronym, never>,
         ClassInAnySuperMarioMakerGame {
 
     //region -------------------- Enum instances --------------------
@@ -205,6 +205,10 @@ export class ProjectLanguages
 
     public get urlValue(): PossibleAcronym {
         return this.projectAcronym
+    }
+
+    public get urlName(): never {
+        throw new ReferenceError('No language name can exist in a url.',)
     }
 
     public get projectAcronym(): PossibleAcronym {
