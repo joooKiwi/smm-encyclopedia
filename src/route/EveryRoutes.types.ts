@@ -4,6 +4,7 @@ import type {ViewDisplays}                                                      
 import type {PossibleUrlValue}                                                                                                                                                                  from 'app/withInterpreter/ViewDisplays.types'
 import type {FullGroupUrlName as FullUrlName_Game, FullGroupUrlName_WithNotSMM2, FullGroupUrlName_WithSMM2, FullUrlValue as FullUrlValue_Game, FullUrlValue_WithNotSMM2, FullUrlValue_WithSMM2} from 'core/game/Games.types'
 import type {FullGroupUrlName as FullUrlName_GameStyle, FullGroupUrlName_SMM1, FullUrlValue as FullUrlValue_GameStyle, FullUrlValue_SMM1}                                                       from 'core/gameStyle/GameStyles.types'
+import type {FullUrlName as FullUrlName_Time, FullUrlValue as FullUrlValue_Time}                                                                                                                from 'core/time/Times.types'
 import type {PossibleAcronym}                                                                                                                                                                   from 'lang/ProjectLanguages.types'
 import type {EveryRoutes}                                                                                                                                                                       from 'route/EveryRoutes'
 import type {GameCollection}                                                                                                                                                                    from 'util/collection/GameCollection'
@@ -80,7 +81,7 @@ interface SimpleRouteMap {
     EVERY_CHARACTER_NAME: InTableAndAnyGame<'EVERY_CHARACTER_NAME'>
 
     EVERY_GAME_REFERENCE: InAnyGame<'EVERY_GAME_REFERENCE'>
-    EVERY_GAME_STYLE:     InTableAndAnyGame<'EVERY_GAME_STYLE'>
+    EVERY_GAME_STYLE:     InTableAndGameAndTime<'EVERY_GAME_STYLE'>
 
     EVERY_ENTITY:          InTableAndAnyGameAndAnyGameStyle<'EVERY_ENTITY'>
     EVERY_ENTITY_CATEGORY: InOnlySmm2<'EVERY_ENTITY_CATEGORY'>
@@ -134,18 +135,26 @@ type NameJoin2<NAME extends string, FIRST extends string, SECOND extends string,
 /** The union of both the first, second and third value both separately and joined with a space */
 type NameJoin3<NAME extends string, FIRST extends string, SECOND extends string, THIRD extends string, > = | NAME | `${NAME} (${FIRST})` | `${NAME} (${FIRST} ${SECOND})` | `${NAME} (${FIRST} ${SECOND} ${THIRD})` | `${NAME} (${FIRST} ${THIRD})` | `${NAME} (${SECOND})` | `${NAME} (${SECOND} ${THIRD})` | `${NAME} (${THIRD})`
 
+
 type NameInSMM1 = 'Game=1'
 type NameInSMM2 = 'Game=2'
 type NameInAllGame = FullUrlName_Game
 type NameInSMM1Or3DS = FullGroupUrlName_WithNotSMM2
 type NameInAllGameOrRelatedToSMM2 = FullGroupUrlName_WithSMM2
+
+type NameInAllTime = FullUrlName_Time
+type NameInDayTime = "Time=day"
+
 type NameInAllGameStyleInSMM1Or3DS = FullGroupUrlName_SMM1
 type NameInAllGameStyle = FullUrlName_GameStyle
+
 
 type NameInAnyGame<NAME extends string, > =                        NameJoin1<NAME, NameInAllGame>
 type NameInOnlySmm1<NAME extends string, > =                       NameJoin2<NAME, PossibleViewDisplay, NameInSMM1>
 type NameInOnlySmm2<NAME extends string, > =                       NameJoin2<NAME, PossibleViewDisplay, NameInSMM2>
 type NameInTableAndAnyGame<NAME extends string, > =                NameJoin2<NAME, PossibleViewDisplay, NameInAllGame>
+type NameInTableAndGameAndTime<NAME extends string, > =            | NameJoin3<NAME, PossibleViewDisplay, NameInSMM1Or3DS, NameInDayTime>
+                                                                   | NameJoin3<NAME, PossibleViewDisplay, NameInAllGameOrRelatedToSMM2, NameInAllTime>
 type NameInTableAndAnyGameAndAnyGameStyle<NAME extends string, > = | NameJoin3<NAME, PossibleViewDisplay, NameInSMM1Or3DS, NameInAllGameStyleInSMM1Or3DS>
                                                                    | NameJoin3<NAME, PossibleViewDisplay, NameInAllGameOrRelatedToSMM2, NameInAllGameStyle>
 
@@ -159,18 +168,26 @@ type PathJoin2<PATH extends string, FIRST extends string, SECOND extends string,
 /** The union of both the first, second and third value both separately and joined with a slash */
 type PathJoin3<PATH extends string, FIRST extends string, SECOND extends string, THIRD extends string, > = | PATH | `/${FIRST}${PATH}` | `/${FIRST}/${SECOND}${PATH}` | `/${FIRST}/${SECOND}/${THIRD}${PATH}` | `/${FIRST}/${THIRD}${PATH}` | `/${SECOND}${PATH}` | `/${SECOND}/${THIRD}${PATH}` | `/${THIRD}${PATH}`
 
+
 type PathInSMM1 = 'game-1'
 type PathInSMM2 = 'game-2'
 type PathInAllGame = FullUrlValue_Game
 type PathInSMM1Or3DS = FullUrlValue_WithNotSMM2
 type PathInAllGameOrRelatedToSMM2 = FullUrlValue_WithSMM2
+
+type PathInAllTime = FullUrlValue_Time
+type PathInDayTime = 'time-day'
+
 type PathInAllGameStyleInSMM1Or3DS = FullUrlValue_SMM1
 type PathInAllGameStyle = FullUrlValue_GameStyle
+
 
 type PathInAnyGame<PATH extends string, > =                     PathJoin1<PATH , PathInAllGame>
 type PathInOnlySmm1<PATH extends string, > =                    PathJoin2<PATH, PossibleViewDisplay, PathInSMM1>
 type PathInOnlySmm2<PATH extends string, > =                    PathJoin2<PATH, PossibleViewDisplay, PathInSMM2>
 type PathInTableAndAnyGame<PATH extends string, > =             PathJoin2<PATH, PossibleViewDisplay, PathInAllGame>
+type PathInTableAndGameAndTime<PATH extends string, > =         | PathJoin3<PATH, PossibleViewDisplay, PathInSMM1Or3DS, PathInDayTime>
+                                                                | PathJoin3<PATH, PossibleViewDisplay, PathInAllGameOrRelatedToSMM2, PathInAllTime>
 type PathInTableAndAnyGameAndGameStyle<PATH extends string, > = | PathJoin3<PATH, PossibleViewDisplay, PathInSMM1Or3DS, PathInAllGameStyleInSMM1Or3DS>
                                                                 | PathJoin3<PATH, PossibleViewDisplay, PathInAllGameOrRelatedToSMM2, PathInAllGameStyle>
 
@@ -209,6 +226,8 @@ export type PossibleViewDisplayPath = | EmptyString | `/${PossibleUrlValue}`
 export type PossibleGamePath = | EmptyString | `/${FullUrlValue_Game}`
 /** The partial path of a {@link EveryRoutes} made from the {@link GameStyles} */
 export type PossibleGameStylePath = | EmptyString | `/${FullUrlValue_GameStyle}`
+/** The partial path of a {@link EveryRoutes} made from the {@link Times} */
+export type PossibleTimePath = | EmptyString | `/${FullUrlValue_Time}`
 
 
 export type EveryPossibleRoutes = `/${PossibleAcronym}${PossibleRoutePath}`

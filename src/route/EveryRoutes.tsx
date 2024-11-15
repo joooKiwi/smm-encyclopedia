@@ -4,9 +4,9 @@ import {findFirstOrNullByArray, forEachByArray}     from '@joookiwi/collection'
 import {CompanionEnum, Enum}                        from '@joookiwi/enumerable'
 import {lazy}                                       from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                  from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                              from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                                    from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -15,11 +15,13 @@ import {ThemeTypes}            from 'app/property/ThemeTypes'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import {Games}                 from 'core/game/Games'
 import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {Times}                 from 'core/time/Times'
 import {ProjectLanguages}      from 'lang/ProjectLanguages'
 import {SimpleRoute}           from 'route/SimpleRoute'
 import {Empty}                 from 'util/emptyVariables'
 import {GameCollection}        from 'util/collection/GameCollection'
 import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
+import {TimeCollection}        from 'util/collection/TimeCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
 import ALL_GAME_STYLES =                   GameStyles.ALL
@@ -101,6 +103,9 @@ const LIST =  ViewDisplays.SIMPLE_LIST
 const CARD =  ViewDisplays.CARD_LIST
 const TABLE = ViewDisplays.TABLE
 
+const DAY =   Times.DAY
+const NIGHT = Times.NIGHT
+
 const NO_VIEW_DISPLAY = new ViewDisplayCollection(EMPTY_ARRAY,)
 const ALL_VIEW_DISPLAY = new ViewDisplayCollection(ViewDisplays.CompanionEnum.get.values,)
 
@@ -112,6 +117,9 @@ const ALL_GAMES_COLLECTION = new GameCollection(ALL_GAMES,)
 
 const NO_GAME_STYLES_COLLECTION = new GameStyleCollection(EMPTY_ARRAY,)
 const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
+
+const NO_TIMES_COLLECTION = new TimeCollection(EMPTY_ARRAY,)
+const ALL_TIMES_COLLECTION = new TimeCollection(Times.ALL,)
 
 //region -------------------- Possibility group constants --------------------
 
@@ -207,8 +215,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES_COLLECTION, null, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         constructor(name: URL_NAME, path: URL_PATH, routeCallback: NothingRouteCallback,) {
+            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES_COLLECTION, null, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -235,8 +243,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -276,13 +284,101 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         }
 
     }
+
+    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link TimeCollection}) */
+    private static readonly ListCardTable_AnyGame_DayNight_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
+
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, defaultTime: NullOr<Times>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, ALL_TIMES_COLLECTION, defaultTime ?? null, routeCallback,)
+        }
+
+        protected override _createEveryRoutes(): Array<SimpleRoute> {
+            const name = this.urlName
+            const path = this.urlValue
+            const routeCallback = this.routeCallback
+
+            return [
+                //region -------------------- Time (all) --------------------
+
+                new SimpleRoute(`${name} (list Game=all, Time=all)`,      `/game-all/time-all/list${path}`,      ALL_GAMES,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2, Time=all)`,        `/game-2/time-all/list${path}`,        SMM2_ONLY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2, Time=all)`,      `/game-1,2/time-all/list${path}`,      SMM1_AND_2,   null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2, Time=all)`,    `/game-3ds,2/time-all/list${path}`,    SMM3DS_AND_2, null, LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all, Time=all)`,      `/game-all/time-all/card${path}`,      ALL_GAMES,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2, Time=all)`,        `/game-2/time-all/card${path}`,        SMM2_ONLY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2, Time=all)`,      `/game-1,2/time-all/card${path}`,      SMM1_AND_2,   null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2, Time=all)`,    `/game-3ds,2/time-all/card${path}`,    SMM3DS_AND_2, null, CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all, Time=all)`,     `/game-all/time-all/table${path}`,     ALL_GAMES,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2, Time=all)`,       `/game-2/time-all/table${path}`,       SMM2_ONLY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2, Time=all)`,     `/game-1,2/time-all/table${path}`,     SMM1_AND_2,   null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2, Time=all)`,   `/game-3ds,2/time-all/table${path}`,   SMM3DS_AND_2, null, TABLE, routeCallback,),
+
+                //endregion -------------------- Time (all) --------------------
+                //region -------------------- Time (day) --------------------
+
+                new SimpleRoute(`${name} (list Game=all, Time=day)`,      `/game-all/time-day/list${path}`,      ALL_GAMES,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1, Time=day)`,        `/game-1/time-day/list${path}`,        SMM1_ONLY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS, Time=day)`,      `/game-3ds/time-day/list${path}`,      SMM3DS_ONLY,  null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2, Time=day)`,        `/game-2/time-day/list${path}`,        SMM2_ONLY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS, Time=day)`,    `/game-1,3ds/time-day/list${path}`,    SMM1_AND_3DS, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2, Time=day)`,      `/game-1,2/time-day/list${path}`,      SMM1_AND_2,   null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2, Time=day)`,    `/game-3ds,2/time-day/list${path}`,    SMM3DS_AND_2, null, LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all, Time=day)`,      `/game-all/time-day/card${path}`,      ALL_GAMES,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1, Time=day)`,        `/game-1/time-day/card${path}`,        SMM1_ONLY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS, Time=day)`,      `/game-3ds/time-day/card${path}`,      SMM3DS_ONLY,  null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2, Time=day)`,        `/game-2/time-day/card${path}`,        SMM2_ONLY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS, Time=day)`,    `/game-1,3ds/time-day/card${path}`,    SMM1_AND_3DS, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2, Time=day)`,      `/game-1,2/time-day/card${path}`,      SMM1_AND_2,   null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2, Time=day)`,    `/game-3ds,2/time-day/card${path}`,    SMM3DS_AND_2, null, CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all, Time=day)`,     `/game-all/time-day/table${path}`,     ALL_GAMES,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1, Time=day)`,       `/game-1/time-day/table${path}`,       SMM1_ONLY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS, Time=day)`,     `/game-3ds/time-day/table${path}`,     SMM3DS_ONLY,  null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2, Time=day)`,       `/game-2/time-day/table${path}`,       SMM2_ONLY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS, Time=day)`,   `/game-1,3ds/time-day/table${path}`,   SMM1_AND_3DS, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2, Time=day)`,     `/game-1,2/time-day/table${path}`,     SMM1_AND_2,   null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2, Time=day)`,   `/game-3ds,2/time-day/table${path}`,   SMM3DS_AND_2, null, TABLE, routeCallback,),
+
+                //endregion -------------------- Time (day) --------------------
+                //region -------------------- Time (night) --------------------
+
+                new SimpleRoute(`${name} (list Game=all, Time=night)`,    `/game-all/time-night/list${path}`,    ALL_GAMES,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2, Time=night)`,      `/game-2/time-night/list${path}`,      SMM2_ONLY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2, Time=night)`,    `/game-1,2/time-night/list${path}`,    SMM1_AND_2,   null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2, Time=night)`,  `/game-3ds,2/time-night/list${path}`,  SMM3DS_AND_2, null, LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all, Time=night)`,    `/game-all/time-night/card${path}`,    ALL_GAMES,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2, Time=night)`,      `/game-2/time-night/card${path}`,      SMM2_ONLY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2, Time=night)`,    `/game-1,2/time-night/card${path}`,    SMM1_AND_2,   null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2, Time=night)`,  `/game-3ds,2/time-night/card${path}`,  SMM3DS_AND_2, null, CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all, Time=night)`,   `/game-all/time-night/table${path}`,   ALL_GAMES,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2, Time=night)`,     `/game-2/time-night/table${path}`,     SMM2_ONLY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2, Time=night)`,   `/game-1,2/time-night/table${path}`,   SMM1_AND_2,   null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2, Time=night)`, `/game-3ds,2/time-day/table${path}`,   SMM3DS_AND_2, null, TABLE, routeCallback,),
+
+                //endregion -------------------- Time (day) --------------------
+            ]
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
+        }
+
+    }
+
     /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link GameStyleCollection}) */
     private static readonly ListCardTable_AnyGame_AnyGameStyle_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, NO_TIMES_COLLECTION, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -316,8 +412,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, (_, games,) => routeCallback(games,),)
         constructor(name: URL_NAME, path: URL_PATH, routeCallback: GameRouteCallback,) {
+            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, (_, games,) => routeCallback(games,),)
         }
 
 
@@ -352,8 +448,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -391,8 +487,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -725,8 +821,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     readonly #defaultViewDisplay
     readonly #games
     readonly #gameStyles
+    readonly #times
     readonly #defaultGame
     readonly #defaultGameStyles
+    readonly #defaultTime
     readonly #routeCallback
 
     #everyRoutes?: Array<SimpleRoute>
@@ -738,6 +836,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                         viewDisplays: ViewDisplayCollection, defaultViewDisplay: NullOr<ViewDisplays>,
                         games: GameCollection, defaultGame: NullOr<Games>,
                         gameStyles: GameStyleCollection, defaultGameStyles: NullOrArray<GameStyles>,
+                        times: TimeCollection, defaultTime: NullOr<Times>,
                         routeCallback: RouteCallback,) {
         super()
         this.#urlName = name
@@ -748,6 +847,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         this.#defaultGame = defaultGame
         this.#gameStyles = gameStyles
         this.#defaultGameStyles = defaultGameStyles
+        this.#times = times
+        this.#defaultTime = defaultTime
         this.#routeCallback = routeCallback
     }
 
@@ -788,6 +889,16 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public get defaultGameStyles(): NullOrArray<GameStyles> {
         return this.#defaultGameStyles
     }
+
+
+    public get times(): TimeCollection {
+        return this.#times
+    }
+
+    public get defaultTime(): NullOr<Times> {
+        return this.#defaultTime
+    }
+
 
     public get routeCallback(): RouteCallback {
         return this.#routeCallback
@@ -872,6 +983,34 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         if (value == null)
             return EMPTY_STRING
         return `/${value.urlValue}`
+    }
+
+    /**
+     * Get the partial path from a {@link Nullable} {@link Times} {@link ReadonlyArray array}
+     *
+     * @param value The {@link Times} to retrieve its {@link Times.urlValue}
+     */
+    protected _getPartialPathFromTimes(value: NullOrArray<Times>,): PossibleTimePath {
+        const Companion = Times.CompanionEnum.get
+        if (value == null) {
+            const currentTime = Companion.currentOrNull
+            if (currentTime == null) {
+                const defaultTime = this.defaultTime
+                if (defaultTime == null)
+                    return EMPTY_STRING
+                return `/time-${defaultTime.urlValue}`
+            }
+            return `/time-${Companion.getGroupUrl(currentTime,)}`
+        }
+        if (value.length === 0) {
+            const defaultTime = this.defaultTime
+            if (defaultTime == null)
+                return EMPTY_STRING
+            return `/time-${defaultTime.urlValue}`
+        }
+        if (value.length === 0)
+            return EMPTY_STRING
+        return `/time-${Companion.getGroupUrl(value,)}`
     }
 
     public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
