@@ -35,9 +35,9 @@ import DAY_ONLY =                   Times.DAY_ONLY
 import EMPTY_ARRAY =                Empty.EMPTY_ARRAY
 import EMPTY_STRING =               Empty.EMPTY_STRING
 import NIGHT_ONLY =                 Times.NIGHT_ONLY
-import NO_GAME_STYLES_COLLECTION =  GameStyleCollection.EMPTY
-import NO_GAMES_COLLECTION =        GameCollection.EMPTY
-import NO_TIMES_COLLECTION =        TimeCollection.EMPTY
+import NO_GAME_STYLES =             GameStyleCollection.EMPTY
+import NO_GAMES =                   GameCollection.EMPTY
+import NO_TIMES =                   TimeCollection.EMPTY
 import NO_VIEW_DISPLAY =            ViewDisplayCollection.EMPTY
 import NOT_NSMBU =                  GameStyles.NOT_NSMBU
 import NOT_SMB =                    GameStyles.NOT_SMB
@@ -211,7 +211,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, routeCallback: NothingRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES_COLLECTION, null, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
+            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES, null, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 
 
@@ -243,7 +243,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -294,7 +294,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, defaultTime: NullOr<Times>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, ALL_TIMES_COLLECTION, defaultTime ?? null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, ALL_TIMES_COLLECTION, defaultTime ?? null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -381,7 +381,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, NO_TIMES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, NO_TIMES, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -1129,7 +1129,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, routeCallback: GameRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, (_, games,) => routeCallback(games,),)
+            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, (_, games,) => routeCallback(games,),)
         }
 
 
@@ -1169,7 +1169,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 
 
@@ -1212,7 +1212,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, NO_TIMES_COLLECTION, null, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 
 
