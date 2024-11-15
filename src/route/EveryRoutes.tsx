@@ -195,20 +195,20 @@ const gamePossibilities = [
  * @see Games
  * @see GameStyles
  */
-export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
-    const SIMPLE_PATH extends string = string, >
+export abstract class EveryRoutes<const URL_NAME extends string = string,
+    const URL_PATH extends string = string, >
     extends Enum<Ordinals, Names>
-    implements ClassUsedInRoute<SIMPLE_PATH> {
+    implements ClassUsedInRoute<URL_PATH, URL_NAME> {
 
     //region -------------------- Sub class --------------------
 
     /** A representation of an {@link EveryRoutes} instance with nothing in its route. Meaning no {@link ViewDisplays} and no {@link GameCollection}. */
-    private static readonly Straight_EveryRoutes = class Straight_EveryRoutes<const SIMPLE_NAME extends string,
-        const SIMPLE_PATH extends string, >
-        extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly Straight_EveryRoutes = class Straight_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: NothingRouteCallback,) {
             super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES_COLLECTION, null, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, routeCallback: NothingRouteCallback,) {
         }
 
 
@@ -231,12 +231,12 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     }
 
     /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays} and {@link GameCollection}) */
-    private static readonly ListCardTable_AnyGame_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const SIMPLE_NAME extends string,
-        const SIMPLE_PATH extends string, >
-        extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_AnyGame_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -277,12 +277,12 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link GameStyleCollection}) */
-    private static readonly ListCardTable_AnyGame_AnyGameStyle_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const SIMPLE_NAME extends string,
-        const SIMPLE_PATH extends string, >
-        extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_AnyGame_AnyGameStyle_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -312,12 +312,12 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     }
 
     /** A representation of an {@link EveryRoutes} instance with only the {@link GameCollection} in its route */
-    private static readonly AnyGame_EveryRoutes = class AnyGame_EveryRoutes<const SIMPLE_NAME extends string,
-        const SIMPLE_PATH extends string, >
-        extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly AnyGame_EveryRoutes = class AnyGame_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: GameRouteCallback,) {
             super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, (_, games,) => routeCallback(games,),)
+        constructor(name: URL_NAME, path: URL_PATH, routeCallback: GameRouteCallback,) {
         }
 
 
@@ -348,12 +348,12 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     }
 
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM1} */
-    private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const SIMPLE_NAME extends string,
-        const SIMPLE_PATH extends string, >
-        extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
         }
 
 
@@ -387,12 +387,12 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM2} */
-    private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const SIMPLE_NAME extends string,
-        const SIMPLE_PATH extends string, >
-        extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const URL_NAME extends string,
+        const URL_PATH extends string, >
+        extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
         }
 
 
@@ -734,7 +734,7 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(name: SIMPLE_NAME, path: SIMPLE_PATH,
+    private constructor(name: URL_NAME, path: URL_PATH,
                         viewDisplays: ViewDisplayCollection, defaultViewDisplay: NullOr<ViewDisplays>,
                         games: GameCollection, defaultGame: NullOr<Games>,
                         gameStyles: GameStyleCollection, defaultGameStyles: NullOrArray<GameStyles>,
