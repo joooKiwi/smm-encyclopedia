@@ -8,40 +8,40 @@ import type {ClassWithType}                           from 'core/ClassWithType'
 import type {ClassUsedInRoute}                        from 'route/ClassUsedInRoute'
 import type {ClassWithIsCurrent}                      from 'util/enumerable/ClassWithIsCurrent'
 
-import {getValueInUrl}                              from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 /** @usedByTheRouting */
-export abstract class ViewDisplays
+export abstract class ViewDisplays<const TYPE extends Type = Type,
+    const URL extends PossibleUrlValue = PossibleUrlValue,>
     extends Enum<Ordinals, Names>
-    implements ClassWithType<Type>,
-        ClassUsedInRoute<PossibleUrlValue>,
+    implements ClassWithType<TYPE>,
+        ClassUsedInRoute<URL, URL>,
         ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly TABLE =       new class ViewDisplays_Table extends ViewDisplays {
+    public static readonly TABLE =       new class ViewDisplays_Table extends ViewDisplays<'table', 'table'> {
 
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (table)` as const
         }
 
     }('table', 'table', 'table',)
-    // public static readonly NAME_LIST =   new class ViewDisplays_SimpleList extends ViewDisplays {
+    // public static readonly NAME_LIST =   new class ViewDisplays_SimpleList extends ViewDisplays<'name-list', 'name'> {
     //
     //     protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
     //         return `${path} (name)` as const
     //     }
     //
     // }('name-list', 'name', 'list-nested',)
-    public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
+    public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays<'simple-list', 'list'> {
 
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (list)` as const
         }
 
     }('simple-list', 'list', 'list-ul',)
-    public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
+    public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays<'card-list', 'card'> {
 
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (card)` as const
@@ -70,11 +70,17 @@ export abstract class ViewDisplays
 
         //endregion -------------------- Singleton usage --------------------
 
-        public readonly URL_REGEX = /\/(table|list|card)\//i
-        public readonly PREFIX = null
+        // public readonly URL_REGEX = /\/(table|list|card)\//i
 
-        public getValueInUrl(url: string): NullOr<ViewDisplays> {
-            return getValueInUrl(url, this,)
+        public getValueInUrl(url: string,): NullOr<ViewDisplays> {
+            const lowerCasedUrl = url.toLowerCase()
+            if (lowerCasedUrl.includes('/list/',))
+                return ViewDisplays.SIMPLE_LIST
+            if (lowerCasedUrl.includes('/card/',))
+                return ViewDisplays.CARD_LIST
+            if (lowerCasedUrl.includes('/table/',))
+                return ViewDisplays.TABLE
+            return null
         }
 
     }
@@ -83,28 +89,32 @@ export abstract class ViewDisplays
     //region -------------------- Fields --------------------
 
     readonly #type
-    readonly #urlValue
+    readonly #url
     readonly #htmlType
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(type: Type, urlValue: PossibleUrlValue, htmlType: PossibleBootstrapIcon,) {
+    private constructor(type: TYPE, url: URL, htmlType: PossibleBootstrapIcon,) {
         super()
         this.#type = type
-        this.#urlValue = urlValue
+        this.#url = url
         this.#htmlType = htmlType
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get type(): Type {
+    public get type(): TYPE {
         return this.#type
     }
 
-    public get urlValue(): PossibleUrlValue {
-        return this.#urlValue
+    public get urlValue(): URL {
+        return this.#url
+    }
+
+    public get urlName(): URL {
+        return this.#url
     }
 
     public get htmlType(): PossibleBootstrapIcon {
