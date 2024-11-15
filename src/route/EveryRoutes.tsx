@@ -24,51 +24,61 @@ import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
 import {TimeCollection}        from 'util/collection/TimeCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
-import ALL_GAME_STYLES =                   GameStyles.ALL
-import ALL_GAMES =                         Games.ALL
-import ALL_TIMES =                         Times.ALL
-import DAY_ONLY =                          Times.DAY_ONLY
-import EMPTY_ARRAY =                       Empty.EMPTY_ARRAY
-import EMPTY_STRING =                      Empty.EMPTY_STRING
-import NIGHT_ONLY =                        Times.NIGHT_ONLY
-import NOT_NSMBU =                         GameStyles.NOT_NSMBU
-import NOT_SMB =                           GameStyles.NOT_SMB
-import NOT_SMB3 =                          GameStyles.NOT_SMB3
-import NOT_SMW =                           GameStyles.NOT_SMW
-import NOT_SM3DW =                         GameStyles.NOT_SM3DW
-import NSMBU_AND_SM3DW =                   GameStyles.NSMBU_AND_SM3DW
-import NSMBU_ONLY =                        GameStyles.NSMBU_ONLY
-import SMB_AND_NSMBU =                     GameStyles.SMB_AND_NSMBU
-import SMB_AND_NSMBU_AND_SM3DW =           GameStyles.SMB_AND_NSMBU_AND_SM3DW
-import SMB_AND_SMB3 =                      GameStyles.SMB_AND_SMB3
-import SMB_AND_SMB3_AND_NSMBU =            GameStyles.SMB_AND_SMB3_AND_NSMBU
-import SMB_AND_SMB3_AND_SMW =              GameStyles.SMB_AND_SMB3_AND_SMW
-import SMB_AND_SMB3_AND_SM3DW =            GameStyles.SMB_AND_SMB3_AND_SM3DW
-import SMB_AND_SMW =                       GameStyles.SMB_AND_SMW
-import SMB_AND_SMW_AND_NSMBU =             GameStyles.SMB_AND_SMW_AND_NSMBU
-import SMB_AND_SMW_AND_SM3DW =             GameStyles.SMB_AND_SMW_AND_SM3DW
-import SMB_AND_SM3DW =                     GameStyles.SMB_AND_SM3DW
-import SMB_ONLY =                          GameStyles.SMB_ONLY
-import SMB3_AND_NSMBU =                    GameStyles.SMB3_AND_NSMBU
-import SMB3_AND_NSMBU_AND_SM3DW =          GameStyles.SMB3_AND_NSMBU_AND_SM3DW
-import SMB3_AND_SMW =                      GameStyles.SMB3_AND_SMW
-import SMB3_AND_SMW_AND_NSMBU =            GameStyles.SMB3_AND_SMW_AND_NSMBU
-import SMB3_AND_SMW_AND_SM3DW =            GameStyles.SMB3_AND_SMW_AND_SM3DW
-import SMB3_AND_SM3DW =                    GameStyles.SMB3_AND_SM3DW
-import SMB3_ONLY =                         GameStyles.SMB3_ONLY
-import SMW_AND_NSMBU =                     GameStyles.SMW_AND_NSMBU
-import SMW_AND_NSMBU_AND_SM3DW =           GameStyles.SMW_AND_NSMBU_AND_SM3DW
-import SMW_AND_SM3DW =                     GameStyles.SMW_AND_SM3DW
-import SMW_ONLY =                          GameStyles.SMW_ONLY
-import SMM1 =                              Games.SMM1
-import SMM1_AND_3DS =                      Games.SMM1_AND_3DS
-import SMM1_AND_2 =                        Games.SMM1_AND_2
-import SMM1_ONLY =                         Games.SMM1_ONLY
-import SMM2 =                              Games.SMM2
-import SMM2_ONLY =                         Games.SMM2_ONLY
-import SMM3DS_AND_2 =                      Games.SMM3DS_AND_2
-import SMM3DS_ONLY =                       Games.SMM3DS_ONLY
-import SM3DW_ONLY =                        GameStyles.SM3DW_ONLY
+import ALL_GAME_STYLES =            GameStyles.ALL
+import ALL_GAMES =                  Games.ALL
+import ALL_GAME_STYLES_COLLECTION = GameStyleCollection.ALL
+import ALL_GAMES_COLLECTION =       GameCollection.ALL
+import ALL_TIMES =                  Times.ALL
+import ALL_TIMES_COLLECTION =       TimeCollection.ALL
+import ALL_VIEW_DISPLAY =           ViewDisplayCollection.ALL
+import DAY_ONLY =                   Times.DAY_ONLY
+import EMPTY_ARRAY =                Empty.EMPTY_ARRAY
+import EMPTY_STRING =               Empty.EMPTY_STRING
+import NIGHT_ONLY =                 Times.NIGHT_ONLY
+import NO_GAME_STYLES_COLLECTION =  GameStyleCollection.EMPTY
+import NO_GAMES_COLLECTION =        GameCollection.EMPTY
+import NO_TIMES_COLLECTION =        TimeCollection.EMPTY
+import NO_VIEW_DISPLAY =            ViewDisplayCollection.EMPTY
+import NOT_NSMBU =                  GameStyles.NOT_NSMBU
+import NOT_SMB =                    GameStyles.NOT_SMB
+import NOT_SMB3 =                   GameStyles.NOT_SMB3
+import NOT_SMW =                    GameStyles.NOT_SMW
+import NOT_SM3DW =                  GameStyles.NOT_SM3DW
+import NSMBU_AND_SM3DW =            GameStyles.NSMBU_AND_SM3DW
+import NSMBU_ONLY =                 GameStyles.NSMBU_ONLY
+import SMB_AND_NSMBU =              GameStyles.SMB_AND_NSMBU
+import SMB_AND_NSMBU_AND_SM3DW =    GameStyles.SMB_AND_NSMBU_AND_SM3DW
+import SMB_AND_SMB3 =               GameStyles.SMB_AND_SMB3
+import SMB_AND_SMB3_AND_NSMBU =     GameStyles.SMB_AND_SMB3_AND_NSMBU
+import SMB_AND_SMB3_AND_SMW =       GameStyles.SMB_AND_SMB3_AND_SMW
+import SMB_AND_SMB3_AND_SM3DW =     GameStyles.SMB_AND_SMB3_AND_SM3DW
+import SMB_AND_SMW =                GameStyles.SMB_AND_SMW
+import SMB_AND_SMW_AND_NSMBU =      GameStyles.SMB_AND_SMW_AND_NSMBU
+import SMB_AND_SMW_AND_SM3DW =      GameStyles.SMB_AND_SMW_AND_SM3DW
+import SMB_AND_SM3DW =              GameStyles.SMB_AND_SM3DW
+import SMB_ONLY =                   GameStyles.SMB_ONLY
+import SMB3_AND_NSMBU =             GameStyles.SMB3_AND_NSMBU
+import SMB3_AND_NSMBU_AND_SM3DW =   GameStyles.SMB3_AND_NSMBU_AND_SM3DW
+import SMB3_AND_SMW =               GameStyles.SMB3_AND_SMW
+import SMB3_AND_SMW_AND_NSMBU =     GameStyles.SMB3_AND_SMW_AND_NSMBU
+import SMB3_AND_SMW_AND_SM3DW =     GameStyles.SMB3_AND_SMW_AND_SM3DW
+import SMB3_AND_SM3DW =             GameStyles.SMB3_AND_SM3DW
+import SMB3_ONLY =                  GameStyles.SMB3_ONLY
+import SMW_AND_NSMBU =              GameStyles.SMW_AND_NSMBU
+import SMW_AND_NSMBU_AND_SM3DW =    GameStyles.SMW_AND_NSMBU_AND_SM3DW
+import SMW_AND_SM3DW =              GameStyles.SMW_AND_SM3DW
+import SMW_ONLY =                   GameStyles.SMW_ONLY
+import SMM1 =                       Games.SMM1
+import SMM1_AND_3DS =               Games.SMM1_AND_3DS
+import SMM1_AND_2 =                 Games.SMM1_AND_2
+import SMM1_GAMES_COLLECTION =      GameCollection.SMM1_ONLY
+import SMM1_ONLY =                  Games.SMM1_ONLY
+import SMM2 =                       Games.SMM2
+import SMM2_GAMES_COLLECTION =      GameCollection.SMM2_ONLY
+import SMM2_ONLY =                  Games.SMM2_ONLY
+import SMM3DS_AND_2 =               Games.SMM3DS_AND_2
+import SMM3DS_ONLY =                Games.SMM3DS_ONLY
+import SM3DW_ONLY =                 GameStyles.SM3DW_ONLY
 
 //region -------------------- Dynamic imports --------------------
 
@@ -106,23 +116,8 @@ const LIST =  ViewDisplays.SIMPLE_LIST
 const CARD =  ViewDisplays.CARD_LIST
 const TABLE = ViewDisplays.TABLE
 
-const NO_VIEW_DISPLAY = new ViewDisplayCollection(EMPTY_ARRAY,)
-const ALL_VIEW_DISPLAY = new ViewDisplayCollection(ViewDisplays.CompanionEnum.get.values,)
-
-const NO_GAMES_COLLECTION = new GameCollection(EMPTY_ARRAY,)
-const SMM1_GAMES_COLLECTION = new GameCollection(SMM1_ONLY,)
-// const SMM3DS_GAMES_COLLECTION = new GameCollection(SMM3DS_ONLY,)
-const SMM2_GAMES_COLLECTION = new GameCollection(SMM2_ONLY,)
-const ALL_GAMES_COLLECTION = new GameCollection(ALL_GAMES,)
-
-const NO_GAME_STYLES_COLLECTION = new GameStyleCollection(EMPTY_ARRAY,)
-const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
-
-const NO_TIMES_COLLECTION = new TimeCollection(EMPTY_ARRAY,)
-const ALL_TIMES_COLLECTION = new TimeCollection(Times.ALL,)
-
-//region -------------------- Possibility group constants --------------------
-
+// //region -------------------- Possibility group constants --------------------
+//
 // /** Every {@link GameStyles} possibilities applicable to the {@link SMM2} game group */
 // const gameStylePossibilitiesWithSmm2 = [
 //     [ALL_GAME_STYLES,          'GameStyle=all',       'game-style-all',],
@@ -190,8 +185,8 @@ const ALL_TIMES_COLLECTION = new TimeCollection(Times.ALL,)
 //     [SMM1_AND_2,   'Game=1&2',   'game-1,2',   gameStylePossibilitiesWithSmm2,    31,],
 //     [SMM3DS_AND_2, 'Game=3DS&2', 'game-3ds,2', gameStylePossibilitiesWithSmm2,    31,],
 // ] as const
-
-//endregion -------------------- Possibility group constants --------------------
+//
+// //endregion -------------------- Possibility group constants --------------------
 
 //endregion -------------------- Helper constants --------------------
 

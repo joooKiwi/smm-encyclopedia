@@ -3,7 +3,11 @@ import type {Array}                                                             
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {Times} from 'core/time/Times'
-import ALL = Times.ALL
+import {Empty} from 'util/emptyVariables'
+
+import ALL =         Times.ALL
+import ALL_TIMES =   Times.ALL
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class TimeCollection<const T extends Times = Times,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
@@ -34,5 +38,12 @@ export class TimeCollection<const T extends Times = Times,
     }
 
     //endregion -------------------- Getter methods --------------------
+
+}
+
+export namespace TimeCollection {
+
+    export const EMPTY = new TimeCollection(EMPTY_ARRAY,)
+    export const ALL =   new TimeCollection(ALL_TIMES,)
 
 }

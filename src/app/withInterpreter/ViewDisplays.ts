@@ -144,5 +144,11 @@ export abstract class ViewDisplays<const TYPE extends Type = Type,
 
 }
 
+export namespace ViewDisplays {
+
+    export const ALL = [ViewDisplays.TABLE, ViewDisplays.CARD_LIST, /*ViewDisplays.NAME_LIST, */ViewDisplays.SIMPLE_LIST,] as const
+
+}
+
 type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
 // type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'name' | 'list' | 'card' | 'table'})`//TODO add the name list

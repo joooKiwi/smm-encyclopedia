@@ -3,14 +3,17 @@ import type {Array}                                                             
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
+import {Empty}      from 'util/emptyVariables'
 
-import ALL =      GameStyles.ALL
-import ALL_SMM1 = GameStyles.ALL_SMM1
-import NSMBU =    GameStyles.NSMBU
-import SMB =      GameStyles.SMB
-import SMB3 =     GameStyles.SMB3
-import SMW =      GameStyles.SMW
-import SM3DW =    GameStyles.SM3DW
+import ALL =             GameStyles.ALL
+import ALL_GAME_STYLES = GameStyles.ALL
+import ALL_SMM1 =        GameStyles.ALL_SMM1
+import EMPTY_ARRAY =     Empty.EMPTY_ARRAY
+import NSMBU =           GameStyles.NSMBU
+import SMB =             GameStyles.SMB
+import SMB3 =            GameStyles.SMB3
+import SMW =             GameStyles.SMW
+import SM3DW =           GameStyles.SM3DW
 
 export class GameStyleCollection<const T extends GameStyles = GameStyles,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>>
@@ -74,5 +77,12 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     }
 
     //endregion -------------------- Getter methods --------------------
+
+}
+
+export namespace GameStyleCollection {
+
+    export const EMPTY = new GameStyleCollection(EMPTY_ARRAY,)
+    export const ALL =   new GameStyleCollection(ALL_GAME_STYLES,)
 
 }

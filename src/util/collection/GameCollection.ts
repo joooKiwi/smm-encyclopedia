@@ -3,11 +3,17 @@ import type {Array}                                                             
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
+import {Empty} from 'util/emptyVariables'
 
-import ALL =    Games.ALL
-import SMM1 =   Games.SMM1
-import SMM2 =   Games.SMM2
-import SMM3DS = Games.SMM3DS
+import ALL =               Games.ALL
+import ALL_GAMES =         Games.ALL
+import EMPTY_ARRAY =       Empty.EMPTY_ARRAY
+import SMM1 =              Games.SMM1
+import SMM1_ONLY_GAMES =   Games.SMM1_ONLY
+import SMM2 =              Games.SMM2
+import SMM2_ONLY_GAMES =   Games.SMM2_ONLY
+import SMM3DS =            Games.SMM3DS
+import SMM3DS_ONLY_GAMES = Games.SMM3DS_ONLY
 
 export class GameCollection<const T extends Games = Games,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
@@ -50,5 +56,15 @@ export class GameCollection<const T extends Games = Games,
     }
 
     //endregion -------------------- Getter methods --------------------
+
+}
+
+export namespace GameCollection {
+
+    export const EMPTY =       new GameCollection(EMPTY_ARRAY,)
+    export const SMM1_ONLY =   new GameCollection(SMM1_ONLY_GAMES,)
+    export const SMM3DS_ONLY = new GameCollection(SMM3DS_ONLY_GAMES,)
+    export const SMM2_ONLY =   new GameCollection(SMM2_ONLY_GAMES,)
+    export const ALL =         new GameCollection(ALL_GAMES,)
 
 }

@@ -2,6 +2,10 @@ import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrColle
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import {Empty}        from 'util/emptyVariables'
+
+import ALL_VIEW_DISPLAYS = ViewDisplays.ALL
+import EMPTY_ARRAY =       Empty.EMPTY_ARRAY
 
 export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
@@ -48,5 +52,12 @@ export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
     }
 
     //endregion -------------------- Getter methods --------------------
+
+}
+
+export namespace ViewDisplayCollection {
+
+    export const EMPTY = new ViewDisplayCollection(EMPTY_ARRAY,)
+    export const ALL =   new ViewDisplayCollection(ALL_VIEW_DISPLAYS,)
 
 }
