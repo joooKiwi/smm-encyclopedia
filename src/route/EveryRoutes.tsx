@@ -13,7 +13,6 @@ import {LimitTypes}            from 'app/property/LimitTypes'
 import {PowerUpPriorityTypes}  from 'app/property/PowerUpPriorityTypes'
 import {ThemeTypes}            from 'app/property/ThemeTypes'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
-import {GamePossibility}       from 'core/game/Game.possibility'
 import {Games}                 from 'core/game/Games'
 import {GameStyles}            from 'core/gameStyle/GameStyles'
 import {ProjectLanguages}      from 'lang/ProjectLanguages'
@@ -23,18 +22,10 @@ import {GameCollection}        from 'util/collection/GameCollection'
 import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
+import ALL_GAME_STYLES =                   GameStyles.ALL
+import ALL_GAMES =                         Games.ALL
 import EMPTY_ARRAY =                       Empty.EMPTY_ARRAY
 import EMPTY_STRING =                      Empty.EMPTY_STRING
-import SMM1_ONLY_ARRAY =                   GamePossibility.SMM1_ONLY
-import SMM1_AND_3DS_ARRAY =                GamePossibility.SMM1_AND_3DS
-import SMM1_AND_2_ARRAY =                  GamePossibility.SMM1_AND_2
-import SMM3DS_ONLY_ARRAY =                 GamePossibility.SMM3DS_ONLY
-import SMM3DS_AND_2_ARRAY =                GamePossibility.SMM3DS_AND_2
-import SMM2_ONLY_ARRAY =                   GamePossibility.SMM2_ONLY
-import ALL_GAMES_ARRAY =                   GamePossibility.ALL_GAMES
-import SMM1 =                              Games.SMM1
-import SMM2 =                              Games.SMM2
-import ALL_GAME_STYLES =                   GameStyles.ALL
 import NOT_NSMBU =                         GameStyles.NOT_NSMBU
 import NOT_SMB =                           GameStyles.NOT_SMB
 import NOT_SMB3 =                          GameStyles.NOT_SMB3
@@ -64,6 +55,14 @@ import SMW_AND_NSMBU =                     GameStyles.SMW_AND_NSMBU
 import SMW_AND_NSMBU_AND_SM3DW =           GameStyles.SMW_AND_NSMBU_AND_SM3DW
 import SMW_AND_SM3DW =                     GameStyles.SMW_AND_SM3DW
 import SMW_ONLY =                          GameStyles.SMW_ONLY
+import SMM1 =                              Games.SMM1
+import SMM1_AND_3DS =                      Games.SMM1_AND_3DS
+import SMM1_AND_2 =                        Games.SMM1_AND_2
+import SMM1_ONLY =                         Games.SMM1_ONLY
+import SMM2 =                              Games.SMM2
+import SMM2_ONLY =                         Games.SMM2_ONLY
+import SMM3DS_AND_2 =                      Games.SMM3DS_AND_2
+import SMM3DS_ONLY =                       Games.SMM3DS_ONLY
 import SM3DW_ONLY =                        GameStyles.SM3DW_ONLY
 
 //region -------------------- Dynamic imports --------------------
@@ -106,10 +105,10 @@ const NO_VIEW_DISPLAY = new ViewDisplayCollection(EMPTY_ARRAY,)
 const ALL_VIEW_DISPLAY = new ViewDisplayCollection(ViewDisplays.CompanionEnum.get.values,)
 
 const NO_GAMES_COLLECTION = new GameCollection(EMPTY_ARRAY,)
-const SMM1_GAMES_COLLECTION = new GameCollection(SMM1_ONLY_ARRAY,)
-// const SMM3DS_GAMES_COLLECTION = new GameCollection(SMM3DS_ONLY_ARRAY,)
-const SMM2_GAMES_COLLECTION = new GameCollection(SMM2_ONLY_ARRAY,)
-const ALL_GAMES_COLLECTION = new GameCollection(ALL_GAMES_ARRAY,)
+const SMM1_GAMES_COLLECTION = new GameCollection(SMM1_ONLY,)
+// const SMM3DS_GAMES_COLLECTION = new GameCollection(SMM3DS_ONLY,)
+const SMM2_GAMES_COLLECTION = new GameCollection(SMM2_ONLY,)
+const ALL_GAMES_COLLECTION = new GameCollection(ALL_GAMES,)
 
 const NO_GAME_STYLES_COLLECTION = new GameStyleCollection(EMPTY_ARRAY,)
 const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
@@ -175,13 +174,13 @@ const gameStylePossibilitiesWithNotSmm2 = [
 
 /** Every {@link GamePossibility} */
 const gamePossibilities = [
-    [ALL_GAMES_ARRAY,    'Game=all',   'game-all',   gameStylePossibilitiesWithSmm2,    31,],
-    [SMM1_ONLY_ARRAY,    'Game=1',     'game-1',     gameStylePossibilitiesWithNotSmm2, 16,],
-    [SMM3DS_ONLY_ARRAY,  'Game=3DS',   'game-3ds',   gameStylePossibilitiesWithNotSmm2, 16,],
-    [SMM2_ONLY_ARRAY,    'Game=2',     'game-2',     gameStylePossibilitiesWithSmm2,    31,],
-    [SMM1_AND_3DS_ARRAY, 'Game=1&3DS', 'game-1,3ds', gameStylePossibilitiesWithNotSmm2, 16,],
-    [SMM1_AND_2_ARRAY,   'Game=1&2',   'game-1,2',   gameStylePossibilitiesWithSmm2,    31,],
-    [SMM3DS_AND_2_ARRAY, 'Game=3DS&2', 'game-3ds,2', gameStylePossibilitiesWithSmm2,    31,],
+    [ALL_GAMES,    'Game=all',   'game-all',   gameStylePossibilitiesWithSmm2,    31,],
+    [SMM1_ONLY,    'Game=1',     'game-1',     gameStylePossibilitiesWithNotSmm2, 16,],
+    [SMM3DS_ONLY,  'Game=3DS',   'game-3ds',   gameStylePossibilitiesWithNotSmm2, 16,],
+    [SMM2_ONLY,    'Game=2',     'game-2',     gameStylePossibilitiesWithSmm2,    31,],
+    [SMM1_AND_3DS, 'Game=1&3DS', 'game-1,3ds', gameStylePossibilitiesWithNotSmm2, 16,],
+    [SMM1_AND_2,   'Game=1&2',   'game-1,2',   gameStylePossibilitiesWithSmm2,    31,],
+    [SMM3DS_AND_2, 'Game=3DS&2', 'game-3ds,2', gameStylePossibilitiesWithSmm2,    31,],
 ] as const
 
 //endregion -------------------- Possibility group constants --------------------
@@ -246,29 +245,29 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${name} (list Game=all)`,    `/game-all/list${path}`,    ALL_GAMES_ARRAY,    null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1)`,      `/game-1/list${path}`,      SMM1_ONLY_ARRAY,    null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS)`,    `/game-3ds/list${path}`,    SMM3DS_ONLY_ARRAY,  null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2)`,      `/game-2/list${path}`,      SMM2_ONLY_ARRAY,    null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS)`,  `/game-1,3ds/list${path}`,  SMM1_AND_3DS_ARRAY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2)`,    `/game-1,2/list${path}`,    SMM1_AND_2_ARRAY,   null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2)`,  `/game-3ds,2/list${path}`,  SMM3DS_AND_2_ARRAY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all)`,    `/game-all/list${path}`,    ALL_GAMES,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1)`,      `/game-1/list${path}`,      SMM1_ONLY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS)`,    `/game-3ds/list${path}`,    SMM3DS_ONLY,  null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2)`,      `/game-2/list${path}`,      SMM2_ONLY,    null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS)`,  `/game-1,3ds/list${path}`,  SMM1_AND_3DS, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2)`,    `/game-1,2/list${path}`,    SMM1_AND_2,   null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2)`,  `/game-3ds,2/list${path}`,  SMM3DS_AND_2, null, LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all)`,    `/game-all/card${path}`,    ALL_GAMES_ARRAY,    null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1)`,      `/game-1/card${path}`,      SMM1_ONLY_ARRAY,    null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS)`,    `/game-3ds/card${path}`,    SMM3DS_ONLY_ARRAY,  null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2)`,      `/game-2/card${path}`,      SMM2_ONLY_ARRAY,    null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS)`,  `/game-1,3ds/card${path}`,  SMM1_AND_3DS_ARRAY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2)`,    `/game-1,2/card${path}`,    SMM1_AND_2_ARRAY,   null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2)`,  `/game-3ds,2/card${path}`,  SMM3DS_AND_2_ARRAY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all)`,    `/game-all/card${path}`,    ALL_GAMES,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1)`,      `/game-1/card${path}`,      SMM1_ONLY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS)`,    `/game-3ds/card${path}`,    SMM3DS_ONLY,  null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2)`,      `/game-2/card${path}`,      SMM2_ONLY,    null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS)`,  `/game-1,3ds/card${path}`,  SMM1_AND_3DS, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2)`,    `/game-1,2/card${path}`,    SMM1_AND_2,   null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2)`,  `/game-3ds,2/card${path}`,  SMM3DS_AND_2, null, CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all)`,   `/game-all/table${path}`,   ALL_GAMES_ARRAY,    null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1)`,     `/game-1/table${path}`,     SMM1_ONLY_ARRAY,    null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS)`,   `/game-3ds/table${path}`,   SMM3DS_ONLY_ARRAY,  null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2)`,     `/game-2/table${path}`,     SMM2_ONLY_ARRAY,    null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS)`, `/game-1,3ds/table${path}`, SMM1_AND_3DS_ARRAY, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2)`,   `/game-1,2/table${path}`,   SMM1_AND_2_ARRAY,   null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2)`, `/game-3ds,2/table${path}`, SMM3DS_AND_2_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all)`,   `/game-all/table${path}`,   ALL_GAMES,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1)`,     `/game-1/table${path}`,     SMM1_ONLY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS)`,   `/game-3ds/table${path}`,   SMM3DS_ONLY,  null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2)`,     `/game-2/table${path}`,     SMM2_ONLY,    null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS)`, `/game-1,3ds/table${path}`, SMM1_AND_3DS, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2)`,   `/game-1,2/table${path}`,   SMM1_AND_2,   null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2)`, `/game-3ds,2/table${path}`, SMM3DS_AND_2, null, TABLE, routeCallback,),
             ]
         }
 
@@ -328,13 +327,13 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${name} (Game=all)`,   `/game-all${path}`,   ALL_GAMES_ARRAY,    null, null, routeCallback,),
-                new SimpleRoute(`${name} (Game=1)`,     `/game-1${path}`,     SMM1_ONLY_ARRAY,    null, null, routeCallback,),
-                new SimpleRoute(`${name} (Game=3DS)`,   `/game-3ds${path}`,   SMM3DS_ONLY_ARRAY,  null, null, routeCallback,),
-                new SimpleRoute(`${name} (Game=2)`,     `/game-2${path}`,     SMM2_ONLY_ARRAY,    null, null, routeCallback,),
-                new SimpleRoute(`${name} (Game=1&3DS)`, `/game-1,3ds${path}`, SMM1_AND_3DS_ARRAY, null, null, routeCallback,),
-                new SimpleRoute(`${name} (Game=1&2)`,   `/game-1,2${path}`,   SMM1_AND_2_ARRAY,   null, null, routeCallback,),
-                new SimpleRoute(`${name} (Game=3DS&2)`, `/game-3ds,2${path}`, SMM3DS_AND_2_ARRAY, null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=all)`,   `/game-all${path}`,   ALL_GAMES,    null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=1)`,     `/game-1${path}`,     SMM1_ONLY,    null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=3DS)`,   `/game-3ds${path}`,   SMM3DS_ONLY,  null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=2)`,     `/game-2${path}`,     SMM2_ONLY,    null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=1&3DS)`, `/game-1,3ds${path}`, SMM1_AND_3DS, null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=1&2)`,   `/game-1,2${path}`,   SMM1_AND_2,   null, null, routeCallback,),
+                new SimpleRoute(`${name} (Game=3DS&2)`, `/game-3ds,2${path}`, SMM3DS_AND_2, null, null, routeCallback,),
             ]
         }
 
@@ -364,9 +363,9 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${name} (list Game=1)`,  `/game-1/list${path}`,  SMM1_ONLY_ARRAY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1)`,  `/game-1/card${path}`,  SMM1_ONLY_ARRAY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (table Game=1)`, `/game-1/table${path}`, SMM1_ONLY_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (list Game=1)`,  `/game-1/list${path}`,  SMM1_ONLY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1)`,  `/game-1/card${path}`,  SMM1_ONLY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (table Game=1)`, `/game-1/table${path}`, SMM1_ONLY, null, TABLE, routeCallback,),
             ]
         }
 
@@ -403,9 +402,9 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${name} (list Game=2)`,  `/game-2/list${path}`,  SMM2_ONLY_ARRAY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2)`,  `/game-2/card${path}`,  SMM2_ONLY_ARRAY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (table Game=2)`, `/game-2/table${path}`, SMM2_ONLY_ARRAY, null, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (list Game=2)`,  `/game-2/list${path}`,  SMM2_ONLY, null, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2)`,  `/game-2/card${path}`,  SMM2_ONLY, null, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (table Game=2)`, `/game-2/table${path}`, SMM2_ONLY, null, TABLE, routeCallback,),
             ]
         }
 
@@ -598,21 +597,21 @@ export abstract class EveryRoutes<const SIMPLE_NAME extends string = string,
 
             const nameFromGame = name.substring(startingIndex + 5,)
             if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
-                return GamePossibility.ALL_GAMES
+                return ALL_GAMES
 
             if (nameFromGame === '1)' || nameFromGame.startsWith('1 ',))
-                return GamePossibility.SMM1_ONLY
+                return SMM1_ONLY
             if (nameFromGame === '3DS)' || nameFromGame.startsWith('3DS ',))
-                return GamePossibility.SMM3DS_ONLY
+                return SMM3DS_ONLY
             if (nameFromGame === '2)' || nameFromGame.startsWith('2 ',))
-                return GamePossibility.SMM2_ONLY
+                return SMM2_ONLY
 
             if (nameFromGame === '1&3DS)' || nameFromGame.startsWith('1&3DS ',))
-                return GamePossibility.SMM1_AND_3DS
+                return SMM1_AND_3DS
             if (nameFromGame === '1&2)' || nameFromGame.startsWith('1&2 ',))
-                return GamePossibility.SMM1_AND_2
+                return SMM1_AND_2
             if (nameFromGame === '3DS&2)' || nameFromGame.startsWith('3DS&2 ',))
-                return GamePossibility.SMM3DS_AND_2
+                return SMM3DS_AND_2
 
             throw new ReferenceError(`No games have a name associated to the name "${name}".`,)
         }

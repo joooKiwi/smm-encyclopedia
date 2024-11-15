@@ -20,7 +20,6 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
-import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -33,7 +32,7 @@ import TextOrLink                                   from 'app/tools/text/TextOrL
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 
-import ALL_GAMES = GamePossibility.ALL_GAMES
+import ALL_GAMES = Games.ALL
 import SMM1 =      Games.SMM1
 import SMM2 =      Games.SMM2
 import SMM3DS =    Games.SMM3DS

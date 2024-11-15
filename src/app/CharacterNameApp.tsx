@@ -24,14 +24,13 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
-import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
-import ALL_GAMES = GamePossibility.ALL_GAMES
+import ALL_GAMES = Games.ALL
 import SMM1 =      Games.SMM1
 import SMM2 =      Games.SMM2
 import SMM3DS =    Games.SMM3DS

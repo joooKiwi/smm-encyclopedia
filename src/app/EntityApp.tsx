@@ -27,7 +27,6 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                                   from 'core/entity/Entities'
-import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
@@ -38,7 +37,7 @@ import {Empty}                                      from 'util/emptyVariables'
 import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
 
 import EMPTY_STRING =    Empty.EMPTY_STRING
-import ALL_GAMES =       GamePossibility.ALL_GAMES
+import ALL_GAMES =       Games.ALL
 import SMM1 =            Games.SMM1
 import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS

@@ -14,19 +14,15 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import {gameImage}                                                    from 'core/game/file/fileCreator'
-import {StringContainer}                                              from 'util/StringContainer'
-import {Import}                                                       from 'util/DynamicImporter'
-import {Empty}                                                        from 'util/emptyVariables'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
-import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {gameImage}                                                                       from 'core/game/file/fileCreator'
+import {StringContainer}                                                                 from 'util/StringContainer'
+import {Empty}                                                                           from 'util/emptyVariables'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlName, getValueByUrlValue} from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                          from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
-/**
- * @recursiveReference<{@link GamePossibility}>
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcronym,
     const URL_VALUE extends PossibleUrlValue = PossibleUrlValue,
     const NAME extends PossibleEnglishName = PossibleEnglishName,>
@@ -125,7 +121,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         public getValueInUrl(url: string,): Array<Games> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
-                return Import.GamePossibility.ALL_GAMES
+                return Games.ALL
 
             const prefix = this.PREFIX
             if (!lowerCasedUrl.includes(prefix,))
@@ -140,20 +136,20 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             if (withSmm1) {
                 if (withSmm3ds) {
                     if (withSmm2)
-                        return Import.GamePossibility.ALL_GAMES
-                    return Import.GamePossibility.SMM1_AND_3DS
+                        return Games.ALL
+                    return Games.SMM1_AND_3DS
                 }
                 if (withSmm2)
-                    return Import.GamePossibility.SMM1_AND_2
-                return Import.GamePossibility.SMM1_ONLY
+                    return Games.SMM1_AND_2
+                return Games.SMM1_ONLY
             }
             if (withSmm3ds) {
                 if (withSmm2)
-                    return Import.GamePossibility.SMM3DS_AND_2
-                return Import.GamePossibility.SMM3DS_ONLY
+                    return Games.SMM3DS_AND_2
+                return Games.SMM3DS_ONLY
             }
             if (withSmm2)
-                return Import.GamePossibility.SMM2_ONLY
+                return Games.SMM2_ONLY
             return EMPTY_ARRAY
         }
 
@@ -269,8 +265,48 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
 
 export namespace Games {
 
+    //region -------------------- Singular possibility --------------------
+
+    /** An {@link ReadonlyArray Array} representing the games with only {@link SMM1} */
+    export const SMM1_ONLY = [Games.SUPER_MARIO_MAKER_1,] as const
+    /** An {@link ReadonlyArray Array} representing the games with only {@link SMM3DS} */
+    export const SMM3DS_ONLY = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+    /** An {@link ReadonlyArray Array} representing the games with only {@link SMM2} */
+    export const SMM2_ONLY = [Games.SUPER_MARIO_MAKER_2,] as const
+
+    /** An {@link ReadonlyArray Array} representing the games with {@link SMM1} & {@link SMM3DS} */
+    export const SMM1_AND_3DS = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+    /** An {@link ReadonlyArray Array} representing the games with {@link SMM1} & {@link SMM2} */
+    export const SMM1_AND_2 = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,] as const
+    /** An {@link ReadonlyArray Array} representing the games with {@link SMM3DS} & {@link SMM2} */
+    export const SMM3DS_AND_2 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
+    /**
+     * An {@link ReadonlyArray Array} representing the games with every game
+     * ({@link SMM1}, {@link SMM3DS} & {@link SMM2})
+     */
+    const ALL_GAMES = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
+    //endregion -------------------- Singular possibility --------------------
+    //region -------------------- Group possibility --------------------
+
+    /** Every single (1x) {@link Games} fields in the {@link Games} possibilities */
+    export const EVERY_SINGLE_GAME = [SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,] as const
+
+    /** Every double (2x) {@link Games} fields in the {@link Games} possibilitiesGamePossibility} */
+    export const EVERY_DOUBLE_GAME = [SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,] as const
+
+    /** Every {@link Games} fields in the {@link Games} possibilities */
+    export const EVERY_GAME = [
+        ALL_GAMES,
+        SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,
+        SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,
+    ] as const
+
+    //endregion -------------------- Group possibility --------------------
+
     /** All the {@link Games} */
-    export const ALL = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+    export const ALL = ALL_GAMES
 
     /** An alias of {@link Games.SUPER_MARIO_MAKER_1} */
     export const SMM1 = Games.SUPER_MARIO_MAKER_1

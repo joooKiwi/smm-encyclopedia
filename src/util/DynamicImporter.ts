@@ -10,7 +10,6 @@ import type {EntityLoader}                  from 'core/entity/Entity.loader'
 import type {InGameEntityImages}            from 'core/entity/InGameEntityImages'
 import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
 import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
-import type {GamePossibility}               from 'core/game/Game.possibility'
 import type {Games}                         from 'core/game/Games'
 import type {GameReferences}                from 'core/gameReference/GameReferences'
 import type {GameStyles}                    from 'core/gameStyle/GameStyles'
@@ -103,7 +102,6 @@ export class DynamicImporter {
     //region -------------------- "Game" fields --------------------
 
     #Games?: typeof Games
-    #GamePossibility?: typeof GamePossibility
 
     //endregion -------------------- "Game" fields --------------------
     //region -------------------- "Game reference" fields --------------------
@@ -259,10 +257,6 @@ export class DynamicImporter {
 
     public get Games(): typeof Games {
         return this.#Games ??= require('../core/game/Games').Games
-    }
-
-    public get GamePossibility(): typeof GamePossibility {
-        return this.#GamePossibility ??= require('../core/game/Game.possibility').GamePossibility
     }
 
     //endregion -------------------- "Game" getter methods --------------------

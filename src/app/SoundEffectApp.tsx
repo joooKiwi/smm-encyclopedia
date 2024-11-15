@@ -19,14 +19,13 @@ import {SoundEffectGames}                           from 'app/property/SoundEffe
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import {GamePossibility}                            from 'core/game/Game.possibility'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
-import ALL_GAMES =             GamePossibility.ALL_GAMES
+import ALL_GAMES =             Games.ALL
 import renderSMM1And3DSImage = SoundEffectAppOption.renderSMM1And3DSImage
 import renderSMM2Image =       SoundEffectAppOption.renderSMM2Image
 import SMM1 =                  Games.SMM1
