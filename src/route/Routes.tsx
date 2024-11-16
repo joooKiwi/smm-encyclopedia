@@ -7,22 +7,22 @@ import PageLayout                    from 'app/_PageLayout'
 import LoadingApp                    from 'app/LoadingApp'
 import {Games}                       from 'core/game/Games'
 import {GameStyles}                  from 'core/gameStyle/GameStyles'
+import {Times}                       from 'core/time/Times'
 import {ProjectLanguages}            from 'lang/ProjectLanguages'
 import {EveryRoutes}                 from 'route/EveryRoutes'
 import {redirectTo, redirectToByUrl} from 'route/redirectionMethods'
 import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
-import {Empty}                       from 'util/emptyVariables'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
-
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import {TimeCollection}              from 'util/collection/TimeCollection'
 
 const ProjectLanguageCompanion = ProjectLanguages.CompanionEnum.get
 const EveryRouteCompanion = EveryRoutes.CompanionEnum.get
 // const ViewDisplayCompanion = ViewDisplays.CompanionEnum.get
 const GameCompanion = Games.CompanionEnum.get
 const GameStyleCompanion = GameStyles.CompanionEnum.get
+const TimeCompanion = Times.CompanionEnum.get
 const homeRoute = EveryRoutes.HOME
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
 const languages = ProjectLanguageCompanion.values
@@ -70,21 +70,26 @@ const router = createHashRouter([{
                     new StraightRouteObject(pathFromLanguage, () => redirectTo(homeRoute, language,),),
                     //region -------------------- Path from route path --------------------
 
-                    ...everyRoute.map<RouteObject>(route => ({
-                        path: `${pathFromLanguage}${route.path}`,
-                        element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(route.viewDisplay!, new GameCollection(route.games ?? EMPTY_ARRAY,), new GameStyleCollection(route.gameStyles ?? EMPTY_ARRAY,),)}</Suspense>,
-                        loader() {
-                            const games = route.games
-                            if (games != null)
-                                GameCompanion.current = games
+                    ...everyRoute.map<RouteObject>(route => {
+                        const viewDisplay = route.viewDisplay!
+                        const games = route.games
+                        const gameStyles = route.gameStyles
+                        const times = route.times
 
-                            const gameStyles = route.gameStyles
-                            if (gameStyles != null)
-                                GameStyleCompanion.current = gameStyles
-
-                            return null
-                        },
-                    }),),
+                        return {
+                            path: `${pathFromLanguage}${route.path}`,
+                            element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(viewDisplay, GameCollection.of(games,), TimeCollection.of(times,), GameStyleCollection.of(gameStyles,),)}</Suspense>,
+                            loader() {
+                                if (games != null)
+                                    GameCompanion.current = games
+                                if (gameStyles != null)
+                                    GameStyleCompanion.current = gameStyles
+                                if (times != null)
+                                    TimeCompanion.current = times
+                                return null
+                            },
+                        }
+                    },),
 
                     //endregion -------------------- Path from route path --------------------
                     new StraightFallbackRouteObject(pathFromLanguage, loaderArguments => redirectToByUrl(loaderArguments, language,),),
