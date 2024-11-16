@@ -37,6 +37,10 @@ import {Limits}                from 'core/limit/Limits'
 import {NOT_APPLICABLE}        from 'util/commonVariables'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
 
+import Companion =           Entities.Companion
+import LimitCompanion =      Limits.Companion
+import InstrumentCompanion = Instruments.Companion
+
 /**
  * @dependsOn<{@link EntityCategoryLoader}>
  * @dependsOn<{@link Limits}>
@@ -67,7 +71,6 @@ export class EntityLoader
             return this.#map
 
         const entityCategoryMap = EntityCategoryLoader.get.load()
-        const limitCompanion = Limits.CompanionEnum.get
         const references = new Map<PossibleEnglishName, Entity>()
         const referenceLinks = new ReferenceLinks()
         forEachByArray(file as Array<Content>, content => {
@@ -93,7 +96,7 @@ export class EntityLoader
                 content.inAirshipTheme,
                 content.inCastleTheme,
             )
-            references.set(englishName, createReference(content, referenceLinks, entityCategoryMap, limitCompanion,),)
+            references.set(englishName, createReference(content, referenceLinks, entityCategoryMap,),)
         },)
 
         if (!isInProduction)
@@ -310,14 +313,12 @@ interface Content
 
 /** A type-alias definition of the {@link EntityCategories} name-reference {@link ReadonlyMap map} */
 type EntityCategoryMap = ReadonlyMap<PossibleEnglishName_Category, EntityCategory>
-/** A type-alias definition of the {@link Limits.CompanionEnum} */
-type LimitCompanion = CompanionEnumByName<Limits, typeof Limits>
 
 //region -------------------- Create reference --------------------
 
 const EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
 
-function createReference(content: Content, referenceLinks: ReferenceLinks, entityCategoryMap: EntityCategoryMap, limitCompanion: LimitCompanion,): Entity {
+function createReference(content: Content, referenceLinks: ReferenceLinks, entityCategoryMap: EntityCategoryMap,): Entity {
     const englishName = (content.english ?? content.americanEnglish)!
 
     let everyGameStyleReferences: Lazy<Array<Entity>>
@@ -357,13 +358,13 @@ function createReference(content: Content, referenceLinks: ReferenceLinks, entit
         content.isInGroundTheme, content.isInUndergroundTheme, content.isInUnderwaterTheme, content.isInDesertTheme, content.isInSnowTheme, content.isInSkyTheme, content.isInForestTheme, content.isInGhostHouseTheme, content.isInAirshipTheme, content.isInCastleTheme,
         content.isInDayTime, content.isInNightTime,
 
-        getLimit(content.editorLimit_SMM1And3DS, limitCompanion,), getLimit(content.editorLimit_SMM2, limitCompanion,), content.editorLimit_SMM2_isUnknown,
+        getLimit(content.editorLimit_SMM1And3DS,), getLimit(content.editorLimit_SMM2,), content.editorLimit_SMM2_isUnknown,
         content.whilePlaying_isInGEL, content.whilePlaying_isInGEL_comment, content.whilePlaying_isInGEL_isSuperGlobal, content.whilePlaying_isInGEL_isSuperGlobal_comment,
         content.whilePlaying_isInPL,
         content.whilePlaying_isInPJL, content.whilePlaying_isInPJL_comment,
         content.whilePlaying_isInObjectRenderedLimit, content.whilePlaying_isInObjectRenderedLimit_comment,
         content.whilePlaying_isInCollectedCoinLimit,
-        getLimit(content.whilePlaying_otherLimit, limitCompanion,), content.whilePlaying_otherLimit_comment, content.whilePlaying_otherLimit_isUnknown,
+        getLimit(content.whilePlaying_otherLimit,), content.whilePlaying_otherLimit_comment, content.whilePlaying_otherLimit_isUnknown,
 
         createInstruments(content,), content.canMakeASoundOutOfAMusicBlock, content.canMakeASoundOutOfAMusicBlock_comment,
 
@@ -414,12 +415,12 @@ function getCategory(content: Content, entityCategoryMap: EntityCategoryMap,): E
 //endregion -------------------- Get entity category --------------------
 //region -------------------- Create limit --------------------
 
-function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>, limitCompanion: LimitCompanion,): NullOr<| Limits | NotApplicable> {
+function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,): NullOr<| Limits | NotApplicable> {
     if (value == null)
         return null
     if (value === NOT_APPLICABLE)
         return value
-    return limitCompanion.getValueByName(value,)
+    return LimitCompanion.getValueByName(value,)
 }
 
 //endregion -------------------- Create limit --------------------
@@ -430,10 +431,10 @@ function createInstruments(content: Content,): Lazy<Array<Instrument>> {
     if (value == null)
         return CommonLazy.EMPTY_ARRAY
     return lazy(() => {
-        const singleInstrument = Instruments.CompanionEnum.get.getValueByName(value,)
+        const singleInstrument = InstrumentCompanion.getValueByName(value,)
         if (singleInstrument != null)
             return [singleInstrument.reference,]
-        return Instruments.CompanionEnum.get.values.filter(it => value.includes(it.englishName,),)
+        return InstrumentCompanion.values.filter(it => value.includes(it.englishName,),)
             .map(it => it.reference,)
             .toArray()
     },)
@@ -453,14 +454,14 @@ function getOtherEntityReferences(link: NullableString<EntityLink>, name: Possib
     if (link == null)
         return EMPTY_ENTITIES
     if (link === 'this')
-        return lazy(() => Entities.CompanionEnum.get.getValueByName(name,).reference as unknown as PossibleOtherEntities,)
-    return lazy(() => (link.split(' / ').map(splitLink => Entities.CompanionEnum.get.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
+        return lazy(() => Companion.getValueByName(name,).reference as unknown as PossibleOtherEntities,)
+    return lazy(() => (link.split(' / ').map(splitLink => Companion.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
 }
 
 function getOrCreateGroupReference(references: Array<PossibleEnglishName>,): Lazy<Array<Entity>> {
     if (references == null)
         return CommonLazy.EMPTY_ARRAY
-    return lazy(() => references.map(it => Entities.CompanionEnum.get.getValueByName(it,).reference,),)
+    return lazy(() => references.map(it => Companion.getValueByName(it,).reference,),)
 }
 
 //endregion -------------------- Create reference --------------------

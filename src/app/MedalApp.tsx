@@ -17,11 +17,13 @@ import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Medals}                 from 'core/medal/Medals'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+import ALL = Medals.ALL
+
 class MedalAppInterpreter
     implements AppInterpreterWithTable<Medals, MedalAppOption> {
 
     public get content() {
-        return Medals.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

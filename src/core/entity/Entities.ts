@@ -29,6 +29,8 @@ import {Import}                            from 'util/DynamicImporter'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 
+import EditorVoiceCompanion = EditorVoices.Companion
+
 /**
  * A class encapsulating all the information associated to
  * its name ({@link PossibleEnglishName}),
@@ -615,10 +617,8 @@ export class Entities
         const reference: UndefinedOr<EditorVoices> = EditorVoices[this.name]
         if (reference != null)
             return this.#editorVoiceReference = reference
-
-        const companion = EditorVoices.CompanionEnum.get
-        if (companion.hasReference(this,))
-            return this.#editorVoiceReference = companion.getValueByEntity(this,)
+        if (EditorVoiceCompanion.hasReference(this,))
+            return this.#editorVoiceReference = EditorVoiceCompanion.getValueByEntity(this,)
         return this.#editorVoiceReference = null
     }
 
@@ -644,7 +644,14 @@ export class Entities
 
 export namespace Entities {
 
-    export const everyEnglishNames = Entities.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+    /** The companion instance of a {@link Entities} */
+    export const Companion = Entities.CompanionEnum.get
+
+    const values = Companion.values
+
+    export const everyEnglishNames = values.map(it => it.englishName,).toArray()
+
+    export const ALL = values.toArray()
 
 }
 

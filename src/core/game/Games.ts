@@ -266,6 +266,9 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
 
 export namespace Games {
 
+    /** The companion instance of a {@link Games} */
+    export const Companion = Games.CompanionEnum.get
+
     //region -------------------- Singular possibility --------------------
 
     /** An {@link ReadonlyArray Array} representing the games with only {@link SMM1} */

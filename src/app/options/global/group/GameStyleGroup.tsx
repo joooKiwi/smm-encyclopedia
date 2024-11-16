@@ -16,13 +16,16 @@ import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 import {Empty}                    from 'util/emptyVariables'
 
-import EMPTY_STRING = Empty.EMPTY_STRING
-import SMM2 =         Games.SMM2
-import NSMBU =        GameStyles.NSMBU
-import SMB =          GameStyles.SMB
-import SMB3 =         GameStyles.SMB3
-import SMW =          GameStyles.SMW
-import SM3DW =        GameStyles.SM3DW
+import EMPTY_STRING =      Empty.EMPTY_STRING
+import Companion =         GameStyles.Companion
+import GameCompanion =     Games.Companion
+import LanguageCompanion = ProjectLanguages.Companion
+import NSMBU =             GameStyles.NSMBU
+import SMB =               GameStyles.SMB
+import SMB3 =              GameStyles.SMB3
+import SMM2 =              Games.SMM2
+import SMW =               GameStyles.SMW
+import SM3DW =             GameStyles.SM3DW
 
 /** @reactComponent */
 export default function GameStyleGroup() {
@@ -78,19 +81,17 @@ function GameStyleLink({gameStyle, disabled = false, selected,}: GameStyleLinkPr
             <GameStyleImage reference={gameStyle}/>
         </button>
 
-    const GameStyleCompanion = GameStyles.CompanionEnum.get
     const pathToReplace = isSelected
-        ? `game-style-${GameStyleCompanion.getGroupUrlValue(selected.filterNot(it => it === gameStyle,),)}` as const
-        : `game-style-${GameStyleCompanion.getGroupUrlValue([...selected, gameStyle,],)}` as const
+        ? `game-style-${Companion.getGroupUrlValue(selected.filterNot(it => it === gameStyle,),)}` as const
+        : `game-style-${Companion.getGroupUrlValue([...selected, gameStyle,],)}` as const
     let newPath: string
     if (pathname.includes('game-style-',))
-        newPath = pathname.replace(`game-style-${GameStyleCompanion.getGroupUrlValue(selected,)}`, pathToReplace,)
+        newPath = pathname.replace(`game-style-${Companion.getGroupUrlValue(selected,)}`, pathToReplace,)
     else if (pathname.includes('game-1',) || pathname.includes('game-3ds',) || pathname.includes('game-2',)) {
-        const GameCompanion = Games.CompanionEnum.get
         const gamesInPath = `/game-${GameCompanion.getGroupUrlValue(GameCompanion.current,)}` as const
         newPath = pathname.replace(gamesInPath, `${gamesInPath}/${pathToReplace}`,)
     } else {
-        const languagesInPath = `/${ProjectLanguages.CompanionEnum.get.current.urlValue}` as const
+        const languagesInPath = `/${LanguageCompanion.current.urlValue}` as const
         newPath = pathname.replace(languagesInPath, `${languagesInPath}/${pathToReplace}`,)
     }
 

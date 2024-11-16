@@ -36,17 +36,20 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {Empty}                                      from 'util/emptyVariables'
 import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
 
-import EMPTY_STRING =    Empty.EMPTY_STRING
-import ALL_GAMES =       Games.ALL
-import SMM1 =            Games.SMM1
-import SMM2 =            Games.SMM2
-import SMM3DS =          Games.SMM3DS
-import ALL_GAME_STYLES = GameStyles.ALL
-import NSMBU =           GameStyles.NSMBU
-import SMB =             GameStyles.SMB
-import SMB3 =            GameStyles.SMB3
-import SMW =             GameStyles.SMW
-import SM3DW =           GameStyles.SM3DW
+import ALL =                Entities.ALL
+import ALL_GAME_STYLES =    GameStyles.ALL
+import ALL_GAMES =          Games.ALL
+import EMPTY_STRING =       Empty.EMPTY_STRING
+import GameCompanion =      Games.Companion
+import GameStyleCompanion = GameStyles.Companion
+import NSMBU =              GameStyles.NSMBU
+import SMB =                GameStyles.SMB
+import SMB3 =               GameStyles.SMB3
+import SMM1 =               Games.SMM1
+import SMM2 =               Games.SMM2
+import SMM3DS =             Games.SMM3DS
+import SMW =                GameStyles.SMW
+import SM3DW =              GameStyles.SM3DW
 
 class EntityAppInterpreter
     implements AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -67,7 +70,7 @@ class EntityAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGameStyle(filterGame(Entities.CompanionEnum.get.values, this.#games,), this.#gameStyles,)
+        return filterGameStyle(filterGame(ALL, this.#games,), this.#gameStyles,)
     }
 
     //region -------------------- List interpreter --------------------
@@ -215,9 +218,6 @@ function EntityAsideContent({viewDisplay, games, gameStyles,}: EntityAsideConten
         <GameStyleAsideContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>
     </div>
 }
-
-const GameCompanion = Games.CompanionEnum.get
-const GameStyleCompanion = GameStyles.CompanionEnum.get
 
 /** @reactComponent */
 function GameAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentProperties,) {

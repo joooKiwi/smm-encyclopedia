@@ -16,11 +16,13 @@ import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGame
 import {SampleCourses}          from 'core/sampleCourse/SampleCourses'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+import ALL = SampleCourses.ALL
+
 class SampleCourseInterpreter
     implements AppInterpreterWithTable<SampleCourses, SampleCourseAppOption> {
 
     public get content() {
-        return SampleCourses.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

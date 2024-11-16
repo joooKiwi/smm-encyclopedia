@@ -87,3 +87,10 @@ export class LimitTypes
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace LimitTypes {
+
+    /** The companion instance of a {@link LimitTypes} */
+    export const Companion = LimitTypes.CompanionEnum.get
+
+}

@@ -9,7 +9,8 @@ import {Games}               from 'core/game/Games'
 import {GameStyles}          from 'core/gameStyle/GameStyles'
 import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
 
-import SM3DW = GameStyles.SM3DW
+import GameCompanion = Games.Companion
+import SM3DW =         GameStyles.SM3DW
 
 export class Versions
     extends Enum<Ordinals, Names> {
@@ -97,7 +98,7 @@ export class Versions
     private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle?: GameStyles_SM3DW,) {
         super()
         this.#name = name
-        this.#game = Games.CompanionEnum.get.getValueByUrlName(game,)
+        this.#game = GameCompanion.getValueByUrlName(game,)
         this.#releaseDate = releaseDate
         this.#gameStyle = gameStyle ?? null
     }
@@ -124,6 +125,13 @@ export class Versions
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace Versions {
+
+    /** The companion instance of a {@link Versions} */
+    export const Companion = Versions.CompanionEnum.get
 
 }
 

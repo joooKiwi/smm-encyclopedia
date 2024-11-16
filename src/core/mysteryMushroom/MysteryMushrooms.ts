@@ -963,3 +963,12 @@ export class MysteryMushrooms
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace MysteryMushrooms {
+
+    /** The companion instance of a {@link MysteryMushrooms} */
+    export const Companion = MysteryMushrooms.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

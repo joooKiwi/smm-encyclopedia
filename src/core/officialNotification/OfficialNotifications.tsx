@@ -724,3 +724,10 @@ export class OfficialNotifications
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace OfficialNotifications {
+
+    /** The companion instance of a {@link OfficialNotifications} */
+    export const Companion = OfficialNotifications.CompanionEnum.get
+
+}

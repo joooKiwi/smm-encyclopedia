@@ -13,10 +13,12 @@ import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 import {Empty}                    from 'util/emptyVariables'
 
-import EMPTY_STRING = Empty.EMPTY_STRING
-import SMM1 =         Games.SMM1
-import SMM2 =         Games.SMM2
-import SMM3DS =       Games.SMM3DS
+import EMPTY_STRING =      Empty.EMPTY_STRING
+import Companion =         Games.Companion
+import LanguageCompanion = ProjectLanguages.Companion
+import SMM1 =              Games.SMM1
+import SMM2 =              Games.SMM2
+import SMM3DS =            Games.SMM3DS
 
 interface GameLinkProperties
     extends ReactProperties {
@@ -53,15 +55,14 @@ function GameLink({game, selected,}: GameLinkProperties,) {
             <GameImage reference={game}/>
         </button>
 
-    const GameCompanion = Games.CompanionEnum.get
     const pathToReplace = isSelected
-        ? `game-${GameCompanion.getGroupUrlValue(selected.filterNot(it => it === game,),)}` as const
-        : `game-${GameCompanion.getGroupUrlValue([...selected, game,],)}` as const
+        ? `game-${Companion.getGroupUrlValue(selected.filterNot(it => it === game,),)}` as const
+        : `game-${Companion.getGroupUrlValue([...selected, game,],)}` as const
     let newPath: string
     if (pathname.includes('game-1',) || pathname.includes('game-3ds',) || pathname.includes('game-2',))
-        newPath = pathname.replace(`game-${GameCompanion.getGroupUrlValue(selected,)}`, pathToReplace,)
+        newPath = pathname.replace(`game-${Companion.getGroupUrlValue(selected,)}`, pathToReplace,)
     else {
-        const languagesInPath = `/${ProjectLanguages.CompanionEnum.get.current.urlValue}` as const
+        const languagesInPath = `/${LanguageCompanion.current.urlValue}` as const
         newPath = pathname.replace(languagesInPath, `${languagesInPath}/${pathToReplace}`,)
     }
 

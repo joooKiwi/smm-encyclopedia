@@ -6,6 +6,8 @@ import type {EveryPossibleRoutes, PossibleRouteName} from 'route/EveryRoutes.typ
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import {EveryRoutes}      from 'route/EveryRoutes'
 
+import Companion = EveryRoutes.Companion
+
 /**
  * Retrieve the route URL from a {@link EveryPossibleRouteNames name}
  * and replace the {@link ProjectLanguages language} if it has been received
@@ -14,7 +16,7 @@ import {EveryRoutes}      from 'route/EveryRoutes'
  * @param language The {@link ProjectLanguages language} to use in the url
  */
 export function routeFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
-    return EveryRoutes.CompanionEnum.get.getRouteFromName(name, language,)
+    return Companion.getRouteFromName(name, language,)
 }
 
 /**

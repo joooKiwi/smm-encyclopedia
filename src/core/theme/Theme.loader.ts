@@ -24,6 +24,10 @@ import {WorldThemeContainer}          from 'core/theme/WorldTheme.container'
 import {NightEffects}                 from 'core/nightEffect/NightEffects'
 import {createNameFromContent}        from 'lang/name/createNameFromContent'
 
+import Companion =            Themes.Companion
+import EntityCompanion =      Entities.Companion
+import NightEffectCompanion = NightEffects.Companion
+
 /**
  * @dependsOn<{@link Entities}>
  * @indirectlyDependsOn<{@link EntityLoader}>
@@ -108,12 +112,12 @@ function createCourseTheme(content: Content, name: Name<string>,): CourseTheme {
         name,
         content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
         lazy(() => {
-            const theme = Themes.CompanionEnum.get.getValueByName(name.english,)
+            const theme = Companion.getValueByName(name.english,)
 
-            return Entities.CompanionEnum.get.values.map(it => it.reference,)
+            return EntityCompanion.values.map(it => it.reference,)
                 .filter(reference => theme.get(reference,),)
                 .toArray()
         },),
-        NightEffects.CompanionEnum.get.getValueByName(content.effectInNightTheme,),
+        NightEffectCompanion.getValueByName(content.effectInNightTheme,),
     )
 }

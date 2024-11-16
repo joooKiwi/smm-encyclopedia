@@ -117,3 +117,12 @@ export class Medals
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace Medals {
+
+    /** The companion instance of a {@link Medals} */
+    export const Companion = Medals.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

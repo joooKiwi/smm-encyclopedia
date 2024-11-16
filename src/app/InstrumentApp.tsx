@@ -28,6 +28,7 @@ import InstrumentSound                              from 'core/instrument/compon
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}                                 from 'util/utilitiesMethods'
 
+import ALL =    Instruments.ALL
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
@@ -49,7 +50,7 @@ class InstrumentAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(Instruments.CompanionEnum.get.values.toArray(), this.#games,)
+        return filterGame(ALL, this.#games,)
     }
 
     //region -------------------- List interpreter --------------------

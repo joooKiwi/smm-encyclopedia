@@ -9,6 +9,8 @@ import type {ClassWithIsCurrent}                        from 'util/enumerable/Cl
 import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
+import LanguageCompanion = ProjectLanguages.Companion
+
 export abstract class DateDayLanguages
     extends EnumWithParent<ProjectLanguages, Ordinals, Names>
     implements ClassWithIsCurrent {
@@ -160,7 +162,7 @@ export abstract class DateDayLanguages
         //endregion -------------------- Singleton usage --------------------
 
         public override get defaultValue(): DateDayLanguages {
-            return DateDayLanguages.CompanionEnum.get.getValue(ProjectLanguages.CompanionEnum.get.defaultValue,)
+            return DateDayLanguages.Companion.getValue(LanguageCompanion.defaultValue,)
         }
 
         public override set defaultValue(value: unknown,) {
@@ -177,25 +179,25 @@ export abstract class DateDayLanguages
 
 
         public get currentOrNull(): NullOr<DateDayLanguages> {
-            const value = ProjectLanguages.CompanionEnum.get.currentOrNull
+            const value = LanguageCompanion.currentOrNull
             if (value == null)
                 return null
             return this.getValueByLanguage(value,)
         }
 
         public get current(): DateDayLanguages {
-            return this.getValueByLanguage(ProjectLanguages.CompanionEnum.get.current,)
+            return this.getValueByLanguage(LanguageCompanion.current,)
         }
 
         public set current(value: PossibleEnumerableValueBy<| DateDayLanguages | ProjectLanguages | EveryLanguages>,) {
-            ProjectLanguages.CompanionEnum.get.current = this.getValueByLanguage(value,).parent
+            LanguageCompanion.current = this.getValueByLanguage(value,).parent
         }
 
 
 
         public getValueByLanguage(value: Nullable<PossibleEnumerableValueBy<| ProjectLanguages | DateDayLanguages | EveryLanguages>>,): DateDayLanguages {
             if (value instanceof EveryLanguages)
-                return this._getValueFromValuesByParent(ProjectLanguages.CompanionEnum.get.getValueByLanguage(value,),)
+                return this._getValueFromValuesByParent(LanguageCompanion.getValueByLanguage(value,),)
             return this._getValue(value,)
         }
 
@@ -212,7 +214,7 @@ export abstract class DateDayLanguages
     //region -------------------- Getter methods --------------------
 
     public get isCurrent(): boolean {
-        return this === DateDayLanguages.CompanionEnum.get.currentOrNull
+        return this === DateDayLanguages.Companion.currentOrNull
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -221,5 +223,12 @@ export abstract class DateDayLanguages
     public abstract newDayComponent(day: DayNumber,): ReactJSXElement
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace DateDayLanguages {
+
+    /** The companion instance of a {@link DateDayLanguages} */
+    export const Companion = DateDayLanguages.CompanionEnum.get
 
 }

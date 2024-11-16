@@ -148,3 +148,10 @@ export abstract class Validators
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace Validators {
+
+    /** The companion instance of a {@link Validators} */
+    export const Companion = Validators.CompanionEnum.get
+
+}

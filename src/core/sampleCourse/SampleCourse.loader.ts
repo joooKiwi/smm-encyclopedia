@@ -5,12 +5,10 @@ import {forEachByArray}     from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                        from 'core/_template/LanguageContent'
 import type {PossibleAcronym_GameStyle_SMM1}                                                         from 'core/gameReference/GameReferences.types'
-import type {CompanionEnumDeclaration_GameStyles}                                                    from 'core/gameStyle/GameStyles.companionEnumDeclaration'
 import type {PossibleEnglishName_CourseTheme_SMM1}                                                   from 'core/theme/Themes.types'
 import type {SampleCourse}                                                                           from 'core/sampleCourse/SampleCourse'
 import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, PossibleWorldNumber} from 'core/sampleCourse/loader.types'
 import type {PossibleEnglishName}                                                                    from 'core/sampleCourse/SampleCourses.types'
-import type {CompanionEnumByName}                                                                    from 'util/enumerable/companion/CompanionEnumByName'
 import type {Loader}                                                                                 from 'util/loader/Loader'
 
 import {isInProduction}        from 'variables'
@@ -18,6 +16,9 @@ import {GameStyles}            from 'core/gameStyle/GameStyles'
 import {SampleCourseContainer} from 'core/sampleCourse/SampleCourse.container'
 import {Themes}                from 'core/theme/Themes'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
+
+import GameStyleCompanion = GameStyles.Companion
+import ThemeCompanion =     Themes.Companion
 
 /**
  * @dependsOn<{@link GameStyles}>
@@ -45,11 +46,9 @@ export class SampleCourseLoader
         if (this.#map != null)
             return this.#map
 
-        const GameStyleCompanion = GameStyles.CompanionEnum.get
-        const ThemeCompanion = Themes.CompanionEnum.get
         const references = new Map<PossibleEnglishName, SampleCourse>()
         forEachByArray(file as Array<Content>, content =>
-            references.set(`Level ${content.worldNumber}`, createReference(content, GameStyleCompanion, ThemeCompanion,),),)
+            references.set(`Level ${content.worldNumber}`, createReference(content,),),)
 
         if (!isInProduction)
             console.info(
@@ -76,21 +75,16 @@ interface Content
 
 }
 
-/** A type-alias definition of the {@link GameStyles.CompanionEnum} */
-type GameStyleCompanion = CompanionEnumDeclaration_GameStyles
-/** A type-alias definition of the {@link Themes.CompanionEnum} */
-type ThemeCompanion = CompanionEnumByName<Themes, typeof Themes>
-
-function createReference(content: Content, gameStyleCompanion: GameStyleCompanion, themeCompanion: ThemeCompanion,): SampleCourse {
+function createReference(content: Content,): SampleCourse {
     const subArea = content.courseTheme_subArea
 
     return new SampleCourseContainer(
         createNameFromContent(content, 1, true,),
         content.worldNumber,
         content.courseNumberInFirst10MarioChallenge,
-        gameStyleCompanion.getValueByAcronym(content.gameStyle,),
-        themeCompanion.getValueByName(content.courseTheme_mainArea,),
-        subArea == null ? null : themeCompanion.getValueByName(subArea,),
+        GameStyleCompanion.getValueByAcronym(content.gameStyle,),
+        ThemeCompanion.getValueByName(content.courseTheme_mainArea,),
+        subArea == null ? null : ThemeCompanion.getValueByName(subArea,),
         content.amountOfTime,
     )
 }

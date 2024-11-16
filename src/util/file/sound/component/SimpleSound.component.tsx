@@ -15,6 +15,8 @@ import {SimpleSoundPlayer}      from 'util/file/sound/player/SimpleSoundPlayer'
 import {SoundStates}            from 'util/file/sound/player/SoundStates'
 import {Validators}             from 'util/file/sound/player/Validators'
 
+import ValidatorCompanion = Validators.Companion
+
 import allSoundPlayer = AbstractSoundPlayer.allSoundPlayer
 
 //region -------------------- Import from deconstruction --------------------
@@ -70,7 +72,7 @@ export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFi
 
     /** @see SimpleSoundProperties.validator */
     public get validator(): Validators {
-        return this.props.validator ?? Validators.CompanionEnum.get.defaultValue
+        return this.props.validator ?? ValidatorCompanion.defaultValue
     }
 
 

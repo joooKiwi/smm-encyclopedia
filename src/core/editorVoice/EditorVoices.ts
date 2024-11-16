@@ -538,7 +538,7 @@ export abstract class EditorVoices
         public getValueByCharacterName(value: PossibleEnumerableValueBy<| EditorVoices | CharacterNames>,): EditorVoices {
             if (value instanceof this.instance)
                 return value
-            const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.CompanionEnum.get.getValue(value,)
+            const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.Companion.getValue(value,)
             const valueFound = this.#findByCharacterName(characterNameValue,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by "${Import.CharacterNames.name}.${characterNameValue}".`,)
@@ -548,10 +548,12 @@ export abstract class EditorVoices
         public getValueByEntity(value: PossibleEnumerableValueBy<| EditorVoices | Entities>,): EditorVoices {
             if (value instanceof this.instance)
                 return value
-            const entityValue = value instanceof Import.Entities ? value : Import.Entities.CompanionEnum.get.getValue(value,)
+
+            const Entities = Import.Entities
+            const entityValue = value instanceof Entities ? value : Entities.Companion.getValue(value,)
             const valueFound = this.#findByEntity(entityValue,)
             if (valueFound == null)
-                throw new ReferenceError(`No "${this.instance.name}" could be found by "${Import.Entities.name}.${entityValue}".`,)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by "${Entities.name}.${entityValue}".`,)
             return valueFound
         }
 
@@ -634,8 +636,10 @@ export abstract class EditorVoices
         const reference = this._createCharacterNameReference()
         if (isArray(reference,))
             return this.#characterNameReference = reference
-        if (Import.CharacterNames.CompanionEnum.get.hasValueByName(reference,))
-            return this.#characterNameReference = [Import.CharacterNames.CompanionEnum.get.getValueByName(reference,),]
+
+        const Companion = Import.CharacterNames.Companion
+        if (Companion.hasValueByName(reference,))
+            return this.#characterNameReference = [Companion.getValueByName(reference,),]
         return this.#characterNameReference = EMPTY_ARRAY
     }
 
@@ -667,8 +671,10 @@ export abstract class EditorVoices
         const reference = this._createEntityReferences()
         if (isArray(reference,))
             return this.#entityReferences = reference
-        if (Import.Entities.CompanionEnum.get.hasValueByName(reference,))
-            return this.#entityReferences = [Import.Entities.CompanionEnum.get.getValueByName(reference,),]
+
+        const Companion = Import.Entities.Companion
+        if (Companion.hasValueByName(reference,))
+            return this.#entityReferences = [Companion.getValueByName(reference,),]
         return this.#entityReferences = EMPTY_ARRAY
     }
 
@@ -679,5 +685,14 @@ export abstract class EditorVoices
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace EditorVoices {
+
+    /** The companion instance of a {@link EditorVoices} */
+    export const Companion = EditorVoices.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
 
 }

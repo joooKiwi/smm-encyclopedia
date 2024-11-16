@@ -18,6 +18,8 @@ import NameComponent            from 'lang/name/component/Name.component'
 import ALL_GAMES =       Games.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
 
+import Companion = GameReferences.Companion
+
 /** Every {@link GameReferences} that will do a return of line after its rendering */
 const RETURN_OF_LINES = [
     GameReferences.MARIO_AND_LUIGI_PAPER_JAM, GameReferences.DONKEY_KONG_COUNTRY, GameReferences.KIRBY_ADVENTURE,
@@ -43,7 +45,7 @@ const otherGameReferences = (() => {
         ...ALL_GAME_STYLES.map(it => it.englishName,),
         ...SoundEffects.soundEffect_games.map(it => it.englishName,) as Array<PossibleEnglishName_Games>,
     ]
-    return GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),)
+    return Companion.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),)
 })()
 
 /** @reactComponent */
@@ -57,7 +59,7 @@ export default function GameReferenceApp() {
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameImage reference={it}/>
-                            <NameComponent id="game-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
+                            <NameComponent id="game-name" name={Companion.getValue(it.name,).reference}/>
                         </div>
                     </div>,)}
             </div>
@@ -69,7 +71,7 @@ export default function GameReferenceApp() {
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>
-                            <NameComponent id="gameStyle-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
+                            <NameComponent id="gameStyle-name" name={Companion.getValue(it.name,).reference}/>
                         </div>
                     </div>,)}
             </div>
@@ -81,7 +83,7 @@ export default function GameReferenceApp() {
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <SoundEffectImage reference={it}/>
-                            <NameComponent id="soundEffect-name" name={GameReferences.CompanionEnum.get.getValueByName(it.englishName,).reference}/>
+                            <NameComponent id="soundEffect-name" name={Companion.getValueByName(it.englishName,).reference}/>
                         </div>
                     </div>,)
             }</div>

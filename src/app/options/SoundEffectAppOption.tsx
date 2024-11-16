@@ -15,8 +15,9 @@ import SoundEffectComponent                     from 'core/soundEffect/SoundEffe
 import SoundEffectSoundsComponent               from 'core/soundEffect/SoundEffectSounds.component'
 import {SoundEffectCategories}                  from 'core/soundEffectCategory/SoundEffectCategories'
 
-import SMM1 = Games.SMM1
-import SMM2 = Games.SMM2
+import CategoryCompanion = SoundEffectCategories.Companion
+import SMM1 =              Games.SMM1
+import SMM2 =              Games.SMM2
 
 export abstract class SoundEffectAppOption
     extends Enum<Ordinals, Names>
@@ -62,7 +63,7 @@ export abstract class SoundEffectAppOption
         protected override _createContentOption(enumeration: SoundEffects,) {
             const {reference,} = enumeration
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.CompanionEnum.get.getValueByName(reference.categoryEnglish,).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => CategoryCompanion.getValueByName(reference.categoryEnglish,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {

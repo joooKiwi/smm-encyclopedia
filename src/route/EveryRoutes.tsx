@@ -34,6 +34,9 @@ import ALL_VIEW_DISPLAY =           ViewDisplayCollection.ALL
 import DAY_ONLY =                   Times.DAY_ONLY
 import EMPTY_ARRAY =                Empty.EMPTY_ARRAY
 import EMPTY_STRING =               Empty.EMPTY_STRING
+import GameCompanion =              Games.Companion
+import GameStyleCompanion =         GameStyles.Companion
+import LanguageCompanion =          ProjectLanguages.Companion
 import NIGHT_ONLY =                 Times.NIGHT_ONLY
 import NO_GAME_STYLES =             GameStyleCollection.EMPTY
 import NO_GAMES =                   GameCollection.EMPTY
@@ -79,6 +82,8 @@ import SMM2_ONLY =                  Games.SMM2_ONLY
 import SMM3DS_AND_2 =               Games.SMM3DS_AND_2
 import SMM3DS_ONLY =                Games.SMM3DS_ONLY
 import SM3DW_ONLY =                 GameStyles.SM3DW_ONLY
+import TimeCompanion =              Times.Companion
+import ViewDisplayCompanion =       ViewDisplays.Companion
 
 //region -------------------- Dynamic imports --------------------
 
@@ -1098,7 +1103,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                 //endregion -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
             ]
 
-            // const viewDisplays = ViewDisplays.CompanionEnum.get.values
+            // const viewDisplays = ViewDisplays.Companion.values
             // const routes = new Array<SimpleRoute>(516,) // From: (31 + 16 + 16 + 31 + 16 + 31 + 31) * 3
             // let index = -1
             // viewDisplays.forEach(viewDisplay => {
@@ -1199,7 +1204,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
             if (value == null)
-                value = ViewDisplays.CompanionEnum.get.currentOrNull
+                value = ViewDisplayCompanion.currentOrNull
             if (value == null)
                 value = this.defaultViewDisplay!
             return `/${value.urlValue}`
@@ -1242,7 +1247,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
             if (value == null)
-                value = ViewDisplays.CompanionEnum.get.currentOrNull
+                value = ViewDisplayCompanion.currentOrNull
             if (value == null)
                 value = this.defaultViewDisplay!
             return `/${value.urlValue}`
@@ -1271,7 +1276,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyCharacterName', '/every/character-name', CARD, (viewDisplay, games,) => <CharacterNameApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
-    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyGameStyle', '/every/game-style', CARD, null, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_ENTITY = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
@@ -1305,9 +1310,9 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
     public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
 
-    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyInstrument', '/every/instrument', CARD, (viewDisplay, games,) => <InstrumentApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyInstrument', '/every/instrument', CARD, null, (viewDisplay, games,) => <InstrumentApp viewDisplay={viewDisplay} games={games}/>,)
 
-    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, null, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_ROUTE = new EveryRoutes.Straight_EveryRoutes('everyRoute', '/debug/every-route', () => <RouteApp/>,)
 
@@ -1348,11 +1353,11 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         }
 
         public getRouteFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
-            language ??= ProjectLanguages.CompanionEnum.get.current
-            const currentGames = Games.CompanionEnum.get.currentOrNull?.toArray() ?? null
-            const currentTimes = Times.CompanionEnum.get.currentOrNull?.toArray() ?? null
-            const currentGameStyles = GameStyles.CompanionEnum.get.currentOrNull?.toArray() ?? null
-            const currentViewDisplay = ViewDisplays.CompanionEnum.get.currentOrNull
+            language ??= LanguageCompanion.current
+            const currentGames = GameCompanion.currentOrNull?.toArray() ?? null
+            const currentTimes = TimeCompanion.currentOrNull?.toArray() ?? null
+            const currentGameStyles = GameStyleCompanion.currentOrNull?.toArray() ?? null
+            const currentViewDisplay = ViewDisplayCompanion.currentOrNull
             for (const value of this.values) {
                 const urlName = value.urlName
                 if (urlName === name) {
@@ -1673,16 +1678,15 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      * @param value The {@link Games} to retrieve its {@link Games.urlValue}
      */
     protected _getPartialPathFromGames(value: NullOrArray<Games>,): PossibleGamePath {
-        const Companion = Games.CompanionEnum.get
         if (value == null) {
-            const currentGames = Companion.currentOrNull
+            const currentGames = GameCompanion.currentOrNull
             if (currentGames == null) {
                 const defaultGame = this.defaultGame
                 if (defaultGame == null)
                     return EMPTY_STRING
                 return `/game-${defaultGame.urlValue}`
             }
-            return `/game-${Companion.getGroupUrlValue(currentGames,)}`
+            return `/game-${GameCompanion.getGroupUrlValue(currentGames,)}`
         }
         if (value.length === 0) {
             const defaultGame = this.defaultGame
@@ -1692,7 +1696,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         }
         if (value.length === 0)
             return EMPTY_STRING
-        return `/game-${Companion.getGroupUrlValue(value,)}`
+        return `/game-${GameCompanion.getGroupUrlValue(value,)}`
     }
 
     /**
@@ -1704,9 +1708,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      * @param games Tell if {@link SMM2} is selected in the path
      */
     protected _getPartialPathFromTimes(value: NullOrArray<Times>, games: NullOrArray<Games>,): PossibleTimePath {
-        const Companion = Times.CompanionEnum.get
         if (value == null) {
-            const currentTime = Companion.currentOrNull
+            const currentTime = TimeCompanion.currentOrNull
             if (currentTime == null) {
                 const defaultTime = this.defaultTime
                 if (defaultTime == null) {
@@ -1716,7 +1719,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                 }
                 return `/time-${defaultTime.urlValue}`
             }
-            return `/time-${Companion.getGroupUrl(currentTime,)}`
+            return `/time-${TimeCompanion.getGroupUrl(currentTime,)}`
         }
         if (value.length === 0) {
             const defaultTime = this.defaultTime
@@ -1732,7 +1735,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                 return '/time-all'
             return '/time-day'
         }
-        return `/time-${Companion.getGroupUrl(value,)}`
+        return `/time-${TimeCompanion.getGroupUrl(value,)}`
     }
 
     /**
@@ -1741,26 +1744,25 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      * @param values The {@link GameStyles} to retrieve their {@link GameStyles.urlValue}
      */
     protected _getPartialPathFromGameStyles(values: NullOrArray<GameStyles>,): PossibleGameStylePath {
-        const Companion = GameStyles.CompanionEnum.get
         if (values == null) {
-            const currentGameStyles = Companion.currentOrNull
+            const currentGameStyles = GameStyleCompanion.currentOrNull
             if (currentGameStyles == null) {
                 const defaultGameStyles = this.defaultGameStyles
                 if (defaultGameStyles == null)
                     return EMPTY_STRING
-                return `/game-style-${Companion.getGroupUrlValue(defaultGameStyles,)}`
+                return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
             }
-            return `/game-style-${Companion.getGroupUrlValue(currentGameStyles,)}`
+            return `/game-style-${GameStyleCompanion.getGroupUrlValue(currentGameStyles,)}`
         }
         if (values.length === 0) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
                 return EMPTY_STRING
-            return `/game-style-${Companion.getGroupUrlValue(defaultGameStyles,)}`
+            return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
         }
         if (values.length === 0)
             return EMPTY_STRING
-        return `/game-style-${Companion.getGroupUrlValue(values,)}`
+        return `/game-style-${GameStyleCompanion.getGroupUrlValue(values,)}`
     }
 
     /**
@@ -1770,7 +1772,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      */
     protected _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
         if (value == null)
-            value = ViewDisplays.CompanionEnum.get.currentOrNull
+            value = ViewDisplayCompanion.currentOrNull
         if (value == null)
             value = this.defaultViewDisplay
         if (value == null)
@@ -1779,8 +1781,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     }
 
     public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games>, times: NullOrArray<Times>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
-        if (language == null)
-            language = ProjectLanguages.CompanionEnum.get.current
+        language ??= LanguageCompanion.current
         return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromTimes(times, games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.urlValue}` as unknown as EveryPossibleRoutes
     }
 
@@ -1788,7 +1789,14 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
 }
 
-// const everyRoute = EveryRoutes.CompanionEnum.get.everyRoute
+export namespace EveryRoutes {
+
+    /** The companion instance of a {@link EveryRoutes} */
+    export const Companion = EveryRoutes.CompanionEnum.get
+
+}
+
+// const everyRoute = EveryRoutes.Companion.everyRoute
 // console.table(everyRoute.filter((_, i,) => i < 500,).map(it => ({name: it.name, path: it.path,}),),)
 // console.table(everyRoute.filter((_, i,) => i >= 500 && i < 1000,).map(it => ({name: it.name, path: it.path,}),),)
 // console.table(everyRoute.filter((_, i,) => i >= 1000,).map(it => ({name: it.name, path: it.path,}),),)

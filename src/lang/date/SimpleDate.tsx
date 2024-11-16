@@ -5,6 +5,8 @@ import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {DateDayLanguages} from 'lang/date/DateDayLanguages'
 
+import Companion = DateDayLanguages.Companion
+
 interface DateTimeFormatFromSeparatedValuesProperties
     extends ReactProperties {
 
@@ -39,6 +41,6 @@ function SimpleDateFromDate({date,}: DateTimeFormatFromDateProperties,) {
         month="long"
         day="numeric">
         {parts => <>{parts.map(({type, value,}) => type === 'day' ?
-            <Fragment key={`${date} - ${type}`}>{DateDayLanguages.CompanionEnum.get.current.newDayComponent(Number(value,) as DayNumber,)}</Fragment> : value)}</>}
+            <Fragment key={`${date} - ${type}`}>{Companion.current.newDayComponent(Number(value,) as DayNumber,)}</Fragment> : value)}</>}
     </FormattedDateParts>
 }

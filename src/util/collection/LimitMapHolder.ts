@@ -5,6 +5,8 @@ import type {Entity} from 'core/entity/Entity'
 
 import {Limits} from 'core/limit/Limits'
 
+import Companion = Limits.Companion
+
 export class LimitMapHolder<const out REFERENCE extends Entity, > {
 
     //region -------------------- Fields --------------------
@@ -21,7 +23,6 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-
     public get reference(): REFERENCE {
         return this.#reference
     }
@@ -36,7 +37,7 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
      */
     #newMap(...values: Array<Nullable<Limits>>): ReadonlyMap<Limits, boolean> {
         const newValues = filterNotNull(values,)
-        return new Map(Limits.CompanionEnum.get.values.map(limit => [limit, newValues.has(limit,),],),)
+        return new Map(Companion.values.map(limit => [limit, newValues.has(limit,),],),)
     }
 
     public toLimitMap(): ReadonlyMap<Limits, boolean> {

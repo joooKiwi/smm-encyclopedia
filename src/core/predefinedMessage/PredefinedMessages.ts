@@ -106,3 +106,12 @@ export class PredefinedMessages
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace PredefinedMessages {
+
+    /** The companion instance of a {@link PredefinedMessages} */
+    export const Companion = PredefinedMessages.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

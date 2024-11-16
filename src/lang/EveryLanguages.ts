@@ -17,6 +17,7 @@ import {SPACE}                                      from 'util/commonVariables'
 import {Empty}                                      from 'util/emptyVariables'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
+import CharacterCompanion =  Characters.Companion
 import EMPTY_STRING =        Empty.EMPTY_STRING
 import getBraces =           Characters.getBraces
 import getBrackets =         Characters.getBrackets
@@ -673,14 +674,14 @@ export abstract class EveryLanguages
     }
 
     public get children(): PossibleChildrenLanguages {
-        return this.#children ??= EveryLanguages.CompanionEnum.get.values.filter(it => it.parent != null,)
+        return this.#children ??= EveryLanguages.Companion.values.filter(it => it.parent != null,)
             .filter(it => it !== this,)
             .filter(it => it.parent === this,)
             .toArray() as PossibleChildrenLanguages
     }
 
     public get isDefaultLanguage(): boolean {
-        return this === EveryLanguages.CompanionEnum.get.defaultValue
+        return this === EveryLanguages.Companion.defaultValue
     }
 
     //region -------------------- Characters getter methods --------------------
@@ -809,14 +810,14 @@ export abstract class EveryLanguages
     public character<const C extends PossibleSingleCharacter, >(character: C,): VariableCharacterByCharacter<this['isASpaceEvenLanguage'], C>
     public character<const C extends string, >(character: C,): VariableCharacterByString<this['isASpaceEvenLanguage'], C>
     public character(character: string,) {
-        return Characters.CompanionEnum.get.getCharacter(this.isASpaceEvenLanguage, character,)
+        return CharacterCompanion.getCharacter(this.isASpaceEvenLanguage, character,)
     }
 
     //endregion -------------------- Characters getter methods --------------------
     //region -------------------- Getter & setter methods (current) --------------------
 
     public get isCurrent(): boolean {
-        return this === EveryLanguages.CompanionEnum.get.currentOrNull
+        return this === EveryLanguages.Companion.currentOrNull
     }
 
     public get isCurrentOrAssociatedWithIt(): boolean {
@@ -867,6 +868,13 @@ export abstract class EveryLanguages
     //endregion -------------------- Transformation methods --------------------
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace EveryLanguages {
+
+    /** The companion instance of a {@link EveryLanguages} */
+    export const Companion = EveryLanguages.CompanionEnum.get
 
 }
 

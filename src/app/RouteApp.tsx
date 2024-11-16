@@ -6,6 +6,8 @@ import type {Names, PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}          from 'util/react/ReactProperties'
 import {EveryRoutes}                   from 'route/EveryRoutes'
 
+import Companion = EveryRoutes.Companion
+
 /**
  * A component made to debug the routes from every possible path
  *
@@ -207,8 +209,6 @@ export default function RouteApp() {
 
 //region -------------------- Helper route --------------------
 
-const EveryRouteCompanion = EveryRoutes.CompanionEnum.get
-
 /**
  * A route alias to debug and centralize the usage in the current {@link RouteApp} instance
  *
@@ -219,12 +219,12 @@ function route(name: PossibleRouteName, handleException = false,) {
     if (handleException)
         try {
             debugger
-            EveryRouteCompanion.getRouteFromName(name,)
+            Companion.getRouteFromName(name,)
         } catch (exception) {
             debugger
         }
 
-    return EveryRouteCompanion.getRouteFromName(name,)
+    return Companion.getRouteFromName(name,)
 }
 
 //endregion -------------------- Helper route --------------------

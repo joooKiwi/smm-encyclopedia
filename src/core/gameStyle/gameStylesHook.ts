@@ -4,11 +4,11 @@ import {useState}              from 'react'
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
 
-const GameStyleCompanion = GameStyles.CompanionEnum.get
+import Companion = GameStyles.Companion
 
 /** @reactHook */
 export function useCurrentGameStyles(key: string,): NullOr<CollectionHolder<GameStyles>> {
-    const [currentGameStyles, setCurrentGameStyles,] = useState(GameStyleCompanion.currentOrNull,)
-    GameStyleCompanion.setOnCurrentEvent(key, setCurrentGameStyles,)
+    const [currentGameStyles, setCurrentGameStyles,] = useState(Companion.currentOrNull,)
+    Companion.setOnCurrentEvent(key, setCurrentGameStyles,)
     return currentGameStyles
 }

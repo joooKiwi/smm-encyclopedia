@@ -18,11 +18,13 @@ import {OfficialCourses}         from 'core/officialCourse/OfficialCourses'
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
+import ALL = OfficialCourses.ALL
+
 class EventCourseAppInterpreter
     implements AppInterpreterWithTable<OfficialCourses, OfficialCourseAppOption> {
 
     public get content() {
-        return OfficialCourses.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

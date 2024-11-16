@@ -185,3 +185,10 @@ export class NightEffects
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace NightEffects {
+
+    /** The companion instance of a {@link NightEffects} */
+    export const Companion = NightEffects.CompanionEnum.get
+
+}

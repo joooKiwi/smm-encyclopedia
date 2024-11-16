@@ -40,11 +40,12 @@ import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.compone
 import CourseThemeComponent             from 'core/theme/CourseTheme.component'
 import TimeComponent                    from 'core/time/Time.component'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
+import EntityCategoryCompanion = EntityCategories.Companion
+import NSMBU =                   GameStyles.NSMBU
+import SMB =                     GameStyles.SMB
+import SMB3 =                    GameStyles.SMB3
+import SMW =                     GameStyles.SMW
+import SM3DW =                   GameStyles.SM3DW
 
 export class EntityAppOption
     extends Enum<Ordinals, Names>
@@ -259,7 +260,7 @@ export class EntityAppOption
         protected override _createContentOption(enumeration: Entities,) {
             const categoryName = enumeration.reference.categoryNameContainer
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.CompanionEnum.get.getValueByName(categoryName.english,).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategoryCompanion.getValueByName(categoryName.english,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {

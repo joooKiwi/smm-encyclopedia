@@ -197,7 +197,7 @@ export class EveryTypes {
     //region -------------------- Game reference --------------------
 
     public get everyPossibleAcronym_gameReference() {
-        return this.#everyPossibleAcronym_gameReference ??= GameReferences.CompanionEnum.get.values.map(it => it.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameReference ??= GameReferences.Companion.values.map(it => it.acronym,).toArray()
     }
 
     public get everyPossiblePokemonGeneration_gameReference() {
@@ -205,7 +205,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleName_gameReference() {
-        return this.#everyPossibleName_gameReference ??= GameReferences.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_gameReference ??= GameReferences.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Game reference --------------------
@@ -227,7 +227,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleUniqueName_characterName() {
-        return this.#everyPossibleUniqueName_characterName ??= CharacterNames.CompanionEnum.get.values.map(it => it.uniqueEnglishName,).toArray()
+        return this.#everyPossibleUniqueName_characterName ??= CharacterNames.Companion.values.map(it => it.uniqueEnglishName,).toArray()
     }
 
     //endregion -------------------- Character name --------------------
@@ -323,42 +323,42 @@ export class EveryTypes {
     //region -------------------- Theme (night effect) --------------------
 
     public get everyPossibleName_themeNightEffect() {
-        return this.#everyPossibleName_themeNightEffect ??= NightEffects.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_themeNightEffect ??= NightEffects.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Theme (night effect) --------------------
     //region -------------------- Entity category --------------------
 
     public get everyPossibleName_entityCategory() {
-        return this.#everyPossibleName_entityCategory ??= EntityCategories.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_entityCategory ??= EntityCategories.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Entity group --------------------
     //region -------------------- Entity limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...Limits.CompanionEnum.get.values.map(it => it.acronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= [...Limits.Companion.values.map(it => it.acronym,).filterNotNull().toSet(),]
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.CompanionEnum.get.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.Companion.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
     }
 
 
     public get everyPossibleName_limit() {
-        return this.#everyPossibleName_limit ??= Limits.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_limit ??= Limits.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_editorLimit() {
-        return this.#everyPossibleName_editorLimit ??= Limits.editorLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_editorLimit ??= Limits.EDITOR.map(it => it.englishName,)
     }
 
     public get everyPossibleName_playLimit() {
-        return this.#everyPossibleName_playLimit ??= Limits.playLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_playLimit ??= Limits.PLAY.map(it => it.englishName,)
     }
 
     public get everyPossibleAlternativeName_limit() {
-        return this.#everyPossibleAlternativeName_limit ??= Limits.CompanionEnum.get.values.map(it => it.alternativeEnglishName,).filterNotNull().toArray()
+        return this.#everyPossibleAlternativeName_limit ??= Limits.Companion.values.map(it => it.alternativeEnglishName,).filterNotNull().toArray()
     }
 
 
@@ -388,28 +388,28 @@ export class EveryTypes {
     //region -------------------- Entity limit type --------------------
 
     public get everyPossibleName_limitType() {
-        return this.#everyPossibleName_limitType ??= LimitTypes.CompanionEnum.get.values.map(type => type.englishName,).toArray()
+        return this.#everyPossibleName_limitType ??= LimitTypes.Companion.values.map(type => type.englishName,).toArray()
     }
 
     //endregion -------------------- Entity limit type --------------------
     //region -------------------- Sound effect --------------------
 
     public get everyPossibleName_soundEffect() {
-        return this.#everyPossibleName_soundEffect ??= SoundEffects.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_soundEffect ??= SoundEffects.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Sound effect category --------------------
 
     public get everyPossibleName_soundEffectCategory() {
-        return this.#everyPossibleName_soundEffectCategory ??= SoundEffectCategories.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_soundEffectCategory ??= SoundEffectCategories.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Course tag --------------------
 
     public get everyPossibleName_courseTag() {
-        return this.#everyPossibleName_courseTag ??= CourseTags.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_courseTag ??= CourseTags.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleMakerCentralName_courseTag() {
@@ -424,21 +424,21 @@ export class EveryTypes {
     //region -------------------- Mii costume --------------------
 
     public get everyPossibleName_MiiCostume() {
-        return this.#everyPossibleName_MiiCostume ??= MiiCostumes.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_MiiCostume ??= MiiCostumes.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
     public get everyPossibleName_MiiCostumeCategory() {
-        return this.#everyPossibleName_MiiCostumeCategory ??= MiiCostumeCategories.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_MiiCostumeCategory ??= MiiCostumeCategories.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleUniqueEnglishName_mysteryMushroom() {
-        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= MysteryMushrooms.CompanionEnum.get.values.map(it => it.uniqueEnglishName,).toArray()
+        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= MysteryMushrooms.Companion.values.map(it => it.uniqueEnglishName,).toArray()
     }
 
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
@@ -480,7 +480,7 @@ export class EveryTypes {
     //region -------------------- Official course --------------------
 
     public get everyPossibleEnglishName_officialCourse() {
-        return this.#everyPossibleEnglishName_officialCourse ??= OfficialCourses.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleEnglishName_officialCourse ??= OfficialCourses.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleReward_officialCourse() {
@@ -526,35 +526,35 @@ export class EveryTypes {
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification() {
-        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.CompanionEnum.get.values.map(it => [it.englishName, it.additionalEnglishName,],).toArray().flat(2,)
+        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.Companion.values.map(it => [it.englishName, it.additionalEnglishName,],).toArray().flat(2,)
     }
 
     //endregion -------------------- Official notification --------------------
     //region -------------------- Predefined message --------------------
 
     public get everyPossibleName_predefinedMessage() {
-        return this.#everyPossibleName_predefinedMessage ??= PredefinedMessages.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_predefinedMessage ??= PredefinedMessages.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Predefined message --------------------
     //region -------------------- Sample course --------------------
 
     public get everyPossibleWorldNumber_SampleCourse() {
-        return this.#everyPossibleWorldNumber_SampleCourse ??= SampleCourses.CompanionEnum.get.values.map(it => it.name,).toArray()
+        return this.#everyPossibleWorldNumber_SampleCourse ??= SampleCourses.Companion.values.map(it => it.name,).toArray()
     }
 
     //endregion -------------------- Sample course --------------------
     //region -------------------- Medal --------------------
 
     public get everyPossibleName_medal() {
-        return this.#everyPossibleName_medal ??= Medals.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_medal ??= Medals.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Medal --------------------
     //region -------------------- Instrument --------------------
 
     public get everyPossibleName_instrument() {
-        return this.#everyPossibleName_instrument ??= Instruments.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_instrument ??= Instruments.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleMixedName_instrument() {
@@ -565,19 +565,19 @@ export class EveryTypes {
     //region -------------------- Version --------------------
 
     public get everyPossibleName_version() {
-        return this.#everyPossibleName_version ??= Versions.CompanionEnum.get.values.map(it => it.simpleName,).toArray()
+        return this.#everyPossibleName_version ??= Versions.Companion.values.map(it => it.simpleName,).toArray()
     }
 
     public get everyPossibleName_version_smm() {
-        return this.#everyPossibleName_version_smm ??= Versions.CompanionEnum.get.values.filter(it => it.game === SMM1,).map(it => it.simpleName as PossibleName_Version_SMM,).toArray()
+        return this.#everyPossibleName_version_smm ??= Versions.Companion.values.filter(it => it.game === SMM1,).map(it => it.simpleName as PossibleName_Version_SMM,).toArray()
     }
 
     public get everyPossibleName_version_smm3ds() {
-        return this.#everyPossibleName_version_smm3ds ??= Versions.CompanionEnum.get.values.filter(it => it.game === SMM3DS,).map(it => it.simpleName as PossibleName_Version_SMM3DS,).toArray()
+        return this.#everyPossibleName_version_smm3ds ??= Versions.Companion.values.filter(it => it.game === SMM3DS,).map(it => it.simpleName as PossibleName_Version_SMM3DS,).toArray()
     }
 
     public get everyPossibleName_version_smm2() {
-        return this.#everyPossibleName_version_smm2 ??= Versions.CompanionEnum.get.values.filter(it => it.game === SMM2,).map(it => it.simpleName as PossibleName_Version_SMM2,).toArray()
+        return this.#everyPossibleName_version_smm2 ??= Versions.Companion.values.filter(it => it.game === SMM2,).map(it => it.simpleName as PossibleName_Version_SMM2,).toArray()
     }
 
     //endregion -------------------- Version --------------------

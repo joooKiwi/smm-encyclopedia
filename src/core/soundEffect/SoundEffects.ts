@@ -1343,6 +1343,9 @@ export abstract class SoundEffects
 
 export namespace SoundEffects {
 
+    /** The companion instance of a {@link SoundEffects} */
+    export const Companion = SoundEffects.CompanionEnum.get
+
     /** An alias of {@link SoundEffects.SUPER_MARIO_KART_MUSIC} */
     export const SMK = SoundEffects.SUPER_MARIO_KART_MUSIC
     /** An alias of {@link SoundEffects.SUPER_MARIO_64_MUSIC} */
@@ -1351,6 +1354,8 @@ export namespace SoundEffects {
     export const SMS = SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC
     /** An alias of {@link SoundEffects.SUPER_MARIO_GALAXY_MUSIC} */
     export const SMG = SoundEffects.SUPER_MARIO_GALAXY_MUSIC
+
+    export const ALL = Companion.values.toArray()
 
     /** Every {@link SoundEffects} that is also a {@link GameReferences} */
     export const soundEffect_games: SoundEffectGames = [SMK, SM64, SMS, SMG,]

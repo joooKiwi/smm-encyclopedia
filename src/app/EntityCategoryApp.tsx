@@ -19,11 +19,13 @@ import {EntityCategories}        from 'core/entityCategory/EntityCategories'
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
+import ALL = EntityCategories.ALL
+
 class EntityCategoryAppInterpreter
     implements AppInterpreterWithTable<EntityCategories, EntityCategoryAppOption> {
 
     public get content() {
-        return EntityCategories.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

@@ -101,3 +101,12 @@ export class EntityCategories
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace EntityCategories {
+
+    /** The companion instance of a {@link EntityCategories} */
+    export const Companion = EntityCategories.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

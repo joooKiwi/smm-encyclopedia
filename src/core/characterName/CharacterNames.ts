@@ -16,6 +16,8 @@ import {StringContainer}                   from 'util/StringContainer'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 
+import EditorVoiceCompanion = EditorVoices.Companion
+
 /**
  * @recursiveReference<{@link EditorVoices}>
  */
@@ -261,8 +263,8 @@ export class CharacterNames
     public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
         if (this.#editorVoiceSound !== undefined)
             return this.#editorVoiceSound
-        if (EditorVoices.CompanionEnum.get.hasReference(this,))
-            return this.#editorVoiceSound = EditorVoices.CompanionEnum.get.getValueByCharacterName(this,).editorVoiceSoundFileHolder
+        if (EditorVoiceCompanion.hasReference(this,))
+            return this.#editorVoiceSound = EditorVoiceCompanion.getValueByCharacterName(this,).editorVoiceSoundFileHolder
         return this.#editorVoiceSound = null
     }
 
@@ -276,6 +278,11 @@ export class CharacterNames
 
 export namespace CharacterNames {
 
-    export const everyEnglishNames = CharacterNames.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+    /** The companion instance of a {@link CharacterNames} */
+    export const Companion = CharacterNames.CompanionEnum.get
+
+    export const everyEnglishNames = Companion.values.map(it => it.englishName,).toArray()
+
+    export const ALL = Companion.values.toArray()
 
 }

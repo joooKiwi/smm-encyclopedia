@@ -25,6 +25,7 @@ import {SoundEffects}                               from 'core/soundEffect/Sound
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
+import ALL =                   SoundEffects.ALL
 import ALL_GAMES =             Games.ALL
 import renderSMM1And3DSImage = SoundEffectAppOption.renderSMM1And3DSImage
 import renderSMM2Image =       SoundEffectAppOption.renderSMM2Image
@@ -51,7 +52,7 @@ class SoundEffectAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(SoundEffects.CompanionEnum.get.values, this.#games,)
+        return filterGame(ALL, this.#games,)
     }
 
     //region -------------------- List interpreter --------------------

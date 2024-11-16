@@ -249,3 +249,12 @@ export class MiiCostumes
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace MiiCostumes {
+
+    /** The companion instance of a {@link MiiCostumes} */
+    export const Companion = MiiCostumes.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

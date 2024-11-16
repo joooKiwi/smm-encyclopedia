@@ -16,11 +16,13 @@ import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {PredefinedMessages}         from 'core/predefinedMessage/PredefinedMessages'
 import {gameContentTranslation}     from 'lang/components/translationMethods'
 
+import ALL = PredefinedMessages.ALL
+
 class PredefinedMessageAppInterpreter
     implements AppInterpreterWithTable<PredefinedMessages> {
 
     public get content() {
-        return PredefinedMessages.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

@@ -519,6 +519,9 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
 export namespace GameStyles {
 
+    /** The companion instance of a {@link GameStyles} */
+    export const Companion = GameStyles.CompanionEnum.get
+
     //region -------------------- Singular possibility --------------------
 
     /** An {@link ReadonlyArray Array} representing the game styles with only {@link SMB} */

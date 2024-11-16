@@ -16,6 +16,8 @@ import type {ClassWithIsCurrent}                                                
 import {EveryLanguages}                from 'lang/EveryLanguages'
 import {CompanionEnumRetrievableInUrl} from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
+import Companion = EveryLanguages.Companion
+
 /**
  * <p>
  *     An enum class containing every language in the project.
@@ -100,16 +102,16 @@ export class ProjectLanguages
         public override readonly URL_REGEX = /\/(((en|es|pt)-(AM|EU))|(fr-(CA|EU))|(zh-(tw|cn))|de|it|nl|ru|ja|ko)\//i
 
         public override get defaultValue(): ProjectLanguages {
-            return this.getValueByLanguage(EveryLanguages.CompanionEnum.get.defaultValue,)
+            return this.getValueByLanguage(Companion.defaultValue,)
         }
 
         public override set defaultValue(value: Nullable<PossibleEnumerableValue<| ProjectLanguages | EveryLanguages>>,) {
             if (value instanceof ProjectLanguages) {
-                EveryLanguages.CompanionEnum.get.setDefaultValue(value.language,)
+                Companion.setDefaultValue(value.language,)
                 return
             }
 
-            EveryLanguages.CompanionEnum.get.setDefaultValue(value,)
+            Companion.setDefaultValue(value,)
         }
 
         public override setDefaultValue(value: ImpossibleNames,): never
@@ -121,22 +123,22 @@ export class ProjectLanguages
 
 
         public get currentOrNull(): NullOr<ProjectLanguages> {
-            const value = EveryLanguages.CompanionEnum.get.currentOrNull
+            const value = Companion.currentOrNull
             if (value == null)
                 return null
             return this.getValueByLanguage(value,)
         }
 
         public get current(): ProjectLanguages {
-            return this.getValueByLanguage(EveryLanguages.CompanionEnum.get.current,)
+            return this.getValueByLanguage(Companion.current,)
         }
 
         public set current(value: PossibleEnumerableValueBy<| ProjectLanguages | EveryLanguages>,) {
             if (value instanceof ProjectLanguages) {
-                EveryLanguages.CompanionEnum.get.current = value.language
+                Companion.current = value.language
                 return
             }
-            EveryLanguages.CompanionEnum.get.current = value
+            Companion.current = value
         }
 
 
@@ -384,7 +386,7 @@ export class ProjectLanguages
     //region -------------------- Getter & setter methods (current) --------------------
 
     public get isCurrent(): boolean {
-        return this === ProjectLanguages.CompanionEnum.get.currentOrNull
+        return this === ProjectLanguages.Companion.currentOrNull
     }
 
     public get isCurrentOrAssociatedWithIt(): boolean {
@@ -399,7 +401,7 @@ export class ProjectLanguages
      * @see EveryLanguages.CompanionEnum.current
      */
     public static get current(): ProjectLanguages {
-        return this.CompanionEnum.get.current
+        return ProjectLanguages.Companion.current
     }
 
     //endregion -------------------- Getter & setter methods (current) --------------------
@@ -442,5 +444,12 @@ export class ProjectLanguages
     //endregion -------------------- Transformation methods --------------------
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace ProjectLanguages {
+
+    /** The companion instance of a {@link ProjectLanguages} */
+    export const Companion = ProjectLanguages.CompanionEnum.get
 
 }

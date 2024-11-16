@@ -122,7 +122,12 @@ export class CourseTags
 
 export namespace CourseTags {
 
-    export const OFFICIAL_COURSE_TAGS = [
+    /** The companion instance of a {@link CourseTags} */
+    export const Companion = CourseTags.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+    export const OFFICIALS = [
         CourseTags.NONE, CourseTags.STANDARD, CourseTags.PUZZLE_SOLVING, CourseTags.SPEEDRUN,
         CourseTags.AUTOSCROLL, CourseTags.AUTO_MARIO,
         CourseTags.SHORT_AND_SWEET, CourseTags.SHOOTER,
@@ -131,7 +136,7 @@ export namespace CourseTags {
         CourseTags.BOSS_BATTLE, CourseTags.LINK,
     ] as const
 
-    export const UNOFFICIAL_COURSE_TAGS = [
+    export const UNOFFICIALS = [
         CourseTags.ONE_SCREEN,
         CourseTags.PRECISION,
         CourseTags.MULTIPLAYER, CourseTags.LOCAL_MULTIPLAYER, CourseTags.ONLINE_MULTIPLAYER, CourseTags.MULTIPLAYER_COOP,
@@ -139,7 +144,7 @@ export namespace CourseTags {
         CourseTags.GLITCH, CourseTags.TROLL, CourseTags.KAIZO,
     ] as const
 
-    export const MAKER_CENTRAL_COURSE_TAGS = [
+    export const MAKER_CENTRAL = [
         CourseTags.STANDARD, CourseTags.PUZZLE_SOLVING, CourseTags.SPEEDRUN,
         CourseTags.AUTOSCROLL, CourseTags.AUTO_MARIO,
         CourseTags.SHORT_AND_SWEET, CourseTags.SHOOTER,

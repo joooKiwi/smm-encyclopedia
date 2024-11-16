@@ -30,6 +30,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
+import ALL =       CharacterNames.ALL
 import ALL_GAMES = Games.ALL
 import SMM1 =      Games.SMM1
 import SMM2 =      Games.SMM2
@@ -52,7 +53,7 @@ class CharacterNameAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(CharacterNames.CompanionEnum.get.values, this.#games,)
+        return filterGame(ALL, this.#games,)
     }
 
     //region -------------------- List interpreter --------------------

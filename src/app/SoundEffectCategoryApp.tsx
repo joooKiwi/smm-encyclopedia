@@ -17,11 +17,13 @@ import Table                          from 'app/tools/table/Table'
 import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 
+import ALL = SoundEffectCategories.ALL
+
 class SoundEffectCategoryAppInterpreter
     implements AppInterpreterWithTable<SoundEffectCategories, SoundEffectCategoryAppOption> {
 
     public get content() {
-        return SoundEffectCategories.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

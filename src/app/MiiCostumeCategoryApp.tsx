@@ -19,11 +19,13 @@ import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCat
 import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}      from 'lang/components/translationMethods'
 
+import ALL = MiiCostumeCategories.ALL
+
 class MiiCostumeCategoryAppInterpreter
     implements AppInterpreterWithTable<MiiCostumeCategories, MiiCostumeCategoryAppOption> {
 
     public get content() {
-        return MiiCostumeCategories.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

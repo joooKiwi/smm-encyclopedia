@@ -4,11 +4,11 @@ import {useState}              from 'react'
 
 import {Games} from 'core/game/Games'
 
-const GameCompanion = Games.CompanionEnum.get
+import Companion = Games.Companion
 
 /** @reactHook */
 export function useCurrentGames(key: string,): NullOr<CollectionHolder<Games>> {
-    const [currentGames, setCurrentGames,] = useState(GameCompanion.currentOrNull,)
-    GameCompanion.setOnCurrentEvent(key, setCurrentGames,)
+    const [currentGames, setCurrentGames,] = useState(Companion.currentOrNull,)
+    Companion.setOnCurrentEvent(key, setCurrentGames,)
     return currentGames
 }

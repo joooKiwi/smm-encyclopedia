@@ -32,6 +32,7 @@ import TextOrLink                                   from 'app/tools/text/TextOrL
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 
+import ALL =       EditorVoices.ALL
 import ALL_GAMES = Games.ALL
 import SMM1 =      Games.SMM1
 import SMM2 =      Games.SMM2
@@ -54,7 +55,7 @@ class EditorVoiceAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(EditorVoices.CompanionEnum.get.values, this.#games,)
+        return filterGame(ALL, this.#games,)
     }
 
     //region -------------------- List interpreter --------------------

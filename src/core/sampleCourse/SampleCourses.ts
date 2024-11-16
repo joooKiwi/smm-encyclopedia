@@ -148,3 +148,12 @@ export class SampleCourses
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace SampleCourses {
+
+    /** The companion instance of a {@link SampleCourses} */
+    export const Companion = SampleCourses.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

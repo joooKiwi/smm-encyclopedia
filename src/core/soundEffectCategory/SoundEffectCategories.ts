@@ -101,3 +101,12 @@ export class SoundEffectCategories
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace SoundEffectCategories {
+
+    /** The companion instance of a {@link SoundEffectCategories} */
+    export const Companion = SoundEffectCategories.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

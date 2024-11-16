@@ -7,6 +7,8 @@ import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import {LanguageChangerSingleLink} from 'navigation/modal/LanguageChanger.single.link'
 import {BootstrapInstanceHandler}  from 'bootstrap/BootstrapInstanceHandler'
 
+import Companion = ProjectLanguages.Companion
+
 /** @reactComponent */
 export default function LanguageModal() {
     const modal = useRef<HTMLDivElement>(null,)
@@ -75,6 +77,6 @@ export default function LanguageModal() {
 }
 
 function setLanguage(language:ProjectLanguages, setCurrentLanguage: Dispatch<SetStateAction<ProjectLanguages>>,){
-    setCurrentLanguage(ProjectLanguages.CompanionEnum.get.current = language,)
+    setCurrentLanguage(Companion.current = language,)
     BootstrapInstanceHandler.get.getModalInstanceOrNull(LANGUAGE_CHANGER_MODAL_ID,)?.instance.hide()
 }

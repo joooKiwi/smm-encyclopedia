@@ -5,6 +5,8 @@ import type {DisplayButtonGroupProperties, DisplayButtonProperties} from 'app/wi
 import {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
 import {routeFromName} from 'route/route'
 
+import Companion = ViewDisplays.Companion
+
 /**
  * Create a button to be used in a "button group" for displaying a specific "view display".
  *
@@ -22,5 +24,5 @@ function DisplayButton({reactKey: key, view, currentView, routeName,}: DisplayBu
 
     if (currentPath === path || view === currentView)
         return <button key={`${key} (${view.name})`} className={`btn btn-success bi-${view.htmlType} btn-viewDisplay`} type="button" disabled/>
-    return <Link key={`${key} (${view.name})`} to={path} className={`btn btn-dark bi-${view.htmlType} btn-viewDisplay`} onClick={() => ViewDisplays.CompanionEnum.get.current = view}/>
+    return <Link key={`${key} (${view.name})`} to={path} className={`btn btn-dark bi-${view.htmlType} btn-viewDisplay`} onClick={() => Companion.current = view}/>
 }

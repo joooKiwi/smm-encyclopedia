@@ -17,17 +17,17 @@ import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
 
-const ProjectLanguageCompanion = ProjectLanguages.CompanionEnum.get
-const EveryRouteCompanion = EveryRoutes.CompanionEnum.get
-// const ViewDisplayCompanion = ViewDisplays.CompanionEnum.get
-const GameCompanion = Games.CompanionEnum.get
-const GameStyleCompanion = GameStyles.CompanionEnum.get
-const TimeCompanion = Times.CompanionEnum.get
+import GameCompanion =      Games.Companion
+import GameStyleCompanion = GameStyles.Companion
+import LanguageCompanion =  ProjectLanguages.Companion
+import RouteCompanion =     EveryRoutes.Companion
+import TimeCompanion =      Times.Companion
+
 const homeRoute = EveryRoutes.HOME
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
-const languages = ProjectLanguageCompanion.values
-const everyRouteInstance = EveryRouteCompanion.values
-const everyRoute = EveryRouteCompanion.everyRoute
+const languages = LanguageCompanion.values
+const everyRouteInstance = RouteCompanion.values
+const everyRoute = RouteCompanion.everyRoute
 // const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
 // const everyGameStyles = GameStyles.Possibilities.get.everyFields
@@ -95,7 +95,7 @@ const router = createHashRouter([{
                     new StraightFallbackRouteObject(pathFromLanguage, loaderArguments => redirectToByUrl(loaderArguments, language,),),
                 ],
                 loader() {
-                    ProjectLanguageCompanion.current = language
+                    LanguageCompanion.current = language
                     return null
                 },
             }

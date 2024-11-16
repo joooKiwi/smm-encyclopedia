@@ -271,6 +271,9 @@ export abstract class Themes
 
 export namespace Themes {
 
+    /** The companion instance of a {@link Themes} */
+    export const Companion = Themes.CompanionEnum.get
+
     /** All the {@link Themes} (in any "Super Mario Maker" game) */
     export const ALL = [
         Themes.GROUND, Themes.UNDERGROUND,

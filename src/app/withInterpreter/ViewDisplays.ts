@@ -123,7 +123,7 @@ export abstract class ViewDisplays<const TYPE extends Type = Type,
 
     /** The current instance is the current one selected in the application */
     public get isCurrent(): boolean {
-        return this === ViewDisplays.CompanionEnum.get.currentOrNull
+        return this === ViewDisplays.Companion.currentOrNull
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -145,6 +145,9 @@ export abstract class ViewDisplays<const TYPE extends Type = Type,
 }
 
 export namespace ViewDisplays {
+
+    /** The companion instance of a {@link ViewDisplays} */
+    export const Companion = ViewDisplays.CompanionEnum.get
 
     export const ALL = [ViewDisplays.TABLE, ViewDisplays.CARD_LIST, /*ViewDisplays.NAME_LIST, */ViewDisplays.SIMPLE_LIST,] as const
 

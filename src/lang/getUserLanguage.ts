@@ -1,5 +1,7 @@
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
+import Companion = ProjectLanguages.Companion
+
 /** The user {@link ProjectLanguages language} held in order to do the calculation only once */
 let userLanguage: ProjectLanguages
 
@@ -17,6 +19,6 @@ export function getUserLanguage(): ProjectLanguages {
 
     const locale = (navigator.languages?.[0] ?? navigator.language).trim().toLowerCase()
 
-    return userLanguage = ProjectLanguages.CompanionEnum.get.values.findFirstOrNull(it => locale.includes(it.projectAcronym.toLowerCase(),),)
-        ?? ProjectLanguages.CompanionEnum.get.defaultValue
+    return userLanguage = Companion.values.findFirstOrNull(it => locale.includes(it.projectAcronym.toLowerCase(),),)
+        ?? Companion.defaultValue
 }

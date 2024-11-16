@@ -12,6 +12,8 @@ import Image                  from 'app/tools/images/Image'
 import {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {contentTranslation}   from 'lang/components/translationMethods'
 
+import CategoryCompanion = MiiCostumeCategories.Companion
+
 /**
  * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
  * @todo Change CATEGORY to use {IMAGE, TEXT or NONE} instead of 2 different options.
@@ -62,7 +64,7 @@ export abstract class MiiCostumeAppOption
 
         protected override _createContentOption(enumeration: MiiCostumes,) {
             const categoryName = enumeration.reference.categoryContainer.nameContainer
-            return CommonOptions.get.getCategoryContent(enumeration, () => MiiCostumeCategories.CompanionEnum.get.getValueByName(categoryName.english,).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => CategoryCompanion.getValueByName(categoryName.english,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {

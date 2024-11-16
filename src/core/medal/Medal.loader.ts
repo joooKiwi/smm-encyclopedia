@@ -11,7 +11,8 @@ import type {Loader}                                                            
 import {isInProduction}      from 'variables'
 import {MedalContainer}      from 'core/medal/Medal.container'
 import {Medals}              from 'core/medal/Medals'
-import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
+
+import Companion = Medals.Companion
 
 /**
  * @dependsOn<{@link Medals}>
@@ -43,10 +44,9 @@ export class MedalLoader
         if (this.#map != null)
             return this.#map
 
-        const medalCompanion = Medals.CompanionEnum.get
         const references = new Map<PossibleEnglishName, Medal>()
         forEachByArray(file as Array<Content>, content =>
-            references.set(content.image, createReference(content, medalCompanion,),),)
+            references.set(content.image, createReference(content,),),)
 
         if (!isInProduction)
             console.info(
@@ -69,14 +69,11 @@ interface Content {
 
 }
 
-/** A type-alias definition of the {@link Medals.CompanionEnum} */
-type MedalCompanion = CompanionEnumByName<Medals, typeof Medals>
-
-function createReference(content: Content, medalCompanion: MedalCompanion,): Medal {
+function createReference(content: Content,): Medal {
     const imageName = content.image
 
     return new MedalContainer(
-        medalCompanion.getValueByName(imageName,).associatedReference.reference,
+        Companion.getValueByName(imageName,).associatedReference.reference,
         imageName,
         content.amountOfAllowedLevelToUpload,
         content.amountOfStarReceived,

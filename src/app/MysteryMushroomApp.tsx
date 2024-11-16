@@ -18,11 +18,13 @@ import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
 
+import ALL = MysteryMushrooms.ALL
+
 class MysteryMushroomAppInterpreter
     implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
     public get content() {
-        return MysteryMushrooms.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

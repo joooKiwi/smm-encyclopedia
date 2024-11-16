@@ -189,3 +189,12 @@ export class Instruments
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace Instruments {
+
+    /** The companion instance of a {@link Instruments} */
+    export const Companion = Instruments.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

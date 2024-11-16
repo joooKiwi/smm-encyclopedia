@@ -567,11 +567,14 @@ export class Limits
 
 export namespace Limits {
 
-    const values = Limits.CompanionEnum.get.values
+    /** The companion instance of a {@link Limits} */
+    export const Companion = Limits.CompanionEnum.get
 
-    export const all = values.toArray()
-    export const playLimits = values.filter(it => !it.isEditorLimit,).toArray()
-    export const editorLimits = values.filter(it => it.isEditorLimit,).toArray()
+    const values = Companion.values
+
+    export const ALL = values.toArray()
+    export const PLAY = values.filterNot(it => it.isEditorLimit,).toArray()
+    export const EDITOR = values.filter(it => it.isEditorLimit,).toArray()
 
 }
 

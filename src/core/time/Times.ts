@@ -20,7 +20,6 @@ import {getValueByEnglishName, getValueByUrlValue}              from 'util/utili
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
-import {Games}                                                  from 'core/game/Games'
 
 export abstract class Times<const NAME extends PossibleEnglishName = PossibleEnglishName,
     const URL extends PossibleUrl = PossibleUrl,
@@ -201,6 +200,9 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
 }
 
 export namespace Times {
+
+    /** The companion instance of a {@link Times} */
+    export const Companion = Times.CompanionEnum.get
 
     /** All the {@link Times} */
     export const ALL = [Times.DAY, Times.NIGHT,] as const

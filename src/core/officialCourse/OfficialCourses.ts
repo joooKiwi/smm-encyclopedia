@@ -130,3 +130,12 @@ export class OfficialCourses
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace OfficialCourses {
+
+    /** The companion instance of a {@link OfficialCourses} */
+    export const Companion = OfficialCourses.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}

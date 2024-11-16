@@ -21,13 +21,14 @@ import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGame
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {Empty}                  from 'util/emptyVariables'
 
+import ALL =          MiiCostumes.ALL
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 class MiiCostumeAppInterpreter
     implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
     public get content() {
-        return MiiCostumes.CompanionEnum.get.values.toArray()
+        return ALL
     }
 
     //region -------------------- List interpreter --------------------

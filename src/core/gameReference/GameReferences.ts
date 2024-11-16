@@ -240,3 +240,9 @@ export class GameReferences
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace GameReferences {
+
+    export const Companion = GameReferences.CompanionEnum.get
+
+}

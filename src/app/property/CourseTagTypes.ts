@@ -8,9 +8,10 @@ import type {CompanionEnumByTypeSingleton}                     from 'util/enumer
 import {CourseTags}          from 'core/courseTag/CourseTags'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
-import MAKER_CENTRAL_COURSE_TAGS = CourseTags.MAKER_CENTRAL_COURSE_TAGS
-import OFFICIAL_COURSE_TAGS =      CourseTags.OFFICIAL_COURSE_TAGS
-import UNOFFICIAL_COURSE_TAGS =    CourseTags.UNOFFICIAL_COURSE_TAGS
+import ALL_COURSE_TAGS =           CourseTags.ALL
+import MAKER_CENTRAL_COURSE_TAGS = CourseTags.MAKER_CENTRAL
+import OFFICIAL_COURSE_TAGS =      CourseTags.OFFICIALS
+import UNOFFICIAL_COURSE_TAGS =    CourseTags.UNOFFICIALS
 
 /** @usedByTheRouting */
 export abstract class CourseTagTypes
@@ -22,7 +23,7 @@ export abstract class CourseTagTypes
     public static readonly ALL =              new class CourseTagTypes_All extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.CompanionEnum.get.values.toArray()
+            return ALL_COURSE_TAGS
         }
 
 
@@ -174,7 +175,7 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the official {@link CourseTags}
      *
-     * @see CourseTags.OFFICIAL_COURSE_TAGS
+     * @see CourseTags.OFFICIALS
      */
     public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTag'>> {
         return 'officialCourseTag'
@@ -188,7 +189,7 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the unofficial {@link CourseTags}
      *
-     * @see CourseTags.UNOFFICIAL_COURSE_TAGS
+     * @see CourseTags.UNOFFICIALS
      */
     public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTag'>> {
         return 'unofficialCourseTag'
@@ -202,7 +203,7 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the "Maker Central" {@link CourseTags}
      *
-     * @see CourseTags.MAKER_CENTRAL_COURSE_TAGS
+     * @see CourseTags.MAKER_CENTRAL
      */
     public get makerCentralRouteName(): NullOr<Extract<PossibleRouteName, 'makerCentralCourseTag'>> {
         return 'makerCentralCourseTag'

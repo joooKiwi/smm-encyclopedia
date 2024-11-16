@@ -13,6 +13,8 @@ import {EveryLanguages}           from 'lang/EveryLanguages'
 import {StringContainer}          from 'util/StringContainer'
 import {CompanionEnumByName}      from 'util/enumerable/companion/CompanionEnumByName'
 
+import Companion = EveryLanguages.Companion
+
 //region -------------------- Import from deconstruction --------------------
 
 const {PORTUGUESE, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, CHINESE, KOREAN,} = EveryLanguages
@@ -343,7 +345,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     public get singularNameOnReference(): string {
         const value = this.reference.languageValue
         if (value == null)
-            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${EveryLanguages.CompanionEnum.get.current.englishName} language.`,)
+            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${Companion.current.englishName} language.`,)
         return value
     }
 
@@ -378,7 +380,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
             throw ReferenceError(`There is no plural value on the ${this.englishName}.`)
         const value = pluralForm.languageValue
         if (value == null)
-            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${EveryLanguages.CompanionEnum.get.current.englishName} language.`,)
+            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${Companion.current.englishName} language.`,)
         return value
     }
 

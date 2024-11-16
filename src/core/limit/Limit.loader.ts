@@ -19,6 +19,9 @@ import {Limits}                    from 'core/limit/Limits'
 import {LimitTypes}                from 'core/limit/LimitTypes'
 import {createNameFromContent}     from 'lang/name/createNameFromContent'
 
+import Companion =     Limits.Companion
+import TypeCompanion = LimitTypes.Companion
+
 /**
  * @dependsOn<{@link Limits}>
  * @recursiveReference<{@link Limits}>
@@ -98,7 +101,7 @@ function createReference(content: Content, alternativeReferences: ReadonlyMap<Po
         createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAcronym>,
         getAlternativeLimitBy(content.alternative, alternativeReferences,),
-        LimitTypes.CompanionEnum.get.getValueByName(content.type,),
+        TypeCompanion.getValueByName(content.type,),
         content.limit_SMM1And3DS!, content.limit_SMM1And3DS_isUnknown!,
         content.limit_SMM2!, content.limit_SMM2_isUnknown!,
         content.limit_comment,
@@ -109,7 +112,7 @@ function createAlternativeReference(content: Content, regularReferences: Map<Pos
     return new AlternativeLimitContainer(
         createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAlternativeAcronym>,
-        lazy(() => Limits.CompanionEnum.get.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
+        lazy(() => Companion.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
     )
 }
 

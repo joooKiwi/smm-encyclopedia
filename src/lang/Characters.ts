@@ -184,7 +184,7 @@ export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacte
             return this.#SPACE_EVEN_OBJECT_MAP
 
         const spaceEvenObjectMap: Partial<CharactersEquivalencesMap> = {}
-        this.CompanionEnum.get.values.forEach(it => {
+        Characters.Companion.values.forEach(it => {
             const spaceEvenCharacter = it.spaceEvenCharacter
             const spaceUnevenCharacter = it.spaceUnevenCharacter
             Reflect.set(spaceEvenObjectMap, spaceEvenCharacter, spaceUnevenCharacter,)
@@ -198,6 +198,9 @@ export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacte
 }
 
 export namespace Characters {
+
+    /** The companion instance of a {@link Characters} */
+    export const Companion = Characters.CompanionEnum.get
 
     //region -------------------- Utility methods --------------------
 
