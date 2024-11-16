@@ -4,9 +4,9 @@ import {findFirstOrNullByArray, forEachByArray}     from '@joookiwi/collection'
 import {CompanionEnum, Enum}                        from '@joookiwi/enumerable'
 import {lazy}                                       from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                                    from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                     from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithoutGameStyle, RouteCallbackWithoutTime, RouteCallbackWithOnlyViewDisplay, RouteCallbackWithoutTimeAndGameStyle} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                                                                                                 from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -242,7 +242,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallbackWithoutTimeAndGameStyle,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 
@@ -293,7 +293,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, defaultTime: NullOr<Times>, routeCallback: RouteCallback,) {
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, defaultTime: NullOr<Times>, routeCallback: RouteCallbackWithoutGameStyle,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, ALL_TIMES_COLLECTION, defaultTime ?? null, routeCallback,)
         }
 
@@ -380,8 +380,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, NO_TIMES, null, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallbackWithoutTime,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, NO_TIMES, null, (viewDisplay, games, _, gameStyles,) => routeCallback(viewDisplay, games, gameStyles,),)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -1168,7 +1168,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallbackWithOnlyViewDisplay,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 
@@ -1211,7 +1211,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallbackWithOnlyViewDisplay,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
         }
 

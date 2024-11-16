@@ -9,6 +9,7 @@ import type {PossibleAcronym}                                                   
 import type {EveryRoutes}                                                                                                                                                                       from 'route/EveryRoutes'
 import type {GameCollection}                                                                                                                                                                    from 'util/collection/GameCollection'
 import type {GameStyleCollection}                                                                                                                                                               from 'util/collection/GameStyleCollection'
+import type {TimeCollection}                                                                                                                                                                    from 'util/collection/TimeCollection'
 
 enum Enum {
     HOME,
@@ -216,8 +217,18 @@ export type PossibleStraightRoutePath = typeof EveryRoutes[Names]['urlValue']
 export type PossibleRoutePath = SimpleRouteMap[Names][1]
 
 
-export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection,) => ReactJSXElement
+export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, time: TimeCollection, gameStyles: GameStyleCollection,) => ReactJSXElement
+/** A type-alias of {@link RouteCallback} with only the {@link ViewDisplays} as an argument */
+export type RouteCallbackWithOnlyViewDisplay = (viewDisplay: ViewDisplays,) => ReactJSXElement
+/** A close relative to {@link RouteCallback} without the 3rd argument ({@link Times}) */
+export type RouteCallbackWithoutTime = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection,) => ReactJSXElement
+/** A type-alias of {@link RouteCallback} without the 3rd and 4th argument ({@link Times}, {@link GameStyles}) */
+export type RouteCallbackWithoutTimeAndGameStyle = (viewDisplay: ViewDisplays, games: GameCollection,) => ReactJSXElement
+/** A type-alias of {@link RouteCallback} without the 4th argument ({@link GameStyles}) */
+export type RouteCallbackWithoutGameStyle = (viewDisplay: ViewDisplays, games: GameCollection, time: TimeCollection,) => ReactJSXElement
+/** A close relative to {@link RouteCallback} with only the {@link Games} as an argument */
 export type GameRouteCallback = (games: GameCollection,) => ReactJSXElement
+/** A type-alias of {@link RouteCallback} with no arguments */
 export type NothingRouteCallback = () => ReactJSXElement
 
 /** The partial path of a {@link EveryRoutes} made from a {@link ViewDisplays} */
