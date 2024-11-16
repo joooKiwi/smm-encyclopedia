@@ -19,7 +19,6 @@ import {Limits}                    from 'core/limit/Limits'
 import {LimitTypes}                from 'core/limit/LimitTypes'
 import {createNameFromContent}     from 'lang/name/createNameFromContent'
 
-import Companion =     Limits.Companion
 import TypeCompanion = LimitTypes.Companion
 
 /**
@@ -112,7 +111,7 @@ function createAlternativeReference(content: Content, regularReferences: Map<Pos
     return new AlternativeLimitContainer(
         createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAlternativeAcronym>,
-        lazy(() => Companion.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
+        lazy(() => Limits.Companion.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
     )
 }
 

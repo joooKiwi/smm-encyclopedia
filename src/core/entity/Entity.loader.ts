@@ -21,7 +21,6 @@ import type {Instrument}                                                        
 import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/instrument/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from 'core/limit/Limits.types'
 import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/version/Versions.types'
-import type {CompanionEnumByName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'util/enumerable/companion/CompanionEnumByName'
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'util/loader/Loader'
 import type {Name}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'lang/name/Name'
 
@@ -37,7 +36,6 @@ import {Limits}                from 'core/limit/Limits'
 import {NOT_APPLICABLE}        from 'util/commonVariables'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
 
-import Companion =           Entities.Companion
 import LimitCompanion =      Limits.Companion
 import InstrumentCompanion = Instruments.Companion
 
@@ -454,14 +452,14 @@ function getOtherEntityReferences(link: NullableString<EntityLink>, name: Possib
     if (link == null)
         return EMPTY_ENTITIES
     if (link === 'this')
-        return lazy(() => Companion.getValueByName(name,).reference as unknown as PossibleOtherEntities,)
-    return lazy(() => (link.split(' / ').map(splitLink => Companion.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
+        return lazy(() => Entities.Companion.getValueByName(name,).reference as unknown as PossibleOtherEntities,)
+    return lazy(() => (link.split(' / ').map(splitLink => Entities.Companion.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
 }
 
 function getOrCreateGroupReference(references: Array<PossibleEnglishName>,): Lazy<Array<Entity>> {
     if (references == null)
         return CommonLazy.EMPTY_ARRAY
-    return lazy(() => references.map(it => Companion.getValueByName(it,).reference,),)
+    return lazy(() => references.map(it => Entities.Companion.getValueByName(it,).reference,),)
 }
 
 //endregion -------------------- Create reference --------------------

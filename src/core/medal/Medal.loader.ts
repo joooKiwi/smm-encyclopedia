@@ -12,8 +12,6 @@ import {isInProduction}      from 'variables'
 import {MedalContainer}      from 'core/medal/Medal.container'
 import {Medals}              from 'core/medal/Medals'
 
-import Companion = Medals.Companion
-
 /**
  * @dependsOn<{@link Medals}>
  * @indirectlyDependsOn<{@link CharacterNameLoader}>
@@ -73,7 +71,7 @@ function createReference(content: Content,): Medal {
     const imageName = content.image
 
     return new MedalContainer(
-        Companion.getValueByName(imageName,).associatedReference.reference,
+        Medals.Companion.getValueByName(imageName,).associatedReference.reference,
         imageName,
         content.amountOfAllowedLevelToUpload,
         content.amountOfStarReceived,
