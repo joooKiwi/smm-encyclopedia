@@ -1,6 +1,6 @@
-import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array}                                                                    from '@joookiwi/type'
-import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
+import {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import type {Array, Nullable}                                                     from '@joookiwi/type'
+import {GenericCollectionHolder}                                                  from '@joookiwi/collection'
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
 import {Empty}      from 'util/emptyVariables'
@@ -84,5 +84,26 @@ export namespace GameStyleCollection {
 
     export const EMPTY = new GameStyleCollection(EMPTY_ARRAY,)
     export const ALL =   new GameStyleCollection(ALL_GAME_STYLES,)
+
+
+    /**
+     * Create a new {@link GameStyleCollection} from the {@link values} received
+     * by attempting to reuse some predefined collections
+     *
+     * @param values The values to create a new {@link GameStyleCollection}
+     */
+    export function of<const T extends GameStyles,>(values: Nullable<Array<T>>,): GameStyleCollection<T>
+    export function of(values: Nullable<Array<GameStyles>>,): GameStyleCollection {
+        if (values == null)
+            return EMPTY
+
+        const size = values.length
+        if (size === 0)
+            return EMPTY
+
+        if ((ALL as GameStyleCollection).hasAll(values,))
+            return ALL
+        return new GameStyleCollection(values,)
+    }
 
 }

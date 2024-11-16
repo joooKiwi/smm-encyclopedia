@@ -1,5 +1,5 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array}                                                                    from '@joookiwi/type'
+import type {Array, Nullable}                                                          from '@joookiwi/type'
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {Times} from 'core/time/Times'
@@ -45,5 +45,26 @@ export namespace TimeCollection {
 
     export const EMPTY = new TimeCollection(EMPTY_ARRAY,)
     export const ALL =   new TimeCollection(ALL_TIMES,)
+
+
+    /**
+     * Create a new {@link TimeCollection} from the {@link values} received
+     * by attempting to reuse some predefined collections
+     *
+     * @param values The values to create a new {@link TimeCollection}
+     */
+    export function of<const T extends Times,>(values: Nullable<Array<T>>,): TimeCollection<T>
+    export function of(values: Nullable<Array<Times>>,): TimeCollection {
+        if (values == null)
+            return EMPTY
+
+        const size = values.length
+        if (size === 0)
+            return EMPTY
+
+        if ((ALL as TimeCollection).hasAll(values,))
+            return ALL
+        return new TimeCollection(values,)
+    }
 
 }

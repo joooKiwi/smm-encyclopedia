@@ -1,5 +1,6 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array}                                                                    from '@joookiwi/type'
+import type {Array, Nullable}                                                          from '@joookiwi/type'
+import {getFirstByArray}                                                               from '@joookiwi/collection'
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
@@ -66,5 +67,34 @@ export namespace GameCollection {
     export const SMM3DS_ONLY = new GameCollection(SMM3DS_ONLY_GAMES,)
     export const SMM2_ONLY =   new GameCollection(SMM2_ONLY_GAMES,)
     export const ALL =         new GameCollection(ALL_GAMES,)
+
+
+    /**
+     * Create a new {@link GameCollection} from the {@link values} received
+     * by attempting to reuse some predefined collections
+     *
+     * @param values The values to create a new {@link GameCollection}
+     */
+    export function of<const T extends Games,>(values: Nullable<Array<T>>,): GameCollection<T>
+    export function of(values: Nullable<Array<Games>>,): GameCollection {
+        if (values == null)
+            return EMPTY
+
+        const size = values.length
+        if (size === 0)
+            return EMPTY
+        if (size === 1) {
+            const value = getFirstByArray(values,)
+            if (value === SMM2)
+                return SMM2_ONLY
+            if (value === SMM1)
+                return SMM1_ONLY
+            return SMM3DS_ONLY
+        }
+
+        if ((ALL as GameCollection).hasAll(values,))
+            return ALL
+        return new GameCollection(values,)
+    }
 
 }
