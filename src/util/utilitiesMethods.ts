@@ -197,77 +197,111 @@ export function intersect<const T, >(first: | CollectionHolder<T> | Array<T>, se
 }
 
 //endregion -------------------- intersect --------------------
-//region -------------------- filter --------------------
-
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link games}
- *
- * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: CollectionHolder<Games>,): Array<T>
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link games}
- *
- * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Games.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: Array<T>, games: CollectionHolder<Games>,): Array<T>
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | Array<T>, games: CollectionHolder<Games>,) {
-    const valuesSize = values.length
-    if (valuesSize === 0)
-        return EMPTY_ARRAY
-
-    const gameSize = games.size
-    if (gameSize === 0)
-        return isArray(values,) ? values : values.toArray()
-
-    const newArray: MutableArray<T> = []
-    forEach2(values, value => {
-        for (const it of games)
-            if (it.get(value.reference,)) {
-                newArray.push(value,)
-                break
-            }
-    },)
-    return newArray
-}
-
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
- *
- * @param values     The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
- * @param gameStyles The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: CollectionHolder<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
- *
- * @param values     The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
- * @param gameStyles The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: Array<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | Array<T>, gameStyles: CollectionHolder<GameStyles>,) {
-    const valuesSize = values.length
-    if (valuesSize === 0)
-        return EMPTY_ARRAY
-
-    const gameSize = gameStyles.size
-    if (gameSize === 0)
-        return isArray(values,) ? values : values.toArray()
-
-    const newArray: MutableArray<T> = []
-    forEach2(values, value => {
-        for (const it of gameStyles)
-            if (it.get(value.reference,)) {
-                newArray.push(value,)
-                break
-            }
-    },)
-    return newArray
-}
-
-//endregion -------------------- filter --------------------
+// //region -------------------- filter --------------------
+//
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link games}
+//  *
+//  * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
+//  * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+//  */
+// export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: CollectionHolder<Games>,): Array<T>
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link games}
+//  *
+//  * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Games.get}
+//  * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+//  */
+// export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: Array<T>, games: CollectionHolder<Games>,): Array<T>
+// export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | Array<T>, games: CollectionHolder<Games>,) {
+//     const valuesSize = values.length
+//     if (valuesSize === 0)
+//         return EMPTY_ARRAY
+//
+//     const gameSize = games.size
+//     if (gameSize === 0)
+//         return isArray(values,) ? values : values.toArray()
+//
+//     const newArray: MutableArray<T> = []
+//     forEach2(values, value => {
+//         for (const it of games)
+//             if (it.get(value.reference,)) {
+//                 newArray.push(value,)
+//                 break
+//             }
+//     },)
+//     return newArray
+// }
+//
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
+//  *
+//  * @param values     The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
+//  * @param gameStyles The {@link CollectionHolder Collection} of game style to get if they can be used
+//  */
+// export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: CollectionHolder<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
+//  *
+//  * @param values     The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
+//  * @param gameStyles The {@link CollectionHolder Collection} of game style to get if they can be used
+//  */
+// export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: Array<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
+// export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | Array<T>, gameStyles: CollectionHolder<GameStyles>,) {
+//     const valuesSize = values.length
+//     if (valuesSize === 0)
+//         return EMPTY_ARRAY
+//
+//     const gameSize = gameStyles.size
+//     if (gameSize === 0)
+//         return isArray(values,) ? values : values.toArray()
+//
+//     const newArray: MutableArray<T> = []
+//     forEach2(values, value => {
+//         for (const it of gameStyles)
+//             if (it.get(value.reference,)) {
+//                 newArray.push(value,)
+//                 break
+//             }
+//     },)
+//     return newArray
+// }
+//
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link times}
+//  *
+//  * @param values  The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link Times.get}
+//  * @param times   The {@link CollectionHolder Collection} of time to get if they can be used
+//  */
+// export function filterTime<const T extends ClassWithReference<TimeProperty>, >(values: CollectionHolder<T>, times: CollectionHolder<Times>,): Array<T>
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link times}
+//  *
+//  * @param values  The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Times.get}
+//  * @param times   The {@link CollectionHolder Collection} of time to get if they can be used
+//  */
+// export function filterTime<const T extends ClassWithReference<TimeProperty>, >(values: Array<T>, gameStyles: CollectionHolder<Times>,): Array<T>
+// export function filterTime<const T extends ClassWithReference<TimeProperty>, >(values: | CollectionHolder<T> | Array<T>, times: CollectionHolder<Times>,) {
+//     const valuesSize = values.length
+//     if (valuesSize === 0)
+//         return EMPTY_ARRAY
+//
+//     const timeSize = times.size
+//     if (timeSize === 0)
+//         return isArray(values,) ? values : values.toArray()
+//
+//     const newArray: MutableArray<T> = []
+//     forEach2(values, value => {
+//         for (const it of times)
+//             if (it.get(value.reference,)) {
+//                 newArray.push(value,)
+//                 break
+//             }
+//     },)
+//     return newArray
+// }
+//
+// //endregion -------------------- filter --------------------
 //region -------------------- assert --------------------
 
 export function assert(condition: boolean, message: string,): asserts condition {
