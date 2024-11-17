@@ -1,7 +1,6 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
 import type {Array, Nullable}                                                          from '@joookiwi/type'
-import {getFirstByArray}                                                               from '@joookiwi/collection'
-import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
+import {GenericCollectionHolder, getFirstByArray, hasAllWithCollectionHolderByArray}   from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
 import {Empty} from 'util/emptyVariables'
@@ -92,7 +91,7 @@ export namespace GameCollection {
             return SMM3DS_ONLY
         }
 
-        if ((ALL as GameCollection).hasAll(values,))
+        if (hasAllWithCollectionHolderByArray(values, ALL,))
             return ALL
         return new GameCollection(values,)
     }

@@ -1,6 +1,6 @@
-import {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array, Nullable}                                                     from '@joookiwi/type'
-import {GenericCollectionHolder}                                                  from '@joookiwi/collection'
+import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import type {Array, Nullable}                                                          from '@joookiwi/type'
+import {GenericCollectionHolder, hasAllWithCollectionHolderByArray}                    from '@joookiwi/collection'
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
 import {Empty}      from 'util/emptyVariables'
@@ -101,7 +101,7 @@ export namespace GameStyleCollection {
         if (size === 0)
             return EMPTY
 
-        if ((ALL as GameStyleCollection).hasAll(values,))
+        if (hasAllWithCollectionHolderByArray(values, ALL,))
             return ALL
         return new GameStyleCollection(values,)
     }

@@ -1,6 +1,6 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
 import type {Array, Nullable}                                                          from '@joookiwi/type'
-import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
+import {GenericCollectionHolder, hasAllWithCollectionHolderByArray}                    from '@joookiwi/collection'
 
 import {Times} from 'core/time/Times'
 import {Empty} from 'util/emptyVariables'
@@ -23,7 +23,7 @@ export class TimeCollection<const T extends Times = Times,
     //region -------------------- Getter methods --------------------
 
     /** The collection has every time ({@link Times.DAY}, {@link Times.NIGHT}) type in its values */
-    public get hasAllGames(): boolean {
+    public get hasAllTimes(): boolean {
         return this.#hasAllGames ??= this._hasAllByArray(ALL as unknown as Array<T>,)
     }
 
@@ -62,7 +62,7 @@ export namespace TimeCollection {
         if (size === 0)
             return EMPTY
 
-        if ((ALL as TimeCollection).hasAll(values,))
+        if (hasAllWithCollectionHolderByArray(values, ALL,))
             return ALL
         return new TimeCollection(values,)
     }
