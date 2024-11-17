@@ -18,7 +18,7 @@ export class InstrumentContainer
 
     readonly #isInSuperMarioMaker1
     readonly #isInSuperMarioMakerFor3DS
-    #gameMap?: GameMap<boolean, Instrument>
+    #gameMap?: GameMap<Instrument>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

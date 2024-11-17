@@ -136,7 +136,7 @@ export class EntityContainer
     readonly #everyReferences
 
 
-    #gameMap?: GameMap<boolean, Entity>
+    #gameMap?: GameMap<Entity>
     #gameStyleMap?: GameStyleMap<Entity>
     #themeMap?: ThemeMap<Entity>
     #timeMap?: TimeMap<Entity>

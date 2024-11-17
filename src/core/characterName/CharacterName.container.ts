@@ -15,7 +15,7 @@ export class CharacterNameContainer
     readonly #isInSuperMarioMakerFor3DS
     readonly #isInSuperMarioMaker2
     readonly #hasNameSaidInTheEditor
-    #gameMap?: GameMap<boolean, CharacterName>
+    #gameMap?: GameMap<CharacterName>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

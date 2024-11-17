@@ -22,7 +22,7 @@ export class AlternativeLimitContainer
     readonly #type
 
     #isInSMM1OrSMM3DS?: boolean
-    #gameMap?: GameMap<boolean, Limit>
+    #gameMap?: GameMap<Limit>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

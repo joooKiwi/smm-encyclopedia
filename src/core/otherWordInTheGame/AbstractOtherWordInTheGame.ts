@@ -17,7 +17,7 @@ export abstract class AbstractOtherWordInTheGame
     readonly #isInSuperMarioMaker1
     readonly #isInSuperMarioMakerFor3DS
     readonly #isInSuperMarioMaker2
-    #map?: GameMap<boolean, OtherWordInTheGame>
+    #map?: GameMap<OtherWordInTheGame>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

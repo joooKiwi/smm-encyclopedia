@@ -19,7 +19,7 @@ export class SoundEffectContainer
     readonly #isInSuperMarioMaker1And3DS
     readonly #isInSuperMarioMaker2
     readonly #playerSoundEffectTrigger
-    #gameMap?: GameMap<boolean, SoundEffect>
+    #gameMap?: GameMap<SoundEffect>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

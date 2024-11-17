@@ -20,7 +20,7 @@ export class GameStyleContainer
     readonly #isAvailableFromTheStartInSuperMarioMaker1
     readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue
     readonly #nightDesertWindTranslationKey
-    #gameMap?: GameMap<boolean, GameStyle>
+    #gameMap?: GameMap<GameStyle>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

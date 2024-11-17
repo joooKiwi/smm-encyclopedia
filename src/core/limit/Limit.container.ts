@@ -27,7 +27,7 @@ export class LimitContainer
     readonly #amountComment
 
     #isInSMM1OrSMM3DS?: boolean
-    #gameMap?: GameMap<boolean, Limit>
+    #gameMap?: GameMap<Limit>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
