@@ -444,3 +444,6 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     //endregion -------------------- Methods --------------------
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).OtherWordInTheGames = OtherWordInTheGames

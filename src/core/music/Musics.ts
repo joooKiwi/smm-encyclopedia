@@ -468,4 +468,7 @@ export namespace Musics {
 
 }
 
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).Musics = Musics
+
 type PossibleMusic = | SingleSoundEffectMusic | SoundEffectMusicWithDifferentEditor | BackgroundMusic | NonChangeableSoundEffectBackgroundMusic | SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect

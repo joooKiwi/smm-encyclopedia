@@ -671,6 +671,5 @@ export namespace GameStyles {
 
 }
 
-// TODO remove this test variable when the application will be complete
-// @ts-ignore
+// @ts-ignore: TODO remove this test variable when the application will be complete
 (window.test ??= {}).GameStyles = GameStyles

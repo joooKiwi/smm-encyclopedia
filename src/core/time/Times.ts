@@ -211,3 +211,6 @@ export namespace Times {
     export const NIGHT_ONLY = [Times.NIGHT,] as const
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).Times = Times

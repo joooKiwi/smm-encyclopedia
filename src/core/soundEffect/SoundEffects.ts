@@ -1362,6 +1362,9 @@ export namespace SoundEffects {
 
 }
 
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).SoundEffects = SoundEffects
+
 type PossibleSMM2SoundEffect = Array<| SMM2SoundEffectSoundFile | MusicSoundFile>
 
 //region -------------------- SMM2 sound file --------------------

@@ -192,3 +192,6 @@ export namespace NightEffects {
     export const Companion = NightEffects.CompanionEnum.get
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).NightEffects = NightEffects

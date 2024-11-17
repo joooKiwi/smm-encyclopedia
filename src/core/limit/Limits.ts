@@ -578,5 +578,8 @@ export namespace Limits {
 
 }
 
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).Limits = Limits
+
 type PossibleGroupLinkInitialisation = NullOr<object>
 type PossibleEntityLinkInitialisation = NullOr<| Entities | readonly [Entities, Entities,]>

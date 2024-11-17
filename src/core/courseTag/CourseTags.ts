@@ -154,3 +154,6 @@ export namespace CourseTags {
     ] as const
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).CourseTags = CourseTags

@@ -258,3 +258,6 @@ export namespace MiiCostumes {
     export const ALL = Companion.values.toArray()
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).MiiCostumes = MiiCostumes
