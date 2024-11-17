@@ -19,10 +19,16 @@ describe('Instrument (file test)', () => {
                 test('Entity reference 4', () => expect(it.entityReference4,).toBeOneOf(everyEntityNamesOrNull,),)
                 test('Indirect entity reference', () => expect(it.indirectEntityReference,).toBeOneOf(everyEntityNamesOrNull,),)
             },)
-            describe('Is in game', () => {
-                test('SMM', () => expect(it.isInSuperMarioMaker1,).toBeBoolean(),)
-                test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
-                test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
+            describe('Is in …', () => {
+                describe('Game', () => {
+                    test('SMM', () => expect(it.isInSuperMarioMaker1,).toBeBoolean(),)
+                    test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
+                    test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
+                },)
+                describe('Time', () => {
+                    test("Day", () => expect(it.isInDayTime,).toBeBoolean(),)
+                    test("Night", () => expect(it.isInNightTime,).toBeBoolean(),)
+                },)
             },)
 
             testOnlyEnglish(it, everyNames,)

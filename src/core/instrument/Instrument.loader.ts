@@ -76,6 +76,9 @@ interface Content
 
     readonly isInSuperMarioMaker2: true
 
+    readonly isInDayTime: boolean
+    readonly isInNightTime: boolean
+
     readonly entityReference1: NullOrString<PossibleEnglishName_Entity>
     readonly entityReference2: NullOrString<PossibleEnglishName_Entity>
     readonly entityReference3: NullOrString<PossibleEnglishName_Entity>
@@ -92,6 +95,7 @@ function createReference(content: Content, entityMap: EntityMap,): Instrument {
         createNameFromContent(content, 'all', false,),
         retrieveEntity(content, entityMap,),
         content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS,
+        content.isInDayTime, content.isInNightTime,
     )
 }
 
