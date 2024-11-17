@@ -9,6 +9,7 @@ import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTa
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
+import type {TimeCollection}          from 'util/collection/TimeCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
@@ -45,20 +46,24 @@ class EditorVoiceAppInterpreter
     //region -------------------- Fields --------------------
 
     readonly #games
+    readonly #times
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection,) {
+    public constructor(games: GameCollection, times: TimeCollection,) {
         this.#games = games
+        this.#times = times
     }
 
     //endregion -------------------- Constructor --------------------
 
     public get content() {
         const games = this.#games
+        const times = this.#times
         return filterByArray(ALL, ({reference,},) =>
-            games.hasAnyIn(reference,),)
+            games.hasAnyIn(reference,)
+            && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }
 
     //region -------------------- List interpreter --------------------
@@ -119,7 +124,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
-export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {
+export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
     const game = intersect(ALL_GAMES, games,).length === 3
         ? EditorVoiceGames.ALL_GAMES
         : games.hasSMM2
@@ -132,13 +137,13 @@ export default function EditorVoiceApp({viewDisplay, games,}: EditorVoicePropert
                              titleContent={gameContentTranslation('editor voice.all',)}
                              description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games}/>
+        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: EditorVoiceProperties,) {
-    const appInterpreter = new EditorVoiceAppInterpreter(games,)
+function SubContent({viewDisplay, games, times,}: EditorVoiceProperties,) {
+    const appInterpreter = new EditorVoiceAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>

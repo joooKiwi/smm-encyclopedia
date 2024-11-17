@@ -10,6 +10,7 @@ import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import type {GameCollection}          from 'util/collection/GameCollection'
+import type {TimeCollection}          from 'util/collection/TimeCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
@@ -43,20 +44,24 @@ class CharacterNameAppInterpreter
     //region -------------------- Fields --------------------
 
     readonly #games
+    readonly #times
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection,) {
+    public constructor(games: GameCollection, times: TimeCollection,) {
         this.#games = games
+        this.#times = times
     }
 
     //endregion -------------------- Constructor --------------------
 
     public get content() {
         const games = this.#games
+        const times = this.#times
         return filterByArray(ALL, ({reference,},) =>
-            games.hasAnyIn(reference,),)
+            games.hasAnyIn(reference,)
+            && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }
 
     //region -------------------- List interpreter --------------------
@@ -118,7 +123,7 @@ const viewDisplayAndRouteName = [
 const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
-export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
+export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
     const game = intersect(ALL_GAMES, games,).length === 3
         ? CharacterNameGames.ALL_GAMES
         : games.hasSMM2
@@ -131,13 +136,13 @@ export default function CharacterNameApp({viewDisplay, games,}: CharacterNamePro
                              titleContent={gameContentTranslation('character name.all',)}
                              description={<CharacterNameDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<CharacterNameAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games}/>
+        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: CharacterNameProperties,) {
-    const appInterpreter = new CharacterNameAppInterpreter(games,)
+function SubContent({viewDisplay, games, times,}: CharacterNameProperties,) {
+    const appInterpreter = new CharacterNameAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>

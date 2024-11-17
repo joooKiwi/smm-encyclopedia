@@ -5,43 +5,34 @@ import type {ThemeTypes}           from 'app/property/ThemeTypes'
 import type {ViewDisplays}         from 'app/withInterpreter/ViewDisplays'
 import type {GameCollection}       from 'util/collection/GameCollection'
 import type {GameStyleCollection}  from 'util/collection/GameStyleCollection'
+import type {TimeCollection}       from 'util/collection/TimeCollection'
 import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export interface AppProperties
     extends ReactProperties {}
 
+interface AppPropertiesWithType<out T,>
+    extends AppProperties { readonly type: T }
+
 export interface AppWithInterpreterProperties
-    extends AppProperties {
-
-    readonly viewDisplay: ViewDisplays
-
-}
+    extends AppProperties { readonly viewDisplay: ViewDisplays }
 
 export interface AppWithGamesProperties
-    extends AppProperties {
+    extends AppProperties { readonly games: GameCollection }
 
-    readonly games: GameCollection
-
-}
+export interface AppWithTimesProperties
+    extends AppProperties { readonly times: TimeCollection }
 
 export interface AppWithGameStylesProperties
-    extends AppProperties {
-
-    readonly gameStyles: GameStyleCollection
-
-}
+    extends AppProperties { readonly gameStyles: GameStyleCollection }
 
 //region -------------------- Specific properties --------------------
 
 export interface PowerUpAndRidePriorityProperties
-    extends AppWithGamesProperties {
-
-    readonly type: PowerUpPriorityTypes
-
-}
+    extends AppPropertiesWithType<PowerUpPriorityTypes>, AppWithGamesProperties {}
 
 export interface CharacterNameProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithTimesProperties {}
 
 //game reference
 
@@ -56,18 +47,10 @@ export interface EntityProperties
 //entity group
 
 export interface LimitAppProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {
-
-    readonly type: LimitTypes
-
-}
+    extends AppPropertiesWithType<LimitTypes>, AppWithInterpreterProperties, AppWithGamesProperties {}
 
 export interface ThemeAppProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {
-
-    readonly type: ThemeTypes
-
-}
+    extends AppPropertiesWithType<ThemeTypes>, AppWithInterpreterProperties, AppWithGamesProperties {}
 
 export interface SoundEffectProperties
     extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
@@ -81,17 +64,13 @@ export interface SoundEffectProperties
 //mystery mushroom
 
 export interface CourseTagAppProperties
-    extends AppWithInterpreterProperties {
-
-    readonly type: CourseTagTypes
-
-}
+    extends AppPropertiesWithType<CourseTagTypes>, AppWithInterpreterProperties {}
 
 export interface InstrumentAppProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithTimesProperties {}
 
 export interface EditorVoiceProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithTimesProperties {}
 
 
 //endregion -------------------- Specific properties --------------------

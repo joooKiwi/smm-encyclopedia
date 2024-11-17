@@ -1273,10 +1273,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_HAT_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('everyHatPriority', '/every/hat/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.HAT}/>,)
     public static readonly NO_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('noPriority', '/no/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.NONE}/>,)
 
-    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyCharacterName', '/every/character-name', CARD, (viewDisplay, games,) => <CharacterNameApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyCharacterName', '/every/character-name', CARD, null, (viewDisplay, games, times,) => <CharacterNameApp viewDisplay={viewDisplay} games={games} times={times}/>,)
 
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
-    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyGameStyle', '/every/game-style', CARD, null, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_ENTITY = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
@@ -1310,9 +1310,9 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
     public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
 
-    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyInstrument', '/every/instrument', CARD, null, (viewDisplay, games,) => <InstrumentApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyInstrument', '/every/instrument', CARD, null, (viewDisplay, games, times,) => <InstrumentApp viewDisplay={viewDisplay} games={games} times={times}/>,)
 
-    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, null, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, null, (viewDisplay, games, times,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games} times={times}/>,)
 
     public static readonly EVERY_ROUTE = new EveryRoutes.Straight_EveryRoutes('everyRoute', '/debug/every-route', () => <RouteApp/>,)
 

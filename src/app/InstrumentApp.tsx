@@ -9,11 +9,13 @@ import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTa
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
+import type {TimeCollection}          from 'util/collection/TimeCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
+import Image                                        from 'app/tools/images/Image'
 import Table                                        from 'app/tools/table/Table'
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import CardList                                     from 'app/withInterpreter/CardList'
@@ -39,20 +41,24 @@ class InstrumentAppInterpreter
     //region -------------------- Fields --------------------
 
     readonly #games
+    readonly #times
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection,) {
+    public constructor(games: GameCollection, times: TimeCollection,) {
         this.#games = games
+        this.#times = times
     }
 
     //endregion -------------------- Constructor --------------------
 
     public get content() {
         const games = this.#games
+        const times = this.#times
         return filterByArray(ALL, ({reference,},) =>
-            games.hasAnyIn(reference,),)
+            games.hasAnyIn(reference,)
+            && times.hasAnyIn(reference,),)
     }
 
     //region -------------------- List interpreter --------------------
@@ -114,7 +120,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
-export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProperties,) {
+export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAppProperties,) {
     const game = games.hasSMM2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
         : games.hasSMM1
@@ -125,13 +131,13 @@ export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProper
                              titleContent={gameContentTranslation('instrument.all',)}
                              description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<InstrumentAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games}/>
+        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: InstrumentAppProperties,) {
-    const appInterpreter = new InstrumentAppInterpreter(games,)
+function SubContent({viewDisplay, games, times,}: InstrumentAppProperties,) {
+    const appInterpreter = new InstrumentAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="instrument" interpreter={appInterpreter}/>
