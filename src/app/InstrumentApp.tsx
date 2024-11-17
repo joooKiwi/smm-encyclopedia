@@ -1,7 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './InstrumentApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}                           from '@joookiwi/type'
+import {filterByArray, getFirstOrNullByArray} from '@joookiwi/collection'
 
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -26,7 +27,6 @@ import {Games}                                      from 'core/game/Games'
 import {Instruments}                                from 'core/instrument/Instruments'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame}                                 from 'util/utilitiesMethods'
 
 import ALL =    Instruments.ALL
 import SMM1 =   Games.SMM1
@@ -50,7 +50,9 @@ class InstrumentAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(ALL, this.#games,)
+        const games = this.#games
+        return filterByArray(ALL, ({reference,},) =>
+            games.any(it => it.get(reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

@@ -1,6 +1,7 @@
 import './EntityCategoryApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}              from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -25,7 +26,7 @@ class EntityCategoryAppInterpreter
     implements AppInterpreterWithTable<EntityCategories, EntityCategoryAppOption> {
 
     public get content() {
-        return ALL
+        return new GenericCollectionHolder(ALL,)
     }
 
     //region -------------------- List interpreter --------------------

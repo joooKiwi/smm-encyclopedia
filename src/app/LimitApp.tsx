@@ -2,6 +2,7 @@ import 'app/_GameAsideContent.scss'
 import './LimitApp.scss'
 
 import type {Array, MutableArray} from '@joookiwi/type'
+import {filterByArray}            from '@joookiwi/collection'
 
 import type {LimitAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -29,7 +30,7 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame, intersect}                      from 'util/utilitiesMethods'
+import {intersect}                                  from 'util/utilitiesMethods'
 
 import ALL_GAMES = Games.ALL
 import SMM1 =      Games.SMM1
@@ -60,7 +61,9 @@ class LimitAppInterpreter
     }
 
     public get content() {
-        return filterGame(this.type.content, this.#games,)
+        const games = this.#games
+        return filterByArray(this.type.content, it =>
+            games.any(game => game.get(it.reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

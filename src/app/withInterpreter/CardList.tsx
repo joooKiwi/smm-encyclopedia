@@ -1,5 +1,3 @@
-import {forEachByArray} from '@joookiwi/collection'
-
 import type {Content}                    from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {ReactProperties}            from 'util/react/ReactProperties'
@@ -32,7 +30,7 @@ export default function CardList<const CONTENT extends Content, >({reactKey, int
     const content = interpreter.content
 
     const contentToDisplay = new Array<NonNullReactElement>(content.length,)
-    forEachByArray(content, (enumerable, i,) => {
+    content.forEach((enumerable, i,) => {
         const uniqueKey = keyRetriever(enumerable,)
 
         //TODO change the popover to be on the id instead of the name directly

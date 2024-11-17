@@ -1,7 +1,8 @@
 import './CourseTagApp.scss'
 
-import type {Array} from '@joookiwi/type'
-import {Link}       from 'react-router-dom'
+import type {Array}              from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
+import {Link}                    from 'react-router-dom'
 
 import type {CourseTagAppProperties}  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -52,7 +53,7 @@ class CourseTagAppInterpreter
     }
 
     public get content() {
-        return this.type.content
+        return new GenericCollectionHolder(this.type.content,)
     }
 
     //region -------------------- List interpreter --------------------

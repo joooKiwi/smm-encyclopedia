@@ -1,6 +1,7 @@
 import './MiiCostumeApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}              from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -28,7 +29,7 @@ class MiiCostumeAppInterpreter
     implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
     public get content() {
-        return ALL
+        return new GenericCollectionHolder(ALL,)
     }
 
     //region -------------------- List interpreter --------------------

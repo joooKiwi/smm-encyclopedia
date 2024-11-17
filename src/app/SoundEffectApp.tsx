@@ -2,6 +2,7 @@ import 'app/_GameAsideContent.scss'
 import './SoundEffectApp.scss'
 
 import type {Array, MutableArray} from '@joookiwi/type'
+import {filterByArray}            from '@joookiwi/collection'
 
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -23,7 +24,7 @@ import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame, intersect}                      from 'util/utilitiesMethods'
+import {intersect}                                  from 'util/utilitiesMethods'
 
 import ALL =                   SoundEffects.ALL
 import ALL_GAMES =             Games.ALL
@@ -52,7 +53,9 @@ class SoundEffectAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(ALL, this.#games,)
+        const games = this.#games
+        return filterByArray(ALL, ({reference,},) =>
+            games.any(it => it.get(reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

@@ -1,7 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './GameStyleApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}    from '@joookiwi/type'
+import {filterByArray} from '@joookiwi/collection'
 
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -28,7 +29,6 @@ import GameStyleImage                               from 'core/gameStyle/GameSty
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame}                                 from 'util/utilitiesMethods'
 
 import ALL =    GameStyles.ALL
 import SMM1 =   Games.SMM1
@@ -57,7 +57,9 @@ class GameStyleAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(ALL, this.#games,)
+        const games = this.#games
+        return filterByArray(ALL, ({reference,},) =>
+            games.any(it => it.get(reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

@@ -1,7 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './EditorVoiceApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}    from '@joookiwi/type'
+import {filterByArray} from '@joookiwi/collection'
 
 import type {EditorVoiceProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -12,12 +13,16 @@ import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
+import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
+import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
+import LinkText                                     from 'app/tools/text/LinkText'
+import TextOrLink                                   from 'app/tools/text/TextOrLink'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import LinkButton                                   from 'app/tools/button/LinkButton'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import GameImage                                    from 'core/game/GameImage'
@@ -26,11 +31,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import ThemeImage                                   from 'core/theme/ThemeImage'
 import {Themes}                                     from 'core/theme/Themes'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame, intersect}                      from 'util/utilitiesMethods'
-import LinkText                                     from 'app/tools/text/LinkText'
-import TextOrLink                                   from 'app/tools/text/TextOrLink'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
-import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
+import {intersect}                                  from 'util/utilitiesMethods'
 
 import ALL =       EditorVoices.ALL
 import ALL_GAMES = Games.ALL
@@ -55,7 +56,9 @@ class EditorVoiceAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(ALL, this.#games,)
+        const games = this.#games
+        return filterByArray(ALL, ({reference,},) =>
+            games.any(it => it.get(reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

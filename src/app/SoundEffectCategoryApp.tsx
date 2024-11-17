@@ -1,6 +1,7 @@
 import './SoundEffectCategoryApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}              from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -23,7 +24,7 @@ class SoundEffectCategoryAppInterpreter
     implements AppInterpreterWithTable<SoundEffectCategories, SoundEffectCategoryAppOption> {
 
     public get content() {
-        return ALL
+        return new GenericCollectionHolder(ALL,)
     }
 
     //region -------------------- List interpreter --------------------

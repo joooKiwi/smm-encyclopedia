@@ -1,6 +1,7 @@
 import './MysteryMushroomApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}              from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -24,7 +25,7 @@ class MysteryMushroomAppInterpreter
     implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
     public get content() {
-        return ALL
+        return new GenericCollectionHolder(ALL,)
     }
 
     //region -------------------- List interpreter --------------------

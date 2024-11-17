@@ -1,7 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
-import type {Array} from '@joookiwi/type'
+import type {Array}    from '@joookiwi/type'
+import {filterByArray} from '@joookiwi/collection'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -28,7 +29,6 @@ import GameImage                                         from 'core/game/GameIma
 import {Games}                                           from 'core/game/Games'
 import ThemeImage                                        from 'core/theme/ThemeImage'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
-import {filterGame}                                      from 'util/utilitiesMethods'
 
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
@@ -58,7 +58,9 @@ class ThemeAppInterpreter
     }
 
     public get content() {
-        return filterGame(this.type.content, this.#games,)
+        const games = this.#games
+        return filterByArray(this.type.content, ({reference,},) =>
+            games.any(it => it.get(reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

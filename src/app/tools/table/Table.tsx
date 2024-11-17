@@ -1,9 +1,9 @@
 import './Table.scss'
 
-import type {CollectionHolder}                                                                                from '@joookiwi/collection'
-import type {Enumerable}                                                                                      from '@joookiwi/enumerable'
-import type {MutableArray}                                                                                    from '@joookiwi/type'
-import {dropByArray, filterNotNull, forEachByArray, GenericCollectionHolder, joinToStringByArray, mapByArray} from '@joookiwi/collection'
+import type {CollectionHolder}                                                                    from '@joookiwi/collection'
+import type {Enumerable}                                                                          from '@joookiwi/enumerable'
+import type {MutableArray}                                                                        from '@joookiwi/type'
+import {dropByArray, filterNotNull, forEachByArray, GenericCollectionHolder, joinToStringByArray} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
@@ -162,7 +162,7 @@ function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTabl
  * @private
  */
 function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleTableContent> {
-    return mapByArray(content, contentValue => {
+    return content.map(contentValue => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
         options.forEach(option =>
             forEachByArray(createTableContent(contentValue, option,), it => tableContent.push(it,),),)

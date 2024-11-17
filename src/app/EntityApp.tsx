@@ -4,6 +4,7 @@ import './EntityApp.scss'
 import 'app/options/EntityAppOption.scss'
 
 import type {Array, MutableArray} from '@joookiwi/type'
+import {filterByArray}            from '@joookiwi/collection'
 
 import type {EntityProperties}                               from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}                        from 'app/interpreter/AppInterpreterWithTable'
@@ -34,7 +35,7 @@ import {GameStyles}                                 from 'core/gameStyle/GameSty
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {Empty}                                      from 'util/emptyVariables'
-import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
+import {intersect}                                  from 'util/utilitiesMethods'
 
 import ALL =                Entities.ALL
 import ALL_GAME_STYLES =    GameStyles.ALL
@@ -70,7 +71,11 @@ class EntityAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGameStyle(filterGame(ALL, this.#games,), this.#gameStyles,)
+        const games = this.#games
+        const gameStyles = this.#gameStyles
+        return filterByArray(ALL, ({reference,},) =>
+            games.any(game => game.get(reference,),)
+            && gameStyles.any(gameStyle => gameStyle.get(reference,),),)
     }
 
     //region -------------------- List interpreter --------------------

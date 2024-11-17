@@ -1,5 +1,3 @@
-import {forEachByArray} from '@joookiwi/collection'
-
 import type {ReactProperties}              from 'util/react/ReactProperties'
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {Content}                      from 'app/interpreter/AppInterpreter'
@@ -30,7 +28,7 @@ export default function SimpleList<const CONTENT extends Content, >({reactKey, i
     const content = interpreter.content
 
     const contentToDisplay = new Array<NonNullReactElement>(content.length,)
-    forEachByArray(content, (enumerable, i,) => {
+    content.forEach((enumerable, i,) => {
         const uniqueKey = keyRetriever(enumerable,)
 
         //TODO change the popover to be on the id instead of the name directly
