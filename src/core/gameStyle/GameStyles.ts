@@ -93,7 +93,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
     public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles<'SM3DW', '3W', '3DW', '3dw', 'Super Mario 3D World'> {
 
         public override get(property: GameStyleProperty,) {
-            return property.isInSuperMario3DWorldStyle === true
+            return property.isInSuperMario3DWorldStyle
         }
 
         public override getReference(entity: Entity,) {

@@ -1,11 +1,9 @@
 import type {Times} from 'core/time/Times'
 
-export interface TimeProperty<out DAY extends boolean = boolean,
-    out NIGHT extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable, > {
+export interface TimeProperty {
 
-    get isInDayTheme(): DAY
-
-    get isInNightTheme(): NIGHT
+    readonly isInDayTheme: boolean
+    readonly isInNightTheme: boolean
 
     /**
      * Return a {@link Map} based on the enum {@link Times}

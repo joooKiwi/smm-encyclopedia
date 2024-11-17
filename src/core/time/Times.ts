@@ -47,7 +47,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
     public static readonly NIGHT = new class Times_Night extends Times<'Night', 'night', 'Moon'> {
 
         public override get(property: TimeProperty,) {
-            return property.isInNightTheme === true
+            return property.isInNightTheme
         }
 
         public override getReference(entity: Entity,) {
