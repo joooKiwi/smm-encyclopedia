@@ -26,10 +26,16 @@ describe('Character name (file test)', () => {
         //TODO add Parakeet in japanese, chinese & korean
 
         describe('Type validations', () => {
-            describe('Is in game', () => {
-                test('SMM', () => expect(it.isInSuperMarioMaker1,).toBeBoolean(),)
-                test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
-                test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeBoolean(),)
+            describe('Is in …', () => {
+                describe('Game', () => {
+                    test('SMM', () => expect(it.isInSuperMarioMaker1,).toBeBoolean(),)
+                    test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
+                    test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
+                },)
+                describe('Time', () => {
+                    test("Day", () => expect(it.isInDayTime,).toBeBoolean(),)
+                    test("Night", () => expect(it.isInNightTime,).toBeBoolean(),)
+                },)
             },)
             test('Has a name said in Mario Maker', () => expect(it.hasNameSaidInTheEditor,).toBeBoolean(),)
             test('Unique name', () => expect(it.uniqueName,).toBeOneOf(everyUniqueNames,),)

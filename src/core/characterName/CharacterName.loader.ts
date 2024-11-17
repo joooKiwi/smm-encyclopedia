@@ -37,7 +37,7 @@ export class CharacterNameLoader
 
         const references = new Map<PossibleUniqueEnglishName, CharacterName>()
         forEachByArray(file as Array<Content>, content =>
-            references.set(content.uniqueName as PossibleUniqueEnglishName, createReference(content,),),)
+            references.set(content.uniqueName, createReference(content,),),)
 
         if (!isInProduction)
             console.info(
@@ -52,7 +52,12 @@ export class CharacterNameLoader
 
 
 interface Content
-    extends LanguageContent, GameContentFromAllGames, UniqueNameContent<PossibleUniqueEnglishName> {
+    extends LanguageContent,
+        GameContentFromAllGames,
+        UniqueNameContent<PossibleUniqueEnglishName> {
+
+    readonly isInDayTime: boolean
+    readonly isInNightTime: boolean
 
     readonly hasNameSaidInTheEditor: boolean
 
@@ -62,6 +67,7 @@ function createReference(content: Content,): CharacterName {
     return new CharacterNameContainer(
         createNameFromContent(content, 'all', false,),
         content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,
+        content.isInDayTime, content.isInNightTime,
         content.hasNameSaidInTheEditor,
     )
 }
