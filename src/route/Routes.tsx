@@ -34,17 +34,16 @@ const everyRoute = RouteCompanion.everyRoute
 // const everyGameStylesAsUrl = everyGameStyles.map(it => GameStyleCompanion.getGroupUrlValue(it,),)
 // const everyViewDisplay = ViewDisplayCompanion.values
 /**
- * Every route encapsulated in a hash router (for GitHub).
+ * All the routes encapculated in a {@link Router HashRouter}.
+ * The reason it is not a BrowserRouter is because of GitHub hosting service.
  *
- * It uses at first the {@link ProjectLanguages} {@link ProjectLanguages.acronym acronym} in the path.
+ * At the root it has a "/"
+ * and then the {@link ProjectLanguages project language} {@link ProjectLanguages.acronym acronym}
+ * in parrallel to the {@link EveryRoutes route instances} {@link SimpleRoute.path basic path}.
  *
- * If there is no {@link ProjectLanguages.acronym acronym} at first,
- * it should automatically detect the language on the device <i>(to be added)</i>.
- *
- * Also, it will create a specific route depending on the {@link Games game(s)}
- * and the {@link GameStyles game style(s)} to be displayed.
- *
- * Then, by using the routes ({@link EveryRoutes}), the paths are applied in the parameter.
+ * If the path is correct for the {@link ProjectLanguages language},
+ * then the {@link EveryRoutes route instances}'s values are processed with the mutation
+ * on the {@link CompanionEnumWithCurrentAndSetCurrentEventAsCollection.current current value} (if applicable)
  *
  * @see https://reactrouter.com/main/routers/create-hash-router
  */
