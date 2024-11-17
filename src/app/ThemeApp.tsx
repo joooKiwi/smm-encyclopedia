@@ -60,7 +60,7 @@ class ThemeAppInterpreter
     public get content() {
         const games = this.#games
         return filterByArray(this.type.content, ({reference,},) =>
-            games.any(it => it.get(reference,),),)
+            games.hasAnyIn(reference,),)
     }
 
     //region -------------------- List interpreter --------------------

@@ -74,8 +74,8 @@ class EntityAppInterpreter
         const games = this.#games
         const gameStyles = this.#gameStyles
         return filterByArray(ALL, ({reference,},) =>
-            games.any(game => game.get(reference,),)
-            && gameStyles.any(gameStyle => gameStyle.get(reference,),),)
+            games.hasAnyIn(reference,)
+            && gameStyles.hasAnyIn(reference,),)
     }
 
     //region -------------------- List interpreter --------------------

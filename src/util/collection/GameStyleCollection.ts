@@ -2,6 +2,8 @@ import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrColle
 import type {Array, Nullable}                                                          from '@joookiwi/type'
 import {GenericCollectionHolder, hasAllWithCollectionHolderByArray}                    from '@joookiwi/collection'
 
+import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
+
 import {GameStyles} from 'core/gameStyle/GameStyles'
 import {Empty}      from 'util/emptyVariables'
 
@@ -77,6 +79,18 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
+    /**
+     * Tell if the {@link property} is present via {@link GameStyles.get} on at least one
+     *
+     * @param property The reference to validate its game style property
+     */
+    public hasAnyIn(property: GameStyleProperty,): boolean {
+        return this._any(it => it.get(property,),)
+    }
+
+    //endregion -------------------- Methods --------------------
 
 }
 

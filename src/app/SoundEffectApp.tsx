@@ -55,7 +55,7 @@ class SoundEffectAppInterpreter
     public get content() {
         const games = this.#games
         return filterByArray(ALL, ({reference,},) =>
-            games.any(it => it.get(reference,),),)
+            games.hasAnyIn(reference,),)
     }
 
     //region -------------------- List interpreter --------------------

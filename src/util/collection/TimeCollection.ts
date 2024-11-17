@@ -8,6 +8,7 @@ import {Empty} from 'util/emptyVariables'
 import ALL =         Times.ALL
 import ALL_TIMES =   Times.ALL
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
 export class TimeCollection<const T extends Times = Times,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
@@ -38,6 +39,18 @@ export class TimeCollection<const T extends Times = Times,
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
+    /**
+     * Tell if the {@link property} is present via {@link Times.get} on at least one
+     *
+     * @param property The reference to validate its time property
+     */
+    public hasAnyIn(property: TimeProperty,): boolean {
+        return this._any(it => it.get(property,),)
+    }
+
+    //endregion -------------------- Methods --------------------
 
 }
 

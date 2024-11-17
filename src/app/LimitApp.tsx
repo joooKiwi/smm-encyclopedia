@@ -63,7 +63,7 @@ class LimitAppInterpreter
     public get content() {
         const games = this.#games
         return filterByArray(this.type.content, it =>
-            games.any(game => game.get(it.reference,),),)
+            games.hasAnyIn(it.reference,),)
     }
 
     //region -------------------- List interpreter --------------------
