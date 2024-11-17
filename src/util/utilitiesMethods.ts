@@ -1,14 +1,9 @@
 import type {CollectionHolder}                                   from '@joookiwi/collection'
 import type {CompanionEnumDeclaration}                           from '@joookiwi/enumerable'
 import type {Array, EmptyString, MutableArray, Nullable, NullOr} from '@joookiwi/type'
-import {forEach as forEach2, isArray, isCollectionHolder}        from '@joookiwi/collection'
+import {isArray, isCollectionHolder}                             from '@joookiwi/collection'
 import {AssertionError}                                          from 'assert'
 
-import type {ClassWithReference}                                                                                  from 'core/ClassWithReference'
-import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
-import type {GameStyleProperty}                                                                                   from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {Games}                                                                                               from 'core/game/Games'
-import type {GameStyles}                                                                                          from 'core/gameStyle/GameStyles'
 import type {EnumerableUsedInRoute, EnumerableWithEnglishName, EnumerableWithNullableAcronym, EnumerableWithType} from 'util/enumerable/Enumerable.types'
 import type {CompanionEnumRetrievableInUrl}                                                                       from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
