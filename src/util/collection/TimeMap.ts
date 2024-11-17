@@ -7,6 +7,8 @@ import {Times} from 'core/time/Times'
 /**
  * A map made to be handled the same way as a {@link Map},
  * but with a specification about the {@link Times}
+ *
+ * @see TimeCollection
  */
 export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
     implements ReadonlyMap<Times, boolean> {

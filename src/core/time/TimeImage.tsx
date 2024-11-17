@@ -1,6 +1,7 @@
 import type {Times}           from 'core/time/Times'
 import type {ReactProperties} from 'util/react/ReactProperties'
-import Image                  from 'app/tools/images/Image'
+
+import Image from 'app/tools/images/Image'
 
 interface TimeImageProperties
     extends ReactProperties {
