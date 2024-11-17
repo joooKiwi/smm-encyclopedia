@@ -165,9 +165,9 @@ export class EntityContainer
         isGlobalGroundOrGlobal: boolean, isGlobalGroundOrGlobalInSm3dw: boolean,
 
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
-        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: BooleanOrNotApplicable,
-        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: BooleanOrNotApplicable, isInSnowTheme: BooleanOrNotApplicable, isInSkyTheme: BooleanOrNotApplicable, isInForestTheme: BooleanOrNotApplicable, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
-        isInDayTime: boolean, isInNightTime: BooleanOrNotApplicable,
+        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,
+        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: boolean, isInSnowTheme: boolean, isInSkyTheme: boolean, isInForestTheme: boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
+        isInDayTime: boolean, isInNightTime: boolean,
 
         editorLimitInSuperMarioMaker1And3DS: NullOr<| NotApplicable | Limits>, editorLimitInSuperMarioMaker2: NullOr<| NotApplicable | Limits>, isUnknownInEditorLimitInSuperMarioMaker2: boolean,
         isInGeneralLimit: BooleanOrNotApplicable, isInGeneralLimitComment: NullOrString<PossibleGeneralLimitComment>,

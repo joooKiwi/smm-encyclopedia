@@ -85,7 +85,7 @@ export class EmptyEntity
     public readonly isInSuperMarioBros3Style = false
     public readonly isInSuperMarioWorldStyle = false
     public readonly isInNewSuperMarioBrosUStyle = false
-    public readonly isInSuperMario3DWorldStyle = NOT_APPLICABLE
+    public readonly isInSuperMario3DWorldStyle = false
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Theme --------------------
@@ -93,10 +93,10 @@ export class EmptyEntity
     public readonly isInGroundTheme = false
     public readonly isInUndergroundTheme = false
     public readonly isInUnderwaterTheme = false
-    public readonly isInDesertTheme = NOT_APPLICABLE
-    public readonly isInSnowTheme = NOT_APPLICABLE
-    public readonly isInSkyTheme = NOT_APPLICABLE
-    public readonly isInForestTheme = NOT_APPLICABLE
+    public readonly isInDesertTheme = false
+    public readonly isInSnowTheme = false
+    public readonly isInSkyTheme = false
+    public readonly isInForestTheme = false
     public readonly isInGhostHouseTheme = false
     public readonly isInAirshipTheme = false
     public readonly isInCastleTheme = false
@@ -105,7 +105,7 @@ export class EmptyEntity
     //region -------------------- Time --------------------
 
     public readonly isInDayTheme = false
-    public readonly isInNightTheme = NOT_APPLICABLE
+    public readonly isInNightTheme = false
 
     //endregion -------------------- Time --------------------
     //region -------------------- Limit --------------------

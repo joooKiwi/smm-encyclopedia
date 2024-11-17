@@ -19,9 +19,9 @@ import type {Times}                                                             
 export interface Entity
     extends NameTrait<string>, NameTraitFromACategory<string, EntityCategory>,
         GameProperty,
-        GameStyleProperty<boolean, boolean, boolean, boolean, BooleanOrNotApplicable>,
-        ThemeProperty<boolean, boolean, boolean, BooleanOrNotApplicable, BooleanOrNotApplicable, BooleanOrNotApplicable, BooleanOrNotApplicable>,
-        TimeProperty<boolean, BooleanOrNotApplicable> {
+        GameStyleProperty,
+        ThemeProperty,
+        TimeProperty {
 
     //region -------------------- Basic properties --------------------
 

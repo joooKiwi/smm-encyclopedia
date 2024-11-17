@@ -128,21 +128,21 @@ interface Content
     readonly isInSMB3GameStyle: boolean
     readonly isInSMWGameStyle: boolean
     readonly isInNSMBUGameStyle: boolean
-    readonly isInSM3DWGameStyle: BooleanOrNotApplicable
+    readonly isInSM3DWGameStyle: boolean
 
     readonly isInGroundTheme: boolean
     readonly isInUndergroundTheme: boolean
     readonly isInUnderwaterTheme: boolean
-    readonly isInDesertTheme: BooleanOrNotApplicable
-    readonly isInSnowTheme: BooleanOrNotApplicable
-    readonly isInSkyTheme: BooleanOrNotApplicable
-    readonly isInForestTheme: BooleanOrNotApplicable
+    readonly isInDesertTheme: boolean
+    readonly isInSnowTheme: boolean
+    readonly isInSkyTheme: boolean
+    readonly isInForestTheme: boolean
     readonly isInGhostHouseTheme: boolean
     readonly isInAirshipTheme: boolean
     readonly isInCastleTheme: boolean
 
     readonly isInDayTime: boolean
-    readonly isInNightTime: BooleanOrNotApplicable
+    readonly isInNightTime: boolean
 
     //endregion -------------------- Is in properties --------------------
     //region -------------------- Basic properties --------------------
