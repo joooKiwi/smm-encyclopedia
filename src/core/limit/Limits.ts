@@ -171,7 +171,7 @@ export class Limits
 
     }(['Snowball Thrown By A Spike Limit',],)
     public static readonly CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT =            new Limits.EditorLimits(['Clear Condition Entity Amount Limit',],)
-    public static readonly RENDERED_OBJECT_LIMIT =                          new Limits.PlayLimits(['Rendered Object Limit',], ['Object Displayed Limit',],)
+    public static readonly DYNAMIC_RENDERED_OBJECT_LIMIT =                  new Limits.PlayLimits(['Dynamic Rendered Object Limit',], ['Dynamic Object Displayed Limit',],)
 
     public static readonly BIG_COIN_LIMIT =                                 new class Limits_BigCoinLimit extends Limits.EditorLimits {
 
@@ -187,13 +187,13 @@ export class Limits
         }
 
     }(['Pink Coin Limit',],)
-    public static readonly COLLECTED_COIN_LIMIT =                           new class Limits_CollectedCoinLimit extends Limits.PlayLimits {
+    public static readonly COLLECTED_LOOSE_COIN_LIMIT =                     new class Limits_CollectedCoinLimit extends Limits.PlayLimits {
 
         protected override get _entityLink() {
             return Import.Entities.COIN
         }
 
-    }(['Collected Coin Limit', 'CCL',],)
+    }(['Collected Loose Coin Limit',],)
     public static readonly COLLECTED_KEY_LIMIT =                            new class Limits_CollectedKeyLimit extends Limits.PlayLimits {
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
