@@ -76,7 +76,7 @@
   "Icon":           "Icon",
   "Music or sound": "Music or sound",
   "Name or word":   "Name or word",
-  "Sound":          { "singular": "Sound", "plural": "Sounds" },
+  "sound":          { "singular": "Sound", "plural": "Sounds" },
   "Word":           "Word",
 
   "Minimum": { "m": "Minimum", "f": "Minimum" },
