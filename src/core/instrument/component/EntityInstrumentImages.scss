@@ -1,0 +1,14 @@
+.instrument-entity-images-container img {
+  max-height: 2.5rem;
+
+  &[alt*="Shoe"],
+  &[alt*="Stiletto"],
+  &[alt*="Falling Fire"],
+  &[alt*="Mystery Mushroom"],
+  &[alt*="Big Mushroom"],
+  &[alt*="Bomb"],
+  &[alt*="Magic Ball"],
+  &[alt*="Weird Mushroom"], { // To make the images a bit larger larger than the others
+    height: 2.5rem
+  }
+}

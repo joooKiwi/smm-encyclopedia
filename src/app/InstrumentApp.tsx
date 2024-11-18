@@ -15,7 +15,6 @@ import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
-import Image                                        from 'app/tools/images/Image'
 import Table                                        from 'app/tools/table/Table'
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import CardList                                     from 'app/withInterpreter/CardList'
@@ -27,6 +26,7 @@ import TextOrLink                                   from 'app/tools/text/TextOrL
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {Instruments}                                from 'core/instrument/Instruments'
+import EntityInstrumentImages                       from 'core/instrument/component/EntityInstrumentImages'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
@@ -82,6 +82,7 @@ class InstrumentAppInterpreter
 
     public createCardListContent(enumerable: Instruments,) {
         return <div className="instrument-sounds">
+            <EntityInstrumentImages value={enumerable}/>
             <InstrumentSound value={enumerable}/>
         </div>
     }
