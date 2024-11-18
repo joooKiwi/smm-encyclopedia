@@ -8,8 +8,8 @@ import type {InstrumentSoundFile}                                               
 import type {Instrument}                                                                                                                                                                                                                               from 'core/instrument/Instrument'
 import type {CompanionEnumByNameSingleton}                                                                                                                                                                                                             from 'util/enumerable/Singleton.types'
 
-import {InstrumentLoader}               from 'core/instrument/Instrument.loader'
 import {instrumentSound}                from 'core/instrument/file/fileCreator'
+import {Import}                         from 'util/DynamicImporter'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
@@ -156,7 +156,7 @@ export class Instruments
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, Instrument> {
-        return this.#REFERENCE_MAP ??= InstrumentLoader.get.load()
+        return this.#REFERENCE_MAP ??= Import.InstrumentLoader.get.load()
     }
 
     /**

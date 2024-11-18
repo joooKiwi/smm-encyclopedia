@@ -13,6 +13,7 @@ import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomE
 import type {Games}                         from 'core/game/Games'
 import type {GameReferences}                from 'core/gameReference/GameReferences'
 import type {GameStyles}                    from 'core/gameStyle/GameStyles'
+import type {InstrumentLoader}              from 'core/instrument/Instrument.loader'
 import type {Instruments}                   from 'core/instrument/Instruments'
 import type {Limits}                        from 'core/limit/Limits'
 import type {LimitTypes}                    from 'core/limit/LimitTypes'
@@ -25,6 +26,7 @@ import type {OfficialNotifications}         from 'core/officialNotification/Offi
 import type {PredefinedMessages}            from 'core/predefinedMessage/PredefinedMessages'
 import type {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffectCategories'
 import type {SoundEffects}                  from 'core/soundEffect/SoundEffects'
+import type {ThemeLoader}                   from 'core/theme/Theme.loader'
 import type {Themes}                        from 'core/theme/Themes'
 import type {Times}                         from 'core/time/Times'
 import type {Versions}                      from 'core/version/Versions'
@@ -87,6 +89,7 @@ export class DynamicImporter {
     //region -------------------- Theme fields --------------------
 
     #Themes?: typeof Themes
+    #ThemeLoader?: typeof ThemeLoader
 
     #NightEffects?: typeof NightEffects
 
@@ -153,6 +156,7 @@ export class DynamicImporter {
     //region -------------------- Instrument fields --------------------
 
     #Instruments?: typeof Instruments
+    #InstrumentLoader?: typeof InstrumentLoader
 
     //endregion -------------------- Instrument fields --------------------
     //region -------------------- Music fields --------------------
@@ -235,6 +239,10 @@ export class DynamicImporter {
 
     public get Themes(): typeof Themes {
         return this.#Themes ??= require('../core/theme/Themes').Themes
+    }
+
+    public get ThemeLoader(): typeof ThemeLoader {
+        return this.#ThemeLoader ??= require('../core/theme/Theme.loader').ThemeLoader
     }
 
 
@@ -334,6 +342,10 @@ export class DynamicImporter {
 
     public get Instruments(): typeof Instruments {
         return this.#Instruments ??= require('../core/instrument/Instruments').Instruments
+    }
+
+    public get InstrumentLoader(): typeof InstrumentLoader {
+        return this.#InstrumentLoader ??= require('../core/instrument/Instrument.loader').InstrumentLoader
     }
 
     //endregion -------------------- "Instrument" getter methods --------------------

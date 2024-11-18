@@ -20,7 +20,6 @@ import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
 import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}           from 'core/entity/EditorEntityImages'
 import type {EntityImages}                 from 'core/entity/EntityImages'
-import {EntityLoader}                      from 'core/entity/Entity.loader'
 import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
 import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
 import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
@@ -554,7 +553,7 @@ export class Entities
     //region -------------------- Getter methods (reference) --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, Entity> {
-        return this.#REFERENCE_MAP ??= EntityLoader.get.load()
+        return this.#REFERENCE_MAP ??= Import.EntityLoader.get.load()
     }
 
     /**

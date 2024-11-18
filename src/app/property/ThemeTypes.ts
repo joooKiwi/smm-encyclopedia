@@ -8,10 +8,6 @@ import type {CompanionEnumByTypeSingleton}                     from 'util/enumer
 import {Themes}              from 'core/theme/Themes'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
-import ALL =           Themes.ALL
-import COURSE_THEMES = Themes.COURSE_THEMES
-import WORLD_THEMES =  Themes.WORLD_THEMES
-
 /** @usedByTheRouting */
 export abstract class ThemeTypes
     extends Enum<Ordinals, Names>
@@ -22,7 +18,7 @@ export abstract class ThemeTypes
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
         public override get content() {
-            return ALL
+            return Themes.ALL
         }
 
 
@@ -34,7 +30,7 @@ export abstract class ThemeTypes
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
         public override get content() {
-            return COURSE_THEMES
+            return Themes.COURSE_THEMES
         }
 
 
@@ -54,7 +50,7 @@ export abstract class ThemeTypes
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
         public override get content() {
-            return WORLD_THEMES
+            return Themes.WORLD_THEMES
         }
 
 

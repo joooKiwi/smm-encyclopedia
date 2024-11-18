@@ -13,10 +13,10 @@ import type {WorldTheme}                                                        
 import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
 import type {CompanionEnumByNameSingleton}                                         from 'util/enumerable/Singleton.types'
 
-import {ThemeLoader}                    from 'core/theme/Theme.loader'
 import * as FileCreator                 from 'core/theme/file/fileCreator'
 import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
+import {Import}                         from 'util/DynamicImporter'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
@@ -211,7 +211,7 @@ export abstract class Themes
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
-        return this.#REFERENCE_MAP ??= ThemeLoader.get.load()
+        return this.#REFERENCE_MAP ??= Import.ThemeLoader.get.load()
     }
 
     /**
