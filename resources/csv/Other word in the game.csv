@@ -1,7 +1,7 @@
 isInSuperMarioMaker1,isInSuperMarioMakerFor3DS,isInSuperMarioMaker2,isPlural,pluralForm,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
 TRUE,TRUE,FALSE,FALSE,,Flyday,,,BZZendredi,,,Fliegtag,Viernezzz,,,Venerzzzì,Vliegdag,Bzzexta-feira,,,Полетница,Flyday,,,,
-TRUE,TRUE,FALSE,FALSE,,,Happy Sunday,Today is Sunday,,Bon dimanche!,C'est dimanche !,Endlich Sonntag,¡Ya es domingo!,,,Già domenica!,Het is zondag!,Hoje é Domingo,,,Воскресенье,今日は 日曜,,,,
-TRUE,TRUE,FALSE,FALSE,,"Let's get
+TRUE,TRUE,FALSE,FALSE,,,Happy Sunday,Today is Sunday,,Bon dimanche!,C’est dimanche !,Endlich Sonntag,¡Ya es domingo!,,,Già domenica!,Het is zondag!,Hoje é Domingo,,,Воскресенье,今日は 日曜,,,,
+TRUE,TRUE,FALSE,FALSE,,"Let’s get
 making!",,,,"Créons des
 niveaux!","Créons des
 stages !","Zeit zum
@@ -20,7 +20,7 @@ FALSE,FALSE,TRUE,FALSE,,Course Theme,,,Décor,,,Umgebung,Entorno,,,Tema,Levelthe
 FALSE,FALSE,TRUE,FALSE,,World Maker,,,Créer un super monde,,,Welt bauen,Crear un mundo,,,Crea un mondo,Wereld maken,,,,Мастерская миров,ワールドをつくる,,創作世界,创作世界,월드 만들기
 FALSE,FALSE,TRUE,FALSE,,World Theme,,,Décor,,,Umgebung,Entorno,,,Tema,Wereldthema,,,,Тема мира,シーンスキン,,場景外觀,场景类型,월드 배경
 FALSE,FALSE,TRUE,FALSE,,Autoscroll,,,Défilement auto,,,,Autoavance,,,,,,,,,,,,,
-TRUE,TRUE,TRUE,FALSE,,Mario's Trail,,,Trajectoire du joueur,,,,Recorrido de Mario,,,,,,,,,,,,,
+TRUE,TRUE,TRUE,FALSE,,Mario’s Trail,,,Trajectoire du joueur,,,,Recorrido de Mario,,,,,,,,,,,,,
 TRUE,TRUE,TRUE,FALSE,,Copy,,,Copier,,,Kopieren,Copiar,,,Copia,Kopiëren,,,,Копирование,コピー,,複製,复制,복사
 TRUE,TRUE,TRUE,FALSE,,Erase,,,,Effacer,Gomme,Radiergummi,,Borrador,Goma de borrar,Cancella,Wisser,,,,Удаление,消しゴム,橡皮擦,,,지우개
 TRUE,TRUE,TRUE,FALSE,,Multigrab,,,Sélection multiple,,,Mehrfachauswahl,,Agrupar,Selección múltiple,Selezione multipla,Selecteren,,,,Выделение,複数せんたく,,複選,多选,멀티 선택
@@ -34,18 +34,18 @@ FALSE,FALSE,TRUE,FALSE,Tags,Tag,,,,Étiquette,Tag,Schlagwort,Etiquetas,,,Tag,Lab
 FALSE,FALSE,TRUE,TRUE,,Tags,,,,Étiquettes,Tags,,,,,,,,,,,タグ,,標籤,标签,
 FALSE,FALSE,FALSE,FALSE,Liquids,Liquid,,,Liquide,,,,,,,,,,,,,,,,,
 FALSE,FALSE,FALSE,TRUE,,Liquids,,,Liquides,,,,,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,FALSE,,Water Level,,,Niveau de l'eau,,,Wasserpegel,Nivel del agua,,,Livello dell'acqua,Waterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
+FALSE,FALSE,TRUE,FALSE,,Water Level,,,Niveau de l’eau,,,Wasserpegel,Nivel del agua,,,Livello dell’acqua,Waterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
 FALSE,FALSE,TRUE,FALSE,,Poison Level,,,Niveau du poison,,,Wasserpegel,Nivel del agua tóxica,,,Livello del veleno,Gifwaterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
 FALSE,FALSE,TRUE,FALSE,,Lava Level,,,Niveau de la lave,,,Lavapegel,Nivel de la lava,,,Livello della lava,Lavastand,,,,Уровень лавы,溶岩の高さ,熔岩的高度,,,용암 높이
-TRUE,FALSE,FALSE,FALSE,,10 Mario Challenge,,,,Défi 10 Mario,Défi des 10 Mario,10-Mario-Herausforderung,Desafío 10 Marios,,,Sfida dei 10 Mario,Missie met 10 Mario's,Desafio 10 Marios,,,10 жизней Марио,10人マリオチャレンジ,,,,
-TRUE,TRUE,FALSE,FALSE,,100 Mario Challenge,,,,Défi 100 Mario,Défi des 100 Mario,100-Mario-Herausforderung,Desafío 100 Marios,,,Sfida dei 100 Mario,Missie met 100 Mario's,Desafio 100 Marios,,,100 жизней Марио,100人マリオチャレンジ,,,,
+TRUE,FALSE,FALSE,FALSE,,10 Mario Challenge,,,,Défi 10 Mario,Défi des 10 Mario,10-Mario-Herausforderung,Desafío 10 Marios,,,Sfida dei 10 Mario,Missie met 10 Mario’s,Desafio 10 Marios,,,10 жизней Марио,10人マリオチャレンジ,,,,
+TRUE,TRUE,FALSE,FALSE,,100 Mario Challenge,,,,Défi 100 Mario,Défi des 100 Mario,100-Mario-Herausforderung,Desafío 100 Marios,,,Sfida dei 100 Mario,Missie met 100 Mario’s,Desafio 100 Marios,,,100 жизней Марио,100人マリオチャレンジ,,,,
 FALSE,TRUE,FALSE,FALSE,,Super Mario Challenge,,,Défi Super Mario,,,PSuper-Mario-Herausforderung,Desafío Super Mario,,,Sfida Super Mario,Super Mario-missie,Desafio Super Mario,,,Испытание «Супермарио»,スーパーマリオチャレンジ,,,,
 FALSE,FALSE,TRUE,FALSE,,Endless Challenge,,,Défi infini,,,Endlos-Herausforderung,Desafío de Mario sin fin,,,Sfida infinita,Oneindige missie,,,,Марафон Марио,どこまでマリオチャレンジ,,瑪利歐耐力挑戰,马力欧耐力挑战,어디까지 마리오 챌린지
 TRUE,TRUE,TRUE,FALSE,,Easy,,,Facile,,,Leicht,Fácil,,,Facile,Makkelijk,Fácil,,,Легко,かんたん,,簡單,简单,쉬움
 TRUE,TRUE,TRUE,FALSE,,Normal,,,Normal,,,Normal,Normal,,,Normale,Normaal,Normal,,,Норма,ふつう,普通,,,보통
 TRUE,TRUE,TRUE,FALSE,,Expert,,,Expert,,,Schwierig,Difícil,,,Difficile,Moeilijk,Difícil,,,Сложно,むずかしい,,困難,困难,어려움
 TRUE,TRUE,TRUE,FALSE,,Super expert,,,Super expert,,,Sehr schwierig,Muy difícil,,,Super difficile,Supermoeilijk,Muito difícil,,,Экстрим,とてもむずかしい,,超難,超难,매우 어려움
-FALSE,FALSE,TRUE,FALSE,,Yamamura's Dojo,,,Dojo de Yamamura,,,Yamamuras Dojo,Aula de Yamamura,,,Scuola di Yamamura,Yamamura's academie,,,,Школа Ямамуры,ヤマムラ道場,,亞瑪姆拉道館,亚玛姆拉道馆,야마무라 레슨
+FALSE,FALSE,TRUE,FALSE,,Yamamura’s Dojo,,,Dojo de Yamamura,,,Yamamuras Dojo,Aula de Yamamura,,,Scuola di Yamamura,Yamamura’s academie,,,,Школа Ямамуры,ヤマムラ道場,,亞瑪姆拉道館,亚玛姆拉道馆,야마무라 레슨
 FALSE,FALSE,TRUE,FALSE,,Story Mode,,,,Mode Histoire,Mode histoire,Abenteuermodus,Historia,,,Modalità storia,Verhaal,,,,Строй-история,ストーリーモード,故事模式,,,스토리 모드
 FALSE,FALSE,TRUE,FALSE,,Course World,,,,Monde des niveaux,Stages du monde,Level aus aller Welt,Niveles mundiales,,,Livelli dal mondo,Levelwereld,,,,Вселенная уровней,世界のコース,,全球關卡,全球关卡,세계의 코스
 FALSE,FALSE,TRUE,FALSE,,Network Play,,,Jeu en réseau,,,Vernetztes Spielen,Juego en red,,,Gioco in rete,Online spelen,,,,Сетевая игра,通信であそぶ,,以通訊方式遊玩,以连接方式游玩,통신 플레이
