@@ -195,7 +195,47 @@ export namespace Instruments {
     /** The companion instance of a {@link Instruments} */
     export const Companion = Instruments.CompanionEnum.get
 
+    /** All the {@link Instruments} */
     export const ALL = Companion.values.toArray()
+
+    /** All the {@link Instruments} they are ordered by its category */
+    export const ALL_ORDER_BY_CATEGORY = ALL
+
+    /** All the {@link Instruments} ordered by the {@link Entities} order */
+    export const ALL_ORDER_BY_ENTITY = [
+        Instruments.HARP, Instruments.STEEL_DRUM,
+
+        Instruments.SLEIGH_BELL, Instruments.SYNTHETIC_BELL, Instruments.WIND_CHIMES,
+        Instruments.SQUARE_WAVE, Instruments.RECORDER, Instruments.PIPE_ORGAN,
+        Instruments.SYNTHETIC_BRASS, Instruments.CHICKEN, Instruments.SHAMISEN,
+        Instruments.STACCATO_STRING, Instruments.MUSIC_BOX, Instruments.ORGAN,
+        Instruments.SYNTHETIC_BASS, Instruments.WOOD_BLOCK, Instruments.ACCORDION_BASS_SOUND,
+        Instruments.ACCORDION_TREBLE_SOUND, Instruments.COWBELL, Instruments.ZURNA,
+
+        Instruments.PIANO_4TH_A, Instruments.HONKY_TONK_PIANO, Instruments.MARIMBA,
+        Instruments.VIBRAPHONE, Instruments.DOG_BARK, Instruments.CAT_MEOW,
+        Instruments.FLUTE, Instruments.GAMELAN, Instruments.TROMBONE,
+        Instruments.HARPSICHORD, Instruments.TUBULAR_BELL, Instruments.PIZZICATO_STRING,
+        Instruments.VIOLIN, Instruments.PIANO_2, Instruments.PIANO_1,
+        Instruments.MOKUGYO, Instruments.ELECTRIC_BASS, Instruments.TOM,
+        Instruments.SYNTHETIC_TOM, Instruments.ORCHESTRA_HIT, Instruments.ACOUSTIC_GUITAR,
+        Instruments.BAGPIPE, Instruments.TAIKO, Instruments.SANTUR,
+        Instruments.OUD, Instruments.AH, Instruments.GUITAR_LONG,
+        Instruments.BASS, Instruments.SYNTHESIZER, Instruments.SUB_BASS,
+        Instruments.CHORD_CM,
+
+        Instruments.TIMPANI, Instruments.TIMBALES, Instruments.GONG,
+        Instruments.SYNTHESIZER_CHORD,
+
+        Instruments.ELECTRIC_GUITAR, Instruments.KAZOO, Instruments.SAXOPHONE,
+        Instruments.HORN, Instruments.REVERSE_PIANO, Instruments.NOISE,
+        Instruments.SOUND_EFFECT_1, Instruments.OK, Instruments.HELLO,
+        Instruments.YEAH, Instruments.BASS_GLISSANDO, Instruments.BOMB,
+        Instruments.TIMPANI_ROLL,
+
+        Instruments.CYMBAL, Instruments.HI_HAT, Instruments.BASS_DRUM,
+        Instruments.SNARE_DRUM
+    ] as const
 
 }
 
