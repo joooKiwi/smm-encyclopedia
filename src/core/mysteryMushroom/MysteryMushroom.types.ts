@@ -21,8 +21,8 @@ export type TranslationKeyOnGoalPole = | 'Introduction' | 'Startup' | 'Game over
                                        | 'Perfect score obtained' | 'Upgrade obtained' | 'Important item obtained'
                                        | 'Star collected' | 'Triforce collected'
                                        | 'Boss key obtained' | 'Boss defeated'
-                                       | 'New technique acquired' | 'Gym Leader victory' | 'Rank up' | 'Secret area discovered' | 'Declaring the Splatfest\'s winning team'
-                                       | 'Bowser\'s arrival' | 'Link meets Zelda for the 1st time' | 'Ganon encounter'
+                                       | 'New technique acquired' | 'Gym Leader victory' | 'Rank up' | 'Secret area discovered' | 'Declaring the Splatfest’s winning team'
+                                       | 'Bowser’s arrival' | 'Link meets Zelda for the 1st time' | 'Ganon encounter'
                                        | '3DS preview jingle'
 /** @todo Remove once the unknown reference is no longer present */
 export type PossibleTranslationKeyOnGoalPole = NullOrString<| TranslationKeyOnGoalPole | UnknownReference>
@@ -35,6 +35,6 @@ export type TranslationKeyOnDeath = | 'Game over' | 'Defeated' | 'Error sound'
                                     | 'Eliminated from the race' | 'Eliminated from the course' | 'Player has fainted'
                                     | 'Minigame lost' | 'Round lost'
                                     | 'Timed event failed' | 'Ran out of energy' | 'Practice Catcher result jingle'
-                                    | 'Bowser\'s death' | 'Mario saying "Mama mia"' | 'Zelda\'s Lullaby' | 'Link caught by Moblins' | 'K.K. howling' | 'Pikmin death'
+                                    | 'Bowser’s death' | 'Mario saying "Mama mia"' | 'Zelda’s Lullaby' | 'Link caught by Moblins' | 'K.K. howling' | 'Pikmin death'
 export type PossibleTranslationKeyOnDeath = NullOrString<| TranslationKeyOnDeath | UnknownReference>
 export type TypeOfSoundOnDeath = | 'Marimba' | 'Techno'

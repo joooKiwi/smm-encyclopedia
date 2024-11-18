@@ -37,7 +37,7 @@ interface SoundEffectSoundTemplateMap_SMM1Exclusive {
     'Fireworks': SoundEffectSound_NoEditor<['yr_SToy_07_FireWorks_01_1_pxsps_r_ear', 'yr_SToy_07_FireWorks_01_2_pxsps_l_ear',]>//SoundEffectSoundTemplateMap_All['Fireworks']
     'Audience': never
     'Scatting': never
-    'Bird\'s Chirping': SoundEffectSound_Editor2<['SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',]>
+    'Bird’s Chirping': SoundEffectSound_Editor2<['SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',]>
     'Spark': never
     'Traditional': never
     'Electric Guitar': never
@@ -53,8 +53,8 @@ interface SoundEffectSoundTemplateMap_SMM1Exclusive {
     'Rave Music': SoundEffectSound_Editor2<['SE_Disco6measure', 'SE_Disco6measure_InUp2',]>
     'Heartbeat': SoundEffectSound_NoEditor<['yr_SToy_04_HeartBeat_H_L_pxsps_l_ear', 'yr_SToy_04_HeartBeat_H_R_pxsps_r_ear',]>//SoundEffectSoundTemplateMap_All['Heartbeat']
     'Silence': SoundEffectSound_Editor1<['yr_NOISE_short_1', 'yr_NOISE_short_1_pxsps_l_ear', 'yr_NOISE_short_2', 'yr_NOISE_short_2_pxsps_r_ear', 'yr_NOISE_short_3', 'yr_NOISE_short_3_pxsps_l_ear',]>
-    'Bird\'s Tweeting Noise': SoundEffectSound_Editor1<['hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',]>
-    'Chicken\'s Clucking Noise': SoundEffectSound_Editor1<['yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',]>
+    'Bird’s Tweeting Noise': SoundEffectSound_Editor1<['hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',]>
+    'Chicken’s Clucking Noise': SoundEffectSound_Editor1<['yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',]>
     'Bonus Music': never
     'Boss Music': never
     'Final Boss': never
@@ -100,7 +100,7 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Fireworks': SoundEffectSound_Editor1<['yr_SToy_07_FireWorks_01', 'yr_SToy_07_FireWorks_01_1', 'yr_SToy_07_FireWorks_01_2',]>
     'Audience': never
     'Scatting': never
-    'Bird\'s Chirping': NoSoundEffectSound
+    'Bird’s Chirping': NoSoundEffectSound
     'Spark': SoundEffectSound_Editor3<['se_otoasobi_spark_00', 'se_otoasobi_spark_01', 'se_otoasobi_spark_02', 'se_otoasobi_spark_03', 'se_otoasobi_spark_04',]>
     'Traditional': never
     'Electric Guitar': SoundEffectSound_Editor1<['Otoasobi_Guitar01', 'Otoasobi_Guitar02',]>
@@ -116,8 +116,8 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Rave Music': NoSoundEffectSound
     'Heartbeat': SoundEffectSound_Editor1<['yr_SToy_04_HeartBeat_p1', 'yr_SToy_04_HeartBeat_p2', 'yr_SToy_04_HeartBeat_p3',]>
     'Silence': SingleSoundEffectSound<'se_otoasobi_silence'>
-    'Bird\'s Tweeting Noise': NoSoundEffectSound
-    'Chicken\'s Clucking Noise': NoSoundEffectSound
+    'Bird’s Tweeting Noise': NoSoundEffectSound
+    'Chicken’s Clucking Noise': NoSoundEffectSound
     'Bonus Music': never
     'Boss Music': never
     'Final Boss': never

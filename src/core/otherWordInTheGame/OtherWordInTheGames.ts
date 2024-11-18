@@ -150,7 +150,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
 
     public static readonly FLYDAY =                new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Flyday',)
     public static readonly HAPPY_SUNDAY =          new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Happy Sunday',)
-    public static readonly LET_GET_MAKING =        new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Let\'s get\nmaking!',)
+    public static readonly LET_GET_MAKING =        new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Let’s get\nmaking!',)
 
     public static readonly GAME_STYLE =            new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Game Style',)
     public static readonly EXTRA_GAME_STYLE =      new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Extra Game Styles',)
@@ -163,7 +163,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     public static readonly WORLD_THEME =           new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('World Theme',)
 
     public static readonly AUTOSCROLL =            new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Autoscroll',)
-    public static readonly MARIO_TRAIL =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Mario\'s Trail',)
+    public static readonly MARIO_TRAIL =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Mario’s Trail',)
     public static readonly COPY =                  new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Copy',)
     public static readonly ERASE =                 new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Erase',)
     public static readonly MULTIGRAB =             new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Multigrab',)
@@ -188,7 +188,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     public static readonly EXPERT =                new OtherWordInTheGames.CompleteOtherWordInTheGame('Expert',)
     public static readonly SUPER_EXPERT =          new OtherWordInTheGames.CompleteOtherWordInTheGame('Super expert',)
 
-    public static readonly YAMAMURA_DOJO =         new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Yamamura\'s Dojo',)
+    public static readonly YAMAMURA_DOJO =         new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Yamamura’s Dojo',)
     public static readonly STORY_MODE =            new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Story Mode',)
     public static readonly COURSE_WORLD =          new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Course World',)
     public static readonly NETWORK_PLAY =          new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Network Play',)

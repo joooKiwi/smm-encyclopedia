@@ -262,8 +262,8 @@ export abstract class EditorVoices
 
     public static readonly SHOE_GOOMBA =              new EditorVoices.EntityEditorVoices('Shoe Goomba',                     SoundCreator.singleEditorVoiceWithVoice('shoegoomba',),)
     public static readonly STILETTO_GOOMBA =          new EditorVoices.EntityEditorVoices('Stiletto Goomba',                 SoundCreator.singleEditorVoiceWithVoice('stilettogoomba',),)
-    public static readonly YOSHI_EGG =                new EditorVoices.EntityEditorVoices('Yoshi\'s Egg',                    SoundCreator.singleEditorVoiceWithVoice('yoshiegg',),)
-    public static readonly RED_YOSHI_EGG =            new EditorVoices.EntityEditorVoices('Red Yoshi\'s Egg',                SoundCreator.singleEditorVoiceWithSigningPart('BigRedYoshisEgg',),)
+    public static readonly YOSHI_EGG =                new EditorVoices.EntityEditorVoices('Yoshi’s Egg',                     SoundCreator.singleEditorVoiceWithVoice('yoshiegg',),)
+    public static readonly RED_YOSHI_EGG =            new EditorVoices.EntityEditorVoices('Red Yoshi’s Egg',                 SoundCreator.singleEditorVoiceWithSigningPart('BigRedYoshisEgg',),)
 
     //endregion -------------------- Power-up / Yoshi / Shoe + projectiles & player --------------------
     //region -------------------- General enemies --------------------
@@ -353,7 +353,7 @@ export abstract class EditorVoices
     public static readonly SNOWBALL =                 new EditorVoices.EntityEditorVoices('Snowball',                        SoundCreator.singleEditorVoiceWithSigningPart('SnowBall',),)
 
     public static readonly LAKITU =                   new EditorVoices.EntityEditorVoices('Lakitu',                          SoundCreator.singleEditorVoiceWithVoice('lakitu',),)
-    public static readonly LAKITU_CLOUD =             new EditorVoices.EntityEditorVoices('Lakitu\'s Cloud',                 SoundCreator.singleEditorVoiceWithVoice('lakitucloud',),)
+    public static readonly LAKITU_CLOUD =             new EditorVoices.EntityEditorVoices('Lakitu’s Cloud',                  SoundCreator.singleEditorVoiceWithVoice('lakitucloud',),)
 
     public static readonly BOO =                      new EditorVoices.EntityEditorVoices('Boo',                             SoundCreator.singleEditorVoiceWithVoice('boo',),)
     public static readonly STRETCH =                  new EditorVoices.EntityEditorVoices('Stretch',                         SoundCreator.singleEditorVoiceWithSigningPart('Stretch',),)
@@ -392,7 +392,7 @@ export abstract class EditorVoices
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
     public static readonly BILL_BLASTER =             new EditorVoices.EntityEditorVoices('Bill Blaster',                    SoundCreator.singleEditorVoiceWithVoice('billblaster',),)
-    public static readonly BULL_EYE_BLASTER =         new EditorVoices.EntityEditorVoices('Bull\'s-Eye Blaster',             SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBlaster',),)
+    public static readonly BULL_EYE_BLASTER =         new EditorVoices.EntityEditorVoices('Bull’s-Eye Blaster',              SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBlaster',),)
 
     public static readonly BANZAI_BILL =              new EditorVoices.EntityEditorVoices('Banzai Bill',                     SoundCreator.singleEditorVoiceWithSigningPart('BanzaiBill',),)
     public static readonly BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices.EntityEditorVoices {
@@ -401,7 +401,7 @@ export abstract class EditorVoices
             return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,]
         }
 
-    }('Bull\'s-Eye Banzai', SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBanzai',),)
+    }('Bull’s-Eye Banzai',  SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBanzai',),)
 
     public static readonly CANNON =                   new EditorVoices.EntityEditorVoices('Cannon',                          SoundCreator.singleEditorVoiceWithVoice('cannon',),)
     public static readonly RED_CANNON =               new EditorVoices.EntityEditorVoices('Red Cannon',                      SoundCreator.singleEditorVoiceWithSigningPart('redcannon',),)

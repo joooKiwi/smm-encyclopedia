@@ -13,9 +13,10 @@ export class StringContainer<T extends string, T_HTML extends string = string, >
      * 5. ]
      * 6. \-
      * 7. |
-     * 8. 's
+     * 8. ’s
+     * 9. ’
      */
-    static readonly #REMOVAL_REGEX = /[.:()[\]\-|]|('s)/g
+    static readonly #REMOVAL_REGEX = /[.:()[\]\-|]|(’s)|’/g
 
     static readonly #REPLACE_CHARACTERS = new Map([['?', 'question'], ['!', 'exclamation'], ['&', 'and',], ['|', 'or',],] as const)
 

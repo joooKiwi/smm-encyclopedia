@@ -178,8 +178,8 @@ export type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
 export type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
 export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`
 export type PossibleEnglishName_SpikeTop = `${| EmptyString | 'Fast '}${| EmptyString | 'Winged '}Spike Top`
-export type PossibleEnglishName_BulletBill = `${`${| EmptyString | 'Cat '}Bullet` | 'Bull\'s-Eye'} Bill`
-export type PossibleEnglishName_BanzaiBill = `${| EmptyString | 'Cat '}Banzai Bill` | 'Bull\'s-Eye Banzai'
+export type PossibleEnglishName_BulletBill = `${`${| EmptyString | 'Cat '}Bullet` | 'Bull’s-Eye'} Bill`
+export type PossibleEnglishName_BanzaiBill = `${| EmptyString | 'Cat '}Banzai Bill` | 'Bull’s-Eye Banzai'
 export type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate'
 export type PossibleEnglishName =
     | `${| EmptyString | `${| 'Start' | 'Goal'} `}Ground`
@@ -218,7 +218,7 @@ export type PossibleEnglishName =
     | `${| '1-Up' | 'Rotten'} Mushroom`
 
     | `${PossibleEnglishName_Shoe}${| EmptyString | ' Goomba'}`
-    | PossibleEnglishName_Yoshi | `${| EmptyString | 'Red '}Yoshi's Egg`
+    | PossibleEnglishName_Yoshi | `${| EmptyString | 'Red '}Yoshi’s Egg`
     | `${| 'Fire' | 'Poison' | 'Bone' | 'Wrench' | 'Hammer'} thrown by a Yoshi`
     | `${|'Fire'} thrown by a Red Yoshi`
 
@@ -226,7 +226,7 @@ export type PossibleEnglishName =
     | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
     | PossibleEnglishName_DryBones | 'Bone thrown by a Dry Bones' | 'Dry Bones Shell'
     | PossibleEnglishName_BuzzyBeetleAndShell
-    | PossibleEnglishName_SpinyAndShell | '(Winged Spiny\'s projectile)'
+    | PossibleEnglishName_SpinyAndShell | '(Winged Spiny’s projectile)'
     | PossibleEnglishName_SpikeTop
     | `${| EmptyString | 'Spiny '}Skipsqueak`
     | `${| EmptyString | 'Horned '}Ant Trooper`
@@ -238,22 +238,22 @@ export type PossibleEnglishName =
     | `${| EmptyString | `${| 'Jumping' | 'Fire'} `}Piranha Plant` | 'Fireball thrown by a Fire Piranha Plant'
     | 'Muncher'
     | 'Piranha Creeper'
-    | `${| 'Chain' | 'Unchained'} Chomp` | 'Chain Chomp\'s Stump'
+    | `${| 'Chain' | 'Unchained'} Chomp` | 'Chain Chomp’s Stump'
     | 'Spike' | 'Spike Ball' | 'Snowball'
-    | `Lakitu${| EmptyString | '\'s Cloud'}`
+    | `Lakitu${| EmptyString | '’s Cloud'}`
     | `Boo${| EmptyString | ' Buddies'}` | 'Stretch' | 'Peepa'
     | `${| EmptyString | 'Lit '}Bob-omb`
     | `${| EmptyString | 'Snow '}Pokey`
     | 'Thwomp'
     | 'Monty Mole' | 'Rocky Wrench' | 'Wrench thrown by a Rocky Wrench'
-    | 'Magikoopa' | '(Magikoopa\'s projectile)'
+    | 'Magikoopa' | '(Magikoopa’s projectile)'
     | `${| 'Hammer' | 'Sledge' | `${| EmptyString | 'Heavy '}Fire`} Bro` | 'Hammer thrown by a Hammer / Sledge Bro' | 'Fireball thrown by a (Heavy) Fire Bro'
     | 'Lava Bubble'
     | `${| EmptyString | `${| 'Blasta' | 'Zappa'} `}Mechakoopa` | 'Homing Missile thrown by a Blasta Mechakoopa' | 'Electricity Beam thrown by a Zappa Mechakoopa'
     | 'Charvaargh'
     | 'Bully'
 
-    | `${| 'Bill' | 'Bull\'s-Eye'} Blaster` | PossibleEnglishName_BulletBill
+    | `${| 'Bill' | 'Bull’s-Eye'} Blaster` | PossibleEnglishName_BulletBill
     | PossibleEnglishName_BanzaiBill
     | `${| EmptyString | 'Red '}${|`Cannon${| EmptyString | 'ball'}`}`
     | 'Burner'
@@ -266,9 +266,9 @@ export type PossibleEnglishName =
 
     | 'Bowser' | 'Meowser' | `${| 'Fire' | 'Falling Fire'} thrown by a Bowser`
     | 'Bowser Jr.' | 'Fire thrown by a Bowser Jr.'
-    | 'Boom Boom' | `Pom Pom${| EmptyString | '\'s clone'}` | 'Shuriken thrown by a Pom Pom'
-    | `${| 'Larry' | 'Iggy' | 'Wendy' | 'Lemmy' | 'Roy' | 'Morton' | 'Ludwig'}${| EmptyString | '\'s Wand'}`
-    | `(${| 'Larry\'s' | 'Iggy\'s' | 'Wendy\'s' | 'Lemmy\'s' | 'Roy\'s' | `Morton's ${| 'Thrown' | 'Ground'}` | 'Ludwig\'s'} projectile)` | 'Candy Ring thrown by a Wendy' | 'Magic Ball thrown by a Lemmy'
+    | 'Boom Boom' | `Pom Pom${| EmptyString | '’s clone'}` | 'Shuriken thrown by a Pom Pom'
+    | `${| 'Larry' | 'Iggy' | 'Wendy' | 'Lemmy' | 'Roy' | 'Morton' | 'Ludwig'}${| EmptyString | '’s Wand'}`
+    | `(${| 'Larry’s' | 'Iggy’s' | 'Wendy’s' | 'Lemmy’s' | 'Roy’s' | `Morton’s ${| 'Thrown' | 'Ground'}` | 'Ludwig’s'} projectile)` | 'Candy Ring thrown by a Wendy' | 'Magic Ball thrown by a Lemmy'
 
     | 'Bumper'
     | 'Swinging Claw'

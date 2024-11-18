@@ -574,7 +574,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SHOE =                                          new ClearConditionEntityImages.ExistantOnOnlySmbAndSmb3('Shoe', 'KutsuKuribo_00',)
     public static readonly STILETTO_GOOMBA =                               new ClearConditionEntityImages.Null()
     public static readonly STILETTO =                                      new ClearConditionEntityImages.Null()
-    public static readonly YOSHI_EGG =                                     new ClearConditionEntityImages.ExistantOnOnlySmwAndNsmbu('Yoshi\'s Egg', 'YosshiEgg_00',)
+    public static readonly YOSHI_EGG =                                     new ClearConditionEntityImages.ExistantOnOnlySmwAndNsmbu('Yoshi’s Egg', 'YosshiEgg_00',)
     public static readonly YOSHI =                                         new ClearConditionEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new ClearConditionEntityImages.Null()
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new ClearConditionEntityImages.Null()
@@ -658,7 +658,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SNOWBALL =                                      new ClearConditionEntityImages.Null()
 
     public static readonly LAKITU =                                        new ClearConditionEntityImages.ExistantOnNotSm3dw('Lakitu', 'Jugem_00',)
-    public static readonly LAKITU_CLOUD =                                  new ClearConditionEntityImages.ExistantOnNotSm3dw('Lakitu\'s Cloud', 'Jugem_01',)
+    public static readonly LAKITU_CLOUD =                                  new ClearConditionEntityImages.ExistantOnNotSm3dw('Lakitu’s Cloud', 'Jugem_01',)
 
     public static readonly BOO =                                           new ClearConditionEntityImages.ExistantOnAll('Boo', 'Teresa_00',)
     public static readonly STRETCH =                                       new ClearConditionEntityImages.Null()

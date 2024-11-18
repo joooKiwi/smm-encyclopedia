@@ -510,9 +510,9 @@ export abstract class InGameEntityImages
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIKOOPA_PROJECTILE} */
     private static readonly ExistantAsMagikoopaProjectile = class ExistantAsMagicBallInGameEntityImages
-        extends InGameEntityImages.Existant<'(Magikoopa\'s projectile)', InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa\'s projectile)'>> {
+        extends InGameEntityImages.Existant<'(Magikoopa’s projectile)', InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa’s projectile)'>> {
 
-        public constructor() { super('(Magikoopa\'s projectile)',) }
+        public constructor() { super('(Magikoopa’s projectile)',) }
 
         public override _createImageFiles() {
             return [
@@ -784,14 +784,14 @@ export abstract class InGameEntityImages
     public static readonly SHOE =                                          new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Shoe', 'Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)
     public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto Goomba', 'Enemy - KutsuKuriboB', 'edit_drag.0', 'edit_drag.1',)
     public static readonly STILETTO =                                      new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)
-    public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAsTwoInOnlySmw('Yoshi\'s Egg', 'MW Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
+    public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAsTwoInOnlySmw('Yoshi’s Egg', 'MW Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly YOSHI =                                         new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.ExistantAsTwoInOnlySmw('Fire thrown by a Yoshi', 'MW Player - YoshiFire', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi fire thrown" (if present)
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new InGameEntityImages.ExistantAsTwoInOnlySmw('Poison thrown by a Yoshi', 'MW Player - YoshiPoison', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi poison thrown" (if present)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
-    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsTwoInOnlySmw('Red Yoshi\'s Egg', 'MW Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
+    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsTwoInOnlySmw('Red Yoshi’s Egg', 'MW Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly RED_YOSHI =                                     new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new InGameEntityImages.Null()
 
@@ -821,7 +821,7 @@ export abstract class InGameEntityImages
 
     public static readonly SPINY =                                         new InGameEntityImages.Null()
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.Null()
-    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Winged Spiny\'s projectile)', 'Enemy - Togezo', 'toge.0',)
+    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0',)
     public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1',)
     public static readonly SPINY_SHELL =                                   new InGameEntityImages.Null()
 
@@ -964,35 +964,35 @@ export abstract class InGameEntityImages
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new InGameEntityImages.Null()
 
     public static readonly LARRY =                                         new InGameEntityImages.Null()
-    public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Larry\'s Wand', 'Enemy - Larry', 'wand',)
-    public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Larry\'s projectile)', 'Enemy - Larry', 'effect.0',)
+    public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Larry’s Wand', 'Enemy - Larry', 'wand',)
+    public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Larry’s projectile)', 'Enemy - Larry', 'effect.0',)
 
     public static readonly IGGY =                                          new InGameEntityImages.Null()
-    public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Iggy\'s Wand', 'Enemy - Iggy', 'wand',)
-    public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Iggy\'s projectile)', 'Enemy - Iggy', 'effect.0',)
+    public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Iggy’s Wand', 'Enemy - Iggy', 'wand',)
+    public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Iggy’s projectile)', 'Enemy - Iggy', 'effect.0',)
 
     public static readonly WENDY =                                         new InGameEntityImages.Null()
-    public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Wendy\'s Wand', 'Enemy - Wendy', 'wand',)
+    public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Wendy’s Wand', 'Enemy - Wendy', 'wand',)
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAsThreeInNotNsmbuAndSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
     public static readonly WENDY_PROJECTILE =                              new InGameEntityImages.Null()
 
     public static readonly LEMMY =                                         new InGameEntityImages.Null()
-    public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Lemmy\'s Wand', 'Enemy - Lemmy', 'wand',)
+    public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Lemmy’s Wand', 'Enemy - Lemmy', 'wand',)
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAsMagicBall()
     public static readonly LEMMY_PROJECTILE =                              new InGameEntityImages.Null()
 
     public static readonly ROY =                                           new InGameEntityImages.Null()
-    public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Roy\'s Wand', 'Enemy - Roy', 'wand',)
-    public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Roy\'s projectile)', 'Enemy - Roy', 'effect.0',)
+    public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Roy’s Wand', 'Enemy - Roy', 'wand',)
+    public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Roy’s projectile)', 'Enemy - Roy', 'effect.0',)
 
     public static readonly MORTON =                                        new InGameEntityImages.Null()
-    public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Morton\'s Wand', 'Enemy - Morton', 'wand',)
-    public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Morton\'s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
-    public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('(Morton\'s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
+    public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Morton’s Wand', 'Enemy - Morton', 'wand',)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Morton’s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('(Morton’s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
 
     public static readonly LUDWIG =                                        new InGameEntityImages.Null()
-    public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Ludwig\'s Wand', 'Enemy - Ludwig', 'wand',)
-    public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Ludwig\'s projectile)', 'Enemy - Ludwig', 'effect.0',)
+    public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Ludwig’s Wand', 'Enemy - Ludwig', 'wand',)
+    public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Ludwig’s projectile)', 'Enemy - Ludwig', 'effect.0',)
 
     //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------

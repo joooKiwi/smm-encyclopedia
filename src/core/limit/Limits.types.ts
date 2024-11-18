@@ -59,7 +59,7 @@ type PossibleStartingEnglishNameNotInBothEditorAndPlay =
     | `${| 'Big' | 'Pink'} Coin`
     | `Collected ${| 'Key' | 'Coin'}`
 
-    | 'Power-up' | `Player's ${| `${| 'Fire' | 'Super'}ball` | 'Bomb' | 'Builder Box' | 'Boomerang' | 'Cannonball'}` | 'Hatched Yoshi'
+    | 'Power-up' | `Player’s ${| `${| 'Fire' | 'Super'}ball` | 'Bomb' | 'Builder Box' | 'Boomerang' | 'Cannonball'}` | 'Hatched Yoshi'
 
     | 'Charvaargh' | 'Piranha Creeper'
     | 'Bowser (Jr.)' | 'Boom Boom / Pom Pom' | 'Koopaling'

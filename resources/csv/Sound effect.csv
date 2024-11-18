@@ -8,7 +8,7 @@ TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Feelings,Cheer,,,
 TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Baby,,,Bébé,,,Baby,Bebé,,,Baby,Baby,,,,Малыш,アッフン,,呀呀,咿咿呀呀,아항
 FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Party Popper,,,Pétard,,,Partyknaller,,Confeti,Serpentinas,Sparacoriandoli,Feestje,,,,Хлопушка,クラッカー,拉炮,,,폭죽
 TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Feelings,Applause,,,Ovation,,,Applaus,Aplauso,,,Applauso,Applaus,,,,Аплодисменты,はくしゅ,鼓掌,,,박수
-FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Near Miss,,,,C'est pas passé loin!,C'est pas passé loin !,Beinahe!,,Por poquito,Por los pelos,Collisione evitata,Kantje boord!,,,,Треньк!,ヒヤリハット,,虛驚一場,失误,소름
+FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,Feelings,Near Miss,,,,C’est pas passé loin!,C’est pas passé loin !,Beinahe!,,Por poquito,Por los pelos,Collisione evitata,Kantje boord!,,,,Треньк!,ヒヤリハット,,虛驚一場,失误,소름
 TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Clatter,,,Fracas,,,Scheppern,Estrépito,,,Caduta massi,Gekletter,,,,Обвал!,ドンガラガッシャ～ン！,,砰砰磅磅～！,咚茨当茨～！,와장창!
 TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Stingers,Drama!,,,,Tada-dadam!,Tada-dadam !,Drama!,Tensión,,,Colpo di scena,Spanning,,,,ВНЕЗАПНО!,ガガ～ン！,,危險！,当～！,두둥
 TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Stingers,Kick,,,Frappe,,,Tritt,Patada,,,Calcio,Trap,,,,Пинок,ホップ,,熱舞彈腿,踢,킥
@@ -26,10 +26,10 @@ TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Glory,,
 TRUE,TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Reactions,Doom,,,Mauvais augure,,,Verhängnis,Perdición,,,Paura,Onheil,,,,Кошмар,じごく,,地獄,地狱,지옥
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Reactions,Yeah!,,,,Yeah!,Yeah !,Yeah!,¡Bieeen!,,,Yeah!,Jeee!,,,,Йес!,Yeah!,Yeah!,,,예～!
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,Reactions,Aww...,,,Aaah...,,,Aaah...,"Oh, no...",,,Nooo!,Ahhh...,,,,Ах!,Ahh...,Ahh...,,,아...
-TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Fireworks,,,Feu d'artifice,,,Feuerwerk,Fuegos artificiales,,,Pirotecnica,Vuurwerk,,,,Салют,花火,,煙火,烟花,불꽃
+TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Fireworks,,,Feu d’artifice,,,Feuerwerk,Fuegos artificiales,,,Pirotecnica,Vuurwerk,,,,Салют,花火,,煙火,烟花,불꽃
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Audience,,,Public,,,Publikum,Público,,,Pubblico,Uitzinnig publiek,,,,Зрители,オーディエンス,,觀眾聲,听众,관중
-FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,Animations,Scatting,,,Romance,,,Märchen,Balada,,,Canzone d'epoca,Vleugje romantiek,,,,Романтика,スキャット,,即興歌聲,即兴叫喊,라라라
-TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,Bird's Chirping,,,Chant d'un oiseau,,,,,,,,,,,,,,,,,
+FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,Animations,Scatting,,,Romance,,,Märchen,Balada,,,Canzone d’epoca,Vleugje romantiek,,,,Романтика,スキャット,,即興歌聲,即兴叫喊,라라라
+TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,,Bird’s Chirping,,,Chant d’un oiseau,,,,,,,,,,,,,,,,,
 FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Animations,Spark,,,Étincelles,,,Funkenfontäne,,Chispas,Chisporroteo,Fontana di scintille,Sterretjesfontein,,,,Искры,スパーク,,火樹銀花,焰火,파지직
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Traditional,,,Lampions,,,Matsuri,,Festival,Festival oriental,Matsuri,Lampionnenfestival,,,,Фестиваль,おはやし,,日式祭典樂,伴奏,축제 음악
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Animations,Electric Guitar,,,Guitare électrique,,,Riff,Guitarra eléctrica,,,Chitarra elettrica,Elektrische gitaar,,,,Гитарное соло,エレキギター,,電吉他,电吉他,일렉트릭 기타
@@ -45,8 +45,8 @@ TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,Festive Music,,
 TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,,Rave Music,,,Musique folle,,,,,,,,,,,,,,,,,
 TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Heartbeat,,,Cœur qui bat,,,Herzschlag,Latido,,,Cuore,Hartslag,,,,Пульс,ドキドキ,,撲通撲通,扑通扑通,두근두근
 TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Silence,,,Silence,,,Stille,Silencio,,,Silenzio,Stilte,,,,Тишина,シ～ン,,悄然無聲,嘘～,쉬잇
-TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,Bird's Tweeting Noise,,,Son d'un oiseau chantant,,,,,,,,,,,,,,,,,
-TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,Chicken's Clucking Noise,,,Son d'un poulet gloussant,,,,,,,,,,,,,,,,,
+TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,Bird’s Tweeting Noise,,,Son d’un oiseau chantant,,,,,,,,,,,,,,,,,
+TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,Chicken’s Clucking Noise,,,Son d’un poulet gloussant,,,,,,,,,,,,,,,,,
 TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Boss Music,,,Boss,,,Boss,Jefe,,,Boss,Baasmuziek,,,,Босс,ボス,BOSS,,,보스
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Final Boss,,,Boss de fin,,,Letzter Boss,Jefe final,,,Boss finale,Eindbaasmuziek,,,,Последний босс,ラスボス,,最終BOSS,最终BOSS,최종 보스
 FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,Music,Super Mario Kart,,,Super Mario Kart,,,Super Mario Kart,Super Mario Kart,,,Super Mario Kart,Super Mario Kart,Super Mario Kart,,,Super Mario Kart,スーパーマリオカート,,Super Mario Kart,Super Mario Kart,Super Mario Kart

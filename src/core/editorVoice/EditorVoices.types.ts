@@ -211,7 +211,7 @@ export type PossibleEnglishName_OnlyEntity =
         | Exclude<PossibleEnglishName_DryBones, 'Dry Bones'> | Exclude<PossibleEnglishName_BuzzyBeetleAndShell, 'Buzzy Beetle'>
         | Exclude<PossibleEnglishName_SpinyAndShell, 'Spiny'> | Exclude<PossibleEnglishName_SpikeTop, 'Spike Top'>
         | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
-        | 'Empty Block' | 'Chain Chomp\'s Stump' | 'Angry Sun'
+        | 'Empty Block' | 'Chain Chomp’s Stump' | 'Angry Sun'
         | PossibleEnglishName_Goals | 'Phanto' | 'Stone' | 'Parachute' | 'Bubble'
         | PossibleEnglishName_Projectile | PossibleEnglishName_Object>//TODO create a type in "Entities.types" to have the possible name with editor voice instead
 export type PossibleEnglishName = | PossibleEnglishName_OnlyEntity

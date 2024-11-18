@@ -129,13 +129,13 @@ export type PossibleEnglishName_SoundEffect = | 'Super Mario Kart' | 'Super Mari
 export type PossibleAcronym_SoundEffect = | 'SMK' | 'SM64' | 'SMS' | 'SMG'
 
 export type PossibleEnglishName_Exclusive =
-    | 'Mario Bros.' | 'Super Mario Bros. 2' | 'Super Mario World 2: Yoshi\'s Island' | 'Super Mario Land' | 'Wario Land: Super Mario Land 3' | 'Mario Tennis'
-    | 'Dr. Mario' | 'Dr. Mario 64' | 'Luigi\'s Mansion' | 'Yoshi\'s Woolly World' | 'Captain Toad: Treasure Tracker'
+    | 'Mario Bros.' | 'Super Mario Bros. 2' | 'Super Mario World 2: Yoshi’s Island' | 'Super Mario Land' | 'Wario Land: Super Mario Land 3' | 'Mario Tennis'
+    | 'Dr. Mario' | 'Dr. Mario 64' | 'Luigi’s Mansion' | 'Yoshi’s Woolly World' | 'Captain Toad: Treasure Tracker'
     | 'WarioWare: Touched!' | 'Mario & Luigi: Paper Jam'
 
     | 'Donkey Kong' | 'Donkey Kong Jr.' | 'Donkey Kong Country'
 
-    | `Kirby's Dream Land` | `Kirby's Adventure`
+    | 'Kirby’s Dream Land' | 'Kirby’s Adventure'
 
     | 'Kid Icarius' | 'Kid Icarius: Uprising'
 
@@ -155,7 +155,7 @@ export type PossibleEnglishName_Exclusive =
 
     | 'The Legend of Zelda' | 'Zelda II: The Adventure of Link'
     | 'The Legend of Zelda: A Link to the Past'
-    | 'The Legend of Zelda: Ocarina of Time' | 'The Legend of Zelda: Majora\'s Mask'
+    | 'The Legend of Zelda: Ocarina of Time' | 'The Legend of Zelda: Majora’s Mask'
     | 'The Legend of Zelda: The Wind Waker' | 'The Legend of Zelda: Twilight Princess'
     | 'The Legend of Zelda: Tri Force Heroes'
 

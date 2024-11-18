@@ -638,7 +638,7 @@ export abstract class SoundEffects
             return FileCreator.smm1SoundFiles('SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',)
         }
 
-    }('Bird\'s Chirping',)
+    }('Bird’s Chirping',)
     public static readonly SPARK =                      new class SoundEffects_Spark extends SoundEffects {
 
         protected override _createSMM2ImageName() {
@@ -934,7 +934,7 @@ export abstract class SoundEffects
             return FileCreator.smm1SoundFiles('hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',)
         }
 
-    }('Bird\'s Tweeting Noise',)
+    }('Bird’s Tweeting Noise',)
     public static readonly CHICKEN_CLUCKING_NOISE =     new class SoundEffects_ChickenCluckingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
@@ -946,7 +946,7 @@ export abstract class SoundEffects
             return FileCreator.smm1SoundFiles('yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',)
         }
 
-    }('Chicken\'s Clucking Noise',)
+    }('Chicken’s Clucking Noise',)
 
     public static readonly BONUS_MUSIC =                new class SoundEffects_BonusMusic extends SoundEffects {
 

@@ -548,12 +548,12 @@ export abstract class UnusedEntityImages
     public static readonly WENDY =                                         new UnusedEntityImages.Null()
     public static readonly WENDY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new UnusedEntityImages.Null()
-    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantIn3GameStyle('(Wendy\'s projectile)', SMB, 'M1 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMB3, 'M3 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMW, 'MW - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
+    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantIn3GameStyle('(Wendy’s projectile)', SMB, 'M1 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMB3, 'M3 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMW, 'MW - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
 
     public static readonly LEMMY =                                         new UnusedEntityImages.Null()
     public static readonly LEMMY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new UnusedEntityImages.Null()
-    public static readonly LEMMY_PROJECTILE =                              new UnusedEntityImages.ExistantIn1GameStyle('(Lemmy\'s projectile)', SMB, 'M1 - Enemy - Lemmy', 'effect.1', 'effect.2',)
+    public static readonly LEMMY_PROJECTILE =                              new UnusedEntityImages.ExistantIn1GameStyle('(Lemmy’s projectile)', SMB, 'M1 - Enemy - Lemmy', 'effect.1', 'effect.2',)
 
     public static readonly ROY =                                           new UnusedEntityImages.Null()
     public static readonly ROY_WAND =                                      new UnusedEntityImages.Null()
@@ -562,7 +562,7 @@ export abstract class UnusedEntityImages
     public static readonly MORTON =                                        new UnusedEntityImages.Null()
     public static readonly MORTON_WAND =                                   new UnusedEntityImages.Null()
     public static readonly MORTON_THROWN_PROJECTILE =                      new UnusedEntityImages.Null()
-    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantIn1GameStyle('(Morton\'s Ground projectile)', SMB3, 'M3 - Enemy - Morton', 'fire.2',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantIn1GameStyle('(Morton’s Ground projectile)', SMB3, 'M3 - Enemy - Morton', 'fire.2',)
 
     public static readonly LUDWIG =                                        new UnusedEntityImages.Null()
     public static readonly LUDWIG_WAND =                                   new UnusedEntityImages.Null()

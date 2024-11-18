@@ -190,14 +190,14 @@ export class Entities
     public static readonly SHOE =                                          new Entities('Shoe',)
     public static readonly STILETTO_GOOMBA =                               new Entities('Stiletto Goomba',)
     public static readonly STILETTO =                                      new Entities('Stiletto',)
-    public static readonly YOSHI_EGG =                                     new Entities('Yoshi\'s Egg',)
+    public static readonly YOSHI_EGG =                                     new Entities('Yoshi’s Egg',)
     public static readonly YOSHI =                                         new Entities('Yoshi',)
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',)
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',)
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new Entities('Wrench thrown by a Yoshi',)
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',)
-    public static readonly RED_YOSHI_EGG =                                 new Entities('Red Yoshi\'s Egg',)
+    public static readonly RED_YOSHI_EGG =                                 new Entities('Red Yoshi’s Egg',)
     public static readonly RED_YOSHI =                                     new Entities('Red Yoshi',)
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new Entities('Fire thrown by a Red Yoshi',)
 
@@ -227,7 +227,7 @@ export class Entities
 
     public static readonly SPINY =                                         new Entities('Spiny',)
     public static readonly WINGED_SPINY =                                  new Entities('Winged Spiny',)
-    public static readonly WINGED_SPINY_PROJECTILE =                       new Entities('(Winged Spiny\'s projectile)',)
+    public static readonly WINGED_SPINY_PROJECTILE =                       new Entities('(Winged Spiny’s projectile)',)
     public static readonly SPINY_EGG =                                     new Entities('Spiny Egg',)
     public static readonly SPINY_SHELL =                                   new Entities('Spiny Shell',)
 
@@ -267,14 +267,14 @@ export class Entities
 
     public static readonly CHAIN_CHOMP =                                   new Entities('Chain Chomp',)
     public static readonly UNCHAINED_CHOMP =                               new Entities('Unchained Chomp',)
-    public static readonly CHAIN_CHOMP_STUMP =                             new Entities('Chain Chomp\'s Stump',)
+    public static readonly CHAIN_CHOMP_STUMP =                             new Entities('Chain Chomp’s Stump',)
 
     public static readonly SPIKE =                                         new Entities('Spike',)
     public static readonly SPIKE_BALL =                                    new Entities('Spike Ball',)
     public static readonly SNOWBALL =                                      new Entities('Snowball',)
 
     public static readonly LAKITU =                                        new Entities('Lakitu',)
-    public static readonly LAKITU_CLOUD =                                  new Entities('Lakitu\'s Cloud',)
+    public static readonly LAKITU_CLOUD =                                  new Entities('Lakitu’s Cloud',)
 
     public static readonly BOO =                                           new Entities('Boo',)
     public static readonly STRETCH =                                       new Entities('Stretch',)
@@ -294,7 +294,7 @@ export class Entities
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new Entities('Wrench thrown by a Rocky Wrench',)
 
     public static readonly MAGIKOOPA =                                     new Entities('Magikoopa',)
-    public static readonly MAGIKOOPA_PROJECTILE =                          new Entities('(Magikoopa\'s projectile)',)
+    public static readonly MAGIKOOPA_PROJECTILE =                          new Entities('(Magikoopa’s projectile)',)
 
     public static readonly HAMMER_BRO =                                    new Entities('Hammer Bro',)
     public static readonly SLEDGE_BRO =                                    new Entities('Sledge Bro',)
@@ -320,12 +320,12 @@ export class Entities
 
     public static readonly BILL_BLASTER =                                  new Entities('Bill Blaster',)
     public static readonly BULLET_BILL =                                   new Entities('Bullet Bill',)
-    public static readonly BULL_EYE_BLASTER =                              new Entities('Bull\'s-Eye Blaster',)
-    public static readonly BULL_EYE_BILL =                                 new Entities('Bull\'s-Eye Bill',)
+    public static readonly BULL_EYE_BLASTER =                              new Entities('Bull’s-Eye Blaster',)
+    public static readonly BULL_EYE_BILL =                                 new Entities('Bull’s-Eye Bill',)
     public static readonly CAT_BULLET_BILL =                               new Entities('Cat Bullet Bill',)
 
     public static readonly BANZAI_BILL =                                   new Entities('Banzai Bill',)
-    public static readonly BULL_EYE_BANZAI =                               new Entities('Bull\'s-Eye Banzai',)
+    public static readonly BULL_EYE_BANZAI =                               new Entities('Bull’s-Eye Banzai',)
     public static readonly CAT_BANZAI_BILL =                               new Entities('Cat Banzai Bill',)
 
     public static readonly CANNON =                                        new Entities('Cannon',)
@@ -366,39 +366,39 @@ export class Entities
 
     public static readonly BOOM_BOOM =                                     new Entities('Boom Boom',)
     public static readonly POM_POM =                                       new Entities('Pom Pom',)
-    public static readonly POM_POM_CLONE =                                 new Entities('Pom Pom\'s clone',)
+    public static readonly POM_POM_CLONE =                                 new Entities('Pom Pom’s clone',)
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new Entities('Shuriken thrown by a Pom Pom',)
 
     public static readonly LARRY =                                         new Entities('Larry',)
-    public static readonly LARRY_WAND =                                    new Entities('Larry\'s Wand',)
-    public static readonly LARRY_PROJECTILE =                              new Entities('(Larry\'s projectile)',)
+    public static readonly LARRY_WAND =                                    new Entities('Larry’s Wand',)
+    public static readonly LARRY_PROJECTILE =                              new Entities('(Larry’s projectile)',)
 
     public static readonly IGGY =                                          new Entities('Iggy',)
-    public static readonly IGGY_WAND =                                     new Entities('Iggy\'s Wand',)
-    public static readonly IGGY_PROJECTILE =                               new Entities('(Iggy\'s projectile)',)
+    public static readonly IGGY_WAND =                                     new Entities('Iggy’s Wand',)
+    public static readonly IGGY_PROJECTILE =                               new Entities('(Iggy’s projectile)',)
 
     public static readonly WENDY =                                         new Entities('Wendy',)
-    public static readonly WENDY_WAND =                                    new Entities('Wendy\'s Wand',)
+    public static readonly WENDY_WAND =                                    new Entities('Wendy’s Wand',)
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new Entities('Candy Ring thrown by a Wendy',)
-    public static readonly WENDY_PROJECTILE =                              new Entities('(Wendy\'s projectile)',)
+    public static readonly WENDY_PROJECTILE =                              new Entities('(Wendy’s projectile)',)
 
     public static readonly LEMMY =                                         new Entities('Lemmy',)
-    public static readonly LEMMY_WAND =                                    new Entities('Lemmy\'s Wand',)
+    public static readonly LEMMY_WAND =                                    new Entities('Lemmy’s Wand',)
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new Entities('Magic Ball thrown by a Lemmy',)
-    public static readonly LEMMY_PROJECTILE =                              new Entities('(Lemmy\'s projectile)',)
+    public static readonly LEMMY_PROJECTILE =                              new Entities('(Lemmy’s projectile)',)
 
     public static readonly ROY =                                           new Entities('Roy',)
-    public static readonly ROY_WAND =                                      new Entities('Roy\'s Wand',)
-    public static readonly ROY_PROJECTILE =                                new Entities('(Roy\'s projectile)',)
+    public static readonly ROY_WAND =                                      new Entities('Roy’s Wand',)
+    public static readonly ROY_PROJECTILE =                                new Entities('(Roy’s projectile)',)
 
     public static readonly MORTON =                                        new Entities('Morton',)
-    public static readonly MORTON_WAND =                                   new Entities('Morton\'s Wand',)
-    public static readonly MORTON_THROWN_PROJECTILE =                      new Entities('(Morton\'s Thrown projectile)',)
-    public static readonly MORTON_GROUND_PROJECTILE =                      new Entities('(Morton\'s Ground projectile)',)
+    public static readonly MORTON_WAND =                                   new Entities('Morton’s Wand',)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new Entities('(Morton’s Thrown projectile)',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new Entities('(Morton’s Ground projectile)',)
 
     public static readonly LUDWIG =                                        new Entities('Ludwig',)
-    public static readonly LUDWIG_WAND =                                   new Entities('Ludwig\'s Wand',)
-    public static readonly LUDWIG_PROJECTILE =                             new Entities('(Ludwig\'s projectile)',)
+    public static readonly LUDWIG_WAND =                                   new Entities('Ludwig’s Wand',)
+    public static readonly LUDWIG_PROJECTILE =                             new Entities('(Ludwig’s projectile)',)
 
     //endregion -------------------- Bosses + projectiles --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------

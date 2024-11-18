@@ -396,14 +396,14 @@ export abstract class EntityImages
     public static readonly SHOE =                                          new EntityImages.InGame('Shoe', InGameEntityImages.SHOE,)
     public static readonly STILETTO_GOOMBA =                               new EntityImages.InGame('Stiletto Goomba', InGameEntityImages.STILETTO_GOOMBA,)
     public static readonly STILETTO =                                      new EntityImages.InGame('Stiletto', InGameEntityImages.STILETTO,)
-    public static readonly YOSHI_EGG =                                     new EntityImages.Editor('Yoshi\'s Egg', EditorEntityImages.YOSHI_EGG,)
+    public static readonly YOSHI_EGG =                                     new EntityImages.Editor('Yoshi’s Egg', EditorEntityImages.YOSHI_EGG,)
     public static readonly YOSHI =                                         new EntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new EntityImages.InGame('Fire thrown by a Yoshi',  InGameEntityImages.FIRE_THROWN_BY_A_YOSHI,)
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new EntityImages.InGame('Poison thrown by a Yoshi',  InGameEntityImages.POISON_THROWN_BY_A_YOSHI,)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new EntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new EntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new EntityImages.Null()
-    public static readonly RED_YOSHI_EGG =                                 new EntityImages.Editor('Red Yoshi\'s Egg', EditorEntityImages.RED_YOSHI_EGG,)
+    public static readonly RED_YOSHI_EGG =                                 new EntityImages.Editor('Red Yoshi’s Egg', EditorEntityImages.RED_YOSHI_EGG,)
     public static readonly RED_YOSHI =                                     new EntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new EntityImages.Null()
 
@@ -433,7 +433,7 @@ export abstract class EntityImages
 
     public static readonly SPINY =                                         new EntityImages.Editor('Spiny', EditorEntityImages.SPINY,)
     public static readonly WINGED_SPINY =                                  new EntityImages.Null()
-    public static readonly WINGED_SPINY_PROJECTILE =                       new EntityImages.InGame('(Winged Spiny\'s projectile)', InGameEntityImages.WINGED_SPINY_PROJECTILE,)
+    public static readonly WINGED_SPINY_PROJECTILE =                       new EntityImages.InGame('(Winged Spiny’s projectile)', InGameEntityImages.WINGED_SPINY_PROJECTILE,)
     public static readonly SPINY_EGG =                                     new EntityImages.InGame('Spiny Egg', InGameEntityImages.SPINY_EGG,)
     public static readonly SPINY_SHELL =                                   new EntityImages.Editor('Spiny Shell', EditorEntityImages.SPINY_SHELL,)
 
@@ -480,7 +480,7 @@ export abstract class EntityImages
     public static readonly SNOWBALL =                                      new EntityImages.Editor('Snowball', EditorEntityImages.SNOWBALL,)
 
     public static readonly LAKITU =                                        new EntityImages.Editor('Lakitu', EditorEntityImages.LAKITU,)
-    public static readonly LAKITU_CLOUD =                                  new EntityImages.Editor('Lakitu\'s Cloud', EditorEntityImages.LAKITU_CLOUD,)
+    public static readonly LAKITU_CLOUD =                                  new EntityImages.Editor('Lakitu’s Cloud', EditorEntityImages.LAKITU_CLOUD,)
 
     public static readonly BOO =                                           new EntityImages.Editor('Boo', EditorEntityImages.BOO,)
     public static readonly STRETCH =                                       new EntityImages.Editor('Stretch', EditorEntityImages.STRETCH,)
@@ -500,7 +500,7 @@ export abstract class EntityImages
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new EntityImages.InGame('Wrench thrown by a Rocky Wrench', InGameEntityImages.WRENCH_THROWN_BY_A_ROCKY_WRENCH,)
 
     public static readonly MAGIKOOPA =                                     new EntityImages.Editor('Magikoopa', EditorEntityImages.MAGIKOOPA,)
-    public static readonly MAGIKOOPA_PROJECTILE =                          new EntityImages.InGame('(Magikoopa\'s projectile)', InGameEntityImages.MAGIKOOPA_PROJECTILE,)
+    public static readonly MAGIKOOPA_PROJECTILE =                          new EntityImages.InGame('(Magikoopa’s projectile)', InGameEntityImages.MAGIKOOPA_PROJECTILE,)
 
     public static readonly HAMMER_BRO =                                    new EntityImages.Editor('Hammer Bro', EditorEntityImages.HAMMER_BRO,)
     public static readonly SLEDGE_BRO =                                    new EntityImages.Editor('Sledge Bro', EditorEntityImages.SLEDGE_BRO,)
@@ -526,12 +526,12 @@ export abstract class EntityImages
 
     public static readonly BILL_BLASTER =                                  new EntityImages.EditorWithNoBlueVariantDuplicate('Bill Blaster', EditorEntityImages.BILL_BLASTER,)
     public static readonly BULLET_BILL =                                   new EntityImages.ClearCondition('Bullet Bill', ClearConditionEntityImages.BULLET_BILL,)
-    public static readonly BULL_EYE_BLASTER =                              new EntityImages.Editor('Bull\'s-Eye Blaster', EditorEntityImages.BULL_EYE_BLASTER,)
+    public static readonly BULL_EYE_BLASTER =                              new EntityImages.Editor('Bull’s-Eye Blaster', EditorEntityImages.BULL_EYE_BLASTER,)
     public static readonly BULL_EYE_BILL =                                 new EntityImages.Null()
     public static readonly CAT_BULLET_BILL =                               new EntityImages.Null()
 
     public static readonly BANZAI_BILL =                                   new EntityImages.EditorWithNoBlueVariantDuplicate('Banzai Bill', EditorEntityImages.BANZAI_BILL,)
-    public static readonly BULL_EYE_BANZAI =                               new EntityImages.Editor('Bull\'s-Eye Banzai', EditorEntityImages.BULL_EYE_BANZAI,)
+    public static readonly BULL_EYE_BANZAI =                               new EntityImages.Editor('Bull’s-Eye Banzai', EditorEntityImages.BULL_EYE_BANZAI,)
     public static readonly CAT_BANZAI_BILL =                               new EntityImages.Editor('Cat Banzai Bill', EditorEntityImages.CAT_BANZAI_BILL,)
 
     public static readonly CANNON =                                        new EntityImages.EditorWithNoBlueVariantDuplicate('Cannon', EditorEntityImages.CANNON,)
@@ -576,35 +576,35 @@ export abstract class EntityImages
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new EntityImages.Null()
 
     public static readonly LARRY =                                         new EntityImages.Editor('Larry', EditorEntityImages.LARRY,)
-    public static readonly LARRY_WAND =                                    new EntityImages.InGame('Larry\'s Wand', InGameEntityImages.LARRY_WAND,)
-    public static readonly LARRY_PROJECTILE =                              new EntityImages.InGame('(Larry\'s projectile)', InGameEntityImages.LARRY_PROJECTILE,)
+    public static readonly LARRY_WAND =                                    new EntityImages.InGame('Larry’s Wand', InGameEntityImages.LARRY_WAND,)
+    public static readonly LARRY_PROJECTILE =                              new EntityImages.InGame('(Larry’s projectile)', InGameEntityImages.LARRY_PROJECTILE,)
 
     public static readonly IGGY =                                          new EntityImages.Editor('Iggy', EditorEntityImages.IGGY,)
-    public static readonly IGGY_WAND =                                     new EntityImages.InGame('Iggy\'s Wand', InGameEntityImages.IGGY_WAND,)
-    public static readonly IGGY_PROJECTILE =                               new EntityImages.InGame('(Iggy\'s projectile)', InGameEntityImages.IGGY_PROJECTILE,)
+    public static readonly IGGY_WAND =                                     new EntityImages.InGame('Iggy’s Wand', InGameEntityImages.IGGY_WAND,)
+    public static readonly IGGY_PROJECTILE =                               new EntityImages.InGame('(Iggy’s projectile)', InGameEntityImages.IGGY_PROJECTILE,)
 
     public static readonly WENDY =                                         new EntityImages.Editor('Wendy', EditorEntityImages.WENDY,)
-    public static readonly WENDY_WAND =                                    new EntityImages.InGame('Wendy\'s Wand', InGameEntityImages.WENDY_WAND,)
+    public static readonly WENDY_WAND =                                    new EntityImages.InGame('Wendy’s Wand', InGameEntityImages.WENDY_WAND,)
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new EntityImages.InGame('Candy Ring thrown by a Wendy', InGameEntityImages.CANDY_RING_THROWN_BY_A_WENDY,)
     public static readonly WENDY_PROJECTILE =                              new EntityImages.Null()
 
     public static readonly LEMMY =                                         new EntityImages.Editor('Lemmy', EditorEntityImages.LEMMY,)
-    public static readonly LEMMY_WAND =                                    new EntityImages.InGame('Lemmy\'s Wand', InGameEntityImages.LEMMY_WAND,)
+    public static readonly LEMMY_WAND =                                    new EntityImages.InGame('Lemmy’s Wand', InGameEntityImages.LEMMY_WAND,)
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new EntityImages.InGame('Magic Ball thrown by a Lemmy', InGameEntityImages.MAGIC_BALL_THROWN_BY_A_LEMMY,)
     public static readonly LEMMY_PROJECTILE =                              new EntityImages.Null()
 
     public static readonly ROY =                                           new EntityImages.Editor('Roy', EditorEntityImages.ROY,)
-    public static readonly ROY_WAND =                                      new EntityImages.InGame('Roy\'s Wand', InGameEntityImages.ROY_WAND,)
-    public static readonly ROY_PROJECTILE =                                new EntityImages.InGame('(Roy\'s projectile)', InGameEntityImages.ROY_PROJECTILE,)
+    public static readonly ROY_WAND =                                      new EntityImages.InGame('Roy’s Wand', InGameEntityImages.ROY_WAND,)
+    public static readonly ROY_PROJECTILE =                                new EntityImages.InGame('(Roy’s projectile)', InGameEntityImages.ROY_PROJECTILE,)
 
     public static readonly MORTON =                                        new EntityImages.Editor('Morton', EditorEntityImages.MORTON,)
-    public static readonly MORTON_WAND =                                   new EntityImages.InGame('Morton\'s Wand', InGameEntityImages.MORTON_WAND,)
-    public static readonly MORTON_THROWN_PROJECTILE =                      new EntityImages.InGame('(Morton\'s Thrown projectile)', InGameEntityImages.MORTON_THROWN_PROJECTILE,)
-    public static readonly MORTON_GROUND_PROJECTILE =                      new EntityImages.InGame('(Morton\'s Ground projectile)', InGameEntityImages.MORTON_GROUND_PROJECTILE,)
+    public static readonly MORTON_WAND =                                   new EntityImages.InGame('Morton’s Wand', InGameEntityImages.MORTON_WAND,)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new EntityImages.InGame('(Morton’s Thrown projectile)', InGameEntityImages.MORTON_THROWN_PROJECTILE,)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new EntityImages.InGame('(Morton’s Ground projectile)', InGameEntityImages.MORTON_GROUND_PROJECTILE,)
 
     public static readonly LUDWIG =                                        new EntityImages.Editor('Ludwig', EditorEntityImages.LUDWIG,)
-    public static readonly LUDWIG_WAND =                                   new EntityImages.InGame('Ludwig\'s Wand', InGameEntityImages.LUDWIG_WAND,)
-    public static readonly LUDWIG_PROJECTILE =                             new EntityImages.InGame('(Ludwig\'s projectile)', InGameEntityImages.LUDWIG_PROJECTILE,)
+    public static readonly LUDWIG_WAND =                                   new EntityImages.InGame('Ludwig’s Wand', InGameEntityImages.LUDWIG_WAND,)
+    public static readonly LUDWIG_PROJECTILE =                             new EntityImages.InGame('(Ludwig’s projectile)', InGameEntityImages.LUDWIG_PROJECTILE,)
 
     //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------

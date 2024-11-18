@@ -1850,14 +1850,14 @@ export abstract class EditorEntityImages
     public static readonly SHOE =                                          new EditorEntityImages.Null()
     public static readonly STILETTO_GOOMBA =                               new EditorEntityImages.ExistantAsOneInOnlySmbAndSmb3('Stiletto Goomba', 'KutsuKuribo_01',)
     public static readonly STILETTO =                                      new EditorEntityImages.Null()
-    public static readonly YOSHI_EGG =                                     new EditorEntityImages.ExistantAsOneInOnlySmwAndNsmbu('Yoshi\'s Egg', 'YosshiEgg_00',)
+    public static readonly YOSHI_EGG =                                     new EditorEntityImages.ExistantAsOneInOnlySmwAndNsmbu('Yoshi’s Egg', 'YosshiEgg_00',)
     public static readonly YOSHI =                                         new EditorEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new EditorEntityImages.Null()
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new EditorEntityImages.Null()
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new EditorEntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new EditorEntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new EditorEntityImages.Null()
-    public static readonly RED_YOSHI_EGG =                                 new EditorEntityImages.ExistantAsOneInOnlySmwAndNsmbu('Red Yoshi\'s Egg', 'YosshiEggRed_00',)
+    public static readonly RED_YOSHI_EGG =                                 new EditorEntityImages.ExistantAsOneInOnlySmwAndNsmbu('Red Yoshi’s Egg', 'YosshiEggRed_00',)
     public static readonly RED_YOSHI =                                     new EditorEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new EditorEntityImages.Null()
 
@@ -1934,7 +1934,7 @@ export abstract class EditorEntityImages
     public static readonly SNOWBALL =                                      new EditorEntityImages.ExistantAsOneInOnlySnow('Snowball', 'Gabon_snow_01',)
 
     public static readonly LAKITU =                                        new EditorEntityImages.ExistantAsOneInNotSm3dw('Lakitu', 'Jugem_00',)
-    public static readonly LAKITU_CLOUD =                                  new EditorEntityImages.ExistantAsOneInNotSm3dw('Lakitu\'s Cloud', 'Jugem_01',)
+    public static readonly LAKITU_CLOUD =                                  new EditorEntityImages.ExistantAsOneInNotSm3dw('Lakitu’s Cloud', 'Jugem_01',)
 
     public static readonly BOO =                                           new EditorEntityImages.ExistantAsOneInAll('Boo', 'Teresa_00',)
     public static readonly STRETCH =                                       new EditorEntityImages.Null()
@@ -1980,12 +1980,12 @@ export abstract class EditorEntityImages
 
     public static readonly BILL_BLASTER =                                  new EditorEntityImages.ExistantAsBlueVariantInSmbAndSmb3('Bill Blaster', 'KillerHoudai', 0,)
     public static readonly BULLET_BILL =                                   new EditorEntityImages.Null()
-    public static readonly BULL_EYE_BLASTER =                              new EditorEntityImages.ExistantAsOneInAll('Bull\'s-Eye Blaster', 'KillerHoudai_01',)
+    public static readonly BULL_EYE_BLASTER =                              new EditorEntityImages.ExistantAsOneInAll('Bull’s-Eye Blaster', 'KillerHoudai_01',)
     public static readonly BULL_EYE_BILL =                                 new EditorEntityImages.Null()
     public static readonly CAT_BULLET_BILL =                               new EditorEntityImages.Null()
 
     public static readonly BANZAI_BILL =                                   new EditorEntityImages.ExistantAsBlueVariantInSmbAndSmb3('Banzai Bill', 'MagnumKiller', 0,)
-    public static readonly BULL_EYE_BANZAI =                               new EditorEntityImages.ExistantAsOneInNotSm3dw('Bull\'s-Eye Banzai', 'MagnumKiller_01',)
+    public static readonly BULL_EYE_BANZAI =                               new EditorEntityImages.ExistantAsOneInNotSm3dw('Bull’s-Eye Banzai', 'MagnumKiller_01',)
     public static readonly CAT_BANZAI_BILL =                               new EditorEntityImages.ExistantAsOneInOnlySm3dw('Cat Banzai Bill', 'MagnumKiller_01',)
 
     public static readonly CANNON =                                        new EditorEntityImages.ExistantAsBlueVariantInSmbAndSmb3ButNotSm3dw('Cannon', 'Houdai', 0,)

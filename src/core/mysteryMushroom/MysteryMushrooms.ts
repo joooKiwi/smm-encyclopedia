@@ -576,7 +576,7 @@ export class MysteryMushrooms
     public static readonly TIMMY_AND_TOMMY =        new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('TsubuMame',), 'Timmy & Tommy',)
     public static readonly BLATHERS =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Futa',), 'Blathers',)
     public static readonly MABEL =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Kinuyo',), 'Mabel',)
-    public static readonly KAPP_N =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Kappei',), 'Kapp\'n',)
+    public static readonly KAPP_N =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Kappei',), 'Kapp’n',)
     public static readonly CELESTE =                new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Fuko',), 'Celeste',)
     public static readonly KICKS =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Shunk',), 'Kicks',)
     public static readonly ISABELLE_SUMMER_OUTFIT = new MysteryMushrooms.MysteryMushroomsWithNoTauntAndTurnSounds(new SingleFile('Sizue',), 'Isabelle (Summer Outfit)',)

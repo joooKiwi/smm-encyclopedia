@@ -51,9 +51,9 @@ export type PossibleEnglishName_SMM1AndSMM2 =
     | 'Bonus Music' | 'Boss Music'
 export type PossibleEnglishName_SMM1 =
     | PossibleEnglishName_SMM1AndSMM2
-    | 'Bird\'s Chirping' | 'Distortion' | 'Telephone'
+    | 'Bird’s Chirping' | 'Distortion' | 'Telephone'
 
-    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`
+    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird’s Tweeting' | 'Chicken’s Clucking'} Noise`
 export type PossibleEnglishName_SMM2 =
     | PossibleEnglishName_SMM1AndSMM2
     | 'Guffaw' | 'Booo!' | 'Party Popper'

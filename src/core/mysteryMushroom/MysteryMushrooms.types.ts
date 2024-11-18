@@ -277,7 +277,7 @@ export type PossibleEnglishName =
     | 'Timmy & Tommy'
     | 'Blathers'
     | 'Mabel'
-    | 'Kapp\'n'
+    | 'Kapp’n'
     | 'Celeste'
     | 'Kicks'
     | 'Isabelle (Summer Outfit)' | 'Isabelle (Winter Outfit)'

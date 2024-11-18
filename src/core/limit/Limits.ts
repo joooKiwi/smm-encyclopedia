@@ -215,7 +215,7 @@ export class Limits
             return Import.Entities.FIREBALL_THROWN_BY_A_PLAYER
         }
 
-    }(['Player\'s Fireball Limit',],)
+    }(['Player’s Fireball Limit',],)
     public static readonly PLAYER_SUPERBALL =                               new class Limits_PlayerSuperballLimit extends Limits.PlayLimits {
 
         protected override _computeNoteForTranslation() {
@@ -228,7 +228,7 @@ export class Limits
             return Import.Entities.SUPERBALL_THROWN_BY_A_PLAYER
         }
 
-    }(['Player\'s Superball Limit',],)
+    }(['Player’s Superball Limit',],)
     public static readonly PLAYER_BOMB =                                    new class Limits_PlayerBombLimit extends Limits.PlayLimits {
 
         protected override _computeNoteForTranslation() {
@@ -241,7 +241,7 @@ export class Limits
             return Import.Entities.BOMB_THROWN_BY_A_LINK
         }
 
-    }(['Player\'s Bomb Limit',],)
+    }(['Player’s Bomb Limit',],)
     public static readonly PLAYER_BUILDER_BOX =                             new class Limits_PlayerBuilderBoxLimit extends Limits.PlayLimits {
 
         protected override _computeNoteForTranslation() {
@@ -254,7 +254,7 @@ export class Limits
             return Import.Entities.BUILDER_BOX_THROWN_BY_A_PLAYER
         }
 
-    }(['Player\'s Builder Box Limit',],)
+    }(['Player’s Builder Box Limit',],)
     public static readonly PLAYER_BOOMERANG =                               new class Limits_PlayerBoomerangLimit extends Limits.PlayLimits {
 
         protected override _computeNoteForTranslation() {
@@ -267,7 +267,7 @@ export class Limits
             return Import.Entities.BOOMERANG_THROWN_BY_A_PLAYER
         }
 
-    }(['Player\'s Boomerang Limit',],)
+    }(['Player’s Boomerang Limit',],)
     public static readonly PLAYER_CANNONBALL =                              new class Limits_PlayerCannonballLimit extends Limits.PlayLimits {
 
         protected override _computeNoteForTranslation() {
@@ -280,7 +280,7 @@ export class Limits
             return Import.Entities.CANNONBALL_THROWN_BY_A_PLAYER
         }
 
-    }(['Player\'s Cannonball Limit',],)
+    }(['Player’s Cannonball Limit',],)
     public static readonly HATCHED_YOSHI_LIMIT =                            new class Limits_HatchedYoshiLimit extends Limits.PlayLimits {
 
         protected override _computeNoteForTranslation() {
