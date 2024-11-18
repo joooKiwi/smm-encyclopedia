@@ -56,8 +56,8 @@ export class Instruments
     public static readonly BASS =                   new Instruments('Bass',                     'INST_scSlapBass1',)
     public static readonly ELECTRIC_BASS =          new Instruments('Electric bass',            'INST_FingeredElectricBass',)
     public static readonly SYNTHETIC_BASS =         new Instruments('Synthetic bass',           'INST_SynthBass',)
-    public static readonly SUB_BASS =               new Instruments('Sub bass?',                'INST_SubBass',)
-    public static readonly BASS_GLISSANDO =         new Instruments('Bass "glissando"',         'INST_SE7_BassGliss1', 'INST_SE7_BassGliss2',)
+    public static readonly SUB_BASS =               new Instruments('“Sub bass” frequency',     'INST_SubBass',)
+    public static readonly BASS_GLISSANDO =         new Instruments('Bass “glissando”',         'INST_SE7_BassGliss1', 'INST_SE7_BassGliss2',)
     public static readonly OUD =                    new Instruments('Oud',                      'INST_Oud',)
     public static readonly SANTUR =                 new Instruments('Santur',                   'INST_Santur',)
     public static readonly SHAMISEN =               new Instruments('Shamisen',                 'INST_Shamisen',)
@@ -67,15 +67,15 @@ export class Instruments
     public static readonly PIANO_4TH_A =            new Instruments('Piano (4th A)',            'INST_Piano.a4',)
     public static readonly REVERSE_PIANO =          new Instruments('Reverse piano',            'INST_SE2_ReversePianoC3', 'INST_SE2_ReversePianoC4', 'INST_SE2_ReversePianoC5',)
     public static readonly HONKY_TONK_PIANO =       new Instruments('Honky-Tonk piano',         'INST_HonkyTonk',)
-    public static readonly PIZZICATO_STRING =       new Instruments('"Pizzicato" string',       'INST_StringPizz.c6',)
-    public static readonly STACCATO_STRING =        new Instruments('"Staccato" string',        'INST_StaccatoStrings',)
+    public static readonly PIZZICATO_STRING =       new Instruments('“Pizzicato” string',       'INST_StringPizz.c6',)
+    public static readonly STACCATO_STRING =        new Instruments('“Staccato” string',        'INST_StaccatoStrings',)
     public static readonly HARPSICHORD =            new Instruments('Harpsichord',              'INST_Harpsichord',)
 
 
     public static readonly RECORDER =               new Instruments('Recorder',                 'INST_Recorder',)
     public static readonly SYNTHESIZER =            new Instruments('Synthesizer',              'INST_Synlead',)
     public static readonly SYNTHESIZER_CHORD =      new Instruments('Synthesizer chord',        'INST_PAD',)
-    public static readonly CHORD_CM =               new Instruments('Chord CM?',                'INST_chord_Cm', 'INST_chord_CM7',)
+    public static readonly CHORD_CM =               new Instruments('C minor chord',            'INST_chord_Cm', 'INST_chord_CM7',)
 
 
     public static readonly FLUTE =                  new Instruments('Flute',                    'INST_074vlFlute',)
@@ -93,8 +93,8 @@ export class Instruments
     public static readonly ORCHESTRA_HIT =          new Instruments('Orchestra hit',            'INST_scOrcheHit',)
 
 
-    public static readonly DOG_BARK =               new Instruments('Dog\'s bark',              'block_dog',)
-    public static readonly CAT_MEOW =               new Instruments('Cat\'s meow',              'SE_INST_CAT',)
+    public static readonly DOG_BARK =               new Instruments('Dog’s bark',               'block_dog',)
+    public static readonly CAT_MEOW =               new Instruments('Cat’s meow',               'SE_INST_CAT',)
     public static readonly CHICKEN =                new Instruments('Chicken',                  'INST_Chicken',)
     public static readonly AH =                     new Instruments('Ah',                       'INST_AH',)
     public static readonly OK =                     new Instruments('Ok',                       'INST_SE3_ok3',)

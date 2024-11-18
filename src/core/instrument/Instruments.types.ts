@@ -108,13 +108,13 @@ export type PossibleEnglishName =
     | 'Timbales' | 'Tubular bell' | 'Organ' | 'Pipe organ'
 
     | 'Guitar (long)' | `${| 'Electric' | 'Acoustic'} guitar`
-    | 'Bass' | `${| 'Electric' | 'Synthetic'} bass` | 'Sub bass?' | 'Bass "glissando"'
+    | 'Bass' | `${| 'Electric' | 'Synthetic'} bass` | '“Sub bass” frequency' | 'Bass “glissando”'
     | 'Oud' | 'Santur' | 'Shamisen'
 
     | `Piano ${| 1 | 2 | '(4th A)'}` | `${| 'Reverse' | 'Honky-Tonk'} piano`
-    | `"${| 'Pizzicato' | 'Staccato'}" string` | 'Harpsichord'
+    | `“${| 'Pizzicato' | 'Staccato'}” string` | 'Harpsichord'
 
-    | 'Recorder' | `Synthesizer${| EmptyString | ' chord'}` | 'Chord CM?'
+    | 'Recorder' | `Synthesizer${| EmptyString | ' chord'}` | 'C minor chord'
 
     | 'Flute' | 'Saxophone'
     | 'Trombone' | 'Horn' | 'Synthetic brass'
@@ -124,7 +124,7 @@ export type PossibleEnglishName =
 
     | 'Orchestra hit'
 
-    | 'Dog\'s bark' | 'Cat\'s meow' | 'Chicken'
+    | 'Dog’s bark' | 'Cat’s meow' | 'Chicken'
     | 'Ah' | 'Ok' | 'Hello' | 'Yeah'
 
     | 'Square wave' | 'Sound effect 1?'
