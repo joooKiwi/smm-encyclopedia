@@ -1,8 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './InstrumentApp.scss'
 
-import type {Array}                           from '@joookiwi/type'
-import {filterByArray, getFirstOrNullByArray} from '@joookiwi/collection'
+import type {Array}    from '@joookiwi/type'
+import {filterByArray} from '@joookiwi/collection'
 
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
