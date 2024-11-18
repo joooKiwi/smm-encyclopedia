@@ -66,7 +66,7 @@ export abstract class Themes
     public static readonly DESERT =      new class Themes_Desert extends Themes {
 
         public override get(property: ThemeProperty,) {
-            return property.isInDesertTheme === true
+            return property.isInDesertTheme
         }
 
         public override getReference(entity: Entity,) {
@@ -77,7 +77,7 @@ export abstract class Themes
     public static readonly SNOW =        new class Themes_Snow extends Themes {
 
         public override get(property: ThemeProperty,) {
-            return property.isInSnowTheme === true
+            return property.isInSnowTheme
         }
 
         public override getReference(entity: Entity,) {
@@ -88,7 +88,7 @@ export abstract class Themes
     public static readonly SKY =         new class Themes_Sky extends Themes {
 
         public override get(property: ThemeProperty,) {
-            return property.isInSkyTheme === true
+            return property.isInSkyTheme
         }
 
         public override getReference(entity: Entity,) {
@@ -99,7 +99,7 @@ export abstract class Themes
     public static readonly FOREST =      new class Themes_Forest extends Themes {
 
         public override get(property: ThemeProperty,) {
-            return property.isInForestTheme === true
+            return property.isInForestTheme
         }
 
         public override getReference(entity: Entity,) {
