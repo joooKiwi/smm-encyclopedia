@@ -1,7 +1,6 @@
 import type {EmptyString, NullOr} from '@joookiwi/type'
 
 import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
-import type {SoundEffects}                    from 'core/soundEffect/SoundEffects'
 import type {SMM1SoundEffectImageFile}        from 'core/soundEffect/file/SoundEffectImageFile'
 
 enum Enum {
@@ -107,13 +106,3 @@ export type SoundEffectImageName_SMM2 =
     | `Mario0${| 0 | 1 | 2 | 3}`
 
 //endregion -------------------- Image (SMM2) --------------------
-//region -------------------- Array types --------------------
-
-export type SoundEffectGames = readonly [
-    typeof SoundEffects['SUPER_MARIO_KART_MUSIC'],
-    typeof SoundEffects['SUPER_MARIO_64_MUSIC'],
-    typeof SoundEffects['SUPER_MARIO_SUNSHINE_MUSIC'],
-    typeof SoundEffects['SUPER_MARIO_GALAXY_MUSIC'],
-]
-
-//endregion -------------------- Array types --------------------

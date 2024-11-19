@@ -2,20 +2,20 @@ import type {Array, NullOr}       from '@joookiwi/type'
 import {getFirstByArray, isArray} from '@joookiwi/collection'
 import {Enum}                     from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
-import type {MusicSoundFile}                                                                                                                         from 'core/music/file/MusicSoundFile'
-import type {PossibleSoundEffectMusicEditorName}                                                                                                     from 'core/music/soundEffect/SoundEffectMusic'
-import type {SoundEffect}                                                                                                                            from 'core/soundEffect/SoundEffect'
-import type {SoundEffectFromMusicAdaptor}                                                                                                            from 'core/soundEffect/SoundEffectFromMusicAdaptor'
-import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectGames, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
-import type {SMM2SoundEffectImageFile}                                                                                                               from 'core/soundEffect/file/SoundEffectImageFile'
-import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                                               from 'core/soundEffect/file/SoundEffectSoundFile'
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                              from 'core/soundEffect/sound/SMM2SoundEffectSound'
-import type {SMM1ExclusiveSoundEffectSound}                                                                                                          from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
-import type {SMM1StandaloneSoundEffectSound}                                                                                                         from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
-import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                            from 'core/soundEffect/sound/types'
-import type {CompanionEnumByNameSingleton}                                                                                                           from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
+import type {MusicSoundFile}                                                                                                       from 'core/music/file/MusicSoundFile'
+import type {PossibleSoundEffectMusicEditorName}                                                                                   from 'core/music/soundEffect/SoundEffectMusic'
+import type {SoundEffect}                                                                                                          from 'core/soundEffect/SoundEffect'
+import type {SoundEffectFromMusicAdaptor}                                                                                          from 'core/soundEffect/SoundEffectFromMusicAdaptor'
+import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
+import type {SMM2SoundEffectImageFile}                                                                                             from 'core/soundEffect/file/SoundEffectImageFile'
+import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                             from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                            from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {SMM1ExclusiveSoundEffectSound}                                                                                        from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
+import type {SMM1StandaloneSoundEffectSound}                                                                                       from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
+import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                          from 'core/soundEffect/sound/types'
+import type {CompanionEnumByNameSingleton}                                                                                         from 'util/enumerable/Singleton.types'
 
 import type {Musics}                                                    from 'core/music/Musics'
 import {IndividualMusics}                                               from 'core/music/IndividualMusics'
@@ -1358,7 +1358,7 @@ export namespace SoundEffects {
     export const ALL = Companion.values.toArray()
 
     /** Every {@link SoundEffects} that is also a {@link GameReferences} */
-    export const soundEffect_games: SoundEffectGames = [SMK, SM64, SMS, SMG,]
+    export const soundEffect_games = [SMK, SM64, SMS, SMG,] as const
 
 }
 
