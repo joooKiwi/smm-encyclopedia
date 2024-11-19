@@ -142,7 +142,7 @@ export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAp
     return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('instrument.all',)}
                              description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<InstrumentAsideContent game={game} time={time}/>}>
+                             asideContent={<InstrumentAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -207,7 +207,7 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
 interface InstrumentAsideContentProperties
     extends ReactProperties {
 
-    readonly game: InstrumentGames
+    readonly game: NullOr<InstrumentGames>
     readonly time: NullOr<InstrumentTimes>
 
 }
@@ -223,6 +223,8 @@ function InstrumentAsideContent({game, time,}: InstrumentAsideContentProperties,
 
 /** @reactComponent */
 function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'>,) {
+    if (game == null)
+        return null
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
             <GameImage reference={SMM1}/>

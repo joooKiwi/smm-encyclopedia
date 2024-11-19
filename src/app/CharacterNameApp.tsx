@@ -144,7 +144,7 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
     return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('character name.all',)}
                              description={<CharacterNameDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<CharacterNameAsideContent game={game} time={time}/>}>
+                             asideContent={<CharacterNameAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -213,7 +213,7 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
 interface CharacterNameAsideContentProperties
     extends ReactProperties {
 
-    readonly game: CharacterNameGames
+    readonly game: NullOr<CharacterNameGames>
     readonly time: NullOr<CharacterNameTimes>
 
 }
@@ -229,6 +229,8 @@ function CharacterNameAsideContent({game, time,}: CharacterNameAsideContentPrope
 
 /** @reactComponent */
 function GameAsideContent({game,}: Pick<CharacterNameAsideContentProperties, 'game'>,) {
+    if (game == null)
+        return null
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="characterName-gamesButton-singularGame-container" className="btn-group btn-group-sm">

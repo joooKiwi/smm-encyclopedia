@@ -145,7 +145,7 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
     return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('editor voice.all',)}
                              description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<EditorVoiceAsideContent game={game} time={time}/>}>
+                             asideContent={<EditorVoiceAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -221,7 +221,7 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
 interface EditorVoiceAsideContentProperties
     extends ReactProperties {
 
-    readonly game: EditorVoiceGames
+    readonly game: NullOr<EditorVoiceGames>
     readonly time: NullOr<EditorVoiceTimes>
 
 }
@@ -237,6 +237,8 @@ function EditorVoiceAsideContent({game, time,}: EditorVoiceAsideContentPropertie
 
 /** @reactComponent */
 function GameAsideContent({game,}: Pick<EditorVoiceAsideContentProperties, 'game'>,) {
+    if (game == null)
+        return null
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
