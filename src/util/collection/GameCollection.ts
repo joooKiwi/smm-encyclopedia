@@ -26,6 +26,7 @@ export class GameCollection<const T extends Games = Games,
     #hasAllGames?: boolean
     #hasSMM1?: boolean
     #hasSMM3DS?: boolean
+    #hasNotSMM2AndSMM1Or3DS?: boolean
     #hasSMM1Or3DS?: boolean
     #hasSMM2?: boolean
 
@@ -45,6 +46,11 @@ export class GameCollection<const T extends Games = Games,
     /** The collection has the {@link SMM3DS} type in its values */
     public get hasSMM3DS(): boolean {
         return this.#hasSMM3DS ??= this.has(SMM3DS as T,)
+    }
+
+    /** The collection has not {@link SMM2} and has either {@link SMM1} or {@link SMM3DS} type in its values */
+    public get hasNotSMM2AndSMM1Or3DS(): boolean {
+        return this.#hasNotSMM2AndSMM1Or3DS ??= !this.has(SMM2 as T,) && this.hasOne([SMM1 as T, SMM3DS as T,],)
     }
 
     /** The collection has the {@link SMM1} or {@link SMM3DS} type in its values */
