@@ -9,15 +9,15 @@ import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Limit}               from 'core/limit/Limit'
 import type {Limits}              from 'core/limit/Limits'
 
-import {CommonOptions}                from 'app/options/CommonOptions'
-import LimitWithPossibleTooltipOnNote from 'app/options/LimitWithPossibleTooltipOnNote'
-import {COURSE_THEME_IMAGE_FILE}      from 'app/options/file/themeImageFiles'
-import TextComponent                  from 'app/tools/text/TextComponent'
-import Image                          from 'app/tools/images/Image'
-import {EmptyLimit}                   from 'core/limit/EmptyLimit'
-import {ProjectLanguages}             from 'lang/ProjectLanguages'
-import {contentTranslation}           from 'lang/components/translationMethods'
-import NameComponent                  from 'lang/name/component/Name.component'
+import {CommonOptions}                              from 'app/options/CommonOptions'
+import LimitWithPossibleTooltipOnNote               from 'app/options/LimitWithPossibleTooltipOnNote'
+import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
+import TextComponent                                from 'app/tools/text/TextComponent'
+import Image                                        from 'app/tools/images/Image'
+import {EmptyAlternativeLimit}                      from 'core/limit/EmptyAlternativeLimit'
+import {ProjectLanguages}                           from 'lang/ProjectLanguages'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 export abstract class LimitAppOption
     extends Enum<Ordinals, Names>
@@ -75,6 +75,17 @@ export abstract class LimitAppOption
         }
 
     }()
+    public static readonly DESCRIPTION = new class LimitAppOption_Description extends LimitAppOption {
+
+        protected override _createContentOption({reference: {description,}, descriptionForTranslation,}: Limits,) {
+            return <TextComponent content={gameContentTranslation(`limit.description.${description}`, descriptionForTranslation,)}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return {key: 'description', element: contentTranslation('Description',),}
+        }
+
+    }('description',)
     public static readonly AMOUNT_IN_ALL_GAMES = new class LimitAppOption_Amount extends LimitAppOption {
 
         protected override _createContentOption(enumeration: Limits,) {

@@ -20,6 +20,8 @@
       opacity: 20%;
     }
   }
+
+  .entity-image:where(.yoshi-image, .redYoshi-image){ --image-width: 2rem }
 }
 
 .card-body {

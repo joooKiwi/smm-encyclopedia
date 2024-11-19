@@ -122,6 +122,7 @@ class LimitAppInterpreter
         const options: MutableArray<LimitAppOption> = [
             LimitAppOption.ACRONYM,
             LimitAppOption.NAME,
+            LimitAppOption.DESCRIPTION,
         ]
         if (games.hasAllGames)
             options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
@@ -207,23 +208,23 @@ function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties
 
     return <>
         <p>
-            {gameContentTranslation(`limit.description.intro page (${type.type})`, {
+            {gameContentTranslation(`limit.page description.intro page (${type.type})`, {
                 smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Or3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
                 smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1Or3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
-            {gameContentTranslation('limit.description.intro game changes', {
+            {gameContentTranslation('limit.page description.intro game changes', {
                 smm1Link: <TextOrLink key="smm1Link" id="smm1Game-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
                 smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-gameChanges-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
-            {gameContentTranslation('limit.description.intro other entities',)}
-            {gameContentTranslation('limit.description.intro references', {
+            {gameContentTranslation('limit.page description.intro other entities',)}
+            {gameContentTranslation('limit.page description.intro references', {
                 playLink: <LinkText key="playLink" partialId="playLink" routeName={playLink} color="primary">{gameContentTranslation('limit.play.simplified',).toLowerCase()}</LinkText>,
                 editorLink: <LinkText key="editorLink" partialId="editorLink" routeName={editorLink} color="primary">{gameContentTranslation('limit.editor.simplified',).toLowerCase()}</LinkText>,
             },)}
         </p>
-        <p>{gameContentTranslation('limit.description.viewable', {
+        <p>{gameContentTranslation('limit.page description.viewable', {
             listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
             cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
             cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
