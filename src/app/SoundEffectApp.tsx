@@ -9,7 +9,6 @@ import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTa
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
@@ -38,14 +37,12 @@ class SoundEffectAppInterpreter
     //region -------------------- Fields --------------------
 
     readonly #games
-    readonly #gameStyles
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection, gameStyles: GameStyleCollection,) {
+    public constructor(games: GameCollection,) {
         this.#games = games
-        this.#gameStyles = gameStyles
     }
 
     //endregion -------------------- Constructor --------------------
@@ -150,8 +147,8 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundE
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
-    const appInterpreter = new SoundEffectAppInterpreter(games, gameStyles,)
+function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
+    const appInterpreter = new SoundEffectAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
