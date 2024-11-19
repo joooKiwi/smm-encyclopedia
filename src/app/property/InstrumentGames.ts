@@ -3,8 +3,8 @@ import type {NullOrString}                       from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/InstrumentGames.types'
-import type {ViewDisplays}                       from 'app/withInterpreter/ViewDisplays'
-import {Games}                                   from 'core/game/Games'
+
+import {Games} from 'core/game/Games'
 
 export abstract class InstrumentGames
     extends EnumWithParent<Games, Ordinals, Names> {
@@ -17,7 +17,7 @@ export abstract class InstrumentGames
             return 'warning'
         }
 
-        public override getSmm1RouteName() {
+        public override get smm1RouteName() {
             return null
         }
 
@@ -32,14 +32,14 @@ export abstract class InstrumentGames
             return 'warning'
         }
 
-        public override getSmm3dsRouteName() {
+        public override get smm3dsRouteName() {
             return null
         }
 
     }()
     public static readonly SUPER_MARIO_MAKER_2 = new class InstrumentGames_SuperMarioMaker2 extends InstrumentGames {
 
-        public override getSmm2RouteName() {
+        public override get smm2RouteName() {
             return null
         }
 
@@ -94,16 +94,16 @@ export abstract class InstrumentGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getSmm1RouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
-        return `everyInstrument (${viewDisplay.urlValue as | 'list' | 'card'} Game=1)`
+    public get smm1RouteName(): NullOrString<PossibleRouteName> {
+        return `everyInstrument (Game=1)`
     }
 
-    public getSmm3dsRouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
-        return `everyInstrument (${viewDisplay.urlValue as | 'list' | 'card'} Game=3DS)`
+    public get smm3dsRouteName(): NullOrString<PossibleRouteName> {
+        return `everyInstrument (Game=3DS)`
     }
 
-    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
-        return `everyInstrument (${viewDisplay.urlValue as | 'list' | 'card'} Game=2)`
+    public get smm2RouteName(): NullOrString<PossibleRouteName> {
+        return `everyInstrument (Game=2)`
     }
 
     //endregion -------------------- Methods --------------------

@@ -160,9 +160,9 @@ interface InstrumentDescriptionProperties
 
 /** @reactComponent */
 function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProperties,) {
-    const smm1Link = game.getSmm1RouteName(viewDisplay,)
-    const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
-    const smm2Link = game.getSmm2RouteName(viewDisplay,)
+    const smm1Link = game.smm1RouteName
+    const smm3dsLink = game.smm3dsRouteName
+    const smm2Link = game.smm2RouteName
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyInstrument (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyInstrument (card)' satisfies PossibleRouteName
@@ -203,15 +203,15 @@ interface InstrumentAsideContentProperties
 }
 
 /** @reactComponent */
-function InstrumentAsideContent({viewDisplay, game,}: InstrumentAsideContentProperties,) {
+function InstrumentAsideContent({game,}: InstrumentAsideContentProperties,) {
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}>
+        <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
             <GameImage reference={SMM1}/>
         </LinkButton>
-        <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}>
+        <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}>
+        <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>
