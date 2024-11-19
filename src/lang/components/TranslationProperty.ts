@@ -47,7 +47,7 @@ type Separator = TypeOptions['keySeparator']
  * @see https://dev.to/pffigueiredo/typescript-utility-keyof-nested-object-2pa3
  */
 type KeyOn<T extends object, > = {
-    [KEY in keyof T & string]: T[KEY] extends string
+    readonly [KEY in keyof T & string]: T[KEY] extends string
         ? KEY
         : T[KEY] extends object
             ? `${KEY}${Separator}${KeyOn<T[KEY]>}`
@@ -60,4 +60,4 @@ type KeyOn<T extends object, > = {
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap<T extends ReactElementOrStringOrNumeric = ReactElementOrStringOrNumeric, > = { [key: string]: T }
+export type TranslationReplaceKeysMap<T extends ReactElementOrStringOrNumeric = ReactElementOrStringOrNumeric, > = { readonly [key: string]: T }
