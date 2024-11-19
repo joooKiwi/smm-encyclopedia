@@ -1,8 +1,9 @@
 import 'app/_GameAsideContent.scss'
+import 'app/_TimeAsideContent.scss'
 import './InstrumentApp.scss'
 
-import type {Array}    from '@joookiwi/type'
-import {filterByArray} from '@joookiwi/collection'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import {filterByArray}                    from '@joookiwi/collection'
 
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -14,9 +15,10 @@ import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
-import {InstrumentGames}                            from 'app/property/InstrumentGames'
-import Table                                        from 'app/tools/table/Table'
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
+import {InstrumentGames}                            from 'app/property/InstrumentGames'
+import {InstrumentTimes}                            from 'app/property/InstrumentTimes'
+import Table                                        from 'app/tools/table/Table'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
@@ -28,6 +30,8 @@ import {Games}                                      from 'core/game/Games'
 import {Instruments}                                from 'core/instrument/Instruments'
 import EntityInstrumentImages                       from 'core/instrument/component/EntityInstrumentImages'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
+import TimeImage                                    from 'core/time/TimeImage'
+import {Times}                                      from 'core/time/Times'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL =    Instruments.ALL
@@ -127,11 +131,18 @@ export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAp
         : games.hasSMM1
             ? InstrumentGames.SUPER_MARIO_MAKER
             : InstrumentGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+    const time = games.hasNotSMM2AndSMM1Or3DS
+        ? null
+        : times.hasAllTimes
+            ? InstrumentTimes.ALL_TIMES
+            : times.hasDay
+                ? InstrumentTimes.DAY
+                : InstrumentTimes.NIGHT
 
     return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('instrument.all',)}
                              description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<InstrumentAsideContent viewDisplay={viewDisplay} game={game}/>}>
+                             asideContent={<InstrumentAsideContent game={game} time={time}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -160,9 +171,9 @@ interface InstrumentDescriptionProperties
 
 /** @reactComponent */
 function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProperties,) {
-    const smm1Link = game.smm1RouteName
-    const smm3dsLink = game.smm3dsRouteName
-    const smm2Link = game.smm2RouteName
+    const smm1Link = game.smm1RouteName satisfies NullOrString<PossibleRouteName>
+    const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
+    const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyInstrument (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyInstrument (card)' satisfies PossibleRouteName
@@ -196,14 +207,22 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
 interface InstrumentAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly game: InstrumentGames
+    readonly time: NullOr<InstrumentTimes>
 
 }
 
 /** @reactComponent */
-function InstrumentAsideContent({game,}: InstrumentAsideContentProperties,) {
+function InstrumentAsideContent({game, time,}: InstrumentAsideContentProperties,) {
+    return <div id="instrument-asideContent-container">
+        <GameAsideContent game={game}/>
+        {time == null ? null : <div className="d-inline mx-1"/>}
+        <TimeAsideContent time={time}/>
+    </div>
+}
+
+/** @reactComponent */
+function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'>,) {
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
             <GameImage reference={SMM1}/>
@@ -214,6 +233,23 @@ function InstrumentAsideContent({game,}: InstrumentAsideContentProperties,) {
         <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
+    </div>
+}
+
+/** @reactComponent */
+function TimeAsideContent({time,}: Pick<InstrumentAsideContentProperties, 'time'>,) {
+    if (time == null)
+        return null
+    return <div id="instrument-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm">
+            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+                <TimeImage reference={Times.DAY}/>
+            </LinkButton>
+            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+                <TimeImage reference={Times.NIGHT}/>
+            </LinkButton>
+        </div>
     </div>
 }
 

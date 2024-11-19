@@ -1,8 +1,9 @@
 import 'app/_GameAsideContent.scss'
+import 'app/_TimeAsideContent.scss'
 import './EditorVoiceApp.scss'
 
-import type {Array, NullOrString} from '@joookiwi/type'
-import {filterByArray}            from '@joookiwi/collection'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import {filterByArray}                    from '@joookiwi/collection'
 
 import type {EditorVoiceProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -16,6 +17,7 @@ import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
+import {EditorVoiceTimes}                           from 'app/property/EditorVoiceTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
@@ -29,6 +31,8 @@ import EditorVoiceSoundComponent                    from 'core/editorVoice/Edito
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import TimeImage                                    from 'core/time/TimeImage'
+import {Times}                                      from 'core/time/Times'
 import ThemeImage                                   from 'core/theme/ThemeImage'
 import {Themes}                                     from 'core/theme/Themes'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
@@ -132,11 +136,18 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
             : games.hasSMM1
                 ? EditorVoiceGames.SUPER_MARIO_MAKER
                 : EditorVoiceGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+    const time = games.hasNotSMM2AndSMM1Or3DS
+        ? null
+        : times.hasAllTimes
+            ? EditorVoiceTimes.ALL_TIMES
+            : times.hasDay
+                ? EditorVoiceTimes.DAY
+                : EditorVoiceTimes.NIGHT
 
     return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('editor voice.all',)}
                              description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<EditorVoiceAsideContent game={game}/>}>
+                             asideContent={<EditorVoiceAsideContent game={game} time={time}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -213,17 +224,44 @@ interface EditorVoiceAsideContentProperties
     extends ReactProperties {
 
     readonly game: EditorVoiceGames
+    readonly time: NullOr<EditorVoiceTimes>
 
 }
 
 /** @reactComponent */
-function EditorVoiceAsideContent({game,}: EditorVoiceAsideContentProperties,) {
+function EditorVoiceAsideContent({game, time,}: EditorVoiceAsideContentProperties,) {
+    return <div id="editorVoice-asideContent-container">
+        <GameAsideContent game={game}/>
+        {time == null ? null : <div className="d-inline mx-1"/>}
+        <TimeAsideContent time={time}/>
+    </div>
+}
+
+/** @reactComponent */
+function GameAsideContent({game,}: Pick<EditorVoiceAsideContentProperties, 'game'>,) {
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
             <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
             <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
             <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+        </div>
+    </div>
+}
+
+/** @reactComponent */
+function TimeAsideContent({time,}: Pick<EditorVoiceAsideContentProperties, 'time'>,) {
+    if (time == null)
+        return null
+    return <div id="editorVoice-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm">
+            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+                <TimeImage reference={Times.DAY}/>
+            </LinkButton>
+            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+                <TimeImage reference={Times.NIGHT}/>
+            </LinkButton>
         </div>
     </div>
 }

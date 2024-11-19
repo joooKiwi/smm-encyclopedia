@@ -1,8 +1,9 @@
 import 'app/_GameAsideContent.scss'
+import 'app/_TimeAsideContent.scss'
 import './CharacterNameApp.scss'
 
-import type {Array, NullOrString} from '@joookiwi/type'
-import {filterByArray}            from '@joookiwi/collection'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import {filterByArray}                    from '@joookiwi/collection'
 
 import type {CharacterNameProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -16,6 +17,7 @@ import type {ReactProperties}         from 'util/react/ReactProperties'
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {CharacterNameAppOption}                     from 'app/options/CharacterNameAppOption'
 import {CharacterNameGames}                         from 'app/property/CharacterNameGames'
+import {CharacterNameTimes}                         from 'app/property/CharacterNameTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
@@ -29,6 +31,8 @@ import EditorVoiceSoundComponent                    from 'core/editorVoice/Edito
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import TimeImage                                    from 'core/time/TimeImage'
+import {Times}                                      from 'core/time/Times'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {intersect}                                  from 'util/utilitiesMethods'
 
@@ -131,11 +135,18 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
             : games.hasSMM1
                 ? CharacterNameGames.SUPER_MARIO_MAKER
                 : CharacterNameGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+    const time = games.hasNotSMM2AndSMM1Or3DS
+        ? null
+        : times.hasAllTimes
+            ? CharacterNameTimes.ALL_TIMES
+            : times.hasDay
+                ? CharacterNameTimes.DAY
+                : CharacterNameTimes.NIGHT
 
     return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('character name.all',)}
                              description={<CharacterNameDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<CharacterNameAsideContent game={game}/>}>
+                             asideContent={<CharacterNameAsideContent game={game} time={time}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -205,17 +216,44 @@ interface CharacterNameAsideContentProperties
     extends ReactProperties {
 
     readonly game: CharacterNameGames
+    readonly time: NullOr<CharacterNameTimes>
 
 }
 
 /** @reactComponent */
-function CharacterNameAsideContent({game,}: CharacterNameAsideContentProperties,) {
+function CharacterNameAsideContent({game, time,}: CharacterNameAsideContentProperties,) {
+    return <div id="characterName-asideContent-container">
+        <GameAsideContent game={game}/>
+        {time == null ? null : <div className="d-inline mx-1"/>}
+        <TimeAsideContent time={time}/>
+    </div>
+}
+
+/** @reactComponent */
+function GameAsideContent({game,}: Pick<CharacterNameAsideContentProperties, 'game'>,) {
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="characterName-gamesButton-singularGame-container" className="btn-group btn-group-sm">
             <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
             <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
             <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+        </div>
+    </div>
+}
+
+/** @reactComponent */
+function TimeAsideContent({time,}: Pick<CharacterNameAsideContentProperties, 'time'>,) {
+    if (time == null)
+        return null
+    return <div id="characterName-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm">
+            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+                <TimeImage reference={Times.DAY}/>
+            </LinkButton>
+            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+                <TimeImage reference={Times.NIGHT}/>
+            </LinkButton>
         </div>
     </div>
 }
