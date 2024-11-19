@@ -171,7 +171,7 @@ export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second:
 //endregion -------------------- join --------------------
 //region -------------------- intersect --------------------
 
-export function intersect<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,) {
+export function intersect<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,): Array<T> {
     const firstSize = first.length
     if (firstSize === 0)
         return EMPTY_ARRAY
