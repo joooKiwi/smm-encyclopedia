@@ -45,12 +45,12 @@ export abstract class LimitAppOption
             return {key: 'acronym', element: contentTranslation('Acronym(s)',),}
         }
 
-    }()
+    }('acronym',)
     public static readonly NAME = new class LimitAppOption_Name extends LimitAppOption {
 
         protected override _createContentOption({reference, isEditorLimit,}: Limits,) {
             const alternativeContainer = reference.alternativeContainer
-            if (alternativeContainer instanceof EmptyLimit)
+            if (alternativeContainer instanceof EmptyAlternativeLimit)
                 return this.#createNameComponent(reference, isEditorLimit,)
             return <div className="names-container d-flex flex-column flex-md-row">
                 {this.#createNameComponent(reference, isEditorLimit,)}
@@ -74,7 +74,7 @@ export abstract class LimitAppOption
             return CommonOptions.get.nameHeader
         }
 
-    }()
+    }('name',)
     public static readonly DESCRIPTION = new class LimitAppOption_Description extends LimitAppOption {
 
         protected override _createContentOption({reference: {description,}, descriptionForTranslation,}: Limits,) {
@@ -106,7 +106,7 @@ export abstract class LimitAppOption
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return CommonOptions.get.limitHeader
         }
-    }()
+    }('allGame-amount',)
     public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class LimitAppOption_AmountInSMM1AndSMM3DS extends LimitAppOption {
 
         protected override _createContentOption(enumeration: Limits,) {
@@ -120,7 +120,7 @@ export abstract class LimitAppOption
             return CommonOptions.get.limitHeader
         }
 
-    }()
+    }('smm1-amount',)
     public static readonly AMOUNT_IN_SMM2 = new class LimitAppOption_AmountInSMM2 extends LimitAppOption {
 
         protected override _createContentOption(enumeration: Limits,) {
@@ -134,7 +134,7 @@ export abstract class LimitAppOption
             return CommonOptions.get.limitHeader
         }
 
-    }()
+    }('smm2-amount',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -160,15 +160,29 @@ export abstract class LimitAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
+
+    readonly #associatedClass
+    readonly #additionalClasses
+
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
+    private constructor(associatedClass: string,) {
         super()
+        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    public get associatedClass(): string {
+        return this.#associatedClass
+    }
+
+    public get additionalClasses(): readonly [string,] {
+        return this.#additionalClasses
+    }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 

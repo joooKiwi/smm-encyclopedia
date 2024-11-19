@@ -136,6 +136,10 @@ class LimitAppInterpreter
     }
 
 
+    public getAdditionalClass(option: LimitAppOption,) {
+        return option.additionalClasses
+    }
+
     public createTableContent(content: Limits, option: LimitAppOption,) {
         return option.renderContent(content,)
     }
