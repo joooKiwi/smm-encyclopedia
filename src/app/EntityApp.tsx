@@ -37,7 +37,6 @@ import {intersect}                                  from 'util/utilitiesMethods'
 
 import ALL =             Entities.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
-import ALL_GAMES =       Games.ALL
 import EMPTY_STRING =    Empty.EMPTY_STRING
 import NSMBU =           GameStyles.NSMBU
 import SMB =             GameStyles.SMB
@@ -220,7 +219,7 @@ function EntityAsideContent({games, gameStyles,}: EntityAsideContentProperties,)
 
 /** @reactComponent */
 function GameAsideContent({games, gameStyles,}: EntityAsideContentProperties,) {
-    const entityGame = intersect(ALL_GAMES, games,).length === 3
+    const entityGame = games.hasAllGames
         ? EntityGames.ALL_GAMES
         : games.hasSMM2
             ? EntityGames.SUPER_MARIO_MAKER_2

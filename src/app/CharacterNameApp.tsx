@@ -34,13 +34,11 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import TimeImage                                    from 'core/time/TimeImage'
 import {Times}                                      from 'core/time/Times'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {intersect}                                  from 'util/utilitiesMethods'
 
-import ALL =       CharacterNames.ALL
-import ALL_GAMES = Games.ALL
-import SMM1 =      Games.SMM1
-import SMM2 =      Games.SMM2
-import SMM3DS =    Games.SMM3DS
+import ALL =    CharacterNames.ALL
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
 
 class CharacterNameAppInterpreter
     implements AppInterpreterWithTable<CharacterNames, CharacterNameAppOption> {
@@ -128,7 +126,7 @@ const keyRetriever: (characterName: CharacterNames,) => string = it => it.unique
 
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
-    const game = intersect(ALL_GAMES, games,).length === 3
+    const game = games.hasAllGames
         ? CharacterNameGames.ALL_GAMES
         : games.hasSMM2
             ? CharacterNameGames.SUPER_MARIO_MAKER_2

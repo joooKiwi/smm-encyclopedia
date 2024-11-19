@@ -30,12 +30,10 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {intersect}                                  from 'util/utilitiesMethods'
 
-import ALL_GAMES = Games.ALL
-import SMM1 =      Games.SMM1
-import SMM2 =      Games.SMM2
-import SMM3DS =    Games.SMM3DS
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
 
 class LimitAppInterpreter
     implements AppInterpreterWithTable<Limits, LimitAppOption>,
@@ -161,7 +159,7 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
         [ViewDisplays.TABLE, `${routeName} (table)`,],
     ] as const satisfies Array<ViewAndRouteName>
 
-    const game = intersect(ALL_GAMES, games,).length === 3
+    const game = games.hasAllGames
         ? LimitGames.ALL_GAMES
         : games.hasSMM2
             ? LimitGames.SUPER_MARIO_MAKER_2

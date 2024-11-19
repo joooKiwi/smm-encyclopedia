@@ -36,13 +36,11 @@ import {Times}                                      from 'core/time/Times'
 import ThemeImage                                   from 'core/theme/ThemeImage'
 import {Themes}                                     from 'core/theme/Themes'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {intersect}                                  from 'util/utilitiesMethods'
 
-import ALL =       EditorVoices.ALL
-import ALL_GAMES = Games.ALL
-import SMM1 =      Games.SMM1
-import SMM2 =      Games.SMM2
-import SMM3DS =    Games.SMM3DS
+import ALL =    EditorVoices.ALL
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
 
 class EditorVoiceAppInterpreter
     implements AppInterpreterWithTable<EditorVoices, EditorVoiceAppOption> {
@@ -129,7 +127,7 @@ const viewDisplayAndRouteName = [
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
-    const game = intersect(ALL_GAMES, games,).length === 3
+    const game = games.hasAllGames
         ? EditorVoiceGames.ALL_GAMES
         : games.hasSMM2
             ? EditorVoiceGames.SUPER_MARIO_MAKER_2

@@ -24,10 +24,8 @@ import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {intersect}                                  from 'util/utilitiesMethods'
 
 import ALL =                   SoundEffects.ALL
-import ALL_GAMES =             Games.ALL
 import renderSMM1And3DSImage = SoundEffectAppOption.renderSMM1And3DSImage
 import renderSMM2Image =       SoundEffectAppOption.renderSMM2Image
 import SMM1 =                  Games.SMM1
@@ -172,7 +170,7 @@ interface SoundEffectAsideContentProperties
 }
 
 function SoundEffectAsideContent({games,}: SoundEffectAsideContentProperties,) {
-    const soundEffectGame = intersect(ALL_GAMES, games,).length === 3
+    const soundEffectGame = games.hasAllGames
         ? SoundEffectGames.ALL_GAMES
         : games.hasSMM2
             ? SoundEffectGames.SUPER_MARIO_MAKER_2
