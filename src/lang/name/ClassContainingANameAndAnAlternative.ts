@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {EveryLanguages}                      from 'lang/EveryLanguages'
 import type {Name}                                from 'lang/name/Name'
 import type {NameTrait}                           from 'lang/name/NameTrait'
@@ -18,7 +16,7 @@ export class ClassContainingANameAndAnAlternative<const out T, const out U, cons
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: Name<T>, alternative: Lazy<ALTERNATIVE>,) {
+    public constructor(name: Name<T>, alternative: ALTERNATIVE,) {
         super(name,)
         this.#alternativeContainer = alternative
     }
@@ -27,7 +25,7 @@ export class ClassContainingANameAndAnAlternative<const out T, const out U, cons
     //region -------------------- Getter methods --------------------
 
     public get alternativeContainer(): ALTERNATIVE {
-        return this.#alternativeContainer.value
+        return this.#alternativeContainer
     }
 
     public get alternativeNameContainer(): this['alternativeContainer']['nameContainer'] {

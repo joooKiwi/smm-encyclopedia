@@ -2,13 +2,13 @@ import type {Array, Nullable, NullOr, StringOrNumeric} from '@joookiwi/type'
 import {Enum}                                          from '@joookiwi/enumerable'
 import {isArray}                                       from '@joookiwi/collection'
 
-import type {ClassWithNullableAcronym}                                                                                                              from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                  from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                    from 'core/ClassWithReference'
-import type {Limit, LimitWithPossibleAlternativeLimit}                                                                                              from 'core/limit/Limit'
-import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleEntityLink} from 'core/limit/Limits.types'
-import type {TranslationReplaceKeysMap}                                                                                                             from 'lang/components/TranslationProperty'
-import type {CompanionEnumByNameSingleton}                                                                                                          from 'util/enumerable/Singleton.types'
+import type {ClassWithNullableAcronym}                                                                                          from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                              from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                from 'core/ClassWithReference'
+import type {Limit}                                                                                                             from 'core/limit/Limit'
+import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from 'core/limit/Limits.types'
+import type {TranslationReplaceKeysMap}                                                                                         from 'lang/components/TranslationProperty'
+import type {CompanionEnumByNameSingleton}                                                                                      from 'util/enumerable/Singleton.types'
 
 import type {Entities}       from 'core/entity/Entities'
 import {OtherWordInTheGames} from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -28,7 +28,7 @@ import EMPTY_STRING = Empty.EMPTY_STRING
  */
 export class Limits
     extends Enum<Ordinals, Names>
-    implements ClassWithReference<LimitWithPossibleAlternativeLimit>,
+    implements ClassWithReference<Limit>,
         ClassWithNullableAcronym<PossibleAcronym>,
         ClassWithEnglishName<PossibleEnglishName> {
 
@@ -421,7 +421,7 @@ export class Limits
     static #playLimits?: Array<Limits>
     static #editorLimits?: Array<Limits>
 
-    #reference?: LimitWithPossibleAlternativeLimit
+    #reference?: Limit
     readonly #isEditorLimit
     #noteForTranslation?: TranslationReplaceKeysMap<StringOrNumeric>
     readonly #acronym: NullOr<PossibleAcronym>
@@ -461,8 +461,8 @@ export class Limits
      * {@inheritDoc}
      * @semiAsynchronously
      */
-    public get reference(): LimitWithPossibleAlternativeLimit {
-        return this.#reference ??= Limits.REFERENCE_MAP.get(this.englishName)! as LimitWithPossibleAlternativeLimit
+    public get reference(): Limit {
+        return this.#reference ??= Limits.REFERENCE_MAP.get(this.englishName)!
     }
 
     //endregion -------------------- Reference --------------------

@@ -29,7 +29,7 @@ export type EmptyEntityCategoryName = 'Empty entity category'
 //endregion -------------------- Entity category types --------------------
 //region -------------------- Limit types --------------------
 
-export type EmptyLimitName = 'Empty limit'
+export type EmptyAlternativeLimitName = 'Empty alternative limit'
 
 //endregion -------------------- Limit types --------------------
 //region -------------------- Game style types --------------------
@@ -88,7 +88,7 @@ export type EveryPossibleEmptyName =
 
     | EmptyEntityCategoryName
 
-     | EmptyLimitName
+     | EmptyAlternativeLimitName
 
     | EmptyGameStyleName
 
