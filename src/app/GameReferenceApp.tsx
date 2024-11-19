@@ -1,6 +1,7 @@
 import './GameReferenceApp.scss'
 
 import type {Array} from '@joookiwi/type'
+import {hasByArray} from '@joookiwi/collection'
 import {Fragment}   from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
@@ -15,10 +16,9 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
+import Companion =       GameReferences.Companion
 import ALL_GAMES =       Games.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
-
-import Companion = GameReferences.Companion
 
 /** Every {@link GameReferences} that will do a return of line after its rendering */
 const RETURN_OF_LINES = [
@@ -45,7 +45,7 @@ const otherGameReferences = (() => {
         ...ALL_GAME_STYLES.map(it => it.englishName,),
         ...SoundEffects.soundEffect_games.map(it => it.englishName,) as Array<PossibleEnglishName_Games>,
     ]
-    return Companion.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),)
+    return Companion.values.filter(it => !hasByArray(alreadyIncludedNames, it.englishName as never,),)
 })()
 
 /** @reactComponent */
@@ -98,7 +98,7 @@ export default function GameReferenceApp() {
                                 <NameComponent id="otherGameReferences-name" name={it.reference}/>
                             </div>
                         </div>
-                        {RETURN_OF_LINES.includes(it,) ? <div className="col-12 name-container return-of-line-name-container"/> : null}
+                        {hasByArray(RETURN_OF_LINES, it,) ? <div className="col-12 name-container return-of-line-name-container"/> : null}
                     </Fragment>,)}
             </div>
         </div>

@@ -2,6 +2,7 @@ import './OfficialNotifications.scss'
 
 import type {Lazy}                                                 from '@joookiwi/lazy'
 import type {Array, EmptyString, Nullable, NullableNumber, NullOr} from '@joookiwi/type'
+import {hasByArray}                                                from '@joookiwi/collection'
 import {Enum}                                                      from '@joookiwi/enumerable'
 import {lazy}                                                      from '@joookiwi/lazy'
 import {Fragment}                                                  from 'react'
@@ -503,7 +504,7 @@ export class OfficialNotifications
                 return value
             const valueFound = this.values.findFirstOrNull(it =>
                 it.englishName === value
-                || it.additionalEnglishName.includes(value as never,),)
+                || hasByArray(it.additionalEnglishName, value,),)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound

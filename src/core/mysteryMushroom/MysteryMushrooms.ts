@@ -1,5 +1,5 @@
 import type {Array, EmptyArray, Nullable, NullOr} from '@joookiwi/type'
-import {getFirstByArray}                          from '@joookiwi/collection'
+import {getFirstByArray, hasByArray}              from '@joookiwi/collection'
 import {Enum}                                     from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
@@ -726,8 +726,8 @@ export class MysteryMushrooms
                     return true
 
                 const fileName = it.__fileName
-                return fileName.imageFileNames.includes(value as never,)
-                    || fileName.soundFileName.includes(value as never,)
+                return hasByArray(fileName.imageFileNames, value,)
+                    || hasByArray(fileName.soundFileName, value,)
             },)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)

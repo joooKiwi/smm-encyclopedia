@@ -1,4 +1,5 @@
 import type {Nullable, NullOr, UndefinedOr} from '@joookiwi/type'
+import {hasByArray}                         from '@joookiwi/collection'
 import {Enum}                               from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                        from 'core/ClassWithEnglishName'
@@ -510,7 +511,7 @@ export class Entities
                 return false
             if (value instanceof this.instance)
                 return true
-            return this.instance.everyEnglishNames.includes(value as never,)
+            return hasByArray(this.instance.everyEnglishNames, value,)
         }
 
     }

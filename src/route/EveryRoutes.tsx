@@ -1,8 +1,8 @@
-import type {Singleton}                             from '@joookiwi/enumerable'
-import type {Array, MutableArray, Nullable, NullOr} from '@joookiwi/type'
-import {findFirstOrNullByArray, forEachByArray}     from '@joookiwi/collection'
-import {CompanionEnum, Enum}                        from '@joookiwi/enumerable'
-import {lazy}                                       from 'react'
+import type {Singleton}                                     from '@joookiwi/enumerable'
+import type {Array, MutableArray, Nullable, NullOr}         from '@joookiwi/type'
+import {findFirstOrNullByArray, forEachByArray, hasByArray} from '@joookiwi/collection'
+import {CompanionEnum, Enum}                                from '@joookiwi/enumerable'
+import {lazy}                                               from 'react'
 
 import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                               from 'route/ClassUsedInRoute'
 import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithoutGameStyle, RouteCallbackWithoutTime, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
@@ -1662,7 +1662,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             if (currentTime == null) {
                 const defaultTime = this.defaultTime
                 if (defaultTime == null) {
-                    if (games?.includes(SMM2,) ?? false)
+                    if (hasByArray(games, SMM2,))
                         return '/time-all'
                     return '/time-day'
                 }
@@ -1673,14 +1673,14 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         if (value.length === 0) {
             const defaultTime = this.defaultTime
             if (defaultTime == null) {
-                if (games?.includes(SMM2,) ?? false)
+                if (hasByArray(games, SMM2,))
                     return '/time-all'
                 return '/time-day'
             }
             return `/time-${defaultTime.urlValue}`
         }
         if (value.length === 0) {
-            if (games?.includes(SMM2,) ?? false)
+            if (hasByArray(games, SMM2,))
                 return '/time-all'
             return '/time-day'
         }

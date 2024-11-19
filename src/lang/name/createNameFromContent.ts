@@ -1,4 +1,5 @@
 import type {Array, MutableArray, NullableString, NullOrString} from '@joookiwi/type'
+import {hasByArray}                                             from '@joookiwi/collection'
 
 import type {Language}                  from 'lang/name/containers/Language'
 import type {Name}                      from 'lang/name/Name'
@@ -18,11 +19,11 @@ type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' 
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean
 
 /** The exclusive {@link SMM1} or {@link SMM3DS} (excluding the complete & optional languages) languages */
-const SMM1_OR_SMM3DS_LANGUAGES: Array<EveryLanguages> = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,]
+const SMM1_OR_SMM3DS_LANGUAGES = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,] as const
 /** The exclusive {@link SMM2} (excluding the complete & optional languages) languages */
-const SMM2_LANGUAGES: Array<EveryLanguages> = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,]
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM1_OR_SMM3DS: IsACompleteNameCallback = language => SMM1_OR_SMM3DS_LANGUAGES.includes(language,)
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM2: IsACompleteNameCallback = language => SMM2_LANGUAGES.includes(language,)
+const SMM2_LANGUAGES = [EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,] as const
 const IS_A_COMPLETE_NAME: IsACompleteNameCallback = () => true
 const IS_NOT_A_COMPLETE_NAME: IsACompleteNameCallback = () => false
 
