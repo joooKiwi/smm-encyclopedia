@@ -37,7 +37,7 @@ export interface CharacterNameProperties
 //game reference
 
 export interface GameStyleProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
 
 export interface EntityProperties
     extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
@@ -47,10 +47,10 @@ export interface EntityProperties
 //entity group
 
 export interface LimitAppProperties
-    extends AppPropertiesWithType<LimitTypes>, AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppPropertiesWithType<LimitTypes>, AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
 
 export interface ThemeAppProperties
-    extends AppPropertiesWithType<ThemeTypes>, AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppPropertiesWithType<ThemeTypes>, AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
 
 export interface SoundEffectProperties
     extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}

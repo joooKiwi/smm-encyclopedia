@@ -4,9 +4,9 @@ import {findFirstOrNullByArray, forEachByArray}     from '@joookiwi/collection'
 import {CompanionEnum, Enum}                        from '@joookiwi/enumerable'
 import {lazy}                                       from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                     from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithoutGameStyle, RouteCallbackWithoutTime, RouteCallbackWithOnlyViewDisplay, RouteCallbackWithoutTimeAndGameStyle} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                                                                                                 from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                               from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithoutGameStyle, RouteCallbackWithoutTime, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                                                           from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -237,57 +237,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         }
 
         protected override _getPartialPathFromViewDisplay() {
-            return EMPTY_STRING
-        }
-
-    }
-
-    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays} and {@link GameCollection}) */
-    private static readonly ListCardTable_AnyGame_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const URL_NAME extends string,
-        const URL_PATH extends string, >
-        extends EveryRoutes<URL_NAME, URL_PATH> {
-
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallbackWithoutTimeAndGameStyle,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
-        }
-
-        protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const name = this.urlName
-            const path = this.urlValue
-            const routeCallback = this.routeCallback
-
-            return [
-                new SimpleRoute(`${name} (list Game=all)`,    `/game-all/list${path}`,    ALL_GAMES,    null, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1)`,      `/game-1/list${path}`,      SMM1_ONLY,    null, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS)`,    `/game-3ds/list${path}`,    SMM3DS_ONLY,  null, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2)`,      `/game-2/list${path}`,      SMM2_ONLY,    null, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS)`,  `/game-1,3ds/list${path}`,  SMM1_AND_3DS, null, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2)`,    `/game-1,2/list${path}`,    SMM1_AND_2,   null, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2)`,  `/game-3ds,2/list${path}`,  SMM3DS_AND_2, null, null, LIST,  routeCallback,),
-
-                new SimpleRoute(`${name} (card Game=all)`,    `/game-all/card${path}`,    ALL_GAMES,    null, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1)`,      `/game-1/card${path}`,      SMM1_ONLY,    null, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS)`,    `/game-3ds/card${path}`,    SMM3DS_ONLY,  null, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2)`,      `/game-2/card${path}`,      SMM2_ONLY,    null, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS)`,  `/game-1,3ds/card${path}`,  SMM1_AND_3DS, null, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2)`,    `/game-1,2/card${path}`,    SMM1_AND_2,   null, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2)`,  `/game-3ds,2/card${path}`,  SMM3DS_AND_2, null, null, CARD,  routeCallback,),
-
-                new SimpleRoute(`${name} (table Game=all)`,   `/game-all/table${path}`,   ALL_GAMES,    null, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1)`,     `/game-1/table${path}`,     SMM1_ONLY,    null, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS)`,   `/game-3ds/table${path}`,   SMM3DS_ONLY,  null, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2)`,     `/game-2/table${path}`,     SMM2_ONLY,    null, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS)`, `/game-1,3ds/table${path}`, SMM1_AND_3DS, null, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2)`,   `/game-1,2/table${path}`,   SMM1_AND_2,   null, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2)`, `/game-3ds,2/table${path}`, SMM3DS_AND_2, null, null, TABLE, routeCallback,),
-            ]
-        }
-
-        protected override _getPartialPathFromTimes() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPartialPathFromGameStyles() {
             return EMPTY_STRING
         }
 
@@ -1276,19 +1225,19 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyCharacterName', '/every/character-name', CARD, null, (viewDisplay, games, times,) => <CharacterNameApp viewDisplay={viewDisplay} games={games} times={times}/>,)
 
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
-    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games, gameStyles,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
 
     public static readonly EVERY_ENTITY = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
-    public static readonly EVERY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyLimit', '/every/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.ALL}/>,)
-    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('playLimit', '/play/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.PLAY}/>,)
-    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('editorLimit', '/editor/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.EDITOR}/>,)
+    public static readonly EVERY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyLimit', '/every/limit', null, (viewDisplay, games, gameStyles,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={LimitTypes.ALL}/>,)
+    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('playLimit', '/play/limit', null, (viewDisplay, games, gameStyles,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={LimitTypes.PLAY}/>,)
+    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('editorLimit', '/editor/limit', null, (viewDisplay, games, gameStyles,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={LimitTypes.EDITOR}/>,)
 
-    public static readonly EVERY_THEME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyTheme', '/every/theme', CARD, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.ALL}/>,)
-    public static readonly EVERY_COURSE_THEME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('courseTheme', '/course/theme', CARD, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.COURSE}/>,)
-    public static readonly EVERY_WORLD_THEME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.WORLD}/>,)
+    public static readonly EVERY_THEME = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyTheme', '/every/theme', CARD, (viewDisplay, games, gameStyles,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={ThemeTypes.ALL}/>,)
+    public static readonly EVERY_COURSE_THEME = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('courseTheme', '/course/theme', CARD, (viewDisplay, games, gameStyles,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={ThemeTypes.COURSE}/>,)
+    public static readonly EVERY_WORLD_THEME = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games, gameStyles,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={ThemeTypes.WORLD}/>,)
 
     public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games, gameStyles,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
     public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', CARD, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
@@ -1301,7 +1250,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', LIST, viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
 
     public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everySampleCourse', '/every/sample-course', null, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyOfficialCourse', '/every/official-course', null, viewDisplay => <OfficialCourseApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyOfficialCourse', '/every/official-course', null, viewDisplay => <OfficialCourseApp viewDisplay={viewDisplay}/>,)
 
     public static readonly EVERY_MEDAL = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everyMedal', '/every/medal', CARD, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
 

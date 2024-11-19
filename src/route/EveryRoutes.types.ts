@@ -96,7 +96,7 @@ interface SimpleRouteMap {
     EVERY_COURSE_THEME: InTableAndAnyGame<'EVERY_COURSE_THEME'>
     EVERY_WORLD_THEME:  InTableAndAnyGame<'EVERY_WORLD_THEME'>
 
-    EVERY_SOUND_EFFECT:          InTableAndAnyGameAndAnyGameStyle<'EVERY_SOUND_EFFECT'>
+    EVERY_SOUND_EFFECT:          InTableAndAnyGame<'EVERY_SOUND_EFFECT'>
     EVERY_SOUND_EFFECT_CATEGORY: InOnlySmm2<'EVERY_SOUND_EFFECT_CATEGORY'>
 
     EVERY_MII_COSTUME:          InOnlySmm2<'EVERY_MII_COSTUME'>
@@ -222,8 +222,6 @@ export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, t
 export type RouteCallbackWithOnlyViewDisplay = (viewDisplay: ViewDisplays,) => ReactJSXElement
 /** A close relative to {@link RouteCallback} without the 3rd argument ({@link Times}) */
 export type RouteCallbackWithoutTime = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection,) => ReactJSXElement
-/** A type-alias of {@link RouteCallback} without the 3rd and 4th argument ({@link Times}, {@link GameStyles}) */
-export type RouteCallbackWithoutTimeAndGameStyle = (viewDisplay: ViewDisplays, games: GameCollection,) => ReactJSXElement
 /** A type-alias of {@link RouteCallback} without the 4th argument ({@link GameStyles}) */
 export type RouteCallbackWithoutGameStyle = (viewDisplay: ViewDisplays, games: GameCollection, time: TimeCollection,) => ReactJSXElement
 /** A close relative to {@link RouteCallback} with only the {@link Games} as an argument */
