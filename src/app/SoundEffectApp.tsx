@@ -146,7 +146,7 @@ const viewDisplayAndRouteName = [
 export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
     return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('sound effect.all',)}
-                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
+                             asideContent={<SoundEffectAsideContent games={games}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>
     </SubMainContainer>
 }
@@ -167,13 +167,11 @@ function SubContent({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
 interface SoundEffectAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly games: GameCollection
 
 }
 
-function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentProperties,) {
+function SoundEffectAsideContent({games,}: SoundEffectAsideContentProperties,) {
     const soundEffectGame = intersect(ALL_GAMES, games,).length === 3
         ? SoundEffectGames.ALL_GAMES
         : games.hasSMM2
@@ -181,13 +179,13 @@ function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentP
             : SoundEffectGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="soundEffect-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={soundEffectGame.getAllRouteName(viewDisplay,)} color={soundEffectGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={soundEffectGame.allRouteName} color={soundEffectGame.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="soundEffect-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.getSmm1Or3dsRouteName(viewDisplay,)} color={soundEffectGame.smm1Or3dsColor}>
+            <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.smm1Or3dsRouteName} color={soundEffectGame.smm1Or3dsColor}>
                 <GameImage reference={SMM1}/>
                 <GameImage reference={SMM3DS}/>
             </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={soundEffectGame.getSmm2RouteName(viewDisplay,)} color={soundEffectGame.smm2Color}>
+            <LinkButton partialId="smm2Game" routeName={soundEffectGame.smm2RouteName} color={soundEffectGame.smm2Color}>
                 <GameImage reference={SMM2}/>
             </LinkButton>
         </div>

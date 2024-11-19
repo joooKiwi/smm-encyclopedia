@@ -1,3 +1,5 @@
+import type {PossibleSimpleValue} from 'core/game/Games.types'
+
 enum Enum {
     ALL,
     SUPER_MARIO_MAKER,
@@ -9,4 +11,4 @@ export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
 /** A possible route name (not forwarded to the {@link import('route/EveryRoutes.types').PossibleRouteName} variable) */
-export type PossibleRouteName = `everyEditorVoice (${| 'list' | 'card'} Game=${| 'all' | 1 | '3DS' | 2})`
+export type PossibleRouteName = `everyEditorVoice (Game=${| 'all' | PossibleSimpleValue})`

@@ -1,8 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './GameStyleApp.scss'
 
-import type {Array}    from '@joookiwi/type'
-import {filterByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {filterByArray}            from '@joookiwi/collection'
 
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -127,7 +127,7 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
     return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('game style.all',)}
                              description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
+                             asideContent={<GameStyleAsideContent game={game}/>}>
         <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
 }
@@ -159,8 +159,8 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
     const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
     const entities = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName.toLowerCase(),)
 
-    const smm1OrSmm3dsLink = game.getSmm1Or3dsRouteName(viewDisplay,)
-    const smm2Link = game.getSmm2RouteName(viewDisplay,)
+    const smm1OrSmm3dsLink = game.smm1Or3dsRouteName satisfies NullOrString<PossibleRouteName>
+    const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyGameStyle (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyGameStyle (card)' satisfies PossibleRouteName
@@ -203,20 +203,18 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
 interface GameStyleAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly game: GameStyleGames
 
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({viewDisplay, game,}: GameStyleAsideContentProperties,) {
+function GameStyleAsideContent({game,}: GameStyleAsideContentProperties,) {
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(viewDisplay,)} color={game.smm1Or3dsColor}>
+        <LinkButton partialId="smm1Or3dsGame" routeName={game.smm1Or3dsRouteName} color={game.smm1Or3dsColor}>
             <GameImage reference={SMM1}/>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}>
+        <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>

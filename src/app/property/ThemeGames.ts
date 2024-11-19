@@ -75,12 +75,12 @@ export class ThemeGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getSmm1Or3dsRouteName(type: ThemeTypes, viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=1)`
+    public getSmm1Or3dsRouteName(type: ThemeTypes,): NullOrString<PossibleRouteName> {
+        return `${type.routeName} (Game=1&3DS)`
     }
 
-    public getSmm2RouteName(type: ThemeTypes, viewDisplay: ViewDisplays,): NullOrString<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=2)`
+    public getSmm2RouteName(type: ThemeTypes,): NullOrString<PossibleRouteName> {
+        return `${type.routeName} (Game=2)`
     }
 
     //endregion -------------------- Methods --------------------

@@ -1,6 +1,6 @@
-import type {Singleton}                            from '@joookiwi/enumerable'
-import type {NullableString, NullOr, NullOrString} from '@joookiwi/type'
-import {Enum}                                      from '@joookiwi/enumerable'
+import type {Singleton} from '@joookiwi/enumerable'
+import type {NullOr}    from '@joookiwi/type'
+import {Enum}           from '@joookiwi/enumerable'
 
 import type {CompanionEnumDeclaration_ViewDisplays}   from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
 import type {Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
@@ -11,7 +11,7 @@ import type {ClassWithIsCurrent}                      from 'util/enumerable/Clas
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 /** @usedByTheRouting */
-export abstract class ViewDisplays<const TYPE extends Type = Type,
+export class ViewDisplays<const TYPE extends Type = Type,
     const URL extends PossibleUrlValue = PossibleUrlValue,>
     extends Enum<Ordinals, Names>
     implements ClassWithType<TYPE>,
@@ -20,34 +20,10 @@ export abstract class ViewDisplays<const TYPE extends Type = Type,
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly TABLE =       new class ViewDisplays_Table extends ViewDisplays<'table', 'table'> {
-
-        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-            return `${path} (table)` as const
-        }
-
-    }('table', 'table', 'table',)
-    // public static readonly NAME_LIST =   new class ViewDisplays_SimpleList extends ViewDisplays<'name-list', 'name'> {
-    //
-    //     protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-    //         return `${path} (name)` as const
-    //     }
-    //
-    // }('name-list', 'name', 'list-nested',)
-    public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays<'simple-list', 'list'> {
-
-        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-            return `${path} (list)` as const
-        }
-
-    }('simple-list', 'list', 'list-ul',)
-    public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays<'card-list', 'card'> {
-
-        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-            return `${path} (card)` as const
-        }
-
-    }('card-list', 'card', 'card-list',)
+    public static readonly TABLE =       new ViewDisplays('table', 'table', 'table',)
+    // public static readonly NAME_LIST =   new ViewDisplays('name-list', 'name', 'list-nested',)
+    public static readonly SIMPLE_LIST = new ViewDisplays('simple-list', 'list', 'list-ul',)
+    public static readonly CARD_LIST =   new ViewDisplays('card-list', 'card', 'card-list',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -128,18 +104,6 @@ export abstract class ViewDisplays<const TYPE extends Type = Type,
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    /**
-     * Get a route path with the type in parentheses
-     *
-     * @param path The nullable path to get its types
-     */
-    public getRoutePath<const PATH extends string, >(path: NullableString<PATH>,): NullOrString<PossibleRoutePath<PATH>> {
-        return path == null ? null : this._getRoutePath(path,)
-    }
-
-    protected abstract _getRoutePath<const PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
-
     //endregion -------------------- Methods --------------------
 
 }
@@ -152,6 +116,3 @@ export namespace ViewDisplays {
     export const ALL = [ViewDisplays.TABLE, ViewDisplays.CARD_LIST, /*ViewDisplays.NAME_LIST, */ViewDisplays.SIMPLE_LIST,] as const
 
 }
-
-type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
-// type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'name' | 'list' | 'card' | 'table'})`//TODO add the name list

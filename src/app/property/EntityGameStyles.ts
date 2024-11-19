@@ -15,7 +15,7 @@ export class EntityGameStyles
 
     public static readonly ALL_GAME_STYLES = new class EntityGameStyles_AllGameStyles extends EntityGameStyles {
 
-        public override getAllRouteName() {
+        public override get allRouteName() {
             return null
         }
 
@@ -43,7 +43,7 @@ export class EntityGameStyles
             return 'warning'
         }
 
-        public override getSmbRouteName() {
+        public override get smbRouteName() {
             return null
         }
 
@@ -70,7 +70,7 @@ export class EntityGameStyles
             return 'warning'
         }
 
-        public override getSmb3RouteName() {
+        public override get smb3RouteName() {
             return null
         }
 
@@ -97,7 +97,7 @@ export class EntityGameStyles
             return 'warning'
         }
 
-        public override getSmwRouteName() {
+        public override get smwRouteName() {
             return null
         }
 
@@ -124,7 +124,7 @@ export class EntityGameStyles
             return 'warning'
         }
 
-        public override getNsmbuRouteName() {
+        public override get nsmbuRouteName() {
             return null
         }
 
@@ -151,7 +151,7 @@ export class EntityGameStyles
             return 'warning'
         }
 
-        public override getSm3dwRouteName() {
+        public override get sm3dwRouteName() {
             return null
         }
 
@@ -246,29 +246,28 @@ export class EntityGameStyles
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(viewDisplay: ViewDisplays, gameName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=all)`
+    public get allRouteName(): NullOrString<PossibleRouteName> {
+        return `everyEntity (GameStyle=all)`
     }
 
-    public getSmbRouteName(viewDisplay: ViewDisplays, gameName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=1)`
+    public get smbRouteName(): NullOrString<PossibleRouteName> {
+        return `everyEntity (GameStyle=1)`
     }
 
-    public getSmb3RouteName(viewDisplay: ViewDisplays, gameName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=3)`
+    public get smb3RouteName(): NullOrString<PossibleRouteName> {
+        return `everyEntity (GameStyle=3)`
     }
 
-    public getSmwRouteName(viewDisplay: ViewDisplays, gameName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=W)`
+    public get smwRouteName(): NullOrString<PossibleRouteName> {
+        return `everyEntity (GameStyle=W)`
     }
 
-    public getNsmbuRouteName(viewDisplay: ViewDisplays, gameName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=U)`
+    public get nsmbuRouteName(): NullOrString<PossibleRouteName> {
+        return `everyEntity (GameStyle=U)`
     }
 
-    public getSm3dwRouteName(viewDisplay: ViewDisplays, gameName: FullGroupUrlName,): NullOrString<PossibleRouteName> {
-        // README: We imply that the game cannot be in SMM1 or SMM3DS with SM3DW for this path in the EntityApp itself
-        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=3DW)` as PossibleRouteName
+    public get sm3dwRouteName(): NullOrString<PossibleRouteName> {
+        return `everyEntity (GameStyle=3DW)`
     }
 
     //endregion -------------------- Methods --------------------

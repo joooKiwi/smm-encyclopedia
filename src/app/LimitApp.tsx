@@ -1,8 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './LimitApp.scss'
 
-import type {Array, MutableArray} from '@joookiwi/type'
-import {filterByArray}            from '@joookiwi/collection'
+import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
+import {filterByArray}                          from '@joookiwi/collection'
 
 import type {LimitAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -170,7 +170,7 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
     return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation(`limit.${type.type}.all`,)}
                              description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
-                             asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
+                             asideContent={<LimitAsideContent type={type} game={game}/>}>
         <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
     </SubMainContainer>
 }
@@ -200,11 +200,11 @@ interface LimitDescriptionProperties
 }
 
 function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties,) {
-    const smm1Or3dsLink = game.getSmm1Or3dsRouteName(type, viewDisplay,)
-    const smm2Link = game.getSmm2RouteName(type, viewDisplay,)
+    const smm1Or3dsLink = game.getSmm1Or3dsRouteName(type,) satisfies NullOrString<PossibleRouteName>
+    const smm2Link = game.getSmm2RouteName(type,) satisfies NullOrString<PossibleRouteName>
 
-    const playLink = viewDisplay.getRoutePath(type.playRouteName,)
-    const editorLink = viewDisplay.getRoutePath(type.editorRouteName,)
+    const playLink = type.playRouteName satisfies NullOrString<PossibleRouteName>
+    const editorLink = type.editorRouteName satisfies NullOrString<PossibleRouteName>
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyLimit (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyLimit (card)' satisfies PossibleRouteName
@@ -243,8 +243,6 @@ function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties
 interface LimitAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly type: LimitTypes
 
     readonly game: LimitGames
@@ -252,44 +250,35 @@ interface LimitAsideContentProperties
 }
 
 /** @reactComponent */
-function LimitAsideContent({viewDisplay, type, game,}: LimitAsideContentProperties,) {
+function LimitAsideContent({type, game,}: LimitAsideContentProperties,) {
     return <div id="limit-asideContent-container">
-        <TypeAsideContent viewDisplay={viewDisplay} type={type}/>
+        <TypeAsideContent type={type}/>
         <div className="d-inline mx-1"/>
-        <GameAsideContent viewDisplay={viewDisplay} type={type} game={game}/>
+        <GameAsideContent type={type} game={game}/>
     </div>
 }
 
-interface LimitTypeAsideContentProperties
-    extends ReactProperties {
-
-    readonly viewDisplay: ViewDisplays
-
-    readonly type: LimitTypes
-
-}
-
 /** @reactComponent */
-function TypeAsideContent({viewDisplay, type,}: LimitTypeAsideContentProperties,) {
+function TypeAsideContent({type,}: Pick<LimitAsideContentProperties, 'type'>,) {
     return <div id="limit-linkButton-container" className="btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allLimit" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allLimit" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="playLimit" routeName={viewDisplay.getRoutePath(type.playRouteName,)} color={type.playColor}>{gameContentTranslation('limit.play.simple',)}</LinkButton>
-            <LinkButton partialId="editorLimit" routeName={viewDisplay.getRoutePath(type.editorRouteName,)} color={type.editorColor}>{gameContentTranslation('limit.editor.simple',)}</LinkButton>
+            <LinkButton partialId="playLimit" routeName={type.playRouteName} color={type.playColor}>{gameContentTranslation('limit.play.simple',)}</LinkButton>
+            <LinkButton partialId="editorLimit" routeName={type.editorRouteName} color={type.editorColor}>{gameContentTranslation('limit.editor.simple',)}</LinkButton>
         </div>
     </div>
 }
 
 /** @reactComponent */
-function GameAsideContent({viewDisplay, type, game,}: LimitAsideContentProperties,) {
+function GameAsideContent({type, game,}: LimitAsideContentProperties,) {
     return <div id="limit-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(type, viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(type,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="limit-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(type, viewDisplay,)} color={game.smm1Or3dsColor}>
+            <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(type,)} color={game.smm1Or3dsColor}>
                 <GameImage reference={SMM1}/>
                 <GameImage reference={SMM3DS}/>
             </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(type, viewDisplay,)} color={game.smm2Color}>
+            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(type,)} color={game.smm2Color}>
                 <GameImage reference={SMM2}/>
             </LinkButton>
         </div>

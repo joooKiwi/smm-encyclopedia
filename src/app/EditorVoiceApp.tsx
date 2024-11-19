@@ -1,8 +1,8 @@
 import 'app/_GameAsideContent.scss'
 import './EditorVoiceApp.scss'
 
-import type {Array}    from '@joookiwi/type'
-import {filterByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {filterByArray}            from '@joookiwi/collection'
 
 import type {EditorVoiceProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -136,7 +136,7 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
     return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('editor voice.all',)}
                              description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay} game={game}/>}>
+                             asideContent={<EditorVoiceAsideContent game={game}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
@@ -167,9 +167,9 @@ interface EditorVoiceDescriptionProperties
 function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProperties,) {
     const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
 
-    const smm1Link = game.getSmm1RouteName(viewDisplay,)
-    const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
-    const smm2Link = game.getSmm2RouteName(viewDisplay,)
+    const smm1Link = game.smm1RouteName satisfies NullOrString<PossibleRouteName>
+    const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
+    const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyEditorVoice (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyEditorVoice (card)' satisfies PossibleRouteName
@@ -212,20 +212,18 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
 interface EditorVoiceAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly game: EditorVoiceGames
 
 }
 
 /** @reactComponent */
-function EditorVoiceAsideContent({viewDisplay, game,}: EditorVoiceAsideContentProperties,) {
+function EditorVoiceAsideContent({game,}: EditorVoiceAsideContentProperties,) {
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
         </div>
     </div>
 }

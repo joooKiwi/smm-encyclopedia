@@ -134,7 +134,7 @@ export abstract class LimitTypes
      *
      * @see Limits.ALL
      */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyLimit'>> {
+    public get allRouteName(): NullOr<PossibleRouteName> {
         return 'everyLimit'
     }
 
@@ -148,7 +148,7 @@ export abstract class LimitTypes
      *
      * @see Limits.PLAY
      */
-    public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimit'>> {
+    public get playRouteName(): NullOr<PossibleRouteName> {
         return 'playLimit'
     }
 
@@ -162,7 +162,7 @@ export abstract class LimitTypes
      *
      * @see Limits.EDITOR
      */
-    public get editorRouteName(): NullOr<Extract<PossibleRouteName, 'editorLimit'>> {
+    public get editorRouteName(): NullOr<PossibleRouteName> {
         return 'editorLimit'
     }
 

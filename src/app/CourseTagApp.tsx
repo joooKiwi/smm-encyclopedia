@@ -1,8 +1,8 @@
 import './CourseTagApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import {GenericCollectionHolder} from '@joookiwi/collection'
-import {Link}                    from 'react-router-dom'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {GenericCollectionHolder}  from '@joookiwi/collection'
+import {Link}                     from 'react-router-dom'
 
 import type {CourseTagAppProperties}  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -136,7 +136,7 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
                                  tag: tag, tags: tags,
                              },)}
                              description={<CourseTagDescription type={type} viewDisplay={viewDisplay}/>}
-                             asideContent={<CourseTagAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                             asideContent={<CourseTagAsideContent type={type}/>}>
         <SubContent viewDisplay={viewDisplay} type={type}/>
     </SubMainContainer>
 }
@@ -170,9 +170,9 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
     const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
 
-    const officialLink = type === CourseTagTypes.OFFICIAL ? null : viewDisplay.getRoutePath(type.officialRouteName,)
-    const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : viewDisplay.getRoutePath(type.unofficialRouteName,)
-    const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : viewDisplay.getRoutePath(type.makerCentralRouteName,)
+    const officialLink = type === CourseTagTypes.OFFICIAL ? null : type.officialRouteName satisfies NullOrString<PossibleRouteName>
+    const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : type.unofficialRouteName satisfies NullOrString<PossibleRouteName>
+    const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : type.makerCentralRouteName satisfies NullOrString<PossibleRouteName>
 
     const routeName = type.routeName
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : `${routeName} (list)` satisfies PossibleRouteName
@@ -217,19 +217,17 @@ interface CourseTagAsideContentProperties
 
     readonly type: CourseTagTypes
 
-    readonly viewDisplay: ViewDisplays
-
 }
 
 /** @reactComponent */
-function CourseTagAsideContent({viewDisplay, type,}: CourseTagAsideContentProperties,) {
+function CourseTagAsideContent({type,}: CourseTagAsideContentProperties,) {
     return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
-        <LinkButton partialId="everyCourseTag" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="everyCourseTag" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="officialCourseTag" routeName={viewDisplay.getRoutePath(type.officialRouteName,)} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
-            <LinkButton partialId="unofficialCourseTag" routeName={viewDisplay.getRoutePath(type.unofficialRouteName,)} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
+            <LinkButton partialId="officialCourseTag" routeName={type.officialRouteName} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
+            <LinkButton partialId="unofficialCourseTag" routeName={type.unofficialRouteName} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
         </div>
-        <LinkButton partialId="makerCentralCourseTag" routeName={viewDisplay.getRoutePath(type.makerCentralRouteName,)} color={type.makerCentralColor}>Maker Central</LinkButton>
+        <LinkButton partialId="makerCentralCourseTag" routeName={type.makerCentralRouteName} color={type.makerCentralColor}>Maker Central</LinkButton>
     </div>
 }
 

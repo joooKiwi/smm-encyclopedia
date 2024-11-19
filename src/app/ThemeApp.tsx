@@ -147,7 +147,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
 
     return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('theme.all.all',)}
-                             asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
+                             asideContent={<ThemeAsideContent type={type} games={games}/>}>
         <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
     </SubMainContainer>
 }
@@ -168,8 +168,6 @@ function SubContent({viewDisplay, type, games,}: ThemeAppProperties,) {
 interface ThemeAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly type: ThemeTypes
 
     readonly games: GameCollection
@@ -177,32 +175,30 @@ interface ThemeAsideContentProperties
 }
 
 /** @reactComponent */
-function ThemeAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperties,) {
+function ThemeAsideContent({type, games,}: ThemeAsideContentProperties,) {
     return <div className="theme-asideContent-container">
-        <TypeAsideContent viewDisplay={viewDisplay} type={type}/>
+        <TypeAsideContent type={type}/>
         <div className="d-inline mx-1"/>
-        <GameAsideContent viewDisplay={viewDisplay} type={type} games={games}/>
+        <GameAsideContent type={type} games={games}/>
     </div>
 }
 
 interface ThemeTypeAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly type: ThemeTypes
 
 }
 
 /** @reactComponent */
-function TypeAsideContent({viewDisplay, type,}: ThemeTypeAsideContentProperties,) {
+function TypeAsideContent({type,}: Pick<ThemeAsideContentProperties, 'type'>,) {
     return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTheme" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allTheme" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="courseTheme" routeName={viewDisplay.getRoutePath(type.courseRouteName,)} color={type.courseColor}>
+            <LinkButton partialId="courseTheme" routeName={type.courseRouteName} color={type.courseColor}>
                 <Image id="courseTheme-button-image" file={COURSE_THEME_IMAGE_FILE} className="theme-button-image"/>
             </LinkButton>
-            <LinkButton partialId="worldTheme" routeName={viewDisplay.getRoutePath(type.worldRouteName,)} color={type.worldColor}>
+            <LinkButton partialId="worldTheme" routeName={type.worldRouteName} color={type.worldColor}>
                 <Image id="worldTheme-button-image" file={WORLD_THEME_IMAGE_FILE} className="theme-button-image"/>
             </LinkButton>
         </div>
@@ -210,17 +206,17 @@ function TypeAsideContent({viewDisplay, type,}: ThemeTypeAsideContentProperties,
 }
 
 /** @reactComponent */
-function GameAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperties,) {
+function GameAsideContent({type, games,}: ThemeAsideContentProperties,) {
     const themeGame = games.hasSMM2
         ? ThemeGames.SUPER_MARIO_MAKER_2
         : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="theme-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type, viewDisplay,)} color={themeGame.smm1Or3dsColor}>
+        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type,)} color={themeGame.smm1Or3dsColor}>
             <GameImage reference={SMM1}/>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type, viewDisplay,)} color={themeGame.smm2Color}>
+        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type,)} color={themeGame.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>

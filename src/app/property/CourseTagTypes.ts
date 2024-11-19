@@ -163,7 +163,7 @@ export abstract class CourseTagTypes
     //region -------------------- Link button methods --------------------
 
     /** The route name for the path with every {@link CourseTags} */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyCourseTag'>> {
+    public get allRouteName(): NullOr<PossibleRouteName> {
         return 'everyCourseTag'
     }
 
@@ -177,7 +177,7 @@ export abstract class CourseTagTypes
      *
      * @see CourseTags.OFFICIALS
      */
-    public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTag'>> {
+    public get officialRouteName(): NullOr<PossibleRouteName> {
         return 'officialCourseTag'
     }
 
@@ -191,7 +191,7 @@ export abstract class CourseTagTypes
      *
      * @see CourseTags.UNOFFICIALS
      */
-    public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTag'>> {
+    public get unofficialRouteName(): NullOr<PossibleRouteName> {
         return 'unofficialCourseTag'
     }
 
@@ -205,7 +205,7 @@ export abstract class CourseTagTypes
      *
      * @see CourseTags.MAKER_CENTRAL
      */
-    public get makerCentralRouteName(): NullOr<Extract<PossibleRouteName, 'makerCentralCourseTag'>> {
+    public get makerCentralRouteName(): NullOr<PossibleRouteName> {
         return 'makerCentralCourseTag'
     }
 
