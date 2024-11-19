@@ -4,7 +4,6 @@ import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/ThemeGames.types'
 import type {ThemeTypes}                         from 'app/property/ThemeTypes'
-import type {ViewDisplays}                       from 'app/withInterpreter/ViewDisplays'
 
 export class ThemeGames
     extends Enum<Ordinals, Names> {

@@ -3,10 +3,8 @@ import type {NullOrString}                               from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithNullableParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EntityGameStyles.types'
-import type {FullGroupUrlName}                   from 'core/game/Games.types'
 
-import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
-import {GameStyles}   from 'core/gameStyle/GameStyles'
+import {GameStyles} from 'core/gameStyle/GameStyles'
 
 export class EntityGameStyles
     extends EnumWithNullableParent<GameStyles, Ordinals, Names> {
