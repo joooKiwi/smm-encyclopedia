@@ -1,8 +1,8 @@
 import './GameReferenceApp.scss'
 
-import type {Array} from '@joookiwi/type'
-import {hasByArray} from '@joookiwi/collection'
-import {Fragment}   from 'react'
+import type {Array}             from '@joookiwi/type'
+import {hasByArray, mapByArray} from '@joookiwi/collection'
+import {Fragment}               from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
 
@@ -16,9 +16,10 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
-import Companion =       GameReferences.Companion
-import ALL_GAMES =       Games.ALL
-import ALL_GAME_STYLES = GameStyles.ALL
+import Companion =         GameReferences.Companion
+import ALL_GAMES =         Games.ALL
+import ALL_GAME_STYLES =   GameStyles.ALL
+import soundEffect_games = SoundEffects.soundEffect_games
 
 /** Every {@link GameReferences} that will do a return of line after its rendering */
 const RETURN_OF_LINES = [
@@ -43,7 +44,7 @@ const otherGameReferences = (() => {
     const alreadyIncludedNames = [
         ...ALL_GAMES.map(it => it.englishName,),
         ...ALL_GAME_STYLES.map(it => it.englishName,),
-        ...SoundEffects.soundEffect_games.map(it => it.englishName,) as Array<PossibleEnglishName_Games>,
+        ...soundEffect_games.map(it => it.englishName,) as Array<PossibleEnglishName_Games>,
     ]
     return Companion.values.filter(it => !hasByArray(alreadyIncludedNames, it.englishName as never,),)
 })()
@@ -55,7 +56,7 @@ export default function GameReferenceApp() {
         <div id="game-names-container" className="names-container">
             <h3 id="game-names-title" className="names-title">{gameContentTranslation('game.plural',)}</h3>
             <div id="game-name-container" className="container-fluid name-container">
-                {ALL_GAMES.map(it =>
+                {mapByArray(ALL_GAMES, it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameImage reference={it}/>
@@ -67,7 +68,7 @@ export default function GameReferenceApp() {
         <div id="gameStyle-names-container" className="names-container">
             <h3 id="gameStyle-names-title" className="names-title">{gameContentTranslation('game style.plural',)}</h3>
             <div id="gameStyle-name-container" className="container-fluid name-container">
-                {ALL_GAME_STYLES.map(it =>
+                {mapByArray(ALL_GAME_STYLES, it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>
@@ -79,7 +80,7 @@ export default function GameReferenceApp() {
         <div id="soundEffect-names-container" className="names-container">
             <h3 id="soundEffect-names-title" className="col-12 names-title">{gameContentTranslation('sound effect.plural',)}</h3>
             <div id="soundEffect-name-container" className="container-fluid name-container">{
-                SoundEffects.soundEffect_games.map(it =>
+                mapByArray(soundEffect_games, it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <SoundEffectImage reference={it}/>

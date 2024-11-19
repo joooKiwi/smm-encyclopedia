@@ -1,6 +1,6 @@
-import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array, Nullable}                                                          from '@joookiwi/type'
-import {GenericCollectionHolder, getFirstByArray, hasAllWithCollectionHolderByArray}   from '@joookiwi/collection'
+import {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection}                    from '@joookiwi/collection'
+import type {Array}                                                                                  from '@joookiwi/type'
+import {GenericCollectionHolder, getFirstByArray, hasAllWithCollectionHolderByArray, isEmptyByArray} from '@joookiwi/collection'
 
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
@@ -115,15 +115,11 @@ export namespace GameCollection {
      *
      * @param values The values to create a new {@link GameCollection}
      */
-    export function of<const T extends Games,>(values: Nullable<Array<T>>,): GameCollection<T>
-    export function of(values: Nullable<Array<Games>>,): GameCollection {
-        if (values == null)
+    export function of<const T extends Games,>(values: NullableArray<T>,): GameCollection<T>
+    export function of(values: NullableArray<Games>,): GameCollection {
+        if (isEmptyByArray(values,))
             return EMPTY
-
-        const size = values.length
-        if (size === 0)
-            return EMPTY
-        if (size === 1) {
+        if (values!.length === 1) {
             const value = getFirstByArray(values,)
             if (value === SMM2)
                 return SMM2_ONLY
@@ -134,7 +130,7 @@ export namespace GameCollection {
 
         if (hasAllWithCollectionHolderByArray(values, ALL,))
             return ALL
-        return new GameCollection(values,)
+        return new GameCollection(values!,)
     }
 
 }

@@ -1,4 +1,4 @@
-import {allByArray, filterByArray} from '@joookiwi/collection'
+import {allByArray, filterByArray, mapByArray} from '@joookiwi/collection'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {GameStyleProperty}        from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -19,7 +19,7 @@ export default function GameStyleComponent({reference, name, displayAllAsText,}:
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('game style.all',)}/>
         else
-            return <div key={`${name.english} (every game styles)`}>{ALL.map(it => <GameStyleImage reference={it}/>,)}</div>
+            return <div key={`${name.english} (every game styles)`}>{mapByArray(ALL, it => <GameStyleImage reference={it}/>,)}</div>
 
     const gameStyles = filterByArray(ALL, it => it.get(reference,),)
     if (gameStyles.length === 1)

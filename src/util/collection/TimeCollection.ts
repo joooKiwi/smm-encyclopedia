@@ -1,6 +1,6 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array, Nullable}                                                          from '@joookiwi/type'
-import {GenericCollectionHolder, hasAllWithCollectionHolderByArray}                    from '@joookiwi/collection'
+import type {Array}                                                                    from '@joookiwi/type'
+import {GenericCollectionHolder, hasAllWithCollectionHolderByArray, isEmptyByArray}    from '@joookiwi/collection'
 
 import {Times} from 'core/time/Times'
 import {Empty} from 'util/emptyVariables'
@@ -79,18 +79,13 @@ export namespace TimeCollection {
      *
      * @param values The values to create a new {@link TimeCollection}
      */
-    export function of<const T extends Times,>(values: Nullable<Array<T>>,): TimeCollection<T>
-    export function of(values: Nullable<Array<Times>>,): TimeCollection {
-        if (values == null)
+    export function of<const T extends Times,>(values: NullableArray<T>,): TimeCollection<T>
+    export function of(values: NullableArray<Times>,): TimeCollection {
+        if (isEmptyByArray(values,))
             return EMPTY
-
-        const size = values.length
-        if (size === 0)
-            return EMPTY
-
         if (hasAllWithCollectionHolderByArray(values, ALL,))
             return ALL
-        return new TimeCollection(values,)
+        return new TimeCollection(values!,)
     }
 
 }

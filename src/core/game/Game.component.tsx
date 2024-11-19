@@ -1,4 +1,4 @@
-import {allByArray, filterByArray} from '@joookiwi/collection'
+import {allByArray, filterByArray, mapByArray} from '@joookiwi/collection'
 
 import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
@@ -19,7 +19,7 @@ export default function GameComponent({reference, name, displayAllAsText,}: Enti
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('game.all',)}/>
         else
-            return <div key={`${name.english} (every games)`}>{ALL.map(it => <GameImage reference={it}/>,)}</div>
+            return <div key={`${name.english} (every games)`}>{mapByArray(ALL, it => <GameImage reference={it}/>,)}</div>
 
     const games = filterByArray(ALL, it => it.get(reference,),)
     if (games.length === 1)

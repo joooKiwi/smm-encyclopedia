@@ -1,5 +1,6 @@
 import type {Singleton}       from '@joookiwi/enumerable'
 import type {Array, Nullable} from '@joookiwi/type'
+import {mapByArray}           from '@joookiwi/collection'
 import {CompanionEnum, Enum}  from '@joookiwi/enumerable'
 
 import type {CharactersEquivalencesMap, Names, Ordinals, PossibleSingleCharacter, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString, VariableValueByBoolean, SpaceUnevenCharacter, SpaceEvenCharacter, TextInChevrons} from 'lang/Characters.types'
@@ -208,21 +209,21 @@ export namespace Characters {
     function __getBothEvenAndUnevenCharacters<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceEvenCharacter'], T['spaceUnevenCharacter'], U['spaceEvenCharacter'], U['spaceUnevenCharacter'], V['spaceEvenCharacter'], V['spaceUnevenCharacter'], W['spaceEvenCharacter'], W['spaceUnevenCharacter'], X['spaceEvenCharacter'], X['spaceUnevenCharacter'],]
     function __getBothEvenAndUnevenCharacters<const T extends Characters, >(array: Array<T>,): Array<T[| 'spaceEvenCharacter' | 'spaceUnevenCharacter']>
     function __getBothEvenAndUnevenCharacters(array: Array<Characters>,): Array<PossibleSingleCharacter> {
-        return array.map(it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).flat()
+        return mapByArray(array, it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).toArray().flat()
     }
 
     function __getOnlyUnevenCharacter<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceUnevenCharacter'], U['spaceUnevenCharacter'],]
     function __getOnlyUnevenCharacter<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceUnevenCharacter'], U['spaceUnevenCharacter'], V['spaceUnevenCharacter'], W['spaceUnevenCharacter'], X['spaceUnevenCharacter'],]
     function __getOnlyUnevenCharacter<const T extends Characters, >(array: Array<T>,): Array<T['spaceUnevenCharacter']>
     function __getOnlyUnevenCharacter(array: Array<Characters>,): Array<SpaceUnevenCharacter> {
-        return array.map(it => it.spaceUnevenCharacter,)
+        return mapByArray(array, it => it.spaceUnevenCharacter,).toArray()
     }
 
     function __getOnlyEvenCharacter<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceEvenCharacter'], U['spaceEvenCharacter'],]
     function __getOnlyEvenCharacter<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceEvenCharacter'], U['spaceEvenCharacter'], V['spaceEvenCharacter'], W['spaceEvenCharacter'], X['spaceEvenCharacter'],]
     function __getOnlyEvenCharacter<const T extends Characters, >(array: Array<T>,): Array<T['spaceEvenCharacter']>
     function __getOnlyEvenCharacter(array: Array<Characters>,): Array<SpaceEvenCharacter> {
-        return array.map(it => it.spaceEvenCharacter,)
+        return mapByArray(array, it => it.spaceEvenCharacter,).toArray()
     }
 
 

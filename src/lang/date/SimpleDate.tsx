@@ -1,3 +1,4 @@
+import {mapByArray}         from '@joookiwi/collection'
 import {FormattedDateParts} from 'react-intl'
 import {Fragment}           from 'react'
 
@@ -40,7 +41,7 @@ function SimpleDateFromDate({date,}: DateTimeFormatFromDateProperties,) {
         year="numeric"
         month="long"
         day="numeric">
-        {parts => <>{parts.map(({type, value,}) => type === 'day' ?
+        {parts => <>{mapByArray(parts, ({type, value,},) => type === 'day' ?
             <Fragment key={`${date} - ${type}`}>{Companion.current.newDayComponent(Number(value,) as DayNumber,)}</Fragment> : value)}</>}
     </FormattedDateParts>
 }

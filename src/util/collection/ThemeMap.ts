@@ -1,4 +1,5 @@
 import type {UndefinedOr} from '@joookiwi/type'
+import {mapByArray}       from '@joookiwi/collection'
 
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 
@@ -22,7 +23,7 @@ export class ThemeMap<const out REFERENCE extends ThemeProperty = ThemeProperty,
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Themes.COURSE_THEMES.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(Themes.COURSE_THEMES, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

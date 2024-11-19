@@ -1,6 +1,7 @@
 import 'app/MusicApp.scss'
 
-import {Link} from 'react-router-dom'
+import {mapByArray} from '@joookiwi/collection'
+import {Link}       from 'react-router-dom'
 
 import {ReactProperties, SimpleReactPropertiesWithChildren, SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
@@ -1077,9 +1078,8 @@ interface MusicsProperties<out FILES extends ArrayOf1To8<IndividualMusics>, >
 interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<ReactElementOrArray> {}
 
 // function MusicsContainer({type, files,}: MusicsProperties,) {
-//     return <div className={`${type}-music-container music-container`}>{
-//         files.map(it =>
-//             <IndividualMusicSound key={`Music (${it.titleName})`} value={it}/>,)
+//     return <div className={`${type}-music-container music-container`}>{mapByArray(files, it =>
+//         <IndividualMusicSound key={`Music (${it.titleName})`} value={it}/>,)
 //     }</div>
 // }
 
@@ -1095,9 +1095,8 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 //
 //     return <div className={`${nameInHtml}-gameStyle-musics-container gameStyle-musics-container musics-container`}>
 //         <div><GameStyleImage reference={gameStyle}/></div>
-//         <div className={`${nameInHtml}-gameStyle-music-container gameStyle-music-container music-container`}>{
-//             files.map(it =>
-//                 <IndividualMusicSound key={`Game style music (${name} - ${it.titleName})`} value={it}/>)
+//         <div className={`${nameInHtml}-gameStyle-music-container gameStyle-music-container music-container`}>{mapByArray(files, it =>
+//             <IndividualMusicSound key={`Game style music (${name} - ${it.titleName})`} value={it}/>)
 //         }</div>
 //     </div>
 // }
@@ -1122,24 +1121,21 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 //         {day == null ? null : <DayMusicsContainer files={day}/>}
 //         {/*standalone == null ? null : <div className={`${nameInHtml}-${type}-gameStyle-standalone-musics-container musics-container`}>
 //             <UnfinishedText>Standalone</UnfinishedText>
-//             <div className={`${nameInHtml}-${type}-gameStyle-standalone-music-container music-container`}>{
-//                 standalone.map(it =>
-//                     <IndividualMusicSound key={`Standalone game style music (${name} - ${it.titleName})`} value={it}/>,)
+//             <div className={`${nameInHtml}-${type}-gameStyle-standalone-music-container music-container`}>{mapByArray(standalone, it =>
+//                 <IndividualMusicSound key={`Standalone game style music (${name} - ${it.titleName})`} value={it}/>,)
 //             }</div>
 //         </div>*/}
 //         {night == null ? null : <NightMusicsContainer files={night}/>}
 //         {/*yoshi == null ? null : <div className={`${nameInHtml}-${type}-gameStyle-yoshi-musics-container musics-container`}>
 //             <Image file={getYoshiImage(gameStyle,)}/>
-//             <div className={`${nameInHtml}-${type}-gameStyle-yoshi-music-container music-container`}>{
-//                 yoshi.map(it =>
-//                     <IndividualMusicSound key={`Night game style music (${name} - ${it.titleName})`} value={it}/>,)
+//             <div className={`${nameInHtml}-${type}-gameStyle-yoshi-music-container music-container`}>{mapByArray(yoshi, it =>
+//                 <IndividualMusicSound key={`Night game style music (${name} - ${it.titleName})`} value={it}/>,)
 //             }</div>
 //         </div>*/}
 //         {/*underwater == null ? null : <div className={`${nameInHtml}-${type}-gameStyle-underwater-musics-container musics-container`}>
 //             <div><ThemeImage reference={Themes.UNDERWATER}/></div>
-//             <div className={`${nameInHtml}-${type}-gameStyle-underwater-music-container music-container`}>{
-//                 underwater.map(it =>
-//                     <IndividualMusicSound key={`Underwater game style music (${name} - ${it.titleName})`} value={it}/>,)
+//             <div className={`${nameInHtml}-${type}-gameStyle-underwater-music-container music-container`}>{mapByArray(underwater, it =>
+//                 <IndividualMusicSound key={`Underwater game style music (${name} - ${it.titleName})`} value={it}/>,)
 //             }</div>
 //         </div>*/}
 //     </div>
@@ -1183,9 +1179,8 @@ interface EditorMusicsProperties extends MusicsProperties<ArrayOf7<IndividualMus
 function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
     return <div className="editor-musics-container musics-container">
         <Image file={COURSE_THEME_IMAGE_FILE}/>
-        <div className="editor-music-container music-container">{
-            files.map(it =>
-                <IndividualMusicSound key={`Editor music (${it.titleName})`} value={it}/>,)
+        <div className="editor-music-container music-container">{mapByArray(files, it =>
+            <IndividualMusicSound key={`Editor music (${it.titleName})`} value={it}/>,)
         }</div>
     </div>
 }
@@ -1198,9 +1193,8 @@ interface LessonEditorMusicsProperties extends MusicsProperties<ArrayOf4<Individ
 function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
     return <div className="lessonEditor-musics-container musics-container">
         <UnfinishedText>Lesson editor</UnfinishedText>
-        <div className="lessonEditor-music-container music-container">{
-            files.map(it =>
-                <IndividualMusicSound key={`Lesson editor music (${it.titleName})`} value={it}/>,)
+        <div className="lessonEditor-music-container music-container">{mapByArray(files, it =>
+            <IndividualMusicSound key={`Lesson editor music (${it.titleName})`} value={it}/>,)
         }</div>
     </div>
 }
@@ -1217,9 +1211,8 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 //
 //     return <div className={`${nameInHtml}-soundEffect-musics-container soundEffect-musics-container musics-container`}>
 //         <SoundEffectImage reference={soundEffect}/>
-//         <div className={`${nameInHtml}-soundEffectMusics-music-container soundEffectMusics-music-container music-container`}>{
-//             files.map(it =>
-//                 <IndividualMusicSound key={`Sound effect music (${name} - ${it.titleName})`} value={it}/>,)
+//         <div className={`${nameInHtml}-soundEffectMusics-music-container soundEffectMusics-music-container music-container`}>{mapByArray(files, it =>
+//             <IndividualMusicSound key={`Sound effect music (${name} - ${it.titleName})`} value={it}/>,)
 //         }</div>
 //     </div>
 // }
@@ -1514,8 +1507,7 @@ function DayMusicsContainer({files,}: DayMusicsProperties,) {
 // function LinkMusicsContainer({files,}: LinkMusicsProperties,) {
 //     return <div className="link-musics-container powerUp-musics-container musics-container">
 //         <Image file={getLinkImage()}/>
-//         <div className="link-music-container powerUp-music-container music-container">{
-//             files.map(it =>
+//         <div className="link-music-container powerUp-music-container music-container">{mapByArray(files, it =>
 //                 <IndividualMusicSound key={`Link music (${it.titleName})`} value={it}/>,)
 //         }</div>
 //     </div>
@@ -1529,9 +1521,8 @@ function DayMusicsContainer({files,}: DayMusicsProperties,) {
 // function Smb2MusicsContainer({files,}: Smb2MusicsProperties,) {
 //     return <div className="smb2-musics-container powerUp-musics-container musics-container">
 //         <Image file={getSmb2Image()}/>
-//         <div className="smb2-music-container powerUp-music-container music-container">{
-//             files.map(it =>
-//                 <IndividualMusicSound key={`SMB2 music (${it.titleName})`} value={it}/>,)
+//         <div className="smb2-music-container powerUp-music-container music-container">{mapByArray(files, it =>
+//             <IndividualMusicSound key={`SMB2 music (${it.titleName})`} value={it}/>,)
 //         }</div>
 //     </div>
 // }

@@ -1,6 +1,7 @@
-import {Fragment} from 'react'
+import type {CollectionHolder} from '@joookiwi/collection'
+import {filterByArray}         from '@joookiwi/collection'
+import {Fragment}              from 'react'
 
-import type {Array} from '@joookiwi/type'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {Limits}           from 'core/limit/Limits'
@@ -32,16 +33,14 @@ export default function LimitComponent({id, limits, displayAcronymIfApplicable,}
     if (limits instanceof Limits)
         return createSingleComponent(id, limits, displayAcronymIfApplicable,)
 
-    const selectedLimits = [...limits].filter(([, hasLimit]) => hasLimit).map(([limit,]) => limit)
-    return selectedLimits.length === 0
-        ? <></>
-        : <>{selectedLimits.map((limit, index,) =>
-            <Fragment key={`${limit.englishName} #${index + 1} → ${id}`}>{createSingleComponent(id, limit, displayAcronymIfApplicable,)}{createReturnOfLine(selectedLimits, index,)}</Fragment>
+    const selectedLimits = filterByArray([...limits], it => it[1],).map(it => it[0],)
+    return <>{selectedLimits.map((it, i,) =>
+            <Fragment key={`${it.englishName} #${i + 1} → ${id}`}>{createSingleComponent(id, it, displayAcronymIfApplicable,)}{createReturnOfLine(selectedLimits, i,)}</Fragment>
         )}</>
 }
 
-function createReturnOfLine(selectedLimits: Array<Limits>, index: number,) {
-    return index === selectedLimits.length - 1 ? <></> : <>{ProjectLanguages.current.comma}<br/></>
+function createReturnOfLine(selectedLimits: CollectionHolder<Limits>, index: number,) {
+    return index === selectedLimits.size - 1 ? <></> : <>{ProjectLanguages.current.comma}<br/></>
 }
 
 function createSingleComponent(id: Id, limit: Limits, displayAcronymIfApplicable: boolean,) {

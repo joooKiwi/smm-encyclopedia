@@ -1,4 +1,5 @@
 import type {UndefinedOr} from '@joookiwi/type'
+import {mapByArray}       from '@joookiwi/collection'
 
 import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
@@ -24,7 +25,7 @@ export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Times.ALL.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(Times.ALL, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

@@ -1,4 +1,5 @@
 import type {UndefinedOr} from '@joookiwi/type'
+import {mapByArray}       from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -22,7 +23,7 @@ export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameSt
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(GameStyles.ALL.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(GameStyles.ALL, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

@@ -1,8 +1,8 @@
-import type {Singleton}                                     from '@joookiwi/enumerable'
-import type {Array, MutableArray, Nullable, NullOr}         from '@joookiwi/type'
-import {findFirstOrNullByArray, forEachByArray, hasByArray} from '@joookiwi/collection'
-import {CompanionEnum, Enum}                                from '@joookiwi/enumerable'
-import {lazy}                                               from 'react'
+import type {Singleton}                                                     from '@joookiwi/enumerable'
+import type {Array, MutableArray, Nullable, NullOr}                         from '@joookiwi/type'
+import {findFirstOrNullByArray, forEachByArray, hasByArray, isEmptyByArray} from '@joookiwi/collection'
+import {CompanionEnum, Enum}                                                from '@joookiwi/enumerable'
+import {lazy}                                                               from 'react'
 
 import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                               from 'route/ClassUsedInRoute'
 import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithoutGameStyle, RouteCallbackWithoutTime, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
@@ -1637,14 +1637,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/game-${GameCompanion.getGroupUrlValue(currentGames,)}`
         }
-        if (value.length === 0) {
+        if (isEmptyByArray(value,)) {
             const defaultGame = this.defaultGame
             if (defaultGame == null)
                 return EMPTY_STRING
             return `/game-${defaultGame.urlValue}`
         }
-        if (value.length === 0)
-            return EMPTY_STRING
         return `/game-${GameCompanion.getGroupUrlValue(value,)}`
     }
 
@@ -1670,7 +1668,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/time-${TimeCompanion.getGroupUrl(currentTime,)}`
         }
-        if (value.length === 0) {
+        if (isEmptyByArray(value,)) {
             const defaultTime = this.defaultTime
             if (defaultTime == null) {
                 if (hasByArray(games, SMM2,))
@@ -1678,11 +1676,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                 return '/time-day'
             }
             return `/time-${defaultTime.urlValue}`
-        }
-        if (value.length === 0) {
-            if (hasByArray(games, SMM2,))
-                return '/time-all'
-            return '/time-day'
         }
         return `/time-${TimeCompanion.getGroupUrl(value,)}`
     }
@@ -1703,14 +1696,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/game-style-${GameStyleCompanion.getGroupUrlValue(currentGameStyles,)}`
         }
-        if (values.length === 0) {
+        if (isEmptyByArray(values,)) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
                 return EMPTY_STRING
             return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
         }
-        if (values.length === 0)
-            return EMPTY_STRING
         return `/game-style-${GameStyleCompanion.getGroupUrlValue(values,)}`
     }
 

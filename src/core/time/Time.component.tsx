@@ -1,4 +1,4 @@
-import {allByArray} from '@joookiwi/collection'
+import {allByArray, mapByArray} from '@joookiwi/collection'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {TimeProperty}             from 'core/entity/properties/time/TimeProperty'
@@ -19,7 +19,7 @@ export default function TimeComponent({reference, name, displayAllAsText,}: Enti
         if (displayAllAsText)
             return <TextComponent content={gameContentTranslation('time.all',)}/>
         else
-            return <div key={`Every times images (${name.english})`}>{ALL.map(it => <TimeImage reference={it}/>,)}</div>
+            return <div key={`Every times images (${name.english})`}>{mapByArray(ALL, it => <TimeImage reference={it}/>,)}</div>
 
     if (reference.isInDayTheme)
         return <TimeImage reference={Times.DAY}/>
