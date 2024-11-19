@@ -18,6 +18,7 @@ import {StringContainer} from 'util/StringContainer'
 import {assert}          from 'util/utilitiesMethods'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
+import getInHtml =    StringContainer.getInHtml
 
 interface TableProperties
     extends ReactProperties {
@@ -81,7 +82,7 @@ function TableContent({children: [additionalClasses, contents,],}: SimpleReactPr
         },)
 
         tableContent[i] =
-            <div key={`table row content (${rowContentKey} ${i + 1})`} className={`trow table-row-${StringContainer.getInHtml(rowContentKey,)}`}>{rowContent}</div>
+            <div key={`table row content (${rowContentKey} ${i + 1})`} className={`trow table-row-${getInHtml(rowContentKey,)}`}>{rowContent}</div>
     },)
     return <div className="tcontent">{tableContent}</div>
 }

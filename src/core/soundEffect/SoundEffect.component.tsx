@@ -11,6 +11,7 @@ import {Empty}           from 'util/emptyVariables'
 import {StringContainer} from 'util/StringContainer'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
+import getInHtml =    StringContainer.getInHtml
 import SMM1 =         Games.SMM1
 
 interface SoundEffectProperties
@@ -36,7 +37,7 @@ export default function SoundEffectComponent({reference, game, name,}: SoundEffe
 
         const themeEnglishNameInHtml = reference.englishNameInHtml
         const identifier = name?.english
-        const id = identifier == null ? `${themeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${themeEnglishNameInHtml}-soundEffect${game == null ? EMPTY_STRING : `-${game.acronym}`}-image`
+        const id = identifier == null ? `${themeEnglishNameInHtml}-image` : `${getInHtml(identifier,)}-${themeEnglishNameInHtml}-soundEffect${game == null ? EMPTY_STRING : `-${game.acronym}`}-image`
         return <Image partialId={id} images={([
             {file: imageFile1, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
             {file: imageFile2, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},

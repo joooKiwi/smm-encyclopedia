@@ -11,6 +11,8 @@ import TextComponent      from 'app/tools/text/TextComponent'
 import Tooltip            from 'bootstrap/tooltip/Tooltip'
 import {StringContainer}  from 'util/StringContainer'
 
+import getInHtml = StringContainer.getInHtml
+
 type Id = `${| 'editor' | 'play'}-${string}`
 
 interface EditorLimitProperties
@@ -48,7 +50,7 @@ function createSingleComponent(id: Id, limit: Limits, displayAcronymIfApplicable
         const acronym = limit.acronym
         if (acronym == null)
             return createSingleNameComponent(id, limit,)
-        const acronymId = `limit-acronym-${id}-${StringContainer.getInHtml(limit.acronym!)}`
+        const acronymId = `limit-acronym-${id}-${getInHtml(limit.acronym!)}`
         //TODO Transform the tooltip to a popover to display every names instead
         return <Tooltip option={{title: limit.reference.nameContainer.languageValue,}} reference={acronymId}>
             <TextComponent key={`${limit.englishName} (acronym) → ${id}`} id={acronymId} content={acronym}/>
