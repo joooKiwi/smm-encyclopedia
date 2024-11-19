@@ -26,9 +26,12 @@ export class GameCollection<const T extends Games = Games,
     #hasAllGames?: boolean
     #hasSMM1?: boolean
     #hasSMM3DS?: boolean
-    #hasNotSMM2AndSMM1Or3DS?: boolean
     #hasSMM1Or3DS?: boolean
     #hasSMM2?: boolean
+    #hasNotSMM2AndSMM1Or3DS?: boolean
+    #hasOnlySmm1?: boolean
+    #hasOnlySmm3ds?: boolean
+    #hasOnlySmm2?: boolean
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
@@ -37,6 +40,7 @@ export class GameCollection<const T extends Games = Games,
     public get hasAllGames(): boolean {
         return this.#hasAllGames ??= this._hasAllByArray(ALL as unknown as Array<T>,)
     }
+
 
     /** The collection has the {@link SMM1} type in its values */
     public get hasSMM1(): boolean {
@@ -48,11 +52,6 @@ export class GameCollection<const T extends Games = Games,
         return this.#hasSMM3DS ??= this.has(SMM3DS as T,)
     }
 
-    /** The collection has not {@link SMM2} and has either {@link SMM1} or {@link SMM3DS} type in its values */
-    public get hasNotSMM2AndSMM1Or3DS(): boolean {
-        return this.#hasNotSMM2AndSMM1Or3DS ??= !this.has(SMM2 as T,) && this.hasOne([SMM1 as T, SMM3DS as T,],)
-    }
-
     /** The collection has the {@link SMM1} or {@link SMM3DS} type in its values */
     public get hasSMM1Or3DS(): boolean {
         return this.#hasSMM1Or3DS ??= this.hasOne([SMM1 as T, SMM3DS as T,],)
@@ -61,6 +60,28 @@ export class GameCollection<const T extends Games = Games,
     /** The collection has the {@link SMM2} type in its values */
     public get hasSMM2(): boolean {
         return this.#hasSMM2 ??= this.has(SMM2 as T,)
+    }
+
+
+    /** The collection has not {@link SMM2} and has either {@link SMM1} or {@link SMM3DS} type in its values */
+    public get hasNotSMM2AndSMM1Or3DS(): boolean {
+        return this.#hasNotSMM2AndSMM1Or3DS ??= !this.hasSMM2 && this.hasSMM1Or3DS
+    }
+
+
+    /** The collection has <b>only</b> the {@link SMM1} type in its values */
+    public get hasOnlySmm1(): boolean {
+        return this.#hasOnlySmm1 ??= this.hasSMM1 && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link SMM3DS} type in its values */
+    public get hasOnlySmm3ds(): boolean {
+        return this.#hasOnlySmm3ds ??= this.hasSMM3DS && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link SMM2} type in its values */
+    public get hasOnlySmm2(): boolean {
+        return this.#hasOnlySmm2 ??= this.hasSMM2 && this.size === 1
     }
 
     //endregion -------------------- Getter methods --------------------

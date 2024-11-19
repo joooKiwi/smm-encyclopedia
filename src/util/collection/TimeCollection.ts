@@ -19,6 +19,8 @@ export class TimeCollection<const T extends Times = Times,
     #hasAllGames?: boolean
     #hasDay?: boolean
     #hasNight?: boolean
+    #hasOnlyDay?: boolean
+    #hasOnlyNight?: boolean
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
@@ -36,6 +38,17 @@ export class TimeCollection<const T extends Times = Times,
     /** The collection has the {@link Times.NIGHT} type in its values */
     public get hasNight(): boolean {
         return this.#hasNight ??= this.has(Times.NIGHT as T,)
+    }
+
+
+    /** The collection has <b>only</b> the {@link Times.DAY} type in its values */
+    public get hasOnlyDay(): boolean {
+        return this.#hasOnlyDay ??= this.hasDay && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link Times.NIGHT} type in its values */
+    public get hasOnlyNight(): boolean {
+        return this.#hasOnlyNight ??= this.hasNight && this.size === 1
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -30,6 +30,11 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     #hasSMW?: boolean
     #hasNSMBU?: boolean
     #hasSM3DW?: boolean
+    #hasOnlySmb?: boolean
+    #hasOnlySmb3?: boolean
+    #hasOnlySmw?: boolean
+    #hasOnlyNsmbu?: boolean
+    #hasOnlySm3dw?: boolean
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
@@ -76,6 +81,32 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     /** The collection has the {@link SM3DW} type in its values */
     public get hasSM3DW(): boolean {
         return this.#hasSM3DW ??= this.has(SM3DW as T,)
+    }
+
+
+    /** The collection has <b>only</b> the {@link SMB} type in its values */
+    public get hasOnlySmb(): boolean {
+        return this.#hasOnlySmb ??= this.hasSMB && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link SMB3} type in its values */
+    public get hasOnlySmb3(): boolean {
+        return this.#hasOnlySmb3 ??= this.hasSMB3 && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link SMW} type in its values */
+    public get hasOnlySmw(): boolean {
+        return this.#hasOnlySmw ??= this.hasSMW && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link NSMBU} type in its values */
+    public get hasOnlyNsmbu(): boolean {
+        return this.#hasOnlyNsmbu ??= this.hasNSMBU && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link SM3DW} type in its values */
+    public get hasOnlySm3dw(): boolean {
+        return this.#hasOnlySm3dw ??= this.hasSM3DW && this.size === 1
     }
 
     //endregion -------------------- Getter methods --------------------
