@@ -48,13 +48,23 @@ export class ViewDisplays<const TYPE extends Type = Type,
 
         // public readonly URL_REGEX = /\/(table|list|card)\//i
 
-        public getValueInUrl(url: string,): NullOr<ViewDisplays> {
+        public findInUrl(url: string,): NullOr<ViewDisplays> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes('/list/',))
                 return ViewDisplays.SIMPLE_LIST
             if (lowerCasedUrl.includes('/card/',))
                 return ViewDisplays.CARD_LIST
             if (lowerCasedUrl.includes('/table/',))
+                return ViewDisplays.TABLE
+            return null
+        }
+
+        public findInName(name: string,): NullOr<ViewDisplays> {
+            if (name.endsWith('(list)',) || name.includes('(list',))
+                return ViewDisplays.SIMPLE_LIST
+            if (name.endsWith('(card)',) || name.includes('(card',))
+                return ViewDisplays.CARD_LIST
+            if (name.endsWith('(table)',) || name.includes('(table',))
                 return ViewDisplays.TABLE
             return null
         }

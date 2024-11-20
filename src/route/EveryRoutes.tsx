@@ -224,19 +224,19 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             return [new SimpleRoute(this.urlName, this.urlValue, null, null, null, null, this.routeCallback,),]
         }
 
-        protected override _getPartialPathFromGames() {
+        protected override _getPathFromGames() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromTimes() {
+        protected override _getPathFromTimes() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromGameStyles() {
+        protected override _getPathFromGameStyles() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromViewDisplay() {
+        protected override _getPathFromViewDisplay() {
             return EMPTY_STRING
         }
 
@@ -2005,15 +2005,15 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             ]
         }
 
-        protected override _getPartialPathFromTimes() {
+        protected override _getPathFromTimes() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromGameStyles() {
+        protected override _getPathFromGameStyles() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromViewDisplay() {
+        protected override _getPathFromViewDisplay() {
             return EMPTY_STRING
         }
 
@@ -2041,24 +2041,16 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             ]
         }
 
-        protected override _getPartialPathFromGames() {
+        protected override _getPathFromGames() {
             return '/game-1' as const satisfies PossibleGamePath
         }
 
-        protected override _getPartialPathFromTimes() {
+        protected override _getPathFromTimes() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromGameStyles() {
+        protected override _getPathFromGameStyles() {
             return EMPTY_STRING
-        }
-
-        protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
-            if (value == null)
-                value = ViewDisplayCompanion.currentOrNull
-            if (value == null)
-                value = this.defaultViewDisplay!
-            return `/${value.urlValue}`
         }
 
     }
@@ -2085,24 +2077,16 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             ]
         }
 
-        protected override _getPartialPathFromGames() {
+        protected override _getPathFromGames() {
             return `/game-2` as const satisfies PossibleGamePath
         }
 
-        protected override _getPartialPathFromTimes() {
+        protected override _getPathFromTimes() {
             return EMPTY_STRING
         }
 
-        protected override _getPartialPathFromGameStyles() {
+        protected override _getPathFromGameStyles() {
             return EMPTY_STRING
-        }
-
-        protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
-            if (value == null)
-                value = ViewDisplayCompanion.currentOrNull
-            if (value == null)
-                value = this.defaultViewDisplay!
-            return `/${value.urlValue}`
         }
 
     }
@@ -2194,11 +2178,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         }
 
         public getRouteFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
-            language ??= LanguageCompanion.current
-            const currentGames = GameCompanion.currentOrNull?.toArray() ?? null
-            const currentTimes = TimeCompanion.currentOrNull?.toArray() ?? null
-            const currentGameStyles = GameStyleCompanion.currentOrNull?.toArray() ?? null
-            const currentViewDisplay = ViewDisplayCompanion.currentOrNull
             for (const value of this.values) {
                 const urlName = value.urlName
                 if (urlName === name) {
@@ -2207,7 +2186,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                     if (routeFoundByName != null)
                         return value.getPath(language, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.times, routeFoundByName.viewDisplay,)
 
-                    const pathToFind = `${value._getPartialPathFromGames(currentGames,)}${value._getPartialPathFromGameStyles(currentGameStyles,)}${value._getPartialPathFromTimes(currentTimes, currentGames,)}${value._getPartialPathFromViewDisplay(currentViewDisplay,)}${value.urlValue}`
+                    const pathToFind = `${
+                        value._getPathFromGames()}${
+                        value._getPathFromGameStyles()}${
+                        value._getPathFromTimes()}${
+                        value._getPathFromViewDisplay()}${
+                        value.urlValue}`
                     const routeFoundByPath = findFirstOrNullByArray(everyRoute, it => it.path === pathToFind,)
                     if (routeFoundByPath != null)
                         return value.getPath(language, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.times, routeFoundByPath.viewDisplay,)
@@ -2219,8 +2203,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                     return routeFromOnlyViewDisplay
 
                 if (name.startsWith(`${urlName} `,)) {
-                    const games = this.#getGamesInName(name,)
-                    const pathToFind = `${value._getPartialPathFromGames(games,)}${value._getPartialPathFromGameStyles(this.#getGameStylesInName(name,),)}${value._getPartialPathFromTimes(this.#getTimesInName(name,), games,)}${value._getPartialPathFromViewDisplay(this.#getViewDisplayInName(name,),)}${value.urlValue}`
+                    const pathToFind = `${
+                        value._getPathFromGames(GameCompanion.findInName(name,),)}${
+                        value._getPathFromGameStyles(GameStyleCompanion.findInName(name,),)}${
+                        value._getPathFromTimes(TimeCompanion.findInName(name,),)}${
+                        value._getPathFromViewDisplay(ViewDisplayCompanion.findInName(name,),)}${
+                        value.urlValue}`
                     const routeFound = findFirstOrNullByArray(value.everyRoute, it => it.path === pathToFind,)
                     if (routeFound != null)
                         return value.getPath(language, routeFound.games, routeFound.gameStyles, routeFound.times, routeFound.viewDisplay,)
@@ -2238,7 +2226,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
          * @param name The name to find
          * @param language The language in the route
          */
-        #getRouteFromOnlyViewDisplay(value: EveryRoutes, name: PossibleRouteName, language: ProjectLanguages,): NullOr<EveryPossibleRoutes> {
+        #getRouteFromOnlyViewDisplay(value: EveryRoutes, name: PossibleRouteName, language: Nullable<ProjectLanguages>,): NullOr<EveryPossibleRoutes> {
             const viewDisplays = value.viewDisplays
             if (viewDisplays.isEmpty)
                 return null
@@ -2253,158 +2241,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             if (viewDisplays.hasCardList)
                 if (`${urlName} (table)` === name)
                     return value.getPath(language, null, null, null, TABLE,)
-            return null
-        }
-
-        /**
-         * Get the {@link Games} selected in the {@link name} received
-         *
-         * @param name The name to retrieve the {@link Games}
-         * @arrayReutilization
-         */
-        #getGamesInName(name: PossibleRouteName,): Array<Games> {
-            const startingIndex = name.indexOf('Game=',)
-            if (startingIndex === -1)
-                return EMPTY_ARRAY
-
-            const nameFromGame = name.substring(startingIndex + 5,)
-            if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
-                return ALL_GAMES
-
-            if (nameFromGame === '1)' || nameFromGame.startsWith('1 ',))
-                return SMM1_ONLY
-            if (nameFromGame === '3DS)' || nameFromGame.startsWith('3DS ',))
-                return SMM3DS_ONLY
-            if (nameFromGame === '2)' || nameFromGame.startsWith('2 ',))
-                return SMM2_ONLY
-
-            if (nameFromGame === '1&3DS)' || nameFromGame.startsWith('1&3DS ',))
-                return SMM1_AND_3DS
-            if (nameFromGame === '1&2)' || nameFromGame.startsWith('1&2 ',))
-                return SMM1_AND_2
-            if (nameFromGame === '3DS&2)' || nameFromGame.startsWith('3DS&2 ',))
-                return SMM3DS_AND_2
-
-            throw new ReferenceError(`No games have a name associated to the name "${name}".`,)
-        }
-
-        /**
-         * Get the {@link Times} selected in the {@link name} received
-         *
-         * @param name The name to retrieve the {@link Times}
-         * @arrayReutilization
-         */
-        #getTimesInName(name: PossibleRouteName,): Array<Times> {
-            const startingIndex = name.indexOf('Time=',)
-            if (startingIndex === -1)
-                return EMPTY_ARRAY
-
-            const nameFromGame = name.substring(startingIndex + 5,)
-            if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
-                return ALL_TIMES
-
-            if (nameFromGame === 'day)' || nameFromGame.startsWith('day ',))
-                return DAY_ONLY
-            if (nameFromGame === 'night)' || nameFromGame.startsWith('night ',))
-                return NIGHT_ONLY
-
-            throw new ReferenceError(`No times have a name associated to the name "${name}".`,)
-        }
-
-        /**
-         * Get the {@link GameStyles} selected in the {@link name} received
-         *
-         * @param name The name to retrieve the {@link GameStyles}
-         * @arrayReutilization
-         */
-        #getGameStylesInName(name: PossibleRouteName,): Array<GameStyles> {
-            const startingIndex = name.indexOf('GameStyle=',)
-            if (startingIndex === -1)
-                return EMPTY_ARRAY
-
-            const nameFromGameStyle = name.substring(startingIndex + 10,)
-            if (nameFromGameStyle === 'all)' || nameFromGameStyle.startsWith('all ',))
-                return ALL_GAME_STYLES
-
-            if (nameFromGameStyle === '1)' || nameFromGameStyle.startsWith('1 ',))
-                return SMB_ONLY
-            if (nameFromGameStyle === '3)' || nameFromGameStyle.startsWith('3 ',))
-                return SMB3_ONLY
-            if (nameFromGameStyle === 'W)' || nameFromGameStyle.startsWith('W ',))
-                return SMW_ONLY
-            if (nameFromGameStyle === 'U)' || nameFromGameStyle.startsWith('U ',))
-                return NSMBU_ONLY
-            if (nameFromGameStyle === '3DW)' || nameFromGameStyle.startsWith('3DW ',))
-                return SM3DW_ONLY
-
-            if (nameFromGameStyle === '1&3)' || nameFromGameStyle.startsWith('1&3 ',))
-                return SMB_AND_SMB3
-            if (nameFromGameStyle === '1&W)' || nameFromGameStyle.startsWith('1&W ',))
-                return SMB_AND_SMW
-            if (nameFromGameStyle === '1&U)' || nameFromGameStyle.startsWith('1&U ',))
-                return SMB_AND_NSMBU
-            if (nameFromGameStyle === '1&3DW)' || nameFromGameStyle.startsWith('1&3DW ',))
-                return SMB_AND_SM3DW
-            if (nameFromGameStyle === '3&W)' || nameFromGameStyle.startsWith('3&W ',))
-                return SMB3_AND_SMW
-            if (nameFromGameStyle === '3&U)' || nameFromGameStyle.startsWith('3&U ',))
-                return SMB3_AND_NSMBU
-            if (nameFromGameStyle === '3&3DW)' || nameFromGameStyle.startsWith('3&3DW ',))
-                return SMB3_AND_SM3DW
-            if (nameFromGameStyle === 'W&U)' || nameFromGameStyle.startsWith('W&U ',))
-                return SMW_AND_NSMBU
-            if (nameFromGameStyle === 'W&3DW)' || nameFromGameStyle.startsWith('W&3DW ',))
-                return SMW_AND_SM3DW
-            if (nameFromGameStyle === 'U&3DW)' || nameFromGameStyle.startsWith('U&3DW ',))
-                return NSMBU_AND_SM3DW
-
-            if (nameFromGameStyle === '1&3&W)' || nameFromGameStyle.startsWith('1&3&W ',))
-                return SMB_AND_SMB3_AND_SMW
-            if (nameFromGameStyle === '1&3&U)' || nameFromGameStyle.startsWith('1&3&U ',))
-                return SMB_AND_SMB3_AND_NSMBU
-            if (nameFromGameStyle === '1&3&3DW)' || nameFromGameStyle.startsWith('1&3&3DW ',))
-                return SMB_AND_SMB3_AND_SM3DW
-            if (nameFromGameStyle === '1&W&U)' || nameFromGameStyle.startsWith('1&W&U ',))
-                return SMB_AND_SMW_AND_NSMBU
-            if (nameFromGameStyle === '1&W&3DW)' || nameFromGameStyle.startsWith('1&W&3DW ',))
-                return SMB_AND_SMW_AND_SM3DW
-            if (nameFromGameStyle === '1&U&3DW)' || nameFromGameStyle.startsWith('1&U&3DW ',))
-                return SMB_AND_NSMBU_AND_SM3DW
-            if (nameFromGameStyle === '3&W&U)' || nameFromGameStyle.startsWith('3&W&U ',))
-                return SMB3_AND_SMW_AND_NSMBU
-            if (nameFromGameStyle === '3&W&3DW)' || nameFromGameStyle.startsWith('3&W&3DW ',))
-                return SMB3_AND_SMW_AND_SM3DW
-            if (nameFromGameStyle === '3&U&3DW)' || nameFromGameStyle.startsWith('3&U&3DW ',))
-                return SMB3_AND_NSMBU_AND_SM3DW
-            if (nameFromGameStyle === 'W&U&3DW)' || nameFromGameStyle.startsWith('W&U&3DW ',))
-                return SMW_AND_NSMBU_AND_SM3DW
-
-            if (nameFromGameStyle === '1&3&W&U)' || nameFromGameStyle.startsWith('1&3&W&U ',))
-                return NOT_SM3DW
-            if (nameFromGameStyle === '1&3&W&3DW)' || nameFromGameStyle.startsWith('1&3&W&3DW ',))
-                return NOT_NSMBU
-            if (nameFromGameStyle === '1&3&U&3DW)' || nameFromGameStyle.startsWith('1&3&U&3DW ',))
-                return NOT_SMW
-            if (nameFromGameStyle === '1&W&U&3DW)' || nameFromGameStyle.startsWith('1&W&U&3DW ',))
-                return NOT_SMB3
-            if (nameFromGameStyle === '3&W&U&3DW)' || nameFromGameStyle.startsWith('3&W&U&3DW ',))
-                return NOT_SMB
-
-            throw new ReferenceError(`No game styles have a name associated to the name "${name}".`,)
-        }
-
-        /**
-         * Get the {@link ViewDisplays} selected in the {@link name} received
-         *
-         * @param name The name to retrieve the {@link ViewDisplays}
-         */
-        #getViewDisplayInName(name: PossibleRouteName,): NullOr<ViewDisplays> {
-            if (name.endsWith('(list)',) || name.includes('(list',))
-                return LIST
-            if (name.endsWith('(card)',) || name.includes('(card',))
-                return CARD
-            if (name.endsWith('(table)',) || name.includes('(table',))
-                return TABLE
             return null
         }
 
@@ -2423,7 +2259,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     readonly #times
     readonly #defaultGame
     readonly #defaultGameStyles
-    readonly #defaultTime
+    readonly #defaultTimes
     readonly #routeCallback
 
     #everyRoutes?: Array<SimpleRoute>
@@ -2518,7 +2354,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      *
      * @param value The {@link Games} to retrieve its {@link Games.urlValue}
      */
-    protected _getPartialPathFromGames(value: NullOrArray<Games>,): PossibleGamePath {
+    protected _getPathFromGames(value: NullableArray<Games> = null,): PossibleGamePath {
         if (value == null) {
             const currentGames = GameCompanion.currentOrNull
             if (currentGames == null) {
@@ -2541,33 +2377,24 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     /**
      * Get the partial path from a {@link Nullable} {@link Times} {@link ReadonlyArray array}.
      *
-     * If no time is selected, by default it is all (if {@link games} has {@link SMM2}) and day (if {@link games} has not {@link SMM2}).
-     *
-     * @param value   The {@link Times} to retrieve its {@link Times.urlValue}
-     * @param games Tell if {@link SMM2} is selected in the path
+     * @param value The {@link Times} to retrieve its {@link Times.urlValue}
      */
-    protected _getPartialPathFromTimes(value: NullOrArray<Times>, games: NullOrArray<Games>,): PossibleTimePath {
+    protected _getPathFromTimes(value: NullableArray<Times> = null,): PossibleTimePath {
         if (value == null) {
             const currentTime = TimeCompanion.currentOrNull
             if (currentTime == null) {
-                const defaultTime = this.defaultTime
-                if (defaultTime == null) {
-                    if (hasByArray(games, SMM2,))
-                        return '/time-all'
-                    return '/time-day'
-                }
-                return `/time-${defaultTime.urlValue}`
+                const defaultTimes = this.defaultTimes
+                if (defaultTimes == null)
+                    return EMPTY_STRING
+                return `/time-${TimeCompanion.getGroupUrl(defaultTimes,)}`
             }
             return `/time-${TimeCompanion.getGroupUrl(currentTime,)}`
         }
         if (isEmptyByArray(value,)) {
-            const defaultTime = this.defaultTime
-            if (defaultTime == null) {
-                if (hasByArray(games, SMM2,))
-                    return '/time-all'
-                return '/time-day'
-            }
-            return `/time-${defaultTime.urlValue}`
+            const defaultTimes = this.defaultTimes
+            if (defaultTimes == null)
+                return EMPTY_STRING
+            return `/time-${TimeCompanion.getGroupUrl(defaultTimes,)}`
         }
         return `/time-${TimeCompanion.getGroupUrl(value,)}`
     }
@@ -2577,7 +2404,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      *
      * @param values The {@link GameStyles} to retrieve their {@link GameStyles.urlValue}
      */
-    protected _getPartialPathFromGameStyles(values: NullOrArray<GameStyles>,): PossibleGameStylePath {
+    protected _getPathFromGameStyles(values: NullableArray<GameStyles> = null,): PossibleGameStylePath {
         if (values == null) {
             const currentGameStyles = GameStyleCompanion.currentOrNull
             if (currentGameStyles == null) {
@@ -2602,7 +2429,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      *
      * @param value The {@link ViewDisplays} to retrieve its {@link ViewDisplays.urlValue}
      */
-    protected _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
+    protected _getPathFromViewDisplay(value: Nullable<ViewDisplays> = null,): PossibleViewDisplayPath {
         if (value == null)
             value = ViewDisplayCompanion.currentOrNull
         if (value == null)
@@ -2612,9 +2439,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games> = null, gameStyles: NullOrArray<GameStyles> = null, times: NullOrArray<Times> = null, viewDisplay: NullOr<ViewDisplays> = null,): EveryPossibleRoutes {
+    public getPath(language: Nullable<ProjectLanguages>, games?: NullableArray<Games>, gameStyles?: NullableArray<GameStyles>, times?: NullableArray<Times>, viewDisplay?: Nullable<ViewDisplays>,): EveryPossibleRoutes
+    public getPath(language: Nullable<ProjectLanguages>, games: NullableArray<Games> = null, gameStyles: NullableArray<GameStyles> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,) {
         language ??= LanguageCompanion.current
-        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromTimes(times, games,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.urlValue}` as unknown as EveryPossibleRoutes
+        return `/${language.projectAcronym}${this._getPathFromGames(games,)}${this._getPathFromGameStyles(gameStyles,)}${this._getPathFromTimes(times,)}${this._getPathFromViewDisplay(viewDisplay,)}${this.urlValue}`
     }
 
     //endregion -------------------- Methods --------------------

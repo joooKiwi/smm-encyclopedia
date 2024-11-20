@@ -10,6 +10,13 @@ export interface CompanionEnumDeclaration_ViewDisplays
      *
      * @param url The url to find the value
      */
-    getValueInUrl(url: string,): NullOr<ViewDisplays>
+    findInUrl(url: string,): NullOr<ViewDisplays>
+
+    /**
+     * Get a selected {@link ViewDisplays} from a name or <b>null</b> if it doesn't exist
+     *
+     * @param name The name to find the value
+     */
+    findInName(name: string,): NullOr<ViewDisplays>
 
 }

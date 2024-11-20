@@ -39,11 +39,21 @@ export interface CompanionEnumDeclaration_Games
 
 
     /**
-     * Find all the {@link Games} values present in the {@link url} received
+     * Find all the {@link Games games} present in the {@link url} received
      *
      * @param url The url to find the {@link Games} present
+     * @arrayReutilization
      */
-    getValueInUrl(url: string,): Array<Games>
+    findInUrl(url: string,): Array<Games>
+
+    /**
+     * Find all the {@link Games games} present in the {@link name} received
+     *
+     * @param name The name to retrieve the {@link Games}
+     * @throws ReferenceError No games could be found in the name <i>(this should normally never happen)</i>
+     * @arrayReutilization
+     */
+    findInName(name: string,): Array<Games>
 
 
     /**

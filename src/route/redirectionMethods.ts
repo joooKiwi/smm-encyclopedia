@@ -42,10 +42,10 @@ export function redirectToByUrl<const CONTEXT = unknown, >(loaderArguments: Load
     throw redirect(
         (RouteCompanion.getValueInUrl(url,) ?? EveryRoutes.HOME).getPath(
             language ?? LanguageCompanion.getValueInUrl(url,),
-            GameCompanion.getValueInUrl(url,),
-            GameStyleCompanion.getValueInUrl(url,),
-            TimeCompanion.getValueInUrl(url,),
-            ViewDisplayCompanion.getValueInUrl(url,),
+            GameCompanion.findInUrl(url,),
+            GameStyleCompanion.findInUrl(url,),
+            TimeCompanion.findInUrl(url,),
+            ViewDisplayCompanion.findInUrl(url,),
         ),
     )
 }

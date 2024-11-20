@@ -28,11 +28,21 @@ export interface CompanionEnumDeclaration_Times
 
 
     /**
-     * Find all the {@link Times} values present in the {@link url} received
+     * Find all the {@link Times times} present in the {@link url} received
      *
      * @param url The url to find the {@link Times} present
+     * @arrayReutilization
      */
-    getValueInUrl(url: string,): Array<Times>
+    findInUrl(url: string,): Array<Times>
+
+    /**
+     * Find all the {@link Times times} present in the {@link name} received
+     *
+     * @param name The name to find the {@link Times} present
+     * @throws ReferenceError No times could be found in the name (this should normally never happen)
+     * @arrayReutilization
+     */
+    findInName(name: string,): Array<Times>
 
 
     /**

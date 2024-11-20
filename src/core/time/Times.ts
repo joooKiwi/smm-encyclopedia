@@ -99,7 +99,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
         }
 
 
-        public getValueInUrl(url: string,): Array<Times> {
+        public findInUrl(url: string,): Array<Times> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return Times.ALL
@@ -122,6 +122,24 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
                 return Times.NIGHT_ONLY
             return EMPTY_ARRAY
         }
+
+        public findInName(name: string,): Array<Times> {
+            const startingIndex = name.indexOf('Time=',)
+            if (startingIndex === -1)
+                return EMPTY_ARRAY
+
+            const nameFromGame = name.substring(startingIndex + 5,)
+            if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
+                return Times.ALL
+
+            if (nameFromGame === 'day)' || nameFromGame.startsWith('day ',))
+                return Times.DAY_ONLY
+            if (nameFromGame === 'night)' || nameFromGame.startsWith('night ',))
+                return Times.NIGHT_ONLY
+
+            throw new ReferenceError(`No times have a name associated to the name "${name}".`,)
+        }
+
 
 
         public getGroupUrl(times: | Array<Times> | CollectionHolder<Times>,): GroupUrl {
@@ -209,6 +227,8 @@ export namespace Times {
 
     export const DAY_ONLY = [Times.DAY,] as const
     export const NIGHT_ONLY = [Times.NIGHT,] as const
+
+    export const EVERY_TIME = [ALL, DAY_ONLY, NIGHT_ONLY,] as const
 
 }
 

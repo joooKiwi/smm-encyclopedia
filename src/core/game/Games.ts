@@ -119,7 +119,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         }
 
 
-        public getValueInUrl(url: string,): Array<Games> {
+        public findInUrl(url: string,): Array<Games> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return Games.ALL
@@ -152,6 +152,32 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             if (withSmm2)
                 return Games.SMM2_ONLY
             return EMPTY_ARRAY
+        }
+
+        public findInName(name: string,): Array<Games> {
+            const startingIndex = name.indexOf('Game=',)
+            if (startingIndex === -1)
+                return EMPTY_ARRAY
+
+            const nameFromGame = name.substring(startingIndex + 5,)
+            if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
+                return Games.ALL
+
+            if (nameFromGame === '1)' || nameFromGame.startsWith('1 ',))
+                return Games.SMM1_ONLY
+            if (nameFromGame === '3DS)' || nameFromGame.startsWith('3DS ',))
+                return Games.SMM3DS_ONLY
+            if (nameFromGame === '2)' || nameFromGame.startsWith('2 ',))
+                return Games.SMM2_ONLY
+
+            if (nameFromGame === '1&3DS)' || nameFromGame.startsWith('1&3DS ',))
+                return Games.SMM1_AND_3DS
+            if (nameFromGame === '1&2)' || nameFromGame.startsWith('1&2 ',))
+                return Games.SMM1_AND_2
+            if (nameFromGame === '3DS&2)' || nameFromGame.startsWith('3DS&2 ',))
+                return Games.SMM3DS_AND_2
+
+            throw new ReferenceError(`No games have a name associated to the name "${name}".`,)
         }
 
         public getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue {

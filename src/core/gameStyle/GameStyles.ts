@@ -162,7 +162,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
 
-        public getValueInUrl(url: string,): Array<GameStyles> {
+        public findInUrl(url: string,): Array<GameStyles> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return GameStyles.ALL
@@ -258,6 +258,83 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
                 return GameStyles.SM3DW_ONLY
             return EMPTY_ARRAY
         }
+
+        public findInName(name: string,): Array<GameStyles> {
+            const startingIndex = name.indexOf('GameStyle=',)
+            if (startingIndex === -1)
+                return EMPTY_ARRAY
+
+            const nameFromGameStyle = name.substring(startingIndex + 10,)
+            if (nameFromGameStyle === 'all)' || nameFromGameStyle.startsWith('all ',))
+                return GameStyles.ALL
+
+            if (nameFromGameStyle === '1)' || nameFromGameStyle.startsWith('1 ',))
+                return GameStyles.SMB_ONLY
+            if (nameFromGameStyle === '3)' || nameFromGameStyle.startsWith('3 ',))
+                return GameStyles.SMB3_ONLY
+            if (nameFromGameStyle === 'W)' || nameFromGameStyle.startsWith('W ',))
+                return GameStyles.SMW_ONLY
+            if (nameFromGameStyle === 'U)' || nameFromGameStyle.startsWith('U ',))
+                return GameStyles.NSMBU_ONLY
+            if (nameFromGameStyle === '3DW)' || nameFromGameStyle.startsWith('3DW ',))
+                return GameStyles.SM3DW_ONLY
+
+            if (nameFromGameStyle === '1&3)' || nameFromGameStyle.startsWith('1&3 ',))
+                return GameStyles.SMB_AND_SMB3
+            if (nameFromGameStyle === '1&W)' || nameFromGameStyle.startsWith('1&W ',))
+                return GameStyles.SMB_AND_SMW
+            if (nameFromGameStyle === '1&U)' || nameFromGameStyle.startsWith('1&U ',))
+                return GameStyles.SMB_AND_NSMBU
+            if (nameFromGameStyle === '1&3DW)' || nameFromGameStyle.startsWith('1&3DW ',))
+                return GameStyles.SMB_AND_SM3DW
+            if (nameFromGameStyle === '3&W)' || nameFromGameStyle.startsWith('3&W ',))
+                return GameStyles.SMB3_AND_SMW
+            if (nameFromGameStyle === '3&U)' || nameFromGameStyle.startsWith('3&U ',))
+                return GameStyles.SMB3_AND_NSMBU
+            if (nameFromGameStyle === '3&3DW)' || nameFromGameStyle.startsWith('3&3DW ',))
+                return GameStyles.SMB3_AND_SM3DW
+            if (nameFromGameStyle === 'W&U)' || nameFromGameStyle.startsWith('W&U ',))
+                return GameStyles.SMW_AND_NSMBU
+            if (nameFromGameStyle === 'W&3DW)' || nameFromGameStyle.startsWith('W&3DW ',))
+                return GameStyles.SMW_AND_SM3DW
+            if (nameFromGameStyle === 'U&3DW)' || nameFromGameStyle.startsWith('U&3DW ',))
+                return GameStyles.NSMBU_AND_SM3DW
+
+            if (nameFromGameStyle === '1&3&W)' || nameFromGameStyle.startsWith('1&3&W ',))
+                return GameStyles.SMB_AND_SMB3_AND_SMW
+            if (nameFromGameStyle === '1&3&U)' || nameFromGameStyle.startsWith('1&3&U ',))
+                return GameStyles.SMB_AND_SMB3_AND_NSMBU
+            if (nameFromGameStyle === '1&3&3DW)' || nameFromGameStyle.startsWith('1&3&3DW ',))
+                return GameStyles.SMB_AND_SMB3_AND_SM3DW
+            if (nameFromGameStyle === '1&W&U)' || nameFromGameStyle.startsWith('1&W&U ',))
+                return GameStyles.SMB_AND_SMW_AND_NSMBU
+            if (nameFromGameStyle === '1&W&3DW)' || nameFromGameStyle.startsWith('1&W&3DW ',))
+                return GameStyles.SMB_AND_SMW_AND_SM3DW
+            if (nameFromGameStyle === '1&U&3DW)' || nameFromGameStyle.startsWith('1&U&3DW ',))
+                return GameStyles.SMB_AND_NSMBU_AND_SM3DW
+            if (nameFromGameStyle === '3&W&U)' || nameFromGameStyle.startsWith('3&W&U ',))
+                return GameStyles.SMB3_AND_SMW_AND_NSMBU
+            if (nameFromGameStyle === '3&W&3DW)' || nameFromGameStyle.startsWith('3&W&3DW ',))
+                return GameStyles.SMB3_AND_SMW_AND_SM3DW
+            if (nameFromGameStyle === '3&U&3DW)' || nameFromGameStyle.startsWith('3&U&3DW ',))
+                return GameStyles.SMB3_AND_NSMBU_AND_SM3DW
+            if (nameFromGameStyle === 'W&U&3DW)' || nameFromGameStyle.startsWith('W&U&3DW ',))
+                return GameStyles.SMW_AND_NSMBU_AND_SM3DW
+
+            if (nameFromGameStyle === '1&3&W&U)' || nameFromGameStyle.startsWith('1&3&W&U ',))
+                return GameStyles.NOT_SM3DW
+            if (nameFromGameStyle === '1&3&W&3DW)' || nameFromGameStyle.startsWith('1&3&W&3DW ',))
+                return GameStyles.NOT_NSMBU
+            if (nameFromGameStyle === '1&3&U&3DW)' || nameFromGameStyle.startsWith('1&3&U&3DW ',))
+                return GameStyles.NOT_SMW
+            if (nameFromGameStyle === '1&W&U&3DW)' || nameFromGameStyle.startsWith('1&W&U&3DW ',))
+                return GameStyles.NOT_SMB3
+            if (nameFromGameStyle === '3&W&U&3DW)' || nameFromGameStyle.startsWith('3&W&U&3DW ',))
+                return GameStyles.NOT_SMB
+
+            throw new ReferenceError(`No game styles have a name associated to the name "${name}".`,)
+        }
+
 
         public getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue {
             const isGameStylesArray = isArray(gameStyles,)

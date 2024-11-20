@@ -39,11 +39,20 @@ export interface CompanionEnumDeclaration_GameStyles
 
 
     /**
-     * Find all the {@link GameStyles} values present in the {@link url} received
+     * Find the {@link GameStyles game styles} present in the {@link url} received
      *
      * @param url The url to find the {@link GameStyles} present
+     * @arrayReutilization
      */
-    getValueInUrl(url: string,): Array<GameStyles>
+    findInUrl(url: string,): Array<GameStyles>
+
+    /**
+     * Find the {@link GameStyles game styles} present in the {@link name} received
+     *
+     * @param name The name to find the {@link GameStyles} present
+     * @arrayReutilization
+     */
+    findInName(name: string,): Array<GameStyles>
 
 
     /**
