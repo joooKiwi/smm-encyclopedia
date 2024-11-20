@@ -2626,6 +2626,8 @@ export namespace EveryRoutes {
     /** The companion instance of a {@link EveryRoutes} */
     export const Companion = EveryRoutes.CompanionEnum.get
 
+    export const ALL = Companion.values.toArray()
+
 
     function __retrieveAllRoutes() {
         const routes: MutableArray<SimpleRoute> = []

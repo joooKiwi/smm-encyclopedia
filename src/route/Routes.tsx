@@ -1,9 +1,9 @@
-import type {MutableArray, NullOrString} from '@joookiwi/type'
-import type {RouteObject}                from 'react-router/dist'
-import {findFirstOrNullByArray}          from '@joookiwi/collection'
-import {RouterProvider}                  from 'react-router/dist'
-import {createHashRouter}                from 'react-router-dom/dist'
-import {Suspense}                        from 'react'
+import type {MutableArray, NullOrString}    from '@joookiwi/type'
+import type {RouteObject}                   from 'react-router/dist'
+import {findFirstOrNullByArray, mapByArray} from '@joookiwi/collection'
+import {RouterProvider}                     from 'react-router/dist'
+import {createHashRouter}                   from 'react-router-dom/dist'
+import {Suspense}                           from 'react'
 
 import PageLayout                    from 'app/_PageLayout'
 import LoadingApp                    from 'app/LoadingApp'
@@ -18,17 +18,15 @@ import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
 
+import ALL =                EveryRoutes.ALL
+import ALL_LANGUAGES =      ProjectLanguages.ALL
 import ALL_ROUTES =         EveryRoutes.ALL_ROUTES
 import GameCompanion =      Games.Companion
 import GameStyleCompanion = GameStyles.Companion
 import LanguageCompanion =  ProjectLanguages.Companion
-import RouteCompanion =     EveryRoutes.Companion
 import TimeCompanion =      Times.Companion
 
 const homeRoute = EveryRoutes.HOME
-/** Every {@link ProjectLanguages project language} as an {@link Array} */
-const languages = LanguageCompanion.values
-const everyRouteInstance = RouteCompanion.values
 
 // const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
@@ -58,13 +56,12 @@ const router = createHashRouter([{
         new StraightRouteObject('/', () => redirectTo(homeRoute,),),
         //region -------------------- Path from route path --------------------
 
-        ...everyRouteInstance.map<RouteObject>(routeInstance =>
-            new StraightRouteObject(routeInstance.urlValue, () => redirectTo(routeInstance,),),),
+        ...mapByArray(ALL, it => new StraightRouteObject(it.urlValue, () => redirectTo(it,),),),
 
         //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
 
-        ...languages.map<RouteObject>(language => {
+        ...mapByArray<ProjectLanguages, RouteObject>(ALL_LANGUAGES, language => {
             const pathFromLanguage = `/${language.projectAcronym}` as const
             return {
                 path: pathFromLanguage,

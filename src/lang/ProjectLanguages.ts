@@ -452,4 +452,6 @@ export namespace ProjectLanguages {
     /** The companion instance of a {@link ProjectLanguages} */
     export const Companion = ProjectLanguages.CompanionEnum.get
 
+    export const ALL = Companion.values.toArray()
+
 }
