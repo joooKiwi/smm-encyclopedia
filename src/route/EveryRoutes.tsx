@@ -1313,12 +1313,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                     const everyRoute = value.everyRoute
                     const routeFoundByName = findFirstOrNullByArray(everyRoute, it => it.name === name,)
                     if (routeFoundByName != null)
-                        return value.getPath(language, routeFoundByName.games, routeFoundByName.times, routeFoundByName.gameStyles, routeFoundByName.viewDisplay,)
+                        return value.getPath(language, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.times, routeFoundByName.viewDisplay,)
 
-                    const pathToFind = `${value._getPartialPathFromGames(currentGames,)}${value._getPartialPathFromTimes(currentTimes, currentGames,)}${value._getPartialPathFromGameStyles(currentGameStyles,)}${value._getPartialPathFromViewDisplay(currentViewDisplay,)}${value.urlValue}`
+                    const pathToFind = `${value._getPartialPathFromGames(currentGames,)}${value._getPartialPathFromGameStyles(currentGameStyles,)}${value._getPartialPathFromTimes(currentTimes, currentGames,)}${value._getPartialPathFromViewDisplay(currentViewDisplay,)}${value.urlValue}`
                     const routeFoundByPath = findFirstOrNullByArray(everyRoute, it => it.path === pathToFind,)
                     if (routeFoundByPath != null)
-                        return value.getPath(language, routeFoundByPath.games, routeFoundByPath.times, routeFoundByPath.gameStyles, routeFoundByPath.viewDisplay,)
+                        return value.getPath(language, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.times, routeFoundByPath.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the direct name "${name}".`,)
                 }
 
@@ -1328,10 +1328,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
                 if (name.startsWith(`${urlName} `,)) {
                     const games = this.#getGamesInName(name,)
-                    const pathToFind = `${value._getPartialPathFromGames(games,)}${value._getPartialPathFromTimes(this.#getTimesInName(name,), games,)}${value._getPartialPathFromGameStyles(this.#getGameStylesInName(name,),)}${value._getPartialPathFromViewDisplay(this.#getViewDisplayInName(name,),)}${value.urlValue}`
+                    const pathToFind = `${value._getPartialPathFromGames(games,)}${value._getPartialPathFromGameStyles(this.#getGameStylesInName(name,),)}${value._getPartialPathFromTimes(this.#getTimesInName(name,), games,)}${value._getPartialPathFromViewDisplay(this.#getViewDisplayInName(name,),)}${value.urlValue}`
                     const routeFound = findFirstOrNullByArray(value.everyRoute, it => it.path === pathToFind,)
                     if (routeFound != null)
-                        return value.getPath(language, routeFound.games, routeFound.times, routeFound.gameStyles, routeFound.viewDisplay,)
+                        return value.getPath(language, routeFound.games, routeFound.gameStyles, routeFound.times, routeFound.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the name starting by "${name}".`,)
                 }
             }
@@ -1720,9 +1720,9 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games>, times: NullOrArray<Times>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
+    public getPath(language: NullOr<ProjectLanguages>, games: NullOrArray<Games> = null, gameStyles: NullOrArray<GameStyles> = null, times: NullOrArray<Times> = null, viewDisplay: NullOr<ViewDisplays> = null,): EveryPossibleRoutes {
         language ??= LanguageCompanion.current
-        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromTimes(times, games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.urlValue}` as unknown as EveryPossibleRoutes
+        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromTimes(times, games,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.urlValue}` as unknown as EveryPossibleRoutes
     }
 
     //endregion -------------------- Methods --------------------

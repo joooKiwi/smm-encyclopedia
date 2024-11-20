@@ -26,8 +26,8 @@ import ViewDisplayCompanion = ViewDisplays.Companion
  */
 export function redirectTo(route: EveryRoutes, language: NullOr<ProjectLanguages> = null,): never {
     if (language == null)
-        throw redirect(route.getPath(LanguageCompanion.currentOrNull ?? getUserLanguage(), null, null, null, null,),)
-    throw redirect(route.getPath(language, null, null, null, null,),)
+        throw redirect(route.getPath(LanguageCompanion.currentOrNull ?? getUserLanguage(),),)
+    throw redirect(route.getPath(language,),)
 }
 
 // export function redirectToByUrl<const CONTEXT = unknown, >(loaderArguments: LoaderFunctionArgs<CONTEXT>, language: NullOr<ProjectLanguages> = null, games: NullOrArray<Games> = null, times: NullOrArray<Times> = null, gameStyles: NullOrArray<GameStyles> = null, viewDisplay: NullOr<ViewDisplays> = null,): never {
@@ -43,8 +43,8 @@ export function redirectToByUrl<const CONTEXT = unknown, >(loaderArguments: Load
         (RouteCompanion.getValueInUrl(url,) ?? EveryRoutes.HOME).getPath(
             language ?? LanguageCompanion.getValueInUrl(url,),
             GameCompanion.getValueInUrl(url,),
-            TimeCompanion.getValueInUrl(url,),
             GameStyleCompanion.getValueInUrl(url,),
+            TimeCompanion.getValueInUrl(url,),
             ViewDisplayCompanion.getValueInUrl(url,),
         ),
     )
