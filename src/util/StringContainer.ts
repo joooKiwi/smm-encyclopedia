@@ -38,7 +38,7 @@ export namespace StringContainer {
      * 8. ’s
      * 9. ’
      */
-    const REMOVAL_REGEX = /[.:()\[\]\-|]|(’s)|’/g
+    const REMOVAL_REGEX = /[.:()[\]\-|]|(’s)|’/g
     const REPLACE_CHARACTERS = new Map([['?', 'question'], ['!', 'exclamation'], ['&', 'and',], ['|', 'or',],] as const,)
     const WORD_SEPARATOR_REGEX = /[ \-\\/]/g
     const ALREADY_CONVERTED_VALUES = new Map<string, string>()
