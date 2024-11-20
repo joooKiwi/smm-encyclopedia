@@ -150,7 +150,7 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: CharacterNameProperties,) {
+function SubContent({viewDisplay, games, times,}: Omit<CharacterNameProperties, 'gameStyles'>,) {
     const appInterpreter = new CharacterNameAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

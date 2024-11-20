@@ -153,7 +153,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, type, games,}: ThemeAppProperties,) {
+function SubContent({viewDisplay, type, games,}: Omit<ThemeAppProperties, | 'gameStyles' | 'times'>,) {
     const appInterpreter = new ThemeAppInterpreter(type, games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

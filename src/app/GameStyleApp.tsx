@@ -133,7 +133,7 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: GameStyleProperties,) {
+function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyles' | 'times'>,) {
     const appInterpreter = new GameStyleAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

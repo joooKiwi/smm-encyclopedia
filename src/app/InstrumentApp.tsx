@@ -148,7 +148,7 @@ export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAp
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: InstrumentAppProperties,) {
+function SubContent({viewDisplay, games, times,}: Omit<InstrumentAppProperties, 'gameStyles'>,) {
     const appInterpreter = new InstrumentAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

@@ -142,12 +142,12 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundE
     return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('sound effect.all',)}
                              asideContent={<SoundEffectAsideContent games={games}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>
+        <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
+function SubContent({viewDisplay, games,}: Omit<SoundEffectProperties, | 'gameStyles' | 'times'>,) {
     const appInterpreter = new SoundEffectAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

@@ -3,10 +3,10 @@ import './OfficialCourseApp.scss'
 import type {Array}              from '@joookiwi/type'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {OfficialCourseProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithTable}  from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}          from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}         from 'app/withInterpreter/DisplayButtonGroup.properties'
 
 import SubMainContainer          from 'app/_SubMainContainer'
 import {OfficialCourseAppOption} from 'app/options/OfficialCourseAppOption'
@@ -106,7 +106,7 @@ const viewDisplayAndRouteName = [
 const appInterpreter = new EventCourseAppInterpreter()
 
 /** @reactComponent */
-export default function OfficialCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperties,) {
     const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
     const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
 
@@ -117,7 +117,7 @@ export default function OfficialCourseApp({viewDisplay,}: AppWithInterpreterProp
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<OfficialCourseProperties, 'viewDisplay'>,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="officialCourse" interpreter={appInterpreter}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)

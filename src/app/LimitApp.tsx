@@ -174,7 +174,7 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, type, games,}: LimitAppProperties,){
+function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gameStyles' | 'times'>,){
     const appInterpreter = new LimitAppInterpreter(type, games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

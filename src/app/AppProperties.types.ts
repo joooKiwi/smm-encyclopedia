@@ -20,11 +20,14 @@ export interface AppWithInterpreterProperties
 export interface AppWithGamesProperties
     extends AppProperties { readonly games: GameCollection }
 
+export interface AppWithGameStylesProperties
+    extends AppProperties { readonly gameStyles: GameStyleCollection }
+
 export interface AppWithTimesProperties
     extends AppProperties { readonly times: TimeCollection }
 
-export interface AppWithGameStylesProperties
-    extends AppProperties { readonly gameStyles: GameStyleCollection }
+interface AppWithInterpreter_Games_GameStyle_TimeProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties, AppWithTimesProperties {}
 
 //region -------------------- Specific properties --------------------
 
@@ -32,28 +35,28 @@ export interface PowerUpAndRidePriorityProperties
     extends AppPropertiesWithType<PowerUpPriorityTypes>, AppWithGamesProperties {}
 
 export interface CharacterNameProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithTimesProperties {}
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 //game reference
 
 export interface GameStyleProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 export interface EntityProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 //entity category
 
 //entity group
 
 export interface LimitAppProperties
-    extends AppPropertiesWithType<LimitTypes>, AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
+    extends AppPropertiesWithType<LimitTypes>, AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 export interface ThemeAppProperties
-    extends AppPropertiesWithType<ThemeTypes>, AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
+    extends AppPropertiesWithType<ThemeTypes>, AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 export interface SoundEffectProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 //sound effect category
 
@@ -61,16 +64,19 @@ export interface SoundEffectProperties
 
 //mii costume category
 
+export interface OfficialCourseProperties
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
+
 //mystery mushroom
 
 export interface CourseTagAppProperties
     extends AppPropertiesWithType<CourseTagTypes>, AppWithInterpreterProperties {}
 
 export interface InstrumentAppProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithTimesProperties {}
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 export interface EditorVoiceProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithTimesProperties {}
+    extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 
 //endregion -------------------- Specific properties --------------------

@@ -151,7 +151,7 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: EditorVoiceProperties,) {
+function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'gameStyles'>,) {
     const appInterpreter = new EditorVoiceAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
