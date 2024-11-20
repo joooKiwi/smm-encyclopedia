@@ -8,7 +8,8 @@ import {CompanionEnum}                                                    from '
 import {Empty}                            from 'util/emptyVariables'
 import {forEachValue, isCollectionEquals} from 'util/utilitiesMethods'
 
-import EMPTY_MAP = Empty.EMPTY_MAP
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_MAP =               Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" values ({@link CollectionHolder}) as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM extends Enumerable,
@@ -30,6 +31,17 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
     public get currentOrNull(): NullOr<CollectionHolder<ENUM>> {
         return this.#current ?? null
     }
+
+    /** Get the current {@link Enumerable instances} that may be initialized (as a non-null {@link CollectionHolder}) */
+    public get currentOrEmpty(): CollectionHolder<ENUM> {
+        return this.currentOrNull ?? EMPTY_COLLECTION_HOLDER
+    }
+
+    /** Get the current {@link Enumerable instances} that may be initialized (as a nullable {@link ReadonlyArray Array}) */
+    public get currentOrNullAsArray(): NullOrArray<ENUM> {
+        return this.currentOrNull?.toArray() ?? null
+    }
+
 
     /**
      * Get the non-nullable current {@link Enumerable instances}
