@@ -395,7 +395,7 @@ export class ProjectLanguages
 
     //endregion -------------------- Getter methods (current) --------------------
 
-    //endregion -------------------- Getter & setter methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {

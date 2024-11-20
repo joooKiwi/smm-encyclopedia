@@ -1,12 +1,12 @@
-import type {Singleton}                                                     from '@joookiwi/enumerable'
-import type {Array, MutableArray, Nullable, NullOr}                         from '@joookiwi/type'
-import {findFirstOrNullByArray, forEachByArray, hasByArray, isEmptyByArray} from '@joookiwi/collection'
-import {CompanionEnum, Enum}                                                from '@joookiwi/enumerable'
-import {lazy}                                                               from 'react'
+import type {Singleton}                                         from '@joookiwi/enumerable'
+import type {Array, MutableArray, Nullable, NullOr}             from '@joookiwi/type'
+import {findFirstOrNullByArray, forEachByArray, isEmptyByArray} from '@joookiwi/collection'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {lazy}                                                   from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                    from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleRoutePath, PossibleStraightRoutePath, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                                                from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                                     from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRoute, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                 from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -32,7 +32,6 @@ import ALL_TIMES =                  Times.ALL
 import ALL_TIMES_COLLECTION =       TimeCollection.ALL
 import ALL_VIEW_DISPLAY =           ViewDisplayCollection.ALL
 import DAY_ONLY =                   Times.DAY_ONLY
-import EMPTY_ARRAY =                Empty.EMPTY_ARRAY
 import EMPTY_STRING =               Empty.EMPTY_STRING
 import GameCompanion =              Games.Companion
 import GameStyleCompanion =         GameStyles.Companion
