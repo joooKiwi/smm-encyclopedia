@@ -4,9 +4,9 @@ import {findFirstOrNullByArray, forEachByArray, hasByArray, isEmptyByArray} from
 import {CompanionEnum, Enum}                                                from '@joookiwi/enumerable'
 import {lazy}                                                               from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                               from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithoutGameStyle, RouteCallbackWithoutTime, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                                                           from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                    from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleRoutePath, PossibleStraightRoutePath, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                                                from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -242,13 +242,13 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
     }
 
-    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link TimeCollection}) */
-    private static readonly ListCardTable_AnyGame_DayNight_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const URL_NAME extends string,
+    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection}, {@link GameStyleCollection} and {@link TimeCollection}) */
+    private static readonly AllGames_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, defaultTime: NullOr<Times>, routeCallback: RouteCallbackWithoutGameStyle,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, ALL_TIMES_COLLECTION, defaultTime ?? null, routeCallback,)
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, ALL_TIMES_COLLECTION, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): Array<SimpleRoute> {
@@ -256,823 +256,1725 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             const path = this.urlValue
             const routeCallback = this.routeCallback
 
+            //@ts-ignore: The 1124 routes have their types handled elsewhere
             return [
                 //region -------------------- Time (all) --------------------
 
-                new SimpleRoute(`${name} (list Game=all, Time=all)`,      `/game-all/time-all/list${path}`,      ALL_GAMES,    ALL_TIMES, null,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2, Time=all)`,        `/game-2/time-all/list${path}`,        SMM2_ONLY,    ALL_TIMES, null,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2, Time=all)`,      `/game-1,2/time-all/list${path}`,      SMM1_AND_2,   ALL_TIMES, null,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2, Time=all)`,    `/game-3ds,2/time-all/list${path}`,    SMM3DS_AND_2, ALL_TIMES, null,  LIST,  routeCallback,),
-
-                new SimpleRoute(`${name} (card Game=all, Time=all)`,      `/game-all/time-all/card${path}`,      ALL_GAMES,    ALL_TIMES, null,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2, Time=all)`,        `/game-2/time-all/card${path}`,        SMM2_ONLY,    ALL_TIMES, null,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2, Time=all)`,      `/game-1,2/time-all/card${path}`,      SMM1_AND_2,   ALL_TIMES, null,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2, Time=all)`,    `/game-3ds,2/time-all/card${path}`,    SMM3DS_AND_2, ALL_TIMES, null,  CARD,  routeCallback,),
-
-                new SimpleRoute(`${name} (table Game=all, Time=all)`,     `/game-all/time-all/table${path}`,     ALL_GAMES,    ALL_TIMES, null,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2, Time=all)`,       `/game-2/time-all/table${path}`,       SMM2_ONLY,    ALL_TIMES, null,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2, Time=all)`,     `/game-1,2/time-all/table${path}`,     SMM1_AND_2,   ALL_TIMES, null,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2, Time=all)`,   `/game-3ds,2/time-all/table${path}`,   SMM3DS_AND_2, ALL_TIMES, null,  TABLE, routeCallback,),
-
-                //endregion -------------------- Time (all) --------------------
-                //region -------------------- Time (day) --------------------
-
-                new SimpleRoute(`${name} (list Game=all, Time=day)`,      `/game-all/time-day/list${path}`,      ALL_GAMES,    DAY_ONLY, null,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1, Time=day)`,        `/game-1/time-day/list${path}`,        SMM1_ONLY,    DAY_ONLY, null,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS, Time=day)`,      `/game-3ds/time-day/list${path}`,      SMM3DS_ONLY,  DAY_ONLY, null,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2, Time=day)`,        `/game-2/time-day/list${path}`,        SMM2_ONLY,    DAY_ONLY, null,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS, Time=day)`,    `/game-1,3ds/time-day/list${path}`,    SMM1_AND_3DS, DAY_ONLY, null,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2, Time=day)`,      `/game-1,2/time-day/list${path}`,      SMM1_AND_2,   DAY_ONLY, null,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2, Time=day)`,    `/game-3ds,2/time-day/list${path}`,    SMM3DS_AND_2, DAY_ONLY, null,   LIST,  routeCallback,),
-
-                new SimpleRoute(`${name} (card Game=all, Time=day)`,      `/game-all/time-day/card${path}`,      ALL_GAMES,    DAY_ONLY, null,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1, Time=day)`,        `/game-1/time-day/card${path}`,        SMM1_ONLY,    DAY_ONLY, null,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS, Time=day)`,      `/game-3ds/time-day/card${path}`,      SMM3DS_ONLY,  DAY_ONLY, null,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2, Time=day)`,        `/game-2/time-day/card${path}`,        SMM2_ONLY,    DAY_ONLY, null,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS, Time=day)`,    `/game-1,3ds/time-day/card${path}`,    SMM1_AND_3DS, DAY_ONLY, null,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2, Time=day)`,      `/game-1,2/time-day/card${path}`,      SMM1_AND_2,   DAY_ONLY, null,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2, Time=day)`,    `/game-3ds,2/time-day/card${path}`,    SMM3DS_AND_2, DAY_ONLY, null,   CARD,  routeCallback,),
-
-                new SimpleRoute(`${name} (table Game=all, Time=day)`,     `/game-all/time-day/table${path}`,     ALL_GAMES,    DAY_ONLY, null,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1, Time=day)`,       `/game-1/time-day/table${path}`,       SMM1_ONLY,    DAY_ONLY, null,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS, Time=day)`,     `/game-3ds/time-day/table${path}`,     SMM3DS_ONLY,  DAY_ONLY, null,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2, Time=day)`,       `/game-2/time-day/table${path}`,       SMM2_ONLY,    DAY_ONLY, null,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS, Time=day)`,   `/game-1,3ds/time-day/table${path}`,   SMM1_AND_3DS, DAY_ONLY, null,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2, Time=day)`,     `/game-1,2/time-day/table${path}`,     SMM1_AND_2,   DAY_ONLY, null,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2, Time=day)`,   `/game-3ds,2/time-day/table${path}`,   SMM3DS_AND_2, DAY_ONLY, null,   TABLE, routeCallback,),
-
-                //endregion -------------------- Time (day) --------------------
-                //region -------------------- Time (night) --------------------
-
-                new SimpleRoute(`${name} (list Game=all, Time=night)`,    `/game-all/time-night/list${path}`,    ALL_GAMES,    NIGHT_ONLY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2, Time=night)`,      `/game-2/time-night/list${path}`,      SMM2_ONLY,    NIGHT_ONLY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2, Time=night)`,    `/game-1,2/time-night/list${path}`,    SMM1_AND_2,   NIGHT_ONLY, null, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2, Time=night)`,  `/game-3ds,2/time-night/list${path}`,  SMM3DS_AND_2, NIGHT_ONLY, null, LIST,  routeCallback,),
-
-                new SimpleRoute(`${name} (card Game=all, Time=night)`,    `/game-all/time-night/card${path}`,    ALL_GAMES,    NIGHT_ONLY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2, Time=night)`,      `/game-2/time-night/card${path}`,      SMM2_ONLY,    NIGHT_ONLY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2, Time=night)`,    `/game-1,2/time-night/card${path}`,    SMM1_AND_2,   NIGHT_ONLY, null, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2, Time=night)`,  `/game-3ds,2/time-night/card${path}`,  SMM3DS_AND_2, NIGHT_ONLY, null, CARD,  routeCallback,),
-
-                new SimpleRoute(`${name} (table Game=all, Time=night)`,   `/game-all/time-night/table${path}`,   ALL_GAMES,    NIGHT_ONLY, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2, Time=night)`,     `/game-2/time-night/table${path}`,     SMM2_ONLY,    NIGHT_ONLY, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2, Time=night)`,   `/game-1,2/time-night/table${path}`,   SMM1_AND_2,   NIGHT_ONLY, null, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2, Time=night)`, `/game-3ds,2/time-day/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, null, TABLE, routeCallback,),
-
-                //endregion -------------------- Time (day) --------------------
-            ]
-        }
-
-        protected override _getPartialPathFromGameStyles() {
-            return EMPTY_STRING
-        }
-
-    }
-
-    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link GameStyleCollection}) */
-    private static readonly ListCardTable_AnyGame_AnyGameStyle_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const URL_NAME extends string,
-        const URL_PATH extends string, >
-        extends EveryRoutes<URL_NAME, URL_PATH> {
-
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallbackWithoutTime,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? TABLE, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, NO_TIMES, null, (viewDisplay, games, _, gameStyles,) => routeCallback(viewDisplay, games, gameStyles,),)
-        }
-
-        protected override _createEveryRoutes(): Array<SimpleRoute> {
-            const name = this.urlName
-            const path = this.urlValue
-            const routeCallback = this.routeCallback
-
-            return [
                 //region -------------------- Game style (all) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=all)`,         `/game-all/game-style-all/list${path}`,             ALL_GAMES,    null, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=all)`,           `/game-1/game-style-all/list${path}`,               SMM1_ONLY,    null, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=all)`,         `/game-3ds/game-style-all/list${path}`,             SMM3DS_ONLY,  null, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=all)`,           `/game-2/game-style-all/list${path}`,               SMM2_ONLY,    null, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=all)`,       `/game-1,3ds/game-style-all/list${path}`,           SMM1_AND_3DS, null, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=all)`,         `/game-1,2/game-style-all/list${path}`,             SMM1_AND_2,   null, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=all)`,       `/game-3ds,2/game-style-all/list${path}`,           SMM3DS_AND_2, null, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=all Time=all)`,          `/game-all/game-style-all/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=all Time=all)`,            `/game-1/game-style-all/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=all Time=all)`,          `/game-3ds/game-style-all/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=all Time=all)`,            `/game-2/game-style-all/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=all Time=all)`,        `/game-1,3ds/game-style-all/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=all Time=all)`,          `/game-1,2/game-style-all/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=all Time=all)`,        `/game-3ds,2/game-style-all/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=all)`,         `/game-all/game-style-all/card${path}`,             ALL_GAMES,    null, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=all)`,           `/game-1/game-style-all/card${path}`,               SMM1_ONLY,    null, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=all)`,         `/game-3ds/game-style-all/card${path}`,             SMM3DS_ONLY,  null, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=all)`,           `/game-2/game-style-all/card${path}`,               SMM2_ONLY,    null, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=all)`,       `/game-1,3ds/game-style-all/card${path}`,           SMM1_AND_3DS, null, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=all)`,         `/game-1,2/game-style-all/card${path}`,             SMM1_AND_2,   null, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=all)`,       `/game-3ds,2/game-style-all/card${path}`,           SMM3DS_AND_2, null, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=all Time=all)`,          `/game-all/game-style-all/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=all Time=all)`,            `/game-1/game-style-all/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=all Time=all)`,          `/game-3ds/game-style-all/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=all Time=all)`,            `/game-2/game-style-all/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=all Time=all)`,        `/game-1,3ds/game-style-all/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=all Time=all)`,          `/game-1,2/game-style-all/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=all Time=all)`,        `/game-3ds,2/game-style-all/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=all)`,        `/game-all/game-style-all/table${path}`,            ALL_GAMES,    null, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=all)`,          `/game-1/game-style-all/table${path}`,              SMM1_ONLY,    null, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=all)`,        `/game-3ds/game-style-all/table${path}`,            SMM3DS_ONLY,  null, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=all)`,          `/game-2/game-style-all/table${path}`,              SMM2_ONLY,    null, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=all)`,      `/game-1,3ds/game-style-all/table${path}`,          SMM1_AND_3DS, null, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=all)`,        `/game-1,2/game-style-all/table${path}`,            SMM1_AND_2,   null, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=all)`,      `/game-3ds,2/game-style-all/table${path}`,          SMM3DS_AND_2, null, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=all Time=all)`,         `/game-all/game-style-all/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=all Time=all)`,           `/game-1/game-style-all/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=all Time=all)`,         `/game-3ds/game-style-all/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=all Time=all)`,           `/game-2/game-style-all/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=all Time=all)`,       `/game-1,3ds/game-style-all/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=all Time=all)`,         `/game-1,2/game-style-all/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=all Time=all)`,       `/game-3ds,2/game-style-all/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (all) --------------------
 
                 //region -------------------- Game style (smb) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1)`,           `/game-all/game-style-1/list${path}`,               ALL_GAMES,    null, SMB_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1)`,             `/game-1/game-style-1/list${path}`,                 SMM1_ONLY,    null, SMB_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1)`,           `/game-3ds/game-style-1/list${path}`,               SMM3DS_ONLY,  null, SMB_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1)`,             `/game-2/game-style-1/list${path}`,                 SMM2_ONLY,    null, SMB_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1)`,         `/game-1,3ds/game-style-1/list${path}`,             SMM1_AND_3DS, null, SMB_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1)`,           `/game-1,2/game-style-1/list${path}`,               SMM1_AND_2,   null, SMB_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1)`,         `/game-3ds,2/game-style-1/list${path}`,             SMM3DS_AND_2, null, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1 Time=all)`,            `/game-all/game-style-1/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1 Time=all)`,              `/game-1/game-style-1/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1 Time=all)`,            `/game-3ds/game-style-1/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1 Time=all)`,              `/game-2/game-style-1/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1 Time=all)`,          `/game-1,3ds/game-style-1/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1 Time=all)`,            `/game-1,2/game-style-1/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1 Time=all)`,          `/game-3ds,2/game-style-1/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1)`,           `/game-all/game-style-1/card${path}`,               ALL_GAMES,    null, SMB_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1)`,             `/game-1/game-style-1/card${path}`,                 SMM1_ONLY,    null, SMB_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1)`,           `/game-3ds/game-style-1/card${path}`,               SMM3DS_ONLY,  null, SMB_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1)`,             `/game-2/game-style-1/card${path}`,                 SMM2_ONLY,    null, SMB_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1)`,         `/game-1,3ds/game-style-1/card${path}`,             SMM1_AND_3DS, null, SMB_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1)`,           `/game-1,2/game-style-1/card${path}`,               SMM1_AND_2,   null, SMB_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1)`,         `/game-3ds,2/game-style-1/card${path}`,             SMM3DS_AND_2, null, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1 Time=all)`,            `/game-all/game-style-1/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1 Time=all)`,              `/game-1/game-style-1/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1 Time=all)`,            `/game-3ds/game-style-1/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1 Time=all)`,              `/game-2/game-style-1/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1 Time=all)`,          `/game-1,3ds/game-style-1/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1 Time=all)`,            `/game-1,2/game-style-1/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1 Time=all)`,          `/game-3ds,2/game-style-1/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1)`,          `/game-all/game-style-1/table${path}`,              ALL_GAMES,    null, SMB_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1)`,            `/game-1/game-style-1/table${path}`,                SMM1_ONLY,    null, SMB_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1)`,          `/game-3ds/game-style-1/table${path}`,              SMM3DS_ONLY,  null, SMB_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1)`,            `/game-2/game-style-1/table${path}`,                SMM2_ONLY,    null, SMB_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1)`,        `/game-1,3ds/game-style-1/table${path}`,            SMM1_AND_3DS, null, SMB_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1)`,          `/game-1,2/game-style-1/table${path}`,              SMM1_AND_2,   null, SMB_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1)`,        `/game-3ds,2/game-style-1/table${path}`,            SMM3DS_AND_2, null, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1 Time=all)`,           `/game-all/game-style-1/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1 Time=all)`,             `/game-1/game-style-1/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1 Time=all)`,           `/game-3ds/game-style-1/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1 Time=all)`,             `/game-2/game-style-1/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1 Time=all)`,         `/game-1,3ds/game-style-1/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1 Time=all)`,           `/game-1,2/game-style-1/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1 Time=all)`,         `/game-3ds,2/game-style-1/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb) --------------------
                 //region -------------------- Game style (smb3) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3)`,           `/game-all/game-style-3/list${path}`,               ALL_GAMES,    null, SMB3_ONLY,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=3)`,             `/game-1/game-style-3/list${path}`,                 SMM1_ONLY,    null, SMB3_ONLY,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=3)`,           `/game-3ds/game-style-3/list${path}`,               SMM3DS_ONLY,  null, SMB3_ONLY,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3)`,             `/game-2/game-style-3/list${path}`,                 SMM2_ONLY,    null, SMB3_ONLY,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3)`,         `/game-1,3ds/game-style-3/list${path}`,             SMM1_AND_3DS, null, SMB3_ONLY,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3)`,           `/game-1,2/game-style-3/list${path}`,               SMM1_AND_2,   null, SMB3_ONLY,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3)`,         `/game-3ds,2/game-style-3/list${path}`,             SMM3DS_AND_2, null, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3 Time=all)`,            `/game-all/game-style-3/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3 Time=all)`,              `/game-1/game-style-3/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3 Time=all)`,            `/game-3ds/game-style-3/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3 Time=all)`,              `/game-2/game-style-3/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3 Time=all)`,          `/game-1,3ds/game-style-3/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3 Time=all)`,            `/game-1,2/game-style-3/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3 Time=all)`,          `/game-3ds,2/game-style-3/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3)`,           `/game-all/game-style-3/card${path}`,               ALL_GAMES,    null, SMB3_ONLY,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=3)`,             `/game-1/game-style-3/card${path}`,                 SMM1_ONLY,    null, SMB3_ONLY,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=3)`,           `/game-3ds/game-style-3/card${path}`,               SMM3DS_ONLY,  null, SMB3_ONLY,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3)`,             `/game-2/game-style-3/card${path}`,                 SMM2_ONLY,    null, SMB3_ONLY,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3)`,         `/game-1,3ds/game-style-3/card${path}`,             SMM1_AND_3DS, null, SMB3_ONLY,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3)`,           `/game-1,2/game-style-3/card${path}`,               SMM1_AND_2,   null, SMB3_ONLY,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3)`,         `/game-3ds,2/game-style-3/card${path}`,             SMM3DS_AND_2, null, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3 Time=all)`,            `/game-all/game-style-3/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3 Time=all)`,              `/game-1/game-style-3/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3 Time=all)`,            `/game-3ds/game-style-3/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3 Time=all)`,              `/game-2/game-style-3/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3 Time=all)`,          `/game-1,3ds/game-style-3/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3 Time=all)`,            `/game-1,2/game-style-3/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3 Time=all)`,          `/game-3ds,2/game-style-3/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3)`,          `/game-all/game-style-3/table${path}`,              ALL_GAMES,    null, SMB3_ONLY,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=3)`,            `/game-1/game-style-3/table${path}`,                SMM1_ONLY,    null, SMB3_ONLY,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=3)`,          `/game-3ds/game-style-3/table${path}`,              SMM3DS_ONLY,  null, SMB3_ONLY,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3)`,            `/game-2/game-style-3/table${path}`,                SMM2_ONLY,    null, SMB3_ONLY,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3)`,        `/game-1,3ds/game-style-3/table${path}`,            SMM1_AND_3DS, null, SMB3_ONLY,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3)`,          `/game-1,2/game-style-3/table${path}`,              SMM1_AND_2,   null, SMB3_ONLY,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3)`,        `/game-3ds,2/game-style-3/table${path}`,            SMM3DS_AND_2, null, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3 Time=all)`,           `/game-all/game-style-3/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3 Time=all)`,             `/game-1/game-style-3/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3 Time=all)`,           `/game-3ds/game-style-3/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3 Time=all)`,             `/game-2/game-style-3/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3 Time=all)`,         `/game-1,3ds/game-style-3/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3 Time=all)`,           `/game-1,2/game-style-3/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3 Time=all)`,         `/game-3ds,2/game-style-3/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3) --------------------
                 //region -------------------- Game style (smw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=W)`,           `/game-all/game-style-w/list${path}`,               ALL_GAMES,    null, SMW_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=W)`,             `/game-1/game-style-w/list${path}`,                 SMM1_ONLY,    null, SMW_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=W)`,           `/game-3ds/game-style-w/list${path}`,               SMM3DS_ONLY,  null, SMW_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=W)`,             `/game-2/game-style-w/list${path}`,                 SMM2_ONLY,    null, SMW_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=W)`,         `/game-1,3ds/game-style-w/list${path}`,             SMM1_AND_3DS, null, SMW_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W)`,           `/game-1,2/game-style-w/list${path}`,               SMM1_AND_2,   null, SMW_ONLY,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W)`,         `/game-3ds,2/game-style-w/list${path}`,             SMM3DS_AND_2, null, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=W Time=all)`,            `/game-all/game-style-w/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=W Time=all)`,              `/game-1/game-style-w/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=W Time=all)`,            `/game-3ds/game-style-w/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W Time=all)`,              `/game-2/game-style-w/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=W Time=all)`,          `/game-1,3ds/game-style-w/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W Time=all)`,            `/game-1,2/game-style-w/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W Time=all)`,          `/game-3ds,2/game-style-w/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=W)`,           `/game-all/game-style-w/card${path}`,               ALL_GAMES,    null, SMW_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=W)`,             `/game-1/game-style-w/card${path}`,                 SMM1_ONLY,    null, SMW_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=W)`,           `/game-3ds/game-style-w/card${path}`,               SMM3DS_ONLY,  null, SMW_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=W)`,             `/game-2/game-style-w/card${path}`,                 SMM2_ONLY,    null, SMW_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=W)`,         `/game-1,3ds/game-style-w/card${path}`,             SMM1_AND_3DS, null, SMW_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W)`,           `/game-1,2/game-style-w/card${path}`,               SMM1_AND_2,   null, SMW_ONLY,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W)`,         `/game-3ds,2/game-style-w/card${path}`,             SMM3DS_AND_2, null, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=W Time=all)`,            `/game-all/game-style-w/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=W Time=all)`,              `/game-1/game-style-w/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=W Time=all)`,            `/game-3ds/game-style-w/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W Time=all)`,              `/game-2/game-style-w/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=W Time=all)`,          `/game-1,3ds/game-style-w/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W Time=all)`,            `/game-1,2/game-style-w/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W Time=all)`,          `/game-3ds,2/game-style-w/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=W)`,          `/game-all/game-style-w/table${path}`,              ALL_GAMES,    null, SMW_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=W)`,            `/game-1/game-style-w/table${path}`,                SMM1_ONLY,    null, SMW_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=W)`,          `/game-3ds/game-style-w/table${path}`,              SMM3DS_ONLY,  null, SMW_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=W)`,            `/game-2/game-style-w/table${path}`,                SMM2_ONLY,    null, SMW_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=W)`,        `/game-1,3ds/game-style-w/table${path}`,            SMM1_AND_3DS, null, SMW_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W)`,          `/game-1,2/game-style-w/table${path}`,              SMM1_AND_2,   null, SMW_ONLY,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W)`,        `/game-3ds,2/game-style-w/table${path}`,            SMM3DS_AND_2, null, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=W Time=all)`,           `/game-all/game-style-w/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=W Time=all)`,             `/game-1/game-style-w/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=W Time=all)`,           `/game-3ds/game-style-w/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W Time=all)`,             `/game-2/game-style-w/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=W Time=all)`,         `/game-1,3ds/game-style-w/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W Time=all)`,           `/game-1,2/game-style-w/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W Time=all)`,         `/game-3ds,2/game-style-w/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw) --------------------
                 //region -------------------- Game style (nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=U)`,           `/game-all/game-style-u/list${path}`,               ALL_GAMES,    null, NSMBU_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=U)`,             `/game-1/game-style-u/list${path}`,                 SMM1_ONLY,    null, NSMBU_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=U)`,           `/game-3ds/game-style-u/list${path}`,               SMM3DS_ONLY,  null, NSMBU_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=U)`,             `/game-2/game-style-u/list${path}`,                 SMM2_ONLY,    null, NSMBU_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=U)`,         `/game-1,3ds/game-style-u/list${path}`,             SMM1_AND_3DS, null, NSMBU_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U)`,           `/game-1,2/game-style-u/list${path}`,               SMM1_AND_2,   null, NSMBU_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U)`,         `/game-3ds,2/game-style-u/list${path}`,             SMM3DS_AND_2, null, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=U Time=all)`,            `/game-all/game-style-u/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=U Time=all)`,              `/game-1/game-style-u/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=U Time=all)`,            `/game-3ds/game-style-u/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=U Time=all)`,              `/game-2/game-style-u/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=U Time=all)`,          `/game-1,3ds/game-style-u/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U Time=all)`,            `/game-1,2/game-style-u/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U Time=all)`,          `/game-3ds,2/game-style-u/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=U)`,           `/game-all/game-style-u/card${path}`,               ALL_GAMES,    null, NSMBU_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=U)`,             `/game-1/game-style-u/card${path}`,                 SMM1_ONLY,    null, NSMBU_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=U)`,           `/game-3ds/game-style-u/card${path}`,               SMM3DS_ONLY,  null, NSMBU_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=U)`,             `/game-2/game-style-u/card${path}`,                 SMM2_ONLY,    null, NSMBU_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=U)`,         `/game-1,3ds/game-style-u/card${path}`,             SMM1_AND_3DS, null, NSMBU_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U)`,           `/game-1,2/game-style-u/card${path}`,               SMM1_AND_2,   null, NSMBU_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U)`,         `/game-3ds,2/game-style-u/card${path}`,             SMM3DS_AND_2, null, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=U Time=all)`,            `/game-all/game-style-u/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=U Time=all)`,              `/game-1/game-style-u/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=U Time=all)`,            `/game-3ds/game-style-u/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=U Time=all)`,              `/game-2/game-style-u/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=U Time=all)`,          `/game-1,3ds/game-style-u/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U Time=all)`,            `/game-1,2/game-style-u/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U Time=all)`,          `/game-3ds,2/game-style-u/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=U)`,          `/game-all/game-style-u/table${path}`,              ALL_GAMES,    null, NSMBU_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=U)`,            `/game-1/game-style-u/table${path}`,                SMM1_ONLY,    null, NSMBU_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=U)`,          `/game-3ds/game-style-u/table${path}`,              SMM3DS_ONLY,  null, NSMBU_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=U)`,            `/game-2/game-style-u/table${path}`,                SMM2_ONLY,    null, NSMBU_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=U)`,        `/game-1,3ds/game-style-u/table${path}`,            SMM1_AND_3DS, null, NSMBU_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U)`,          `/game-1,2/game-style-u/table${path}`,              SMM1_AND_2,   null, NSMBU_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U)`,        `/game-3ds,2/game-style-u/table${path}`,            SMM3DS_AND_2, null, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=U Time=all)`,           `/game-all/game-style-u/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=U Time=all)`,             `/game-1/game-style-u/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=U Time=all)`,           `/game-3ds/game-style-u/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=U Time=all)`,             `/game-2/game-style-u/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=U Time=all)`,         `/game-1,3ds/game-style-u/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U Time=all)`,           `/game-1,2/game-style-u/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U Time=all)`,         `/game-3ds,2/game-style-u/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu) --------------------
                 //region -------------------- Game style (sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3DW)`,         `/game-all/game-style-3dw/list${path}`,             ALL_GAMES,    null, SM3DW_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3DW)`,           `/game-2/game-style-3dw/list${path}`,               SMM2_ONLY,    null, SM3DW_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3DW)`,         `/game-1,2/game-style-3dw/list${path}`,             SMM1_AND_2,   null, SM3DW_ONLY,               LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3DW)`,       `/game-3ds,2/game-style-3dw/list${path}`,           SMM3DS_AND_2, null, SM3DW_ONLY,               LIST,  routeCallback,),
-
-                new SimpleRoute(`${name} (card Game=all GameStyle=3DW)`,         `/game-all/game-style-3dw/card${path}`,             ALL_GAMES,    null, SM3DW_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3DW)`,           `/game-2/game-style-3dw/card${path}`,               SMM2_ONLY,    null, SM3DW_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3DW)`,         `/game-1,2/game-style-3dw/card${path}`,             SMM1_AND_2,   null, SM3DW_ONLY,               CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3DW)`,       `/game-3ds,2/game-style-3dw/card${path}`,           SMM3DS_AND_2, null, SM3DW_ONLY,               CARD,  routeCallback,),
-
-                new SimpleRoute(`${name} (table Game=all GameStyle=3DW)`,        `/game-all/game-style-3dw/table${path}`,            ALL_GAMES,    null, SM3DW_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3DW)`,          `/game-2/game-style-3dw/table${path}`,              SMM2_ONLY,    null, SM3DW_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3DW)`,        `/game-1,2/game-style-3dw/table${path}`,            SMM1_AND_2,   null, SM3DW_ONLY,               TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3DW)`,      `/game-3ds,2/game-style-3dw/table${path}`,          SMM3DS_AND_2, null, SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
+                                                                                          
+                new SimpleRoute(`${name} (card Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
+                                                                                          
+                new SimpleRoute(`${name} (table Game=all GameStyle=3DW Time=all)`,         `/game-all/game-style-3dw/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3DW Time=all)`,           `/game-2/game-style-3dw/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3DW Time=all)`,         `/game-1,2/game-style-3dw/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3DW Time=all)`,       `/game-3ds,2/game-style-3dw/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3)`,         `/game-all/game-style-1,3/list${path}`,             ALL_GAMES,    null, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3)`,           `/game-1/game-style-1,3/list${path}`,               SMM1_ONLY,    null, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3)`,         `/game-3ds/game-style-1,3/list${path}`,             SMM3DS_ONLY,  null, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3)`,           `/game-2/game-style-1,3/list${path}`,               SMM2_ONLY,    null, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3)`,       `/game-1,3ds/game-style-1,3/list${path}`,           SMM1_AND_3DS, null, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3)`,         `/game-1,2/game-style-1,3/list${path}`,             SMM1_AND_2,   null, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3)`,       `/game-3ds,2/game-style-1,3/list${path}`,           SMM3DS_AND_2, null, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3 Time=all)`,          `/game-all/game-style-1,3/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3 Time=all)`,            `/game-1/game-style-1,3/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3 Time=all)`,          `/game-3ds/game-style-1,3/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3 Time=all)`,            `/game-2/game-style-1,3/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3 Time=all)`,        `/game-1,3ds/game-style-1,3/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3 Time=all)`,          `/game-1,2/game-style-1,3/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3 Time=all)`,        `/game-3ds,2/game-style-1,3/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3)`,         `/game-all/game-style-1,3/card${path}`,             ALL_GAMES,    null, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3)`,           `/game-1/game-style-1,3/card${path}`,               SMM1_ONLY,    null, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3)`,         `/game-3ds/game-style-1,3/card${path}`,             SMM3DS_ONLY,  null, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3)`,           `/game-2/game-style-1,3/card${path}`,               SMM2_ONLY,    null, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3)`,       `/game-1,3ds/game-style-1,3/card${path}`,           SMM1_AND_3DS, null, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3)`,         `/game-1,2/game-style-1,3/card${path}`,             SMM1_AND_2,   null, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3)`,       `/game-3ds,2/game-style-1,3/card${path}`,           SMM3DS_AND_2, null, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3 Time=all)`,          `/game-all/game-style-1,3/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3 Time=all)`,            `/game-1/game-style-1,3/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3 Time=all)`,          `/game-3ds/game-style-1,3/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3 Time=all)`,            `/game-2/game-style-1,3/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3 Time=all)`,        `/game-1,3ds/game-style-1,3/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3 Time=all)`,          `/game-1,2/game-style-1,3/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3 Time=all)`,        `/game-3ds,2/game-style-1,3/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3)`,        `/game-all/game-style-1,3/table${path}`,            ALL_GAMES,    null, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3)`,          `/game-1/game-style-1,3/table${path}`,              SMM1_ONLY,    null, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3)`,        `/game-3ds/game-style-1,3/table${path}`,            SMM3DS_ONLY,  null, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3)`,          `/game-2/game-style-1,3/table${path}`,              SMM2_ONLY,    null, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3)`,      `/game-1,3ds/game-style-1,3/table${path}`,          SMM1_AND_3DS, null, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3)`,        `/game-1,2/game-style-1,3/table${path}`,            SMM1_AND_2,   null, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3)`,      `/game-3ds,2/game-style-1,3/table${path}`,          SMM3DS_AND_2, null, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3 Time=all)`,         `/game-all/game-style-1,3/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3 Time=all)`,           `/game-1/game-style-1,3/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3 Time=all)`,         `/game-3ds/game-style-1,3/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3 Time=all)`,           `/game-2/game-style-1,3/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3 Time=all)`,       `/game-1,3ds/game-style-1,3/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3 Time=all)`,         `/game-1,2/game-style-1,3/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3 Time=all)`,       `/game-3ds,2/game-style-1,3/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3) --------------------
                 //region -------------------- Game style (smb + smw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&W)`,         `/game-all/game-style-1,w/list${path}`,             ALL_GAMES,    null, SMB_AND_SMW,              LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&W)`,           `/game-1/game-style-1,w/list${path}`,               SMM1_ONLY,    null, SMB_AND_SMW,              LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&W)`,         `/game-3ds/game-style-1,w/list${path}`,             SMM3DS_ONLY,  null, SMB_AND_SMW,              LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W)`,           `/game-2/game-style-1,w/list${path}`,               SMM2_ONLY,    null, SMB_AND_SMW,              LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&WDS GameStyle=1&W)`,       `/game-1,wds/game-style-1,w/list${path}`,           SMM1_AND_3DS, null, SMB_AND_SMW,              LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W)`,         `/game-1,2/game-style-1,w/list${path}`,             SMM1_AND_2,   null, SMB_AND_SMW,              LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W)`,       `/game-3ds,2/game-style-1,w/list${path}`,           SMM3DS_AND_2, null, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W Time=all)`,          `/game-all/game-style-1,w/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&W Time=all)`,            `/game-1/game-style-1,w/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&W Time=all)`,          `/game-3ds/game-style-1,w/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W Time=all)`,            `/game-2/game-style-1,w/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&W Time=all)`,        `/game-1,3ds/game-style-1,w/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W Time=all)`,          `/game-1,2/game-style-1,w/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W Time=all)`,        `/game-3ds,2/game-style-1,w/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&W)`,         `/game-all/game-style-1,w/card${path}`,             ALL_GAMES,    null, SMB_AND_SMW,              CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&W)`,           `/game-1/game-style-1,w/card${path}`,               SMM1_ONLY,    null, SMB_AND_SMW,              CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&W)`,         `/game-3ds/game-style-1,w/card${path}`,             SMM3DS_ONLY,  null, SMB_AND_SMW,              CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W)`,           `/game-2/game-style-1,w/card${path}`,               SMM2_ONLY,    null, SMB_AND_SMW,              CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&WDS GameStyle=1&W)`,       `/game-1,wds/game-style-1,w/card${path}`,           SMM1_AND_3DS, null, SMB_AND_SMW,              CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W)`,         `/game-1,2/game-style-1,w/card${path}`,             SMM1_AND_2,   null, SMB_AND_SMW,              CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W)`,       `/game-3ds,2/game-style-1,w/card${path}`,           SMM3DS_AND_2, null, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W Time=all)`,          `/game-all/game-style-1,w/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&W Time=all)`,            `/game-1/game-style-1,w/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&W Time=all)`,          `/game-3ds/game-style-1,w/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W Time=all)`,            `/game-2/game-style-1,w/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&W Time=all)`,        `/game-1,3ds/game-style-1,w/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W Time=all)`,          `/game-1,2/game-style-1,w/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W Time=all)`,        `/game-3ds,2/game-style-1,w/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&W)`,        `/game-all/game-style-1,w/table${path}`,            ALL_GAMES,    null, SMB_AND_SMW,              TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&W)`,          `/game-1/game-style-1,w/table${path}`,              SMM1_ONLY,    null, SMB_AND_SMW,              TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&W)`,        `/game-3ds/game-style-1,w/table${path}`,            SMM3DS_ONLY,  null, SMB_AND_SMW,              TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W)`,          `/game-2/game-style-1,w/table${path}`,              SMM2_ONLY,    null, SMB_AND_SMW,              TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&WDS GameStyle=1&W)`,      `/game-1,wds/game-style-1,w/table${path}`,          SMM1_AND_3DS, null, SMB_AND_SMW,              TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W)`,        `/game-1,2/game-style-1,w/table${path}`,            SMM1_AND_2,   null, SMB_AND_SMW,              TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W)`,      `/game-3ds,2/game-style-1,w/table${path}`,          SMM3DS_AND_2, null, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W Time=all)`,         `/game-all/game-style-1,w/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&W Time=all)`,           `/game-1/game-style-1,w/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&W Time=all)`,         `/game-3ds/game-style-1,w/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W Time=all)`,           `/game-2/game-style-1,w/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&W Time=all)`,       `/game-1,3ds/game-style-1,w/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W Time=all)`,         `/game-1,2/game-style-1,w/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W Time=all)`,       `/game-3ds,2/game-style-1,w/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw) --------------------
                 //region -------------------- Game style (smb + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&U)`,         `/game-all/game-style-1,u/list${path}`,             ALL_GAMES,    null, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&U)`,           `/game-1/game-style-1,u/list${path}`,               SMM1_ONLY,    null, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&U)`,         `/game-3ds/game-style-1,u/list${path}`,             SMM3DS_ONLY,  null, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U)`,           `/game-2/game-style-1,u/list${path}`,               SMM2_ONLY,    null, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&U)`,       `/game-1,3ds/game-style-1,u/list${path}`,           SMM1_AND_3DS, null, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U)`,         `/game-1,2/game-style-1,u/list${path}`,             SMM1_AND_2,   null, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U)`,       `/game-3ds,2/game-style-1,u/list${path}`,           SMM3DS_AND_2, null, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&U Time=all)`,          `/game-all/game-style-1,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&U Time=all)`,            `/game-1/game-style-1,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&U Time=all)`,          `/game-3ds/game-style-1,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U Time=all)`,            `/game-2/game-style-1,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&U Time=all)`,        `/game-1,3ds/game-style-1,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U Time=all)`,          `/game-1,2/game-style-1,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U Time=all)`,        `/game-3ds,2/game-style-1,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&U)`,         `/game-all/game-style-1,u/card${path}`,             ALL_GAMES,    null, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&U)`,           `/game-1/game-style-1,u/card${path}`,               SMM1_ONLY,    null, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&U)`,         `/game-3ds/game-style-1,u/card${path}`,             SMM3DS_ONLY,  null, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U)`,           `/game-2/game-style-1,u/card${path}`,               SMM2_ONLY,    null, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&U)`,       `/game-1,3ds/game-style-1,u/card${path}`,           SMM1_AND_3DS, null, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U)`,         `/game-1,2/game-style-1,u/card${path}`,             SMM1_AND_2,   null, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U)`,       `/game-3ds,2/game-style-1,u/card${path}`,           SMM3DS_AND_2, null, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&U Time=all)`,          `/game-all/game-style-1,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&U Time=all)`,            `/game-1/game-style-1,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&U Time=all)`,          `/game-3ds/game-style-1,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U Time=all)`,            `/game-2/game-style-1,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&U Time=all)`,        `/game-1,3ds/game-style-1,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U Time=all)`,          `/game-1,2/game-style-1,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U Time=all)`,        `/game-3ds,2/game-style-1,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&U)`,        `/game-all/game-style-1,u/table${path}`,            ALL_GAMES,    null, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&U)`,          `/game-1/game-style-1,u/table${path}`,              SMM1_ONLY,    null, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&U)`,        `/game-3ds/game-style-1,u/table${path}`,            SMM3DS_ONLY,  null, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U)`,          `/game-2/game-style-1,u/table${path}`,              SMM2_ONLY,    null, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&U)`,      `/game-1,3ds/game-style-1,u/table${path}`,          SMM1_AND_3DS, null, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U)`,        `/game-1,2/game-style-1,u/table${path}`,            SMM1_AND_2,   null, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U)`,      `/game-3ds,2/game-style-1,u/table${path}`,          SMM3DS_AND_2, null, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&U Time=all)`,         `/game-all/game-style-1,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&U Time=all)`,           `/game-1/game-style-1,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&U Time=all)`,         `/game-3ds/game-style-1,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U Time=all)`,           `/game-2/game-style-1,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&U Time=all)`,       `/game-1,3ds/game-style-1,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U Time=all)`,         `/game-1,2/game-style-1,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U Time=all)`,       `/game-3ds,2/game-style-1,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu) --------------------
                 //region -------------------- Game style (smb + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3DW)`,       `/game-all/game-style-1,3dw/list${path}`,           ALL_GAMES,    null, SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3DW)`,         `/game-2/game-style-1,3dw/list${path}`,             SMM2_ONLY,    null, SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3DW)`,       `/game-1,2/game-style-1,3dw/list${path}`,           SMM1_AND_2,   null, SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3DW)`,     `/game-3ds,2/game-style-1,3dw/list${path}`,         SMM3DS_AND_2, null, SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3DW Time=all)`,        `/game-all/game-style-1,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3DW Time=all)`,          `/game-2/game-style-1,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3DW Time=all)`,        `/game-1,2/game-style-1,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3DW Time=all)`,      `/game-3ds,2/game-style-1,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3DW)`,       `/game-all/game-style-1,3dw/card${path}`,           ALL_GAMES,    null, SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3DW)`,         `/game-2/game-style-1,3dw/card${path}`,             SMM2_ONLY,    null, SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3DW)`,       `/game-1,2/game-style-1,3dw/card${path}`,           SMM1_AND_2,   null, SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3DW)`,     `/game-3ds,2/game-style-1,3dw/card${path}`,         SMM3DS_AND_2, null, SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3DW Time=all)`,        `/game-all/game-style-1,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3DW Time=all)`,          `/game-2/game-style-1,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3DW Time=all)`,        `/game-1,2/game-style-1,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3DW Time=all)`,      `/game-3ds,2/game-style-1,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3DW)`,      `/game-all/game-style-1,3dw/table${path}`,          ALL_GAMES,    null, SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3DW)`,        `/game-2/game-style-1,3dw/table${path}`,            SMM2_ONLY,    null, SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3DW)`,      `/game-1,2/game-style-1,3dw/table${path}`,          SMM1_AND_2,   null, SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3DW)`,    `/game-3ds,2/game-style-1,3dw/table${path}`,        SMM3DS_AND_2, null, SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3DW Time=all)`,       `/game-all/game-style-1,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3DW Time=all)`,         `/game-2/game-style-1,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3DW Time=all)`,       `/game-1,2/game-style-1,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3DW Time=all)`,     `/game-3ds,2/game-style-1,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + smw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&W)`,         `/game-all/game-style-3,w/list${path}`,             ALL_GAMES,    null, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=3&W)`,           `/game-1/game-style-3,w/list${path}`,               SMM1_ONLY,    null, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&W)`,         `/game-3ds/game-style-3,w/list${path}`,             SMM3DS_ONLY,  null, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W)`,           `/game-2/game-style-3,w/list${path}`,               SMM2_ONLY,    null, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3&WDS GameStyle=3&W)`,       `/game-3,wds/game-style-3,w/list${path}`,           SMM1_AND_3DS, null, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W)`,         `/game-1,2/game-style-3,w/list${path}`,             SMM1_AND_2,   null, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W)`,       `/game-3ds,2/game-style-3,w/list${path}`,           SMM3DS_AND_2, null, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W Time=all)`,          `/game-all/game-style-3,w/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3&W Time=all)`,            `/game-1/game-style-3,w/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&W Time=all)`,          `/game-3ds/game-style-3,w/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W Time=all)`,            `/game-2/game-style-3,w/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3&3DS GameStyle=3&W Time=all)`,        `/game-3,3ds/game-style-3,w/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W Time=all)`,          `/game-1,2/game-style-3,w/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W Time=all)`,        `/game-3ds,2/game-style-3,w/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&W)`,         `/game-all/game-style-3,w/card${path}`,             ALL_GAMES,    null, SMB3_AND_SMW,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=3&W)`,           `/game-1/game-style-3,w/card${path}`,               SMM1_ONLY,    null, SMB3_AND_SMW,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&W)`,         `/game-3ds/game-style-3,w/card${path}`,             SMM3DS_ONLY,  null, SMB3_AND_SMW,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W)`,           `/game-2/game-style-3,w/card${path}`,               SMM2_ONLY,    null, SMB3_AND_SMW,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3&WDS GameStyle=3&W)`,       `/game-3,wds/game-style-3,w/card${path}`,           SMM1_AND_3DS, null, SMB3_AND_SMW,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W)`,         `/game-1,2/game-style-3,w/card${path}`,             SMM1_AND_2,   null, SMB3_AND_SMW,             CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W)`,       `/game-3ds,2/game-style-3,w/card${path}`,           SMM3DS_AND_2, null, SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W Time=all)`,          `/game-all/game-style-3,w/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3&W Time=all)`,            `/game-1/game-style-3,w/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&W Time=all)`,          `/game-3ds/game-style-3,w/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W Time=all)`,            `/game-2/game-style-3,w/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3&3DS GameStyle=3&W Time=all)`,        `/game-3,3ds/game-style-3,w/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W Time=all)`,          `/game-1,2/game-style-3,w/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W Time=all)`,        `/game-3ds,2/game-style-3,w/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&W)`,        `/game-all/game-style-3,w/table${path}`,            ALL_GAMES,    null, SMB3_AND_SMW,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=3&W)`,          `/game-1/game-style-3,w/table${path}`,              SMM1_ONLY,    null, SMB3_AND_SMW,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&W)`,        `/game-3ds/game-style-3,w/table${path}`,            SMM3DS_ONLY,  null, SMB3_AND_SMW,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W)`,          `/game-2/game-style-3,w/table${path}`,              SMM2_ONLY,    null, SMB3_AND_SMW,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3&WDS GameStyle=3&W)`,      `/game-3,wds/game-style-3,w/table${path}`,          SMM1_AND_3DS, null, SMB3_AND_SMW,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W)`,        `/game-1,2/game-style-3,w/table${path}`,            SMM1_AND_2,   null, SMB3_AND_SMW,             TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W)`,      `/game-3ds,2/game-style-3,w/table${path}`,          SMM3DS_AND_2, null, SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W Time=all)`,         `/game-all/game-style-3,w/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3&W Time=all)`,           `/game-1/game-style-3,w/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&W Time=all)`,         `/game-3ds/game-style-3,w/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W Time=all)`,           `/game-2/game-style-3,w/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3&3DS GameStyle=3&W Time=all)`,       `/game-3,3ds/game-style-3,w/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W Time=all)`,         `/game-1,2/game-style-3,w/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W Time=all)`,       `/game-3ds,2/game-style-3,w/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&U)`,         `/game-all/game-style-3,u/list${path}`,             ALL_GAMES,    null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=3&U)`,           `/game-1/game-style-3,u/list${path}`,               SMM1_ONLY,    null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&U)`,         `/game-3ds/game-style-3,u/list${path}`,             SMM3DS_ONLY,  null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U)`,           `/game-2/game-style-3,u/list${path}`,               SMM2_ONLY,    null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3&U)`,       `/game-3,3ds/game-style-3,u/list${path}`,           SMM1_AND_3DS, null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U)`,         `/game-3,2/game-style-3,u/list${path}`,             SMM1_AND_2,   null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U)`,       `/game-3ds,2/game-style-3,u/list${path}`,           SMM3DS_AND_2, null, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&U Time=all)`,          `/game-all/game-style-3,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3&U Time=all)`,            `/game-1/game-style-3,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&U Time=all)`,          `/game-3ds/game-style-3,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U Time=all)`,            `/game-2/game-style-3,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3&U Time=all)`,        `/game-3,3ds/game-style-3,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U Time=all)`,          `/game-3,2/game-style-3,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U Time=all)`,        `/game-3ds,2/game-style-3,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&U)`,         `/game-all/game-style-3,u/card${path}`,             ALL_GAMES,    null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=3&U)`,           `/game-1/game-style-3,u/card${path}`,               SMM1_ONLY,    null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&U)`,         `/game-3ds/game-style-3,u/card${path}`,             SMM3DS_ONLY,  null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U)`,           `/game-2/game-style-3,u/card${path}`,               SMM2_ONLY,    null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3&U)`,       `/game-3,3ds/game-style-3,u/card${path}`,           SMM1_AND_3DS, null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U)`,         `/game-3,2/game-style-3,u/card${path}`,             SMM1_AND_2,   null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U)`,       `/game-3ds,2/game-style-3,u/card${path}`,           SMM3DS_AND_2, null, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&U Time=all)`,          `/game-all/game-style-3,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3&U Time=all)`,            `/game-1/game-style-3,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&U Time=all)`,          `/game-3ds/game-style-3,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U Time=all)`,            `/game-2/game-style-3,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3&U Time=all)`,        `/game-3,3ds/game-style-3,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U Time=all)`,          `/game-3,2/game-style-3,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U Time=all)`,        `/game-3ds,2/game-style-3,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&U)`,        `/game-all/game-style-3,u/table${path}`,            ALL_GAMES,    null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=3&U)`,          `/game-1/game-style-3,u/table${path}`,              SMM1_ONLY,    null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&U)`,        `/game-3ds/game-style-3,u/table${path}`,            SMM3DS_ONLY,  null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U)`,          `/game-2/game-style-3,u/table${path}`,              SMM2_ONLY,    null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3&U)`,      `/game-3,3ds/game-style-3,u/table${path}`,          SMM1_AND_3DS, null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U)`,        `/game-3,2/game-style-3,u/table${path}`,            SMM1_AND_2,   null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U)`,      `/game-3ds,2/game-style-3,u/table${path}`,          SMM3DS_AND_2, null, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&U Time=all)`,         `/game-all/game-style-3,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3&U Time=all)`,           `/game-1/game-style-3,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&U Time=all)`,         `/game-3ds/game-style-3,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U Time=all)`,           `/game-2/game-style-3,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3&U Time=all)`,       `/game-3,3ds/game-style-3,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U Time=all)`,         `/game-3,2/game-style-3,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U Time=all)`,       `/game-3ds,2/game-style-3,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&3DW)`,       `/game-all/game-style-3,3dw/list${path}`,           ALL_GAMES,    null, SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&3DW)`,         `/game-2/game-style-3,3dw/list${path}`,             SMM2_ONLY,    null, SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&3DW)`,       `/game-3,2/game-style-3,3dw/list${path}`,           SMM1_AND_2,   null, SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&3DW)`,     `/game-3ds,2/game-style-3,3dw/list${path}`,         SMM3DS_AND_2, null, SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&3DW Time=all)`,        `/game-all/game-style-3,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&3DW Time=all)`,          `/game-2/game-style-3,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&3DW Time=all)`,        `/game-3,2/game-style-3,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&3DW Time=all)`,      `/game-3ds,2/game-style-3,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&3DW)`,       `/game-all/game-style-3,3dw/card${path}`,           ALL_GAMES,    null, SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&3DW)`,         `/game-2/game-style-3,3dw/card${path}`,             SMM2_ONLY,    null, SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&3DW)`,       `/game-3,2/game-style-3,3dw/card${path}`,           SMM1_AND_2,   null, SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&3DW)`,     `/game-3ds,2/game-style-3,3dw/card${path}`,         SMM3DS_AND_2, null, SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&3DW Time=all)`,        `/game-all/game-style-3,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&3DW Time=all)`,          `/game-2/game-style-3,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&3DW Time=all)`,        `/game-3,2/game-style-3,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&3DW Time=all)`,      `/game-3ds,2/game-style-3,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&3DW)`,      `/game-all/game-style-3,3dw/table${path}`,          ALL_GAMES,    null, SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&3DW)`,        `/game-2/game-style-3,3dw/table${path}`,            SMM2_ONLY,    null, SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&3DW)`,      `/game-3,2/game-style-3,3dw/table${path}`,          SMM1_AND_2,   null, SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&3DW)`,    `/game-3ds,2/game-style-3,3dw/table${path}`,        SMM3DS_AND_2, null, SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&3DW Time=all)`,       `/game-all/game-style-3,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&3DW Time=all)`,         `/game-2/game-style-3,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&3DW Time=all)`,       `/game-3,2/game-style-3,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&3DW Time=all)`,     `/game-3ds,2/game-style-3,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + sm3dw) --------------------
                 //region -------------------- Game style (smw + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=W&U)`,         `/game-all/game-style-w,u/list${path}`,             ALL_GAMES,    null, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=W&U)`,           `/game-1/game-style-w,u/list${path}`,               SMM1_ONLY,    null, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=W&U)`,         `/game-3ds/game-style-w,u/list${path}`,             SMM3DS_ONLY,  null, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U)`,           `/game-2/game-style-w,u/list${path}`,               SMM2_ONLY,    null, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=W&U)`,       `/game-1,3ds/game-style-w,u/list${path}`,           SMM1_AND_3DS, null, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U)`,         `/game-1,2/game-style-w,u/list${path}`,             SMM1_AND_2,   null, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U)`,       `/game-3ds,2/game-style-w,u/list${path}`,           SMM3DS_AND_2, null, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&U Time=all)`,          `/game-all/game-style-w,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=W&U Time=all)`,            `/game-1/game-style-w,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=W&U Time=all)`,          `/game-3ds/game-style-w,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U Time=all)`,            `/game-2/game-style-w,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=W&U Time=all)`,        `/game-1,3ds/game-style-w,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U Time=all)`,          `/game-1,2/game-style-w,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U Time=all)`,        `/game-3ds,2/game-style-w,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=W&U)`,         `/game-all/game-style-w,u/card${path}`,             ALL_GAMES,    null, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=W&U)`,           `/game-1/game-style-w,u/card${path}`,               SMM1_ONLY,    null, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=W&U)`,         `/game-3ds/game-style-w,u/card${path}`,             SMM3DS_ONLY,  null, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U)`,           `/game-2/game-style-w,u/card${path}`,               SMM2_ONLY,    null, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=W&U)`,       `/game-1,3ds/game-style-w,u/card${path}`,           SMM1_AND_3DS, null, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U)`,         `/game-1,2/game-style-w,u/card${path}`,             SMM1_AND_2,   null, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U)`,       `/game-3ds,2/game-style-w,u/card${path}`,           SMM3DS_AND_2, null, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&U Time=all)`,          `/game-all/game-style-w,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=W&U Time=all)`,            `/game-1/game-style-w,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=W&U Time=all)`,          `/game-3ds/game-style-w,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U Time=all)`,            `/game-2/game-style-w,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=W&U Time=all)`,        `/game-1,3ds/game-style-w,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U Time=all)`,          `/game-1,2/game-style-w,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U Time=all)`,        `/game-3ds,2/game-style-w,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=W&U)`,        `/game-all/game-style-w,u/table${path}`,            ALL_GAMES,    null, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=W&U)`,          `/game-1/game-style-w,u/table${path}`,              SMM1_ONLY,    null, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=W&U)`,        `/game-3ds/game-style-w,u/table${path}`,            SMM3DS_ONLY,  null, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U)`,          `/game-2/game-style-w,u/table${path}`,              SMM2_ONLY,    null, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=W&U)`,      `/game-1,3ds/game-style-w,u/table${path}`,          SMM1_AND_3DS, null, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U)`,        `/game-1,2/game-style-w,u/table${path}`,            SMM1_AND_2,   null, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U)`,      `/game-3ds,2/game-style-w,u/table${path}`,          SMM3DS_AND_2, null, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&U Time=all)`,         `/game-all/game-style-w,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=W&U Time=all)`,           `/game-1/game-style-w,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=W&U Time=all)`,         `/game-3ds/game-style-w,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U Time=all)`,           `/game-2/game-style-w,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=W&U Time=all)`,       `/game-1,3ds/game-style-w,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U Time=all)`,         `/game-1,2/game-style-w,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U Time=all)`,       `/game-3ds,2/game-style-w,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu) --------------------
                 //region -------------------- Game style (smw + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=W&3DW)`,       `/game-all/game-style-w,3dw/list${path}`,           ALL_GAMES,    null, SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=W&3DW)`,         `/game-2/game-style-w,3dw/list${path}`,             SMM2_ONLY,    null, SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&3DW)`,       `/game-1,2/game-style-w,3dw/list${path}`,           SMM1_AND_2,   null, SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&3DW)`,     `/game-3ds,2/game-style-w,3dw/list${path}`,         SMM3DS_AND_2, null, SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&3DW Time=all)`,        `/game-all/game-style-w,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&3DW Time=all)`,          `/game-2/game-style-w,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&3DW Time=all)`,        `/game-1,2/game-style-w,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&3DW Time=all)`,      `/game-3ds,2/game-style-w,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=W&3DW)`,       `/game-all/game-style-w,3dw/card${path}`,           ALL_GAMES,    null, SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=W&3DW)`,         `/game-2/game-style-w,3dw/card${path}`,             SMM2_ONLY,    null, SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&3DW)`,       `/game-1,2/game-style-w,3dw/card${path}`,           SMM1_AND_2,   null, SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&3DW)`,     `/game-3ds,2/game-style-w,3dw/card${path}`,         SMM3DS_AND_2, null, SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&3DW Time=all)`,        `/game-all/game-style-w,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&3DW Time=all)`,          `/game-2/game-style-w,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&3DW Time=all)`,        `/game-1,2/game-style-w,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&3DW Time=all)`,      `/game-3ds,2/game-style-w,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=W&3DW)`,      `/game-all/game-style-w,3dw/table${path}`,          ALL_GAMES,    null, SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=W&3DW)`,        `/game-2/game-style-w,3dw/table${path}`,            SMM2_ONLY,    null, SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&3DW)`,      `/game-1,2/game-style-w,3dw/table${path}`,          SMM1_AND_2,   null, SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&3DW)`,    `/game-3ds,2/game-style-w,3dw/table${path}`,        SMM3DS_AND_2, null, SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&3DW Time=all)`,       `/game-all/game-style-w,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&3DW Time=all)`,         `/game-2/game-style-w,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&3DW Time=all)`,       `/game-1,2/game-style-w,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&3DW Time=all)`,     `/game-3ds,2/game-style-w,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + sm3dw) --------------------
                 //region -------------------- Game style (nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=U&3DW)`,       `/game-all/game-style-u,3dw/list${path}`,           ALL_GAMES,    null, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=U&3DW)`,         `/game-2/game-style-u,3dw/list${path}`,             SMM2_ONLY,    null, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U&3DW)`,       `/game-1,2/game-style-u,3dw/list${path}`,           SMM1_AND_2,   null, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U&3DW)`,     `/game-3ds,2/game-style-u,3dw/list${path}`,         SMM3DS_AND_2, null, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=U&3DW Time=all)`,        `/game-all/game-style-u,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=U&3DW Time=all)`,          `/game-2/game-style-u,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U&3DW Time=all)`,        `/game-1,2/game-style-u,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U&3DW Time=all)`,      `/game-3ds,2/game-style-u,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=U&3DW)`,       `/game-all/game-style-u,3dw/card${path}`,           ALL_GAMES,    null, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=U&3DW)`,         `/game-2/game-style-u,3dw/card${path}`,             SMM2_ONLY,    null, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U&3DW)`,       `/game-1,2/game-style-u,3dw/card${path}`,           SMM1_AND_2,   null, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U&3DW)`,     `/game-3ds,2/game-style-u,3dw/card${path}`,         SMM3DS_AND_2, null, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=U&3DW Time=all)`,        `/game-all/game-style-u,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=U&3DW Time=all)`,          `/game-2/game-style-u,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U&3DW Time=all)`,        `/game-1,2/game-style-u,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U&3DW Time=all)`,      `/game-3ds,2/game-style-u,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=U&3DW)`,      `/game-all/game-style-u,3dw/table${path}`,          ALL_GAMES,    null, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=U&3DW)`,        `/game-2/game-style-u,3dw/table${path}`,            SMM2_ONLY,    null, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U&3DW)`,      `/game-1,2/game-style-u,3dw/table${path}`,          SMM1_AND_2,   null, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U&3DW)`,    `/game-3ds,2/game-style-u,3dw/table${path}`,        SMM3DS_AND_2, null, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=U&3DW Time=all)`,       `/game-all/game-style-u,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=U&3DW Time=all)`,         `/game-2/game-style-u,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U&3DW Time=all)`,       `/game-1,2/game-style-u,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U&3DW Time=all)`,     `/game-3ds,2/game-style-u,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu + sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W)`,       `/game-all/game-style-1,3,w/list${path}`,           ALL_GAMES,    null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&W)`,         `/game-1/game-style-1,3,w/list${path}`,             SMM1_ONLY,    null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&W)`,       `/game-3ds/game-style-1,3,w/list${path}`,           SMM3DS_ONLY,  null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W)`,         `/game-2/game-style-1,3,w/list${path}`,             SMM2_ONLY,    null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&W)`,     `/game-1,3ds/game-style-1,3,w/list${path}`,         SMM1_AND_3DS, null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W)`,       `/game-1,2/game-style-1,3,w/list${path}`,           SMM1_AND_2,   null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W)`,     `/game-3ds,2/game-style-1,3,w/list${path}`,         SMM3DS_AND_2, null, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W Time=all)`,        `/game-all/game-style-1,3,w/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&W Time=all)`,          `/game-1/game-style-1,3,w/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&W Time=all)`,        `/game-3ds/game-style-1,3,w/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W Time=all)`,          `/game-2/game-style-1,3,w/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&W Time=all)`,      `/game-1,3ds/game-style-1,3,w/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W Time=all)`,        `/game-1,2/game-style-1,3,w/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=all)`,      `/game-3ds,2/game-style-1,3,w/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W)`,       `/game-all/game-style-1,3,w/card${path}`,           ALL_GAMES,    null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&W)`,         `/game-1/game-style-1,3,w/card${path}`,             SMM1_ONLY,    null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&W)`,       `/game-3ds/game-style-1,3,w/card${path}`,           SMM3DS_ONLY,  null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W)`,         `/game-2/game-style-1,3,w/card${path}`,             SMM2_ONLY,    null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&W)`,     `/game-1,3ds/game-style-1,3,w/card${path}`,         SMM1_AND_3DS, null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W)`,       `/game-1,2/game-style-1,3,w/card${path}`,           SMM1_AND_2,   null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W)`,     `/game-3ds,2/game-style-1,3,w/card${path}`,         SMM3DS_AND_2, null, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W Time=all)`,        `/game-all/game-style-1,3,w/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&W Time=all)`,          `/game-1/game-style-1,3,w/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&W Time=all)`,        `/game-3ds/game-style-1,3,w/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W Time=all)`,          `/game-2/game-style-1,3,w/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&W Time=all)`,      `/game-1,3ds/game-style-1,3,w/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W Time=all)`,        `/game-1,2/game-style-1,3,w/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=all)`,      `/game-3ds,2/game-style-1,3,w/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W)`,      `/game-all/game-style-1,3,w/table${path}`,          ALL_GAMES,    null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&W)`,        `/game-1/game-style-1,3,w/table${path}`,            SMM1_ONLY,    null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&W)`,      `/game-3ds/game-style-1,3,w/table${path}`,          SMM3DS_ONLY,  null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W)`,        `/game-2/game-style-1,3,w/table${path}`,            SMM2_ONLY,    null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&W)`,    `/game-1,3ds/game-style-1,3,w/table${path}`,        SMM1_AND_3DS, null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W)`,      `/game-1,2/game-style-1,3,w/table${path}`,          SMM1_AND_2,   null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W)`,    `/game-3ds,2/game-style-1,3,w/table${path}`,        SMM3DS_AND_2, null, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W Time=all)`,       `/game-all/game-style-1,3,w/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&W Time=all)`,         `/game-1/game-style-1,3,w/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&W Time=all)`,       `/game-3ds/game-style-1,3,w/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W Time=all)`,         `/game-2/game-style-1,3,w/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&W Time=all)`,     `/game-1,3ds/game-style-1,3,w/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W Time=all)`,       `/game-1,2/game-style-1,3,w/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=all)`,     `/game-3ds,2/game-style-1,3,w/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U)`,       `/game-all/game-style-1,3,u/list${path}`,           ALL_GAMES,    null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&U)`,         `/game-1/game-style-1,3,u/list${path}`,             SMM1_ONLY,    null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&U)`,       `/game-3ds/game-style-1,3,u/list${path}`,           SMM3DS_ONLY,  null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U)`,         `/game-2/game-style-1,3,u/list${path}`,             SMM2_ONLY,    null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&U)`,     `/game-1,3ds/game-style-1,3,u/list${path}`,         SMM1_AND_3DS, null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U)`,       `/game-1,2/game-style-1,3,u/list${path}`,           SMM1_AND_2,   null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U)`,     `/game-3ds,2/game-style-1,3,u/list${path}`,         SMM3DS_AND_2, null, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U Time=all)`,        `/game-all/game-style-1,3,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&U Time=all)`,          `/game-1/game-style-1,3,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&U Time=all)`,        `/game-3ds/game-style-1,3,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U Time=all)`,          `/game-2/game-style-1,3,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&U Time=all)`,      `/game-1,3ds/game-style-1,3,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U Time=all)`,        `/game-1,2/game-style-1,3,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=all)`,      `/game-3ds,2/game-style-1,3,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U)`,       `/game-all/game-style-1,3,u/card${path}`,           ALL_GAMES,    null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&U)`,         `/game-1/game-style-1,3,u/card${path}`,             SMM1_ONLY,    null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&U)`,       `/game-3ds/game-style-1,3,u/card${path}`,           SMM3DS_ONLY,  null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U)`,         `/game-2/game-style-1,3,u/card${path}`,             SMM2_ONLY,    null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&U)`,     `/game-1,3ds/game-style-1,3,u/card${path}`,         SMM1_AND_3DS, null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U)`,       `/game-1,2/game-style-1,3,u/card${path}`,           SMM1_AND_2,   null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U)`,     `/game-3ds,2/game-style-1,3,u/card${path}`,         SMM3DS_AND_2, null, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U Time=all)`,        `/game-all/game-style-1,3,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&U Time=all)`,          `/game-1/game-style-1,3,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&U Time=all)`,        `/game-3ds/game-style-1,3,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U Time=all)`,          `/game-2/game-style-1,3,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&U Time=all)`,      `/game-1,3ds/game-style-1,3,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U Time=all)`,        `/game-1,2/game-style-1,3,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=all)`,      `/game-3ds,2/game-style-1,3,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U)`,      `/game-all/game-style-1,3,u/table${path}`,          ALL_GAMES,    null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&U)`,        `/game-1/game-style-1,3,u/table${path}`,            SMM1_ONLY,    null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&U)`,      `/game-3ds/game-style-1,3,u/table${path}`,          SMM3DS_ONLY,  null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U)`,        `/game-2/game-style-1,3,u/table${path}`,            SMM2_ONLY,    null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&U)`,    `/game-1,3ds/game-style-1,3,u/table${path}`,        SMM1_AND_3DS, null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U)`,      `/game-1,2/game-style-1,3,u/table${path}`,          SMM1_AND_2,   null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U)`,    `/game-3ds,2/game-style-1,3,u/table${path}`,        SMM3DS_AND_2, null, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U Time=all)`,       `/game-all/game-style-1,3,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&U Time=all)`,         `/game-1/game-style-1,3,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&U Time=all)`,       `/game-3ds/game-style-1,3,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U Time=all)`,         `/game-2/game-style-1,3,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&U Time=all)`,     `/game-1,3ds/game-style-1,3,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U Time=all)`,       `/game-1,2/game-style-1,3,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=all)`,     `/game-3ds,2/game-style-1,3,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb + smb3 + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&3DW)`,     `/game-all/game-style-1,3,3dw/list${path}`,         ALL_GAMES,    null, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&3DW)`,       `/game-2/game-style-1,3,3dw/list${path}`,           SMM2_ONLY,    null, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&3DW)`,     `/game-1,2/game-style-1,3,3dw/list${path}`,         SMM1_AND_2,   null, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&3DW)`,   `/game-3ds,2/game-style-1,3,3dw/list${path}`,       SMM3DS_AND_2, null, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&3DW Time=all)`,      `/game-all/game-style-1,3,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&3DW Time=all)`,        `/game-2/game-style-1,3,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&3DW Time=all)`,      `/game-1,2/game-style-1,3,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&3DW Time=all)`,    `/game-3ds,2/game-style-1,3,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&3DW)`,     `/game-all/game-style-1,3,3dw/card${path}`,         ALL_GAMES,    null, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&3DW)`,       `/game-2/game-style-1,3,3dw/card${path}`,           SMM2_ONLY,    null, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&3DW)`,     `/game-1,2/game-style-1,3,3dw/card${path}`,         SMM1_AND_2,   null, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&3DW)`,   `/game-3ds,2/game-style-1,3,3dw/card${path}`,       SMM3DS_AND_2, null, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&3DW Time=all)`,      `/game-all/game-style-1,3,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&3DW Time=all)`,        `/game-2/game-style-1,3,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&3DW Time=all)`,      `/game-1,2/game-style-1,3,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&3DW Time=all)`,    `/game-3ds,2/game-style-1,3,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&3DW)`,    `/game-all/game-style-1,3,3dw/table${path}`,        ALL_GAMES,    null, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&3DW)`,      `/game-2/game-style-1,3,3dw/table${path}`,          SMM2_ONLY,    null, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&3DW)`,    `/game-1,2/game-style-1,3,3dw/table${path}`,        SMM1_AND_2,   null, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&3DW)`,  `/game-3ds,2/game-style-1,3,3dw/table${path}`,      SMM3DS_AND_2, null, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&3DW Time=all)`,     `/game-all/game-style-1,3,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&3DW Time=all)`,       `/game-2/game-style-1,3,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&3DW Time=all)`,     `/game-1,2/game-style-1,3,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&3DW Time=all)`,   `/game-3ds,2/game-style-1,3,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + sm3dw) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U)`,       `/game-all/game-style-1,w,u/list${path}`,           ALL_GAMES,    null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&W&U)`,         `/game-1/game-style-1,w,u/list${path}`,             SMM1_ONLY,    null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&W&U)`,       `/game-3ds/game-style-1,w,u/list${path}`,           SMM3DS_ONLY,  null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U)`,         `/game-2/game-style-1,w,u/list${path}`,             SMM2_ONLY,    null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&W&U)`,     `/game-1,3ds/game-style-1,w,u/list${path}`,         SMM1_AND_3DS, null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U)`,       `/game-1,2/game-style-1,w,u/list${path}`,           SMM1_AND_2,   null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U)`,     `/game-3ds,2/game-style-1,w,u/list${path}`,         SMM3DS_AND_2, null, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U Time=all)`,        `/game-all/game-style-1,w,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&W&U Time=all)`,          `/game-1/game-style-1,w,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&W&U Time=all)`,        `/game-3ds/game-style-1,w,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U Time=all)`,          `/game-2/game-style-1,w,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&W&U Time=all)`,      `/game-1,3ds/game-style-1,w,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U Time=all)`,        `/game-1,2/game-style-1,w,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=all)`,      `/game-3ds,2/game-style-1,w,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U)`,       `/game-all/game-style-1,w,u/card${path}`,           ALL_GAMES,    null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&W&U)`,         `/game-1/game-style-1,w,u/card${path}`,             SMM1_ONLY,    null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&W&U)`,       `/game-3ds/game-style-1,w,u/card${path}`,           SMM3DS_ONLY,  null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U)`,         `/game-2/game-style-1,w,u/card${path}`,             SMM2_ONLY,    null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&W&U)`,     `/game-1,3ds/game-style-1,w,u/card${path}`,         SMM1_AND_3DS, null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U)`,       `/game-1,2/game-style-1,w,u/card${path}`,           SMM1_AND_2,   null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U)`,     `/game-3ds,2/game-style-1,w,u/card${path}`,         SMM3DS_AND_2, null, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U Time=all)`,        `/game-all/game-style-1,w,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&W&U Time=all)`,          `/game-1/game-style-1,w,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&W&U Time=all)`,        `/game-3ds/game-style-1,w,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U Time=all)`,          `/game-2/game-style-1,w,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&W&U Time=all)`,      `/game-1,3ds/game-style-1,w,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U Time=all)`,        `/game-1,2/game-style-1,w,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=all)`,      `/game-3ds,2/game-style-1,w,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U)`,      `/game-all/game-style-1,w,u/table${path}`,          ALL_GAMES,    null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&W&U)`,        `/game-1/game-style-1,w,u/table${path}`,            SMM1_ONLY,    null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&W&U)`,      `/game-3ds/game-style-1,w,u/table${path}`,          SMM3DS_ONLY,  null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U)`,        `/game-2/game-style-1,w,u/table${path}`,            SMM2_ONLY,    null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&W&U)`,    `/game-1,3ds/game-style-1,w,u/table${path}`,        SMM1_AND_3DS, null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U)`,      `/game-1,2/game-style-1,w,u/table${path}`,          SMM1_AND_2,   null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U)`,    `/game-3ds,2/game-style-1,w,u/table${path}`,        SMM3DS_AND_2, null, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U Time=all)`,       `/game-all/game-style-1,w,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&W&U Time=all)`,         `/game-1/game-style-1,w,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&W&U Time=all)`,       `/game-3ds/game-style-1,w,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U Time=all)`,         `/game-2/game-style-1,w,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&W&U Time=all)`,     `/game-1,3ds/game-style-1,w,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U Time=all)`,       `/game-1,2/game-style-1,w,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=all)`,     `/game-3ds,2/game-style-1,w,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb + smw + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&3DW)`,     `/game-all/game-style-1,w,3dw/list${path}`,         ALL_GAMES,    null, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&3DW)`,       `/game-2/game-style-1,w,3dw/list${path}`,           SMM2_ONLY,    null, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&3DW)`,     `/game-1,2/game-style-1,w,3dw/list${path}`,         SMM1_AND_2,   null, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&3DW)`,   `/game-3ds,2/game-style-1,w,3dw/list${path}`,       SMM3DS_AND_2, null, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&3DW Time=all)`,      `/game-all/game-style-1,w,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&3DW Time=all)`,        `/game-2/game-style-1,w,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&3DW Time=all)`,      `/game-1,2/game-style-1,w,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&3DW Time=all)`,    `/game-3ds,2/game-style-1,w,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&3DW)`,     `/game-all/game-style-1,w,3dw/card${path}`,         ALL_GAMES,    null, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&3DW)`,       `/game-2/game-style-1,w,3dw/card${path}`,           SMM2_ONLY,    null, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&3DW)`,     `/game-1,2/game-style-1,w,3dw/card${path}`,         SMM1_AND_2,   null, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&3DW)`,   `/game-3ds,2/game-style-1,w,3dw/card${path}`,       SMM3DS_AND_2, null, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&3DW Time=all)`,      `/game-all/game-style-1,w,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&3DW Time=all)`,        `/game-2/game-style-1,w,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&3DW Time=all)`,      `/game-1,2/game-style-1,w,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&3DW Time=all)`,    `/game-3ds,2/game-style-1,w,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&3DW)`,    `/game-all/game-style-1,w,3dw/table${path}`,        ALL_GAMES,    null, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&3DW)`,      `/game-2/game-style-1,w,3dw/table${path}`,          SMM2_ONLY,    null, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&3DW)`,    `/game-1,2/game-style-1,w,3dw/table${path}`,        SMM1_AND_2,   null, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&3DW)`,  `/game-3ds,2/game-style-1,w,3dw/table${path}`,      SMM3DS_AND_2, null, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&3DW Time=all)`,     `/game-all/game-style-1,w,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&3DW Time=all)`,       `/game-2/game-style-1,w,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&3DW Time=all)`,     `/game-1,2/game-style-1,w,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&3DW Time=all)`,   `/game-3ds,2/game-style-1,w,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + sm3dw) --------------------
                 //region -------------------- Game style (smb + nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&U&3DW)`,     `/game-all/game-style-1,u,3dw/list${path}`,         ALL_GAMES,    null, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U&3DW)`,       `/game-2/game-style-1,u,3dw/list${path}`,           SMM2_ONLY,    null, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U&3DW)`,     `/game-1,2/game-style-1,u,3dw/list${path}`,         SMM1_AND_2,   null, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U&3DW)`,   `/game-3ds,2/game-style-1,u,3dw/list${path}`,       SMM3DS_AND_2, null, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&U&3DW Time=all)`,      `/game-all/game-style-1,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U&3DW Time=all)`,        `/game-2/game-style-1,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U&3DW Time=all)`,      `/game-1,2/game-style-1,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U&3DW Time=all)`,    `/game-3ds,2/game-style-1,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&U&3DW)`,     `/game-all/game-style-1,u,3dw/card${path}`,         ALL_GAMES,    null, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U&3DW)`,       `/game-2/game-style-1,u,3dw/card${path}`,           SMM2_ONLY,    null, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U&3DW)`,     `/game-1,2/game-style-1,u,3dw/card${path}`,         SMM1_AND_2,   null, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U&3DW)`,   `/game-3ds,2/game-style-1,u,3dw/card${path}`,       SMM3DS_AND_2, null, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&U&3DW Time=all)`,      `/game-all/game-style-1,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U&3DW Time=all)`,        `/game-2/game-style-1,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U&3DW Time=all)`,      `/game-1,2/game-style-1,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U&3DW Time=all)`,    `/game-3ds,2/game-style-1,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&U&3DW)`,    `/game-all/game-style-1,u,3dw/table${path}`,        ALL_GAMES,    null, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U&3DW)`,      `/game-2/game-style-1,u,3dw/table${path}`,          SMM2_ONLY,    null, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U&3DW)`,    `/game-1,2/game-style-1,u,3dw/table${path}`,        SMM1_AND_2,   null, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U&3DW)`,  `/game-3ds,2/game-style-1,u,3dw/table${path}`,      SMM3DS_AND_2, null, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&U&3DW Time=all)`,     `/game-all/game-style-1,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U&3DW Time=all)`,       `/game-2/game-style-1,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U&3DW Time=all)`,     `/game-1,2/game-style-1,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U&3DW Time=all)`,   `/game-3ds,2/game-style-1,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U)`,       `/game-all/game-style-3,w,u/list${path}`,           ALL_GAMES,    null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=3&W&U)`,         `/game-1/game-style-3,w,u/list${path}`,             SMM1_ONLY,    null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&W&U)`,       `/game-3ds/game-style-3,w,u/list${path}`,           SMM3DS_ONLY,  null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U)`,         `/game-2/game-style-3,w,u/list${path}`,             SMM2_ONLY,    null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3&W&U)`,     `/game-1,3ds/game-style-3,w,u/list${path}`,         SMM1_AND_3DS, null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U)`,       `/game-1,2/game-style-3,w,u/list${path}`,           SMM1_AND_2,   null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U)`,     `/game-3ds,2/game-style-3,w,u/list${path}`,         SMM3DS_AND_2, null, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U Time=all)`,        `/game-all/game-style-3,w,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3&W&U Time=all)`,          `/game-1/game-style-3,w,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&W&U Time=all)`,        `/game-3ds/game-style-3,w,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U Time=all)`,          `/game-2/game-style-3,w,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3&W&U Time=all)`,      `/game-1,3ds/game-style-3,w,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U Time=all)`,        `/game-1,2/game-style-3,w,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=all)`,      `/game-3ds,2/game-style-3,w,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U)`,       `/game-all/game-style-3,w,u/card${path}`,           ALL_GAMES,    null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=3&W&U)`,         `/game-1/game-style-3,w,u/card${path}`,             SMM1_ONLY,    null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&W&U)`,       `/game-3ds/game-style-3,w,u/card${path}`,           SMM3DS_ONLY,  null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U)`,         `/game-2/game-style-3,w,u/card${path}`,             SMM2_ONLY,    null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3&W&U)`,     `/game-1,3ds/game-style-3,w,u/card${path}`,         SMM1_AND_3DS, null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U)`,       `/game-1,2/game-style-3,w,u/card${path}`,           SMM1_AND_2,   null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U)`,     `/game-3ds,2/game-style-3,w,u/card${path}`,         SMM3DS_AND_2, null, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U Time=all)`,        `/game-all/game-style-3,w,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3&W&U Time=all)`,          `/game-1/game-style-3,w,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&W&U Time=all)`,        `/game-3ds/game-style-3,w,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U Time=all)`,          `/game-2/game-style-3,w,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3&W&U Time=all)`,      `/game-1,3ds/game-style-3,w,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U Time=all)`,        `/game-1,2/game-style-3,w,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=all)`,      `/game-3ds,2/game-style-3,w,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U)`,      `/game-all/game-style-3,w,u/table${path}`,          ALL_GAMES,    null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=3&W&U)`,        `/game-1/game-style-3,w,u/table${path}`,            SMM1_ONLY,    null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&W&U)`,      `/game-3ds/game-style-3,w,u/table${path}`,          SMM3DS_ONLY,  null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U)`,        `/game-2/game-style-3,w,u/table${path}`,            SMM2_ONLY,    null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3&W&U)`,    `/game-1,3ds/game-style-3,w,u/table${path}`,        SMM1_AND_3DS, null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U)`,      `/game-1,2/game-style-3,w,u/table${path}`,          SMM1_AND_2,   null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U)`,    `/game-3ds,2/game-style-3,w,u/table${path}`,        SMM3DS_AND_2, null, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U Time=all)`,       `/game-all/game-style-3,w,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3&W&U Time=all)`,         `/game-1/game-style-3,w,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&W&U Time=all)`,       `/game-3ds/game-style-3,w,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U Time=all)`,         `/game-2/game-style-3,w,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3&W&U Time=all)`,     `/game-1,3ds/game-style-3,w,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U Time=all)`,       `/game-1,2/game-style-3,w,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=all)`,     `/game-3ds,2/game-style-3,w,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&3DW)`,     `/game-all/game-style-3,w,3dw/list${path}`,         ALL_GAMES,    null, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&3DW)`,       `/game-2/game-style-3,w,3dw/list${path}`,           SMM2_ONLY,    null, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&3DW)`,     `/game-1,2/game-style-3,w,3dw/list${path}`,         SMM1_AND_2,   null, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&3DW)`,   `/game-3ds,2/game-style-3,w,3dw/list${path}`,       SMM3DS_AND_2, null, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&3DW Time=all)`,      `/game-all/game-style-3,w,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&3DW Time=all)`,        `/game-2/game-style-3,w,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&3DW Time=all)`,      `/game-1,2/game-style-3,w,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&3DW Time=all)`,    `/game-3ds,2/game-style-3,w,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&3DW)`,     `/game-all/game-style-3,w,3dw/card${path}`,         ALL_GAMES,    null, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&3DW)`,       `/game-2/game-style-3,w,3dw/card${path}`,           SMM2_ONLY,    null, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&3DW)`,     `/game-1,2/game-style-3,w,3dw/card${path}`,         SMM1_AND_2,   null, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&3DW)`,   `/game-3ds,2/game-style-3,w,3dw/card${path}`,       SMM3DS_AND_2, null, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&3DW Time=all)`,      `/game-all/game-style-3,w,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&3DW Time=all)`,        `/game-2/game-style-3,w,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&3DW Time=all)`,      `/game-1,2/game-style-3,w,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&3DW Time=all)`,    `/game-3ds,2/game-style-3,w,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&3DW)`,    `/game-all/game-style-3,w,3dw/table${path}`,        ALL_GAMES,    null, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&3DW)`,      `/game-2/game-style-3,w,3dw/table${path}`,          SMM2_ONLY,    null, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&3DW)`,    `/game-1,2/game-style-3,w,3dw/table${path}`,        SMM1_AND_2,   null, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&3DW)`,  `/game-3ds,2/game-style-3,w,3dw/table${path}`,      SMM3DS_AND_2, null, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&3DW Time=all)`,     `/game-all/game-style-3,w,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&3DW Time=all)`,       `/game-2/game-style-3,w,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&3DW Time=all)`,     `/game-1,2/game-style-3,w,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&3DW Time=all)`,   `/game-3ds,2/game-style-3,w,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&U&3DW)`,     `/game-all/game-style-3,u,3dw/list${path}`,         ALL_GAMES,    null, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U&3DW)`,       `/game-2/game-style-3,u,3dw/list${path}`,           SMM2_ONLY,    null, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U&3DW)`,     `/game-1,2/game-style-3,u,3dw/list${path}`,         SMM1_AND_2,   null, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U&3DW)`,   `/game-3ds,2/game-style-3,u,3dw/list${path}`,       SMM3DS_AND_2, null, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&U&3DW Time=all)`,      `/game-all/game-style-3,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U&3DW Time=all)`,        `/game-2/game-style-3,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U&3DW Time=all)`,      `/game-1,2/game-style-3,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U&3DW Time=all)`,    `/game-3ds,2/game-style-3,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&U&3DW)`,     `/game-all/game-style-3,u,3dw/card${path}`,         ALL_GAMES,    null, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U&3DW)`,       `/game-2/game-style-3,u,3dw/card${path}`,           SMM2_ONLY,    null, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U&3DW)`,     `/game-1,2/game-style-3,u,3dw/card${path}`,         SMM1_AND_2,   null, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U&3DW)`,   `/game-3ds,2/game-style-3,u,3dw/card${path}`,       SMM3DS_AND_2, null, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&U&3DW Time=all)`,      `/game-all/game-style-3,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U&3DW Time=all)`,        `/game-2/game-style-3,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U&3DW Time=all)`,      `/game-1,2/game-style-3,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U&3DW Time=all)`,    `/game-3ds,2/game-style-3,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&U&3DW)`,    `/game-all/game-style-3,u,3dw/table${path}`,        ALL_GAMES,    null, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U&3DW)`,      `/game-2/game-style-3,u,3dw/table${path}`,          SMM2_ONLY,    null, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U&3DW)`,    `/game-1,2/game-style-3,u,3dw/table${path}`,        SMM1_AND_2,   null, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U&3DW)`,  `/game-3ds,2/game-style-3,u,3dw/table${path}`,      SMM3DS_AND_2, null, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&U&3DW Time=all)`,     `/game-all/game-style-3,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U&3DW Time=all)`,       `/game-2/game-style-3,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U&3DW Time=all)`,     `/game-1,2/game-style-3,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U&3DW Time=all)`,   `/game-3ds,2/game-style-3,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smw + nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=W&U&3DW)`,      `/game-all/game-style-w,u,3dw/list${path}`,        ALL_GAMES,    null, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U&3DW)`,        `/game-2/game-style-w,u,3dw/list${path}`,          SMM2_ONLY,    null, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U&3DW)`,      `/game-1,2/game-style-w,u,3dw/list${path}`,        SMM1_AND_2,   null, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U&3DW)`,    `/game-3ds,2/game-style-w,u,3dw/list${path}`,      SMM3DS_AND_2, null, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&U&3DW Time=all)`,      `/game-all/game-style-w,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U&3DW Time=all)`,        `/game-2/game-style-w,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U&3DW Time=all)`,      `/game-1,2/game-style-w,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U&3DW Time=all)`,    `/game-3ds,2/game-style-w,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=W&U&3DW)`,      `/game-all/game-style-w,u,3dw/card${path}`,        ALL_GAMES,    null, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U&3DW)`,        `/game-2/game-style-w,u,3dw/card${path}`,          SMM2_ONLY,    null, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U&3DW)`,      `/game-1,2/game-style-w,u,3dw/card${path}`,        SMM1_AND_2,   null, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U&3DW)`,    `/game-3ds,2/game-style-w,u,3dw/card${path}`,      SMM3DS_AND_2, null, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&U&3DW Time=all)`,      `/game-all/game-style-w,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U&3DW Time=all)`,        `/game-2/game-style-w,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U&3DW Time=all)`,      `/game-1,2/game-style-w,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U&3DW Time=all)`,    `/game-3ds,2/game-style-w,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=W&U&3DW)`,     `/game-all/game-style-w,u,3dw/table${path}`,       ALL_GAMES,    null, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U&3DW)`,       `/game-2/game-style-w,u,3dw/table${path}`,         SMM2_ONLY,    null, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U&3DW)`,     `/game-1,2/game-style-w,u,3dw/table${path}`,       SMM1_AND_2,   null, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U&3DW)`,   `/game-3ds,2/game-style-w,u,3dw/table${path}`,     SMM3DS_AND_2, null, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&U&3DW Time=all)`,     `/game-all/game-style-w,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U&3DW Time=all)`,       `/game-2/game-style-w,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U&3DW Time=all)`,     `/game-1,2/game-style-w,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U&3DW Time=all)`,   `/game-3ds,2/game-style-w,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu + sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&U)`,      `/game-all/game-style-1,3,w,u/list${path}`,        ALL_GAMES,    null, NOT_SM3DW,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&W&U)`,        `/game-1/game-style-1,3,w,u/list${path}`,          SMM1_ONLY,    null, NOT_SM3DW,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&W&U)`,      `/game-3ds/game-style-1,3,w,u/list${path}`,        SMM3DS_ONLY,  null, NOT_SM3DW,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&U)`,        `/game-2/game-style-1,3,w,u/list${path}`,          SMM2_ONLY,    null, NOT_SM3DW,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&W&U)`,    `/game-1,3ds/game-style-1,3,w,u/list${path}`,      SMM1_AND_3DS, null, NOT_SM3DW,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&U)`,      `/game-1,2/game-style-1,3,w,u/list${path}`,        SMM1_AND_2,   null, NOT_SM3DW,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&U)`,    `/game-3ds,2/game-style-1,3,w,u/list${path}`,      SMM3DS_AND_2, null, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&U Time=all)`,      `/game-all/game-style-1,3,w,u/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&W&U Time=all)`,        `/game-1/game-style-1,3,w,u/time-all/list${path}`,         SMM1_ONLY,    ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&W&U Time=all)`,      `/game-3ds/game-style-1,3,w,u/time-all/list${path}`,       SMM3DS_ONLY,  ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&U Time=all)`,        `/game-2/game-style-1,3,w,u/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&W&U Time=all)`,    `/game-1,3ds/game-style-1,3,w,u/time-all/list${path}`,     SMM1_AND_3DS, ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=all)`,      `/game-1,2/game-style-1,3,w,u/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=all)`,    `/game-3ds,2/game-style-1,3,w,u/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&U)`,      `/game-all/game-style-1,3,w,u/card${path}`,        ALL_GAMES,    null, NOT_SM3DW,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&W&U)`,        `/game-1/game-style-1,3,w,u/card${path}`,          SMM1_ONLY,    null, NOT_SM3DW,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&W&U)`,      `/game-3ds/game-style-1,3,w,u/card${path}`,        SMM3DS_ONLY,  null, NOT_SM3DW,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&U)`,        `/game-2/game-style-1,3,w,u/card${path}`,          SMM2_ONLY,    null, NOT_SM3DW,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&W&U)`,    `/game-1,3ds/game-style-1,3,w,u/card${path}`,      SMM1_AND_3DS, null, NOT_SM3DW,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&U)`,      `/game-1,2/game-style-1,3,w,u/card${path}`,        SMM1_AND_2,   null, NOT_SM3DW,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&U)`,    `/game-3ds,2/game-style-1,3,w,u/card${path}`,      SMM3DS_AND_2, null, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&U Time=all)`,      `/game-all/game-style-1,3,w,u/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&W&U Time=all)`,        `/game-1/game-style-1,3,w,u/time-all/card${path}`,         SMM1_ONLY,    ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&W&U Time=all)`,      `/game-3ds/game-style-1,3,w,u/time-all/card${path}`,       SMM3DS_ONLY,  ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&U Time=all)`,        `/game-2/game-style-1,3,w,u/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&W&U Time=all)`,    `/game-1,3ds/game-style-1,3,w,u/time-all/card${path}`,     SMM1_AND_3DS, ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=all)`,      `/game-1,2/game-style-1,3,w,u/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=all)`,    `/game-3ds,2/game-style-1,3,w,u/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&U)`,     `/game-all/game-style-1,3,w,u/table${path}`,       ALL_GAMES,    null, NOT_SM3DW,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&W&U)`,       `/game-1/game-style-1,3,w,u/table${path}`,         SMM1_ONLY,    null, NOT_SM3DW,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&W&U)`,     `/game-3ds/game-style-1,3,w,u/table${path}`,       SMM3DS_ONLY,  null, NOT_SM3DW,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&U)`,       `/game-2/game-style-1,3,w,u/table${path}`,         SMM2_ONLY,    null, NOT_SM3DW,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&W&U)`,   `/game-1,3ds/game-style-1,3,w,u/table${path}`,     SMM1_AND_3DS, null, NOT_SM3DW,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&U)`,     `/game-1,2/game-style-1,3,w,u/table${path}`,       SMM1_AND_2,   null, NOT_SM3DW,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&U)`,   `/game-3ds,2/game-style-1,3,w,u/table${path}`,     SMM3DS_AND_2, null, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&U Time=all)`,     `/game-all/game-style-1,3,w,u/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&W&U Time=all)`,       `/game-1/game-style-1,3,w,u/time-all/table${path}`,        SMM1_ONLY,    ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&W&U Time=all)`,     `/game-3ds/game-style-1,3,w,u/time-all/table${path}`,      SMM3DS_ONLY,  ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&U Time=all)`,       `/game-2/game-style-1,3,w,u/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&W&U Time=all)`,   `/game-1,3ds/game-style-1,3,w,u/time-all/table${path}`,    SMM1_AND_3DS, ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=all)`,     `/game-1,2/game-style-1,3,w,u/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=all)`,   `/game-3ds,2/game-style-1,3,w,u/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U&3DW)`,    `/game-all/game-style-3,w,u,3dw/list${path}`,      ALL_GAMES,    null, NOT_SMB,                  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U&3DW)`,      `/game-2/game-style-3,w,u,3dw/list${path}`,        SMM2_ONLY,    null, NOT_SMB,                  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U&3DW)`,    `/game-1,2/game-style-3,w,u,3dw/list${path}`,      SMM1_AND_2,   null, NOT_SMB,                  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW)`,  `/game-3ds,2/game-style-3,w,u,3dw/list${path}`,    SMM3DS_AND_2, null, NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U&3DW Time=all)`,    `/game-all/game-style-3,w,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U&3DW Time=all)`,      `/game-2/game-style-3,w,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U&3DW Time=all)`,    `/game-1,2/game-style-3,w,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U&3DW)`,    `/game-all/game-style-3,w,u,3dw/card${path}`,      ALL_GAMES,    null, NOT_SMB,                  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U&3DW)`,      `/game-2/game-style-3,w,u,3dw/card${path}`,        SMM2_ONLY,    null, NOT_SMB,                  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U&3DW)`,    `/game-1,2/game-style-3,w,u,3dw/card${path}`,      SMM1_AND_2,   null, NOT_SMB,                  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW)`,  `/game-3ds,2/game-style-3,w,u,3dw/card${path}`,    SMM3DS_AND_2, null, NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U&3DW Time=all)`,    `/game-all/game-style-3,w,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U&3DW Time=all)`,      `/game-2/game-style-3,w,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U&3DW Time=all)`,    `/game-1,2/game-style-3,w,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U&3DW)`,   `/game-all/game-style-3,w,u,3dw/table${path}`,     ALL_GAMES,    null, NOT_SMB,                  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U&3DW)`,     `/game-2/game-style-3,w,u,3dw/table${path}`,       SMM2_ONLY,    null, NOT_SMB,                  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U&3DW)`,   `/game-1,2/game-style-3,w,u,3dw/table${path}`,     SMM1_AND_2,   null, NOT_SMB,                  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW)`, `/game-3ds,2/game-style-3,w,u,3dw/table${path}`,   SMM3DS_AND_2, null, NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U&3DW Time=all)`,   `/game-all/game-style-3,w,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U&3DW Time=all)`,     `/game-2/game-style-3,w,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U&3DW Time=all)`,   `/game-1,2/game-style-3,w,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`, `/game-3ds,2/game-style-3,w,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U&3DW)`,      `/game-all/game-style-1,w,u,3dw/list${path}`,    ALL_GAMES,    null, NOT_SMB3,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U&3DW)`,        `/game-2/game-style-1,w,u,3dw/list${path}`,      SMM2_ONLY,    null, NOT_SMB3,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U&3DW)`,      `/game-1,2/game-style-1,w,u,3dw/list${path}`,    SMM1_AND_2,   null, NOT_SMB3,                 LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW)`,    `/game-3ds,2/game-style-1,w,u,3dw/list${path}`,  SMM3DS_AND_2, null, NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U&3DW Time=all)`,    `/game-all/game-style-1,w,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U&3DW Time=all)`,      `/game-2/game-style-1,w,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U&3DW Time=all)`,    `/game-1,2/game-style-1,w,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U&3DW)`,      `/game-all/game-style-1,w,u,3dw/card${path}`,    ALL_GAMES,    null, NOT_SMB3,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U&3DW)`,        `/game-2/game-style-1,w,u,3dw/card${path}`,      SMM2_ONLY,    null, NOT_SMB3,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U&3DW)`,      `/game-1,2/game-style-1,w,u,3dw/card${path}`,    SMM1_AND_2,   null, NOT_SMB3,                 CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW)`,    `/game-3ds,2/game-style-1,w,u,3dw/card${path}`,  SMM3DS_AND_2, null, NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U&3DW Time=all)`,    `/game-all/game-style-1,w,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U&3DW Time=all)`,      `/game-2/game-style-1,w,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U&3DW Time=all)`,    `/game-1,2/game-style-1,w,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U&3DW)`,     `/game-all/game-style-1,w,u,3dw/table${path}`,   ALL_GAMES,    null, NOT_SMB3,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U&3DW)`,       `/game-2/game-style-1,w,u,3dw/table${path}`,     SMM2_ONLY,    null, NOT_SMB3,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U&3DW)`,     `/game-1,2/game-style-1,w,u,3dw/table${path}`,   SMM1_AND_2,   null, NOT_SMB3,                 TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW)`,   `/game-3ds,2/game-style-1,w,u,3dw/table${path}`, SMM3DS_AND_2, null, NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U&3DW Time=all)`,   `/game-all/game-style-1,w,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U&3DW Time=all)`,     `/game-2/game-style-1,w,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U&3DW Time=all)`,   `/game-1,2/game-style-1,w,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`, `/game-3ds,2/game-style-1,w,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U&3DW)`,      `/game-all/game-style-1,3,u,3dw/list${path}`,    ALL_GAMES,    null, NOT_SMW,                  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U&3DW)`,        `/game-2/game-style-1,3,u,3dw/list${path}`,      SMM2_ONLY,    null, NOT_SMW,                  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U&3DW)`,      `/game-1,2/game-style-1,3,u,3dw/list${path}`,    SMM1_AND_2,   null, NOT_SMW,                  LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW)`,    `/game-3ds,2/game-style-1,3,u,3dw/list${path}`,  SMM3DS_AND_2, null, NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U&3DW Time=all)`,    `/game-all/game-style-1,3,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U&3DW Time=all)`,      `/game-2/game-style-1,3,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U&3DW Time=all)`,    `/game-1,2/game-style-1,3,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U&3DW)`,      `/game-all/game-style-1,3,u,3dw/card${path}`,    ALL_GAMES,    null, NOT_SMW,                  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U&3DW)`,        `/game-2/game-style-1,3,u,3dw/card${path}`,      SMM2_ONLY,    null, NOT_SMW,                  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U&3DW)`,      `/game-1,2/game-style-1,3,u,3dw/card${path}`,    SMM1_AND_2,   null, NOT_SMW,                  CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW)`,    `/game-3ds,2/game-style-1,3,u,3dw/card${path}`,  SMM3DS_AND_2, null, NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U&3DW Time=all)`,    `/game-all/game-style-1,3,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U&3DW Time=all)`,      `/game-2/game-style-1,3,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U&3DW Time=all)`,    `/game-1,2/game-style-1,3,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U&3DW)`,     `/game-all/game-style-1,3,u,3dw/table${path}`,   ALL_GAMES,    null, NOT_SMW,                  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U&3DW)`,       `/game-2/game-style-1,3,u,3dw/table${path}`,     SMM2_ONLY,    null, NOT_SMW,                  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U&3DW)`,     `/game-1,2/game-style-1,3,u,3dw/table${path}`,   SMM1_AND_2,   null, NOT_SMW,                  TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW)`,   `/game-3ds,2/game-style-1,3,u,3dw/table${path}`, SMM3DS_AND_2, null, NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U&3DW Time=all)`,   `/game-all/game-style-1,3,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U&3DW Time=all)`,     `/game-2/game-style-1,3,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U&3DW Time=all)`,   `/game-1,2/game-style-1,3,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`, `/game-3ds,2/game-style-1,3,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
 
-                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&3DW)`,      `/game-all/game-style-1,3,w,3dw/list${path}`,    ALL_GAMES,    null, NOT_NSMBU,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&3DW)`,        `/game-2/game-style-1,3,w,3dw/list${path}`,      SMM2_ONLY,    null, NOT_NSMBU,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&3DW)`,      `/game-1,2/game-style-1,3,w,3dw/list${path}`,    SMM1_AND_2,   null, NOT_NSMBU,                LIST,  routeCallback,),
-                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW)`,    `/game-3ds,2/game-style-1,3,w,3dw/list${path}`,  SMM3DS_AND_2, null, NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&3DW Time=all)`,    `/game-all/game-style-1,3,w,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&3DW Time=all)`,      `/game-2/game-style-1,3,w,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&3DW Time=all)`,    `/game-1,2/game-style-1,3,w,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
 
-                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&3DW)`,      `/game-all/game-style-1,3,w,3dw/card${path}`,    ALL_GAMES,    null, NOT_NSMBU,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&3DW)`,        `/game-2/game-style-1,3,w,3dw/card${path}`,      SMM2_ONLY,    null, NOT_NSMBU,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&3DW)`,      `/game-1,2/game-style-1,3,w,3dw/card${path}`,    SMM1_AND_2,   null, NOT_NSMBU,                CARD,  routeCallback,),
-                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW)`,    `/game-3ds,2/game-style-1,3,w,3dw/card${path}`,  SMM3DS_AND_2, null, NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&3DW Time=all)`,    `/game-all/game-style-1,3,w,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&3DW Time=all)`,      `/game-2/game-style-1,3,w,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&3DW Time=all)`,    `/game-1,2/game-style-1,3,w,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
 
-                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&3DW)`,     `/game-all/game-style-1,3,w,3dw/table${path}`,   ALL_GAMES,    null, NOT_NSMBU,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&3DW)`,       `/game-2/game-style-1,3,w,3dw/table${path}`,     SMM2_ONLY,    null, NOT_NSMBU,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&3DW)`,     `/game-1,2/game-style-1,3,w,3dw/table${path}`,   SMM1_AND_2,   null, NOT_NSMBU,                TABLE, routeCallback,),
-                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW)`,   `/game-3ds,2/game-style-1,3,w,3dw/table${path}`, SMM3DS_AND_2, null, NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&3DW Time=all)`,   `/game-all/game-style-1,3,w,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&3DW Time=all)`,     `/game-2/game-style-1,3,w,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&3DW Time=all)`,   `/game-1,2/game-style-1,3,w,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`, `/game-3ds,2/game-style-1,3,w,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
+
+                //endregion -------------------- Time (all) --------------------
+                //region -------------------- Time (day) --------------------
+
+                //region -------------------- Game style (all) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=all Time=day)`,          `/game-all/game-style-all/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=all Time=day)`,            `/game-1/game-style-all/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=all Time=day)`,          `/game-3ds/game-style-all/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=all Time=day)`,            `/game-2/game-style-all/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=all Time=day)`,        `/game-1,3ds/game-style-all/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=all Time=day)`,          `/game-1,2/game-style-all/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=all Time=day)`,        `/game-3ds,2/game-style-all/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=all Time=day)`,          `/game-all/game-style-all/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=all Time=day)`,            `/game-1/game-style-all/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=all Time=day)`,          `/game-3ds/game-style-all/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=all Time=day)`,            `/game-2/game-style-all/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=all Time=day)`,        `/game-1,3ds/game-style-all/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=all Time=day)`,          `/game-1,2/game-style-all/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=all Time=day)`,        `/game-3ds,2/game-style-all/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=all Time=day)`,         `/game-all/game-style-all/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=all Time=day)`,           `/game-1/game-style-all/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=all Time=day)`,         `/game-3ds/game-style-all/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=all Time=day)`,           `/game-2/game-style-all/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=all Time=day)`,       `/game-1,3ds/game-style-all/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=all Time=day)`,         `/game-1,2/game-style-all/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=all Time=day)`,       `/game-3ds,2/game-style-all/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (all) --------------------
+
+                //region -------------------- Game style (smb) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1 Time=day)`,            `/game-all/game-style-1/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1 Time=day)`,              `/game-1/game-style-1/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1 Time=day)`,            `/game-3ds/game-style-1/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1 Time=day)`,              `/game-2/game-style-1/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1 Time=day)`,          `/game-1,3ds/game-style-1/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1 Time=day)`,            `/game-1,2/game-style-1/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1 Time=day)`,          `/game-3ds,2/game-style-1/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1 Time=day)`,            `/game-all/game-style-1/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1 Time=day)`,              `/game-1/game-style-1/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1 Time=day)`,            `/game-3ds/game-style-1/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1 Time=day)`,              `/game-2/game-style-1/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1 Time=day)`,          `/game-1,3ds/game-style-1/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1 Time=day)`,            `/game-1,2/game-style-1/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1 Time=day)`,          `/game-3ds,2/game-style-1/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1 Time=day)`,           `/game-all/game-style-1/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1 Time=day)`,             `/game-1/game-style-1/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1 Time=day)`,           `/game-3ds/game-style-1/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1 Time=day)`,             `/game-2/game-style-1/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1 Time=day)`,         `/game-1,3ds/game-style-1/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1 Time=day)`,           `/game-1,2/game-style-1/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1 Time=day)`,         `/game-3ds,2/game-style-1/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb) --------------------
+                //region -------------------- Game style (smb3) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3 Time=day)`,            `/game-all/game-style-3/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3 Time=day)`,              `/game-1/game-style-3/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3 Time=day)`,            `/game-3ds/game-style-3/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3 Time=day)`,              `/game-2/game-style-3/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3 Time=day)`,          `/game-1,3ds/game-style-3/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3 Time=day)`,            `/game-1,2/game-style-3/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3 Time=day)`,          `/game-3ds,2/game-style-3/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3 Time=day)`,            `/game-all/game-style-3/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3 Time=day)`,              `/game-1/game-style-3/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3 Time=day)`,            `/game-3ds/game-style-3/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3 Time=day)`,              `/game-2/game-style-3/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3 Time=day)`,          `/game-1,3ds/game-style-3/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3 Time=day)`,            `/game-1,2/game-style-3/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3 Time=day)`,          `/game-3ds,2/game-style-3/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3 Time=day)`,           `/game-all/game-style-3/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3 Time=day)`,             `/game-1/game-style-3/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3 Time=day)`,           `/game-3ds/game-style-3/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3 Time=day)`,             `/game-2/game-style-3/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3 Time=day)`,         `/game-1,3ds/game-style-3/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3 Time=day)`,           `/game-1,2/game-style-3/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3 Time=day)`,         `/game-3ds,2/game-style-3/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3) --------------------
+                //region -------------------- Game style (smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=W Time=day)`,            `/game-all/game-style-w/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=W Time=day)`,              `/game-1/game-style-w/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=W Time=day)`,            `/game-3ds/game-style-w/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W Time=day)`,              `/game-2/game-style-w/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=W Time=day)`,          `/game-1,3ds/game-style-w/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W Time=day)`,            `/game-1,2/game-style-w/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W Time=day)`,          `/game-3ds,2/game-style-w/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=W Time=day)`,            `/game-all/game-style-w/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=W Time=day)`,              `/game-1/game-style-w/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=W Time=day)`,            `/game-3ds/game-style-w/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W Time=day)`,              `/game-2/game-style-w/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=W Time=day)`,          `/game-1,3ds/game-style-w/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W Time=day)`,            `/game-1,2/game-style-w/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W Time=day)`,          `/game-3ds,2/game-style-w/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=W Time=day)`,           `/game-all/game-style-w/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=W Time=day)`,             `/game-1/game-style-w/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=W Time=day)`,           `/game-3ds/game-style-w/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W Time=day)`,             `/game-2/game-style-w/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=W Time=day)`,         `/game-1,3ds/game-style-w/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W Time=day)`,           `/game-1,2/game-style-w/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W Time=day)`,         `/game-3ds,2/game-style-w/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smw) --------------------
+                //region -------------------- Game style (nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=U Time=day)`,            `/game-all/game-style-u/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=U Time=day)`,              `/game-1/game-style-u/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=U Time=day)`,            `/game-3ds/game-style-u/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=U Time=day)`,              `/game-2/game-style-u/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=U Time=day)`,          `/game-1,3ds/game-style-u/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U Time=day)`,            `/game-1,2/game-style-u/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U Time=day)`,          `/game-3ds,2/game-style-u/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=U Time=day)`,            `/game-all/game-style-u/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=U Time=day)`,              `/game-1/game-style-u/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=U Time=day)`,            `/game-3ds/game-style-u/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=U Time=day)`,              `/game-2/game-style-u/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=U Time=day)`,          `/game-1,3ds/game-style-u/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U Time=day)`,            `/game-1,2/game-style-u/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U Time=day)`,          `/game-3ds,2/game-style-u/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=U Time=day)`,           `/game-all/game-style-u/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=U Time=day)`,             `/game-1/game-style-u/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=U Time=day)`,           `/game-3ds/game-style-u/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=U Time=day)`,             `/game-2/game-style-u/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=U Time=day)`,         `/game-1,3ds/game-style-u/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U Time=day)`,           `/game-1,2/game-style-u/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U Time=day)`,         `/game-3ds,2/game-style-u/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (nsmbu) --------------------
+                //region -------------------- Game style (sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3DW Time=day)`,          `/game-all/game-style-3dw/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3DW Time=day)`,            `/game-2/game-style-3dw/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3DW Time=day)`,          `/game-1,2/game-style-3dw/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3DW Time=day)`,        `/game-3ds,2/game-style-3dw/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3DW Time=day)`,          `/game-all/game-style-3dw/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3DW Time=day)`,            `/game-2/game-style-3dw/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3DW Time=day)`,          `/game-1,2/game-style-3dw/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3DW Time=day)`,        `/game-3ds,2/game-style-3dw/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3DW Time=day)`,         `/game-all/game-style-3dw/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3DW Time=day)`,           `/game-2/game-style-3dw/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3DW Time=day)`,         `/game-1,2/game-style-3dw/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3DW Time=day)`,       `/game-3ds,2/game-style-3dw/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (sm3dw) --------------------
+
+                //region -------------------- Game style (smb + smb3) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3 Time=day)`,          `/game-all/game-style-1,3/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3 Time=day)`,            `/game-1/game-style-1,3/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3 Time=day)`,          `/game-3ds/game-style-1,3/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3 Time=day)`,            `/game-2/game-style-1,3/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3 Time=day)`,        `/game-1,3ds/game-style-1,3/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3 Time=day)`,          `/game-1,2/game-style-1,3/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3 Time=day)`,        `/game-3ds,2/game-style-1,3/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3 Time=day)`,          `/game-all/game-style-1,3/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3 Time=day)`,            `/game-1/game-style-1,3/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3 Time=day)`,          `/game-3ds/game-style-1,3/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3 Time=day)`,            `/game-2/game-style-1,3/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3 Time=day)`,        `/game-1,3ds/game-style-1,3/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3 Time=day)`,          `/game-1,2/game-style-1,3/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3 Time=day)`,        `/game-3ds,2/game-style-1,3/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3 Time=day)`,         `/game-all/game-style-1,3/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3 Time=day)`,           `/game-1/game-style-1,3/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3 Time=day)`,         `/game-3ds/game-style-1,3/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3 Time=day)`,           `/game-2/game-style-1,3/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3 Time=day)`,       `/game-1,3ds/game-style-1,3/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3 Time=day)`,         `/game-1,2/game-style-1,3/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3 Time=day)`,       `/game-3ds,2/game-style-1,3/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3) --------------------
+                //region -------------------- Game style (smb + smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W Time=day)`,          `/game-all/game-style-1,w/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&W Time=day)`,            `/game-1/game-style-1,w/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&W Time=day)`,          `/game-3ds/game-style-1,w/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W Time=day)`,            `/game-2/game-style-1,w/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&W Time=day)`,        `/game-1,3ds/game-style-1,w/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W Time=day)`,          `/game-1,2/game-style-1,w/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W Time=day)`,        `/game-3ds,2/game-style-1,w/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W Time=day)`,          `/game-all/game-style-1,w/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&W Time=day)`,            `/game-1/game-style-1,w/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&W Time=day)`,          `/game-3ds/game-style-1,w/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W Time=day)`,            `/game-2/game-style-1,w/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&W Time=day)`,        `/game-1,3ds/game-style-1,w/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W Time=day)`,          `/game-1,2/game-style-1,w/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W Time=day)`,        `/game-3ds,2/game-style-1,w/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W Time=day)`,         `/game-all/game-style-1,w/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&W Time=day)`,           `/game-1/game-style-1,w/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&W Time=day)`,         `/game-3ds/game-style-1,w/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W Time=day)`,           `/game-2/game-style-1,w/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&W Time=day)`,       `/game-1,3ds/game-style-1,w/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W Time=day)`,         `/game-1,2/game-style-1,w/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W Time=day)`,       `/game-3ds,2/game-style-1,w/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smw) --------------------
+                //region -------------------- Game style (smb + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&U Time=day)`,          `/game-all/game-style-1,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&U Time=day)`,            `/game-1/game-style-1,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&U Time=day)`,          `/game-3ds/game-style-1,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U Time=day)`,            `/game-2/game-style-1,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&U Time=day)`,        `/game-1,3ds/game-style-1,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U Time=day)`,          `/game-1,2/game-style-1,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U Time=day)`,        `/game-3ds,2/game-style-1,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&U Time=day)`,          `/game-all/game-style-1,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&U Time=day)`,            `/game-1/game-style-1,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&U Time=day)`,          `/game-3ds/game-style-1,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U Time=day)`,            `/game-2/game-style-1,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&U Time=day)`,        `/game-1,3ds/game-style-1,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U Time=day)`,          `/game-1,2/game-style-1,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U Time=day)`,        `/game-3ds,2/game-style-1,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&U Time=day)`,         `/game-all/game-style-1,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&U Time=day)`,           `/game-1/game-style-1,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&U Time=day)`,         `/game-3ds/game-style-1,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U Time=day)`,           `/game-2/game-style-1,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&U Time=day)`,       `/game-1,3ds/game-style-1,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U Time=day)`,         `/game-1,2/game-style-1,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U Time=day)`,       `/game-3ds,2/game-style-1,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + nsmbu) --------------------
+                //region -------------------- Game style (smb + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3DW Time=day)`,        `/game-all/game-style-1,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3DW Time=day)`,          `/game-2/game-style-1,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3DW Time=day)`,        `/game-1,2/game-style-1,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3DW Time=day)`,      `/game-3ds,2/game-style-1,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3DW Time=day)`,        `/game-all/game-style-1,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3DW Time=day)`,          `/game-2/game-style-1,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3DW Time=day)`,        `/game-1,2/game-style-1,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3DW Time=day)`,      `/game-3ds,2/game-style-1,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3DW Time=day)`,       `/game-all/game-style-1,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3DW Time=day)`,         `/game-2/game-style-1,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3DW Time=day)`,       `/game-1,2/game-style-1,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3DW Time=day)`,     `/game-3ds,2/game-style-1,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + sm3dw) --------------------
+                //region -------------------- Game style (smb3 + smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W Time=day)`,          `/game-all/game-style-3,w/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3&W Time=day)`,            `/game-1/game-style-3,w/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&W Time=day)`,          `/game-3ds/game-style-3,w/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W Time=day)`,            `/game-2/game-style-3,w/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3&3DS GameStyle=3&W Time=day)`,        `/game-3,3ds/game-style-3,w/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W Time=day)`,          `/game-1,2/game-style-3,w/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W Time=day)`,        `/game-3ds,2/game-style-3,w/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W Time=day)`,          `/game-all/game-style-3,w/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3&W Time=day)`,            `/game-1/game-style-3,w/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&W Time=day)`,          `/game-3ds/game-style-3,w/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W Time=day)`,            `/game-2/game-style-3,w/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3&3DS GameStyle=3&W Time=day)`,        `/game-3,3ds/game-style-3,w/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W Time=day)`,          `/game-1,2/game-style-3,w/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W Time=day)`,        `/game-3ds,2/game-style-3,w/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W Time=day)`,         `/game-all/game-style-3,w/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3&W Time=day)`,           `/game-1/game-style-3,w/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&W Time=day)`,         `/game-3ds/game-style-3,w/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W Time=day)`,           `/game-2/game-style-3,w/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3&3DS GameStyle=3&W Time=day)`,       `/game-3,3ds/game-style-3,w/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W Time=day)`,         `/game-1,2/game-style-3,w/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W Time=day)`,       `/game-3ds,2/game-style-3,w/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + smw) --------------------
+                //region -------------------- Game style (smb3 + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&U Time=day)`,          `/game-all/game-style-3,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3&U Time=day)`,            `/game-1/game-style-3,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&U Time=day)`,          `/game-3ds/game-style-3,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U Time=day)`,            `/game-2/game-style-3,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3&U Time=day)`,        `/game-3,3ds/game-style-3,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U Time=day)`,          `/game-3,2/game-style-3,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U Time=day)`,        `/game-3ds,2/game-style-3,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&U Time=day)`,          `/game-all/game-style-3,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3&U Time=day)`,            `/game-1/game-style-3,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&U Time=day)`,          `/game-3ds/game-style-3,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U Time=day)`,            `/game-2/game-style-3,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3&U Time=day)`,        `/game-3,3ds/game-style-3,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U Time=day)`,          `/game-3,2/game-style-3,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U Time=day)`,        `/game-3ds,2/game-style-3,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&U Time=day)`,         `/game-all/game-style-3,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3&U Time=day)`,           `/game-1/game-style-3,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&U Time=day)`,         `/game-3ds/game-style-3,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U Time=day)`,           `/game-2/game-style-3,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3&U Time=day)`,       `/game-3,3ds/game-style-3,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U Time=day)`,         `/game-3,2/game-style-3,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U Time=day)`,       `/game-3ds,2/game-style-3,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + nsmbu) --------------------
+                //region -------------------- Game style (smb3 + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&3DW Time=day)`,        `/game-all/game-style-3,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&3DW Time=day)`,          `/game-2/game-style-3,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&3DW Time=day)`,        `/game-3,2/game-style-3,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&3DW Time=day)`,      `/game-3ds,2/game-style-3,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&3DW Time=day)`,        `/game-all/game-style-3,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&3DW Time=day)`,          `/game-2/game-style-3,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&3DW Time=day)`,        `/game-3,2/game-style-3,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&3DW Time=day)`,      `/game-3ds,2/game-style-3,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&3DW Time=day)`,       `/game-all/game-style-3,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&3DW Time=day)`,         `/game-2/game-style-3,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&3DW Time=day)`,       `/game-3,2/game-style-3,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&3DW Time=day)`,     `/game-3ds,2/game-style-3,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + sm3dw) --------------------
+                //region -------------------- Game style (smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&U Time=day)`,          `/game-all/game-style-w,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=W&U Time=day)`,            `/game-1/game-style-w,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=W&U Time=day)`,          `/game-3ds/game-style-w,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U Time=day)`,            `/game-2/game-style-w,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=W&U Time=day)`,        `/game-1,3ds/game-style-w,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U Time=day)`,          `/game-1,2/game-style-w,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U Time=day)`,        `/game-3ds,2/game-style-w,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&U Time=day)`,          `/game-all/game-style-w,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=W&U Time=day)`,            `/game-1/game-style-w,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=W&U Time=day)`,          `/game-3ds/game-style-w,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U Time=day)`,            `/game-2/game-style-w,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=W&U Time=day)`,        `/game-1,3ds/game-style-w,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U Time=day)`,          `/game-1,2/game-style-w,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U Time=day)`,        `/game-3ds,2/game-style-w,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&U Time=day)`,         `/game-all/game-style-w,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=W&U Time=day)`,           `/game-1/game-style-w,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=W&U Time=day)`,         `/game-3ds/game-style-w,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U Time=day)`,           `/game-2/game-style-w,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=W&U Time=day)`,       `/game-1,3ds/game-style-w,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U Time=day)`,         `/game-1,2/game-style-w,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U Time=day)`,       `/game-3ds,2/game-style-w,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smw + nsmbu) --------------------
+                //region -------------------- Game style (smw + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&3DW Time=day)`,        `/game-all/game-style-w,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&3DW Time=day)`,          `/game-2/game-style-w,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&3DW Time=day)`,        `/game-1,2/game-style-w,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&3DW Time=day)`,      `/game-3ds,2/game-style-w,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&3DW Time=day)`,        `/game-all/game-style-w,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&3DW Time=day)`,          `/game-2/game-style-w,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&3DW Time=day)`,        `/game-1,2/game-style-w,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&3DW Time=day)`,      `/game-3ds,2/game-style-w,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&3DW Time=day)`,       `/game-all/game-style-w,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&3DW Time=day)`,         `/game-2/game-style-w,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&3DW Time=day)`,       `/game-1,2/game-style-w,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&3DW Time=day)`,     `/game-3ds,2/game-style-w,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smw + sm3dw) --------------------
+                //region -------------------- Game style (nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=U&3DW Time=day)`,        `/game-all/game-style-u,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=U&3DW Time=day)`,          `/game-2/game-style-u,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U&3DW Time=day)`,        `/game-1,2/game-style-u,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U&3DW Time=day)`,      `/game-3ds,2/game-style-u,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=U&3DW Time=day)`,        `/game-all/game-style-u,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=U&3DW Time=day)`,          `/game-2/game-style-u,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U&3DW Time=day)`,        `/game-1,2/game-style-u,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U&3DW Time=day)`,      `/game-3ds,2/game-style-u,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=U&3DW Time=day)`,       `/game-all/game-style-u,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=U&3DW Time=day)`,         `/game-2/game-style-u,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U&3DW Time=day)`,       `/game-1,2/game-style-u,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U&3DW Time=day)`,     `/game-3ds,2/game-style-u,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (nsmbu + sm3dw) --------------------
+
+                //region -------------------- Game style (smb + smb3 + smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W Time=day)`,        `/game-all/game-style-1,3,w/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&W Time=day)`,          `/game-1/game-style-1,3,w/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&W Time=day)`,        `/game-3ds/game-style-1,3,w/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W Time=day)`,          `/game-2/game-style-1,3,w/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&W Time=day)`,      `/game-1,3ds/game-style-1,3,w/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W Time=day)`,        `/game-1,2/game-style-1,3,w/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=day)`,      `/game-3ds,2/game-style-1,3,w/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W Time=day)`,        `/game-all/game-style-1,3,w/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&W Time=day)`,          `/game-1/game-style-1,3,w/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&W Time=day)`,        `/game-3ds/game-style-1,3,w/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W Time=day)`,          `/game-2/game-style-1,3,w/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&W Time=day)`,      `/game-1,3ds/game-style-1,3,w/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W Time=day)`,        `/game-1,2/game-style-1,3,w/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=day)`,      `/game-3ds,2/game-style-1,3,w/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W Time=day)`,       `/game-all/game-style-1,3,w/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&W Time=day)`,         `/game-1/game-style-1,3,w/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&W Time=day)`,       `/game-3ds/game-style-1,3,w/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W Time=day)`,         `/game-2/game-style-1,3,w/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&W Time=day)`,     `/game-1,3ds/game-style-1,3,w/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W Time=day)`,       `/game-1,2/game-style-1,3,w/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=day)`,     `/game-3ds,2/game-style-1,3,w/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + smw) --------------------
+                //region -------------------- Game style (smb + smb3 + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U Time=day)`,        `/game-all/game-style-1,3,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&U Time=day)`,          `/game-1/game-style-1,3,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&U Time=day)`,        `/game-3ds/game-style-1,3,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U Time=day)`,          `/game-2/game-style-1,3,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&U Time=day)`,      `/game-1,3ds/game-style-1,3,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U Time=day)`,        `/game-1,2/game-style-1,3,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=day)`,      `/game-3ds,2/game-style-1,3,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U Time=day)`,        `/game-all/game-style-1,3,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&U Time=day)`,          `/game-1/game-style-1,3,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&U Time=day)`,        `/game-3ds/game-style-1,3,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U Time=day)`,          `/game-2/game-style-1,3,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&U Time=day)`,      `/game-1,3ds/game-style-1,3,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U Time=day)`,        `/game-1,2/game-style-1,3,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=day)`,      `/game-3ds,2/game-style-1,3,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U Time=day)`,       `/game-all/game-style-1,3,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&U Time=day)`,         `/game-1/game-style-1,3,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&U Time=day)`,       `/game-3ds/game-style-1,3,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U Time=day)`,         `/game-2/game-style-1,3,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&U Time=day)`,     `/game-1,3ds/game-style-1,3,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U Time=day)`,       `/game-1,2/game-style-1,3,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=day)`,     `/game-3ds,2/game-style-1,3,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + nsmbu) --------------------
+                //region -------------------- Game style (smb + smb3 + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&3DW Time=day)`,      `/game-all/game-style-1,3,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&3DW Time=day)`,        `/game-2/game-style-1,3,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&3DW Time=day)`,      `/game-1,2/game-style-1,3,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&3DW Time=day)`,    `/game-3ds,2/game-style-1,3,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&3DW Time=day)`,      `/game-all/game-style-1,3,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&3DW Time=day)`,        `/game-2/game-style-1,3,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&3DW Time=day)`,      `/game-1,2/game-style-1,3,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&3DW Time=day)`,    `/game-3ds,2/game-style-1,3,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&3DW Time=day)`,     `/game-all/game-style-1,3,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&3DW Time=day)`,       `/game-2/game-style-1,3,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&3DW Time=day)`,     `/game-1,2/game-style-1,3,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&3DW Time=day)`,   `/game-3ds,2/game-style-1,3,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + sm3dw) --------------------
+                //region -------------------- Game style (smb + smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U Time=day)`,        `/game-all/game-style-1,w,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&W&U Time=day)`,          `/game-1/game-style-1,w,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&W&U Time=day)`,        `/game-3ds/game-style-1,w,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U Time=day)`,          `/game-2/game-style-1,w,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&W&U Time=day)`,      `/game-1,3ds/game-style-1,w,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U Time=day)`,        `/game-1,2/game-style-1,w,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=day)`,      `/game-3ds,2/game-style-1,w,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U Time=day)`,        `/game-all/game-style-1,w,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&W&U Time=day)`,          `/game-1/game-style-1,w,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&W&U Time=day)`,        `/game-3ds/game-style-1,w,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U Time=day)`,          `/game-2/game-style-1,w,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&W&U Time=day)`,      `/game-1,3ds/game-style-1,w,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U Time=day)`,        `/game-1,2/game-style-1,w,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=day)`,      `/game-3ds,2/game-style-1,w,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U Time=day)`,       `/game-all/game-style-1,w,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&W&U Time=day)`,         `/game-1/game-style-1,w,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&W&U Time=day)`,       `/game-3ds/game-style-1,w,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U Time=day)`,         `/game-2/game-style-1,w,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&W&U Time=day)`,     `/game-1,3ds/game-style-1,w,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U Time=day)`,       `/game-1,2/game-style-1,w,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=day)`,     `/game-3ds,2/game-style-1,w,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smw + nsmbu) --------------------
+                //region -------------------- Game style (smb + smw + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&3DW Time=day)`,      `/game-all/game-style-1,w,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&3DW Time=day)`,        `/game-2/game-style-1,w,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&3DW Time=day)`,      `/game-1,2/game-style-1,w,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&3DW Time=day)`,    `/game-3ds,2/game-style-1,w,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&3DW Time=day)`,      `/game-all/game-style-1,w,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&3DW Time=day)`,        `/game-2/game-style-1,w,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&3DW Time=day)`,      `/game-1,2/game-style-1,w,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&3DW Time=day)`,    `/game-3ds,2/game-style-1,w,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&3DW Time=day)`,     `/game-all/game-style-1,w,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&3DW Time=day)`,       `/game-2/game-style-1,w,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&3DW Time=day)`,     `/game-1,2/game-style-1,w,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&3DW Time=day)`,   `/game-3ds,2/game-style-1,w,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smw + sm3dw) --------------------
+                //region -------------------- Game style (smb + nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&U&3DW Time=day)`,      `/game-all/game-style-1,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U&3DW Time=day)`,        `/game-2/game-style-1,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U&3DW Time=day)`,      `/game-1,2/game-style-1,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U&3DW Time=day)`,    `/game-3ds,2/game-style-1,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&U&3DW Time=day)`,      `/game-all/game-style-1,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U&3DW Time=day)`,        `/game-2/game-style-1,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U&3DW Time=day)`,      `/game-1,2/game-style-1,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U&3DW Time=day)`,    `/game-3ds,2/game-style-1,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&U&3DW Time=day)`,     `/game-all/game-style-1,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U&3DW Time=day)`,       `/game-2/game-style-1,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U&3DW Time=day)`,     `/game-1,2/game-style-1,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U&3DW Time=day)`,   `/game-3ds,2/game-style-1,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + nsmbu + sm3dw) --------------------
+                //region -------------------- Game style (smb3 + smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U Time=day)`,        `/game-all/game-style-3,w,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=3&W&U Time=day)`,          `/game-1/game-style-3,w,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=3&W&U Time=day)`,        `/game-3ds/game-style-3,w,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U Time=day)`,          `/game-2/game-style-3,w,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=3&W&U Time=day)`,      `/game-1,3ds/game-style-3,w,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U Time=day)`,        `/game-1,2/game-style-3,w,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=day)`,      `/game-3ds,2/game-style-3,w,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U Time=day)`,        `/game-all/game-style-3,w,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=3&W&U Time=day)`,          `/game-1/game-style-3,w,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=3&W&U Time=day)`,        `/game-3ds/game-style-3,w,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U Time=day)`,          `/game-2/game-style-3,w,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=3&W&U Time=day)`,      `/game-1,3ds/game-style-3,w,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U Time=day)`,        `/game-1,2/game-style-3,w,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=day)`,      `/game-3ds,2/game-style-3,w,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U Time=day)`,       `/game-all/game-style-3,w,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=3&W&U Time=day)`,         `/game-1/game-style-3,w,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=3&W&U Time=day)`,       `/game-3ds/game-style-3,w,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U Time=day)`,         `/game-2/game-style-3,w,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=3&W&U Time=day)`,     `/game-1,3ds/game-style-3,w,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U Time=day)`,       `/game-1,2/game-style-3,w,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=day)`,     `/game-3ds,2/game-style-3,w,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + smw + nsmbu) --------------------
+                //region -------------------- Game style (smb3 + smw + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&3DW Time=day)`,      `/game-all/game-style-3,w,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&3DW Time=day)`,        `/game-2/game-style-3,w,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&3DW Time=day)`,      `/game-1,2/game-style-3,w,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&3DW Time=day)`,    `/game-3ds,2/game-style-3,w,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&3DW Time=day)`,      `/game-all/game-style-3,w,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&3DW Time=day)`,        `/game-2/game-style-3,w,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&3DW Time=day)`,      `/game-1,2/game-style-3,w,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&3DW Time=day)`,    `/game-3ds,2/game-style-3,w,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&3DW Time=day)`,     `/game-all/game-style-3,w,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&3DW Time=day)`,       `/game-2/game-style-3,w,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&3DW Time=day)`,     `/game-1,2/game-style-3,w,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&3DW Time=day)`,   `/game-3ds,2/game-style-3,w,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + smw + sm3dw) --------------------
+                //region -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&U&3DW Time=day)`,      `/game-all/game-style-3,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U&3DW Time=day)`,        `/game-2/game-style-3,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U&3DW Time=day)`,      `/game-1,2/game-style-3,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U&3DW Time=day)`,    `/game-3ds,2/game-style-3,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&U&3DW Time=day)`,      `/game-all/game-style-3,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U&3DW Time=day)`,        `/game-2/game-style-3,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U&3DW Time=day)`,      `/game-1,2/game-style-3,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U&3DW Time=day)`,    `/game-3ds,2/game-style-3,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&U&3DW Time=day)`,     `/game-all/game-style-3,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U&3DW Time=day)`,       `/game-2/game-style-3,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U&3DW Time=day)`,     `/game-1,2/game-style-3,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U&3DW Time=day)`,   `/game-3ds,2/game-style-3,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
+                //region -------------------- Game style (smw + nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&U&3DW Time=day)`,      `/game-all/game-style-w,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U&3DW Time=day)`,        `/game-2/game-style-w,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U&3DW Time=day)`,      `/game-1,2/game-style-w,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U&3DW Time=day)`,    `/game-3ds,2/game-style-w,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&U&3DW Time=day)`,      `/game-all/game-style-w,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U&3DW Time=day)`,        `/game-2/game-style-w,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U&3DW Time=day)`,      `/game-1,2/game-style-w,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U&3DW Time=day)`,    `/game-3ds,2/game-style-w,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&U&3DW Time=day)`,     `/game-all/game-style-w,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U&3DW Time=day)`,       `/game-2/game-style-w,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U&3DW Time=day)`,     `/game-1,2/game-style-w,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U&3DW Time=day)`,   `/game-3ds,2/game-style-w,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smw + nsmbu + sm3dw) --------------------
+
+                //region -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&U Time=day)`,      `/game-all/game-style-1,3,w,u/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1 GameStyle=1&3&W&U Time=day)`,        `/game-1/game-style-1,3,w,u/time-day/list${path}`,         SMM1_ONLY,    DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS GameStyle=1&3&W&U Time=day)`,      `/game-3ds/game-style-1,3,w,u/time-day/list${path}`,       SMM3DS_ONLY,  DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&U Time=day)`,        `/game-2/game-style-1,3,w,u/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&3DS GameStyle=1&3&W&U Time=day)`,    `/game-1,3ds/game-style-1,3,w,u/time-day/list${path}`,     SMM1_AND_3DS, DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=day)`,      `/game-1,2/game-style-1,3,w,u/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=day)`,    `/game-3ds,2/game-style-1,3,w,u/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&U Time=day)`,      `/game-all/game-style-1,3,w,u/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1 GameStyle=1&3&W&U Time=day)`,        `/game-1/game-style-1,3,w,u/time-day/card${path}`,         SMM1_ONLY,    DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS GameStyle=1&3&W&U Time=day)`,      `/game-3ds/game-style-1,3,w,u/time-day/card${path}`,       SMM3DS_ONLY,  DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&U Time=day)`,        `/game-2/game-style-1,3,w,u/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&3DS GameStyle=1&3&W&U Time=day)`,    `/game-1,3ds/game-style-1,3,w,u/time-day/card${path}`,     SMM1_AND_3DS, DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=day)`,      `/game-1,2/game-style-1,3,w,u/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=day)`,    `/game-3ds,2/game-style-1,3,w,u/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&U Time=day)`,     `/game-all/game-style-1,3,w,u/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1 GameStyle=1&3&W&U Time=day)`,       `/game-1/game-style-1,3,w,u/time-day/table${path}`,        SMM1_ONLY,    DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS GameStyle=1&3&W&U Time=day)`,     `/game-3ds/game-style-1,3,w,u/time-day/table${path}`,      SMM3DS_ONLY,  DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&U Time=day)`,       `/game-2/game-style-1,3,w,u/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&3DS GameStyle=1&3&W&U Time=day)`,   `/game-1,3ds/game-style-1,3,w,u/time-day/table${path}`,    SMM1_AND_3DS, DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=day)`,     `/game-1,2/game-style-1,3,w,u/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=day)`,   `/game-3ds,2/game-style-1,3,w,u/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
+                //region -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U&3DW Time=day)`,    `/game-all/game-style-3,w,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U&3DW Time=day)`,      `/game-2/game-style-3,w,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U&3DW Time=day)`,    `/game-1,2/game-style-3,w,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U&3DW Time=day)`,    `/game-all/game-style-3,w,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U&3DW Time=day)`,      `/game-2/game-style-3,w,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U&3DW Time=day)`,    `/game-1,2/game-style-3,w,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U&3DW Time=day)`,   `/game-all/game-style-3,w,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U&3DW Time=day)`,     `/game-2/game-style-3,w,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U&3DW Time=day)`,   `/game-1,2/game-style-3,w,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`, `/game-3ds,2/game-style-3,w,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
+                //region -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U&3DW Time=day)`,    `/game-all/game-style-1,w,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U&3DW Time=day)`,      `/game-2/game-style-1,w,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U&3DW Time=day)`,    `/game-1,2/game-style-1,w,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U&3DW Time=day)`,    `/game-all/game-style-1,w,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U&3DW Time=day)`,      `/game-2/game-style-1,w,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U&3DW Time=day)`,    `/game-1,2/game-style-1,w,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U&3DW Time=day)`,   `/game-all/game-style-1,w,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U&3DW Time=day)`,     `/game-2/game-style-1,w,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U&3DW Time=day)`,   `/game-1,2/game-style-1,w,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`, `/game-3ds,2/game-style-1,w,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
+                //region -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U&3DW Time=day)`,    `/game-all/game-style-1,3,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U&3DW Time=day)`,      `/game-2/game-style-1,3,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U&3DW Time=day)`,    `/game-1,2/game-style-1,3,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U&3DW Time=day)`,    `/game-all/game-style-1,3,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U&3DW Time=day)`,      `/game-2/game-style-1,3,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U&3DW Time=day)`,    `/game-1,2/game-style-1,3,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U&3DW Time=day)`,   `/game-all/game-style-1,3,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U&3DW Time=day)`,     `/game-2/game-style-1,3,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U&3DW Time=day)`,   `/game-1,2/game-style-1,3,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`, `/game-3ds,2/game-style-1,3,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
+                //region -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&3DW Time=day)`,    `/game-all/game-style-1,3,w,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&3DW Time=day)`,      `/game-2/game-style-1,3,w,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&3DW Time=day)`,    `/game-1,2/game-style-1,3,w,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&3DW Time=day)`,    `/game-all/game-style-1,3,w,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&3DW Time=day)`,      `/game-2/game-style-1,3,w,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&3DW Time=day)`,    `/game-1,2/game-style-1,3,w,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&3DW Time=day)`,   `/game-all/game-style-1,3,w,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&3DW Time=day)`,     `/game-2/game-style-1,3,w,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&3DW Time=day)`,   `/game-1,2/game-style-1,3,w,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`, `/game-3ds,2/game-style-1,3,w,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
+
+                //endregion -------------------- Time (day) --------------------
+                //region -------------------- Time (night) --------------------
+
+                //region -------------------- Game style (all) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=all Time=night)`,         `/game-all/game-style-all/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=all Time=night)`,           `/game-2/game-style-all/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=all Time=night)`,         `/game-1,2/game-style-all/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=all Time=night)`,       `/game-3ds,2/game-style-all/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=all Time=night)`,         `/game-all/game-style-all/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=all Time=night)`,           `/game-2/game-style-all/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=all Time=night)`,         `/game-1,2/game-style-all/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=all Time=night)`,       `/game-3ds,2/game-style-all/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=all Time=night)`,        `/game-all/game-style-all/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=all Time=night)`,          `/game-2/game-style-all/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=all Time=night)`,        `/game-1,2/game-style-all/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=all Time=night)`,      `/game-3ds,2/game-style-all/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (all) --------------------
+
+                //region -------------------- Game style (smb) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1 Time=night)`,           `/game-all/game-style-1/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1 Time=night)`,             `/game-2/game-style-1/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1 Time=night)`,           `/game-1,2/game-style-1/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1 Time=night)`,         `/game-3ds,2/game-style-1/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1 Time=night)`,           `/game-all/game-style-1/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1 Time=night)`,             `/game-2/game-style-1/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1 Time=night)`,           `/game-1,2/game-style-1/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1 Time=night)`,         `/game-3ds,2/game-style-1/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1 Time=night)`,          `/game-all/game-style-1/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1 Time=night)`,            `/game-2/game-style-1/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1 Time=night)`,          `/game-1,2/game-style-1/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1 Time=night)`,        `/game-3ds,2/game-style-1/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb) --------------------
+                //region -------------------- Game style (smb3) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3 Time=night)`,           `/game-all/game-style-3/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3 Time=night)`,             `/game-2/game-style-3/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3 Time=night)`,           `/game-1,2/game-style-3/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3 Time=night)`,         `/game-3ds,2/game-style-3/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3 Time=night)`,           `/game-all/game-style-3/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3 Time=night)`,             `/game-2/game-style-3/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3 Time=night)`,           `/game-1,2/game-style-3/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3 Time=night)`,         `/game-3ds,2/game-style-3/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3 Time=night)`,          `/game-all/game-style-3/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3 Time=night)`,            `/game-2/game-style-3/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3 Time=night)`,          `/game-1,2/game-style-3/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3 Time=night)`,        `/game-3ds,2/game-style-3/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3) --------------------
+                //region -------------------- Game style (smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=W Time=night)`,           `/game-all/game-style-w/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W Time=night)`,             `/game-2/game-style-w/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W Time=night)`,           `/game-1,2/game-style-w/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W Time=night)`,         `/game-3ds,2/game-style-w/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=W Time=night)`,           `/game-all/game-style-w/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W Time=night)`,             `/game-2/game-style-w/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W Time=night)`,           `/game-1,2/game-style-w/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W Time=night)`,         `/game-3ds,2/game-style-w/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=W Time=night)`,          `/game-all/game-style-w/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W Time=night)`,            `/game-2/game-style-w/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W Time=night)`,          `/game-1,2/game-style-w/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W Time=night)`,        `/game-3ds,2/game-style-w/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smw) --------------------
+                //region -------------------- Game style (nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=U Time=night)`,           `/game-all/game-style-u/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=U Time=night)`,             `/game-2/game-style-u/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=U Time=night)`,           `/game-1,2/game-style-u/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=U Time=night)`,         `/game-3ds,2/game-style-u/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=U Time=night)`,           `/game-all/game-style-u/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=U Time=night)`,             `/game-2/game-style-u/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=U Time=night)`,           `/game-1,2/game-style-u/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=U Time=night)`,         `/game-3ds,2/game-style-u/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=U Time=night)`,          `/game-all/game-style-u/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=U Time=night)`,            `/game-2/game-style-u/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=U Time=night)`,          `/game-1,2/game-style-u/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=U Time=night)`,        `/game-3ds,2/game-style-u/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (nsmbu) --------------------
+
+                //region -------------------- Game style (smb + smb3) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3 Time=night)`,         `/game-all/game-style-1,3/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3 Time=night)`,           `/game-2/game-style-1,3/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3 Time=night)`,         `/game-1,2/game-style-1,3/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3 Time=night)`,       `/game-3ds,2/game-style-1,3/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3 Time=night)`,         `/game-all/game-style-1,3/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3 Time=night)`,           `/game-2/game-style-1,3/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3 Time=night)`,         `/game-1,2/game-style-1,3/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3 Time=night)`,       `/game-3ds,2/game-style-1,3/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3 Time=night)`,        `/game-all/game-style-1,3/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3 Time=night)`,          `/game-2/game-style-1,3/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3 Time=night)`,        `/game-1,2/game-style-1,3/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3 Time=night)`,      `/game-3ds,2/game-style-1,3/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3) --------------------
+                //region -------------------- Game style (smb + smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W Time=night)`,         `/game-all/game-style-1,w/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W Time=night)`,           `/game-2/game-style-1,w/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W Time=night)`,         `/game-1,2/game-style-1,w/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W Time=night)`,       `/game-3ds,2/game-style-1,w/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W Time=night)`,         `/game-all/game-style-1,w/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W Time=night)`,           `/game-2/game-style-1,w/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W Time=night)`,         `/game-1,2/game-style-1,w/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W Time=night)`,       `/game-3ds,2/game-style-1,w/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W Time=night)`,        `/game-all/game-style-1,w/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W Time=night)`,          `/game-2/game-style-1,w/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W Time=night)`,        `/game-1,2/game-style-1,w/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W Time=night)`,      `/game-3ds,2/game-style-1,w/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smw) --------------------
+                //region -------------------- Game style (smb + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&U Time=night)`,         `/game-all/game-style-1,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&U Time=night)`,           `/game-2/game-style-1,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&U Time=night)`,         `/game-1,2/game-style-1,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&U Time=night)`,       `/game-3ds,2/game-style-1,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&U Time=night)`,         `/game-all/game-style-1,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&U Time=night)`,           `/game-2/game-style-1,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&U Time=night)`,         `/game-1,2/game-style-1,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&U Time=night)`,       `/game-3ds,2/game-style-1,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&U Time=night)`,        `/game-all/game-style-1,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&U Time=night)`,          `/game-2/game-style-1,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&U Time=night)`,        `/game-1,2/game-style-1,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&U Time=night)`,      `/game-3ds,2/game-style-1,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + nsmbu) --------------------
+                //region -------------------- Game style (smb3 + smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W Time=night)`,         `/game-all/game-style-3,w/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W Time=night)`,           `/game-2/game-style-3,w/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W Time=night)`,         `/game-1,2/game-style-3,w/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W Time=night)`,       `/game-3ds,2/game-style-3,w/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W Time=night)`,         `/game-all/game-style-3,w/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W Time=night)`,           `/game-2/game-style-3,w/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W Time=night)`,         `/game-1,2/game-style-3,w/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W Time=night)`,       `/game-3ds,2/game-style-3,w/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W Time=night)`,        `/game-all/game-style-3,w/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W Time=night)`,          `/game-2/game-style-3,w/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W Time=night)`,        `/game-1,2/game-style-3,w/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W Time=night)`,      `/game-3ds,2/game-style-3,w/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + smw) --------------------
+                //region -------------------- Game style (smb3 + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&U Time=night)`,         `/game-all/game-style-3,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&U Time=night)`,           `/game-2/game-style-3,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&U Time=night)`,         `/game-3,2/game-style-3,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&U Time=night)`,       `/game-3ds,2/game-style-3,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&U Time=night)`,         `/game-all/game-style-3,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&U Time=night)`,           `/game-2/game-style-3,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&U Time=night)`,         `/game-3,2/game-style-3,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&U Time=night)`,       `/game-3ds,2/game-style-3,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&U Time=night)`,        `/game-all/game-style-3,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&U Time=night)`,          `/game-2/game-style-3,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&U Time=night)`,        `/game-3,2/game-style-3,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&U Time=night)`,      `/game-3ds,2/game-style-3,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + nsmbu) --------------------
+                //region -------------------- Game style (smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=W&U Time=night)`,         `/game-all/game-style-w,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=W&U Time=night)`,           `/game-2/game-style-w,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=W&U Time=night)`,         `/game-1,2/game-style-w,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=W&U Time=night)`,       `/game-3ds,2/game-style-w,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=W&U Time=night)`,         `/game-all/game-style-w,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=W&U Time=night)`,           `/game-2/game-style-w,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=W&U Time=night)`,         `/game-1,2/game-style-w,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=W&U Time=night)`,       `/game-3ds,2/game-style-w,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=W&U Time=night)`,        `/game-all/game-style-w,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=W&U Time=night)`,          `/game-2/game-style-w,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=W&U Time=night)`,        `/game-1,2/game-style-w,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=W&U Time=night)`,      `/game-3ds,2/game-style-w,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smw + nsmbu) --------------------
+
+                //region -------------------- Game style (smb + smb3 + smw) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W Time=night)`,       `/game-all/game-style-1,3,w/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W Time=night)`,         `/game-2/game-style-1,3,w/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W Time=night)`,       `/game-1,2/game-style-1,3,w/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=night)`,     `/game-3ds,2/game-style-1,3,w/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W Time=night)`,       `/game-all/game-style-1,3,w/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W Time=night)`,         `/game-2/game-style-1,3,w/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W Time=night)`,       `/game-1,2/game-style-1,3,w/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=night)`,     `/game-3ds,2/game-style-1,3,w/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W Time=night)`,      `/game-all/game-style-1,3,w/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W Time=night)`,        `/game-2/game-style-1,3,w/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W Time=night)`,      `/game-1,2/game-style-1,3,w/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=night)`,    `/game-3ds,2/game-style-1,3,w/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + smw) --------------------
+                //region -------------------- Game style (smb + smb3 + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&U Time=night)`,       `/game-all/game-style-1,3,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&U Time=night)`,         `/game-2/game-style-1,3,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&U Time=night)`,       `/game-1,2/game-style-1,3,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=night)`,     `/game-3ds,2/game-style-1,3,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&U Time=night)`,       `/game-all/game-style-1,3,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&U Time=night)`,         `/game-2/game-style-1,3,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&U Time=night)`,       `/game-1,2/game-style-1,3,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=night)`,     `/game-3ds,2/game-style-1,3,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&U Time=night)`,      `/game-all/game-style-1,3,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&U Time=night)`,        `/game-2/game-style-1,3,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&U Time=night)`,      `/game-1,2/game-style-1,3,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=night)`,    `/game-3ds,2/game-style-1,3,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + nsmbu) --------------------
+                //region -------------------- Game style (smb + smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&W&U Time=night)`,       `/game-all/game-style-1,w,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&W&U Time=night)`,         `/game-2/game-style-1,w,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&W&U Time=night)`,       `/game-1,2/game-style-1,w,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=night)`,     `/game-3ds,2/game-style-1,w,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&W&U Time=night)`,       `/game-all/game-style-1,w,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&W&U Time=night)`,         `/game-2/game-style-1,w,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&W&U Time=night)`,       `/game-1,2/game-style-1,w,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=night)`,     `/game-3ds,2/game-style-1,w,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&W&U Time=night)`,      `/game-all/game-style-1,w,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&W&U Time=night)`,        `/game-2/game-style-1,w,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&W&U Time=night)`,      `/game-1,2/game-style-1,w,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=night)`,    `/game-3ds,2/game-style-1,w,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smw + nsmbu) --------------------
+                //region -------------------- Game style (smb3 + smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=3&W&U Time=night)`,       `/game-all/game-style-3,w,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=3&W&U Time=night)`,         `/game-2/game-style-3,w,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=3&W&U Time=night)`,       `/game-1,2/game-style-3,w,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=night)`,     `/game-3ds,2/game-style-3,w,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=3&W&U Time=night)`,       `/game-all/game-style-3,w,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=3&W&U Time=night)`,         `/game-2/game-style-3,w,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=3&W&U Time=night)`,       `/game-1,2/game-style-3,w,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=night)`,     `/game-3ds,2/game-style-3,w,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=3&W&U Time=night)`,      `/game-all/game-style-3,w,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=3&W&U Time=night)`,        `/game-2/game-style-3,w,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=3&W&U Time=night)`,      `/game-1,2/game-style-3,w,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=night)`,    `/game-3ds,2/game-style-3,w,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb3 + smw + nsmbu) --------------------
+
+                //region -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
+
+                new SimpleRoute(`${name} (list Game=all GameStyle=1&3&W&U Time=night)`,     `/game-all/game-style-1,3,w,u/time-night/list${path}`,    ALL_GAMES,    NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=2 GameStyle=1&3&W&U Time=night)`,       `/game-2/game-style-1,3,w,u/time-night/list${path}`,      SMM2_ONLY,    NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=night)`,     `/game-1,2/game-style-1,3,w,u/time-night/list${path}`,    SMM1_AND_2,   NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
+                new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=night)`,   `/game-3ds,2/game-style-1,3,w,u/time-night/list${path}`,  SMM3DS_AND_2, NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
+
+                new SimpleRoute(`${name} (card Game=all GameStyle=1&3&W&U Time=night)`,     `/game-all/game-style-1,3,w,u/time-night/card${path}`,    ALL_GAMES,    NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=2 GameStyle=1&3&W&U Time=night)`,       `/game-2/game-style-1,3,w,u/time-night/card${path}`,      SMM2_ONLY,    NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=night)`,     `/game-1,2/game-style-1,3,w,u/time-night/card${path}`,    SMM1_AND_2,   NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
+                new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=night)`,   `/game-3ds,2/game-style-1,3,w,u/time-night/card${path}`,  SMM3DS_AND_2, NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
+
+                new SimpleRoute(`${name} (table Game=all GameStyle=1&3&W&U Time=night)`,    `/game-all/game-style-1,3,w,u/time-night/table${path}`,   ALL_GAMES,    NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=2 GameStyle=1&3&W&U Time=night)`,      `/game-2/game-style-1,3,w,u/time-night/table${path}`,     SMM2_ONLY,    NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=night)`,    `/game-1,2/game-style-1,3,w,u/time-night/table${path}`,   SMM1_AND_2,   NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
+                new SimpleRoute(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=night)`,  `/game-3ds,2/game-style-1,3,w,u/time-night/table${path}`, SMM3DS_AND_2, NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
+
+                //endregion -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
+
+                //endregion -------------------- Time (night) --------------------
             ]
-
-            // const viewDisplays = ViewDisplays.Companion.values
-            // const routes = new Array<SimpleRoute>(516,) // From: (31 + 16 + 16 + 31 + 16 + 31 + 31) * 3
-            // let index = -1
-            // viewDisplays.forEach(viewDisplay => {
-            //     const urlValue = viewDisplay.urlValue
-            //
-            //     forEachByArray(gamePossibilities, ([games, gamesName, gamesPath, gameStylePossibilities, gameStylePossibilitiesAmount,],) => {
-            //         let index_gameStylePossibility = -1
-            //         while (++index_gameStylePossibility < gameStylePossibilitiesAmount) {
-            //             const gameStylePossibility = gameStylePossibilities[index_gameStylePossibility]!
-            //             const gameStyleName = gameStylePossibility[1]
-            //             const gameStylePath = gameStylePossibility[2]
-            //             routes[++index] = new SimpleRoute(`${name} (${urlValue} ${gamesName} ${gameStyleName})`, `/${gamesPath}/${gameStylePath}/${urlValue}${path}`, games, gameStylePossibility[0], viewDisplay, routeCallback,)
-            //         }
-            //     },)
-            // },)
-            // return routes
-        }
-
-        protected override _getPartialPathFromTimes() {
-            return EMPTY_STRING
         }
 
     }
@@ -1160,6 +2062,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         }
 
     }
+
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM2} */
     private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
@@ -1222,24 +2125,24 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_HAT_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('everyHatPriority', '/every/hat/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.HAT}/>,)
     public static readonly NO_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('noPriority', '/no/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.NONE}/>,)
 
-    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyCharacterName', '/every/character-name', CARD, null, (viewDisplay, games, times,) => <CharacterNameApp viewDisplay={viewDisplay} games={games} times={times}/>,)
+    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.AllGames_EveryRoutes('everyCharacterName', '/every/character-name', CARD, (viewDisplay, games, gameStyles, times,) => <CharacterNameApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
-    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games, gameStyles,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
+    public static readonly EVERY_GAME_STYLE = new EveryRoutes.AllGames_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games, gameStyles, times,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_ENTITY = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
+    public static readonly EVERY_ENTITY = new EveryRoutes.AllGames_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles, times,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
-    public static readonly EVERY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyLimit', '/every/limit', null, (viewDisplay, games, gameStyles,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={LimitTypes.ALL}/>,)
-    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('playLimit', '/play/limit', null, (viewDisplay, games, gameStyles,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={LimitTypes.PLAY}/>,)
-    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('editorLimit', '/editor/limit', null, (viewDisplay, games, gameStyles,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={LimitTypes.EDITOR}/>,)
+    public static readonly EVERY_LIMIT = new EveryRoutes.AllGames_EveryRoutes('everyLimit', '/every/limit', null, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.ALL}/>,)
+    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.AllGames_EveryRoutes('playLimit', '/play/limit', null, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.PLAY}/>,)
+    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.AllGames_EveryRoutes('editorLimit', '/editor/limit', null, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.EDITOR}/>,)
 
-    public static readonly EVERY_THEME = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyTheme', '/every/theme', CARD, (viewDisplay, games, gameStyles,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={ThemeTypes.ALL}/>,)
-    public static readonly EVERY_COURSE_THEME = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('courseTheme', '/course/theme', CARD, (viewDisplay, games, gameStyles,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={ThemeTypes.COURSE}/>,)
-    public static readonly EVERY_WORLD_THEME = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games, gameStyles,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} type={ThemeTypes.WORLD}/>,)
+    public static readonly EVERY_THEME = new EveryRoutes.AllGames_EveryRoutes('everyTheme', '/every/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.ALL}/>,)
+    public static readonly EVERY_COURSE_THEME = new EveryRoutes.AllGames_EveryRoutes('courseTheme', '/course/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.COURSE}/>,)
+    public static readonly EVERY_WORLD_THEME = new EveryRoutes.AllGames_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.WORLD}/>,)
 
-    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games, gameStyles,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
+    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.AllGames_EveryRoutes('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games, gameStyles, times,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
     public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', CARD, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
 
     public static readonly EVERY_MII_COSTUME = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyMiiCostume', '/every/mii-costume', null, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
@@ -1250,7 +2153,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', LIST, viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
 
     public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everySampleCourse', '/every/sample-course', null, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyOfficialCourse', '/every/official-course', null, viewDisplay => <OfficialCourseApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.AllGames_EveryRoutes('everyOfficialCourse', '/every/official-course', null, (viewDisplay, games, gameStyles, times,) => <OfficialCourseApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
     public static readonly EVERY_MEDAL = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everyMedal', '/every/medal', CARD, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
 
@@ -1259,9 +2162,9 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
     public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
 
-    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyInstrument', '/every/instrument', CARD, null, (viewDisplay, games, times,) => <InstrumentApp viewDisplay={viewDisplay} games={games} times={times}/>,)
+    public static readonly EVERY_INSTRUMENT = new EveryRoutes.AllGames_EveryRoutes('everyInstrument', '/every/instrument', CARD, (viewDisplay, games, gameStyles, times,) => <InstrumentApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCardTable_AnyGame_DayNight_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, null, (viewDisplay, games, times,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games} times={times}/>,)
+    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.AllGames_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, (viewDisplay, games, gameStyles, times,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
     public static readonly EVERY_ROUTE = new EveryRoutes.Straight_EveryRoutes('everyRoute', '/debug/every-route', () => <RouteApp/>,)
 
