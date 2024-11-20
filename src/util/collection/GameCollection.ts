@@ -1,5 +1,5 @@
 import {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection}                    from '@joookiwi/collection'
-import type {Array}                                                                                  from '@joookiwi/type'
+import type {Array, NullOr}                                                                          from '@joookiwi/type'
 import {GenericCollectionHolder, getFirstByArray, hasAllWithCollectionHolderByArray, isEmptyByArray} from '@joookiwi/collection'
 
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
@@ -116,21 +116,29 @@ export namespace GameCollection {
      * @param values The values to create a new {@link GameCollection}
      */
     export function of<const T extends Games,>(values: NullableArray<T>,): GameCollection<T>
-    export function of(values: NullableArray<Games>,): GameCollection {
+    export function of(values: NullableArray<Games>,) {
         if (isEmptyByArray(values,))
             return EMPTY
-        if (values!.length === 1) {
-            const value = getFirstByArray(values,)
-            if (value === SMM2)
-                return SMM2_ONLY
-            if (value === SMM1)
-                return SMM1_ONLY
-            return SMM3DS_ONLY
-        }
+        if (values!.length === 1)
+            return of1(getFirstByArray(values,),)
 
         if (hasAllWithCollectionHolderByArray(values, ALL,))
             return ALL
         return new GameCollection(values!,)
+    }
+
+    /**
+     * Get an existant {@link GameCollection} from the {@link value} received
+     *
+     * @param value The value to get a defined {@link GameCollection}
+     */
+    export function of1<const T extends Games,>(value: NullOr<T>,): GameCollection<T>
+    export function of1(value: NullOr<Games>,) {
+        if (value === SMM2)
+            return SMM2_ONLY
+        if (value === SMM1)
+            return SMM1_ONLY
+        return SMM3DS_ONLY
     }
 
 }
