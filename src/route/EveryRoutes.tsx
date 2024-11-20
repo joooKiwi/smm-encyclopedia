@@ -2189,17 +2189,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
         //endregion -------------------- Singleton usage --------------------
 
-        #everyRoute?: Array<SimpleRoute>
-
-        public get everyRoute(): Array<SimpleRoute> {
-            if (this.#everyRoute != null)
-                return this.#everyRoute
-
-            const routes: MutableArray<SimpleRoute> = []
-            this.values.forEach(it => forEachByArray(it.everyRoute, it => routes.push(it,),),)
-            return this.#everyRoute = routes
-        }
-
         public getValueInUrl(url: string,): NullOr<EveryRoutes> {
             return this.values.findFirstOrNull(it => url.endsWith(it.urlValue,),)
         }
@@ -2636,6 +2625,19 @@ export namespace EveryRoutes {
 
     /** The companion instance of a {@link EveryRoutes} */
     export const Companion = EveryRoutes.CompanionEnum.get
+
+
+    function __retrieveAllRoutes() {
+        const routes: MutableArray<SimpleRoute> = []
+        Companion.values.forEach(it => forEachByArray(it.everyRoute, it => routes.push(it,),),)
+        return routes
+    }
+
+    /**
+     * All the possible {@link SimpleRoute} possible in a 1-dimensional {@link ReadonlyArray Array}
+     * ordered by the {@link EveryRoutes.ordinal ordinal} order of {@link EveryRoutes}
+     */
+    export const ALL_ROUTES = __retrieveAllRoutes() as Array<PossibleRoute>
 
 }
 

@@ -1,15 +1,16 @@
 import type {EmptyString} from '@joookiwi/type'
 
-import type {ViewDisplays}                                                                                                                                                                      from 'app/withInterpreter/ViewDisplays'
+import type {ViewDisplays}                                                                                                                                                                  from 'app/withInterpreter/ViewDisplays'
 import type {PossibleUrlValue as UrlValue_ViewDisplay}                                                                                                                                      from 'app/withInterpreter/ViewDisplays.types'
 import type {FullGroupUrlName as FullUrlName_Game, FullGroupUrlName_WithNotSMM2, FullGroupUrlName_WithSMM2, FullUrlValue as UrlValue_Game, FullUrlValue_WithNotSMM2, FullUrlValue_WithSMM2} from 'core/game/Games.types'
 import type {FullGroupUrlName as FullUrlName_GameStyle, FullGroupUrlName_SMM1, FullUrlValue as FullUrlValue_GameStyle, FullUrlValue_SMM1}                                                   from 'core/gameStyle/GameStyles.types'
-import type {FullUrlName as FullUrlName_Time, FullUrlValue as FullUrlValue_Time}                                                                                                                from 'core/time/Times.types'
-import type {PossibleAcronym}                                                                                                                                                                   from 'lang/ProjectLanguages.types'
-import type {EveryRoutes}                                                                                                                                                                       from 'route/EveryRoutes'
-import type {GameCollection}                                                                                                                                                                    from 'util/collection/GameCollection'
-import type {GameStyleCollection}                                                                                                                                                               from 'util/collection/GameStyleCollection'
-import type {TimeCollection}                                                                                                                                                                    from 'util/collection/TimeCollection'
+import type {FullUrlName as FullUrlName_Time, FullUrlValue as FullUrlValue_Time}                                                                                                            from 'core/time/Times.types'
+import type {PossibleAcronym}                                                                                                                                                               from 'lang/ProjectLanguages.types'
+import type {EveryRoutes}                                                                                                                                                                   from 'route/EveryRoutes'
+import type {SimpleRoute}                                                                                                                                                                   from 'route/SimpleRoute'
+import type {GameCollection}                                                                                                                                                                from 'util/collection/GameCollection'
+import type {GameStyleCollection}                                                                                                                                                           from 'util/collection/GameStyleCollection'
+import type {TimeCollection}                                                                                                                                                                from 'util/collection/TimeCollection'
 
 enum Enum {
     HOME,
@@ -244,6 +245,8 @@ export type PossibleRouteName = SimpleRouteMap[Names][0]
 /** The possible path for a route with nothing surrounding it */
 export type PossibleStraightRoutePath = typeof EveryRoutes[Names]['urlValue']
 export type PossibleRoutePath = SimpleRouteMap[Names][1]
+/** All the possible route instances */
+export type PossibleRoute = SimpleRoute<PossibleRouteName, PossibleRoutePath>
 
 
 export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection, time: TimeCollection,) => ReactJSXElement

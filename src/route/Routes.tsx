@@ -18,6 +18,7 @@ import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
 
+import ALL_ROUTES =         EveryRoutes.ALL_ROUTES
 import GameCompanion =      Games.Companion
 import GameStyleCompanion = GameStyles.Companion
 import LanguageCompanion =  ProjectLanguages.Companion
@@ -28,7 +29,6 @@ const homeRoute = EveryRoutes.HOME
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
 const languages = LanguageCompanion.values
 const everyRouteInstance = RouteCompanion.values
-const everyRoute = RouteCompanion.everyRoute
 
 // const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
@@ -91,7 +91,7 @@ const router = createHashRouter([{
  * @param action The action to add a {@link RouteObject} for the {@link SimpleRoute route found}
  */
 function resolveLazyRoute(path: string, action: (routeId: NullOrString, children: MutableArray<RouteObject>,) => void,): void {
-    const route = findFirstOrNullByArray(everyRoute, it => path.endsWith(it.path,),)
+    const route = findFirstOrNullByArray(ALL_ROUTES, it => path.endsWith(it.path,),)
     if (route == null)
         return
 
