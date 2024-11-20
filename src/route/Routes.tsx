@@ -13,6 +13,7 @@ import {Times}                       from 'core/time/Times'
 import {ProjectLanguages}            from 'lang/ProjectLanguages'
 import {EveryRoutes}                 from 'route/EveryRoutes'
 import {redirectTo, redirectToByUrl} from 'route/redirectionMethods'
+import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
@@ -66,6 +67,7 @@ const router = createHashRouter([{
             return {
                 path: pathFromLanguage,
                 id: `language-${language.projectAcronym}`,
+                children: mapByArray(ALL, it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
                 loader() {
                     LanguageCompanion.current = language
                     return null
@@ -74,7 +76,7 @@ const router = createHashRouter([{
         },),
 
         //endregion -------------------- Path from language --------------------
-        new StraightRouteObject('/*', loaderArguments => redirectToByUrl(loaderArguments,),),
+        new StraightFallbackRouteObject('/', it => redirectToByUrl(it,),),
     ],
 } satisfies RouteObject,], {
     basename: '/',
