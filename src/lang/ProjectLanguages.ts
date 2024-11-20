@@ -175,7 +175,7 @@ export class ProjectLanguages
     }
 
     //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter & setter methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get language(): EveryLanguages {
         return this.#language
@@ -383,7 +383,7 @@ export class ProjectLanguages
     }
 
     //endregion -------------------- Characters getter methods --------------------
-    //region -------------------- Getter & setter methods (current) --------------------
+    //region -------------------- Getter methods (current) --------------------
 
     public get isCurrent(): boolean {
         return this === ProjectLanguages.Companion.currentOrNull
@@ -399,13 +399,13 @@ export class ProjectLanguages
     //region -------------------- Methods --------------------
 
     public get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-        return this.language.get(classWithEveryLanguages)
+        return this.language.get(classWithEveryLanguages,)
     }
 
     public original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
     public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
     public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
-        return this.language.original<T>(classWithEveryLanguages)
+        return this.language.original<T>(classWithEveryLanguages,)
     }
 
     //region -------------------- Transformation methods --------------------

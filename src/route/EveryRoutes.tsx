@@ -401,12 +401,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                 new SimpleRoute(`${name} (list Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
                 new SimpleRoute(`${name} (list Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
                 new SimpleRoute(`${name} (list Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
-                                                                                          
+
                 new SimpleRoute(`${name} (card Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
                 new SimpleRoute(`${name} (card Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
                 new SimpleRoute(`${name} (card Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
                 new SimpleRoute(`${name} (card Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
-                                                                                          
+
                 new SimpleRoute(`${name} (table Game=all GameStyle=3DW Time=all)`,         `/game-all/game-style-3dw/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
                 new SimpleRoute(`${name} (table Game=2 GameStyle=3DW Time=all)`,           `/game-2/game-style-3dw/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
                 new SimpleRoute(`${name} (table Game=1&2 GameStyle=3DW Time=all)`,         `/game-1,2/game-style-3dw/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
