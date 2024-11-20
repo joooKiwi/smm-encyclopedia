@@ -209,7 +209,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
     //region -------------------- Sub class --------------------
 
-    /** A representation of an {@link EveryRoutes} instance with nothing in its route. Meaning no {@link ViewDisplays} and no {@link GameCollection}. */
+    /**
+     * A representation of an {@link EveryRoutes} instance with nothing in its route.
+     * Meaning no {@link ViewDisplays}, {@link GameCollection}, {@link GameStyleCollection} and {@link TimeCollection}.
+     */
     private static readonly Straight_EveryRoutes = class Straight_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
@@ -241,7 +244,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
     }
 
-    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection}, {@link GameStyleCollection} and {@link TimeCollection}) */
+    /**
+     * A representation of an {@link EveryRoutes} instance with everything in its route
+     * ({@link ViewDisplays}, {@link GameCollection}, {@link GameStyleCollection} and {@link TimeCollection})
+     */
     private static readonly AllGames_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
@@ -2019,7 +2025,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     }
 
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM1} */
-    private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const URL_NAME extends string,
+    private static readonly OnlySmm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
@@ -2055,7 +2061,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     }
 
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM2} */
-    private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const URL_NAME extends string,
+    private static readonly OnlySmm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
@@ -2114,7 +2120,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_GAME_STYLE = new EveryRoutes.AllGames_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games, gameStyles, times,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
     public static readonly EVERY_ENTITY = new EveryRoutes.AllGames_EveryRoutes('everyEntity', '/every/entity', TABLE, (viewDisplay, games, gameStyles, times,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
     public static readonly EVERY_LIMIT = new EveryRoutes.AllGames_EveryRoutes('everyLimit', '/every/limit', TABLE, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.ALL}/>,)
@@ -2126,24 +2132,24 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_WORLD_THEME = new EveryRoutes.AllGames_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.WORLD}/>,)
 
     public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.AllGames_EveryRoutes('everySoundEffect', '/every/sound-effect', TABLE, (viewDisplay, games, gameStyles, times,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', CARD, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
+    public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', CARD, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
 
-    public static readonly EVERY_MII_COSTUME = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyMiiCostume', '/every/mii-costume', TABLE, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', CARD, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MII_COSTUME = new EveryRoutes.OnlySmm2_EveryRoutes('everyMiiCostume', '/every/mii-costume', TABLE, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', CARD, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', CARD, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.OnlySmm1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', CARD, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', LIST, viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.OnlySmm2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', LIST, viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everySampleCourse', '/every/sample-course', TABLE, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.OnlySmm1_EveryRoutes('everySampleCourse', '/every/sample-course', TABLE, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.AllGames_EveryRoutes('everyOfficialCourse', '/every/official-course', TABLE, (viewDisplay, games, gameStyles, times,) => <OfficialCourseApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_MEDAL = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everyMedal', '/every/medal', CARD, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MEDAL = new EveryRoutes.OnlySmm1_EveryRoutes('everyMedal', '/every/medal', CARD, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyCourseTag', '/every/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.ALL}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('officialCourseTag', '/official/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.OFFICIAL}/>,)
-    public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
-    public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
+    public static readonly EVERY_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('everyCourseTag', '/every/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.ALL}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('officialCourseTag', '/official/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.OFFICIAL}/>,)
+    public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
+    public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
 
     public static readonly EVERY_INSTRUMENT = new EveryRoutes.AllGames_EveryRoutes('everyInstrument', '/every/instrument', CARD, (viewDisplay, games, gameStyles, times,) => <InstrumentApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
