@@ -12,7 +12,7 @@ import Companion = ProjectLanguages.Companion
 /** @reactComponent */
 export default function LanguageModal() {
     const modal = useRef<HTMLDivElement>(null,)
-    const [, setCurrentLanguage,] = useState(ProjectLanguages.current,)
+    const [, setCurrentLanguage,] = useState(Companion.current,)
     const callbackToSetLanguage = (it: ProjectLanguages,) => setLanguage(it, setCurrentLanguage,)
 
     return <>

@@ -17,6 +17,8 @@ import {Times}                  from 'core/time/Times'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+import LanguageCompanion = ProjectLanguages.Companion
+
 export abstract class GameStyleAppOption
     extends Enum<Ordinals, Names>
     implements AppOption<GameStyles> {
@@ -60,7 +62,7 @@ export abstract class GameStyleAppOption
                 </div>,
                 tooltip: gameContentTranslation('Wind effect (night desert)', {
                     night: unfinishedText('night'),//TODO add night reference
-                    desert: ProjectLanguages.current.get(Themes.DESERT.reference)!.toLowerCase(),
+                    desert: LanguageCompanion.current.get(Themes.DESERT.reference)!.toLowerCase(),
                 },),
             }
         }

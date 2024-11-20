@@ -11,7 +11,8 @@ import TextComponent      from 'app/tools/text/TextComponent'
 import Tooltip            from 'bootstrap/tooltip/Tooltip'
 import {StringContainer}  from 'util/StringContainer'
 
-import getInHtml = StringContainer.getInHtml
+import getInHtml =         StringContainer.getInHtml
+import LanguageCompanion = ProjectLanguages.Companion
 
 type Id = `${| 'editor' | 'play'}-${string}`
 
@@ -42,7 +43,7 @@ export default function LimitComponent({id, limits, displayAcronymIfApplicable,}
 }
 
 function createReturnOfLine(selectedLimits: CollectionHolder<Limits>, index: number,) {
-    return index === selectedLimits.size - 1 ? <></> : <>{ProjectLanguages.current.comma}<br/></>
+    return index === selectedLimits.size - 1 ? <></> : <>{LanguageCompanion.current.comma}<br/></>
 }
 
 function createSingleComponent(id: Id, limit: Limits, displayAcronymIfApplicable: boolean,) {

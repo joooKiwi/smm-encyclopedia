@@ -9,6 +9,8 @@ import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
 import {routeFromName}      from 'route/route'
 
+import LanguageCompanion = ProjectLanguages.Companion
+
 interface PageProgressProperties
     extends ReactProperties {
 
@@ -36,7 +38,7 @@ type PageProgressType = | 'completed' | 'completed with missing data'
  * @see TextComponent
  */
 export default function PageProgress({progress, link, content, exclusiveGame,}: PageProgressProperties,) {
-    const currentLanguage = ProjectLanguages.current
+    const currentLanguage = LanguageCompanion.current
     const exclusiveGameComponent = exclusiveGame == null ? null : <sup className="fst-italic text-dark text-opacity-25">{currentLanguage.space}{currentLanguage.textInParentheses(exclusiveGame)}</sup>
 
     return <div className="pageProgress-container">

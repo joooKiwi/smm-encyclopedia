@@ -12,6 +12,8 @@ import TextPopover          from 'bootstrap/popover/TextPopover'
 import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
 
+import Companion = ProjectLanguages.Companion
+
 /** @reactComponent */
 export default class NamePopoverComponent
     extends Component<NamePopoverProperties, NamePopoverStates>
@@ -26,7 +28,7 @@ export default class NamePopoverComponent
 
     constructor(props: NamePopoverProperties,) {
         super(props,)
-        this.#currentLanguageTextContent = ProjectLanguages.current.get<string>(this.name,)
+        this.#currentLanguageTextContent = Companion.current.get<string>(this.name,)
         this.state = {
             element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
         }

@@ -13,6 +13,8 @@ import ThemeImage                       from 'core/theme/ThemeImage'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 
+import LanguageCompanion = ProjectLanguages.Companion
+
 export abstract class SampleCourseAppOption
     extends Enum<Ordinals, Names>
     implements AppOption<SampleCourses> {
@@ -29,7 +31,7 @@ export abstract class SampleCourseAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'number', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">{ProjectLanguages.current.textInParentheses(unfinishedText('with 1st-time in 10 Mario Challenges',),)}</sub></span>,
+                key: 'number', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">{LanguageCompanion.current.textInParentheses(unfinishedText('with 1st-time in 10 Mario Challenges',),)}</sub></span>,
             }
         }
 

@@ -393,18 +393,7 @@ export class ProjectLanguages
         return this.isCurrent
     }
 
-
-    /**
-     * An intermediate to the {@link ProjectLanguages.CompanionEnum} "current" value
-     *
-     * @throws ReferenceError The current {@link ProjectLanguages language} has not been initialized yet
-     * @see EveryLanguages.CompanionEnum.current
-     */
-    public static get current(): ProjectLanguages {
-        return ProjectLanguages.Companion.current
-    }
-
-    //endregion -------------------- Getter & setter methods (current) --------------------
+    //endregion -------------------- Getter methods (current) --------------------
 
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------

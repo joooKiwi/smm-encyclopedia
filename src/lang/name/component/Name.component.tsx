@@ -15,7 +15,7 @@ import getInHtml = StringContainer.getInHtml
  * @param properties
  * @reactComponent
  * @see Name.toNameMap
- * @see ProjectLanguages.current
+ * @see CompanionEnum_ProjectLanguages.current
  * @todo move the name structure into the popover
  */
 export default function NameComponent({id, ...otherProperties}: NameProperties,) {

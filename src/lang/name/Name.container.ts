@@ -8,6 +8,8 @@ import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuro
 
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
+import Companion = ProjectLanguages.Companion
+
 export class NameContainer<const T, >
     implements Name<T> {
 
@@ -75,7 +77,7 @@ export class NameContainer<const T, >
     //region -------------------- Name properties --------------------
 
     public get languageValue(): T {
-        return ProjectLanguages.current.get<T>(this)
+        return Companion.current.get<T>(this,)
     }
 
     //region -------------------- English properties --------------------

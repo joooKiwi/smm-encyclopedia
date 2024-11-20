@@ -19,6 +19,8 @@ import {ProjectLanguages}                           from 'lang/ProjectLanguages'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 
+import LanguageCompanion = ProjectLanguages.Companion
+
 export abstract class LimitAppOption
     extends Enum<Ordinals, Names>
     implements AppOption<Limits> {
@@ -96,9 +98,11 @@ export abstract class LimitAppOption
                 return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${englishName} - limit amount in all games, but displayed as the same value`}>
                     <TextComponent content={amountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
                 </LimitWithPossibleTooltipOnNote>
+
+            const currentLanguage = LanguageCompanion.current
             return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${englishName} - limit amount in all games`}>
                 <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
-                <span className="space-pre">{ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}</span>
+                <span className="space-pre">{currentLanguage.space}{currentLanguage.slash}{currentLanguage.space}</span>
                 <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
             </LimitWithPossibleTooltipOnNote>
         }

@@ -11,6 +11,8 @@ import {LanguageContainer}         from 'lang/name/containers/Language.container
 import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
 import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguage.container'
 
+import Companion = ProjectLanguages.Companion
+
 //region -------------------- Import from deconstruction --------------------
 
 const {
@@ -236,7 +238,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
 
     public get languageValue(): NonNullable<T> {
         // @ts-ignore: FIXME Support this implementation for the Languages
-        return ProjectLanguages.current.get<T>(this) ?? this.english
+        return Companion.current.get<T>(this,) ?? this.english
     }
 
     //region -------------------- English properties --------------------

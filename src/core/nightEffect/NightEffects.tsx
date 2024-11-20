@@ -19,7 +19,8 @@ import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-import EMPTY_OBJECT = Empty.EMPTY_OBJECT
+import EMPTY_OBJECT =      Empty.EMPTY_OBJECT
+import LanguageCompanion = ProjectLanguages.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -80,9 +81,10 @@ export class NightEffects
     public static readonly POISON_LIQUID =              new class NightEffects_PoisonLiquid extends NightEffects {
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
+            const currentLanguage = LanguageCompanion.current
             return {
-                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.current.get(Import.Entities.WATER.reference)!.toLowerCase()}</span>,
-                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.current.get(Import.Entities.POISON.reference)!.toLowerCase()}</span>,
+                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{currentLanguage.get(Import.Entities.WATER.reference,)!.toLowerCase()}</span>,
+                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{currentLanguage.get(Import.Entities.POISON.reference,)!.toLowerCase()}</span>,
             }
         }
 

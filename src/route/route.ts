@@ -6,7 +6,8 @@ import type {EveryPossibleRoutes, PossibleRouteName} from 'route/EveryRoutes.typ
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import {EveryRoutes}      from 'route/EveryRoutes'
 
-import Companion = EveryRoutes.Companion
+import Companion =         EveryRoutes.Companion
+import LanguageCompanion = ProjectLanguages.Companion
 
 /**
  * Retrieve the route URL from a {@link EveryPossibleRouteNames name}
@@ -27,9 +28,9 @@ export function routeFromName(name: PossibleRouteName, language?: Nullable<Proje
  * @param language The {@link ProjectLanguages language} to replace in the url
  */
 export function routeFromLocation({pathname,}: Location, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
-    language ??= ProjectLanguages.current
+    language ??= LanguageCompanion.current
 
     if (language.isCurrent)
         return pathname as EveryPossibleRoutes
-    return pathname.replace(ProjectLanguages.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
+    return pathname.replace(LanguageCompanion.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
 }
