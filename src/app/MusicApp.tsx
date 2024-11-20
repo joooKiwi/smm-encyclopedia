@@ -20,8 +20,8 @@ import {IndividualMusics}                                from 'core/music/Indivi
 import IndividualMusicSound                              from 'core/music/IndividualMusicSound'
 import SoundEffectImage                                  from 'core/soundEffect/SoundEffectImage'
 import {SoundEffects}                                    from 'core/soundEffect/SoundEffects'
-import {routeFromName}                                   from 'route/route'
 import {DONT_VIEW_TRACE_IMAGE, VIEW_TRACE_IMAGE}         from 'core/editor/viewTraceImages'
+import {routeFromName}                                   from 'route/method/route.fromName'
 
 import BONUS_NSMBU =                           IndividualMusics.BONUS_NSMBU
 import BONUS_NSMBU_FAST =                      IndividualMusics.BONUS_NSMBU_FAST

@@ -7,7 +7,7 @@ import type {ReactProperties}   from 'util/react/ReactProperties'
 
 import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
-import {routeFromName}      from 'route/route'
+import {routeFromName}      from 'route/method/route.fromName'
 
 import LanguageCompanion = ProjectLanguages.Companion
 
