@@ -68,7 +68,7 @@ class EventCourseAppInterpreter
             OfficialCourseAppOption.REWARD,
             OfficialCourseAppOption.NAME,
             OfficialCourseAppOption.DESCRIPTION,
-            OfficialCourseAppOption.GAME_STYLE_AND_THEMES,
+            OfficialCourseAppOption.GAME_STYLE_AND_AREAS,
             OfficialCourseAppOption.TIME,
             OfficialCourseAppOption.AVAILABILITY,
         ]
