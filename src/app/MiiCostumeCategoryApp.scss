@@ -4,8 +4,10 @@
   margin-right: auto;
 
   .tcell {
-    &.icon {}
     &.name {}
+    &.icon {}
   }
+
+  img { max-height: initial }
 
 }

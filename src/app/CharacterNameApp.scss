@@ -22,5 +22,8 @@
   margin-left: auto;
   margin-right: auto;
 
-  .tcell { &.name {} }
+  .tcell {
+    &.name {}
+    &.editorVoice {}
+  }
 }
