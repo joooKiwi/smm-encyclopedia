@@ -60,7 +60,7 @@ class MiiCostumeCategoryAppInterpreter
     }
 
     public get tableOptions(): Array<MiiCostumeCategoryAppOption> {
-        return [MiiCostumeCategoryAppOption.ICON, MiiCostumeCategoryAppOption.NAME,]
+        return [MiiCostumeCategoryAppOption.NAME, MiiCostumeCategoryAppOption.ICON,]
     }
 
 

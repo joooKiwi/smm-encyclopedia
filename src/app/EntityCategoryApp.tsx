@@ -59,7 +59,7 @@ class EntityCategoryAppInterpreter
     }
 
     public get tableOptions(): Array<EntityCategoryAppOption> {
-        return [EntityCategoryAppOption.ICON, EntityCategoryAppOption.NAME,]
+        return [EntityCategoryAppOption.NAME, EntityCategoryAppOption.ICON,]
     }
 
 

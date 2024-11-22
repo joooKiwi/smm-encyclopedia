@@ -52,7 +52,7 @@ class SoundEffectCategoryAppInterpreter
     public readonly tableCaption = gameContentTranslation('sound effect category.all',) satisfies ReactElementOrString
 
     public get tableOptions(): Array<SoundEffectCategoryAppOption> {
-        return [SoundEffectCategoryAppOption.ICON, SoundEffectCategoryAppOption.NAME,]
+        return [SoundEffectCategoryAppOption.NAME, SoundEffectCategoryAppOption.ICON,]
     }
 
 
