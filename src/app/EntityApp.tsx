@@ -123,7 +123,7 @@ class EntityAppInterpreter
     public get tableOptions(): Array<EntityAppOption> {
         const games = this.#games
         const gameStyles = this.#gameStyles
-        const {hasSmm2,} = games
+        const hasSmm2 = games.hasSmm2
 
         const options: MutableArray<EntityAppOption> = []
         if (gameStyles.hasSmb)
@@ -243,7 +243,7 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
                              titleContent={gameContentTranslation('entity.all', {
                                  Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
                              },)}
-                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles} times={times}/>}>
+                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
     </SubMainContainer>
 }
@@ -270,12 +270,11 @@ interface EntityAsideContentProperties
 
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
-    readonly times: TimeCollection
 
 }
 
 /** @reactComponent */
-function EntityAsideContent({games, gameStyles, time, game, gameStyle, times,}: EntityAsideContentProperties,) {
+function EntityAsideContent({games, gameStyles, time, game, gameStyle,}: EntityAsideContentProperties,) {
     return <div className="entity-asideContent-container">
         <GameAsideContent game={game} gameStyles={gameStyles}/>
         {game == null ? null : <div className="d-inline mx-1"/>}

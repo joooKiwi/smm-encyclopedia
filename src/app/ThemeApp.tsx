@@ -183,13 +183,6 @@ function ThemeAsideContent({type, games,}: ThemeAsideContentProperties,) {
     </div>
 }
 
-interface ThemeTypeAsideContentProperties
-    extends ReactProperties {
-
-    readonly type: ThemeTypes
-
-}
-
 /** @reactComponent */
 function TypeAsideContent({type,}: Pick<ThemeAsideContentProperties, 'type'>,) {
     return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
