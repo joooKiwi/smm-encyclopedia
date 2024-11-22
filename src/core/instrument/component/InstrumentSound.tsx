@@ -1,4 +1,6 @@
-import {forEachByArray} from '@joookiwi/collection'
+import './InstrumentSound.scss'
+
+import {mapByArray} from '@joookiwi/collection'
 
 import type {Instruments}     from 'core/instrument/Instruments'
 import type {ReactProperties} from 'util/react/ReactProperties'
@@ -17,8 +19,9 @@ export default function InstrumentSound({value,}: InstrumentSoundProperties,) {
     const englishName = value.englishName
 
     const sounds = value.sounds
-    const elements = new Array<ReactJSXElement>(sounds.length,)
-    forEachByArray(sounds, (it, i,) =>
-            elements[i] = <SimpleSoundComponent key={`instrument sounds #${i} (${englishName})`} file={it} title={`${name} (instrument #${i})`}/>,)
-    return <>{elements}</>
+    const elements = mapByArray(sounds, (it, i,) =>
+        <SimpleSoundComponent key={`instrument sounds #${i} (${englishName})`} file={it} title={`${name} (instrument #${i})`}/>,)
+    if (elements.isEmpty)
+        return <div className="instrumentSound-container individual-instrumentSound-container">{elements}</div>
+    return <div className="instrumentSound-container grouped-instrumentSound-container">{elements}</div>
 }
