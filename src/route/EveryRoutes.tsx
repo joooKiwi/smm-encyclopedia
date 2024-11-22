@@ -2476,7 +2476,7 @@ export namespace EveryRoutes {
 
 }
 
-// const everyRoute = EveryRoutes.Companion.everyRoute
-// console.table(everyRoute.filter((_, i,) => i < 500,).map(it => ({name: it.name, path: it.path,}),),)
-// console.table(everyRoute.filter((_, i,) => i >= 500 && i < 1000,).map(it => ({name: it.name, path: it.path,}),),)
-// console.table(everyRoute.filter((_, i,) => i >= 1000,).map(it => ({name: it.name, path: it.path,}),),)
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).EveryRoutes = EveryRoutes
+
+// console.info(EveryRoutes.ALL_ROUTES.map(it => ({name: it.name, path: it.path,}),),)
