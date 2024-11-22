@@ -68,22 +68,15 @@ class CharacterNameAppInterpreter
             && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 4,
             large: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
@@ -92,14 +85,14 @@ class CharacterNameAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('character name.all',) satisfies ReactElementOrString
 
     public get tableOptions(): Array<CharacterNameAppOption> {
-        return [CharacterNameAppOption.NAME,]
+        return [CharacterNameAppOption.NAME, CharacterNameAppOption.EDITOR_VOICE,]
     }
 
 
@@ -115,7 +108,7 @@ class CharacterNameAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

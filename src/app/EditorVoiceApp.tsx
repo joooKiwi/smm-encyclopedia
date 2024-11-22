@@ -70,22 +70,15 @@ class EditorVoiceAppInterpreter
             && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 3,
             medium: 4,
             large: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: EditorVoices,) {
@@ -94,8 +87,8 @@ class EditorVoiceAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('editor voice.all',) satisfies ReactElementOrString
@@ -117,7 +110,7 @@ class EditorVoiceAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

@@ -59,22 +59,15 @@ class CourseTagAppInterpreter
         return new GenericCollectionHolder(this.type.content,)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 4,
             large: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent({reference,}: CourseTags,) {
@@ -82,8 +75,8 @@ class CourseTagAppInterpreter
         //TODO add Maker Central name
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card  --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
 
@@ -116,7 +109,7 @@ class CourseTagAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

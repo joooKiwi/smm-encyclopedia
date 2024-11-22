@@ -30,21 +30,14 @@ class SampleCourseInterpreter
         return new GenericCollectionHolder(ALL,)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 4,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent({reference,}: SampleCourses,) {
@@ -55,7 +48,6 @@ class SampleCourseInterpreter
     //region -------------------- Table interpreter --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
 
     public get tableCaption() {
         const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)

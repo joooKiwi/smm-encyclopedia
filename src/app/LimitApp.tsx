@@ -69,28 +69,21 @@ class LimitAppInterpreter
             games.hasAnyIn(it.reference,),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card  --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 4,
             large: 5,
             extraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumeration: Limits,) {
         const games = this.#games
-        const option = games.hasAllGames
+        const amountOption = games.hasAllGames
             ? LimitAppOption.AMOUNT_IN_ALL_GAMES
             : games.hasSmm1Or3ds
                 ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
@@ -115,8 +108,8 @@ class LimitAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
 
@@ -156,7 +149,7 @@ class LimitAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

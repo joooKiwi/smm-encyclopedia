@@ -34,29 +34,15 @@ class EventCourseAppInterpreter
         return new GenericCollectionHolder(ALL,)
     }
 
-    //region -------------------- List interpreter --------------------
-
-    public createListDimension(): DimensionOnList {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 5,
-            extraExtraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
     //region -------------------- Card list interpreter --------------------
 
-    public createCardListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             large: 3,
             extraLarge: 4,
-        }
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: OfficialCourses,) {

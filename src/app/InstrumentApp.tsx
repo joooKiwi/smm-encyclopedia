@@ -68,23 +68,16 @@ class InstrumentAppInterpreter
             && times.hasAnyIn(reference,),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 3,
             medium: 4,
             large: 5,
             extraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: Instruments,) {
@@ -94,8 +87,8 @@ class InstrumentAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('instrument.all',) satisfies ReactElementOrString
@@ -117,7 +110,7 @@ class InstrumentAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

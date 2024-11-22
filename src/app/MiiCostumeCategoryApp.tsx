@@ -32,29 +32,22 @@ class MiiCostumeCategoryAppInterpreter
         return new GenericCollectionHolder(ALL,)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 4,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: MiiCostumeCategories,) {
         return <MiiCostumeCategoryIcon reference={enumerable}/>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableColor = 'primary' satisfies BootstrapThemeColor
@@ -83,7 +76,7 @@ class MiiCostumeCategoryAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

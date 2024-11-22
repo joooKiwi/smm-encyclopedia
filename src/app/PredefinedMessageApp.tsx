@@ -30,31 +30,24 @@ class PredefinedMessageAppInterpreter
         return new GenericCollectionHolder(ALL,)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 3,
             large: 5,
             extraLarge: 6,
-        }
+        } as const satisfies DimensionOnList
     }
 
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension(): never {
-        throw new ReferenceError('The method "createCardListDimension" was not expected to be called.',)
+    public createCardListContent(): null {
+        return null
     }
 
-    public createCardListContent(): never {
-        throw new ReferenceError('The method "createCardListContent" was not expected to be called.',)
-    }
-
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('predefined message.all', {
@@ -79,7 +72,7 @@ class PredefinedMessageAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

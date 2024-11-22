@@ -67,36 +67,29 @@ class ThemeAppInterpreter
             games.hasAnyIn(reference,),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
-        const type = this.type
+    public createCardListDimension() {
+        const type = this.#type
         if (type === ThemeTypes.COURSE)
             return {
                 default: 1,
                 small: 2,
                 medium: 5,
-            }
+            } as const satisfies DimensionOnList
         if (type === ThemeTypes.WORLD)
             return {
                 default: 1,
                 small: 2,
                 medium: 4,
-            }
+            } as const satisfies DimensionOnList
         return {
             default: 1,
             small: 2,
             medium: 3,
             large: 4,
             extraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: Themes,) {
@@ -110,8 +103,8 @@ class ThemeAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card  --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('theme.all.all',) satisfies ReactElementOrString
@@ -134,7 +127,7 @@ class ThemeAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 

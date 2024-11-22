@@ -31,29 +31,16 @@ class MysteryMushroomAppInterpreter
         return new GenericCollectionHolder(ALL,)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             large: 3,
             extraLarge: 4,
             extraExtraLarge: 6,
-        }
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: MysteryMushrooms,) {
@@ -78,8 +65,8 @@ class MysteryMushroomAppInterpreter
             </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableColor = 'primary' satisfies BootstrapThemeColor
@@ -120,7 +107,7 @@ class MysteryMushroomAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 
