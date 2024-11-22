@@ -1,10 +1,11 @@
 import 'app/_GameAsideContent.scss'
 import 'app/_GameStyleAsideContent.scss'
+import 'app/_TimeAsideContent.scss'
 import './EntityApp.scss'
 import 'app/options/EntityAppOption.scss'
 
-import type {Array, MutableArray} from '@joookiwi/type'
-import {filterByArray}            from '@joookiwi/collection'
+import type {Array, MutableArray, NullOr} from '@joookiwi/type'
+import {filterByArray}                    from '@joookiwi/collection'
 
 import type {EntityProperties}        from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -19,6 +20,7 @@ import SubMainContainer                             from 'app/_SubMainContainer'
 import {EntityAppOption}                            from 'app/options/EntityAppOption'
 import {EntityGames}                                from 'app/property/EntityGames'
 import {EntityGameStyles}                           from 'app/property/EntityGameStyles'
+import {EntityTimes}                                from 'app/property/EntityTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
@@ -32,6 +34,8 @@ import {Games}                                      from 'core/game/Games'
 import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import TimeImage                                    from 'core/time/TimeImage'
+import {Times}                                      from 'core/time/Times'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
@@ -223,12 +227,23 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
                             : EntityGameStyles.NEW_SUPER_MARIO_BROS_U
 
     //endregion -------------------- Game style selection --------------------
+    //region -------------------- Time selection --------------------
+
+    const time = games.hasNotSMM2AndSMM1Or3DS
+        ? null
+        : times.hasAllTimes
+            ? EntityTimes.ALL_TIMES
+            : times.hasDay
+                ? EntityTimes.DAY
+                : EntityTimes.NIGHT
+
+    //endregion -------------------- Time selection --------------------
 
     return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('entity.all', {
                                  Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
                              },)}
-                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>}>
+                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles} times={times}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
     </SubMainContainer>
 }
@@ -249,26 +264,31 @@ function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,)
 interface EntityAsideContentProperties
     extends ReactProperties {
 
-    readonly game: EntityGames
+    readonly game: NullOr<EntityGames>
     readonly gameStyle: EntityGameStyles
-    // readonly time: EntityTimes
+    readonly time: NullOr<EntityTimes>
 
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
+    readonly times: TimeCollection
 
 }
 
 /** @reactComponent */
-function EntityAsideContent({games, gameStyles, game, gameStyle,}: EntityAsideContentProperties,) {
+function EntityAsideContent({games, gameStyles, time, game, gameStyle, times,}: EntityAsideContentProperties,) {
     return <div className="entity-asideContent-container">
         <GameAsideContent game={game} gameStyles={gameStyles}/>
-        <div className="d-inline mx-1"/>
+        {game == null ? null : <div className="d-inline mx-1"/>}
         <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
+        {time == null ? null : <div className="d-inline mx-1"/>}
+        <TimeAsideContent time={time}/>
     </div>
 }
 
 /** @reactComponent */
 function GameAsideContent({game, gameStyles,}: Omit<EntityAsideContentProperties, | 'gameStyle' | 'time' | 'games' | 'times'>,) {
+    if (game == null)
+        return null
     if (gameStyles.hasSM3DW) {
         const amountOfGameStyles = gameStyles.size
         if (!(amountOfGameStyles === 5 || amountOfGameStyles === 4))
@@ -297,7 +317,7 @@ function GameAsideContent({game, gameStyles,}: Omit<EntityAsideContentProperties
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({gameStyle, games, gameStyles,}: Omit<EntityAsideContentProperties, | 'game' | 'time'>,) {
+function GameStyleAsideContent({gameStyle, games, gameStyles,}: Omit<EntityAsideContentProperties, | 'game' | 'time' | 'times'>,) {
     if (games.hasSMM2)
         //The game styles are in SMM2
         return <div id="entity-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
@@ -339,6 +359,23 @@ function GameStyleAsideContent({gameStyle, games, gameStyles,}: Omit<EntityAside
             </LinkButton>
             <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNSMBU,)}>
                 <GameStyleImage reference={NSMBU}/>
+            </LinkButton>
+        </div>
+    </div>
+}
+
+/** @reactComponent */
+function TimeAsideContent({time,}: Pick<EntityAsideContentProperties, 'time'>,) {
+    if (time == null)
+        return null
+    return <div id="entity-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm">
+            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+                <TimeImage reference={Times.DAY}/>
+            </LinkButton>
+            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+                <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>
     </div>
