@@ -1,5 +1,9 @@
 enum Enum {
     NAME,
+    REFERENCE_SMB,
+    REFERENCE_SMB3,
+    REFERENCE_SMW,
+    REFERENCE_NSMBU,
     SOUND,
 }
 

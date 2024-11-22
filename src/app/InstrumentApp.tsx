@@ -48,13 +48,15 @@ class InstrumentAppInterpreter
     //region -------------------- Fields --------------------
 
     readonly #games
+    readonly #gameStyles
     readonly #times
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection, times: TimeCollection,) {
+    public constructor(games: GameCollection, gameStyles: GameStyleCollection, times: TimeCollection,) {
         this.#games = games
+        this.#gameStyles = gameStyles
         this.#times = times
     }
 
@@ -62,9 +64,11 @@ class InstrumentAppInterpreter
 
     public get content() {
         const games = this.#games
+        // const gameStyles = this.#gameStyles
         const times = this.#times
         return filterByArray(ALL, ({reference,},) =>
             games.hasAnyIn(reference,)
+            // && gameStyles.hasAnyIn(reference,)
             && times.hasAnyIn(reference,),)
     }
 
@@ -94,7 +98,19 @@ class InstrumentAppInterpreter
     public readonly tableCaption = gameContentTranslation('instrument.all',) satisfies ReactElementOrString
 
     public get tableOptions(): Array<InstrumentAppOption> {
-        return [InstrumentAppOption.NAME, InstrumentAppOption.SOUND,]
+        const gameStyles = this.#gameStyles
+
+        const options: MutableArray<InstrumentAppOption> = [InstrumentAppOption.NAME,]
+        if (gameStyles.hasSmb)
+            options.push(InstrumentAppOption.REFERENCE_SMB,)
+        if (gameStyles.hasSmb3)
+            options.push(InstrumentAppOption.REFERENCE_SMB3,)
+        if (gameStyles.hasSmw)
+            options.push(InstrumentAppOption.REFERENCE_SMW,)
+        if (gameStyles.hasNsmbu)
+            options.push(InstrumentAppOption.REFERENCE_NSMBU,)
+        options.push(InstrumentAppOption.SOUND,)
+        return options
     }
 
 
@@ -121,7 +137,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
-export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAppProperties,) {
+export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
     const game = games.hasSmm2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
         : games.hasSmm1
@@ -139,13 +155,13 @@ export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAp
                              titleContent={gameContentTranslation('instrument.all',)}
                              description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<InstrumentAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
+        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
     </SubMainContainer>
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: Omit<InstrumentAppProperties, 'gameStyles'>,) {
-    const appInterpreter = new InstrumentAppInterpreter(games, times,)
+function SubContent({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
+    const appInterpreter = new InstrumentAppInterpreter(games, gameStyles, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <InstrumentList items={appInterpreter.content}/>
