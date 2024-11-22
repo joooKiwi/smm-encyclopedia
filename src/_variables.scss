@@ -5,6 +5,8 @@ $enable-gradients: true;
 $enable-negative-margins: true;
 $enable-important-utilities: false;
 
+$body-bg: #f8f9fa;//$gray-100
+
 //endregion -------------------- Variables to customize Bootstrap --------------------
 
 @import '~bootstrap/scss/variables';
