@@ -6,3 +6,19 @@
   translate: 0 var(--bs-spacer-md);
   --image-width: 24px;
 }
+
+
+#miiCostume-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.image {}
+    &.name {}
+    &.officialNotification {}
+    &.category {}
+    &.categoryAsText {}
+  }
+
+}

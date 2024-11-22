@@ -76,6 +76,10 @@ class MiiCostumeAppInterpreter
     }
 
 
+    public getAdditionalClass(option: MiiCostumeAppOption,) {
+        return option.additionalClasses
+    }
+
     public createTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
         return option.renderContent(content,)
     }

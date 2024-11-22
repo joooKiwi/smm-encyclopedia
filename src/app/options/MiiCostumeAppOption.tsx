@@ -35,7 +35,7 @@ export abstract class MiiCostumeAppOption
             return {key: 'image', element: contentTranslation('Image',),}
         }
 
-    }()
+    }('image',)
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
         protected override _createContentOption(enumeration: MiiCostumes,) {
@@ -46,7 +46,7 @@ export abstract class MiiCostumeAppOption
             return CommonOptions.get.nameHeader
         }
 
-    }()
+    }('name',)
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
         protected override _createContentOption(enumeration: MiiCostumes,) {
@@ -59,7 +59,7 @@ export abstract class MiiCostumeAppOption
             return {key: 'officialNotification', element: '--Official notification--',}
         }
 
-    }()
+    }('officialNotification')
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
@@ -71,7 +71,7 @@ export abstract class MiiCostumeAppOption
             return CommonOptions.get.categoryHeader
         }
 
-    }()
+    }('category',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -97,15 +97,29 @@ export abstract class MiiCostumeAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
+
+    readonly #associatedClass
+    readonly #additionalClasses
+
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
+    private constructor(associatedClass: string,) {
         super()
+        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    public get associatedClass(): string {
+        return this.#associatedClass
+    }
+
+    public get additionalClasses(): readonly [string,] {
+        return this.#additionalClasses
+    }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
