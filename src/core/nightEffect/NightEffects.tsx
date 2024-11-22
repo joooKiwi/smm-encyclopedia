@@ -39,7 +39,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with special effects on ground night
             return {
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
             }
         }
 
@@ -48,10 +48,9 @@ export class NightEffects
     public static readonly DARK =                       new class NightEffects_Dark extends NightEffects {
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
-            //TODO change the entities to be only for the entities with dark light
             return {
                 course: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
                 players: NightEffects._createPlayersLink(this),
             }
         }
@@ -71,9 +70,10 @@ export class NightEffects
     public static readonly LOW_GRAVITY =                new class NightEffects_LowGravity extends NightEffects {
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
+            //TODO change the link to be only for the entities with special effects on underwater
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
             }
         }
 
@@ -95,7 +95,7 @@ export class NightEffects
             //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
             }
         }
 
