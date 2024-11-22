@@ -47,7 +47,7 @@ export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
     }
 
     /** The collection has the {@link ViewDisplays.TABLE} type in its values */
-    public get hasSMM2(): boolean {
+    public get hasTable(): boolean {
         return this.#hasTable ??= this.has(ViewDisplays.TABLE as unknown as T,)
     }
 
