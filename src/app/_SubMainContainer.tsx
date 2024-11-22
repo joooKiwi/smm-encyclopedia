@@ -8,6 +8,7 @@ import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties
 import DisplayButtonGroup from 'app/withInterpreter/DisplayButtonGroup'
 import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
 import UnfinishedText     from 'app/tools/text/UnfinishedText'
+import Description        from 'app/util/Description'
 
 interface SubMainContainerProperties
     extends SimpleReactPropertiesWithChildren<ReactElementOrString> {
@@ -38,7 +39,7 @@ export default function SubMainContainer({reactKey, viewDisplayAndRouteName, vie
                 <DisplayButtonGroup reactKey={reactKey} views={viewDisplayAndRouteName} currentView={viewDisplay}/>
                 {asideContent}
             </aside>
-            {description == null ? <UnfinishedText type="paragraph" isHidden>description</UnfinishedText> : <div className="description-container">{description}</div>}
+            {description == null ? <UnfinishedText type="paragraph" isHidden>description</UnfinishedText> : <Description>{description}</Description>}
             <div id={`${reactKey}-app-content`} className="app-content">{children}</div>
         </div>
     </div>
