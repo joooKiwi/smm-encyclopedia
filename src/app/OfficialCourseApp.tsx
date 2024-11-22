@@ -1,12 +1,14 @@
 import './OfficialCourseApp.scss'
 
 import type {Array}              from '@joookiwi/type'
+import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {OfficialCourseProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}  from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}          from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}         from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ReactProperties}          from 'util/react/ReactProperties'
 
 import SubMainContainer                from 'app/_SubMainContainer'
 import {OfficialCourseAppOption}       from 'app/options/OfficialCourseAppOption'
@@ -124,8 +126,32 @@ export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperti
 /** @reactComponent */
 function SubContent({viewDisplay,}: Pick<OfficialCourseProperties, 'viewDisplay'>,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="officialCourse" interpreter={appInterpreter}/>
+        return <OfficialCourseList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="officialCourse" interpreter={appInterpreter}/>
     return <Table id="officialCourse-table" interpreter={appInterpreter}/>
 }
+
+//region -------------------- List --------------------
+
+interface OfficialCourse_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<OfficialCourses>
+
+}
+
+function OfficialCourseList({items,}: OfficialCourse_ListProperties,) {
+    return <List partialId="officialCourse" items={items} withSeparator>{it => {
+        const reference = it.reference
+        return <div className="d-flex justify-content-between">
+            <NameComponent id="officialCourse-name" name={reference} popoverOrientation="right"/>
+            <div className="d-flex">
+                <OfficialCourseReward reference={it}/>
+                <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.courseThemeInTheMainArea} subArea={reference.courseThemeInTheSubArea}/>
+            </div>
+        </div>
+    }}</List>
+}
+
+//endregion -------------------- List --------------------

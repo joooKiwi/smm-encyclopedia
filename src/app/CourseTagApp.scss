@@ -7,8 +7,11 @@
 
   .description-container .game-image { height: var(--bs-font-size-lg) }
 
-  .cardListName-content-container { color: rgba(var(--bs-dark-rgb), 50%,) }
+}
 
+#courseTag-list {
+  .listItem { min-height: 2rem }
+  .first-appearance { margin-left: var(--bs-spacer-sm) }
 }
 
 #courseTag-table {

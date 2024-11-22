@@ -1,23 +1,25 @@
 import './SoundEffectCategoryApp.scss'
 
 import type {Array}              from '@joookiwi/type'
+import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ReactProperties}              from 'util/react/ReactProperties'
 
 import SubMainContainer               from 'app/_SubMainContainer'
 import {SoundEffectCategoryAppOption} from 'app/options/SoundEffectCategoryAppOption'
-import Image                          from 'app/tools/images/Image'
 import CardList                       from 'app/withInterpreter/CardList'
-import SimpleList                     from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
+import List                           from 'app/util/List'
 import Table                          from 'app/tools/table/Table'
 import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
 import SoundEffectCategoryIcon        from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
+import NameComponent                  from 'lang/name/component/Name.component'
 
 import ALL = SoundEffectCategories.ALL
 
@@ -95,8 +97,28 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+        return <SoundEffectCategoryList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
     return <Table id="soundEffectCategory-table" interpreter={appInterpreter}/>
 }
+
+//region -------------------- List --------------------
+
+interface SoundEffectCategory_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<SoundEffectCategories>
+
+}
+
+function SoundEffectCategoryList({items,}: SoundEffectCategory_ListProperties,) {
+    return <List partialId="soundEffectCategory" items={items}>{it =>
+        <div className="d-flex justify-content-between align-items-center">
+            <NameComponent id="soundEffectCategory-name" name={it.reference} popoverOrientation="right"/>
+            <SoundEffectCategoryIcon reference={it}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------

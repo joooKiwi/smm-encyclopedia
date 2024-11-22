@@ -2,6 +2,7 @@ import 'app/_GameAsideContent.scss'
 import './LimitApp.scss'
 
 import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}                  from '@joookiwi/collection'
 import {filterByArray}                          from '@joookiwi/collection'
 
 import type {LimitAppProperties}      from 'app/AppProperties.types'
@@ -22,15 +23,19 @@ import {LimitGames}                                 from 'app/property/LimitGame
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Image                                        from 'app/tools/images/Image'
 import Table                                        from 'app/tools/table/Table'
+import TextComponent                                from 'app/tools/text/TextComponent'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
+import {Empty}                                      from 'util/emptyVariables'
 
+import EMPTY_STRING = Empty.EMPTY_STRING
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
@@ -183,12 +188,49 @@ function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gam
     const appInterpreter = new LimitAppInterpreter(type, games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-           return <SimpleList reactKey="limit" interpreter={appInterpreter}/>
+           return <LimitList items={appInterpreter.content} games={games}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
             return<CardList reactKey="limit" interpreter={appInterpreter}/>
     return<Table id="limit-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface Limit_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<Limits>
+
+    readonly games: GameCollection
+
+}
+
+function LimitList({items, games,}: Limit_ListProperties,) {
+    const amountOption = games.hasAllGames
+        ? LimitAppOption.AMOUNT_IN_ALL_GAMES
+        : games.hasSmm1Or3ds
+            ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
+            : LimitAppOption.AMOUNT_IN_SMM2
+    return <List partialId="limit" items={items} withSeparator>{it => {
+        const reference = it.reference
+        const hasAlternative = it.alternativeAcronym != null
+        return <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex flex-column">
+                <div className="d-flex">
+                    <TextComponent content={it.acronym} className="text-body text-opacity-50 fst-italic me-1"/>
+                    <NameComponent id="limit-name" name={reference} popoverOrientation="top"/>
+                </div>
+                {hasAlternative ? <div className="d-flex">
+                    <TextComponent content={it.alternativeAcronym} className="text-body text-opacity-50 fst-italic me-1"/>
+                    <NameComponent id="limit-alternativeName" name={reference.alternativeContainer} popoverOrientation="top"/>
+                </div> : null}
+            </div>
+            {amountOption.renderContent(it,)}
+        </div>
+    }}</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface LimitDescriptionProperties
@@ -271,6 +313,8 @@ function TypeAsideContent({type,}: Pick<LimitAsideContentProperties, 'type'>,) {
         </div>
     </div>
 }
+
+//TODO add "game style" aside content
 
 /** @reactComponent */
 function GameAsideContent({type, game,}: LimitAsideContentProperties,) {

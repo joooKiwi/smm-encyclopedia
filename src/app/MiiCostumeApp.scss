@@ -1,7 +1,8 @@
-.cardListElement-container img {
-  max-height: 2cm;
-}
+#miiCostume-list .miiCostume-image { max-height: 4rem }
+
+.cardListElement-container .miiCostume-image { max-height: 6rem }
 
 .question-block-image {
+  translate: 0 var(--bs-spacer-md);
   --image-width: 24px;
 }

@@ -1,10 +1,6 @@
-#mysteryMushroom-table, .cardListElement-container, {
-
-  .animated-image, .non-animated-image, {
-    --amount-of-blocks: 1;
-    --single-height: 24px;
-  }
-
+:is(#mysteryMushroom-table, .cardListElement-container) :is(.animated-image, .non-animated-image) {
+  --amount-of-blocks: 1;
+  --single-height: 24px;
 }
 
 .cardListElement-container {
@@ -15,10 +11,8 @@
     justify-content: center;
   }
 
-  .dual-image-content-container {
-    > div {
-      display: flex;
-      flex-direction: column;
-    }
+  .dual-image-content-container > div {
+    display: flex;
+    flex-direction: column;
   }
 }

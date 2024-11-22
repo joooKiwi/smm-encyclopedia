@@ -2,6 +2,7 @@ import 'app/_GameAsideContent.scss'
 import './SoundEffectApp.scss'
 
 import type {Array, MutableArray} from '@joookiwi/type'
+import type {CollectionHolder}    from '@joookiwi/collection'
 import {filterByArray}            from '@joookiwi/collection'
 
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
@@ -16,13 +17,14 @@ import {SoundEffectAppOption}                       from 'app/options/SoundEffec
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import {SoundEffectGames}                           from 'app/property/SoundEffectGames'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import ALL =                   SoundEffects.ALL
 import renderSMM1And3DSImage = SoundEffectAppOption.renderSMM1And3DSImage
@@ -136,7 +138,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
-export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
+export default function SoundEffectApp({viewDisplay, games,}: SoundEffectProperties,) {
     return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('sound effect.all',)}
                              asideContent={<SoundEffectAsideContent games={games}/>}>
@@ -149,12 +151,36 @@ function SubContent({viewDisplay, games,}: Omit<SoundEffectProperties, | 'gameSt
     const appInterpreter = new SoundEffectAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
+        return <SoundEffectList items={appInterpreter.content} games={games}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
     return <Table id="soundEffect-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface SoundEffect_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<SoundEffects>
+
+    readonly games: GameCollection
+
+}
+
+function SoundEffectList({items, games: {hasSmm1Or3ds, hasSmm2,},}: SoundEffect_ListProperties,) {
+    return <List partialId="soundEffect" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="soundEffect-name" name={it.reference} popoverOrientation="right"/>
+            <div className="soundEffect-images-container">
+                {hasSmm1Or3ds ? renderSMM1And3DSImage(it,) : null}
+                {hasSmm2 ? renderSMM2Image(it,) : null}
+            </div>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Aside content --------------------
 
 interface SoundEffectAsideContentProperties

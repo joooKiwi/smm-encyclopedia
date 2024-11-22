@@ -1,8 +1,9 @@
 import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
-import type {Array}    from '@joookiwi/type'
-import {filterByArray} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import {filterByArray}         from '@joookiwi/collection'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -22,8 +23,8 @@ import {ThemeTypes}                                      from 'app/property/Them
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
 import Table                                             from 'app/tools/table/Table'
+import List                                              from 'app/util/List'
 import CardList                                          from 'app/withInterpreter/CardList'
-import SimpleList                                        from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
 import {Games}                                           from 'core/game/Games'
 import GameImage                                         from 'core/game/component/GameImage'
@@ -31,6 +32,7 @@ import EndlessMarioImage                                 from 'core/theme/compon
 import ThemeImage                                        from 'core/theme/component/ThemeImage'
 import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
+import NameComponent                                     from 'lang/name/component/Name.component'
 
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
@@ -157,12 +159,35 @@ function SubContent({viewDisplay, type, games,}: Omit<ThemeAppProperties, | 'gam
     const appInterpreter = new ThemeAppInterpreter(type, games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="theme" interpreter={appInterpreter}/>
+        return <ThemeList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="theme" interpreter={appInterpreter}/>
     return <Table id="theme-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface Theme_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<Themes>
+
+}
+
+function ThemeList({items,}: Theme_ListProperties,) {
+    return <List partialId="theme" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between align-items-center">
+            <NameComponent id="theme-name" name={it.reference} popoverOrientation="right"/>
+            <div className="images-container ms-1">
+                <ThemeImage reference={it}/>
+                <ThemeTypeImages reference={it}/>
+                <EndlessMarioImage reference={it}/>
+            </div>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Aside content --------------------
 
 interface ThemeAsideContentProperties

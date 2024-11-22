@@ -1,24 +1,27 @@
 import './MiiCostumeCategoryApp.scss'
 
 import type {Array}              from '@joookiwi/type'
+import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ReactProperties}              from 'util/react/ReactProperties'
 
 import SubMainContainer              from 'app/_SubMainContainer'
 import {MiiCostumeCategoryAppOption} from 'app/options/MiiCostumeCategoryAppOption'
 import Table                         from 'app/tools/table/Table'
 import {unfinishedText}              from 'app/tools/text/UnfinishedText'
+import List                          from 'app/util/List'
 import CardList                      from 'app/withInterpreter/CardList'
-import SimpleList                    from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
 import MiiCostumeCategoryIcon        from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
 import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}      from 'lang/components/translationMethods'
+import NameComponent                 from 'lang/name/component/Name.component'
 
 import ALL = MiiCostumeCategories.ALL
 
@@ -105,8 +108,28 @@ export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreter
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
+        return <MiiCostumeCategoryList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
     return <Table id="miiCostumeCategory-table" interpreter={appInterpreter}/>
 }
+
+//region -------------------- List --------------------
+
+interface MiiCostumeCategory_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<MiiCostumeCategories>
+
+}
+
+function MiiCostumeCategoryList({items,}: MiiCostumeCategory_ListProperties,) {
+    return <List partialId="miiCostumeCategory" items={items}>{it =>
+        <div className="d-flex justify-content-between align-items-center">
+            <NameComponent id="miiCostumeCategory-name" name={it.reference} popoverOrientation="right"/>
+            <MiiCostumeCategoryIcon reference={it}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------

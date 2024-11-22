@@ -5,6 +5,7 @@ import './EntityApp.scss'
 import 'app/options/EntityAppOption.scss'
 
 import type {Array, MutableArray, NullOr} from '@joookiwi/type'
+import type {CollectionHolder}            from '@joookiwi/collection'
 import {filterByArray}                    from '@joookiwi/collection'
 
 import type {EntityProperties}        from 'app/AppProperties.types'
@@ -24,8 +25,8 @@ import {EntityTimes}                                from 'app/property/EntityTim
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                                   from 'core/entity/Entities'
@@ -38,6 +39,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
 
@@ -256,12 +258,36 @@ function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,)
     const appInterpreter = new EntityAppInterpreter(games, gameStyles, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="entity" interpreter={appInterpreter}/>
+        return <EntityList items={appInterpreter.content} gameStyles={gameStyles}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="entity" interpreter={appInterpreter}/>
     return <Table id="entity-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface Entity_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<Entities>
+
+    readonly gameStyles: GameStyleCollection
+
+}
+
+function EntityList({items, gameStyles,}: Entity_ListProperties,) {
+    return <List partialId="entity" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <div className="d-flex">
+                <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
+                <SingleEntityImage reference={it} gameStyles={gameStyles}/>
+            </div>
+            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.englishName}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Aside content --------------------
 
 interface EntityAsideContentProperties

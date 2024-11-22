@@ -1,6 +1,7 @@
 import './CourseTagApp.scss'
 
 import type {Array, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}    from '@joookiwi/collection'
 import {GenericCollectionHolder}  from '@joookiwi/collection'
 import {Link}                     from 'react-router-dom'
 
@@ -20,8 +21,8 @@ import {unfinishedText}                             from 'app/tools/text/Unfinis
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import FirstAppearance                              from 'core/courseTag/component/FirstAppearance'
 import {Games}                                      from 'core/game/Games'
@@ -29,6 +30,7 @@ import GameImage                                    from 'core/game/component/Ga
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import SMM2 = Games.SMM2
 
@@ -147,12 +149,31 @@ function SubContent({viewDisplay, type,}: CourseTagAppProperties,) {
     const appInterpreter = new CourseTagAppInterpreter(type,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="courseTag" interpreter={appInterpreter}/>
+        return <CourseTagList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="courseTag" interpreter={appInterpreter}/>
     return <Table id="courseTag-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface CourseTag_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<CourseTags>
+
+}
+
+function CourseTagList({items,}: CourseTag_ListProperties,) {
+    return <List partialId="courseTag" items={items}>{({reference,},) =>
+        <div className="d-flex">
+            <NameComponent id="courseTag-name" name={reference} popoverOrientation="top"/>
+            <FirstAppearance reference={reference}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface CourseTagDescriptionProperties

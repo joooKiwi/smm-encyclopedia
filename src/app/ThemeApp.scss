@@ -15,6 +15,13 @@
 
 }
 
+#theme-list {
+  .images-container { min-width: 3rem * 3 + 2rem }
+  .theme-image { max-height: 3rem }
+  .themeTypesImages-container img { max-width: 2rem }
+  .endlessMario-image { max-width: 3rem }
+}
+
 #theme-table {
   width: auto;
   margin-left: auto;
@@ -29,14 +36,7 @@
     align-items: center;
   }
 
-  .themeContentImages-container {
-    display: flex;
-    flex-direction: column;
-
-    img {
-      max-height: .5cm;
-    }
-  }
+  .themeTypesImages-container img { max-height: .5cm }
 
   .name-container {
     text-align: center;
@@ -51,13 +51,14 @@
       right: 0;
       max-height: calc(.75cm / 1.5);
       background-color: rgba(var(--bs-dark-300-rgb), .5,);
+      border-radius: var(--bs-border-circle-radius);
     }
 
   }
 
 }
 
-.images-container, .gameContentImages-container, .themeContentImages-container {
+.images-container, .gameContentImages-container, .themeTypesImages-container {
   img {
     width: fit-content;
   }
@@ -83,7 +84,7 @@
       }
     }
 
-    .gameContentImages-container, .themeContentImages-container, {
+    .gameContentImages-container {
       display: flex;
       flex-direction: column;
     }
@@ -91,7 +92,7 @@
   }
 
 
-  .images-container img {
+  :where(.theme-image, .endlessMario-image) {
     max-height: 2cm;
     @include media-breakpoint-between($grid-breakpoint-lg, $grid-breakpoint-xl) {
       max-height: 1.5cm;
@@ -103,7 +104,7 @@
     max-height: 1cm;
   }
 
-  .themeContentImages-container img {
+  .themeTypesImages-container img {
     min-height: .5cm;
     max-height: 1cm;
   }

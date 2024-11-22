@@ -1,3 +1,11 @@
+#officialCourse-list {
+
+  .themeAndGameStyle-container { width: 3rem * 4 }
+
+  :where(.theme-image, .gameStyle-image) { height: 3rem }
+
+}
+
 #officialCourse-table {
   width: auto;
   margin-left: auto;

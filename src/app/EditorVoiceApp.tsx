@@ -3,6 +3,7 @@ import 'app/_TimeAsideContent.scss'
 import './EditorVoiceApp.scss'
 
 import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}            from '@joookiwi/collection'
 import {filterByArray}                    from '@joookiwi/collection'
 
 import type {EditorVoiceProperties}   from 'app/AppProperties.types'
@@ -23,8 +24,8 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
@@ -36,6 +37,7 @@ import TimeImage                                    from 'core/time/component/Ti
 import {Themes}                                     from 'core/theme/Themes'
 import ThemeImage                                   from 'core/theme/component/ThemeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import ALL =    EditorVoices.ALL
 import SMM1 =   Games.SMM1
@@ -155,12 +157,31 @@ function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'g
     const appInterpreter = new EditorVoiceAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
+        return <EditorVoiceList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
     return <Table id="editorVoice-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface EditorVoice_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<EditorVoices>
+
+}
+
+function EditorVoiceList({items,}: EditorVoice_ListProperties,) {
+    return <List partialId="editorVoice" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
+            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.englishName}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface EditorVoiceDescriptionProperties

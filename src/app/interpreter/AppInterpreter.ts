@@ -8,7 +8,6 @@ import type {Name}                 from 'lang/name/Name'
 /**
  * An application interpreter when using a basic content as a {@link CollectionHolder Collection}
  *
- * @see AppInterpreterWithSimpleList
  * @see AppInterpreterWithCardList
  * @see AppInterpreterWithTable
  */

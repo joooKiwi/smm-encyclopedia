@@ -10,6 +10,13 @@
 
 }
 
+#characterName-list {
+  .listItem {
+    min-height: 2.5rem;
+    .single-editorVoiceSound-container { margin-left: var(--bs-spacer-sm) }
+  }
+}
+
 #characterName-table {
   width: auto;
   margin-left: auto;

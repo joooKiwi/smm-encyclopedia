@@ -1,9 +1,14 @@
 #soundEffect-app-container {
+
   .viewChanger-container {
     //TODO change the view changer default position to not have be absolute
     position: initial;
   }
+
+  .cardListElement-container .soundEffect-image { max-height: 4rem }
 }
+
+#soundEffect-list .soundEffect-image { max-height: 3rem }
 
 #soundEffect-table {
   width: auto;

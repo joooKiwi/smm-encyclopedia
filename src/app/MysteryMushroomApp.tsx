@@ -1,23 +1,26 @@
 import './MysteryMushroomApp.scss'
 
 import type {Array}              from '@joookiwi/type'
+import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ReactProperties}              from 'util/react/ReactProperties'
 
 import SubMainContainer           from 'app/_SubMainContainer'
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
 import Table                      from 'app/tools/table/Table'
 import {unfinishedText}           from 'app/tools/text/UnfinishedText'
+import List                       from 'app/util/List'
 import CardList                   from 'app/withInterpreter/CardList'
-import SimpleList                 from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
+import NameComponent              from 'lang/name/component/Name.component'
 
 import ALL = MysteryMushrooms.ALL
 
@@ -127,7 +130,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyMysteryMushroom (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MysteryMushroomAppInterpreter()
-const keyRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
+const uniqueEnglishNameRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
@@ -143,8 +146,30 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+        return <MysteryMushroomList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+        return <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={uniqueEnglishNameRetriever}/>
     return <Table id="mysteryMushroom-table" interpreter={appInterpreter}/>
 }
+
+//region -------------------- List --------------------
+
+interface MysteryMushroom_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<MysteryMushrooms>
+
+}
+
+function MysteryMushroomList({items,}:MysteryMushroom_ListProperties,) {
+    return <List partialId="mysteryMushroom" items={items} nameRetriever={uniqueEnglishNameRetriever}>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="mysteryMushroom-name" name={it.reference} popoverOrientation="right"/>
+            <div className="images-container">
+                {MysteryMushroomAppOption.WAITING.renderImageContent(it,)}
+            </div>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------

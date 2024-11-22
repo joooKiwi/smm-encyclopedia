@@ -2,14 +2,16 @@ import 'app/_GameAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './InstrumentApp.scss'
 
-import type {Array, NullOr, NullOrString} from '@joookiwi/type'
-import {filterByArray}                    from '@joookiwi/collection'
+import type {Array, MutableArray, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}                          from '@joookiwi/collection'
+import {filterByArray}                                  from '@joookiwi/collection'
 
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
+import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
 import type {TimeCollection}          from 'util/collection/TimeCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
@@ -20,8 +22,8 @@ import {InstrumentGames}                            from 'app/property/Instrumen
 import {InstrumentTimes}                            from 'app/property/InstrumentTimes'
 import Table                                        from 'app/tools/table/Table'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import List                                         from 'app/util/List'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
@@ -33,6 +35,7 @@ import InstrumentSound                              from 'core/instrument/compon
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import ALL =    Instruments.ALL
 import SMM1 =   Games.SMM1
@@ -152,12 +155,34 @@ function SubContent({viewDisplay, games, times,}: Omit<InstrumentAppProperties, 
     const appInterpreter = new InstrumentAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="instrument" interpreter={appInterpreter}/>
+        return <InstrumentList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="instrument" interpreter={appInterpreter}/>
     return <Table id="instrument-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface Instrument_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<Instruments>
+
+}
+
+function InstrumentList({items,}: Instrument_ListProperties,) {
+    return <List partialId="instrument" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <div className="d-flex">
+                <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
+                <EntityInstrumentImages value={it}/>
+            </div>
+            <InstrumentSound value={it}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface InstrumentDescriptionProperties
@@ -237,6 +262,8 @@ function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'
         </LinkButton>
     </div>
 }
+
+//TODO add "game style" aside content
 
 /** @reactComponent */
 function TimeAsideContent({time,}: Pick<InstrumentAsideContentProperties, 'time'>,) {

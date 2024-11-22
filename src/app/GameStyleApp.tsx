@@ -2,6 +2,7 @@ import 'app/_GameAsideContent.scss'
 import './GameStyleApp.scss'
 
 import type {Array, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}    from '@joookiwi/collection'
 import {filterByArray}            from '@joookiwi/collection'
 
 import type {GameStyleProperties}     from 'app/AppProperties.types'
@@ -20,8 +21,8 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -29,6 +30,7 @@ import {GameStyles}                                 from 'core/gameStyle/GameSty
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import ALL =    GameStyles.ALL
 import SMM1 =   Games.SMM1
@@ -137,12 +139,31 @@ function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyl
     const appInterpreter = new GameStyleAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
+        return <GameStyleList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
     return <Table id="gameStyle-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface GameStyle_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<GameStyles>
+
+}
+
+function GameStyleList({items,}:GameStyle_ListProperties,) {
+    return <List partialId="gameStyle" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="gameStyle-name" name={it.reference} popoverOrientation="top"/>
+            <GameStyleImage reference={it}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface GameStyleDescriptionProperties

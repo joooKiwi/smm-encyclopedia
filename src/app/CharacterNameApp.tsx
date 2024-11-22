@@ -3,6 +3,7 @@ import 'app/_TimeAsideContent.scss'
 import './CharacterNameApp.scss'
 
 import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}            from '@joookiwi/collection'
 import {filterByArray}                    from '@joookiwi/collection'
 
 import type {CharacterNameProperties} from 'app/AppProperties.types'
@@ -23,8 +24,8 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
@@ -34,6 +35,7 @@ import {Games}                                      from 'core/game/Games'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import ALL =    CharacterNames.ALL
 import SMM1 =   Games.SMM1
@@ -122,7 +124,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
     [ViewDisplays.TABLE, 'everyCharacterName (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
+const uniqueNameRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
@@ -154,12 +156,32 @@ function SubContent({viewDisplay, games, times,}: Omit<CharacterNameProperties, 
     const appInterpreter = new CharacterNameAppInterpreter(games, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+        return <CharacterNameList items={appInterpreter.content}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+        return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={uniqueNameRetriever}/>
     return <Table id="characterName-table" interpreter={appInterpreter}/>
 }
 
+//region -------------------- List --------------------
+
+interface CharacterName_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<CharacterNames>
+
+}
+
+/** @reactComponent */
+function CharacterNameList({items,}: CharacterName_ListProperties,) {
+    return <List partialId="characterName" items={items} withSeparator nameRetriever={uniqueNameRetriever}>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="characterName-name" name={it.reference} popoverOrientation="top"/>
+            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.uniqueEnglishName}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface CharacterNameDescriptionProperties
