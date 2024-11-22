@@ -59,7 +59,7 @@ class SampleCourseInterpreter
 
     public get tableOptions(): Array<SampleCourseAppOption> {
         return [
-            SampleCourseAppOption.NUMBER,
+            SampleCourseAppOption.LEVEL_NUMBER,
             SampleCourseAppOption.NAME,
             SampleCourseAppOption.GAME_STYLE_AND_AREAS,
             SampleCourseAppOption.TIME,

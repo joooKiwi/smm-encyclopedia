@@ -1,5 +1,5 @@
 enum Enum {
-    NUMBER,
+    LEVEL_NUMBER,
     NAME,
     GAME_STYLE_AND_AREAS,
     TIME,

@@ -8,8 +8,7 @@ import type {SampleCourses}       from 'core/sampleCourse/SampleCourses'
 
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
-import GameStyleImage                   from 'core/gameStyle/GameStyleImage'
-import ThemeImage                       from 'core/theme/ThemeImage'
+import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 
@@ -21,7 +20,7 @@ export abstract class SampleCourseAppOption
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly NUMBER = new class SampleCourseAppOption_Number extends SampleCourseAppOption {
+    public static readonly LEVEL_NUMBER = new class SampleCourseAppOption_Number extends SampleCourseAppOption {
 
         protected override _createContentOption({reference: {worldNumber, firstNumberInFirst10MarioChallenges,}}: SampleCourses,): NonNullReactElement {
             if (firstNumberInFirst10MarioChallenges == null)
@@ -31,7 +30,7 @@ export abstract class SampleCourseAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'number', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">{LanguageCompanion.current.textInParentheses(unfinishedText('with 1st-time in 10 Mario Challenges',),)}</sub></span>,
+                key: 'levelNumber', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">{LanguageCompanion.current.textInParentheses(unfinishedText('with 1st-time in 10 Mario Challenges',),)}</sub></span>,
             }
         }
 
