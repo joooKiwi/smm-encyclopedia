@@ -5,14 +5,47 @@
   }
 }
 
-.cardListName-content-container, .simpleListName-content-container {
+.cardListName-content-container {
+
   &.entityCategory-Terrain { background-color: var(--entityCategory-terrain-bg-color) }
   &.entityCategory-Item    { background-color: var(--entityCategory-item-bg-color) }
   &.entityCategory-Enemy   { background-color: var(--entityCategory-ennemy-bg-color) }
   &.entityCategory-Gizmo   { background-color: var(--entityCategory-gizmo-bg-color) }
+
+  .singleEntityImage {
+    display: flex;
+    justify-content: center;
+    &:has(+ .single-editorVoiceSound-container, + .double-editorVoiceSound-container) { margin-bottom: var(--bs-spacer-sm) }
+    .entity-image {
+      &:not(:last-child) { margin-right: var(--bs-spacer-sm) }
+      height: 2.5rem;
+      image-rendering: pixelated;
+    }
+  }
+
+  .double-editorVoiceSound-container {
+    display: flex;
+    :first-child {
+      margin-bottom: var(--bs-spacer-xs);
+      margin-right: var(--bs-spacer-sm);
+    }
+  }
+
+}
+
+#entity-list {
+  .entity-image {
+    &:not(:last-child) { margin-right: var(--bs-spacer-sm) }
+    height: 2.5rem;
+    image-rendering: pixelated;
+  }
+  .singleEntityImage { margin-left: var(--bs-spacer-sm) }
 }
 
 #entity-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 
   .tcell {
 
