@@ -25,10 +25,10 @@ import Table                                             from 'app/tools/table/T
 import CardList                                          from 'app/withInterpreter/CardList'
 import SimpleList                                        from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
-import GameImage                                         from 'core/game/GameImage'
 import {Games}                                           from 'core/game/Games'
-import ThemeImage                                        from 'core/theme/ThemeImage'
+import GameImage                                         from 'core/game/component/GameImage'
 import EndlessMarioImage                                 from 'core/theme/component/EndlessMarioImage'
+import ThemeImage                                        from 'core/theme/component/ThemeImage'
 import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 

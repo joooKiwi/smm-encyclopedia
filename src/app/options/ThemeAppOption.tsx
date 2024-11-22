@@ -9,11 +9,11 @@ import {CommonOptions}          from 'app/options/CommonOptions'
 import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
-import ThemeImage               from 'core/theme/ThemeImage'
 import {Themes}                 from 'core/theme/Themes'
+import ThemeImage               from 'core/theme/component/ThemeImage'
 import ThemeTypeImages          from 'core/theme/component/ThemeTypeImages'
-import TimeImage                from 'core/time/TimeImage'
 import {Times}                  from 'core/time/Times'
+import TimeImage                from 'core/time/component/TimeImage'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**

@@ -4,8 +4,8 @@ import type {EntityPropertyProperties} from 'core/_component/EntityPropertyPrope
 import type {GameStyleProperty}        from 'core/entity/properties/gameStyle/GameStyleProperty'
 
 import TextComponent            from 'app/tools/text/TextComponent'
-import GameStyleImage           from 'core/gameStyle/GameStyleImage'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
+import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL = GameStyles.ALL

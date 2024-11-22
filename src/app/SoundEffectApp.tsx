@@ -19,8 +19,8 @@ import {SoundEffectGames}                           from 'app/property/SoundEffe
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 

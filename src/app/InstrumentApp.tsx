@@ -25,13 +25,13 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {Instruments}                                from 'core/instrument/Instruments'
 import EntityInstrumentImages                       from 'core/instrument/component/EntityInstrumentImages'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
-import TimeImage                                    from 'core/time/TimeImage'
 import {Times}                                      from 'core/time/Times'
+import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL =    Instruments.ALL

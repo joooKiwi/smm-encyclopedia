@@ -28,13 +28,13 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
-import TimeImage                                    from 'core/time/TimeImage'
 import {Times}                                      from 'core/time/Times'
-import ThemeImage                                   from 'core/theme/ThemeImage'
+import TimeImage                                    from 'core/time/component/TimeImage'
 import {Themes}                                     from 'core/theme/Themes'
+import ThemeImage                                   from 'core/theme/component/ThemeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL =    EditorVoices.ALL

@@ -4,8 +4,8 @@ import type {EntityPropertyProperties} from 'core/_component/EntityPropertyPrope
 import type {TimeProperty}             from 'core/entity/properties/time/TimeProperty'
 
 import TextComponent            from 'app/tools/text/TextComponent'
-import TimeImage                from 'core/time/TimeImage'
 import {Times}                  from 'core/time/Times'
+import TimeImage                from 'core/time/component/TimeImage'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL = Times.ALL

@@ -6,8 +6,8 @@ import type {ThemeProperty}            from 'core/entity/properties/theme/ThemeP
 import {COURSE_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                     from 'app/tools/images/Image'
 import TextComponent             from 'app/tools/text/TextComponent'
-import ThemeImage                from 'core/theme/ThemeImage'
 import {Themes}                  from 'core/theme/Themes'
+import ThemeImage                from 'core/theme/component/ThemeImage'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 import COURSE_THEMES = Themes.COURSE_THEMES

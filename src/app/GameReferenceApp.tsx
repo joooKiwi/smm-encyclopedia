@@ -6,11 +6,11 @@ import {Fragment}               from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
 
-import GameImage                from 'core/game/GameImage'
 import {Games}                  from 'core/game/Games'
+import GameImage                from 'core/game/component/GameImage'
 import {GameReferences}         from 'core/gameReference/GameReferences'
-import GameStyleImage           from 'core/gameStyle/GameStyleImage'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
+import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import SoundEffectImage         from 'core/soundEffect/SoundEffectImage'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'

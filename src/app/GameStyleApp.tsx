@@ -23,10 +23,10 @@ import {unfinishedText}                             from 'app/tools/text/Unfinis
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
-import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
+import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
+import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 

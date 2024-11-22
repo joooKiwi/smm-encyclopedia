@@ -4,8 +4,8 @@ import type {GameProperty}             from 'core/entity/properties/game/GamePro
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 
 import TextComponent            from 'app/tools/text/TextComponent'
-import GameImage                from 'core/game/GameImage'
 import {Games}                  from 'core/game/Games'
+import GameImage                from 'core/game/component/GameImage'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL = Games.ALL

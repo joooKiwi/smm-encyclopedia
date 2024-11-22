@@ -27,8 +27,8 @@ import TextOrLink                                   from 'app/tools/text/TextOrL
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 import SMM1 =   Games.SMM1

@@ -5,8 +5,8 @@ import type {Nullable}     from '@joookiwi/type'
 import type {GameStyles}   from 'core/gameStyle/GameStyles'
 import type {Themes}       from 'core/theme/Themes'
 
-import ThemeImage     from 'core/theme/ThemeImage'
-import GameStyleImage from 'core/gameStyle/GameStyleImage'
+import ThemeImage     from 'core/theme/component/ThemeImage'
+import GameStyleImage from 'core/gameStyle/component/GameStyleImage'
 
 interface LevelGameStyleAndThemeProperties {
 

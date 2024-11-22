@@ -8,8 +8,8 @@ import type {Name}                                                      from 'la
 import type {NameTrait}                                                 from 'lang/name/NameTrait'
 import type {NameTraitFromACategory}                                    from 'lang/name/NameTraitFromACategory'
 
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 

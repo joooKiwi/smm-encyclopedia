@@ -9,8 +9,8 @@ import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singlet
 
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {unfinishedText}                 from 'app/tools/text/UnfinishedText'
-import ThemeImage                       from 'core/theme/ThemeImage'
 import {Themes}                         from 'core/theme/Themes'
+import ThemeImage                       from 'core/theme/component/ThemeImage'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import {routeFromName}                  from 'route/method/route.fromName'
