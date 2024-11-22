@@ -81,9 +81,7 @@ class LimitAppInterpreter
             ? LimitAppOption.AMOUNT_IN_ALL_GAMES
             : games.hasSmm1Or3ds
                 ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
-                : games.hasSmm2
-                    ? LimitAppOption.AMOUNT_IN_SMM2
-                    : null
+                : LimitAppOption.AMOUNT_IN_SMM2
 
         const hasAlternativeAcronym = enumeration.alternativeAcronym != null
         const hasAlternativeName = enumeration.alternativeEnglishName != null
