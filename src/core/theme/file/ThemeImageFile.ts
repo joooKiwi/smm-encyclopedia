@@ -1,4 +1,3 @@
-import type {PossibleName_InFile, PossibleName_InFile_CourseTheme} from 'core/theme/Themes.types'
 import type {ImageFile}                                            from 'util/file/image/ImageFile'
 
 /**
@@ -10,6 +9,24 @@ import type {ImageFile}                                            from 'util/fi
  */
 export type ThemeImageFile<NAME extends string = string, > = ImageFile<'theme', NAME, 'tiff'>
 
-export type SmallThemeImageFile = ThemeImageFile<`Lyt_E_SceneSmall_${PossibleName_InFile}_00`>
-export type LargeThemeImageFile = ThemeImageFile<`Lyt_E_Scene_${PossibleName_InFile}_00`>
+
+/**
+ * The possible acronym that are used within the file system of the {@link Games Super Mario Maker games}
+ * applicable to a {@link CourseTheme} only
+ *
+ * @see PossibleName_InFile
+ */
+export type PossibleName_InFile_CourseTheme = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'
+/**
+ * The possible acronym that are used within the file system of the {@link Games Super Mario Maker games}
+ * applicable to a {@link WorldTheme} only
+ *
+ * @see PossibleName_InFile
+ */
+export type PossibleName_InFile_WorldTheme = | 'plain' | 'underground' | 'desert' | 'snow' | 'athletic' | 'woods' | 'magma' | 'night'
+/** The possible acronym that are used within the file system of the {@link Games Super Mario Maker games} */
+export type PossibleName_InFile = | PossibleName_InFile_CourseTheme | PossibleName_InFile_WorldTheme
+
+export type SmallThemeImageFile<T extends PossibleName_InFile = PossibleName_InFile, > = ThemeImageFile<`Lyt_E_SceneSmall_${T}_00`>
+export type LargeThemeImageFile<T extends PossibleName_InFile = PossibleName_InFile, > = ThemeImageFile<`Lyt_E_Scene_${T}_00`>
 export type EndlessMarioThemeImageFile = ThemeImageFile<`WM_GameSkin_${PossibleName_InFile_CourseTheme}_00^l`>

@@ -9,6 +9,6 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  * @param number The image name
  * @param englishName The {@link EntityCategories} {@link EntityCategories.englishName english name}
  */
-export function entityCategoryImage(number: PossibleImageNumber, englishName: PossibleEnglishName,): EntityCategoryImageFile {
+export function entityCategoryImage<const NUMBER extends PossibleImageNumber,>(number: NUMBER, englishName: PossibleEnglishName,): EntityCategoryImageFile<NUMBER> {
     return new SimpleImageFile('category', `CategoryIcon_0${number}^s`, 'tiff', englishName,)
 }

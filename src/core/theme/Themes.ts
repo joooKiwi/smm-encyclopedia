@@ -1,30 +1,30 @@
 import type {NullOr} from '@joookiwi/type'
 import {Enum}        from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                 from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                   from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                              from 'core/PropertyGetter'
-import type {Entity, PossibleOtherEntities}                                        from 'core/entity/Entity'
-import type {ThemeProperty}                                                        from 'core/entity/properties/theme/ThemeProperty'
-import type {CourseTheme}                                                          from 'core/theme/CourseTheme'
-import type {Names, Ordinals, PossibleEnglishName, PossibleName_InFile}            from 'core/theme/Themes.types'
-import type {CourseAndWorldTheme}                                                  from 'core/theme/CourseAndWorldTheme'
-import type {WorldTheme}                                                           from 'core/theme/WorldTheme'
-import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
-import type {CompanionEnumByNameSingleton}                                         from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                                                                      from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                        from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                   from 'core/PropertyGetter'
+import type {Entity, PossibleOtherEntities}                                                             from 'core/entity/Entity'
+import type {ThemeProperty}                                                                             from 'core/entity/properties/theme/ThemeProperty'
+import type {CourseTheme}                                                                               from 'core/theme/CourseTheme'
+import type {Names, Ordinals, PossibleEnglishName}                                                      from 'core/theme/Themes.types'
+import type {CourseAndWorldTheme}                                                                       from 'core/theme/CourseAndWorldTheme'
+import type {WorldTheme}                                                                                from 'core/theme/WorldTheme'
+import type {EndlessMarioThemeImageFile, LargeThemeImageFile, PossibleName_InFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
+import type {CompanionEnumByNameSingleton}                                                              from 'util/enumerable/Singleton.types'
 
 import * as FileCreator                 from 'core/theme/file/fileCreator'
 import {Empty}                          from 'util/emptyVariables'
-import {StringContainer}                from 'util/StringContainer'
 import {Import}                         from 'util/DynamicImporter'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
-export abstract class Themes
+export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEnglishName,
+    const NAME_IN_FILE extends PossibleName_InFile = PossibleName_InFile, >
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseAndWorldTheme>,
-        ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithEnglishName<NAME, Lowercase<NAME>>,
         PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<ThemeProperty> {
 
@@ -193,17 +193,18 @@ export abstract class Themes
 
     #reference?: CourseAndWorldTheme
     readonly #englishName
+    #englishNameInHtml?: Lowercase<NAME>
     readonly #nameInFile
-    #smallImageFile?: SmallThemeImageFile
-    #largeImageFile?: LargeThemeImageFile
+    #smallImageFile?: SmallThemeImageFile<NAME_IN_FILE>
+    #largeImageFile?: LargeThemeImageFile<NAME_IN_FILE>
     #endlessMarioImageFile?: NullOr<EndlessMarioThemeImageFile>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName: PossibleEnglishName, nameInFile: PossibleName_InFile,) {
+    private constructor(englishName: NAME, nameInFile: NAME_IN_FILE,) {
         super()
-        this.#englishName = new StringContainer(englishName)
+        this.#englishName = englishName
         this.#nameInFile = nameInFile
     }
 
@@ -223,15 +224,15 @@ export abstract class Themes
     }
 
 
-    public get englishName(): PossibleEnglishName {
-        return this.#englishName.get
+    public get englishName(): NAME {
+        return this.#englishName
     }
 
-    public get englishNameInHtml(): string {
-        return this.#englishName.getInHtml
+    public get englishNameInHtml(): Lowercase<NAME> {
+        return this.#englishNameInHtml ??= this.englishName.toLowerCase() as Lowercase<NAME>
     }
 
-    public get nameInFile(): PossibleName_InFile {
+    public get nameInFile(): NAME_IN_FILE {
         return this.#nameInFile
     }
 
@@ -244,11 +245,11 @@ export abstract class Themes
     }
 
 
-    public get smallImageFile(): SmallThemeImageFile {
+    public get smallImageFile(): SmallThemeImageFile<NAME_IN_FILE> {
         return this.#smallImageFile ??= FileCreator.smallImageFile(this,)
     }
 
-    public get largeImageFile(): LargeThemeImageFile {
+    public get largeImageFile(): LargeThemeImageFile<NAME_IN_FILE> {
         return this.#largeImageFile ??= FileCreator.largeImageFile(this,)
     }
 

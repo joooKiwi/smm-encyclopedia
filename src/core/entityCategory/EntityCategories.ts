@@ -10,14 +10,14 @@ import type {ClassWithImageFile}                           from 'util/file/image
 
 import {EntityCategoryLoader}           from 'core/entityCategory/EntityCategory.loader'
 import {entityCategoryImage}            from 'core/entityCategory/file/fileCreator'
-import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-export class EntityCategories
+export class EntityCategories<const NAME extends PossibleEnglishName = PossibleEnglishName,
+    const IMAGE_NUMBER extends PossibleImageNumber = PossibleImageNumber, >
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityCategory>,
-        ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImageFile<EntityCategoryImageFile> {
+        ClassWithEnglishName<NAME, Lowercase<NAME>>,
+        ClassWithImageFile<EntityCategoryImageFile<IMAGE_NUMBER>> {
 
     //region -------------------- Enum instances --------------------
 
@@ -55,15 +55,16 @@ export class EntityCategories
 
     #reference?: EntityCategory
     readonly #englishName
+    #englishNameInHtml?: Lowercase<NAME>
     readonly #imageNumber
-    #imageFile?: EntityCategoryImageFile
+    #imageFile?: EntityCategoryImageFile<IMAGE_NUMBER>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
+    private constructor(englishName: NAME, imageNumber: IMAGE_NUMBER,) {
         super()
-        this.#englishName = new StringContainer<PossibleEnglishName, Lowercase<PossibleEnglishName>>(englishName)
+        this.#englishName = englishName
         this.#imageNumber = imageNumber
     }
 
@@ -83,16 +84,16 @@ export class EntityCategories
     }
 
 
-    public get englishName(): PossibleEnglishName {
-        return this.#englishName.get
+    public get englishName(): NAME {
+        return this.#englishName
     }
 
-    public get englishNameInHtml(): Lowercase<PossibleEnglishName> {
-        return this.#englishName.getInHtml
+    public get englishNameInHtml(): Lowercase<NAME> {
+        return this.#englishNameInHtml ??= this.englishName.toLowerCase() as Lowercase<NAME>
     }
 
 
-    public get imageFile(): EntityCategoryImageFile {
+    public get imageFile(): EntityCategoryImageFile<IMAGE_NUMBER> {
         return this.#imageFile ??= entityCategoryImage(this.#imageNumber, this.englishName,)
     }
 
