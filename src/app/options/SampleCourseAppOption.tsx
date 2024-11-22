@@ -56,11 +56,11 @@ export abstract class SampleCourseAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'gameStyleAndAreas', element: unfinishedText('Game style & areas',),}
+            return {key: 'gameStyleAndAreas', element: unfinishedText(gameContentTranslation('game style.singular',) + unfinishedText(' & areas'),),} satisfies SingleHeaderContent
         }
 
 
-    }()
+    }('gameStyleAndAreas')
     public static readonly TIME = new class SampleCourseAppOption_Time extends SampleCourseAppOption {
 
         protected override _createContentOption({reference,}: SampleCourses,): NonNullReactElement {

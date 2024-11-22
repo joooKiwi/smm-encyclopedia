@@ -59,14 +59,14 @@ export abstract class OfficialCourseAppOption
         }
 
     }('description',)
-    public static readonly GAME_STYLE_AND_THEMES = new class OfficialCourseAppOption_GameStyleAndThemes extends OfficialCourseAppOption {
+    public static readonly GAME_STYLE_AND_AREAS = new class OfficialCourseAppOption_GameStyleAndThemes extends OfficialCourseAppOption {
 
         protected override _createContentOption({reference,}: OfficialCourses,): NonNullReactElement {
             return <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.courseThemeInTheMainArea} subArea={reference.courseThemeInTheSubArea} in2Line/>
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'gameStyleAndThemes', element: unfinishedText(gameContentTranslation('game style.singular',) + ' & ' + gameContentTranslation('theme.plural',),),} satisfies SingleHeaderContent
+            return {key: 'gameStyleAndAreas', element: unfinishedText(gameContentTranslation('game style.singular',) + unfinishedText(' & areas'),),} satisfies SingleHeaderContent
         }
 
     }('gameStyleAndAreas',)

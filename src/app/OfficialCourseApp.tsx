@@ -8,11 +8,11 @@ import type {AppInterpreterWithTable}  from 'app/interpreter/AppInterpreterWithT
 import type {DimensionOnList}          from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}         from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import {gameContentTranslation}  from 'lang/components/translationMethods'
 import SubMainContainer                from 'app/_SubMainContainer'
 import {OfficialCourseAppOption}       from 'app/options/OfficialCourseAppOption'
 import Table                           from 'app/tools/table/Table'
 import {unfinishedText}                from 'app/tools/text/UnfinishedText'
+import List                            from 'app/util/List'
 import CardList                        from 'app/withInterpreter/CardList'
 import {ViewDisplays}                  from 'app/withInterpreter/ViewDisplays'
 import LevelGameStyleAndTheme          from 'core/_component/LevelGameStyleAndTheme'
@@ -21,6 +21,7 @@ import OfficialCourseAvailability      from 'core/officialCourse/component/Offic
 import OfficialCourseReward            from 'core/officialCourse/component/OfficialCourseReward'
 import {OtherWordInTheGames}           from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}        from 'lang/components/translationMethods'
+import NameComponent                   from 'lang/name/component/Name.component'
 
 import ALL = OfficialCourses.ALL
 

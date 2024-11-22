@@ -3,7 +3,7 @@ enum Enum {
     REWARD,
     NAME,
     DESCRIPTION,
-    GAME_STYLE_AND_THEMES,
+    GAME_STYLE_AND_AREAS,
     TIME,
     AVAILABILITY,
 
