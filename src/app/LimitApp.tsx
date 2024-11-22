@@ -87,7 +87,6 @@ class LimitAppInterpreter
         const hasAlternativeName = enumeration.alternativeEnglishName != null
         const isEditor = enumeration.isEditorLimit
 
-        //TODO add the alternative name on the limit card
         return <div id={`limit-${enumeration.englishNameInHtml}`} className={`card-body ${isEditor ? 'card-bodyWithEditor' : EMPTY_STRING} text-center`}>
             {isEditor ? <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 top-0"/> : null}
             {hasAlternativeName ? <NameComponent id="limit-alternativeName" name={enumeration.reference.alternativeContainer} className="alternativeName"/> : null}
