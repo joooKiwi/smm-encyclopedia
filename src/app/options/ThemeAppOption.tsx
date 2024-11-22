@@ -11,6 +11,7 @@ import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
 import ThemeImage               from 'core/theme/ThemeImage'
 import {Themes}                 from 'core/theme/Themes'
+import ThemeTypeImages          from 'core/theme/component/ThemeTypeImages'
 import TimeImage                from 'core/time/TimeImage'
 import {Times}                  from 'core/time/Times'
 import {gameContentTranslation} from 'lang/components/translationMethods'
@@ -55,7 +56,7 @@ export abstract class ThemeAppOption
                     {CommonOptions.get.getGameContent(enumeration,)}
                     {CommonOptions.get.getNameContent(enumeration,)}
                 </div>
-                <div className="col-2">{CommonOptions.get.getThemeContent(enumeration,)}</div>
+                <div className="col-2"><ThemeTypeImages reference={enumeration}/></div>
             </div>
         }
 

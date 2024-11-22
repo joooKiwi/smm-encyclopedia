@@ -6,7 +6,9 @@ import type {Names, Ordinals}     from 'app/options/CharacterNameAppOption.types
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {CharacterNames}      from 'core/characterName/CharacterNames'
 
-import {CommonOptions} from 'app/options/CommonOptions'
+import {CommonOptions}           from 'app/options/CommonOptions'
+import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
+import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 export abstract class CharacterNameAppOption
     extends Enum<Ordinals, Names>
@@ -25,6 +27,17 @@ export abstract class CharacterNameAppOption
         }
 
     }('name',)
+    public static readonly EDITOR_VOICE = new class CharacterNameAppOption_Name extends CharacterNameAppOption {
+
+        protected override _createContentOption(enumeration: CharacterNames,) {
+            return <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.uniqueEnglishName}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return {key: 'editorSound', element: gameContentTranslation('editor voice.singular',),}
+        }
+
+    }('editorVoice',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------

@@ -8,16 +8,19 @@ import type {AppInterpreterWithTable}  from 'app/interpreter/AppInterpreterWithT
 import type {DimensionOnList}          from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}         from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import SubMainContainer          from 'app/_SubMainContainer'
-import {OfficialCourseAppOption} from 'app/options/OfficialCourseAppOption'
-import Table                     from 'app/tools/table/Table'
-import {unfinishedText}          from 'app/tools/text/UnfinishedText'
-import CardList                  from 'app/withInterpreter/CardList'
-import SimpleList                from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
-import {OfficialCourses}         from 'core/officialCourse/OfficialCourses'
-import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
+import SubMainContainer                from 'app/_SubMainContainer'
+import {OfficialCourseAppOption}       from 'app/options/OfficialCourseAppOption'
+import Table                           from 'app/tools/table/Table'
+import {unfinishedText}                from 'app/tools/text/UnfinishedText'
+import CardList                        from 'app/withInterpreter/CardList'
+import {ViewDisplays}                  from 'app/withInterpreter/ViewDisplays'
+import LevelGameStyleAndTheme          from 'core/_component/LevelGameStyleAndTheme'
+import {OfficialCourses}               from 'core/officialCourse/OfficialCourses'
+import OfficialCourseAvailability      from 'core/officialCourse/component/OfficialCourseAvailability'
+import OfficialCourseReward            from 'core/officialCourse/component/OfficialCourseReward'
+import {OtherWordInTheGames}           from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}        from 'lang/components/translationMethods'
 
 import ALL = OfficialCourses.ALL
 
@@ -54,10 +57,11 @@ class EventCourseAppInterpreter
     }
 
     public createCardListContent(enumerable: OfficialCourses,) {
-        return <div className="text-center">
-            {OfficialCourseAppOption.REWARD.renderContent(enumerable,)}
-            <div className="w-100"/>
-            <small className="text-body-secondary fst-italic">{OfficialCourseAppOption.AVAILABILITY.renderContent(enumerable,)}</small>
+        const reference = enumerable.reference
+        return <div className="d-flex flex-column align-items-center">
+            <OfficialCourseReward reference={enumerable}/>
+            <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.courseThemeInTheMainArea} subArea={reference.courseThemeInTheSubArea}/>
+            <small className="text-body-secondary fst-italic"><OfficialCourseAvailability reference={enumerable}/></small>
         </div>
     }
 

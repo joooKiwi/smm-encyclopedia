@@ -16,6 +16,7 @@ import SimpleList                     from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
 import Table                          from 'app/tools/table/Table'
 import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
+import SoundEffectCategoryIcon        from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 
 import ALL = SoundEffectCategories.ALL
@@ -46,7 +47,7 @@ class SoundEffectCategoryAppInterpreter
     }
 
     public createCardListContent(enumerable: SoundEffectCategories,) {
-        return <Image file={enumerable.imageFile}/>
+        return <SoundEffectCategoryIcon reference={enumerable} asWhiteImage/>
     }
 
     //endregion -------------------- Card list interpreter --------------------

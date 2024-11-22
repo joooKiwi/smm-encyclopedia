@@ -52,24 +52,7 @@ export abstract class SampleCourseAppOption
     public static readonly GAME_STYLE_AND_AREAS = new class SampleCourseAppOption_GameStyleAndAreas extends SampleCourseAppOption {
 
         protected override _createContentOption({reference,}: SampleCourses,): NonNullReactElement {
-            const themeInSubArea = reference.themeInSubArea
-            if (themeInSubArea == null)
-                return <div className="gameStyleAndAreas-container d-flex">
-                    <GameStyleImage reference={reference.gameStyle}/>
-                    <div className="ps-2">
-                        <ThemeImage reference={reference.themeInMainArea} isSmallPath/>
-                    </div>
-                </div>
-
-            return <div className="gameStyleAndAreas-container d-flex">
-                <GameStyleImage reference={reference.gameStyle}/>
-                <div className="ps-2">
-                    <ThemeImage reference={reference.themeInMainArea} isSmallPath/>
-                </div>
-                <div className="ps-1">
-                    <ThemeImage reference={themeInSubArea} isSmallPath/>
-                </div>
-            </div>
+            return <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.themeInMainArea} subArea={reference.themeInSubArea} in2Line/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {

@@ -6,8 +6,8 @@ import type {Names, Ordinals}     from 'app/options/EntityCategoryAppOption.type
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {EntityCategories}    from 'core/entityCategory/EntityCategories'
 
-import {CommonOptions} from 'app/options/CommonOptions'
-import Image           from 'app/tools/images/Image'
+import {CommonOptions}    from 'app/options/CommonOptions'
+import EntityCategoryIcon from 'core/entityCategory/component/EntityCategoryIcon'
 
 export abstract class EntityCategoryAppOption
     extends Enum<Ordinals, Names>
@@ -18,7 +18,7 @@ export abstract class EntityCategoryAppOption
     public static readonly ICON = new class EntityCategoryAppOption_Icon extends EntityCategoryAppOption {
 
         protected override _createContentOption(enumeration: EntityCategories,) {
-            return <Image file={enumeration.imageFile}/>
+            return <EntityCategoryIcon reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption() {

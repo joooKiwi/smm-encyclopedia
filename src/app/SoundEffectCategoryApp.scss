@@ -31,15 +31,8 @@
   margin-right: auto;
 
   .tcell {
-    &.icon img {
-      &[alt="Feelings"]   { filter: var(--filter-white-to-yellow) }
-      &[alt="Stingers"]   { filter: var(--filter-white-to-orange) }
-      &[alt="Reactions"]  { filter: var(--filter-white-to-green) }
-      &[alt="Animations"] { filter: var(--filter-white-to-pink) }
-      &[alt="Music"]      { filter: var(--filter-white-to-cyan) }
-    }
-
     &.name {}
+    &.icon {}
   }
 
 }

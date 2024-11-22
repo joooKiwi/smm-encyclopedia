@@ -10,7 +10,6 @@ import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButt
 
 import SubMainContainer         from 'app/_SubMainContainer'
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
-import Image                    from 'app/tools/images/Image'
 import Table                    from 'app/tools/table/Table'
 import TextComponent            from 'app/tools/text/TextComponent'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
@@ -18,6 +17,7 @@ import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
+import MiiCostumeImage          from 'core/miiCostume/component/MiiCostumeImage'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {Empty}                  from 'util/emptyVariables'
@@ -52,10 +52,11 @@ class MiiCostumeAppInterpreter
         return this.createListDimension()
     }
 
-    public createCardListContent({reference, imageFile,}: MiiCostumes,) {
-        const category = reference.categoryEnglish === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
+    public createCardListContent(enumeration: MiiCostumes,) {
+        const englishCategory = enumeration.reference.categoryEnglish
+        const category = englishCategory === EMPTY_STRING ? EMPTY_STRING : `miiCostumeCategory-${englishCategory}`//TODO move to the parent container className.
         return <div className={category}>
-            <Image file={imageFile}/>
+            <MiiCostumeImage reference={enumeration}/>
         </div>
     }
 

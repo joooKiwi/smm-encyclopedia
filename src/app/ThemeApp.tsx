@@ -28,6 +28,8 @@ import {ViewDisplays}                                    from 'app/withInterpret
 import GameImage                                         from 'core/game/GameImage'
 import {Games}                                           from 'core/game/Games'
 import ThemeImage                                        from 'core/theme/ThemeImage'
+import EndlessMarioImage                                 from 'core/theme/component/EndlessMarioImage'
+import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 
 import SMM1 =   Games.SMM1
@@ -96,15 +98,13 @@ class ThemeAppInterpreter
     }
 
     public createCardListContent(enumerable: Themes,) {
-        const {englishNameInHtml, endlessMarioImageFile,} = enumerable
-
-        return <div className="card-body" id={`theme-${englishNameInHtml}`}>
+        return <div className="card-body" id={`theme-${enumerable.englishNameInHtml}`}>
             <div className="col-2">{CommonOptions.get.getGameContent(enumerable,)}</div>
             <div className="images-container col-7">
                 <ThemeImage reference={enumerable} isSmallPath/>
-                <Image file={endlessMarioImageFile}/>
+                <EndlessMarioImage reference={enumerable}/>
             </div>
-            <div className="col-2">{CommonOptions.get.getThemeContent(enumerable,)}</div>
+            <div className="col-2"><ThemeTypeImages reference={enumerable}/></div>
         </div>
     }
 

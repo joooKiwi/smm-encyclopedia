@@ -10,12 +10,12 @@ import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButt
 
 import SubMainContainer         from 'app/_SubMainContainer'
 import {MedalAppOption}         from 'app/options/MedalAppOption'
-import Image                    from 'app/tools/images/Image'
 import Table                    from 'app/tools/table/Table'
 import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Medals}                 from 'core/medal/Medals'
+import MedalIcon                from 'core/medal/component/MedalIcon'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 import ALL = Medals.ALL
@@ -44,8 +44,8 @@ class MedalAppInterpreter
         return this.createListDimension()
     }
 
-    public createCardListContent(enumerable: Medals,): ReactElement {
-        return <Image file={enumerable.imageFile}/>
+    public createCardListContent(enumerable: Medals,) {
+        return <MedalIcon reference={enumerable}/>
     }
 
     //endregion -------------------- Card list interpreter --------------------

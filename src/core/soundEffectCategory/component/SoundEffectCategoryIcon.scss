@@ -1,0 +1,7 @@
+.colored-soundEffectCategory-icon {
+  &.soundEffectCategory-icon-feelings {   filter: var(--filter-white-to-yellow) }
+  &.soundEffectCategory-icon-stingers {   filter: var(--filter-white-to-orange) }
+  &.soundEffectCategory-icon-reactions {  filter: var(--filter-white-to-green)  }
+  &.soundEffectCategory-icon-animations { filter: var(--filter-white-to-pink)   }
+  &.soundEffectCategory-icon-music {      filter: var(--filter-white-to-cyan)   }
+}

@@ -10,13 +10,13 @@ import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButt
 
 import SubMainContainer          from 'app/_SubMainContainer'
 import {EntityCategoryAppOption} from 'app/options/EntityCategoryAppOption'
-import Image                     from 'app/tools/images/Image'
 import Table                     from 'app/tools/table/Table'
 import {unfinishedText}          from 'app/tools/text/UnfinishedText'
 import CardList                  from 'app/withInterpreter/CardList'
 import SimpleList                from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
 import {EntityCategories}        from 'core/entityCategory/EntityCategories'
+import EntityCategoryIcon        from 'core/entityCategory/component/EntityCategoryIcon'
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
@@ -47,7 +47,7 @@ class EntityCategoryAppInterpreter
     }
 
     public createCardListContent(enumerable: EntityCategories,) {
-        return <Image file={enumerable.imageFile}/>
+        return <EntityCategoryIcon reference={enumerable} asWhiteImage/>
     }
 
     //endregion -------------------- Card list interpreter --------------------

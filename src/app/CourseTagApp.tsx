@@ -23,6 +23,7 @@ import LinkText                                     from 'app/tools/text/LinkTex
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import FirstAppearance                              from 'core/courseTag/component/FirstAppearance'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -74,8 +75,8 @@ class CourseTagAppInterpreter
         return this.createListDimension()
     }
 
-    public createCardListContent({reference, englishName: name,}: CourseTags,) {
-        return reference.firstAppearance == null ? null : <sub key={`${name} - first appearance`}>{reference.firstAppearance.simpleName}</sub>
+    public createCardListContent({reference,}: CourseTags,) {
+        return <FirstAppearance reference={reference}/>
         //TODO add Maker Central name
     }
 

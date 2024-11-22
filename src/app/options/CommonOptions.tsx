@@ -4,19 +4,14 @@ import type {SimpleImageHeader, SimpleReactHeader, SingleHeaderContent} from 'ap
 import type {ClassWithEnglishName}                                      from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                        from 'core/ClassWithReference'
 import type {ClassInAnySuperMarioMakerGame}                             from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {Themes}                                                    from 'core/theme/Themes'
 import type {Name}                                                      from 'lang/name/Name'
 import type {NameTrait}                                                 from 'lang/name/NameTrait'
 import type {NameTraitFromACategory}                                    from 'lang/name/NameTraitFromACategory'
-import type {ImageFile}                                                 from 'util/file/image/ImageFile'
 
-import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
-import Image                                             from 'app/tools/images/Image'
-import GameImage                                         from 'core/game/GameImage'
-import {Games}                                           from 'core/game/Games'
-import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
-import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
-import NameComponent                                     from 'lang/name/component/Name.component'
+import GameImage                                    from 'core/game/GameImage'
+import {Games}                                      from 'core/game/Games'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
@@ -71,22 +66,8 @@ export class CommonOptions {
         return this.#soundHeader ??= {key: 'sound', element: contentTranslation('sound.singular',),}
     }
 
-
     public get categoryHeader(): SimpleReactHeader {
         return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category',),}
-    }
-
-    public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | ImageFile | Name<string>,): ReactElement {
-        const name = enumeration.reference.categoryNameContainer
-        if (name === EmptyStringName.get)
-            return null
-
-        const imagePath_or_name = imagePath_or_nameCallback()
-        const englishName = name.english
-        const startingKey = `category name (${englishName})`
-        if ('toNameMap' in imagePath_or_name)
-            return <NameComponent key={`${startingKey} name`} id={`category-name-${enumeration.englishNameInHtml}`} name={name} popoverOrientation="left"/>
-        return <Image key={`${startingKey} image`} file={imagePath_or_name}/>
     }
 
 
@@ -114,16 +95,6 @@ export class CommonOptions {
             {reference.isInSuperMarioMaker1 ? <GameImage reference={SMM1}/> : null}
             {reference.isInSuperMarioMakerFor3DS ? <GameImage reference={SMM3DS}/> : null}
             {reference.isInSuperMarioMaker2 ? <GameImage reference={SMM2}/> : null}
-        </div>
-    }
-
-
-    public getThemeContent(enumeration: Themes,): NonNullReactElement {
-        const reference = enumeration.reference
-
-        return <div key={`${enumeration.englishName} (theme content images)`} id={`${enumeration.englishNameInHtml}-themeContentImages-container`} className="themeContentImages-container">
-            {reference.isInCourseTheme ? <Image file={COURSE_THEME_IMAGE_FILE}/> : null}
-            {reference.isInWorldTheme ? <Image file={WORLD_THEME_IMAGE_FILE}/> : null}
         </div>
     }
 

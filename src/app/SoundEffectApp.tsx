@@ -73,11 +73,10 @@ class SoundEffectAppInterpreter
     }
 
     public createCardListContent(enumerable: SoundEffects,) {
-        return <div>
-            <div className="soundEffect-images-container">
-                {renderSMM1And3DSImage(enumerable,)}
-                {renderSMM2Image(enumerable,)}
-            </div>
+        const games = this.#games
+        return <div className="soundEffect-images-container">
+            {games.hasSmm1Or3ds ? renderSMM1And3DSImage(enumerable,) : null}
+            {games.hasSmm2 ? renderSMM2Image(enumerable,) : null}
         </div>
     }
 

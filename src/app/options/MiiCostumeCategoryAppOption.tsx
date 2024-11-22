@@ -6,8 +6,8 @@ import type {Names, Ordinals}      from 'app/options/MiiCostumeCategoryAppOption
 import type {AppOption}            from 'app/options/AppOption'
 import type {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
 
-import {CommonOptions} from 'app/options/CommonOptions'
-import Image           from 'app/tools/images/Image'
+import {CommonOptions}        from 'app/options/CommonOptions'
+import MiiCostumeCategoryIcon from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
 
 export abstract class MiiCostumeCategoryAppOption
     extends Enum<Ordinals, Names>
@@ -18,7 +18,7 @@ export abstract class MiiCostumeCategoryAppOption
     public static readonly ICON = new class MiiCostumeCategoryAppOption_Icon extends MiiCostumeCategoryAppOption {
 
         protected override _createContentOption(enumeration: MiiCostumeCategories,) {
-            return <Image file={enumeration.imageFile}/>
+            return <MiiCostumeCategoryIcon reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption() {

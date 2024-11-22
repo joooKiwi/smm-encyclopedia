@@ -13,6 +13,7 @@ import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import LevelGameStyleAndTheme   from 'core/_component/LevelGameStyleAndTheme'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {SampleCourses}          from 'core/sampleCourse/SampleCourses'
 import {gameContentTranslation} from 'lang/components/translationMethods'
@@ -43,8 +44,8 @@ class SampleCourseInterpreter
         return this.createListDimension()
     }
 
-    public createCardListContent(enumerable: SampleCourses,) {
-        return <></>//TODO add card list content
+    public createCardListContent({reference,}: SampleCourses,) {
+        return <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.themeInMainArea} subArea={reference.themeInSubArea}/>
     }
 
     //endregion -------------------- Card list interpreter --------------------

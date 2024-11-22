@@ -8,8 +8,9 @@ import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {MiiCostumes}         from 'core/miiCostume/MiiCostumes'
 
 import {CommonOptions}        from 'app/options/CommonOptions'
-import Image                  from 'app/tools/images/Image'
+import MiiCostumeImage        from 'core/miiCostume/component/MiiCostumeImage'
 import {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
+import MiiCostumeCategoryIcon from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
 import {contentTranslation}   from 'lang/components/translationMethods'
 
 import CategoryCompanion = MiiCostumeCategories.Companion
@@ -27,7 +28,7 @@ export abstract class MiiCostumeAppOption
     public static readonly IMAGE =                 new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
         protected override _createContentOption(enumeration: MiiCostumes,) {
-            return <Image file={enumeration.imageFile}/>
+            return <MiiCostumeImage reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -63,8 +64,7 @@ export abstract class MiiCostumeAppOption
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
         protected override _createContentOption(enumeration: MiiCostumes,) {
-            const categoryName = enumeration.reference.categoryContainer.nameContainer
-            return CommonOptions.get.getCategoryContent(enumeration, () => CategoryCompanion.getValueByName(categoryName.english,).imageFile,)
+            return <MiiCostumeCategoryIcon reference={CategoryCompanion.getValueByName(enumeration.reference.categoryAmericanEnglish,)}/>
         }
 
         protected override _createTableHeaderOption() {

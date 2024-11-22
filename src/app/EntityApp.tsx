@@ -29,6 +29,7 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                                   from 'core/entity/Entities'
+import SingleEntityImage                            from 'core/entity/component/SingleEntityImage'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
@@ -101,11 +102,13 @@ class EntityAppInterpreter
         return this.createListDimension()
     }
 
-    public createCardListContent({englishName: name, reference, editorVoiceSoundFileHolder,}: Entities,) {
-        //TODO encapsulate the voiceSound into a sound interpreter.
+    public createCardListContent(entity: Entities,) {
+        const reference = entity.reference
         const category = reference.categoryEnglish === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
+        //TODO encapsulate the voiceSound into a sound interpreter.
         return <div className={`${category}`}>
-            <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
+            <SingleEntityImage reference={entity} gameStyles={this.#gameStyles}/>
+            <EditorVoiceSoundComponent editorVoiceSound={entity.editorVoiceSoundFileHolder} name={entity.englishName}/>
         </div>
     }
 

@@ -1,0 +1,6 @@
+.colored-entityCategory-icon {
+  &.entityCategory-icon-terrain { filter: var(--filter-white-to-cyan)   }
+  &.entityCategory-icon-item {    filter: var(--filter-white-to-pink)   }
+  &.entityCategory-icon-enemy {   filter: var(--filter-white-to-green)  }
+  &.entityCategory-icon-gizmo {   filter: var(--filter-white-to-yellow) }
+}

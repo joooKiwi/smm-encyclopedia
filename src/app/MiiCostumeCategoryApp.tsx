@@ -10,13 +10,13 @@ import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButt
 
 import SubMainContainer              from 'app/_SubMainContainer'
 import {MiiCostumeCategoryAppOption} from 'app/options/MiiCostumeCategoryAppOption'
-import Image                         from 'app/tools/images/Image'
 import Table                         from 'app/tools/table/Table'
 import {unfinishedText}              from 'app/tools/text/UnfinishedText'
 import CardList                      from 'app/withInterpreter/CardList'
 import SimpleList                    from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
+import MiiCostumeCategoryIcon        from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
 import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}      from 'lang/components/translationMethods'
 
@@ -47,7 +47,7 @@ class MiiCostumeCategoryAppInterpreter
     }
 
     public createCardListContent(enumerable: MiiCostumeCategories,) {
-        return <Image file={enumerable.imageFile}/>
+        return <MiiCostumeCategoryIcon reference={enumerable}/>
     }
 
     //endregion -------------------- Card list interpreter --------------------

@@ -30,6 +30,7 @@ import CanSpawnOutOfAPipe               from 'core/entity/properties/component/C
 import HasAMushroomVariant              from 'core/entity/properties/component/HasAMushroomVariant'
 import IsAffectedDirectlyByAnOnOffState from 'core/entity/properties/component/IsAffectedDirectlyByAnOnOffState'
 import {EntityCategories}               from 'core/entityCategory/EntityCategories'
+import EntityCategoryIcon               from 'core/entityCategory/component/EntityCategoryIcon'
 import GameComponent                    from 'core/game/Game.component'
 import {GameStyles}                     from 'core/gameStyle/GameStyles'
 import GameStyleImage                   from 'core/gameStyle/GameStyleImage'
@@ -39,13 +40,15 @@ import SMM1And3DSEditorLimitComponent   from 'core/limit/SMM1And3DSEditorLimit.c
 import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.component'
 import CourseThemeComponent             from 'core/theme/CourseTheme.component'
 import TimeComponent                    from 'core/time/Time.component'
+import {Empty}                          from 'util/emptyVariables'
 
-import EntityCategoryCompanion = EntityCategories.Companion
-import NSMBU =                   GameStyles.NSMBU
-import SMB =                     GameStyles.SMB
-import SMB3 =                    GameStyles.SMB3
-import SMW =                     GameStyles.SMW
-import SM3DW =                   GameStyles.SM3DW
+import CategoryCompanion = EntityCategories.Companion
+import EMPTY_STRING =      Empty.EMPTY_STRING
+import NSMBU =             GameStyles.NSMBU
+import SMB =               GameStyles.SMB
+import SMB3 =              GameStyles.SMB3
+import SMW =               GameStyles.SMW
+import SM3DW =             GameStyles.SM3DW
 
 export class EntityAppOption
     extends Enum<Ordinals, Names>
@@ -258,9 +261,10 @@ export class EntityAppOption
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
-            const categoryName = enumeration.reference.categoryNameContainer
-
-            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategoryCompanion.getValueByName(categoryName.english,).imageFile,)
+            const name = enumeration.reference.categoryAmericanEnglish
+            if (name === EMPTY_STRING)
+                return null
+            return <EntityCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
         }
 
         protected override _createTableHeaderOption() {

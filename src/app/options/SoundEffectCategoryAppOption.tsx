@@ -6,8 +6,8 @@ import type {Names, Ordinals}       from 'app/options/SoundEffectCategoryAppOpti
 import type {SingleHeaderContent}   from 'app/tools/table/SimpleHeader'
 import type {SoundEffectCategories} from 'core/soundEffectCategory/SoundEffectCategories'
 
-import {CommonOptions} from 'app/options/CommonOptions'
-import Image           from 'app/tools/images/Image'
+import {CommonOptions}         from 'app/options/CommonOptions'
+import SoundEffectCategoryIcon from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
 
 export abstract class SoundEffectCategoryAppOption
     extends Enum<Ordinals, Names>
@@ -18,7 +18,7 @@ export abstract class SoundEffectCategoryAppOption
     public static readonly ICON = new class SoundEffectCategoryAppOption_Icon extends SoundEffectCategoryAppOption {
 
         protected override _createContentOption(enumeration: SoundEffectCategories,) {
-            return <Image file={enumeration.imageFile}/>
+            return <SoundEffectCategoryIcon reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption() {

@@ -14,8 +14,11 @@ import SMM2OnlySoundEffectSoundsComponent       from 'core/soundEffect/SMM2OnlyS
 import SoundEffectComponent                     from 'core/soundEffect/SoundEffect.component'
 import SoundEffectSoundsComponent               from 'core/soundEffect/SoundEffectSounds.component'
 import {SoundEffectCategories}                  from 'core/soundEffectCategory/SoundEffectCategories'
+import SoundEffectCategoryIcon                  from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
+import {Empty}                                  from 'util/emptyVariables'
 
 import CategoryCompanion = SoundEffectCategories.Companion
+import EMPTY_STRING =      Empty.EMPTY_STRING
 import SMM1 =              Games.SMM1
 import SMM2 =              Games.SMM2
 
@@ -61,9 +64,10 @@ export abstract class SoundEffectAppOption
     public static readonly CATEGORY =             new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
-            const {reference,} = enumeration
-
-            return CommonOptions.get.getCategoryContent(enumeration, () => CategoryCompanion.getValueByName(reference.categoryEnglish,).imageFile,)
+            const name = enumeration.reference.categoryAmericanEnglish
+            if (name === EMPTY_STRING)
+                return null
+            return <SoundEffectCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
         }
 
         protected override _createTableHeaderOption() {

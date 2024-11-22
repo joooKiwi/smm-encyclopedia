@@ -93,15 +93,20 @@ class LimitAppInterpreter
                     ? LimitAppOption.AMOUNT_IN_SMM2
                     : null
 
-        if (enumeration.isEditorLimit)
-            return <div className="card-bodyWithEditor-container">
-                <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 bottom-0"/>
-                <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
-                    {option?.renderContent(enumeration,)}
-                </div>
+        const hasAlternativeAcronym = enumeration.alternativeAcronym != null
+        const hasAlternativeName = enumeration.alternativeEnglishName != null
+        const isEditor = enumeration.isEditorLimit
+
+        //TODO add the alternative name on the limit card
+        return <div id={`limit-${enumeration.englishNameInHtml}`} className={`card-body ${isEditor ? 'card-bodyWithEditor' : EMPTY_STRING} text-center`}>
+            {isEditor ? <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 top-0"/> : null}
+            {hasAlternativeName ? <NameComponent id="limit-alternativeName" name={enumeration.reference.alternativeContainer} className="alternativeName"/> : null}
+            {amountOption.renderContent(enumeration,)}
+            <div className="acronyms-container d-flex align-content-center text-body text-opacity-50 fst-italic">
+                <TextComponent content={enumeration.acronym}/>
+                {hasAlternativeAcronym ? <div className="vr mx-2"/> : null}
+                <TextComponent content={enumeration.alternativeAcronym}/>
             </div>
-        return <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
-            {option?.renderContent(enumeration,)}
         </div>
     }
 

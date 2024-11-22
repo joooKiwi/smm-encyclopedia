@@ -7,7 +7,7 @@ import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {AppOption}           from 'app/options/AppOption'
 
 import {CommonOptions} from 'app/options/CommonOptions'
-import Image           from 'app/tools/images/Image'
+import MedalIcon       from 'core/medal/component/MedalIcon'
 
 export abstract class MedalAppOption
     extends Enum<Ordinals, Names>
@@ -18,7 +18,7 @@ export abstract class MedalAppOption
     public static readonly ICON = new class MedalAppOption_Icon extends MedalAppOption {
 
         protected override _createContentOption(enumeration: Medals,) {
-            return <Image file={enumeration.imageFile}/>
+            return <MedalIcon reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption() {
