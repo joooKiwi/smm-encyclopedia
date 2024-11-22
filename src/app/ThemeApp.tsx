@@ -9,7 +9,6 @@ import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {ClassWithType}           from 'core/ClassWithType'
 import type {Themes}                  from 'core/theme/Themes'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
@@ -39,8 +38,7 @@ import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
 class ThemeAppInterpreter
-    implements AppInterpreterWithTable<Themes, ThemeAppOption>,
-        ClassWithType<ThemeTypes> {
+    implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
     //region -------------------- Fields --------------------
 
@@ -57,13 +55,9 @@ class ThemeAppInterpreter
 
     //endregion -------------------- Constructor --------------------
 
-    public get type(): ThemeTypes {
-        return this.#type
-    }
-
     public get content() {
         const games = this.#games
-        return filterByArray(this.type.content, ({reference,},) =>
+        return filterByArray(this.#type.content, ({reference,},) =>
             games.hasAnyIn(reference,),)
     }
 

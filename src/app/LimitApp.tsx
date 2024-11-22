@@ -10,7 +10,6 @@ import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTa
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {LimitTypes}              from 'app/property/LimitTypes'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {ClassWithType}           from 'core/ClassWithType'
 import type {Limits}                  from 'core/limit/Limits'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import type {GameCollection}          from 'util/collection/GameCollection'
@@ -41,8 +40,7 @@ import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
 class LimitAppInterpreter
-    implements AppInterpreterWithTable<Limits, LimitAppOption>,
-        ClassWithType<LimitTypes> {
+    implements AppInterpreterWithTable<Limits, LimitAppOption> {
 
     //region -------------------- Fields --------------------
 
@@ -59,13 +57,9 @@ class LimitAppInterpreter
 
     //endregion -------------------- Constructor --------------------
 
-    public get type(): LimitTypes {
-        return this.#type
-    }
-
     public get content() {
         const games = this.#games
-        return filterByArray(this.type.content, it =>
+        return filterByArray(this.#type.content, it =>
             games.hasAnyIn(it.reference,),)
     }
 
@@ -114,7 +108,7 @@ class LimitAppInterpreter
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
 
     public get tableCaption() {
-        return gameContentTranslation(`limit.${this.type.type}.all`,) satisfies ReactElementOrString
+        return gameContentTranslation(`limit.${this.#type.type}.all`,) satisfies ReactElementOrString
     }
 
     public get tableOptions(): Array<LimitAppOption> {

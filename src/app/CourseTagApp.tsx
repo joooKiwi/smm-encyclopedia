@@ -9,7 +9,6 @@ import type {CourseTagAppProperties}  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {ClassWithType}           from 'core/ClassWithType'
 import type {CourseTags}              from 'core/courseTag/CourseTags'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import type {ReactProperties}         from 'util/react/ReactProperties'
@@ -35,8 +34,7 @@ import NameComponent                                from 'lang/name/component/Na
 import SMM2 = Games.SMM2
 
 class CourseTagAppInterpreter
-    implements AppInterpreterWithTable<CourseTags>,
-        ClassWithType<CourseTagTypes> {
+    implements AppInterpreterWithTable<CourseTags> {
 
     //region -------------------- Fields --------------------
 
@@ -51,12 +49,8 @@ class CourseTagAppInterpreter
 
     //endregion -------------------- Constructor --------------------
 
-    public get type(): CourseTagTypes {
-        return this.#type
-    }
-
     public get content() {
-        return new GenericCollectionHolder(this.type.content,)
+        return new GenericCollectionHolder(this.#type.content,)
     }
 
     //region -------------------- Card --------------------
