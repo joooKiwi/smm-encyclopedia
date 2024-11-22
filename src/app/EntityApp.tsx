@@ -12,6 +12,7 @@ import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
+import type {TimeCollection}          from 'util/collection/TimeCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
@@ -54,13 +55,15 @@ class EntityAppInterpreter
 
     readonly #games
     readonly #gameStyles
+    readonly #times
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection, gameStyles: GameStyleCollection,) {
+    public constructor(games: GameCollection, gameStyles: GameStyleCollection, times: TimeCollection) {
         this.#games = games
         this.#gameStyles = gameStyles
+        this.#times = times
     }
 
     //endregion -------------------- Constructor --------------------
@@ -68,9 +71,11 @@ class EntityAppInterpreter
     public get content() {
         const games = this.#games
         const gameStyles = this.#gameStyles
+        const times = this.#times
         return filterByArray(ALL, ({reference,},) =>
             games.hasAnyIn(reference,)
-            && gameStyles.hasAnyIn(reference,),)
+            && gameStyles.hasAnyIn(reference,)
+            && times.hasAnyIn(reference,),)
     }
 
     //region -------------------- List interpreter --------------------
@@ -171,27 +176,69 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
-export default function EntityApp({viewDisplay, games, gameStyles,}: EntityProperties,) {
+export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
     const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
     const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
     const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
     const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
 
+    //region -------------------- Game selection --------------------
+
+    const game = games.hasAllGames
+        ? EntityGames.ALL_GAMES
+        : games.hasSMM2
+            ? EntityGames.SUPER_MARIO_MAKER_2
+            : games.hasSMM1
+                ? EntityGames.SUPER_MARIO_MAKER
+                : EntityGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    //endregion -------------------- Game selection --------------------
+    //region -------------------- Game style selection --------------------
+
+    const amountOfSelectedGameStyles = intersect(ALL_GAME_STYLES, gameStyles,).length
+    const gameStyle = games.hasSMM2
+        ? amountOfSelectedGameStyles === 5
+            ? EntityGameStyles.ALL_GAME_STYLES
+            : amountOfSelectedGameStyles !== 1
+                ? EntityGameStyles.NOT_INDIVIDUAL_GAME_STYLE
+                : gameStyles.hasSMB
+                    ? EntityGameStyles.SUPER_MARIO_BROS
+                    : gameStyles.hasSMB3
+                        ? EntityGameStyles.SUPER_MARIO_BROS_3
+                        : gameStyles.hasSMW
+                            ? EntityGameStyles.SUPER_MARIO_WORLD
+                            : gameStyles.hasNSMBU
+                                ? EntityGameStyles.NEW_SUPER_MARIO_BROS_U
+                                : EntityGameStyles.SUPER_MARIO_3D_WORLD
+        : amountOfSelectedGameStyles === 5 || amountOfSelectedGameStyles === 4
+            ? EntityGameStyles.ALL_GAME_STYLES
+            : amountOfSelectedGameStyles !== 1
+                ? EntityGameStyles.NOT_INDIVIDUAL_GAME_STYLE
+                : gameStyles.hasSMB
+                    ? EntityGameStyles.SUPER_MARIO_BROS
+                    : gameStyles.hasSMB3
+                        ? EntityGameStyles.SUPER_MARIO_BROS_3
+                        : gameStyles.hasSMW
+                            ? EntityGameStyles.SUPER_MARIO_WORLD
+                            : EntityGameStyles.NEW_SUPER_MARIO_BROS_U
+
+    //endregion -------------------- Game style selection --------------------
+
     return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('entity.all', {
                                  Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
                              },)}
-                             asideContent={<EntityAsideContent games={games} gameStyles={gameStyles}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>
+                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
     </SubMainContainer>
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, gameStyles,}: EntityProperties,) {
-    const appInterpreter = new EntityAppInterpreter(games, gameStyles,)
+function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
+    const appInterpreter = new EntityAppInterpreter(games, gameStyles, times,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-       return <SimpleList reactKey="entity" interpreter={appInterpreter}/>
+        return <SimpleList reactKey="entity" interpreter={appInterpreter}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="entity" interpreter={appInterpreter}/>
     return <Table id="entity-table" interpreter={appInterpreter}/>
@@ -202,52 +249,47 @@ function SubContent({viewDisplay, games, gameStyles,}: EntityProperties,) {
 interface EntityAsideContentProperties
     extends ReactProperties {
 
-    readonly games: GameCollection
+    readonly game: EntityGames
+    readonly gameStyle: EntityGameStyles
+    // readonly time: EntityTimes
 
+    readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
 
 }
 
 /** @reactComponent */
-function EntityAsideContent({games, gameStyles,}: EntityAsideContentProperties,) {
+function EntityAsideContent({games, gameStyles, game, gameStyle,}: EntityAsideContentProperties,) {
     return <div className="entity-asideContent-container">
-        <GameAsideContent games={games} gameStyles={gameStyles}/>
+        <GameAsideContent game={game} gameStyles={gameStyles}/>
         <div className="d-inline mx-1"/>
-        <GameStyleAsideContent games={games} gameStyles={gameStyles}/>
+        <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
     </div>
 }
 
 /** @reactComponent */
-function GameAsideContent({games, gameStyles,}: EntityAsideContentProperties,) {
-    const entityGame = games.hasAllGames
-        ? EntityGames.ALL_GAMES
-        : games.hasSMM2
-            ? EntityGames.SUPER_MARIO_MAKER_2
-            : games.hasSMM1
-                ? EntityGames.SUPER_MARIO_MAKER
-                : EntityGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-
+function GameAsideContent({game, gameStyles,}: Omit<EntityAsideContentProperties, | 'gameStyle' | 'time' | 'games' | 'times'>,) {
     if (gameStyles.hasSM3DW) {
         const amountOfGameStyles = gameStyles.size
         if (!(amountOfGameStyles === 5 || amountOfGameStyles === 4))
             return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-                <LinkButton partialId="allGameLimit" routeName={entityGame.allRouteName} color={entityGame.allColor}>{contentTranslation('All',)}</LinkButton>
-                <LinkButton partialId="smm2Game" routeName={entityGame.smm2RouteName} color={entityGame.smm2Color}>
+                <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+                <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
                     <GameImage reference={SMM2}/>
                 </LinkButton>
             </div>
     }
 
     return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={entityGame.allRouteName} color={entityGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={entityGame.smm1RouteName} color={entityGame.smm1Color}>
+            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
                 <GameImage reference={SMM1}/>
             </LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={entityGame.smm3dsRouteName} color={entityGame.smm3dsColor}>
+            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
                 <GameImage reference={SMM3DS}/>
             </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={entityGame.smm2RouteName} color={entityGame.smm2Color}>
+            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
                 <GameImage reference={SMM2}/>
             </LinkButton>
         </div>
@@ -255,80 +297,47 @@ function GameAsideContent({games, gameStyles,}: EntityAsideContentProperties,) {
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({games, gameStyles,}: EntityAsideContentProperties,) {
-    const amountOfSelectedGameStyles = intersect(ALL_GAME_STYLES, gameStyles,).length
-    const isSmbSelected = gameStyles.hasSMB
-    const isSmb3Selected = gameStyles.hasSMB3
-    const isSmwSelected = gameStyles.hasSMW
-    const isNsmbuSelected = gameStyles.hasNSMBU
-
-    if (games.hasSMM2) {
-        const isSm3dwSelected = gameStyles.hasSM3DW
-        const entityGameStyle = amountOfSelectedGameStyles === 5
-            ? EntityGameStyles.ALL_GAME_STYLES
-            : amountOfSelectedGameStyles !== 1
-                ? EntityGameStyles.NOT_INDIVIDUAL_GAME_STYLE
-                : isSmbSelected
-                    ? EntityGameStyles.SUPER_MARIO_BROS
-                    : isSmb3Selected
-                        ? EntityGameStyles.SUPER_MARIO_BROS_3
-                        : isSmwSelected
-                            ? EntityGameStyles.SUPER_MARIO_WORLD
-                            : isNsmbuSelected
-                                ? EntityGameStyles.NEW_SUPER_MARIO_BROS_U
-                                : EntityGameStyles.SUPER_MARIO_3D_WORLD
-
+function GameStyleAsideContent({gameStyle, games, gameStyles,}: Omit<EntityAsideContentProperties, | 'game' | 'time'>,) {
+    if (games.hasSMM2)
+        //The game styles are in SMM2
         return <div id="entity-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
-            <LinkButton partialId="allGameStyleLimit" routeName={entityGameStyle.allRouteName} color={entityGameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+            <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
             <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="smbGameStyleLimit" routeName={entityGameStyle.smbRouteName} color={entityGameStyle.smbColor(isSmbSelected,)}>
+                <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSMB,)}>
                     <GameStyleImage reference={SMB}/>
                 </LinkButton>
-                <LinkButton partialId="smb3GameStyleLimit" routeName={entityGameStyle.smb3RouteName} color={entityGameStyle.smb3Color(isSmb3Selected,)}>
+                <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSMB3,)}>
                     <GameStyleImage reference={SMB3}/>
                 </LinkButton>
-                <LinkButton partialId="smwGameStyleLimit" routeName={entityGameStyle.smwRouteName} color={entityGameStyle.smwColor(isSmwSelected,)}>
+                <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSMW,)}>
                     <GameStyleImage reference={SMW}/>
                 </LinkButton>
             </div>
             <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="nsmbuGameStyleLimit" routeName={entityGameStyle.nsmbuRouteName} color={entityGameStyle.nsmbuColor(isNsmbuSelected,)}>
+                <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNSMBU,)}>
                     <GameStyleImage reference={NSMBU}/>
                 </LinkButton>
-                <LinkButton partialId="sm3dwGameStyleLimit" routeName={entityGameStyle.sm3dwRouteName} color={entityGameStyle.sm3dwColor(isSm3dwSelected,)}>
+                <LinkButton partialId="sm3dwGameStyleLimit" routeName={gameStyle.sm3dwRouteName} color={gameStyle.sm3dwColor(gameStyles.hasSM3DW,)}>
                     <GameStyleImage reference={SM3DW}/>
                 </LinkButton>
             </div>
         </div>
-    }
-
-    const entityGameStyle = amountOfSelectedGameStyles === 5 || amountOfSelectedGameStyles === 4
-        ? EntityGameStyles.ALL_GAME_STYLES
-        : amountOfSelectedGameStyles !== 1
-            ? EntityGameStyles.NOT_INDIVIDUAL_GAME_STYLE
-            : isSmbSelected
-                ? EntityGameStyles.SUPER_MARIO_BROS
-                : isSmb3Selected
-                    ? EntityGameStyles.SUPER_MARIO_BROS_3
-                    : isSmwSelected
-                        ? EntityGameStyles.SUPER_MARIO_WORLD
-                        : EntityGameStyles.NEW_SUPER_MARIO_BROS_U
-
+    //The game styles are in SMM1 / SMM3DS
     return <div id="entity-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameStyleLimit" routeName={entityGameStyle.allRouteName} color={entityGameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smbGameStyleLimit" routeName={entityGameStyle.smbRouteName} color={entityGameStyle.smbColor(isSmbSelected,)}>
+            <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSMB,)}>
                 <GameStyleImage reference={SMB}/>
             </LinkButton>
-            <LinkButton partialId="smb3GameStyleLimit" routeName={entityGameStyle.smb3RouteName} color={entityGameStyle.smb3Color(isSmb3Selected,)}>
+            <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSMB3,)}>
                 <GameStyleImage reference={SMB3}/>
             </LinkButton>
         </div>
         <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smwGameStyleLimit" routeName={entityGameStyle.smwRouteName} color={entityGameStyle.smwColor(isSmwSelected,)}>
+            <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSMW,)}>
                 <GameStyleImage reference={SMW}/>
             </LinkButton>
-            <LinkButton partialId="nsmbuGameStyleLimit" routeName={entityGameStyle.nsmbuRouteName} color={entityGameStyle.nsmbuColor(isNsmbuSelected,)}>
+            <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNSMBU,)}>
                 <GameStyleImage reference={NSMBU}/>
             </LinkButton>
         </div>
