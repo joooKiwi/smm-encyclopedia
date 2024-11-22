@@ -195,12 +195,14 @@ export abstract class SoundEffectAppOption
 
 export namespace SoundEffectAppOption {
 
+    /** @deprecated This should be replaced with something else */
     export function renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
         const reference = enumerable.reference
 
         return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM1}/> : null
     }
 
+    /** @deprecated This should be replaced with something else */
     export function renderSMM2Image(enumerable: SoundEffects,): ReactElement {
         const reference = enumerable.reference
 
