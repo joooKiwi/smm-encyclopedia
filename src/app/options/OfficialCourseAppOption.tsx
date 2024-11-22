@@ -28,7 +28,7 @@ export abstract class OfficialCourseAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'time', element: unfinishedText('Reward',),} satisfies SingleHeaderContent
+            return {key: 'reward', element: unfinishedText('Reward',),} satisfies SingleHeaderContent
         }
 
     }('reward',)
@@ -55,7 +55,7 @@ export abstract class OfficialCourseAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'time', element: unfinishedText('Description',),} satisfies SingleHeaderContent
+            return {key: 'description', element: unfinishedText('Description',),} satisfies SingleHeaderContent
         }
 
     }('description',)
