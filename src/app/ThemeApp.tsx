@@ -207,7 +207,7 @@ function TypeAsideContent({type,}: Pick<ThemeAsideContentProperties, 'type'>,) {
 
 /** @reactComponent */
 function GameAsideContent({type, games,}: ThemeAsideContentProperties,) {
-    const themeGame = games.hasSMM2
+    const themeGame = games.hasSmm2
         ? ThemeGames.SUPER_MARIO_MAKER_2
         : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

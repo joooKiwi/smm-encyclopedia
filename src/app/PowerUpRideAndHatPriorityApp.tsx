@@ -202,29 +202,29 @@ export default class PowerUpRideAndHatPriorityApp
         return this.props.type
     }
 
-    public get hasSMM2() {
-        return this.props.games.hasSMM2
+    public get hasSmm2() {
+        return this.props.games.hasSmm2
     }
 
 
-    public get hasSMB(): boolean {
+    public get hasSmb(): boolean {
         return this.__gameStyle === SMB
     }
 
-    public get hasSMB3(): boolean {
+    public get hasSmb3(): boolean {
         return this.__gameStyle === SMB3
     }
 
-    public get hasSMW(): boolean {
+    public get hasSmw(): boolean {
         return this.__gameStyle === SMW
     }
 
-    public get hasNSMBU(): boolean {
+    public get hasNsmbu(): boolean {
         return this.__gameStyle === NSMBU
     }
 
-    public get hasSM3DW(): boolean {
-        return this.hasSMM2 && this.__gameStyle === SM3DW
+    public get hasSm3dw(): boolean {
+        return this.hasSmm2 && this.__gameStyle === SM3DW
     }
 
 
@@ -262,19 +262,19 @@ export default class PowerUpRideAndHatPriorityApp
         //TODO replace the div by links (when changed from state to property)
         return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
             <div className="d-flex flex-wrap justify-content-center">
-                <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMB}>
+                <div className={`btn ${this.hasSmb ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMB}>
                     <GameStyleImage reference={SMB}/>
                 </div>
-                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMB3}>
+                <div className={`btn ${this.hasSmb3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMB3}>
                     <GameStyleImage reference={SMB3}/>
                 </div>
-                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMW}>
+                <div className={`btn ${this.hasSmw ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMW}>
                     <GameStyleImage reference={SMW}/>
                 </div>
-                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NSMBU}>
+                <div className={`btn ${this.hasNsmbu ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NSMBU}>
                     <GameStyleImage reference={NSMBU}/>
                 </div>
-                {this.hasSMM2 ? <div className={`btn ${gameStyle === SM3DW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SM3DW}>
+                {this.hasSmm2 ? <div className={`btn ${gameStyle === SM3DW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SM3DW}>
                     <GameStyleImage reference={SM3DW}/>
                 </div> : null}
             </div>
@@ -331,11 +331,11 @@ export default class PowerUpRideAndHatPriorityApp
             </nav>
             <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
             <div id="displayed-powerUpPriorityGroup">
-                {this.hasSMB ? <PowerUpPriorityInSMB games={games}>{PowerUpRideAndHatPriorityApp.#SMB_POWER_UPS}</PowerUpPriorityInSMB> : null}
-                {this.hasSMB3 ? <PowerUpPriorityInSMB3 games={games}>{PowerUpRideAndHatPriorityApp.#SMB3_POWER_UPS}</PowerUpPriorityInSMB3> : null}
-                {this.hasSMW ? <PowerUpPriorityInSMW games={games}>{PowerUpRideAndHatPriorityApp.#SMW_POWER_UPS}</PowerUpPriorityInSMW> : null}
-                {this.hasNSMBU ? <PowerUpPriorityInNSMBU games={games}>{PowerUpRideAndHatPriorityApp.#NSMBU_POWER_UPS}</PowerUpPriorityInNSMBU> : null}
-                {this.hasSM3DW ? <PowerUpPriorityInSM3DW>{PowerUpRideAndHatPriorityApp.#SM3DW_POWER_UPS}</PowerUpPriorityInSM3DW> : null}
+                {this.hasSmb ? <PowerUpPriorityInSMB games={games}>{PowerUpRideAndHatPriorityApp.#SMB_POWER_UPS}</PowerUpPriorityInSMB> : null}
+                {this.hasSmb3 ? <PowerUpPriorityInSMB3 games={games}>{PowerUpRideAndHatPriorityApp.#SMB3_POWER_UPS}</PowerUpPriorityInSMB3> : null}
+                {this.hasSmw ? <PowerUpPriorityInSMW games={games}>{PowerUpRideAndHatPriorityApp.#SMW_POWER_UPS}</PowerUpPriorityInSMW> : null}
+                {this.hasNsmbu ? <PowerUpPriorityInNSMBU games={games}>{PowerUpRideAndHatPriorityApp.#NSMBU_POWER_UPS}</PowerUpPriorityInNSMBU> : null}
+                {this.hasSm3dw ? <PowerUpPriorityInSM3DW>{PowerUpRideAndHatPriorityApp.#SM3DW_POWER_UPS}</PowerUpPriorityInSM3DW> : null}
             </div>
         </>
     }

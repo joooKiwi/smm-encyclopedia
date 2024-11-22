@@ -128,12 +128,12 @@ const keyRetriever: (characterName: CharacterNames,) => string = it => it.unique
 export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
     const game = games.hasAllGames
         ? CharacterNameGames.ALL_GAMES
-        : games.hasSMM2
+        : games.hasSmm2
             ? CharacterNameGames.SUPER_MARIO_MAKER_2
-            : games.hasSMM1
+            : games.hasSmm1
                 ? CharacterNameGames.SUPER_MARIO_MAKER
                 : CharacterNameGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-    const time = games.hasNotSMM2AndSMM1Or3DS
+    const time = games.hasNotSmm2AndSmm1Or3ds
         ? null
         : times.hasAllTimes
             ? CharacterNameTimes.ALL_TIMES

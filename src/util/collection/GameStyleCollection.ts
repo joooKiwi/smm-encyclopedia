@@ -24,12 +24,12 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     //region -------------------- Fields --------------------
 
     #hasAllGameStyles?: boolean
-    #hasAllGameStylesInSMM1?: boolean
-    #hasSMB?: boolean
-    #hasSMB3?: boolean
-    #hasSMW?: boolean
-    #hasNSMBU?: boolean
-    #hasSM3DW?: boolean
+    #hasAllGameStylesInSmm1?: boolean
+    #hasSmb?: boolean
+    #hasSmb3?: boolean
+    #hasSmw?: boolean
+    #hasNsmbu?: boolean
+    #hasSm3dw?: boolean
     #hasOnlySmb?: boolean
     #hasOnlySmb3?: boolean
     #hasOnlySmw?: boolean
@@ -53,60 +53,60 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * ({@link SMB}, {@link SMB3}, {@link SMW} & {@link NSMBU})
      * types in its values
      */
-    public get hasAllGameStylesInSMM1(): boolean {
-        return this.#hasAllGameStylesInSMM1 ??= this._hasAllByArray(ALL_SMM1 as unknown as Array<T>,)
+    public get hasAllGameStylesInSmm1(): boolean {
+        return this.#hasAllGameStylesInSmm1 ??= this._hasAllByArray(ALL_SMM1 as unknown as Array<T>,)
     }
 
 
     /** The collection has the {@link SMB} type in its values */
-    public get hasSMB(): boolean {
-        return this.#hasSMB ??= this.has(SMB as T,)
+    public get hasSmb(): boolean {
+        return this.#hasSmb ??= this.has(SMB as T,)
     }
 
     /** The collection has the {@link SMB3} type in its values */
-    public get hasSMB3(): boolean {
-        return this.#hasSMB3 ??= this.has(SMB3 as T,)
+    public get hasSmb3(): boolean {
+        return this.#hasSmb3 ??= this.has(SMB3 as T,)
     }
 
     /** The collection has the {@link SMW} type in its values */
-    public get hasSMW(): boolean {
-        return this.#hasSMW ??= this.has(SMW as T,)
+    public get hasSmw(): boolean {
+        return this.#hasSmw ??= this.has(SMW as T,)
     }
 
     /** The collection has the {@link NSMBU} type in its values */
-    public get hasNSMBU(): boolean {
-        return this.#hasNSMBU ??= this.has(NSMBU as T,)
+    public get hasNsmbu(): boolean {
+        return this.#hasNsmbu ??= this.has(NSMBU as T,)
     }
 
     /** The collection has the {@link SM3DW} type in its values */
-    public get hasSM3DW(): boolean {
-        return this.#hasSM3DW ??= this.has(SM3DW as T,)
+    public get hasSm3dw(): boolean {
+        return this.#hasSm3dw ??= this.has(SM3DW as T,)
     }
 
 
     /** The collection has <b>only</b> the {@link SMB} type in its values */
     public get hasOnlySmb(): boolean {
-        return this.#hasOnlySmb ??= this.hasSMB && this.size === 1
+        return this.#hasOnlySmb ??= this.hasSmb && this.size === 1
     }
 
     /** The collection has <b>only</b> the {@link SMB3} type in its values */
     public get hasOnlySmb3(): boolean {
-        return this.#hasOnlySmb3 ??= this.hasSMB3 && this.size === 1
+        return this.#hasOnlySmb3 ??= this.hasSmb3 && this.size === 1
     }
 
     /** The collection has <b>only</b> the {@link SMW} type in its values */
     public get hasOnlySmw(): boolean {
-        return this.#hasOnlySmw ??= this.hasSMW && this.size === 1
+        return this.#hasOnlySmw ??= this.hasSmw && this.size === 1
     }
 
     /** The collection has <b>only</b> the {@link NSMBU} type in its values */
     public get hasOnlyNsmbu(): boolean {
-        return this.#hasOnlyNsmbu ??= this.hasNSMBU && this.size === 1
+        return this.#hasOnlyNsmbu ??= this.hasNsmbu && this.size === 1
     }
 
     /** The collection has <b>only</b> the {@link SM3DW} type in its values */
     public get hasOnlySm3dw(): boolean {
-        return this.#hasOnlySm3dw ??= this.hasSM3DW && this.size === 1
+        return this.#hasOnlySm3dw ??= this.hasSm3dw && this.size === 1
     }
 
     //endregion -------------------- Getter methods --------------------

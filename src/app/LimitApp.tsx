@@ -87,9 +87,9 @@ class LimitAppInterpreter
         const games = this.#games
         const option = games.hasAllGames
             ? LimitAppOption.AMOUNT_IN_ALL_GAMES
-            : games.hasSMM1Or3DS
+            : games.hasSmm1Or3ds
                 ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
-                : games.hasSMM2
+                : games.hasSmm2
                     ? LimitAppOption.AMOUNT_IN_SMM2
                     : null
 
@@ -125,9 +125,9 @@ class LimitAppInterpreter
         if (games.hasAllGames)
             options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
         else {
-            if (games.hasSMM1Or3DS)
+            if (games.hasSmm1Or3ds)
                 options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
-            if (games.hasSMM2)
+            if (games.hasSmm2)
                 options.push(LimitAppOption.AMOUNT_IN_SMM2,)
         }
         return options
@@ -161,7 +161,7 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
 
     const game = games.hasAllGames
         ? LimitGames.ALL_GAMES
-        : games.hasSMM2
+        : games.hasSmm2
             ? LimitGames.SUPER_MARIO_MAKER_2
             : LimitGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

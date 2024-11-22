@@ -89,13 +89,12 @@ class SoundEffectAppInterpreter
 
     public get tableOptions(): Array<SoundEffectAppOption> {
         const games = this.#games
-        const hasSMM1Or3DS = games.hasSMM1Or3DS
-        const hasSMM2 = games.hasSMM2
+        const {hasSmm2, hasSmm1Or3ds,} = games
 
         const options: MutableArray<SoundEffectAppOption> = []
-        if (hasSMM1Or3DS)
+        if (hasSmm1Or3ds)
             options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
-        if (hasSMM2)
+        if (hasSmm2)
             options.push(SoundEffectAppOption.SMM2_ICON,)
         options.push(
             SoundEffectAppOption.NAME,
@@ -105,9 +104,9 @@ class SoundEffectAppInterpreter
         if (games.hasAllGames)
             options.push(SoundEffectAppOption.SOUNDS,)
         else {
-            if (hasSMM1Or3DS)
+            if (hasSmm1Or3ds)
                 options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
-            if (hasSMM2)
+            if (hasSmm2)
                 options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
         }
         return options
@@ -169,7 +168,7 @@ interface SoundEffectAsideContentProperties
 function SoundEffectAsideContent({games,}: SoundEffectAsideContentProperties,) {
     const soundEffectGame = games.hasAllGames
         ? SoundEffectGames.ALL_GAMES
-        : games.hasSMM2
+        : games.hasSmm2
             ? SoundEffectGames.SUPER_MARIO_MAKER_2
             : SoundEffectGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

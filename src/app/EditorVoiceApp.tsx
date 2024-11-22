@@ -129,12 +129,12 @@ const viewDisplayAndRouteName = [
 export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
     const game = games.hasAllGames
         ? EditorVoiceGames.ALL_GAMES
-        : games.hasSMM2
+        : games.hasSmm2
             ? EditorVoiceGames.SUPER_MARIO_MAKER_2
-            : games.hasSMM1
+            : games.hasSmm1
                 ? EditorVoiceGames.SUPER_MARIO_MAKER
                 : EditorVoiceGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-    const time = games.hasNotSMM2AndSMM1Or3DS
+    const time = games.hasNotSmm2AndSmm1Or3ds
         ? null
         : times.hasAllTimes
             ? EditorVoiceTimes.ALL_TIMES

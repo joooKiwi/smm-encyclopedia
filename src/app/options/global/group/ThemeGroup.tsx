@@ -22,9 +22,9 @@ export default function ThemeGroup({isHidden = false, elements,}: GroupPropertie
             if (isHidden)
                 return null
 
-            const [hasSMM2Selected, isDisabledNight,] = isDisabled == null ? [false, false,] : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled
+            const [hasSmm2Selected, isDisabledNight,] = isDisabled == null ? [false, false,] : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled
             return <div key={`option container (${element.englishName})`} id={`${element.englishNameInHtml}-option-container`} className="btn-group-vertical" role="group">{
-                hasSMM2Selected
+                hasSmm2Selected
                     ? renderElementWithDayAndNight(element, option, isDisabledNight,)
                     : renderElementWithOnlyDay(element, option,)
             }</div>

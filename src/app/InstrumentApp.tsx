@@ -126,12 +126,12 @@ const viewDisplayAndRouteName = [
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games, times,}: InstrumentAppProperties,) {
-    const game = games.hasSMM2
+    const game = games.hasSmm2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
-        : games.hasSMM1
+        : games.hasSmm1
             ? InstrumentGames.SUPER_MARIO_MAKER
             : InstrumentGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-    const time = games.hasNotSMM2AndSMM1Or3DS
+    const time = games.hasNotSmm2AndSmm1Or3ds
         ? null
         : times.hasAllTimes
             ? InstrumentTimes.ALL_TIMES

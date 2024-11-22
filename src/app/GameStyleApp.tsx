@@ -120,7 +120,7 @@ const viewDisplayAndRouteName = [
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
-    const game = games.hasSMM2
+    const game = games.hasSmm2
         ? GameStyleGames.SUPER_MARIO_MAKER_2
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
