@@ -29,7 +29,7 @@ export abstract class LimitAppOption
 
     public static readonly ACRONYM = new class LimitAppOption_Acronym extends LimitAppOption {
 
-        protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: Limits,) {
+        protected override _createContentOption({acronym, alternativeAcronym,}: Limits,) {
             if (alternativeAcronym == null) {
                 if (acronym == null)
                     return null

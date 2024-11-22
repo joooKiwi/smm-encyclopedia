@@ -2120,6 +2120,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_GAME_STYLE = new EveryRoutes.AllGames_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games, gameStyles, times,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
     public static readonly EVERY_ENTITY = new EveryRoutes.AllGames_EveryRoutes('everyEntity', '/every/entity', TABLE, (viewDisplay, games, gameStyles, times,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    //TODO add "entity" on specific category
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
@@ -2132,9 +2133,11 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     public static readonly EVERY_WORLD_THEME = new EveryRoutes.AllGames_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.WORLD}/>,)
 
     public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.AllGames_EveryRoutes('everySoundEffect', '/every/sound-effect', TABLE, (viewDisplay, games, gameStyles, times,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    //TODO add "sound effect" on specific category
     public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', CARD, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
 
     public static readonly EVERY_MII_COSTUME = new EveryRoutes.OnlySmm2_EveryRoutes('everyMiiCostume', '/every/mii-costume', TABLE, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
+    //TODO add "mii costume" on specific category
     public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', CARD, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
 
     public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.OnlySmm1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', CARD, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)

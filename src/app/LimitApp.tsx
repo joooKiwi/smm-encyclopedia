@@ -183,7 +183,7 @@ function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gam
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
            return <LimitList items={appInterpreter.content} games={games}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-            return<CardList reactKey="limit" interpreter={appInterpreter}/>
+            return <CardList reactKey="limit" interpreter={appInterpreter}/>
     return<Table id="limit-table" interpreter={appInterpreter}/>
 }
 

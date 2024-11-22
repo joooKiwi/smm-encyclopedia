@@ -204,4 +204,6 @@ function SoundEffectAsideContent({games,}: SoundEffectAsideContentProperties,) {
     </div>
 }
 
+//TODO add "game style" aside content
+
 //endregion -------------------- Aside content --------------------

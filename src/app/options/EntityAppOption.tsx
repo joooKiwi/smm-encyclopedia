@@ -73,7 +73,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smb`, element: <GameStyleImage reference={SMB}/>,} satisfies SingleHeaderContent
+            return {key: `image-smb`, element: <GameStyleImage reference={SMB}/>,} as const satisfies SingleHeaderContent
         }
 
     }('smb-images',)
@@ -94,7 +94,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smb3`, element: <GameStyleImage reference={SMB3}/>,} satisfies SingleHeaderContent
+            return {key: `image-smb3`, element: <GameStyleImage reference={SMB3}/>,} as const satisfies SingleHeaderContent
         }
 
     }('smb3-images',)
@@ -115,7 +115,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smw`, element: <GameStyleImage reference={SMW}/>,} satisfies SingleHeaderContent
+            return {key: `image-smw`, element: <GameStyleImage reference={SMW}/>,} as const satisfies SingleHeaderContent
         }
 
     }('smw-images',)
@@ -136,7 +136,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-nsmbu`, element: <GameStyleImage reference={NSMBU}/>,} satisfies SingleHeaderContent
+            return {key: `image-nsmbu`, element: <GameStyleImage reference={NSMBU}/>,} as const satisfies SingleHeaderContent
         }
 
     }('nsmbu-images',)
@@ -157,7 +157,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-sm3dw`, element: <GameStyleImage reference={SM3DW}/>,} satisfies SingleHeaderContent
+            return {key: `image-sm3dw`, element: <GameStyleImage reference={SM3DW}/>,} as const satisfies SingleHeaderContent
         }
 
     }('sm3dw-images',)
