@@ -72,11 +72,6 @@ export abstract class MiiCostumeAppOption
         }
 
     }()
-    /**
-     * Tell whenever a {@link MiiCostumeAppOption.CATEGORY category} is displayed
-     * as a text (<i>true</i>) or an image (<i>false</i>).
-     */
-    public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {}()
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
