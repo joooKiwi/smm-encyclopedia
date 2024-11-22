@@ -36,7 +36,7 @@ export abstract class SampleCourseAppOption
         }
 
 
-    }()
+    }('levelNumber',)
     public static readonly NAME = new class SampleCourseAppOption_Name extends SampleCourseAppOption {
 
         protected override _createContentOption(enumeration: SampleCourses,): ReactElement {
@@ -48,7 +48,7 @@ export abstract class SampleCourseAppOption
         }
 
 
-    }()
+    }('name',)
     public static readonly GAME_STYLE_AND_AREAS = new class SampleCourseAppOption_GameStyleAndAreas extends SampleCourseAppOption {
 
         protected override _createContentOption({reference,}: SampleCourses,): NonNullReactElement {
@@ -72,7 +72,7 @@ export abstract class SampleCourseAppOption
         }
 
 
-    }()
+    }('time',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -98,15 +98,29 @@ export abstract class SampleCourseAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
+
+    readonly #associatedClass
+    readonly #additionalClasses
+
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
+    private constructor(associatedClass: string,) {
         super()
+        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    public get associatedClass(): string {
+        return this.#associatedClass
+    }
+
+    public get additionalClasses(): readonly [string,] {
+        return this.#additionalClasses
+    }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 

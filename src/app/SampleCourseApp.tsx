@@ -1,3 +1,5 @@
+import './SampleCourseApp.scss'
+
 import type {Array}              from '@joookiwi/type'
 import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
@@ -62,6 +64,10 @@ class SampleCourseInterpreter
             SampleCourseAppOption.GAME_STYLE_AND_AREAS,
             SampleCourseAppOption.TIME,
         ]
+    }
+
+    public getAdditionalClass(option: SampleCourseAppOption,) {
+        return option.additionalClasses
     }
 
     public createTableContent(content: SampleCourses, option: SampleCourseAppOption,) {

@@ -1,0 +1,12 @@
+#sampleCourse-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.levelNumber { max-width: 9rem }
+    &.name {}
+    &.gameStyleAndAreas { max-width: 6rem }
+    &.time { max-width: 6rem }
+  }
+}
