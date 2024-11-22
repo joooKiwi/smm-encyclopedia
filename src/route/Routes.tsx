@@ -16,6 +16,7 @@ import {redirectTo}                  from 'route/method/redirectTo'
 import {redirectToByUrl}             from 'route/method/redirectTo.byUrl'
 import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
+import {Empty}                       from 'util/emptyVariables'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
@@ -23,6 +24,7 @@ import {TimeCollection}              from 'util/collection/TimeCollection'
 import ALL =                EveryRoutes.ALL
 import ALL_LANGUAGES =      ProjectLanguages.ALL
 import ALL_ROUTES =         EveryRoutes.ALL_ROUTES
+import EMPTY_STRING =       Empty.EMPTY_STRING
 import GameCompanion =      Games.Companion
 import GameStyleCompanion = GameStyles.Companion
 import LanguageCompanion =  ProjectLanguages.Companion
@@ -77,7 +79,7 @@ const router = createHashRouter([{
         },),
 
         //endregion -------------------- Path from language --------------------
-        new StraightFallbackRouteObject('/', it => redirectToByUrl(it,),),
+        new StraightFallbackRouteObject(EMPTY_STRING, it => redirectToByUrl(it,),),
     ],
 } satisfies RouteObject,], {
     basename: '/',

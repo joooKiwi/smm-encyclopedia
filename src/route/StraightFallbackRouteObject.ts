@@ -9,10 +9,10 @@ import {StraightRouteObject} from 'route/StraightRouteObject'
  * Meaning it only has a {@link StraightRouteObject.path path} and a redirection action.
  */
 export class StraightFallbackRouteObject<const out PATH extends string, const CONTEXT = unknown, >
-    extends StraightRouteObject<`${PATH}*`, CONTEXT> {
+    extends StraightRouteObject<`${PATH}/*`, CONTEXT> {
 
     public constructor(path: PATH, redirectionAction: (loaderArguments: LoaderFunctionArgs<CONTEXT>,) => never,) {
-        super(`${path}*`, redirectionAction,)
+        super(`${path}/*`, redirectionAction,)
     }
 
 }
