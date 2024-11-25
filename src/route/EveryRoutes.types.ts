@@ -89,15 +89,15 @@ interface SimpleRouteMap {
     EVERY_ENTITY_CATEGORY: InOnlySmm2<'EVERY_ENTITY_CATEGORY'>
     EVERY_GROUP:           Of<'EVERY_GROUP'>
 
-    EVERY_LIMIT:        InTableAndAnyGame<'EVERY_LIMIT'>
-    EVERY_PLAY_LIMIT:   InTableAndAnyGame<'EVERY_PLAY_LIMIT'>
-    EVERY_EDITOR_LIMIT: InTableAndAnyGame<'EVERY_EDITOR_LIMIT'>
+    EVERY_LIMIT:        InViewDisplay_Game_GameStyle_Time<'EVERY_LIMIT'>
+    EVERY_PLAY_LIMIT:   InViewDisplay_Game_GameStyle_Time<'EVERY_PLAY_LIMIT'>
+    EVERY_EDITOR_LIMIT: InViewDisplay_Game_GameStyle_Time<'EVERY_EDITOR_LIMIT'>
 
     EVERY_THEME:        InTableAndAnyGame<'EVERY_THEME'>
     EVERY_COURSE_THEME: InTableAndAnyGame<'EVERY_COURSE_THEME'>
     EVERY_WORLD_THEME:  InTableAndAnyGame<'EVERY_WORLD_THEME'>
 
-    EVERY_SOUND_EFFECT:          InTableAndAnyGame<'EVERY_SOUND_EFFECT'>
+    EVERY_SOUND_EFFECT:          InViewDisplay_Game_GameStyle_Time<'EVERY_SOUND_EFFECT'>
     EVERY_SOUND_EFFECT_CATEGORY: InOnlySmm2<'EVERY_SOUND_EFFECT_CATEGORY'>
 
     EVERY_MII_COSTUME:          InOnlySmm2<'EVERY_MII_COSTUME'>
@@ -117,7 +117,7 @@ interface SimpleRouteMap {
     EVERY_UNOFFICIAL_COURSE_TAG:    InOnlySmm2<'EVERY_UNOFFICIAL_COURSE_TAG'>
     EVERY_MAKER_CENTRAL_COURSE_TAG: InOnlySmm2<'EVERY_MAKER_CENTRAL_COURSE_TAG'>
 
-    EVERY_INSTRUMENT: InTableAndGameAndTime<'EVERY_INSTRUMENT'>
+    EVERY_INSTRUMENT: InViewDisplay_Game_GameStyle_Time<'EVERY_INSTRUMENT'>
 
     EVERY_EDITOR_VOICE: InTableAndGameAndTime<'EVERY_EDITOR_VOICE'>
 
@@ -267,4 +267,8 @@ export type PossibleGameStylePath = | EmptyString | `/${FullUrlValue_GameStyle}`
 export type PossibleTimePath = | EmptyString | `/${FullUrlValue_Time}`
 
 
+/**
+ * All the {@link PossibleRoutePath possible route path} that is applicable with the language beforehand
+ */
+// @ts-ignore: There are over 20 000 possibilities (without the languages)
 export type EveryPossibleRoutes = `/${PossibleAcronym}${PossibleRoutePath}`
