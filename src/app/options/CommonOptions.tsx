@@ -5,8 +5,6 @@ import type {ClassWithEnglishName}                                      from 'co
 import type {ClassWithReference}                                        from 'core/ClassWithReference'
 import type {ClassInAnySuperMarioMakerGame}                             from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {Name}                                                      from 'lang/name/Name'
-import type {NameTrait}                                                 from 'lang/name/NameTrait'
-import type {NameTraitFromACategory}                                    from 'lang/name/NameTraitFromACategory'
 
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
