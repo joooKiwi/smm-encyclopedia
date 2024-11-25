@@ -230,6 +230,7 @@ function route(name: PossibleRouteName, handleException = false,) {
 //endregion -------------------- Helper route --------------------
 //region -------------------- Title components --------------------
 
+/** @reactComponent */
 function SectionTitle({name, route, target, multiplyBy,}: { name: string, route: EveryRoutes, target: string, multiplyBy?: number, },) {
     if (multiplyBy == null)
         return <h2 className="text-center fw-bold fst-italic" data-bs-toggle="collapse" data-bs-target={`#${target}`} role="button" aria-expanded="false">
@@ -240,6 +241,7 @@ function SectionTitle({name, route, target, multiplyBy,}: { name: string, route:
     </h2>
 }
 
+/** @reactComponent */
 function SubSectionTitle({name, target,}: { name: string, target: string,},) {
     return <h3 className="text-center text-decoration-underline fw-bold fst-italic" data-bs-toggle="collapse" data-bs-target={`#${target}`} role="button" aria-expanded="false">{name}</h3>
 }
@@ -247,12 +249,14 @@ function SubSectionTitle({name, target,}: { name: string, target: string,},) {
 //endregion -------------------- Title components --------------------
 //region -------------------- Section (empty and unique) components --------------------
 
+/** @reactComponent */
 function EmptySection({id, name,}: { id: string, name: string, },) {
     return <div id={id} className="container-lg d-flex justify-content-center alert alert-danger py-1" role="alert">
         <h2 className="fw-bold fst-italic"><span className="text-decoration-underline">{name}</span> <sup>(0 paths)</sup></h2>
     </div>
 }
 
+/** @reactComponent */
 function UniqueSection({id, name, target, path, handleException,}: { id: string, name: string, target: string, path: PossibleRouteName, handleException?: boolean, },) {
     return <div id={id} className="container-lg bg-dark-subtle border border-opacity-25 rounded pt-1 pb-3 mb-3">
         <h2 className="text-center fw-bold fst-italic" data-bs-toggle="collapse" data-bs-target={`#${target}`} role="button" aria-expanded="false">
@@ -267,6 +271,7 @@ function UniqueSection({id, name, target, path, handleException,}: { id: string,
 //endregion -------------------- Section (empty and unique) components --------------------
 //region -------------------- Filled section (with every game and game style) components --------------------
 
+/** @reactComponent */
 function ListCardTableAllGameAllGameStyleSection({partialId, name, route,}: FilledSectionProperties<| 'EVERY_ENTITY' | 'EVERY_SOUND_EFFECT'>,) {
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
@@ -2179,6 +2184,7 @@ interface FilledSectionWithEveryGameProperties<out ROUTE1 extends Names, out ROU
     readonly routes: readonly [route1: typeof EveryRoutes[ROUTE1], route2: typeof EveryRoutes[ROUTE2], route3: typeof EveryRoutes[ROUTE3],]
 }
 
+/** @reactComponent */
 function ListCardTableAllGameSection({partialId, name, names: [name2, name3,], routes: [route1, route2, route3,],}: FilledSectionWithEveryGameProperties<| 'EVERY_LIMIT' | 'EVERY_THEME', | 'EVERY_EDITOR_LIMIT' | 'EVERY_COURSE_THEME', | 'EVERY_PLAY_LIMIT' | 'EVERY_WORLD_THEME'>,) {
     const urlName1 = route1.urlName
     const urlName2 = route2.urlName
@@ -2418,6 +2424,7 @@ interface FilledSectionProperties<out ROUTE extends Names, >
 }
 
 
+/** @reactComponent */
 function AnyGameSection({partialId, name, route,}: FilledSectionProperties<| 'EVERY_CHARACTER_NAME' | 'EVERY_GAME_STYLE' | 'EVERY_OFFICIAL_COURSE' | 'EVERY_INSTRUMENT' | 'EVERY_EDITOR_VOICE'>,) {
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
@@ -2477,6 +2484,7 @@ function AnyGameSection({partialId, name, route,}: FilledSectionProperties<| 'EV
 }
 
 
+/** @reactComponent */
 function OnlySmm1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_MEDAL'>,) {
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
@@ -2496,6 +2504,7 @@ function OnlySmm1Section({partialId, name, route,}: FilledSectionProperties<| 'E
     </div>
 }
 
+/** @reactComponent */
 function OnlySmm2Section({partialId, name, route,}: FilledSectionProperties<|'EVERY_ENTITY_CATEGORY' | 'EVERY_SOUND_EFFECT_CATEGORY' | 'EVERY_MII_COSTUME' | 'EVERY_MII_COSTUME_CATEGORY' | 'EVERY_PREDEFINED_MESSAGE'>,) {
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
@@ -2515,6 +2524,7 @@ function OnlySmm2Section({partialId, name, route,}: FilledSectionProperties<|'EV
     </div>
 }
 
+/** @reactComponent */
 function AllGamesSection({partialId, name, route,}: FilledSectionProperties<'EVERY_GAME_REFERENCE'>,) {
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`

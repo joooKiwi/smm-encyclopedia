@@ -116,6 +116,7 @@ interface MiiCostumeCategory_ListProperties
 
 }
 
+/** @reactComponent */
 function MiiCostumeCategoryList({items,}: MiiCostumeCategory_ListProperties,) {
     return <List partialId="miiCostumeCategory" items={items}>{it =>
         <div className="d-flex justify-content-between align-items-center">

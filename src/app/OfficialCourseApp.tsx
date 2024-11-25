@@ -127,6 +127,7 @@ interface OfficialCourse_ListProperties
 
 }
 
+/** @reactComponent */
 function OfficialCourseList({items,}: OfficialCourse_ListProperties,) {
     return <List partialId="officialCourse" items={items} withSeparator>{it => {
         const reference = it.reference

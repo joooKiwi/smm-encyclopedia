@@ -268,6 +268,7 @@ interface Entity_ListProperties
 
 }
 
+/** @reactComponent */
 function EntityList({items, gameStyles,}: Entity_ListProperties,) {
     return <List partialId="entity" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
@@ -307,7 +308,7 @@ function EntityAsideContent({games, gameStyles, time, game, gameStyle,}: EntityA
 }
 
 /** @reactComponent */
-function GameAsideContent({game, gameStyles,}: Omit<EntityAsideContentProperties, | 'gameStyle' | 'time' | 'games' | 'times'>,) {
+function GameAsideContent({game, gameStyles,}: Pick<EntityAsideContentProperties, | 'game' | 'gameStyles'>,) {
     if (game == null)
         return null
     if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
@@ -335,7 +336,7 @@ function GameAsideContent({game, gameStyles,}: Omit<EntityAsideContentProperties
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({gameStyle, games, gameStyles,}: Omit<EntityAsideContentProperties, | 'game' | 'time' | 'times'>,) {
+function GameStyleAsideContent({gameStyle, games, gameStyles,}: Pick<EntityAsideContentProperties, | 'gameStyle' | 'games' | 'gameStyles'>,) {
     if (games.hasSmm2)
         //The game styles are in SMM2
         return <div id="entity-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">

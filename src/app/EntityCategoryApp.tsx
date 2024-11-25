@@ -116,6 +116,7 @@ interface EntityCategory_ListProperties
 
 }
 
+/** @reactComponent */
 function EntityCategoryList({items,}:EntityCategory_ListProperties,) {
     return <List partialId="entityCategory" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">

@@ -147,6 +147,7 @@ interface GameStyle_ListProperties
 
 }
 
+/** @reactComponent */
 function GameStyleList({items,}:GameStyle_ListProperties,) {
     return <List partialId="gameStyle" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">

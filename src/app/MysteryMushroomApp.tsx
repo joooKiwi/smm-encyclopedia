@@ -148,6 +148,7 @@ interface MysteryMushroom_ListProperties
 
 }
 
+/** @reactComponent */
 function MysteryMushroomList({items,}:MysteryMushroom_ListProperties,) {
     return <List partialId="mysteryMushroom" items={items} nameRetriever={uniqueEnglishNameRetriever}>{it =>
         <div className="d-flex justify-content-between">

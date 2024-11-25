@@ -118,6 +118,7 @@ interface SampleCourse_ListProperties
 
 }
 
+/** @reactComponent */
 function SampleCourseList({items,}: SampleCourse_ListProperties,) {
     return <List partialId="sampleCourse" items={items} withSeparator>{it => {
         const reference = it.reference

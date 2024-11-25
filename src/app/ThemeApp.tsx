@@ -161,6 +161,7 @@ interface Theme_ListProperties
 
 }
 
+/** @reactComponent */
 function ThemeList({items,}: Theme_ListProperties,) {
     return <List partialId="theme" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between align-items-center">

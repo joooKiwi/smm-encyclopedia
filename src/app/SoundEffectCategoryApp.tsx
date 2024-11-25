@@ -105,6 +105,7 @@ interface SoundEffectCategory_ListProperties
 
 }
 
+/** @reactComponent */
 function SoundEffectCategoryList({items,}: SoundEffectCategory_ListProperties,) {
     return <List partialId="soundEffectCategory" items={items}>{it =>
         <div className="d-flex justify-content-between align-items-center">

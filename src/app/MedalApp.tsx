@@ -104,6 +104,7 @@ interface Medal_ListProperties
 
 }
 
+/** @reactComponent */
 function MedalList({items,}: Medal_ListProperties,) {
     return <List partialId="medal" items={items} withSeparator>{it =>
         <div className="d-flex align-items-center">

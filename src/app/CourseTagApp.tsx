@@ -151,6 +151,7 @@ interface CourseTag_ListProperties
 
 }
 
+/** @reactComponent */
 function CourseTagList({items,}: CourseTag_ListProperties,) {
     return <List partialId="courseTag" items={items}>{({reference,},) =>
         <div className="d-flex">

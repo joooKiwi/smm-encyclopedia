@@ -112,6 +112,7 @@ interface PredefinedMessage_ListProperties
 
 }
 
+/** @reactComponent */
 function PredefinedMessageList({items,}: PredefinedMessage_ListProperties,) {
     return <List partialId="predefinedMessage" items={items}>{it =>
         <NameComponent id="predefinedMessage-name" name={it.reference} popoverOrientation="right"/>

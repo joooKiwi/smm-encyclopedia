@@ -165,6 +165,7 @@ interface EditorVoice_ListProperties
 
 }
 
+/** @reactComponent */
 function EditorVoiceList({items,}: EditorVoice_ListProperties,) {
     return <List partialId="editorVoice" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">

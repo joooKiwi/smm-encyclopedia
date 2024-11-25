@@ -151,6 +151,7 @@ import SM3DW_UNDERWATER_TIMES =                IndividualMusics.SM3DW_UNDERWATER
 import UNDERWATER_LESSON_EDITORS =             IndividualMusics.UNDERWATER_LESSON_EDITORS
 import SM64 =                                  SoundEffects.SM64
 
+/** @reactComponent */
 export default function MusicApp() {
     return <div id="music-app-container">
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('music.title',)}</h1>
@@ -1077,6 +1078,7 @@ interface MusicsProperties<out FILES extends ArrayOf1To8<IndividualMusics>, >
 
 interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<ReactElementOrArray> {}
 
+// /** @reactComponent */
 // function MusicsContainer({type, files,}: MusicsProperties,) {
 //     return <div className={`${type}-music-container music-container`}>{mapByArray(files, it =>
 //         <IndividualMusicSound key={`Music (${it.titleName})`} value={it}/>,)
@@ -1089,6 +1091,7 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 
 // interface GameStyleMusicsProperties extends MusicsProperties<ArrayOf1To3<IndividualMusics>> { readonly gameStyle: GameStyles }
 //
+// /** @reactComponent */
 // function GameStyleMusicsContainer({gameStyle, files,}: GameStyleMusicsProperties,) {
 //     const name = gameStyle.englishName
 //     const nameInHtml = gameStyle.englishNameInHtml
@@ -1104,6 +1107,7 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 
 // interface GameStyleGroupedMusicsProperties extends GroupedMusicsProperties { readonly gameStyle: GameStyles }
 //
+// /** @reactComponent */
 // function GameStyleGroupedMusicsContainer({gameStyle, children,}: GameStyleGroupedMusicsProperties,) {
 //     return <div className={`${gameStyle.englishNameInHtml}-gameStyle-musics-container gameStyle-musics-container musics-container`}>
 //         <div><GameStyleImage reference={gameStyle}/></div>
@@ -1111,6 +1115,7 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 //     </div>
 // }
 
+// /** @reactComponent */
 // function GameStyleGroupedMusicsContainer({gameStyle, editor, lessonEditor, normalSpeed, fastSpeed, day, night,}: GroupedGameStyleMusicsProperties,) {
 //     return <div className="gameStyle-musics-container musics-container">
 //         <div><GameStyleImage reference={gameStyle}/></div>
@@ -1147,6 +1152,7 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 
 // interface ThemeMusicsProperties extends MusicsProperties<ArrayOf1To3<IndividualMusics>> { readonly theme: Themes }
 //
+// /** @reactComponent */
 // function ThemeMusicsContainer({theme, files,}: ThemeMusicsProperties,) {
 //     const name = theme.englishName
 //     const nameInHtml = theme.englishNameInHtml
@@ -1163,6 +1169,7 @@ interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<Reac
 
 interface ThemeGroupedMusicsProperties extends GroupedMusicsProperties { readonly theme: Themes }
 
+/** @reactComponent */
 function ThemeGroupedMusicsContainer({theme, children,}: ThemeGroupedMusicsProperties,) {
     return <div className={`${theme.englishNameInHtml}-theme-musics-container theme-musics-container musics-container`}>
         <div><ThemeImage reference={theme}/></div>
@@ -1176,6 +1183,7 @@ function ThemeGroupedMusicsContainer({theme, children,}: ThemeGroupedMusicsPrope
 
 interface EditorMusicsProperties extends MusicsProperties<ArrayOf7<IndividualMusics>> {}
 
+/** @reactComponent */
 function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
     return <div className="editor-musics-container musics-container">
         <Image file={COURSE_THEME_IMAGE_FILE}/>
@@ -1190,6 +1198,7 @@ function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
 
 interface LessonEditorMusicsProperties extends MusicsProperties<ArrayOf4<IndividualMusics>> {}
 
+/** @reactComponent */
 function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
     return <div className="lessonEditor-musics-container musics-container">
         <UnfinishedText>Lesson editor</UnfinishedText>
@@ -1205,6 +1214,7 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 
 // interface SoundEffectMusicsProperties extends MusicsProperties<ArrayOf1To3<IndividualMusics>> { readonly soundEffect: SoundEffects }
 //
+// /** @reactComponent */
 // function SoundEffectMusicsContainer({soundEffect, files,}: SoundEffectMusicsProperties,) {
 //     const name = soundEffect.name
 //     const nameInHtml = soundEffect.englishNameInHtml
@@ -1220,6 +1230,7 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 
 // interface SoundEffectGroupedMusicsProperties extends GroupedMusicsProperties { readonly soundEffect: SoundEffects }
 //
+// /** @reactComponent */
 // function SoundEffectGroupedMusicsContainer({soundEffect, children,}: SoundEffectGroupedMusicsProperties,) {
 //     return <div className={`${soundEffect.englishNameInHtml}-soundEffect-musics-container soundEffect-musics-container musics-container`}>
 //         <SoundEffectImage reference={soundEffect}/>
@@ -1230,6 +1241,7 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 
 interface BonusBossAndFinalBossMusicsProperties extends MusicsProperties<ArrayOf6<IndividualMusics>> {}
 
+/** @reactComponent */
 function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMusicsProperties,) {
     return <div className="bonusMusicAndBossMusicAndFinalBossMusic-musics-container musics-container small-images grid-3">
         <div/>
@@ -1253,6 +1265,7 @@ function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMus
 //
 // interface BonusWithYoshiBossAndFinalBossMusicsProperties extends MusicsProperties<ArrayOf8<IndividualMusics>> {}
 //
+// /** @reactComponent */
 // function BonusWithYoshiBossAndFinalBossMusicsContainer({files,}: BonusWithYoshiBossAndFinalBossMusicsProperties,) {
 //     return <div className="bonusMusicWithYoshiAndBossMusicAndFinalBossMusic-musics-container musics-container grid-3">
 //         <div/>
@@ -1282,6 +1295,7 @@ function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMus
 
 interface PeacefulMusicsProperties extends MusicsProperties<ArrayOf2<IndividualMusics>> {}
 
+/** @reactComponent */
 function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
     return <div className="peaceful-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.PEACEFUL}/>
@@ -1300,6 +1314,7 @@ function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
 
 interface BonusMusicsProperties extends MusicsProperties<ArrayOf6<IndividualMusics>> {}
 
+/** @reactComponent */
 function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
     return <div className="bonusMusic-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
@@ -1328,6 +1343,7 @@ function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
 
 interface BossMusicsProperties extends MusicsProperties<ArrayOf6<IndividualMusics>> {}
 
+/** @reactComponent */
 function BossMusicsContainer({files,}: BossMusicsProperties,) {
     return <div className="bossMusic-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
@@ -1362,6 +1378,7 @@ interface FinalBossMusicsProperties
 
 }
 
+/** @reactComponent */
 function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsProperties,) {
     return <div className="finalBossMusic-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
@@ -1393,6 +1410,7 @@ interface TimeMusicsProperties
     extends MusicsProperties<ArrayOf4<IndividualMusics>>,
     SimpleReactPropertiesWithOptionalChildren<ReactElement> {}
 
+/** @reactComponent */
 function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {
     return <div className="time-musics-container musics-container grid-3">
         {children ?? <div/>}
@@ -1412,6 +1430,7 @@ function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {
 
 interface TimeWithLinkAndSmb2MusicsProperties extends MusicsProperties<ArrayOf8<IndividualMusics>> {}
 
+/** @reactComponent */
 function TimeWithLinkAndSmb2MusicsContainer({files,}:TimeWithLinkAndSmb2MusicsProperties) {
     return <div className="time-musics-container musics-container grid-3">
         <div/>
@@ -1444,6 +1463,7 @@ interface TimeWithYoshiMusicsProperties
 
 }
 
+/** @reactComponent */
 function TimeWithYoshiMusicsContainer({files, gameStyle,}: TimeWithYoshiMusicsProperties,) {
     return <div className={`timeWithYoshi-${gameStyle}-musics-container timeWithYoshi-musics-container musics-container grid-3`}>
         <div/>
@@ -1467,6 +1487,7 @@ function TimeWithYoshiMusicsContainer({files, gameStyle,}: TimeWithYoshiMusicsPr
 
 interface TimeWithUnderwaterMusicsProperties extends MusicsProperties<ArrayOf4<IndividualMusics>> {}
 
+/** @reactComponent */
 function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsProperties,) {
     return <div className="timeWithUnderwater-musics-container musics-container grid-3">
         <div/>
@@ -1488,6 +1509,7 @@ function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsPro
 
 interface DayMusicsProperties extends MusicsProperties<ArrayOf2<IndividualMusics>> {}
 
+/** @reactComponent */
 function DayMusicsContainer({files,}: DayMusicsProperties,) {
     return <div className="day-musics-container musics-container grid-2">
         <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
@@ -1504,6 +1526,7 @@ function DayMusicsContainer({files,}: DayMusicsProperties,) {
 
 // interface LinkMusicsProperties extends MusicsProperties<ArrayOf2<IndividualMusics>> {}
 //
+// /** @reactComponent */
 // function LinkMusicsContainer({files,}: LinkMusicsProperties,) {
 //     return <div className="link-musics-container powerUp-musics-container musics-container">
 //         <Image file={getLinkImage()}/>
@@ -1518,6 +1541,7 @@ function DayMusicsContainer({files,}: DayMusicsProperties,) {
 
 // interface Smb2MusicsProperties extends MusicsProperties<ArrayOf2<IndividualMusics>> {}
 //
+// /** @reactComponent */
 // function Smb2MusicsContainer({files,}: Smb2MusicsProperties,) {
 //     return <div className="smb2-musics-container powerUp-musics-container musics-container">
 //         <Image file={getSmb2Image()}/>

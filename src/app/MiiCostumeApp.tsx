@@ -128,6 +128,7 @@ interface MiiCostume_ListProperties
 
 }
 
+/** @reactComponent */
 function MiiCostumeList({items,}: MiiCostume_ListProperties,) {
     return <List partialId="miiCostume" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between align-items-center">
