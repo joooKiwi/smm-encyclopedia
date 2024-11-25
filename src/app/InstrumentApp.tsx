@@ -1,4 +1,5 @@
 import 'app/_GameAsideContent.scss'
+import 'app/_GameStyleAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './InstrumentApp.scss'
 
@@ -19,6 +20,7 @@ import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
+import {InstrumentGameStyles}                       from 'app/property/Instrument.gameStyles'
 import {InstrumentTimes}                            from 'app/property/InstrumentTimes'
 import Table                                        from 'app/tools/table/Table'
 import CardList                                     from 'app/withInterpreter/CardList'
@@ -29,6 +31,8 @@ import LinkText                                     from 'app/tools/text/LinkTex
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
+import {GameStyles}                                 from 'core/gameStyle/GameStyles'
+import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {Instruments}                                from 'core/instrument/Instruments'
 import EntityInstrumentImages                       from 'core/instrument/component/EntityInstrumentImages'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
@@ -36,11 +40,17 @@ import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {intersect}                                  from 'util/utilitiesMethods'
 
-import ALL =    Instruments.ALL
-import SMM1 =   Games.SMM1
-import SMM2 =   Games.SMM2
-import SMM3DS = Games.SMM3DS
+import ALL =             Instruments.ALL
+import ALL_GAME_STYLES = GameStyles.ALL
+import NSMBU =           GameStyles.NSMBU
+import SMB =             GameStyles.SMB
+import SMB3 =            GameStyles.SMB3
+import SMM1 =            Games.SMM1
+import SMM2 =            Games.SMM2
+import SMM3DS =          Games.SMM3DS
+import SMW =             GameStyles.SMW
 
 class InstrumentAppInterpreter
     implements AppInterpreterWithTable<Instruments, InstrumentAppOption> {
@@ -138,11 +148,34 @@ const viewDisplayAndRouteName = [
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
+
+    //region -------------------- Game selection --------------------
+
     const game = games.hasSmm2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
         : games.hasSmm1
             ? InstrumentGames.SUPER_MARIO_MAKER
             : InstrumentGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    //endregion -------------------- Game selection --------------------
+    //region -------------------- Game style selection --------------------
+
+    const amountOfSelectedGameStyles = intersect(ALL_GAME_STYLES, gameStyles,).length
+    const gameStyle = amountOfSelectedGameStyles === 5 || amountOfSelectedGameStyles === 4
+            ? InstrumentGameStyles.ALL_GAME_STYLES
+            : amountOfSelectedGameStyles !== 1
+                ? InstrumentGameStyles.MIXED_GAME_STYLE
+                : gameStyles.hasSmb
+                    ? InstrumentGameStyles.SMB
+                    : gameStyles.hasSmb3
+                        ? InstrumentGameStyles.SMB3
+                        : gameStyles.hasSmw
+                            ? InstrumentGameStyles.SMW
+                            : InstrumentGameStyles.NSMBU
+
+    //endregion -------------------- Game style selection --------------------
+    //region -------------------- Time selection --------------------
+
     const time = games.hasNotSmm2AndSmm1Or3ds
         ? null
         : times.hasAllTimes
@@ -151,10 +184,12 @@ export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: 
                 ? InstrumentTimes.DAY
                 : InstrumentTimes.NIGHT
 
+    //endregion -------------------- Time selection --------------------
+
     return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('instrument.all',)}
                              description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<InstrumentAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
+                             asideContent={<InstrumentAsideContent game={times.hasOnlyNight ? null : game} gameStyle={gameStyle} time={time} gameStyles={gameStyles}/>}>
         <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
     </SubMainContainer>
 }
@@ -179,6 +214,7 @@ interface Instrument_ListProperties
 
 }
 
+/** @reactComponent */
 function InstrumentList({items,}: Instrument_ListProperties,) {
     return <List partialId="instrument" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
@@ -242,14 +278,19 @@ interface InstrumentAsideContentProperties
     extends ReactProperties {
 
     readonly game: NullOr<InstrumentGames>
+    readonly gameStyle: InstrumentGameStyles
     readonly time: NullOr<InstrumentTimes>
+
+    readonly gameStyles: GameStyleCollection
 
 }
 
 /** @reactComponent */
-function InstrumentAsideContent({game, time,}: InstrumentAsideContentProperties,) {
+function InstrumentAsideContent({game, gameStyle, time, gameStyles,}: InstrumentAsideContentProperties,) {
     return <div id="instrument-asideContent-container">
         <GameAsideContent game={game}/>
+        {game == null ? null : <div className="d-inline mx-1"/>}
+        <GameStyleAsideContent gameStyle={gameStyle} gameStyles={gameStyles}/>
         {time == null ? null : <div className="d-inline mx-1"/>}
         <TimeAsideContent time={time}/>
     </div>
@@ -272,7 +313,28 @@ function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'
     </div>
 }
 
-//TODO add "game style" aside content
+/** @reactComponent */
+function GameStyleAsideContent({gameStyle, gameStyles,}: Pick<InstrumentAsideContentProperties, | 'gameStyle' | 'gameStyles'>,) {
+    return <div id="instrument-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
+                <GameStyleImage reference={SMB}/>
+            </LinkButton>
+            <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
+                <GameStyleImage reference={SMB3}/>
+            </LinkButton>
+        </div>
+        <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
+                <GameStyleImage reference={SMW}/>
+            </LinkButton>
+            <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
+                <GameStyleImage reference={NSMBU}/>
+            </LinkButton>
+        </div>
+    </div>
+}
 
 /** @reactComponent */
 function TimeAsideContent({time,}: Pick<InstrumentAsideContentProperties, 'time'>,) {
