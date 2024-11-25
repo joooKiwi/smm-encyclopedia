@@ -13,8 +13,10 @@ import ALL_SMM1 =        GameStyles.ALL_SMM1
 import EMPTY_ARRAY =     Empty.EMPTY_ARRAY
 import NSMBU =           GameStyles.NSMBU
 import SMB =             GameStyles.SMB
+import SMB_AND_SMB3 =    GameStyles.SMB_AND_SMB3
 import SMB3 =            GameStyles.SMB3
 import SMW =             GameStyles.SMW
+import SMW_AND_NSMBU =   GameStyles.SMW_AND_NSMBU
 import SM3DW =           GameStyles.SM3DW
 
 export class GameStyleCollection<const T extends GameStyles = GameStyles,
@@ -30,11 +32,16 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     #hasSmw?: boolean
     #hasNsmbu?: boolean
     #hasSm3dw?: boolean
+    #hasSmbOrSmb3?: boolean
+    #hasSmwOrNsmbu?: boolean
+    #hasSm3dwAndSizeOfNot4Or5?: boolean
     #hasOnlySmb?: boolean
     #hasOnlySmb3?: boolean
     #hasOnlySmw?: boolean
     #hasOnlyNsmbu?: boolean
     #hasOnlySm3dw?: boolean
+    #hasOnlySmbOrSmb3?: boolean
+    #hasOnlySmwOrNsmbu?: boolean
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
@@ -83,6 +90,28 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
         return this.#hasSm3dw ??= this.has(SM3DW as T,)
     }
 
+    /** The collection has the {@link SMB} or {@link SMB3} type in its values */
+    public get hasSmbOrSmb3(): boolean {
+        return this.#hasSmbOrSmb3 ??= this._hasOneByArray(SMB_AND_SMB3 as unknown as Array<T>,)
+    }
+
+    /** The collection has the {@link SMW} or {@link NSMBU} type in its values */
+    public get hasSmwOrNsmbu(): boolean {
+        return this.#hasSmwOrNsmbu ??= this._hasOneByArray(SMW_AND_NSMBU as unknown as Array<T>,)
+    }
+
+
+    public get hasSm3dwAndSizeOfNot4Or5(): boolean {
+        const value = this.#hasSm3dwAndSizeOfNot4Or5
+        if (value != null)
+            return value
+        if (!this.hasSm3dw)
+            return this.#hasSm3dwAndSizeOfNot4Or5 = false
+
+        const size = this.size
+        return this.#hasSm3dwAndSizeOfNot4Or5 = size === 4 || size === 5
+    }
+
 
     /** The collection has <b>only</b> the {@link SMB} type in its values */
     public get hasOnlySmb(): boolean {
@@ -107,6 +136,34 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     /** The collection has <b>only</b> the {@link SM3DW} type in its values */
     public get hasOnlySm3dw(): boolean {
         return this.#hasOnlySm3dw ??= this.hasSm3dw && this.size === 1
+    }
+
+    /** The collection has <b>only</b> the {@link SMB} or {@link SMB3} type in its values */
+    public get hasOnlySmbOrSmb3(): boolean {
+        const value = this.#hasOnlySmbOrSmb3
+        if (value != null)
+            return value
+        if (!this.hasSmbOrSmb3)
+            return this.#hasOnlySmbOrSmb3 = false
+
+        const size = this.size
+        if (size > 2)
+            return this.#hasOnlySmbOrSmb3 = false
+        return this.#hasOnlySmbOrSmb3 = this.hasSmb && this.hasSmb3
+    }
+
+    /** The collection has <b>only</b> the {@link SMW} or {@link NSMBU} type in its values */
+    public get hasOnlySmwOrNsmbu(): boolean {
+        const value = this.#hasOnlySmwOrNsmbu
+        if (value != null)
+            return value
+        if (!this.hasSmwOrNsmbu)
+            return this.#hasOnlySmwOrNsmbu = false
+
+        const size = this.size
+        if (size > 2)
+            return this.#hasOnlySmwOrNsmbu = false
+        return this.#hasOnlySmwOrNsmbu = this.hasSmw && this.hasNsmbu
     }
 
     //endregion -------------------- Getter methods --------------------

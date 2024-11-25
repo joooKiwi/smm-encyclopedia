@@ -310,16 +310,13 @@ function EntityAsideContent({games, gameStyles, time, game, gameStyle,}: EntityA
 function GameAsideContent({game, gameStyles,}: Omit<EntityAsideContentProperties, | 'gameStyle' | 'time' | 'games' | 'times'>,) {
     if (game == null)
         return null
-    if (gameStyles.hasSm3dw) {
-        const amountOfGameStyles = gameStyles.size
-        if (!(amountOfGameStyles === 5 || amountOfGameStyles === 4))
-            return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-                <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
-                <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
-                    <GameImage reference={SMM2}/>
-                </LinkButton>
-            </div>
-    }
+    if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
+        return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+            <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+                <GameImage reference={SMM2}/>
+            </LinkButton>
+        </div>
 
     return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
