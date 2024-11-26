@@ -76,6 +76,12 @@ interface Content
 
     readonly isInSuperMarioMaker2: true
 
+    readonly isInSmbGameStyle: boolean
+    readonly isInSmb3GameStyle: boolean
+    readonly isInSmwGameStyle: boolean
+    readonly isInNsmbuGameStyle: boolean
+    readonly isInSm3dwGameStyle: false
+
     readonly isInDayTime: boolean
     readonly isInNightTime: boolean
 
@@ -95,6 +101,7 @@ function createReference(content: Content, entityMap: EntityMap,): Instrument {
         createNameFromContent(content, 'all', false,),
         retrieveEntity(content, entityMap,),
         content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS,
+        content.isInSmbGameStyle, content.isInSmb3GameStyle, content.isInSmwGameStyle, content.isInNsmbuGameStyle,
         content.isInDayTime, content.isInNightTime,
     )
 }

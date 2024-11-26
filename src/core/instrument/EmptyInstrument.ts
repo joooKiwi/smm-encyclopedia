@@ -32,10 +32,20 @@ export class EmptyInstrument
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false
 
+    public readonly isInSuperMarioBrosStyle = false
+    public readonly isInSuperMarioBros3Style = false
+    public readonly isInSuperMarioWorldStyle = false
+    public readonly isInNewSuperMarioBrosUStyle = false
+    public readonly isInSuperMario3DWorldStyle = false
+
     public readonly isInDayTheme = false
     public readonly isInNightTheme = false
 
     public toGameMap(): EmptyMap<never> {
+        return EMPTY_MAP
+    }
+
+    public toGameStyleMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 

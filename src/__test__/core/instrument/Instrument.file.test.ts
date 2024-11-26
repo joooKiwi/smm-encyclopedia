@@ -25,6 +25,13 @@ describe('Instrument (file test)', () => {
                     test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
                     test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
                 },)
+                describe('Game style', () => {
+                    test('SMB', () => expect(it.isInSmbGameStyle,).toBeBoolean(),)
+                    test('SMB3', () => expect(it.isInSmb3GameStyle,).toBeBoolean(),)
+                    test('SMW', () => expect(it.isInSmwGameStyle,).toBeBoolean(),)
+                    test('NSMBU', () => expect(it.isInNsmbuGameStyle,).toBeBoolean(),)
+                    test('SM3DW', () => expect(it.isInSm3dwGameStyle,).toBeFalse(),)
+                },)
                 describe('Time', () => {
                     test("Day", () => expect(it.isInDayTime,).toBeBoolean(),)
                     test("Night", () => expect(it.isInNightTime,).toBeBoolean(),)

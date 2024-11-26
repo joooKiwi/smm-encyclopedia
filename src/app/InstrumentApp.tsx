@@ -74,11 +74,11 @@ class InstrumentAppInterpreter
 
     public get content() {
         const games = this.#games
-        // const gameStyles = this.#gameStyles
+        const gameStyles = this.#gameStyles
         const times = this.#times
         return filterByArray(ALL, ({reference,},) =>
             games.hasAnyIn(reference,)
-            // && gameStyles.hasAnyIn(reference,)
+            && gameStyles.hasAnyIn(reference,)
             && times.hasAnyIn(reference,),)
     }
 
