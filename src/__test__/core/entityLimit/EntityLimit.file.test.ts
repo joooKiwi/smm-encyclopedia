@@ -2,7 +2,7 @@ import file from 'resources/compiled/Entity limit.json' assert { type: 'json', }
 
 import {EveryTypes}                                                from '__test__/EveryTypes'
 import {getEnglishName, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'
-import {NOT_APPLICABLE, UNKNOWN_CHARACTER}                         from 'util/commonVariables'
+import {NOT_APPLICABLE}                                            from 'util/commonVariables'
 
 describe('Limit (file test)', () => {
     const types = EveryTypes.get
