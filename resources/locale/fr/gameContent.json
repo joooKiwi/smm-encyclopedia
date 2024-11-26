@@ -10,7 +10,7 @@
       "intro page":       "Sur cette page, tous les noms sont référencés ou utilisé dans les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
       "intro references": "Ces derniers sont utilisés dans le {{StoryMode}} ({{smm2Link}} exclusif), par un {{mysteryMushroom}} ({{smm1Link}} exclusif) ou dans l'éditeur (en général).",
 
-      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
   "course tag": {

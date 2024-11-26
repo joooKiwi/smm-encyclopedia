@@ -1,4 +1,5 @@
 import 'app/_GameAsideContent.scss'
+import 'app/_GameStyleAsideContent.scss'
 import './LimitApp.scss'
 
 import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
