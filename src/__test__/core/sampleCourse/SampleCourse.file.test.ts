@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Sample course (SMM).json'
+import file from 'resources/compiled/Sample course (SMM).json' assert { type: 'json', }
 
 import type {Array} from '@joookiwi/type'
 

@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Entity behaviour.json'
+import file from 'resources/compiled/Entity behaviour.json' assert { type: 'json', }
 
 import {EveryTypes} from '__test__/EveryTypes'
 

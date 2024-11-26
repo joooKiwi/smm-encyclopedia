@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Entity.json'
+import file from 'resources/compiled/Entity.json' assert { type: 'json', }
 
 import type {Array, NullOr} from '@joookiwi/type'
 

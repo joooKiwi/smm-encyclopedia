@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Course tag (SMM2).json'
+import file from 'resources/compiled/Course tag (SMM2).json' assert { type: 'json', }
 
 import type {Array, NullOrString} from '@joookiwi/type'
 import {forEachByArray}           from '@joookiwi/collection'

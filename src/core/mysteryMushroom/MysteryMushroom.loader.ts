@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Mystery Mushroom (SMM).json'
+import file from 'resources/compiled/Mystery Mushroom (SMM).json' assert { type: 'json', }
 
 import type {Array, NullableString, NullOr, NullOrNumber, NullOrString} from '@joookiwi/type'
 import {forEachByArray}                                                 from '@joookiwi/collection'

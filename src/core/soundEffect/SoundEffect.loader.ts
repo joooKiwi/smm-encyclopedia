@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Sound effect.json'
+import file from 'resources/compiled/Sound effect.json' assert { type: 'json', }
 
 import type {Array, NullOrString} from '@joookiwi/type'
 import {forEachByArray}           from '@joookiwi/collection'

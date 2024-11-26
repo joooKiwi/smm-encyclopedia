@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Mii Costume (SMM2).json'
+import file from 'resources/compiled/Mii Costume (SMM2).json' assert { type: 'json', }
 
 import type {Array} from '@joookiwi/type'
 

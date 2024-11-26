@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Official course (SMM).json'
+import file from 'resources/compiled/Official course (SMM).json' assert { type: 'json', }
 
 import type {Array, NullOr} from '@joookiwi/type'
 import {forEachByArray}     from '@joookiwi/collection'

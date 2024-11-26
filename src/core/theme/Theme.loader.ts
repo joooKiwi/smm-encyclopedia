@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Theme.json'
+import file from 'resources/compiled/Theme.json' assert { type: 'json', }
 
 import type {Array, NullOrBoolean} from '@joookiwi/type'
 import {forEachByArray}            from '@joookiwi/collection'

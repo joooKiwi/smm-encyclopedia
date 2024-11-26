@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Character name.json'
+import file from 'resources/compiled/Character name.json' assert { type: 'json', }
 
 import type {Array}     from '@joookiwi/type'
 import {forEachByArray} from '@joookiwi/collection'

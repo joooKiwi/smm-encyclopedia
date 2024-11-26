@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Game reference.json'
+import file from 'resources/compiled/Game reference.json' assert { type: 'json', }
 
 import type {Array}     from '@joookiwi/type'
 import {forEachByArray} from '@joookiwi/collection'

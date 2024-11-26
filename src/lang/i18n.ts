@@ -1,67 +1,67 @@
-import englishLanguage                 from 'lang/locale/en/language.json'
-import englishContent                  from 'lang/locale/en/content.json'
-import englishGameContent              from 'lang/locale/en/gameContent.json'
-import englishEntityContent            from 'lang/locale/en/entityContent.json'
-import americanEnglishContent          from 'lang/locale/en/en-AM/content.json'
-import europeanEnglishContent          from 'lang/locale/en/en-EU/content.json'
-import frenchLanguage                  from 'lang/locale/fr/language.json'
-import frenchContent                   from 'lang/locale/fr/content.json'
-import frenchGameContent               from 'lang/locale/fr/gameContent.json'
-import frenchEntityContent             from 'lang/locale/fr/entityContent.json'
-import canadianFrenchContent           from 'lang/locale/fr/fr-CA/content.json'
-import canadianFrenchGameContent       from 'lang/locale/fr/fr-CA/gameContent.json'
-import europeanFrenchContent           from 'lang/locale/fr/fr-EU/content.json'
-import europeanFrenchGameContent       from 'lang/locale/fr/fr-EU/gameContent.json'
-import germanLanguage                  from 'lang/locale/de/language.json'
-import germanContent                   from 'lang/locale/de/content.json'
-import germanGameContent               from 'lang/locale/de/gameContent.json'
-import germanEntityContent             from 'lang/locale/de/entityContent.json'
-import spanishLanguage                 from 'lang/locale/es/language.json'
-import spanishContent                  from 'lang/locale/es/content.json'
-import spanishGameContent              from 'lang/locale/es/gameContent.json'
-import spanishEntityContent            from 'lang/locale/es/entityContent.json'
-import americanSpanishContent          from 'lang/locale/es/es-AM/content.json'
-import americanSpanishEntityContent    from 'lang/locale/es/es-AM/entityContent.json'
-import europeanSpanishContent          from 'lang/locale/es/es-EU/content.json'
-import europeanSpanishEntityContent    from 'lang/locale/es/es-EU/entityContent.json'
-import italianLanguage                 from 'lang/locale/it/language.json'
-import italianContent                  from 'lang/locale/it/content.json'
-import italianGameContent              from 'lang/locale/it/gameContent.json'
-import italianEntityContent            from 'lang/locale/it/entityContent.json'
-import dutchLanguage                   from 'lang/locale/nl/language.json'
-import dutchContent                    from 'lang/locale/nl/content.json'
-import dutchGameContent                from 'lang/locale/nl/gameContent.json'
-import dutchEntityContent              from 'lang/locale/nl/entityContent.json'
-import portugueseLanguage              from 'lang/locale/pt/language.json'
-import portugueseContent               from 'lang/locale/pt/content.json'
-import portugueseGameContent           from 'lang/locale/pt/gameContent.json'
-import portugueseEntityContent         from 'lang/locale/pt/entityContent.json'
-import americanPortugueseContent       from 'lang/locale/pt/pt-AM/content.json'
-import europeanPortugueseContent       from 'lang/locale/pt/pt-EU/content.json'
-import russianLanguage                 from 'lang/locale/ru/language.json'
-import russianContent                  from 'lang/locale/ru/content.json'
-import russianGameContent              from 'lang/locale/ru/gameContent.json'
-import russianEntityContent            from 'lang/locale/ru/entityContent.json'
-import japaneseLanguage                from 'lang/locale/ja/language.json'
-import japaneseContent                 from 'lang/locale/ja/content.json'
-import japaneseGameContent             from 'lang/locale/ja/gameContent.json'
-import japaneseEntityContent           from 'lang/locale/ja/entityContent.json'
-import chineseLanguage                 from 'lang/locale/zh/language.json'
-import chineseContent                  from 'lang/locale/zh/content.json'
-import chineseGameContent              from 'lang/locale/zh/gameContent.json'
-import chineseEntityContent            from 'lang/locale/zh/entityContent.json'
-import traditionalChineseLanguage      from 'lang/locale/zh/zh-tw/language.json'
-import traditionalChineseContent       from 'lang/locale/zh/zh-tw/content.json'
-import traditionalChineseGameContent   from 'lang/locale/zh/zh-tw/gameContent.json'
-import traditionalChineseEntityContent from 'lang/locale/zh/zh-tw/entityContent.json'
-import simplifiedChineseLanguage       from 'lang/locale/zh/zh-cn/language.json'
-import simplifiedChineseContent        from 'lang/locale/zh/zh-cn/content.json'
-import simplifiedChineseGameContent    from 'lang/locale/zh/zh-cn/gameContent.json'
-import simplifiedChineseEntityContent  from 'lang/locale/zh/zh-cn/entityContent.json'
-import koreanLanguage                  from 'lang/locale/ko/language.json'
-import koreanContent                   from 'lang/locale/ko/content.json'
-import koreanGameContent               from 'lang/locale/ko/gameContent.json'
-import koreanEntityContent             from 'lang/locale/ko/entityContent.json'
+import englishLanguage                 from 'lang/locale/en/language.json'            assert { type: 'json', }
+import englishContent                  from 'lang/locale/en/content.json'             assert { type: 'json', }
+import englishGameContent              from 'lang/locale/en/gameContent.json'         assert { type: 'json', }
+import englishEntityContent            from 'lang/locale/en/entityContent.json'       assert { type: 'json', }
+import americanEnglishContent          from 'lang/locale/en/en-AM/content.json'       assert { type: 'json', }
+import europeanEnglishContent          from 'lang/locale/en/en-EU/content.json'       assert { type: 'json', }
+import frenchLanguage                  from 'lang/locale/fr/language.json'            assert { type: 'json', }
+import frenchContent                   from 'lang/locale/fr/content.json'             assert { type: 'json', }
+import frenchGameContent               from 'lang/locale/fr/gameContent.json'         assert { type: 'json', }
+import frenchEntityContent             from 'lang/locale/fr/entityContent.json'       assert { type: 'json', }
+import canadianFrenchContent           from 'lang/locale/fr/fr-CA/content.json'       assert { type: 'json', }
+import canadianFrenchGameContent       from 'lang/locale/fr/fr-CA/gameContent.json'   assert { type: 'json', }
+import europeanFrenchContent           from 'lang/locale/fr/fr-EU/content.json'       assert { type: 'json', }
+import europeanFrenchGameContent       from 'lang/locale/fr/fr-EU/gameContent.json'   assert { type: 'json', }
+import germanLanguage                  from 'lang/locale/de/language.json'            assert { type: 'json', }
+import germanContent                   from 'lang/locale/de/content.json'             assert { type: 'json', }
+import germanGameContent               from 'lang/locale/de/gameContent.json'         assert { type: 'json', }
+import germanEntityContent             from 'lang/locale/de/entityContent.json'       assert { type: 'json', }
+import spanishLanguage                 from 'lang/locale/es/language.json'            assert { type: 'json', }
+import spanishContent                  from 'lang/locale/es/content.json'             assert { type: 'json', }
+import spanishGameContent              from 'lang/locale/es/gameContent.json'         assert { type: 'json', }
+import spanishEntityContent            from 'lang/locale/es/entityContent.json'       assert { type: 'json', }
+import americanSpanishContent          from 'lang/locale/es/es-AM/content.json'       assert { type: 'json', }
+import americanSpanishEntityContent    from 'lang/locale/es/es-AM/entityContent.json' assert { type: 'json', }
+import europeanSpanishContent          from 'lang/locale/es/es-EU/content.json'       assert { type: 'json', }
+import europeanSpanishEntityContent    from 'lang/locale/es/es-EU/entityContent.json' assert { type: 'json', }
+import italianLanguage                 from 'lang/locale/it/language.json'            assert { type: 'json', }
+import italianContent                  from 'lang/locale/it/content.json'             assert { type: 'json', }
+import italianGameContent              from 'lang/locale/it/gameContent.json'         assert { type: 'json', }
+import italianEntityContent            from 'lang/locale/it/entityContent.json'       assert { type: 'json', }
+import dutchLanguage                   from 'lang/locale/nl/language.json'            assert { type: 'json', }
+import dutchContent                    from 'lang/locale/nl/content.json'             assert { type: 'json', }
+import dutchGameContent                from 'lang/locale/nl/gameContent.json'         assert { type: 'json', }
+import dutchEntityContent              from 'lang/locale/nl/entityContent.json'       assert { type: 'json', }
+import portugueseLanguage              from 'lang/locale/pt/language.json'            assert { type: 'json', }
+import portugueseContent               from 'lang/locale/pt/content.json'             assert { type: 'json', }
+import portugueseGameContent           from 'lang/locale/pt/gameContent.json'         assert { type: 'json', }
+import portugueseEntityContent         from 'lang/locale/pt/entityContent.json'       assert { type: 'json', }
+import americanPortugueseContent       from 'lang/locale/pt/pt-AM/content.json'       assert { type: 'json', }
+import europeanPortugueseContent       from 'lang/locale/pt/pt-EU/content.json'       assert { type: 'json', }
+import russianLanguage                 from 'lang/locale/ru/language.json'            assert { type: 'json', }
+import russianContent                  from 'lang/locale/ru/content.json'             assert { type: 'json', }
+import russianGameContent              from 'lang/locale/ru/gameContent.json'         assert { type: 'json', }
+import russianEntityContent            from 'lang/locale/ru/entityContent.json'       assert { type: 'json', }
+import japaneseLanguage                from 'lang/locale/ja/language.json'            assert { type: 'json', }
+import japaneseContent                 from 'lang/locale/ja/content.json'             assert { type: 'json', }
+import japaneseGameContent             from 'lang/locale/ja/gameContent.json'         assert { type: 'json', }
+import japaneseEntityContent           from 'lang/locale/ja/entityContent.json'       assert { type: 'json', }
+import chineseLanguage                 from 'lang/locale/zh/language.json'            assert { type: 'json', }
+import chineseContent                  from 'lang/locale/zh/content.json'             assert { type: 'json', }
+import chineseGameContent              from 'lang/locale/zh/gameContent.json'         assert { type: 'json', }
+import chineseEntityContent            from 'lang/locale/zh/entityContent.json'       assert { type: 'json', }
+import traditionalChineseLanguage      from 'lang/locale/zh/zh-tw/language.json'      assert { type: 'json', }
+import traditionalChineseContent       from 'lang/locale/zh/zh-tw/content.json'       assert { type: 'json', }
+import traditionalChineseGameContent   from 'lang/locale/zh/zh-tw/gameContent.json'   assert { type: 'json', }
+import traditionalChineseEntityContent from 'lang/locale/zh/zh-tw/entityContent.json' assert { type: 'json', }
+import simplifiedChineseLanguage       from 'lang/locale/zh/zh-cn/language.json'      assert { type: 'json', }
+import simplifiedChineseContent        from 'lang/locale/zh/zh-cn/content.json'       assert { type: 'json', }
+import simplifiedChineseGameContent    from 'lang/locale/zh/zh-cn/gameContent.json'   assert { type: 'json', }
+import simplifiedChineseEntityContent  from 'lang/locale/zh/zh-cn/entityContent.json' assert { type: 'json', }
+import koreanLanguage                  from 'lang/locale/ko/language.json'            assert { type: 'json', }
+import koreanContent                   from 'lang/locale/ko/content.json'             assert { type: 'json', }
+import koreanGameContent               from 'lang/locale/ko/gameContent.json'         assert { type: 'json', }
+import koreanEntityContent             from 'lang/locale/ko/entityContent.json'       assert { type: 'json', }
 
 import type {Resource}    from 'i18next'
 import i18n               from 'i18next'
