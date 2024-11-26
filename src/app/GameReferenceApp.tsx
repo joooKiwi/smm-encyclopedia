@@ -1,19 +1,25 @@
 import './GameReferenceApp.scss'
 
-import {Fragment} from 'react'
+import type {Array}             from '@joookiwi/type'
+import {hasByArray, mapByArray} from '@joookiwi/collection'
+import {Fragment}               from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
 
-import GameImage                from 'core/game/GameImage'
 import {Games}                  from 'core/game/Games'
+import GameImage                from 'core/game/component/GameImage'
 import {GameReferences}         from 'core/gameReference/GameReferences'
-import GameStyleImage           from 'core/gameStyle/GameStyleImage'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
+import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import SoundEffectImage         from 'core/soundEffect/SoundEffectImage'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
+import Companion =         GameReferences.Companion
+import ALL_GAMES =         Games.ALL
+import ALL_GAME_STYLES =   GameStyles.ALL
+import soundEffect_games = SoundEffects.soundEffect_games
 
 /** Every {@link GameReferences} that will do a return of line after its rendering */
 const RETURN_OF_LINES = [
@@ -36,11 +42,11 @@ const RETURN_OF_LINES = [
 
 const otherGameReferences = (() => {
     const alreadyIncludedNames = [
-        ...Games.CompanionEnum.get.values.map(game => game.englishName,),
-        ...GameStyles.CompanionEnum.get.values.map(game => game.englishName,),
-        ...SoundEffects.soundEffect_games.map(game => game.englishName,) as PossibleEnglishName_Games[],
+        ...ALL_GAMES.map(it => it.englishName,),
+        ...ALL_GAME_STYLES.map(it => it.englishName,),
+        ...soundEffect_games.map(it => it.englishName,) as Array<PossibleEnglishName_Games>,
     ]
-    return GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),)
+    return Companion.values.filter(it => !hasByArray(alreadyIncludedNames, it.englishName as never,),)
 })()
 
 /** @reactComponent */
@@ -50,11 +56,11 @@ export default function GameReferenceApp() {
         <div id="game-names-container" className="names-container">
             <h3 id="game-names-title" className="names-title">{gameContentTranslation('game.plural',)}</h3>
             <div id="game-name-container" className="container-fluid name-container">
-                {Games.CompanionEnum.get.values.map(it =>
+                {mapByArray(ALL_GAMES, it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameImage reference={it}/>
-                            <NameComponent id="game-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
+                            <NameComponent id="game-name" name={Companion.getValue(it.name,).reference}/>
                         </div>
                     </div>,)}
             </div>
@@ -62,11 +68,11 @@ export default function GameReferenceApp() {
         <div id="gameStyle-names-container" className="names-container">
             <h3 id="gameStyle-names-title" className="names-title">{gameContentTranslation('game style.plural',)}</h3>
             <div id="gameStyle-name-container" className="container-fluid name-container">
-                {GameStyles.CompanionEnum.get.values.map(it =>
+                {mapByArray(ALL_GAME_STYLES, it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>
-                            <NameComponent id="gameStyle-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
+                            <NameComponent id="gameStyle-name" name={Companion.getValue(it.name,).reference}/>
                         </div>
                     </div>,)}
             </div>
@@ -74,11 +80,11 @@ export default function GameReferenceApp() {
         <div id="soundEffect-names-container" className="names-container">
             <h3 id="soundEffect-names-title" className="col-12 names-title">{gameContentTranslation('sound effect.plural',)}</h3>
             <div id="soundEffect-name-container" className="container-fluid name-container">{
-                SoundEffects.soundEffect_games.map(it =>
+                mapByArray(soundEffect_games, it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <SoundEffectImage reference={it}/>
-                            <NameComponent id="soundEffect-name" name={GameReferences.CompanionEnum.get.getValueByName(it.englishName,).reference}/>
+                            <NameComponent id="soundEffect-name" name={Companion.getValueByName(it.englishName,).reference}/>
                         </div>
                     </div>,)
             }</div>
@@ -93,7 +99,7 @@ export default function GameReferenceApp() {
                                 <NameComponent id="otherGameReferences-name" name={it.reference}/>
                             </div>
                         </div>
-                        {RETURN_OF_LINES.includes(it,) ? <div className="col-12 name-container return-of-line-name-container"/> : null}
+                        {hasByArray(RETURN_OF_LINES, it,) ? <div className="col-12 name-container return-of-line-name-container"/> : null}
                     </Fragment>,)}
             </div>
         </div>

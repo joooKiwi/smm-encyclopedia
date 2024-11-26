@@ -1,4 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
+import type {Array, Nullable}  from '@joookiwi/type'
 
 import type {Games}                                                  from 'core/game/Games'
 import type {GroupUrlName, GroupUrlValue}                            from 'core/game/Games.types'
@@ -18,19 +19,55 @@ export interface CompanionEnumDeclaration_Games
     /** The separator the names */
     readonly NAME_ARGUMENT_SEPARATOR: ','
 
-    readonly URL_REGEX: RegExp
-    readonly SINGLE_URL_REGEX: RegExp
-    readonly DOUBLE_URL_REGEX: RegExp
     readonly PREFIX: '/game-'
     readonly PREFIX_WITHOUT_SLASH: 'game-'
     readonly ALL_PREFIX_GROUP: '/game-all/'
 
-    getValueInUrl(url: string,): readonly Games[]
+    /**
+     * Get a value by the {@link Games.urlValue}
+     *
+     * @param value The value to find
+     */
+    getValueByUrlValue(value: Nullable<| Games | string | number>,): Games
 
-    getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue
+    /**
+     * Get a value by the {@link Games.urlName}
+     *
+     * @param value The value to find
+     */
+    getValueByUrlName(value: Nullable<| Games | string | number>,): Games
 
-    getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName
 
-    getValueBySimpleValue(value: Nullable<| Games | string | number>,): Games
+    /**
+     * Find all the {@link Games games} present in the {@link url} received
+     *
+     * @param url The url to find the {@link Games} present
+     * @arrayReutilization
+     */
+    findInUrl(url: string,): Array<Games>
+
+    /**
+     * Find all the {@link Games games} present in the {@link name} received
+     *
+     * @param name The name to retrieve the {@link Games}
+     * @throws ReferenceError No games could be found in the name <i>(this should normally never happen)</i>
+     * @arrayReutilization
+     */
+    findInName(name: string,): Array<Games>
+
+
+    /**
+     * Generate a {@link GroupUrlValue} for the {@link Games} from the {@link games} received
+     *
+     * @param games The given {@link Games}
+     */
+    getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue
+
+    /**
+     * Generate a {@link GroupUrlName} for the {@link Games} from the {@link games} received
+     *
+     * @param games The given {@link Games}
+     */
+    getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName
 
 }

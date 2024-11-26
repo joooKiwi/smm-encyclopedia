@@ -1,51 +1,46 @@
 import './MysteryMushroomApp.scss'
 
+import type {Array}              from '@joookiwi/type'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import {GenericCollectionHolder} from '@joookiwi/collection'
+
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ReactProperties}              from 'util/react/ReactProperties'
 
 import SubMainContainer           from 'app/_SubMainContainer'
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
 import Table                      from 'app/tools/table/Table'
 import {unfinishedText}           from 'app/tools/text/UnfinishedText'
+import List                       from 'app/util/List'
 import CardList                   from 'app/withInterpreter/CardList'
-import SimpleList                 from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
+import NameComponent              from 'lang/name/component/Name.component'
+
+import ALL = MysteryMushrooms.ALL
 
 class MysteryMushroomAppInterpreter
     implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
     public get content() {
-        return MysteryMushrooms.CompanionEnum.get.values.toArray()
+        return new GenericCollectionHolder(ALL,)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             large: 3,
             extraLarge: 4,
             extraExtraLarge: 6,
-        }
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: MysteryMushrooms,) {
@@ -70,8 +65,8 @@ class MysteryMushroomAppInterpreter
             </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableColor = 'primary' satisfies BootstrapThemeColor
@@ -80,7 +75,7 @@ class MysteryMushroomAppInterpreter
         pluralName: OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName,).toLowerCase(),
     },) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly MysteryMushroomAppOption[] {
+    public get tableOptions(): Array<MysteryMushroomAppOption> {
         return [
             MysteryMushroomAppOption.CONDITION_TO_UNLOCK_IT,
             MysteryMushroomAppOption.GAME,
@@ -112,7 +107,7 @@ class MysteryMushroomAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 
@@ -120,26 +115,49 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMysteryMushroom (list)',],
     [ViewDisplays.CARD_LIST, 'everyMysteryMushroom (card)',],
     [ViewDisplays.TABLE, 'everyMysteryMushroom (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MysteryMushroomAppInterpreter()
-const keyRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
+const uniqueEnglishNameRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
     const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
     const mysteryMushrooms = OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
 
-    const titleContent = gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <Table id="mysteryMushroom-table" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
 }
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <MysteryMushroomList items={appInterpreter.content}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={uniqueEnglishNameRetriever}/>
+    return <Table id="mysteryMushroom-table" interpreter={appInterpreter}/>
+}
+
+//region -------------------- List --------------------
+
+interface MysteryMushroom_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<MysteryMushrooms>
+
+}
+
+/** @reactComponent */
+function MysteryMushroomList({items,}:MysteryMushroom_ListProperties,) {
+    return <List partialId="mysteryMushroom" items={items} nameRetriever={uniqueEnglishNameRetriever}>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="mysteryMushroom-name" name={it.reference} popoverOrientation="right"/>
+            <div className="images-container">
+                {MysteryMushroomAppOption.WAITING.renderImageContent(it,)}
+            </div>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------

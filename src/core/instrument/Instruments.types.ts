@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
 
     SNARE_DRUM,//P-Switch
@@ -102,17 +104,17 @@ export type PossibleEnglishName =
 
     | 'Mokugyo' | 'Kazoo' | 'Music box'
 
-    | 'Marimba' | 'Vibraphone' | `Timpani${| '' | ' roll'}`
+    | 'Marimba' | 'Vibraphone' | `Timpani${| EmptyString | ' roll'}`
     | 'Timbales' | 'Tubular bell' | 'Organ' | 'Pipe organ'
 
     | 'Guitar (long)' | `${| 'Electric' | 'Acoustic'} guitar`
-    | 'Bass' | `${| 'Electric' | 'Synthetic'} bass` | 'Sub bass?' | 'Bass "glissando"'
+    | 'Bass' | `${| 'Electric' | 'Synthetic'} bass` | '“Sub bass” frequency' | 'Bass “glissando”'
     | 'Oud' | 'Santur' | 'Shamisen'
 
     | `Piano ${| 1 | 2 | '(4th A)'}` | `${| 'Reverse' | 'Honky-Tonk'} piano`
-    | `"${| 'Pizzicato' | 'Staccato'}" string` | 'Harpsichord'
+    | `“${| 'Pizzicato' | 'Staccato'}” string` | 'Harpsichord'
 
-    | 'Recorder' | `Synthesizer${| '' | ' chord'}` | 'Chord CM?'
+    | 'Recorder' | `Synthesizer${| EmptyString | ' chord'}` | 'C minor chord'
 
     | 'Flute' | 'Saxophone'
     | 'Trombone' | 'Horn' | 'Synthetic brass'
@@ -122,7 +124,7 @@ export type PossibleEnglishName =
 
     | 'Orchestra hit'
 
-    | 'Dog\'s bark' | 'Cat\'s meow' | 'Chicken'
+    | 'Dog’s bark' | 'Cat’s meow' | 'Chicken'
     | 'Ah' | 'Ok' | 'Hello' | 'Yeah'
 
     | 'Square wave' | 'Sound effect 1?'
@@ -131,7 +133,7 @@ export type PossibleEnglishName =
 //endregion -------------------- English name --------------------
 //region -------------------- Instrument file name --------------------
 
-type ReverbCowbell = `Gamelan${| '' | `_${| `L${| 1 | 5 | 6}` | 'M1_pi' | `S${| 1 | 6}`}`}`
+type ReverbCowbell = `Gamelan${| EmptyString | `_${| `L${| 1 | 5 | 6}` | 'M1_pi' | `S${| 1 | 6}`}`}`
 type SpecificReverbCowbell<T extends ReverbCowbell = ReverbCowbell, > = `INST_${T}`
 type GlissandoBass = `SE7_BassGliss${| 1 | 2}`
 type SpecificGlissandoBass<T extends GlissandoBass = GlissandoBass, > = `INST_${T}`
@@ -158,8 +160,8 @@ export type PossibleFileName =
               | 'HonkyTonk'
               | 'Horn'
 
-              | 'Marimba' | 'Vibraphone' | `${| '' | 'Pipe'}Organ` | 'TublerBell'
-              | `Epiano${| '' | 2}` | 'Piano.a4'
+              | 'Marimba' | 'Vibraphone' | `${| EmptyString | 'Pipe'}Organ` | 'TublerBell'
+              | `Epiano${| EmptyString | 2}` | 'Piano.a4'
               | 'GONG' | `${| 'Bass' | 'Snare'}Drum` | 'Cymbal' | 'HIHAT'
               | 'handbell' | 'WindChime' | 'Cowbell' | 'Kazoo'
               | ReverbCowbell

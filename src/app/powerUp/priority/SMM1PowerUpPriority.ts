@@ -10,7 +10,7 @@ export class SMM1PowerUpPriority
 
     //region -------------------- Fields --------------------
 
-    static readonly #IS_IN_GAME: ClassInAnySuperMarioMakerGame<true, false, false> = {isInSuperMarioMaker1: true, isInSuperMarioMakerFor3DS: false, isInSuperMarioMaker2: false,}
+    static readonly #IS_IN_GAME = {isInSuperMarioMaker1: true, isInSuperMarioMakerFor3DS: false, isInSuperMarioMaker2: false,} as const satisfies ClassInAnySuperMarioMakerGame
 
     //endregion -------------------- Fields --------------------
 

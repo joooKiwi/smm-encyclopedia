@@ -21,18 +21,18 @@ export class OfficialCourses
     //region -------------------- Enum instances --------------------
 
     public static readonly NWC_2017 =                         new OfficialCourses('NWC-2017',)
-    public static readonly DR_KAWASHIMA_ATHLETIC_TRAINING =   new OfficialCourses('Dr Kawashima\'s Athletic Training',)
-    public static readonly WALKIN_WITH_UNDODOG =              new OfficialCourses('Walkin\' with Undodog',)
+    public static readonly DR_KAWASHIMA_ATHLETIC_TRAINING =   new OfficialCourses('Dr Kawashima’s Athletic Training',)
+    public static readonly WALKIN_WITH_UNDODOG =              new OfficialCourses('Walkin’ with Undodog',)
     public static readonly SQUID_SISTER_VS_BLOOPERS =         new OfficialCourses('Squid Sisters vs. Bloopers',)
-    public static readonly SHAUN_MOSSY_MOLE_MISCHIEF =        new OfficialCourses('Shaun\'s Mossy Mole Mischief',)
+    public static readonly SHAUN_MOSSY_MOLE_MISCHIEF =        new OfficialCourses('Shaun’s Mossy Mole Mischief',)
     public static readonly HELLO_KITTY_AND_MY_MELODY =        new OfficialCourses('Hello Kitty & My Melody',)
-    public static readonly POPO_AND_NANA_CLIMBING_CHALLENGE = new OfficialCourses('Popo & Nana\'s Climbing Challenge',)
+    public static readonly POPO_AND_NANA_CLIMBING_CHALLENGE = new OfficialCourses('Popo & Nana’s Climbing Challenge',)
     public static readonly METAL_RESISTANCE =                 new OfficialCourses('METAL RESISTANCE',)
     public static readonly STARFY_PRINCE_OF_PUFFTOP =         new OfficialCourses('Starfy: Prince of Pufftop',)
-    public static readonly YU_AYASAKI_BIG_ADVENTURE =         new OfficialCourses('♪Yu Ayasaki\'s Big Adventure!♪',)
+    public static readonly YU_AYASAKI_BIG_ADVENTURE =         new OfficialCourses('♪Yu Ayasaki’s Big Adventure!♪',)
     public static readonly TOADETTE_TREASURE_TRACKER =        new OfficialCourses('Toadette: Treasure Tracker',)
     public static readonly TWILIGHT_PRINCESS_HD =             new OfficialCourses('Twilight Princess HD',)
-    public static readonly MARY_O_LUNCH_BREAK =               new OfficialCourses('Mary O.\'s Lunch Break',)
+    public static readonly MARY_O_LUNCH_BREAK =               new OfficialCourses('Mary O.’s Lunch Break',)
     public static readonly SECRETS_OF_STATUE_MARIO =          new OfficialCourses('Secrets of Statue Mario',)
     public static readonly BARBARA_IN_TOMATOLAND =            new OfficialCourses('Barbara in Tomatoland',)
     public static readonly NISEKOI_CHITOGE_AND_KOSAKIO =      new OfficialCourses('Nisekoi: Chitoge & Kosaki',)
@@ -53,13 +53,13 @@ export class OfficialCourses
     public static readonly BELCH_BASE =                       new OfficialCourses('Belch Base',)
     public static readonly NINTENDO_BADGE_ARCADE =            new OfficialCourses('Nintendo Badge Arcade',)
     public static readonly MA_RIO_HILLS =                     new OfficialCourses('Ma Rio Hills',)
-    public static readonly MERCEDES_BENZ_JUMP_N_DRIVE =       new OfficialCourses('Mercedes-Benz Jump\'n\'Drive',)
+    public static readonly MERCEDES_BENZ_JUMP_N_DRIVE =       new OfficialCourses('Mercedes-Benz Jump’n’Drive',)
     public static readonly MARIO_AND_LUIGI_PAPER_JAM =        new OfficialCourses('Mario & Luigi: Paper Jam',)
     public static readonly NES_REMIX =                        new OfficialCourses('NES REMIX',)
     public static readonly PAX_WEST_2015_OMEGATHON_FINAL_RD = new OfficialCourses('PAX West 2015 Omegathon Final Rd',)
     public static readonly YOSHI_IS_AWESOME =                 new OfficialCourses('Yoshi Is Awesome',)
-    public static readonly CAT_MARIO_COURSE =                 new OfficialCourses('Cat Mario\'s Course',)
-    public static readonly CAT_PEACH_COURSE =                 new OfficialCourses('Cat Peach\'s Course',)
+    public static readonly CAT_MARIO_COURSE =                 new OfficialCourses('Cat Mario’s Course',)
+    public static readonly CAT_PEACH_COURSE =                 new OfficialCourses('Cat Peach’s Course',)
     public static readonly SUPER_MARIO_KUN_25TH_ANNIVERSARY = new OfficialCourses('SUPER MARIO KUN 25th Anniversary',)
     public static readonly TRI_FORCE_HEROES =                 new OfficialCourses('Tri Force Heroes',)
     public static readonly ARINO_MAKER =                      new OfficialCourses('Arino Maker',)
@@ -130,3 +130,15 @@ export class OfficialCourses
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace OfficialCourses {
+
+    /** The companion instance of a {@link OfficialCourses} */
+    export const Companion = OfficialCourses.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).OfficialCourses = OfficialCourses

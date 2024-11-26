@@ -1,6 +1,8 @@
 import file from 'resources/compiled/Entity behaviour.json'
 
-import {CommonLazy, lazy} from '@joookiwi/lazy'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
+import {CommonLazy, lazy}         from '@joookiwi/lazy'
 
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
@@ -31,18 +33,17 @@ export class EntityBehaviourLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleTranslationKeys, EntityBehaviour>
+    #map?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>
 
     public load(): ReadonlyMap<PossibleTranslationKeys, EntityBehaviour> {
         if (this.#map != null)
             return this.#map
 
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.translationKey, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(
@@ -65,8 +66,8 @@ interface Content {
     isOnlineOnly: boolean
     isMultiplayerOnly: boolean
 
-    link_group: NullOr<PossibleGroupName>
-    link_entity: NullOr<EntityName>
+    link_group: NullOrString<PossibleGroupName>
+    link_entity: NullOrString<EntityName>
 
 }
 

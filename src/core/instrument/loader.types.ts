@@ -1,3 +1,5 @@
+import type {NullOrString} from '@joookiwi/type'
+
 import type {PossibleEnglishName} from 'core/instrument/Instruments.types'
 
 export type PossibleMixedInstrument =
@@ -5,4 +7,4 @@ export type PossibleMixedInstrument =
     | 'Regular → Cymbal\nSideway → Hi-hat'
     | 'Bottom → Hello\nTop → Ok'
 
-export type PossibleInstrument = NullOr<| PossibleEnglishName | PossibleMixedInstrument>
+export type PossibleInstrument = NullOrString<| PossibleEnglishName | PossibleMixedInstrument>

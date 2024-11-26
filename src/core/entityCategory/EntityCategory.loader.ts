@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Entity category.json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}     from 'core/_template/LanguageContent'
 import type {PossibleEnglishName} from 'core/entityCategory/EntityCategories.types'
 import type {EntityCategory}      from 'core/entityCategory/EntityCategory'
@@ -37,11 +40,10 @@ export class EntityCategoryLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, EntityCategory>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

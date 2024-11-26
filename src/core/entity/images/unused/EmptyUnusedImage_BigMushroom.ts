@@ -1,7 +1,9 @@
 import type {UnusedImage_BigMushroom}                          from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class EmptyUnusedImage_BigMushroom
     implements UnusedImage_BigMushroom, ClassWithNullObjectPattern<EmptyUnusedImageName> {

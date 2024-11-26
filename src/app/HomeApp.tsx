@@ -56,7 +56,8 @@ export default function HomeApp() {
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Clear condition',)}/>
             <PageProgress progress="data done"                                                        exclusiveGame="SMM2"   content={unfinishedText('Clear condition category',)}/>
             <PageProgress progress="completed"                   link="everyLimit"                                           content={gameContentTranslation('limit.singular',)}/>
-            <PageProgress progress="data in progress"                                                                        content={unfinishedText('Projectile',)}/>
+            <PageProgress progress="data done"                                                                               content={unfinishedText('Projectile',)}/>
+            <PageProgress progress="data done"                                                                               content={unfinishedText('Playable character',)}/>
             <PageProgress progress="data in progress"                                                                        content={unfinishedText('Object',)}/>
             <PageProgress progress="completed"                   link="everyEntityCategory"                                  content={gameContentTranslation('entity category.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
             <PageProgress progress="data in progress"                                                                        content={gameContentTranslation('entity group.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
@@ -65,7 +66,7 @@ export default function HomeApp() {
             <PageProgress progress="page in progress"            link="everyGameReference"                                   content={gameContentTranslation('game reference.singular',)}/>
             <PageProgress progress="page almost done"            link="everyGameStyle"                                       content={gameContentTranslation('game style.singular',)}/>
             <PageProgress progress="data in progress"                                                                        content={unfinishedText('Entity behaviour',)}/>
-            <PageProgress progress="page in progress"            link="everyMusic"                                           content={gameContentTranslation('music.singular',)}/>
+            <PageProgress progress="page in progress"            link="everyMusic"                                           content={contentTranslation('music.singular',)}/>
             <PageProgress progress="page almost done"            link="everySoundEffect"                                     content={gameContentTranslation('sound effect.singular',)}/>
             <PageProgress progress="page in progress"            link="everySoundEffectCategory"      exclusiveGame="SMM2"   content={gameContentTranslation('sound effect category.singular',)}/>
             <PageProgress progress="completed"                   link="everyCourseTag"                exclusiveGame="SMM2"   content={gameContentTranslation('course tag.singular', {Course: course, course: courseAsLowerCase, Tag: tag, tag: tagAsLowerCase,},)}/>

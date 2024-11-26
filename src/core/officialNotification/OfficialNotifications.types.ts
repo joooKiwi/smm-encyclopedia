@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
 
     FINISH_ALL_JOBS,
@@ -126,7 +128,7 @@ export type PossibleEnglishName_ClearSuperWorld<T extends | PossibleAmount_Clear
 export type PossibleEnglishNameWithOnlyAmount =
     | Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount> | PossibleEnglishNameWithEveryAmount
 export type PossibleEnglishName =
-    | `Finish all jobs${| '' | ` (${| 'Undodog' | 'Yamamura' | 'Partrick' | 'Soundfrog' | 'Mr. Eraser'})`}`
+    | `Finish all jobs${| EmptyString | ` (${| 'Undodog' | 'Yamamura' | 'Partrick' | 'Soundfrog' | 'Mr. Eraser'})`}`
     | 'Hit Middle ? Block near Purple Toad'
     | 'Finish rebuilding the castle'
     | `Finish ${| '1st' | '2nd' | '3rd'} job (Peach)`
@@ -143,7 +145,7 @@ export type PossibleEnglishName =
 
     | PossibleEnglishName_WinMatchInVS | 'Win consecutive match in Multiplayer VS'
 
-    | `Rank ${| 'C' | 'B' | 'A' | `S${| '' | '⁺'}`} in Multiplayer VS`
+    | `Rank ${| 'C' | 'B' | 'A' | `S${| EmptyString | '⁺'}`} in Multiplayer VS`
 
     | PossibleEnglishName_ClearCourseInCoop
 

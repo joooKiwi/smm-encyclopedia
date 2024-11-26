@@ -1,4 +1,6 @@
 import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import type {Array, NullOr}                        from '@joookiwi/type'
+import {getFirstByArray, hasByArray, isArray}      from '@joookiwi/collection'
 import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
@@ -12,9 +14,11 @@ import type {CharacterNames}            from 'core/characterName/CharacterNames'
 import * as SoundCreator                from 'core/editorVoice/sound/soundCreator'
 import type {Entities}                  from 'core/entity/Entities'
 import {Import}                         from 'util/DynamicImporter'
-import {EMPTY_ARRAY}                    from 'util/emptyVariables'
+import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @todo change the english name to the enum name for the _createEntityReference
@@ -33,7 +37,7 @@ export abstract class EditorVoices
 
     //region -------------------- Sub class --------------------
 
-    /** A simple child class of an {@link EditorVoices}, but specialized for the {@link Entities} */
+    /** A child class of an {@link EditorVoices}, but specialized for the {@link Entities} */
     private static readonly EntityEditorVoices = class EntityEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
@@ -41,7 +45,7 @@ export abstract class EditorVoices
         }
 
         protected override _retrieveReference() {
-            return this.entityReferences[0].reference
+            return getFirstByArray(this.entityReferences,).reference
         }
 
         public override get characterNameReferences() {
@@ -49,7 +53,7 @@ export abstract class EditorVoices
         }
 
     }
-    /** A simple child class of an {@link EditorVoices}, but specialized for the {@link CharacterNames} */
+    /** A child class of an {@link EditorVoices}, but specialized for the {@link CharacterNames} */
     private static readonly CharacterNameEditorVoices = class CharacterNameEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
@@ -57,7 +61,7 @@ export abstract class EditorVoices
         }
 
         protected override _retrieveReference() {
-            return this.characterNameReferences[0].reference
+            return getFirstByArray(this.characterNameReferences,).reference
         }
 
         public override get entityReferences() {
@@ -258,8 +262,8 @@ export abstract class EditorVoices
 
     public static readonly SHOE_GOOMBA =              new EditorVoices.EntityEditorVoices('Shoe Goomba',                     SoundCreator.singleEditorVoiceWithVoice('shoegoomba',),)
     public static readonly STILETTO_GOOMBA =          new EditorVoices.EntityEditorVoices('Stiletto Goomba',                 SoundCreator.singleEditorVoiceWithVoice('stilettogoomba',),)
-    public static readonly YOSHI_EGG =                new EditorVoices.EntityEditorVoices('Yoshi\'s Egg',                    SoundCreator.singleEditorVoiceWithVoice('yoshiegg',),)
-    public static readonly RED_YOSHI_EGG =            new EditorVoices.EntityEditorVoices('Red Yoshi\'s Egg',                SoundCreator.singleEditorVoiceWithSigningPart('BigRedYoshisEgg',),)
+    public static readonly YOSHI_EGG =                new EditorVoices.EntityEditorVoices('Yoshi’s Egg',                     SoundCreator.singleEditorVoiceWithVoice('yoshiegg',),)
+    public static readonly RED_YOSHI_EGG =            new EditorVoices.EntityEditorVoices('Red Yoshi’s Egg',                 SoundCreator.singleEditorVoiceWithSigningPart('BigRedYoshisEgg',),)
 
     //endregion -------------------- Power-up / Yoshi / Shoe + projectiles & player --------------------
     //region -------------------- General enemies --------------------
@@ -349,7 +353,7 @@ export abstract class EditorVoices
     public static readonly SNOWBALL =                 new EditorVoices.EntityEditorVoices('Snowball',                        SoundCreator.singleEditorVoiceWithSigningPart('SnowBall',),)
 
     public static readonly LAKITU =                   new EditorVoices.EntityEditorVoices('Lakitu',                          SoundCreator.singleEditorVoiceWithVoice('lakitu',),)
-    public static readonly LAKITU_CLOUD =             new EditorVoices.EntityEditorVoices('Lakitu\'s Cloud',                 SoundCreator.singleEditorVoiceWithVoice('lakitucloud',),)
+    public static readonly LAKITU_CLOUD =             new EditorVoices.EntityEditorVoices('Lakitu’s Cloud',                  SoundCreator.singleEditorVoiceWithVoice('lakitucloud',),)
 
     public static readonly BOO =                      new EditorVoices.EntityEditorVoices('Boo',                             SoundCreator.singleEditorVoiceWithVoice('boo',),)
     public static readonly STRETCH =                  new EditorVoices.EntityEditorVoices('Stretch',                         SoundCreator.singleEditorVoiceWithSigningPart('Stretch',),)
@@ -388,7 +392,7 @@ export abstract class EditorVoices
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
     public static readonly BILL_BLASTER =             new EditorVoices.EntityEditorVoices('Bill Blaster',                    SoundCreator.singleEditorVoiceWithVoice('billblaster',),)
-    public static readonly BULL_EYE_BLASTER =         new EditorVoices.EntityEditorVoices('Bull\'s-Eye Blaster',             SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBlaster',),)
+    public static readonly BULL_EYE_BLASTER =         new EditorVoices.EntityEditorVoices('Bull’s-Eye Blaster',              SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBlaster',),)
 
     public static readonly BANZAI_BILL =              new EditorVoices.EntityEditorVoices('Banzai Bill',                     SoundCreator.singleEditorVoiceWithSigningPart('BanzaiBill',),)
     public static readonly BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices.EntityEditorVoices {
@@ -397,7 +401,7 @@ export abstract class EditorVoices
             return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,]
         }
 
-    }('Bull\'s-Eye Banzai', SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBanzai',),)
+    }('Bull’s-Eye Banzai',  SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBanzai',),)
 
     public static readonly CANNON =                   new EditorVoices.EntityEditorVoices('Cannon',                          SoundCreator.singleEditorVoiceWithVoice('cannon',),)
     public static readonly RED_CANNON =               new EditorVoices.EntityEditorVoices('Red Cannon',                      SoundCreator.singleEditorVoiceWithSigningPart('redcannon',),)
@@ -534,7 +538,7 @@ export abstract class EditorVoices
         public getValueByCharacterName(value: PossibleEnumerableValueBy<| EditorVoices | CharacterNames>,): EditorVoices {
             if (value instanceof this.instance)
                 return value
-            const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.CompanionEnum.get.getValue(value,)
+            const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.Companion.getValue(value,)
             const valueFound = this.#findByCharacterName(characterNameValue,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by "${Import.CharacterNames.name}.${characterNameValue}".`,)
@@ -544,10 +548,12 @@ export abstract class EditorVoices
         public getValueByEntity(value: PossibleEnumerableValueBy<| EditorVoices | Entities>,): EditorVoices {
             if (value instanceof this.instance)
                 return value
-            const entityValue = value instanceof Import.Entities ? value : Import.Entities.CompanionEnum.get.getValue(value,)
+
+            const Entities = Import.Entities
+            const entityValue = value instanceof Entities ? value : Entities.Companion.getValue(value,)
             const valueFound = this.#findByEntity(entityValue,)
             if (valueFound == null)
-                throw new ReferenceError(`No "${this.instance.name}" could be found by "${Import.Entities.name}.${entityValue}".`,)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by "${Entities.name}.${entityValue}".`,)
             return valueFound
         }
 
@@ -558,31 +564,11 @@ export abstract class EditorVoices
         }
 
         #findByEntity(value: Entities,): NullOr<EditorVoices> {
-            return this.values.find(it => {
-                const references = it.entityReferences
-                const size = references.length
-                if (size === 0)
-                    return false
-                let index = -1
-                while (++index < size)
-                    if (references[index] === value)
-                        return true
-                return false
-            },)
+            return this.values.findFirstOrNull(it => hasByArray(it.entityReferences, value,),)
         }
 
         #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-            return this.values.find(it => {
-                const references = it.characterNameReferences
-                const size = references.length
-                if (size === 0)
-                    return false
-                let index = -1
-                while (++index < size)
-                    if (references[index] === value)
-                        return true
-                return false
-            },)
+            return this.values.findFirstOrNull(it => hasByArray(it.characterNameReferences, value,),)
         }
 
     }
@@ -591,10 +577,10 @@ export abstract class EditorVoices
     //region -------------------- Fields --------------------
 
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>
-    #references?: readonly PossibleReference[]
+    #references?: Array<PossibleReference>
     #reference?: PossibleReference
-    #characterNameReference?: readonly CharacterNames[]
-    #entityReferences?: readonly Entities[]
+    #characterNameReference?: Array<CharacterNames>
+    #entityReferences?: Array<Entities>
     readonly #editorVoiceSoundHolder
 
     //endregion -------------------- Fields --------------------
@@ -631,27 +617,29 @@ export abstract class EditorVoices
     protected abstract _retrieveReference(): PossibleReference
 
 
-    public get references(): readonly PossibleReference[] {
+    public get references(): Array<PossibleReference> {
         return this.#references ??= this._retrieveReferences()
     }
 
-    protected abstract _retrieveReferences(): readonly PossibleReference[]
+    protected abstract _retrieveReferences(): Array<PossibleReference>
 
     //region -------------------- Character name references --------------------
 
-    protected _createCharacterNameReference():  | PossibleEnglishName | readonly CharacterNames[] {
+    protected _createCharacterNameReference():  | PossibleEnglishName | Array<CharacterNames> {
         return this.englishName
     }
 
-    public get characterNameReferences(): readonly CharacterNames[] {
+    public get characterNameReferences(): Array<CharacterNames> {
         if (this.#characterNameReference != null)
             return this.#characterNameReference
 
         const reference = this._createCharacterNameReference()
-        if (reference instanceof Array)
+        if (isArray(reference,))
             return this.#characterNameReference = reference
-        if (Import.CharacterNames.CompanionEnum.get.hasValueByName(reference,))
-            return this.#characterNameReference = [Import.CharacterNames.CompanionEnum.get.getValueByName(reference,),]
+
+        const Companion = Import.CharacterNames.Companion
+        if (Companion.hasValueByName(reference,))
+            return this.#characterNameReference = [Companion.getValueByName(reference,),]
         return this.#characterNameReference = EMPTY_ARRAY
     }
 
@@ -665,7 +653,7 @@ export abstract class EditorVoices
      * @protected
      * @onlyCalledOnce
      */
-    protected _createEntityReferences(): | PossibleEnglishName | readonly Entities[] {
+    protected _createEntityReferences(): | PossibleEnglishName | Array<Entities> {
         return this.englishName
     }
 
@@ -676,15 +664,17 @@ export abstract class EditorVoices
      *  a single {@link Entities entity instance} similar to {@link EditorVoices this instance} or
      *  multiple {@link Entities entity instance} (from 2 to 4) associated to {@link EditorVoices this instance}.
      */
-    public get entityReferences(): readonly Entities[] {
+    public get entityReferences(): Array<Entities> {
         if (this.#entityReferences != null)
             return this.#entityReferences
 
         const reference = this._createEntityReferences()
-        if (reference instanceof Array)
+        if (isArray(reference,))
             return this.#entityReferences = reference
-        if (Import.Entities.CompanionEnum.get.hasValueByName(reference,))
-            return this.#entityReferences = [Import.Entities.CompanionEnum.get.getValueByName(reference,),]
+
+        const Companion = Import.Entities.Companion
+        if (Companion.hasValueByName(reference,))
+            return this.#entityReferences = [Companion.getValueByName(reference,),]
         return this.#entityReferences = EMPTY_ARRAY
     }
 
@@ -697,3 +687,15 @@ export abstract class EditorVoices
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace EditorVoices {
+
+    /** The companion instance of a {@link EditorVoices} */
+    export const Companion = EditorVoices.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).EditorVoices = EditorVoices

@@ -1,23 +1,26 @@
 import './DisplayView.scss'
 
-import {CollectionConstants}                             from '@joookiwi/collection'
+import {CollectionConstants} from '@joookiwi/collection'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
-import UnfinishedText, {unfinishedText}                  from 'app/tools/text/UnfinishedText'
+import {unfinishedText}                                  from 'app/tools/text/UnfinishedText'
 import {Games}                                           from 'core/game/Games'
 import {useCurrentGames}                                 from 'core/game/gamesHook'
 import {OtherWordInTheGames}                             from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
 
+import SMM1 = Games.SMM1
+import SMM2 = Games.SMM2
+
 /** @reactComponent */
 export default function DisplayViewBody() {
     const games = useCurrentGames('display view body',) ?? CollectionConstants.EMPTY_COLLECTION_HOLDER
 
-    const isSMM1Selected = games.has(Games.SUPER_MARIO_MAKER_1,)
-    // const isSMM3DSSelected = games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-    const isSMM2Selected = games.has(Games.SUPER_MARIO_MAKER_2,)
+    const isSMM1Selected = games.has(SMM1,)
+    // const isSMM3DSSelected = games.has(SMM3DS,)
+    const isSMM2Selected = games.has(SMM2,)
     const tag = OtherWordInTheGames.TAG.singularNameOnReference
     const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     // const tags = OtherWordInTheGames.TAG.pluralNameOnReference
@@ -100,10 +103,10 @@ export default function DisplayViewBody() {
                                         tooltipValue={gameContentTranslation('medal.display all',)}/>
             </div> : null}
         </div>
-        <div id="display-sound-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Music / sound</UnfinishedText></h3>
+        <div id="display-musicOrSound-container" className="container">
+            <h3 className="text-center text-decoration-underline pb-2">{contentTranslation('Music or sound',)}</h3>
             <div id="music-buttonGroup" className="btn-group col-12 col-md-6">
-                <DisplayViewRouteButton routeName="everyMusic" value={gameContentTranslation('music.singular',)}
+                <DisplayViewRouteButton routeName="everyMusic" value={contentTranslation('music.singular',)}
                                         tooltipValue={gameContentTranslation('music.display all',)}/>
             </div>
             <div key="button group (sound effect)" id="soundEffect-buttonGroup" className="btn-group col-12 col-md-6" role="group">
@@ -138,7 +141,7 @@ export default function DisplayViewBody() {
             </div> : null}
         </div>
         <div id="display-other-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Other</UnfinishedText></h3>
+            <h3 className="text-center text-decoration-underline pb-2">{contentTranslation('Other',)}</h3>
             {isSMM2Selected ? <div key="button group (mii costume)" id="miiCostume-buttonGroup" className="btn-group col-12" role="group">
                 <DisplayViewRouteButton routeName="everyMiiCostume" value={miiCostume}
                                         tooltipValue={gameContentTranslation('mii costume.display all', {singularName: miiCostumeAsLowerCase, pluralName: miiCostumesAsLowerCase,},)}/>

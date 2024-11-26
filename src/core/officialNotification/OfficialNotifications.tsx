@@ -1,9 +1,11 @@
 import './OfficialNotifications.scss'
 
-import type {Lazy} from '@joookiwi/lazy'
-import {Enum}      from '@joookiwi/enumerable'
-import {lazy}      from '@joookiwi/lazy'
-import {Fragment}  from 'react'
+import type {Lazy}                                                 from '@joookiwi/lazy'
+import type {Array, EmptyString, Nullable, NullableNumber, NullOr} from '@joookiwi/type'
+import {hasByArray}                                                from '@joookiwi/collection'
+import {Enum}                                                      from '@joookiwi/enumerable'
+import {lazy}                                                      from '@joookiwi/lazy'
+import {Fragment}                                                  from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
@@ -19,23 +21,26 @@ import {FIRST_PLACE_IMAGE_FILE, SECOND_PLACE_IMAGE_FILE, THIRD_PLACE_IMAGE_FILE}
 import {BRONZE_MEDAL_IMAGE_FILE, GOLD_MEDAL_IMAGE_FILE, SILVER_MEDAL_IMAGE_FILE} from 'core/officialNotification/file/imageFiles'
 import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/imageFiles'
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {EMPTY_ARRAY, EMPTY_STRING}                                               from 'util/emptyVariables'
+import {Empty}                                                                   from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
 import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
 
+import EMPTY_ARRAY  = Empty.EMPTY_ARRAY
+import EMPTY_STRING = Empty.EMPTY_STRING
+
 //region -------------------- Constructor constants --------------------
 
-const translationKey_finishAllCharacterJob: PossibleTranslationKey = 'finish all 3 job (character)'
-const translationKey_finishSelectedPeachJob: PossibleTranslationKey = 'finish X job (Peach)'
-const translationKey_receiveFeedback: PossibleTranslationKey = 'course.receive feedback (a lot)'
-const translationKey_rank: PossibleTranslationKey = 'rank'
-const translationKey_highScore: PossibleTranslationKey = 'high score'
-const translationKey_medal: PossibleTranslationKey = 'medal'
-const translationKey_place: PossibleTranslationKey = 'place'
-const translationKey_stamp: PossibleTranslationKey = 'stamp'
+const translationKey_finishAllCharacterJob = 'finish all 3 job (character)' satisfies PossibleTranslationKey
+const translationKey_finishSelectedPeachJob = 'finish X job (Peach)'        satisfies PossibleTranslationKey
+const translationKey_receiveFeedback = 'course.receive feedback (a lot)'    satisfies PossibleTranslationKey
+const translationKey_rank = 'rank'                                          satisfies PossibleTranslationKey
+const translationKey_highScore = 'high score'                               satisfies PossibleTranslationKey
+const translationKey_medal = 'medal'                                        satisfies PossibleTranslationKey
+const translationKey_place = 'place'                                        satisfies PossibleTranslationKey
+const translationKey_stamp = 'stamp'                                        satisfies PossibleTranslationKey
 
-const possibleAmountInEndlessMarioEasyOrNormal: readonly PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal[] = [10, 100, 300, 500, 1000,]
-const possibleAmountInEndlessMarioExpertOrSuperExpert: readonly PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert[] = [10, 100,]
+const possibleAmountInEndlessMarioEasyOrNormal = [10, 100, 300, 500, 1000,] as const satisfies Array<PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal>
+const possibleAmountInEndlessMarioExpertOrSuperExpert = [10, 100,]          as const satisfies Array<PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert>
 
 //endregion -------------------- Constructor constants --------------------
 
@@ -134,7 +139,7 @@ export class OfficialNotifications
     public static readonly HIT_MIDDLE_QUESTION_BLOCK_NEAR_PURPLE_TOAD =        new class OfficialNotifications_HitMiddleQuestionBlockNearPurpleToad extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.entityImage = <Image key={`${key} - entity image`} className="question-block-image" variable="question-block-sm3dw" isSquared/>
+            keyMap['entityImage'] = <Image key={`${key} - entity image`} className="question-block-image" variable="question-block-sm3dw" isSquared/>
             return this._addCharacterImage('Purple Toad', key,
                 this._addStoryMode(key, keyMap,),)
         }
@@ -384,7 +389,7 @@ export class OfficialNotifications
     public static readonly GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_GoldMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - gold medal image`} file={GOLD_MEDAL_IMAGE_FILE}/>
+            keyMap['medalImage'] = <Image key={`${key} - gold medal image`} file={GOLD_MEDAL_IMAGE_FILE}/>
             return this._addLeaderboard(key, keyMap,)
         }
 
@@ -392,7 +397,7 @@ export class OfficialNotifications
     public static readonly SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_SilverMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - silver medal image`} file={SILVER_MEDAL_IMAGE_FILE}/>
+            keyMap['medalImage'] = <Image key={`${key} - silver medal image`} file={SILVER_MEDAL_IMAGE_FILE}/>
             return this._addLeaderboard(key, keyMap,)
         }
 
@@ -400,7 +405,7 @@ export class OfficialNotifications
     public static readonly BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_BronzeMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - bronze medal image`} file={BRONZE_MEDAL_IMAGE_FILE}/>
+            keyMap['medalImage'] = <Image key={`${key} - bronze medal image`} file={BRONZE_MEDAL_IMAGE_FILE}/>
             return this._addLeaderboard(key, keyMap,)
         }
 
@@ -408,7 +413,7 @@ export class OfficialNotifications
     public static readonly FIRST_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_1stPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - 1st place image (medal)`} file={FIRST_PLACE_IMAGE_FILE}/>
+            keyMap['medalImage'] = <Image key={`${key} - 1st place image (medal)`} file={FIRST_PLACE_IMAGE_FILE}/>
             return super._addLeaderboard(key,
                 this._addPosition(1, 'place', key, keyMap,),)
         }
@@ -417,7 +422,7 @@ export class OfficialNotifications
     public static readonly SECOND_PLACE_ON_THE_LEADERBOARD =                   new class OfficialNotifications_2ndPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - 2nd place image (medal)`} file={SECOND_PLACE_IMAGE_FILE}/>
+            keyMap['medalImage'] = <Image key={`${key} - 2nd place image (medal)`} file={SECOND_PLACE_IMAGE_FILE}/>
             return super._addLeaderboard(key,
                 this._addPosition(2, 'place', key, keyMap,),)
         }
@@ -426,7 +431,7 @@ export class OfficialNotifications
     public static readonly THIRD_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_3rdPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - 3rd place image (medal)`} file={THIRD_PLACE_IMAGE_FILE}/>
+            keyMap['medalImage'] = <Image key={`${key} - 3rd place image (medal)`} file={THIRD_PLACE_IMAGE_FILE}/>
             return super._addLeaderboard(key,
                 this._addPosition(3, 'place', key, keyMap,),)
         }
@@ -497,9 +502,9 @@ export class OfficialNotifications
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it =>
+            const valueFound = this.values.findFirstOrNull(it =>
                 it.englishName === value
-                || it.additionalEnglishName.includes(value as never,),)
+                || hasByArray(it.additionalEnglishName, value,),)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -511,7 +516,7 @@ export class OfficialNotifications
     //region -------------------- Fields --------------------
 
     readonly #englishName
-    readonly #additionalEnglishName: readonly PossibleEnglishNameWithEveryAmount[]
+    readonly #additionalEnglishName: Array<PossibleEnglishNameWithEveryAmount>
 
     readonly #translationKey
     #additionalTranslationKeyHolder: Lazy<NullOr<PossibleAdditionalTranslationKey>>
@@ -520,9 +525,9 @@ export class OfficialNotifications
     //region -------------------- Constructor --------------------
 
     private constructor(englishName: Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount>, translationKey: PossibleTranslationKey,)
-    private constructor(englishName: PossibleEnglishNameWithAmount<'#'>, translationKey: PossibleTranslationKey, ...amount: readonly PossibleAmount[])
+    private constructor(englishName: PossibleEnglishNameWithAmount<'#'>, translationKey: PossibleTranslationKey, ...amount: Array<PossibleAmount>)
     private constructor(englishName: PossibleEnglishNameWithAmount<1>, translationKey: PossibleTranslationKey, amount: 1,)
-    private constructor(englishName: PossibleEnglishName, translationKey: PossibleTranslationKey, ...amount: readonly PossibleAmount[]) {
+    private constructor(englishName: PossibleEnglishName, translationKey: PossibleTranslationKey, ...amount: Array<PossibleAmount>) {
         super()
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
@@ -543,7 +548,7 @@ export class OfficialNotifications
         return this.#englishName.getInHtml
     }
 
-    public get additionalEnglishName(): readonly PossibleEnglishNameWithEveryAmount[] {
+    public get additionalEnglishName(): Array<PossibleEnglishNameWithEveryAmount> {
         return this.#additionalEnglishName
     }
 
@@ -580,127 +585,127 @@ export class OfficialNotifications
 
 
     protected _addJob(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.job = <UnfinishedText key={`${key} - job`}>job</UnfinishedText>//TODO add job translation
+        keyMap['job'] = <UnfinishedText key={`${key} - job`}>job</UnfinishedText>//TODO add job translation
         return keyMap
     }
 
     protected _addJobs(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.jobs = <UnfinishedText key={`${key} - job`}>jobs</UnfinishedText>//TODO add jobs translation
+        keyMap['jobs'] = <UnfinishedText key={`${key} - job`}>jobs</UnfinishedText>//TODO add jobs translation
         return keyMap
     }
 
 
     protected _addCourse(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
+        keyMap['course'] = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
         return keyMap
     }
 
     protected _addCourses(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
+        keyMap['courses'] = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
         return keyMap
     }
 
 
     protected _addWorldRecord(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecord = OtherWordInTheGames.WORLD_RECORD.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.WORLD_RECORD.singularEnglishName.toLowerCase(),)
+        keyMap['worldRecord'] = OtherWordInTheGames.WORLD_RECORD.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.WORLD_RECORD.singularEnglishName.toLowerCase(),)
         return keyMap
     }
 
     protected _addWorldRecords(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecords = OtherWordInTheGames.WORLD_RECORD.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.WORLD_RECORD.pluralEnglishName.toLowerCase(),)
+        keyMap['worldRecords'] = OtherWordInTheGames.WORLD_RECORD.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.WORLD_RECORD.pluralEnglishName.toLowerCase(),)
         return keyMap
     }
 
     protected _addLeaderboard(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.leaderboard = <TextComponent key={`${key} - leaderboard`} content={OtherWordInTheGames.LEADERBOARD.singularNameOnReference.toLowerCase()} className="text-decoration-underline"/>
+        keyMap['leaderboard'] = <TextComponent key={`${key} - leaderboard`} content={OtherWordInTheGames.LEADERBOARD.singularNameOnReference.toLowerCase()} className="text-decoration-underline"/>
         return keyMap
     }
 
 
     protected _addMultiplayerVS(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.MultiplayerVersus = <TextComponent key={`${key} - Multiplayer Versus`} content={OtherWordInTheGames.MULTIPLAYER_VERSUS.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap['MultiplayerVersus'] = <TextComponent key={`${key} - Multiplayer Versus`} content={OtherWordInTheGames.MULTIPLAYER_VERSUS.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addMultiplayerCoop(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.MultiplayerCoop = <TextComponent key={`${key} - Multiplayer Co-op`} content={OtherWordInTheGames.MULTIPLAYER_COOP.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap['MultiplayerCoop'] = <TextComponent key={`${key} - Multiplayer Co-op`} content={OtherWordInTheGames.MULTIPLAYER_COOP.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addStoryMode(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.StoryMode = <TextComponent key={`${key} - Story Mode`} content={OtherWordInTheGames.STORY_MODE.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap['StoryMode'] = <TextComponent key={`${key} - Story Mode`} content={OtherWordInTheGames.STORY_MODE.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addMakerPoints(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.MakerPoints = <Fragment key={`${key} - Maker Points`}>--Maker Points--</Fragment>//TODO add Maker Points reference
+        keyMap['MakerPoints'] = <Fragment key={`${key} - Maker Points`}>--Maker Points--</Fragment>//TODO add Maker Points reference
         return keyMap
     }
 
     protected _addEndlessChallenge(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.EndlessChallenge = <TextComponent key={`${key} - Endless Challenge`} content={OtherWordInTheGames.ENDLESS_CHALLENGE.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap['EndlessChallenge'] = <TextComponent key={`${key} - Endless Challenge`} content={OtherWordInTheGames.ENDLESS_CHALLENGE.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addNinjiSpeedruns(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.NinjiSpeedruns = <TextComponent key={`${key} - Ninji Speedruns`} content={OtherWordInTheGames.NINJI_SPEEDRUNS.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap['NinjiSpeedruns'] = <TextComponent key={`${key} - Ninji Speedruns`} content={OtherWordInTheGames.NINJI_SPEEDRUNS.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addSuperWorld(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.SuperWorld = <TextComponent key={`${key} - Super World`} content={OtherWordInTheGames.SUPER_WORLD.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap['SuperWorld'] = <TextComponent key={`${key} - Super World`} content={OtherWordInTheGames.SUPER_WORLD.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addSuperWorlds(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.SuperWorlds = <TextComponent key={`${key} - Super World`} content={OtherWordInTheGames.SUPER_WORLD.pluralNameOnReference} className="text-decoration-underline"/>
+        keyMap['SuperWorlds'] = <TextComponent key={`${key} - Super World`} content={OtherWordInTheGames.SUPER_WORLD.pluralNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
 
     protected _addLikeImage(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.likeImage = <Image key={`${key} - like image`} className="like-image" file={LIKE_IMAGE_FILE}/>
+        keyMap['likeImage'] = <Image key={`${key} - like image`} className="like-image" file={LIKE_IMAGE_FILE}/>
         return keyMap
     }
 
     protected _addCharacterImage(character: | 'Undodog' | 'Yamamura' | 'Partrick' | 'Soundfrog' | 'Mr. Eraser' | 'Princess Peach' | 'Purple Toad', key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.characterImage = <Fragment key={`${key} - character`}>--{character} image--</Fragment>//TODO add character reference
+        keyMap['characterImage'] = <Fragment key={`${key} - character`}>--{character} image--</Fragment>//TODO add character reference
         return keyMap
     }
 
     protected _addStampImage(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.stampImage = <Image key={`${key} - stamp image`} className="stamp-image" file={STAMP_IMAGE_FILE}/>
+        keyMap['stampImage'] = <Image key={`${key} - stamp image`} className="stamp-image" file={STAMP_IMAGE_FILE}/>
         return keyMap
     }
 
 
     protected _addMissionTitle(missionTitle: null, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.MissionTitle = <Fragment key={`${key} - Mission title`}>--Mission title--</Fragment>//TODO add mission title reference
+        keyMap['MissionTitle'] = <Fragment key={`${key} - Mission title`}>--Mission title--</Fragment>//TODO add mission title reference
         return keyMap
     }
 
 
-    protected _addRank(rank: | 'C' | 'B' | 'A' | `S${| '' | '⁺'}`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.rank = <Fragment key={`${key} - rank`}>{rank}</Fragment>
+    protected _addRank(rank: | 'C' | 'B' | 'A' | `S${| EmptyString | '⁺'}`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        keyMap['rank'] = <Fragment key={`${key} - rank`}>{rank}</Fragment>
         return keyMap
     }
 
-    protected _addDifficulty(difficulty: | 'easy' | 'normal' | `${| '' | 'super '}expert`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+    protected _addDifficulty(difficulty: | 'easy' | 'normal' | `${| EmptyString | 'super '}expert`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         if (difficulty === 'easy')
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EASY.singularNameOnReference.toLowerCase()}/>
+            keyMap['difficulty'] = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EASY.singularNameOnReference.toLowerCase()}/>
         else if (difficulty === 'normal')
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.NORMAL.singularNameOnReference.toLowerCase()}/>
+            keyMap['difficulty'] = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.NORMAL.singularNameOnReference.toLowerCase()}/>
         else if (difficulty === 'expert')
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EXPERT.singularNameOnReference.toLowerCase()}/>
+            keyMap['difficulty'] = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EXPERT.singularNameOnReference.toLowerCase()}/>
         else
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.SUPER_EXPERT.singularNameOnReference.toLowerCase()}/>
+            keyMap['difficulty'] = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.SUPER_EXPERT.singularNameOnReference.toLowerCase()}/>
         return keyMap
     }
 
 
     protected _addPosition(position: | 1 | 2 | 3, type: | 'job' | 'place', key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         const upperText = gameContentTranslation(`Official notification.position.${type}.${position}`,)
-        keyMap.position = <Fragment key={`${key} - position (${type})`}>
+        keyMap['position'] = <Fragment key={`${key} - position (${type})`}>
             {position}
             {upperText === EMPTY_STRING ? null : <sup>{upperText}</sup>}
         </Fragment>
@@ -709,10 +714,10 @@ export class OfficialNotifications
 
     //endregion -------------------- Add argument to "key map" --------------------
 
-    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): ReactElement {
+    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): NonNullReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
         if (amount != null)
-            keyMap.amount = <Fragment key={`${key} - amount`}>{amount}</Fragment>
+            keyMap['amount'] = <Fragment key={`${key} - amount`}>{amount}</Fragment>
 
         return <TextComponent content={gameContentTranslation(`Official notification.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
@@ -720,3 +725,13 @@ export class OfficialNotifications
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace OfficialNotifications {
+
+    /** The companion instance of a {@link OfficialNotifications} */
+    export const Companion = OfficialNotifications.CompanionEnum.get
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).OfficialNotifications = OfficialNotifications

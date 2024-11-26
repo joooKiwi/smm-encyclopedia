@@ -1,8 +1,12 @@
 import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {NullOr}                                                                                 from '@joookiwi/type'
 import type {Dispatch, SetStateAction}                                                               from 'react'
 import {CompanionEnum}                                                                               from '@joookiwi/enumerable'
 
-import {EMPTY_MAP} from 'util/emptyVariables'
+import {Empty}        from 'util/emptyVariables'
+import {forEachValue} from 'util/utilitiesMethods'
+
+import EMPTY_MAP = Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" value as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enumerable,
@@ -44,13 +48,12 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
         const selectedValue = this.getValue(value,) as ENUM
         if (selectedValue === this.currentOrNull)
             return
-        this.onSetCurrentEventOrEmpty.forEach(it => it(selectedValue,),)
+        forEachValue(this.onSetCurrentEventOrEmpty, it => it(selectedValue,),)
         this._onSetCurrent(selectedValue,)
         this.#current = selectedValue
     }
 
-    protected _onSetCurrent(value: ENUM,): void {
-    }
+    protected _onSetCurrent(value: ENUM,): void {}
 
     //region -------------------- Current --------------------
     //region -------------------- Event --------------------

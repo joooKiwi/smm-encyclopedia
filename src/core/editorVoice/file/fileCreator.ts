@@ -4,7 +4,7 @@ import type {PossibleFileName}     from 'core/editorVoice/sound/EditorVoiceSound
 import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 /**
- * Create a simple {@link EditorVoiceSoundFile} from a {@link name} provided
+ * Create an {@link EditorVoiceSoundFile} from a {@link name} provided
  *
  * @param name The image name
  */

@@ -7,7 +7,7 @@ import {DoubleEditorVoiceSound} from 'core/editorVoice/sound/DoubleEditorVoiceSo
 import {SingleEditorVoiceSound} from 'core/editorVoice/sound/SingleEditorVoiceSound'
 
 /**
- * Create a simple {@link EditorVoiceSound} with the {@link PossibleFileName_WithSingingPartBefore "signing part"} before its {@link fileName}
+ * Create an {@link EditorVoiceSound} with the {@link PossibleFileName_WithSingingPartBefore "signing part"} before its {@link fileName}
  *
  * @param fileName The file name
  */
@@ -16,7 +16,7 @@ export function singleEditorVoiceWithSigningPart<const FILE_NAME extends Possibl
 }
 
 /**
- * Create a simple {@link EditorVoiceSound} with the {@link PossibleFileName_WithVoiceBefore "voice"} before its {@link fileName}
+ * Create an {@link EditorVoiceSound} with the {@link PossibleFileName_WithVoiceBefore "voice"} before its {@link fileName}
  *
  * @param fileName The file name
  */
@@ -25,7 +25,7 @@ export function singleEditorVoiceWithVoice<const FILE_NAME extends PossibleStart
 }
 
 /**
- * Create a simple {@link EditorVoiceSound} with the {@link PossibleFileName_WithVoiceBefore "voice"} before both {@link regularFileName} and {@link europeanFileName}
+ * Create an  {@link EditorVoiceSound} with the {@link PossibleFileName_WithVoiceBefore "voice"} before both {@link regularFileName} and {@link europeanFileName}
  *
  * @param regularFileName The regular file name
  * @param europeanFileName The european file name

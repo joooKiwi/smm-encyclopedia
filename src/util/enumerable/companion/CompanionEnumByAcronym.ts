@@ -1,8 +1,10 @@
 import type {CompanionEnumDeclaration, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Nullable}                                        from '@joookiwi/type'
 import {CompanionEnum}                                        from '@joookiwi/enumerable'
 
 import type {EnumerableWithNullableAcronym} from 'util/enumerable/Enumerable.types'
-import {getValueByAcronym}                  from 'util/utilitiesMethods'
+
+import {getValueByAcronym} from 'util/utilitiesMethods'
 
 export class CompanionEnumByAcronym<const ENUM extends EnumerableWithNullableAcronym,
     const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >

@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {GameStyles}                from 'core/gameStyle/GameStyles'
 import type {MysteryMushrooms}          from 'core/mysteryMushroom/MysteryMushrooms'
 import type {PossibleAmountOfTime}      from 'core/officialCourse/loader.types'
@@ -8,7 +10,7 @@ import type {NameTraitWithADescription} from 'lang/name/NameTraitWithADescriptio
 export interface OfficialCourse
     extends NameTraitWithADescription<string, string, Name<string>> {
 
-    get reward(): readonly MysteryMushrooms[]
+    get reward(): Array<MysteryMushrooms>
 
 
     get releaseDate(): Date

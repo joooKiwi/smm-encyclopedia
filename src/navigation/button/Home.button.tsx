@@ -4,7 +4,7 @@ import {Link}   from 'react-router-dom'
 import Tooltip                    from 'bootstrap/tooltip/Tooltip'
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {contentTranslation}       from 'lang/components/translationMethods'
-import {routeFromName}            from 'route/route'
+import {routeFromName}            from 'route/method/route.fromName'
 
 const ID = 'home-link'
 

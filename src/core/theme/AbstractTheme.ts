@@ -1,3 +1,5 @@
+import type {NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+
 import type {Theme} from 'core/theme/Theme'
 import type {Games} from 'core/game/Games'
 import type {Name}  from 'lang/name/Name'
@@ -16,7 +18,7 @@ export class AbstractTheme<const out SMM1_AND_SMM3DS extends boolean = boolean,
     readonly #isInSuperMarioMaker1And3DS
     readonly #isAvailableFromTheStartInSuperMarioMaker1: AVAILABLE_FROM_START_SMM1
     readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: AVAILABLE_FROM_START_SMM3DS
-    #gameMap?: GameMap<boolean, Theme>
+    #gameMap?: GameMap<Theme>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Sound effect category.json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}     from 'core/_template/LanguageContent'
 import type {PossibleEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
@@ -32,11 +35,10 @@ export class SoundEffectCategoryLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, SoundEffectCategory>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

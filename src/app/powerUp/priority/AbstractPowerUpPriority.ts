@@ -1,56 +1,26 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
+import type {Lazy}  from '@joookiwi/lazy'
+import type {Array} from '@joookiwi/type'
+import {isArray}    from '@joookiwi/collection'
+import {lazy}       from '@joookiwi/lazy'
 
-import type {ImagesCallback, ImagesRetrieverCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {Entities}                                                                     from 'core/entity/Entities'
-import type {EntityImageFile}                                                              from 'core/entity/file/EntityImageFile'
-import type {ClassInAnySuperMarioMakerGame}                                                from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {Name}                                                                         from 'lang/name/Name'
+import type {ImagesCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {Entities}                                            from 'core/entity/Entities'
+import type {EntityImageFile}                                     from 'core/entity/file/EntityImageFile'
+import type {ClassInAnySuperMarioMakerGame}                       from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Name}                                                from 'lang/name/Name'
 
-import {GameStyles}  from 'core/gameStyle/GameStyles'
-import {Themes}      from 'core/theme/Themes'
-import {Times}       from 'core/time/Times'
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {ImageCallbacks} from 'app/powerUp/priority/ImageCallbacks'
+import {GameStyles}     from 'core/gameStyle/GameStyles'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD,} = GameStyles
-
-//endregion -------------------- Import from deconstruction --------------------
+import EDITOR_IMAGE_CALLBACK = ImageCallbacks.EDITOR_IMAGE_CALLBACK
 
 export abstract class AbstractPowerUpPriority
     implements PowerUpPriority {
 
     //region -------------------- Fields --------------------
 
-    protected static _EMPTY_CALLBACK = () => EMPTY_ARRAY
-
-    //region -------------------- Game styles --------------------
-
-    public static readonly SMB_AND_SMB3 = [SUPER_MARIO_BROS, SUPER_MARIO_BROS_3,] as const
-    public static readonly SMW_AND_NSMBU = [SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U,] as const
-
-    public static readonly SMB_SMB3_AND_SMW = [SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD,] as const
-    public static readonly SMB3_SMW_AND_NSMBU = [SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U,] as const
-
-    public static readonly SMB_SMB3_SMW_AND_NSMBU = GameStyles.gameStyles_smm1
-    public static readonly SMB3_SMW_NSMBU_AND_SM3DW = [SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD,] as const
-
-    public static readonly ALL_GAME_STYLES = GameStyles.CompanionEnum.get.values
-
-    //endregion -------------------- Game styles --------------------
-    //region -------------------- Image callbacks --------------------
-
-    public static FIRST_EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0],]
-    public static FIRST_IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)[0],]
-    public static EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,)
-    public static IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(gameStyle,)
-    public static FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle) => gameStyle === GameStyles.NEW_SUPER_MARIO_BROS_U ? this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,) : this.FIRST_IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)
-
-    //endregion -------------------- Image callbacks --------------------
-
     readonly #nameHolder: Lazy<Name<string>>
-    readonly #imagesHolder: Lazy<readonly EntityImageFile[]>
+    readonly #imagesHolder: Lazy<Array<EntityImageFile>>
     readonly #isIn
 
     //endregion -------------------- Fields --------------------
@@ -71,7 +41,7 @@ export abstract class AbstractPowerUpPriority
         return this.#nameHolder.value
     }
 
-    public get images(): readonly EntityImageFile[] {
+    public get images(): Array<EntityImageFile> {
         return this.#imagesHolder.value
     }
 
@@ -79,12 +49,11 @@ export abstract class AbstractPowerUpPriority
         return this.#isIn
     }
 
-
-    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): readonly EntityImageFile[] {
-        return (gameStyles instanceof Array ? gameStyles : [gameStyles])
-            .map(gameStyle => this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
-    }
-
     //endregion -------------------- Getter methods --------------------
 
+}
+
+export function getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): Array<EntityImageFile> {//TODO relocate elsewhere
+    return (isArray(gameStyles,) ? gameStyles : [gameStyles])
+        .map(gameStyle => EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
 }

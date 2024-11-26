@@ -1,24 +1,40 @@
-import type {Singleton} from '@joookiwi/enumerable'
-import {Enum}           from '@joookiwi/enumerable'
-import i18n             from 'i18next'
+import type {Singleton}                                  from '@joookiwi/enumerable'
+import type {EmptyArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
+import {Enum}                                            from '@joookiwi/enumerable'
+import i18n                                              from 'i18next'
 
-import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
-import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
-import type {CompanionEnumDeclaration_EveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/EveryLanguages.companionEnumDeclaration'
-import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName, PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'lang/EveryLanguages.types'
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/LanguageEnumerable'
-import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'lang/ProjectLanguages.types'
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
-import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
+import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleChevrons_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInChevrons, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from 'lang/ClassWithEveryLanguages'
+import type {CompanionEnumDeclaration_EveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'lang/EveryLanguages.companionEnumDeclaration'
+import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName, PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'lang/EveryLanguages.types'
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'lang/LanguageEnumerable'
+import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'lang/ProjectLanguages.types'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'lang/name/containers/Language'
+import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'util/enumerable/ClassWithIsCurrent'
 
 import {Characters}                                 from 'lang/Characters'
 import {SPACE}                                      from 'util/commonVariables'
-import {EMPTY_STRING}                               from 'util/emptyVariables'
+import {Empty}                                      from 'util/emptyVariables'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
+
+import CharacterCompanion =  Characters.Companion
+import EMPTY_STRING =        Empty.EMPTY_STRING
+import getBraces =           Characters.getBraces
+import getBrackets =         Characters.getBrackets
+import getChevrons =         Characters.getChevrons
+import getLowercaseLetters = Characters.getLowercaseLetters
+import getNumbers =          Characters.getNumbers
+import getParentheses =      Characters.getParentheses
+import getSlashes =          Characters.getSlashes
+import getUppercaseLetters = Characters.getUppercaseLetters
+import textInBraces =        Characters.textInBraces
+import textInBrackets =      Characters.textInBrackets
+import textInChevrons =      Characters.textInChevrons
+import textInParentheses =   Characters.textInParentheses
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
-    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOr<PossibleDifferentWord>>,
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOrString<PossibleDifferentWord>>,
         ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
@@ -515,11 +531,11 @@ export abstract class EveryLanguages
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.projectAcronym === value
-                || enumerable.internationalAcronym === value
-                || enumerable.englishName === value
-                || enumerable.originalName === value)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.projectAcronym === value
+                || it.internationalAcronym === value
+                || it.englishName === value
+                || it.originalName === value)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -530,26 +546,11 @@ export abstract class EveryLanguages
                 throw new TypeError(`No "${this.instance.name}" could be found by a null acronym.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.projectAcronym === value
-                || enumerable.internationalAcronym === value)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.projectAcronym === value
+                || it.internationalAcronym === value)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this acronym "${value}".`,)
-            return valueFound
-        }
-
-        public getValueByNameOrAcronym(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
-            if (value == null)
-                throw new TypeError(`No "${this.instance.name}" could be found by a null name or acronym.`,)
-            if (value instanceof this.instance)
-                return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.projectAcronym === value
-                || enumerable.internationalAcronym === value
-                || enumerable.englishName === value
-                || enumerable.originalName === value)
-            if (valueFound == null)
-                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
         }
 
@@ -571,7 +572,7 @@ export abstract class EveryLanguages
     readonly #internationalAcronym: PossibleInternationalAcronym
     readonly #englishName: PossibleEnglishName
     readonly #originalName: PossibleOriginalName
-    readonly #differentWords: NullOr<PossibleDifferentWord>
+    readonly #differentWords: NullOrString<PossibleDifferentWord>
     readonly #parent: NullOr<EveryLanguages>
     #children?: PossibleChildrenLanguages
 
@@ -583,6 +584,7 @@ export abstract class EveryLanguages
     #parentheses?: PossibleParentheses_Array
     #brackets?: PossibleBrackets_Array
     #braces?: PossibleBraces_Array
+    #chevrons?: PossibleChevrons_Array
     #slashes?: PossibleSlashes_Array
     #romainLowercaseAlphabet?: PossibleLowercaseRomainAlphabet_Array
     #romainUppercaseAlphabet?: PossibleUppercaseRomainAlphabet_Array
@@ -595,7 +597,7 @@ export abstract class EveryLanguages
     private constructor(isACompleteLanguage: boolean, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, differenceWords: PossibleDifferentWord, parent: EveryLanguages,)
-    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: NullOr<PossibleDifferentWord> = null, parent: NullOr<EveryLanguages> = null,) {
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: NullOrString<PossibleDifferentWord> = null, parent: NullOr<EveryLanguages> = null,) {
         super()
         this.#isACompleteLanguage = isACompleteLanguage
         this.#projectAcronym = projectAcronym
@@ -663,7 +665,7 @@ export abstract class EveryLanguages
         return this.#originalName
     }
 
-    public get differentWords(): NullOr<PossibleDifferentWord> {
+    public get differentWords(): NullOrString<PossibleDifferentWord> {
         return this.#differentWords
     }
 
@@ -672,14 +674,14 @@ export abstract class EveryLanguages
     }
 
     public get children(): PossibleChildrenLanguages {
-        return this.#children ??= EveryLanguages.CompanionEnum.get.values.filter(it => it.parent != null,)
+        return this.#children ??= EveryLanguages.Companion.values.filter(it => it.parent != null,)
             .filter(it => it !== this,)
             .filter(it => it.parent === this,)
             .toArray() as PossibleChildrenLanguages
     }
 
     public get isDefaultLanguage(): boolean {
-        return this === EveryLanguages.CompanionEnum.get.defaultValue
+        return this === EveryLanguages.Companion.defaultValue
     }
 
     //region -------------------- Characters getter methods --------------------
@@ -713,21 +715,21 @@ export abstract class EveryLanguages
     }
 
     public get comma(): PossibleComma {
-        return this.#comma ??= Characters.COMMA.getCharacters(this.isASpaceEvenLanguage)[0] as PossibleComma
+        return this.#comma ??= Characters.COMMA.getCharacter(this.isASpaceEvenLanguage,)
     }
 
     public get unionTrait(): PossibleUnionTrait {
-        return this.#unionTrait ??= Characters.UNION_TRAIT.getCharacters(this.isASpaceEvenLanguage)[0] as PossibleUnionTrait
+        return this.#unionTrait ??= Characters.UNION_TRAIT.getCharacter(this.isASpaceEvenLanguage,)
     }
 
 
     public get commercialAnd(): PossibleCommercialAnd {
-        return this.#commercialAnd ??= Characters.COMMERCIAL_AND.getCharacters(this.isASpaceEvenLanguage)[0] as PossibleCommercialAnd
+        return this.#commercialAnd ??= Characters.COMMERCIAL_AND.getCharacter(this.isASpaceEvenLanguage,)
     }
 
 
     public get parentheses(): PossibleParentheses_Array {
-        return this.#parentheses ??= Characters.getParentheses(this.isASpaceEvenLanguage)
+        return this.#parentheses ??= getParentheses(this.isASpaceEvenLanguage,)
     }
 
     public get startingParenthesis(): PossibleStartingParentheses {
@@ -738,8 +740,9 @@ export abstract class EveryLanguages
         return this.parentheses[1]
     }
 
+
     public get brackets(): PossibleBrackets_Array {
-        return this.#brackets ??= Characters.getBrackets(this.isASpaceEvenLanguage)
+        return this.#brackets ??= getBrackets(this.isASpaceEvenLanguage,)
     }
 
     public get startingBrackets(): PossibleStartingBracket {
@@ -750,8 +753,9 @@ export abstract class EveryLanguages
         return this.brackets[1]
     }
 
+
     public get braces(): PossibleBraces_Array {
-        return this.#braces ??= Characters.getBraces(this.isASpaceEvenLanguage)
+        return this.#braces ??= getBraces(this.isASpaceEvenLanguage,)
     }
 
     public get startingBraces(): PossibleStartingBrace {
@@ -763,8 +767,21 @@ export abstract class EveryLanguages
     }
 
 
+    public get chevrons(): PossibleChevrons_Array {
+        return this.#chevrons ??= getChevrons(this.isASpaceEvenLanguage,)
+    }
+
+    public get startingChevrons(): PossibleStartingChevron {
+        return this.chevrons[0]
+    }
+
+    public get endingChevrons(): PossibleEndingChevron {
+        return this.chevrons[1]
+    }
+
+
     public get slashes(): PossibleSlashes_Array {
-        return this.#slashes ??= Characters.getSlashes(this.isASpaceEvenLanguage)
+        return this.#slashes ??= getSlashes(this.isASpaceEvenLanguage,)
     }
 
     public get slash(): PossibleSlash {
@@ -777,30 +794,30 @@ export abstract class EveryLanguages
 
 
     public get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Array {
-        return this.#romainLowercaseAlphabet ??= Characters.getLowercaseLetters(this.isASpaceEvenLanguage)
+        return this.#romainLowercaseAlphabet ??= getLowercaseLetters(this.isASpaceEvenLanguage,)
     }
 
     public get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Array {
-        return this.#romainUppercaseAlphabet ??= Characters.getUppercaseLetters(this.isASpaceEvenLanguage)
+        return this.#romainUppercaseAlphabet ??= getUppercaseLetters(this.isASpaceEvenLanguage,)
     }
 
 
     public get numbers(): PossibleNumbers_Array {
-        return this.#numbers ??= Characters.getNumbers(this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace)
+        return this.#numbers ??= getNumbers(this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace,)
     }
 
 
     public character<const C extends PossibleSingleCharacter, >(character: C,): VariableCharacterByCharacter<this['isASpaceEvenLanguage'], C>
     public character<const C extends string, >(character: C,): VariableCharacterByString<this['isASpaceEvenLanguage'], C>
     public character(character: string,) {
-        return Characters.CompanionEnum.get.getCharacter(this.isASpaceEvenLanguage, character,)
+        return CharacterCompanion.getCharacter(this.isASpaceEvenLanguage, character,)
     }
 
     //endregion -------------------- Characters getter methods --------------------
     //region -------------------- Getter & setter methods (current) --------------------
 
     public get isCurrent(): boolean {
-        return this === EveryLanguages.CompanionEnum.get.currentOrNull
+        return this === EveryLanguages.Companion.currentOrNull
     }
 
     public get isCurrentOrAssociatedWithIt(): boolean {
@@ -817,7 +834,7 @@ export abstract class EveryLanguages
     protected abstract _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): NullOr<T>
 
     public get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-        return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages)
+        return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages,)
     }
 
     public original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
@@ -830,22 +847,34 @@ export abstract class EveryLanguages
 
     public textInParentheses<S extends string, >(text: S,): TextInParentheses<this['isASpaceEvenLanguage'], S>
     public textInParentheses(text: string,) {
-        return Characters.textInParentheses(this.isASpaceEvenLanguage, text,)
+        return textInParentheses(this.isASpaceEvenLanguage, text,)
     }
 
     public textInBrackets<S extends string, >(text: S,): TextInBrackets<this['isASpaceEvenLanguage'], S>
     public textInBrackets(text: string,) {
-        return Characters.textInBrackets(this.isASpaceEvenLanguage, text,)
+        return textInBrackets(this.isASpaceEvenLanguage, text,)
     }
 
     public textInBraces<S extends string, >(text: S,): TextInBraces<this['isASpaceEvenLanguage'], S>
     public textInBraces(text: string,) {
-        return Characters.textInBraces(this.isASpaceEvenLanguage, text,)
+        return textInBraces(this.isASpaceEvenLanguage, text,)
+    }
+
+    public textInChevrons<S extends string, >(text: S,): TextInChevrons<this['isASpaceEvenLanguage'], S>
+    public textInChevrons(text: string,) {
+        return textInChevrons(this.isASpaceEvenLanguage, text,)
     }
 
     //endregion -------------------- Transformation methods --------------------
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace EveryLanguages {
+
+    /** The companion instance of a {@link EveryLanguages} */
+    export const Companion = EveryLanguages.CompanionEnum.get
 
 }
 

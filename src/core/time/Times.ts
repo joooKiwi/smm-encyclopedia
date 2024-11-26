@@ -1,56 +1,67 @@
-import {Enum} from '@joookiwi/enumerable'
+import {CollectionHolder, getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
+import type {Singleton}                                         from '@joookiwi/enumerable'
+import type {Array, Nullable}  from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
-import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                         from 'core/entity/Entity'
-import type {TimeProperty}                                                  from 'core/entity/properties/time/TimeProperty'
-import type {TimeReferences}                                                from 'core/entity/properties/time/TimeReferences'
-import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from 'core/time/Times.types'
-import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
-import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
-import type {CompanionEnumByNameSingleton}                                  from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
+import type {PropertyGetter, PropertyReferenceGetter}                                              from 'core/PropertyGetter'
+import type {Entity, PossibleOtherEntities}                                                        from 'core/entity/Entity'
+import type {TimeProperty}                                                                         from 'core/entity/properties/time/TimeProperty'
+import type {CompanionEnumDeclaration_Times}                                                       from 'core/time/Times.companionEnum.declaration'
+import type {GroupUrl, Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath, PossibleUrl} from 'core/time/Times.types'
+import type {TimeImageFile}                                                                        from 'core/time/file/TimeImageFile'
+import type {ClassUsedInRoute}                                                                     from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                   from 'util/file/image/ClassWithImageFile'
 
-import {timeImage}                      from 'core/time/file/fileCreator'
-import {StringContainer}                from 'util/StringContainer'
-import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+import {timeImage}                                              from 'core/time/file/fileCreator'
+import {StringContainer}                                        from 'util/StringContainer'
+import {Empty}                                                  from 'util/emptyVariables'
+import {getValueByEnglishName, getValueByUrlValue}              from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
-export abstract class Times
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+
+export abstract class Times<const NAME extends PossibleEnglishName = PossibleEnglishName,
+    const URL extends PossibleUrl = PossibleUrl,
+    const IMAGE_NAME extends PossibleSimpleImagePath = PossibleSimpleImagePath, >
     extends Enum<Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImageFile<TimeImageFile>,
-        PropertyReferenceGetter<TimeReferences, PossibleOtherEntities>,
+    implements ClassWithEnglishName<NAME>,
+        ClassWithImageFile<TimeImageFile<IMAGE_NAME>>,
+        ClassUsedInRoute<URL, URL>,
+        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<TimeProperty> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly DAY =   new class Times_Day extends Times {
+    public static readonly DAY =   new class Times_Day extends Times<'Day', 'day', 'Sun'> {
 
         public override get(property: TimeProperty,) {
             return property.isInDayTheme
         }
 
-        public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
-            return referenceProperty.referenceInDayTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInDayTheme
         }
 
-    }('Day', 'Sun',)
-    public static readonly NIGHT = new class Times_Night extends Times {
+    }('Day', 'day', 'Sun',)
+    public static readonly NIGHT = new class Times_Night extends Times<'Night', 'night', 'Moon'> {
 
         public override get(property: TimeProperty,) {
-            return property.isInNightTheme === true
+            return property.isInNightTheme
         }
 
-        public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
-            return referenceProperty.referenceInNightTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInNightTheme
         }
 
-    }('Night', 'Moon',)
+    }('Night', 'night', 'Moon',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Times, typeof Times> = class CompanionEnum_Times
-        extends CompanionEnumByEnglishNameOnly<Times, typeof Times> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_Times> = class CompanionEnum_Times
+        extends CompanionEnumWithCurrentAndSetCurrentEventAsCollection<Times, typeof Times>
+        implements CompanionEnumDeclaration_Times {
 
         //region -------------------- Singleton usage --------------------
 
@@ -65,6 +76,88 @@ export abstract class Times
         }
 
         //endregion -------------------- Singleton usage --------------------
+        //region -------------------- Fields --------------------
+
+        public readonly URL_NAME_SEPARATOR = '/'
+        public readonly NAME_ARGUMENT_SEPARATOR = ','
+
+        // public readonly URL_REGEX = /.*\/time-((day|night)(,(day|night))*|(all))(\/|$)/i
+        // public readonly SINGLE_URL_REGEX = /.*\/time-(day|night)(\/|$)/i
+        public readonly PREFIX = '/time-'
+        public readonly PREFIX_WITHOUT_SLASH = 'time-'
+        public readonly ALL_PREFIX_GROUP = '/time-all/'
+
+        //endregion -------------------- Fields --------------------
+        //region -------------------- Methods --------------------
+
+        public getValueByName(value: Nullable<| Times | string>,): Times {
+            return getValueByEnglishName(value, this,)
+        }
+
+        public getValueByUrl(value: Nullable<|Times | string>,): Times {
+            return getValueByUrlValue(value, this,)
+        }
+
+
+        public findInUrl(url: string,): Array<Times> {
+            const lowerCasedUrl = url.toLowerCase()
+            if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
+                return Times.ALL
+
+            const prefix = this.PREFIX
+            if (!lowerCasedUrl.includes(prefix,))
+                return EMPTY_ARRAY
+
+            /** All the possible {@link Times.urlValue} that could be found in the url */
+            const valuesFound = getFirstByArray(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),)
+            const withDay = valuesFound.includes('day',)
+            const withNight = valuesFound.includes('night',)
+
+            if (withDay)
+                if (withNight)
+                    return Times.ALL
+                else
+                    return Times.DAY_ONLY
+            if (withNight)
+                return Times.NIGHT_ONLY
+            return EMPTY_ARRAY
+        }
+
+        public findInName(name: string,): Array<Times> {
+            const startingIndex = name.indexOf('Time=',)
+            if (startingIndex === -1)
+                return EMPTY_ARRAY
+
+            const nameFromGame = name.substring(startingIndex + 5,)
+            if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
+                return Times.ALL
+
+            if (nameFromGame === 'day)' || nameFromGame.startsWith('day ',))
+                return Times.DAY_ONLY
+            if (nameFromGame === 'night)' || nameFromGame.startsWith('night ',))
+                return Times.NIGHT_ONLY
+
+            throw new ReferenceError(`No times have a name associated to the name "${name}".`,)
+        }
+
+
+
+        public getGroupUrl(times: | Array<Times> | CollectionHolder<Times>,): GroupUrl {
+            const isTimesArray = isArray(times,)
+            const withDay = isTimesArray ? hasByArray(times, Times.DAY,) : times.has(Times.DAY,)
+            const withNight = isTimesArray ? hasByArray(times, Times.NIGHT,) : times.has(Times.NIGHT,)
+
+            if (withDay)
+                if (withNight)
+                    return 'all'
+                else
+                    return 'day'
+            if (withNight)
+                return 'night'
+            throw new ReferenceError('No time group url value is findable from empty array or collection.',)
+        }
+
+        //endregion -------------------- Methods --------------------
 
     }
 
@@ -72,22 +165,24 @@ export abstract class Times
     //region -------------------- Fields --------------------
 
     readonly #englishName
-    readonly #simpleImagePath: PossibleSimpleImagePath
-    #imageFile?: TimeImageFile
+    readonly #url
+    readonly #imageName
+    #imageFile?: TimeImageFile<IMAGE_NAME>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName: PossibleEnglishName, imagePath: PossibleSimpleImagePath,) {
+    private constructor(englishName: NAME, url: URL, imagePath: IMAGE_NAME,) {
         super()
-        this.#englishName = new StringContainer(englishName)
-        this.#simpleImagePath = imagePath
+        this.#englishName = new StringContainer(englishName,)
+        this.#url = url
+        this.#imageName = imagePath
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get englishName(): PossibleEnglishName {
+    public get englishName(): NAME {
         return this.#englishName.get
     }
 
@@ -95,8 +190,20 @@ export abstract class Times
         return this.#englishName.getInHtml
     }
 
-    public get imageFile(): TimeImageFile {
-        return this.#imageFile ??= timeImage(this.#simpleImagePath, this.englishName,)
+    public get urlValue(): URL {
+        return this.#url
+    }
+
+    public get urlName(): URL {
+        return this.#url
+    }
+
+    public get imageName(): IMAGE_NAME {
+        return this.#imageName
+    }
+
+    public get imageFile(): TimeImageFile<IMAGE_NAME> {
+        return this.#imageFile ??= timeImage(this.imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -104,8 +211,26 @@ export abstract class Times
 
     public abstract get(property: TimeProperty,): boolean
 
-    public abstract getReference(referenceProperty: TimeReferences,): PossibleOtherEntities
+    public abstract getReference(entity: Entity,): PossibleOtherEntities
 
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace Times {
+
+    /** The companion instance of a {@link Times} */
+    export const Companion = Times.CompanionEnum.get
+
+    /** All the {@link Times} */
+    export const ALL = [Times.DAY, Times.NIGHT,] as const
+
+    export const DAY_ONLY = [Times.DAY,] as const
+    export const NIGHT_ONLY = [Times.NIGHT,] as const
+
+    export const EVERY_TIME = [ALL, DAY_ONLY, NIGHT_ONLY,] as const
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).Times = Times

@@ -1,18 +1,15 @@
-import type {UnusedSMM1BigMushroomImageFile} from 'core/entity/file/EntityImageFile.unused'
-import type {UnusedImage}                    from 'core/entity/images/unused/UnusedImage'
+import type {Array} from '@joookiwi/type'
+
+import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
+import type {UnusedImage}                     from 'core/entity/images/unused/UnusedImage'
 
 /**
- * An unused {@link Entities.BIG_MUSHROOM_CLASSIC} or {@link Entities.BIG_MUSHROOM_MODERN}
- * image for some specific entities.
- *
- * It can only be from a {@link Entities.KOOPA_CLOWN_CAR}, {@link Entities.GOOMBA} or {@link Entities.STRETCH}.
- *
- * It is also only applicable in the {@link GameStyles.SUPER_MARIO_BROS "Super Mario Bros." game style}
- * as well as only in the {@link Games.SUPER_MARIO_MAKER_1 "Super Mario Maker" game}.
+ * An {@link UnusedImage} Big Mushroom ({@link Entities.BIG_MUSHROOM_CLASSIC classic} / {@link Entities.BIG_MUSHROOM_MODERN modern})
+ * in {@link SMB} only for {@link SMM1}
  */
-export interface UnusedImage_BigMushroom
+export interface UnusedImage_BigMushroom<out T extends UnusedSmm1ImageFile_BigMushroom = UnusedSmm1ImageFile_BigMushroom, >
     extends UnusedImage {
 
-    get all(): readonly (readonly UnusedSMM1BigMushroomImageFile[])[]
+    readonly all: Array<T>
 
 }

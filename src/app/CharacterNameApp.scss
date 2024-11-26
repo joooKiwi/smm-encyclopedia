@@ -4,6 +4,26 @@
     position: initial;
   }
 
-  .description-container .game-image { height: var(--bs-font-size-lg) }
+  .description-container .game-image {
+    height: var(--bs-font-size-lg)
+  }
 
+}
+
+#characterName-list {
+  .listItem {
+    min-height: 2.5rem;
+    .single-editorVoiceSound-container { margin-left: var(--bs-spacer-sm) }
+  }
+}
+
+#characterName-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.name {}
+    &.editorVoice {}
+  }
 }

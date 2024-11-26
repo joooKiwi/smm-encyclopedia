@@ -8,14 +8,16 @@ import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
-import GameStyleImage           from 'core/gameStyle/GameStyleImage'
+import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
-import ThemeImage               from 'core/theme/ThemeImage'
 import {Themes}                 from 'core/theme/Themes'
-import TimeImage                from 'core/time/TimeImage'
+import ThemeImage               from 'core/theme/component/ThemeImage'
 import {Times}                  from 'core/time/Times'
+import TimeImage                from 'core/time/component/TimeImage'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+
+import LanguageCompanion = ProjectLanguages.Companion
 
 export abstract class GameStyleAppOption
     extends Enum<Ordinals, Names>
@@ -30,7 +32,7 @@ export abstract class GameStyleAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'icon', element: unfinishedText('Icon'),}
+            return CommonOptions.get.iconHeader
         }
 
     }()
@@ -60,7 +62,7 @@ export abstract class GameStyleAppOption
                 </div>,
                 tooltip: gameContentTranslation('Wind effect (night desert)', {
                     night: unfinishedText('night'),//TODO add night reference
-                    desert: ProjectLanguages.current.get(Themes.DESERT.reference)!.toLowerCase(),
+                    desert: LanguageCompanion.current.get(Themes.DESERT.reference)!.toLowerCase(),
                 },),
             }
         }

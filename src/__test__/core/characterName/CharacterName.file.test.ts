@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Character name.json'
 
+import type {Array} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
 
 import {EveryTypes}                                                           from '__test__/EveryTypes'
@@ -10,10 +12,11 @@ describe('Character name (file test)', () => {
     const everyNames = types.everyPossibleName_characterName
     const everyUniqueNames = types.everyPossibleUniqueName_characterName
     const luigiToadOrToadette = / (Luigi)|(Toad)|(Toadette)/
-    const excludedNames_smm1: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
-    const excludedNames_smm2: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const excludedNames_smm1 = ['chinese', 'korean',] as const satisfies Array<PossibleExcludedLanguages>
+    const excludedNames_smm2 = ['portuguese',]        as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isAddedLuigiToadOrToadette = luigiToadOrToadette.test(it.uniqueName,)
         isAddedLuigiToadOrToadette
             ? testOnlyEnglishAndFrench(it,)//TODO add other languages on the added (Luigi, Toad & Toadette) for the non-English & english
@@ -23,14 +26,20 @@ describe('Character name (file test)', () => {
         //TODO add Parakeet in japanese, chinese & korean
 
         describe('Type validations', () => {
-            describe('Is in game', () => {
-                test('SMM', () => expect(it.isInSuperMarioMaker1,).toBeBoolean(),)
-                test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
-                test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeBoolean(),)
+            describe('Is in …', () => {
+                describe('Game', () => {
+                    test('SMM', () => expect(it.isInSuperMarioMaker1,).toBeBoolean(),)
+                    test('SMM3DS', () => expect(it.isInSuperMarioMakerFor3DS,).toBeBoolean(),)
+                    test('SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
+                },)
+                describe('Time', () => {
+                    test("Day", () => expect(it.isInDayTime,).toBeBoolean(),)
+                    test("Night", () => expect(it.isInNightTime,).toBeBoolean(),)
+                },)
             },)
             test('Has a name said in Mario Maker', () => expect(it.hasNameSaidInTheEditor,).toBeBoolean(),)
             test('Unique name', () => expect(it.uniqueName,).toBeOneOf(everyUniqueNames,),)
             testEnglish(it, everyNames,)
         },)
-    },),)
+    },)},)
 },)

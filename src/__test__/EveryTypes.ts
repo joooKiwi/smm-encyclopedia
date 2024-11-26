@@ -1,3 +1,6 @@
+import type {Array, StringArray}   from '@joookiwi/type'
+import {filterNotNull, mapByArray} from '@joookiwi/collection'
+
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'core/behaviour/EntityBehaviours.types'
 import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                     from 'core/characterName/CharacterNames.types'
@@ -11,7 +14,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Instrument}             
 import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                            from 'core/instrument/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                                                               from 'core/limit/LimitTypes.types'
 import type {PossibleAcronym as PossibleAcronym_Limit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_Limit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_Limit, PossibleEnglishName as PossibleEnglishName_Limit} from 'core/limit/Limits.types'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount}                                                                                                                                from 'core/limit/loader.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount, PossibleLimitDescription as PossibleLimitDescription_Limit}                                                                    from 'core/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Medal}                                                                                                                                                                                   from 'core/medal/Medals.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                              from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                      from 'core/miiCostumeCategory/MiiCostumeCategories.types'
@@ -56,7 +59,14 @@ import {Themes}                from 'core/theme/Themes'
 import {Versions}              from 'core/version/Versions'
 import {CourseTags}            from 'core/courseTag/CourseTags'
 import {INFINITY}              from 'util/commonVariables'
-import {nonNull}               from 'util/utilitiesMethods'
+
+import ALL_GAME_STYLES =      GameStyles.ALL
+import ALL_GAME_STYLES_SMM1 = GameStyles.ALL_SMM1
+import ALL_THEMES =           Themes.ALL
+import COURSE_THEMES_SMM1 =   Themes.COURSE_THEMES_SMM1
+import SMM1 =                 Games.SMM1
+import SMM2 =                 Games.SMM2
+import SMM3DS =               Games.SMM3DS
 
 /**
  * @singleton
@@ -100,94 +110,95 @@ export class EveryTypes {
 
     //region -------------------- Fields --------------------
 
-    #everyPossibleAcronym_gameReference?: readonly PossibleAcronym_GameReference[]
-    #everyPossiblePokemonGeneration_gameReference?: readonly PokemonGeneration[]
-    #everyPossibleName_gameReference?: readonly PossibleEnglishName_GameReference[]
+    #everyPossibleAcronym_gameReference?: Array<PossibleAcronym_GameReference>
+    #everyPossiblePokemonGeneration_gameReference?: Array<PokemonGeneration>
+    #everyPossibleName_gameReference?: Array<PossibleEnglishName_GameReference>
 
-    #everyPossibleAcronym_gameStyle?: readonly PossibleAcronym_GameStyle[]
-    #everyPossibleAcronym_gameStyle_smm1?: readonly PossibleAcronym_GameStyle[]
+    #everyPossibleAcronym_gameStyle?: Array<PossibleAcronym_GameStyle>
+    #everyPossibleAcronym_gameStyle_smm1?: Array<PossibleAcronym_GameStyle>
 
-    #everyPossibleName_characterName?: readonly PossibleEnglishName_CharacterName[]
-    #everyPossibleUniqueName_characterName?: readonly PossibleUniqueEnglishName_CharacterName[]
+    #everyPossibleName_characterName?: Array<PossibleEnglishName_CharacterName>
+    #everyPossibleUniqueName_characterName?: Array<PossibleUniqueEnglishName_CharacterName>
 
-    #everyPossibleName_entity?: readonly PossibleEnglishName_Entity[]
-    #everyPossibleWeight_entity?: readonly NonNullable<Exclude<PossibleWeight, UnknownCharacter>>[]
-    #everyPossibleLightSource_entity?: readonly NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>[]
-    #everyPossibleSurviveConditionInDeadlyLiquid_entity?: readonly NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>[]
-    #everyPossibleLimitAmountType_entity?: readonly NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>[]
-    #everyPossibleGELComment_entity?: readonly PossibleGeneralLimitComment[]
-    #everyPossibleGELGlobalComment_entity?: readonly PossibleGeneralGlobalLimitComment[]
-    #everyPossiblePJLComment_entity?: readonly PossibleProjectileLimitComment[]
-    #everyPossibleObjectRenderedLimitComment_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
-    #everyPossibleOtherLimitComment_entity?: readonly PossibleOtherLimitComment[]
+    #everyPossibleName_entity?: Array<PossibleEnglishName_Entity>
+    #everyPossibleWeight_entity?: Array<NonNullable<Exclude<PossibleWeight, UnknownCharacter>>>
+    #everyPossibleLightSource_entity?: Array<NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>>
+    #everyPossibleSurviveConditionInDeadlyLiquid_entity?: Array<NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>>
+    #everyPossibleLimitAmountType_entity?: Array<NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>>
+    #everyPossibleGELComment_entity?: Array<PossibleGeneralLimitComment>
+    #everyPossibleGELGlobalComment_entity?: Array<PossibleGeneralGlobalLimitComment>
+    #everyPossiblePJLComment_entity?: Array<PossibleProjectileLimitComment>
+    #everyPossibleObjectRenderedLimitComment_entity?: Array<PossibleRenderedObjectLimitTypeComment>
+    #everyPossibleOtherLimitComment_entity?: Array<PossibleOtherLimitComment>
 
-    #everyPossibleAcronym_entityBehaviour?: readonly PossibleAcronym_EntityBehaviour[]
-    #everyPossibleTranslationKey_entityBehaviour?: readonly PossibleTranslationKey_EntityBehaviour[]
+    #everyPossibleAcronym_entityBehaviour?: Array<PossibleAcronym_EntityBehaviour>
+    #everyPossibleTranslationKey_entityBehaviour?: Array<PossibleTranslationKey_EntityBehaviour>
 
     #everyPossibleName_entityGroup?: EveryPossibleName_EntityGroup
 
-    #everyPossibleName_theme?: readonly PossibleEnglishName_Theme[]
-    #everyPossibleName_courseTheme_smm1?: readonly PossibleEnglishName_Theme[]
-    #everyPossibleName_themeNightEffect?: readonly PossibleEnglishName_Theme_NightEffect[]
+    #everyPossibleName_theme?: Array<PossibleEnglishName_Theme>
+    #everyPossibleName_courseTheme_smm1?: Array<PossibleEnglishName_Theme>
+    #everyPossibleName_themeNightEffect?: Array<PossibleEnglishName_Theme_NightEffect>
 
-    #everyPossibleName_entityCategory?: readonly PossibleEnglishName_EntityCategory[]
+    #everyPossibleName_entityCategory?: Array<PossibleEnglishName_EntityCategory>
 
-    #everyPossibleAcronym_limit?: readonly PossibleAcronym_Limit[]
-    #everyPossibleAlternativeAcronym_limit?: readonly PossibleAlternativeAcronym_Limit[]
-    #everyPossibleName_limit?: readonly PossibleEnglishName_Limit[]
-    #everyPossibleName_editorLimit?: readonly PossibleEnglishName_Limit[]
-    #everyPossibleName_playLimit?: readonly PossibleEnglishName_Limit[]
-    #everyPossibleAlternativeName_limit?: readonly PossibleAlternativeEnglishName_Limit[]
-    #everyPossibleAmount_smm1And3ds_limit?: readonly PossibleLimitAmount_SMM1And3DS_Amount[]
-    #everyPossibleAmount_smm2_limit?: readonly PossibleLimitAmount_SMM2_Amount[]
-    #everyPossibleComment_limit?: readonly NonNullable<PossibleLimitAmount_Comment>[]
-    #everyPossibleName_limitType?: readonly PossibleEnglishName_LimitType[]
+    #everyPossibleAcronym_limit?: Array<PossibleAcronym_Limit>
+    #everyPossibleAlternativeAcronym_limit?: Array<PossibleAlternativeAcronym_Limit>
+    #everyPossibleName_limit?: Array<PossibleEnglishName_Limit>
+    #everyPossibleName_editorLimit?: Array<PossibleEnglishName_Limit>
+    #everyPossibleName_playLimit?: Array<PossibleEnglishName_Limit>
+    #everyPossibleAlternativeName_limit?: Array<PossibleAlternativeEnglishName_Limit>
+    #everyPossibleAmount_smm1And3ds_limit?: Array<PossibleLimitAmount_SMM1And3DS_Amount>
+    #everyPossibleAmount_smm2_limit?: Array<PossibleLimitAmount_SMM2_Amount>
+    #everyPossibleComment_limit?: Array<NonNullable<PossibleLimitAmount_Comment>>
+    #everyPossibleDescription_limit?: Array<PossibleLimitDescription_Limit>
+    #everyPossibleName_limitType?: Array<PossibleEnglishName_LimitType>
 
-    #everyPossibleName_soundEffect?: readonly PossibleEnglishName_SoundEffect[]
-    #everyPossibleName_soundEffectCategory?: readonly PossibleEnglishName_SoundEffectCategory[]
+    #everyPossibleName_soundEffect?: Array<PossibleEnglishName_SoundEffect>
+    #everyPossibleName_soundEffectCategory?: Array<PossibleEnglishName_SoundEffectCategory>
 
-    #everyPossibleName_courseTag?: readonly PossibleEnglishName_CourseTag[]
-    #everyPossibleMakerCentralName_courseTag?: readonly PossibleMakerCentralName[]
+    #everyPossibleName_courseTag?: Array<PossibleEnglishName_CourseTag>
+    #everyPossibleMakerCentralName_courseTag?: Array<PossibleMakerCentralName>
 
-    #everyPossibleName_MiiCostume?: readonly PossibleEnglishName_MiiCostume[]
-    #everyPossibleName_MiiCostumeCategory?: readonly PossibleEnglishName_MiiCostumeCategory[]
+    #everyPossibleName_MiiCostume?: Array<PossibleEnglishName_MiiCostume>
+    #everyPossibleName_MiiCostumeCategory?: Array<PossibleEnglishName_MiiCostumeCategory>
 
-    #everyPossibleEnglishNameOnFile_mysteryMushroom?: readonly UniqueEnglishName_MysteryMushroom[]
-    #everyPossibleConditionToUnlockIt_mysteryMushroom?: readonly PossibleConditionToUnlockIt_MysteryMushroom[]
-    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom[]
-    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom[]
+    #everyPossibleEnglishNameOnFile_mysteryMushroom?: Array<UniqueEnglishName_MysteryMushroom>
+    #everyPossibleConditionToUnlockIt_mysteryMushroom?: Array<PossibleConditionToUnlockIt_MysteryMushroom>
+    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: Array<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom>
+    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: Array<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom>
 
-    #everyPossibleEnglishName_officialCourse?: readonly PossibleEnglishName_OfficialCourse[]
-    #everyPossibleReward_officialCourse?: readonly PossibleReward_OfficialCourse[]
-    #everyPossibleReleaseDate_officialCourse?: readonly PossibleReleaseDate_OfficialCourse[]
-    #everyPossibleRemovalDate_officialCourse?: readonly NonNullable<Exclude<PossibleRemovalDate_OfficialCourse, UnknownReference>>[]
+    #everyPossibleEnglishName_officialCourse?: Array<PossibleEnglishName_OfficialCourse>
+    #everyPossibleReward_officialCourse?: Array<PossibleReward_OfficialCourse>
+    #everyPossibleReleaseDate_officialCourse?: Array<PossibleReleaseDate_OfficialCourse>
+    #everyPossibleRemovalDate_officialCourse?: Array<NonNullable<Exclude<PossibleRemovalDate_OfficialCourse, UnknownReference>>>
 
-    #everyPossibleNameWithAmount_officialNotification?: readonly PossibleNameWithEveryAmount_OfficialNotification[]
+    #everyPossibleNameWithAmount_officialNotification?: Array<PossibleNameWithEveryAmount_OfficialNotification>
 
-    #everyPossibleName_predefinedMessage?: readonly PossibleEnglishName_PredefinedMessage[]
+    #everyPossibleName_predefinedMessage?: Array<PossibleEnglishName_PredefinedMessage>
 
-    #everyPossibleWorldNumber_SampleCourse?: readonly PossibleWorldNumber_SampleCourse[]
+    #everyPossibleWorldNumber_SampleCourse?: Array<PossibleWorldNumber_SampleCourse>
 
-    #everyPossibleName_medal?: readonly PossibleEnglishName_Medal[]
+    #everyPossibleName_medal?: Array<PossibleEnglishName_Medal>
 
-    #everyPossibleName_instrument?: readonly PossibleEnglishName_Instrument[]
-    #everyPossibleMixedName_instrument?: readonly PossibleMixedName_Instrument[]
+    #everyPossibleName_instrument?: Array<PossibleEnglishName_Instrument>
+    #everyPossibleMixedName_instrument?: Array<PossibleMixedName_Instrument>
 
-    #everyPossibleName_version?: readonly PossibleName_Version[]
-    #everyPossibleName_version_smm?: readonly PossibleName_Version_SMM[]
-    #everyPossibleName_version_smm3ds?: readonly PossibleName_Version_SMM3DS[]
-    #everyPossibleName_version_smm2?: readonly PossibleName_Version_SMM2[]
+    #everyPossibleName_version?: Array<PossibleName_Version>
+    #everyPossibleName_version_smm?: Array<PossibleName_Version_SMM>
+    #everyPossibleName_version_smm3ds?: Array<PossibleName_Version_SMM3DS>
+    #everyPossibleName_version_smm2?: Array<PossibleName_Version_SMM2>
 
-    #everyPossibleName_otherWordInTheGame?: readonly PossibleEnglishName_OtherWordInTheGame[]
-    #everyPossibleSingularName_otherWordInTheGame?: readonly PossibleSingularEnglishName_OtherWordInTheGame[]
-    #everyPossiblePluralName_otherWordInTheGame?: readonly PossiblePluralEnglishName_OtherWordInTheGame[]
+    #everyPossibleName_otherWordInTheGame?: Array<PossibleEnglishName_OtherWordInTheGame>
+    #everyPossibleSingularName_otherWordInTheGame?: Array<PossibleSingularEnglishName_OtherWordInTheGame>
+    #everyPossiblePluralName_otherWordInTheGame?: Array<PossiblePluralEnglishName_OtherWordInTheGame>
 
     //endregion -------------------- Fields --------------------
 
     //region -------------------- Game reference --------------------
 
     public get everyPossibleAcronym_gameReference() {
-        return this.#everyPossibleAcronym_gameReference ??= GameReferences.CompanionEnum.get.values.map(it => it.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameReference ??= GameReferences.Companion.values.map(it => it.acronym,).toArray()
     }
 
     public get everyPossiblePokemonGeneration_gameReference() {
@@ -195,18 +206,18 @@ export class EveryTypes {
     }
 
     public get everyPossibleName_gameReference() {
-        return this.#everyPossibleName_gameReference ??= GameReferences.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_gameReference ??= GameReferences.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Game reference --------------------
     //region -------------------- Game style --------------------
 
     public get everyPossibleAcronym_gameStyle() {
-        return this.#everyPossibleAcronym_gameStyle ??= GameStyles.CompanionEnum.get.values.map(limit => limit.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameStyle ??= mapByArray(ALL_GAME_STYLES, it => it.acronym,).toArray()
     }
 
     public get everyPossibleAcronym_gameStyle_smm1() {
-        return this.#everyPossibleAcronym_gameStyle_smm1 ??= GameStyles.gameStyles_smm1.map(limit => limit.acronym,)
+        return this.#everyPossibleAcronym_gameStyle_smm1 ??= mapByArray(ALL_GAME_STYLES_SMM1, it => it.acronym,).toArray()
     }
 
     //endregion -------------------- Game style --------------------
@@ -217,7 +228,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleUniqueName_characterName() {
-        return this.#everyPossibleUniqueName_characterName ??= CharacterNames.CompanionEnum.get.values.map(it => it.uniqueEnglishName,).toArray()
+        return this.#everyPossibleUniqueName_characterName ??= CharacterNames.Companion.values.map(it => it.uniqueEnglishName,).toArray()
     }
 
     //endregion -------------------- Character name --------------------
@@ -302,53 +313,53 @@ export class EveryTypes {
     //region -------------------- Theme --------------------
 
     public get everyPossibleName_theme() {
-        return this.#everyPossibleName_theme ??= Themes.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_theme ??= mapByArray(ALL_THEMES, it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_courseTheme_smm1() {
-        return this.#everyPossibleName_courseTheme_smm1 ??= Themes.courseThemes_smm1.map(it => it.englishName,)
+        return this.#everyPossibleName_courseTheme_smm1 ??= mapByArray(COURSE_THEMES_SMM1, it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Theme --------------------
     //region -------------------- Theme (night effect) --------------------
 
     public get everyPossibleName_themeNightEffect() {
-        return this.#everyPossibleName_themeNightEffect ??= NightEffects.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_themeNightEffect ??= NightEffects.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Theme (night effect) --------------------
     //region -------------------- Entity category --------------------
 
     public get everyPossibleName_entityCategory() {
-        return this.#everyPossibleName_entityCategory ??= EntityCategories.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_entityCategory ??= EntityCategories.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Entity group --------------------
-    //region -------------------- Entity limit --------------------
+    //region -------------------- Limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...Limits.CompanionEnum.get.values.map(it => it.acronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= [...Limits.Companion.values.map(it => it.acronym,).filterNotNull().toSet(),]
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.CompanionEnum.get.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.Companion.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
     }
 
 
     public get everyPossibleName_limit() {
-        return this.#everyPossibleName_limit ??= Limits.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_limit ??= Limits.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_editorLimit() {
-        return this.#everyPossibleName_editorLimit ??= Limits.editorLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_editorLimit ??= mapByArray(Limits.EDITOR, it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_playLimit() {
-        return this.#everyPossibleName_playLimit ??= Limits.playLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_playLimit ??= mapByArray(Limits.PLAY, it => it.englishName,).toArray()
     }
 
     public get everyPossibleAlternativeName_limit() {
-        return this.#everyPossibleAlternativeName_limit ??= Limits.CompanionEnum.get.values.map(it => it.alternativeEnglishName,).filterNotNull().toArray()
+        return this.#everyPossibleAlternativeName_limit ??= Limits.Companion.values.map(it => it.alternativeEnglishName,).filterNotNull().toArray()
     }
 
 
@@ -365,41 +376,93 @@ export class EveryTypes {
         return this.#everyPossibleAmount_smm2_limit ??= [
             1, 2, 3, 4, 5, 6, 7, 8,
             10, 50,
-            100, 200, 300, 400, 483, 500, 999,
+            100, 200, 300, 400, 401, 483, 500, 999,
             1500, 2000, 4000,
         ]
     }
 
     public get everyPossibleComment_limit() {
-        return this.#everyPossibleComment_limit ??= ['Crash online if met', 'Per player', 'Per pair', 'Per section', 'In a single frame',]
+        return this.#everyPossibleComment_limit ??= ['Crash online if met', 'Is pitch black if met', 'In a single frame', 'Per player', 'Per pair', 'Per section',]
     }
 
-    //endregion -------------------- Entity limit --------------------
-    //region -------------------- Entity limit type --------------------
+    public get everyPossibleDescription_limit() {
+        return this.#everyPossibleDescription_limit ??= [
+            'Most enemy and some blocks being present',
+            'Power-up (in game code) being present',
+            'Coin in a loose state',
+            'Sound effects being placed',
+            'Entity having corpse (animation in game code) being present (in 1 frame)',
+            'Entity marked as projectile (in game code)',
+            'Entity that can emit light source',
+            'Ground blocks being placed',
+            'Blocks being placed',
+            'Platforms, slopes, Conveyor Belt, Pipe, Clear Pipe, Vine being placed',
+            'Clear Pipe being placed',
+            'Vine growing or has grown',
+            'Checkpoint Flag being placed',
+            'Track being placed',
+            'Snake Block being placed',
+            '! Block being placed',
+            'Track Block being placed',
+            'Icicle being placed',
+            'One-Way Wall, Arrow Sign, Dash Block being placed',
+            'Maximum entity held by 1 Twister',
+            'Snowball thrown by 1 Spike',
+            'Maximum clear condition amount in 1 level',
+            'Entity having an animation (in game code) being rendered (in 1 frame)',
+            '10-Coin, 30-Coin, 50-Coin being placed',
+            'Pink Coin being placed',
+            'Coin (in loose state) collected in 1 frame',
+            'Key held by 1 player',
+            'Entity marked as a power-up (in game code) being placed',
+            'Fireball being thrown',
+            'Superball being thrown',
+            'Bomb being thrown',
+            'Builder Box being thrown',
+            'Boomerang being thrown',
+            'Cannonball being thrown',
+            'Yoshi being present',
+            'Most enemy and some blocks being placed',
+            'Charvaargh being placed',
+            'Piranha Creeper being placed',
+            'Bowser, Bowser Jr. being placed',
+            'Boom Boom, Pom Pom being placed',
+            'Koopaling being placed',
+            'Angry Sun, Moon being placed',
+            'Phanto being present',
+            'Koopa Troopa Car being placed',
+            'Warp Doors being placed',
+            'Warp Boxes being placed',
+            'Warpable Pipes being placed',
+        ]
+    }
+
+    //endregion -------------------- Limit --------------------
+    //region -------------------- Limit type --------------------
 
     public get everyPossibleName_limitType() {
-        return this.#everyPossibleName_limitType ??= LimitTypes.CompanionEnum.get.values.map(type => type.englishName,).toArray()
+        return this.#everyPossibleName_limitType ??= LimitTypes.Companion.values.map(type => type.englishName,).toArray()
     }
 
-    //endregion -------------------- Entity limit type --------------------
+    //endregion -------------------- Limit type --------------------
     //region -------------------- Sound effect --------------------
 
     public get everyPossibleName_soundEffect() {
-        return this.#everyPossibleName_soundEffect ??= SoundEffects.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_soundEffect ??= SoundEffects.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Sound effect --------------------
     //region -------------------- Sound effect category --------------------
 
     public get everyPossibleName_soundEffectCategory() {
-        return this.#everyPossibleName_soundEffectCategory ??= SoundEffectCategories.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_soundEffectCategory ??= SoundEffectCategories.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Sound effect category --------------------
     //region -------------------- Course tag --------------------
 
     public get everyPossibleName_courseTag() {
-        return this.#everyPossibleName_courseTag ??= CourseTags.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_courseTag ??= CourseTags.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleMakerCentralName_courseTag() {
@@ -414,21 +477,21 @@ export class EveryTypes {
     //region -------------------- Mii costume --------------------
 
     public get everyPossibleName_MiiCostume() {
-        return this.#everyPossibleName_MiiCostume ??= MiiCostumes.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_MiiCostume ??= MiiCostumes.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Mii costume --------------------
     //region -------------------- Mii costume category --------------------
 
     public get everyPossibleName_MiiCostumeCategory() {
-        return this.#everyPossibleName_MiiCostumeCategory ??= MiiCostumeCategories.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_MiiCostumeCategory ??= MiiCostumeCategories.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Mii costume category --------------------
     //region -------------------- Mystery Mushroom --------------------
 
     public get everyPossibleUniqueEnglishName_mysteryMushroom() {
-        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= MysteryMushrooms.CompanionEnum.get.values.map(it => it.uniqueEnglishName,).toArray()
+        return this.#everyPossibleEnglishNameOnFile_mysteryMushroom ??= MysteryMushrooms.Companion.values.map(it => it.uniqueEnglishName,).toArray()
     }
 
     public get everyPossibleConditionToUnlockIt_mysteryMushroom() {
@@ -448,8 +511,8 @@ export class EveryTypes {
             'Perfect score obtained', 'Upgrade obtained', 'Important item obtained',
             'Star collected', 'Triforce collected',
             'Boss key obtained', 'Boss defeated',
-            'New technique acquired', 'Gym Leader victory', 'Rank up', 'Secret area discovered', 'Declaring the Splatfest\'s winning team',
-            'Bowser\'s arrival', 'Link meets Zelda for the 1st time', 'Ganon encounter',
+            'New technique acquired', 'Gym Leader victory', 'Rank up', 'Secret area discovered', 'Declaring the Splatfest’s winning team',
+            'Bowser’s arrival', 'Link meets Zelda for the 1st time', 'Ganon encounter',
             '3DS preview jingle',
         ]
     }
@@ -462,7 +525,7 @@ export class EveryTypes {
             'Eliminated from the race', 'Eliminated from the course', 'Player has fainted',
             'Minigame lost', 'Round lost',
             'Timed event failed', 'Ran out of energy', 'Practice Catcher result jingle',
-            'Bowser\'s death', 'Mario saying "Mama mia"', 'Zelda\'s Lullaby', 'Link caught by Moblins', 'K.K. howling', 'Pikmin death',
+            'Bowser’s death', 'Mario saying "Mama mia"', 'Zelda’s Lullaby', 'Link caught by Moblins', 'K.K. howling', 'Pikmin death',
         ]
     }
 
@@ -470,7 +533,7 @@ export class EveryTypes {
     //region -------------------- Official course --------------------
 
     public get everyPossibleEnglishName_officialCourse() {
-        return this.#everyPossibleEnglishName_officialCourse ??= OfficialCourses.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleEnglishName_officialCourse ??= OfficialCourses.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleReward_officialCourse() {
@@ -516,35 +579,35 @@ export class EveryTypes {
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification() {
-        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.CompanionEnum.get.values.map(it => [it.englishName, it.additionalEnglishName,],).toArray().flat(2,)
+        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.Companion.values.map(it => [it.englishName, it.additionalEnglishName,],).toArray().flat(2,)
     }
 
     //endregion -------------------- Official notification --------------------
     //region -------------------- Predefined message --------------------
 
     public get everyPossibleName_predefinedMessage() {
-        return this.#everyPossibleName_predefinedMessage ??= PredefinedMessages.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_predefinedMessage ??= PredefinedMessages.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Predefined message --------------------
     //region -------------------- Sample course --------------------
 
     public get everyPossibleWorldNumber_SampleCourse() {
-        return this.#everyPossibleWorldNumber_SampleCourse ??= SampleCourses.CompanionEnum.get.values.map(it => it.name,).toArray()
+        return this.#everyPossibleWorldNumber_SampleCourse ??= SampleCourses.Companion.values.map(it => it.name,).toArray()
     }
 
     //endregion -------------------- Sample course --------------------
     //region -------------------- Medal --------------------
 
     public get everyPossibleName_medal() {
-        return this.#everyPossibleName_medal ??= Medals.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_medal ??= Medals.Companion.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Medal --------------------
     //region -------------------- Instrument --------------------
 
     public get everyPossibleName_instrument() {
-        return this.#everyPossibleName_instrument ??= Instruments.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_instrument ??= Instruments.Companion.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleMixedName_instrument() {
@@ -555,26 +618,26 @@ export class EveryTypes {
     //region -------------------- Version --------------------
 
     public get everyPossibleName_version() {
-        return this.#everyPossibleName_version ??= Versions.CompanionEnum.get.values.map(it => it.simpleName,).toArray()
+        return this.#everyPossibleName_version ??= Versions.Companion.values.map(it => it.simpleName,).toArray()
     }
 
     public get everyPossibleName_version_smm() {
-        return this.#everyPossibleName_version_smm ??= Versions.CompanionEnum.get.values.filter(it => it.game === Games.SUPER_MARIO_MAKER_1,).map(it => it.simpleName as PossibleName_Version_SMM,).toArray()
+        return this.#everyPossibleName_version_smm ??= Versions.Companion.values.filter(it => it.game === SMM1,).map(it => it.simpleName as PossibleName_Version_SMM,).toArray()
     }
 
     public get everyPossibleName_version_smm3ds() {
-        return this.#everyPossibleName_version_smm3ds ??= Versions.CompanionEnum.get.values.filter(it => it.game === Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,).map(it => it.simpleName as PossibleName_Version_SMM3DS,).toArray()
+        return this.#everyPossibleName_version_smm3ds ??= Versions.Companion.values.filter(it => it.game === SMM3DS,).map(it => it.simpleName as PossibleName_Version_SMM3DS,).toArray()
     }
 
     public get everyPossibleName_version_smm2() {
-        return this.#everyPossibleName_version_smm2 ??= Versions.CompanionEnum.get.values.filter(it => it.game === Games.SUPER_MARIO_MAKER_2,).map(it => it.simpleName as PossibleName_Version_SMM2,).toArray()
+        return this.#everyPossibleName_version_smm2 ??= Versions.Companion.values.filter(it => it.game === SMM2,).map(it => it.simpleName as PossibleName_Version_SMM2,).toArray()
     }
 
     //endregion -------------------- Version --------------------
     //region -------------------- Other word in the game --------------------
 
     public get everyPossibleName_otherWordInTheGame() {
-        return this.#everyPossibleName_otherWordInTheGame ??= nonNull(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),)
+        return this.#everyPossibleName_otherWordInTheGame ??= filterNotNull(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),).toArray()
     }
 
     public get everyPossibleSingularName_otherWordInTheGame() {
@@ -591,7 +654,7 @@ export class EveryTypes {
 
 //region -------------------- External types --------------------
 
-type EveryPossibleName_EntityGroup = readonly string[]
+type EveryPossibleName_EntityGroup = StringArray
 
 //region -------------------- Official notification --------------------
 

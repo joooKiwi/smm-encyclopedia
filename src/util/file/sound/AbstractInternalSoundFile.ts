@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {PossibleSoundFileExtension, SoundFile} from 'util/file/sound/SoundFile'
 import type {RepeatableTypes}                       from 'util/file/sound/RepeatableTypes'
 import type {Time}                                  from 'util/file/sound/time/Time'
@@ -5,10 +7,10 @@ import type {Time}                                  from 'util/file/sound/time/T
 import {AbstractInternalFile} from 'util/file/AbstractInternalFile'
 
 /** The base of every "internal" {@link SoundFile} implementations */
-export abstract class AbstractInternalSoundFile<const out PATH extends string = string,
-    const out NAME extends string = string,
-    const out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
-    const out REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
+export abstract class AbstractInternalSoundFile<const PATH extends string = string,
+    const NAME extends string = string,
+    const EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
+    const REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
     extends AbstractInternalFile<PATH, NAME, EXTENSION>
     implements SoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
 

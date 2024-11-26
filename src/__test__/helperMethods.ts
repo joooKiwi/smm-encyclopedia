@@ -1,8 +1,13 @@
+import type {StringArray} from '@joookiwi/type'
+import {hasByArray}       from '@joookiwi/collection'
+
 import type {PossibleExcludedLanguages}  from '__test__/helperMethods.types'
 import type {LanguageContent}            from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageContent'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * Retrieve the english name from the content to get final value for the reference
@@ -59,35 +64,35 @@ export function testLanguages({
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
         test('French (Canada)', () => expect(french ?? canadianFrench).not.toBeNull(),)
         test('French (Europe)', () => expect(french ?? europeanFrench).not.toBeNull(),)
-        if (!excludedLanguages2.includes('german'))
+        if (!hasByArray(excludedLanguages2, 'german',))
             test('German', () => expect(german).not.toBeNull(),)
-        if (!excludedLanguages2.includes('spanish')) {
-            if (!excludedLanguages2.includes('spanish (america)'))
+        if (!hasByArray(excludedLanguages2, 'spanish',)) {
+            if (!hasByArray(excludedLanguages2, 'spanish (america)',))
                 test('Spanish (America)', () => expect(spanish ?? americanSpanish).not.toBeNull(),)
-            if (!excludedLanguages2.includes('spanish (europe)'))
+            if (!hasByArray(excludedLanguages2, 'spanish (europe)',))
                 test('Spanish (Europe)', () => expect(spanish ?? europeanSpanish).not.toBeNull(),)
         }
-        if (!excludedLanguages2.includes('italian'))
+        if (!hasByArray(excludedLanguages2, 'italian',))
             test('Italian', () => expect(italian).not.toBeNull(),)
-        if (!excludedLanguages2.includes('dutch'))
+        if (!hasByArray(excludedLanguages2, 'dutch',))
             test('Dutch', () => expect(dutch).not.toBeNull(),)
-        if (!excludedLanguages2.includes('portuguese')) {
-            if (!excludedLanguages2.includes('portuguese (america)'))
+        if (!hasByArray(excludedLanguages2, 'portuguese',)) {
+            if (!hasByArray(excludedLanguages2, 'portuguese (america)',))
                 test('Portuguese (America)', () => expect(portuguese ?? americanPortuguese).not.toBeNull(),)
-            if (!excludedLanguages2.includes('portuguese (europe)'))
+            if (!hasByArray(excludedLanguages2, 'portuguese (europe)',))
                 test('Portuguese (Europe)', () => expect(portuguese ?? europeanPortuguese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.includes('russian'))
+        if (!hasByArray(excludedLanguages2, 'russian',))
             test('Russian', () => expect(russian).not.toBeNull(),)
-        if (!excludedLanguages2.includes('japanese'))
+        if (!hasByArray(excludedLanguages2, 'japanese',))
             test('Japanese', () => expect(japanese).not.toBeNull(),)
-        if (!(excludedLanguages2.includes('chinese'))) {
-            if (!excludedLanguages2.includes('traditional chinese'))
+        if (!(hasByArray(excludedLanguages2, 'chinese',))) {
+            if (!hasByArray(excludedLanguages2, 'traditional chinese',))
                 test('Traditional chinese', () => expect(chinese ?? traditionalChinese).not.toBeNull(),)
-            if (!excludedLanguages2.includes('simplified chinese'))
+            if (!hasByArray(excludedLanguages2, 'simplified chinese',))
                 test('Simplified chinese', () => expect(chinese ?? simplifiedChinese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.includes('korean'))
+        if (!hasByArray(excludedLanguages2, 'korean',))
             test('Korean', () => expect(korean).not.toBeNull(),)
     },)
 }
@@ -118,35 +123,35 @@ export function testLanguagesDescription({
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
         test('French (Canada)', () => expect(french ?? canadianFrench).not.toBeNull(),)
         test('French (Europe)', () => expect(french ?? europeanFrench).not.toBeNull(),)
-        if (!excludedLanguages2.includes('german'))
+        if (!hasByArray(excludedLanguages2, 'german',))
             test('German', () => expect(german).not.toBeNull(),)
-        if (!excludedLanguages2.includes('spanish')) {
-            if (!excludedLanguages2.includes('spanish (america)'))
+        if (!hasByArray(excludedLanguages2, 'spanish',)) {
+            if (!hasByArray(excludedLanguages2, 'spanish (america)',))
                 test('Spanish (America)', () => expect(spanish ?? americanSpanish).not.toBeNull(),)
-            if (!excludedLanguages2.includes('spanish (europe)'))
+            if (!hasByArray(excludedLanguages2, 'spanish (europe)',))
                 test('Spanish (Europe)', () => expect(spanish ?? europeanSpanish).not.toBeNull(),)
         }
-        if (!excludedLanguages2.includes('italian'))
+        if (!hasByArray(excludedLanguages2, 'italian',))
             test('Italian', () => expect(italian).not.toBeNull(),)
-        if (!excludedLanguages2.includes('dutch'))
+        if (!hasByArray(excludedLanguages2, 'dutch',))
             test('Dutch', () => expect(dutch).not.toBeNull(),)
-        if (!excludedLanguages2.includes('portuguese')) {
-            if (!excludedLanguages2.includes('portuguese (america)'))
+        if (!hasByArray(excludedLanguages2, 'portuguese',)) {
+            if (!hasByArray(excludedLanguages2, 'portuguese (america)',))
                 test('Portuguese (America)', () => expect(portuguese ?? americanPortuguese).not.toBeNull(),)
-            if (!excludedLanguages2.includes('portuguese (europe)'))
+            if (!hasByArray(excludedLanguages2, 'portuguese (europe)',))
                 test('Portuguese (Europe)', () => expect(portuguese ?? europeanPortuguese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.includes('russian'))
+        if (!hasByArray(excludedLanguages2, 'russian',))
             test('Russian', () => expect(russian).not.toBeNull(),)
-        if (!excludedLanguages2.includes('japanese'))
+        if (!hasByArray(excludedLanguages2, 'japanese',))
             test('Japanese', () => expect(japanese).not.toBeNull(),)
-        if (!(excludedLanguages2.includes('chinese'))) {
-            if (!excludedLanguages2.includes('traditional chinese'))
+        if (!hasByArray(excludedLanguages2, 'chinese',)) {
+            if (!hasByArray(excludedLanguages2, 'traditional chinese',))
                 test('Traditional chinese', () => expect(chinese ?? traditionalChinese).not.toBeNull(),)
-            if (!excludedLanguages2.includes('simplified chinese'))
+            if (!hasByArray(excludedLanguages2, 'simplified chinese',))
                 test('Simplified chinese', () => expect(chinese ?? simplifiedChinese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.includes('korean'))
+        if (!hasByArray(excludedLanguages2, 'korean',))
             test('Korean', () => expect(korean).not.toBeNull(),)
     },)
 }
@@ -158,7 +163,7 @@ export function testLanguagesDescription({
  * @param content The content with the english reference retrieved
  * @param possibleNames The possible names of the english reference
  */
-export function testEnglish({english, americanEnglish,}: LanguageContent, possibleNames: readonly string[],) {
+export function testEnglish({english, americanEnglish,}: LanguageContent, possibleNames: StringArray,) {
     test('English name (base or american)', () => expect(english ?? americanEnglish).toBeOneOf(possibleNames),)
 }
 
@@ -168,6 +173,6 @@ export function testEnglish({english, americanEnglish,}: LanguageContent, possib
  * @param content The content with the english reference retrieved
  * @param possibleNames The possible names of the english reference
  */
-export function testOnlyEnglish({english,}: LanguageContent, possibleNames: readonly string[],) {
+export function testOnlyEnglish({english,}: LanguageContent, possibleNames: StringArray,) {
     test('English name (base only)', () => expect(english).toBeOneOf(possibleNames),)
 }

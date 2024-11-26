@@ -1,5 +1,6 @@
+import type {EmptyString, NullOr} from '@joookiwi/type'
+
 import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
-import type {SoundEffects}                    from 'core/soundEffect/SoundEffects'
 import type {SMM1SoundEffectImageFile}        from 'core/soundEffect/file/SoundEffectImageFile'
 
 enum Enum {
@@ -49,9 +50,9 @@ export type PossibleEnglishName_SMM1AndSMM2 =
     | 'Bonus Music' | 'Boss Music'
 export type PossibleEnglishName_SMM1 =
     | PossibleEnglishName_SMM1AndSMM2
-    | 'Bird\'s Chirping' | 'Distortion' | 'Telephone'
+    | 'Bird’s Chirping' | 'Distortion' | 'Telephone'
 
-    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`
+    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird’s Tweeting' | 'Chicken’s Clucking'} Noise`
 export type PossibleEnglishName_SMM2 =
     | PossibleEnglishName_SMM1AndSMM2
     | 'Guffaw' | 'Booo!' | 'Party Popper'
@@ -80,7 +81,7 @@ export type SoundEffectImageNumber_SMM1 = `${`0${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export type SoundEffectImageName_SMM2 =
     | 'Shock' | 'Scream'
-    | `${| '' | 'Loud'}Laughter` | 'Boo'
+    | `${| EmptyString | 'Loud'}Laughter` | 'Boo'
     | 'Cheer' | 'Baby'
     | 'Cracker' | 'Applause'
     | 'Incident' | 'Clatter' | 'Drama'
@@ -101,17 +102,7 @@ export type SoundEffectImageName_SMM2 =
     | 'Calm' | 'Unrest'
     | 'Heartbeat' | 'Silence'
 
-    | 'Bonus' | `${| '' | 'Last'}Boss`
+    | 'Bonus' | `${| EmptyString | 'Last'}Boss`
     | `Mario0${| 0 | 1 | 2 | 3}`
 
 //endregion -------------------- Image (SMM2) --------------------
-//region -------------------- Array types --------------------
-
-export type SoundEffectGames = readonly [
-    typeof SoundEffects['SUPER_MARIO_KART_MUSIC'],
-    typeof SoundEffects['SUPER_MARIO_64_MUSIC'],
-    typeof SoundEffects['SUPER_MARIO_SUNSHINE_MUSIC'],
-    typeof SoundEffects['SUPER_MARIO_GALAXY_MUSIC'],
-]
-
-//endregion -------------------- Array types --------------------

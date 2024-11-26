@@ -1,8 +1,13 @@
 import './TextComponent.scss'
 
+import {isEmptyByArray} from '@joookiwi/collection'
+
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
 import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
+import {Empty}                             from 'util/emptyVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  *
@@ -11,11 +16,11 @@ import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
  */
 export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown, className, ...otherProperties}: TextProperties<T>,) {
     if (isUnknown === true)
-        className = (className ??= '').concat(' is-unknown')
+        className = (className ?? EMPTY_STRING).concat(' is-unknown')
 
     switch (content) {
         case null:
-            if (Object.getOwnPropertyNames(otherProperties).length === 0 && className == null)
+            if (isEmptyByArray(Object.getOwnPropertyNames(otherProperties,),) && className == null)
                 return null
             if (className == null)
                 return <span {...otherProperties}/>

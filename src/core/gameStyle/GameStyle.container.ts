@@ -1,4 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
+import type {Lazy}                             from '@joookiwi/lazy'
+import type {Array, NullOrBoolean, NullOrTrue} from '@joookiwi/type'
 
 import type {Entity}                                           from 'core/entity/Entity'
 import type {Games}                                            from 'core/game/Games'
@@ -19,7 +20,7 @@ export class GameStyleContainer
     readonly #isAvailableFromTheStartInSuperMarioMaker1
     readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue
     readonly #nightDesertWindTranslationKey
-    #gameMap?: GameMap<boolean, GameStyle>
+    #gameMap?: GameMap<GameStyle>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -27,7 +28,7 @@ export class GameStyleContainer
     public constructor(name: Name<string>,
                        isInSuperMarioMaker1And3DS: boolean,
                        isAvailableFromTheStartInSuperMarioMaker1: NullOrBoolean,
-                       entities: Lazy<readonly Entity[]>,
+                       entities: Lazy<Array<Entity>>,
                        nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,)
         this.#isInSuperMarioMaker1And3DS = isInSuperMarioMaker1And3DS

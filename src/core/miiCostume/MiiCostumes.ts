@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable} from '@joookiwi/type'
+import {Enum}          from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                       from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                         from 'core/ClassWithReference'
@@ -179,9 +180,9 @@ export class MiiCostumes
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(enumerable =>
-                enumerable.englishName === value
-                || enumerable.__imageName === value,)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.englishName === value
+                || it.__imageName === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -248,3 +249,15 @@ export class MiiCostumes
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace MiiCostumes {
+
+    /** The companion instance of a {@link MiiCostumes} */
+    export const Companion = MiiCostumes.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).MiiCostumes = MiiCostumes

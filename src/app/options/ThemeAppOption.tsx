@@ -9,10 +9,11 @@ import {CommonOptions}          from 'app/options/CommonOptions'
 import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
-import ThemeImage               from 'core/theme/ThemeImage'
 import {Themes}                 from 'core/theme/Themes'
-import TimeImage                from 'core/time/TimeImage'
+import ThemeImage               from 'core/theme/component/ThemeImage'
+import ThemeTypeImages          from 'core/theme/component/ThemeTypeImages'
 import {Times}                  from 'core/time/Times'
+import TimeImage                from 'core/time/component/TimeImage'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
@@ -32,7 +33,7 @@ export abstract class ThemeAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'icon', element: unfinishedText('Icon'),}
+            return CommonOptions.get.iconHeader
         }
 
     }()
@@ -43,7 +44,7 @@ export abstract class ThemeAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario'),}//TODO add Endless Mario
+            return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario',),}//TODO add Endless Mario
         }
 
     }()
@@ -52,10 +53,10 @@ export abstract class ThemeAppOption
         protected override _createContentOption(enumeration: Themes,) {
             return <div className="nameWithContent-container">
                 <div className="col-10">
-                    {CommonOptions.get.getGameContent(enumeration)}
-                    {CommonOptions.get.getNameContent(enumeration)}
+                    {CommonOptions.get.getGameContent(enumeration,)}
+                    {CommonOptions.get.getNameContent(enumeration,)}
                 </div>
-                <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+                <div className="col-2"><ThemeTypeImages reference={enumeration}/></div>
             </div>
         }
 

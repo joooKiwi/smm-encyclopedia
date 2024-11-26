@@ -1,7 +1,8 @@
-import type {
-    BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer
-}                                   from 'core/music/backgroundMusic/BackgroundMusic'
-import type {SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
+import type {Array, MutableArray, Nullable} from '@joookiwi/type'
+import {forEachByArray, hasByArray}         from '@joookiwi/collection'
+
+import type {BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer} from 'core/music/backgroundMusic/BackgroundMusic'
+import type {SingleBackgroundMusic}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 import {SingleBackgroundMusicFactory} from 'core/music/backgroundMusic/SingleBackgroundMusic.factory'
 
@@ -37,11 +38,11 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
 
     //region -------------------- Fields --------------------
 
-    #everyMusic?: readonly NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                                       | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                                       | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                                       | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                                       | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[]
+    #everyMusic?: Array<NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                                    | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                                    | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                                    | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                                    | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>>
 
     readonly #editorMusic
     readonly #regularMusic
@@ -84,52 +85,48 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
     //region -------------------- Getter methods --------------------
 
 
-    public get everyMusics(): readonly NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                                                   | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                                                   | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                                                   | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                                                   | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[] {
+    public get everyMusics(): Array<NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                                                | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                                                | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                                                | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                                                | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>> {
         if (this.#everyMusic != null)
             return this.#everyMusic
 
-        const all = [] as NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
-                                      | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
-                                      | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
-                                      | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
-                                      | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>[]
+        const all: MutableArray<NonNullable<| SMB_EDITOR_MUSIC | SMB_MUSIC | SMB_FAST_MUSIC | LINK_MUSIC | LINK_FAST_MUSIC | SMB2_MUSIC | SMB2_FAST_MUSIC
+                                            | SMB3_EDITOR_MUSIC | SMB3_MUSIC | SMB3_FAST_MUSIC | SMW_EDITOR_MUSIC
+                                            | SMW_MUSIC | SMW_YOSHI_SOUND | SMW_FAST_MUSIC | SMW_FAST_YOSHI_SOUND
+                                            | NSMBU_EDITOR_MUSIC | NSMBU_MUSIC | NSMBU_YOSHI_SOUND | NSMBU_FAST_MUSIC | NSMBU_FAST_YOSHI_SOUND
+                                            | SM3DW_EDITOR_MUSIC | SM3DW_MUSIC | SM3DW_UNDERWATER_MUSIC | SM3DW_FAST_MUSIC | SM3DW_FAST_UNDERWATER_MUSIC>> = []
 
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
         const regularMusic = this.regularMusic
         const regularMusics = regularMusic.all
-        const editorMusics = this.editorMusic.all
-        const size1 = editorMusics.length
-        let index1 = -1
-        while (++index1 < size1) {
-            const value = editorMusics[index1]
-            if (value == null)
-                continue
-            if (regularMusics.includes(value as never,))
-                continue
-            if (all.includes(value,))
-                continue
-            all.push(value,)
-        }
+        forEachByArray(this.editorMusic.all, it => {
+            if (it == null)
+                return
+            if (hasByArray(regularMusics, it,))
+                return
+            if (hasByArray(all, it,))
+                return
+            all.push(it,)
+        },)
 
         //endregion -------------------- Add every music then the editor music (without duplication) --------------------
         //region -------------------- Add every other music (without duplication) --------------------
 
         /**
-         * Simply add the {@link value} if it is not <b>null</b> and
+         * Add the {@link value} if it is not <b>null</b> and
          * is not contained in the {@link array}
          *
          * @param value The value to possibly add
          * @param array The {@link Array mutable array} to possibly add the value
          */
-        function add<const T, >(array: T[], value: Nullable<T>,) {
+        function add<const T, >(array: MutableArray<T>, value: Nullable<T>,) {
             if (value == null)
                 return
-            if (array.includes(value,))
+            if (hasByArray(array, value,))
                 return
             array.push(value,)
         }

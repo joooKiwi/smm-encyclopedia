@@ -1,10 +1,13 @@
-import type {Singleton}      from '@joookiwi/enumerable'
-import {CompanionEnum, Enum} from '@joookiwi/enumerable'
+import type {Singleton}       from '@joookiwi/enumerable'
+import type {Array, Nullable} from '@joookiwi/type'
+import {mapByArray}           from '@joookiwi/collection'
+import {CompanionEnum, Enum}  from '@joookiwi/enumerable'
 
-import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, Braces, Brackets, Numbers, Parentheses, Points, RomainAlphabet, Slashes, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleUppercaseRomainAlphabet_Array, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean} from 'lang/Characters.types'
-import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/Characters.companionEnumDeclaration'
+import type {CharactersEquivalencesMap, Names, Ordinals, PossibleSingleCharacter, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString, VariableValueByBoolean, SpaceUnevenCharacter, SpaceEvenCharacter, TextInChevrons} from 'lang/Characters.types'
+import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                 from 'lang/Characters.companionEnumDeclaration'
 
-export class Characters
+export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacter = SpaceUnevenCharacter,
+    const SPACE_EVEN_CHARACTER extends SpaceEvenCharacter = SpaceEvenCharacter,>
     extends Enum<Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
@@ -21,40 +24,68 @@ export class Characters
 
     public static readonly STARTING_PARENTHESIS = new Characters('(',  '（',)
     public static readonly ENDING_PARENTHESIS =   new Characters(')',  '）',)
-    public static readonly STARTING_BRACKET =     new Characters('(',  '（',)
-    public static readonly ENDING_BRACKET =       new Characters(')',  '）',)
-    public static readonly STARTING_BRACE =       new Characters('(',  '（',)
-    public static readonly ENDING_BRACE =         new Characters(')',  '）',)
+    public static readonly STARTING_BRACKET =     new Characters('[',  '［',)
+    public static readonly ENDING_BRACKET =       new Characters(']',  '］',)
+    public static readonly STARTING_BRACE =       new Characters('{',  '｛',)
+    public static readonly ENDING_BRACE =         new Characters('}',  '｝',)
+    public static readonly STARTING_CHEVRON =     new Characters('⟨',  '＜',)
+    public static readonly ENDING_CHEVRON =       new Characters('⟩',  '＞',)
 
     public static readonly SLASH =                new Characters('/',  '／',)
     public static readonly VERTICAL_SLASH =       new Characters('|',  '｜',)
 
-    public static readonly LETTER_A =             new Characters('Aa', 'Ａａ',)
-    public static readonly LETTER_B =             new Characters('Bb', 'Ｂｂ',)
-    public static readonly LETTER_C =             new Characters('Cc', 'Ｃｃ',)
-    public static readonly LETTER_D =             new Characters('Dd', 'Ｄｄ',)
-    public static readonly LETTER_E =             new Characters('Ee', 'Ｅｅ',)
-    public static readonly LETTER_F =             new Characters('Ff', 'Ｆｆ',)
-    public static readonly LETTER_G =             new Characters('Gg', 'Ｇｇ',)
-    public static readonly LETTER_H =             new Characters('Hh', 'Ｈｈ',)
-    public static readonly LETTER_I =             new Characters('Ii', 'Ｉｉ',)
-    public static readonly LETTER_J =             new Characters('Jj', 'Ｊｊ',)
-    public static readonly LETTER_K =             new Characters('Kk', 'Ｋｋ',)
-    public static readonly LETTER_L =             new Characters('Ll', 'Ｌｌ',)
-    public static readonly LETTER_M =             new Characters('Mm', 'Ｍｍ',)
-    public static readonly LETTER_N =             new Characters('Nn', 'Ｎｎ',)
-    public static readonly LETTER_O =             new Characters('Oo', 'Ｏｏ',)
-    public static readonly LETTER_P =             new Characters('Pp', 'Ｐｐ',)
-    public static readonly LETTER_Q =             new Characters('Qq', 'Ｑｑ',)
-    public static readonly LETTER_R =             new Characters('Rr', 'Ｒｒ',)
-    public static readonly LETTER_S =             new Characters('Ss', 'Ｓｓ',)
-    public static readonly LETTER_T =             new Characters('Tt', 'Ｔｔ',)
-    public static readonly LETTER_U =             new Characters('Uu', 'Ｕｕ',)
-    public static readonly LETTER_V =             new Characters('Vv', 'Ｖｖ',)
-    public static readonly LETTER_W =             new Characters('Ww', 'Ｗｗ',)
-    public static readonly LETTER_X =             new Characters('Xx', 'Ｘｘ',)
-    public static readonly LETTER_Y =             new Characters('Yy', 'Ｙｙ',)
-    public static readonly LETTER_Z =             new Characters('Zz', 'Ｚｚ',)
+    public static readonly UPPER_LETTER_A =       new Characters('A', 'Ａ',)
+    public static readonly LOWER_LETTER_A =       new Characters('a', 'ａ',)
+    public static readonly UPPER_LETTER_B =       new Characters('B', 'Ｂ',)
+    public static readonly LOWER_LETTER_B =       new Characters('b', 'ｂ',)
+    public static readonly UPPER_LETTER_C =       new Characters('C', 'Ｃ',)
+    public static readonly LOWER_LETTER_C =       new Characters('c', 'ｃ',)
+    public static readonly UPPER_LETTER_D =       new Characters('D', 'Ｄ',)
+    public static readonly LOWER_LETTER_D =       new Characters('d', 'ｄ',)
+    public static readonly UPPER_LETTER_E =       new Characters('E', 'Ｅ',)
+    public static readonly LOWER_LETTER_E =       new Characters('e', 'ｅ',)
+    public static readonly UPPER_LETTER_F =       new Characters('F', 'Ｆ',)
+    public static readonly LOWER_LETTER_F =       new Characters('f', 'ｆ',)
+    public static readonly UPPER_LETTER_G =       new Characters('G', 'Ｇ',)
+    public static readonly LOWER_LETTER_G =       new Characters('g', 'ｇ',)
+    public static readonly UPPER_LETTER_H =       new Characters('H', 'Ｈ',)
+    public static readonly LOWER_LETTER_H =       new Characters('h', 'ｈ',)
+    public static readonly UPPER_LETTER_I =       new Characters('I', 'Ｉ',)
+    public static readonly LOWER_LETTER_I =       new Characters('i', 'ｉ',)
+    public static readonly UPPER_LETTER_J =       new Characters('J', 'Ｊ',)
+    public static readonly LOWER_LETTER_J =       new Characters('j', 'ｊ',)
+    public static readonly UPPER_LETTER_K =       new Characters('K', 'Ｋ',)
+    public static readonly LOWER_LETTER_K =       new Characters('k', 'ｋ',)
+    public static readonly UPPER_LETTER_L =       new Characters('L', 'Ｌ',)
+    public static readonly LOWER_LETTER_L =       new Characters('l', 'ｌ',)
+    public static readonly UPPER_LETTER_M =       new Characters('M', 'Ｍ',)
+    public static readonly LOWER_LETTER_M =       new Characters('m', 'ｍ',)
+    public static readonly UPPER_LETTER_N =       new Characters('N', 'Ｎ',)
+    public static readonly LOWER_LETTER_N =       new Characters('n', 'ｎ',)
+    public static readonly UPPER_LETTER_O =       new Characters('O', 'Ｏ',)
+    public static readonly LOWER_LETTER_O =       new Characters('o', 'ｏ',)
+    public static readonly UPPER_LETTER_P =       new Characters('P', 'Ｐ',)
+    public static readonly LOWER_LETTER_P =       new Characters('p', 'ｐ',)
+    public static readonly UPPER_LETTER_Q =       new Characters('Q', 'Ｑ',)
+    public static readonly LOWER_LETTER_Q =       new Characters('q', 'ｑ',)
+    public static readonly UPPER_LETTER_R =       new Characters('R', 'Ｒ',)
+    public static readonly LOWER_LETTER_R =       new Characters('r', 'ｒ',)
+    public static readonly UPPER_LETTER_S =       new Characters('S', 'Ｓ',)
+    public static readonly LOWER_LETTER_S =       new Characters('s', 'ｓ',)
+    public static readonly UPPER_LETTER_T =       new Characters('T', 'Ｔ',)
+    public static readonly LOWER_LETTER_T =       new Characters('t', 'ｔ',)
+    public static readonly UPPER_LETTER_U =       new Characters('U', 'Ｕ',)
+    public static readonly LOWER_LETTER_U =       new Characters('u', 'ｕ',)
+    public static readonly UPPER_LETTER_V =       new Characters('V', 'Ｖ',)
+    public static readonly LOWER_LETTER_V =       new Characters('v', 'ｖ',)
+    public static readonly UPPER_LETTER_W =       new Characters('W', 'Ｗ',)
+    public static readonly LOWER_LETTER_W =       new Characters('w', 'ｗ',)
+    public static readonly UPPER_LETTER_X =       new Characters('X', 'Ｘ',)
+    public static readonly LOWER_LETTER_X =       new Characters('x', 'ｘ',)
+    public static readonly UPPER_LETTER_Y =       new Characters('Y', 'Ｙ',)
+    public static readonly LOWER_LETTER_Y =       new Characters('y', 'ｙ',)
+    public static readonly UPPER_LETTER_Z =       new Characters('Z', 'Ｚ',)
+    public static readonly LOWER_LETTER_Z =       new Characters('z', 'ｚ',)
 
     public static readonly NUMBER_0 =             new Characters('0',  '０',)
     public static readonly NUMBER_1 =             new Characters('1',  '１',)
@@ -92,14 +123,7 @@ export class Characters
         public getCharacter<const B extends boolean, const C extends PossibleSingleCharacter, >(isSpaceEven: B, value: C,): VariableCharacterByCharacter<B, C>
         public getCharacter<const B extends boolean, const C extends string, >(isSpaceEven: B, value: C,): VariableCharacterByString<B, C>
         public getCharacter(isSpaceEven: boolean, value: string,) {
-            const enumValue = this.getValueByCharacter(value,)
-            const isUppercase = value === value.toUpperCase()
-            const isLowercase = value === value.toLowerCase()
-            if (!isUppercase && !isLowercase)//. ? ! , - & / | ( ) [ ] { } [0 to 9]
-                return enumValue.getCharacters(isSpaceEven,)[0]
-
-            const characters = enumValue.getCharacters(isSpaceEven,)//[a to z] [A to Z]
-            return isUppercase ? characters[0] : characters[1]
+            return this.getValueByCharacter(value,).getCharacter(isSpaceEven,)
         }
 
         public getValueByCharacter(value: Nullable<| Characters | string>,): Characters {
@@ -107,9 +131,9 @@ export class Characters
                 throw new TypeError(`No "${this.instance.name}" could be found by a null character.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it =>
-                it.spaceEvenCharacters.includes(value as never,)
-                || it.spaceUnevenCharacters.includes(value as never,),)
+            const valueFound = this.values.findFirstOrNull(it =>
+                it.spaceEvenCharacter === value
+                || it.spaceUnevenCharacter === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by ths value "${value}".`,)
             return valueFound
@@ -120,263 +144,37 @@ export class Characters
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    static readonly #POINTS: Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,]
-    static #POINTS_STRING?: Points_Array
-    static #POINTS_SPACE_EVEN?: Points_SpaceEven_Array
-    static #POINTS_SPACE_UNEVEN?: Points_SpaceUneven_Array
-
-    static readonly #PARENTHESES: Parentheses = [this.STARTING_PARENTHESIS, this.ENDING_PARENTHESIS,]
-    static #PARENTHESES_STRING?: Parentheses_Array
-    static #PARENTHESES_SPACE_EVEN?: Parentheses_SpaceEven_Array
-    static #PARENTHESES_SPACE_UNEVEN?: Parentheses_SpaceUneven_Array
-
-    static readonly #BRACKETS: Brackets = [this.STARTING_BRACKET, this.ENDING_BRACKET,]
-    static #BRACKETS_STRING?: Brackets_Array
-    static #BRACKETS_SPACE_EVEN?: Brackets_SpaceEven_Array
-    static #BRACKETS_SPACE_UNEVEN?: Brackets_SpaceUneven_Array
-
-    static readonly #BRACES: Braces = [this.STARTING_BRACE, this.ENDING_BRACE,]
-    static #BRACES_STRING?: Braces_Array
-    static #BRACES_SPACE_EVEN?: Braces_SpaceEven_Array
-    static #BRACES_SPACE_UNEVEN?: Braces_SpaceUneven_Array
-
-    static readonly #SLASHES: Slashes = [this.SLASH, this.VERTICAL_SLASH,]
-    static #SLASHES_STRING?: Slashes_Array
-    static #SLASHES_SPACE_EVEN?: Slashes_SpaceEven_Array
-    static #SLASHES_SPACE_UNEVEN?: Slashes_SpaceUneven_Array
-
-    static readonly #LETTERS: RomainAlphabet = [
-        this.LETTER_A, this.LETTER_B, this.LETTER_C, this.LETTER_D, this.LETTER_E,
-        this.LETTER_F, this.LETTER_G, this.LETTER_H, this.LETTER_I, this.LETTER_J,
-        this.LETTER_K, this.LETTER_L, this.LETTER_M, this.LETTER_N, this.LETTER_O,
-        this.LETTER_P, this.LETTER_Q, this.LETTER_R, this.LETTER_S, this.LETTER_T,
-        this.LETTER_U, this.LETTER_V, this.LETTER_W, this.LETTER_X, this.LETTER_Y,
-        this.LETTER_Z,
-    ]
-    static #LETTERS_STRING?: Letters_Array
-    static #LETTERS_SPACE_EVEN?: RomainAlphabet_SpaceEven_Array
-    static #LETTERS_SPACE_UNEVEN?: RomainAlphabet_SpaceUneven_Array
-    static #LOWERCASE_LETTERS?: LowercaseLetters_Array
-    static #LOWERCASE_LETTERS_SPACE_EVEN?: LowercaseRomainAlphabet_SpaceEven_Array
-    static #LOWERCASE_LETTERS_SPACE_UNEVEN?: LowercaseRomainAlphabet_SpaceUneven_Array
-    static #UPPERCASE_LETTERS?: UppercaseLetters_Array
-    static #UPPERCASE_LETTERS_SPACE_EVEN?: UppercaseRomainAlphabet_SpaceEven_Array
-    static #UPPERCASE_LETTERS_SPACE_UNEVEN?: UppercaseRomainAlphabet_SpaceUneven_Array
-
-    static readonly #NUMBERS: Numbers = [
-        this.NUMBER_0, this.NUMBER_1, this.NUMBER_2, this.NUMBER_3, this.NUMBER_4,
-        this.NUMBER_5, this.NUMBER_6, this.NUMBER_7, this.NUMBER_8, this.NUMBER_9,
-    ]
-    static #NUMBERS_STRING?: Numbers_Array
-    static #NUMBERS_SPACE_EVEN?: Numbers_SpaceEven_Array
-    static #NUMBERS_SPACE_UNEVEN?: Numbers_SpaceUneven_Array
-
-
     static #SPACE_EVEN_OBJECT_MAP?: CharactersEquivalencesMap
 
-
-    readonly #spaceEvenCharacters: PossibleSpaceEvenCharacters
-    readonly #spaceUnevenCharacters: PossibleSpaceUnevenCharacters
+    readonly #spaceEvenCharacter: SPACE_EVEN_CHARACTER
+    readonly #spaceUnevenCharacter: SPACE_UNEVEN_CHARACTER
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(spaceUnevenCharacter: PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, spaceEvenCharacter: PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet,)
-    private constructor(spaceUnevenCharacters: PossibleMixedSpaceUnevenCharacter_RomainAlphabet, spaceEvenCharacters: PossibleMixedSpaceEvenCharacter_RomainAlphabet,)
-    private constructor(spaceUnevenCharacter: SpaceUnevenCharacterReceived, spaceEvenCharacter: SpaceEvenCharacterReceived,) {
+    private constructor(spaceUnevenCharacter: SPACE_UNEVEN_CHARACTER, spaceEvenCharacter: SPACE_EVEN_CHARACTER,) {
         super()
-        if (spaceUnevenCharacter.length === 1) {
-            this.#spaceEvenCharacters = [spaceEvenCharacter as PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet]
-            this.#spaceUnevenCharacters = [spaceUnevenCharacter as PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet]
-        } else {
-            this.#spaceEvenCharacters = [spaceEvenCharacter[0] as Uppercase<SpaceEvenCharacter_RomainAlphabet>, spaceEvenCharacter[1] as Lowercase<SpaceEvenCharacter_RomainAlphabet>,]
-            this.#spaceUnevenCharacters = [spaceUnevenCharacter[0] as Uppercase<SpaceUnevenCharacter_RomainAlphabet>, spaceUnevenCharacter[1] as Lowercase<SpaceUnevenCharacter_RomainAlphabet>,]
-        }
+        this.#spaceEvenCharacter = spaceEvenCharacter
+        this.#spaceUnevenCharacter = spaceUnevenCharacter
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get spaceEvenCharacters(): PossibleSpaceEvenCharacters {
-        return this.#spaceEvenCharacters
+    public get spaceEvenCharacter(): SPACE_EVEN_CHARACTER {
+        return this.#spaceEvenCharacter
     }
 
-    public get spaceUnevenCharacters(): PossibleSpaceUnevenCharacters {
-        return this.#spaceUnevenCharacters
+    public get spaceUnevenCharacter(): SPACE_UNEVEN_CHARACTER {
+        return this.#spaceUnevenCharacter
     }
-
-    //region -------------------- Specific characters --------------------
-
-    static #getBothEvenAndUnevenCharacters<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
-        return array.map(it => [it.spaceUnevenCharacters[index], it.spaceEvenCharacters[index],]).flat() as unknown as A
-    }
-
-    static #getOnlyUnevenCharacter<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
-        return array.map(it => it.spaceUnevenCharacters[index]) as unknown as A
-    }
-
-    static #getOnlyEvenCharacter<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
-        return array.map(it => it.spaceEvenCharacters[index]).flat() as unknown as A
-    }
-
-    //region -------------------- Specific characters (points) --------------------
-
-    public static get points_enum(): Points {
-        return this.#POINTS
-    }
-
-    public static get points(): Points_Array {
-        return this.#POINTS_STRING ??= this.#getBothEvenAndUnevenCharacters(this.points_enum, 0,)
-    }
-
-    public static getPoints<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Points_SpaceEven_Array, Points_SpaceUneven_Array>
-    public static getPoints(isSpaceEven: boolean,): PossiblePoints_Array {
-        return isSpaceEven
-            ? this.#POINTS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.points_enum, 0,)
-            : this.#POINTS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.points_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (points) --------------------
-    //region -------------------- Specific characters (parentheses) --------------------
-
-    public static get parentheses_enum(): Parentheses {
-        return this.#PARENTHESES
-    }
-
-    public static get parentheses(): Parentheses_Array {
-        return this.#PARENTHESES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.parentheses_enum, 0,)
-    }
-
-    public static getParentheses<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array>
-    public static getParentheses(isSpaceEven: boolean,): PossibleParentheses_Array {
-        return isSpaceEven
-            ? this.#PARENTHESES_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.parentheses_enum, 0,)
-            : this.#PARENTHESES_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.parentheses_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (parentheses) --------------------
-    //region -------------------- Specific characters (brackets) --------------------
-
-    public static get brackets_enum(): Brackets {
-        return this.#BRACKETS
-    }
-
-    public static get brackets(): Brackets_Array {
-        return this.#BRACKETS_STRING ??= this.#getBothEvenAndUnevenCharacters(this.brackets_enum, 0,)
-    }
-
-    public static getBrackets<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array>
-    public static getBrackets(isSpaceEven: boolean,): PossibleBrackets_Array {
-        return isSpaceEven
-            ? this.#BRACKETS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.brackets_enum, 0,)
-            : this.#BRACKETS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.brackets_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (brackets) --------------------
-    //region -------------------- Specific characters (braces) --------------------
-
-    public static get braces_enum(): Braces {
-        return this.#BRACES
-    }
-
-    public static get braces(): Braces_Array {
-        return this.#BRACES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.braces_enum, 0,)
-    }
-
-    public static getBraces<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Braces_SpaceEven_Array, Braces_SpaceUneven_Array>
-    public static getBraces(isSpaceEven: boolean,): PossibleBraces_Array {
-        return isSpaceEven
-            ? this.#BRACES_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.braces_enum, 0,)
-            : this.#BRACES_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.braces_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (braces) --------------------
-    //region -------------------- Specific characters (slashes) --------------------
-
-    public static get slashes_enum(): Slashes {
-        return this.#SLASHES
-    }
-
-    public static get slashes(): Slashes_Array {
-        return this.#SLASHES_STRING ??= this.#getBothEvenAndUnevenCharacters(this.slashes_enum, 0,)
-    }
-
-    public static getSlashes<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array>
-    public static getSlashes(isSpaceEven: boolean,): PossibleSlashes_Array {
-        return isSpaceEven
-            ? this.#SLASHES_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.slashes_enum, 0,)
-            : this.#SLASHES_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.slashes_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (slashes) --------------------
-    //region -------------------- Specific characters (letters) --------------------
-
-    public static get letters_enum(): RomainAlphabet {
-        return this.#LETTERS
-    }
-
-    public static get letters(): Letters_Array {
-        return this.#LETTERS_STRING ??= this.letters_enum.map(enumerable => [enumerable.spaceUnevenCharacters, enumerable.spaceEvenCharacters,]).flat(2) as unknown as Letters_Array
-    }
-
-    public static getLetters<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array>
-    public static getLetters(isSpaceEven: boolean,): | RomainAlphabet_SpaceUneven_Array | RomainAlphabet_SpaceEven_Array {
-        return isSpaceEven
-            ? this.#LETTERS_SPACE_EVEN ??= this.letters_enum.map(enumerable => enumerable.spaceEvenCharacters).flat() as unknown as RomainAlphabet_SpaceEven_Array
-            : this.#LETTERS_SPACE_UNEVEN ??= this.letters_enum.map(enumerable => enumerable.spaceUnevenCharacters).flat() as unknown as RomainAlphabet_SpaceUneven_Array
-    }
-
-
-    public static get lowercaseLetters(): LowercaseLetters_Array {
-        return this.#LOWERCASE_LETTERS ??= this.#getBothEvenAndUnevenCharacters(this.letters_enum, 1,)
-    }
-
-    public static getLowercaseLetters<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array>
-    public static getLowercaseLetters(isSpaceEven: boolean,): PossibleLowercaseRomainAlphabet_Array {
-        return isSpaceEven
-            ? this.#LOWERCASE_LETTERS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.letters_enum, 1,)
-            : this.#LOWERCASE_LETTERS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.letters_enum, 1,)
-    }
-
-    public static get uppercaseLetters(): UppercaseLetters_Array {
-        return this.#UPPERCASE_LETTERS ??= this.#getBothEvenAndUnevenCharacters(this.letters_enum, 0,)
-    }
-
-    public static getUppercaseLetters<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array>
-    public static getUppercaseLetters(isSpaceEven: boolean,): PossibleUppercaseRomainAlphabet_Array {
-        return isSpaceEven
-            ? this.#UPPERCASE_LETTERS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.letters_enum, 0,)
-            : this.#UPPERCASE_LETTERS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.letters_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (letters) --------------------
-    //region -------------------- Specific characters (numbers) --------------------
-
-    public static get numbers_enum(): Numbers {
-        return this.#NUMBERS
-    }
-
-    public static get numbers(): Numbers_Array {
-        return this.#NUMBERS_STRING ??= this.#getBothEvenAndUnevenCharacters(this.numbers_enum, 0,)
-    }
-
-    public static getNumbers<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array>
-    public static getNumbers(isSpaceEven: boolean,): PossibleNumbers_Array {
-        return isSpaceEven
-            ? this.#NUMBERS_SPACE_EVEN ??= this.#getOnlyEvenCharacter(this.numbers_enum, 0,)
-            : this.#NUMBERS_SPACE_UNEVEN ??= this.#getOnlyUnevenCharacter(this.numbers_enum, 0,)
-    }
-
-    //endregion -------------------- Specific characters (numbers) --------------------
-
-    //endregion -------------------- Specific characters --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getCharacters<B extends boolean, >(isSpaceEven: B,): VariableCharactersByBoolean<B>
-    public getCharacters(isSpaceEven: boolean,) {
-        return isSpaceEven ? this.spaceEvenCharacters : this.spaceUnevenCharacters
+    public getCharacter<B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, SPACE_EVEN_CHARACTER, SPACE_UNEVEN_CHARACTER>
+    public getCharacter(isSpaceEven: boolean,) {
+        return isSpaceEven ? this.spaceEvenCharacter : this.spaceUnevenCharacter
     }
 
     /**
@@ -387,46 +185,245 @@ export class Characters
             return this.#SPACE_EVEN_OBJECT_MAP
 
         const spaceEvenObjectMap: Partial<CharactersEquivalencesMap> = {}
-        const values = this.CompanionEnum.get.values
-        for (const enumerable of values) {
-            const [spaceEvenCharacter1, spaceEvenCharacter2,] = enumerable.spaceEvenCharacters
-            const [spaceUnevenCharacter1, spaceUnevenCharacter2,] = enumerable.spaceUnevenCharacters
-            Reflect.set(spaceEvenObjectMap, spaceEvenCharacter1, spaceUnevenCharacter1,)
-            Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter1, spaceEvenCharacter1,)
-            if (spaceUnevenCharacter2 != null) {
-                Reflect.set(spaceEvenObjectMap, spaceEvenCharacter2!, spaceUnevenCharacter2,)
-                Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter2, spaceEvenCharacter2,)
-            }
-        }
+        Characters.Companion.values.forEach(it => {
+            const spaceEvenCharacter = it.spaceEvenCharacter
+            const spaceUnevenCharacter = it.spaceUnevenCharacter
+            Reflect.set(spaceEvenObjectMap, spaceEvenCharacter, spaceUnevenCharacter,)
+            Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter, spaceEvenCharacter,)
+        },)
         return this.#SPACE_EVEN_OBJECT_MAP = spaceEvenObjectMap as CharactersEquivalencesMap
     }
-
-    //region -------------------- Transformation methods --------------------
-
-    static #textInBetween(isSpaceEven: boolean, startingCharacter: Characters, text: string, endingCharacter: Characters,) {
-        return `${startingCharacter.getCharacters(isSpaceEven)}${text}${endingCharacter.getCharacters(isSpaceEven)}`
-    }
-
-    public static textInParentheses<B extends boolean, S extends string, >(isSpaceEven: B, text: S,): TextInParentheses<B, S>
-    public static textInParentheses(isSpaceEven: boolean, text: string,) {
-        return this.#textInBetween(isSpaceEven, this.STARTING_PARENTHESIS, text, this.ENDING_PARENTHESIS,)
-    }
-
-    public static textInBrackets<B extends boolean, S extends string, >(isSpaceEven: B, text: S,): TextInBrackets<B, S>
-    public static textInBrackets(isSpaceEven: boolean, text: string,) {
-        return this.#textInBetween(isSpaceEven, this.STARTING_BRACKET, text, this.ENDING_BRACKET,)
-    }
-
-    public static textInBraces<B extends boolean, S extends string, >(isSpaceEven: B, text: S,): TextInBraces<B, S>
-    public static textInBraces(isSpaceEven: boolean, text: string,) {
-        return this.#textInBetween(isSpaceEven, this.STARTING_BRACE, text, this.ENDING_BRACE,)
-    }
-
-    //endregion -------------------- Transformation methods --------------------
 
     //endregion -------------------- Methods --------------------
 
 }
 
-type SpaceUnevenCharacterReceived = | PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet | PossibleMixedSpaceUnevenCharacter_RomainAlphabet
-type SpaceEvenCharacterReceived = | PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet | PossibleMixedSpaceEvenCharacter_RomainAlphabet
+export namespace Characters {
+
+    /** The companion instance of a {@link Characters} */
+    export const Companion = Characters.CompanionEnum.get
+
+    //region -------------------- Utility methods --------------------
+
+    function __getBothEvenAndUnevenCharacters<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceUnevenCharacter'], T['spaceEvenCharacter'], U['spaceUnevenCharacter'], U['spaceEvenCharacter'],]
+    function __getBothEvenAndUnevenCharacters<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceEvenCharacter'], T['spaceUnevenCharacter'], U['spaceEvenCharacter'], U['spaceUnevenCharacter'], V['spaceEvenCharacter'], V['spaceUnevenCharacter'], W['spaceEvenCharacter'], W['spaceUnevenCharacter'], X['spaceEvenCharacter'], X['spaceUnevenCharacter'],]
+    function __getBothEvenAndUnevenCharacters<const T extends Characters, >(array: Array<T>,): Array<T[| 'spaceEvenCharacter' | 'spaceUnevenCharacter']>
+    function __getBothEvenAndUnevenCharacters(array: Array<Characters>,): Array<PossibleSingleCharacter> {
+        return mapByArray(array, it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).toArray().flat()
+    }
+
+    function __getOnlyUnevenCharacter<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceUnevenCharacter'], U['spaceUnevenCharacter'],]
+    function __getOnlyUnevenCharacter<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceUnevenCharacter'], U['spaceUnevenCharacter'], V['spaceUnevenCharacter'], W['spaceUnevenCharacter'], X['spaceUnevenCharacter'],]
+    function __getOnlyUnevenCharacter<const T extends Characters, >(array: Array<T>,): Array<T['spaceUnevenCharacter']>
+    function __getOnlyUnevenCharacter(array: Array<Characters>,): Array<SpaceUnevenCharacter> {
+        return mapByArray(array, it => it.spaceUnevenCharacter,).toArray()
+    }
+
+    function __getOnlyEvenCharacter<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceEvenCharacter'], U['spaceEvenCharacter'],]
+    function __getOnlyEvenCharacter<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceEvenCharacter'], U['spaceEvenCharacter'], V['spaceEvenCharacter'], W['spaceEvenCharacter'], X['spaceEvenCharacter'],]
+    function __getOnlyEvenCharacter<const T extends Characters, >(array: Array<T>,): Array<T['spaceEvenCharacter']>
+    function __getOnlyEvenCharacter(array: Array<Characters>,): Array<SpaceEvenCharacter> {
+        return mapByArray(array, it => it.spaceEvenCharacter,).toArray()
+    }
+
+
+    function __textInBetween<const B extends boolean, const START extends Characters, const TEXT extends string, const END extends Characters, >(isSpaceEven: B, start: START, text: TEXT, end: END,): VariableValueByBoolean<B, `${START['spaceEvenCharacter']}${TEXT}${END['spaceEvenCharacter']}`, `${START['spaceUnevenCharacter']}${TEXT}${END['spaceUnevenCharacter']}`>
+    function __textInBetween(isSpaceEven: boolean, start: Characters, text: string, end: Characters,) {
+        return `${start.getCharacter(isSpaceEven,)}${text}${end.getCharacter(isSpaceEven,)}`
+    }
+
+    //endregion -------------------- Utility methods --------------------
+
+    //region -------------------- Specific characters (point) --------------------
+
+    export const POINTS = [Characters.POINT, Characters.INTERROGATION_POINT, Characters.EXCLAMATION_POINT, Characters.COLON, Characters.SEMICOLON,] as const
+    export const POINTS_ARRAY =        __getBothEvenAndUnevenCharacters(POINTS,)
+    export const POINTS_SPACE_EVEN =   __getOnlyEvenCharacter(POINTS,)
+    export const POINTS_SPACE_UNEVEN = __getOnlyUnevenCharacter(POINTS,)
+
+    export function getPoints<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof POINTS_SPACE_EVEN, typeof POINTS_SPACE_UNEVEN>
+    export function getPoints(isSpaceEven: boolean,) {
+        return isSpaceEven ? POINTS_SPACE_EVEN : POINTS_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (point) --------------------
+    //region -------------------- Specific characters (parentheses) --------------------
+
+    export const PARENTHESES = [Characters.STARTING_PARENTHESIS, Characters.ENDING_PARENTHESIS,] as const
+    export const PARENTHESES_ARRAY =        __getBothEvenAndUnevenCharacters(PARENTHESES,)
+    export const PARENTHESES_SPACE_EVEN =   __getOnlyEvenCharacter(PARENTHESES,)
+    export const PARENTHESES_SPACE_UNEVEN = __getOnlyUnevenCharacter(PARENTHESES,)
+
+    export function getParentheses<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof PARENTHESES_SPACE_EVEN, typeof PARENTHESES_SPACE_UNEVEN>
+    export function getParentheses(isSpaceEven: boolean,) {
+        return isSpaceEven ? PARENTHESES_SPACE_EVEN : PARENTHESES_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (parentheses) --------------------
+    //region -------------------- Specific characters (bracket) --------------------
+
+    export const BRACKETS = [Characters.STARTING_BRACKET, Characters.ENDING_BRACKET,] as const
+    export const BRACKETS_ARRAY =        __getBothEvenAndUnevenCharacters(BRACKETS,)
+    export const BRACKETS_SPACE_EVEN =   __getOnlyEvenCharacter(BRACKETS,)
+    export const BRACKETS_SPACE_UNEVEN = __getOnlyUnevenCharacter(BRACKETS,)
+
+    export function getBrackets<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof BRACKETS_SPACE_EVEN, typeof BRACKETS_SPACE_UNEVEN>
+    export function getBrackets(isSpaceEven: boolean,) {
+        return isSpaceEven ? BRACKETS_SPACE_EVEN : BRACKETS_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (bracket) --------------------
+    //region -------------------- Specific characters (brace) --------------------
+
+    export const BRACES = [Characters.STARTING_BRACE, Characters.ENDING_BRACE,] as const
+    export const BRACES_ARRAY =        __getBothEvenAndUnevenCharacters(BRACES,)
+    export const BRACES_SPACE_EVEN =   __getOnlyEvenCharacter(BRACES,)
+    export const BRACES_SPACE_UNEVEN = __getOnlyUnevenCharacter(BRACES,)
+
+    export function getBraces<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof BRACES_SPACE_EVEN, typeof BRACES_SPACE_UNEVEN>
+    export function getBraces(isSpaceEven: boolean,) {
+        return isSpaceEven ? BRACES_SPACE_EVEN : BRACES_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (brace) --------------------
+    //region -------------------- Specific characters (chevron) --------------------
+
+    export const CHEVRONS = [Characters.STARTING_CHEVRON, Characters.ENDING_CHEVRON,] as const
+    export const CHEVRONS_ARRAY =        __getBothEvenAndUnevenCharacters(CHEVRONS,)
+    export const CHEVRONS_SPACE_EVEN =   __getOnlyEvenCharacter(CHEVRONS,)
+    export const CHEVRONS_SPACE_UNEVEN = __getOnlyUnevenCharacter(CHEVRONS,)
+
+    export function getChevrons<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof CHEVRONS_SPACE_EVEN, typeof CHEVRONS_SPACE_UNEVEN>
+    export function getChevrons(isSpaceEven: boolean,) {
+        return isSpaceEven ? CHEVRONS_SPACE_EVEN : CHEVRONS_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (chevron) --------------------
+    //region -------------------- Specific characters (slash) --------------------
+
+    export const SLASHES = [Characters.SLASH, Characters.VERTICAL_SLASH,] as const
+    export const SLASHES_ARRAY =        __getBothEvenAndUnevenCharacters(SLASHES,)
+    export const SLASHES_SPACE_EVEN =   __getOnlyEvenCharacter(SLASHES,)
+    export const SLASHES_SPACE_UNEVEN = __getOnlyUnevenCharacter(SLASHES,)
+
+    export function getSlashes<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof SLASHES_SPACE_EVEN, typeof SLASHES_SPACE_UNEVEN>
+    export function getSlashes(isSpaceEven: boolean,) {
+        return isSpaceEven ? SLASHES_SPACE_EVEN : SLASHES_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (slash) --------------------
+    //region -------------------- Specific characters (letter) --------------------
+
+    export const LETTERS = [
+        Characters.UPPER_LETTER_A, Characters.LOWER_LETTER_A,
+        Characters.UPPER_LETTER_B, Characters.LOWER_LETTER_B,
+        Characters.UPPER_LETTER_C, Characters.LOWER_LETTER_C,
+        Characters.UPPER_LETTER_D, Characters.LOWER_LETTER_D,
+        Characters.UPPER_LETTER_E, Characters.LOWER_LETTER_E,
+        Characters.UPPER_LETTER_F, Characters.LOWER_LETTER_F,
+        Characters.UPPER_LETTER_G, Characters.LOWER_LETTER_G,
+        Characters.UPPER_LETTER_H, Characters.LOWER_LETTER_H,
+        Characters.UPPER_LETTER_I, Characters.LOWER_LETTER_I,
+        Characters.UPPER_LETTER_J, Characters.LOWER_LETTER_J,
+        Characters.UPPER_LETTER_K, Characters.LOWER_LETTER_K,
+        Characters.UPPER_LETTER_L, Characters.LOWER_LETTER_L,
+        Characters.UPPER_LETTER_M, Characters.LOWER_LETTER_M,
+        Characters.UPPER_LETTER_N, Characters.LOWER_LETTER_N,
+        Characters.UPPER_LETTER_O, Characters.LOWER_LETTER_O,
+        Characters.UPPER_LETTER_P, Characters.LOWER_LETTER_P,
+        Characters.UPPER_LETTER_Q, Characters.LOWER_LETTER_Q,
+        Characters.UPPER_LETTER_R, Characters.LOWER_LETTER_R,
+        Characters.UPPER_LETTER_S, Characters.LOWER_LETTER_S,
+        Characters.UPPER_LETTER_T, Characters.LOWER_LETTER_T,
+        Characters.UPPER_LETTER_U, Characters.LOWER_LETTER_U,
+        Characters.UPPER_LETTER_V, Characters.LOWER_LETTER_V,
+        Characters.UPPER_LETTER_W, Characters.LOWER_LETTER_W,
+        Characters.UPPER_LETTER_X, Characters.LOWER_LETTER_X,
+        Characters.UPPER_LETTER_Y, Characters.LOWER_LETTER_Y,
+        Characters.UPPER_LETTER_Z, Characters.LOWER_LETTER_Z,
+    ] as const
+    export const LETTERS_ARRAY =        __getBothEvenAndUnevenCharacters(LETTERS,) as unknown as readonly ['A', 'Ａ', 'a', 'ａ', 'B', 'Ｂ', 'b', 'ｂ', 'C', 'Ｃ', 'c', 'ｃ', 'D', 'Ｄ', 'd', 'ｄ', 'E', 'Ｅ', 'e', 'ｅ', 'F', 'Ｆ', 'f', 'ｆ', 'G', 'Ｇ', 'g', 'ｇ', 'H', 'Ｈ', 'h', 'ｈ', 'I', 'Ｉ', 'i', 'ｉ', 'J', 'Ｊ', 'j', 'ｊ', 'K', 'Ｋ', 'k', 'ｋ', 'L', 'Ｌ', 'l', 'ｌ', 'M', 'Ｍ', 'm', 'ｍ', 'N', 'Ｎ', 'n', 'ｎ', 'O', 'Ｏ', 'o', 'ｏ', 'P', 'Ｐ', 'p', 'ｐ', 'Q', 'Ｑ', 'q', 'ｑ', 'R', 'Ｒ', 'r', 'ｒ', 'S', 'Ｓ', 's', 'ｓ', 'T', 'Ｔ', 't', 'ｔ', 'U', 'Ｕ', 'u', 'ｕ', 'V', 'Ｖ', 'v', 'ｖ', 'W', 'Ｗ', 'w', 'ｗ', 'X', 'Ｘ', 'x', 'ｘ', 'Y', 'Ｙ', 'y', 'ｙ', 'Z', 'Ｚ', 'z', 'ｚ',]
+    export const LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(LETTERS,)           as unknown as readonly ['Ａ', 'ａ', 'Ｂ', 'ｂ', 'Ｃ', 'ｃ', 'Ｄ', 'ｄ', 'Ｅ', 'ｅ', 'Ｆ', 'ｆ', 'Ｇ', 'ｇ', 'Ｈ', 'ｈ', 'Ｉ', 'ｉ', 'Ｊ', 'ｊ', 'Ｋ', 'ｋ', 'Ｌ', 'ｌ', 'Ｍ', 'ｍ', 'Ｎ', 'ｎ', 'Ｏ', 'ｏ', 'Ｐ', 'ｐ', 'Ｑ', 'ｑ', 'Ｒ', 'ｒ', 'Ｓ', 'ｓ', 'Ｔ', 'ｔ', 'Ｕ', 'ｕ', 'Ｖ', 'ｖ', 'Ｗ', 'ｗ', 'Ｘ', 'ｘ', 'Ｙ', 'ｙ', 'Ｚ', 'ｚ',]
+    export const LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(LETTERS,)         as unknown as readonly ['A',  'a',  'B', 'b',  'C',  'c',  'D', 'd',  'E',  'e',  'F', 'f',  'G', 'g',  'H',  'h',  'I', 'i',  'J',  'j',  'K', 'k',  'L',  'l',  'M', 'm',  'N',  'n',  'O', 'o',  'P',  'p',  'Q', 'q',  'R',  'r',  'S', 's',  'T',  't',  'U', 'u',  'V',  'v',  'W', 'w',  'X',  'x',  'Y', 'y',  'Z',  'z',]
+
+    export function getLetters<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof LETTERS_SPACE_EVEN, typeof LETTERS_SPACE_UNEVEN>
+    export function getLetters(isSpaceEven: boolean,) {
+        return isSpaceEven ? LETTERS_SPACE_EVEN : LETTERS_SPACE_UNEVEN
+    }
+
+    export const UPPER_LETTERS = [
+        Characters.UPPER_LETTER_A, Characters.UPPER_LETTER_B, Characters.UPPER_LETTER_C, Characters.UPPER_LETTER_D, Characters.UPPER_LETTER_E,
+        Characters.UPPER_LETTER_F, Characters.UPPER_LETTER_G, Characters.UPPER_LETTER_H, Characters.UPPER_LETTER_I, Characters.UPPER_LETTER_J,
+        Characters.UPPER_LETTER_K, Characters.UPPER_LETTER_L, Characters.UPPER_LETTER_M, Characters.UPPER_LETTER_N, Characters.UPPER_LETTER_O,
+        Characters.UPPER_LETTER_P, Characters.UPPER_LETTER_Q, Characters.UPPER_LETTER_R, Characters.UPPER_LETTER_S, Characters.UPPER_LETTER_T,
+        Characters.UPPER_LETTER_U, Characters.UPPER_LETTER_V, Characters.UPPER_LETTER_W, Characters.UPPER_LETTER_X, Characters.UPPER_LETTER_Y,
+        Characters.UPPER_LETTER_Z,
+    ] as const
+    export const UPPER_LETTERS_ARRAY =        __getBothEvenAndUnevenCharacters(UPPER_LETTERS,) as unknown as readonly ['A', 'Ａ', 'B', 'Ｂ', 'C', 'Ｃ', 'D', 'Ｄ', 'E', 'Ｅ', 'F', 'Ｆ', 'G', 'Ｇ', 'H', 'Ｈ', 'I', 'Ｉ', 'J', 'Ｊ', 'K', 'Ｋ', 'L', 'Ｌ', 'M', 'Ｍ', 'N', 'Ｎ', 'O', 'Ｏ', 'P', 'Ｐ', 'Q', 'Ｑ', 'R', 'Ｒ', 'S', 'Ｓ', 'T', 'Ｔ', 'U', 'Ｕ', 'V', 'Ｖ', 'W', 'Ｗ', 'X', 'Ｘ', 'Y', 'Ｙ', 'Z', 'Ｚ']
+    export const UPPER_LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(UPPER_LETTERS,)           as unknown as readonly ['Ａ', 'Ｂ', 'Ｃ', 'Ｄ', 'Ｅ', 'Ｆ', 'Ｇ', 'Ｈ', 'Ｉ', 'Ｊ', 'Ｋ', 'Ｌ', 'Ｍ', 'Ｎ', 'Ｏ', 'Ｐ', 'Ｑ', 'Ｒ', 'Ｓ', 'Ｔ', 'Ｕ', 'Ｖ', 'Ｗ', 'Ｘ', 'Ｙ', 'Ｚ',]
+    export const UPPER_LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(UPPER_LETTERS,)         as unknown as readonly ['A',  'B',  'C', 'D',  'E',  'F', 'G',  'H',  'I',  'J', 'K',  'L',  'M',  'N', 'O',  'P',  'Q',  'R', 'S',  'T',  'U',  'V', 'W',  'X',  'Y',  'Z',]
+
+    export function getUppercaseLetters<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof UPPER_LETTERS_SPACE_EVEN, typeof UPPER_LETTERS_SPACE_UNEVEN>
+    export function getUppercaseLetters(isSpaceEven: boolean,) {
+        return isSpaceEven ? UPPER_LETTERS_SPACE_EVEN : UPPER_LETTERS_SPACE_UNEVEN
+    }
+
+    export const LOWER_LETTERS = [
+        Characters.LOWER_LETTER_A, Characters.LOWER_LETTER_B, Characters.LOWER_LETTER_C, Characters.LOWER_LETTER_D, Characters.LOWER_LETTER_E,
+        Characters.LOWER_LETTER_F, Characters.LOWER_LETTER_G, Characters.LOWER_LETTER_H, Characters.LOWER_LETTER_I, Characters.LOWER_LETTER_J,
+        Characters.LOWER_LETTER_K, Characters.LOWER_LETTER_L, Characters.LOWER_LETTER_M, Characters.LOWER_LETTER_N, Characters.LOWER_LETTER_O,
+        Characters.LOWER_LETTER_P, Characters.LOWER_LETTER_Q, Characters.LOWER_LETTER_R, Characters.LOWER_LETTER_S, Characters.LOWER_LETTER_T,
+        Characters.LOWER_LETTER_U, Characters.LOWER_LETTER_V, Characters.LOWER_LETTER_W, Characters.LOWER_LETTER_X, Characters.LOWER_LETTER_Y,
+        Characters.LOWER_LETTER_Z,
+    ] as const
+    export const LOWER_LETTERS_ARRAY =        __getBothEvenAndUnevenCharacters(LOWER_LETTERS,) as unknown as readonly ['a', 'ａ', 'b', 'ｂ', 'c', 'ｃ', 'd', 'ｄ', 'e', 'ｅ', 'f', 'ｆ', 'g', 'ｇ', 'h', 'ｈ', 'i', 'ｉ', 'j', 'ｊ', 'k', 'ｋ', 'l', 'ｌ', 'm', 'ｍ', 'n', 'ｎ', 'o', 'ｏ', 'p', 'ｐ', 'q', 'ｑ', 'r', 'ｒ', 's', 'ｓ', 't', 'ｔ', 'u', 'ｕ', 'v', 'ｖ', 'w', 'ｗ', 'x', 'ｘ', 'y', 'ｙ', 'z', 'ｚ']
+    export const LOWER_LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(LOWER_LETTERS,)           as unknown as readonly ['ａ', 'ｂ', 'ｃ', 'ｄ', 'ｅ', 'ｆ', 'ｇ', 'ｈ', 'ｉ', 'ｊ', 'ｋ', 'ｌ', 'ｍ', 'ｎ', 'ｏ', 'ｐ', 'ｑ', 'ｒ', 'ｓ', 'ｔ', 'ｕ', 'ｖ', 'ｗ', 'ｘ', 'ｙ', 'ｚ',]
+    export const LOWER_LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(LOWER_LETTERS,)         as unknown as readonly ['a',  'b',  'c', 'd',  'e',  'f', 'g',  'h',  'i',  'j', 'k',  'l',  'm',  'n', 'o',  'p',  'q',  'r', 's',  't',  'u',  'v', 'w',  'x',  'y',  'z',]
+
+    export function getLowercaseLetters<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof LOWER_LETTERS_SPACE_EVEN, typeof LOWER_LETTERS_SPACE_UNEVEN>
+    export function getLowercaseLetters(isSpaceEven: boolean,) {
+        return isSpaceEven ? LOWER_LETTERS_SPACE_EVEN : LOWER_LETTERS_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (letter) --------------------
+    //region -------------------- Specific characters (number) --------------------
+
+    export const NUMBERS = [
+        Characters.NUMBER_0, Characters.NUMBER_1, Characters.NUMBER_2, Characters.NUMBER_3, Characters.NUMBER_4,
+        Characters.NUMBER_5, Characters.NUMBER_6, Characters.NUMBER_7, Characters.NUMBER_8, Characters.NUMBER_9,
+    ] as const
+    export const NUMBERS_ARRAY =        __getBothEvenAndUnevenCharacters(NUMBERS,) as unknown as readonly ['0', '０', '1', '１', '2', '２', '3', '３', '4', '４', '5', '５', '6', '６', '7', '７', '8', '８', '9', '９',]
+    export const NUMBERS_SPACE_EVEN =   __getOnlyEvenCharacter(NUMBERS,) as unknown as readonly ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',]
+    export const NUMBERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(NUMBERS,) as unknown as readonly ['０', '１', '２', '３', '４', '５', '６', '７', '８', '９',]
+
+    export function getNumbers<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof NUMBERS_SPACE_EVEN, typeof NUMBERS_SPACE_UNEVEN>
+    export function getNumbers(isSpaceEven: boolean,) {
+        return isSpaceEven ? NUMBERS_SPACE_EVEN : NUMBERS_SPACE_UNEVEN
+    }
+
+    //endregion -------------------- Specific characters (number) --------------------
+    //region -------------------- Transformation methods --------------------
+
+    export function textInParentheses<const B extends boolean, const S extends string, >(isSpaceEven: B, text: S,): TextInParentheses<B, S>
+    export function textInParentheses(isSpaceEven: boolean, text: string,) {
+        return __textInBetween(isSpaceEven, Characters.STARTING_PARENTHESIS, text, Characters.ENDING_PARENTHESIS,)
+    }
+
+    export function textInBrackets<const B extends boolean, const S extends string, >(isSpaceEven: B, text: S,): TextInBrackets<B, S>
+    export function textInBrackets(isSpaceEven: boolean, text: string,) {
+        return __textInBetween(isSpaceEven, Characters.STARTING_BRACKET, text, Characters.ENDING_BRACKET,)
+    }
+
+    export function textInBraces<const B extends boolean, const S extends string, >(isSpaceEven: B, text: S,): TextInBraces<B, S>
+    export function textInBraces(isSpaceEven: boolean, text: string,) {
+        return __textInBetween(isSpaceEven, Characters.STARTING_BRACE, text, Characters.ENDING_BRACE,)
+    }
+
+    export function textInChevrons<const B extends boolean, const S extends string, >(isSpaceEven: B, text: S,): TextInChevrons<B, S>
+    export function textInChevrons(isSpaceEven: boolean, text: string,) {
+        return __textInBetween(isSpaceEven, Characters.STARTING_CHEVRON, text, Characters.ENDING_CHEVRON,)
+    }
+
+    //endregion -------------------- Transformation methods --------------------
+
+}

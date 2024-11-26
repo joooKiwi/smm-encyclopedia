@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Official course (SMM).json'
 
+import type {Array} from '@joookiwi/type'
+
 import type {PossibleExcludedLanguages}           from '__test__/helperMethods.types'
 import type {PossibleRemovalDate, PossibleReward} from 'core/officialCourse/loader.types'
 
@@ -7,20 +9,20 @@ import {EveryTypes}                                                             
 import {getEnglishName, testLanguages, testLanguagesDescription, testOnlyEnglish} from '__test__/helperMethods'
 import {UNKNOWN_REFERENCE}                                                        from 'util/commonVariables'
 
-
 describe('Official course (file test)', () => {
     const types = EveryTypes.get
 
-    const everyReward = [null, ...types.everyPossibleReward_officialCourse,]                                 as const satisfies readonly PossibleReward[]
+    const everyReward = [null, ...types.everyPossibleReward_officialCourse,]                                 as const satisfies Array<PossibleReward>
     const possibleReleaseDate = types.everyPossibleReleaseDate_officialCourse
-    const possibleRemovalDate = [null, UNKNOWN_REFERENCE, ...types.everyPossibleRemovalDate_officialCourse,] as const satisfies readonly PossibleRemovalDate[]
+    const possibleRemovalDate = [null, UNKNOWN_REFERENCE, ...types.everyPossibleRemovalDate_officialCourse,] as const satisfies Array<PossibleRemovalDate>
     const possibleGameStyle = types.everyPossibleAcronym_gameStyle_smm1
     const everyNames = types.everyPossibleEnglishName_officialCourse
     const possibleTheme = types.everyPossibleName_courseTheme_smm1
-    const possibleNullableTheme = [null, ...types.everyPossibleName_courseTheme_smm1,] as const
-    const excludedLanguages: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
+    const possibleNullableTheme = [null, ...types.everyPossibleName_courseTheme_smm1,]                       as const
+    const excludedLanguages = ['chinese', 'korean',]                                                         as const satisfies Array<PossibleExcludedLanguages>
 
-    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => {
+    describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
 
         testLanguages(it, excludedLanguages,)
         testLanguagesDescription(it, excludedLanguages,)
@@ -61,5 +63,5 @@ describe('Official course (file test)', () => {
                 test('Korean', () => expect(it.korean,).toBeNull(),)
             },)
         },)
-    },),)
+    },)},)
 },)

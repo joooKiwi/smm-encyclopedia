@@ -1,5 +1,7 @@
-export interface ClassUsedInRoute<out URL_VALUE extends string = string, > {
+export interface ClassUsedInRoute<out URL_VALUE extends string, out URL_NAME extends string,> {
 
-    get urlValue(): URL_VALUE
+    readonly urlValue: URL_VALUE
+
+    readonly urlName: URL_NAME
 
 }

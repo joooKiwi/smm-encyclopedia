@@ -1,4 +1,6 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {Array, Nullable}        from '@joookiwi/type'
+import {getFirstByArray}             from '@joookiwi/collection'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
@@ -17,6 +19,8 @@ import {MysteryMushrooms}               from 'core/mysteryMushroom/MysteryMushro
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import NameComponent                    from 'lang/name/component/Name.component'
 import SimpleSoundComponent             from 'util/file/sound/component/SimpleSound.component'
+
+import LanguageCompanion = ProjectLanguages.Companion
 
 export abstract class MysteryMushroomAppOption
     extends Enum<Ordinals, Names>
@@ -43,7 +47,7 @@ export abstract class MysteryMushroomAppOption
             return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{
                 reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
                     <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
-                    {index === games.length - 1 ? null : <>{ProjectLanguages.current.comma}<br/></>}
+                    {index === games.length - 1 ? null : <>{LanguageCompanion.current.comma}<br/></>}
                 </Fragment>)
             }</div>
         }
@@ -190,7 +194,7 @@ export abstract class MysteryMushroomAppOption
         protected override _createImageContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return (enumeration.jumpImages[0]?.length ?? 0) > 1
                 ? this._createAnimatedImages(enumeration, enumeration.jumpImages, renderDiv,)
-                : this._createImage(enumeration, enumeration.jumpImages.map(images => images[0]!), renderDiv,)
+                : this._createImage(enumeration, enumeration.jumpImages.map(images => getFirstByArray(images,),), renderDiv,)
         }
 
         protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
@@ -332,8 +336,6 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    static #imagesAndSounds?: readonly MysteryMushroomAppOption[]
-
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>
 
     readonly #type
@@ -380,7 +382,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <SimpleSoundComponent file={soundFile} title={`${englishName} - ${type}`}/>,)
     }
 
-    protected _createSounds(enumeration: MysteryMushrooms, soundFiles: readonly SoundFile[], callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSounds(enumeration: MysteryMushrooms, soundFiles: Array<SoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         const englishName = enumeration.englishName
         const type = this._mysteryMushroomType
 
@@ -389,7 +391,7 @@ export abstract class MysteryMushroomAppOption
         )}</>,)
     }
 
-    protected _createImage(enumeration: MysteryMushrooms, imageFiles: readonly ImageFile[], renderDiv: boolean,): ReactElement {
+    protected _createImage(enumeration: MysteryMushrooms, imageFiles: Array<ImageFile>, renderDiv: boolean,): ReactElement {
         const uniqueEnglishName = enumeration.uniqueEnglishName
 
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <>{imageFiles.map((value, index,) =>
@@ -397,7 +399,7 @@ export abstract class MysteryMushroomAppOption
         )}</>,)
     }
 
-    protected _createAnimatedImages(enumeration: MysteryMushrooms, imageFiles: readonly (readonly ImageFile[])[], renderDiv: boolean,): ReactElement {
+    protected _createAnimatedImages(enumeration: MysteryMushrooms, imageFiles: Array<Array<ImageFile>>, renderDiv: boolean,): ReactElement {
         const uniqueEnglishName = enumeration.uniqueEnglishName
         const englishNameInHtml = enumeration.englishNameInHtml
 

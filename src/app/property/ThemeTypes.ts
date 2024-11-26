@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -17,7 +18,7 @@ export abstract class ThemeTypes
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
         public override get content() {
-            return Themes.CompanionEnum.get.values.toArray()
+            return Themes.ALL
         }
 
 
@@ -29,7 +30,7 @@ export abstract class ThemeTypes
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
         public override get content() {
-            return Themes.courseThemes
+            return Themes.COURSE_THEMES
         }
 
 
@@ -49,7 +50,7 @@ export abstract class ThemeTypes
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
         public override get content() {
-            return Themes.worldThemes
+            return Themes.WORLD_THEMES
         }
 
 
@@ -120,7 +121,7 @@ export abstract class ThemeTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly Themes[]
+    public abstract get content(): Array<Themes>
 
     //region -------------------- Link button methods --------------------
 
@@ -137,8 +138,8 @@ export abstract class ThemeTypes
     /**
      * The route name for the path with only the course {@link Themes}
      *
-     * @see Themes.courseThemes
-     * @see Themes.courseThemes_smm1
+     * @see Themes.COURSE_THEMES
+     * @see Themes.COURSE_THEMES_SMM1
      */
     public get courseRouteName(): NullOr<Extract<PossibleRouteName, 'courseTheme'>> {
         return 'courseTheme'
@@ -152,7 +153,7 @@ export abstract class ThemeTypes
     /**
      * The route name for the path with only the world {@link Themes}
      *
-     * @see Themes.worldThemes
+     * @see Themes.WORLD_THEMES
      */
     public get worldRouteName(): NullOr<Extract<PossibleRouteName, 'worldTheme'>> {
         return 'worldTheme'

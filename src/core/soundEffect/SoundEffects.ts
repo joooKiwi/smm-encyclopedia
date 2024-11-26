@@ -1,19 +1,21 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr}       from '@joookiwi/type'
+import {getFirstByArray, isArray} from '@joookiwi/collection'
+import {Enum}                     from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
-import type {MusicSoundFile}                                                                                                                         from 'core/music/file/MusicSoundFile'
-import type {PossibleSoundEffectMusicEditorName}                                                                                                     from 'core/music/soundEffect/SoundEffectMusic'
-import type {SoundEffect}                                                                                                                            from 'core/soundEffect/SoundEffect'
-import type {SoundEffectFromMusicAdaptor}                                                                                                            from 'core/soundEffect/SoundEffectFromMusicAdaptor'
-import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectGames, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
-import type {SMM2SoundEffectImageFile}                                                                                                               from 'core/soundEffect/file/SoundEffectImageFile'
-import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                                               from 'core/soundEffect/file/SoundEffectSoundFile'
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                              from 'core/soundEffect/sound/SMM2SoundEffectSound'
-import type {SMM1ExclusiveSoundEffectSound}                                                                                                          from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
-import type {SMM1StandaloneSoundEffectSound}                                                                                                         from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
-import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                            from 'core/soundEffect/sound/types'
-import type {CompanionEnumByNameSingleton}                                                                                                           from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
+import type {MusicSoundFile}                                                                                                       from 'core/music/file/MusicSoundFile'
+import type {PossibleSoundEffectMusicEditorName}                                                                                   from 'core/music/soundEffect/SoundEffectMusic'
+import type {SoundEffect}                                                                                                          from 'core/soundEffect/SoundEffect'
+import type {SoundEffectFromMusicAdaptor}                                                                                          from 'core/soundEffect/SoundEffectFromMusicAdaptor'
+import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
+import type {SMM2SoundEffectImageFile}                                                                                             from 'core/soundEffect/file/SoundEffectImageFile'
+import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                             from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                            from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {SMM1ExclusiveSoundEffectSound}                                                                                        from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
+import type {SMM1StandaloneSoundEffectSound}                                                                                       from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
+import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                          from 'core/soundEffect/sound/types'
+import type {CompanionEnumByNameSingleton}                                                                                         from 'util/enumerable/Singleton.types'
 
 import type {Musics}                                                    from 'core/music/Musics'
 import {IndividualMusics}                                               from 'core/music/IndividualMusics'
@@ -26,9 +28,11 @@ import {SMM1ExclusiveSoundEffectSoundContainer as SMM1ExclusiveSound}   from 'co
 import {SMM1StandaloneSoundEffectSoundContainer as SMM1StandaloneSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'
 import {SMM2SoundEffectSoundContainer as SMM2Sound}                     from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
 import {Import}                                                         from 'util/DynamicImporter'
+import {Empty}                                                          from 'util/emptyVariables'
 import {StringContainer}                                                from 'util/StringContainer'
-import {EMPTY_ARRAY}                                                    from 'util/emptyVariables'
 import {CompanionEnumByEnglishNameOnly}                                 from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @recursiveReference<{@link Musics}>
@@ -107,7 +111,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm2Sounds[1], smm1Sounds[1], smm2Sounds[2], smm1Sounds[2], smm2Sounds[3], smm1Sounds[3],], smm2.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm2Sounds[1]!, smm1Sounds[1]!, smm2Sounds[2]!, smm1Sounds[2]!, smm2Sounds[3]!, smm1Sounds[3]!,], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -352,7 +356,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm2Sounds[1], smm1Sounds[0], smm1Sounds[1],], smm2.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm2Sounds[1]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -379,7 +383,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm1Sounds[1], smm1Sounds[2],], smm1.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm1Sounds[1]!, smm1Sounds[2]!,], smm1.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -634,7 +638,7 @@ export abstract class SoundEffects
             return FileCreator.smm1SoundFiles('SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',)
         }
 
-    }('Bird\'s Chirping',)
+    }('Bird’s Chirping',)
     public static readonly SPARK =                      new class SoundEffects_Spark extends SoundEffects {
 
         protected override _createSMM2ImageName() {
@@ -745,7 +749,7 @@ export abstract class SoundEffects
                 FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_R_pxsps_r_ear',),
                 FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_L_pxsps_l_ear',),
                 FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_R_pxsps_r_ear',),
-            ]
+            ] as const
 
             return new SMM1ExclusiveSound(sounds, sounds[1],)
         }
@@ -891,7 +895,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm2Sounds[1], smm2Sounds[2], smm1Sounds[0], smm1Sounds[1],], smm2.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm2Sounds[1]!, smm2Sounds[2]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -922,7 +926,7 @@ export abstract class SoundEffects
     public static readonly BIRD_TWEETING_NOISE =        new class SoundEffects_BirdTweetingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return ['13_00', '14_00',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
+            return ['13_00', '14_00',] as const satisfies Array<SoundEffectImageNumber_SMM1>
         }
 
 
@@ -930,11 +934,11 @@ export abstract class SoundEffects
             return FileCreator.smm1SoundFiles('hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',)
         }
 
-    }('Bird\'s Tweeting Noise',)
+    }('Bird’s Tweeting Noise',)
     public static readonly CHICKEN_CLUCKING_NOISE =     new class SoundEffects_ChickenCluckingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return ['13_01', '14_01',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
+            return ['13_01', '14_01',] as const satisfies Array<SoundEffectImageNumber_SMM1>
         }
 
 
@@ -942,7 +946,7 @@ export abstract class SoundEffects
             return FileCreator.smm1SoundFiles('yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',)
         }
 
-    }('Chicken\'s Clucking Noise',)
+    }('Chicken’s Clucking Noise',)
 
     public static readonly BONUS_MUSIC =                new class SoundEffects_BonusMusic extends SoundEffects {
 
@@ -1071,13 +1075,14 @@ export abstract class SoundEffects
 
         //endregion -------------------- Singleton usage --------------------
 
+        protected override readonly _EXCLUDED_NAMES = ['SMK', 'SM64', 'SMS', 'SMG',] as const satisfies Array<keyof typeof SoundEffects>
+
     }
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffect>
-    static #soundEffect_games?: SoundEffectGames
 
     #reference?: SoundEffect
     readonly #englishName
@@ -1160,7 +1165,7 @@ export abstract class SoundEffects
     //region -------------------- Getter methods (SMM1 sound) --------------------
 
     /**
-     * Create a simple {@link SMM1StandaloneSoundEffectSound} in that order:
+     * Create a {@link SMM1StandaloneSoundEffectSound} in that order:
      *  - 1 image is from {@link smm2}
      *  - 1 image are from {@link smm1}
      *
@@ -1173,11 +1178,11 @@ export abstract class SoundEffects
         const smm2Sounds = smm2.sounds
         const smm2EditorSound = smm2.editorSound
 
-        return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0],], smm2EditorSound, smm1, smm2,)
+        return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!,], smm2EditorSound, smm1, smm2,)
     }
 
     /**
-     * Create a simple {@link SMM1StandaloneSoundEffectSound} in that order:
+     * Create a {@link SMM1StandaloneSoundEffectSound} in that order:
      *  - 1 image is from {@link smm2}
      *  - 2 images are from {@link smm1}
      *
@@ -1190,18 +1195,18 @@ export abstract class SoundEffects
         const smm2Sounds = smm2.sounds
         const smm2EditorSound = smm2.editorSound
 
-        return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm1Sounds[1],], smm2EditorSound, smm1, smm2,)
+        return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2EditorSound, smm1, smm2,)
     }
 
     /** Create an exclusive {@link SMM1ExclusiveSoundEffectSound} from either:
      *  - a <b>null</b>
      *  - a {@link SMM1ExclusiveSoundEffectSound} directly
-     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a simple {@link SMM1ExclusiveSoundEffectSound} after-end)
+     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a {@link SMM1ExclusiveSoundEffectSound} after-end)
      *
      * @onlyCalledOnce
      * @onlyCalledBy soundsContainer_exclusiveSmm1
      */
-    protected _createExclusiveSMM1Sounds(): NullOr<| SMM1ExclusiveSoundEffectSound | readonly SMM1SoundEffectSoundFile[]> {
+    protected _createExclusiveSMM1Sounds(): NullOr<| SMM1ExclusiveSoundEffectSound | Array<SMM1SoundEffectSoundFile>> {
         return null
     }
 
@@ -1216,7 +1221,7 @@ export abstract class SoundEffects
         return null
     }
 
-    /** The "sound effect" exclusive sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
+    /** The "sound effect" exclusive sounds (in a container) of the {@link SMM1} game (& {@link SMM3DS} inclusively) */
     public get soundsContainer_exclusiveSmm1(): SMM1ExclusiveSoundEffectSound {
         if (this.#sounds_exclusiveSmm1 != null)
             return this.#sounds_exclusiveSmm1
@@ -1224,12 +1229,12 @@ export abstract class SoundEffects
         const value = this._createExclusiveSMM1Sounds()
         if (value == null)
             return this.#sounds_exclusiveSmm1 = EmptySound.get
-        if (value instanceof Array)
-            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, value[0],)
+        if (isArray(value,))
+            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, getFirstByArray(value,),)
         return this.#sounds_exclusiveSmm1 = value
     }
 
-    /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
+    /** The "sound effect" sounds (in a container) of the {@link SMM1} game (& {@link SMM3DS} inclusively) */
     public get soundsContainer_standaloneSMM1(): SMM1StandaloneSoundEffectSound {
         if (this.#sounds_standaloneSmm1 != null)
             return this.#sounds_standaloneSmm1
@@ -1248,20 +1253,17 @@ export abstract class SoundEffects
         return this.#sounds_standaloneSmm1 = new SMM1StandaloneSound(smm1.sounds, smm1.editorSound, smm1, EmptySound.get,)
     }
 
-    /** Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} exclusively */
-    public get sounds_exclusiveSmm1(): readonly SMM1SoundEffectSoundFile[] {
+    /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS} exclusively */
+    public get sounds_exclusiveSmm1(): Array<SMM1SoundEffectSoundFile> {
         return this.soundsContainer_exclusiveSmm1.sounds
     }
 
-    /**
-     * Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS},
-     * but utilizing some {@link Games.SUPER_MARIO_MAKER_2 SMM2} sounds
-     */
-    public get sounds_standaloneSmm1(): readonly SoundEffectSoundFile[] {
+    /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS}, but using some {@link SMM2} sounds */
+    public get sounds_standaloneSmm1(): Array<SoundEffectSoundFile> {
         return this.soundsContainer_standaloneSMM1.sounds
     }
 
-    /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} when placed in the editor */
+    /** The "sound effect" sound for a {@link SMM1}/{@link SMM3DS} when placed in the editor */
     public get editorSound_smm1(): NullOr<SoundEffectSoundFile> {
         return this.soundsContainer_standaloneSMM1.editorSound
     }
@@ -1287,17 +1289,17 @@ export abstract class SoundEffects
     /** Create an exclusive {@link SMM2SoundEffectSound} from either:
      *  - a <b>null</b>
      *  - a {@link SMM2SoundEffectSound} directly
-     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a simple {@link SMM2SoundEffectSound} after-end)
+     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a {@link SMM2SoundEffectSound} after-end)
      *  - a {@link Musics} reference
      *
      * @onlyCalledOnce
      * @onlyCalledBy soundsContainer_smm2
      */
-    protected _createSMM2Sounds(): NullOr<| SMM2SoundEffectSound | readonly SMM2SoundEffectSoundFile[] | Musics> {
+    protected _createSMM2Sounds(): NullOr<| SMM2SoundEffectSound | Array<SMM2SoundEffectSoundFile> | Musics> {
         return null
     }
 
-    /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game */
+    /** The "sound effect" sounds (in a container) of the {@link SMM2} game */
     public get soundsContainer_smm2(): | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor {
         if (this.#sounds_smm2 != null)
             return this.#sounds_smm2
@@ -1305,8 +1307,8 @@ export abstract class SoundEffects
         const value = this._createSMM2Sounds()
         if (value == null)
             return this.#sounds_smm2 = EmptySound.get
-        if (value instanceof Array)
-            return this.#sounds_smm2 = new SMM2Sound(value, value[0], EMPTY_ARRAY, EMPTY_ARRAY,)
+        if (isArray(value,))
+            return this.#sounds_smm2 = new SMM2Sound(value, getFirstByArray(value,), EMPTY_ARRAY, EMPTY_ARRAY,)
         if (value instanceof Import.Musics)
             return this.#sounds_smm2 = new SoundEffectFromMusicAdaptorContainer(value,)
         return this.#sounds_smm2 = value
@@ -1317,7 +1319,7 @@ export abstract class SoundEffects
         return this.soundsContainer_smm2.sounds
     }
 
-    /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_2 SMM2} when placed in the editor */
+    /** The "sound effect" sound for a {@link SMM2} when placed in the editor */
     public get editorSound_smm2(): NullOr<| SMM2SoundEffectSoundFile | PossibleSoundEffectMusicEditorName> {
         return this.soundsContainer_smm2.editorSound
     }
@@ -1334,20 +1336,36 @@ export abstract class SoundEffects
 
     //endregion -------------------- Getter methods (SMM2 sound) --------------------
 
-    //endregion -------------------- Getter methods (sound) --------------------
-
-    /** Every {@link SoundEffects} that is also a {@link GameReferences} */
-    public static get soundEffect_games(): SoundEffectGames {
-        return this.#soundEffect_games ??= [this.SUPER_MARIO_KART_MUSIC, this.SUPER_MARIO_64_MUSIC, this.SUPER_MARIO_SUNSHINE_MUSIC, this.SUPER_MARIO_GALAXY_MUSIC,]
-    }
-
-    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
 
 }
 
-type PossibleSMM2SoundEffect = readonly (| SMM2SoundEffectSoundFile | MusicSoundFile)[]
+export namespace SoundEffects {
+
+    /** The companion instance of a {@link SoundEffects} */
+    export const Companion = SoundEffects.CompanionEnum.get
+
+    /** An alias of {@link SoundEffects.SUPER_MARIO_KART_MUSIC} */
+    export const SMK = SoundEffects.SUPER_MARIO_KART_MUSIC
+    /** An alias of {@link SoundEffects.SUPER_MARIO_64_MUSIC} */
+    export const SM64 = SoundEffects.SUPER_MARIO_64_MUSIC
+    /** An alias of {@link SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC} */
+    export const SMS = SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC
+    /** An alias of {@link SoundEffects.SUPER_MARIO_GALAXY_MUSIC} */
+    export const SMG = SoundEffects.SUPER_MARIO_GALAXY_MUSIC
+
+    export const ALL = Companion.values.toArray()
+
+    /** Every {@link SoundEffects} that is also a {@link GameReferences} */
+    export const soundEffect_games = [SMK, SM64, SMS, SMG,] as const
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).SoundEffects = SoundEffects
+
+type PossibleSMM2SoundEffect = Array<| SMM2SoundEffectSoundFile | MusicSoundFile>
 
 //region -------------------- SMM2 sound file --------------------
 

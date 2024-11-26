@@ -1,3 +1,5 @@
+import type {NullOr, NullOrNumber} from '@joookiwi/type'
+
 import type {MiiCostumeCategory}     from 'core/miiCostumeCategory/MiiCostumeCategory'
 import type {OfficialNotifications}  from 'core/officialNotification/OfficialNotifications'
 import type {Versions}               from 'core/version/Versions'

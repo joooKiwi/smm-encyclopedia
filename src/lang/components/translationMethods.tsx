@@ -1,22 +1,25 @@
-import type {StringOrNumeric} from '@joookiwi/type'
-import i18next                from 'i18next'
+import type {Nullable, StringOrNumeric} from '@joookiwi/type'
+import i18next                          from 'i18next'
 
 import type {ContentTranslationKey, EntityContentTranslationKey, GameContentTranslationKey, LanguageTranslationKey, Namespace, SingleTranslationKey, TranslationReplaceKeysMap, TranslationReturnValue} from 'lang/components/TranslationProperty'
 
 import {TranslationUtility} from 'lang/components/TranslationUtility'
+
+import replaceInTranslation = TranslationUtility.replaceInTranslation
+import testTranslation =      TranslationUtility.testTranslation
 
 function translateFromAny<const N extends Namespace, const V extends SingleTranslationKey<N> = SingleTranslationKey<N>, const REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: Nullable<REPLACE> = null,): ReactElementOrString {
     if (replace == null)
         // @ts-ignore
         return i18next.t(value, {ns: namespace,},)
 
-    const valueFromTranslation = TranslationUtility.testTranslation(i18next.t(value, {ns: namespace, returnObjects: true, interpolation: {skipOnVariables: true,},})) as string
+    const valueFromTranslation = testTranslation(i18next.t(value, {ns: namespace, returnObjects: true, interpolation: {skipOnVariables: true,},})) as string
 
-    return TranslationUtility.replaceInTranslation(valueFromTranslation, replace,)
+    return replaceInTranslation(valueFromTranslation, replace,)
 }
 
 /**
- * Get a simple translation of a language content.
+ * Get a translation of a language content.
  * Those translation don't have a lot of values since they are only related to languages & regions.
  *
  * @param value The translation key
@@ -29,7 +32,7 @@ export function languageTranslation<const V extends LanguageTranslationKey, cons
 
 
 /**
- * Get a simple translation of a content.
+ * Get a translation of a content.
  * Those translations are for general purpose.
  *
  * @param value The translation key (that should not have any "{{}}" in them)
@@ -42,7 +45,7 @@ export function contentTranslation<const V extends ContentTranslationKey, const 
 }
 
 /**
- * Get a simple translation of a game content.
+ * Get a translation of a game content.
  * Those translations are related to the video game specifically.
  *
  * @param value The translation key (that should not have any "{{}}" in them)
@@ -55,9 +58,9 @@ export function gameContentTranslation<V extends GameContentTranslationKey, REPL
 }
 
 /**
- * Get a simple translation of a game content.
+ * Get a translation of a game content.
  * Those translations are related to the Super Mario Maker games specifically
- * ({@link Games.SUPER_MARIO_MAKER_1 SMM1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}).
+ * ({@link SMM1}, {@link SMM3DS} & {@link SMM2}).
  *
  * @param value The translation key (that should not have any "{{}}" in them)
  */

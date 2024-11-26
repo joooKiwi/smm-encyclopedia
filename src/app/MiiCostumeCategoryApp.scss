@@ -1,0 +1,13 @@
+#miiCostumeCategory-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.name {}
+    &.icon {}
+  }
+
+  img { max-height: initial }
+
+}

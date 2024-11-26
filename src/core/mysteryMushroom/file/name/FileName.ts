@@ -1,3 +1,5 @@
+import type {EmptyArray} from '@joookiwi/type'
+
 import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
 
 export interface FileName<out IMAGE_FILE_NAMES extends PossibleImageFileNames = PossibleImageFileNames,

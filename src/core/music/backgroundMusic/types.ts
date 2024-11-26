@@ -1,5 +1,7 @@
+import type {EmptyString} from '@joookiwi/type'
+
 /**
- * The base map (not exported) for every type of music for a "sound effect" or simply for a "background music".
+ * The base map (not exported) for every type of music for a "sound effect" or only for a "background music".
  *
  * It can be from a sound effect that is also a game ({@link SoundEffects.SUPER_MARIO_KART_MUSIC Super Mario Kart}, {@link SoundEffects.SUPER_MARIO_64_MUSIC Super Mario 64},
  * {@link SoundEffects.SUPER_MARIO_SUNSHINE_MUSIC Super Mario Sunshine}, {@link SoundEffects.SUPER_MARIO_GALAXY_MUSIC Super Mario Galaxy}).
@@ -171,7 +173,7 @@ type Possible_FastMusic = | PossibleSMB_FastMusic | PossibleLink_FastMusic | Pos
                           | PossibleOther_FastMusic
 
 
-type _GetFromRegularBackgroundMusic<GAME extends | 'smb' | 'link' | 'smb2' | 'smb3' | `${| 'smw' | 'nsmbu'}${| '' | ' (yoshi)'}` | `sm3dw${| '' | ' (underwater)'}`, > = MusicTemplateMap[| 'Bonus' | 'Boss' | 'Final Boss'][GAME]
+type _GetFromRegularBackgroundMusic<GAME extends | 'smb' | 'link' | 'smb2' | 'smb3' | `${| 'smw' | 'nsmbu'}${| EmptyString | ' (yoshi)'}` | `sm3dw${| EmptyString | ' (underwater)'}`, > = MusicTemplateMap[| 'Bonus' | 'Boss' | 'Final Boss'][GAME]
 
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_Music = | PossibleSMB_EditorMusic | PossibleSMB_RegularMusic | PossibleSMB_FastMusic
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_EditorMusic = _GetFromRegularBackgroundMusic<'smb'>['editor']

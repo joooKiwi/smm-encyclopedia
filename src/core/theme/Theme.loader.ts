@@ -1,15 +1,17 @@
 import file from 'resources/compiled/Theme.json'
 
-import {lazy} from '@joookiwi/lazy'
+import type {Array, NullOrBoolean} from '@joookiwi/type'
+import {forEachByArray}            from '@joookiwi/collection'
+import {lazy}                      from '@joookiwi/lazy'
 
-import type {LanguageContent}                 from 'core/_template/LanguageContent'
-import type {GameContentFrom1And2}            from 'core/game/Loader.types'
-import type {CourseAndWorldTheme}             from 'core/theme/CourseAndWorldTheme'
-import type {CourseTheme}                     from 'core/theme/CourseTheme'
-import type {PossibleEnglishName}             from 'core/theme/Themes.types'
-import type {PossibleEffectInNightTheme}      from 'core/theme/loader.types'
-import type {Name}                            from 'lang/name/Name'
-import type {Loader}                          from 'util/loader/Loader'
+import type {LanguageContent}            from 'core/_template/LanguageContent'
+import type {GameContentFrom1And2}       from 'core/game/Loader.types'
+import type {CourseAndWorldTheme}        from 'core/theme/CourseAndWorldTheme'
+import type {CourseTheme}                from 'core/theme/CourseTheme'
+import type {PossibleEnglishName}        from 'core/theme/Themes.types'
+import type {PossibleEffectInNightTheme} from 'core/theme/loader.types'
+import type {Name}                       from 'lang/name/Name'
+import type {Loader}                     from 'util/loader/Loader'
 
 import {isInProduction}               from 'variables'
 import {Entities}                     from 'core/entity/Entities'
@@ -21,6 +23,9 @@ import {WorldOnlyThemeContainer}      from 'core/theme/WorldOnlyTheme.container'
 import {WorldThemeContainer}          from 'core/theme/WorldTheme.container'
 import {NightEffects}                 from 'core/nightEffect/NightEffects'
 import {createNameFromContent}        from 'lang/name/createNameFromContent'
+
+import EntityCompanion =      Entities.Companion
+import NightEffectCompanion = NightEffects.Companion
 
 /**
  * @dependsOn<{@link Entities}>
@@ -43,18 +48,17 @@ export class ThemeLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, CourseAndWorldTheme>
+    #map?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
         if (this.#map != null)
             return this.#map
 
         const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(
@@ -107,12 +111,12 @@ function createCourseTheme(content: Content, name: Name<string>,): CourseTheme {
         name,
         content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
         lazy(() => {
-            const theme = Themes.CompanionEnum.get.getValueByName(name.english,)
+            const theme = Themes.Companion.getValueByName(name.english,)
 
-            return Entities.CompanionEnum.get.values.map(it => it.reference,)
+            return EntityCompanion.values.map(it => it.reference,)
                 .filter(reference => theme.get(reference,),)
                 .toArray()
         },),
-        NightEffects.CompanionEnum.get.getValueByName(content.effectInNightTheme,),
+        NightEffectCompanion.getValueByName(content.effectInNightTheme,),
     )
 }

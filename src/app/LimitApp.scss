@@ -20,9 +20,23 @@
       opacity: 20%;
     }
   }
+
+  .entity-image:where(.yoshi-image, .redYoshi-image){ --image-width: 2rem }
+}
+
+#limit-list .listItem {
+  margin-right: var(--bs-spacer-md);
+  > * > :last-child { margin-left: var(--bs-spacer-md) }
 }
 
 .card-body {
+  [id^="limit-alternativeName"] { text-decoration: {
+    // It is to be similar the the .cardListElement styling
+    line: underline;
+    style: dotted;
+    color: var(--bs-secondary);
+    thickness: 1px;
+  } }
   span {
     &::before {
       color: var(--bs-body-color);
@@ -38,4 +52,8 @@
   width: auto;
   margin-left: auto;
   margin-right: auto;
+
+  .tcell {
+    &.description { max-width: 15cm }
+  }
 }

@@ -1,67 +1,82 @@
-import './CharacterNameApp.scss'
 import 'app/_GameAsideContent.scss'
+import 'app/_TimeAsideContent.scss'
+import './CharacterNameApp.scss'
 
-import type {CharacterNameProperties}    from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
-import type {GameCollection}             from 'util/collection/GameCollection'
-import type {ReactProperties}            from 'util/react/ReactProperties'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}            from '@joookiwi/collection'
+import {filterByArray}                    from '@joookiwi/collection'
+
+import type {CharacterNameProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {GameCollection}          from 'util/collection/GameCollection'
+import type {TimeCollection}          from 'util/collection/TimeCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
+import {CharacterNameAppOption}                     from 'app/options/CharacterNameAppOption'
 import {CharacterNameGames}                         from 'app/property/CharacterNameGames'
-import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import {CharacterNameTimes}                         from 'app/property/CharacterNameTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
+import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import List                                         from 'app/util/List'
+import CardList                                     from 'app/withInterpreter/CardList'
+import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
-import GameImage                                    from 'core/game/GameImage'
-import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {Games}                                      from 'core/game/Games'
+import {Times}                                      from 'core/time/Times'
+import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import NameComponent                                from 'lang/name/component/Name.component'
+
+import ALL =    CharacterNames.ALL
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
 
 class CharacterNameAppInterpreter
-    implements AppInterpreterWithCardList<CharacterNames> {
+    implements AppInterpreterWithTable<CharacterNames, CharacterNameAppOption> {
 
     //region -------------------- Fields --------------------
 
     readonly #games
+    readonly #times
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection,) {
+    public constructor(games: GameCollection, times: TimeCollection,) {
         this.#games = games
+        this.#times = times
     }
 
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(CharacterNames.CompanionEnum.get.values, this.#games,)
+        const games = this.#games
+        const times = this.#times
+        return filterByArray(ALL, ({reference,},) =>
+            games.hasAnyIn(reference,)
+            && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 4,
             large: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
@@ -70,48 +85,96 @@ class CharacterNameAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('character name.all',) satisfies ReactElementOrString
+
+    public get tableOptions(): Array<CharacterNameAppOption> {
+        return [CharacterNameAppOption.NAME, CharacterNameAppOption.EDITOR_VOICE,]
+    }
+
+
+    public getAdditionalClass(option: CharacterNameAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: CharacterNames, option: CharacterNameAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: CharacterNameAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table --------------------
 
 }
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyCharacterName (list)',],
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
-] as const satisfies readonly ViewAndRouteName[]
-const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
-
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
+    [ViewDisplays.TABLE, 'everyCharacterName (table)',],
+] as const satisfies Array<ViewAndRouteName>
+const uniqueNameRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
-export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The CharacterNameApp only handle the "simple list" or "card list" as a possible view display.',)
-    const titleContent = gameContentTranslation('character name.all',)
-    const appInterpreter = new CharacterNameAppInterpreter(games,)
-    const characterNameGame = intersect(allGames, games,).length === 3
+export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
+    const game = games.hasAllGames
         ? CharacterNameGames.ALL_GAMES
-        : games.hasSMM2
+        : games.hasSmm2
             ? CharacterNameGames.SUPER_MARIO_MAKER_2
-            : games.hasSMM1
+            : games.hasSmm1
                 ? CharacterNameGames.SUPER_MARIO_MAKER
                 : CharacterNameGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+    const time = games.hasNotSmm2AndSmm1Or3ds
+        ? null
+        : times.hasAllTimes
+            ? CharacterNameTimes.ALL_TIMES
+            : times.hasDay
+                ? CharacterNameTimes.DAY
+                : CharacterNameTimes.NIGHT
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<CharacterNameDescription viewDisplay={viewDisplay} game={characterNameGame}/>}
-                                 asideContent={<CharacterNameAsideContent viewDisplay={viewDisplay} game={characterNameGame}/>}>
-            <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             description={<CharacterNameDescription viewDisplay={viewDisplay} game={characterNameGame}/>}
-                             asideContent={<CharacterNameAsideContent viewDisplay={viewDisplay} game={characterNameGame}/>}>
-        <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('character name.all',)}
+                             description={<CharacterNameDescription viewDisplay={viewDisplay} game={game}/>}
+                             asideContent={<CharacterNameAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
     </SubMainContainer>
 }
 
+/** @reactComponent */
+function SubContent({viewDisplay, games, times,}: Omit<CharacterNameProperties, 'gameStyles'>,) {
+    const appInterpreter = new CharacterNameAppInterpreter(games, times,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <CharacterNameList items={appInterpreter.content}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={uniqueNameRetriever}/>
+    return <Table id="characterName-table" interpreter={appInterpreter}/>
+}
+
+//region -------------------- List --------------------
+
+interface CharacterName_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<CharacterNames>
+
+}
+
+/** @reactComponent */
+function CharacterNameList({items,}: CharacterName_ListProperties,) {
+    return <List partialId="characterName" items={items} withSeparator nameRetriever={uniqueNameRetriever}>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="characterName-name" name={it.reference} popoverOrientation="top"/>
+            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.uniqueEnglishName}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface CharacterNameDescriptionProperties
@@ -125,12 +188,13 @@ interface CharacterNameDescriptionProperties
 
 /** @reactComponent */
 function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescriptionProperties,) {
-    const smm1Link = game.getSmm1RouteName(viewDisplay,)
-    const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
-    const smm2Link = game.getSmm2RouteName(viewDisplay,)
+    const smm1Link = game.smm1RouteName satisfies NullOrString<PossibleRouteName>
+    const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
+    const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyCharacterName (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyCharacterName (card)' satisfies PossibleRouteName
+    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyCharacterName (table)' satisfies PossibleRouteName
 
     const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
     const mysteryMushroomAsLowerCase = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
@@ -138,23 +202,24 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     return <>
         <p>
             {gameContentTranslation('character name.description.intro page', {
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={smm1}/></TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={SMM1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
                 StoryMode: <em key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</em>,//TODO: Add a mystery mushroom "character name" link
                 mysteryMushroom: <em key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</em>,
                 MysteryMushroom: <em key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</em>,
-                smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={smm1}/></span>,
-                smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={smm2}/></span>,
+                smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={SMM1}/></span>,
+                smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={SMM2}/></span>,
             },)}
         </p>
         <p>{gameContentTranslation('character name.description.viewable', {
             listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
             cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
             cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
         },)}</p>
     </>
 }
@@ -165,20 +230,47 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
 interface CharacterNameAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
-    readonly game: CharacterNameGames
+    readonly game: NullOr<CharacterNameGames>
+    readonly time: NullOr<CharacterNameTimes>
 
 }
 
 /** @reactComponent */
-function CharacterNameAsideContent({viewDisplay, game,}: CharacterNameAsideContentProperties,) {
+function CharacterNameAsideContent({game, time,}: CharacterNameAsideContentProperties,) {
+    return <div id="characterName-asideContent-container">
+        <GameAsideContent game={game}/>
+        {time == null ? null : <div className="d-inline mx-1"/>}
+        <TimeAsideContent time={time}/>
+    </div>
+}
+
+/** @reactComponent */
+function GameAsideContent({game,}: Pick<CharacterNameAsideContentProperties, 'game'>,) {
+    if (game == null)
+        return null
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="characterName-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}><GameImage reference={smm1}/></LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}><GameImage reference={smm3ds}/></LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}><GameImage reference={smm2}/></LinkButton>
+            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+        </div>
+    </div>
+}
+
+/** @reactComponent */
+function TimeAsideContent({time,}: Pick<CharacterNameAsideContentProperties, 'time'>,) {
+    if (time == null)
+        return null
+    return <div id="characterName-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm">
+            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+                <TimeImage reference={Times.DAY}/>
+            </LinkButton>
+            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+                <TimeImage reference={Times.NIGHT}/>
+            </LinkButton>
         </div>
     </div>
 }

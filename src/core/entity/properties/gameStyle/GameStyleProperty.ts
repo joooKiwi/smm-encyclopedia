@@ -1,20 +1,12 @@
 import type {GameStyles} from 'core/gameStyle/GameStyles'
 
-export interface GameStyleProperty<out SMB extends boolean = boolean,
-    out SMB3 extends boolean = boolean,
-    out SMW extends boolean = boolean,
-    out NSMBU extends boolean = boolean,
-    out SM3DW extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable, > {
+export interface GameStyleProperty {
 
-    get isInSuperMarioBrosStyle(): SMB
-
-    get isInSuperMarioBros3Style(): SMB3
-
-    get isInSuperMarioWorldStyle(): SMW
-
-    get isInNewSuperMarioBrosUStyle(): NSMBU
-
-    get isInSuperMario3DWorldStyle(): SM3DW
+    readonly isInSuperMarioBrosStyle: boolean
+    readonly isInSuperMarioBros3Style: boolean
+    readonly isInSuperMarioWorldStyle: boolean
+    readonly isInNewSuperMarioBrosUStyle: boolean
+    readonly isInSuperMario3DWorldStyle: boolean
 
     /**
      * Return a {@link Map} based on the enum {@link GameStyles}

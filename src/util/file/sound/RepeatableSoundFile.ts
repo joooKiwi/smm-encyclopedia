@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {PossibleSoundFileExtension, SoundFile} from 'util/file/sound/SoundFile'
 import type {Time}                                  from 'util/file/sound/time/Time'
 

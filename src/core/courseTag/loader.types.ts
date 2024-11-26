@@ -1,1 +1,3 @@
-export type PossibleFirstAppearanceInMarioMaker = NullOr<`v${1 | 3}.0.0`>
+import type {NullOrString} from '@joookiwi/type'
+
+export type PossibleFirstAppearanceInMarioMaker = NullOrString<`v${1 | 3}.0.0`>

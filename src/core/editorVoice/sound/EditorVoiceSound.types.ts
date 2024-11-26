@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 //region -------------------- Starting name --------------------
 
 //region -------------------- Starting name (voice before) --------------------
@@ -9,12 +11,12 @@
  * @see PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative
  */
 export type PossibleStartingName_WithVoiceBefore =
-    | `${| '' | 'start' | 'goal'}ground`
+    | `${| EmptyString | 'start' | 'goal'}ground`
     | 'pipe'
     | 'spiketrap' | 'jellelectro' | 'seaechinus'
     | `${| 'mushroom' | 'semisolid'}platform` | 'bridge'
 
-    | `${| '' | 'hard' | 'question' | 'hidden' | 'note' | 'donut' | 'cloud'}block` | 'iceblock2'
+    | `${| EmptyString | 'hard' | 'question' | 'hidden' | 'note' | 'donut' | 'cloud'}block` | 'iceblock2'
     | 'coin'
 
     | ItemWithPlayer_Mario<'super', 'mushroom'>
@@ -39,11 +41,11 @@ export type PossibleStartingName_WithVoiceBefore =
     | 'cheapcheap'
     | 'blooper'
     | 'wiggler'
-    | `${| '' | 'jumping' | 'fire'}piranhaplant`
+    | `${| EmptyString | 'jumping' | 'fire'}piranhaplant`
     | 'monchar'
     | 'chainchomp'
-    | `lakitu${| '' | 'cloud'}`
-    | `boo${| '' | 'buddies'}`
+    | `lakitu${| EmptyString | 'cloud'}`
+    | `boo${| EmptyString | 'buddies'}`
     | 'bombomb'
     | 'thwomp'
     | 'montymole' | 'rockeyrench'
@@ -56,22 +58,22 @@ export type PossibleStartingName_WithVoiceBefore =
     | 'burner'
     | 'firebar'
     | PossibleStartingName_Skewer[number]
-    | `${| '' | 'fire'}${| 'junior' | 'koopa'}clowncar`
+    | `${| EmptyString | 'fire'}${| 'junior' | 'koopa'}clowncar`
     | 'grinder'
 
-    | `bowser${| '' | 'jr'}`
+    | `bowser${| EmptyString | 'jr'}`
 
     | 'bumper'
     | 'onewaywall'
     | 'track'
     | 'vine'
     | 'conveyorbelt'
-    | `${| '' | 'flimsy'}lift`
+    | `${| EmptyString | 'flimsy'}lift`
     | 'lavalift'
     | 'trampline'
     | 'powblock'
     | 'pswitch'
-    | `${| `${| '' | 'p'}warp` | 'key'}door`
+    | `${| `${| EmptyString | 'p'}warp` | 'key'}door`
     | 'wings'
 
 //endregion -------------------- Starting name (voice before) --------------------
@@ -110,8 +112,8 @@ export type PossibleStartingName_WithSingingPartBefore =
 
     | 'Goombrat' | 'Goombud'
     | 'DryBonesShell'
-    | `${| '' | 'Spiny'}Skipsqueak`
-    | `${| '' | 'Horned'}AntTrooper`
+    | `${| EmptyString | 'Spiny'}Skipsqueak`
+    | `${| EmptyString | 'Horned'}AntTrooper`
     | 'Stingby'
     | 'FishBones'
     | 'BlooperNanny'
@@ -122,9 +124,9 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'Spike' | `${| 'Spike' | 'Snow'}Ball`
     | 'Stretch' | 'Peepa'
     | 'litBob-omb'
-    | `${| '' | 'Snow'}Pokey`
-    | `${| '' | 'Heavy'}FireBro`
-    | `${| '' | 'Blasta' | 'Zappa'}Mechakoopa`
+    | `${| EmptyString | 'Snow'}Pokey`
+    | `${| EmptyString | 'Heavy'}FireBro`
+    | `${| EmptyString | 'Blasta' | 'Zappa'}Mechakoopa`
     | 'Charvaargh'
     | 'Bully'
 
@@ -145,17 +147,17 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'arrowsign'
     | 'CheckpointFlag'
     | 'DashBlock'
-    | `${| '' | 'Fast'}SnakeBlock`
+    | `${| EmptyString | 'Fast'}SnakeBlock`
     | 'fastconveyorbelt'
     | `${| 'Mushroom' | 'ONOFF'}Trampoline`
     | 'CloudLift'
     | 'seesaw'
     | 'FastLavaLift'
     | 'crate'
-    | `${| '' | 'cursed'}key`
+    | `${| EmptyString | 'cursed'}key`
     | 'Hop-Chops'
     | 'redPOWBlock'
-    | `WarpBox${| '' | '_withkey'}`
+    | `WarpBox${| EmptyString | '_withkey'}`
 
 //endregion -------------------- Starting name (singing part before) --------------------
 
@@ -171,13 +173,13 @@ type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, 
 //endregion -------------------- Starting name --------------------
 
 /**
- * A simple string type {@link EditorVoices} sound file path with "voice" before its name
+ * A {@link String} type {@link EditorVoices} sound file path with "voice" before its name
  *
  * @see PossibleFileName
  */
 export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, > = `voice_${T}`
 /**
- * A simple string type {@link EditorVoices} sound file with "signing part" before its name
+ * A {@link String} type {@link EditorVoices} sound file with "signing part" before its name
  *
  * @see PossibleFileName
  */

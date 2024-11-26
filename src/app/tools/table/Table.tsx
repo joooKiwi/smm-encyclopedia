@@ -1,6 +1,9 @@
 import './Table.scss'
 
-import type {Enumerable} from '@joookiwi/enumerable'
+import type {CollectionHolder}                                                                    from '@joookiwi/collection'
+import type {Enumerable}                                                                          from '@joookiwi/enumerable'
+import type {MutableArray}                                                                        from '@joookiwi/type'
+import {dropByArray, filterNotNull, forEachByArray, GenericCollectionHolder, joinToStringByArray} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
@@ -9,9 +12,13 @@ import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactProperties
 
 import Image             from 'app/tools/images/Image'
 import Tooltip           from 'bootstrap/tooltip/Tooltip'
-import {EMPTY_STRING}    from 'util/emptyVariables'
+import {Empty}           from 'util/emptyVariables'
+import {SPACE}           from 'util/commonVariables'
 import {StringContainer} from 'util/StringContainer'
-import {assert, nonNull} from 'util/utilitiesMethods'
+import {assert}          from 'util/utilitiesMethods'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
+import getInHtml =    StringContainer.getInHtml
 
 interface TableProperties
     extends ReactProperties {
@@ -34,7 +41,7 @@ interface TableProperties
  * @reactComponent
  */
 export default function Table({id, interpreter,}: TableProperties,) {
-    const options = nonNull(interpreter.tableOptions,)
+    const options = filterNotNull(interpreter.tableOptions,)
     const color = interpreter.tableColor
     const headersColor = interpreter.tableHeadersColor
     const caption = interpreter.tableCaption
@@ -42,7 +49,7 @@ export default function Table({id, interpreter,}: TableProperties,) {
     const contents = retrieveContent(interpreter, options,)
     const headers = retrieveHeader(interpreter, options,)
 
-    return <div id={id} className={`ttable ${color == null ? '' : `table-${color}`} ${headersColor == null ? '' : `headers-${headersColor}`} w-100`}>
+    return <div id={id} className={`ttable ${color == null ? EMPTY_STRING : `table-${color}`} ${headersColor == null ? EMPTY_STRING : `headers-${headersColor}`} w-100`}>
         <TableHeader>{additionalClasses}{headers}</TableHeader>
         <TableContent>{additionalClasses}{contents}</TableContent>
         <TableFooter>{additionalClasses}{headers}</TableFooter>
@@ -50,57 +57,45 @@ export default function Table({id, interpreter,}: TableProperties,) {
     </div>
 }
 
-function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleHeaderContent[],]>,) {
-    const size = headers.length
-    const columns = new Array<ReactJSXElement>(size,)
-    let index = size
-    while (index-- > 0) {
-        const it = headers[index]
+function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
+    const columns = new Array<ReactJSXElement>(headers.length,)
+    headers.forEach((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
-        columns[index] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[index]}`}>
+        columns[i] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses.get(i,)}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
-    }
+    },)
     return <div className="theader">{columns}</div>
 }
 
-function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleTableContent[]]>,) {
-    const size1 = contents.length
-    const tableContent = new Array<ReactJSXElement>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const content = contents[index1]
+function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleTableContent>]>,) {
+    const tableContent = new Array<ReactJSXElement>(contents.length,)
+    contents.forEach((content, i,) => {
         const rowContentKey = content[0]
-        const size2 = content.length
-        const rowContent = new Array<ReactJSXElement>(size2 - 1,)
-        let index2 = size2
-        while (index2-- > 1) {
-            const rowColumnContent = content[index2] as ReactElement//FIXME: Make the cast not present
+        const rowContent = new Array<ReactJSXElement>(content.length - 1,)
+        dropByArray(content, 1,).forEach((rowColumnContent, j,) => {
             if (rowColumnContent == null)
-                rowContent[index2] = <div key={`table content (empty ${rowContentKey} ${index1 + 1}-${index2 + 1})`} className="tcell empty-table-rowColumn-content-container"/>
+                rowContent[j] = <div key={`table content (empty ${rowContentKey} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
             else
-                rowContent[index2] = <div key={`table content (${rowContentKey} ${index1 + 1}-${index2 + 1})`} className={`tcell${additionalClasses[index2 - 1]}`}>{rowColumnContent}</div>
-        }
+                rowContent[j] = <div key={`table content (${rowContentKey} ${i + 1}-${j + 2})`} className={`tcell${additionalClasses.get(j,)}`}>{rowColumnContent}</div>
+        },)
 
-        tableContent[index1] =
-            <div key={`table row content (${rowContentKey} ${index1 + 1})`} className={`trow table-row-${StringContainer.getInHtml(rowContentKey,)}`}>{rowContent}</div>
-    }
+        tableContent[i] =
+            <div key={`table row content (${rowContentKey} ${i + 1})`} className={`trow table-row-${getInHtml(rowContentKey,)}`}>{rowContent}</div>
+    },)
     return <div className="tcontent">{tableContent}</div>
 }
 
-function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleHeaderContent[],]>,) {
-    const size = headers.length
-    const columns = new Array<ReactJSXElement>(size,)
-    let index = size
-    while (index-- > 0) {
-        const it = headers[index]
+function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
+    const columns = new Array<ReactJSXElement>(headers.length,)
+    headers.forEach((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
-        columns[index] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[index]}`}>
+        columns[i] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses.get(i,)}`}>
             <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
-    }
+    },)
 
     return <div className="tfooter mb-2">{columns}</div>
 }
@@ -154,76 +149,43 @@ function getHeaderKey(header: SingleHeaderContent,): string {
  * @param options The displayed options in the table
  * @private
  */
-function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly string[] {
+function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<string> {
     if (getAdditionalClass == null)
-        return Array.from({length: options.length,}, () => EMPTY_STRING,)
-
-    const size1 = options.length
-    const additionalClasses = new Array<string>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const additionalClass = getAdditionalClass(options[index1],)
-        if (additionalClass.length === 0) {
-            additionalClasses[index1] = EMPTY_STRING
-            continue
-        }
-
-        let classesJoined = ''
-        const size2 = additionalClass.length
-        let index2 = -1
-        while (++index2 < size2)
-            classesJoined += ` ${additionalClass[index2]}`
-        additionalClasses[index1] = classesJoined
-    }
-    return additionalClasses
+        return new GenericCollectionHolder(Array.from({length: options.length,}, () => EMPTY_STRING,),)
+    return options.map(it => joinToStringByArray(getAdditionalClass(it,), SPACE, SPACE, EMPTY_STRING,),)
 }
 
 /**
- * Retrieve the {@link SingleTableContent content} of the {@link interpreter} and put it in an {@link ReadonlyArray array}
+ * Retrieve the {@link SingleTableContent content} of the {@link interpreter} into a {@link CollectionHolder}
  *
  * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleTableContent[] {
-    const size2 = options.length
-    const size1 = content.length
-    const tableContents = new Array<SingleTableContent>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const contentValue = content[index1]
-
+function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleTableContent> {
+    return content.map(contentValue => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
-        let index2 = -1
-        while (++index2 < size2) {
-            const tableContentCreated = createTableContent(contentValue, options[index2],)
-            const size3 = tableContentCreated.length
-            let index3 = -1
-            while (++index3 < size3)
-                tableContent.push(tableContentCreated[index3],)
-        }
-        tableContents[index1] = tableContent
-    }
-    return tableContents
+        options.forEach(option =>
+            forEachByArray(createTableContent(contentValue, option,), it => tableContent.push(it,),),)
+        return tableContent
+    },)
 }
 
 /**
- * Retrieve the {@link SingleHeaderContent header} of the {@link interpreter} and put it in an {@link ReadonlyArray array}
+ * Retrieve the {@link SingleHeaderContent header} of the {@link interpreter} into an{@link ReadonlyArray array}
  *
  *
  * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
  * @param options The displayed options in the table
  * @private
  */
-function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleHeaderContent[] {
-    const headerContent = [] as SingleHeaderContent[]
-    const size = options.length
-    let index = -1
-    while (++index < size) {
-        const tableHeader = createTableHeader(options[index],)
+function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleHeaderContent> {
+    const headerContent: MutableArray<SingleHeaderContent> = []
+    options.forEach(it => {
+        const tableHeader = createTableHeader(it,)
         if (tableHeader == null)
-            continue
+            return
         headerContent.push(tableHeader,)
-    }
-    return headerContent
+    },)
+    return new GenericCollectionHolder(headerContent,)
 }

@@ -7,7 +7,7 @@ import type {ReactProperties}   from 'util/react/ReactProperties'
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import Tooltip                    from 'bootstrap/tooltip/Tooltip'
 import {DISPLAY_VIEW_MODAL_ID}    from 'navigation/button/modalIds'
-import {routeFromName}            from 'route/route'
+import {routeFromName}            from 'route/method/route.fromName'
 
 interface DisplayViewRouteButtonProperty
     extends ReactProperties {

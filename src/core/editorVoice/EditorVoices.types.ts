@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {CharacterName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/characterName/CharacterName'
 import type {PossibleEnglishName_PlayableCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/characterName/CharacterNames.types'
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/Entity'
@@ -199,8 +201,8 @@ export type PossibleReference = | Entity | CharacterName
 
 //region -------------------- English name --------------------
 
-type PossibleEnglishName_Projectile = ''//TODO change to every projectile name
-type PossibleEnglishName_Object = ''//TODO change to every object name
+type PossibleEnglishName_Projectile = EmptyString//TODO change to every projectile name
+type PossibleEnglishName_Object = EmptyString//TODO change to every object name
 export type PossibleEnglishName_OnlyEntity =
     Exclude<PossibleEnglishName_Entity,
         | PossibleEnglishName_BigMushroom | PossibleEnglishName_Shoe | PossibleEnglishName_Yoshi
@@ -209,11 +211,11 @@ export type PossibleEnglishName_OnlyEntity =
         | Exclude<PossibleEnglishName_DryBones, 'Dry Bones'> | Exclude<PossibleEnglishName_BuzzyBeetleAndShell, 'Buzzy Beetle'>
         | Exclude<PossibleEnglishName_SpinyAndShell, 'Spiny'> | Exclude<PossibleEnglishName_SpikeTop, 'Spike Top'>
         | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
-        | 'Empty Block' | 'Chain Chomp\'s Stump' | 'Angry Sun'
+        | 'Empty Block' | 'Chain Chomp’s Stump' | 'Angry Sun'
         | PossibleEnglishName_Goals | 'Phanto' | 'Stone' | 'Parachute' | 'Bubble'
         | PossibleEnglishName_Projectile | PossibleEnglishName_Object>//TODO create a type in "Entities.types" to have the possible name with editor voice instead
 export type PossibleEnglishName = | PossibleEnglishName_OnlyEntity
                                   | PossibleEnglishName_PlayableCharacter
-                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| '' | 2})` | 'Sun'
+                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| EmptyString | 2})` | 'Sun'
 
 //endregion -------------------- English name --------------------

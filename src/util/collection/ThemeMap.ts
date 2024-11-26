@@ -1,3 +1,6 @@
+import type {UndefinedOr} from '@joookiwi/type'
+import {mapByArray}       from '@joookiwi/collection'
+
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 
 import {Themes} from 'core/theme/Themes'
@@ -20,7 +23,7 @@ export class ThemeMap<const out REFERENCE extends ThemeProperty = ThemeProperty,
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Themes.courseThemes.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(Themes.COURSE_THEMES, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------
@@ -47,19 +50,19 @@ export class ThemeMap<const out REFERENCE extends ThemeProperty = ThemeProperty,
     }
 
 
-    public entries(): IterableIterator<[Themes, boolean,]> {
+    public entries(): MapIterator<[Themes, boolean,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<Themes> {
+    public keys(): MapIterator<Themes> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<boolean> {
+    public values(): MapIterator<boolean> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[Themes, boolean,]> {
+    public [Symbol.iterator](): MapIterator<[Themes, boolean,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 

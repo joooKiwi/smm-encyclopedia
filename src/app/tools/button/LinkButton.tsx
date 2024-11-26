@@ -1,9 +1,10 @@
-import {Link} from 'react-router-dom'
+import type {NullableString} from '@joookiwi/type'
+import {Link}                from 'react-router-dom'
 
 import type {PossibleRouteName}                            from 'route/EveryRoutes.types'
 import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
-import {routeFromName} from 'route/route'
+import {routeFromName} from 'route/method/route.fromName'
 
 interface LinkButtonsProperties
     extends ReactProperties {
@@ -17,7 +18,7 @@ interface LinkButtonsProperties
 }
 
 /**
- * Create a {@link Link} button or a simple disabled button (if the {@link LinkButtonsProperties.routeName route name} is <b>null</b>)
+ * Create a {@link Link} button or a disabled button (if the {@link LinkButtonsProperties.routeName route name} is <b>null</b>)
  *
  * @reactComponent
  */

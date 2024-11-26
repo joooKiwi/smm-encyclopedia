@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {ClassWithReference}                                                        from 'core/ClassWithReference'
@@ -11,6 +12,8 @@ import {OtherWordInTheGameLoader} from 'core/otherWordInTheGame/OtherWordInTheGa
 import {EveryLanguages}           from 'lang/EveryLanguages'
 import {StringContainer}          from 'util/StringContainer'
 import {CompanionEnumByName}      from 'util/enumerable/companion/CompanionEnumByName'
+
+import Companion = EveryLanguages.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -62,7 +65,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
 
     }
     /**
-     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link Games.SUPER_MARIO_MAKER_1 SMM} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}).
+     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link SMM1} & {@link SMM3DS}).
      *
      * Meaning that translations from chinese ({@link ProjectLanguages.SIMPLIFIED_CHINESE simplified} or {@link ProjectLanguages.TRADITIONAL_CHINESE traditional}) or {@link ProjectLanguages.KOREAN korean}
      * are defaulted to the {@link ProjectLanguages.AMERICAN_ENGLISH american english} value.
@@ -97,7 +100,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
 
     }
     /**
-     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link Games.SUPER_MARIO_MAKER_1 SMM} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS}).
+     * A complete {@link OtherWordInTheGames} for every language applicable to the 1st game ({@link SMM1} & {@link SMM3DS}).
      *
      * Meaning that translations from portuguese ({@link ProjectLanguages.AMERICAN_PORTUGUESE american} or {@link ProjectLanguages.EUROPEAN_PORTUGUESE european})
      * are defaulted to the english ({@link ProjectLanguages.AMERICAN_ENGLISH american} or {@link ProjectLanguages.EUROPEAN_PORTUGUESE european}) value respectively.
@@ -147,7 +150,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
 
     public static readonly FLYDAY =                new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Flyday',)
     public static readonly HAPPY_SUNDAY =          new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Happy Sunday',)
-    public static readonly LET_GET_MAKING =        new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Let\'s get\nmaking!',)
+    public static readonly LET_GET_MAKING =        new OtherWordInTheGames.CompleteInSMM1OtherWordInTheGame('Let’s get\nmaking!',)
 
     public static readonly GAME_STYLE =            new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Game Style',)
     public static readonly EXTRA_GAME_STYLE =      new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Extra Game Styles',)
@@ -160,7 +163,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     public static readonly WORLD_THEME =           new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('World Theme',)
 
     public static readonly AUTOSCROLL =            new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Autoscroll',)
-    public static readonly MARIO_TRAIL =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Mario\'s Trail',)
+    public static readonly MARIO_TRAIL =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Mario’s Trail',)
     public static readonly COPY =                  new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Copy',)
     public static readonly ERASE =                 new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Erase',)
     public static readonly MULTIGRAB =             new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Multigrab',)
@@ -185,7 +188,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     public static readonly EXPERT =                new OtherWordInTheGames.CompleteOtherWordInTheGame('Expert',)
     public static readonly SUPER_EXPERT =          new OtherWordInTheGames.CompleteOtherWordInTheGame('Super expert',)
 
-    public static readonly YAMAMURA_DOJO =         new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Yamamura\'s Dojo',)
+    public static readonly YAMAMURA_DOJO =         new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Yamamura’s Dojo',)
     public static readonly STORY_MODE =            new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Story Mode',)
     public static readonly COURSE_WORLD =          new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Course World',)
     public static readonly NETWORK_PLAY =          new OtherWordInTheGames.CompleteInSMM2OtherWordInTheGame('Network Play',)
@@ -286,7 +289,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it =>
+            const valueFound = this.values.findFirstOrNull(it =>
                 it.singularEnglishName === value
                 || it.pluralEnglishName === value,)
             if (valueFound == null)
@@ -342,7 +345,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     public get singularNameOnReference(): string {
         const value = this.reference.languageValue
         if (value == null)
-            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${EveryLanguages.CompanionEnum.get.current.englishName} language.`,)
+            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${Companion.current.englishName} language.`,)
         return value
     }
 
@@ -377,7 +380,7 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
             throw ReferenceError(`There is no plural value on the ${this.englishName}.`)
         const value = pluralForm.languageValue
         if (value == null)
-            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${EveryLanguages.CompanionEnum.get.current.englishName} language.`,)
+            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${Companion.current.englishName} language.`,)
         return value
     }
 
@@ -441,3 +444,6 @@ export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_
     //endregion -------------------- Methods --------------------
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).OtherWordInTheGames = OtherWordInTheGames

@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
 
     NONE,
@@ -55,7 +57,7 @@ export type PossibleOfficialEnglishName =
     | 'Link'
 export type PossibleUnofficialEnglishName =
     | 'One screen'
-    | `${| 'Local' | 'Online'} Multiplayer` | `Multiplayer${| '' | ' Co-op'}`
+    | `${| 'Local' | 'Online'} Multiplayer` | `Multiplayer${| EmptyString | ' Co-op'}`
     | 'Pixel art' | 'Showcase' | 'Story' | 'Exploration'
     | 'Glitch' | 'Troll' | 'Kaizo'
 export type PossibleMakerCentralName = | 'Standard' | 'Puzzle' | 'Speedrun' | 'Autoscroll' | 'Auto'

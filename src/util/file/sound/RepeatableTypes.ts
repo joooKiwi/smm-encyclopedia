@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable} from '@joookiwi/type'
+import {Enum}          from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRepeatableName} from 'util/file/sound/RepeatableTypes.types'
 import type {CompanionEnumByNameSingleton}            from 'util/enumerable/Singleton.types'
@@ -42,7 +43,7 @@ export abstract class RepeatableTypes
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it => it.simpleName === value,)
+            const valueFound = this.values.findFirstOrNull(it => it.simpleName === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -79,6 +80,11 @@ export abstract class RepeatableTypes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
+    /**
+     * Set the loop value based on the {@link RepeatableTypes instance} {@link RepeatableTypes.doesLoopAtTheEnd value}
+     *
+     * @param element The {@link HTMLAudioElement} to change the {@link HTMLAudioElement.loop loop} field
+     */
     public setLoopField<T extends HTMLAudioElement, >(element: T,): T {
         element.loop = this.doesLoopAtTheEnd
         return element

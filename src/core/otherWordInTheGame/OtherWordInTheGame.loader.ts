@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Other word in the game.json'
 
+import type {Array, NullOrString} from '@joookiwi/type'
+import {toReversedByArray}        from '@joookiwi/collection'
+
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {GameContentFromAllGames}                                                       from 'core/game/Loader.types'
 import type {OtherPluralWordInTheGame}                                                      from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
@@ -38,16 +41,14 @@ export class OtherWordInTheGameLoader
 
         const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>()
         const pluralReferences = new Map<PossibleEnglishName_Plural, OtherPluralWordInTheGame>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
+        toReversedByArray(file as Array<Content>,).forEach(content => {
             const englishName = (content.english ?? content.americanEnglish)!
             if (content.isPlural) {
                 pluralReferences.set(englishName as PossibleEnglishName_Plural, createPluralContent(content,),)
-                continue
+                return
             }
             references.set(englishName as PossibleEnglishName_Singular, createSingularContent(content, pluralReferences,),)
-        }
+        },)
 
         if (!isInProduction)
             console.info(
@@ -63,11 +64,11 @@ export class OtherWordInTheGameLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
-    readonly english: NullOr<PossibleEnglishName>
-    readonly americanEnglish: NullOr<PossibleEnglishName>
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
 
     readonly isPlural: boolean
-    readonly pluralForm: NullOr<PossibleEnglishName_Plural>
+    readonly pluralForm: NullOrString<PossibleEnglishName_Plural>
 
 }
 

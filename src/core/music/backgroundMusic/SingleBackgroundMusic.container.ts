@@ -1,6 +1,6 @@
-import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
+import {filterNotNull} from '@joookiwi/collection'
 
-import {nonNull} from 'util/utilitiesMethods'
+import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */
 export class SingleBackgroundMusicContainer<const out SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
@@ -24,13 +24,13 @@ export class SingleBackgroundMusicContainer<const out SMB_MUSIC extends Possible
     //region -------------------- Constructor --------------------
 
     constructor(smb: SMB_MUSIC, smb3: SMB3_MUSIC, smw: SMW_MUSIC, nsmbu: NSMBU_MUSIC, sm3dw: SM3DW_MUSIC,) {
-        this.#all = nonNull([this.#smb = smb, this.#smb3 = smb3, this.#smw = smw, this.#nsmbu = nsmbu, this.#sm3dw = sm3dw,]) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
+        this.#all = filterNotNull([this.#smb = smb, this.#smb3 = smb3, this.#smw = smw, this.#nsmbu = nsmbu, this.#sm3dw = sm3dw,]).toArray() as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get all(): PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]> {
+    public get all(): PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]> {
         return this.#all
     }
 

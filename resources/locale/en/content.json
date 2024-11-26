@@ -40,6 +40,9 @@
     }
   },
   "music": {
+    "singular": "Music",
+    "plural":   "Musics",
+
     "title": "The musics in \"Super Mario Maker\"",
     "introduction": {
       "1. present":          "This page contains all of the music (with their variants) that are present in the games. ",
@@ -60,15 +63,23 @@
   "Blue":   { "m": "Blue",   "f": "Blue" },
   "Yellow": { "m": "Yellow", "f": "Yellow" },
 
-  "Name":                "Name",
-  "Full name":           "Full name",
-  "Alternative name":    "Alternative name",
-  "Empty name":          "Empty name",
+  "Name":             "Name",
+  "Full name":        "Full name",
+  "Alternative name": "Alternative name",
+  "Empty name":       "Empty name",
+
   "Acronym":             "Acronym",
   "Acronym(s)":          "Acronym(s)",
   "Alternative acronym": "Alternative acronym",
-  "Word":                "Word",
-  "Name or word":        "Name or word",
+
+  "Description": "Description",
+
+  "Other":          "Other",
+  "Icon":           "Icon",
+  "Music or sound": "Music or sound",
+  "Name or word":   "Name or word",
+  "sound":          { "singular": "Sound", "plural": "Sounds" },
+  "Word":           "Word",
 
   "Minimum": { "m": "Minimum", "f": "Minimum" },
   "Maximum": { "m": "Maximum", "f": "Maximum" },

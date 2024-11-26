@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {GlobalAppOption}   from 'app/options/global/GlobalAppOption'
 import type {GlobalThemeOption} from 'app/options/global/GlobalThemeOption'
 import type {Games}             from 'core/game/Games'
@@ -13,7 +15,7 @@ export interface GroupProperties<T extends PossibleElement, U extends PossibleOp
 
     readonly isHidden?: boolean
 
-    readonly elements: readonly SingleElement<T, U>[]
+    readonly elements: Array<SingleElement<T, U>>
 
 }
 

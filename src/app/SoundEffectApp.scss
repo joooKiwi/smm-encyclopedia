@@ -1,9 +1,14 @@
 #soundEffect-app-container {
+
   .viewChanger-container {
     //TODO change the view changer default position to not have be absolute
     position: initial;
   }
+
+  .cardListElement-container .soundEffect-image { max-height: 4rem }
 }
+
+#soundEffect-list .soundEffect-image { max-height: 3rem }
 
 #soundEffect-table {
   width: auto;
@@ -33,38 +38,31 @@
 
   img {
 
-    &[alt="Feelings"] {
-      filter: var(--filter-white-to-yellow);
-    }
-
-    &[alt="Stingers"] {
-      filter: var(--filter-white-to-orange);
-    }
-
-    &[alt="Reactions"] {
-      filter: var(--filter-white-to-green);
-    }
-
-    &[alt="Animations"] {
-      filter: var(--filter-white-to-pink);
-    }
-
-    &[alt="Music"] {
-      filter: var(--filter-white-to-cyan);
-    }
+    &[alt="Feelings"]   { filter: var(--filter-white-to-yellow) }
+    &[alt="Stingers"]   { filter: var(--filter-white-to-orange) }
+    &[alt="Reactions"]  { filter: var(--filter-white-to-green) }
+    &[alt="Animations"] { filter: var(--filter-white-to-pink) }
+    &[alt="Music"]      { filter: var(--filter-white-to-cyan) }
 
   }
 
 }
 
 .playerSoundEffectTrigger-container {
-  i {
+  em {
 
     transform: translateY(var(--bs-spacer-sm));
     --image-width: .5cm;
 
-    &.big-mushroom-image, &.big-mushroom-classic-image, &.clown-car-image, {
+    &.big-mushroom-image,
+    &.big-mushroom-classic-image,
+    &.clown-car-image,
+    &.swinging-claw-image, {
       --image-width: .75cm;
+    }
+
+    &.stiletto-image {
+      --image-height: calc(var(--image-width) * 2);
     }
 
     &.mystery-mushroom-image::after {

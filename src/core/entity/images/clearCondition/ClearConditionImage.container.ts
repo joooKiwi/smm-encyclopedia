@@ -1,24 +1,33 @@
-import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile.clearCondition'
+import type {Array}             from '@joookiwi/type'
+import {findFirstOrNullByArray} from '@joookiwi/collection'
+
+import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile'
 import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {GameStyles}              from 'core/gameStyle/GameStyles'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
-
-export class ClearConditionImageContainer
+export class ClearConditionImageContainer<const out T extends ClearConditionImageFile = ClearConditionImageFile, >
     implements ClearConditionImage {
 
-    readonly #map
+    #images?: Array<T>
+    readonly #imagesWithAssociation
 
-    public constructor(map: ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]>,) {
-        this.#map = map
+    public constructor(images: Array<readonly [GameStyles, T,]>,) {
+        this.#imagesWithAssociation = images
     }
 
-    public get map(): ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]> {
-        return this.#map
+    public get images(): Array<T> {
+        return this.#images ??= this.imagesWithAssociation.map(it => it[1],)
     }
 
-    public get(gameStyle: GameStyles,): readonly ClearConditionImageFile[] {
-        return this.#map.get(gameStyle) ?? EMPTY_ARRAY
+    public get imagesWithAssociation(): Array<readonly [GameStyles, T,]> {
+        return this.#imagesWithAssociation
+    }
+
+    public get(gameStyle: GameStyles,): T {
+        const value = findFirstOrNullByArray(this.imagesWithAssociation, it => it[0] === gameStyle,)
+        if (value == null)
+            throw new ReferenceError(`The game style "${gameStyle.englishName}" does not exist for the clear condition image.`,)
+        return value[1]
     }
 
 }

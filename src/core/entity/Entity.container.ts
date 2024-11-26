@@ -1,8 +1,9 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazyOf}    from '@joookiwi/lazy'
+import type {Lazy}                        from '@joookiwi/lazy'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import {lazyOf}                           from '@joookiwi/lazy'
 
 import type {Entity, PossibleOtherEntities}                                                                                                                                     from 'core/entity/Entity'
-import type {LCL_Play}                                                                                                                                                          from 'core/entity/properties/basic/BasicProperty'
+import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                     from 'core/entity/properties/instrument/loader.types'
 import type {PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
 import type {EntityCategory}                                                                                                                                                    from 'core/entityCategory/EntityCategory'
@@ -21,7 +22,7 @@ import {LimitMapHolder}                   from 'util/collection/LimitMapHolder'
 import {ThemeMap}                         from 'util/collection/ThemeMap'
 import {TimeMap}                          from 'util/collection/TimeMap'
 
-/** A class made to be a representation of the csv data of an {@link Entities} */
+/** A class made to be a representation of the csv data on an {@link Entities} */
 export class EntityContainer
     extends ClassContainingANameAndACategory<string, string, EntityCategory>
     implements Entity {
@@ -33,6 +34,25 @@ export class EntityContainer
     readonly #canBeInAParachuteComment
     readonly #canHaveWings
     readonly #canHaveWingsComment
+
+    readonly #canContainOrSpawnAKey
+
+    readonly #isAffectDirectlyByAnOnOffState
+    readonly #isAffectDirectlyByAnOnOffStateComment
+
+    readonly #canSpawnOutOfAPipe
+    readonly #canBePutOnASwingingClaw
+    readonly #canBeThrownByALakitu
+    readonly #canBePutInALakituCloud
+    readonly #canBePutInAClownCar
+    readonly #canBeFiredOutOfABulletLauncher
+    readonly #canComeOutOfABlock
+    readonly #canBePutInATree
+
+    readonly #canBeStacked
+
+    readonly #isGlobalGroundOrGlobal
+    readonly #isGlobalGroundOrGlobalInSm3dw
 
 
     readonly #isInSuperMarioMaker1
@@ -116,7 +136,7 @@ export class EntityContainer
     readonly #everyReferences
 
 
-    #gameMap?: GameMap<boolean, Entity>
+    #gameMap?: GameMap<Entity>
     #gameStyleMap?: GameStyleMap<Entity>
     #themeMap?: ThemeMap<Entity>
     #timeMap?: TimeMap<Entity>
@@ -128,35 +148,71 @@ export class EntityContainer
     public constructor(
         name: Name<string>, category: EntityCategory,
 
-        hasAMushroomVariant: BooleanOrNotApplicable, canBeInAParachute: BooleanOrNotApplicable, canBeInAParachuteComment: NullOr<LCL_Play>, canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
+        hasAMushroomVariant: boolean,
+        canBeInAParachute: boolean, canBeInAParachuteComment: NullOrString<LCL_Play>,
+        canHaveWings: boolean, canHaveWingsComment: NullOrString<LCL_Play>,
+
+        canContainOrSpawnAKey: boolean,
+        isAffectDirectlyByAnOnOffState: boolean, isAffectDirectlyByAnOnOffStateComment: NullOrString<OnlySomeVariants>,
+        canSpawnOutOfAPipe: boolean,
+        canBePutOnASwingingClaw: boolean,
+        canBeThrownByALakitu: BooleanOrUnknownCharacter,
+        canBePutInALakituCloud: BooleanOrUnknownCharacter,
+        canBePutInAClownCar: boolean,
+        canBeFiredOutOfABulletLauncher: boolean, canComeOutOfABlock: boolean, canBePutInATree: boolean,
+
+        canBeStacked: boolean,
+        isGlobalGroundOrGlobal: boolean, isGlobalGroundOrGlobalInSm3dw: boolean,
 
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
-        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: BooleanOrNotApplicable,
-        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: BooleanOrNotApplicable, isInSnowTheme: BooleanOrNotApplicable, isInSkyTheme: BooleanOrNotApplicable, isInForestTheme: BooleanOrNotApplicable, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
-        isInDayTime: boolean, isInNightTime: BooleanOrNotApplicable,
+        isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: boolean,
+        isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: boolean, isInSnowTheme: boolean, isInSkyTheme: boolean, isInForestTheme: boolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
+        isInDayTime: boolean, isInNightTime: boolean,
 
         editorLimitInSuperMarioMaker1And3DS: NullOr<| NotApplicable | Limits>, editorLimitInSuperMarioMaker2: NullOr<| NotApplicable | Limits>, isUnknownInEditorLimitInSuperMarioMaker2: boolean,
-        isInGeneralLimit: BooleanOrNotApplicable, isInGeneralLimitComment: NullOr<PossibleGeneralLimitComment>,
-        isInGlobalGeneralLimit: BooleanOrNotApplicable, isInGlobalGeneralLimitComment: NullOr<PossibleGeneralGlobalLimitComment>,
+        isInGeneralLimit: BooleanOrNotApplicable, isInGeneralLimitComment: NullOrString<PossibleGeneralLimitComment>,
+        isInGlobalGeneralLimit: BooleanOrNotApplicable, isInGlobalGeneralLimitComment: NullOrString<PossibleGeneralGlobalLimitComment>,
         isInPowerUpLimit: BooleanOrNotApplicable,
-        isInProjectileLimit: BooleanOrNotApplicable, isInProjectileLimitComment: NullOr<PossibleProjectileLimitComment>,
-        isInRenderedObjectLimit: BooleanOrNotApplicable, isInRenderedObjectLimitComment: NullOr<PossibleRenderedObjectLimitTypeComment>,
+        isInProjectileLimit: BooleanOrNotApplicable, isInProjectileLimitComment: NullOrString<PossibleProjectileLimitComment>,
+        isInRenderedObjectLimit: BooleanOrNotApplicable, isInRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>,
         isInCollectedCoinLimit: BooleanOrNotApplicable,
-        otherLimit: NullOr<| NotApplicable | Limits>, otherLimitComment: NullOr<PossibleOtherLimitComment>, isUnknownInOtherLimit: boolean,
+        otherLimit: NullOr<| NotApplicable | Limits>, otherLimitComment: NullOrString<PossibleOtherLimitComment>, isUnknownInOtherLimit: boolean,
 
-        instruments: Lazy<readonly Instrument[]>, canMakeASoundOutOfAMusicBlock: BooleanOrNotApplicable, canMakeASoundOutOfAMusicBlockComment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
+        instruments: Lazy<Array<Instrument>>, canMakeASoundOutOfAMusicBlock: boolean, canMakeASoundOutOfAMusicBlockComment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
 
         referencesInSuperMarioBrosStyle: Lazy<PossibleOtherEntities>, referencesInSuperMarioBros3Style: Lazy<PossibleOtherEntities>, referencesInSuperMarioWorldStyle: Lazy<PossibleOtherEntities>, referencesInNewSuperMarioBrosUStyle: Lazy<PossibleOtherEntities>, referencesInSuperMario3DWorldStyle: Lazy<PossibleOtherEntities>,
         referencesInGroundTheme: Lazy<PossibleOtherEntities>, referencesInUndergroundTheme: Lazy<PossibleOtherEntities>, referencesInUnderwaterTheme: Lazy<PossibleOtherEntities>, referencesInDesertTheme: Lazy<PossibleOtherEntities>, referencesInSnowTheme: Lazy<PossibleOtherEntities>, referencesInSkyTheme: Lazy<PossibleOtherEntities>, referencesInForestTheme: Lazy<PossibleOtherEntities>, referencesInGhostHouseTheme: Lazy<PossibleOtherEntities>, referencesInAirshipTheme: Lazy<PossibleOtherEntities>, referencesInCastleTheme: Lazy<PossibleOtherEntities>,
         referencesInDayTime: Lazy<PossibleOtherEntities>, referencesInNightTime: Lazy<PossibleOtherEntities>,
-        everyGameStyleReferences: Lazy<readonly Entity[]>, everyThemeReferences: Lazy<readonly Entity[]>, everyTimeReferences: Lazy<readonly Entity[]>, everyReferences: Lazy<readonly Entity[]>,
+        everyGameStyleReferences: Lazy<Array<Entity>>, everyThemeReferences: Lazy<Array<Entity>>, everyTimeReferences: Lazy<Array<Entity>>, everyReferences: Lazy<Array<Entity>>,
     ) {
         super(name, lazyOf(category,),)
         this.#hasAMushroomVariant = hasAMushroomVariant
+
         this.#canBeInAParachute = canBeInAParachute
         this.#canBeInAParachuteComment = canBeInAParachuteComment
+
         this.#canHaveWings = canHaveWings
         this.#canHaveWingsComment = canHaveWingsComment
+
+        this.#canContainOrSpawnAKey = canContainOrSpawnAKey
+
+        this.#isAffectDirectlyByAnOnOffState = isAffectDirectlyByAnOnOffState
+        this.#isAffectDirectlyByAnOnOffStateComment = isAffectDirectlyByAnOnOffStateComment
+
+        this.#canSpawnOutOfAPipe = canSpawnOutOfAPipe
+        this.#canBePutOnASwingingClaw = canBePutOnASwingingClaw
+        this.#canBeThrownByALakitu = canBeThrownByALakitu
+        this.#canBePutInALakituCloud = canBePutInALakituCloud
+        this.#canBePutInAClownCar = canBePutInAClownCar
+        this.#canBeFiredOutOfABulletLauncher = canBeFiredOutOfABulletLauncher
+        this.#canComeOutOfABlock = canComeOutOfABlock
+        this.#canBePutInATree = canBePutInATree
+
+        this.#canBeStacked = canBeStacked
+
+        this.#isGlobalGroundOrGlobal = isGlobalGroundOrGlobal
+        this.#isGlobalGroundOrGlobalInSm3dw = isGlobalGroundOrGlobalInSm3dw
+
 
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
         this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
@@ -251,6 +307,31 @@ export class EntityContainer
     public get canHaveWingsComment() {      return this.#canHaveWingsComment }
 
     //endregion -------------------- Basic --------------------
+    //region -------------------- Directly affected --------------------
+
+    public get canContainOrSpawnAKey() {                 return this.#canContainOrSpawnAKey }
+
+    public get isAffectDirectlyByAnOnOffState() {        return this.#isAffectDirectlyByAnOnOffState }
+    public get isAffectDirectlyByAnOnOffStateComment() { return this.#isAffectDirectlyByAnOnOffStateComment }
+
+    public get canSpawnOutOfAPipe() {                    return this.#canSpawnOutOfAPipe }
+    public get canBePutOnASwingingClaw() {               return this.#canBePutOnASwingingClaw }
+    public get canBeThrownByALakitu() {                  return this.#canBeThrownByALakitu }
+    public get canBePutInALakituCloud() {                return this.#canBePutInALakituCloud }
+    public get canBePutInAClownCar() {                   return this.#canBePutInAClownCar }
+    public get canBeFiredOutOfABulletLauncher() {        return this.#canBeFiredOutOfABulletLauncher }
+    public get canComeOutOfABlock() {                    return this.#canComeOutOfABlock }
+    public get canBePutInATree() {                       return this.#canBePutInATree }
+
+    //endregion -------------------- Directly affected --------------------
+    //region -------------------- Indirect --------------------
+
+    public get canBeStacked() {                  return this.#canBeStacked }
+
+    public get isGlobalGroundOrGlobal() {        return this.#isGlobalGroundOrGlobal }
+    public get isGlobalGroundOrGlobalInSm3dw() { return this.#isGlobalGroundOrGlobalInSm3dw }
+
+    //endregion -------------------- Indirect --------------------
     //region -------------------- Game --------------------
 
     public get isInSuperMarioMaker1() {      return this.#isInSuperMarioMaker1 }

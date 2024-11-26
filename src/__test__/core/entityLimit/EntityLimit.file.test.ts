@@ -15,6 +15,7 @@ describe('Limit (file test)', () => {
     const everyLimitInSMM1And3DS = [null, NOT_APPLICABLE, ...types.everyPossibleAmount_smm1And3ds_limit,] as const
     const everyLimitInSMM2 = [null, ...types.everyPossibleAmount_smm2_limit,] as const
     const everyComment = [null, ...types.everyPossibleComment_limit,] as const
+    const everyDescription = types.everyPossibleDescription_limit
 
     file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isAlternativeLimit = it.type == null
@@ -36,7 +37,8 @@ describe('Limit (file test)', () => {
                     test('value', () => expect(it.limit_SMM2,).toBeNull(),)
                     test('isUnknown', () => expect(it.limit_SMM2_isUnknown,).toBeNull(),)
                 },)
-                test('Limit comment', () => expect(it.limit_comment,).toBeNull(),)
+                test('Note', () => expect(it.limit_note,).toBeNull(),)
+                test('Description', () => expect(it.description,).toBeNull(),)
 
                 testOnlyEnglish(it, everyAlternativeNames,)
             } else {
@@ -54,7 +56,8 @@ describe('Limit (file test)', () => {
                     test('value', () => expect(it.limit_SMM2,).toBeOneOf(everyLimitInSMM2,),)
                     test('isUnknown', () => expect(it.limit_SMM2_isUnknown,).toBeBoolean(),)
                 },)
-                test('Limit comment', () => expect(it.limit_comment,).toBeOneOf(everyComment,),)
+                test('Note', () => expect(it.limit_note,).toBeOneOf(everyComment,),)
+                test('Description', () => expect(it.description,).toBeOneOf(everyDescription,),)
                 /* eslint-enable jest/no-identical-title */
 
                 testOnlyEnglish(it, everyNames,)

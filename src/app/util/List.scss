@@ -1,0 +1,11 @@
+.list.withSeparator .listItem {
+  &:not(:first-child) { padding-top: var(--bs-spacer-sm) }
+  &:not(:last-child) {
+    padding-bottom: var(--bs-spacer-sm);
+    border-bottom: {
+      style: dotted;
+      color: var(--bs-primary-200);
+      width: var(--bs-border-width-1);
+    }
+  }
+}

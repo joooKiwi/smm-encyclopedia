@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {NullOrBoolean} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                from 'core/ClassWithEnglishName'
 import type {CompanionEnumByNameSingleton}                        from 'util/enumerable/Singleton.types'
@@ -145,5 +146,12 @@ export abstract class Validators
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace Validators {
+
+    /** The companion instance of a {@link Validators} */
+    export const Companion = Validators.CompanionEnum.get
 
 }

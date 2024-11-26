@@ -1,10 +1,15 @@
-import {CollectionHolder, GenericCollectionHolder}                        from '@joookiwi/collection'
+import type {CollectionHolder}                                            from '@joookiwi/collection'
 import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Array, NullOr}                                               from '@joookiwi/type'
 import type {Dispatch, SetStateAction}                                    from 'react'
+import {GenericCollectionHolder, isArray}                                 from '@joookiwi/collection'
 import {CompanionEnum}                                                    from '@joookiwi/enumerable'
 
-import {EMPTY_MAP}          from 'util/emptyVariables'
-import {isCollectionEquals} from 'util/utilitiesMethods'
+import {Empty}                            from 'util/emptyVariables'
+import {forEachValue, isCollectionEquals} from 'util/utilitiesMethods'
+
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_MAP =               Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" values ({@link CollectionHolder}) as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM extends Enumerable,
@@ -27,6 +32,17 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
         return this.#current ?? null
     }
 
+    /** Get the current {@link Enumerable instances} that may be initialized (as a non-null {@link CollectionHolder}) */
+    public get currentOrEmpty(): CollectionHolder<ENUM> {
+        return this.currentOrNull ?? EMPTY_COLLECTION_HOLDER
+    }
+
+    /** Get the current {@link Enumerable instances} that may be initialized (as a nullable {@link ReadonlyArray Array}) */
+    public get currentOrNullAsArray(): NullOrArray<ENUM> {
+        return this.currentOrNull?.toArray() ?? null
+    }
+
+
     /**
      * Get the non-nullable current {@link Enumerable instances}
      *
@@ -43,22 +59,21 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
      *
      * @param value The {@link Enumerable instances} to set as the selected one
      */
-    public set current(value: | CollectionHolder<ENUM> | readonly ENUM[],) {
+    public set current(value: | CollectionHolder<ENUM> | Array<ENUM>,) {
         const current = this.currentOrNull
         if (value === current)
             return
-        if (value instanceof Array)
+        if (isArray(value,))
             value = new GenericCollectionHolder(value,)
         if (current != null)
             if (isCollectionEquals(value, current,))
                 return
-        this.onSetCurrentEventOrEmpty.forEach(it => it(value as CollectionHolder<ENUM>,),)
+        forEachValue(this.onSetCurrentEventOrEmpty, it => it(value as CollectionHolder<ENUM>,),)
         this._onSetCurrent(value,)
         this.#current = value
     }
 
-    protected _onSetCurrent(value: CollectionHolder<ENUM>,): void {
-    }
+    protected _onSetCurrent(value: CollectionHolder<ENUM>,): void {}
 
     //region -------------------- Current --------------------
     //region -------------------- Event --------------------

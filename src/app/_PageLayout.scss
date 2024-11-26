@@ -2,7 +2,19 @@
   scroll-behavior: smooth;
 
   //@include gradient-y-three-colors($cyan, cornFlowerBlue, null, $blue);
+  //background-image:
+  //        linear-gradient(
+  //          rgba(var(--bs-black-rgb), 10%),
+  //          rgba(var(--bs-black-rgb), 40%)),//TODO change to the character color instead of black
+  //        url('../resources/background/background.png');
+  //background-repeat: repeat;
+  //background-position: center;
+  //background-size: contain;
 }
+
+//#main-container {
+//  background-color: rgba(var(--bs-body-bg-rgb), 20%)
+//}
 
 .listElement-container, .cardListElement-container, { .name-container { text-align: center } }
 

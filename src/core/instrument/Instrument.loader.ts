@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Instrument.json'
 
+import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
+import {forEachByArray}                         from '@joookiwi/collection'
+
 import type {LanguageContent}                                   from 'core/_template/LanguageContent'
 import type {Entity}                                            from 'core/entity/Entity'
 import type {PossibleEnglishName as PossibleEnglishName_Entity} from 'core/entity/Entities.types'
@@ -12,7 +15,9 @@ import {isInProduction}        from 'variables'
 import {EntityLoader}          from 'core/entity/Entity.loader'
 import {InstrumentContainer}   from 'core/instrument/Instrument.container'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
-import {EMPTY_ARRAY}           from 'util/emptyVariables'
+import {Empty}                 from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /** @singleton */
 export class InstrumentLoader
@@ -30,7 +35,7 @@ export class InstrumentLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, Instrument>
+    #map?: ReadonlyMap<PossibleEnglishName, Instrument>
 
     public load(): ReadonlyMap<PossibleEnglishName, Instrument> {
         if (this.#map != null)
@@ -38,11 +43,10 @@ export class InstrumentLoader
 
         const entityMap = EntityLoader.get.load()
         const references = new Map<PossibleEnglishName, Instrument>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content, entityMap,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content, entityMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(
@@ -72,11 +76,20 @@ interface Content
 
     readonly isInSuperMarioMaker2: true
 
-    readonly entityReference1: NullOr<PossibleEnglishName_Entity>
-    readonly entityReference2: NullOr<PossibleEnglishName_Entity>
-    readonly entityReference3: NullOr<PossibleEnglishName_Entity>
-    readonly entityReference4: NullOr<PossibleEnglishName_Entity>
-    readonly indirectEntityReference: NullOr<PossibleEnglishName_Entity>
+    readonly isInSmbGameStyle: boolean
+    readonly isInSmb3GameStyle: boolean
+    readonly isInSmwGameStyle: boolean
+    readonly isInNsmbuGameStyle: boolean
+    readonly isInSm3dwGameStyle: false
+
+    readonly isInDayTime: boolean
+    readonly isInNightTime: boolean
+
+    readonly entityReference1: NullOrString<PossibleEnglishName_Entity>
+    readonly entityReference2: NullOrString<PossibleEnglishName_Entity>
+    readonly entityReference3: NullOrString<PossibleEnglishName_Entity>
+    readonly entityReference4: NullOrString<PossibleEnglishName_Entity>
+    readonly indirectEntityReference: NullOrString<PossibleEnglishName_Entity>
 
 }
 
@@ -88,11 +101,13 @@ function createReference(content: Content, entityMap: EntityMap,): Instrument {
         createNameFromContent(content, 'all', false,),
         retrieveEntity(content, entityMap,),
         content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS,
+        content.isInSmbGameStyle, content.isInSmb3GameStyle, content.isInSmwGameStyle, content.isInNsmbuGameStyle,
+        content.isInDayTime, content.isInNightTime,
     )
 }
 
-function retrieveEntity(content: Content, entityMap: EntityMap,): readonly Entity[] {
-    const entities = [] as Entity[]
+function retrieveEntity(content: Content, entityMap: EntityMap,): Array<Entity> {
+    const entities: MutableArray<Entity> = []
     if (content.entityReference1 != null)
         entities.push(entityMap.get(content.entityReference1,)!,)
     if (content.entityReference2 != null)

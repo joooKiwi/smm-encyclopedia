@@ -1,3 +1,5 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
+
 import {EventHolder} from 'bootstrap/event/EventHolder'
 
 export class PassiveEventHolder<const out ELEMENT extends Element, const out EVENT_TYPE extends string, >

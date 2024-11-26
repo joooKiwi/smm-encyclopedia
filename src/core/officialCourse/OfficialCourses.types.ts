@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
     NWC_2017,
     DR_KAWASHIMA_ATHLETIC_TRAINING,
@@ -46,18 +48,18 @@ export type Names = keyof typeof Enum
 
 export type PossibleEnglishName =
     | 'NWC-2017'
-    | 'Dr Kawashima\'s Athletic Training'
-    | 'Walkin\' with Undodog'
+    | 'Dr Kawashima’s Athletic Training'
+    | 'Walkin’ with Undodog'
     | 'Squid Sisters vs. Bloopers'
-    | 'Shaun\'s Mossy Mole Mischief'
+    | 'Shaun’s Mossy Mole Mischief'
     | 'Hello Kitty & My Melody'
-    | 'Popo & Nana\'s Climbing Challenge'
+    | 'Popo & Nana’s Climbing Challenge'
     | 'METAL RESISTANCE'
     | 'Starfy: Prince of Pufftop'
-    | '♪Yu Ayasaki\'s Big Adventure!♪'
+    | '♪Yu Ayasaki’s Big Adventure!♪'
     | 'Toadette: Treasure Tracker'
     | 'Twilight Princess HD'
-    | 'Mary O.\'s Lunch Break'
+    | 'Mary O.’s Lunch Break'
     | 'Secrets of Statue Mario'
     | 'Barbara in Tomatoland'
     | `Nisekoi: ${| 'Chitoge & Kosaki' | 'Tsugumi & Marika'}`
@@ -72,15 +74,15 @@ export type PossibleEnglishName =
     | 'Welcome to Saturn Valley' | 'Belch Base'
     | 'Nintendo Badge Arcade'
     | 'Ma Rio Hills'
-    | 'Mercedes-Benz Jump\'n\'Drive'
+    | 'Mercedes-Benz Jump’n’Drive'
     | 'Mario & Luigi: Paper Jam'
     | 'NES REMIX'
     | 'PAX West 2015 Omegathon Final Rd'
     | 'Yoshi Is Awesome'
-    | `Cat ${| 'Mario' | 'Peach'}'s Course`
+    | `Cat ${| 'Mario' | 'Peach'}’s Course`
     | 'SUPER MARIO KUN 25th Anniversary'
     | 'Tri Force Heroes'
-    | `Arino Maker${| '' | ' Returns'}` | 'New! Arino Maker'
+    | `Arino Maker${| EmptyString | ' Returns'}` | 'New! Arino Maker'
     | 'Super Bakarhythm Land'
     | 'Ship Love'
 

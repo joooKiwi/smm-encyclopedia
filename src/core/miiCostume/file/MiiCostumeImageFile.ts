@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {ImageFile} from 'util/file/image/ImageFile'
 
 /** An {@link ImageFile} made to be related to a {@link MiiCostumes} */
@@ -7,7 +9,7 @@ export type MiiCostumeImageFile = ImageFile<'Mii costume', PossibleImageFileName
 export type PossibleImageFileName =
     | `All_${`${| 'BuilderMario' | 'ClimbMario' | 'Dossun' | 'DrMario' | 'Kameck'
                 | 'King' | 'Kinopio' | 'Koopa' | 'Nokonoko' | 'OnePiece'
-                | `Peach${| '' | 'Tennis'}` | 'PropellerMario' | 'Robot' | 'Rocket'
+                | `Peach${| EmptyString | 'Tennis'}` | 'PropellerMario' | 'Robot' | 'Rocket'
                 | 'Rompers' | 'Rosetta' | 'Splus' | 'SuperBall' | 'Tuxedo'
                 | 'WhiteDress' | 'Yoshi'}_Normal`
              | `Mario_${| 'Luigi' | 'Mario'}`
@@ -22,9 +24,9 @@ export type PossibleImageFileName =
     | `Headwear_${| 'Dummy_Default'
                   | `${| 'BuilderMario' | 'Cheetah' | 'ClimbMario' | 'Dokan' | 'Donguri'
                        | 'DrMario' | 'Edamame' | 'Hakkun' | 'Kameck' | 'Karaage'
-                       | 'King' | 'Kinopio' | `Koopa${| '' | 'Jr'}` | 'Luigi'
+                       | 'King' | 'Kinopio' | `Koopa${| EmptyString | 'Jr'}` | 'Luigi'
                        | 'Otogaeru' | 'Packun' | 'Peach' | 'Poo' | 'PropellerMario'
-                       | 'Pukupuku' | 'Robot' | 'Rosetta' | `Sambo${| '' | 'Snow'}`
+                       | 'Pukupuku' | 'Robot' | 'Rosetta' | `Sambo${| EmptyString | 'Snow'}`
                        | 'Star' | 'SuperBall' | 'Teresa' | 'Tuxedo' | 'Yoshi'}_Normal`
                   | 'KinokoMini_Red'
                   | 'Mario_Mario'}`

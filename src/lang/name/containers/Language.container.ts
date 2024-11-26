@@ -1,8 +1,15 @@
+import type {Array, EmptyArray, NullOr} from '@joookiwi/type'
+import {isArray}                        from '@joookiwi/collection'
+
 import type {Language} from 'lang/name/containers/Language'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
 
-export class LanguageContainer<const out T, const out S extends T = T, const out A extends readonly T[] = EmptyArray, >
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+
+export class LanguageContainer<const T,
+    const S extends T = T,
+    const A extends Array<T> = EmptyArray, >
     implements Language<T, S, A> {
 
     //region -------------------- Fields --------------------
@@ -15,7 +22,7 @@ export class LanguageContainer<const out T, const out S extends T = T, const out
 
     public constructor(value: | S | A,) {
         this.#original = value
-        if (value instanceof Array) {
+        if (isArray(value,)) {
             this.#singleValue = null
             this.#arrayValue = value
         } else {
@@ -38,7 +45,7 @@ export class LanguageContainer<const out T, const out S extends T = T, const out
 
     public get(): S
     public get<INDEX extends number = number, >(index: INDEX,): | NonNullable<A[INDEX]> | S
-    public get<INDEX extends number = number, >(index?: INDEX,) {
+    public get(index?: number,) {
         if (index == null)
             return this._singleValue ?? this._arrayValue[0]
         return this._arrayValue[index] ?? this._singleValue

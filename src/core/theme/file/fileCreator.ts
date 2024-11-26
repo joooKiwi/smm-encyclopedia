@@ -1,8 +1,5 @@
-import type {Themes}                          from 'core/theme/Themes'
-import type {PossibleName_InFile_CourseTheme} from 'core/theme/Themes.types'
-import type {LargeThemeImageFile}             from 'core/theme/file/ThemeImageFile'
-import type {SmallThemeImageFile}             from 'core/theme/file/ThemeImageFile'
-import type {EndlessMarioThemeImageFile}      from 'core/theme/file/ThemeImageFile'
+import type {Themes}                                                                                                                     from 'core/theme/Themes'
+import type {EndlessMarioThemeImageFile, LargeThemeImageFile, PossibleName_InFile, PossibleName_InFile_CourseTheme, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
@@ -11,7 +8,7 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  *
  * @param value The {@link Themes} to retrieve its {@link Themes.gameName game} and {@link Themes.englishName english} name
  */
-export function smallImageFile(value: Themes,): SmallThemeImageFile {
+export function smallImageFile<const T extends PossibleName_InFile, >(value: Themes<any, T>,): SmallThemeImageFile<T> {
     return new SimpleImageFile('theme', `Lyt_E_SceneSmall_${value.nameInFile}_00`, 'tiff', `${value.englishName} (small)`,)
 }
 
@@ -20,7 +17,7 @@ export function smallImageFile(value: Themes,): SmallThemeImageFile {
  *
  * @param value The {@link Themes} to retrieve its {@link Themes.gameName game} and {@link Themes.englishName english} name
  */
-export function largeImageFile(value: Themes,): LargeThemeImageFile {
+export function largeImageFile<const T extends PossibleName_InFile, >(value: Themes<any, T>,): LargeThemeImageFile<T> {
     return new SimpleImageFile('theme', `Lyt_E_Scene_${value.nameInFile}_00`, 'tiff', `${value.englishName} (large)`,)
 }
 

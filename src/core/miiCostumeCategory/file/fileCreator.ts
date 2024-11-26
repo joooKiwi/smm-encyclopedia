@@ -4,7 +4,7 @@ import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCos
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link MiiCostumeCategoryImageFile} from the {@link number} provided
+ * Create a {@link MiiCostumeCategoryImageFile} from the {@link number} provided
  *
  * @param number The image number
  * @param englishName The {@link MiiCostumeCategories} {@link MiiCostumeCategories.englishName english name}

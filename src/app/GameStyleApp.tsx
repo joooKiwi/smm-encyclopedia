@@ -1,6 +1,10 @@
 import 'app/_GameAsideContent.scss'
 import './GameStyleApp.scss'
 
+import type {Array, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}    from '@joookiwi/collection'
+import {filterByArray}            from '@joookiwi/collection'
+
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
@@ -17,16 +21,26 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
-import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
+import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
+import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame}                                 from 'util/utilitiesMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
+
+import ALL =    GameStyles.ALL
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+import NSMBU =  GameStyles.NSMBU
+import SMB =    GameStyles.SMB
+import SMB3 =   GameStyles.SMB3
+import SMW =    GameStyles.SMW
+import SM3DW =  GameStyles.SM3DW
 
 class GameStyleAppInterpreter
     implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
@@ -45,25 +59,20 @@ class GameStyleAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(GameStyles.CompanionEnum.get.values, this.#games,)
+        const games = this.#games
+        return filterByArray(ALL, ({reference,},) =>
+            games.hasAnyIn(reference,),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 2,
             medium: 3,
             extraLarge: 5,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: GameStyles,) {
@@ -72,13 +81,13 @@ class GameStyleAppInterpreter
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('game style.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly GameStyleAppOption[] {
+    public get tableOptions(): Array<GameStyleAppOption> {
         return [
             GameStyleAppOption.ICON,
             GameStyleAppOption.NAME,
@@ -94,7 +103,7 @@ class GameStyleAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 
@@ -102,40 +111,53 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyGameStyle (list)',],
     [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
     [ViewDisplays.TABLE, 'everyGameStyle (table)',],
-] as const satisfies readonly ViewAndRouteName[]
-
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
-    const titleContent = gameContentTranslation('game style.all',)
-    const appInterpreter = new GameStyleAppInterpreter(games,)
-
-    const game = games.hasSMM2
+    const game = games.hasSmm2
         ? GameStyleGames.SUPER_MARIO_MAKER_2
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
-            <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
-            <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('game style.all',)}
                              description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <Table id="gameStyle-table" interpreter={appInterpreter}/>
+                             asideContent={<GameStyleAsideContent game={game}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
 }
 
+/** @reactComponent */
+function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyles' | 'times'>,) {
+    const appInterpreter = new GameStyleAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <GameStyleList items={appInterpreter.content}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
+    return <Table id="gameStyle-table" interpreter={appInterpreter}/>
+}
+
+//region -------------------- List --------------------
+
+interface GameStyle_ListProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<GameStyles>
+
+}
+
+/** @reactComponent */
+function GameStyleList({items,}:GameStyle_ListProperties,) {
+    return <List partialId="gameStyle" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="gameStyle-name" name={it.reference} popoverOrientation="top"/>
+            <GameStyleImage reference={it}/>
+        </div>
+    }</List>
+}
+
+//endregion -------------------- List --------------------
 //region -------------------- Description content --------------------
 
 interface GameStyleDescriptionProperties
@@ -152,8 +174,8 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
     const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
     const entities = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName.toLowerCase(),)
 
-    const smm1OrSmm3dsLink = game.getSmm1Or3dsRouteName(viewDisplay,)
-    const smm2Link = game.getSmm2RouteName(viewDisplay,)
+    const smm1OrSmm3dsLink = game.smm1Or3dsRouteName satisfies NullOrString<PossibleRouteName>
+    const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyGameStyle (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyGameStyle (card)' satisfies PossibleRouteName
@@ -163,22 +185,22 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
         <p>
             {gameContentTranslation('game style.description.intro page', {
                 gameStyles: <em key="gameStyles">{gameContentTranslation('game style.plural',).toLowerCase()}</em>,
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1OrSmm3dsLink}><GameImage reference={smm1}/></TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1OrSmm3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1OrSmm3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1OrSmm3dsLink}><GameImage reference={SMM3DS}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro sm3dw', {
-                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/></LinkText>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro entity', {
                 entityLink: <LinkText key="entityLink"  partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
                 entitiesLink: <LinkText key="entitiesLink" partialId="entityLink" routeName="everyEntity" color="primary">{entities}</LinkText>,
-                smbLink: <LinkText key="smbLink" partialId="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/></LinkText>,
-                smb3Link: <LinkText key="smb3Link" partialId="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/></LinkText>,
-                smwLink: <LinkText key="smwLink" partialId="smwLink" routeName="everyEntity (card GameStyle=W)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/></LinkText>,
-                nsmbuLink: <LinkText key="nsmbuLink" partialId="nsmbuLink" routeName="everyEntity (card GameStyle=U)" color="primary"><GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/></LinkText>,
-                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/></LinkText>,
+                smbLink: <LinkText key="smbLink" partialId="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={SMB}/></LinkText>,
+                smb3Link: <LinkText key="smb3Link" partialId="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={SMB3}/></LinkText>,
+                smwLink: <LinkText key="smwLink" partialId="smwLink" routeName="everyEntity (card GameStyle=W)" color="primary"><GameStyleImage reference={SMW}/></LinkText>,
+                nsmbuLink: <LinkText key="nsmbuLink" partialId="nsmbuLink" routeName="everyEntity (card GameStyle=U)" color="primary"><GameStyleImage reference={NSMBU}/></LinkText>,
+                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
             },)}
         </p>
         <p>{gameContentTranslation('game style.description.viewable', {
@@ -196,21 +218,19 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
 interface GameStyleAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly game: GameStyleGames
 
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({viewDisplay, game,}: GameStyleAsideContentProperties,) {
+function GameStyleAsideContent({game,}: GameStyleAsideContentProperties,) {
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(viewDisplay,)} color={game.smm1Or3dsColor}>
-            <GameImage reference={smm1}/>
-            <GameImage reference={smm3ds}/>
+        <LinkButton partialId="smm1Or3dsGame" routeName={game.smm1Or3dsRouteName} color={game.smm1Or3dsColor}>
+            <GameImage reference={SMM1}/>
+            <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}>
-            <GameImage reference={smm2}/>
+        <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+            <GameImage reference={SMM2}/>
         </LinkButton>
     </div>
 }

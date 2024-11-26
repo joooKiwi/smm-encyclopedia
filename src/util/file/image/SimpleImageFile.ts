@@ -2,7 +2,7 @@ import type {PossibleImageFileExtension} from 'util/file/image/ImageFile'
 
 import {AbstractImageFile} from 'util/file/image/AbstractImageFile'
 
-/** A simple implementation of an {@link ImageFile} */
+/** An implementation of an {@link ImageFile} */
 export class SimpleImageFile<const out PATH extends string = string,
     const out NAME extends string = string,
     const out EXTENSION extends PossibleImageFileExtension = PossibleImageFileExtension,

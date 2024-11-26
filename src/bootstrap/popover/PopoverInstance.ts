@@ -1,4 +1,5 @@
-import Popover from 'bootstrap/js/dist/popover'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import Popover                 from 'bootstrap/js/dist/popover'
 
 import type {EventHolder}                                      from 'bootstrap/event/EventHolder'
 import type {PopoverEvents}                                    from 'bootstrap/popover/PopoverEvents'
@@ -8,7 +9,7 @@ import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEven
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
 
 /**
- * A simple instance holder for a {@link bootstrap.Popover Popover}
+ * An instance holder for a {@link bootstrap.Popover Popover}
  *
  * @see https://getbootstrap.com/docs/5.2/components/popover
  */
@@ -20,16 +21,6 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
     //region -------------------- Fields --------------------
 
     public static DEFAULT_OPTIONS: Partial<Popover.Options> = {}
-    /** @see Popover.Events.show */
-    public static readonly SHOW_EVENT = `show${Popover.EVENT_KEY}` as Popover.Events.show
-    /** @see Popover.Events.shown */
-    public static readonly SHOWN_EVENT = `shown${Popover.EVENT_KEY}` as Popover.Events.shown
-    /** @see Popover.Events.hide */
-    public static readonly HIDE_EVENT = `hide${Popover.EVENT_KEY}` as Popover.Events.hide
-    /** @see Popover.Events.hidden */
-    public static readonly HIDDEN_EVENT = `hidden${Popover.EVENT_KEY}` as Popover.Events.hidden
-    /** @see Popover.Events.inserted */
-    public static readonly INSERTED_EVENT = `inserted${Popover.EVENT_KEY}` as Popover.Events.inserted
 
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Popover.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Popover.Events.shown>>
@@ -164,5 +155,21 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace PopoverInstance {
+
+    // export let DEFAULT_OPTIONS: Partial<Popover.Options> = {}
+    /** @see Popover.Events.show */
+    export const SHOW_EVENT = `show${Popover.EVENT_KEY}` as Popover.Events.show
+    /** @see Popover.Events.shown */
+    export const SHOWN_EVENT = `shown${Popover.EVENT_KEY}` as Popover.Events.shown
+    /** @see Popover.Events.hide */
+    export const HIDE_EVENT = `hide${Popover.EVENT_KEY}` as Popover.Events.hide
+    /** @see Popover.Events.hidden */
+    export const HIDDEN_EVENT = `hidden${Popover.EVENT_KEY}` as Popover.Events.hidden
+    /** @see Popover.Events.inserted */
+    export const INSERTED_EVENT = `inserted${Popover.EVENT_KEY}` as Popover.Events.inserted
 
 }

@@ -1,9 +1,13 @@
 import type {CompanionEnumDeclaration, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Array, NullOrString}                             from '@joookiwi/type'
 import {CompanionEnum}                                        from '@joookiwi/enumerable'
 
 import type {EnumerableUsedInRoute} from 'util/enumerable/Enumerable.types'
 
-import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY =  Empty.EMPTY_ARRAY
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  * A {@link CompanionEnum} that is in the project url and can be retrievable
@@ -26,7 +30,7 @@ export abstract class CompanionEnumDualRetrievableInUrl<const ENUM extends Enume
      * @param url The url to find the values
      * @throws {ReferenceError} A fail-safe error on a value that was not found
      */
-    public getValueInUrl(url: string,): readonly ENUM[] {
+    public getValueInUrl(url: string,): Array<ENUM> {
         if (!this.URL_REGEX.test(url,))
             return EMPTY_ARRAY
 
@@ -36,15 +40,15 @@ export abstract class CompanionEnumDualRetrievableInUrl<const ENUM extends Enume
         const lowerCasedUrl = url.toLowerCase()
         const prefix = this.PREFIX?.toLowerCase() ?? EMPTY_STRING
         if (this.SINGLE_URL_REGEX.test(url,)) {
-            const valueFound = this.values.find(it => lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
+            const valueFound = this.values.findFirstOrNull(it => lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" was found by the url "${url}".`,)
             return [valueFound,]
         }
 
         const values = this.values
-        for (let enumerable1 of values)
-            for (let enumerable2 of values)
+        for (const enumerable1 of values)
+            for (const enumerable2 of values)
                 if (lowerCasedUrl.includes(`/${prefix}${enumerable1.urlValue.toLowerCase()},${enumerable2.urlValue.toLowerCase()}`,))
                     return [enumerable1, enumerable2,]
 

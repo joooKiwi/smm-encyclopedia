@@ -5,8 +5,6 @@ enum Enum {
     OFFICIAL_NOTIFICATION,
     CATEGORY,
 
-    CATEGORY_AS_TEXT,
-
 }
 
 export type Ordinals = typeof Enum[Names]

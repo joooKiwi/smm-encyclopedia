@@ -1,0 +1,13 @@
+#medal-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.icon {}
+    &.name {}
+  }
+
+}
+
+:is(#medal-table, #medal-list) .medal-icon { max-height: 3rem }

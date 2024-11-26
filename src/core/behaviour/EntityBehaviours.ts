@@ -1,4 +1,5 @@
 import type {Singleton} from '@joookiwi/enumerable'
+import type {Nullable}  from '@joookiwi/type'
 import {Enum}           from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'
@@ -109,3 +110,6 @@ export class EntityBehaviours
     //endregion -------------------- Methods --------------------
 
 }
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).EntityBehaviours = EntityBehaviours

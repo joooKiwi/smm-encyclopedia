@@ -1,3 +1,5 @@
+import type {EmptyArray, EmptyString} from '@joookiwi/type'
+
 import type {Entity} from 'core/entity/Entity'
 
 enum Enum {
@@ -13,10 +15,10 @@ enum Enum {
     ICICLE_LIMIT, ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT,
 
     ENTITY_HELD_BY_A_TWISTER_LIMIT, SNOWBALL_THROWN_BY_A_SPIKE_LIMIT,
-    CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT, RENDERED_OBJECT_LIMIT,
+    CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT, DYNAMIC_RENDERED_OBJECT_LIMIT,
 
     BIG_COIN_LIMIT, PINK_COIN_LIMIT,
-    COLLECTED_COIN_LIMIT, COLLECTED_KEY_LIMIT,
+    COLLECTED_LOOSE_COIN_LIMIT, COLLECTED_KEY_LIMIT,
 
     POWER_UP_LIMIT_EDITOR,
     PLAYER_FIREBALL, PLAYER_SUPERBALL,
@@ -37,10 +39,10 @@ export type Names = keyof typeof Enum
 
 //region -------------------- Name / acronym --------------------
 
-type PossibleAcronymInBothEditorAndPlay = `${| 'GE' | 'P'}L${| '' | ' (E)'}`
+type PossibleAcronymInBothEditorAndPlay = | 'GEL' | 'GEL (E)' | 'PL' | 'PL (E)'
 type PossibleStartingEnglishNameInBothEditorAndPlay = | 'General Entity' | 'Power-up'
 
-export type PossibleAcronym = | PossibleAcronymInBothEditorAndPlay | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'ET' | 'GV' | 'CC' | 'CK' | 'HY'}L`
+export type PossibleAcronym = | PossibleAcronymInBothEditorAndPlay | 'LCL' |'SEL' | 'CL' | 'PJL' | 'LSL' | 'ETL' | 'GVL' | 'CKL' | 'HYL'
 type PossibleStartingEnglishNameNotInBothEditorAndPlay =
     | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile' | 'Light Source'
 
@@ -51,24 +53,22 @@ type PossibleStartingEnglishNameNotInBothEditorAndPlay =
     | 'Icicle' | 'One-Way Wall / Arrow Sign / Dash Block'
 
     | 'Entity Held By A Twister' | 'Snowball Thrown By A Spike'
-    | 'Clear Condition Entity Amount' | 'Rendered Object'
+    | 'Clear Condition Entity Amount' | 'Dynamic Rendered Object'
 
 
     | `${| 'Big' | 'Pink'} Coin`
-    | `Collected ${| 'Key' | 'Coin'}`
+    | 'Collected Key' | 'Collected Loose Coin'
 
-    | 'Power-up' | `Player's ${| `${| 'Fire' | 'Super'}ball` | 'Bomb' | 'Builder Box' | 'Boomerang' | 'Cannonball'}` | 'Hatched Yoshi'
+    | 'Power-up' | `Player’s ${| `${| 'Fire' | 'Super'}ball` | 'Bomb' | 'Builder Box' | 'Boomerang' | 'Cannonball'}` | 'Hatched Yoshi'
 
     | 'Charvaargh' | 'Piranha Creeper'
     | 'Bowser (Jr.)' | 'Boom Boom / Pom Pom' | 'Koopaling'
     | 'Angry Sun / Moon' | 'Phanto' | 'Koopa Troopa Car'
 
     | `Warp ${| 'Door' | 'Box' | 'Pipe'}`
-export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndPlay} Limit` | `${PossibleStartingEnglishNameInBothEditorAndPlay} Limit${| '' | ' (Editor)'}`
+export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndPlay} Limit` | `${PossibleStartingEnglishNameInBothEditorAndPlay} Limit${| EmptyString | ' (Editor)'}`
 
 export type PossibleAlternativeAcronym = `EL${| 'B' | 'C'}`
-export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Object Displayed Limit'
+export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Dynamic Object Displayed Limit'
 
 //endregion -------------------- Name / acronym --------------------
-
-export type PossibleEntityLink = | EmptyArray | readonly [Entity,] | readonly [Entity, Entity,]

@@ -1,45 +1,29 @@
 import type {Singleton} from '@joookiwi/enumerable'
+import type {NullOr}    from '@joookiwi/type'
 import {Enum}           from '@joookiwi/enumerable'
 
-import type {CompanionEnumDeclaration_ViewDisplays}             from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
-import type {HTMLType, Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
-import type {ClassWithType}                                     from 'core/ClassWithType'
-import type {ClassUsedInRoute}                                  from 'route/ClassUsedInRoute'
-import type {ClassWithIsCurrent}                                from 'util/enumerable/ClassWithIsCurrent'
+import type {CompanionEnumDeclaration_ViewDisplays}   from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
+import type {Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
+import type {ClassWithType}                           from 'core/ClassWithType'
+import type {ClassUsedInRoute}                        from 'route/ClassUsedInRoute'
+import type {ClassWithIsCurrent}                      from 'util/enumerable/ClassWithIsCurrent'
 
-import {assert, getValueInUrl}                      from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 /** @usedByTheRouting */
-export abstract class ViewDisplays
+export class ViewDisplays<const TYPE extends Type = Type,
+    const URL extends PossibleUrlValue = PossibleUrlValue,>
     extends Enum<Ordinals, Names>
-    implements ClassWithType<Type>,
-        ClassUsedInRoute<PossibleUrlValue>,
+    implements ClassWithType<TYPE>,
+        ClassUsedInRoute<URL, URL>,
         ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly TABLE =       new class ViewDisplays_Table extends ViewDisplays {
-
-        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-            return `${path} (table)` as const
-        }
-
-    }('table', 'table', 'table',)
-    public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
-
-        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-            return `${path} (list)` as const
-        }
-
-    }('simple-list', 'list', 'list',)
-    public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
-
-        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
-            return `${path} (card)` as const
-        }
-
-    }('card-list', 'card', 'card-list',)
+    public static readonly TABLE =       new ViewDisplays('table', 'table', 'table',)
+    // public static readonly NAME_LIST =   new ViewDisplays('name-list', 'name', 'list-nested',)
+    public static readonly SIMPLE_LIST = new ViewDisplays('simple-list', 'list', 'list-ul',)
+    public static readonly CARD_LIST =   new ViewDisplays('card-list', 'card', 'card-list',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -62,11 +46,27 @@ export abstract class ViewDisplays
 
         //endregion -------------------- Singleton usage --------------------
 
-        public readonly URL_REGEX = /\/(table|list|card)\//i
-        public readonly PREFIX = null
+        // public readonly URL_REGEX = /\/(table|list|card)\//i
 
-        public getValueInUrl(url: string): NullOr<ViewDisplays> {
-            return getValueInUrl(url, this,)
+        public findInUrl(url: string,): NullOr<ViewDisplays> {
+            const lowerCasedUrl = url.toLowerCase()
+            if (lowerCasedUrl.includes('/list/',))
+                return ViewDisplays.SIMPLE_LIST
+            if (lowerCasedUrl.includes('/card/',))
+                return ViewDisplays.CARD_LIST
+            if (lowerCasedUrl.includes('/table/',))
+                return ViewDisplays.TABLE
+            return null
+        }
+
+        public findInName(name: string,): NullOr<ViewDisplays> {
+            if (name.endsWith('(list)',) || name.includes('(list',))
+                return ViewDisplays.SIMPLE_LIST
+            if (name.endsWith('(card)',) || name.includes('(card',))
+                return ViewDisplays.CARD_LIST
+            if (name.endsWith('(table)',) || name.includes('(table',))
+                return ViewDisplays.TABLE
+            return null
         }
 
     }
@@ -75,69 +75,54 @@ export abstract class ViewDisplays
     //region -------------------- Fields --------------------
 
     readonly #type
-    readonly #urlValue
+    readonly #url
     readonly #htmlType
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(type: Type, urlValue: PossibleUrlValue, htmlType: HTMLType,) {
+    private constructor(type: TYPE, url: URL, htmlType: PossibleBootstrapIcon,) {
         super()
         this.#type = type
-        this.#urlValue = urlValue
+        this.#url = url
         this.#htmlType = htmlType
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get type(): Type {
+    public get type(): TYPE {
         return this.#type
     }
 
-    public get urlValue(): PossibleUrlValue {
-        return this.#urlValue
+    public get urlValue(): URL {
+        return this.#url
     }
 
-    public get htmlType(): HTMLType {
+    public get urlName(): URL {
+        return this.#url
+    }
+
+    public get htmlType(): PossibleBootstrapIcon {
         return this.#htmlType
     }
 
     /** The current instance is the current one selected in the application */
     public get isCurrent(): boolean {
-        return this === ViewDisplays.CompanionEnum.get.currentOrNull
+        return this === ViewDisplays.Companion.currentOrNull
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    /**
-     * Get a route path with the type in parentheses
-     *
-     * @param path The nullable path to get its types
-     */
-    public getRoutePath<const PATH extends string, >(path: NullableString<PATH>,): NullOrString<PossibleRoutePath<PATH>> {
-        return path == null ? null : this._getRoutePath(path)
-    }
-
-    /**
-     * Get a route path with only the {@link ViewDisplays.SIMPLE_LIST} & {@link ViewDisplays.CARD_LIST}.
-     *
-     * @param path The nullable path to get its types
-     * @throws {AssertionError} (only in development) It is the {@link ViewDisplays.TABLE} calling it
-     */
-    public getRoutePathAsListOnly<const PATH extends string, >(path: NullableString<PATH>,): NullOr<PossibleListRoutePath<PATH>>
-    public getRoutePathAsListOnly(path: NullableString,) {
-        // @ts-ignore
-        assert(this !== ViewDisplays.TABLE, 'The view display cannot be retrieved for a list only (simple & card) display',)
-        return this.getRoutePath(path,)
-    }
-
-    protected abstract _getRoutePath<const PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
-
     //endregion -------------------- Methods --------------------
 
 }
 
-type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
-type PossibleListRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card'})`
+export namespace ViewDisplays {
+
+    /** The companion instance of a {@link ViewDisplays} */
+    export const Companion = ViewDisplays.CompanionEnum.get
+
+    export const ALL = [ViewDisplays.TABLE, ViewDisplays.CARD_LIST, /*ViewDisplays.NAME_LIST, */ViewDisplays.SIMPLE_LIST,] as const
+
+}

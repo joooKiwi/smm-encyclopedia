@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array} from '@joookiwi/type'
+import {Enum}       from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}         from 'core/ClassWithEnglishName'
 import type {EnglishName, Names, Ordinals} from 'util/file/sound/player/SoundStates.types'
@@ -98,7 +99,7 @@ export abstract class SoundStates
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract getElementsFrom(elementsHolder: SoundSubElementsHolder,): readonly ReactElement[]
+    public abstract getElementsFrom(elementsHolder: SoundSubElementsHolder,): Array<ReactElement>
 
     //endregion -------------------- Methods --------------------
 

@@ -1,4 +1,5 @@
 import type {CompanionEnumDeclaration, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {NullOr, NullOrString}                            from '@joookiwi/type'
 import {CompanionEnum}                                        from '@joookiwi/enumerable'
 
 import type {EnumerableUsedInRoute} from 'util/enumerable/Enumerable.types'

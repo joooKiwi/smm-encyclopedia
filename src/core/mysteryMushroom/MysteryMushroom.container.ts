@@ -1,3 +1,5 @@
+import type {NullOr, NullOrString} from '@joookiwi/type'
+
 import type {GameReferences}                                                                                                                                                                                                                                                        from 'core/gameReference/GameReferences'
 import type {MysteryMushroom}                                                                                                                                                                                                                                                       from 'core/mysteryMushroom/MysteryMushroom'
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                           from 'core/mysteryMushroom/loader.types'
@@ -60,13 +62,13 @@ export class MysteryMushroomContainer
                        conditionToUnlockIt: PossibleConditionToUnlockIt, canBeUnlockedByAnAmiibo: boolean,
                        haveASoundEffectWhenCollected: BooleanOrNotApplicable, gameOnSoundEffectWhenCollected: NullOr<GameReferences>,
                        haveASoundEffectOnTaunt: BooleanOrNotApplicable, gameOnSoundEffectOnTaunt: NullOr<GameReferences>,
-                       haveASoundEffectOnMovement: BooleanOrNotApplicable, translationKeyOnSoundEffectOnMovement: NullOr<SoundEffectOnMovement>,
+                       haveASoundEffectOnMovement: BooleanOrNotApplicable, translationKeyOnSoundEffectOnMovement: NullOrString<SoundEffectOnMovement>,
                        haveASoundEffectOnJump: BooleanOrNotApplicable, amountOnSoundEffectOnJump: NullOr<PossibleAmountOfSoundEffectOnJump>, haveMultipleImagesOnJump: BooleanOrNotApplicable, gameOnSoundEffectOnJump: NullOr<GameReferences>,
                        haveASoundEffectOnGroundAfterJump: BooleanOrNotApplicable, gameOnSoundEffectOnGroundAfterJump: NullOr<GameReferences>,
                        haveASoundEffectOnTurnAfterRun: BooleanOrNotApplicable,
-                       haveASpecialMusicInStarMode: BooleanOrNotApplicable, translationKeyOnSpecialMusicInStarMode: NullOr<SpecialMusicInStarMode>, gameOnSpecialMusicInStarMode: NullOr<GameReferences>,
-                       haveASoundEffectOnGoalPole: BooleanOrNotApplicable, simpleTranslationKeyOnSoundEffectOnGoalPole: NullOr<AdditionalSoundOnGoalPole>, translationKeyOnSoundEffectOnGoalPole: PossibleTranslationKeyOnGoalPole, typeOfMusicOnGoalPole: NullOr<TypeOfSoundOnGoalPole>, gameOnSoundEffectOnGoalPole: NullOr<GameReferences>,
-                       haveASoundEffectOnDeath: BooleanOrNotApplicable, simpleTranslationKeyOnSoundEffectOnDeath: NullOr<AdditionalSoundOnDeath>, translationKeyOnSoundEffectOnDeath: PossibleTranslationKeyOnDeath, typeOfSoundEffectOnDeath: NullOr<TypeOfSoundOnDeath>, gameOnSoundEffectOnDeath: NullOr<GameReferences>,) {
+                       haveASpecialMusicInStarMode: BooleanOrNotApplicable, translationKeyOnSpecialMusicInStarMode: NullOrString<SpecialMusicInStarMode>, gameOnSpecialMusicInStarMode: NullOr<GameReferences>,
+                       haveASoundEffectOnGoalPole: BooleanOrNotApplicable, simpleTranslationKeyOnSoundEffectOnGoalPole: NullOrString<AdditionalSoundOnGoalPole>, translationKeyOnSoundEffectOnGoalPole: PossibleTranslationKeyOnGoalPole, typeOfMusicOnGoalPole: NullOrString<TypeOfSoundOnGoalPole>, gameOnSoundEffectOnGoalPole: NullOr<GameReferences>,
+                       haveASoundEffectOnDeath: BooleanOrNotApplicable, simpleTranslationKeyOnSoundEffectOnDeath: NullOrString<AdditionalSoundOnDeath>, translationKeyOnSoundEffectOnDeath: PossibleTranslationKeyOnDeath, typeOfSoundEffectOnDeath: NullOrString<TypeOfSoundOnDeath>, gameOnSoundEffectOnDeath: NullOr<GameReferences>,) {
         super(name,)
         this.#games = games
         this.#conditionToUnlockIt = conditionToUnlockIt
@@ -134,7 +136,7 @@ export class MysteryMushroomContainer
         return this.#haveASoundEffectOnTaunt
     }
 
-    public get gameOnSoundEffectOnTaunt(): NullOr<GameReferences> {
+    public get gameOnSoundEffectOnTaunt() {
         return this.#gameOnSoundEffectOnTaunt
     }
 

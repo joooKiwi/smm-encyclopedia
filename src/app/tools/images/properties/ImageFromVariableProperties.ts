@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 import type {ReactProperties} from 'util/react/ReactProperties'
 import type {HTMLIProperties} from 'util/react/html/HTMLIProperties'
 
@@ -14,15 +16,15 @@ export interface ImageFromVariableProperties
 
 export type PossibleVariableImage =
     | `smm${| 1 | '3ds' | 2}`
-    | `${|'music'}-block` | `question-block${| '' | '-sm3dw'}`
-    | `${| 'super' | 'mystery' | 'big' | 'smb2' | 'propeller'}-mushroom` | 'big-mushroom-classic'
+    | `${|'music'}-block` | `question-block${| EmptyString | '-sm3dw'}`
+    | `${| 'super' | 'weird' | 'mystery' | 'big' | 'smb2' | 'propeller'}-mushroom` | 'big-mushroom-classic'
     | `${| 'fire' | 'superball' | 'boomerang'}-flower`
     | 'master-sword'
     | 'super-leaf' | 'frog-suit'
     | 'cape-feather' | 'power-balloon'
     | `super-${| 'acorn' | 'bell' | 'hammer'}`
     | 'shoe' | 'stiletto'
-    | 'yoshi'
+    | `${| EmptyString | 'red-'}yoshi`
     | `${| 'dry-bones' | 'buzzy' | 'spiny'}-shell`
     | 'lakitu-cloud' | 'clown-car'
     | 'swinging-claw'

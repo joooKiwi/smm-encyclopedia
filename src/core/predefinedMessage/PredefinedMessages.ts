@@ -20,7 +20,7 @@ export class PredefinedMessages
     public static readonly THANKS =         new PredefinedMessages('Thanks!',)
     public static readonly HERE_WE_GO =     new PredefinedMessages('Here we go!',)
     public static readonly NICE_WORK =      new PredefinedMessages('Nice work.',)
-    public static readonly IM_DONE_FOR =    new PredefinedMessages('I\'m done for...',)
+    public static readonly IM_DONE_FOR =    new PredefinedMessages('I’m done for...',)
     public static readonly SORRY =          new PredefinedMessages('Sorry!',)
     public static readonly NO_WORRIES =     new PredefinedMessages('No worries!',)
     public static readonly NICE =           new PredefinedMessages('Nice!',)
@@ -30,7 +30,7 @@ export class PredefinedMessages
     public static readonly OOPS =           new PredefinedMessages('OOPS!',)
     public static readonly WAHOO =          new PredefinedMessages('WAHOO!',)
     public static readonly OH_NO =          new PredefinedMessages('Oh no...',)
-    public static readonly WE_VE_GOT_THIS = new PredefinedMessages('We\'ve got this.',)
+    public static readonly WE_VE_GOT_THIS = new PredefinedMessages('We’ve got this.',)
     public static readonly TEAMWORK =       new PredefinedMessages('Teamwork!',)
     public static readonly FOLLOW_ME =      new PredefinedMessages('Follow me.',)
     public static readonly HELP =           new PredefinedMessages('HELP!',)
@@ -106,3 +106,15 @@ export class PredefinedMessages
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace PredefinedMessages {
+
+    /** The companion instance of a {@link PredefinedMessages} */
+    export const Companion = PredefinedMessages.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).PredefinedMessages = PredefinedMessages

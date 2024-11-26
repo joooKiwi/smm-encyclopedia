@@ -1,3 +1,6 @@
+import type {Array, MutableArray, Nullable, NullOr} from '@joookiwi/type'
+import {isArray}                                    from '@joookiwi/collection'
+
 import type {EmptyableOptionalLanguage}                                                                                                                         from 'lang/name/containers/EmptyableOptionalLanguage'
 import type {EmptyableLanguage}                                                                                                                                 from 'lang/name/containers/EmptyableLanguage'
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from 'lang/name/containers/Language'
@@ -7,6 +10,8 @@ import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import {LanguageContainer}         from 'lang/name/containers/Language.container'
 import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
 import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguage.container'
+
+import Companion = ProjectLanguages.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -32,7 +37,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
 
     //region -------------------- Fields --------------------
 
-    readonly #originalLanguages: readonly EveryLanguages[]
+    readonly #originalLanguages: Array<EveryLanguages>
     #map?: Map<EveryLanguages, T>
 
     readonly #englishContainer: Language<T, T, AmericanOrEuropeanArray<T>>
@@ -69,11 +74,11 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
                        polish: Nullable<T>,
                        ukrainian: Nullable<T>,
                        greek: Nullable<T>,) {
-        const originalLanguages: EveryLanguages[] = []
+        const originalLanguages: MutableArray<EveryLanguages> = []
 
         //region -------------------- English initialization --------------------
 
-        if (english instanceof Array)
+        if (isArray(english,))
             originalLanguages.push(AMERICAN_ENGLISH, EUROPEAN_ENGLISH,)
         else
             originalLanguages.push(ENGLISH,)
@@ -85,7 +90,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
         if (french == null)
             this.#frenchContainer = EmptyLanguageContainer.get
         else {
-            if (french instanceof Array)
+            if (isArray(french,))
                 originalLanguages.push(CANADIAN_FRENCH, EUROPEAN_FRENCH,)
             else
                 originalLanguages.push(FRENCH,)
@@ -108,7 +113,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
         if (spanish == null)
             this.#spanishContainer = EmptyLanguageContainer.get
         else {
-            if (spanish instanceof Array)
+            if (isArray(spanish,))
                 originalLanguages.push(AMERICAN_SPANISH, EUROPEAN_SPANISH,)
             else
                 originalLanguages.push(SPANISH,)
@@ -141,7 +146,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
         if (portuguese == null)
             this.#portugueseContainer = EmptyLanguageContainer.get
         else {
-            if (portuguese instanceof Array)
+            if (isArray(portuguese,))
                 originalLanguages.push(AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE,)
             else
                 originalLanguages.push(PORTUGUESE,)
@@ -174,7 +179,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
         if (chinese == null)
             this.#chineseContainer = EmptyLanguageContainer.get
         else {
-            if (chinese instanceof Array)
+            if (isArray(chinese,))
                 originalLanguages.push(TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE,)
             else
                 originalLanguages.push(CHINESE,)
@@ -233,7 +238,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
 
     public get languageValue(): NonNullable<T> {
         // @ts-ignore: FIXME Support this implementation for the Languages
-        return ProjectLanguages.current.get<T>(this) ?? this.english
+        return Companion.current.get<T>(this,) ?? this.english
     }
 
     //region -------------------- English properties --------------------
@@ -418,7 +423,7 @@ export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
 
     //endregion -------------------- Greek properties --------------------
 
-    public get originalLanguages(): readonly EveryLanguages[] {
+    public get originalLanguages(): Array<EveryLanguages> {
         return this.#originalLanguages
     }
 

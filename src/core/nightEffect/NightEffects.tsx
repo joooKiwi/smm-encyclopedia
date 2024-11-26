@@ -1,5 +1,5 @@
-import {Enum}     from '@joookiwi/enumerable'
-import {Link}     from 'react-router-dom'
+import {Enum} from '@joookiwi/enumerable'
+import {Link} from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
@@ -9,15 +9,18 @@ import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singlet
 
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {unfinishedText}                 from 'app/tools/text/UnfinishedText'
-import ThemeImage                       from 'core/theme/ThemeImage'
 import {Themes}                         from 'core/theme/Themes'
+import ThemeImage                       from 'core/theme/component/ThemeImage'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
-import {routeFromName}                  from 'route/route'
+import {routeFromName}                  from 'route/method/route.fromName'
 import {Import}                         from 'util/DynamicImporter'
-import {EMPTY_OBJECT}                   from 'util/emptyVariables'
+import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+
+import EMPTY_OBJECT =      Empty.EMPTY_OBJECT
+import LanguageCompanion = ProjectLanguages.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -36,7 +39,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with special effects on ground night
             return {
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
             }
         }
 
@@ -45,10 +48,9 @@ export class NightEffects
     public static readonly DARK =                       new class NightEffects_Dark extends NightEffects {
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
-            //TODO change the entities to be only for the entities with dark light
             return {
                 course: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
                 players: NightEffects._createPlayersLink(this),
             }
         }
@@ -68,9 +70,10 @@ export class NightEffects
     public static readonly LOW_GRAVITY =                new class NightEffects_LowGravity extends NightEffects {
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
+            //TODO change the link to be only for the entities with special effects on underwater
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
             }
         }
 
@@ -78,9 +81,10 @@ export class NightEffects
     public static readonly POISON_LIQUID =              new class NightEffects_PoisonLiquid extends NightEffects {
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
+            const currentLanguage = LanguageCompanion.current
             return {
-                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.current.get(Import.Entities.WATER.reference)!.toLowerCase()}</span>,
-                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.current.get(Import.Entities.POISON.reference)!.toLowerCase()}</span>,
+                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{currentLanguage.get(Import.Entities.WATER.reference,)!.toLowerCase()}</span>,
+                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{currentLanguage.get(Import.Entities.POISON.reference,)!.toLowerCase()}</span>,
             }
         }
 
@@ -91,7 +95,7 @@ export class NightEffects
             //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity (Time=night)',),
             }
         }
 
@@ -183,3 +187,13 @@ export class NightEffects
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace NightEffects {
+
+    /** The companion instance of a {@link NightEffects} */
+    export const Companion = NightEffects.CompanionEnum.get
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).NightEffects = NightEffects

@@ -1,4 +1,5 @@
-import type Popover from 'bootstrap/js/dist/popover'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import type Popover            from 'bootstrap/js/dist/popover'
 
 import type {BootstrapWithBasicEventInstanceDeclaration} from 'bootstrap/BootstrapWithBasicEventInstance.declaration'
 import type {EventHolder}                                from 'bootstrap/event/EventHolder'
@@ -124,7 +125,5 @@ export interface PopoverInstanceDeclaration<ELEMENT extends HTMLElement = HTMLEl
 
 }
 
-
-export type PopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right'
 
 export type PopoverEventCallback<I extends PopoverInstanceDeclaration<any, any> = PopoverInstanceDeclaration, > = (instance: I, event: Event,) => void

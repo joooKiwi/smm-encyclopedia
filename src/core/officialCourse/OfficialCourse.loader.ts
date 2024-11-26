@@ -1,14 +1,15 @@
 import file from 'resources/compiled/Official course (SMM).json'
 
+import type {Array, NullOr} from '@joookiwi/type'
+import {forEachByArray}     from '@joookiwi/collection'
+
 import type {LanguageContent}                                                                from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent}                                                     from 'core/_template/DescriptionLanguageContent'
 import type {PossibleAcronym_GameStyle_SMM1}                                                 from 'core/gameReference/GameReferences.types'
-import type {CompanionEnumDeclaration_GameStyles}                                            from 'core/gameStyle/GameStyles.companionEnumDeclaration'
 import type {PossibleAmountOfTime, PossibleReleaseDate, PossibleRemovalDate, PossibleReward} from 'core/officialCourse/loader.types'
 import type {OfficialCourse}                                                                 from 'core/officialCourse/OfficialCourse'
 import type {PossibleEnglishName}                                                            from 'core/officialCourse/OfficialCourses.types'
 import type {PossibleEnglishName_CourseTheme_SMM1}                                           from 'core/theme/Themes.types'
-import type {CompanionEnumByName}                                                            from 'util/enumerable/companion/CompanionEnumByName'
 import type {Loader}                                                                         from 'util/loader/Loader'
 
 import {isInProduction}                                          from 'variables'
@@ -18,7 +19,12 @@ import {OfficialCourseContainer}                                 from 'core/offi
 import {Themes}                                                  from 'core/theme/Themes'
 import {createNameFromContent, createNameFromContentDescription} from 'lang/name/createNameFromContent'
 import {UNKNOWN_REFERENCE}                                       from 'util/commonVariables'
-import {EMPTY_ARRAY}                                             from 'util/emptyVariables'
+import {Empty}                                                   from 'util/emptyVariables'
+
+import EMPTY_ARRAY =              Empty.EMPTY_ARRAY
+import GameStyleCompanion =       GameStyles.Companion
+import MysteryMushroomCompanion = MysteryMushrooms.Companion
+import ThemeCompanion =           Themes.Companion
 
 /**
  * @singleton
@@ -38,21 +44,15 @@ export class OfficialCourseLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, OfficialCourse>
+    #map?: ReadonlyMap<PossibleEnglishName, OfficialCourse>
 
     public load(): ReadonlyMap<PossibleEnglishName, OfficialCourse> {
         if (this.#map != null)
             return this.#map
 
-        const GameStyleCompanion = GameStyles.CompanionEnum.get
-        const ThemeCompanion = Themes.CompanionEnum.get
-        const MysteryMushroomCompanion = MysteryMushrooms.CompanionEnum.get
         const references = new Map<PossibleEnglishName, OfficialCourse>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
-            references.set(content.english, createReference(content, GameStyleCompanion, ThemeCompanion, MysteryMushroomCompanion,),)
-        }
+        forEachByArray(file as Array<Content>, content =>
+                references.set(content.english, createReference(content,),),)
 
         if (!isInProduction)
             console.info(
@@ -114,20 +114,13 @@ interface Content
 
 }
 
-/** A type-alias definition of the {@link GameStyles.CompanionEnum} */
-type GameStyleCompanionType = CompanionEnumDeclaration_GameStyles
-/** A type-alias definition of the {@link Themes.CompanionEnum} */
-type ThemeCompanionType = CompanionEnumByName<Themes, typeof Themes>
-/** A type-alias definition of the {@link MysteryMushrooms.CompanionEnum} */
-type MysteryMushroomCompanionType = CompanionEnumByName<MysteryMushrooms, typeof MysteryMushrooms>
-
-function createReference(content: Content, GameStyleCompanion: GameStyleCompanionType, ThemeCompanion: ThemeCompanionType, MysteryMushroomCompanion: MysteryMushroomCompanionType,): OfficialCourse {
+function createReference(content: Content,): OfficialCourse {
     const subArea = content.courseTheme_subArea
 
     return new OfficialCourseContainer(
         createNameFromContent(content, 1, true,),
         createNameFromContentDescription(content, 1, true,),
-        retrieveReward(content.reward, MysteryMushroomCompanion,),
+        retrieveReward(content.reward,),
         createReleaseDate(content.releaseDate,),
         createRemovalDate(content.removalDate,),
         GameStyleCompanion.getValueByAcronym(content.gameStyle,),
@@ -138,7 +131,7 @@ function createReference(content: Content, GameStyleCompanion: GameStyleCompanio
 }
 
 
-function retrieveReward(value: PossibleReward, MysteryMushroomCompanion: MysteryMushroomCompanionType,): readonly MysteryMushrooms[] {
+function retrieveReward(value: PossibleReward,): Array<MysteryMushrooms> {
     if (value == null)
         return EMPTY_ARRAY
     if (value === 'Bulbasaur / Charmander / Squirtle')

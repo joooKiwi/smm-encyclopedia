@@ -1,3 +1,5 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
+
 import type {SoundFile}                                                                                                                                                                                                                                                                                                                                                                                                          from 'util/file/sound/SoundFile'
 import type {OnAfterPauseSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback, OnPauseEventSoundPlayerCallback, OnPlayEventSoundPlayerCallback, OnPlayingEventSoundPlayerCallback} from 'util/file/sound/player/types'
 
@@ -16,7 +18,9 @@ const {STANDBY, PAUSED, PLAYING, EXCEPTION,} = SoundStates
  * @see https://www.w3schools.com/tags/ref_av_dom.asp Audio DOM reference (W3School.com)
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio Embed audio element (Mozilla.org)
  */
-export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile, const TITLE extends string = string, const DOES_LOOP extends boolean = false, >
+export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile,
+    const TITLE extends string = string,
+    const DOES_LOOP extends boolean = false, >
     extends AbstractSoundPlayer<SOURCE['key']> {
 
     //region -------------------- Fields --------------------
@@ -88,6 +92,7 @@ export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile, const
             }
             this.setState(new HistoryState(PLAYING, false, true,),)
             this.onPlayingEvent?.(this, event,)
+            return null
         }
         audio.onpause = event => {
             if (this.history.current.state !== STANDBY)

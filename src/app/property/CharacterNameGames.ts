@@ -1,19 +1,19 @@
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}           from '@joookiwi/enumerable'
+import type {NullOrString}                               from '@joookiwi/type'
+import {CompanionEnumWithParent, EnumWithNullableParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/CharacterNameGames.types'
 
-import {ViewDisplays}                            from 'app/withInterpreter/ViewDisplays'
-import {Games}                                   from 'core/game/Games'
+import {Games} from 'core/game/Games'
 
 export class CharacterNameGames
-    extends EnumWithParent<Games, Ordinals, Names> {
+    extends EnumWithNullableParent<Games, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ALL_GAMES = new class CharacterNameGames_AllGames extends CharacterNameGames {
 
-        public override getAllRouteName() {
+        public override get allRouteName() {
             return null
         }
 
@@ -28,7 +28,7 @@ export class CharacterNameGames
             return 'warning'
         }
 
-        public override getSmm1RouteName() {
+        public override get smm1RouteName() {
             return null
         }
 
@@ -47,7 +47,7 @@ export class CharacterNameGames
             return 'warning'
         }
 
-        public override getSmm3dsRouteName() {
+        public override get smm3dsRouteName() {
             return null
         }
 
@@ -66,7 +66,7 @@ export class CharacterNameGames
             return 'warning'
         }
 
-        public override getSmm2RouteName() {
+        public override get smm2RouteName() {
             return null
         }
 
@@ -125,20 +125,20 @@ export class CharacterNameGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyCharacterName (${viewDisplay.urlValue as | 'list' | 'card'} Game=all)`
+    public get allRouteName(): NullOrString<PossibleRouteName> {
+        return `everyCharacterName (Game=all)`
     }
 
-    public getSmm1RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyCharacterName (${viewDisplay.urlValue as | 'list' | 'card'} Game=1)`
+    public get smm1RouteName(): NullOrString<PossibleRouteName> {
+        return `everyCharacterName (Game=1)`
     }
 
-    public getSmm3dsRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyCharacterName (${viewDisplay.urlValue as | 'list' | 'card'} Game=3DS)`
+    public get smm3dsRouteName(): NullOrString<PossibleRouteName> {
+        return `everyCharacterName (Game=3DS)`
     }
 
-    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyCharacterName (${viewDisplay.urlValue as | 'list' | 'card'} Game=2)`
+    public get smm2RouteName(): NullOrString<PossibleRouteName> {
+        return `everyCharacterName (Game=2)`
     }
 
     //endregion -------------------- Methods --------------------

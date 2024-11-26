@@ -5,6 +5,7 @@ import {Outlet}   from 'react-router-dom/dist'
 
 import {useCurrentGames}      from 'core/game/gamesHook'
 import {useCurrentGameStyles} from 'core/gameStyle/gameStylesHook'
+import {useCurrentTimes}      from 'core/time/timeHook'
 import {useCurrentLanguage}   from 'lang/languageHook'
 import Footer                 from 'navigation/Footer'
 import Navigation             from 'navigation/Navigation'
@@ -23,9 +24,10 @@ import ColorModal             from 'navigation/modal/ColorModal'
 export default function PageLayout() {
     const currentLanguage = useCurrentLanguage('page layout',)
     const currentGames = useCurrentGames('page layout',)
+    const currentTimes = useCurrentTimes('page layout',)
     const currentGameStyles = useCurrentGameStyles('page layout',)
 
-    return <Fragment key={`page layout (${currentLanguage?.projectAcronym} - ${currentGames?.toString() ?? 'no games'} - ${currentGameStyles?.toString() ?? 'no game styles'})`}>
+    return <Fragment key={`page layout (${currentLanguage?.projectAcronym} - ${currentGames?.toString() ?? 'no games'} - ${currentTimes?.toString() ?? 'no times'} - ${currentGameStyles?.toString() ?? 'no game styles'})`}>
         <aside id="modal-container">
             <LanguageModal/>
             <ParameterModal/>

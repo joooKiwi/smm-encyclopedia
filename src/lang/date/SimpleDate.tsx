@@ -1,9 +1,12 @@
+import {mapByArray}         from '@joookiwi/collection'
 import {FormattedDateParts} from 'react-intl'
 import {Fragment}           from 'react'
 
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {DateDayLanguages} from 'lang/date/DateDayLanguages'
+
+import Companion = DateDayLanguages.Companion
 
 interface DateTimeFormatFromSeparatedValuesProperties
     extends ReactProperties {
@@ -20,7 +23,7 @@ interface DateTimeFormatFromDateProperties
 }
 
 /**
- * A simple date component that return a date
+ * A date component that returns a date
  * from the {@link DateDayLanguages.current current language}.
  *
  * @reactComponent
@@ -38,7 +41,7 @@ function SimpleDateFromDate({date,}: DateTimeFormatFromDateProperties,) {
         year="numeric"
         month="long"
         day="numeric">
-        {parts => <>{parts.map(({type, value,}) => type === 'day' ?
-            <Fragment key={`${date} - ${type}`}>{DateDayLanguages.CompanionEnum.get.current.newDayComponent(Number(value,) as DayNumber,)}</Fragment> : value)}</>}
+        {parts => <>{mapByArray(parts, ({type, value,},) => type === 'day' ?
+            <Fragment key={`${date} - ${type}`}>{Companion.current.newDayComponent(Number(value,) as DayNumber,)}</Fragment> : value)}</>}
     </FormattedDateParts>
 }

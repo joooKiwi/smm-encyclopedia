@@ -1,3 +1,5 @@
+import type {EmptyArray, EmptyMap} from '@joookiwi/type'
+
 import type {Entity}                                      from 'core/entity/Entity'
 import type {EmptyEntityCategory}                         from 'core/entityCategory/EmptyEntityCategory'
 import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
@@ -6,7 +8,10 @@ import {LAZY_EMPTY_ENTITY_CATEGORY}       from 'core/entityCategory/EmptyEntityC
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 import {EmptyStringName}                  from 'lang/name/EmptyStringName'
 import {NOT_APPLICABLE}                   from 'util/commonVariables'
-import {EMPTY_ARRAY, EMPTY_MAP}           from 'util/emptyVariables'
+import {Empty}                            from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_MAP =   Empty.EMPTY_MAP
 
 /**
  * An empty entity with the default values of nothing
@@ -35,13 +40,38 @@ export class EmptyEntity
 
     //region -------------------- Basic --------------------
 
-    public readonly hasAMushroomVariant = NOT_APPLICABLE
-    public readonly canBeInAParachute = NOT_APPLICABLE
+    public readonly hasAMushroomVariant = false
+    public readonly canBeInAParachute = false
     public readonly canBeInAParachuteComment = null
-    public readonly canHaveWings = NOT_APPLICABLE
+    public readonly canHaveWings = false
     public readonly canHaveWingsComment = null
 
     //endregion -------------------- Basic --------------------
+    //region -------------------- Directly affected --------------------
+
+    public readonly canContainOrSpawnAKey = false
+
+    public readonly isAffectDirectlyByAnOnOffState = false
+    public readonly isAffectDirectlyByAnOnOffStateComment = null
+
+    public readonly canSpawnOutOfAPipe = false
+    public readonly canBePutOnASwingingClaw = false
+    public readonly canBeThrownByALakitu = false
+    public readonly canBePutInALakituCloud = false
+    public readonly canBePutInAClownCar = false
+    public readonly canBeFiredOutOfABulletLauncher = false
+    public readonly canComeOutOfABlock = false
+    public readonly canBePutInATree = false
+
+    //endregion -------------------- Directly affected --------------------
+    //region -------------------- Indirect --------------------
+
+    public readonly canBeStacked = false
+
+    public readonly isGlobalGroundOrGlobal = false
+    public readonly isGlobalGroundOrGlobalInSm3dw = false
+
+    //endregion -------------------- Indirect --------------------
     //region -------------------- Game --------------------
 
     public readonly isInSuperMarioMaker1 = false
@@ -55,7 +85,7 @@ export class EmptyEntity
     public readonly isInSuperMarioBros3Style = false
     public readonly isInSuperMarioWorldStyle = false
     public readonly isInNewSuperMarioBrosUStyle = false
-    public readonly isInSuperMario3DWorldStyle = NOT_APPLICABLE
+    public readonly isInSuperMario3DWorldStyle = false
 
     //endregion -------------------- Game style --------------------
     //region -------------------- Theme --------------------
@@ -63,10 +93,10 @@ export class EmptyEntity
     public readonly isInGroundTheme = false
     public readonly isInUndergroundTheme = false
     public readonly isInUnderwaterTheme = false
-    public readonly isInDesertTheme = NOT_APPLICABLE
-    public readonly isInSnowTheme = NOT_APPLICABLE
-    public readonly isInSkyTheme = NOT_APPLICABLE
-    public readonly isInForestTheme = NOT_APPLICABLE
+    public readonly isInDesertTheme = false
+    public readonly isInSnowTheme = false
+    public readonly isInSkyTheme = false
+    public readonly isInForestTheme = false
     public readonly isInGhostHouseTheme = false
     public readonly isInAirshipTheme = false
     public readonly isInCastleTheme = false
@@ -75,7 +105,7 @@ export class EmptyEntity
     //region -------------------- Time --------------------
 
     public readonly isInDayTheme = false
-    public readonly isInNightTheme = NOT_APPLICABLE
+    public readonly isInNightTheme = false
 
     //endregion -------------------- Time --------------------
     //region -------------------- Limit --------------------
@@ -108,7 +138,7 @@ export class EmptyEntity
     //region -------------------- Instrument --------------------
 
     public readonly instruments = EMPTY_ARRAY
-    public readonly canMakeASoundOutOfAMusicBlock = NOT_APPLICABLE
+    public readonly canMakeASoundOutOfAMusicBlock = false
     public readonly canMakeASoundOutOfAMusicBlockComment = null
 
     //endregion -------------------- Instrument --------------------
@@ -149,31 +179,31 @@ export class EmptyEntity
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap(): EmptyMap {
+    public toGameMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toGameStyleMap(): EmptyMap {
+    public toGameStyleMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toCourseThemeMap(): EmptyMap {
+    public toCourseThemeMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toTimeMap(): EmptyMap {
+    public toTimeMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toLimitMap(): EmptyMap {
+    public toLimitMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toEditorLimitMap(): EmptyMap {
+    public toEditorLimitMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 
-    public toPlayLimitMap(): EmptyMap {
+    public toPlayLimitMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 

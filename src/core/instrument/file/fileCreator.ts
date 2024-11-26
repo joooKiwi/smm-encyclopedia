@@ -4,7 +4,7 @@ import type {InstrumentSoundFile} from 'core/instrument/file/InstrumentSoundFile
 import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 /**
- * Create a simple {@link InstrumentSoundFile} from a {@link name} provided
+ * Create an {@link InstrumentSoundFile} from a {@link name} provided
  *
  * @param name The image name
  */

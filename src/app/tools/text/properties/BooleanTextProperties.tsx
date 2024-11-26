@@ -1,3 +1,5 @@
+import type {MutableStringArray, NullOr} from '@joookiwi/type'
+
 import type {ReactProperties}    from 'util/react/ReactProperties'
 import type {HTMLSpanProperties} from 'util/react/html/HTMLSpanProperties'
 
@@ -10,6 +12,6 @@ export interface BooleanTextProperties
 
     readonly false: string
 
-    readonly classes?: NullOr<string[]>
+    readonly classes?: NullOr<MutableStringArray>
 
 }

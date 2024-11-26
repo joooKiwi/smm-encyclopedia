@@ -6,15 +6,18 @@ import type {ReactComponent}        from 'util/react/ReactComponent'
 import type {SoundFile}             from 'util/file/sound/SoundFile'
 import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
 import type {SimpleSoundState}      from 'util/file/sound/component/state/SimpleSound.state'
-import type {SimpleSoundPlayer}     from 'util/file/sound/player/SimpleSoundPlayer'
 import type {IsSourceFoundCallback} from 'util/file/sound/player/Validators.types'
 
 import {HistoryState}           from 'util/file/sound/history/HistoryState'
 import {SoundSubElementsHolder} from 'util/file/sound/holder/SoundSubElementsHolder'
 import {AbstractSoundPlayer}    from 'util/file/sound/player/AbstractSoundPlayer'
-import {SoundPlayerFactory}     from 'util/file/sound/player/SoundPlayer.factory'
+import {SimpleSoundPlayer}      from 'util/file/sound/player/SimpleSoundPlayer'
 import {SoundStates}            from 'util/file/sound/player/SoundStates'
 import {Validators}             from 'util/file/sound/player/Validators'
+
+import ValidatorCompanion = Validators.Companion
+
+import allSoundPlayer = AbstractSoundPlayer.allSoundPlayer
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -69,7 +72,7 @@ export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFi
 
     /** @see SimpleSoundProperties.validator */
     public get validator(): Validators {
-        return this.props.validator ?? Validators.CompanionEnum.get.defaultValue
+        return this.props.validator ?? ValidatorCompanion.defaultValue
     }
 
 
@@ -93,7 +96,7 @@ export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFi
             return this.#audio
 
         const source = this.file
-        return this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
+        return this.#audio = new SimpleSoundPlayer(source, this.title,)
             .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
             .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
     }
@@ -111,7 +114,7 @@ export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFi
         if (audio == null)
             return
         audio.setState(new HistoryState(STANDBY, false, false,),)
-        AbstractSoundPlayer.map.delete(audio.source.key)
+        allSoundPlayer.delete(audio.source.key)
     }
 
     public override render(): ReactJSXElement {

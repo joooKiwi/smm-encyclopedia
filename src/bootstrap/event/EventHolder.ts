@@ -1,3 +1,5 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
+
 /** The structure of an {@link EventListener} holder for a selected {@link EventHolder.element element} */
 export interface EventHolder<out ELEMENT extends Element, out EVENT_TYPE extends string, > {
 

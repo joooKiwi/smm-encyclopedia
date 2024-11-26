@@ -1,8 +1,8 @@
-import type {Dispatch, SetStateAction} from 'react'
-import Popover                         from 'bootstrap/js/dist/popover'
-import {Component}                     from 'react'
+import type {NullableString, UndefinedOr} from '@joookiwi/type'
+import type {Dispatch, SetStateAction}    from 'react'
+import Popover                            from 'bootstrap/js/dist/popover'
+import {Component}                        from 'react'
 
-import type {PopoverOrientation}                                       from 'bootstrap/popover/PopoverInstance.declaration'
 import type {Name}                                                     from 'lang/name/Name'
 import type {NamePopoverProperties, NamePopoverStates, NameProperties} from 'lang/name/component/Name.properties'
 import type {ReactComponent}                                           from 'util/react/ReactComponent'
@@ -11,6 +11,8 @@ import TextComponent        from 'app/tools/text/TextComponent'
 import TextPopover          from 'bootstrap/popover/TextPopover'
 import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
+
+import Companion = ProjectLanguages.Companion
 
 /** @reactComponent */
 export default class NamePopoverComponent
@@ -26,7 +28,7 @@ export default class NamePopoverComponent
 
     constructor(props: NamePopoverProperties,) {
         super(props,)
-        this.#currentLanguageTextContent = ProjectLanguages.current.get<string>(this.name,)
+        this.#currentLanguageTextContent = Companion.current.get<string>(this.name,)
         this.state = {
             element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
         }
@@ -55,7 +57,7 @@ export default class NamePopoverComponent
         return this.otherProperties.name
     }
 
-    public get popoverOrientation(): | PopoverOrientation | undefined {
+    public get popoverOrientation(): UndefinedOr<PossiblePopoverOrientation> {
         return this.otherProperties.popoverOrientation
     }
 
@@ -86,7 +88,7 @@ export default class NamePopoverComponent
  * @param popoverOrientation the {@link Popover popover} orientation
  * @param title popover title
  */
-function createOption(elementId: string, popoverOrientation: NullableString<PopoverOrientation>, title: string,): Partial<Popover.Options> {
+function createOption(elementId: string, popoverOrientation: NullableString<PossiblePopoverOrientation>, title: string,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: title,
         content: document.getElementById(elementId)!,

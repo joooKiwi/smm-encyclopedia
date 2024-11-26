@@ -1,9 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOr}                 from '@joookiwi/type'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/LimitGames.types'
 import type {LimitTypes}                         from 'app/property/LimitTypes'
-import type {ViewDisplays}                       from 'app/withInterpreter/ViewDisplays'
 
 export class LimitGames
     extends Enum<Ordinals, Names> {
@@ -97,16 +97,16 @@ export class LimitGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(type: LimitTypes, viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=all)`
+    public getAllRouteName(type: LimitTypes,): NullOr<PossibleRouteName> {
+        return `${type.routeName} (Game=all)`
     }
 
-    public getSmm1Or3dsRouteName(type: LimitTypes, viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=1)`
+    public getSmm1Or3dsRouteName(type: LimitTypes,): NullOr<PossibleRouteName> {
+        return `${type.routeName} (Game=1&3DS)`
     }
 
-    public getSmm2RouteName(type: LimitTypes, viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=2)`
+    public getSmm2RouteName(type: LimitTypes,): NullOr<PossibleRouteName> {
+        return `${type.routeName} (Game=2)`
     }
 
     //endregion -------------------- Methods --------------------

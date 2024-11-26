@@ -6,11 +6,19 @@ import {Link, useLocation}     from 'react-router-dom'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
-import GameImage                  from 'core/game/GameImage'
 import {Games}                    from 'core/game/Games'
+import GameImage                  from 'core/game/component/GameImage'
 import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
+import {Empty}                    from 'util/emptyVariables'
+
+import EMPTY_STRING =      Empty.EMPTY_STRING
+import Companion =         Games.Companion
+import LanguageCompanion = ProjectLanguages.Companion
+import SMM1 =              Games.SMM1
+import SMM2 =              Games.SMM2
+import SMM3DS =            Games.SMM3DS
 
 interface GameLinkProperties
     extends ReactProperties {
@@ -30,9 +38,9 @@ export default function GameGroup() {
         return null
 
     return <div key={`option container (Games = ${games.toString()})`} id="games-option-container" className="btn-group" role="group">
-        <GameLink game={Games.SUPER_MARIO_MAKER_1} selected={games}/>
-        <GameLink game={Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS} selected={games}/>
-        <GameLink game={Games.SUPER_MARIO_MAKER_2} selected={games}/>
+        <GameLink game={SMM1} selected={games}/>
+        <GameLink game={SMM3DS} selected={games}/>
+        <GameLink game={SMM2} selected={games}/>
     </div>
 }
 
@@ -47,19 +55,18 @@ function GameLink({game, selected,}: GameLinkProperties,) {
             <GameImage reference={game}/>
         </button>
 
-    const GameCompanion = Games.CompanionEnum.get
     const pathToReplace = isSelected
-        ? `game-${GameCompanion.getGroupUrlValue(selected.filterNot(it => it === game,),)}` as const
-        : `game-${GameCompanion.getGroupUrlValue([...selected, game,],)}` as const
+        ? `game-${Companion.getGroupUrlValue(selected.filterNot(it => it === game,),)}` as const
+        : `game-${Companion.getGroupUrlValue([...selected, game,],)}` as const
     let newPath: string
     if (pathname.includes('game-1',) || pathname.includes('game-3ds',) || pathname.includes('game-2',))
-        newPath = pathname.replace(`game-${GameCompanion.getGroupUrlValue(selected,)}`, pathToReplace,)
+        newPath = pathname.replace(`game-${Companion.getGroupUrlValue(selected,)}`, pathToReplace,)
     else {
-        const languagesInPath = `/${ProjectLanguages.CompanionEnum.get.current.urlValue}` as const
+        const languagesInPath = `/${LanguageCompanion.current.urlValue}` as const
         newPath = pathname.replace(languagesInPath, `${languagesInPath}/${pathToReplace}`,)
     }
 
-    return <Link type="button" id={id} className={`btn btn-${isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
+    return <Link type="button" id={id} className={`btn btn-${isSelected ? EMPTY_STRING : 'outline-'}secondary link-button`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID,)?.instance.hide()}>
         <GameImage reference={game}/>
     </Link>

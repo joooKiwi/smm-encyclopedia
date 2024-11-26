@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, Nullable, NullOr} from '@joookiwi/type'
+import {Enum}                         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                          from 'core/music/Musics.types'
 import type {BackgroundMusic}                                          from 'core/music/backgroundMusic/BackgroundMusic'
@@ -371,14 +372,16 @@ export class Musics
 
         //endregion -------------------- Singleton usage --------------------
 
+        protected override readonly _EXCLUDED_NAMES = ['SMK', 'SM64', 'SMS', 'SMG',] as const satisfies Array<keyof typeof Musics>
+
         public override getValueByReference(value: Nullable<| Musics | Themes | SoundEffects>,): Musics {
             if (value == null)
                 throw new TypeError(`No "${this.instance.name}" could be found by a null reference.`,)
             if (value instanceof this.instance)
                 return value
             const valueFound = value instanceof Import.Themes
-                ? this.values.find(it => it.themeReference === value,)
-                : this.values.find(it => it.soundEffectReference === value,)
+                ? this.values.findFirstOrNull(it => it.themeReference === value,)
+                : this.values.findFirstOrNull(it => it.soundEffectReference === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this reference "${value}".`,)
             return valueFound
@@ -451,5 +454,21 @@ export class Musics
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace Musics {
+
+    /** An alias of {@link Musics.SUPER_MARIO_KART} */
+    export const SMK = Musics.SUPER_MARIO_KART
+    /** An alias of {@link Musics.SUPER_MARIO_64} */
+    export const SM64 = Musics.SUPER_MARIO_64
+    /** An alias of {@link Musics.SUPER_MARIO_SUNSHINE} */
+    export const SMS = Musics.SUPER_MARIO_SUNSHINE
+    /** An alias of {@link Musics.SUPER_MARIO_GALAXY} */
+    export const SMG = Musics.SUPER_MARIO_GALAXY
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).Musics = Musics
 
 type PossibleMusic = | SingleSoundEffectMusic | SoundEffectMusicWithDifferentEditor | BackgroundMusic | NonChangeableSoundEffectBackgroundMusic | SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect

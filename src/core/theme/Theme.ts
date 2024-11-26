@@ -1,3 +1,5 @@
+import type {NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+
 import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
 import type {NameTrait}                        from 'lang/name/NameTrait'

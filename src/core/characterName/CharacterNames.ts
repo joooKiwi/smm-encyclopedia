@@ -1,4 +1,6 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {hasByArray}            from '@joookiwi/collection'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithReference}                                              from 'core/ClassWithReference'
 import type {CharacterName}                                                   from 'core/characterName/CharacterName'
@@ -13,6 +15,8 @@ import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
 import {StringContainer}                   from 'util/StringContainer'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+
+import EditorVoiceCompanion = EditorVoices.Companion
 
 /**
  * @recursiveReference<{@link EditorVoices}>
@@ -200,7 +204,7 @@ export class CharacterNames
                 return false
             if (value instanceof this.instance)
                 return true
-            return this.instance.everyEnglishNames.includes(value as never,)
+            return hasByArray(this.instance.everyEnglishNames, value,)
         }
 
     }
@@ -209,7 +213,6 @@ export class CharacterNames
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleUniqueEnglishName, CharacterName>
-    static #everyEnglishNames?: readonly PossibleEnglishName[]
 
     #reference?: CharacterName
     readonly #englishName
@@ -260,8 +263,8 @@ export class CharacterNames
     public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
         if (this.#editorVoiceSound !== undefined)
             return this.#editorVoiceSound
-        if (EditorVoices.CompanionEnum.get.hasReference(this,))
-            return this.#editorVoiceSound = EditorVoices.CompanionEnum.get.getValueByCharacterName(this,).editorVoiceSoundFileHolder
+        if (EditorVoiceCompanion.hasReference(this,))
+            return this.#editorVoiceSound = EditorVoiceCompanion.getValueByCharacterName(this,).editorVoiceSoundFileHolder
         return this.#editorVoiceSound = null
     }
 
@@ -269,11 +272,20 @@ export class CharacterNames
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.#everyEnglishNames ??= this.CompanionEnum.get.values.map(it => it.englishName,).toArray()
-    }
-
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace CharacterNames {
+
+    /** The companion instance of a {@link CharacterNames} */
+    export const Companion = CharacterNames.CompanionEnum.get
+
+    export const everyEnglishNames = Companion.values.map(it => it.englishName,).toArray()
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).CharacterNames = CharacterNames

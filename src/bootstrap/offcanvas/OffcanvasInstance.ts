@@ -1,3 +1,4 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 import Offcanvas               from 'bootstrap/js/dist/offcanvas'
 
@@ -9,7 +10,7 @@ import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEven
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
 
 /**
- * A simple instance holder for a {@link bootstrap.Offcanvas Offcanvas}
+ * An instance holder for a {@link bootstrap.Offcanvas Offcanvas}
  *
  * @see https://getbootstrap.com/docs/5.2/components/offcanvas
  */
@@ -21,14 +22,6 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
     //region -------------------- Fields --------------------
 
     public static DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
-    /** @see Offcanvas.Events.show */
-    public static readonly SHOW_EVENT = `show${Offcanvas.EVENT_KEY}` as Offcanvas.Events.show
-    /** @see Offcanvas.Events.shown */
-    public static readonly SHOWN_EVENT = `shown${Offcanvas.EVENT_KEY}` as Offcanvas.Events.shown
-    /** @see Offcanvas.Events.hide */
-    public static readonly HIDE_EVENT = `hide${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hide
-    /** @see Offcanvas.Events.hidden */
-    public static readonly HIDDEN_EVENT = `hidden${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hidden
 
     #onShowEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.show>>
     #onShownEvent?: NullOr<EventHolder<ELEMENT, Offcanvas.Events.shown>>
@@ -138,5 +131,19 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
     }
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace OffcanvasInstance {
+
+    // export let DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
+    /** @see Offcanvas.Events.show */
+    export const SHOW_EVENT = `show${Offcanvas.EVENT_KEY}` as Offcanvas.Events.show
+    /** @see Offcanvas.Events.shown */
+    export const SHOWN_EVENT = `shown${Offcanvas.EVENT_KEY}` as Offcanvas.Events.shown
+    /** @see Offcanvas.Events.hide */
+    export const HIDE_EVENT = `hide${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hide
+    /** @see Offcanvas.Events.hidden */
+    export const HIDDEN_EVENT = `hidden${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hidden
 
 }

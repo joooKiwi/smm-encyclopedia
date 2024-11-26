@@ -4,7 +4,7 @@ import type {PossibleEnglishName}                        from 'core/miiCostume/M
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link MiiCostumeImageFile} from a {@link name} provided
+ * Create a {@link MiiCostumeImageFile} from a {@link name} provided
  *
  * @param name The image name
  * @param englishName The {@link MiiCostumes} {@link MiiCostumes.englishName english name}

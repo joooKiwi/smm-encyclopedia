@@ -1,3 +1,6 @@
+import type {UndefinedOr} from '@joookiwi/type'
+import {mapByArray}       from '@joookiwi/collection'
+
 import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
 import {Times} from 'core/time/Times'
@@ -5,6 +8,8 @@ import {Times} from 'core/time/Times'
 /**
  * A map made to be handled the same way as a {@link Map},
  * but with a specification about the {@link Times}
+ *
+ * @see TimeCollection
  */
 export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
     implements ReadonlyMap<Times, boolean> {
@@ -20,7 +25,7 @@ export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Times.CompanionEnum.get.values.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(Times.ALL, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------
@@ -47,19 +52,19 @@ export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
     }
 
 
-    public entries(): IterableIterator<[Times, boolean,]> {
+    public entries(): MapIterator<[Times, boolean,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<Times> {
+    public keys(): MapIterator<Times> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<boolean> {
+    public values(): MapIterator<boolean> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[Times, boolean,]> {
+    public [Symbol.iterator](): MapIterator<[Times, boolean,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 

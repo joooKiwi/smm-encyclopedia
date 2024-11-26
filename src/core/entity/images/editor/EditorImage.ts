@@ -1,20 +1,28 @@
-import type {EditorImageFile} from 'core/entity/file/EntityImageFile.editor'
-import type {Image}           from 'core/entity/images/Image'
+import type {Array, Nullable}  from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+
+import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
 import type {GameStyles}      from 'core/gameStyle/GameStyles'
 import type {Themes}          from 'core/theme/Themes'
 import type {Times}           from 'core/time/Times'
 
-/** The base of the editor image used for a {@link Entities} */
-export interface EditorImage<out T extends EditorImageFile = EditorImageFile, >
-    extends Image {
+export interface EditorImage<out T extends EditorImageFile = EditorImageFile, > {
 
-    get all(): readonly T[]
+    /** Get all the images with no association */
+    readonly images: Array<T>
+    /** Get all the images with their association {@link Times}, {@link GameStyles} and {@link Times} */
+    readonly imagesWithAssociation: Array<readonly [Times, GameStyles, Themes, T,]>
 
-    get map(): EditorMap<T>
+    /** Get the images from a possible {@link GameStyles}, {@link Themes} and {@link Times} */
+    get(gameStyle?: Nullable<GameStyles>, theme?: Nullable<Themes>, time?: Nullable<Times>,): CollectionHolder<T>
 
-    get(gameStyle?: Nullable<GameStyles>, theme?: Nullable<Themes>, time?: Nullable<Times>,): readonly T[]
+    /** Get the images from a possible {@link Themes} */
+    getFromTheme(theme: Nullable<Themes>,): CollectionHolder<T>
+
+    /** Get the images from a possible {@link GameStyles} */
+    getFromGameStyle(gameStyle: Nullable<GameStyles>,): CollectionHolder<T>
+
+    /** Get the images from a possible {@link Times} */
+    getFromTime(time: Nullable<Times>,): CollectionHolder<T>
 
 }
-
-/** A simple type-alias of a {@link Map} of {@link Times} of {@link GameStyles} of {@link Themes} of {@link EditorImageFile} */
-export type EditorMap<T extends EditorImageFile,> = ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly T[]>>>

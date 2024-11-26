@@ -1,3 +1,5 @@
+import type {EmptyArray, NullOr, StringArray} from '@joookiwi/type'
+
 import type {PossibleEnglishName} from 'core/soundEffect/SoundEffects.types'
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
@@ -35,7 +37,7 @@ interface SoundEffectSoundTemplateMap_SMM1Exclusive {
     'Fireworks': SoundEffectSound_NoEditor<['yr_SToy_07_FireWorks_01_1_pxsps_r_ear', 'yr_SToy_07_FireWorks_01_2_pxsps_l_ear',]>//SoundEffectSoundTemplateMap_All['Fireworks']
     'Audience': never
     'Scatting': never
-    'Bird\'s Chirping': SoundEffectSound_Editor2<['SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',]>
+    'Bird’s Chirping': SoundEffectSound_Editor2<['SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',]>
     'Spark': never
     'Traditional': never
     'Electric Guitar': never
@@ -51,8 +53,8 @@ interface SoundEffectSoundTemplateMap_SMM1Exclusive {
     'Rave Music': SoundEffectSound_Editor2<['SE_Disco6measure', 'SE_Disco6measure_InUp2',]>
     'Heartbeat': SoundEffectSound_NoEditor<['yr_SToy_04_HeartBeat_H_L_pxsps_l_ear', 'yr_SToy_04_HeartBeat_H_R_pxsps_r_ear',]>//SoundEffectSoundTemplateMap_All['Heartbeat']
     'Silence': SoundEffectSound_Editor1<['yr_NOISE_short_1', 'yr_NOISE_short_1_pxsps_l_ear', 'yr_NOISE_short_2', 'yr_NOISE_short_2_pxsps_r_ear', 'yr_NOISE_short_3', 'yr_NOISE_short_3_pxsps_l_ear',]>
-    'Bird\'s Tweeting Noise': SoundEffectSound_Editor1<['hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',]>
-    'Chicken\'s Clucking Noise': SoundEffectSound_Editor1<['yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',]>
+    'Bird’s Tweeting Noise': SoundEffectSound_Editor1<['hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',]>
+    'Chicken’s Clucking Noise': SoundEffectSound_Editor1<['yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',]>
     'Bonus Music': never
     'Boss Music': never
     'Final Boss': never
@@ -98,7 +100,7 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Fireworks': SoundEffectSound_Editor1<['yr_SToy_07_FireWorks_01', 'yr_SToy_07_FireWorks_01_1', 'yr_SToy_07_FireWorks_01_2',]>
     'Audience': never
     'Scatting': never
-    'Bird\'s Chirping': NoSoundEffectSound
+    'Bird’s Chirping': NoSoundEffectSound
     'Spark': SoundEffectSound_Editor3<['se_otoasobi_spark_00', 'se_otoasobi_spark_01', 'se_otoasobi_spark_02', 'se_otoasobi_spark_03', 'se_otoasobi_spark_04',]>
     'Traditional': never
     'Electric Guitar': SoundEffectSound_Editor1<['Otoasobi_Guitar01', 'Otoasobi_Guitar02',]>
@@ -114,8 +116,8 @@ interface SoundEffectSoundTemplateMap_SMM2Exclusive {
     'Rave Music': NoSoundEffectSound
     'Heartbeat': SoundEffectSound_Editor1<['yr_SToy_04_HeartBeat_p1', 'yr_SToy_04_HeartBeat_p2', 'yr_SToy_04_HeartBeat_p3',]>
     'Silence': SingleSoundEffectSound<'se_otoasobi_silence'>
-    'Bird\'s Tweeting Noise': NoSoundEffectSound
-    'Chicken\'s Clucking Noise': NoSoundEffectSound
+    'Bird’s Tweeting Noise': NoSoundEffectSound
+    'Chicken’s Clucking Noise': NoSoundEffectSound
     'Bonus Music': never
     'Boss Music': never
     'Final Boss': never
@@ -162,13 +164,16 @@ type SoundEffectSoundNamesForHorror = readonly [
 //endregion -------------------- Name for ... --------------------
 //region -------------------- Value for map --------------------
 
-type PossibleEditorValue<NAMES extends readonly string[], > = NullOr<NAMES[number]>
-type PossibleValueOnLinkOrSMB2Value<NAMES extends readonly string[], > =
+type PossibleEditorValue<NAMES extends StringArray, > = NullOr<NAMES[number]>
+type PossibleValueOnLinkOrSMB2Value<NAMES extends StringArray, > =
     | EmptyArray
     | readonly [NAMES[number],]
     | readonly [NAMES[number], NAMES[number],]
 
-interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR extends PossibleEditorValue<SOUNDS>, LINK_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, SMB2_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, > {
+interface SoundEffectSound<SOUNDS extends StringArray,
+    NAME_IN_EDITOR extends PossibleEditorValue<SOUNDS>,
+    LINK_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>,
+    SMB2_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, > {
     sounds: SOUNDS
     editorName: NAME_IN_EDITOR
     linkNames: LINK_NAMES
@@ -176,21 +181,21 @@ interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR exte
 }
 
 type SoundEffectFromSoundEffect<SOUND extends SoundEffectSound<any, any, any, any>, > = SOUND
-type NoSoundEffectSound = SoundEffectSound<[], null, [], []>
+type NoSoundEffectSound = SoundEffectSound<EmptyArray, null, EmptyArray, EmptyArray>
 
 //region -------------------- Sound effect --------------------
 
-type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, [], []>>
-type SoundEffectSound_NoEditor<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, [], []>>
-type SoundEffectSound_Editor1<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [], []>>
-type SoundEffectSound_Editor2<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[1], [], []>>
-type SoundEffectSound_Editor3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[2], [], []>>
-// type SoundEffectSound_Editor4<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[3], [], []>>
-type SoundEffectSound_Editor5<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[4], [], []>>
-// type SoundEffectSound_Editor6<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[5], [], []>>
-type SoundEffectSound_Editor7<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[6], [], []>>
-type SoundEffectSound_Editor10<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], [], []>>
-type SoundEffectSound_Editor1_Link3<SOUNDS extends readonly string[], > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], []>>
+type SingleSoundEffectSound<SOUND extends string, > = SoundEffectFromSoundEffect<SoundEffectSound<readonly [SOUND,], SOUND, EmptyArray, EmptyArray>>
+type SoundEffectSound_NoEditor<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, never, EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor1<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor2<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[1], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor3<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[2], EmptyArray, EmptyArray>>
+// type SoundEffectSound_Editor4<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[3], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor5<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[4], EmptyArray, EmptyArray>>
+// type SoundEffectSound_Editor6<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[5], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor7<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[6], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor10<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[9], EmptyArray, EmptyArray>>
+type SoundEffectSound_Editor1_Link3<SOUNDS extends StringArray, > = SoundEffectFromSoundEffect<SoundEffectSound<SOUNDS, SOUNDS[0], [SOUNDS[2],], EmptyArray>>
 
 //endregion -------------------- Sound effect --------------------
 

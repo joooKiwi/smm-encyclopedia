@@ -13,7 +13,7 @@ interface ModalButtonProperties
 }
 
 /**
- * A simple button made to trigger a {@link bootstrap.Modal} from a Javascript standpoint
+ * A button made to trigger a {@link bootstrap.Modal} from a Javascript standpoint
  *
  * @reactComponent
  * @param properties

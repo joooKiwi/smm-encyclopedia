@@ -1,3 +1,4 @@
+import type {Nullable, NullOr} from '@joookiwi/type'
 import type BaseComponent      from 'bootstrap/js/dist/base-component'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 

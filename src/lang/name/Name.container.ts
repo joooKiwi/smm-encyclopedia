@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {EveryLanguages}                                                                                                                                    from 'lang/EveryLanguages'
 import type {Name}                                                                                                                                              from 'lang/name/Name'
 import type {EmptyableOptionalLanguage}                                                                                                                         from 'lang/name/containers/EmptyableOptionalLanguage'
@@ -6,7 +8,9 @@ import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuro
 
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
-export class NameContainer<const out T, >
+import Companion = ProjectLanguages.Companion
+
+export class NameContainer<const T, >
     implements Name<T> {
 
     //region -------------------- Fields --------------------
@@ -33,7 +37,7 @@ export class NameContainer<const out T, >
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(originalLanguages: readonly EveryLanguages[],
+    public constructor(originalLanguages: Array<EveryLanguages>,
                        english: Language<T, T, AmericanOrEuropeanArray<T>>,
                        french: Language<T, T, CanadianOrEuropeanArray<T>>,
                        german: EmptyableLanguage<T, T, never>,
@@ -73,7 +77,7 @@ export class NameContainer<const out T, >
     //region -------------------- Name properties --------------------
 
     public get languageValue(): T {
-        return ProjectLanguages.current.get<T>(this)
+        return Companion.current.get<T>(this,)
     }
 
     //region -------------------- English properties --------------------
@@ -258,7 +262,7 @@ export class NameContainer<const out T, >
 
     //endregion -------------------- Greek properties --------------------
 
-    public get originalLanguages(): readonly EveryLanguages[] {
+    public get originalLanguages(): Array<EveryLanguages> {
         return this.#originalLanguages
     }
 

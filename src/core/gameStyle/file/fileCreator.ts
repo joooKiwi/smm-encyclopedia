@@ -4,7 +4,7 @@ import type {PossibleEnglishName, PossibleAcronym_InFile} from 'core/gameStyle/G
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link GameStyleImageFile} from a {@link acronym} provided
+ * Create a {@link GameStyleImageFile} from a {@link acronym} provided
  *
  * @param acronym The {@link GameStyles} file acronym
  * @param englishName The {@link GameStyles} {@link GameStyles.englishName english name}

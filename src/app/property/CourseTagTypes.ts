@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -6,6 +7,11 @@ import type {CompanionEnumByTypeSingleton}                     from 'util/enumer
 
 import {CourseTags}          from 'core/courseTag/CourseTags'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
+
+import ALL_COURSE_TAGS =           CourseTags.ALL
+import MAKER_CENTRAL_COURSE_TAGS = CourseTags.MAKER_CENTRAL
+import OFFICIAL_COURSE_TAGS =      CourseTags.OFFICIALS
+import UNOFFICIAL_COURSE_TAGS =    CourseTags.UNOFFICIALS
 
 /** @usedByTheRouting */
 export abstract class CourseTagTypes
@@ -17,7 +23,7 @@ export abstract class CourseTagTypes
     public static readonly ALL =              new class CourseTagTypes_All extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.CompanionEnum.get.values.toArray()
+            return ALL_COURSE_TAGS
         }
 
 
@@ -29,7 +35,7 @@ export abstract class CourseTagTypes
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.officialCourseTags
+            return OFFICIAL_COURSE_TAGS
         }
 
 
@@ -53,7 +59,7 @@ export abstract class CourseTagTypes
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.unofficialCourseTags
+            return UNOFFICIAL_COURSE_TAGS
         }
 
 
@@ -77,7 +83,7 @@ export abstract class CourseTagTypes
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.makerCentralCourseTags
+            return MAKER_CENTRAL_COURSE_TAGS
         }
 
 
@@ -152,12 +158,12 @@ export abstract class CourseTagTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly CourseTags[]
+    public abstract get content(): Array<CourseTags>
 
     //region -------------------- Link button methods --------------------
 
     /** The route name for the path with every {@link CourseTags} */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyCourseTag'>> {
+    public get allRouteName(): NullOr<PossibleRouteName> {
         return 'everyCourseTag'
     }
 
@@ -169,9 +175,9 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the official {@link CourseTags}
      *
-     * @see CourseTags.officialCourseTags
+     * @see CourseTags.OFFICIALS
      */
-    public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTag'>> {
+    public get officialRouteName(): NullOr<PossibleRouteName> {
         return 'officialCourseTag'
     }
 
@@ -183,9 +189,9 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the unofficial {@link CourseTags}
      *
-     * @see CourseTags.unofficialCourseTags
+     * @see CourseTags.UNOFFICIALS
      */
-    public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTag'>> {
+    public get unofficialRouteName(): NullOr<PossibleRouteName> {
         return 'unofficialCourseTag'
     }
 
@@ -197,9 +203,9 @@ export abstract class CourseTagTypes
     /**
      * The route name for the path with only the "Maker Central" {@link CourseTags}
      *
-     * @see CourseTags.makerCentralCourseTags
+     * @see CourseTags.MAKER_CENTRAL
      */
-    public get makerCentralRouteName(): NullOr<Extract<PossibleRouteName, 'makerCentralCourseTag'>> {
+    public get makerCentralRouteName(): NullOr<PossibleRouteName> {
         return 'makerCentralCourseTag'
     }
 

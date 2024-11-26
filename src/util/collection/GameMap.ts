@@ -1,3 +1,6 @@
+import type {UndefinedOrBoolean} from '@joookiwi/type'
+import {mapByArray}              from '@joookiwi/collection'
+
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
 import {Games} from 'core/game/Games'
@@ -8,13 +11,13 @@ import {Games} from 'core/game/Games'
  *
  * @see GameCollection
  */
-export class GameMap<const out T extends boolean = boolean, const out REFERENCE extends GameProperty<T, T, T> = GameProperty<T, T, T>, >
-    implements ReadonlyMap<Games, T> {
+export class GameMap<const out REFERENCE extends GameProperty = GameProperty, >
+    implements ReadonlyMap<Games, boolean> {
 
     //region -------------------- Fields --------------------
 
     readonly #reference
-    readonly #internalStructure: ReadonlyMap<Games, T>
+    readonly #internalStructure: ReadonlyMap<Games, boolean>
     public readonly size
 
     //endregion -------------------- Fields --------------------
@@ -22,7 +25,7 @@ export class GameMap<const out T extends boolean = boolean, const out REFERENCE 
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(Games.CompanionEnum.get.values.map(it => [it, it.get(reference,) as T,],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(Games.ALL, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------
@@ -35,12 +38,12 @@ export class GameMap<const out T extends boolean = boolean, const out REFERENCE 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public forEach(callback: (value: T, key: Games, map: ReadonlyMap<Games, T>,) => void,): this {
+    public forEach(callback: (value: boolean, key: Games, map: ReadonlyMap<Games, boolean>,) => void,): this {
         this.#internalStructure.forEach(callback,)
         return this
     }
 
-    public get(key: Games,): UndefinedOr<T> {
+    public get(key: Games,): UndefinedOrBoolean {
         return this.#internalStructure.get(key,)
     }
 
@@ -49,19 +52,19 @@ export class GameMap<const out T extends boolean = boolean, const out REFERENCE 
     }
 
 
-    public entries(): IterableIterator<[Games, T,]> {
+    public entries(): MapIterator<[Games, boolean,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<Games> {
+    public keys(): MapIterator<Games> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<T> {
+    public values(): MapIterator<boolean> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[Games, T,]> {
+    public [Symbol.iterator](): MapIterator<[Games, boolean,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 

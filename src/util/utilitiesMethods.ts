@@ -1,33 +1,29 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import {isCollectionHolder}    from '@joookiwi/collection'
-import {AssertionError}        from 'assert'
+import type {CollectionHolder}                                   from '@joookiwi/collection'
+import type {CompanionEnumDeclaration}                           from '@joookiwi/enumerable'
+import type {Array, EmptyString, MutableArray, Nullable, NullOr} from '@joookiwi/type'
+import {isArray, isCollectionHolder}                             from '@joookiwi/collection'
+import {AssertionError}                                          from 'assert'
 
-import type {ClassWithReference}                                                                                  from 'core/ClassWithReference'
-import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
-import type {GameStyleProperty}                                                                                   from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {Games}                                                                                               from 'core/game/Games'
-import type {GameStyles}                                                                                          from 'core/gameStyle/GameStyles'
 import type {EnumerableUsedInRoute, EnumerableWithEnglishName, EnumerableWithNullableAcronym, EnumerableWithType} from 'util/enumerable/Enumerable.types'
-import type {CompanionEnumByAcronym}                                                                              from 'util/enumerable/companion/CompanionEnumByAcronym'
-import type {CompanionEnumByName}                                                                                 from 'util/enumerable/companion/CompanionEnumByName'
-import type {CompanionEnumByType}                                                                                 from 'util/enumerable/companion/CompanionEnumByType'
-import type {CompanionEnumByUrlValue}                                                                             from 'util/enumerable/companion/CompanionEnumByUrlValue'
 import type {CompanionEnumRetrievableInUrl}                                                                       from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
-import {isInProduction}            from 'variables'
-import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
+import {isInProduction} from 'variables'
+import {Empty}          from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 //region -------------------- is --------------------
 
 /**
- * Validate if an {@link ReadonlyArray} is equals to another one.
+ * Validate if an {@link ReadonlyArray Array} is equals to another one.
  *
  * It will validate recursively if every item within the array are equals (whenever the type it is).
  *
- * @param first The first {@link ReadonlyArray} to compare
- * @param second The second {@link ReadonlyArray} to compare
+ * @param first The first {@link ReadonlyArray Array} to compare
+ * @param second The second {@link ReadonlyArray Array} to compare
  */
-export function isArrayEquals(first: readonly unknown[], second: readonly unknown[],): boolean {
+export function isArrayEquals(first: Array<unknown>, second: Array<unknown>,): boolean {
     if (first === second)
         return true
     if (first.length !== second.length)
@@ -38,8 +34,8 @@ export function isArrayEquals(first: readonly unknown[], second: readonly unknow
     for (let i = 0; i < size; i++) {
         const elementInFirst = first[i]
         const elementInSecond = second[i]
-        if (elementInFirst instanceof Array)
-            if (elementInSecond instanceof Array)
+        if (isArray(elementInFirst,))
+            if (isArray(elementInSecond,))
                 if (!isArrayEquals(elementInFirst, elementInSecond,))
                     return false
         if (isCollectionHolder(elementInFirst,))
@@ -61,7 +57,7 @@ export function isArrayEquals(first: readonly unknown[], second: readonly unknow
  * @param first The first {@link CollectionHolder} to compare
  * @param second The second {@link CollectionHolder} to compare
  */
-export function isCollectionEquals(first: CollectionHolder<unknown>, second: CollectionHolder<unknown>,): boolean {
+export function isCollectionEquals(first: CollectionHolder, second: CollectionHolder,): boolean {
     if (first === second)
         return true
     if (first.size !== second.size)
@@ -72,8 +68,8 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     for (let i = 0; i < size; i++) {
         const elementInFirst = first[i]
         const elementInSecond = second[i]
-        if (elementInFirst instanceof Array)
-            if (elementInSecond instanceof Array)
+        if (isArray(elementInFirst,))
+            if (isArray(elementInSecond,))
                 if (!isArrayEquals(elementInFirst, elementInSecond,))
                     return false
         if (isCollectionHolder(elementInFirst,))
@@ -98,13 +94,65 @@ export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyS
 }
 
 //endregion -------------------- is --------------------
+//region -------------------- set --------------------
+
+export function getOrPut<const K, const V, >(values: Map<K, V>, key: K, defaultValue: (key: K,) => V,): V {
+    if (values.has(key,))
+        return values.get(key,) as V
+
+    const value = defaultValue(key,)
+    values.set(key, value,)
+    return value
+}
+
+//endregion -------------------- set --------------------
+//region -------------------- for each --------------------
+
+export function forEach<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K, value: V,) => void,): void {
+    for (const it of values)
+        action(it[0], it[1],)
+}
+
+export function forEachKey<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K,) => void,) {
+    for (const it of values)
+        action(it[0],)
+}
+
+export function forEachValue<const K, const V,>(values: ReadonlyMap<K, V>, action: (value: V,) => void,) {
+    for (const it of values)
+        action(it[1],)
+}
+
+//endregion -------------------- for each --------------------
+//region -------------------- map --------------------
+
+export function map<const K1, const K2, const V1, const V2, >(values: ReadonlyMap<K1, V1>, transform: (key: K1, value: V1,) => readonly[K2, V2,],): ReadonlyMap<K2, V2> {
+    const map = new Map<K2, V2>()
+    for (const it of values) {
+        const transformedValues = transform(it[0], it[1],)
+        map.set(transformedValues[0], transformedValues[1],)
+    }
+    return map
+}
+
+export function mapValue<const K, const V1, const V2, >(values: ReadonlyMap<K, V1>, transform: (value: V1,) => V2,): ReadonlyMap<K, V2> {
+    const map = new Map<K, V2>()
+    for (const it of values)
+        map.set(it[0], transform(it[1],),)
+    return map
+}
+
+export function mapKey<const K1, const K2, const V, >(values: ReadonlyMap<K1, V>, transform: (key: K1,) => K2,): ReadonlyMap<K2, V> {
+    const map = new Map<K2, V>()
+    for (const it of values)
+        map.set(transform(it[0],), it[1],)
+    return map
+}
+
+//endregion -------------------- map --------------------
 //region -------------------- join --------------------
 
-export function join<const T, >(first: CollectionHolder<T>, second: readonly T[],): T[]
-export function join<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): T[]
-export function join<const T, >(first: readonly T[], second: readonly T[],): T[]
-export function join<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): T[]
-export function join<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],) {
+export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,) {
     const firstSize = first.length
     const secondSize = second.length
     const finalSize = firstSize + secondSize
@@ -123,17 +171,13 @@ export function join<const T, >(first: | CollectionHolder<T> | readonly T[], sec
 //endregion -------------------- join --------------------
 //region -------------------- intersect --------------------
 
-export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): readonly T[]
-export function intersect<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): readonly T[]
-export function intersect<const T, >(first: readonly T[], second: readonly T[],): readonly T[]
-export function intersect<const T, >(first: readonly T[], second: CollectionHolder<T>,): readonly T[]
-export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],) {
+export function intersect<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,): Array<T> {
     const firstSize = first.length
     if (firstSize === 0)
         return EMPTY_ARRAY
 
     const secondSize = second.length
-    const newArray = [] as T[]
+    const newArray: MutableArray<T> = []
     let firstIndex = -1
     while (++firstIndex < firstSize) {
         const firstValue = first[firstIndex] as T
@@ -148,183 +192,111 @@ export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[]
 }
 
 //endregion -------------------- intersect --------------------
-//region -------------------- has --------------------
-
-export function has<const T, >(values: | CollectionHolder<T> | readonly T[], value: NoInfer<T>,): boolean {
-    const size = values.length
-    if (size === 0)
-        return false
-
-    for (let it of values)
-        if (value === it)
-            return true
-    return false
-}
-
-//endregion -------------------- has --------------------
-//region -------------------- has all --------------------
-
-export function hasAll<const T, >(values: readonly T[], comparedValues: readonly unknown[],): boolean {
-    const valuesSize = comparedValues.length
-    if (valuesSize === 0)
-        return true
-
-    const size = values.length
-    if (size === 0)
-        return false
-
-    valueLoop: for (let i = 0; i < size; i++) {
-        const value = values[i]
-        for (let j = 0; j < valuesSize; j++)
-            if (comparedValues[j] === value)
-                continue valueLoop
-        return false
-    }
-    return true
-}
-
-//endregion -------------------- has all --------------------
-//region -------------------- filter --------------------
-
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link games}
- *
- * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: CollectionHolder<Games>,): readonly T[]
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link games}
- *
- * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Games.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: CollectionHolder<Games>,): readonly T[]
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | readonly T[], games: CollectionHolder<Games>,) {
-    const valuesSize = values.length
-    if (valuesSize === 0)
-        return EMPTY_ARRAY
-
-    const gameSize = games.size
-    if (gameSize === 0)
-        return values instanceof Array ? values : values.toArray()
-
-    const newArray = [] as T[]
-    let valuesIndex = -1
-    while (++valuesIndex < valuesSize) {
-        const value = values[valuesIndex] as T
-        let gameIndex = -1
-        while (++gameIndex < gameSize)
-            if (games[gameIndex]!.get(value.reference,)) {
-                newArray.push(value,)
-                break
-            }
-    }
-    return newArray
-}
-
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
- *
- * @param values The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: CollectionHolder<T>, gameStyles: CollectionHolder<GameStyles>,): readonly T[]
-/**
- * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
- *
- * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
- * @param games The {@link CollectionHolder Collection} of game to get if they can be used
- */
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: readonly T[], gameStyles: CollectionHolder<GameStyles>,): readonly T[]
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | readonly T[], gameStyles: CollectionHolder<GameStyles>,) {
-    const valuesSize = values.length
-    if (valuesSize === 0)
-        return EMPTY_ARRAY
-
-    const gameSize = gameStyles.size
-    if (gameSize === 0)
-        return values instanceof Array ? values : values.toArray()
-
-    const newArray = [] as T[]
-    let valuesIndex = -1
-    while (++valuesIndex < valuesSize) {
-        const value = values[valuesIndex] as T
-        let gameIndex = -1
-        while (++gameIndex < gameSize)
-            if (gameStyles[gameIndex]!.get(value.reference,)) {
-                newArray.push(value,)
-                break
-            }
-    }
-    return newArray
-}
-
-//endregion -------------------- filter --------------------
-//region -------------------- reverse --------------------
-
-/**
- * Reverse the array fields
- *
- * @param array The array reference to reverse
- * @returns A new reversed array
- */
-export function reverse<const T, >(array: readonly T[],): readonly T[] {
-    const size = array.length
-    if (size === 0)
-        return EMPTY_ARRAY
-
-    const newArray = new Array(size,)
-
-    let index = array.length
-    while (--index >= 0)
-        newArray.push(array[index],)
-    return newArray
-}
-
-//endregion -------------------- reverse --------------------
-//region -------------------- to non null --------------------
-
-/**
- * Convert the {@link Array} to a non-null {@link Array}
- *
- * @param array The array to remove its <b>null</b> values
- */
-export function nonNull<const T, >(array: readonly T[],): readonly NonNullable<T>[]
-/**
- * Convert the {@link Set} to a non-null {@link Set}
- *
- * @param set The set to remove its <b>null</b> values
- */
-export function nonNull<const T, >(set: ReadonlySet<T>,): ReadonlySet<NonNullable<T>>
-export function nonNull<const T, >(reference: ReadonlySet<T> | readonly T[],): | readonly NonNullable<T>[] | ReadonlySet<NonNullable<T>> {
-    if (reference instanceof Array) {
-        const size = reference.length
-        if (size === 0)
-            return EMPTY_ARRAY
-
-        const newArray: NonNullable<T>[] = []
-
-        let index = -1
-        while (index++ < size) {
-            const value = reference[index]
-            if (value != null)
-                newArray.push(value,)
-        }
-        if (size === newArray.length)
-            return reference as NonNullable<T>[]
-        return newArray
-    }
-
-    const newSet = new Set<NonNullable<T>>()
-    reference.forEach(it => {
-        if (it == null) return
-        newSet.add(it,)
-    },)
-    return newSet
-}
-
-//endregion -------------------- to non null --------------------
+// //region -------------------- filter --------------------
+//
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link games}
+//  *
+//  * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
+//  * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+//  */
+// export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: CollectionHolder<Games>,): Array<T>
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link games}
+//  *
+//  * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Games.get}
+//  * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+//  */
+// export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: Array<T>, games: CollectionHolder<Games>,): Array<T>
+// export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | Array<T>, games: CollectionHolder<Games>,) {
+//     const valuesSize = values.length
+//     if (valuesSize === 0)
+//         return EMPTY_ARRAY
+//
+//     const gameSize = games.size
+//     if (gameSize === 0)
+//         return isArray(values,) ? values : values.toArray()
+//
+//     const newArray: MutableArray<T> = []
+//     forEach2(values, value => {
+//         for (const it of games)
+//             if (it.get(value.reference,)) {
+//                 newArray.push(value,)
+//                 break
+//             }
+//     },)
+//     return newArray
+// }
+//
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
+//  *
+//  * @param values     The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
+//  * @param gameStyles The {@link CollectionHolder Collection} of game style to get if they can be used
+//  */
+// export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: CollectionHolder<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
+//  *
+//  * @param values     The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
+//  * @param gameStyles The {@link CollectionHolder Collection} of game style to get if they can be used
+//  */
+// export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: Array<T>, gameStyles: CollectionHolder<GameStyles>,): Array<T>
+// export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | Array<T>, gameStyles: CollectionHolder<GameStyles>,) {
+//     const valuesSize = values.length
+//     if (valuesSize === 0)
+//         return EMPTY_ARRAY
+//
+//     const gameSize = gameStyles.size
+//     if (gameSize === 0)
+//         return isArray(values,) ? values : values.toArray()
+//
+//     const newArray: MutableArray<T> = []
+//     forEach2(values, value => {
+//         for (const it of gameStyles)
+//             if (it.get(value.reference,)) {
+//                 newArray.push(value,)
+//                 break
+//             }
+//     },)
+//     return newArray
+// }
+//
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link times}
+//  *
+//  * @param values  The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link Times.get}
+//  * @param times   The {@link CollectionHolder Collection} of time to get if they can be used
+//  */
+// export function filterTime<const T extends ClassWithReference<TimeProperty>, >(values: CollectionHolder<T>, times: CollectionHolder<Times>,): Array<T>
+// /**
+//  * Create a new {@link ReadonlyArray Array} that are in the {@link times}
+//  *
+//  * @param values  The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Times.get}
+//  * @param times   The {@link CollectionHolder Collection} of time to get if they can be used
+//  */
+// export function filterTime<const T extends ClassWithReference<TimeProperty>, >(values: Array<T>, gameStyles: CollectionHolder<Times>,): Array<T>
+// export function filterTime<const T extends ClassWithReference<TimeProperty>, >(values: | CollectionHolder<T> | Array<T>, times: CollectionHolder<Times>,) {
+//     const valuesSize = values.length
+//     if (valuesSize === 0)
+//         return EMPTY_ARRAY
+//
+//     const timeSize = times.size
+//     if (timeSize === 0)
+//         return isArray(values,) ? values : values.toArray()
+//
+//     const newArray: MutableArray<T> = []
+//     forEach2(values, value => {
+//         for (const it of times)
+//             if (it.get(value.reference,)) {
+//                 newArray.push(value,)
+//                 break
+//             }
+//     },)
+//     return newArray
+// }
+//
+// //endregion -------------------- filter --------------------
 //region -------------------- assert --------------------
 
 export function assert(condition: boolean, message: string,): asserts condition {
@@ -337,45 +309,56 @@ export function assert(condition: boolean, message: string,): asserts condition 
 //endregion -------------------- assert --------------------
 //region -------------------- get value by … --------------------
 
-export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumByName<T, any>,): T {
+export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null name.`,)
     if (value instanceof companionEnum.instance)
         return value as T
-    const valueFound = companionEnum.values.find(it => it.englishName === value,)
+    const valueFound = companionEnum.values.findFirstOrNull(it => it.englishName === value,)
     if (valueFound == null)
         throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
     return valueFound
 }
 
-export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumByAcronym<T, any>,): T {
+export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null acronym.`,)
     if (value instanceof companionEnum.instance)
         return value as T
-    const valueFound = companionEnum.values.find(it => it.acronym === value,)
+    const valueFound = companionEnum.values.findFirstOrNull(it => it.acronym === value,)
     if (valueFound == null)
         throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
     return valueFound
 }
 
-export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<NoInfer<| T | T['type']>>, companionEnum: CompanionEnumByType<T['type'], T, any>,): T {
+export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<NoInfer<| T | T['type']>>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null type.`,)
     if (value instanceof companionEnum.instance)
         return value as T
-    const valueFound = companionEnum.values.find(it => it.type === value,)
+    const valueFound = companionEnum.values.findFirstOrNull(it => it.type === value,)
     if (valueFound == null)
         throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
     return valueFound
 }
 
-export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumByUrlValue<T, any>,): T {
+export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url value.`,)
     if (value instanceof companionEnum.instance)
         return value as T
-    const valueFound = companionEnum.values.find(it => it.urlValue === value,)
+    const valueFound = companionEnum.values.findFirstOrNull(it => it.urlValue === value,)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
+    return valueFound
+}
+
+export function getValueByUrlName<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+    if (value == null)
+        throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url name.`,)
+    if (value instanceof companionEnum.instance)
+        return value as T
+    const valueFound = companionEnum.values.findFirstOrNull(it => it.urlName === value,)
     if (valueFound == null)
         throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
     return valueFound
@@ -387,7 +370,7 @@ export function getValueInUrl<const T extends EnumerableUsedInRoute, >(url: stri
 
     const lowerCasedUrl = url.toLowerCase()
     const prefix = companionEnum.PREFIX?.toLowerCase() ?? EMPTY_STRING
-    const valueFound = companionEnum.values.find(it =>
+    const valueFound = companionEnum.values.findFirstOrNull(it =>
         lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
     if (valueFound == null)
         throw new ReferenceError(`No "${companionEnum.instance.name}" was found by the url "${url}".`,)

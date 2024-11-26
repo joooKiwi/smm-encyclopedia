@@ -1,11 +1,16 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
+import type {GameStyles_SM3DW}              from 'core/gameStyle/GameStyles.types'
 import type {Names, Ordinals, PossibleName} from 'core/version/Versions.types'
 import type {CompanionEnumByNameSingleton}  from 'util/enumerable/Singleton.types'
 
 import {Games}               from 'core/game/Games'
 import {GameStyles}          from 'core/gameStyle/GameStyles'
 import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
+
+import GameCompanion = Games.Companion
+import SM3DW =         GameStyles.SM3DW
 
 export class Versions
     extends Enum<Ordinals, Names> {
@@ -39,7 +44,7 @@ export class Versions
     public static readonly SMM2_V1_1_0 =       new Versions('v1.1.0',       2,     new Date(2019, 11, 1,),)
     public static readonly SMM2_V2_0_0 =       new Versions('v2.0.0',       2,     new Date(2019, 12, 5,),)
     public static readonly SMM2_V3_0_0 =       new Versions('v3.0.0',       2,     new Date(2020, 4,  22,),)
-    public static readonly SMM2_SM3DW_V3_0_0 = new Versions('SM3DW v3.0.0', 2,     new Date(2020, 4,  22,), GameStyles.SUPER_MARIO_3D_WORLD,)
+    public static readonly SMM2_SM3DW_V3_0_0 = new Versions('SM3DW v3.0.0', 2,     new Date(2020, 4,  22,), SM3DW,)
     public static readonly SMM2_V3_0_1 =       new Versions('v3.0.1',       2,     new Date(2020, 7,  15,),)
     public static readonly SMM2_V3_0_2 =       new Versions('v3.0.2',       2,     new Date(2022, 11, 23,),)
     public static readonly SMM2_V3_0_3 =       new Versions('v3.0.3',       2,     new Date(2024, 1, 6,),)
@@ -69,7 +74,7 @@ export class Versions
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it => it.simpleName === value,)
+            const valueFound = this.values.findFirstOrNull(it => it.simpleName === value,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -93,7 +98,7 @@ export class Versions
     private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle?: GameStyles_SM3DW,) {
         super()
         this.#name = name
-        this.#game = Games.CompanionEnum.get.getValueBySimpleValue(game,)
+        this.#game = GameCompanion.getValueByUrlName(game,)
         this.#releaseDate = releaseDate
         this.#gameStyle = gameStyle ?? null
     }
@@ -123,5 +128,14 @@ export class Versions
 
 }
 
+export namespace Versions {
+
+    /** The companion instance of a {@link Versions} */
+    export const Companion = Versions.CompanionEnum.get
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).Versions = Versions
+
 type PossibleGame = | 1 | '3DS' | 2
-type GameStyles_SM3DW = typeof GameStyles['SUPER_MARIO_3D_WORLD']

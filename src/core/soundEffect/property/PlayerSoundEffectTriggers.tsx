@@ -6,12 +6,12 @@ import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/pro
 import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
 import type {CompanionEnumByTranslationKeySingleton}  from 'util/enumerable/Singleton.types'
 
-import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
-import Image                            from 'app/tools/images/Image'
-import TextComponent                    from 'app/tools/text/TextComponent'
-import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}         from 'lang/components/translationMethods'
-import {CompanionEnumByTranslationKey}  from 'util/enumerable/companion/CompanionEnumByTranslationKey'
+import {unfinishedText}                from 'app/tools/text/UnfinishedText'
+import Image                           from 'app/tools/images/Image'
+import TextComponent                   from 'app/tools/text/TextComponent'
+import {OtherWordInTheGames}           from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}        from 'lang/components/translationMethods'
+import {CompanionEnumByTranslationKey} from 'util/enumerable/companion/CompanionEnumByTranslationKey'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -78,39 +78,39 @@ export class PlayerSoundEffectTriggers
 
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.mushroomImages = <em key={`${key} (mushroom images)`} className="mushroom-images-container">
+            keyMap['mushroomImages'] = <em key={`${key} (mushroom images)`} className="mushroom-images-container">
                 <Image className="super-mushroom-image" variable="super-mushroom" isSquared/>
-                <UnfinishedText>Weird Mushroom</UnfinishedText>{/*<Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>,*/}
+                <Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>
                 <Image className="mystery-mushroom-image" variable="mystery-mushroom" isSquared/>
-                <UnfinishedText>Big Mushroom</UnfinishedText>{/*<Image className="big-mushroom-image" variable={'big-mushroom'} isSquared/>,*/}
-                <UnfinishedText>Big Mushroom (classic)</UnfinishedText>{/*<Image className="big-mushroom-classic-image" variable={'big-mushroom-classic'} isSquared/>,*/}
+                <Image className="big-mushroom-image" variable="big-mushroom" isSquared/>
+                <Image className="big-mushroom-classic-image" variable="big-mushroom-classic" isSquared/>
             </em>
-            keyMap.fireFlowerImages = <em key={`${key} (fire flower images)`} className="fire-flower-images-container">
+            keyMap['fireFlowerImages'] = <em key={`${key} (fire flower images)`} className="fire-flower-images-container">
                 <Image className="fire-flower-image" variable="fire-flower" isSquared/>
                 <Image className="superball-flower-image" variable="superball-flower" isSquared/>
             </em>
-            keyMap.smbImages = <em key={`${key} (SMB images)`} className="smb-images-container">
+            keyMap['smbImages'] = <em key={`${key} (SMB images)`} className="smb-images-container">
                 <Image className="master-sword-image" variable="master-sword" isSquared/>
                 <Image className="smb2-mushroom-image" variable="smb2-mushroom" isSquared/>
             </em>
-            keyMap.smb3Images = <em key={`${key} (SMB3 images)`} className="smb3-images-container">
+            keyMap['smb3Images'] = <em key={`${key} (SMB3 images)`} className="smb3-images-container">
                 <Image className="super-leaf-image" variable="super-leaf" isSquared/>
                 <Image className="frog-suit-image" variable="frog-suit" isSquared/>
             </em>
-            keyMap.smwImages = <em key={`${key} (SMW images)`} className="smw-images-container">
+            keyMap['smwImages'] = <em key={`${key} (SMW images)`} className="smw-images-container">
                 <Image className="cape-feather-image" variable="cape-feather" isSquared/>
                 <Image className="power-balloon-image" variable="power-balloon" isSquared/>
             </em>
-            keyMap.nsmbuImages = <em key={`${key} (NSMBU images)`} className="nsmbu-images-container">
+            keyMap['nsmbuImages'] = <em key={`${key} (NSMBU images)`} className="nsmbu-images-container">
                 <Image className="propeller-mushroom-image" variable="propeller-mushroom" isSquared/>
                 <Image className="super-acorn-image" variable="super-acorn" isSquared/>
             </em>
-            keyMap.sm3dwImages = <em key={`${key} (SM3DW images)`} className="sm3dw-images-container">
+            keyMap['sm3dwImages'] = <em key={`${key} (SM3DW images)`} className="sm3dw-images-container">
                 <Image className="super-bell-image" variable="super-bell" isSquared/>
                 <Image className="super-hammer-image" variable="super-hammer" isSquared/>
                 <Image className="boomerang-flower-image" variable="boomerang-flower" isSquared/>
             </em>
-            keyMap.shellImages = <em key={`${key} (shell images)`}>
+            keyMap['shellImages'] = <em key={`${key} (shell images)`}>
                 <Image className="buzzy-shell-image" variable="buzzy-shell" isSquared/>
                 <Image className="spiny-shell-image" variable="spiny-shell" isSquared/>
             </em>
@@ -126,18 +126,18 @@ export class PlayerSoundEffectTriggers
 
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.clownCarImage = <Image key={`${key} (Clown Car image)`} className="clown-car-image" variable="clown-car" isSquared/>
-            keyMap.lakituCloudImage = <Image key={`${key} (Lakitu's Cloud image)`} className="lakitu-cloud-image" variable="lakitu-cloud" isSquared/>
-            keyMap.shoeImages = <em key={`${key} (Shoe images)`} className="shoe-images-container">
+            keyMap['clownCarImage'] = <Image key={`${key} (Clown Car image)`} className="clown-car-image" variable="clown-car" isSquared/>
+            keyMap['lakituCloudImage'] = <Image key={`${key} (Lakitu's Cloud image)`} className="lakitu-cloud-image" variable="lakitu-cloud" isSquared/>
+            keyMap['shoeImages'] = <em key={`${key} (Shoe images)`} className="shoe-images-container">
                 <Image className="shoe-image" variable="shoe" isSquared/>
-                <UnfinishedText>Stiletto</UnfinishedText>{/*<Image className="stiletto-image" variable="stiletto" isSquared/>*/}
+                <Image className="stiletto-image" variable="stiletto"/>
             </em>
-            keyMap.yoshiImages = <em key={`${key} (Yoshi images)`} className="yoshi-images-container smm2-only">
-                <UnfinishedText>Yoshi</UnfinishedText>{/*<Image className="yoshi-image" variable="yoshi" isSquared/>*/}
-                <UnfinishedText>Red Yoshi</UnfinishedText>{/*<Image className="red-yoshi-image" variable="red-yoshi" isSquared/>*/}
+            keyMap['yoshiImages'] = <em key={`${key} (Yoshi images)`} className="yoshi-images-container smm2-only">
+                <Image className="yoshi-image" variable="yoshi" isSquared/>
+                <Image className="red-yoshi-image" variable="red-yoshi" isSquared/>
             </em>
-            keyMap.dryBonesShellImage = <Image key={`${key} (Dry Bones Shell image)`} className="dry-bones-shell-image smm2-only" variable="dry-bones-shell" isSquared/>
-            keyMap.swingingClawImage = <UnfinishedText key={`${key} (Swinging Claw image)`}>Swinging Claw</UnfinishedText>//<Image key={`${key} (Swinging Claw image)`} className="swinging-claw-image smm2-only" variable="swinging-claw"/>
+            keyMap['dryBonesShellImage'] = <Image key={`${key} (Dry Bones Shell image)`} className="dry-bones-shell-image smm2-only" variable="dry-bones-shell" isSquared/>
+            keyMap['swingingClawImage'] = <Image key={`${key} (Swinging Claw image)`} className="swinging-claw-image smm2-only" variable="swinging-claw" isSquared/>
             return this._addPlayerLink(key, keyMap,)
         }
 
@@ -294,14 +294,14 @@ export class PlayerSoundEffectTriggers
     //region -------------------- Component methods --------------------
 
     protected _addPowerUpLink(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.powerUp = <span key={`${key} - ${this.name} (power-up)`} className="text-decoration-underline">{
+        keyMap['powerUp'] = <span key={`${key} - ${this.name} (power-up)`} className="text-decoration-underline">{
             POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName).toLowerCase()
         }</span>
         return keyMap
     }
 
     protected _addPlayerLink(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.player = <span key={`${key} - ${this.name} (players)`} className="text-decoration-underline">{
+        keyMap['player'] = <span key={`${key} - ${this.name} (players)`} className="text-decoration-underline">{
             PLAYER.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(PLAYER.singularEnglishName).toLowerCase()
         }</span>
         return keyMap
@@ -311,7 +311,7 @@ export class PlayerSoundEffectTriggers
         return keyMap
     }
 
-    public createNewComponent(key: string,): ReactElement {
+    public createNewComponent(key: string,): NonNullReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
 
         return <TextComponent className="playerSoundEffectTrigger-container"

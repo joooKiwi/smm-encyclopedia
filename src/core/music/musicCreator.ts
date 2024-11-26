@@ -14,7 +14,7 @@ import {SingleSoundEffectMusicContainer}                                   from 
 import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
 
 /**
- * Create a simple {@link NonChangeableSoundEffectBackgroundMusic} from a {@link music} and a {@link fastMusic fast music}
+ * Create a {@link NonChangeableSoundEffectBackgroundMusic} from a {@link music} and a {@link fastMusic fast music}
  *
  * @param music The normal-speed music
  * @param fastMusic The fast-speed music
@@ -25,7 +25,7 @@ export function nonChangeableBackgroundMusic<const MUSIC extends MusicSoundFile<
 }
 
 /**
- * Create a simple {@link SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from a {@link linkMusic link} and a {@link smb2Music SMB2} music
+ * Create a {@link SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from a {@link linkMusic link} and a {@link smb2Music SMB2} music
  *
  * @param linkMusic The link-theme music
  * @param smb2Music The SMB2-theme music
@@ -37,40 +37,40 @@ export function linkAndSmb2BackgroundMusic<const LINK_MUSIC extends MusicSoundFi
 
 
 /**
- * Create a simple {@link BackgroundMusic} with every possible track than can be played in order:
- *  - {@link GameStyles.SUPER_MARIO_BROS SMB} (editor, normal & fast)
+ * Create an {@link BackgroundMusic} with every possible track than can be played in order:
+ *  - {@link SMB} (editor, normal & fast)
  *  - "Link" (normal & fast)
  *  - {@link GameReferences.SUPER_MARIO_BROS_2 SMB2} (normal & fast)
- *  - {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} (editor, normal & fast)
- *  - {@link GameStyles.SUPER_MARIO_WORLD SMW} (editor, normal & fast)
- *  - {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} (editor, normal & fast)
- *  - {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} (editor, normal & fast)
+ *  - {@link SMB3} (editor, normal & fast)
+ *  - {@link SMW} (editor, normal & fast)
+ *  - {@link NSMBU} (editor, normal & fast)
+ *  - {@link SM3DW} (editor, normal & fast)
  *
- * @param smbEditor The editor sound effect in {@link GameStyles.SUPER_MARIO_BROS SMB}
- * @param smb The {@link GameStyles.SUPER_MARIO_BROS SMB} music when playing
- * @param smbFast The fast {@link GameStyles.SUPER_MARIO_BROS SMB} music when playing
+ * @param smbEditor The editor sound effect in {@link SMB}
+ * @param smb The {@link SMB} music when playing
+ * @param smbFast The fast {@link SMB} music when playing
  * @param link The "Link" music when playing
  * @param linkFast The fast "Link" music when playing
  * @param smb2 The {@link GameReferences.SUPER_MARIO_BROS_2 SMB2} music when playing
  * @param smb2Fast The fast {@link GameReferences.SUPER_MARIO_BROS_2 SMB2} music when playing
- * @param smb3Editor The editor sound effect in {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
- * @param smb3 The {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} music when playing
- * @param smb3Fast The fast {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} music when playing
- * @param smwEditor The editor sound effect in {@link GameStyles.SUPER_MARIO_WORLD SMW}
- * @param smw The {@link GameStyles.SUPER_MARIO_WORLD SMW} music when playing
- * @param smwYoshi The {@link GameStyles.SUPER_MARIO_WORLD SMW} music when playing and riding a "Yoshi"
- * @param smwFast The {@link GameStyles.SUPER_MARIO_WORLD SMW} music when playing
- * @param smwFastYoshi The fast {@link GameStyles.SUPER_MARIO_WORLD SMW} music when playing and riding a "Yoshi"
- * @param nsmbuEditor The editor sound effect in {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
- * @param nsmbu The {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} music when playing
- * @param nsmbuYoshi The {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} music when playing and riding a "Yoshi"
- * @param nsmbuFast The fast {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} music when playing
- * @param nsmbuFastYoshi The fast {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} music when playing and riding a "Yoshi"
- * @param sm3dwEditor The editor sound effect in {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}
- * @param sm3dw The {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing
- * @param sm3dwUnderwater The {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing while being {@link Themes.UNDERWATER underwater}
- * @param sm3dwFast The fast {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing
- * @param sm3dwFastUnderwater The fast {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing while being {@link Themes.UNDERWATER underwater}
+ * @param smb3Editor The editor sound effect in {@link SMB3}
+ * @param smb3 The {@link SMB3} music when playing
+ * @param smb3Fast The fast {@link SMB3} music when playing
+ * @param smwEditor The editor sound effect in {@link SMW}
+ * @param smw The {@link SMW} music when playing
+ * @param smwYoshi The {@link SMW} music when playing and riding a "Yoshi"
+ * @param smwFast The {@link SMW} music when playing
+ * @param smwFastYoshi The fast {@link SMW} music when playing and riding a "Yoshi"
+ * @param nsmbuEditor The editor sound effect in {@link NSMBU}
+ * @param nsmbu The {@link NSMBU} music when playing
+ * @param nsmbuYoshi The {@link NSMBU} music when playing and riding a "Yoshi"
+ * @param nsmbuFast The fast {@link NSMBU} music when playing
+ * @param nsmbuFastYoshi The fast {@link NSMBU} music when playing and riding a "Yoshi"
+ * @param sm3dwEditor The editor sound effect in {@link SM3DW}
+ * @param sm3dw The {@link SM3DW} music when playing
+ * @param sm3dwUnderwater The {@link SM3DW} music when playing while being {@link Themes.UNDERWATER underwater}
+ * @param sm3dwFast The fast {@link SM3DW} music when playing
+ * @param sm3dwFastUnderwater The fast {@link SM3DW} music when playing while being {@link Themes.UNDERWATER underwater}
  * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export function backgroundMusic<const SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer, const SMB_MUSIC extends PossibleSMB_RegularMusic_GroupContainer, const SMB_FAST_MUSIC extends PossibleSMB_FastMusic_GroupContainer,
@@ -103,7 +103,7 @@ export function backgroundMusic<const SMB_EDITOR_MUSIC extends PossibleSMB_Edito
 
 
 /**
- * Create a simple {@link SoundEffectMusicWithDifferentEditor} with {@link NonRepeatableSoundFile} {@link editorName editor} and {@link name regular} name
+ * Create a {@link SoundEffectMusicWithDifferentEditor} with {@link NonRepeatableSoundFile} {@link editorName editor} and {@link name regular} name
  *
  * @param name The music when playing
  * @param editorName The editor sound effect
@@ -114,7 +114,7 @@ export function separatedSoundEffectMusic<const NAME extends PossibleSoundEffect
 }
 
 /**
- * Create a simple {@link SingleSoundEffectMusic} with {@link NonRepeatableSoundFile} from the {@link name} provided
+ * Create a {@link SingleSoundEffectMusic} with {@link NonRepeatableSoundFile} from the {@link name} provided
  *
  * @param name The editor sound effect and music when playing
  * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better

@@ -103,3 +103,15 @@ export class MiiCostumeCategories
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace MiiCostumeCategories {
+
+    /** The companion instance of a {@link MiiCostumeCategories} */
+    export const Companion = MiiCostumeCategories.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).MiiCostumeCategories = MiiCostumeCategories

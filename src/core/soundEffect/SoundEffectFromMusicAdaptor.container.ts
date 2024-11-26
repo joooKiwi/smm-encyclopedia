@@ -1,9 +1,13 @@
+import type {Array} from '@joookiwi/type'
+
 import type {Musics}                      from 'core/music/Musics'
 import type {MusicSoundFile}              from 'core/music/file/MusicSoundFile'
 import type {SoundEffectFromMusicAdaptor} from 'core/soundEffect/SoundEffectFromMusicAdaptor'
 
-import {assert}      from 'util/utilitiesMethods'
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {assert} from 'util/utilitiesMethods'
+import {Empty}  from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @todo find a better implementation than using only this (this works for now, but is not-efficient)
@@ -25,7 +29,7 @@ export class SoundEffectFromMusicAdaptorContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get sounds(): readonly MusicSoundFile[] {
+    public get sounds(): Array<MusicSoundFile> {
         return this.#musicContainer.everyMusics
     }
 

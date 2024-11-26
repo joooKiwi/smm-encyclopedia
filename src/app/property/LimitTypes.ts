@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -6,6 +7,10 @@ import type {CompanionEnumByTypeSingleton}                     from 'util/enumer
 
 import {Limits}              from 'core/limit/Limits'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
+
+import ALL_LIMITS =    Limits.ALL
+import EDITOR_LIMITS = Limits.EDITOR
+import PLAY_LIMITS =   Limits.PLAY
 
 /** @usedByTheRouting */
 export abstract class LimitTypes
@@ -17,7 +22,7 @@ export abstract class LimitTypes
     public static readonly ALL = new class LimitTypes_All extends LimitTypes {
 
         public override get content() {
-            return Limits.CompanionEnum.get.values.toArray()
+            return ALL_LIMITS
         }
 
 
@@ -29,7 +34,7 @@ export abstract class LimitTypes
     public static readonly PLAY = new class LimitTypes_Play extends LimitTypes {
 
         public override get content() {
-            return Limits.playLimits
+            return PLAY_LIMITS
         }
 
 
@@ -49,7 +54,7 @@ export abstract class LimitTypes
     public static readonly EDITOR = new class LimitTypes_Editor extends LimitTypes {
 
         public override get content() {
-            return Limits.editorLimits
+            return EDITOR_LIMITS
         }
 
 
@@ -120,12 +125,16 @@ export abstract class LimitTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly Limits[]
+    public abstract get content(): Array<Limits>
 
     //region -------------------- Link button methods --------------------
 
-    /** The route name for the path with every {@link Limits} */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyLimit'>> {
+    /**
+     * The route name for the path with every {@link Limits}
+     *
+     * @see Limits.ALL
+     */
+    public get allRouteName(): NullOr<PossibleRouteName> {
         return 'everyLimit'
     }
 
@@ -137,9 +146,9 @@ export abstract class LimitTypes
     /**
      * The route name for the path with only the play {@link Limits}
      *
-     * @see Limits.playLimits
+     * @see Limits.PLAY
      */
-    public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimit'>> {
+    public get playRouteName(): NullOr<PossibleRouteName> {
         return 'playLimit'
     }
 
@@ -151,9 +160,9 @@ export abstract class LimitTypes
     /**
      * The route name for the path with only the editor {@link Limits}
      *
-     * @see Limits.editorLimits
+     * @see Limits.EDITOR
      */
-    public get editorRouteName(): NullOr<Extract<PossibleRouteName, 'editorLimit'>> {
+    public get editorRouteName(): NullOr<PossibleRouteName> {
         return 'editorLimit'
     }
 

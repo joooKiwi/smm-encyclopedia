@@ -1,4 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
+import type {Lazy}   from '@joookiwi/lazy'
+import type {NullOr} from '@joookiwi/type'
 
 import type {EntityBehaviour, PossibleGroup}           from 'core/behaviour/EntityBehaviour'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'

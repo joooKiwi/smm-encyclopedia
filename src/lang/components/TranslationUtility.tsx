@@ -1,48 +1,54 @@
-import type {StringOrNumeric} from '@joookiwi/type'
-import type {TOptions} from 'i18next'
+import type {MutableArray, StringOrNumeric, UndefinedOr} from '@joookiwi/type'
+import type {TOptions}                                   from 'i18next'
+import {filterByArray, hasByArray, joinByArray}          from '@joookiwi/collection'
 
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
 import {isInProduction} from 'variables'
+import {Empty}          from 'util/emptyVariables'
 import {assert}         from 'util/utilitiesMethods'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 export class TranslationUtility {
 
-    public static readonly STARTING_CHARACTER = '{'
-    public static readonly STARTING_CHARACTER_LENGTH = this.STARTING_CHARACTER.length
-    public static readonly STARTING_OR_ENDING_REGEX = /{{|}}/
-    public static readonly STARTING_REGEX = /{{/g
-    public static readonly STARTING_LENGTH = '{{'.length
-    public static readonly ENDING_CHARACTER = '}'
-    public static readonly ENDING_CHARACTER_LENGTH = this.ENDING_CHARACTER.length
-    public static readonly ENDING_REGEX = /}}/g
-    public static readonly ENDING_LENGTH = '}}'.length
     public static OPTION_TO_RETURN_OBJECT: TOptions = {returnObjects: true, interpolation: {skipOnVariables: true,},}
 
+}
 
-    private constructor() {
-        throw new EvalError(`This class "${TranslationUtility}" cannot be created.`)
-    }
+export namespace TranslationUtility {
 
-    public static testTranslation<T, >(value: T,): T & string {
+    export const STARTING_CHARACTER = '{'
+    export const STARTING_CHARACTER_LENGTH = STARTING_CHARACTER.length
+    export const STARTING_OR_ENDING_REGEX = /{{|}}/
+    export const STARTING_REGEX = /{{/g
+    export const STARTING_LENGTH = '{{'.length
+    export const ENDING_CHARACTER = '}'
+    export const ENDING_CHARACTER_LENGTH = ENDING_CHARACTER.length
+    export const ENDING_REGEX = /}}/g
+    export const ENDING_LENGTH = '}}'.length
+    // export let OPTION_TO_RETURN_OBJECT: TOptions = {returnObjects: true, interpolation: {skipOnVariables: true,},}
+
+
+    export function testTranslation<T, >(value: T,): T & string {
         assert(typeof value == 'string', `The translation key ${value} cannot receive a translation that contain a sub value.`,)
         return value
     }
 
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<StringOrNumeric>,): string
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): ReactElement
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
-        let argumentsFound = [] as string[]
-        for (const replaceKey of value.matchAll(this.STARTING_REGEX,)) {
+    export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<StringOrNumeric>,): string
+    export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): NonNullReactElement
+    export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
+    export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
+        let argumentsFound: MutableArray<string> = []
+        for (const replaceKey of value.matchAll(STARTING_REGEX,)) {
             const startingIndex = replaceKey.index!
-            const endingIndex = value.indexOf(this.ENDING_CHARACTER, startingIndex,)
-            argumentsFound.push(value.substring(startingIndex + this.STARTING_LENGTH, endingIndex,),)
+            const endingIndex = value.indexOf(ENDING_CHARACTER, startingIndex,)
+            argumentsFound.push(value.substring(startingIndex + STARTING_LENGTH, endingIndex,),)
         }
 
         let containsOnlyStringOrNumeric = true
-        for (let i = 0; i < argumentsFound.length; i++) {
-            const value = keyMap[argumentsFound[i]]
+        for (const it of argumentsFound) {
+            const value = keyMap[it]
             if (value == null) {
                 containsOnlyStringOrNumeric = false
                 break
@@ -60,13 +66,15 @@ export class TranslationUtility {
             break
         }
 
-        const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX,).filter(splitValue => !argumentsFound.includes(splitValue,),)
-        let finalArguments = [] as ReactElementOrStringOrNumeric[]
-        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
-            this.#addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]],)
+        const splitArguments = filterByArray(value.split(STARTING_OR_ENDING_REGEX,), it => !hasByArray(argumentsFound, it,),)
+        const splitArgumentsSize = splitArguments.size
+        const argumentsFoundSize = argumentsFound.length
+        let finalArguments: MutableArray<ReactElementOrStringOrNumeric> = []
+        for (let i = 0, j = 0; i < argumentsFoundSize || j < splitArgumentsSize; i++, j++)
+            __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound[i]!],)
 
         if (containsOnlyStringOrNumeric)
-            return finalArguments.join('',)
+            return joinByArray(finalArguments, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)
         return <>{finalArguments}</>
     }
 
@@ -80,7 +88,7 @@ export class TranslationUtility {
      * @param splitArgument the split argument
      * @param replacementArgument the replacement argument
      */
-    static #addArgumentToArray(finalArguments: ReactElementOrStringOrNumeric[], splitArgument: string, replacementArgument: UndefinedOr<ReactElementOrStringOrNumeric>,): void {
+    function __addArgumentToArray(finalArguments: MutableArray<ReactElementOrStringOrNumeric>, splitArgument: string, replacementArgument: UndefinedOr<ReactElementOrStringOrNumeric>,): void {
         finalArguments.push(splitArgument,)
         if (replacementArgument == null)
             return

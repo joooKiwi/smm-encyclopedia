@@ -8,12 +8,12 @@ export type LanguageNamespace = 'language'
 export type Namespace = | ContentNamespace | GameContentNamespace | EntityContentNamespace | LanguageNamespace
 
 /**
- * A simple translation method based on the {@link Namespace namespace} used.
+ * A translation method based on the {@link Namespace namespace} used.
  */
 export type TranslationMethod<N extends Namespace, > = TFunction<N, N>
 
 /**
- * A simple translation return value based on a {@link Namespace namespace}.
+ * A translation return value based on a {@link Namespace namespace}.
  *
  * @see TranslationMethod
  * @see SingleTranslationKey
@@ -27,13 +27,13 @@ export type TranslationReturnValue<N extends Namespace, V extends string = strin
  */
 export type SingleTranslationKey<N extends Namespace, > = KeyOn<Resources[N]>
 
-/** A simple alias of {@link SingleTranslationKey} but specified to the "language" */
+/** An alias of {@link SingleTranslationKey} but specified to the "language" */
 export type LanguageTranslationKey = KeyOn<Resources['language']>
-/** A simple alias of {@link SingleTranslationKey} but specified to the "content" */
+/** An alias of {@link SingleTranslationKey} but specified to the "content" */
 export type ContentTranslationKey = KeyOn<Resources['content']>
-/** A simple alias of {@link SingleTranslationKey} but specified to the "game content" */
+/** An alias of {@link SingleTranslationKey} but specified to the "game content" */
 export type GameContentTranslationKey = KeyOn<Resources['gameContent']>
-/** A simple alias of {@link SingleTranslationKey} but specified to the "entity content" */
+/** An alias of {@link SingleTranslationKey} but specified to the "entity content" */
 export type EntityContentTranslationKey = KeyOn<Resources['entityContent']>
 /**
  * The separator of a translation key
@@ -42,12 +42,12 @@ export type EntityContentTranslationKey = KeyOn<Resources['entityContent']>
  */
 type Separator = TypeOptions['keySeparator']
 /**
- * A simple retriever that only represent the final path of a translation (that returns a {@link String})
+ * A retriever that only represent the final path of a translation (that returns a {@link String})
  *
  * @see https://dev.to/pffigueiredo/typescript-utility-keyof-nested-object-2pa3
  */
 type KeyOn<T extends object, > = {
-    [KEY in keyof T & string]: T[KEY] extends string
+    readonly [KEY in keyof T & string]: T[KEY] extends string
         ? KEY
         : T[KEY] extends object
             ? `${KEY}${Separator}${KeyOn<T[KEY]>}`
@@ -60,4 +60,4 @@ type KeyOn<T extends object, > = {
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap<T extends ReactElementOrStringOrNumeric = ReactElementOrStringOrNumeric, > = { [key: string]: T }
+export type TranslationReplaceKeysMap<T extends ReactElementOrStringOrNumeric = ReactElementOrStringOrNumeric, > = { readonly [key: string]: T }

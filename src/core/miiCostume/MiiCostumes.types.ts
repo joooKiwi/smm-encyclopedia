@@ -1,3 +1,5 @@
+import type {EmptyString} from '@joookiwi/type'
+
 enum Enum {
 
     NONE,
@@ -132,7 +134,7 @@ export type PossibleEnglishName =
     | `Magikoopa ${| 'Hat' | 'Robes'}`
 
     | 'Cheep Cheep Hat' | 'Faceplant' | 'Shy Cap' | 'Rocky Wrench Manhole Lid'
-    | `${| '' | 'Snow '}Pokey Hat`
+    | `${| EmptyString | 'Snow '}Pokey Hat`
     | 'Fireworks Shirt' | 'Banzai Bill Shirt' | 'Staredown Shirt' | 'Parent-and-Child Skirt' | 'Chomp-Dog Shirt' | 'Fish Bone Shirt'
     | 'Angry Sun Shirt' | 'Hot Hot Shirt' | 'Running Shirt' | 'Phanto Hoodie' | 'Skull Skirt'
     | 'Burner Skirt' | 'Wind-Up Shoe' | 'Stingby Skirt' | 'Thwomp Suit' | 'Googoo Onesie'

@@ -1,10 +1,13 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {ClassWithAcronym}                         from 'core/ClassWithAcronym'
 import type {ClassWithTranslationKey}                  from 'lang/ClassWithTranslationKey'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
 import type {Entity}                                   from 'core/entity/Entity'
 
 export interface EntityBehaviour
-    extends ClassWithTranslationKey<PossibleTranslationKeys>, ClassWithAcronym<PossibleAcronym> {
+    extends ClassWithTranslationKey<PossibleTranslationKeys>,
+        ClassWithAcronym<PossibleAcronym> {
 
     //region -------------------- Is in only --------------------
 

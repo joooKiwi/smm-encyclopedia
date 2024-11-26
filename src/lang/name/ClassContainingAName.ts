@@ -3,7 +3,7 @@ import type {Name}            from 'lang/name/Name'
 import type {NameTrait}       from 'lang/name/NameTrait'
 
 /**
- * A simple implementation of the {@link NameTrait}
+ * An implementation of the {@link NameTrait}
  * to remove duplicate code.
  */
 export class ClassContainingAName<const out T, >

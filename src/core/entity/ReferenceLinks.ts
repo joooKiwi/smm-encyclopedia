@@ -1,27 +1,32 @@
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
+
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 interface ReferenceHolder {
 
     /** The unique reference links associated to a {@link GameStyles} */
-    readonly gameStyleLinks: readonly PossibleEnglishName[]
+    readonly gameStyleLinks: Array<PossibleEnglishName>
 
     /** The unique reference links associated to a {@link Themes} */
-    readonly themeLinks: readonly PossibleEnglishName[]
+    readonly themeLinks: Array<PossibleEnglishName>
 
     /** The unique reference links associated to a {@link Times} */
-    readonly timeLinks: readonly PossibleEnglishName[]
+    readonly timeLinks: Array<PossibleEnglishName>
 
     /** Every unique reference that is a link */
-    readonly allLinks: readonly PossibleEnglishName[]
+    readonly allLinks: Array<PossibleEnglishName>
 
 }
 
 /**
- * A simple class made to be handled by the {@link EntityLoader}
- * only in order to encapsulate the references that are a link
+ * A class made to be handled by the {@link EntityLoader}
+ * only to encapsulate the references that are a link
  */
 export class ReferenceLinks {
 
@@ -45,11 +50,11 @@ export class ReferenceLinks {
      * @param englishName The name to associate to each other references
      * @param dayReferences The {@link Times.DAY} references
      * @param nightReferences The {@link Times.NIGHT} references
-     * @param smbReferences The {@link GameStyles.SUPER_MARIO_BROS} references
-     * @param smb3References The {@link GameStyles.SUPER_MARIO_BROS_3} references
-     * @param smwReferences The {@link GameStyles.SUPER_MARIO_WORLD} references
-     * @param nsmbuReferences The {@link GameStyles.NEW_SUPER_MARIO_BROS_U} references
-     * @param sm3dwReferences The {@link GameStyles.SUPER_MARIO_3D_WORLD} references
+     * @param smbReferences The {@link SMB} references
+     * @param smb3References The {@link SMB3} references
+     * @param smwReferences The {@link SMW} references
+     * @param nsmbuReferences The {@link NSMBU} references
+     * @param sm3dwReferences The {@link SM3DW} references
      * @param groundStyleReferences The {@link Themes.GROUND} references
      * @param undergroundReferences The {@link Themes.UNDERGROUND} references
      * @param underwaterReferences The {@link Themes.UNDERWATER} references
@@ -62,23 +67,23 @@ export class ReferenceLinks {
      * @param castleReferences The {@link Themes.CASTLE} references
      */
     public addSubReference(englishName: PossibleEnglishName,
-                           dayReferences: NullOr<EntityLink>,
-                           nightReferences: NullOr<EntityLink>,
-                           smbReferences: NullOr<EntityLink>,
-                           smb3References: NullOr<EntityLink>,
-                           smwReferences: NullOr<EntityLink>,
-                           nsmbuReferences: NullOr<EntityLink>,
-                           sm3dwReferences: NullOr<EntityLink>,
-                           groundStyleReferences: NullOr<EntityLink>,
-                           undergroundReferences: NullOr<EntityLink>,
-                           underwaterReferences: NullOr<EntityLink>,
-                           desertReferences: NullOr<EntityLink>,
-                           snowReferences: NullOr<EntityLink>,
-                           skyReferences: NullOr<EntityLink>,
-                           forestReferences: NullOr<EntityLink>,
-                           ghostHouseReferences: NullOr<EntityLink>,
-                           airshipReferences: NullOr<EntityLink>,
-                           castleReferences: NullOr<EntityLink>,
+                           dayReferences: NullOrString<EntityLink>,
+                           nightReferences: NullOrString<EntityLink>,
+                           smbReferences: NullOrString<EntityLink>,
+                           smb3References: NullOrString<EntityLink>,
+                           smwReferences: NullOrString<EntityLink>,
+                           nsmbuReferences: NullOrString<EntityLink>,
+                           sm3dwReferences: NullOrString<EntityLink>,
+                           groundStyleReferences: NullOrString<EntityLink>,
+                           undergroundReferences: NullOrString<EntityLink>,
+                           underwaterReferences: NullOrString<EntityLink>,
+                           desertReferences: NullOrString<EntityLink>,
+                           snowReferences: NullOrString<EntityLink>,
+                           skyReferences: NullOrString<EntityLink>,
+                           forestReferences: NullOrString<EntityLink>,
+                           ghostHouseReferences: NullOrString<EntityLink>,
+                           airshipReferences: NullOrString<EntityLink>,
+                           castleReferences: NullOrString<EntityLink>,
     ): void {
         const allLinks = new Set<PossibleEnglishName>()
         let timeLinks = new Set<PossibleEnglishName>()
@@ -116,7 +121,7 @@ export class ReferenceLinks {
         },)
     }
 
-    protected _addReferenceTo(englishName: PossibleEnglishName, content: NullOr<EntityLink>, allLinks: Set<PossibleEnglishName>, links: Set<PossibleEnglishName>,): void {
+    protected _addReferenceTo(englishName: PossibleEnglishName, content: NullOrString<EntityLink>, allLinks: Set<PossibleEnglishName>, links: Set<PossibleEnglishName>,): void {
         if (content == null)
             return
         if (content === 'this')
@@ -128,16 +133,12 @@ export class ReferenceLinks {
             return
         }
 
-        const separatedContent = content.split(' / ',) as readonly (| PossibleEnglishName | 'this')[]
-        const size = separatedContent.length
-        let index = -1
-        while (++index < size) {
-            const value = separatedContent[index]
+        forEachByArray(content.split(' / ',) as Array<| PossibleEnglishName | 'this'>, value => {
             if (value === 'this')
-                continue
+                return
             allLinks.add(value,)
             links.add(value,)
-        }
+        },)
     }
 
 
@@ -145,28 +146,28 @@ export class ReferenceLinks {
         return this._references.has(englishName,)
     }
 
-    public getGameStyleReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getGameStyleReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
         return value.gameStyleLinks
     }
 
-    public getThemeReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getThemeReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
         return value.themeLinks
     }
 
-    public getTimeReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getTimeReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
         return value.timeLinks
     }
 
-    public getEveryReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getEveryReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY

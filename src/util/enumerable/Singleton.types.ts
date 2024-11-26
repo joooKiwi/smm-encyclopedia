@@ -15,28 +15,28 @@ import type {CompanionEnumRetrievableInUrl}                                     
 import type {CompanionEnumWithCurrentAndSetCurrentEvent}                                                                                                                               from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByAcronym} in replacement
  */
 export type CompanionEnumByAcronymSingleton<ENUM extends EnumerableWithNullableAcronym,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByAcronym<ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByAcronymOrName} in replacement
  */
 export type CompanionEnumByAcronymOrNameSingleton<ENUM extends EnumerableWithEnglishNameAndNullableAcronym,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByAcronymOrName<ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByName} in replacement
  */
 export type CompanionEnumByNameSingleton<ENUM extends Enumerable,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByName<ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByNameWithValidation} in replacement
  */
 export type CompanionEnumByNameWithValidationSingleton<ENUM extends Enumerable,
@@ -44,7 +44,7 @@ export type CompanionEnumByNameWithValidationSingleton<ENUM extends Enumerable,
 
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByTranslationKey} in replacement
  */
 export type CompanionEnumByTranslationKeySingleton<ENUM extends EnumerableWithTranslationKey,
@@ -52,7 +52,7 @@ export type CompanionEnumByTranslationKeySingleton<ENUM extends EnumerableWithTr
 
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByValue} in replacement
  */
 export type CompanionEnumByValueSingleton<T,
@@ -60,14 +60,14 @@ export type CompanionEnumByValueSingleton<T,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByValue<T, ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByUrlValue} in replacement
  */
 export type CompanionEnumByUrlValueSingleton<ENUM extends EnumerableUsedInRoute,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByUrlValue<ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByType} in replacement
  */
 export type CompanionEnumByTypeSingleton<T,
@@ -75,7 +75,7 @@ export type CompanionEnumByTypeSingleton<T,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByType<T, ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumByReference} in replacement
  */
 export type CompanionEnumByReferenceSingleton<REFERENCE,
@@ -84,7 +84,7 @@ export type CompanionEnumByReferenceSingleton<REFERENCE,
 
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumWithCurrentAndSetCurrentEvent} in replacement
  */
 export type CompanionEnumWithCurrentAndSetCurrentEventSingleton<ENUM extends Enumerable,
@@ -92,14 +92,14 @@ export type CompanionEnumWithCurrentAndSetCurrentEventSingleton<ENUM extends Enu
 
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumRetrievableInUrl} in replacement
  */
 export type CompanionEnumRetrievableInUrlSingleton<ENUM extends EnumerableUsedInRoute,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumRetrievableInUrl<ENUM, ENUM_CONSTRUCTOR>>
 
 /**
- * A simple extended type of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
+ * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
  * but with the {@link CompanionEnumDualRetrievableInUrl} in replacement
  */
 export type CompanionEnumDualRetrievableInUrlSingleton<ENUM extends EnumerableUsedInRoute,

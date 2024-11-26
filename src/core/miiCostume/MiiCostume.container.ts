@@ -1,4 +1,5 @@
-import {lazyOf} from '@joookiwi/lazy'
+import type {NullOr, NullOrNumber} from '@joookiwi/type'
+import {lazyOf}                    from '@joookiwi/lazy'
 
 import type {MiiCostume}         from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeCategory} from 'core/miiCostumeCategory/MiiCostumeCategory'

@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Sound effect.json'
 
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
+
 import type {LanguageContent}                                     from 'core/_template/LanguageContent'
 import type {GameContentFrom1And2}                                from 'core/game/Loader.types'
 import type {SoundEffect}                                         from 'core/soundEffect/SoundEffect'
@@ -35,7 +38,7 @@ export class SoundEffectLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, SoundEffect>
+    #map?: ReadonlyMap<PossibleEnglishName, SoundEffect>
 
     public load(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
         if (this.#map != null)
@@ -43,11 +46,10 @@ export class SoundEffectLoader
 
         const soundEffectCategoryMap = SoundEffectCategoryLoader.get.load()
         const references = new Map<PossibleEnglishName, SoundEffect>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content, soundEffectCategoryMap,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content, soundEffectCategoryMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(
@@ -81,7 +83,7 @@ interface Content
 
     //endregion -------------------- Triggers --------------------
 
-    readonly category: NullOr<PossibleEnglishName_Category>
+    readonly category: NullOrString<PossibleEnglishName_Category>
 
 }
 

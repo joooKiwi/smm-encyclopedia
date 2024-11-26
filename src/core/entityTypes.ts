@@ -1,3 +1,5 @@
+import type {NullOrBoolean, NullOr, EmptyString} from '@joookiwi/type'
+
 /** @temporaryVariable */
 export type PossibleGroupName = string
 
@@ -7,31 +9,13 @@ export type PossibleGroupName = string
 
 //region -------------------- Specific properties --------------------
 
-/** @temporaryLocation */export type CanContainOrSpawnAKey = NullOrBoolean
-
-/** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = | NullOrBooleanOrNotApplicable | 'Only some variants'
-
 /** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
-/** @temporaryLocation */export type CanSpawnOutOfAPipe = NullOrBoolean
-
-/** @temporaryLocation */export type CanBePutInASwingingClaw = NullOrBoolean
-
-/** @temporaryLocation */export type CanBeThrownByALakitu = NullOr<| boolean | UnknownCharacter>
-/** @temporaryLocation */export type CanBePutInALakituCloud = NullOr<| boolean | UnknownCharacter>
-
-/** @temporaryLocation */export type CanBePutInAClownCar = NullOrBoolean
-
-/** @temporaryLocation */export type CanBeFiredOutOfABulletLauncher = NullOrBoolean
-
-/** @temporaryLocation */export type CanBePutInABlock = NullOrBoolean
-
 /** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | '1 per segment (1 to 8)' | '2 (any height)' | UnknownCharacter>
-/** @temporaryLocation */export type CanBePutInATree = NullOrBoolean
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = NullOrBoolean
 
-/** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | UnknownCharacter | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground'
+/** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | UnknownCharacter | `Castle${| EmptyString | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground'
 
 /** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle'
 /** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed'
@@ -40,10 +24,6 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanGoThroughWalls = NullOrBoolean
 /** @temporaryLocation */export type CanGoThroughWallsInSM3DW = NullOr<| boolean | 'on down curve'>
-
-/** @temporaryLocation */export type CanBeStacked = NullOrBoolean
-
-/** @temporaryLocation */export type IsGlobalGroundOrGlobal = NullOr<| boolean | NotApplicable | 'SM3DW'>
 
 /** @temporaryLocation */export type PossibleLightSource = NullOr<| `${'Dim' | 'Full'} light`
                                                                   | `Full light when ${| 'falling' | 'collected' | 'shooting'}`

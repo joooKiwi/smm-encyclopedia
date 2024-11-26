@@ -14,6 +14,13 @@ import SMM2OnlySoundEffectSoundsComponent       from 'core/soundEffect/SMM2OnlyS
 import SoundEffectComponent                     from 'core/soundEffect/SoundEffect.component'
 import SoundEffectSoundsComponent               from 'core/soundEffect/SoundEffectSounds.component'
 import {SoundEffectCategories}                  from 'core/soundEffectCategory/SoundEffectCategories'
+import SoundEffectCategoryIcon                  from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
+import {Empty}                                  from 'util/emptyVariables'
+
+import CategoryCompanion = SoundEffectCategories.Companion
+import EMPTY_STRING =      Empty.EMPTY_STRING
+import SMM1 =              Games.SMM1
+import SMM2 =              Games.SMM2
 
 export abstract class SoundEffectAppOption
     extends Enum<Ordinals, Names>
@@ -46,7 +53,7 @@ export abstract class SoundEffectAppOption
     public static readonly NAME =                 new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
-            return CommonOptions.get.getNameContent(enumeration)
+            return CommonOptions.get.getNameContent(enumeration,)
         }
 
         protected override _createTableHeaderOption() {
@@ -57,9 +64,10 @@ export abstract class SoundEffectAppOption
     public static readonly CATEGORY =             new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
-            const {reference,} = enumeration
-
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.CompanionEnum.get.getValueByName(reference.categoryEnglish,).imageFile,)
+            const name = enumeration.reference.categoryAmericanEnglish
+            if (name === EMPTY_STRING)
+                return null
+            return <SoundEffectCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
         }
 
         protected override _createTableHeaderOption() {
@@ -74,7 +82,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'player behaviour', element: unfinishedText('Player behaviour'),}//TODO add Player behaviour
+            return {key: 'player behaviour', element: unfinishedText('Player behaviour',),}//TODO add Player behaviour
         }
 
     }('playerBehaviour',)
@@ -164,18 +172,6 @@ export abstract class SoundEffectAppOption
 
     //region -------------------- App option - content --------------------
 
-    public static renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
-        const reference = enumerable.reference
-
-        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_1}/> : null
-    }
-
-    public static renderSMM2Image(enumerable: SoundEffects,): ReactElement {
-        const reference = enumerable.reference
-
-        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_2}/> : null
-    }
-
     protected abstract _createContentOption(enumeration: SoundEffects,): ReactElement
 
     public renderContent(enumeration: SoundEffects,): readonly [ReactElement,] {
@@ -194,5 +190,23 @@ export abstract class SoundEffectAppOption
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace SoundEffectAppOption {
+
+    /** @deprecated This should be replaced with something else */
+    export function renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
+        const reference = enumerable.reference
+
+        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM1}/> : null
+    }
+
+    /** @deprecated This should be replaced with something else */
+    export function renderSMM2Image(enumerable: SoundEffects,): ReactElement {
+        const reference = enumerable.reference
+
+        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={SMM2}/> : null
+    }
 
 }

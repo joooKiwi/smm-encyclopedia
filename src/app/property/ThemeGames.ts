@@ -1,9 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOrString}           from '@joookiwi/type'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/ThemeGames.types'
 import type {ThemeTypes}                         from 'app/property/ThemeTypes'
-import type {ViewDisplays}                       from 'app/withInterpreter/ViewDisplays'
 
 export class ThemeGames
     extends Enum<Ordinals, Names> {
@@ -74,12 +74,12 @@ export class ThemeGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getSmm1Or3dsRouteName(type: ThemeTypes, viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=1)`
+    public getSmm1Or3dsRouteName(type: ThemeTypes,): NullOrString<PossibleRouteName> {
+        return `${type.routeName} (Game=1&3DS)`
     }
 
-    public getSmm2RouteName(type: ThemeTypes, viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `${type.routeName} (${viewDisplay.urlValue} Game=2)`
+    public getSmm2RouteName(type: ThemeTypes,): NullOrString<PossibleRouteName> {
+        return `${type.routeName} (Game=2)`
     }
 
     //endregion -------------------- Methods --------------------

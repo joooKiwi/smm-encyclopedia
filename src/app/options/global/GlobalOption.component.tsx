@@ -13,29 +13,29 @@ export default function GlobalOptionComponent() {
     // const isNoGame = !smm1Value && !smm3dsValue && !smm2Value
     // const isSmm1Or3DSExclusive = (smm1Value || smm3dsValue) && !smm2Value
 
-    // const everyThemeOptions = Themes.courseThemes.map(({name,}) => GlobalAppOption.getValue(name) as GlobalAppOption<GlobalThemeOption>)
+    // const everyThemeOptions = Themes.COURSE_THEMES.map(({name,}) => GlobalAppOption.getValue(name) as GlobalAppOption<GlobalThemeOption>)
 
     return <div id="parameter-container" className="container-fluid">
         {/*<div key="option container (texts, images & sounds)" id="textsAndImagesAndSounds-option-container" className="container-fluid">*/}
-        {/*    <button key="option container (texts)" id="texts-option-container" className={`btn btn${!textsValue ? '-outline' : ''}-secondary col-3 bi-type`}*/}
+        {/*    <button key="option container (texts)" id="texts-option-container" className={`btn btn${!textsValue ? '-outline' : EMPTY_STRING}-secondary col-3 bi-type`}*/}
         {/*            type="button" onClick={() => texts.set(Texts.getValueByValue(!textsValue))}/>*/}
         {/*    <div key="option container (image animations)" id="imageAnimations-option-container" className="btn-group col" role="group">*/}
-        {/*        <button key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : ''}-secondary`}*/}
+        {/*        <button key="option container (image animations - no)" className={`btn btn${imageAnimationsValue !== false ? '-outline' : 'EMPTY_STRING}-secondary`}*/}
         {/*                type="button" disabled={!imagesValue} onClick={() => imageAnimations.set(ImageAnimations.NO)}>*/}
         {/*            /!*TODO no mario image*!/*/}
         {/*        </button>*/}
-        {/*        <button key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : ''}-secondary bi-image`}*/}
+        {/*        <button key="option container (image animations - yes)" className={`btn btn${imageAnimationsValue !== true ? '-outline' : EMPTY_STRING}-secondary bi-image`}*/}
         {/*                type="button" disabled={!imagesValue} onClick={() => imageAnimations.set(ImageAnimations.YES)}>*/}
         {/*            /!*TODO mario moving image*!/*/}
         {/*        </button>*/}
-        {/*        <button key="option container (image animations - separated)" className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : ''}-secondary`}*/}
+        {/*        <button key="option container (image animations - separated)" className={`btn btn${imageAnimationsValue !== 'separated' ? '-outline' : EMPTY_STRING}-secondary`}*/}
         {/*                type="button" disabled={!imagesValue} onClick={() => imageAnimations.set(ImageAnimations.SEPARATED)}>*/}
         {/*            /!*TODO multiple mario image*!/*/}
         {/*        </button>*/}
         {/*    </div>*/}
-        {/*    <button key="option container (images)" id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : ''}-secondary col-2 bi-image-fill`}*/}
+        {/*    <button key="option container (images)" id="images-option-container" className={`btn btn${!imagesValue ? '-outline' : EMPTY_STRING}-secondary col-2 bi-image-fill`}*/}
         {/*            type="button" onClick={() => images.set(Images.getValueByValue(!imagesValue))}/>*/}
-        {/*    <button key="option container (sounds)" id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : ''}-secondary col-2 bi-music-note-beamed`}*/}
+        {/*    <button key="option container (sounds)" id="sounds-option-container" className={`btn btn${!soundsValue ? '-outline' : EMPTY_STRING}-secondary col-2 bi-music-note-beamed`}*/}
         {/*            type="button" onClick={() => sounds.set(Sounds.getValueByValue(!soundsValue))}/>*/}
         {/*</div>*/}
         {/*<div className="option-separator"/>*/}

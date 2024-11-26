@@ -1,5 +1,11 @@
 import 'app/_GameAsideContent.scss'
+import 'app/_GameStyleAsideContent.scss'
+import 'app/_TimeAsideContent.scss'
 import './SoundEffectApp.scss'
+
+import type {Array, MutableArray, NullOr} from '@joookiwi/type'
+import type {CollectionHolder}            from '@joookiwi/collection'
+import {filterByArray}                    from '@joookiwi/collection'
 
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -14,14 +20,34 @@ import {SoundEffectAppOption}                       from 'app/options/SoundEffec
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import {SoundEffectGames}                           from 'app/property/SoundEffectGames'
+import {SoundEffectGameStyles}                      from 'app/property/SoundEffect.gameStyles'
+import {SoundEffectTimes}                           from 'app/property/SoundEffect.times'
+import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
+import {GameStyles}                                 from 'core/gameStyle/GameStyles'
+import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
+import {Times}                                      from 'core/time/Times'
+import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame, intersect}                      from 'util/utilitiesMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
+import {intersect}                                  from 'util/utilitiesMethods'
+
+import ALL =                   SoundEffects.ALL
+import ALL_GAME_STYLES =       GameStyles.ALL
+import NSMBU =                 GameStyles.NSMBU
+import renderSMM1And3DSImage = SoundEffectAppOption.renderSMM1And3DSImage
+import renderSMM2Image =       SoundEffectAppOption.renderSMM2Image
+import SMB =                   GameStyles.SMB
+import SMB3 =                  GameStyles.SMB3
+import SMM1 =                  Games.SMM1
+import SMM2 =                  Games.SMM2
+import SMM3DS =                Games.SMM3DS
+import SMW =                   GameStyles.SMW
+import SM3DW =                 GameStyles.SM3DW
 
 class SoundEffectAppInterpreter
     implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -29,65 +55,56 @@ class SoundEffectAppInterpreter
     //region -------------------- Fields --------------------
 
     readonly #games
-    readonly #gameStyles
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(games: GameCollection, gameStyles: GameStyleCollection,) {
+    public constructor(games: GameCollection,) {
         this.#games = games
-        this.#gameStyles = gameStyles
     }
 
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return filterGame(SoundEffects.CompanionEnum.get.values, this.#games,)
+        const games = this.#games
+        return filterByArray(ALL, ({reference,},) =>
+            games.hasAnyIn(reference,),)
     }
 
-    //region -------------------- List interpreter --------------------
+    //region -------------------- Card --------------------
 
-    public createListDimension(): DimensionOnList {
+    public createCardListDimension() {
         return {
             default: 1,
             small: 3,
             medium: 4,
             large: 5,
             extraLarge: 6,
-        }
-    }
-
-    //endregion -------------------- List interpreter --------------------
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return this.createListDimension()
+        } as const satisfies DimensionOnList
     }
 
     public createCardListContent(enumerable: SoundEffects,) {
-        return <div>
-            <div className="soundEffect-images-container">
-                {SoundEffectAppOption.renderSMM1And3DSImage(enumerable,)}
-                {SoundEffectAppOption.renderSMM2Image(enumerable,)}
-            </div>
+        const games = this.#games
+        return <div className="soundEffect-images-container">
+            {games.hasSmm1Or3ds ? renderSMM1And3DSImage(enumerable,) : null}
+            {games.hasSmm2 ? renderSMM2Image(enumerable,) : null}
         </div>
     }
 
-    //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
+    //endregion -------------------- Card --------------------
+    //region -------------------- Table --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('sound effect.all',) satisfies ReactElementOrString
 
-    public get tableOptions(): readonly SoundEffectAppOption[] {
+    public get tableOptions(): Array<SoundEffectAppOption> {
         const games = this.#games
-        const hasSMM1Or3DS = games.hasSMM1Or3DS
-        const hasSMM2 = games.hasSMM2
+        const {hasSmm2, hasSmm1Or3ds,} = games
 
-        const options = [] as SoundEffectAppOption[]
-        if (hasSMM1Or3DS)
+        const options: MutableArray<SoundEffectAppOption> = []
+        if (hasSmm1Or3ds)
             options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
-        if (hasSMM2)
+        if (hasSmm2)
             options.push(SoundEffectAppOption.SMM2_ICON,)
         options.push(
             SoundEffectAppOption.NAME,
@@ -97,9 +114,9 @@ class SoundEffectAppInterpreter
         if (games.hasAllGames)
             options.push(SoundEffectAppOption.SOUNDS,)
         else {
-            if (hasSMM1Or3DS)
+            if (hasSmm1Or3ds)
                 options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
-            if (hasSMM2)
+            if (hasSmm2)
                 options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
         }
         return options
@@ -119,7 +136,7 @@ class SoundEffectAppInterpreter
         return option.renderTableHeader()
     }
 
-    //endregion -------------------- Table interpreter --------------------
+    //endregion -------------------- Table --------------------
 
 }
 
@@ -127,62 +144,216 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffect (list)',],
     [ViewDisplays.CARD_LIST, 'everySoundEffect (card)',],
     [ViewDisplays.TABLE, 'everySoundEffect (table)',],
-] as const satisfies readonly ViewAndRouteName[]
+] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
-export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
-    const titleContent = gameContentTranslation('sound effect.all',)
-    const appInterpreter = new SoundEffectAppInterpreter(games, gameStyles,)
+export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}: SoundEffectProperties,) {
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
-            <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
-            <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
-        <Table id="soundEffect-table" interpreter={appInterpreter}/>
+    //region -------------------- Game selection --------------------
+
+    const game = games.hasAllGames
+        ? SoundEffectGames.ALL_GAMES
+        : games.hasSmm2
+            ? SoundEffectGames.SUPER_MARIO_MAKER_2
+            : SoundEffectGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    //endregion -------------------- Game selection --------------------
+    //region -------------------- Game style selection --------------------
+
+    const amountOfSelectedGameStyles = intersect(ALL_GAME_STYLES, gameStyles,).length
+    const gameStyle = games.hasSmm2
+        ? amountOfSelectedGameStyles === 5
+            ? SoundEffectGameStyles.ALL_GAME_STYLES
+            : amountOfSelectedGameStyles !== 1
+                ? SoundEffectGameStyles.MIXED_GAME_STYLE
+                : gameStyles.hasSmb
+                    ? SoundEffectGameStyles.SMB
+                    : gameStyles.hasSmb3
+                        ? SoundEffectGameStyles.SMB3
+                        : gameStyles.hasSmw
+                            ? SoundEffectGameStyles.SMW
+                            : gameStyles.hasNsmbu
+                                ? SoundEffectGameStyles.NSMBU
+                                : SoundEffectGameStyles.SM3DW
+        : amountOfSelectedGameStyles === 5 || amountOfSelectedGameStyles === 4
+            ? SoundEffectGameStyles.ALL_GAME_STYLES
+            : amountOfSelectedGameStyles !== 1
+                ? SoundEffectGameStyles.MIXED_GAME_STYLE
+                : gameStyles.hasSmb
+                    ? SoundEffectGameStyles.SMB
+                    : gameStyles.hasSmb3
+                        ? SoundEffectGameStyles.SMB3
+                        : gameStyles.hasSmw
+                            ? SoundEffectGameStyles.SMW
+                            : SoundEffectGameStyles.NSMBU
+
+    //endregion -------------------- Game style selection --------------------
+    //region -------------------- Time selection --------------------
+
+    const time = games.hasNotSmm2AndSmm1Or3ds
+        ? null
+        : times.hasAllTimes
+            ? SoundEffectTimes.ALL_TIMES
+            : times.hasDay
+                ? SoundEffectTimes.DAY
+                : SoundEffectTimes.NIGHT
+
+    //endregion -------------------- Time selection --------------------
+
+    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('sound effect.all',)}
+                             asideContent={<SoundEffectAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
     </SubMainContainer>
 }
 
-//region -------------------- Aside content --------------------
+/** @reactComponent */
+function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
+    const appInterpreter = new SoundEffectAppInterpreter(games,)
 
-interface SoundEffectAsideContentProperties
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SoundEffectList items={appInterpreter.content} games={games}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
+    return <Table id="soundEffect-table" interpreter={appInterpreter}/>
+}
+
+//region -------------------- List --------------------
+
+interface SoundEffect_ListProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
+    readonly items: CollectionHolder<SoundEffects>
 
     readonly games: GameCollection
 
 }
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
+/** @reactComponent */
+function SoundEffectList({items, games: {hasSmm1Or3ds, hasSmm2,},}: SoundEffect_ListProperties,) {
+    return <List partialId="soundEffect" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="soundEffect-name" name={it.reference} popoverOrientation="right"/>
+            <div className="soundEffect-images-container">
+                {hasSmm1Or3ds ? renderSMM1And3DSImage(it,) : null}
+                {hasSmm2 ? renderSMM2Image(it,) : null}
+            </div>
+        </div>
+    }</List>
+}
 
-function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentProperties,) {
-    const soundEffectGame = intersect(allGames, games,).length === 3
-        ? SoundEffectGames.ALL_GAMES
-        : games.hasSMM2
-            ? SoundEffectGames.SUPER_MARIO_MAKER_2
-            : SoundEffectGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+//endregion -------------------- List --------------------
+//region -------------------- Aside content --------------------
+
+interface SoundEffectAsideContentProperties
+    extends ReactProperties {
+
+    readonly game: NullOr<SoundEffectGames>
+    readonly gameStyle: SoundEffectGameStyles
+    readonly time: NullOr<SoundEffectTimes>
+
+    readonly games: GameCollection
+    readonly gameStyles: GameStyleCollection
+
+}
+
+/** @reactComponent */
+function SoundEffectAsideContent({game, gameStyle, time, games, gameStyles,}: SoundEffectAsideContentProperties,) {
+    return <div id="soundEffect-asideContent-container">
+        <GameAsideContent game={game} gameStyles={gameStyles}/>
+        {game == null ? null : <div className="d-inline mx-1"/>}
+        <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
+        {time == null ? null : <div className="d-inline mx-1"/>}
+        <TimeAsideContent time={time}/>
+    </div>
+}
+
+/** @reactComponent */
+function GameAsideContent({game, gameStyles,}: Pick<SoundEffectAsideContentProperties, | 'game' | 'gameStyles'>,) {
+    if (game == null)
+        return null
+    if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
+        return <div id="soundEffect-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+            <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+                <GameImage reference={SMM2}/>
+            </LinkButton>
+        </div>
 
     return <div id="soundEffect-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={soundEffectGame.getAllRouteName(viewDisplay,)} color={soundEffectGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="soundEffect-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.getSmm1Or3dsRouteName(viewDisplay,)} color={soundEffectGame.smm1Or3dsColor}>
-                <GameImage reference={smm1}/>
-                <GameImage reference={smm3ds}/>
+            <LinkButton partialId="smm1Or3dsGame" routeName={game.smm1Or3dsRouteName} color={game.smm1Or3dsColor}>
+                <GameImage reference={SMM1}/>
+                <GameImage reference={SMM3DS}/>
             </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={soundEffectGame.getSmm2RouteName(viewDisplay,)} color={soundEffectGame.smm2Color}>
-                <GameImage reference={smm2}/>
+            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+                <GameImage reference={SMM2}/>
+            </LinkButton>
+        </div>
+    </div>
+}
+
+/** @reactComponent */
+function GameStyleAsideContent({gameStyle, games, gameStyles,}: Pick<SoundEffectAsideContentProperties, | 'gameStyle' | 'games' | 'gameStyles'>,) {
+    if (games.hasSmm2)
+        //The game styles are in SMM2
+        return <div id="soundEffect-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
+            <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+            <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
+                <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
+                    <GameStyleImage reference={SMB}/>
+                </LinkButton>
+                <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
+                    <GameStyleImage reference={SMB3}/>
+                </LinkButton>
+                <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
+                    <GameStyleImage reference={SMW}/>
+                </LinkButton>
+            </div>
+            <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+                <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
+                    <GameStyleImage reference={NSMBU}/>
+                </LinkButton>
+                <LinkButton partialId="sm3dwGameStyleLimit" routeName={gameStyle.sm3dwRouteName} color={gameStyle.sm3dwColor(gameStyles.hasSm3dw,)}>
+                    <GameStyleImage reference={SM3DW}/>
+                </LinkButton>
+            </div>
+        </div>
+    //The game styles are in SMM1 / SMM3DS
+    return <div id="soundEffect-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
+                <GameStyleImage reference={SMB}/>
+            </LinkButton>
+            <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
+                <GameStyleImage reference={SMB3}/>
+            </LinkButton>
+        </div>
+        <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
+                <GameStyleImage reference={SMW}/>
+            </LinkButton>
+            <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
+                <GameStyleImage reference={NSMBU}/>
+            </LinkButton>
+        </div>
+    </div>
+}
+
+/** @reactComponent */
+function TimeAsideContent({time,}: Pick<SoundEffectAsideContentProperties, 'time'>,) {
+    if (time == null)
+        return null
+    return <div id="soundEffect-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm">
+            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+                <TimeImage reference={Times.DAY}/>
+            </LinkButton>
+            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+                <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>
     </div>

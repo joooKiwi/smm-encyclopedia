@@ -1,6 +1,8 @@
 import type {SoundEffectFromMusicAdaptor} from 'core/soundEffect/SoundEffectFromMusicAdaptor'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class EmptySoundEffectFromMusicAdaptor
     implements SoundEffectFromMusicAdaptor {
@@ -9,8 +11,7 @@ export class EmptySoundEffectFromMusicAdaptor
 
     static #instance?: EmptySoundEffectFromMusicAdaptor
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new EmptySoundEffectFromMusicAdaptor()

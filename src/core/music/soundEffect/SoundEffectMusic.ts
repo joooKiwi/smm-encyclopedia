@@ -1,3 +1,5 @@
+import type {Array, NullOr} from '@joookiwi/type'
+
 import type {Music}                                                                         from 'core/music/Music'
 import type {PossibleOther_RegularMusic, PossibleSMB_EditorMusic, PossibleSMB_RegularMusic} from 'core/music/backgroundMusic/types'
 import type {MusicSoundFile}                                                                from 'core/music/file/MusicSoundFile'
@@ -18,4 +20,4 @@ export interface SoundEffectMusic<out ALL extends PossibleSoundEffectMusicFileNa
 export type PossibleSoundEffectMusicName = NullOr<MusicSoundFile<| PossibleSoundEffectName | PossibleSoundEffectEditorOnly_Name | PossibleSMB_RegularMusic | PossibleOther_RegularMusic>>
 export type PossibleSoundEffectMusicEditorName = NullOr<MusicSoundFile<| PossibleSoundEffectName | PossibleSoundEffectEditorOnly_EditorName | PossibleSMB_EditorMusic | PossibleOther_RegularMusic>>
 
-export type PossibleSoundEffectMusicFileName = readonly NonNullable<| PossibleSoundEffectMusicName | PossibleSoundEffectMusicEditorName>[]
+export type PossibleSoundEffectMusicFileName = Array<NonNullable<| PossibleSoundEffectMusicName | PossibleSoundEffectMusicEditorName>>

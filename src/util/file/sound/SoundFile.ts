@@ -1,3 +1,5 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {File}            from 'util/file/File'
 import type {RepeatableTypes} from 'util/file/sound/RepeatableTypes'
 import type {Time}            from 'util/file/sound/time/Time'

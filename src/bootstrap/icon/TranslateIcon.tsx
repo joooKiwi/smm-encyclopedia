@@ -1,5 +1,5 @@
 /**
- * Simply the "translate icon" of Bootstrap.
+ * The "translate icon" of Bootstrap.
  *
  * @doesNotDisplayCorrectlyOnSamsungInternet
  * @see https://icons.getbootstrap.com/icons/translate

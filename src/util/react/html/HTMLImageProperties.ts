@@ -1,8 +1,9 @@
-import type {HTMLProps} from 'react'
+import type {EmptyString} from '@joookiwi/type'
+import type {HTMLProps}   from 'react'
 
 export interface HTMLImageProperties
     extends HTMLProps<HTMLImageElement> {
 
-    crossOrigin?: | '' | 'anonymous' | 'use-credentials'
+    crossOrigin?: | EmptyString | 'anonymous' | 'use-credentials'
 
 }

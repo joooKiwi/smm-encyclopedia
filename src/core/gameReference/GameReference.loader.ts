@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Game reference.json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                      from 'core/_template/LanguageContent'
 import type {GameReference}                        from 'core/gameReference/GameReference'
 import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
@@ -32,11 +35,10 @@ export class GameReferenceLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, GameReference>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

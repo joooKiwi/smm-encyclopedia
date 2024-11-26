@@ -1,4 +1,6 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array, EmptyArray, Nullable, NullOr} from '@joookiwi/type'
+import {getFirstByArray, hasByArray}              from '@joookiwi/collection'
+import {Enum}                                     from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
@@ -10,20 +12,22 @@ import type {FileName, PossibleImageFileNames}                                  
 import type {CompanionEnumByNameSingleton}                                                                                                                                                                                   from 'util/enumerable/Singleton.types'
 
 import {MysteryMushroomLoader}                 from 'core/mysteryMushroom/MysteryMushroom.loader'
+import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
 import {DualFileNameContainer as DualFile}     from 'core/mysteryMushroom/file/name/DualFileName.container'
 import {EmptyFileName as EmptyFile}            from 'core/mysteryMushroom/file/name/EmptyFileName'
 import {SingleFileNameContainer as SingleFile} from 'core/mysteryMushroom/file/name/SingleFileName.container'
-import {EMPTY_ARRAY}                           from 'util/emptyVariables'
+import {Empty}                                 from 'util/emptyVariables'
 import {StringContainer}                       from 'util/StringContainer'
-import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
 import {CompanionEnumByName}                   from 'util/enumerable/companion/CompanionEnumByName'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MysteryMushroom>,
         ClassWithEnglishName<PossibleEnglishName> {
 
-    //region -------------------- Inner class --------------------
+    //region -------------------- Sub class --------------------
 
     private static readonly MysteryMushroomsWithDualJumpAndNoGroundSounds =         class MysteryMushroomsWithDualJumpAndNoGroundSounds extends MysteryMushrooms {
 
@@ -180,7 +184,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGrondTurnGoalAndLostSounds extends MysteryMushrooms {
+    private static readonly MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds extends MysteryMushrooms {
 
         public override get jumpSounds() {
             return EMPTY_ARRAY
@@ -216,7 +220,7 @@ export class MysteryMushrooms
 
     }
 
-    //endregion -------------------- Inner class --------------------
+    //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
 
     public static readonly MYSTERY_MUSHROOM =       new class MysteryMushrooms_MysteryMushroom extends MysteryMushrooms {
@@ -338,18 +342,23 @@ export class MysteryMushrooms
         public override get powerUpCollectedSound() {
             return null
         }
+
         public override get jumpSounds() {
             return EMPTY_ARRAY
         }
+
         public override get onGroundAfterJumpASound() {
             return null
         }
+
         public override get turningSound() {
             return null
         }
+
         public override get goalPoleSound() {
             return null
         }
+
         public override get lostALifeSound() {
             return null
         }
@@ -441,12 +450,15 @@ export class MysteryMushrooms
         public override get powerUpCollectedSound() {
             return null
         }
+
         public override get tauntSound(){
             return null
         }
+
         public override get onGroundAfterJumpASound() {
             return null
         }
+
         public override get turningSound() {
             return null
         }
@@ -564,7 +576,7 @@ export class MysteryMushrooms
     public static readonly TIMMY_AND_TOMMY =        new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('TsubuMame',), 'Timmy & Tommy',)
     public static readonly BLATHERS =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Futa',), 'Blathers',)
     public static readonly MABEL =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Kinuyo',), 'Mabel',)
-    public static readonly KAPP_N =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Kappei',), 'Kapp\'n',)
+    public static readonly KAPP_N =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Kappei',), 'Kapp’n',)
     public static readonly CELESTE =                new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Fuko',), 'Celeste',)
     public static readonly KICKS =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Shunk',), 'Kicks',)
     public static readonly ISABELLE_SUMMER_OUTFIT = new MysteryMushrooms.MysteryMushroomsWithNoTauntAndTurnSounds(new SingleFile('Sizue',), 'Isabelle (Summer Outfit)',)
@@ -709,13 +721,13 @@ export class MysteryMushrooms
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)
                 return value
-            const valueFound = this.values.find(it => {
+            const valueFound = this.values.findFirstOrNull(it => {
                 if (it.englishName === value || it.uniqueEnglishName === value)
                     return true
 
                 const fileName = it.__fileName
-                return fileName.imageFileNames.includes(value as never,)
-                    || fileName.soundFileName.includes(value as never,)
+                return hasByArray(fileName.imageFileNames, value,)
+                    || hasByArray(fileName.soundFileName, value,)
             },)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
@@ -736,30 +748,30 @@ export class MysteryMushrooms
 
     #powerUpCollectedSound?: PowerUpCollectedSoundFile
 
-    #waitingImage?: readonly WaitingImageFile[]
+    #waitingImage?: Array<WaitingImageFile>
 
-    #tauntImage?: readonly TauntImageFile[]
+    #tauntImage?: Array<TauntImageFile>
     #tauntSound?: TauntSoundFile
 
-    #pressingDownImage?: readonly PressingDownImageFile[]
+    #pressingDownImage?: Array<PressingDownImageFile>
 
-    #walkImages?: readonly (readonly [WalkImageFile, WalkImageFile, WalkImageFile,])[]
+    #walkImages?: Array<readonly [WalkImageFile, WalkImageFile, WalkImageFile,]>
 
-    #runningImages?: readonly (readonly [RunningImageFile, RunningImageFile, RunningImageFile,])[]
+    #runningImages?: Array<readonly [RunningImageFile, RunningImageFile, RunningImageFile,]>
 
-    #swimmingImages?: readonly (readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,])[]
+    #swimmingImages?: Array<readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,]>
 
-    #jumpImages?: readonly (| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,])[]
+    #jumpImages?: Array<| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,]>
     #jumpSounds?: | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,]
-    #fallingAfterAJumpImage?: readonly FallingAfterAJumpImageFile[]
+    #fallingAfterAJumpImage?: Array<FallingAfterAJumpImageFile>
     #onGroundAfterJumpSound?: OnGroundAfterAJumpSoundFile
 
     #turningSound?: TurningSoundFile
-    #turningImage?: readonly TurningImageFile[]
+    #turningImage?: Array<TurningImageFile>
 
-    #climbingImages?: readonly (readonly [ClimbingImageFile, ClimbingImageFile,])[]
+    #climbingImages?: Array<readonly [ClimbingImageFile, ClimbingImageFile,]>
 
-    #goalPoleImages?: readonly (readonly [GoalPoleImageFile, GoalPoleImageFile,])[]
+    #goalPoleImages?: Array<readonly [GoalPoleImageFile, GoalPoleImageFile,]>
     #goalPoleSound?: GoalPoleSoundFile
 
     #lostALifeSound?: LostALifeSoundFile
@@ -811,7 +823,7 @@ export class MysteryMushrooms
     }
 
     get #soundFileName(): PossibleFileName {
-        return this.__fileName.soundFileName[0]!
+        return getFirstByArray(this.__fileName.soundFileName,)
     }
 
     get imageFileNames(): PossibleImageFileNames {
@@ -827,14 +839,14 @@ export class MysteryMushrooms
     //endregion -------------------- Power-up collected --------------------
     //region -------------------- Waiting --------------------
 
-    public get waitingImage(): readonly WaitingImageFile[] {
+    public get waitingImage(): Array<WaitingImageFile> {
         return this.#waitingImage ??= this.#createImageFiles(FileCreator.waitingImage,)
     }
 
     //endregion -------------------- Waiting --------------------
     //region -------------------- Taunt --------------------
 
-    public get tauntImage(): readonly TauntImageFile[] {
+    public get tauntImage(): Array<TauntImageFile> {
         return this.#tauntImage ??= this.#createImageFiles(FileCreator.tauntImage,)
     }
 
@@ -845,28 +857,28 @@ export class MysteryMushrooms
     //endregion -------------------- Taunt --------------------
     //region -------------------- Pressing ↓ --------------------
 
-    public get pressingDownImage(): readonly PressingDownImageFile[] {
+    public get pressingDownImage(): Array<PressingDownImageFile> {
         return this.#pressingDownImage ??= this.#createImageFiles(FileCreator.pressingDownImage,)
     }
 
     //endregion -------------------- Pressing ↓ --------------------
     //region -------------------- Walk --------------------
 
-    public get walkImages(): readonly (readonly [WalkImageFile, WalkImageFile, WalkImageFile,])[] {
+    public get walkImages(): Array<readonly [WalkImageFile, WalkImageFile, WalkImageFile,]> {
         return this.#walkImages ??= this.#createImageFiles(FileCreator.walkImages,)
     }
 
     //endregion -------------------- Walk --------------------
     //region -------------------- Running --------------------
 
-    public get runningImages(): readonly (readonly [RunningImageFile, RunningImageFile, RunningImageFile,])[] {
+    public get runningImages(): Array<readonly [RunningImageFile, RunningImageFile, RunningImageFile,]> {
         return this.#runningImages ??= this.#createImageFiles(FileCreator.runningImages,)
     }
 
     //endregion -------------------- Running --------------------
     //region -------------------- Swimming --------------------
 
-    public get swimmingImages(): readonly (readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,])[] {
+    public get swimmingImages(): Array<readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,]> {
         return this.#swimmingImages ??= this.#createImageFiles(FileCreator.swimmingImages,)
     }
 
@@ -877,7 +889,7 @@ export class MysteryMushrooms
         return FileCreator.singleJumpImages(englishName, name,)
     }
 
-    public get jumpImages(): readonly (| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,])[] {
+    public get jumpImages(): Array<| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,]> {
         return this.#jumpImages ??= this.#createImageFiles((englishName, name,) => this._createJumpImages(englishName, name,))
     }
 
@@ -886,12 +898,12 @@ export class MysteryMushrooms
         return FileCreator.singleJumpSounds(name,)
     }
 
-    public get jumpSounds(): | readonly [] | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,] {
+    public get jumpSounds(): | EmptyArray | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,] {
         return this.#jumpSounds ??= this._createJumpSounds(this.#soundFileName,)
     }
 
 
-    public get fallingAfterAJumpImage(): readonly FallingAfterAJumpImageFile[] {
+    public get fallingAfterAJumpImage(): Array<FallingAfterAJumpImageFile> {
         return this.#fallingAfterAJumpImage ??= this.#createImageFiles(FileCreator.fallingAfterAJumpImage,)
     }
 
@@ -903,7 +915,7 @@ export class MysteryMushrooms
     //endregion -------------------- Jumping --------------------
     //region -------------------- Turning --------------------
 
-    public get turningImage(): readonly TurningImageFile[] {
+    public get turningImage(): Array<TurningImageFile> {
         return this.#turningImage ??= this.#createImageFiles(FileCreator.turningImage,)
     }
 
@@ -914,14 +926,14 @@ export class MysteryMushrooms
     //endregion -------------------- Turning --------------------
     //region -------------------- Climbing --------------------
 
-    public get climbingImages(): readonly (readonly [ClimbingImageFile, ClimbingImageFile,])[] {
+    public get climbingImages(): Array<readonly [ClimbingImageFile, ClimbingImageFile,]> {
         return this.#climbingImages ??= this.#createImageFiles(FileCreator.climbingImages,)
     }
 
     //endregion -------------------- Climbing --------------------
     //region -------------------- Goal pole --------------------
 
-    public get goalPoleImages(): readonly (readonly [GoalPoleImageFile, GoalPoleImageFile,])[] {
+    public get goalPoleImages(): Array<readonly [GoalPoleImageFile, GoalPoleImageFile,]> {
         return this.#goalPoleImages ??= this.#createImageFiles(FileCreator.goalPoleImages,)
     }
 
@@ -943,7 +955,7 @@ export class MysteryMushrooms
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    /**@deprecated Relocate elsewhere */#createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): readonly T[] {
+    /**@deprecated Relocate elsewhere */#createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): Array<T> {
         const englishName = this.englishName
         return this.__fileName.imageFileNames.map(it => callback(englishName, it,))
     }
@@ -951,3 +963,15 @@ export class MysteryMushrooms
     //endregion -------------------- Methods --------------------
 
 }
+
+export namespace MysteryMushrooms {
+
+    /** The companion instance of a {@link MysteryMushrooms} */
+    export const Companion = MysteryMushrooms.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
+
+}
+
+// @ts-ignore: TODO remove this test variable when the application will be complete
+(window.test ??= {}).MysteryMushrooms = MysteryMushrooms

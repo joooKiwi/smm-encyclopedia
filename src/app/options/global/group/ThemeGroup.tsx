@@ -5,6 +5,9 @@ import type {Themes}            from 'core/theme/Themes'
 
 import Image   from 'app/tools/images/Image'
 import {Times} from 'core/time/Times'
+import {Empty} from 'util/emptyVariables'
+
+import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
  * @todo Change the theme group to not be global
@@ -19,9 +22,9 @@ export default function ThemeGroup({isHidden = false, elements,}: GroupPropertie
             if (isHidden)
                 return null
 
-            const [hasSMM2Selected, isDisabledNight,] = isDisabled == null ? [false, false,] : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled
+            const [hasSmm2Selected, isDisabledNight,] = isDisabled == null ? [false, false,] : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled
             return <div key={`option container (${element.englishName})`} id={`${element.englishNameInHtml}-option-container`} className="btn-group-vertical" role="group">{
-                hasSMM2Selected
+                hasSmm2Selected
                     ? renderElementWithDayAndNight(element, option, isDisabledNight,)
                     : renderElementWithOnlyDay(element, option,)
             }</div>
@@ -37,10 +40,10 @@ function renderElementWithDayAndNight(element: Themes, option: GlobalAppOption<G
         {renderThemeImage(element, value, isDisabledNight, () => option.set(optionValue.set(value)),)}
         <div key={`option time image (${element.englishName})`} id={`${element.englishNameInHtml}-option-time-image`} className="btn-group btn-group-sm">
             <Image id={`${element.englishNameInHtml}-day-option-image`}
-                   className={`btn btn${optionValue.dayValue ? '' : '-outline'}-secondary`}
+                   className={`btn btn${optionValue.dayValue ? EMPTY_STRING : '-outline'}-secondary`}
                    file={Times.DAY.imageFile} onClick={() => option.set(optionValue.reverseDayValue,)}/>
             <Image id={`${element.englishNameInHtml}-night-option-image`}
-                   className={`btn btn${optionValue.nightValue ? '' : '-outline'}-secondary ${isDisabledNight ? 'disabled' : ''}`}
+                   className={`btn btn${optionValue.nightValue ? EMPTY_STRING : '-outline'}-secondary ${isDisabledNight ? 'disabled' : EMPTY_STRING}`}
                    file={Times.NIGHT.imageFile} onClick={() => option.set(optionValue.reverseNightValue,)}/>
         </div>
     </>
@@ -55,7 +58,7 @@ function renderElementWithOnlyDay(element: Themes, option: GlobalAppOption<Globa
 
 function renderThemeImage(element: Themes, value: boolean, isDisabled: boolean, onClickCallback: () => void,) {
     return <Image key={`option image (${element.englishName})`} id={`${element.englishNameInHtml}-option-image`}
-                  className={`btn btn${value ? '' : '-outline'}-secondary ${isDisabled ? 'disabled' : ''}`}
+                  className={`btn btn${value ? EMPTY_STRING : '-outline'}-secondary ${isDisabled ? 'disabled' : EMPTY_STRING}`}
                   file={element.smallImageFile} alt={`option - ${element.englishName}`}
                   onClick={onClickCallback}/>
 }

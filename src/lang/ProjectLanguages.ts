@@ -1,19 +1,22 @@
 import type {ImpossibleNames, PossibleEnumerableValue, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import type {Nullable, NullOr}                                                               from '@joookiwi/type'
 import {Enum, NullReferenceException}                                                        from '@joookiwi/enumerable'
 
-import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
-import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
-import type {PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'lang/EveryLanguages.types'
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/LanguageEnumerable'
-import type {CompanionEnumDeclaration_ProjectLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'lang/ProjectLanguages.companionEnumDeclaration'
-import type {Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/ProjectLanguages.types'
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
-import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'route/ClassUsedInRoute'
-import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
+import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleChevrons_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInChevrons, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from 'lang/ClassWithEveryLanguages'
+import type {PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'lang/EveryLanguages.types'
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'lang/LanguageEnumerable'
+import type {CompanionEnumDeclaration_ProjectLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'lang/ProjectLanguages.companionEnumDeclaration'
+import type {Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'lang/ProjectLanguages.types'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'lang/name/containers/Language'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'route/ClassUsedInRoute'
+import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'util/enumerable/ClassWithIsCurrent'
 
 import {EveryLanguages}                from 'lang/EveryLanguages'
 import {CompanionEnumRetrievableInUrl} from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
+
+import Companion = EveryLanguages.Companion
 
 /**
  * <p>
@@ -53,7 +56,7 @@ export class ProjectLanguages
     extends Enum<Ordinals, Names>
     implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, PossibleDifferentWord>,
         ClassWithIsCurrent,
-        ClassUsedInRoute<PossibleAcronym>,
+        ClassUsedInRoute<PossibleAcronym, never>,
         ClassInAnySuperMarioMakerGame {
 
     //region -------------------- Enum instances --------------------
@@ -99,16 +102,16 @@ export class ProjectLanguages
         public override readonly URL_REGEX = /\/(((en|es|pt)-(AM|EU))|(fr-(CA|EU))|(zh-(tw|cn))|de|it|nl|ru|ja|ko)\//i
 
         public override get defaultValue(): ProjectLanguages {
-            return this.getValueByLanguage(EveryLanguages.CompanionEnum.get.defaultValue,)
+            return this.getValueByLanguage(Companion.defaultValue,)
         }
 
         public override set defaultValue(value: Nullable<PossibleEnumerableValue<| ProjectLanguages | EveryLanguages>>,) {
             if (value instanceof ProjectLanguages) {
-                EveryLanguages.CompanionEnum.get.setDefaultValue(value.language,)
+                Companion.setDefaultValue(value.language,)
                 return
             }
 
-            EveryLanguages.CompanionEnum.get.setDefaultValue(value,)
+            Companion.setDefaultValue(value,)
         }
 
         public override setDefaultValue(value: ImpossibleNames,): never
@@ -120,28 +123,28 @@ export class ProjectLanguages
 
 
         public get currentOrNull(): NullOr<ProjectLanguages> {
-            const value = EveryLanguages.CompanionEnum.get.currentOrNull
+            const value = Companion.currentOrNull
             if (value == null)
                 return null
             return this.getValueByLanguage(value,)
         }
 
         public get current(): ProjectLanguages {
-            return this.getValueByLanguage(EveryLanguages.CompanionEnum.get.current,)
+            return this.getValueByLanguage(Companion.current,)
         }
 
         public set current(value: PossibleEnumerableValueBy<| ProjectLanguages | EveryLanguages>,) {
             if (value instanceof ProjectLanguages) {
-                EveryLanguages.CompanionEnum.get.current = value.language
+                Companion.current = value.language
                 return
             }
-            EveryLanguages.CompanionEnum.get.current = value
+            Companion.current = value
         }
 
 
         public getValueByLanguage(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): ProjectLanguages {
             if (value instanceof EveryLanguages) {
-                const valueFound = this.values.find(it => it.language === value,)
+                const valueFound = this.values.findFirstOrNull(it => it.language === value,)
                 if (valueFound == null)
                     throw new NullReferenceException(`No "${this.instance.name}" could be found by this value "${value}".`, value,)
                 return valueFound
@@ -172,7 +175,7 @@ export class ProjectLanguages
     }
 
     //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter & setter methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get language(): EveryLanguages {
         return this.#language
@@ -204,6 +207,10 @@ export class ProjectLanguages
 
     public get urlValue(): PossibleAcronym {
         return this.projectAcronym
+    }
+
+    public get urlName(): never {
+        throw new ReferenceError('No language name can exist in a url.',)
     }
 
     public get projectAcronym(): PossibleAcronym {
@@ -302,6 +309,7 @@ export class ProjectLanguages
         return this.language.endingParenthesis
     }
 
+
     public get brackets(): PossibleBrackets_Array {
         return this.language.brackets
     }
@@ -314,6 +322,7 @@ export class ProjectLanguages
         return this.language.endingBrackets
     }
 
+
     public get braces(): PossibleBraces_Array {
         return this.language.braces
     }
@@ -324,6 +333,19 @@ export class ProjectLanguages
 
     public get endingBraces(): PossibleEndingBrace {
         return this.language.endingBraces
+    }
+
+
+    public get chevrons(): PossibleChevrons_Array {
+        return this.language.chevrons
+    }
+
+    public get startingChevrons(): PossibleStartingChevron {
+        return this.language.startingChevrons
+    }
+
+    public get endingChevrons(): PossibleEndingChevron {
+        return this.language.endingChevrons
     }
 
 
@@ -361,40 +383,29 @@ export class ProjectLanguages
     }
 
     //endregion -------------------- Characters getter methods --------------------
-    //region -------------------- Getter & setter methods (current) --------------------
+    //region -------------------- Getter methods (current) --------------------
 
     public get isCurrent(): boolean {
-        return this === ProjectLanguages.CompanionEnum.get.currentOrNull
+        return this === ProjectLanguages.Companion.currentOrNull
     }
 
     public get isCurrentOrAssociatedWithIt(): boolean {
         return this.isCurrent
     }
 
+    //endregion -------------------- Getter methods (current) --------------------
 
-    /**
-     * A simple intermediate to the {@link ProjectLanguages.CompanionEnum} "current" value
-     *
-     * @throws ReferenceError The current {@link ProjectLanguages language} has not been initialized yet
-     * @see EveryLanguages.CompanionEnum.current
-     */
-    public static get current(): ProjectLanguages {
-        return this.CompanionEnum.get.current
-    }
-
-    //endregion -------------------- Getter & setter methods (current) --------------------
-
-    //endregion -------------------- Getter & setter methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
-        return this.language.get(classWithEveryLanguages)
+        return this.language.get(classWithEveryLanguages,)
     }
 
     public original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
     public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
     public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
-        return this.language.original<T>(classWithEveryLanguages)
+        return this.language.original<T>(classWithEveryLanguages,)
     }
 
     //region -------------------- Transformation methods --------------------
@@ -414,8 +425,22 @@ export class ProjectLanguages
         return this.language.textInBraces(text,)
     }
 
+    public textInChevrons<S extends string, >(text: S,): TextInChevrons<this['isASpaceEvenLanguage'], S>
+    public textInChevrons(text: string,) {
+        return this.language.textInChevrons(text,)
+    }
+
     //endregion -------------------- Transformation methods --------------------
 
     //endregion -------------------- Methods --------------------
+
+}
+
+export namespace ProjectLanguages {
+
+    /** The companion instance of a {@link ProjectLanguages} */
+    export const Companion = ProjectLanguages.CompanionEnum.get
+
+    export const ALL = Companion.values.toArray()
 
 }

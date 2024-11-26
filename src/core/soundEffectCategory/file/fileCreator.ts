@@ -1,14 +1,14 @@
-import type {SoundEffectCategoryImageFile}           from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
-import type {PossibleEnglishName, PossibleImageName} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {PossibleImageNumber, SoundEffectCategoryImageFile} from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
+import type {PossibleEnglishName}                               from 'core/soundEffectCategory/SoundEffectCategories.types'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link SoundEffectCategoryImageFile} from a {@link name} provided
+ * Create a {@link SoundEffectCategoryImageFile} from a {@link name} provided
  *
- * @param name The file name
+ * @param number      The image number
  * @param englishName The fallback name
  */
-export function soundEffectCategoryImage(name: PossibleImageName, englishName: PossibleEnglishName,): SoundEffectCategoryImageFile {
-    return new SimpleImageFile('category', `${name}^s`, 'tiff', englishName,)
+export function soundEffectCategoryImage<const NUMBER extends PossibleImageNumber, >(number: NUMBER, englishName: PossibleEnglishName,): SoundEffectCategoryImageFile<NUMBER> {
+    return new SimpleImageFile('category', `CategoryIcon_0${number}^s`, 'tiff', englishName,)
 }

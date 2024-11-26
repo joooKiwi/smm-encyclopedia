@@ -2,7 +2,7 @@ module.exports = class ImageTemplate {
 
     //region -------------------- Fields --------------------
 
-    static #NEW_PATH = 'resources/images'
+    /** @readonly */static NEW_PATH = 'resources/images'
 
     #oldPath
     #oldName
@@ -21,7 +21,7 @@ module.exports = class ImageTemplate {
      * @param {string} extension The file extension
      */
     constructor(oldPath, oldName, newName, extension,) {
-        this.#oldPath = `public/${oldPath}`
+        this.#oldPath = oldPath
         this.#oldName = oldName
         this.#newName = newName
         this.#extension = extension
@@ -68,31 +68,12 @@ module.exports = class ImageTemplate {
 
 
     /**
-     * The new path where the images will be stored
-     *
-     * @returns {string}
-     */
-    static get newPath() {
-        return this.#NEW_PATH
-    }
-
-    /**
-     * The new path  where the images will be stored
-     *
-     * @returns {string}
-     * @see ImageTemplate.newPath
-     */
-    get newPath() {
-        return ImageTemplate.newPath
-    }
-
-    /**
      * The new path based on the directory name
      *
      * @returns {string}
      */
     get fullNewPath() {
-        return `${__dirname}/../${ImageTemplate.newPath}`
+        return `${__dirname}/../${ImageTemplate.NEW_PATH}`
     }
 
     /**

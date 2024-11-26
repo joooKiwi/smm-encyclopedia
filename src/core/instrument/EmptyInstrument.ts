@@ -1,8 +1,13 @@
+import type {EmptyMap} from '@joookiwi/type'
+
 import type {Instrument} from 'core/instrument/Instrument'
 
-import {ClassContainingAName}   from 'lang/name/ClassContainingAName'
-import {EmptyStringName}        from 'lang/name/EmptyStringName'
-import {EMPTY_ARRAY, EMPTY_MAP} from 'util/emptyVariables'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
+import {Empty}                from 'util/emptyVariables'
+
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_MAP =   Empty.EMPTY_MAP
 
 export class EmptyInstrument
     extends ClassContainingAName<string>
@@ -27,7 +32,24 @@ export class EmptyInstrument
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false
 
-    public toGameMap(): EmptyMap {
+    public readonly isInSuperMarioBrosStyle = false
+    public readonly isInSuperMarioBros3Style = false
+    public readonly isInSuperMarioWorldStyle = false
+    public readonly isInNewSuperMarioBrosUStyle = false
+    public readonly isInSuperMario3DWorldStyle = false
+
+    public readonly isInDayTheme = false
+    public readonly isInNightTheme = false
+
+    public toGameMap(): EmptyMap<never> {
+        return EMPTY_MAP
+    }
+
+    public toGameStyleMap(): EmptyMap<never> {
+        return EMPTY_MAP
+    }
+
+    public toTimeMap(): EmptyMap<never> {
         return EMPTY_MAP
     }
 

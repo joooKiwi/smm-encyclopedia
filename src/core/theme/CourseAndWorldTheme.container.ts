@@ -1,3 +1,5 @@
+import type {NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+
 import type {Games}               from 'core/game/Games'
 import type {CourseTheme}         from 'core/theme/CourseTheme'
 import type {CourseAndWorldTheme} from 'core/theme/CourseAndWorldTheme'
@@ -15,7 +17,7 @@ export class CourseAndWorldThemeContainer
     readonly #isInSuperMarioMaker1And3DS
     readonly #isAvailableFromTheStartInSuperMarioMaker1
     readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue
-    #gameMap?: GameMap<boolean, CourseAndWorldTheme>
+    #gameMap?: GameMap<CourseAndWorldTheme>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

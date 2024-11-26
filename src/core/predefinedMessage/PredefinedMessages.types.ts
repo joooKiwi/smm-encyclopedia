@@ -17,10 +17,10 @@ export type Names = keyof typeof Enum
 
 export type PossibleEnglishName =
     | 'Thanks!' | 'Here we go!' | 'Nice work.'
-    | 'I\'m done for...' | 'Sorry!' | 'No worries!'
+    | 'I’m done for...' | 'Sorry!' | 'No worries!'
     | 'Nice!' | 'How?!' | 'Gotcha.'
     | 'So tough!' | 'OOPS!' | 'WAHOO!'
-    | 'Oh no...' | 'We\'ve got this.' | 'Teamwork!'
+    | 'Oh no...' | 'We’ve got this.' | 'Teamwork!'
     | 'Follow me.' | 'HELP!' | 'Run for it!'
     | 'Juuuuump!' | 'Hop on!' | 'Throw!'
 

@@ -1,4 +1,5 @@
 import type {Lazy}        from '@joookiwi/lazy'
+import type {Array}       from '@joookiwi/type'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {ImagesRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
@@ -9,11 +10,7 @@ import type {ClassInAnySuperMarioMakerGame}                                     
 import {AbstractPowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/AbstractPowerUpBySMM1GameStylesPriority'
 import {GameStyles}                              from 'core/gameStyle/GameStyles'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {SUPER_MARIO_3D_WORLD,} = GameStyles
-
-//endregion -------------------- Import from deconstruction --------------------
+import SM3DW = GameStyles.SM3DW
 
 export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
     extends AbstractPowerUpBySMM1GameStylesPriority
@@ -21,7 +18,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
 
     //region -------------------- Fields --------------------
 
-    readonly #sm3dwImagesHolder: Lazy<readonly EntityImageFile[]>
+    readonly #sm3dwImagesHolder: Lazy<Array<EntityImageFile>>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -31,13 +28,13 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
                           callback: ImagesRetrieverCallback,
                           isIn: ClassInAnySuperMarioMakerGame,) {
         super(entity, gameStylesDisplayed, callback, isIn,)
-        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_3D_WORLD)) : CommonLazy.EMPTY_ARRAY
+        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SM3DW)) : CommonLazy.EMPTY_ARRAY
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get sm3dwImages(): readonly EntityImageFile[] {
+    public get sm3dwImages(): Array<EntityImageFile> {
         return this.#sm3dwImagesHolder.value
     }
 

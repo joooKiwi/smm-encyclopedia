@@ -1,4 +1,5 @@
 import type {CompanionEnumDeclaration, EnumerableConstructor} from '@joookiwi/enumerable'
+import type {Nullable}                                        from '@joookiwi/type'
 
 import type {EnumerableWithEnglishName} from 'util/enumerable/Enumerable.types'
 

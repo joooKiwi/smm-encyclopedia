@@ -1,3 +1,5 @@
+import type {EmptyArray, NullOr} from '@joookiwi/type'
+
 import type {Possible_Music, PossibleLink_Music, PossibleNSMBU_Music, PossibleNSMBU_YoshiSound, PossibleOther_Music, PossibleSM3DW_Music, PossibleSM3DW_UnderwaterMusic, PossibleSMB2_Music, PossibleSMB3_Music, PossibleSMB_Music, PossibleSMW_Music, PossibleSMW_YoshiSound} from 'core/music/backgroundMusic/types'
 import type {MusicSoundFile}                                                                                                                                                                                                                                                   from 'core/music/file/MusicSoundFile'
 
@@ -50,9 +52,9 @@ type PossibleArray = readonly [
  * @deprecated The use of a more simplistic structure on {@link IndividualMusics} is used
  */
 export type PossibleMusicArray<MUSIC extends PossibleArray = PossibleArray, > = readonly [
-    ...MUSIC[0] extends null ? [] : [MUSIC[0],],
-    ...MUSIC[1] extends null ? [] : [MUSIC[1],],
-    ...MUSIC[2] extends null ? [] : [MUSIC[2],],
-    ...MUSIC[3] extends null ? [] : [MUSIC[3],],
-    ...MUSIC[4] extends null ? [] : [MUSIC[4],],
+    ...MUSIC[0] extends null ? EmptyArray : [MUSIC[0],],
+    ...MUSIC[1] extends null ? EmptyArray : [MUSIC[1],],
+    ...MUSIC[2] extends null ? EmptyArray : [MUSIC[2],],
+    ...MUSIC[3] extends null ? EmptyArray : [MUSIC[3],],
+    ...MUSIC[4] extends null ? EmptyArray : [MUSIC[4],],
 ]

@@ -1,0 +1,13 @@
+.levelGameAndGameStyle-container :where(.theme-image, .gameStyle-image) {
+  height: var(--size)
+}
+
+.levelGameAndGameStyle-in1Line-container {
+  --size: 3rem;
+  width: calc(var(--size) * 4);
+}
+
+.levelGameAndGameStyle-in2Line-container {
+  --size: 2.5rem;
+  width: calc(var(--size) * 2);
+}

@@ -1,3 +1,6 @@
+import type {UndefinedOr} from '@joookiwi/type'
+import {mapByArray}       from '@joookiwi/collection'
+
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
@@ -20,7 +23,7 @@ export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameSt
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(GameStyles.CompanionEnum.get.values.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(mapByArray(GameStyles.ALL, it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------
@@ -47,19 +50,19 @@ export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameSt
     }
 
 
-    public entries(): IterableIterator<[GameStyles, boolean,]> {
+    public entries(): MapIterator<[GameStyles, boolean,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<GameStyles> {
+    public keys(): MapIterator<GameStyles> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<boolean> {
+    public values(): MapIterator<boolean> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[GameStyles, boolean,]> {
+    public [Symbol.iterator](): MapIterator<[GameStyles, boolean,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 
