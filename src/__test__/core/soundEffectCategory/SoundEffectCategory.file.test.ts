@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Sound effect category.json' assert { type: 'json', }
+import file from 'resources/compiled/Sound effect category.json'
 
 import type {Array} from '@joookiwi/type'
 

@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Entity limit.json' assert { type: 'json', }
+import file from 'resources/compiled/Entity limit.json'
 
 import type {Array, NullableString, NullOr, NullOrBoolean, NullOrNumber, NullOrString} from '@joookiwi/type'
 import {toReversedByArray}                                                             from '@joookiwi/collection'

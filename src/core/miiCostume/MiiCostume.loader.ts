@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Mii Costume (SMM2).json' assert { type: 'json', }
+import file from 'resources/compiled/Mii Costume (SMM2).json'
 
 import type {Array, NullOrString}               from '@joookiwi/type'
 import {findFirstOrNullByArray, forEachByArray} from '@joookiwi/collection'

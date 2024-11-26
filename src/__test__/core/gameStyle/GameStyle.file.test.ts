@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Game style.json' assert { type: 'json', }
+import file from 'resources/compiled/Game style.json'
 
 import type {Array} from '@joookiwi/type'
 

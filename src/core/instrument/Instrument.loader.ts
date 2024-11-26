@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Instrument.json' assert { type: 'json', }
+import file from 'resources/compiled/Instrument.json'
 
 import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
 import {forEachByArray}                         from '@joookiwi/collection'

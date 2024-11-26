@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Medals (SMM).json' assert { type: 'json', }
+import file from 'resources/compiled/Medals (SMM).json'
 
 import type {Array}     from '@joookiwi/type'
 import {forEachByArray} from '@joookiwi/collection'

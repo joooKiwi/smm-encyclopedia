@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Entity.json' assert { type: 'json', }
+import file from 'resources/compiled/Entity.json'
 
 import type {Lazy}                          from '@joookiwi/lazy'
 import type {Array, NullableString, NullOr} from '@joookiwi/type'

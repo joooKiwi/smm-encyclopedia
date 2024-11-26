@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Entity category.json' assert { type: 'json', }
+import file from 'resources/compiled/Entity category.json'
 
 import type {Array}     from '@joookiwi/type'
 import {forEachByArray} from '@joookiwi/collection'

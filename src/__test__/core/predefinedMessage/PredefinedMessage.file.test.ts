@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Predefined message (SMM2).json' assert { type: 'json', }
+import file from 'resources/compiled/Predefined message (SMM2).json'
 
 import type {Array} from '@joookiwi/type'
 

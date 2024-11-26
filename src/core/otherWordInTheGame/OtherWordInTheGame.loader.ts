@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Other word in the game.json' assert { type: 'json', }
+import file from 'resources/compiled/Other word in the game.json'
 
 import type {Array, NullOrString} from '@joookiwi/type'
 import {toReversedByArray}        from '@joookiwi/collection'

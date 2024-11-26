@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Mii Costume category (SMM2).json' assert { type: 'json', }
+import file from 'resources/compiled/Mii Costume category (SMM2).json'
 
 import {EveryTypes}                                     from '__test__/EveryTypes'
 import {getEnglishName, testLanguages, testOnlyEnglish} from '__test__/helperMethods'

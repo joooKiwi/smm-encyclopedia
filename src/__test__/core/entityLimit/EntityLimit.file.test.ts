@@ -1,4 +1,4 @@
-import file from 'resources/compiled/Entity limit.json' assert { type: 'json', }
+import file from 'resources/compiled/Entity limit.json'
 
 import {EveryTypes}                                                from '__test__/EveryTypes'
 import {getEnglishName, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'
