@@ -163,6 +163,41 @@ export abstract class InGameEntityImages
 
     }
 
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
+     * in only {@link SMB}, {@link SMB3}, {@link SMW} and a different {@link NSMBU}
+     */
+    private static readonly ExistantAsOneInNotSm3dwButDifferentNsmbu = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName
+        readonly #nsmbuFileName
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName: FILE_NAME, nsmbuFileName: NSMBU_FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName = fileName
+            this.#nsmbuFileName = nsmbuFileName
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.#fileName
+            const endingFolderName = this.#endingFolderName
+            return [
+                [SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, this.#nsmbuFileName,),],
+            ] as const
+        }
+
+    }
+
     //endregion -------------------- Sub class (one in 4 specific game style) --------------------
     //region -------------------- Sub class (two in 1 specific game style) --------------------
 
@@ -970,7 +1005,7 @@ export abstract class InGameEntityImages
 
     public static readonly HAMMER_BRO =                                    new InGameEntityImages.Null()
     public static readonly SLEDGE_BRO =                                    new InGameEntityImages.Null()
-    public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Hammer thrown by a Hammer / Sledge Bro', 'Enemy - Bros', 'hammer.0',)
+    public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.ExistantAsOneInNotSm3dwButDifferentNsmbu('Hammer thrown by a Hammer / Sledge Bro', 'Enemy - Bros', 'hammer.0', 'bros_hammer_Alb.000',)
     public static readonly FIRE_BRO =                                      new InGameEntityImages.Null()
     public static readonly HEAVY_FIRE_BRO =                                new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_HEAVY_FIRE_BRO =           new InGameEntityImages.Null()
