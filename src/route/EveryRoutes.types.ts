@@ -268,7 +268,8 @@ export type PossibleTimePath = | EmptyString | `/${FullUrlValue_Time}`
 
 
 /**
- * All the {@link PossibleRoutePath possible route path} that is applicable with the language beforehand
+ * All the {@link PossibleRoutePath possible route path} that is applicable with the language beforehand.
+ *
+ * @note There is over 20 000 possibilities without the language in it
  */
-// @ts-ignore: There are over 20 000 possibilities (without the languages)
-export type EveryPossibleRoutes = `/${PossibleAcronym}${PossibleRoutePath}`
+export type EveryPossibleRoutes = string//`/${PossibleAcronym}${PossibleRoutePath}`

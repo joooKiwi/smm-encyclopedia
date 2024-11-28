@@ -1,8 +1,8 @@
-import type {Singleton}                                         from '@joookiwi/enumerable'
-import type {Array, MutableArray, Nullable, NullOr}             from '@joookiwi/type'
-import {findFirstOrNullByArray, forEachByArray, isEmptyByArray} from '@joookiwi/collection'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {lazy}                                                   from 'react'
+import type {Singleton}                                           from '@joookiwi/enumerable'
+import type {Array, MutableArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
+import {findFirstOrNullByArray, forEachByArray, isEmptyByArray}   from '@joookiwi/collection'
+import {CompanionEnum, Enum}                                      from '@joookiwi/enumerable'
+import {lazy}                                                     from 'react'
 
 import type {ClassUsedInRoute}                                                                                                                                                                                                                                     from 'route/ClassUsedInRoute'
 import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRoute, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
@@ -2234,7 +2234,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
          * @param name The name to find
          * @param language The language in the route
          */
-        #getRouteFromOnlyViewDisplay(value: EveryRoutes, name: PossibleRouteName, language: Nullable<ProjectLanguages>,): NullOr<EveryPossibleRoutes> {
+        #getRouteFromOnlyViewDisplay(value: EveryRoutes, name: PossibleRouteName, language: Nullable<ProjectLanguages>,): NullOrString<EveryPossibleRoutes> {
             const viewDisplays = value.viewDisplays
             if (viewDisplays.isEmpty)
                 return null
@@ -2447,8 +2447,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: Nullable<ProjectLanguages>, games?: NullableArray<Games>, gameStyles?: NullableArray<GameStyles>, times?: NullableArray<Times>, viewDisplay?: Nullable<ViewDisplays>,): EveryPossibleRoutes
-    public getPath(language: Nullable<ProjectLanguages>, games: NullableArray<Games> = null, gameStyles: NullableArray<GameStyles> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,) {
+    public getPath(language: Nullable<ProjectLanguages>, games: NullableArray<Games> = null, gameStyles: NullableArray<GameStyles> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
         language ??= LanguageCompanion.current
         return `/${language.projectAcronym}${this._getPathFromGames(games,)}${this._getPathFromGameStyles(gameStyles,)}${this._getPathFromTimes(times,)}${this._getPathFromViewDisplay(viewDisplay,)}${this.urlValue}`
     }
