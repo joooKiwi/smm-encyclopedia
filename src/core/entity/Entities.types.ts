@@ -166,21 +166,21 @@ export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
-export type PossibleEnglishName_BigMushroom = `Big Mushroom${| EmptyString | ` (${'classic' | 'modern'})`}`
-export type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto'
-export type PossibleEnglishName_Yoshi = `${| EmptyString | 'Red '}Yoshi`
-export type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`
-export type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`
-export type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`
-export type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`
-export type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`
-export type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
-export type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
-export type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`
-export type PossibleEnglishName_SpikeTop = `${| EmptyString | 'Fast '}${| EmptyString | 'Winged '}Spike Top`
-export type PossibleEnglishName_BulletBill = `${`${| EmptyString | 'Cat '}Bullet` | 'Bull’s-Eye'} Bill`
-export type PossibleEnglishName_BanzaiBill = `${| EmptyString | 'Cat '}Banzai Bill` | 'Bull’s-Eye Banzai'
-export type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate'
+type PossibleEnglishName_BigMushroom = `Big Mushroom${| EmptyString | ` (${'classic' | 'modern'})`}`
+type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto'
+type PossibleEnglishName_Yoshi = `${| EmptyString | 'Red '}Yoshi`
+type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`
+type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`
+type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`
+type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`
+type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`
+type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
+type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
+type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`
+type PossibleEnglishName_SpikeTop = `${| EmptyString | 'Fast '}${| EmptyString | 'Winged '}Spike Top`
+type PossibleEnglishName_BulletBill = `${`${| EmptyString | 'Cat '}Bullet` | 'Bull’s-Eye'} Bill`
+type PossibleEnglishName_BanzaiBill = `${| EmptyString | 'Cat '}Banzai Bill` | 'Bull’s-Eye Banzai'
+type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate'
 export type PossibleEnglishName =
     | `${| EmptyString | `${| 'Start' | 'Goal'} `}Ground`
     | `${| 'Steep' | 'Gentle'} Slope`
@@ -299,3 +299,35 @@ export type PossibleEnglishName =
     | 'Bubble'
 
 //endregion -------------------- English name --------------------
+//region -------------------- English name (editor voice) --------------------
+
+type PossibleEnglishName_Projectile = EmptyString//TODO change to every projectile name
+type PossibleEnglishName_Object = EmptyString//TODO change to every object name
+/** The possible english anme that are in both {@link Entities} and {@link EditorVoices} */
+export type PossibleEnglishName_EditorVoice = Exclude<PossibleEnglishName,
+    | PossibleEnglishName_BigMushroom | PossibleEnglishName_Shoe | PossibleEnglishName_Yoshi
+    | PossibleEnglishName_Block | Exclude<PossibleEnglishName_HardBlock, 'Hard Block'>
+    | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
+    | Exclude<PossibleEnglishName_DryBones, 'Dry Bones'> | Exclude<PossibleEnglishName_BuzzyBeetleAndShell, 'Buzzy Beetle'>
+    | Exclude<PossibleEnglishName_SpinyAndShell, 'Spiny'> | Exclude<PossibleEnglishName_SpikeTop, 'Spike Top'>
+    | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
+    | 'Empty Block' | 'Chain Chomp’s Stump' | 'Angry Sun'
+    | PossibleEnglishName_Goals | 'Phanto' | 'Stone' | 'Parachute' | 'Bubble'
+    | PossibleEnglishName_Projectile | PossibleEnglishName_Object>
+
+//endregion -------------------- English name (editor voice) --------------------
+//region -------------------- English name (character name) --------------------
+
+/** The english name that are in both {@link Entities} and in {@link CharacterNames} */
+export type PossibleEnglishName_PlayableCharacter = | `${| EmptyString | `${| 'Small' | 'Super'
+                                                                            | 'Fire' | 'Superball'
+                                                                            | 'Giant' | 'SMB2'
+                                                                            | 'Raccoon' | 'Frog'
+                                                                            | 'Cape' | 'Balloon'
+                                                                            | 'Propeller' | 'Flying Squirrel'
+                                                                            | 'Cat' | 'Builder' | 'Boomerang'
+                                                                            | 'Buzzy' | 'Spiny'} `}${| 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`
+                                                    | `${| 'Weird' | 'Costume'} Mario`
+                                                    | 'Link'
+
+//endregion -------------------- English name (character name) --------------------
