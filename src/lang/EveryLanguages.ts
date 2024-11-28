@@ -75,7 +75,8 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
                 this.#differentWords = differenceWords
             }
 
-            protected get _spaceParameters(): SpaceParameterReceived { return this.parent.#spaceParameter! }
+            protected get _spaceParameters(): SpaceParameterReceived { // @ts-ignore: There is no problem in accessing protected member from a child instance
+                return this.parent._spaceParameters }
 
             public get differentWords(): PossibleDifferentWord { return this.#differentWords }
 
@@ -126,7 +127,8 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
                 this.#differentWords = differenceWords
             }
 
-            protected get _spaceParameters(): SpaceParameterReceived { return this.parent.#spaceParameter! }
+            protected get _spaceParameters(): SpaceParameterReceived { // @ts-ignore: There is no problem in accessing protected member from a child instance
+                return this.parent._spaceParameters }
 
             public get differentWords(): PossibleDifferentWord { return this.#differentWords }
 
