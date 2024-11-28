@@ -2,12 +2,12 @@ import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import type {Array, EmptyString}                 from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                      from 'core/ClassWithEnglishName'
-import type {Names, Ordinals, PossibleEnglishName}                                                                                                                                                                                                                                      from 'core/entity/Entities.types'
-import type {EditorImageFile, EditorImageFileAsBlueVariant, EditorImageFileAsBlueVariantExcludingSm3dw, EditorImageFileAsNightSnowInSmb3, EditorImageFileAsNightSnowInSmb3ExcludingSm3dw, EditorImageFileAsNightSnowInSmbAndSmb3, EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw} from 'core/entity/file/EntityImageFile'
-import type {EditorImage}                                                                                                                                                                                                                                                               from 'core/entity/images/editor/EditorImage'
-import type {GameStyles_NSMBU, GameStyles_SM3DW, GameStyles_SMB, GameStyles_SMB3, GameStyles_SMW}                                                                                                                                                                                       from 'core/gameStyle/GameStyles.types'
-import type {ClassWithImage}                                                                                                                                                                                                                                                            from 'util/ClassWithImage'
+import type {ClassWithEnglishName}                                                                from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName}                                                from 'core/entity/Entities.types'
+import type {EditorImageFile}                                                                     from 'core/entity/file/EntityImageFile'
+import type {EditorImage}                                                                         from 'core/entity/images/editor/EditorImage'
+import type {GameStyles_NSMBU, GameStyles_SM3DW, GameStyles_SMB, GameStyles_SMB3, GameStyles_SMW} from 'core/gameStyle/GameStyles.types'
+import type {ClassWithImage}                                                                      from 'util/ClassWithImage'
 
 import {Entities}             from 'core/entity/Entities'
 import {editorImage}          from 'core/entity/file/fileCreator'
@@ -420,7 +420,8 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmb3 = class ExistantAsOnePlusOneNightSnowInSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmb3<FILE_NAME_1, FILE_NAME_2, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+                                                  | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
@@ -458,7 +459,8 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmb3ButNotSm3dw = class ExistantAsOnePlusOneNightSnowInSmb3ButNotSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+                                                  | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
@@ -494,7 +496,8 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmbAndSmb3 = class ExistantAsOnePlusOneNightSnowInSmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1, FILE_NAME_2, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+                                                  | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
@@ -534,7 +537,8 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmbAndSmb3ButNotSm3dw = class ExistantAsOnePlusOneNightSnowInSmbAndSmb3ExcludingSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+                                                  | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
@@ -576,7 +580,9 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsBlueVariantInSmbAndSmb3 = class ExistantAsBlueVariantInSmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string,
         const NUMBER extends | 0 | 1, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsBlueVariant<FILE_NAME, NUMBER, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+                                                  | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+                                                  | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, `${FILE_NAME}_0${NUMBER}`, NAME>> {
 
         readonly #fileName
         readonly #number
@@ -646,7 +652,9 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsBlueVariantInSmbAndSmb3ButNotSm3dw = class ExistantAsBlueVariantInSmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string,
         const NUMBER extends | 0 | 1, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME, NUMBER, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+                                                  | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+                                                  | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, `${FILE_NAME}_0${NUMBER}`, NAME>> {
 
         readonly #fileName
         readonly #number

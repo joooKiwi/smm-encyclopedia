@@ -1,14 +1,12 @@
-import type {EmptyString} from '@joookiwi/type'
-
-import type {ClearConditionEntityImages}                                                                                  from 'core/entity/ClearConditionEntityImages'
-import type {EditorEntityImages}                                                                                          from 'core/entity/EditorEntityImages'
-import type {PossibleEnglishName}                                                                                         from 'core/entity/Entities.types'
-import type {InGameEntityImages}                                                                                          from 'core/entity/InGameEntityImages'
-import type {UnusedBigMushroomEntityImages}                                                                               from 'core/entity/UnusedBigMushroomEntityImages'
-import type {UnusedEntityImages}                                                                                          from 'core/entity/UnusedEntityImages'
-import type {GameStyles}                                                                                                  from 'core/gameStyle/GameStyles'
-import type {GameStyles_NSMBU, GameStyles_SM3DW, GameStyles_SMB, GameStyles_SMB3, GameStyles_SMW, PossibleAcronym_InFile} from 'core/gameStyle/GameStyles.types'
-import type {ImageFile}                                                                                                   from 'util/file/image/ImageFile'
+ import type {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}            from 'core/entity/EditorEntityImages'
+import type {PossibleEnglishName}           from 'core/entity/Entities.types'
+import type {InGameEntityImages}            from 'core/entity/InGameEntityImages'
+import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
+import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
+import type {GameStyles}                    from 'core/gameStyle/GameStyles'
+import type {PossibleAcronym_InFile}        from 'core/gameStyle/GameStyles.types'
+import type {ImageFile}                     from 'util/file/image/ImageFile'
 
 /**
  * An {@link ImageFile} made to be related to an {@link Entities}
@@ -95,56 +93,6 @@ export type PossibleEditorImageFile = typeof EditorEntityImages[| 'GROUND' | 'ST
                                                                 | 'WARP_BOX_WITH_KEY' | 'WING' | 'PARACHUTE']['image']['images'][number]
 
 //endregion -------------------- possible editor images --------------------
-//region -------------------- grouped editor images --------------------
-
-/** An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time} */
-export type EditorImageFileAsBlueVariant<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, `${FILE_NAME}_0${NUMBER}`, NAME>
-/**
- * An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time},
- * but not in {@link SM3DW}
- */
-export type EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| EmptyString | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, `${FILE_NAME}_0${NUMBER}`, NAME>
-
-/**
- * An {@link EditorImageFile} template for 2 images in only {@link SMB3}
- * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
- * The others are only in the {@link Themes.GROUND ground theme}
- */
-export type EditorImageFileAsNightSnowInSmb3<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>
-/**
- * An {@link EditorImageFile} template for 2 images in only {@link SMB3}
- * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
- * The others (excluding {@link SM3DW}) are only in the {@link Themes.GROUND ground theme}
- */
-export type EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>
-/**
- * An {@link EditorImageFile} template for 2 images in only {@link SMB} and {@link SMB3}
- * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
- * The others are only in the {@link Themes.GROUND ground theme}
- */
-export type EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>
-/**
- * An {@link EditorImageFile} template for 2 images in only {@link SMB} and {@link SMB3}
- * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
- * The others (excluding {@link SM3DW}) are only in the {@link Themes.GROUND ground theme}
- */
-export type EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>
-
-//endregion -------------------- grouped editor images --------------------
 
 //endregion -------------------- editor images --------------------
 //region -------------------- clear condition images --------------------
