@@ -510,29 +510,34 @@ export abstract class InGameEntityImages
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIKOOPA_PROJECTILE} */
     private static readonly ExistantAsMagikoopaProjectile = class ExistantAsMagicBallInGameEntityImages
-        extends InGameEntityImages.Existant<'(Magikoopa’s projectile)', InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa’s projectile)'>> {
+        extends InGameEntityImages.Existant<'(Magikoopa’s projectile)', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa’s projectile)'>
+                                                                        | InGameImageFile<`${| 'WU' | '3W'} Enemy - Kameck`, 'effect.0', '(Magikoopa’s projectile)'>> {
 
         public constructor() { super('(Magikoopa’s projectile)',) }
 
         public override _createImageFiles() {
             return [
-                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.0',),],
-                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.1',),],
-                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.2',),],
-                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.0',),],
-                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.1',),],
+                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'effect.0',),],
+                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'effect.1',),],
+                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'effect.2',),],
+                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.0',),],
+                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.1',),],
 
-                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.0',),],
-                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.1',),],
-                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.2',),],
-                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.0',),],
-                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.1',),],
+                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'effect.0',),],
+                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'effect.1',),],
+                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'effect.2',),],
+                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.0',),],
+                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.1',),],
 
-                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'effect.0',),],
-                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'effect.1',),],
-                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'effect.2',),],
-                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.0',),],
-                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.1',),],
+                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'effect.0',),],
+                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'effect.1',),],
+                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'effect.2',),],
+                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.0',),],
+                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.1',),],
+
+                [NSMBU, inGameImage(this, 'WU Enemy - Kameck', 'effect.0',),],
+
+                [SM3DW, inGameImage(this, '3W Enemy - Kameck', 'effect.0',),],
             ] as const
         }
 
