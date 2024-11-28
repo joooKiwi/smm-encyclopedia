@@ -56,6 +56,7 @@ const router = createHashRouter([{
     path: '/',
     id: 'root',
     element: <PageLayout/>,
+    HydrateFallback: LoadingApp,//TODO change the loading app to have a different visual than afterward
     children: [
         new StraightRouteObject('/', () => redirectTo(homeRoute,),),
         //region -------------------- Path from route path --------------------
@@ -84,6 +85,12 @@ const router = createHashRouter([{
 } satisfies RouteObject,], {
     basename: '/',
     patchRoutesOnNavigation: it => resolveLazyRoute(it.path, it.patch,),
+    future: {
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_skipActionErrorRevalidation: true,
+    },
 },)
 
 /**
@@ -124,7 +131,7 @@ function resolveLazyRoute(path: string, action: (routeId: NullOrString, children
 
 /** @reactComponent */
 export default function Routes() {
-    return <RouterProvider router={router} fallbackElement={<LoadingApp/>}/>//TODO change the loading app to have a different visual than afterward
+    return <RouterProvider router={router} future={{v7_startTransition: true,}}/>
 }
 
 // @ts-ignore: TODO remove once the application is more complete
