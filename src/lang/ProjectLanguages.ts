@@ -52,7 +52,8 @@ import Companion = EveryLanguages.Companion
  * @indirectlyInherit {@link EveryLanguages}
  * @usedByTheRouting
  */
-export class ProjectLanguages
+export class ProjectLanguages<const ACRONYM extends PossibleAcronym = PossibleAcronym,
+    const INTERNATIONAL_ACRONYM extends PossibleInternationalAcronym = PossibleInternationalAcronym, >
     extends Enum<Ordinals, Names>
     implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, PossibleDifferentWord>,
         ClassWithIsCurrent,
@@ -157,7 +158,7 @@ export class ProjectLanguages
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    readonly #language: EveryLanguages
+    readonly #language
     readonly #isInSuperMarioMaker1: boolean
     readonly #isInSuperMarioMakerFor3DS: boolean
     readonly #isInSuperMarioMaker2: boolean
@@ -166,7 +167,7 @@ export class ProjectLanguages
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(language: EveryLanguages, isASupportedLanguageInSMM1?: boolean, isASupportedLanguageInSMM3DS?: boolean, isASupportedLanguageInSMM2?: boolean,) {
+    protected constructor(language: EveryLanguages<ACRONYM, INTERNATIONAL_ACRONYM>, isASupportedLanguageInSMM1?: boolean, isASupportedLanguageInSMM3DS?: boolean, isASupportedLanguageInSMM2?: boolean,) {
         super()
         this.#language = language
         this.#isInSuperMarioMaker1 = isASupportedLanguageInSMM1 as boolean
@@ -177,7 +178,7 @@ export class ProjectLanguages
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get language(): EveryLanguages {
+    public get language(): EveryLanguages<ACRONYM, INTERNATIONAL_ACRONYM> {
         return this.#language
     }
 
@@ -213,12 +214,12 @@ export class ProjectLanguages
         throw new ReferenceError('No language name can exist in a url.',)
     }
 
-    public get projectAcronym(): PossibleAcronym {
-        return this.language.projectAcronym as PossibleAcronym
+    public get projectAcronym(): ACRONYM {
+        return this.language.projectAcronym
     }
 
-    public get internationalAcronym(): PossibleInternationalAcronym {
-        return this.language.internationalAcronym as PossibleInternationalAcronym
+    public get internationalAcronym(): INTERNATIONAL_ACRONYM {
+        return this.language.internationalAcronym
     }
 
     public get englishName(): PossibleEnglishName {
