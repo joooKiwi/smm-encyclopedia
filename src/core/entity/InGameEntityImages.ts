@@ -1,5 +1,6 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import type {Array, EmptyString}                 from '@joookiwi/type'
+import {forEachByArray}                          from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -475,6 +476,78 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (four in 3 specific game style) --------------------
+    //region -------------------- Sub class (blue variant) --------------------
+
+    private static readonly ExistantAsBlueVariant = class ExistantAsBlueVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_FILE_NAME>
+                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #smbFileNames
+        readonly #smb3FileNames
+        readonly #smwFileNames
+        readonly #nsmbuFileNames
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, smbFileNames: Array<SMB_FILE_NAME>, smb3FileNames: Array<SMB3_FILE_NAME>, smwFileNames: Array<SMW_FILE_NAME>, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#smbFileNames = smbFileNames
+            this.#smb3FileNames = smb3FileNames
+            this.#smwFileNames = smwFileNames
+            this.#nsmbuFileNames = nsmbuFileNames
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const fileNames_smb = this.#smbFileNames
+            const fileNamesSize_smb = fileNames_smb.length
+            const fileNames_smb3 = this.#smb3FileNames
+            const fileNamesSize_smb3 = fileNames_smb3.length
+            const fileNames_smw = this.#smwFileNames
+            const fileNames_nsmbu = this.#nsmbuFileNames
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_FILE_NAME>
+                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize_smb + fileNamesSize_smb3 + fileNames_smw.length + fileNames_nsmbu.length,)
+
+            let index = -1
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smbAlt = `M1 ${endingFolderName} D` as const
+            forEachByArray(fileNames_smb, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smb] = [SMB, inGameImage(this, folderName_smbAlt, it,),]
+            },)
+            index += fileNamesSize_smb
+
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smb3Alt = `M3 ${endingFolderName} D` as const
+            forEachByArray(fileNames_smb3, it => {
+                imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize_smb3] = [SMB3, inGameImage(this, folderName_smb3Alt, it,),]
+            },)
+            index += fileNamesSize_smb3
+
+            const folderName_smw = `MW ${endingFolderName}` as const
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    //endregion -------------------- Sub class (blue variant) --------------------
     //region -------------------- Sub class (predefined) --------------------
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link WATER} */
@@ -880,7 +953,7 @@ export abstract class InGameEntityImages
     public static readonly BOO_BUDDIES =                                   new InGameEntityImages.Null()
     public static readonly PEEPA =                                         new InGameEntityImages.Null()
 
-    public static readonly BOB_OMB =                                       new InGameEntityImages.Null()
+    public static readonly BOB_OMB =                                       new InGameEntityImages.ExistantAsBlueVariant('Bob-omb', 'Enemy Bombhei', ['damage.0', 'fly.0', 'parawait.0', 'parawait.1', 'walk.0', 'walk.1',], ['damage.0', 'fly.0', 'parawait.0', 'parawait.1', 'walk.0', 'walk.1',], ['damage.0', 'fly.0', 'walk.0', 'walk.1',], ['fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb32', 'fly_Alb34', 'fly_Alb36', 'fly_Alb38', 'fly_Alb39', 'stop_Alb000', 'walk_Alb000', 'walk_Alb001', 'walk_Alb002', 'walk_Alb003', 'walk_Alb004', 'walk_Alb005', 'walk_Alb006', 'walk_Alb007', 'walk_Alb008', 'walk_Alb009', 'walk_Alb010', 'walk_Alb011', 'walk_Alb012', 'walk_Alb013', 'walk_Alb014', 'walk_Alb015', 'walk_Alb016', 'walk_Alb017', 'walk_Alb018', 'walk_Alb019',],)
     public static readonly LIT_BOB_OMB =                                   new InGameEntityImages.Null()
 
     public static readonly POKEY =                                         new InGameEntityImages.Null()
