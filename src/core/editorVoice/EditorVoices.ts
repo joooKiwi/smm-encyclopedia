@@ -576,20 +576,20 @@ export abstract class EditorVoices
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    readonly #englishNameContainer: StringContainer<PossibleEnglishName>
+    readonly #englishNameContainer
+    readonly #editorVoiceSound
     #references?: Array<PossibleReference>
     #reference?: PossibleReference
     #characterNameReference?: Array<CharacterNames>
     #entityReferences?: Array<Entities>
-    readonly #editorVoiceSoundHolder
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     protected constructor(englishName: PossibleEnglishName, editorVoiceSoundFile: EditorVoiceSound,) {
         super()
-        this.#englishNameContainer = new StringContainer(englishName)
-        this.#editorVoiceSoundHolder = editorVoiceSoundFile
+        this.#englishNameContainer = new StringContainer(englishName,)
+        this.#editorVoiceSound = editorVoiceSoundFile
     }
 
     //endregion -------------------- Constructor --------------------
@@ -605,7 +605,7 @@ export abstract class EditorVoices
 
 
     public get editorVoiceSoundFileHolder(): EditorVoiceSound {
-        return this.#editorVoiceSoundHolder
+        return this.#editorVoiceSound
     }
 
     //region -------------------- References --------------------
@@ -625,7 +625,7 @@ export abstract class EditorVoices
 
     //region -------------------- Character name references --------------------
 
-    protected _createCharacterNameReference():  | PossibleEnglishName | Array<CharacterNames> {
+    protected _createCharacterNameReference(): | PossibleEnglishName | Array<CharacterNames> {
         return this.englishName
     }
 
