@@ -659,6 +659,45 @@ export abstract class InGameEntityImages
 
     }
 
+    private static readonly ExistantAsNoVariantAndNotNsmbuAndSm3dw = class ExistantAsNoVariantAndNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileNames_smb = this.smbFileNames
+            const fileNames_smb3 = this.smb3FileNames
+            const fileNames_smw = this.smwFileNames
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>,]>(fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length,)
+
+            let index = -1
+            forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
+
+            forEachByArray(fileNames_smb3, it => imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),],)
+
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     private static readonly ExistantAsNoVariantWithSameSmbAndSmb3 = class ExistantAsNoVariantWithSameSmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_SMB3_FILE_NAME extends string,
@@ -1331,7 +1370,23 @@ export abstract class InGameEntityImages
     public static readonly POM_POM_CLONE =                                 new InGameEntityImages.Null()
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new InGameEntityImages.Null()
 
-    public static readonly LARRY =                                         new InGameEntityImages.Null()
+    public static readonly LARRY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Larry', 'Enemy - Larry', [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2',
+        'wait.0', 'wait.1', 'wait.2',], [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'damage.0',
+        'fall.0', 'fall.1',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',],)
     public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Larry’s Wand', 'Enemy - Larry', 'wand',)
     public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Larry’s projectile)', 'Enemy - Larry', 'effect.0',)
 
