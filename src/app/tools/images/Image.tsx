@@ -13,19 +13,15 @@ import {assert} from 'util/utilitiesMethods'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
-/**
- *
- * @param properties
- * @reactComponent
- */
+/** @reactComponent */
 export default function Image(properties: | ImageFromVariableProperties | ImageProperties | ImageFromFileProperties | AnimatedImagesProperties,) {
-    return 'variable' in properties
-        ? <ImageFromVariable {...properties}/>
-        : 'file' in properties
-            ? <ImageFromFile {...properties}/>
-            : 'source' in properties
-                ? <SingleImage {...properties}/>
-                : <AnimatedImages {...properties}/>
+    if ('variable' in properties)
+        return <ImageFromVariable {...properties}/>
+    if ('file' in properties)
+        return <ImageFromFile {...properties}/>
+    if ('source' in properties)
+        return <SingleImage {...properties}/>
+    return <AnimatedImages {...properties}/>
 }
 
 
