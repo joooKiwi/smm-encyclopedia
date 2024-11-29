@@ -849,6 +849,52 @@ export abstract class InGameEntityImages
 
     }
 
+    private static readonly ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw = class ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_SMB3_SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMB_SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const folderName_smbAlt = `M1 ${endingFolderName} D` as const
+            const folderName_smb3Alt = `M3 ${endingFolderName} D` as const
+            const fileNames_smbSmb3SmW = this.smbSmb3SmwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
+            const fileNamesSize_smbSmb3Smw = fileNames_smbSmb3SmW.length
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_SMB3_SMW_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMB_SMB3_SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize_smbSmb3Smw * 5 + fileNames_nsmbu.length,)
+
+            let index = -1
+            forEachByArray(fileNames_smbSmb3SmW, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw] = [SMB, inGameImage(this, folderName_smbAlt, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 2] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 3] = [SMB3, inGameImage(this, folderName_smb3Alt, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 4] = [SMW, inGameImage(this, folderName_smw, it,),]
+            },)
+            index += fileNamesSize_smbSmb3Smw * 5
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     //endregion -------------------- Sub class (blue variant) --------------------
     //region -------------------- Sub class (predefined) --------------------
 
@@ -1348,7 +1394,7 @@ export abstract class InGameEntityImages
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
     public static readonly BILL_BLASTER =                                  new InGameEntityImages.Null()
-    public static readonly BULLET_BILL =                                   new InGameEntityImages.Null()
+    public static readonly BULLET_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bullet Bill', 'Enemy - Killer', ['wait.0',], ['search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018', 'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039', 'search_Alb.042', 'search_Alb.045', 'search_Alb.047',],)
     public static readonly BULL_EYE_BLASTER =                              new InGameEntityImages.Null()
     public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.Null()
     public static readonly CAT_BULLET_BILL =                               new InGameEntityImages.Null()
