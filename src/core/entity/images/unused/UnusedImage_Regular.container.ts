@@ -1,5 +1,5 @@
+import type {CollectionHolder}    from '@joookiwi/collection'
 import type {Array, MutableArray} from '@joookiwi/type'
-import {forEachByArray}           from '@joookiwi/collection'
 
 import type {UnusedImageFile}     from 'core/entity/file/EntityImageFile'
 import type {UnusedImage_Regular} from 'core/entity/images/unused/UnusedImage_Regular'
@@ -11,11 +11,11 @@ export class UnusedImage_RegularContainer<const T extends UnusedImageFile, >
     readonly #images
     #all?: ReadonlyMap<GameStyles, Array<readonly [T,]>>
 
-    public constructor(images: Array<readonly [GameStyles, T,]>,) {
+    public constructor(images: CollectionHolder<readonly [GameStyles, T,]>,) {
         this.#images = images
     }
 
-    public get images(): Array<readonly [GameStyles, T,]> {
+    public get images(): CollectionHolder<readonly [GameStyles, T,]> {
         return this.#images
     }
 
@@ -25,7 +25,7 @@ export class UnusedImage_RegularContainer<const T extends UnusedImageFile, >
             return value
 
         const map = new Map<GameStyles, MutableArray<readonly [T,]>>()
-        forEachByArray(this.images, it => {
+        this.images.forEach(it => {
             const gameStyle = it[0]
             if (map.has(gameStyle,))
                 map.get(gameStyle,)!.push([it[1],],)

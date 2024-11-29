@@ -15,6 +15,6 @@ interface OfficialCourseRewardProperties
 /** @reactComponent */
 export default function OfficialCourseReward({reference,}: OfficialCourseRewardProperties,) {
     return <div className="officialCourse-reward">{mapByArray(reference.reference.reward, it =>
-            <Image key={`Reward (${it.englishName})`} file={it.waitingImage[0]}/>
+            <Image key={`Reward (${it.englishName})`} file={it.waitingImage.getFirstOrNull()}/>
         ,)}</div>
 }
