@@ -1,7 +1,7 @@
-import type {Lazy}  from '@joookiwi/lazy'
-import type {Array} from '@joookiwi/type'
-import {isArray}    from '@joookiwi/collection'
-import {lazy}       from '@joookiwi/lazy'
+import type {Lazy}           from '@joookiwi/lazy'
+import type {Array}          from '@joookiwi/type'
+import {isArray, mapByArray} from '@joookiwi/collection'
+import {lazy}                from '@joookiwi/lazy'
 
 import type {ImagesCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                            from 'core/entity/Entities'
@@ -54,6 +54,5 @@ export abstract class AbstractPowerUpPriority
 }
 
 export function getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): Array<EntityImageFile> {//TODO relocate elsewhere
-    return (isArray(gameStyles,) ? gameStyles : [gameStyles])
-        .map(gameStyle => EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
+    return mapByArray(isArray(gameStyles,) ? gameStyles : [gameStyles], it => EDITOR_IMAGE_CALLBACK(entity, it,),).toArray().flat()
 }
