@@ -886,7 +886,7 @@ export abstract class InGameEntityImages
                 imageFiles[index + fileNamesSize_smbSmb3Smw * 3] = [SMB3, inGameImage(this, folderName_smb3Alt, it,),]
                 imageFiles[index + fileNamesSize_smbSmb3Smw * 4] = [SMW, inGameImage(this, folderName_smw, it,),]
             },)
-            index += fileNamesSize_smbSmb3Smw * 5
+            index += fileNamesSize_smbSmb3Smw * 4
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
