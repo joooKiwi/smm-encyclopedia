@@ -1123,7 +1123,7 @@ export abstract class InGameEntityImages
     public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAsSixInOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAsSixInOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Green Koopa Shell', 'MW Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
-    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.Null()
+    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Red Koopa Shell', 'MW Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
 
     public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
