@@ -559,6 +559,120 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (four in 3 specific game style) --------------------
+    //region -------------------- Sub class (no variant) --------------------
+
+    private static readonly ExistantAsNoVariant = class ExistantAsNoVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #smbFileNames
+        readonly #smb3FileNames
+        readonly #smwFileNames
+        readonly #nsmbuFileNames
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, smbFileNames: Array<SMB_FILE_NAME>, smb3FileNames: Array<SMB3_FILE_NAME>, smwFileNames: Array<SMW_FILE_NAME>, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#smbFileNames = smbFileNames
+            this.#smb3FileNames = smb3FileNames
+            this.#smwFileNames = smwFileNames
+            this.#nsmbuFileNames = nsmbuFileNames
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const fileNames_smb = this.#smbFileNames
+            const fileNames_smb3 = this.#smb3FileNames
+            const fileNames_smw = this.#smwFileNames
+            const fileNames_nsmbu = this.#nsmbuFileNames
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length + fileNames_nsmbu.length,)
+
+            let index = -1
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
+
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            forEachByArray(fileNames_smb3, it => imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),],)
+
+            const folderName_smw = `MW ${endingFolderName}` as const
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    private static readonly ExistantAsNoVariantWithSameSmb3AndSmw = class ExistantAsNoVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                                                  | InGameImageFile<`${| 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #smbFileNames
+        readonly #smb3SmwFileNames
+        readonly #nsmbuFileNames
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, smbFileNames: Array<SMB_FILE_NAME>, smb3SmwFileNames: Array<SMB3_SMW_FILE_NAME>, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#smbFileNames = smbFileNames
+            this.#smb3SmwFileNames = smb3SmwFileNames
+            this.#nsmbuFileNames = nsmbuFileNames
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const fileNames_smb = this.#smbFileNames
+            const fileNames_smb3Smw = this.#smb3SmwFileNames
+            const fileNamesSize_smb3Smw = fileNames_smb3Smw.length
+            const fileNames_nsmbu = this.#nsmbuFileNames
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                    | InGameImageFile<`${| 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, SMB3_SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNames_smb.length + fileNamesSize_smb3Smw * 2 + fileNames_nsmbu.length,)
+
+            let index = -1
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
+
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            forEachByArray(fileNames_smb3Smw, it => {
+                imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize_smb3Smw] = [SMW, inGameImage(this, folderName_smw, it,),]
+            },)
+            index+= fileNamesSize_smb3Smw
+
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    //endregion -------------------- Sub class (no variant) --------------------
     //region -------------------- Sub class (blue variant) --------------------
 
     private static readonly ExistantAsBlueVariant = class ExistantAsBlueVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
@@ -1051,8 +1165,16 @@ export abstract class InGameEntityImages
     public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
     public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAsMagikoopaProjectile()
 
-    public static readonly HAMMER_BRO =                                    new InGameEntityImages.Null()
     public static readonly SLEDGE_BRO =                                    new InGameEntityImages.Null()
+    public static readonly HAMMER_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Hammer Bro', 'Enemy - Bros', ['throw.0', 'throw.1', 'walk.0', 'walk.1',], ['jump.0', 'throw.0', 'throw.1', 'walk.0', 'walk.1',],
+        ['dead_Alb.000', 'dead_Alb.002', 'dead_Alb.004', 'dead_Alb.006', 'dead_Alb.008', 'dead_Alb.010', 'dead_Alb.012', 'dead_Alb.014',
+            'jump_ed_Alb.000', 'jump_ed_Alb.002', 'jump_ed_Alb.004', 'jump_ed_Alb.006', 'jump_ed_Alb.008', 'jump_ed_Alb.010', 'jump_ed_Alb.012',
+            'jump_md_Alb.000', 'jump_md_Alb.004', 'jump_md_Alb.008', 'jump_md_Alb.012', 'jump_md_Alb.016', 'jump_md_Alb.020', 'jump_md_Alb.024', 'jump_md_Alb.028', 'jump_md_Alb.032', 'jump_md_Alb.036', 'jump_md_Alb.040', 'jump_md_Alb.044', 'jump_md_Alb.048', 'jump_md_Alb.052', 'jump_md_Alb.056', 'jump_md_Alb.060',
+            'jump_st_Alb.000', 'jump_st_Alb.002', 'jump_st_Alb.004', 'jump_st_Alb.006', 'jump_st_Alb.008', 'jump_st_Alb.010',
+            'parawait_Alb.000', 'parawait_Alb.002', 'parawait_Alb.004', 'parawait_Alb.006', 'parawait_Alb.008', 'parawait_Alb.010', 'parawait_Alb.012', 'parawait_Alb.014', 'parawait_Alb.016', 'parawait_Alb.018', 'parawait_Alb.020', 'parawait_Alb.022', 'parawait_Alb.024', 'parawait_Alb.026', 'parawait_Alb.028', 'parawait_Alb.030', 'parawait_Alb.032', 'parawait_Alb.034', 'parawait_Alb.036', 'parawait_Alb.038', 'parawait_Alb.040', 'parawait_Alb.042', 'parawait_Alb.044', 'parawait_Alb.046', 'parawait_Alb.048', 'parawait_Alb.050', 'parawait_Alb.052', 'parawait_Alb.054', 'parawait_Alb.056', 'parawait_Alb.058',
+            'throw_Alb.000', 'throw_Alb.002', 'throw_Alb.004', 'throw_Alb.006', 'throw_Alb.008', 'throw_Alb.010', 'throw_Alb.014', 'throw_Alb.016', 'throw_Alb.018', 'throw_Alb.020', 'throw_Alb.022', 'throw_Alb.024', 'throw_Alb.026', 'throw_Alb.028', 'throw_Alb.030', 'throw_Alb.032', 'throw_Alb.034', 'throw_Alb.036', 'throw_Alb.038', 'throw_Alb.040', 'throw_Alb.042', 'throw_Alb.044', 'throw_Alb.046', 'throw_Alb.048', 'throw_Alb.050', 'throw_Alb.052', 'throw_Alb.054', 'throw_Alb.056', 'throw_Alb.058', 'throw_Alb.060',
+            'throw_held_Alb.000', 'throw_held_Alb.002', 'throw_held_Alb.004', 'throw_held_Alb.006', 'throw_held_Alb.008', 'throw_held_Alb.010', 'throw_held_Alb.014', 'throw_held_Alb.016', 'throw_held_Alb.018', 'throw_held_Alb.020', 'throw_held_Alb.022', 'throw_held_Alb.024', 'throw_held_Alb.026', 'throw_held_Alb.028', 'throw_held_Alb.030', 'throw_held_Alb.032', 'throw_held_Alb.034', 'throw_held_Alb.036', 'throw_held_Alb.038', 'throw_held_Alb.040', 'throw_held_Alb.042', 'throw_held_Alb.044', 'throw_held_Alb.046', 'throw_held_Alb.048', 'throw_held_Alb.050', 'throw_held_Alb.052', 'throw_held_Alb.054', 'throw_held_Alb.056', 'throw_held_Alb.058', 'throw_held_Alb.060', 'throw_held_Alb.062', 'throw_held_Alb.064', 'throw_held_Alb.066',
+            'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.031',],)
     public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.ExistantAsOneInNotSm3dwButDifferentNsmbu('Hammer thrown by a Hammer / Sledge Bro', 'Enemy - Bros', 'hammer.0', 'bros_hammer_Alb.000',)
     public static readonly FIRE_BRO =                                      new InGameEntityImages.Null()
     public static readonly HEAVY_FIRE_BRO =                                new InGameEntityImages.Null()
