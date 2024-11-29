@@ -1183,11 +1183,25 @@ export abstract class InGameEntityImages
     public static readonly GOOMBRAT =                                      new InGameEntityImages.Null()
     public static readonly GOOMBUD =                                       new InGameEntityImages.Null()
 
-    public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3('Green Koopa Troopa', 'Enemy - NokonokoA', ['revival.0', 'revival.1', 'revival.2', 'walk.0', 'walk.1',], ['blink.0', 'blink.1', 'revival.0', 'revival.1', 'walk.0', 'walk.1',], [
+    public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3('Green Koopa Troopa', 'Enemy - NokonokoA', [
+        'revival.0', 'revival.1', 'revival.2',
+        'walk.0', 'walk.1',
+    ], [
+        'blink.0', 'blink.1',
+        'revival.0', 'revival.1',
+        'walk.0', 'walk.1',
+    ], [
         'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
         'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
         'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',],)
-    public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3('Red Koopa Troopa', 'Enemy - NokonokoB', ['revival.0', 'revival.1', 'revival.2', 'walk.0', 'walk.1',], ['blink.0', 'blink.1', 'revival.0', 'revival.1', 'walk.0', 'walk.1',], [
+    public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3('Red Koopa Troopa', 'Enemy - NokonokoB', [
+        'revival.0', 'revival.1', 'revival.2',
+        'walk.0', 'walk.1',
+    ], [
+        'blink.0', 'blink.1',
+        'revival.0', 'revival.1',
+        'walk.0', 'walk.1',
+    ], [
         'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
         'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
         'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',],)
@@ -1280,7 +1294,14 @@ export abstract class InGameEntityImages
     public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
     public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAsMagikoopaProjectile()
 
-    public static readonly HAMMER_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Hammer Bro', 'Enemy - Bros', ['throw.0', 'throw.1', 'walk.0', 'walk.1',], ['jump.0', 'throw.0', 'throw.1', 'walk.0', 'walk.1',], [
+    public static readonly HAMMER_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Hammer Bro', 'Enemy - Bros', [
+        'throw.0', 'throw.1',
+        'walk.0', 'walk.1',
+    ], [
+        'jump.0',
+        'throw.0', 'throw.1',
+        'walk.0', 'walk.1',
+    ], [
         'dead_Alb.000', 'dead_Alb.002', 'dead_Alb.004', 'dead_Alb.006', 'dead_Alb.008', 'dead_Alb.010', 'dead_Alb.012', 'dead_Alb.014',
         'jump_ed_Alb.000', 'jump_ed_Alb.002', 'jump_ed_Alb.004', 'jump_ed_Alb.006', 'jump_ed_Alb.008', 'jump_ed_Alb.010', 'jump_ed_Alb.012',
         'jump_md_Alb.000', 'jump_md_Alb.004', 'jump_md_Alb.008', 'jump_md_Alb.012', 'jump_md_Alb.016', 'jump_md_Alb.020', 'jump_md_Alb.024', 'jump_md_Alb.028', 'jump_md_Alb.032', 'jump_md_Alb.036', 'jump_md_Alb.040', 'jump_md_Alb.044', 'jump_md_Alb.048', 'jump_md_Alb.052', 'jump_md_Alb.056', 'jump_md_Alb.060',
@@ -1289,7 +1310,14 @@ export abstract class InGameEntityImages
         'throw_Alb.000', 'throw_Alb.002', 'throw_Alb.004', 'throw_Alb.006', 'throw_Alb.008', 'throw_Alb.010', 'throw_Alb.014', 'throw_Alb.016', 'throw_Alb.018', 'throw_Alb.020', 'throw_Alb.022', 'throw_Alb.024', 'throw_Alb.026', 'throw_Alb.028', 'throw_Alb.030', 'throw_Alb.032', 'throw_Alb.034', 'throw_Alb.036', 'throw_Alb.038', 'throw_Alb.040', 'throw_Alb.042', 'throw_Alb.044', 'throw_Alb.046', 'throw_Alb.048', 'throw_Alb.050', 'throw_Alb.052', 'throw_Alb.054', 'throw_Alb.056', 'throw_Alb.058', 'throw_Alb.060',
         'throw_held_Alb.000', 'throw_held_Alb.002', 'throw_held_Alb.004', 'throw_held_Alb.006', 'throw_held_Alb.008', 'throw_held_Alb.010', 'throw_held_Alb.014', 'throw_held_Alb.016', 'throw_held_Alb.018', 'throw_held_Alb.020', 'throw_held_Alb.022', 'throw_held_Alb.024', 'throw_held_Alb.026', 'throw_held_Alb.028', 'throw_held_Alb.030', 'throw_held_Alb.032', 'throw_held_Alb.034', 'throw_held_Alb.036', 'throw_held_Alb.038', 'throw_held_Alb.040', 'throw_held_Alb.042', 'throw_held_Alb.044', 'throw_held_Alb.046', 'throw_held_Alb.048', 'throw_held_Alb.050', 'throw_held_Alb.052', 'throw_held_Alb.054', 'throw_held_Alb.056', 'throw_held_Alb.058', 'throw_held_Alb.060', 'throw_held_Alb.062', 'throw_held_Alb.064', 'throw_held_Alb.066',
         'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.031',],)
-    public static readonly SLEDGE_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Sledge Bro', 'Enemy - BrosMega', ['throw.0', 'throw.1', 'walk.0', 'walk.1',], ['jump.0', 'throw.0', 'throw.1', 'walk.0', 'walk.1',], [
+    public static readonly SLEDGE_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Sledge Bro', 'Enemy - BrosMega', [
+        'throw.0', 'throw.1',
+        'walk.0', 'walk.1',
+    ], [
+        'jump.0',
+        'throw.0', 'throw.1',
+        'walk.0', 'walk.1',
+    ], [
         'jump_attack_Alb.000', 'jump_attack_Alb.004', 'jump_attack_Alb.008', 'jump_attack_Alb.012', 'jump_attack_Alb.016', 'jump_attack_Alb.020', 'jump_attack_Alb.024', 'jump_attack_Alb.028', 'jump_attack_Alb.032', 'jump_attack_Alb.036', 'jump_attack_Alb.040',
         'jump_attack_ed_Alb.000', 'jump_attack_ed_Alb.003', 'jump_attack_ed_Alb.006', 'jump_attack_ed_Alb.009', 'jump_attack_ed_Alb.012', 'jump_attack_ed_Alb.015',
         'jump_attack_stop_Alb.000', 'jump_attack_stop_Alb.001', 'jump_attack_stop_Alb.002', 'jump_attack_stop_Alb.003', 'jump_attack_stop_Alb.004', 'jump_attack_stop_Alb.005', 'jump_attack_stop_Alb.006',
@@ -1357,18 +1385,36 @@ export abstract class InGameEntityImages
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
     //region -------------------- Boss + projectile --------------------
 
-    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser', 'Enemy - Koopa', ['fall.0', 'fall.1', 'fire.0', 'wait.0', 'wait.1',], [
-        'attack.0', 'fall.0', 'fall.1', 'fire.0', 'fire.1', 'fire.2', 'fire.3',
-        'in.0', 'in.1', 'jump.0', 'jump_ed.0',
-        'look.0', 'look.1', 'look.2', 'look.3', 'out.0', 'out.1',
-        'touchdown.0', 'turn.0', 'turn.1', 'turn.2', 'wait.0',
+    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser', 'Enemy - Koopa', [
+        'fall.0', 'fall.1',
+        'fire.0',
+        'wait.0', 'wait.1',
     ], [
-        'fall.0', 'fall.1', 'fire.0', 'fire.1', 'fire2.0', 'fire2.1',
+        'attack.0',
+        'fall.0', 'fall.1',
+        'fire.0', 'fire.1', 'fire.2', 'fire.3',
+        'in.0', 'in.1',
+        'jump.0',
+        'jump_ed.0',
+        'look.0', 'look.1', 'look.2', 'look.3',
+        'out.0', 'out.1',
+        'touchdown.0',
+        'turn.0', 'turn.1', 'turn.2',
+        'wait.0',
+    ], [
+        'fall.0', 'fall.1',
+        'fire.0', 'fire.1',
+        'fire2.0', 'fire2.1',
         'fireup.0', 'fireup.1', 'fireup.2', 'fireup.3', 'fireup.4',
-        'in.0', 'in.1', 'jump.0', 'jump_l.0',
-        'out.0', 'out.1', 'parawait.0', 'parawait.1',
-        'squat_l.0', 'squat_l.1', 'squat_l.2', 'squat_s.0',
-        'turn.0', 'turn.1', 'turn.2', 'wait.0',
+        'in.0', 'in.1',
+        'jump.0',
+        'jump_l.0',
+        'out.0', 'out.1',
+        'parawait.0', 'parawait.1',
+        'squat_l.0', 'squat_l.1', 'squat_l.2',
+        'squat_s.0',
+        'turn.0', 'turn.1', 'turn.2',
+        'wait.0',
         'walk.0', 'walk.1', 'walk.2', 'walk.3',
     ],)
     public static readonly MEOWSER =                                       new InGameEntityImages.Null()
@@ -1425,12 +1471,14 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'damage.0',
         'fall.0', 'fall.1',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
@@ -1445,12 +1493,14 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'damage.0',
         'fall.0', 'fall.1',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
@@ -1466,12 +1516,14 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'damage.0',
         'fall.0', 'fall.1',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
@@ -1487,12 +1539,14 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'chase.0', 'chase.1', 'chase.2', 'chase.3',
         'damage.0',
         'fall.0', 'fall.1',
@@ -1511,14 +1565,16 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3', 'shell.4', 'shell.5', 'shell.6', 'shell.7',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
         'pose.0', 'pose.1', 'pose.2', 'pose.3',
         'shell.0', 'shell.1', 'shell.2', 'shell.3', 'shell.4', 'shell.5', 'shell.6', 'shell.7',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'damage.0',
         'fall.0', 'fall.1',
         'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
@@ -1537,14 +1593,16 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'jump_quake.0', 'jump_quake.1', 'jump_quake.2',
         'jump_quake_ed.0', 'jump_quake_ed.1', 'jump_quake_ed.2',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'chase.0', 'chase.1', 'chase.2', 'chase.3',
         'damage.0',
         'fall.0', 'fall.1',
@@ -1563,12 +1621,14 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2', 'throw_ed.3', 'throw_ed.4', 'throw_ed.5',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1',], [
+        'wait.0', 'wait.1',
+    ], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2', 'throw_ed.3', 'throw_ed.4', 'throw_ed.5',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
         'damage.0',
         'fall.0', 'fall.1',
         'hb_throw_ed.0', 'hb_throw_ed.1', 'hb_throw_ed.2', 'hb_throw_ed.3', 'hb_throw_ed.4', 'hb_throw_ed.5', 'hb_throw_ed.6', 'hb_throw_ed.7', 'hb_throw_ed.8',
