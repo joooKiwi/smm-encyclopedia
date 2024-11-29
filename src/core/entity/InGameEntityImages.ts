@@ -1508,7 +1508,25 @@ export abstract class InGameEntityImages
     public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Morton’s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
     public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('(Morton’s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
 
-    public static readonly LUDWIG =                                        new InGameEntityImages.Null()
+    public static readonly LUDWIG =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Ludwig', 'Enemy - Ludwig', [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2', 'throw_ed.3', 'throw_ed.4', 'throw_ed.5',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1',], [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2', 'throw_ed.3', 'throw_ed.4', 'throw_ed.5',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'damage.0',
+        'fall.0', 'fall.1',
+        'hb_throw_ed.0', 'hb_throw_ed.1', 'hb_throw_ed.2', 'hb_throw_ed.3', 'hb_throw_ed.4', 'hb_throw_ed.5', 'hb_throw_ed.6', 'hb_throw_ed.7', 'hb_throw_ed.8',
+        'hb_throw_st.0', 'hb_throw_st.1', 'hb_throw_st.2', 'hb_throw_st.3', 'hb_throw_st.4', 'hb_throw_st.5', 'hb_throw_st.6', 'hb_throw_st.7', 'hb_throw_st.8',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', 'wait.5', 'wait.6',],)
     public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Ludwig’s Wand', 'Enemy - Ludwig', 'wand',)
     public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Ludwig’s projectile)', 'Enemy - Ludwig', 'effect.0',)
 
