@@ -614,6 +614,72 @@ export abstract class InGameEntityImages
 
     }
 
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
+     */
+    private static readonly ExistantAsFourInNotSm3dwWithNsmbu = class ExistantAsFourInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+        readonly #fileName4
+        readonly #nsmbuFileNames
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+            this.#fileName4 = fileName4
+            this.#nsmbuFileNames = nsmbuFileNames
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const folderNameSmw = `MW ${endingFolderName}` as const
+            const fileName1 = this.#fileName1
+            const fileName2 = this.#fileName2
+            const fileName3 = this.#fileName3
+            const fileName4 = this.#fileName4
+            const fileNames_nsmbu = this.#nsmbuFileNames
+
+            const imageFiles = new Array<readonly [GameStyles,
+                | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(12 + fileNames_nsmbu.length,)
+
+            imageFiles[0] =  [SMB,  inGameImage(this, folderNameSmb,  fileName1,),]
+            imageFiles[1] =  [SMB,  inGameImage(this, folderNameSmb,  fileName2,),]
+            imageFiles[2] =  [SMB,  inGameImage(this, folderNameSmb,  fileName3,),]
+            imageFiles[3] =  [SMB,  inGameImage(this, folderNameSmb,  fileName4,),]
+            imageFiles[4] =  [SMB3, inGameImage(this, folderNameSmb3, fileName1,),]
+            imageFiles[5] =  [SMB3, inGameImage(this, folderNameSmb3, fileName2,),]
+            imageFiles[6] =  [SMB3, inGameImage(this, folderNameSmb3, fileName3,),]
+            imageFiles[7] =  [SMB3, inGameImage(this, folderNameSmb3, fileName4,),]
+            imageFiles[8] =  [SMW,  inGameImage(this, folderNameSmw,  fileName1,),]
+            imageFiles[9] =  [SMW,  inGameImage(this, folderNameSmw,  fileName2,),]
+            imageFiles[10] = [SMW,  inGameImage(this, folderNameSmw,  fileName3,),]
+            imageFiles[11] = [SMW,  inGameImage(this, folderNameSmw,  fileName4,),]
+
+            let index = 11
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     //endregion -------------------- Sub class (four in 3 specific game style) --------------------
     //region -------------------- Sub class (no variant) --------------------
 
@@ -1174,7 +1240,7 @@ export abstract class InGameEntityImages
     public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
     public static readonly FISH_BONE =                                     new InGameEntityImages.Null()
 
-    public static readonly BLOOPER =                                       new InGameEntityImages.Null()
+    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', ['edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',],)
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
     public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAsTwoInNotSm3dwAndOneNsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
 
