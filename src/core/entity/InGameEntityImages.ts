@@ -106,7 +106,7 @@ export abstract class InGameEntityImages
     private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
         readonly #endingFolderName
         readonly #fileName
@@ -274,7 +274,7 @@ export abstract class InGameEntityImages
     private static readonly ExistantAsTwoInNotNsmbuAndSm3dw = class ExistantAsTwoInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
         readonly #endingFolderName
         readonly #fileName1
@@ -397,7 +397,7 @@ export abstract class InGameEntityImages
     private static readonly ExistantAsThreeInNotNsmbuAndSm3dw = class ExistantAsThreeInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
         readonly #endingFolderName
         readonly #fileName1
@@ -576,7 +576,7 @@ export abstract class InGameEntityImages
     private static readonly ExistantAsFourInNotNsmbuAndSm3dw = class ExistantAsFourInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
         readonly #endingFolderName
         readonly #fileName1
