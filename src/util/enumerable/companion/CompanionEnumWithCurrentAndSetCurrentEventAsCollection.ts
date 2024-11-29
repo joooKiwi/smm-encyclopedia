@@ -13,7 +13,7 @@ import EMPTY_MAP =               Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" values ({@link CollectionHolder}) as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM extends Enumerable,
-    const out ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
+    const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {
 
     //region -------------------- Fields --------------------

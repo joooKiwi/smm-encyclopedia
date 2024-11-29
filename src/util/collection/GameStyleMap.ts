@@ -9,7 +9,7 @@ import {GameStyles} from 'core/gameStyle/GameStyles'
  * A map made to be handled the same way as a {@link Map},
  * but with a specification about the {@link GameStyles}
  */
-export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameStyleProperty, >
+export class GameStyleMap<const REFERENCE extends GameStyleProperty = GameStyleProperty, >
     implements ReadonlyMap<GameStyles, boolean> {
 
     //region -------------------- Fields --------------------

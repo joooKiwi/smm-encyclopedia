@@ -12,7 +12,7 @@ import {Empty} from 'util/emptyVariables'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
-export class EditorImageContainer<const out T extends EditorImageFile, >
+export class EditorImageContainer<const T extends EditorImageFile, >
     implements EditorImage<T> {
 
     //region -------------------- Fields --------------------

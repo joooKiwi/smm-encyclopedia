@@ -7,7 +7,7 @@ import {Limits} from 'core/limit/Limits'
 
 import Companion = Limits.Companion
 
-export class LimitMapHolder<const out REFERENCE extends Entity, > {
+export class LimitMapHolder<const REFERENCE extends Entity, > {
 
     //region -------------------- Fields --------------------
 

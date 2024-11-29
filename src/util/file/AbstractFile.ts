@@ -1,9 +1,9 @@
 import type {File, PossibleFileExtension} from 'util/file/File'
 
 /** The base class of every {@link File} implementations */
-export abstract class AbstractFile<const out PATH extends string = string,
-    const out NAME extends string = string,
-    const out EXTENSION extends PossibleFileExtension = PossibleFileExtension, >
+export abstract class AbstractFile<const PATH extends string = string,
+    const NAME extends string = string,
+    const EXTENSION extends PossibleFileExtension = PossibleFileExtension, >
     implements File<PATH, NAME, EXTENSION> {
 
     //region -------------------- Fields --------------------

@@ -4,7 +4,7 @@ import {CompanionEnum}                                        from '@joookiwi/en
 
 import {EnumerableWithValue} from 'util/enumerable/Enumerable.types'
 
-export class CompanionEnumByValue<const out T,
+export class CompanionEnumByValue<const T,
     const ENUM extends EnumerableWithValue<T>,
     const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {

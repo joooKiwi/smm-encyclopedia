@@ -3,11 +3,11 @@ import {filterNotNull} from '@joookiwi/collection'
 import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */
-export class SingleBackgroundMusicContainer<const out SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
-    const out SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
-    const out SMW_MUSIC extends PossibleSMW_Music_SingleContainer,
-    const out NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer,
-    const out SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer, >
+export class SingleBackgroundMusicContainer<const SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
+    const SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
+    const SMW_MUSIC extends PossibleSMW_Music_SingleContainer,
+    const NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer,
+    const SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer, >
     implements SingleBackgroundMusic<SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC> {
 
     //region -------------------- Fields --------------------

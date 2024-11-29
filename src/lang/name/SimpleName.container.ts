@@ -33,7 +33,7 @@ const {
 //endregion -------------------- Import from deconstruction --------------------
 
 //TODO make this class the base parent or another one to remove the duplicate code
-export class SimpleNameContainer<const out T extends NonNullable<unknown>, > {
+export class SimpleNameContainer<const T extends NonNullable<unknown>, > {
 
     //region -------------------- Fields --------------------
 

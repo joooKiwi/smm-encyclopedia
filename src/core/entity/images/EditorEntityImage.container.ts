@@ -7,7 +7,7 @@ import type {GameStyles}        from 'core/gameStyle/GameStyles'
 import type {Themes}            from 'core/theme/Themes'
 import type {Times}             from 'core/time/Times'
 
-export class EditorEntityImageContainer<const out T extends EditorImageFile, >
+export class EditorEntityImageContainer<const T extends EditorImageFile, >
     implements EditorEntityImage<T> {
 
     //region -------------------- Fields --------------------

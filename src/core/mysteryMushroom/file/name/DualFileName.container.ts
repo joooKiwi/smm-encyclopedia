@@ -3,9 +3,9 @@ import type {DualFileName}     from 'core/mysteryMushroom/file/name/DualFileName
 
 import {AbstractFileName} from 'core/mysteryMushroom/file/name/AbstractFileName'
 
-export class DualFileNameContainer<const out IMAGE_FILE_NAME_1 extends PossibleFileName = PossibleFileName,
-    const out IMAGE_FILE_NAME_2 extends PossibleFileName = PossibleFileName,
-    const out SOUND_FILE_NAME extends PossibleFileName = IMAGE_FILE_NAME_1, >
+export class DualFileNameContainer<const IMAGE_FILE_NAME_1 extends PossibleFileName = PossibleFileName,
+    const IMAGE_FILE_NAME_2 extends PossibleFileName = PossibleFileName,
+    const SOUND_FILE_NAME extends PossibleFileName = IMAGE_FILE_NAME_1, >
     extends AbstractFileName<readonly [IMAGE_FILE_NAME_1, IMAGE_FILE_NAME_2,], readonly [SOUND_FILE_NAME,]>
     implements DualFileName<IMAGE_FILE_NAME_1, IMAGE_FILE_NAME_2, SOUND_FILE_NAME> {
 

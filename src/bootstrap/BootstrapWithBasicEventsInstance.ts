@@ -7,10 +7,10 @@ import type {EventHolder}                                                       
 
 import {BootstrapInstance} from 'bootstrap/BootstapInstance'
 
-export abstract class BootstrapWithBasicEventsInstance<const out INSTANCE extends BaseComponent,
-    const out OPTION extends ComponentOptions,
+export abstract class BootstrapWithBasicEventsInstance<const INSTANCE extends BaseComponent,
+    const OPTION extends ComponentOptions,
     const ELEMENT extends HTMLElement = HTMLElement,
-    const out ID extends string = string,
+    const ID extends string = string,
     const SHOW_EVENT_TYPE extends string = string,
     const SHOWN_EVENT_TYPE extends string = string,
     const HIDE_EVENT_TYPE extends string = string,

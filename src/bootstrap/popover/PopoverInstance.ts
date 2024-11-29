@@ -14,7 +14,7 @@ import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHold
  * @see https://getbootstrap.com/docs/5.2/components/popover
  */
 export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
-    const out ID extends string = string, >
+    const ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<Popover, Popover.Options, ELEMENT, ID, Popover.Events.show, Popover.Events.shown, Popover.Events.hide, Popover.Events.hidden>
     implements PopoverInstanceDeclaration<ELEMENT, ID> {
 

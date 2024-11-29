@@ -11,7 +11,7 @@ import {Games} from 'core/game/Games'
  *
  * @see GameCollection
  */
-export class GameMap<const out REFERENCE extends GameProperty = GameProperty, >
+export class GameMap<const REFERENCE extends GameProperty = GameProperty, >
     implements ReadonlyMap<Games, boolean> {
 
     //region -------------------- Fields --------------------

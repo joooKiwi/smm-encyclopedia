@@ -15,7 +15,7 @@ import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHold
  * @see https://getbootstrap.com/docs/5.2/components/offcanvas
  */
 export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
-    const out ID extends string = string, >
+    const ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<Offcanvas, ComponentOptions, ELEMENT, ID, Offcanvas.Events.show, Offcanvas.Events.shown, Offcanvas.Events.hide, Offcanvas.Events.hidden>
     implements OffcanvasInstanceDeclaration<ELEMENT, ID> {
 

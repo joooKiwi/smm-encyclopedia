@@ -1,7 +1,7 @@
 import type {MusicSoundFile}                                                      from 'core/music/file/MusicSoundFile'
 import type {PossibleMusicArray, PossibleSoundEffectName, SingleSoundEffectMusic} from 'core/music/soundEffect/SingleSoundEffectMusic'
 
-export class SingleSoundEffectMusicContainer<const out NAME extends MusicSoundFile<PossibleSoundEffectName>, >
+export class SingleSoundEffectMusicContainer<const NAME extends MusicSoundFile<PossibleSoundEffectName>, >
     implements SingleSoundEffectMusic<NAME> {
 
     readonly #everyMusic

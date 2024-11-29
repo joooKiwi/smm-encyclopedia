@@ -14,7 +14,7 @@ import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHold
  * @see https://getbootstrap.com/docs/5.2/components/tooltips
  */
 export class TooltipInstance<const ELEMENT extends HTMLElement = HTMLElement,
-    const out ID extends string = string, >
+    const ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<Tooltip, Tooltip.Options, ELEMENT, ID, Tooltip.Events.show, Tooltip.Events.shown, Tooltip.Events.hide, Tooltip.Events.hidden>
     implements TooltipInstanceDeclaration<ELEMENT, ID> {
 

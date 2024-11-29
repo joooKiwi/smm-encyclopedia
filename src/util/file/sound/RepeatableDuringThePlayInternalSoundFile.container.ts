@@ -5,10 +5,10 @@ import type {Time}                             from 'util/file/sound/time/Time'
 import {AbstractInternalSoundFile} from 'util/file/sound/AbstractInternalSoundFile'
 import {RepeatableTypes}           from 'util/file/sound/RepeatableTypes'
 
-export class RepeatableDuringThePlayExternalSoundFileContainer<const out PATH extends string = string,
-    const out NAME extends string = string,
-    const out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
-    const out REPEATABLE_TIME extends Time = Time, >
+export class RepeatableDuringThePlayExternalSoundFileContainer<const PATH extends string = string,
+    const NAME extends string = string,
+    const EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
+    const REPEATABLE_TIME extends Time = Time, >
     extends AbstractInternalSoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME>
     implements RepeatableDuringThePlaySoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
 

@@ -5,7 +5,7 @@ import type {UnusedImageFile}     from 'core/entity/file/EntityImageFile'
 import type {UnusedImage_Regular} from 'core/entity/images/unused/UnusedImage_Regular'
 import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-export class UnusedImage_RegularContainer<const out T extends UnusedImageFile, >
+export class UnusedImage_RegularContainer<const T extends UnusedImageFile, >
     implements UnusedImage_Regular {
 
     readonly #images

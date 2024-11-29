@@ -5,7 +5,7 @@ import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile'
 import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {GameStyles}              from 'core/gameStyle/GameStyles'
 
-export class ClearConditionImageContainer<const out T extends ClearConditionImageFile = ClearConditionImageFile, >
+export class ClearConditionImageContainer<const T extends ClearConditionImageFile = ClearConditionImageFile, >
     implements ClearConditionImage {
 
     #images?: Array<T>

@@ -4,7 +4,9 @@ import type {NameTraitWithADescription} from 'lang/name/NameTraitWithADescriptio
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
-export class ClassContainingANameWithADescription<const out T, const out U, const out DESCRIPTION extends Name<U>, >
+export class ClassContainingANameWithADescription<const T,
+    const U,
+    const DESCRIPTION extends Name<U>, >
     extends ClassContainingAName<T>
     implements NameTraitWithADescription<T, U, DESCRIPTION> {
 

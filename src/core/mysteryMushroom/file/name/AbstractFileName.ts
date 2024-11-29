@@ -1,7 +1,7 @@
 import type {FileName, PossibleImageFileNames, PossibleSoundFileNames} from 'core/mysteryMushroom/file/name/FileName'
 
-export class AbstractFileName<const out IMAGE_FILE_NAMES extends PossibleImageFileNames,
-    const out SOUND_FILE_NAME extends PossibleSoundFileNames, >
+export class AbstractFileName<const IMAGE_FILE_NAMES extends PossibleImageFileNames,
+    const SOUND_FILE_NAME extends PossibleSoundFileNames, >
     implements FileName<IMAGE_FILE_NAMES, SOUND_FILE_NAME> {
 
     //region -------------------- Fields --------------------

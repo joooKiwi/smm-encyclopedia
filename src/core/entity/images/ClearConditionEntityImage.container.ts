@@ -10,7 +10,7 @@ import {Empty} from 'util/emptyVariables'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
-export class ClearConditionEntityImageContainer<const out T extends ClearConditionImageFile>
+export class ClearConditionEntityImageContainer<const T extends ClearConditionImageFile>
     implements ClearConditionEntityImage<T> {
 
     //region -------------------- Fields --------------------

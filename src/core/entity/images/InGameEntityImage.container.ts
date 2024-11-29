@@ -5,7 +5,7 @@ import type {InGameEntityImage} from 'core/entity/images/InGameEntityImage'
 import type {InGameImage}       from 'core/entity/images/inGame/InGameImage'
 import type {GameStyles}        from 'core/gameStyle/GameStyles'
 
-export class InGameEntityImageContainer<const out T extends InGameImageFile, >
+export class InGameEntityImageContainer<const T extends InGameImageFile, >
     implements InGameEntityImage<T> {
 
     //region -------------------- Fields --------------------

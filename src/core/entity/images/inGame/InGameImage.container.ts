@@ -5,7 +5,7 @@ import type {InGameImageFile} from 'core/entity/file/EntityImageFile'
 import type {InGameImage}     from 'core/entity/images/inGame/InGameImage'
 import type {GameStyles}      from 'core/gameStyle/GameStyles'
 
-export class InGameImageContainer<const out T extends InGameImageFile, >
+export class InGameImageContainer<const T extends InGameImageFile, >
     implements InGameImage<T> {
 
     #images?: Array<T>

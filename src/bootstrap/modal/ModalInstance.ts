@@ -9,7 +9,7 @@ import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEven
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
 
 export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
-    const out ID extends string = string, >
+    const ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<Modal, Modal.Options, ELEMENT, ID, Modal.Events.show, Modal.Events.shown, Modal.Events.hide, Modal.Events.hidden>
     implements ModalInstanceDeclaration<ELEMENT, ID> {
 

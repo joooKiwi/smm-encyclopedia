@@ -1,7 +1,7 @@
 import type {RegularEditorVoiceSoundFile} from 'core/editorVoice/file/EditorVoiceSoundFile'
 import type {EditorVoiceSound}            from 'core/editorVoice/sound/EditorVoiceSound'
 
-export class SingleEditorVoiceSound<const out REGULAR_SOUND extends RegularEditorVoiceSoundFile = RegularEditorVoiceSoundFile, >
+export class SingleEditorVoiceSound<const REGULAR_SOUND extends RegularEditorVoiceSoundFile = RegularEditorVoiceSoundFile, >
     implements EditorVoiceSound<readonly [REGULAR_SOUND,], REGULAR_SOUND, null> {
 
     readonly #regularSound

@@ -2,7 +2,7 @@ import type {SoundPlayer} from 'util/file/sound/player/SoundPlayer'
 
 import {isInProduction} from 'variables'
 
-export abstract class AbstractSoundPlayer<const out KEY extends string = string, >
+export abstract class AbstractSoundPlayer<const KEY extends string = string, >
     implements SoundPlayer {
 
     //region -------------------- Constructor --------------------
