@@ -1399,8 +1399,8 @@ export abstract class InGameEntityImages
     public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bull’s-Eye Bill', 'Enemy - Killer', ['search.0',], ['SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018', 'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039', 'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',],)
     public static readonly CAT_BULLET_BILL =                               new InGameEntityImages.Null()
 
-    public static readonly BANZAI_BILL =                                   new InGameEntityImages.Null()
     public static readonly BULL_EYE_BANZAI =                               new InGameEntityImages.Null()
+    public static readonly BANZAI_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Banzai Bill', 'Enemy - KillerMagnum', ['wait.0',], ['killer_mag_Alb.000',],)
     public static readonly CAT_BANZAI_BILL =                               new InGameEntityImages.Null()
 
     public static readonly CANNON =                                        new InGameEntityImages.Null()
