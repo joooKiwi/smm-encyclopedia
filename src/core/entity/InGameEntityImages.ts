@@ -1454,7 +1454,29 @@ export abstract class InGameEntityImages
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAsMagicBall()
     public static readonly LEMMY_PROJECTILE =                              new InGameEntityImages.Null()
 
-    public static readonly ROY =                                           new InGameEntityImages.Null()
+    public static readonly ROY =                                           new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Lemmy', 'Enemy - Lemmy', [
+        'damage.0',
+        'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
+        'pose.0', 'pose.1', 'pose.2', 'pose.3',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3', 'shell.4', 'shell.5', 'shell.6', 'shell.7',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2',
+        'wait.0', 'wait.1',], [
+        'damage.0',
+        'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
+        'pose.0', 'pose.1', 'pose.2', 'pose.3',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3', 'shell.4', 'shell.5', 'shell.6', 'shell.7',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'damage.0',
+        'fall.0', 'fall.1',
+        'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
+        'pose.0', 'pose.1', 'pose.2', 'pose.3',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3', 'shell.4', 'shell.5', 'shell.6', 'shell.7',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2',],)
     public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Roy’s Wand', 'Enemy - Roy', 'wand',)
     public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Roy’s projectile)', 'Enemy - Roy', 'effect.0',)
 
