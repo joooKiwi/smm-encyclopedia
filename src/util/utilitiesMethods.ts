@@ -113,12 +113,12 @@ export function forEach<const K, const V,>(values: ReadonlyMap<K, V>, action: (k
         action(it[0], it[1],)
 }
 
-export function forEachKey<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K,) => void,) {
+export function forEachKey<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K,) => void,): void {
     for (const it of values)
         action(it[0],)
 }
 
-export function forEachValue<const K, const V,>(values: ReadonlyMap<K, V>, action: (value: V,) => void,) {
+export function forEachValue<const K, const V,>(values: ReadonlyMap<K, V>, action: (value: V,) => void,): void {
     for (const it of values)
         action(it[1],)
 }
@@ -152,7 +152,7 @@ export function mapKey<const K1, const K2, const V, >(values: ReadonlyMap<K1, V>
 //endregion -------------------- map --------------------
 //region -------------------- join --------------------
 
-export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,) {
+export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,): MutableArray<T> {
     const firstSize = first.length
     const secondSize = second.length
     const finalSize = firstSize + secondSize
