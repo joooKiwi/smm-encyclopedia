@@ -1375,7 +1375,7 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1', 'wait.2',], [
+        'wait.0', 'wait.1',], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1395,7 +1395,7 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1', 'wait.2',], [
+        'wait.0', 'wait.1',], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1416,7 +1416,7 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1', 'wait.2',], [
+        'wait.0', 'wait.1',], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1437,7 +1437,7 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2',
-        'wait.0', 'wait.1', 'wait.2',], [
+        'wait.0', 'wait.1',], [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
