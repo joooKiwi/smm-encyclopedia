@@ -417,8 +417,8 @@ export abstract class EntityImages
 
     public static readonly GREEN_KOOPA_TROOPA =                            new EntityImages.Editor('Green Koopa Troopa', EditorEntityImages.GREEN_KOOPA_TROOPA,)
     public static readonly RED_KOOPA_TROOPA =                              new EntityImages.Editor('Red Koopa Troopa', EditorEntityImages.RED_KOOPA_TROOPA,)
-    public static readonly GREEN_BEACH_KOOPA =                             new EntityImages.Null()
-    public static readonly RED_BEACH_KOOPA =                               new EntityImages.Null()
+    public static readonly GREEN_BEACH_KOOPA =                             new EntityImages.InGame('Green Beach Koopa', InGameEntityImages.GREEN_BEACH_KOOPA,)
+    public static readonly RED_BEACH_KOOPA =                               new EntityImages.InGame('Red Beach Koopa', InGameEntityImages.RED_BEACH_KOOPA,)
     public static readonly GREEN_KOOPA_SHELL =                             new EntityImages.ClearCondition('Green Koopa Shell', ClearConditionEntityImages.GREEN_KOOPA_SHELL,)
     public static readonly RED_KOOPA_SHELL =                               new EntityImages.Null()
 
