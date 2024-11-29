@@ -558,6 +558,32 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (four in 3 specific game style) --------------------
+    //region -------------------- Sub class (five in 1 specific game style) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 5 {@link InGameImageFile} in only {@link SM3DW} */
+    private static readonly ExistantAsFiveInOnlySm3dw = class ExistantAsFiveInOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SM3DW, inGameImage(this, folderName, this.fileName1,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName2,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName3,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName4,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName5,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (five in 1 specific game style) --------------------
     //region -------------------- Sub class (six in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 6 {@link InGameImageFile} in only {@link SMW} */
@@ -1385,7 +1411,7 @@ export abstract class InGameEntityImages
     public static readonly LAVA_LIFT =                                     new InGameEntityImages.Null()
     public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.Null()
 
-    public static readonly CRATE =                                         new InGameEntityImages.Null()
+    public static readonly CRATE =                                         new InGameEntityImages.ExistantAsFiveInOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
 
     public static readonly KEY =                                           new InGameEntityImages.Null()
     public static readonly CURSED_KEY =                                    new InGameEntityImages.Null()
