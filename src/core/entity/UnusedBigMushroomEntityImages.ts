@@ -1,5 +1,6 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import type {Array}                              from '@joookiwi/type'
+import {mapByArray}                              from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -53,13 +54,11 @@ export abstract class UnusedBigMushroomEntityImages
 
         readonly #englishName
         #image?: UnusedImage_BigMushroom<UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME>>
-        readonly #folderName
         readonly #fileNames
 
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
             super()
             this.#englishName = englishName
-            this.#folderName = folderName
             this.#fileNames = fileNames
         }
 
@@ -70,8 +69,8 @@ export abstract class UnusedBigMushroomEntityImages
             if (value != null)
                 return value
 
-            const folderName = this.#folderName
-            return this.#image = new UnusedImage_BigMushroomContainer(this.#fileNames.map(it => unusedBigMushroomImage(this, folderName, it,),),)
+            const folderName = this.folderName
+            return this.#image = new UnusedImage_BigMushroomContainer(mapByArray(this.#fileNames, it => unusedBigMushroomImage(this, folderName, it,),).toArray(),)
         }
     }
 

@@ -411,7 +411,7 @@ export abstract class UnusedEntityImages
     public static readonly LAKITU_CLOUD =                                  new UnusedEntityImages.Null()
 
     public static readonly BOO =                                           new UnusedEntityImages.Null()
-    public static readonly STRETCH =                                       new UnusedEntityImages.ExistantIn3GameStyle('Stretch', SMB, 'M1 - Enemy - Necchi', ['wait.0', 'out.4',], SMB3, 'M3 - Enemy - Necchi', ['wait.0', 'out.4',], SMW, 'MW - Enemy - Necchi', ['wait.0', 'out.4',],)
+    public static readonly STRETCH =                                       new UnusedEntityImages.ExistantIn3GameStyle('Stretch', SMB, 'M1 Enemy - Necchi', ['wait.0', 'out.4',], SMB3, 'M3 Enemy - Necchi', ['wait.0', 'out.4',], SMW, 'MW Enemy - Necchi', ['wait.0', 'out.4',],)
     public static readonly BOO_BUDDIES =                                   new UnusedEntityImages.Null()
     public static readonly PEEPA =                                         new UnusedEntityImages.Null()
 
@@ -473,7 +473,7 @@ export abstract class UnusedEntityImages
 
     public static readonly SKEWER =                                        new UnusedEntityImages.Null()
 
-    public static readonly KOOPA_CLOWN_CAR =                               new UnusedEntityImages.ExistantIn1GameStyle('Koopa Clown Car', SMW, 'MW - Enemy - KoopaClown', 'weep.4', 'weep.5', 'weep.6', 'weep.7',)
+    public static readonly KOOPA_CLOWN_CAR =                               new UnusedEntityImages.ExistantIn1GameStyle('Koopa Clown Car', SMW, 'MW Enemy - KoopaClown', 'weep.4', 'weep.5', 'weep.6', 'weep.7',)
     public static readonly JUNIOR_CLOWN_CAR =                              new UnusedEntityImages.Null()
     public static readonly FIRE_KOOPA_CLOWN_CAR =                          new UnusedEntityImages.Null()
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new UnusedEntityImages.Null()
@@ -514,7 +514,7 @@ export abstract class UnusedEntityImages
     public static readonly WENDY =                                         new UnusedEntityImages.ExistantIn1GameStyle('Wendy', SMB, 'M1 Enemy - Wendy', 'wait.3',)
     public static readonly WENDY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new UnusedEntityImages.Null()
-    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantIn3GameStyle('(Wendy’s projectile)', SMB, 'M1 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMB3, 'M3 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMW, 'MW - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
+    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantIn3GameStyle('(Wendy’s projectile)', SMB, 'M1 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMB3, 'M3 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMW, 'MW Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
 
     public static readonly LEMMY =                                         new UnusedEntityImages.ExistantIn1GameStyle('Lemmy', SMB, 'M1 Enemy - Lemmy', 'wait.3',)
     public static readonly LEMMY_WAND =                                    new UnusedEntityImages.Null()
@@ -528,7 +528,7 @@ export abstract class UnusedEntityImages
     public static readonly MORTON =                                        new UnusedEntityImages.ExistantIn1GameStyle('Morton', SMB, 'M1 Enemy - Morton', 'wait.3',)
     public static readonly MORTON_WAND =                                   new UnusedEntityImages.Null()
     public static readonly MORTON_THROWN_PROJECTILE =                      new UnusedEntityImages.Null()
-    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantIn1GameStyle('(Morton’s Ground projectile)', SMB3, 'M3 - Enemy - Morton', 'fire.2',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantIn1GameStyle('(Morton’s Ground projectile)', SMB3, 'M3 Enemy - Morton', 'fire.2',)
 
     public static readonly LUDWIG =                                        new UnusedEntityImages.ExistantIn1GameStyle('Ludwig', SMB, 'M1 Enemy - Ludwig', 'wait.3',)
     public static readonly LUDWIG_WAND =                                   new UnusedEntityImages.Null()
@@ -548,14 +548,14 @@ export abstract class UnusedEntityImages
     public static readonly TRACK =                                         new UnusedEntityImages.Null()
     public static readonly TRACK_BLOCK =                                   new UnusedEntityImages.Null()
 
-    public static readonly VINE =                                          new UnusedEntityImages.ExistantIn3GameStyle('Vine', SMB, 'M1 - Object Block - Tuta', ['wait.1',], SMB3,  'M3 - Object Block - Tuta', ['wait.2',], SMW, 'MW - Object Block - Tuta', ['wait.2',],)
+    public static readonly VINE =                                          new UnusedEntityImages.ExistantIn3GameStyle('Vine', SMB, 'M1 Object Block - Tuta', ['wait.1',], SMB3,  'M3 Object Block - Tuta', ['wait.2',], SMW, 'MW Object Block - Tuta', ['wait.2',],)
     public static readonly TREE =                                          new UnusedEntityImages.Null()
 
     public static readonly STARTING_ARROW =                                new UnusedEntityImages.Null()
     public static readonly ARROW_SIGN =                                    new UnusedEntityImages.Null()
 
     public static readonly CHECKPOINT_FLAG =                               new UnusedEntityImages.Null()
-    public static readonly GOAL_POLE =                                     new UnusedEntityImages.ExistantIn1GameStyle('Goal Pole', SMB, 'M1 - Object - Goalpole', 'goalpole.1',)
+    public static readonly GOAL_POLE =                                     new UnusedEntityImages.ExistantIn1GameStyle('Goal Pole', SMB, 'M1 Object - Goalpole', 'goalpole.1',)
     public static readonly GOAL_WITH_CARDS =                               new UnusedEntityImages.Null()
     public static readonly GIANT_GATE =                                    new UnusedEntityImages.Null()
 
@@ -595,7 +595,7 @@ export abstract class UnusedEntityImages
     public static readonly POW_BLOCK =                                     new UnusedEntityImages.Null()
     public static readonly RED_POW_BLOCK =                                 new UnusedEntityImages.Null()
 
-    public static readonly P_SWITCH =                                      new UnusedEntityImages.ExistantIn2GameStyle('P Switch', SMB, 'M1 - Object - PSwitch', ['wait.0', 'wait.1', 'wait.2',], NSMBU, 'WU - Object - PSwitch', ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],)
+    public static readonly P_SWITCH =                                      new UnusedEntityImages.ExistantIn2GameStyle('P Switch', SMB, 'M1 Object - PSwitch', ['wait.0', 'wait.1', 'wait.2',], NSMBU, 'WU Object - PSwitch', ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],)
 
     public static readonly STONE =                                         new UnusedEntityImages.Null()
 
