@@ -21,12 +21,16 @@ import {ClearConditionEntityImageContainer} from 'core/entity/images/ClearCondit
 import {EmptyEntityImage}                   from 'core/entity/images/EmptyEntityImage'
 import {EditorEntityImageContainer}         from 'core/entity/images/EditorEntityImage.container'
 import {InGameEntityImageContainer}         from 'core/entity/images/InGameEntityImage.container'
+import {MixedReferenceEntityImage}          from 'core/entity/images/MixedReference.entityImage'
 import {EditorImageContainer}               from 'core/entity/images/editor/EditorImage.container'
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
 
-import SMB3 = GameStyles.SMB3
-import SMW =  GameStyles.SMW
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
 
 /**
  * The images used in the main page of {@link EntityApp}
@@ -246,6 +250,40 @@ export abstract class EntityImages
 
     }
 
+    /** A subclass of an {@link EntityImages} to hold an existant
+     * {@link InGameEntityImage} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
+     * {@link ClearConditionEntityImage} in {@link SM3DW}
+     * for only the {@link GREEN_KOOPA_SHELL} */
+    private static readonly MixedAsGreenKoopaShell = class MixedAsGreenKoopaShell_EntityImages
+        extends EntityImages {
+
+        readonly #englishName = 'Green Koopa Shell' satisfies PossibleEnglishName
+        readonly #clearConditionReference = ClearConditionEntityImages.GREEN_KOOPA_SHELL
+        readonly #inGameReference = InGameEntityImages.GREEN_KOOPA_SHELL
+        #image?: MixedReferenceEntityImage<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]>
+
+        public constructor() { super() }
+
+        public override get englishName(): 'Green Koopa Shell' { return this.#englishName }
+
+        public override get image(): MixedReferenceEntityImage<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const clearConditionReference = this.#clearConditionReference
+            const inGameReference = this.#inGameReference
+            return new MixedReferenceEntityImage<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]>([
+                [SMB,   inGameReference.image.get(SMB,),],
+                [SMB3,  inGameReference.image.get(SMB3,),],
+                [SMW,   inGameReference.image.get(SMW,),],
+                [NSMBU, inGameReference.image.get(NSMBU,),],
+                [SM3DW, [clearConditionReference.image.get(SM3DW,),],],
+            ],)
+        }
+
+    }
+
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link TREE} */
     private static readonly EditorAsTree = class EditorAsTreeEntityImages
         extends EntityImages.ExistantEditor<'Tree', typeof EditorEntityImages['TREE']['image']['images'][number]> {
@@ -419,8 +457,8 @@ export abstract class EntityImages
     public static readonly RED_KOOPA_TROOPA =                              new EntityImages.Editor('Red Koopa Troopa', EditorEntityImages.RED_KOOPA_TROOPA,)
     public static readonly GREEN_BEACH_KOOPA =                             new EntityImages.InGame('Green Beach Koopa', InGameEntityImages.GREEN_BEACH_KOOPA,)
     public static readonly RED_BEACH_KOOPA =                               new EntityImages.InGame('Red Beach Koopa', InGameEntityImages.RED_BEACH_KOOPA,)
-    public static readonly GREEN_KOOPA_SHELL =                             new EntityImages.ClearCondition('Green Koopa Shell', ClearConditionEntityImages.GREEN_KOOPA_SHELL,)
-    public static readonly RED_KOOPA_SHELL =                               new EntityImages.Null()
+    public static readonly GREEN_KOOPA_SHELL =                             new EntityImages.MixedAsGreenKoopaShell()
+    public static readonly RED_KOOPA_SHELL =                               new EntityImages.InGame('Red Koopa Shell', InGameEntityImages.RED_KOOPA_SHELL,)
 
     public static readonly DRY_BONES =                                     new EntityImages.Editor('Dry Bones', EditorEntityImages.DRY_BONES,)
     public static readonly PARABONES =                                     new EntityImages.Null()
