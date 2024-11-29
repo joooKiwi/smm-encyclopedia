@@ -1176,7 +1176,7 @@ export abstract class InGameEntityImages
 
     public static readonly BLOOPER =                                       new InGameEntityImages.Null()
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
-    public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1',)
+    public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAsTwoInNotSm3dwAndOneNsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
 
     public static readonly PORCUPUFFER =                                   new InGameEntityImages.Null()
 
