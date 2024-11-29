@@ -1375,7 +1375,44 @@ export abstract class InGameEntityImages
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAsFourInOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
 
-    public static readonly BOWSER_JR =                                     new InGameEntityImages.Null()
+    public static readonly BOWSER_JR =                                     new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser Jr.', 'Enemy - KoopaJr', [
+        'before.0',
+        'fall.0', 'fall.1',
+        'fire.0', 'fire.1',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw.0', 'throw.1',
+        'wait.0', 'wait.1',
+    ], [
+        'attack.0', 'before.0', 'before.1', 'before.2',
+        'damage.0',
+        'fall.0', 'fall.1',
+        'fire.0', 'fire.1', 'fire.2', 'fire.3',
+        'in.0',
+        'jump.0',
+        'out.0',
+        'parawait.0', 'parawait.1',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'squat.0',
+        'throw.0', 'throw.1', 'throw.2', 'throw.3', 'throw.4', 'throw.5',
+        'touchdown.0',
+        'wait.0',
+        'walk.0', 'walk.1',
+    ], [
+        'attack.0',
+        'before.0', 'before.1', 'before.2',
+        'damage.0',
+        'fall.0', 'fall.1',
+        'fire.0', 'fire.1', 'fire.2', 'fire.3',
+        'in.0',
+        'jump.0',
+        'out.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'squat.0',
+        'throw.0', 'throw.1', 'throw.2', 'throw.3', 'throw.4', 'throw.5', 'throw.6',
+        'touchdown.0',
+        'wait.0',
+        'walk.0', 'walk.1',
+    ],)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new InGameEntityImages.Null()
 
     public static readonly BOOM_BOOM =                                     new InGameEntityImages.Null()
