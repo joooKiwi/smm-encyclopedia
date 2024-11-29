@@ -23,8 +23,8 @@ import {EditorEntityImageContainer}         from 'core/entity/images/EditorEntit
 import {InGameEntityImageContainer}         from 'core/entity/images/InGameEntityImage.container'
 import {MixedReferenceEntityImage}          from 'core/entity/images/MixedReference.entityImage'
 import {EditorImageContainer}               from 'core/entity/images/editor/EditorImage.container'
-import {GameStyles}                         from 'core/gameStyle/GameStyles'
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
+import {GameStyles}                         from 'core/gameStyle/GameStyles'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB
@@ -45,7 +45,7 @@ export abstract class EntityImages
     //region -------------------- Sub class --------------------
 
     /** A subclass of an {@link EntityImages} to hold a non-existant {@link EntityImage} ({@link EmptyEntityImage}) */
-    private static readonly Null = class NullEntityImages extends EntityImages {
+    private static readonly Null = class Null_EntityImages extends EntityImages {
 
         readonly #image
 
@@ -59,7 +59,7 @@ export abstract class EntityImages
     }
 
     private static readonly ExistantEditor = (() => {
-        abstract class ExistantEditorEntityImages<const NAME extends PossibleEnglishName,
+        abstract class ExistantEditor_EntityImages<const NAME extends PossibleEnglishName,
             const IMAGE extends EditorImageFile, >
             extends EntityImages {
 
@@ -81,12 +81,12 @@ export abstract class EntityImages
 
         }
 
-        return ExistantEditorEntityImages
+        return ExistantEditor_EntityImages
     })()
 
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} */
-    private static readonly Editor = class EditorEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly Editor = class Editor_EntityImages<const NAME extends PossibleEnglishName,
         const IMAGE extends EditorImageFile, >
         extends EntityImages {
 
@@ -107,7 +107,7 @@ export abstract class EntityImages
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link ClearConditionEntityImage} */
-    private static readonly ClearCondition = class ClearConditionEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ClearCondition = class ClearCondition_EntityImages<const NAME extends PossibleEnglishName,
         const IMAGE extends ClearConditionImageFile, >
         extends EntityImages {
 
@@ -128,7 +128,7 @@ export abstract class EntityImages
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage} */
-    private static readonly InGame = class InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly InGame = class InGame_EntityImages<const NAME extends PossibleEnglishName,
         const IMAGE extends InGameImageFile, >
         extends EntityImages {
 
@@ -156,7 +156,7 @@ export abstract class EntityImages
      * A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage}
      * without the blue variant images that are in {@link SMB} and {@link SMB3}
      */
-    private static readonly EditorWithNoBlueVariantDuplicate = class EditorWithNoBlueVariantDuplicateEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly EditorWithNoBlueVariantDuplicate = class EditorWithNoBlueVariantDuplicate_EntityImages<const NAME extends PossibleEnglishName,
         const IMAGE extends EditorImageFile, >
         extends EntityImages.ExistantEditor<NAME, IMAGE> {
 
@@ -185,7 +185,7 @@ export abstract class EntityImages
 
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link BRIDGE} */
-    private static readonly EditorAsBridge = class EditorAsBridgeEntityImages
+    private static readonly EditorAsBridge = class EditorAsBridge_EntityImages
         extends EntityImages.ExistantEditor<'Bridge', typeof EditorEntityImages['BRIDGE']['image']['images'][number]> {
 
         public constructor() { super('Bridge', EditorEntityImages.BRIDGE,) }
@@ -203,7 +203,7 @@ export abstract class EntityImages
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link BRICK_BLOCK} */
-    private static readonly EditorAsBrickBlock = class EditorAsBrickBlockEntityImages
+    private static readonly EditorAsBrickBlock = class EditorAsBrickBlock_EntityImages
         extends EntityImages.ExistantEditor<'Brick Block', typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]> {
 
         public constructor() { super('Brick Block', EditorEntityImages.BRICK_BLOCK,) }
@@ -221,7 +221,7 @@ export abstract class EntityImages
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link CRISTAL_BLOCK} */
-    private static readonly EditorAsCristalBlock = class EditorAsCristalBlockEntityImages
+    private static readonly EditorAsCristalBlock = class EditorAsCristalBlock_EntityImages
         extends EntityImages.ExistantEditor<'Cristal Block', typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]> {
 
         public constructor() { super('Cristal Block', EditorEntityImages.CRISTAL_BLOCK,) }
@@ -233,7 +233,7 @@ export abstract class EntityImages
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link HARD_BLOCK} */
-    private static readonly EditorAsHardBlock = class EditorAsHardBlockEntityImages
+    private static readonly EditorAsHardBlock = class EditorAsHardBlock_EntityImages
         extends EntityImages.ExistantEditor<'Hard Block', typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]> {
 
         public constructor() { super('Hard Block', EditorEntityImages.HARD_BLOCK,) }
@@ -285,7 +285,7 @@ export abstract class EntityImages
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link TREE} */
-    private static readonly EditorAsTree = class EditorAsTreeEntityImages
+    private static readonly EditorAsTree = class EditorAsTree_EntityImages
         extends EntityImages.ExistantEditor<'Tree', typeof EditorEntityImages['TREE']['image']['images'][number]> {
 
         public constructor() { super('Tree', EditorEntityImages.TREE,) }
@@ -758,7 +758,6 @@ export abstract class EntityImages
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName?:PossibleEnglishName,)
     private constructor() { super() }
 
     //endregion -------------------- Constructor --------------------
