@@ -1357,7 +1357,20 @@ export abstract class InGameEntityImages
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
     //region -------------------- Boss + projectile --------------------
 
-    public static readonly BOWSER =                                        new InGameEntityImages.Null()
+    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser', 'Enemy - Koopa', ['fall.0', 'fall.1', 'fire.0', 'wait.0', 'wait.1',], [
+        'attack.0', 'fall.0', 'fall.1', 'fire.0', 'fire.1', 'fire.2', 'fire.3',
+        'in.0', 'in.1', 'jump.0', 'jump_ed.0',
+        'look.0', 'look.1', 'look.2', 'look.3', 'out.0', 'out.1',
+        'touchdown.0', 'turn.0', 'turn.1', 'turn.2', 'wait.0',
+    ], [
+        'fall.0', 'fall.1', 'fire.0', 'fire.1', 'fire2.0', 'fire2.1',
+        'fireup.0', 'fireup.1', 'fireup.2', 'fireup.3', 'fireup.4',
+        'in.0', 'in.1', 'jump.0', 'jump_l.0',
+        'out.0', 'out.1', 'parawait.0', 'parawait.1',
+        'squat_l.0', 'squat_l.1', 'squat_l.2', 'squat_s.0',
+        'turn.0', 'turn.1', 'turn.2', 'wait.0',
+        'walk.0', 'walk.1', 'walk.2', 'walk.3',
+    ],)
     public static readonly MEOWSER =                                       new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAsFourInOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
