@@ -495,7 +495,7 @@ export abstract class InGameEntityImages
     //region -------------------- Sub class (four in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAsFourInOnlySmb = class ExistantAsFourInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsFourInOnlySmb = class ExistantAsFourInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -528,7 +528,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAsFourInOnlySmw = class ExistantAsFourInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsFourInOnlySmw = class ExistantAsFourInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -567,7 +567,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsFourInNotNsmbuAndSm3dw = class ExistantAsFourInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsFourInNotNsmbuAndSm3dw = class ExistantAsFourInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
