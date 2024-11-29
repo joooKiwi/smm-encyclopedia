@@ -336,7 +336,7 @@ export abstract class EntityImages
      * {@link ClearConditionEntityImage} in {@link SM3DW}
      * for only the {@link BULLET_BILL}
      */
-    private static readonly MixedAsBulletBill = class InGameAsBullEyeBill_EntityImages
+    private static readonly MixedAsBulletBill = class InGameAsBulletBill_EntityImages
         extends EntityImages.ExistantMixed<'Bullet Bill', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['BULLET_BILL']['image']['images'][number]> {
 
         readonly #clearConditionReference = ClearConditionEntityImages.BULLET_BILL
@@ -365,6 +365,47 @@ export abstract class EntityImages
         public constructor() { super('Bull’s-Eye Bill', InGameEntityImages.BULL_EYE_BILL,) }
 
         protected override _createImage(image: InGameImage<typeof InGameEntityImages['BULL_EYE_BILL']['image']['images'][number]>,) {
+            const images = image.imagesWithAssociation
+            return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant
+     * {@link InGameEntityImage} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
+     * {@link ClearConditionEntityImage} in {@link SM3DW}
+     * for only the {@link BANZAI_BILL}
+     */
+    private static readonly MixedAsBanzaiBill = class InGameAsBanzaiBill_EntityImages
+        extends EntityImages.ExistantMixed<'Banzai Bill', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['BANZAI_BILL']['image']['images'][number]> {
+
+        readonly #clearConditionReference = ClearConditionEntityImages.BANZAI_BILL
+        readonly #inGameReference = InGameEntityImages.BANZAI_BILL
+
+        public constructor() { super('Banzai Bill',) }
+
+        protected override _createImage() {
+            const clearConditionReference = this.#clearConditionReference
+            const inGameImages = this.#inGameReference.image
+            return [
+                [SMB,   inGameImages.get(SMB,),],
+                [SMB3,  inGameImages.get(SMB3,),],
+                [SMW,   inGameImages.get(SMW,),],
+                [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
+                [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage} for only the {@link BULL_EYE_BANZAI} */
+    private static readonly InGameAsBullEyeBanzai = class InGameAsBullEyeBanzai_EntityImages
+        extends EntityImages.ExistantInGame<'Bull’s-Eye Banzai', typeof InGameEntityImages['BULL_EYE_BANZAI']['image']['images'][number]> {
+
+        public constructor() { super('Bull’s-Eye Banzai', InGameEntityImages.BULL_EYE_BANZAI,) }
+
+        protected override _createImage(image: InGameImage<typeof InGameEntityImages['BULL_EYE_BANZAI']['image']['images'][number]>,) {
             const images = image.imagesWithAssociation
             return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
         }
@@ -655,8 +696,8 @@ export abstract class EntityImages
     public static readonly BULL_EYE_BILL =                                 new EntityImages.InGameAsBullEyeBill()
     public static readonly CAT_BULLET_BILL =                               new EntityImages.Null()
 
-    public static readonly BANZAI_BILL =                                   new EntityImages.EditorWithNoBlueVariantDuplicate('Banzai Bill', EditorEntityImages.BANZAI_BILL,)
-    public static readonly BULL_EYE_BANZAI =                               new EntityImages.Editor('Bull’s-Eye Banzai', EditorEntityImages.BULL_EYE_BANZAI,)
+    public static readonly BANZAI_BILL =                                   new EntityImages.MixedAsBanzaiBill()
+    public static readonly BULL_EYE_BANZAI =                               new EntityImages.InGameAsBullEyeBanzai()
     public static readonly CAT_BANZAI_BILL =                               new EntityImages.Editor('Cat Banzai Bill', EditorEntityImages.CAT_BANZAI_BILL,)
 
     public static readonly CANNON =                                        new EntityImages.EditorWithNoBlueVariantDuplicate('Cannon', EditorEntityImages.CANNON,)
