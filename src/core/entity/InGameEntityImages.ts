@@ -1432,7 +1432,24 @@ export abstract class InGameEntityImages
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAsThreeInNotNsmbuAndSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
     public static readonly WENDY_PROJECTILE =                              new InGameEntityImages.Null()
 
-    public static readonly LEMMY =                                         new InGameEntityImages.Null()
+    public static readonly LEMMY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Lemmy', 'Enemy - Lemmy', [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2',
+        'wait.0', 'wait.1', 'wait.2',], [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'chase.0', 'chase.1', 'chase.2', 'chase.3',
+        'damage.0',
+        'fall.0', 'fall.1',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2',],)
     public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Lemmy’s Wand', 'Enemy - Lemmy', 'wand',)
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAsMagicBall()
     public static readonly LEMMY_PROJECTILE =                              new InGameEntityImages.Null()
