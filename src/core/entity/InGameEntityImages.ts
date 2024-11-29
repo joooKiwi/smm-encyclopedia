@@ -81,17 +81,12 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        readonly #folderName
-        readonly #fileName
-
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName: FILE_NAME,) {
             super(englishName,)
-            this.#folderName = folderName
-            this.#fileName = fileName
         }
 
         public override _createImageFiles() {
-            return [[SMB, inGameImage(this, this.#folderName, this.#fileName,),],] as const
+            return [[SMB, inGameImage(this, this.folderName, this.fileName,),],] as const
         }
 
     }
@@ -108,18 +103,13 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName = fileName
         }
 
         public override _createImageFiles() {
-            const fileName = this.#fileName
-            const endingFolderName = this.#endingFolderName
+            const fileName = this.fileName
+            const endingFolderName = this.endingFolderName
             return [
                 [SMB,  inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [SMB3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
@@ -141,18 +131,13 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${PossibleAcronym_InFile_SMM1} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName = fileName
         }
 
         public override _createImageFiles() {
-            const fileName = this.#fileName
-            const endingFolderName = this.#endingFolderName
+            const fileName = this.fileName
+            const endingFolderName = this.endingFolderName
             return [
                 [SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
@@ -174,25 +159,18 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName
-        readonly #nsmbuFileName
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName: FILE_NAME, nsmbuFileName: NSMBU_FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME, private readonly nsmbuFileName: NSMBU_FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName = fileName
-            this.#nsmbuFileName = nsmbuFileName
         }
 
         public override _createImageFiles() {
-            const fileName = this.#fileName
-            const endingFolderName = this.#endingFolderName
+            const fileName = this.fileName
+            const endingFolderName = this.endingFolderName
             return [
                 [SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
-                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, this.#nsmbuFileName,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, this.nsmbuFileName,),],
             ] as const
         }
 
@@ -207,21 +185,15 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        readonly #folderName
-        readonly #fileName1
-        readonly #fileName2
-
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
             super(englishName,)
-            this.#folderName = folderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
         }
 
         public override _createImageFiles() {
+            const folderName = this.folderName
             return [
-                [SMW, inGameImage(this, this.#folderName, this.#fileName1,),],
-                [SMW, inGameImage(this, this.#folderName, this.#fileName2,),],
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
             ] as const
         }
 
@@ -239,26 +211,22 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+
             return [
-                [SMB,  inGameImage(this, folderNameSmb, this.#fileName1,),],
-                [SMB,  inGameImage(this, folderNameSmb, this.#fileName2,),],
-                [SMB3, inGameImage(this, folderNameSmb3, this.#fileName1,),],
-                [SMB3, inGameImage(this, folderNameSmb3, this.#fileName2,),],
+                [SMB,  inGameImage(this, folderName_smb, fileName1,),],
+                [SMB,  inGameImage(this, folderName_smb, fileName2,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName1,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName2,),],
             ] as const
         }
 
@@ -276,31 +244,24 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const folderNameSmw = `MW ${endingFolderName}` as const
-            const fileName1 = this.#fileName1
-            const fileName2 = this.#fileName2
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
             return [
-                [SMB,  inGameImage(this, folderNameSmb, fileName1,),],
-                [SMB,  inGameImage(this, folderNameSmb, fileName2,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName1,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName2,),],
-                [SMW,  inGameImage(this, folderNameSmw, fileName1,),],
-                [SMW,  inGameImage(this, folderNameSmw, fileName2,),],
+                [SMB,  inGameImage(this, folderName_smb, fileName1,),],
+                [SMB,  inGameImage(this, folderName_smb, fileName2,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName1,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName2,),],
+                [SMW,  inGameImage(this, folderName_smw, fileName1,),],
+                [SMW,  inGameImage(this, folderName_smw, fileName2,),],
             ] as const
         }
 
@@ -318,34 +279,25 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #nsmbuFileName
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, nsmbuFileName: NSMBU_FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly nsmbuFileName: NSMBU_FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#nsmbuFileName = nsmbuFileName
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const folderNameSmw = `MW ${endingFolderName}` as const
-            const fileName1 = this.#fileName1
-            const fileName2 = this.#fileName2
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
             return [
-                [SMB,   inGameImage(this, folderNameSmb, fileName1,),],
-                [SMB,   inGameImage(this, folderNameSmb, fileName2,),],
-                [SMB3,  inGameImage(this, folderNameSmb3, fileName1,),],
-                [SMB3,  inGameImage(this, folderNameSmb3, fileName2,),],
-                [SMW,   inGameImage(this, folderNameSmw, fileName1,),],
-                [SMW,   inGameImage(this, folderNameSmw, fileName2,),],
-                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, this.#nsmbuFileName,),],
+                [SMB,   inGameImage(this, folderName_smb, fileName1,),],
+                [SMB,   inGameImage(this, folderName_smb, fileName2,),],
+                [SMB3,  inGameImage(this, folderName_smb3, fileName1,),],
+                [SMB3,  inGameImage(this, folderName_smb3, fileName2,),],
+                [SMW,   inGameImage(this, folderName_smw, fileName1,),],
+                [SMW,   inGameImage(this, folderName_smw, fileName2,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, this.nsmbuFileName,),],
             ] as const
         }
 
@@ -360,25 +312,16 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        readonly #folderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
             super(englishName,)
-            this.#folderName = folderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
         }
 
         public override _createImageFiles() {
-            const folderName = this.#folderName
+            const folderName = this.folderName
             return [
-                [SMB, inGameImage(this, folderName, this.#fileName1,),],
-                [SMB, inGameImage(this, folderName, this.#fileName2,),],
-                [SMB, inGameImage(this, folderName, this.#fileName3,),],
+                [SMB, inGameImage(this, folderName, this.fileName1,),],
+                [SMB, inGameImage(this, folderName, this.fileName2,),],
+                [SMB, inGameImage(this, folderName, this.fileName3,),],
             ] as const
         }
 
@@ -396,37 +339,28 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const folderNameSmw = `MW ${endingFolderName}` as const
-            const fileName1 = this.#fileName1
-            const fileName2 = this.#fileName2
-            const fileName3 = this.#fileName3
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
             return [
-                [SMB,  inGameImage(this, folderNameSmb,  fileName1,),],
-                [SMB,  inGameImage(this, folderNameSmb,  fileName2,),],
-                [SMB,  inGameImage(this, folderNameSmb,  fileName3,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName1,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName2,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName3,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName1,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName2,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName3,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName1,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName2,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName3,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName1,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName2,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName3,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName1,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName2,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName3,),],
             ] as const
         }
 
@@ -444,46 +378,35 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-        readonly #nsmbuFileNames
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
-            this.#nsmbuFileNames = nsmbuFileNames
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const folderNameSmw = `MW ${endingFolderName}` as const
-            const fileName1 = this.#fileName1
-            const fileName2 = this.#fileName2
-            const fileName3 = this.#fileName3
-            const fileNames_nsmbu = this.#nsmbuFileNames
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileNames_nsmbu = this.nsmbuFileNames
 
             const imageFiles = new Array<readonly[GameStyles,
                     | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                     | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>]>(9 + fileNames_nsmbu.length,)
-            imageFiles[0] = [SMB,  inGameImage(this, folderNameSmb,  fileName1,),]
-            imageFiles[1] = [SMB,  inGameImage(this, folderNameSmb,  fileName2,),]
-            imageFiles[2] = [SMB,  inGameImage(this, folderNameSmb,  fileName3,),]
-            imageFiles[3] = [SMB3, inGameImage(this, folderNameSmb3, fileName1,),]
-            imageFiles[4] = [SMB3, inGameImage(this, folderNameSmb3, fileName2,),]
-            imageFiles[5] = [SMB3, inGameImage(this, folderNameSmb3, fileName3,),]
-            imageFiles[6] = [SMW,  inGameImage(this, folderNameSmw,  fileName1,),]
-            imageFiles[7] = [SMW,  inGameImage(this, folderNameSmw,  fileName2,),]
-            imageFiles[8] = [SMW,  inGameImage(this, folderNameSmw,  fileName3,),]
+            imageFiles[0] = [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] = [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] = [SMB,  inGameImage(this, folderName_smb,  fileName3,),]
+            imageFiles[3] = [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[4] = [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+            imageFiles[5] = [SMB3, inGameImage(this, folderName_smb3, fileName3,),]
+            imageFiles[6] = [SMW,  inGameImage(this, folderName_smw,  fileName1,),]
+            imageFiles[7] = [SMW,  inGameImage(this, folderName_smw,  fileName2,),]
+            imageFiles[8] = [SMW,  inGameImage(this, folderName_smw,  fileName3,),]
 
             let index = 8
-            const folderName_nsmbu = `WU ${endingFolderName}` as const
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
             return imageFiles
@@ -500,28 +423,17 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        readonly #folderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-        readonly #fileName4
-
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
-            this.#folderName = folderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
-            this.#fileName4 = fileName4
         }
 
         public override _createImageFiles() {
-            const folderName = this.#folderName
+            const folderName = this.folderName
             return [
-                [SMB, inGameImage(this, folderName, this.#fileName1,),],
-                [SMB, inGameImage(this, folderName, this.#fileName2,),],
-                [SMB, inGameImage(this, folderName, this.#fileName3,),],
-                [SMB, inGameImage(this, folderName, this.#fileName4,),],
+                [SMB, inGameImage(this, folderName, this.fileName1,),],
+                [SMB, inGameImage(this, folderName, this.fileName2,),],
+                [SMB, inGameImage(this, folderName, this.fileName3,),],
+                [SMB, inGameImage(this, folderName, this.fileName4,),],
             ] as const
         }
 
@@ -533,28 +445,17 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        readonly #folderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-        readonly #fileName4
-
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
-            this.#folderName = folderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
-            this.#fileName4 = fileName4
         }
 
         public override _createImageFiles() {
-            const folderName = this.#folderName
+            const folderName = this.folderName
             return [
-                [SMW, inGameImage(this, folderName, this.#fileName1,),],
-                [SMW, inGameImage(this, folderName, this.#fileName2,),],
-                [SMW, inGameImage(this, folderName, this.#fileName3,),],
-                [SMW, inGameImage(this, folderName, this.#fileName4,),],
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
+                [SMW, inGameImage(this, folderName, this.fileName3,),],
+                [SMW, inGameImage(this, folderName, this.fileName4,),],
             ] as const
         }
 
@@ -572,43 +473,32 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-        readonly #fileName4
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
-            this.#fileName4 = fileName4
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const folderNameSmw = `MW ${endingFolderName}` as const
-            const fileName1 = this.#fileName1
-            const fileName2 = this.#fileName2
-            const fileName3 = this.#fileName3
-            const fileName4 = this.#fileName4
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileName4 = this.fileName4
             return [
-                [SMB,  inGameImage(this, folderNameSmb,  fileName1,),],
-                [SMB,  inGameImage(this, folderNameSmb,  fileName2,),],
-                [SMB,  inGameImage(this, folderNameSmb,  fileName3,),],
-                [SMB,  inGameImage(this, folderNameSmb,  fileName4,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName1,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName2,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName3,),],
-                [SMB3, inGameImage(this, folderNameSmb3, fileName4,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName1,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName2,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName3,),],
-                [SMW,  inGameImage(this, folderNameSmw,  fileName4,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName1,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName2,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName3,),],
+                [SMB,  inGameImage(this, folderName_smb,  fileName4,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName1,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName2,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName3,),],
+                [SMB3, inGameImage(this, folderName_smb3, fileName4,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName1,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName2,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName3,),],
+                [SMW,  inGameImage(this, folderName_smw,  fileName4,),],
             ] as const
         }
 
@@ -626,53 +516,40 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #fileName1
-        readonly #fileName2
-        readonly #fileName3
-        readonly #fileName4
-        readonly #nsmbuFileNames
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#fileName1 = fileName1
-            this.#fileName2 = fileName2
-            this.#fileName3 = fileName3
-            this.#fileName4 = fileName4
-            this.#nsmbuFileNames = nsmbuFileNames
         }
 
         public override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const folderNameSmb = `M1 ${endingFolderName}` as const
-            const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const folderNameSmw = `MW ${endingFolderName}` as const
-            const fileName1 = this.#fileName1
-            const fileName2 = this.#fileName2
-            const fileName3 = this.#fileName3
-            const fileName4 = this.#fileName4
-            const fileNames_nsmbu = this.#nsmbuFileNames
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileName4 = this.fileName4
+            const fileNames_nsmbu = this.nsmbuFileNames
 
             const imageFiles = new Array<readonly [GameStyles,
                 | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                 | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(12 + fileNames_nsmbu.length,)
 
-            imageFiles[0] =  [SMB,  inGameImage(this, folderNameSmb,  fileName1,),]
-            imageFiles[1] =  [SMB,  inGameImage(this, folderNameSmb,  fileName2,),]
-            imageFiles[2] =  [SMB,  inGameImage(this, folderNameSmb,  fileName3,),]
-            imageFiles[3] =  [SMB,  inGameImage(this, folderNameSmb,  fileName4,),]
-            imageFiles[4] =  [SMB3, inGameImage(this, folderNameSmb3, fileName1,),]
-            imageFiles[5] =  [SMB3, inGameImage(this, folderNameSmb3, fileName2,),]
-            imageFiles[6] =  [SMB3, inGameImage(this, folderNameSmb3, fileName3,),]
-            imageFiles[7] =  [SMB3, inGameImage(this, folderNameSmb3, fileName4,),]
-            imageFiles[8] =  [SMW,  inGameImage(this, folderNameSmw,  fileName1,),]
-            imageFiles[9] =  [SMW,  inGameImage(this, folderNameSmw,  fileName2,),]
-            imageFiles[10] = [SMW,  inGameImage(this, folderNameSmw,  fileName3,),]
-            imageFiles[11] = [SMW,  inGameImage(this, folderNameSmw,  fileName4,),]
+            imageFiles[0] =  [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] =  [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] =  [SMB,  inGameImage(this, folderName_smb,  fileName3,),]
+            imageFiles[3] =  [SMB,  inGameImage(this, folderName_smb,  fileName4,),]
+            imageFiles[4] =  [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[5] =  [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+            imageFiles[6] =  [SMB3, inGameImage(this, folderName_smb3, fileName3,),]
+            imageFiles[7] =  [SMB3, inGameImage(this, folderName_smb3, fileName4,),]
+            imageFiles[8] =  [SMW,  inGameImage(this, folderName_smw,  fileName1,),]
+            imageFiles[9] =  [SMW,  inGameImage(this, folderName_smw,  fileName2,),]
+            imageFiles[10] = [SMW,  inGameImage(this, folderName_smw,  fileName3,),]
+            imageFiles[11] = [SMW,  inGameImage(this, folderName_smw,  fileName4,),]
 
             let index = 11
-            const folderName_nsmbu = `WU ${endingFolderName}` as const
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
             return imageFiles
@@ -721,27 +598,20 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #smbFileNames
-        readonly #smb3FileNames
-        readonly #smwFileNames
-        readonly #nsmbuFileNames
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, smbFileNames: Array<SMB_FILE_NAME>, smb3FileNames: Array<SMB3_FILE_NAME>, smwFileNames: Array<SMW_FILE_NAME>, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#smbFileNames = smbFileNames
-            this.#smb3FileNames = smb3FileNames
-            this.#smwFileNames = smwFileNames
-            this.#nsmbuFileNames = nsmbuFileNames
         }
 
         protected override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const fileNames_smb = this.#smbFileNames
-            const fileNames_smb3 = this.#smb3FileNames
-            const fileNames_smw = this.#smwFileNames
-            const fileNames_nsmbu = this.#nsmbuFileNames
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileNames_smb = this.smbFileNames
+            const fileNames_smb3 = this.smb3FileNames
+            const fileNames_smw = this.smwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
 
             const imageFiles = new Array<readonly[GameStyles,
                     | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
@@ -750,16 +620,12 @@ export abstract class InGameEntityImages
                     | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length + fileNames_nsmbu.length,)
 
             let index = -1
-            const folderName_smb = `M1 ${endingFolderName}` as const
             forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
 
-            const folderName_smb3 = `M3 ${endingFolderName}` as const
             forEachByArray(fileNames_smb3, it => imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),],)
 
-            const folderName_smw = `MW ${endingFolderName}` as const
             forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
 
-            const folderName_nsmbu = `WU ${endingFolderName}` as const
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
             return imageFiles
@@ -767,7 +633,52 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantWithSameSmb3AndSmw = class ExistantAsNoVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsNoVariantWithSameSmbAndSmb3 = class ExistantAsNoVariantWithSameSmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileNames_smbSmb3 = this.smbSmb3FileNames
+            const fileNames_smw = this.smwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
+            const fileNamesSize_smbSmb3 = fileNames_smbSmb3.length
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize_smbSmb3 * 2 + fileNames_smw.length + fileNames_nsmbu.length,)
+
+            let index = -1
+            forEachByArray(fileNames_smbSmb3, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+            },)
+            index += fileNamesSize_smbSmb3
+
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    private static readonly ExistantAsNoVariantWithSameSmb3AndSmw = class ExistantAsNoVariantWithSameSmb3AndSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
         const SMB3_SMW_FILE_NAME extends string,
@@ -776,25 +687,20 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`${| 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, SMB3_SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #smbFileNames
-        readonly #smb3SmwFileNames
-        readonly #nsmbuFileNames
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, smbFileNames: Array<SMB_FILE_NAME>, smb3SmwFileNames: Array<SMB3_SMW_FILE_NAME>, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3SmwFileNames: Array<SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#smbFileNames = smbFileNames
-            this.#smb3SmwFileNames = smb3SmwFileNames
-            this.#nsmbuFileNames = nsmbuFileNames
         }
 
         protected override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const fileNames_smb = this.#smbFileNames
-            const fileNames_smb3Smw = this.#smb3SmwFileNames
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileNames_smb = this.smbFileNames
+            const fileNames_smb3Smw = this.smb3SmwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
             const fileNamesSize_smb3Smw = fileNames_smb3Smw.length
-            const fileNames_nsmbu = this.#nsmbuFileNames
 
             const imageFiles = new Array<readonly[GameStyles,
                     | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
@@ -802,18 +708,14 @@ export abstract class InGameEntityImages
                     | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNames_smb.length + fileNamesSize_smb3Smw * 2 + fileNames_nsmbu.length,)
 
             let index = -1
-            const folderName_smb = `M1 ${endingFolderName}` as const
             forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
 
-            const folderName_smb3 = `M3 ${endingFolderName}` as const
-            const folderName_smw = `MW ${endingFolderName}` as const
             forEachByArray(fileNames_smb3Smw, it => {
                 imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),]
                 imageFiles[index + fileNamesSize_smb3Smw] = [SMW, inGameImage(this, folderName_smw, it,),]
             },)
             index+= fileNamesSize_smb3Smw
 
-            const folderName_nsmbu = `WU ${endingFolderName}` as const
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
             return imageFiles
@@ -835,29 +737,24 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        readonly #endingFolderName
-        readonly #smbFileNames
-        readonly #smb3FileNames
-        readonly #smwFileNames
-        readonly #nsmbuFileNames
-
-        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, smbFileNames: Array<SMB_FILE_NAME>, smb3FileNames: Array<SMB3_FILE_NAME>, smwFileNames: Array<SMW_FILE_NAME>, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
-            this.#endingFolderName = endingFolderName
-            this.#smbFileNames = smbFileNames
-            this.#smb3FileNames = smb3FileNames
-            this.#smwFileNames = smwFileNames
-            this.#nsmbuFileNames = nsmbuFileNames
         }
 
         protected override _createImageFiles() {
-            const endingFolderName = this.#endingFolderName
-            const fileNames_smb = this.#smbFileNames
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const folderName_smbAlt = `M1 ${endingFolderName} D` as const
+            const folderName_smb3Alt = `M3 ${endingFolderName} D` as const
+            const fileNames_smb = this.smbFileNames
+            const fileNames_smb3 = this.smb3FileNames
+            const fileNames_smw = this.smwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
             const fileNamesSize_smb = fileNames_smb.length
-            const fileNames_smb3 = this.#smb3FileNames
             const fileNamesSize_smb3 = fileNames_smb3.length
-            const fileNames_smw = this.#smwFileNames
-            const fileNames_nsmbu = this.#nsmbuFileNames
 
             const imageFiles = new Array<readonly[GameStyles,
                     | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_FILE_NAME>
@@ -866,26 +763,20 @@ export abstract class InGameEntityImages
                     | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize_smb + fileNamesSize_smb3 + fileNames_smw.length + fileNames_nsmbu.length,)
 
             let index = -1
-            const folderName_smb = `M1 ${endingFolderName}` as const
-            const folderName_smbAlt = `M1 ${endingFolderName} D` as const
             forEachByArray(fileNames_smb, it => {
                 imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
                 imageFiles[index + fileNamesSize_smb] = [SMB, inGameImage(this, folderName_smbAlt, it,),]
             },)
             index += fileNamesSize_smb
 
-            const folderName_smb3 = `M3 ${endingFolderName}` as const
-            const folderName_smb3Alt = `M3 ${endingFolderName} D` as const
             forEachByArray(fileNames_smb3, it => {
                 imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),]
                 imageFiles[index + fileNamesSize_smb3] = [SMB3, inGameImage(this, folderName_smb3Alt, it,),]
             },)
             index += fileNamesSize_smb3
 
-            const folderName_smw = `MW ${endingFolderName}` as const
             forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
 
-            const folderName_nsmbu = `WU ${endingFolderName}` as const
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
             return imageFiles
