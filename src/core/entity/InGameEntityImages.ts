@@ -1411,7 +1411,23 @@ export abstract class InGameEntityImages
     public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Iggy’s Wand', 'Enemy - Iggy', 'wand',)
     public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Iggy’s projectile)', 'Enemy - Iggy', 'effect.0',)
 
-    public static readonly WENDY =                                         new InGameEntityImages.Null()
+    public static readonly WENDY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Wendy', 'Enemy - Wendy', [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2',
+        'wait.0', 'wait.1', 'wait.2',], [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'damage.0',
+        'fall.0', 'fall.1',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',],)
     public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Wendy’s Wand', 'Enemy - Wendy', 'wand',)
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAsThreeInNotNsmbuAndSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
     public static readonly WENDY_PROJECTILE =                              new InGameEntityImages.Null()
