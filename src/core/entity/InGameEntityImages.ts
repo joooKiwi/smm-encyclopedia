@@ -1390,7 +1390,24 @@ export abstract class InGameEntityImages
     public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Larry’s Wand', 'Enemy - Larry', 'wand',)
     public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Larry’s projectile)', 'Enemy - Larry', 'effect.0',)
 
-    public static readonly IGGY =                                          new InGameEntityImages.Null()
+    public static readonly IGGY =                                          new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Iggy', 'Enemy - Iggy', [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2',
+        'wait.0', 'wait.1', 'wait.2',], [
+        'damage.0',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'damage.0',
+        'fall.0', 'fall.1',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+        'walkl.0', 'walkl.1', 'walkl.2', 'walkl.3',],)
     public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Iggy’s Wand', 'Enemy - Iggy', 'wand',)
     public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Iggy’s projectile)', 'Enemy - Iggy', 'effect.0',)
 
