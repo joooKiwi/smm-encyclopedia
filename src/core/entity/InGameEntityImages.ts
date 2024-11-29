@@ -1229,8 +1229,8 @@ export abstract class InGameEntityImages
 
     public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.Null()
     public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.Null()
-    public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.Null()
     public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAsSixInOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
+    public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAsSixInOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.Null()
     public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.Null()
 
