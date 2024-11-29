@@ -681,6 +681,33 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (four in 3 specific game style) --------------------
+    //region -------------------- Sub class (six in 1 specific game style) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 6 {@link InGameImageFile} in only {@link SMW} */
+    private static readonly ExistantAsSixInOnlySmw = class ExistantAsSixInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
+                [SMW, inGameImage(this, folderName, this.fileName3,),],
+                [SMW, inGameImage(this, folderName, this.fileName4,),],
+                [SMW, inGameImage(this, folderName, this.fileName5,),],
+                [SMW, inGameImage(this, folderName, this.fileName6,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (six in 1 specific game style) --------------------
     //region -------------------- Sub class (no variant) --------------------
 
     private static readonly ExistantAsNoVariant = class ExistantAsNoVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
@@ -1202,8 +1229,8 @@ export abstract class InGameEntityImages
 
     public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.Null()
     public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.Null()
-    public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.Null()
     public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.Null()
+    public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAsSixInOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.Null()
     public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.Null()
 
