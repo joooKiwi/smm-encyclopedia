@@ -1,17 +1,18 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import {indexOfFirstByArray}                     from '@joookiwi/collection'
+import type {Array}                              from '@joookiwi/type'
+import {getFirstByArray, indexOfFirstByArray}    from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleEnglishName}                      from 'core/entity/Entities.types'
-import type {ClearConditionImageFile, EditorImageFile, InGameImageFile} from 'core/entity/file/EntityImageFile'
-import type {ClearConditionEntityImage}                                 from 'core/entity/images/ClearConditionEntityImage'
-import type {EntityImage}                                               from 'core/entity/images/EntityImage'
-import type {EditorEntityImage}                                         from 'core/entity/images/EditorEntityImage'
-import type {InGameEntityImage}                                         from 'core/entity/images/InGameEntityImage'
-import type {EditorImage}                                               from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}                                               from 'core/entity/images/inGame/InGameImage'
-import type {ClassWithEnglishName}                                      from 'core/ClassWithEnglishName'
-import type {ClassWithImage}                                            from 'util/ClassWithImage'
+import type {Names, Ordinals, PossibleEnglishName}                                       from 'core/entity/Entities.types'
+import type {ClearConditionImageFile, EditorImageFile, EntityImageFile, InGameImageFile} from 'core/entity/file/EntityImageFile'
+import type {ClearConditionEntityImage}                                                  from 'core/entity/images/ClearConditionEntityImage'
+import type {EntityImage}                                                                from 'core/entity/images/EntityImage'
+import type {EditorEntityImage}                                                          from 'core/entity/images/EditorEntityImage'
+import type {InGameEntityImage}                                                          from 'core/entity/images/InGameEntityImage'
+import type {EditorImage}                                                                from 'core/entity/images/editor/EditorImage'
+import type {InGameImage}                                                                from 'core/entity/images/inGame/InGameImage'
+import type {ClassWithEnglishName}                                                       from 'core/ClassWithEnglishName'
+import type {ClassWithImage}                                                             from 'util/ClassWithImage'
 
 import {ClearConditionEntityImages}         from 'core/entity/ClearConditionEntityImages'
 import {EditorEntityImages}                 from 'core/entity/EditorEntityImages'
@@ -24,6 +25,7 @@ import {InGameEntityImageContainer}         from 'core/entity/images/InGameEntit
 import {MixedReferenceEntityImage}          from 'core/entity/images/MixedReference.entityImage'
 import {EditorImageContainer}               from 'core/entity/images/editor/EditorImage.container'
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
+import {InGameImageContainer}               from 'core/entity/images/inGame/InGameImage.container'
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
 
 import NSMBU = GameStyles.NSMBU
@@ -58,6 +60,30 @@ export abstract class EntityImages
 
     }
 
+    private static readonly ExistantMixed = (() => {
+        abstract class ExistantMixed_EntityImages<const NAME extends PossibleEnglishName,
+            const IMAGE extends EntityImageFile, >
+            extends EntityImages {
+
+            readonly #englishName
+            #image?: EntityImage<IMAGE>
+
+            public constructor(englishName: NAME,) {
+                super()
+                this.#englishName = englishName
+            }
+
+            public override get englishName(): NAME { return this.#englishName }
+
+            public override get image(): EntityImage<IMAGE> { return this.#image ??= new MixedReferenceEntityImage(this._createImage(),) }
+
+            protected abstract _createImage(): Array<readonly [GameStyles, Array<IMAGE>,]>
+
+        }
+
+        return ExistantMixed_EntityImages
+    })()
+
     private static readonly ExistantEditor = (() => {
         abstract class ExistantEditor_EntityImages<const NAME extends PossibleEnglishName,
             const IMAGE extends EditorImageFile, >
@@ -82,6 +108,32 @@ export abstract class EntityImages
         }
 
         return ExistantEditor_EntityImages
+    })()
+
+    private static readonly ExistantInGame = (() => {
+        abstract class ExistantInGame_EntityImages<const NAME extends PossibleEnglishName,
+            const IMAGE extends InGameImageFile, >
+            extends EntityImages {
+
+            readonly #englishName
+            readonly #reference
+            #image?: InGameEntityImage<IMAGE>
+
+            public constructor(englishName: NAME, reference: ClassWithImage<InGameImage<IMAGE>>,) {
+                super()
+                this.#englishName = englishName
+                this.#reference = reference
+            }
+
+            public override get englishName(): NAME { return this.#englishName }
+
+            public override get image(): InGameEntityImage<IMAGE> { return this.#image ??= new InGameEntityImageContainer(this._createImage(this.#reference.image,),) }
+
+            protected abstract _createImage(image: InGameImage<IMAGE>,): InGameImage<IMAGE>
+
+        }
+
+        return ExistantInGame_EntityImages
     })()
 
 
@@ -250,36 +302,71 @@ export abstract class EntityImages
 
     }
 
-    /** A subclass of an {@link EntityImages} to hold an existant
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant
      * {@link InGameEntityImage} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
      * {@link ClearConditionEntityImage} in {@link SM3DW}
-     * for only the {@link GREEN_KOOPA_SHELL} */
+     * for only the {@link GREEN_KOOPA_SHELL}
+     */
     private static readonly MixedAsGreenKoopaShell = class MixedAsGreenKoopaShell_EntityImages
-        extends EntityImages {
+        extends EntityImages.ExistantMixed<'Green Koopa Shell', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]> {
 
-        readonly #englishName = 'Green Koopa Shell' satisfies PossibleEnglishName
         readonly #clearConditionReference = ClearConditionEntityImages.GREEN_KOOPA_SHELL
         readonly #inGameReference = InGameEntityImages.GREEN_KOOPA_SHELL
-        #image?: MixedReferenceEntityImage<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]>
 
-        public constructor() { super() }
+        public constructor() { super('Green Koopa Shell',) }
 
-        public override get englishName(): 'Green Koopa Shell' { return this.#englishName }
-
-        public override get image(): MixedReferenceEntityImage<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImage() {
             const clearConditionReference = this.#clearConditionReference
             const inGameReference = this.#inGameReference
-            return new MixedReferenceEntityImage<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]>([
+            return [
                 [SMB,   inGameReference.image.get(SMB,),],
                 [SMB3,  inGameReference.image.get(SMB3,),],
                 [SMW,   inGameReference.image.get(SMW,),],
                 [NSMBU, inGameReference.image.get(NSMBU,),],
                 [SM3DW, [clearConditionReference.image.get(SM3DW,),],],
-            ],)
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant
+     * {@link InGameEntityImage} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
+     * {@link ClearConditionEntityImage} in {@link SM3DW}
+     * for only the {@link BULLET_BILL}
+     */
+    private static readonly MixedAsBulletBill = class InGameAsBullEyeBill_EntityImages
+        extends EntityImages.ExistantMixed<'Bullet Bill', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['BULLET_BILL']['image']['images'][number]> {
+
+        readonly #clearConditionReference = ClearConditionEntityImages.BULLET_BILL
+        readonly #inGameReference = InGameEntityImages.BULLET_BILL
+
+        public constructor() { super('Bullet Bill',) }
+
+        protected override _createImage() {
+            const clearConditionReference = this.#clearConditionReference
+            const inGameImages = this.#inGameReference.image
+            return [
+                [SMB,   inGameImages.get(SMB,),],
+                [SMB3,  inGameImages.get(SMB3,),],
+                [SMW,   inGameImages.get(SMW,),],
+                [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
+                [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage} for only the {@link BULL_EYE_BILL} */
+    private static readonly InGameAsBullEyeBill = class InGameAsBullEyeBill_EntityImages
+        extends EntityImages.ExistantInGame<'Bull’s-Eye Bill', typeof InGameEntityImages['BULL_EYE_BILL']['image']['images'][number]> {
+
+        public constructor() { super('Bull’s-Eye Bill', InGameEntityImages.BULL_EYE_BILL,) }
+
+        protected override _createImage(image: InGameImage<typeof InGameEntityImages['BULL_EYE_BILL']['image']['images'][number]>,) {
+            const images = image.imagesWithAssociation
+            return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
         }
 
     }
@@ -563,9 +650,9 @@ export abstract class EntityImages
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
     public static readonly BILL_BLASTER =                                  new EntityImages.EditorWithNoBlueVariantDuplicate('Bill Blaster', EditorEntityImages.BILL_BLASTER,)
-    public static readonly BULLET_BILL =                                   new EntityImages.ClearCondition('Bullet Bill', ClearConditionEntityImages.BULLET_BILL,)
+    public static readonly BULLET_BILL =                                   new EntityImages.MixedAsBulletBill()
     public static readonly BULL_EYE_BLASTER =                              new EntityImages.Editor('Bull’s-Eye Blaster', EditorEntityImages.BULL_EYE_BLASTER,)
-    public static readonly BULL_EYE_BILL =                                 new EntityImages.Null()
+    public static readonly BULL_EYE_BILL =                                 new EntityImages.InGameAsBullEyeBill()
     public static readonly CAT_BULLET_BILL =                               new EntityImages.Null()
 
     public static readonly BANZAI_BILL =                                   new EntityImages.EditorWithNoBlueVariantDuplicate('Banzai Bill', EditorEntityImages.BANZAI_BILL,)
