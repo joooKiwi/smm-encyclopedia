@@ -307,6 +307,54 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (two in 3 specific game style) --------------------
+    //region -------------------- Sub class (two in 4 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * plus 1 {@link InGameImageFile} in {@link NSMBU}
+     */
+    private static readonly ExistantAsTwoInSm3dwAndOneNsmbu = class ExistantAsTwoInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #nsmbuFileName
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, nsmbuFileName: NSMBU_FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#nsmbuFileName = nsmbuFileName
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const folderNameSmw = `MW ${endingFolderName}` as const
+            const fileName1 = this.#fileName1
+            const fileName2 = this.#fileName2
+            return [
+                [SMB,   inGameImage(this, folderNameSmb, fileName1,),],
+                [SMB,   inGameImage(this, folderNameSmb, fileName2,),],
+                [SMB3,  inGameImage(this, folderNameSmb3, fileName1,),],
+                [SMB3,  inGameImage(this, folderNameSmb3, fileName2,),],
+                [SMW,   inGameImage(this, folderNameSmw, fileName1,),],
+                [SMW,   inGameImage(this, folderNameSmw, fileName2,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, this.#nsmbuFileName,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (two in 4 specific game style) --------------------
     //region -------------------- Sub class (three in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile} in only {@link SMB} */
@@ -1014,7 +1062,7 @@ export abstract class InGameEntityImages
 
     public static readonly MECHAKOOPA =                                    new InGameEntityImages.Null()
     public static readonly BLASTA_MECHAKOOPA =                             new InGameEntityImages.Null()
-    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1',)
+    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAsTwoInSm3dwAndOneNsmbu('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1', 'mechabomb_Alb.000',)
     public static readonly ZAPPA_MECHAKOOPA =                              new InGameEntityImages.Null()
     public static readonly ELECTRICITY_BEAM_THROWN_BY_A_ZAPPA_MECHAKOOPA = new InGameEntityImages.Null()
 
