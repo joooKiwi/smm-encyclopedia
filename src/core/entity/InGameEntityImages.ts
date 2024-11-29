@@ -436,6 +436,68 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (three in 3 specific game style) --------------------
+    //region -------------------- Sub class (three in 4 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
+     */
+    private static readonly ExistantAsThreeAndNotSm3dwWithNsmbu = class ExistantAsThreeInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+        readonly #nsmbuFileNames
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+            this.#nsmbuFileNames = nsmbuFileNames
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const folderNameSmw = `MW ${endingFolderName}` as const
+            const fileName1 = this.#fileName1
+            const fileName2 = this.#fileName2
+            const fileName3 = this.#fileName3
+            const fileNames_nsmbu = this.#nsmbuFileNames
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>]>(9 + fileNames_nsmbu.length,)
+            imageFiles[0] = [SMB,  inGameImage(this, folderNameSmb,  fileName1,),]
+            imageFiles[1] = [SMB,  inGameImage(this, folderNameSmb,  fileName2,),]
+            imageFiles[2] = [SMB,  inGameImage(this, folderNameSmb,  fileName3,),]
+            imageFiles[3] = [SMB3, inGameImage(this, folderNameSmb3, fileName1,),]
+            imageFiles[4] = [SMB3, inGameImage(this, folderNameSmb3, fileName2,),]
+            imageFiles[5] = [SMB3, inGameImage(this, folderNameSmb3, fileName3,),]
+            imageFiles[6] = [SMW,  inGameImage(this, folderNameSmw,  fileName1,),]
+            imageFiles[7] = [SMW,  inGameImage(this, folderNameSmw,  fileName2,),]
+            imageFiles[8] = [SMW,  inGameImage(this, folderNameSmw,  fileName3,),]
+
+            let index = 8
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    //endregion -------------------- Sub class (three in 4 specific game style) --------------------
     //region -------------------- Sub class (four in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link SMB} */
@@ -1158,7 +1220,11 @@ export abstract class InGameEntityImages
 
     public static readonly THWOMP =                                        new InGameEntityImages.Null()
 
-    public static readonly MONTY_MOLE =                                    new InGameEntityImages.Null()
+    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAsThreeAndNotSm3dwWithNsmbu('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1',
+        ['go_out_st_Alb.000', 'go_out_st_Alb.002', 'go_out_st_Alb.004', 'go_out_st_Alb.006', 'go_out_st_Alb.008', 'go_out_st_Alb.010', 'go_out_st_Alb.012', 'go_out_st_Alb.014', 'go_out_st_Alb.016', 'go_out_st_Alb.018',
+            'in_dokan_Alb.000', 'in_dokan_Alb.002', 'in_dokan_Alb.004', 'in_dokan_Alb.006', 'in_dokan_Alb.008', 'in_dokan_Alb.009',
+            'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008', 'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018', 'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028', 'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
+            'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007', 'walk_Alb.008', 'walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018',],)
     public static readonly ROCKY_WRENCH =                                  new InGameEntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3',)
 
