@@ -35,7 +35,7 @@ export abstract class InGameEntityImages
     //region -------------------- Sub class --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold a non-existant {@link InGameImage} ({@link EmptyInGameImage}) */
-    private static readonly Null = class NullInGameEntityImages extends InGameEntityImages {
+    private static readonly Null = class Null_InGameEntityImages extends InGameEntityImages {
 
         readonly #image
 
@@ -50,7 +50,7 @@ export abstract class InGameEntityImages
 
     /** An abstract subclass of an {@link InGameEntityImages} to hold a specific {@link PossibleEnglishName} */
     private static readonly Existant = (() => {
-        abstract class ExistantInGameEntityImages<const NAME extends PossibleEnglishName,
+        abstract class Existant_InGameEntityImages<const NAME extends PossibleEnglishName,
             const IMAGE_FILE extends InGameImageFile, >
             extends InGameEntityImages {
 
@@ -70,13 +70,13 @@ export abstract class InGameEntityImages
 
         }
 
-        return ExistantInGameEntityImages
+        return Existant_InGameEntityImages
     })()
 
     //region -------------------- Sub class (one in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAsOneInOnlySmb = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsOneInOnlySmb = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -103,7 +103,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -136,7 +136,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
      */
-    private static readonly ExistantAsOneInNotSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsOneInNotSm3dw = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${PossibleAcronym_InFile_SMM1} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -167,7 +167,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3}, {@link SMW} and a different {@link NSMBU}
      */
-    private static readonly ExistantAsOneInNotSm3dwButDifferentNsmbu = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsOneInNotSm3dwButDifferentNsmbu = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -202,7 +202,7 @@ export abstract class InGameEntityImages
     //region -------------------- Sub class (two in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAsTwoInOnlySmw = class ExistantAsTwoInOnlySmwInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsTwoInOnlySmw = class ExistantAsTwoInOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -234,7 +234,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
      * in only {@link SMB} and {@link SMB3}
      */
-    private static readonly ExistantAsTwoInOnlySmbAndSmb3 = class ExistantAsTwoInOnlySmbAndSmb3InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsTwoInOnlySmbAndSmb3 = class ExistantAsTwoInOnlySmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -271,7 +271,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsTwoInNotNsmbuAndSm3dw = class ExistantAsTwoInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsTwoInNotNsmbuAndSm3dw = class ExistantAsTwoInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -306,15 +306,12 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (two in 3 specific game style) --------------------
-    //region -------------------- Sub class (two in 4 specific game style) --------------------
-
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      * plus 1 {@link InGameImageFile} in {@link NSMBU}
      */
-    private static readonly ExistantAsTwoInSm3dwAndOneNsmbu = class ExistantAsTwoInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsTwoInNotSm3dwAndOneNsmbu = class ExistantAsTwoInNotSm3dwAndOneNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -354,11 +351,11 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (two in 4 specific game style) --------------------
+    //endregion -------------------- Sub class (two in 3 specific game style) --------------------
     //region -------------------- Sub class (three in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAsThreeInOnlySmb = class ExistantAsThreeInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsThreeInOnlySmb = class ExistantAsThreeInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -394,7 +391,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsThreeInNotNsmbuAndSm3dw = class ExistantAsThreeInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsThreeInNotNsmbuAndSm3dw = class ExistantAsThreeInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -435,15 +432,12 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (three in 3 specific game style) --------------------
-    //region -------------------- Sub class (three in 4 specific game style) --------------------
-
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAsThreeAndNotSm3dwWithNsmbu = class ExistantAsThreeInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsThreeAndNotSm3dwWithNsmbu = class ExistantAsThreeInNotSm3dwWithNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -497,7 +491,7 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (three in 4 specific game style) --------------------
+    //endregion -------------------- Sub class (three in 3 specific game style) --------------------
     //region -------------------- Sub class (four in 1 specific game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link SMB} */
@@ -810,7 +804,7 @@ export abstract class InGameEntityImages
     //region -------------------- Sub class (predefined) --------------------
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link WATER} */
-    private static readonly ExistantAsWater = class ExistantAsWaterInGameEntityImages
+    private static readonly ExistantAsWater = class ExistantAsWater_InGameEntityImages
         extends InGameEntityImages.Existant<'Water', | InGameImageFile<'M1 Object - WaterHalf', `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
                                                      | InGameImageFile<'M3 Object - WaterHalf', `${| 'body' | 'top'}.${| 0 | 1 | 2 | 3}`, 'Water'>
                                                      | InGameImageFile<'MW Object - WaterHalf', `body.${| 0 | 1 | 2 | 3}`, 'Water'>> {
@@ -841,7 +835,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIKOOPA_PROJECTILE} */
-    private static readonly ExistantAsMagikoopaProjectile = class ExistantAsMagicBallInGameEntityImages
+    private static readonly ExistantAsMagikoopaProjectile = class ExistantAsMagikoopaProjectile_InGameEntityImages
         extends InGameEntityImages.Existant<'(Magikoopa’s projectile)', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa’s projectile)'>
                                                                         | InGameImageFile<`${| 'WU' | '3W'} Enemy - Kameck`, 'effect.0', '(Magikoopa’s projectile)'>> {
 
@@ -876,7 +870,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link FIRE_BAR} */
-    private static readonly ExistantAsFireBar = class ExistantAsMagicBallInGameEntityImages
+    private static readonly ExistantAsFireBar = class ExistantAsFireBar_InGameEntityImages
         extends InGameEntityImages.Existant<'Fire Bar', | InGameImageFile<`${| 'M1' | 'M3'} Object - Firebar`, | 'block' | 'fire.0', 'Fire Bar'>
                                                         | InGameImageFile<'MW Object - Firebar', | 'block' | `fire.${| 0 | 1 | 2}`, 'Fire Bar'>
                                                         | InGameImageFile<'WU Object - Firebar', | 'center_firebar_Alb.000' | `firebar${| EmptyString | '_core'}`, 'Fire Bar'>> {
@@ -905,7 +899,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIC_BALL_THROWN_BY_A_LEMMY} */
-    private static readonly ExistantAsMagicBall = class ExistantAsMagicBallInGameEntityImages
+    private static readonly ExistantAsMagicBall = class ExistantAsMagicBall_InGameEntityImages
         extends InGameEntityImages.Existant<'Magic Ball thrown by a Lemmy', | InGameImageFile<`${| 'M1' | 'M3'} Enemy - Lemmy`, 'ball.0', 'Magic Ball thrown by a Lemmy'>
                                                                             | InGameImageFile<'MW Enemy - Lemmy', `ball${| '.0' | '_specular'}`, 'Magic Ball thrown by a Lemmy'>> {
 
@@ -923,7 +917,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link AXE} */
-    private static readonly ExistantAsAxe = class ExistantAsMagicBallInGameEntityImages
+    private static readonly ExistantAsAxe = class ExistantAsAxe_InGameEntityImages
         extends InGameEntityImages.Existant<'Axe', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Ono`, | `wait.${| 0 | 1 | 2 | 3}` | 'ono_Xlu', 'Axe'>
                                                    | InGameImageFile<'WU Object - Ono', | `ono_Alb.00${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7}` | 'onoXlu_Alb.000', 'Axe'>> {
 
@@ -964,7 +958,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link BUBBLE} */
-    private static readonly ExistantAsBubble = class ExistantAsBubbleInGameEntityImages
+    private static readonly ExistantAsBubble = class ExistantAsBubble_InGameEntityImages
         extends InGameEntityImages.Existant<'Bubble', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Balloon`, 'balloon.0', 'Bubble'>
                                                       | InGameImageFile<'WU Object - Balloon', `balloon${| EmptyString | 2}.0`, 'Bubble'>
                                                       | InGameImageFile<'3W Object - Balloon', 'TractorBubble_Alb', 'Bubble'>> {
@@ -1259,7 +1253,7 @@ export abstract class InGameEntityImages
 
     public static readonly MECHAKOOPA =                                    new InGameEntityImages.Null()
     public static readonly BLASTA_MECHAKOOPA =                             new InGameEntityImages.Null()
-    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAsTwoInSm3dwAndOneNsmbu('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1', 'mechabomb_Alb.000',)
+    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAsTwoInNotSm3dwAndOneNsmbu('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1', 'mechabomb_Alb.000',)
     public static readonly ZAPPA_MECHAKOOPA =                              new InGameEntityImages.Null()
     public static readonly ELECTRICITY_BEAM_THROWN_BY_A_ZAPPA_MECHAKOOPA = new InGameEntityImages.Null()
 
