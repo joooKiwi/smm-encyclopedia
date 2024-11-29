@@ -1480,7 +1480,30 @@ export abstract class InGameEntityImages
     public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Roy’s Wand', 'Enemy - Roy', 'wand',)
     public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Roy’s projectile)', 'Enemy - Roy', 'effect.0',)
 
-    public static readonly MORTON =                                        new InGameEntityImages.Null()
+    public static readonly MORTON =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Lemmy', 'Enemy - Lemmy', [
+        'damage.0',
+        'jump_quake.0', 'jump_quake.1', 'jump_quake.2',
+        'jump_quake_ed.0', 'jump_quake_ed.1', 'jump_quake_ed.2',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2',
+        'wait.0', 'wait.1',], [
+        'damage.0',
+        'jump_quake.0', 'jump_quake.1', 'jump_quake.2',
+        'jump_quake_ed.0', 'jump_quake_ed.1', 'jump_quake_ed.2',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], [
+        'chase.0', 'chase.1', 'chase.2', 'chase.3',
+        'damage.0',
+        'fall.0', 'fall.1',
+        'jump_quake.0', 'jump_quake.1', 'jump_quake.2',
+        'jump_quake_ed.0', 'jump_quake_ed.1', 'jump_quake_ed.2',
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
+        'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
+        'wait.0', 'wait.1', 'wait.2',],)
     public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Morton’s Wand', 'Enemy - Morton', 'wand',)
     public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Morton’s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
     public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('(Morton’s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
