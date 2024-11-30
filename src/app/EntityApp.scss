@@ -78,6 +78,11 @@
 
   }
 
+  :is(.table-row-bulletBill, .table-row-billBlaster, .table-row-bulleyeBill, .table-row-bulleyeBlaster) img {
+    max-width: 2rem;
+    max-height: initial;
+  }
+
   //region -------------------- Helper guide for the user to distinguish the group by game style --------------------
 
   .ground-image, .steepSlope-image, .gentleSlope-image, .bridge-image, {
