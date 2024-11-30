@@ -1,7 +1,7 @@
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import type {Array}                              from '@joookiwi/type'
-import {getFirstByArray, indexOfFirstByArray}    from '@joookiwi/collection'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}                                               from '@joookiwi/enumerable'
+import type {Array}                                                                          from '@joookiwi/type'
+import {getFirstByArray, indexOfFirstByArray, sliceWithARangeByArray, sliceWithArrayByArray} from '@joookiwi/collection'
+import {CompanionEnumWithParent, EnumWithParent}                                             from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName}                                       from 'core/entity/Entities.types'
 import type {ClearConditionImageFile, EditorImageFile, EntityImageFile, InGameImageFile} from 'core/entity/file/EntityImageFile'
@@ -245,6 +245,62 @@ export abstract class EntityImages
                 [SMW,   inGameImages.get(SMW,),],
                 [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
                 [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage}
+     * in {@link SMB}, {@link SMB3}, {@link SMW} and the first and last images in {@link NSMBU}
+     * plus the {@link ClearConditionEntityImage} in {@link SM3DW}
+     */
+    private static readonly MixedAsInGameIn2dStyleAsFirstAndLastInNsmbuAndEditorInSm3dw = class MixedAsInGameIn2dStyleAsFirstAndLastInNsmbuAndClearConditionInSm3dw_EntityImages<const NAME extends PossibleEnglishName,
+        const IN_GAME_IMAGE extends InGameImageFile,
+        const EDITOR_IMAGE extends EditorImageFile, >
+        extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | EDITOR_IMAGE> {
+
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
+            super(englishName,)
+        }
+
+        protected override _createImage() {
+            const editorReference = this.editorReference
+            const inGameImages = this.inGameReference.image
+            return [
+                [SMB,   inGameImages.get(SMB,),],
+                [SMB3,  inGameImages.get(SMB3,),],
+                [SMW,   inGameImages.get(SMW,),],
+                [NSMBU, sliceWithArrayByArray(inGameImages.get(NSMBU,), [0, -1,],).toArray(),],
+                [SM3DW, editorReference.image.get(SM3DW,).toArray(),],
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage}
+     * as only the first 2 images in {@link SMB}, {@link SMB3}, {@link SMW} and the first and last image in {@link NSMBU}
+     * plus the {@link ClearConditionEntityImage} in {@link SM3DW}
+     */
+    private static readonly MixedAsInGameAsFirstAndLastIn2dStyleAndEditorInSm3dw = class MixedAsInGameIn2dStyleAsFirstAndLastInNsmbuAndClearConditionInSm3dw_EntityImages<const NAME extends PossibleEnglishName,
+        const IN_GAME_IMAGE extends InGameImageFile,
+        const EDITOR_IMAGE extends EditorImageFile, >
+        extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | EDITOR_IMAGE> {
+
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
+            super(englishName,)
+        }
+
+        protected override _createImage() {
+            const editorReference = this.editorReference
+            const inGameImages = this.inGameReference.image
+            return [
+                [SMB,   sliceWithARangeByArray(inGameImages.get(SMB,), 0, 1,).toArray(),],
+                [SMB3,  sliceWithARangeByArray(inGameImages.get(SMB3,), 0, 1,).toArray(),],
+                [SMW,   sliceWithARangeByArray(inGameImages.get(SMW,), 0, 1,).toArray(),],
+                [NSMBU, sliceWithArrayByArray(inGameImages.get(NSMBU,), [0, -1,],).toArray(),],
+                [SM3DW, editorReference.image.get(SM3DW,).toArray(),],
             ] as const
         }
 
@@ -657,9 +713,9 @@ export abstract class EntityImages
     //endregion -------------------- General enemy --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
-    public static readonly BILL_BLASTER =                                  new EntityImages.EditorWithNoBlueVariantDuplicate('Bill Blaster', EditorEntityImages.BILL_BLASTER,)
+    public static readonly BILL_BLASTER =                                  new EntityImages.MixedAsInGameIn2dStyleAsFirstAndLastInNsmbuAndEditorInSm3dw('Bill Blaster', InGameEntityImages.BILL_BLASTER, EditorEntityImages.BILL_BLASTER,)
     public static readonly BULLET_BILL =                                   new EntityImages.MixedAsInGameIn2dStyleAsFirstInNsmbuAndClearConditionInSm3dw('Bullet Bill', InGameEntityImages.BULLET_BILL, ClearConditionEntityImages.BULLET_BILL,)
-    public static readonly BULL_EYE_BLASTER =                              new EntityImages.Editor('Bull’s-Eye Blaster', EditorEntityImages.BULL_EYE_BLASTER,)
+    public static readonly BULL_EYE_BLASTER =                              new EntityImages.MixedAsInGameAsFirstAndLastIn2dStyleAndEditorInSm3dw('Bull’s-Eye Blaster', InGameEntityImages.BULL_EYE_BLASTER, EditorEntityImages.BULL_EYE_BLASTER,)
     public static readonly BULL_EYE_BILL =                                 new EntityImages.InGameFirstImageInNotSm3dw('Bull’s-Eye Bill', InGameEntityImages.BULL_EYE_BILL,)
     public static readonly CAT_BULLET_BILL =                               new EntityImages.Null()
 
