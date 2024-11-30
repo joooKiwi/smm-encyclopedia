@@ -1335,7 +1335,7 @@ export abstract class InGameEntityImages
         'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008', 'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018', 'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028', 'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
         'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007', 'walk_Alb.008', 'walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018',],)
     public static readonly ROCKY_WRENCH =                                  new InGameEntityImages.Null()
-    public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3',)
+     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
 
     public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
     public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAsMagikoopaProjectile()
