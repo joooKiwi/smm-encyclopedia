@@ -202,6 +202,55 @@ export abstract class EntityImages
 
     }
 
+    //region -------------------- Sub class (first in-game) --------------------
+
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage}
+     * with only the first images in only {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
+     */
+    private static readonly InGameFirstImageInNotSm3dw = class InGameFirstImageInNotSm3dw_EntityImages<const NAME extends PossibleEnglishName,
+        const IMAGE extends InGameImageFile, >
+        extends EntityImages.ExistantInGame<NAME, IMAGE> {
+
+        protected override _createImage(image: InGameImage<IMAGE>,) {
+            const images = image.imagesWithAssociation
+            return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
+        }
+
+    }
+
+    //endregion -------------------- Sub class (first in-game) --------------------
+    //region -------------------- Sub class (mixed) --------------------
+
+    /**
+     * A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage}
+     * in {@link SMB}, {@link SMB3}, {@link SMW} and only the first image in {@link NSMBU}
+     * plus the {@link ClearConditionEntityImage} in {@link SM3DW}
+     */
+    private static readonly MixedAsInGameIn2dStyleAsFirstInNsmbuAndClearConditionInSm3dw = class MixedAsInGameIn2dStyleAsFirstInNsmbuAndClearConditionInSm3dw_EntityImages<const NAME extends PossibleEnglishName,
+        const IN_GAME_IMAGE extends InGameImageFile,
+        const CLEAR_CONDITION_IMAGE extends ClearConditionImageFile, >
+        extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | CLEAR_CONDITION_IMAGE> {
+
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage<IN_GAME_IMAGE>>, private readonly clearConditionReference: ClassWithImage<ClearConditionImage<CLEAR_CONDITION_IMAGE>>,) {
+            super(englishName,)
+        }
+
+        protected override _createImage() {
+            const clearConditionReference = this.clearConditionReference
+            const inGameImages = this.inGameReference.image
+            return [
+                [SMB,   inGameImages.get(SMB,),],
+                [SMB3,  inGameImages.get(SMB3,),],
+                [SMW,   inGameImages.get(SMW,),],
+                [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
+                [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (mixed) --------------------
     //region -------------------- Sub class (predefined) --------------------
 
     /**
@@ -326,88 +375,6 @@ export abstract class EntityImages
                 [NSMBU, inGameReference.image.get(NSMBU,),],
                 [SM3DW, [clearConditionReference.image.get(SM3DW,),],],
             ] as const
-        }
-
-    }
-
-    /**
-     * A subclass of an {@link EntityImages} to hold an existant
-     * {@link InGameEntityImage} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
-     * {@link ClearConditionEntityImage} in {@link SM3DW}
-     * for only the {@link BULLET_BILL}
-     */
-    private static readonly MixedAsBulletBill = class InGameAsBulletBill_EntityImages
-        extends EntityImages.ExistantMixed<'Bullet Bill', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['BULLET_BILL']['image']['images'][number]> {
-
-        readonly #clearConditionReference = ClearConditionEntityImages.BULLET_BILL
-        readonly #inGameReference = InGameEntityImages.BULLET_BILL
-
-        public constructor() { super('Bullet Bill',) }
-
-        protected override _createImage() {
-            const clearConditionReference = this.#clearConditionReference
-            const inGameImages = this.#inGameReference.image
-            return [
-                [SMB,   inGameImages.get(SMB,),],
-                [SMB3,  inGameImages.get(SMB3,),],
-                [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
-                [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage} for only the {@link BULL_EYE_BILL} */
-    private static readonly InGameAsBullEyeBill = class InGameAsBullEyeBill_EntityImages
-        extends EntityImages.ExistantInGame<'Bull’s-Eye Bill', typeof InGameEntityImages['BULL_EYE_BILL']['image']['images'][number]> {
-
-        public constructor() { super('Bull’s-Eye Bill', InGameEntityImages.BULL_EYE_BILL,) }
-
-        protected override _createImage(image: InGameImage<typeof InGameEntityImages['BULL_EYE_BILL']['image']['images'][number]>,) {
-            const images = image.imagesWithAssociation
-            return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
-        }
-
-    }
-
-    /**
-     * A subclass of an {@link EntityImages} to hold an existant
-     * {@link InGameEntityImage} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
-     * {@link ClearConditionEntityImage} in {@link SM3DW}
-     * for only the {@link BANZAI_BILL}
-     */
-    private static readonly MixedAsBanzaiBill = class InGameAsBanzaiBill_EntityImages
-        extends EntityImages.ExistantMixed<'Banzai Bill', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['BANZAI_BILL']['image']['images'][number]> {
-
-        readonly #clearConditionReference = ClearConditionEntityImages.BANZAI_BILL
-        readonly #inGameReference = InGameEntityImages.BANZAI_BILL
-
-        public constructor() { super('Banzai Bill',) }
-
-        protected override _createImage() {
-            const clearConditionReference = this.#clearConditionReference
-            const inGameImages = this.#inGameReference.image
-            return [
-                [SMB,   inGameImages.get(SMB,),],
-                [SMB3,  inGameImages.get(SMB3,),],
-                [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
-                [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link EntityImages} to hold an existant {@link InGameEntityImage} for only the {@link BULL_EYE_BANZAI} */
-    private static readonly InGameAsBullEyeBanzai = class InGameAsBullEyeBanzai_EntityImages
-        extends EntityImages.ExistantInGame<'Bull’s-Eye Banzai', typeof InGameEntityImages['BULL_EYE_BANZAI']['image']['images'][number]> {
-
-        public constructor() { super('Bull’s-Eye Banzai', InGameEntityImages.BULL_EYE_BANZAI,) }
-
-        protected override _createImage(image: InGameImage<typeof InGameEntityImages['BULL_EYE_BANZAI']['image']['images'][number]>,) {
-            const images = image.imagesWithAssociation
-            return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
         }
 
     }
@@ -691,13 +658,13 @@ export abstract class EntityImages
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
     public static readonly BILL_BLASTER =                                  new EntityImages.EditorWithNoBlueVariantDuplicate('Bill Blaster', EditorEntityImages.BILL_BLASTER,)
-    public static readonly BULLET_BILL =                                   new EntityImages.MixedAsBulletBill()
+    public static readonly BULLET_BILL =                                   new EntityImages.MixedAsInGameIn2dStyleAsFirstInNsmbuAndClearConditionInSm3dw('Bullet Bill', InGameEntityImages.BULLET_BILL, ClearConditionEntityImages.BULLET_BILL,)
     public static readonly BULL_EYE_BLASTER =                              new EntityImages.Editor('Bull’s-Eye Blaster', EditorEntityImages.BULL_EYE_BLASTER,)
-    public static readonly BULL_EYE_BILL =                                 new EntityImages.InGameAsBullEyeBill()
+    public static readonly BULL_EYE_BILL =                                 new EntityImages.InGameFirstImageInNotSm3dw('Bull’s-Eye Bill', InGameEntityImages.BULL_EYE_BILL,)
     public static readonly CAT_BULLET_BILL =                               new EntityImages.Null()
 
-    public static readonly BANZAI_BILL =                                   new EntityImages.MixedAsBanzaiBill()
-    public static readonly BULL_EYE_BANZAI =                               new EntityImages.InGameAsBullEyeBanzai()
+    public static readonly BANZAI_BILL =                                   new EntityImages.MixedAsInGameIn2dStyleAsFirstInNsmbuAndClearConditionInSm3dw('Banzai Bill', InGameEntityImages.BANZAI_BILL, ClearConditionEntityImages.BANZAI_BILL,)
+    public static readonly BULL_EYE_BANZAI =                               new EntityImages.InGameFirstImageInNotSm3dw('Bull’s-Eye Banzai', InGameEntityImages.BULL_EYE_BANZAI,)
     public static readonly CAT_BANZAI_BILL =                               new EntityImages.Editor('Cat Banzai Bill', EditorEntityImages.CAT_BANZAI_BILL,)
 
     public static readonly CANNON =                                        new EntityImages.EditorWithNoBlueVariantDuplicate('Cannon', EditorEntityImages.CANNON,)
