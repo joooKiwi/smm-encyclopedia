@@ -114,7 +114,7 @@ enum Enum {
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
     //region -------------------- Bosses + projectiles --------------------
 
-    BOWSER, MEOWSER, FIRE_THROWN_BY_A_BOWSER, FALLING_FIRE_THROWN_BY_A_BOWSER,
+    BOWSER, MEOWSER, FIRE_THROWN_BY_A_BOWSER, FALLING_FIRE_THROWN_BY_A_BOWSER, HAMMER_THROWN_BY_A_BOWSER,
     BOWSER_JR, FIRE_THROWN_BY_A_BOWSER_JR,
     BOOM_BOOM, POM_POM, POM_POM_CLONE, SHURIKEN_THROWN_BY_A_POM_POM,
     LARRY, LARRY_WAND, LARRY_PROJECTILE,
@@ -264,7 +264,7 @@ export type PossibleEnglishName =
     | 'Grinder'
     | 'Angry Sun' | 'Moon'
 
-    | 'Bowser' | 'Meowser' | `${| 'Fire' | 'Falling Fire'} thrown by a Bowser`
+    | 'Bowser' | 'Meowser' | `${| 'Fire' | 'Hammer' | 'Falling Fire'} thrown by a Bowser`
     | 'Bowser Jr.' | 'Fire thrown by a Bowser Jr.'
     | 'Boom Boom' | `Pom Pom${| EmptyString | '’s clone'}` | 'Shuriken thrown by a Pom Pom'
     | `${| 'Larry' | 'Iggy' | 'Wendy' | 'Lemmy' | 'Roy' | 'Morton' | 'Ludwig'}${| EmptyString | '’s Wand'}`

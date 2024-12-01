@@ -1466,6 +1466,7 @@ export abstract class InGameEntityImages
     public static readonly MEOWSER =                                       new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAsFourInOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new InGameEntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser Jr.', 'Enemy - KoopaJr', [
         'before.0',

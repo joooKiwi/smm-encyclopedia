@@ -360,6 +360,7 @@ export class Entities
     public static readonly MEOWSER =                                       new Entities('Meowser',)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new Entities('Fire thrown by a Bowser',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new Entities('Falling Fire thrown by a Bowser',)
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new Entities('Hammer thrown by a Bowser',)
 
     public static readonly BOWSER_JR =                                     new Entities('Bowser Jr.',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new Entities('Fire thrown by a Bowser Jr.',)

@@ -2028,6 +2028,7 @@ export abstract class EditorEntityImages
     public static readonly MEOWSER =                                       new EditorEntityImages.ExistantAsOneInOnlySm3dw('Meowser', 'Koopa_00',)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new EditorEntityImages.Null()
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new EditorEntityImages.Null()
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new EditorEntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new EditorEntityImages.ExistantAsOneInNotSm3dw('Bowser Jr.', 'KoopaJr_00',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new EditorEntityImages.Null()

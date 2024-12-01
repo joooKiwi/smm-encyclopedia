@@ -378,6 +378,7 @@ export abstract class UnusedBigMushroomEntityImages
     public static readonly MEOWSER =                                       new UnusedBigMushroomEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new UnusedBigMushroomEntityImages.Null()
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new UnusedBigMushroomEntityImages.Null()
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new UnusedBigMushroomEntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new UnusedBigMushroomEntityImages.Existant('Bowser Jr.', 'KoopaJr', 'fire.1',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new UnusedBigMushroomEntityImages.Null()

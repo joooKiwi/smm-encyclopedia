@@ -755,6 +755,7 @@ export abstract class EntityImages
     public static readonly MEOWSER =                                       new EntityImages.Editor('Meowser', EditorEntityImages.MEOWSER,)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new EntityImages.InGame('Fire thrown by a Bowser', InGameEntityImages.FIRE_THROWN_BY_A_BOWSER,)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new EntityImages.InGame('Falling Fire thrown by a Bowser', InGameEntityImages.FALLING_FIRE_THROWN_BY_A_BOWSER,)
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                    new EntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new EntityImages.Editor('Bowser Jr.', EditorEntityImages.BOWSER_JR,)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new EntityImages.Null()

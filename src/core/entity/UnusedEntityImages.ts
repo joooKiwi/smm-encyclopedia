@@ -494,6 +494,7 @@ export abstract class UnusedEntityImages
     public static readonly MEOWSER =                                       new UnusedEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new UnusedEntityImages.Null()
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new UnusedEntityImages.Null()
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new UnusedEntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new UnusedEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new UnusedEntityImages.Null()

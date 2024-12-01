@@ -744,6 +744,7 @@ export abstract class ClearConditionEntityImages
     public static readonly MEOWSER =                                       new ClearConditionEntityImages.ExistantOnOnlySm3dw('Meowser', 'Koopa_00',)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new ClearConditionEntityImages.Null()
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new ClearConditionEntityImages.Null()
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new ClearConditionEntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new ClearConditionEntityImages.ExistantOnNotSm3dw('Bowser Jr.', 'KoopaJr_00',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new ClearConditionEntityImages.Null()
