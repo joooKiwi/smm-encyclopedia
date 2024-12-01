@@ -2022,7 +2022,7 @@ export abstract class EditorEntityImages
     public static readonly MOON =                                          new EditorEntityImages.ExistantAsOneInNotSm3dw('Moon', 'SunMoon_01',)
 
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
-    //region -------------------- Boss --------------------
+    //region -------------------- Boss + projectile --------------------
 
     public static readonly BOWSER =                                        new EditorEntityImages.ExistantAsOneInNotSm3dw('Bowser', 'Koopa_00',)
     public static readonly MEOWSER =                                       new EditorEntityImages.ExistantAsOneInOnlySm3dw('Meowser', 'Koopa_00',)
@@ -2069,7 +2069,7 @@ export abstract class EditorEntityImages
     public static readonly LUDWIG_WAND =                                   new EditorEntityImages.Null()
     public static readonly LUDWIG_PROJECTILE =                             new EditorEntityImages.Null()
 
-    //endregion -------------------- Boss --------------------
+    //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     public static readonly BUMPER =                                        new EditorEntityImages.ExistantAsOneInNotSm3dw('Bumper', 'Marumaru_00',)

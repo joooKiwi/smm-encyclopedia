@@ -6,7 +6,8 @@ import {Empty} from 'util/emptyVariables'
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class EmptyUnusedImage_BigMushroom
-    implements UnusedImage_BigMushroom, ClassWithNullObjectPattern<EmptyUnusedImageName> {
+    implements UnusedImage_BigMushroom,
+        ClassWithNullObjectPattern<EmptyUnusedImageName> {
 
     //region -------------------- Singleton usage --------------------
 

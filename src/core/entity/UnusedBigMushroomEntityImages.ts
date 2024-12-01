@@ -22,7 +22,7 @@ import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/Unused
 export abstract class UnusedBigMushroomEntityImages
     extends EnumWithParent<Entities, Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImage<UnusedImage_BigMushroom>{
+        ClassWithImage<UnusedImage_BigMushroom> {
 
     //region -------------------- Sub class --------------------
 
@@ -72,6 +72,7 @@ export abstract class UnusedBigMushroomEntityImages
             const folderName = this.folderName
             return this.#image = new UnusedImage_BigMushroomContainer(mapByArray(this.#fileNames, it => unusedBigMushroomImage(this, folderName, it,),).toArray(),)
         }
+
     }
 
     //endregion -------------------- Sub class --------------------
