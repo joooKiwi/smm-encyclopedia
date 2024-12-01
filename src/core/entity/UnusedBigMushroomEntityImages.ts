@@ -70,7 +70,7 @@ export abstract class UnusedBigMushroomEntityImages
                 return value
 
             const folderName = this.folderName
-            return this.#image = new UnusedImage_BigMushroomContainer(mapByArray(this.#fileNames, it => unusedBigMushroomImage(this, folderName, it,),).toArray(),)
+            return this.#image = new UnusedImage_BigMushroomContainer(mapByArray(this.#fileNames, it => unusedBigMushroomImage(this, folderName, it,),),)
         }
 
     }
