@@ -259,7 +259,7 @@ export abstract class UnusedEntityImages
     public static readonly TEN_COIN =                                      new UnusedEntityImages.Null()
     public static readonly THIRTY_COIN =                                   new UnusedEntityImages.Null()
     public static readonly FIFTY_COIN =                                    new UnusedEntityImages.Null()
-    public static readonly PINK_COIN =                                     new UnusedEntityImages.Null()
+    public static readonly PINK_COIN =                                     new UnusedEntityImages.ExistantIn3GameStyle('Pink Coin', SMB, 'M1 Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], SMB3, 'M3 Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], SMW, 'MW Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
 
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectile --------------------
