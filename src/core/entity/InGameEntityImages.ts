@@ -743,6 +743,44 @@ export abstract class InGameEntityImages
 
     }
 
+    private static readonly ExistantAsNoVariantWithSameSmbAndSmb3AndNotNsmbuAndSm3dw = class ExistantAsNoVariantWithSameSmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileNames_smbSmb3 = this.smbSmb3FileNames
+            const fileNames_smw = this.smwFileNames
+            const fileNamesSize_smbSmb3 = fileNames_smbSmb3.length
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>,]>(fileNamesSize_smbSmb3 * 2 + fileNames_smw.length)
+
+            let index = -1
+            forEachByArray(fileNames_smbSmb3, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+            },)
+            index += fileNamesSize_smbSmb3
+
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     private static readonly ExistantAsNoVariantWithSameSmb3AndSmw = class ExistantAsNoVariantWithSameSmb3AndSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
@@ -1508,7 +1546,30 @@ export abstract class InGameEntityImages
     ],)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new InGameEntityImages.Null()
 
-    public static readonly BOOM_BOOM =                                     new InGameEntityImages.Null()
+    public static readonly BOOM_BOOM =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3AndNotNsmbuAndSm3dw('Boom Boom', 'Enemy - Bunbun', [
+        'damage.0', 'damage.1',
+        'damage_fly.0', 'damage_fly.1',
+        'fly.0', 'fly.1', 'fly.2', 'fly.3', 'fly.4', 'fly.5',
+        'jump_ed.0', 'jump_ed.1',
+        'jump_st.0',
+        'squat.0', 'squat.1', 'squat.2',
+        'squat_fly.0', 'squat_fly.1', 'squat_fly.2',
+        'standup.0', 'standup.1', 'standup.2',
+        'standup_fly.0', 'standup_fly.1', 'standup_fly.2',
+        'walk.0', 'walk.1', 'walk.2', 'walk.3', 'walk.4', 'walk.5'
+    ], [
+        'damage.0', 'damage.1',
+        'damage_fly.0', 'damage_fly.1',
+        'fly.0', 'fly.1', 'fly.2', 'fly.3', 'fly.4',
+        'jump_ed.0', 'jump_ed.1',
+        'jump_st.0',
+        'parawait.0',
+        'squat.0', 'squat.1', 'squat.2',
+        'squat_fly.0', 'squat_fly.1', 'squat_fly.2',
+        'standup.0', 'standup.1', 'standup.2',
+        'standup_fly.0', 'standup_fly.1', 'standup_fly.2',
+        'walk.0', 'walk.1', 'walk.2', 'walk.3', 'walk.4', 'walk.5'
+    ],)
     public static readonly POM_POM =                                       new InGameEntityImages.Null()
     public static readonly POM_POM_CLONE =                                 new InGameEntityImages.Null()
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new InGameEntityImages.Null()
