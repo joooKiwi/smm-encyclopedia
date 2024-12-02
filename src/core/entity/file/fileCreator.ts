@@ -28,8 +28,6 @@ export function clearConditionImage<const GAME_STYLE_ACRONYM extends PossibleAcr
     return new SimpleImageFile(`entity/clear condition/`, `${gameStyleAcronym}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (clear condition)`,)
 }
 
-//region -------------------- In game image --------------------
-
 /**
  * Create a {@link InGameImageFile} from the {@link folderName} and {@link fileName} provided
  *
