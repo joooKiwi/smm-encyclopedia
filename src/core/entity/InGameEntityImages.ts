@@ -73,10 +73,10 @@ export abstract class InGameEntityImages
         return Existant_InGameEntityImages
     })()
 
-    //region -------------------- Sub class (one in 1 specific game style) --------------------
+    //region -------------------- Sub class (1 image) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAsOneInOnlySmb = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs1InOnlySmb = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -91,14 +91,12 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (one in 1 specific game style) --------------------
-    //region -------------------- Sub class (one in 3 specific game style) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 1 only {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs1InNotNsmbuSm3dw = class ExistantAs1InOnlySmbInNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -119,14 +117,12 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (one in 3 specific game style) --------------------
-    //region -------------------- Sub class (one in 4 specific game style) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 1 only {@link InGameImageFile} in {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
      */
-    private static readonly ExistantAsOneInNotSm3dw = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs1InNotSm3dw = class ExistantAs1InOnlySmb_InNotSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${PossibleAcronym_InFile_SMM1} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -149,17 +145,19 @@ export abstract class InGameEntityImages
     }
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3}, {@link SMW} and a different {@link NSMBU}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 1 {@link InGameImageFile} in {@link SMB}, {@link SMB3}, {@link SMW}
+     * and 1 different {@link InGameImageFile} in {@link NSMBU}
      */
-    private static readonly ExistantAsOneInNotSm3dwButDifferentNsmbu = class ExistantAsOneInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs1InNotSm3dwButDifferentNsmbu = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME, private readonly nsmbuFileName: NSMBU_FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME,
+                           private readonly nsmbuFileName: NSMBU_FILE_NAME,) {
             super(englishName,)
         }
 
@@ -176,11 +174,80 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (one in 4 specific game style) --------------------
-    //region -------------------- Sub class (two in 1 specific game style) --------------------
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 1 {@link InGameImageFile} in {@link SMB}, {@link SMB3}
+     * and 2 {@link InGameImageFile} in {@link SMW}
+     */
+    private static readonly ExistantAs1InNotNsmbuSm3dwAnd2Smw = class ExistantAs1InNotNsmbuSm3dwAnd2Smw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const SMW_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME,
+                           private readonly smwFileName1: SMW_FILE_NAME, private readonly smwFileName2: SMW_FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.fileName
+            const endingFolderName = this.endingFolderName
+            const folderName_smw = `MW ${endingFolderName}` as const
+
+            return [
+                [SMB,  inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [SMB3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [SMW,  inGameImage(this, folderName_smw,           this.smwFileName1,),],
+                [SMW,  inGameImage(this, folderName_smw,           this.smwFileName2,),],
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 1 {@link InGameImageFile} in {@link SMB}, {@link SMB3}, {@link SMW}
+     * and 2 {@link InGameImageFile} in {@link NSMBU}
+     * and 1 different {@link InGameImageFile} in {@link SM3DW}
+     */
+    private static readonly ExistantAs1And2NsmbuButDifferentSm3dw = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string,
+        const SM3DW_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>
+                                                  | InGameImageFile<`3W ${ENDING_FOLDER_NAME}`, SM3DW_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME,
+                           private readonly nsmbuFileName1: NSMBU_FILE_NAME, private readonly nsmbuFileName2: NSMBU_FILE_NAME, private readonly sm3dwFileName: SM3DW_FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.fileName
+            const endingFolderName = this.endingFolderName
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+
+            return [
+                [SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu,         this.nsmbuFileName1,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu,         this.nsmbuFileName2,),],
+                [SM3DW, inGameImage(this, `3W ${endingFolderName}`, this.sm3dwFileName,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (1 image) --------------------
+    //region -------------------- Sub class (2 images) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAsTwoInOnlySmw = class ExistantAsTwoInOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs2InOnlySmw = class ExistantAsTwoInOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -199,14 +266,12 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (two in 1 specific game style) --------------------
-    //region -------------------- Sub class (two in 2 specific game style) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile}
-     * in only {@link SMB} and {@link SMB3}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 2 {@link InGameImageFile} in only {@link SMB} and {@link SMB3}
      */
-    private static readonly ExistantAsTwoInOnlySmbAndSmb3 = class ExistantAsTwoInOnlySmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs2InOnlySmbAndSmb3 = class ExistantAs2InOnlySmbSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -232,14 +297,12 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (two in 2 specific game style) --------------------
-    //region -------------------- Sub class (two in 3 specific game style) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 2 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsTwoInNotNsmbuAndSm3dw = class ExistantAsTwoInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs2InNotNsmbuSm3dw = class ExistantAs2InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -268,11 +331,11 @@ export abstract class InGameEntityImages
     }
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 2 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * plus 1 {@link InGameImageFile} in {@link NSMBU}
      */
-    private static readonly ExistantAsTwoInNotSm3dwAndOneNsmbu = class ExistantAsTwoInNotSm3dwAndOneNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs2InNotSm3dwAnd1Nsmbu = class ExistantAs2InNotSm3dwAnd1Nsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -303,16 +366,17 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (two in 3 specific game style) --------------------
-    //region -------------------- Sub class (three in 1 specific game style) --------------------
+    //endregion -------------------- Sub class (2 images) --------------------
+    //region -------------------- Sub class (3 images) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAsThreeInOnlySmb = class ExistantAsThreeInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3InOnlySmb = class ExistantAs3InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -327,19 +391,18 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (three in 1 specific game style) --------------------
-    //region -------------------- Sub class (three in 3 specific game style) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 3 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsThreeInNotNsmbuAndSm3dw = class ExistantAsThreeInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3InNotNsmbuSm3dw = class ExistantAs3InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -367,18 +430,19 @@ export abstract class InGameEntityImages
     }
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 3 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAsThreeAndNotSm3dwWithNsmbu = class ExistantAsThreeInNotSm3dwWithNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3AndNotSm3dwWithNsmbu = class ExistantAs3InNotSm3dwWithNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -414,16 +478,17 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (three in 3 specific game style) --------------------
-    //region -------------------- Sub class (four in 1 specific game style) --------------------
+    //endregion -------------------- Sub class (3 images) --------------------
+    //region -------------------- Sub class (4 images) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAsFourInOnlySmb = class ExistantAsFourInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InOnlySmb = class ExistantAs4InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -440,12 +505,13 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAsFourInOnlySmw = class ExistantAsFourInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InOnlySmw = class ExistantAs4InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -461,19 +527,18 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (four in 1 specific game style) --------------------
-    //region -------------------- Sub class (four in 3 specific game style) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 4 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAsFourInNotNsmbuAndSm3dw = class ExistantAsFourInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InNotNsmbuAndSm3dw = class ExistantAs4InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -505,18 +570,20 @@ export abstract class InGameEntityImages
     }
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 4 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAsFourInNotSm3dwWithNsmbu = class ExistantAsFourInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InNotSm3dwWithNsmbu = class ExistantAs4InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -557,16 +624,18 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (four in 3 specific game style) --------------------
-    //region -------------------- Sub class (five in 1 specific game style) --------------------
+    //endregion -------------------- Sub class (4 images) --------------------
+    //region -------------------- Sub class (5 images) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 5 {@link InGameImageFile} in only {@link SM3DW} */
-    private static readonly ExistantAsFiveInOnlySm3dw = class ExistantAsFiveInOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs5InOnlySm3dw = class ExistantAs5InOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
+                           private readonly fileName5: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -583,16 +652,132 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (five in 1 specific game style) --------------------
-    //region -------------------- Sub class (six in 1 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 5 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
+     * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
+     */
+    private static readonly ExistantAs5InNotSm3dwWithNsmbu = class ExistantAs5InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileName4 = this.fileName4
+            const fileName5 = this.fileName5
+            const fileNames_nsmbu = this.nsmbuFileNames
+
+            const imageFiles = new Array<readonly [GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(16 + fileNames_nsmbu.length,)
+
+            imageFiles[0] =  [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] =  [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] =  [SMB,  inGameImage(this, folderName_smb,  fileName3,),]
+            imageFiles[3] =  [SMB,  inGameImage(this, folderName_smb,  fileName4,),]
+            imageFiles[4] =  [SMB,  inGameImage(this, folderName_smb,  fileName5,),]
+            imageFiles[5] =  [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[6] =  [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+            imageFiles[7] =  [SMB3, inGameImage(this, folderName_smb3, fileName3,),]
+            imageFiles[8] =  [SMB3, inGameImage(this, folderName_smb3, fileName4,),]
+            imageFiles[9] =  [SMB3, inGameImage(this, folderName_smb3, fileName5,),]
+            imageFiles[10] = [SMW,  inGameImage(this, folderName_smw,  fileName1,),]
+            imageFiles[11] = [SMW,  inGameImage(this, folderName_smw,  fileName2,),]
+            imageFiles[12] = [SMW,  inGameImage(this, folderName_smw,  fileName3,),]
+            imageFiles[13] = [SMW,  inGameImage(this, folderName_smw,  fileName4,),]
+            imageFiles[14] = [SMW,  inGameImage(this, folderName_smw,  fileName5,),]
+
+            let index = 14
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 5 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
+     * and 1 {@link InGameImageFile} in {@link InGameImageFile} on {@link NSMBU} and {@link SM3DW}
+     */
+    private static readonly ExistantAs5WithSameSmbSmb3SmwAnd1NsmbuSm3dw = class ExistantAs5WithSameSmbSmb3SmwAnd1NsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_SMB3_SMW_FILE_NAME extends string,
+        const NSMBU_SM3DW_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`${| 'WU' | '3W'} ${ENDING_FOLDER_NAME}`, NSMBU_SM3DW_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: SMB_SMB3_SMW_FILE_NAME, private readonly fileName2: SMB_SMB3_SMW_FILE_NAME, private readonly fileName3: SMB_SMB3_SMW_FILE_NAME,
+                           private readonly fileName4: SMB_SMB3_SMW_FILE_NAME, private readonly fileName5: SMB_SMB3_SMW_FILE_NAME, private readonly nsmbuSm3dwFileName: NSMBU_SM3DW_FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const fileName1_smbSmb3Smw = this.fileName1
+            const fileName2_smbSmb3Smw = this.fileName2
+            const fileName3_smbSmb3Smw = this.fileName3
+            const fileName4_smbSmb3Smw = this.fileName4
+            const fileName5_smbSmb3Smw = this.fileName5
+            const fileName_nsmbuSm3dw = this.nsmbuSm3dwFileName
+
+            return [
+                [SMB,   inGameImage(this, folderName_smb,            fileName1_smbSmb3Smw,),],
+                [SMB,   inGameImage(this, folderName_smb,            fileName2_smbSmb3Smw,),],
+                [SMB,   inGameImage(this, folderName_smb,            fileName3_smbSmb3Smw,),],
+                [SMB,   inGameImage(this, folderName_smb,            fileName4_smbSmb3Smw,),],
+                [SMB,   inGameImage(this, folderName_smb,            fileName5_smbSmb3Smw,),],
+                [SMB3,  inGameImage(this, folderName_smb3,           fileName1_smbSmb3Smw,),],
+                [SMB3,  inGameImage(this, folderName_smb3,           fileName2_smbSmb3Smw,),],
+                [SMB3,  inGameImage(this, folderName_smb3,           fileName3_smbSmb3Smw,),],
+                [SMB3,  inGameImage(this, folderName_smb3,           fileName4_smbSmb3Smw,),],
+                [SMB3,  inGameImage(this, folderName_smb3,           fileName5_smbSmb3Smw,),],
+                [SMW,   inGameImage(this, folderName_smw,            fileName1_smbSmb3Smw,),],
+                [SMW,   inGameImage(this, folderName_smw,            fileName2_smbSmb3Smw,),],
+                [SMW,   inGameImage(this, folderName_smw,            fileName3_smbSmb3Smw,),],
+                [SMW,   inGameImage(this, folderName_smw,            fileName4_smbSmb3Smw,),],
+                [SMW,   inGameImage(this, folderName_smw,            fileName5_smbSmb3Smw,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`,  fileName_nsmbuSm3dw,),],
+                [NSMBU, inGameImage(this, `3W ${endingFolderName}`,  fileName_nsmbuSm3dw,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (5 images) --------------------
+    //region -------------------- Sub class (6 images) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 6 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAsSixInOnlySmw = class ExistantAsSixInOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs6InOnlySmw = class ExistantAs6InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
+                           private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -610,15 +795,15 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (six in 1 specific game style) --------------------
-    //region -------------------- Sub class (seven in 3 specific game style) --------------------
+    //endregion -------------------- Sub class (6 images) --------------------
+    //region -------------------- Sub class (7 images) --------------------
 
     /**
-     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 7 {@link InGameImageFile}
-     * in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 7 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAsSevenInNotSm3dwWithNsmbu = class ExistantAsSevenInNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs7InNotSm3dwWithNsmbu = class ExistantAs7InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -681,7 +866,7 @@ export abstract class InGameEntityImages
 
     }
 
-    //endregion -------------------- Sub class (seven in 3 specific game style) --------------------
+    //endregion -------------------- Sub class (7 images) --------------------
     //region -------------------- Sub class (no variant) --------------------
 
     private static readonly ExistantAsNoVariant = class ExistantAsNoVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
@@ -730,7 +915,7 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantAndNotNsmbuAndSm3dw = class ExistantAsNoVariantAndNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsNoVariantAndNotNsmbuSm3dw = class ExistantAsNoVariantAndNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
         const SMB3_FILE_NAME extends string,
@@ -769,7 +954,7 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantWithSameSmbAndSmb3 = class ExistantAsNoVariantWithSameSmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsNoVariantWithSameSmbSmb3 = class ExistantAsNoVariantWithSameSmbSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_SMB3_FILE_NAME extends string,
         const SMW_FILE_NAME extends string,
@@ -814,7 +999,7 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantWithSameSmbAndSmb3AndNotNsmbuAndSm3dw = class ExistantAsNoVariantWithSameSmbAndSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsNoVariantWithSameSmbSmb3AndNotNsmbuSm3dw = class ExistantAsNoVariantWithSameSmbSmb3AndNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_SMB3_FILE_NAME extends string,
         const SMW_FILE_NAME extends string, >
@@ -852,7 +1037,7 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantWithSameSmb3AndSmw = class ExistantAsNoVariantWithSameSmb3AndSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsNoVariantWithSameSmb3Smw = class ExistantAsNoVariantWithSameSmb3Smw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
         const SMB3_SMW_FILE_NAME extends string,
@@ -958,7 +1143,7 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw = class ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsBlueVariantWithSameSmbSmb3Smw = class ExistantAsBlueVariantWithSameSmbSmb3Smw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_SMB3_SMW_FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -1005,184 +1190,6 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (blue variant) --------------------
-    //region -------------------- Sub class (predefined) --------------------
-
-    /** A subclass of an {@link InGameEntityImages} for only the {@link WATER} */
-    private static readonly ExistantAsWater = class ExistantAsWater_InGameEntityImages
-        extends InGameEntityImages.Existant<'Water', | InGameImageFile<'M1 Object - WaterHalf', `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
-                                                     | InGameImageFile<'M3 Object - WaterHalf', `${| 'body' | 'top'}.${| 0 | 1 | 2 | 3}`, 'Water'>
-                                                     | InGameImageFile<'MW Object - WaterHalf', `body.${| 0 | 1 | 2 | 3}`, 'Water'>> {
-
-        public constructor() { super('Water',) }
-
-        public override _createImageFiles() {
-            return [
-                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.0',),],
-                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.1',),],
-                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.2',),],
-                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.3',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.0',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.1',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.2',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.3',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.0',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.1',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.2',),],
-                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.3',),],
-                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.0',),],
-                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.1',),],
-                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.2',),],
-                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.3',),],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIKOOPA_PROJECTILE} */
-    private static readonly ExistantAsMagikoopaProjectile = class ExistantAsMagikoopaProjectile_InGameEntityImages
-        extends InGameEntityImages.Existant<'(Magikoopa’s projectile)', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa’s projectile)'>
-                                                                        | InGameImageFile<`${| 'WU' | '3W'} Enemy - Kameck`, 'effect.0', '(Magikoopa’s projectile)'>> {
-
-        public constructor() { super('(Magikoopa’s projectile)',) }
-
-        public override _createImageFiles() {
-            return [
-                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'effect.0',),],
-                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'effect.1',),],
-                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'effect.2',),],
-                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.0',),],
-                [SMB,   inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.1',),],
-
-                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'effect.0',),],
-                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'effect.1',),],
-                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'effect.2',),],
-                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.0',),],
-                [SMB3,  inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.1',),],
-
-                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'effect.0',),],
-                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'effect.1',),],
-                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'effect.2',),],
-                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.0',),],
-                [SMW,   inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.1',),],
-
-                [NSMBU, inGameImage(this, 'WU Enemy - Kameck', 'effect.0',),],
-
-                [SM3DW, inGameImage(this, '3W Enemy - Kameck', 'effect.0',),],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link InGameEntityImages} for only the {@link FIRE_BAR} */
-    private static readonly ExistantAsFireBar = class ExistantAsFireBar_InGameEntityImages
-        extends InGameEntityImages.Existant<'Fire Bar', | InGameImageFile<`${| 'M1' | 'M3'} Object - Firebar`, | 'block' | 'fire.0', 'Fire Bar'>
-                                                        | InGameImageFile<'MW Object - Firebar', | 'block' | `fire.${| 0 | 1 | 2}`, 'Fire Bar'>
-                                                        | InGameImageFile<'WU Object - Firebar', | 'center_firebar_Alb.000' | `firebar${| EmptyString | '_core'}`, 'Fire Bar'>> {
-
-        public constructor() { super('Fire Bar',) }
-
-        public override _createImageFiles() {
-            return [
-                [SMB,   inGameImage(this, 'M1 Object - Firebar', 'block',),],
-                [SMB,   inGameImage(this, 'M1 Object - Firebar', 'fire.0',),],
-
-                [SMB3,  inGameImage(this, 'M3 Object - Firebar', 'block',),],
-                [SMB3,  inGameImage(this, 'M3 Object - Firebar', 'fire.0',),],
-
-                [SMW,   inGameImage(this, 'MW Object - Firebar', 'block',),],
-                [SMW,   inGameImage(this, 'MW Object - Firebar', 'fire.0',),],
-                [SMW,   inGameImage(this, 'MW Object - Firebar', 'fire.1',),],
-                [SMW,   inGameImage(this, 'MW Object - Firebar', 'fire.2',),],
-
-                [NSMBU, inGameImage(this, 'WU Object - Firebar', 'center_firebar_Alb.000',),],
-                [NSMBU, inGameImage(this, 'WU Object - Firebar', 'firebar',),],
-                [NSMBU, inGameImage(this, 'WU Object - Firebar', 'firebar_core',),],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIC_BALL_THROWN_BY_A_LEMMY} */
-    private static readonly ExistantAsMagicBall = class ExistantAsMagicBall_InGameEntityImages
-        extends InGameEntityImages.Existant<'Magic Ball thrown by a Lemmy', | InGameImageFile<`${| 'M1' | 'M3'} Enemy - Lemmy`, 'ball.0', 'Magic Ball thrown by a Lemmy'>
-                                                                            | InGameImageFile<'MW Enemy - Lemmy', `ball${| '.0' | '_specular'}`, 'Magic Ball thrown by a Lemmy'>> {
-
-        public constructor() { super('Magic Ball thrown by a Lemmy',) }
-
-        public override _createImageFiles() {
-            return [
-                [SMB,  inGameImage(this, 'M1 Enemy - Lemmy', 'ball.0',),],
-                [SMB3, inGameImage(this, 'M3 Enemy - Lemmy', 'ball.0',),],
-                [SMW,  inGameImage(this, 'MW Enemy - Lemmy', 'ball.0',),],
-                [SMW,  inGameImage(this, 'MW Enemy - Lemmy', 'ball_specular',),],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link InGameEntityImages} for only the {@link AXE} */
-    private static readonly ExistantAsAxe = class ExistantAsAxe_InGameEntityImages
-        extends InGameEntityImages.Existant<'Axe', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Ono`, | `wait.${| 0 | 1 | 2 | 3}` | 'ono_Xlu', 'Axe'>
-                                                   | InGameImageFile<'WU Object - Ono', | `ono_Alb.00${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7}` | 'onoXlu_Alb.000', 'Axe'>> {
-
-        public constructor() { super('Axe',) }
-
-        public override _createImageFiles() {
-            return [
-                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.0',),],
-                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.1',),],
-                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.2',),],
-                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.3',),],
-                [SMB,   inGameImage(this, 'M1 Object - Ono', 'ono_Xlu',),],
-
-                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.0',),],
-                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.1',),],
-                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.2',),],
-                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.3',),],
-                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'ono_Xlu',),],
-
-                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.0',),],
-                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.1',),],
-                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.2',),],
-                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.3',),],
-                [SMW,   inGameImage(this, 'MW Object - Ono', 'ono_Xlu',),],
-
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.000',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.001',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.002',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.003',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.004',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.005',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.006',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.007',),],
-                [NSMBU, inGameImage(this, 'WU Object - Ono', 'onoXlu_Alb.000',),],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link InGameEntityImages} for only the {@link BUBBLE} */
-    private static readonly ExistantAsBubble = class ExistantAsBubble_InGameEntityImages
-        extends InGameEntityImages.Existant<'Bubble', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Balloon`, 'balloon.0', 'Bubble'>
-                                                      | InGameImageFile<'WU Object - Balloon', `balloon${| EmptyString | 2}.0`, 'Bubble'>
-                                                      | InGameImageFile<'3W Object - Balloon', 'TractorBubble_Alb', 'Bubble'>> {
-
-        public constructor() { super('Bubble',) }
-
-        public override _createImageFiles() {
-            return [
-                [SMB,   inGameImage(this, 'M1 Object - Balloon', 'balloon.0',),],
-                [SMB3,  inGameImage(this, 'M3 Object - Balloon', 'balloon.0',),],
-                [SMW,   inGameImage(this, 'MW Object - Balloon', 'balloon.0',),],
-                [NSMBU, inGameImage(this, 'WU Object - Balloon', 'balloon.0',),],
-                [NSMBU, inGameImage(this, 'WU Object - Balloon', 'balloon2.0',),],
-                [SM3DW, inGameImage(this, '3W Object - Balloon', 'TractorBubble_Alb',),],
-            ] as const
-        }
-
-    }
-
-    //endregion -------------------- Sub class (predefined) --------------------
 
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
@@ -1196,12 +1203,12 @@ export abstract class InGameEntityImages
     public static readonly STEEP_SLOPE =                                   new InGameEntityImages.Null()
     public static readonly GENTLE_SLOPE =                                  new InGameEntityImages.Null()
 
-    public static readonly START_BLOCK =                                   new InGameEntityImages.ExistantAsOneInNotSm3dw('Start Block', 'Object - StartBlock', 'startblock',)
+    public static readonly START_BLOCK =                                   new InGameEntityImages.ExistantAs1InNotSm3dw('Start Block', 'Object - StartBlock', 'startblock',)
     public static readonly OCCLUDE_BLOCK =                                 new InGameEntityImages.Null()
 
-    public static readonly WATER =                                         new InGameEntityImages.ExistantAsWater()
-    public static readonly LAVA =                                          new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
-    public static readonly POISON =                                        new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly WATER =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Water', 'Object - WaterHalf', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], ['body.0', 'body.1', 'body.2', 'body.3', 'top.0', 'top.1', 'top.2', 'top.3',], ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
+    public static readonly LAVA =                                          new InGameEntityImages.ExistantAs4InNotNsmbuAndSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly POISON =                                        new InGameEntityImages.ExistantAs4InNotNsmbuAndSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly PIPE =                                          new InGameEntityImages.Null()
     public static readonly CLEAR_PIPE =                                    new InGameEntityImages.Null()
@@ -1227,7 +1234,7 @@ export abstract class InGameEntityImages
 
     public static readonly QUESTION_MARK_BLOCK =                           new InGameEntityImages.Null()
     public static readonly HIDDEN_BLOCK =                                  new InGameEntityImages.Null()
-    public static readonly EMPTY_BLOCK =                                   new InGameEntityImages.ExistantAsOneInNotSm3dw('Empty Block', 'Object - BlockKara', 'wait.0',)
+    public static readonly EMPTY_BLOCK =                                   new InGameEntityImages.ExistantAs1InNotSm3dw('Empty Block', 'Object - BlockKara', 'wait.0',)
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new InGameEntityImages.Null()
 
@@ -1264,18 +1271,18 @@ export abstract class InGameEntityImages
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
 
     public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.Null()
-    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new InGameEntityImages.ExistantAsOneInOnlySmb('Superball thrown by a player', 'M1 Object - Superball', 'superball',)
+    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new InGameEntityImages.ExistantAs1InOnlySmb('Superball thrown by a player', 'M1 Object - Superball', 'superball',)
 
-    public static readonly MYSTERY_MUSHROOM =                              new InGameEntityImages.ExistantAsOneInOnlySmb('Mystery Mushroom', 'M1 Item - CharaKinoko', 'Add_kinoko',)
-    public static readonly WEIRD_MUSHROOM =                                new InGameEntityImages.ExistantAsOneInOnlySmb('Weird Mushroom', 'M1 Item - KinokoFunny', 'kinokofunny.0',)
+    public static readonly MYSTERY_MUSHROOM =                              new InGameEntityImages.ExistantAs1InOnlySmb('Mystery Mushroom', 'M1 Item - CharaKinoko', 'Add_kinoko',)
+    public static readonly WEIRD_MUSHROOM =                                new InGameEntityImages.ExistantAs1InOnlySmb('Weird Mushroom', 'M1 Item - KinokoFunny', 'kinokofunny.0',)
 
     public static readonly MASTER_SWORD =                                  new InGameEntityImages.Null()
-    public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAsThreeInOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
-    public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAsOneInOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
+    public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAs3InOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
+    public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAs1InOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
 
     public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.Null()
-    public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAsOneInNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
-    public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAsOneInNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
+    public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
+    public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
 
     public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.Null()
 
@@ -1315,18 +1322,18 @@ export abstract class InGameEntityImages
     public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.Null()
     public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.Null()
 
-    public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Shoe Goomba', 'Enemy - KutsuKuriboA', 'edit_drag.0', 'edit_drag.1',)
-    public static readonly SHOE =                                          new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Shoe', 'Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)
-    public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto Goomba', 'Enemy - KutsuKuriboB', 'edit_drag.0', 'edit_drag.1',)
-    public static readonly STILETTO =                                      new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)
-    public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAsTwoInOnlySmw('Yoshi’s Egg', 'MW Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
+    public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Shoe Goomba', 'Enemy - KutsuKuriboA', 'edit_drag.0', 'edit_drag.1',)
+    public static readonly SHOE =                                          new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Shoe', 'Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)
+    public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Stiletto Goomba', 'Enemy - KutsuKuriboB', 'edit_drag.0', 'edit_drag.1',)
+    public static readonly STILETTO =                                      new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Stiletto', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)
+    public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAs2InOnlySmw('Yoshi’s Egg', 'MW Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly YOSHI =                                         new InGameEntityImages.Null()
-    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.ExistantAsTwoInOnlySmw('Fire thrown by a Yoshi', 'MW Player - YoshiFire', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi fire thrown" (if present)
-    public static readonly POISON_THROWN_BY_A_YOSHI =                      new InGameEntityImages.ExistantAsTwoInOnlySmw('Poison thrown by a Yoshi', 'MW Player - YoshiPoison', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi poison thrown" (if present)
+    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.ExistantAs2InOnlySmw('Fire thrown by a Yoshi', 'MW Player - YoshiFire', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi fire thrown" (if present)
+    public static readonly POISON_THROWN_BY_A_YOSHI =                      new InGameEntityImages.ExistantAs2InOnlySmw('Poison thrown by a Yoshi', 'MW Player - YoshiPoison', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi poison thrown" (if present)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
-    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsTwoInOnlySmw('Red Yoshi’s Egg', 'MW Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
+    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAs2InOnlySmw('Red Yoshi’s Egg', 'MW Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly RED_YOSHI =                                     new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new InGameEntityImages.Null()
 
@@ -1338,7 +1345,7 @@ export abstract class InGameEntityImages
     public static readonly GOOMBRAT =                                      new InGameEntityImages.Null()
     public static readonly GOOMBUD =                                       new InGameEntityImages.Null()
 
-    public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3('Green Koopa Troopa', 'Enemy - NokonokoA', [
+    public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Green Koopa Troopa', 'Enemy - NokonokoA', [
         'revival.0', 'revival.1', 'revival.2',
         'walk.0', 'walk.1',
     ], [
@@ -1349,7 +1356,7 @@ export abstract class InGameEntityImages
         'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
         'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
         'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',],)
-    public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3('Red Koopa Troopa', 'Enemy - NokonokoB', [
+    public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Red Koopa Troopa', 'Enemy - NokonokoB', [
         'revival.0', 'revival.1', 'revival.2',
         'walk.0', 'walk.1',
     ], [
@@ -1360,14 +1367,14 @@ export abstract class InGameEntityImages
         'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
         'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
         'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',],)
-    public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAsSixInOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
-    public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAsSixInOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
-    public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
-    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Red Koopa Shell', 'Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
+    public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAs6InOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
+    public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAs6InOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
+    public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
+    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Red Koopa Shell', 'Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
 
     public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
-    public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAsFourInOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
+    public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAs4InOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
     public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.Null()
 
     public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.Null()
@@ -1376,8 +1383,8 @@ export abstract class InGameEntityImages
 
     public static readonly SPINY =                                         new InGameEntityImages.Null()
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.Null()
-    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0',)
-    public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1',)
+    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0',)
+    public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAs2InNotNsmbuSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1',)
     public static readonly SPINY_SHELL =                                   new InGameEntityImages.Null()
 
     public static readonly SPIKE_TOP =                                     new InGameEntityImages.Null()
@@ -1396,16 +1403,16 @@ export abstract class InGameEntityImages
     public static readonly CHEEP_CHEEP =                                   new InGameEntityImages.Null()
     public static readonly BLURPS =                                        new InGameEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
-    public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAsSevenInNotSm3dwWithNsmbu('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
+    public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dwWithNsmbu('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
         'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.031',
         'attack_st_Alb.000', 'attack_st_Alb.002', 'attack_st_Alb.004', 'attack_st_Alb.006', 'attack_st_Alb.008', 'attack_st_Alb.010', 'attack_st_Alb.012', 'attack_st_Alb.014', 'attack_st_Alb.016', 'attack_st_Alb.018', 'attack_st_Alb.020', 'attack_st_Alb.022', 'attack_st_Alb.024', 'attack_st_Alb.026', 'attack_st_Alb.028', 'attack_st_Alb.030', 'attack_st_Alb.032', 'attack_st_Alb.034', 'attack_st_Alb.036', 'attack_st_Alb.038', 'attack_st_Alb.040',
         'break_Alb.000',
         'swim_Alb.000', 'swim_Alb.004', 'swim_Alb.008', 'swim_Alb.012', 'swim_Alb.016', 'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.036', 'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.048', 'swim_Alb.052', 'swim_Alb.056', 'swim_Alb.060', 'swim_Alb.063', 'swim_Alb.064', 'swim_Alb.068', 'swim_Alb.072', 'swim_Alb.076', 'swim_Alb.080', 'swim_Alb.083',
     ],)
 
-    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', ['edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',],)
+    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', ['edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',],)
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
-    public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAsTwoInNotSm3dwAndOneNsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
+    public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAs2InNotSm3dwAnd1Nsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
 
     public static readonly PORCUPUFFER =                                   new InGameEntityImages.Null()
 
@@ -1443,18 +1450,18 @@ export abstract class InGameEntityImages
 
     public static readonly THWOMP =                                        new InGameEntityImages.Null()
 
-    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAsThreeAndNotSm3dwWithNsmbu('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
+    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3AndNotSm3dwWithNsmbu('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
         'go_out_st_Alb.000', 'go_out_st_Alb.002', 'go_out_st_Alb.004', 'go_out_st_Alb.006', 'go_out_st_Alb.008', 'go_out_st_Alb.010', 'go_out_st_Alb.012', 'go_out_st_Alb.014', 'go_out_st_Alb.016', 'go_out_st_Alb.018',
         'in_dokan_Alb.000', 'in_dokan_Alb.002', 'in_dokan_Alb.004', 'in_dokan_Alb.006', 'in_dokan_Alb.008', 'in_dokan_Alb.009',
         'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008', 'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018', 'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028', 'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
         'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007', 'walk_Alb.008', 'walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018',],)
     public static readonly ROCKY_WRENCH =                                  new InGameEntityImages.Null()
-     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAsFourInNotSm3dwWithNsmbu('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
+     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
 
     public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
-    public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAsMagikoopaProjectile()
+    public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAs5WithSameSmbSmb3SmwAnd1NsmbuSm3dw('Magikoopa', 'Enemy - Kameck', 'effect.0', 'effect.1', 'effect.2', 'wing_wait.0', 'wing_wait.1', 'effect.0',)
 
-    public static readonly HAMMER_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Hammer Bro', 'Enemy - Bros', [
+    public static readonly HAMMER_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Hammer Bro', 'Enemy - Bros', [
         'throw.0', 'throw.1',
         'walk.0', 'walk.1',
     ], [
@@ -1470,7 +1477,7 @@ export abstract class InGameEntityImages
         'throw_Alb.000', 'throw_Alb.002', 'throw_Alb.004', 'throw_Alb.006', 'throw_Alb.008', 'throw_Alb.010', 'throw_Alb.014', 'throw_Alb.016', 'throw_Alb.018', 'throw_Alb.020', 'throw_Alb.022', 'throw_Alb.024', 'throw_Alb.026', 'throw_Alb.028', 'throw_Alb.030', 'throw_Alb.032', 'throw_Alb.034', 'throw_Alb.036', 'throw_Alb.038', 'throw_Alb.040', 'throw_Alb.042', 'throw_Alb.044', 'throw_Alb.046', 'throw_Alb.048', 'throw_Alb.050', 'throw_Alb.052', 'throw_Alb.054', 'throw_Alb.056', 'throw_Alb.058', 'throw_Alb.060',
         'throw_held_Alb.000', 'throw_held_Alb.002', 'throw_held_Alb.004', 'throw_held_Alb.006', 'throw_held_Alb.008', 'throw_held_Alb.010', 'throw_held_Alb.014', 'throw_held_Alb.016', 'throw_held_Alb.018', 'throw_held_Alb.020', 'throw_held_Alb.022', 'throw_held_Alb.024', 'throw_held_Alb.026', 'throw_held_Alb.028', 'throw_held_Alb.030', 'throw_held_Alb.032', 'throw_held_Alb.034', 'throw_held_Alb.036', 'throw_held_Alb.038', 'throw_held_Alb.040', 'throw_held_Alb.042', 'throw_held_Alb.044', 'throw_held_Alb.046', 'throw_held_Alb.048', 'throw_held_Alb.050', 'throw_held_Alb.052', 'throw_held_Alb.054', 'throw_held_Alb.056', 'throw_held_Alb.058', 'throw_held_Alb.060', 'throw_held_Alb.062', 'throw_held_Alb.064', 'throw_held_Alb.066',
         'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.031',],)
-    public static readonly SLEDGE_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3AndSmw('Sledge Bro', 'Enemy - BrosMega', [
+    public static readonly SLEDGE_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Sledge Bro', 'Enemy - BrosMega', [
         'throw.0', 'throw.1',
         'walk.0', 'walk.1',
     ], [
@@ -1487,7 +1494,7 @@ export abstract class InGameEntityImages
         'throw_L_Alb.004', 'throw_L_Alb.006', 'throw_L_Alb.008', 'throw_L_Alb.010', 'throw_L_Alb.014', 'throw_L_Alb.016', 'throw_L_Alb.018', 'throw_L_Alb.020', 'throw_L_Alb.022', 'throw_L_Alb.024', 'throw_L_Alb.026', 'throw_L_Alb.028', 'throw_L_Alb.030', 'throw_L_Alb.032', 'throw_L_Alb.034', 'throw_L_Alb.036', 'throw_L_Alb.038', 'throw_L_Alb.040', 'throw_L_Alb.042', 'throw_L_Alb.044', 'throw_L_Alb.046', 'throw_L_Alb.048', 'throw_L_Alb.050', 'throw_L_Alb.052',
         'throw_L_held_Alb.000', 'throw_L_held_Alb.002', 'throw_L_held_Alb.004', 'throw_L_held_Alb.006', 'throw_L_held_Alb.008', 'throw_L_held_Alb.010', 'throw_L_held_Alb.014', 'throw_L_held_Alb.016', 'throw_L_held_Alb.018', 'throw_L_held_Alb.020', 'throw_L_held_Alb.022', 'throw_L_held_Alb.024', 'throw_L_held_Alb.026', 'throw_L_held_Alb.028', 'throw_L_held_Alb.030', 'throw_L_held_Alb.032', 'throw_L_held_Alb.034', 'throw_L_held_Alb.036', 'throw_L_held_Alb.038', 'throw_L_held_Alb.040', 'throw_L_held_Alb.042', 'throw_L_held_Alb.044', 'throw_L_held_Alb.046', 'throw_L_held_Alb.048', 'throw_L_held_Alb.050', 'throw_L_held_Alb.052',
         'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032',],)
-    public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.ExistantAsOneInNotSm3dwButDifferentNsmbu('Hammer thrown by a Hammer / Sledge Bro', 'Enemy - Bros', 'hammer.0', 'bros_hammer_Alb.000',)
+    public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Hammer thrown by a Hammer / Sledge Bro', 'Enemy - Bros', 'hammer.0', 'bros_hammer_Alb.000',)
     public static readonly FIRE_BRO =                                      new InGameEntityImages.Null()
     public static readonly HEAVY_FIRE_BRO =                                new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_HEAVY_FIRE_BRO =           new InGameEntityImages.Null()
@@ -1496,7 +1503,7 @@ export abstract class InGameEntityImages
 
     public static readonly MECHAKOOPA =                                    new InGameEntityImages.Null()
     public static readonly BLASTA_MECHAKOOPA =                             new InGameEntityImages.Null()
-    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAsTwoInNotSm3dwAndOneNsmbu('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1', 'mechabomb_Alb.000',)
+    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAs2InNotSm3dwAnd1Nsmbu('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1', 'mechabomb_Alb.000',)
     public static readonly ZAPPA_MECHAKOOPA =                              new InGameEntityImages.Null()
     public static readonly ELECTRICITY_BEAM_THROWN_BY_A_ZAPPA_MECHAKOOPA = new InGameEntityImages.Null()
 
@@ -1507,14 +1514,14 @@ export abstract class InGameEntityImages
     //endregion -------------------- General enemy --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
-    public static readonly BILL_BLASTER =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bill Blaster', 'Enemy - KillerHoudai', ['wait.0', 'unit.0',], ['killer_houdai_Alb.000', 'killer_houdai_Alb.002', 'killer_houdai_Alb.004', 'killer_houdai_Alb.006', 'killer_houdai_Alb.008', 'killer_houdai_Alb.0010', 'killer_houdai_Alb.0012', 'killer_houdai_Alb.0014', 'killer_houdai_Alb.0016', 'killer_houdai_Alb.0018', 'killer_houdai_Alb.0020', 'killer_houdai_Alb.0022', 'killer_houdai_Alb.0024', 'killer_houdai_Alb.0026', 'killer_houdai_Alb.0028', 'killer_houdai_Alb.0029', 'unit_Alb.000',],)
-    public static readonly BULLET_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bullet Bill', 'Enemy - Killer', ['wait.0',], ['search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018', 'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039', 'search_Alb.042', 'search_Alb.045', 'search_Alb.047',],)
-    public static readonly BULL_EYE_BLASTER =                              new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bull’s-Eye Blaster', 'Enemy - KillerHoudai', ['search.0', 'unit_search.0',], ['SK_killer_houdai_Alb.000', 'SK_killer_houdai_Alb.002', 'SK_killer_houdai_Alb.004', 'SK_killer_houdai_Alb.006', 'SK_killer_houdai_Alb.008', 'SK_killer_houdai_Alb.0010', 'SK_killer_houdai_Alb.0012', 'SK_killer_houdai_Alb.0014', 'SK_killer_houdai_Alb.0016', 'SK_killer_houdai_Alb.0018', 'SK_killer_houdai_Alb.0020', 'SK_killer_houdai_Alb.0022', 'SK_killer_houdai_Alb.0024', 'SK_killer_houdai_Alb.0026', 'SK_killer_houdai_Alb.0028', 'SK_killer_houdai_Alb.0029', 'SK_unit_Alb.000',],)
-    public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bull’s-Eye Bill', 'Enemy - Killer', ['search.0',], ['SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018', 'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039', 'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',],)
+    public static readonly BILL_BLASTER =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bill Blaster', 'Enemy - KillerHoudai', ['wait.0', 'unit.0',], ['killer_houdai_Alb.000', 'killer_houdai_Alb.002', 'killer_houdai_Alb.004', 'killer_houdai_Alb.006', 'killer_houdai_Alb.008', 'killer_houdai_Alb.0010', 'killer_houdai_Alb.0012', 'killer_houdai_Alb.0014', 'killer_houdai_Alb.0016', 'killer_houdai_Alb.0018', 'killer_houdai_Alb.0020', 'killer_houdai_Alb.0022', 'killer_houdai_Alb.0024', 'killer_houdai_Alb.0026', 'killer_houdai_Alb.0028', 'killer_houdai_Alb.0029', 'unit_Alb.000',],)
+    public static readonly BULLET_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bullet Bill', 'Enemy - Killer', ['wait.0',], ['search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018', 'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039', 'search_Alb.042', 'search_Alb.045', 'search_Alb.047',],)
+    public static readonly BULL_EYE_BLASTER =                              new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Blaster', 'Enemy - KillerHoudai', ['search.0', 'unit_search.0',], ['SK_killer_houdai_Alb.000', 'SK_killer_houdai_Alb.002', 'SK_killer_houdai_Alb.004', 'SK_killer_houdai_Alb.006', 'SK_killer_houdai_Alb.008', 'SK_killer_houdai_Alb.0010', 'SK_killer_houdai_Alb.0012', 'SK_killer_houdai_Alb.0014', 'SK_killer_houdai_Alb.0016', 'SK_killer_houdai_Alb.0018', 'SK_killer_houdai_Alb.0020', 'SK_killer_houdai_Alb.0022', 'SK_killer_houdai_Alb.0024', 'SK_killer_houdai_Alb.0026', 'SK_killer_houdai_Alb.0028', 'SK_killer_houdai_Alb.0029', 'SK_unit_Alb.000',],)
+    public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Bill', 'Enemy - Killer', ['search.0',], ['SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018', 'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039', 'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',],)
     public static readonly CAT_BULLET_BILL =                               new InGameEntityImages.Null()
 
-    public static readonly BANZAI_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Banzai Bill', 'Enemy - KillerMagnum', ['wait.0',], ['killer_mag_Alb.000',],)
-    public static readonly BULL_EYE_BANZAI =                               new InGameEntityImages.ExistantAsBlueVariantWithSameSmbAndSmb3AndSmw('Bull’s-Eye Banzai', 'Enemy - KillerMagnum', ['search.0',], ['killer_mag_surch_Alb.000',],)
+    public static readonly BANZAI_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Banzai Bill', 'Enemy - KillerMagnum', ['wait.0',], ['killer_mag_Alb.000',],)
+    public static readonly BULL_EYE_BANZAI =                               new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Banzai', 'Enemy - KillerMagnum', ['search.0',], ['killer_mag_surch_Alb.000',],)
     public static readonly CAT_BANZAI_BILL =                               new InGameEntityImages.Null()
 
     public static readonly CANNON =                                        new InGameEntityImages.Null()
@@ -1524,7 +1531,7 @@ export abstract class InGameEntityImages
 
     public static readonly BURNER =                                        new InGameEntityImages.Null()
 
-    public static readonly FIRE_BAR =                                      new InGameEntityImages.ExistantAsFireBar()
+    public static readonly FIRE_BAR =                                      new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Fire Bar', 'Object - Firebar', ['block', 'fire.0',], ['block', 'fire.0', 'fire.1', 'fire.2',], ['center_firebar_Alb.000', 'firebar', 'firebar_code',],)
 
     public static readonly SKEWER =                                        new InGameEntityImages.Null()
 
@@ -1545,7 +1552,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
     //region -------------------- Boss + projectile --------------------
 
-    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser', 'Enemy - Koopa', [
+    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Bowser', 'Enemy - Koopa', [
         'fall.0', 'fall.1',
         'fire.0',
         'wait.0', 'wait.1',
@@ -1578,11 +1585,11 @@ export abstract class InGameEntityImages
         'walk.0', 'walk.1', 'walk.2', 'walk.3',
     ],)
     public static readonly MEOWSER =                                       new InGameEntityImages.Null()
-    public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
-    public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAsFourInOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
+    public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAs2InNotNsmbuSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
+    public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAs4InOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
     public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new InGameEntityImages.Null()
 
-    public static readonly BOWSER_JR =                                     new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Bowser Jr.', 'Enemy - KoopaJr', [
+    public static readonly BOWSER_JR =                                     new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Bowser Jr.', 'Enemy - KoopaJr', [
         'before.0',
         'fall.0', 'fall.1',
         'fire.0', 'fire.1',
@@ -1622,7 +1629,7 @@ export abstract class InGameEntityImages
     ],)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new InGameEntityImages.Null()
 
-    public static readonly BOOM_BOOM =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbAndSmb3AndNotNsmbuAndSm3dw('Boom Boom', 'Enemy - Bunbun', [
+    public static readonly BOOM_BOOM =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3AndNotNsmbuSm3dw('Boom Boom', 'Enemy - Bunbun', [
         'damage.0', 'damage.1',
         'damage_fly.0', 'damage_fly.1',
         'fly.0', 'fly.1', 'fly.2', 'fly.3', 'fly.4', 'fly.5',
@@ -1650,7 +1657,7 @@ export abstract class InGameEntityImages
     public static readonly POM_POM_CLONE =                                 new InGameEntityImages.Null()
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new InGameEntityImages.Null()
 
-    public static readonly LARRY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Larry', 'Enemy - Larry', [
+    public static readonly LARRY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Larry', 'Enemy - Larry', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1669,10 +1676,10 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2', 'wait.3',],)
-    public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Larry’s Wand', 'Enemy - Larry', 'wand',)
-    public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Larry’s projectile)', 'Enemy - Larry', 'effect.0',)
+    public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Larry’s Wand', 'Enemy - Larry', 'wand',)
+    public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Larry’s projectile)', 'Enemy - Larry', 'effect.0',)
 
-    public static readonly IGGY =                                          new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Iggy', 'Enemy - Iggy', [
+    public static readonly IGGY =                                          new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Iggy', 'Enemy - Iggy', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1692,10 +1699,10 @@ export abstract class InGameEntityImages
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2', 'wait.3',
         'walkl.0', 'walkl.1', 'walkl.2', 'walkl.3',],)
-    public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Iggy’s Wand', 'Enemy - Iggy', 'wand',)
-    public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Iggy’s projectile)', 'Enemy - Iggy', 'effect.0',)
+    public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Iggy’s Wand', 'Enemy - Iggy', 'wand',)
+    public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Iggy’s projectile)', 'Enemy - Iggy', 'effect.0',)
 
-    public static readonly WENDY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Wendy', 'Enemy - Wendy', [
+    public static readonly WENDY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Wendy', 'Enemy - Wendy', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1714,11 +1721,11 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2', 'wait.3',],)
-    public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Wendy’s Wand', 'Enemy - Wendy', 'wand',)
-    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAsThreeInNotNsmbuAndSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
+    public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Wendy’s Wand', 'Enemy - Wendy', 'wand',)
+    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAs3InNotNsmbuSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
     public static readonly WENDY_PROJECTILE =                              new InGameEntityImages.Null()
 
-    public static readonly LEMMY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Lemmy', 'Enemy - Lemmy', [
+    public static readonly LEMMY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Lemmy', 'Enemy - Lemmy', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -1738,11 +1745,11 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2',],)
-    public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Lemmy’s Wand', 'Enemy - Lemmy', 'wand',)
-    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAsMagicBall()
+    public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Lemmy’s Wand', 'Enemy - Lemmy', 'wand',)
+    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAs1InNotNsmbuSm3dwAnd2Smw('Magic Ball thrown by a Lemmy', 'Enemy - Lemmy', 'ball.0', 'ball.0', 'ball_specular',)
     public static readonly LEMMY_PROJECTILE =                              new InGameEntityImages.Null()
 
-    public static readonly ROY =                                           new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Lemmy', 'Enemy - Lemmy', [
+    public static readonly ROY =                                           new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Lemmy', 'Enemy - Lemmy', [
         'damage.0',
         'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
         'pose.0', 'pose.1', 'pose.2', 'pose.3',
@@ -1767,10 +1774,10 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2',],)
-    public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Roy’s Wand', 'Enemy - Roy', 'wand',)
-    public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Roy’s projectile)', 'Enemy - Roy', 'effect.0',)
+    public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Roy’s Wand', 'Enemy - Roy', 'wand',)
+    public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Roy’s projectile)', 'Enemy - Roy', 'effect.0',)
 
-    public static readonly MORTON =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Lemmy', 'Enemy - Lemmy', [
+    public static readonly MORTON =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Lemmy', 'Enemy - Lemmy', [
         'damage.0',
         'jump_quake.0', 'jump_quake.1', 'jump_quake.2',
         'jump_quake_ed.0', 'jump_quake_ed.1', 'jump_quake_ed.2',
@@ -1796,11 +1803,11 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2',],)
-    public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Morton’s Wand', 'Enemy - Morton', 'wand',)
-    public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Morton’s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
-    public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('(Morton’s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
+    public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Morton’s Wand', 'Enemy - Morton', 'wand',)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Morton’s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAs2InNotNsmbuSm3dw('(Morton’s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
 
-    public static readonly LUDWIG =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuAndSm3dw('Ludwig', 'Enemy - Ludwig', [
+    public static readonly LUDWIG =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Ludwig', 'Enemy - Ludwig', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2', 'throw_ed.3', 'throw_ed.4', 'throw_ed.5',
@@ -1821,8 +1828,8 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', 'wait.5', 'wait.6',],)
-    public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Ludwig’s Wand', 'Enemy - Ludwig', 'wand',)
-    public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Ludwig’s projectile)', 'Enemy - Ludwig', 'effect.0',)
+    public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Ludwig’s Wand', 'Enemy - Ludwig', 'wand',)
+    public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Ludwig’s projectile)', 'Enemy - Ludwig', 'effect.0',)
 
     //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
@@ -1851,7 +1858,7 @@ export abstract class InGameEntityImages
 
     public static readonly CASTLE =                                        new InGameEntityImages.Null()
     public static readonly ENDING_CASTLE_DOOR =                            new InGameEntityImages.Null()
-    public static readonly AXE =                                           new InGameEntityImages.ExistantAsAxe()
+    public static readonly AXE =                                           new InGameEntityImages.ExistantAs5InNotSm3dwWithNsmbu('Axe', 'Object - Ono', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'ono_Xlu', ['ono_Alb.000', 'ono_Alb.001', 'ono_Alb.002', 'ono_Alb.003', 'ono_Alb.004', 'ono_Alb.005', 'ono_Alb.006', 'ono_Alb.007', 'onoXlu_Alb.000',],)
 
     public static readonly DASH_BLOCK =                                    new InGameEntityImages.Null()
 
@@ -1873,11 +1880,11 @@ export abstract class InGameEntityImages
     public static readonly LAVA_LIFT =                                     new InGameEntityImages.Null()
     public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.Null()
 
-    public static readonly CRATE =                                         new InGameEntityImages.ExistantAsFiveInOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
+    public static readonly CRATE =                                         new InGameEntityImages.ExistantAs5InOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
 
     public static readonly KEY =                                           new InGameEntityImages.Null()
     public static readonly CURSED_KEY =                                    new InGameEntityImages.Null()
-    public static readonly PHANTO =                                        new InGameEntityImages.ExistantAsFourInOnlySmb('Phanto', 'M1 Object - Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly PHANTO =                                        new InGameEntityImages.ExistantAs4InOnlySmb('Phanto', 'M1 Object - Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()
@@ -1902,7 +1909,7 @@ export abstract class InGameEntityImages
     public static readonly TOAD =                                          new InGameEntityImages.Null()
     public static readonly CAGED_TOADETTE =                                new InGameEntityImages.Null()
 
-    public static readonly BUBBLE =                                        new InGameEntityImages.ExistantAsBubble()
+    public static readonly BUBBLE =                                        new InGameEntityImages.ExistantAs1And2NsmbuButDifferentSm3dw('Bubble', 'Object - Balloon', 'balloon.0', 'balloon.0', 'balloon2.0', 'TractorBubble_Alb',)
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
