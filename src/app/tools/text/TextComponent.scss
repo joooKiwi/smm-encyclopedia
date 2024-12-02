@@ -29,24 +29,18 @@
   --text-space-rightArrow-space: ' → ';
 }
 
-[lang='ja'], [lang='zh_T'], [lang='zh_S'], [lang='ko'], {
-  &:root {
-    --not-applicable: 'Ｎ／Ａ';
-    --is-unknown: '？';
-    --unknown-reference: '？？？';
-  }
+:is([lang='ja'], [lang^='zh'], [lang='ko']):root {
+  --not-applicable: 'Ｎ／Ａ';
+  --is-unknown: '？';
+  --unknown-reference: '？？？';
 }
 
-[lang='ja'], [lang='zh_T'], [lang='zh_S'], {
-  &:root {
-    --text-space-rightArrow-space: '→';
-  }
+:is([lang='ja'], [lang^='zh']):root {
+  --text-space-rightArrow-space: '→';
 }
 
-[lang='ko'], {
-  &:root {
-    --text-space-rightArrow-space: ' → ';
-  }
+:is([lang='ko']):root {
+  --text-space-rightArrow-space: ' → ';
 }
 
 //endregion -------------------- Text related constants --------------------
