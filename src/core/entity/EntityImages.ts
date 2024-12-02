@@ -10,7 +10,7 @@ import type {EntityImage}                                                       
 import type {EditorEntityImage}                                                          from 'core/entity/images/EditorEntityImage'
 import type {InGameEntityImage}                                                          from 'core/entity/images/InGameEntityImage'
 import type {EditorImage}                                                                from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}                                                                from 'core/entity/images/inGame/InGameImage'
+import type {InGameImage_Regular}                                                        from 'core/entity/images/inGame/InGameImage_Regular'
 import type {ClassWithEnglishName}                                                       from 'core/ClassWithEnglishName'
 import type {ClassWithImage}                                                             from 'util/ClassWithImage'
 
@@ -25,7 +25,7 @@ import {InGameEntityImageContainer}         from 'core/entity/images/InGameEntit
 import {MixedReferenceEntityImage}          from 'core/entity/images/MixedReference.entityImage'
 import {EditorImageContainer}               from 'core/entity/images/editor/EditorImage.container'
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
-import {InGameImageContainer}               from 'core/entity/images/inGame/InGameImage.container'
+import {InGameImage_RegularContainer}       from 'core/entity/images/inGame/InGameImage_Regular.container'
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
 
 import NSMBU = GameStyles.NSMBU
@@ -119,7 +119,7 @@ export abstract class EntityImages
             readonly #reference
             #image?: InGameEntityImage<IMAGE>
 
-            public constructor(englishName: NAME, reference: ClassWithImage<InGameImage<IMAGE>>,) {
+            public constructor(englishName: NAME, reference: ClassWithImage<InGameImage_Regular<IMAGE>>,) {
                 super()
                 this.#englishName = englishName
                 this.#reference = reference
@@ -129,7 +129,7 @@ export abstract class EntityImages
 
             public override get image(): InGameEntityImage<IMAGE> { return this.#image ??= new InGameEntityImageContainer(this._createImage(this.#reference.image,),) }
 
-            protected abstract _createImage(image: InGameImage<IMAGE>,): InGameImage<IMAGE>
+            protected abstract _createImage(image: InGameImage_Regular<IMAGE>,): InGameImage_Regular<IMAGE>
 
         }
 
@@ -188,7 +188,7 @@ export abstract class EntityImages
         readonly #reference
         #image?: InGameEntityImage<IMAGE>
 
-        public constructor(englishName: NAME, reference: ClassWithImage<InGameImage<IMAGE>>,) {
+        public constructor(englishName: NAME, reference: ClassWithImage<InGameImage_Regular<IMAGE>>,) {
             super()
             this.#englishName = englishName
             this.#reference = reference
@@ -212,9 +212,9 @@ export abstract class EntityImages
         const IMAGE extends InGameImageFile, >
         extends EntityImages.ExistantInGame<NAME, IMAGE> {
 
-        protected override _createImage(image: InGameImage<IMAGE>,) {
+        protected override _createImage(image: InGameImage_Regular<IMAGE>,) {
             const images = image.imagesWithAssociation
-            return new InGameImageContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
+            return new InGameImage_RegularContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
         }
 
     }
@@ -232,7 +232,7 @@ export abstract class EntityImages
         const CLEAR_CONDITION_IMAGE extends ClearConditionImageFile, >
         extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | CLEAR_CONDITION_IMAGE> {
 
-        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage<IN_GAME_IMAGE>>, private readonly clearConditionReference: ClassWithImage<ClearConditionImage<CLEAR_CONDITION_IMAGE>>,) {
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly clearConditionReference: ClassWithImage<ClearConditionImage<CLEAR_CONDITION_IMAGE>>,) {
             super(englishName,)
         }
 
@@ -260,7 +260,7 @@ export abstract class EntityImages
         const EDITOR_IMAGE extends EditorImageFile, >
         extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | EDITOR_IMAGE> {
 
-        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
             super(englishName,)
         }
 
@@ -288,7 +288,7 @@ export abstract class EntityImages
         const EDITOR_IMAGE extends EditorImageFile, >
         extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | EDITOR_IMAGE> {
 
-        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
             super(englishName,)
         }
 

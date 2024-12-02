@@ -17,9 +17,10 @@ import type {ImageFile}                     from 'util/file/image/ImageFile'
  * @see UnusedImageFile
  * @see UnusedSmm1ImageFile_BigMushroom
  */
-export type EntityImageFile = | EditorImageFile | ClearConditionImageFile | InGameImageFile | UnusedImageFile | UnusedSmm1ImageFile_BigMushroom
-
-//region -------------------- editor images --------------------
+export type EntityImageFile = | EditorImageFile
+                              | ClearConditionImageFile
+                              | InGameImageFile | InGameSmm1ImageFile_BigMushroom
+                              | UnusedImageFile | UnusedSmm1ImageFile_BigMushroom
 
 export type EditorImageFile<GAME_STYLE extends GameStyles = GameStyles, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
     = ImageFile<`entity/editor`, `${GAME_STYLE['acronymInFile']}_Lyt_P_${FILE_NAME}`, 'tiff', `${NAME} (editor)`>
@@ -164,6 +165,8 @@ export type PossibleInGameImageFile = typeof InGameEntityImages[| 'START_BLOCK' 
                                                                 | 'MORTON_WAND' | 'MORTON_THROWN_PROJECTILE' | 'MORTON_GROUND_PROJECTILE'
                                                                 | 'LUDWIG_WAND' | 'LUDWIG_PROJECTILE' | 'PHANTO'
                                                                 | 'AXE' | 'BUBBLE']['image']['images'][number]
+export type InGameSmm1ImageFile_BigMushroom<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
+    = ImageFile<`entity/in game/M1 A Enemy - ${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (in game Big Mushroom)`>
 
 //endregion -------------------- possible "in game" images --------------------
 

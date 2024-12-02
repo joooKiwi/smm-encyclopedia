@@ -1,8 +1,8 @@
-import type {ClassWithEnglishName}                                                                                        from 'core/ClassWithEnglishName'
-import type {PossibleEnglishName}                                                                                         from 'core/entity/Entities.types'
-import type {ClearConditionImageFile, EditorImageFile, InGameImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
-import type {GameStyles}                                                                                                  from 'core/gameStyle/GameStyles'
-import type {PossibleAcronym_InFile}                                                                                      from 'core/gameStyle/GameStyles.types'
+import type {ClassWithEnglishName}                                                                                                              from 'core/ClassWithEnglishName'
+import type {PossibleEnglishName}                                                                                                                          from 'core/entity/Entities.types'
+import type {InGameSmm1ImageFile_BigMushroom, ClearConditionImageFile, EditorImageFile, InGameImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
+import type {GameStyles}                                                                                                                                   from 'core/gameStyle/GameStyles'
+import type {PossibleAcronym_InFile}                                                                                                            from 'core/gameStyle/GameStyles.types'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
@@ -41,7 +41,16 @@ export function inGameImage<const FOLDER_NAME extends string, const FILE_NAME ex
     return new SimpleImageFile(`entity/in game/${folderName}`, fileName, 'tiff', `${entity.englishName} (in game)`,)
 }
 
-//endregion -------------------- In game image --------------------
+/**
+ * Create a {@link InGameSmm1ImageFile_BigMushroom} from the {@link folderName} and {@link fileName} provided
+ *
+ * @param entity     The entity to retrieve its name
+ * @param folderName The folder name
+ * @param fileName   The file name
+ */
+export function bigMushroomImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName,>(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): InGameSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME> {
+    return new SimpleImageFile(`entity/in game/M1 A Enemy - ${folderName}`, fileName, 'tiff', `${entity.englishName} (in game Big Mushroom)`,)
+}
 
 /**
  * Create a {@link UnusedImageFile} from the {@link folderName} and {@link fileName} provided

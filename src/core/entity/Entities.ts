@@ -11,7 +11,8 @@ import type {Entity}                                      from 'core/entity/Enti
 import type {EntityImage}                                 from 'core/entity/images/EntityImage'
 import type {ClearConditionImage}                         from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {EditorImage}                                 from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}                                 from 'core/entity/images/inGame/InGameImage'
+import type {InGameImage_BigMushroom}                     from 'core/entity/images/inGame/InGameImage_BigMushroom'
+import type {InGameImage_Regular}                         from 'core/entity/images/inGame/InGameImage_Regular'
 import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
 import type {ClassWithImage}                              from 'util/ClassWithImage'
@@ -21,9 +22,10 @@ import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
 import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}           from 'core/entity/EditorEntityImages'
 import type {EntityImages}                 from 'core/entity/EntityImages'
+import {InGameBigMushroomEntityImages}     from 'core/entity/InGameBigMushroomEntityImages'
 import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
-import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
 import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
+import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
 import {StringContainer}                   from 'util/StringContainer'
 import {Import}                            from 'util/DynamicImporter'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
@@ -35,7 +37,10 @@ import EditorVoiceCompanion = EditorVoices.Companion
  * A class encapsulating all the information associated to
  * its name ({@link PossibleEnglishName}),
  * image ({@link EntityImage}, {@link EditorImage editor},
- * {@link ClearConditionImage clear condition}, {@link InGameImage in game}, {@link UnusedImage_Regular unused (regular form)}
+ * {@link ClearConditionImage clear condition},
+ * {@link InGameImage_Regular in game (regular form)},
+ * {@link InGameImage_BigMushroom in game (Big Mushroom form)},
+ * {@link UnusedImage_Regular unused (regular form)}
  * and {@link UnusedImage_BigMushroom unused (Big Mushroom form)}),
  * sound ({@link EditorVoiceSound})
  * and data ({@link Entity})
@@ -46,6 +51,7 @@ import EditorVoiceCompanion = EditorVoices.Companion
  * @recursiveReference<{@link EntityImages}>
  * @recursiveReference<{@link EntityLoader}>
  * @recursiveReference<{@link InGameEntityImages}>
+ * @recursiveReference<{@link InGameBigMushroomEntityImages}>
  * @recursiveReference<{@link UnusedEntityImages}>
  * @recursiveReference<{@link UnusedBigMushroomEntityImages}>
  */
@@ -527,7 +533,8 @@ export class Entities
     #image?: EntityImage
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
-    #inGameImage?: InGameImage
+    #inGameRegularImage?: InGameImage_Regular
+    #inGameBigMushroomImage?: InGameImage_BigMushroom
     #unusedRegularImage?: UnusedImage_Regular
     #unusedBigMushroomImage?: UnusedImage_BigMushroom
 
@@ -538,6 +545,7 @@ export class Entities
     #editorEntityImageReference?: EditorEntityImages
     #clearConditionEntityImageReference?: ClearConditionEntityImages
     #inGameEntityImageReference?: InGameEntityImages
+    #inGameBigMushroomEntityImageReference?: InGameBigMushroomEntityImages
     #unusedEntityImageReference?: UnusedEntityImages
     #unusedBigMushroomEntityImageReference?: UnusedBigMushroomEntityImages
 
@@ -586,7 +594,9 @@ export class Entities
 
     public get clearConditionImage(): ClearConditionImage { return this.#clearConditionImage ??= this.clearConditionEntityImageReference.image }
 
-    public get inGameImage(): InGameImage { return this.#inGameImage ??= this.inGameEntityImageReference.image }
+    public get inGameImage(): InGameImage_Regular { return this.#inGameRegularImage ??= this.inGameEntityImageReference.image }
+
+    public get inGameBigMushroomImage(): InGameImage_BigMushroom { return this.#inGameBigMushroomImage ??= this.inGameBigMushroomEntityImageReference.image }
 
     public get unusedImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.image }
 
@@ -631,6 +641,8 @@ export class Entities
 
     public get inGameEntityImageReference(): InGameEntityImages { return this.#inGameEntityImageReference ??= InGameEntityImages[this.name] }
 
+    public get inGameBigMushroomEntityImageReference(): InGameBigMushroomEntityImages { return this.#inGameBigMushroomEntityImageReference ??= InGameBigMushroomEntityImages[this.name] }
+
     public get unusedEntityImageReference(): UnusedEntityImages { return this.#unusedEntityImageReference ??= UnusedEntityImages[this.name] }
 
     public get unusedBigMushroomEntityImageReference(): UnusedBigMushroomEntityImages { return this.#unusedBigMushroomEntityImageReference ??= UnusedBigMushroomEntityImages[this.name] }
@@ -659,7 +671,7 @@ export namespace Entities {
 // Entities.values.filter(it => it.uniqueImage !== EmptyUniqueImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, Array.from(it.uniqueImage.map.values(), it => it.map(it => it.name,),).flat(),),)
 // Entities.values.filter(it => it.editorImage !== EmptyEditorImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, it.editorImage.all.map(it => it.name,),),)
 // Entities.values.filter(it => it.clearConditionImage !== EmptyClearConditionImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, GameStyles.values.map(it2 => it.clearConditionImage.get(it2,),).toArray().flat().map(it => it.name,),),)
-// Entities.values.filter(it => it.inGameImage !== EmptyInGameImage.get,).map(it => console.log(`${it.englishName}\n\t`, it.inGameImage,),)
+// Entities.values.filter(it => it.inGameImage !== EmptyInGameImage_Regular.get,).map(it => console.log(`${it.englishName}\n\t`, it.inGameImage,),)
 // Entities.values.filter(it => it.unusedImage.all.size !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, [...it.unusedImage.all.entries(),].map(it => it[1]).flat(2),),)
 // Entities.values.filter(it => it.unusedBigMushroomImage.all.length !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, it.unusedBigMushroomImage.all.flat(),),)
 
