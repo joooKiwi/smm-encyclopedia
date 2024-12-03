@@ -2447,7 +2447,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    public static readonly BUMPER =                                        new InGameEntityImages.Null()
+    public static readonly BUMPER =                                        new InGameEntityImages.ExistantAs3InNotSm3dw('Bumper', 'Object - Saw', 'blink.0', 'blink.1', 'saw_maru', ['saw_maru_blink_model_Alb.000', 'saw_maru_blink_model_Alb.001',],)
 
     public static readonly SWINGING_CLAW =                                 new InGameEntityImages.Null()
 
