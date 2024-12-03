@@ -430,6 +430,30 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} with an alternate {@link InGameImage_Regular} */
+    private static readonly ExistantAs3InOnlySmbWith1Alternate = class ExistantAs3InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly folderNameAlt: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileNameAlt: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMB, inGameImage(this, folderName, this.fileName1,),],
+                [SMB, inGameImage(this, folderName, this.fileName2,),],
+                [SMB, inGameImage(this, folderName, this.fileName3,),],
+                [SMB, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
+            ] as const
+        }
+
+    }
+
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
@@ -1368,7 +1392,7 @@ export abstract class InGameEntityImages
         'out2_Alb.000', 'out2_Alb.003', 'out2_Alb.006', 'out2_Alb.009', 'out2_Alb.012', 'out2_Alb.015', 'out2_Alb.018', 'out2_Alb.021', 'out2_Alb.024', 'out2_Alb.027', 'out2_Alb.030', 'out2_Alb.033', 'out2_Alb.036', 'out2_Alb.039', 'out2_Alb.042', 'out2_Alb.045', 'out2_Alb.048', 'out2_Alb.051', 'out2_Alb.054', 'out2_Alb.057', 'out2_Alb.059', 'wait_Alb.000',], 'wait_Alb.000',)
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
 
-    public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.Null()
+    public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.ExistantAs3InOnlySmbWith1Alternate('Superball Flower', 'Item - BallFLower', 'Item - BallFlower2', 'wait.0', 'wait.1', 'wait.2', 'wait.0',)
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new InGameEntityImages.ExistantAs1InOnlySmb('Superball thrown by a player', 'M1 Object - Superball', 'superball',)
 
     public static readonly MYSTERY_MUSHROOM =                              new InGameEntityImages.ExistantAs1InOnlySmb('Mystery Mushroom', 'M1 Item - CharaKinoko', 'Add_kinoko',)
