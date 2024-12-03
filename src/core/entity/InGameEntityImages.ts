@@ -2451,7 +2451,7 @@ export abstract class InGameEntityImages
     public static readonly CRATE =                                         new InGameEntityImages.ExistantAs5InOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
 
     public static readonly KEY =                                           new InGameEntityImages.Null()
-    public static readonly CURSED_KEY =                                    new InGameEntityImages.Null()
+    public static readonly CURSED_KEY =                                    new InGameEntityImages.ExistantAs4InOnlySmb('Cursed Key', 'M1 Object - Key2', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly PHANTO =                                        new InGameEntityImages.ExistantAs4InOnlySmb('Phanto', 'M1 Object - Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
