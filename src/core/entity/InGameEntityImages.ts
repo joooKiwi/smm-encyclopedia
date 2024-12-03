@@ -2430,7 +2430,7 @@ export abstract class InGameEntityImages
 
     public static readonly DASH_BLOCK =                                    new InGameEntityImages.Null()
 
-    public static readonly SNAKE_BLOCK =                                   new InGameEntityImages.Null()
+    public static readonly SNAKE_BLOCK =                                   new InGameEntityImages.ExistantAs3InNotSm3dw('Snake Block', 'Object - BlockSnake', 'fall.0', 'fall.1', 'wait.0', ['block_snake_Alb.000', 'block_snake_Alb.001',],)
     public static readonly FAST_SNAKE_BLOCK =                              new InGameEntityImages.Null()
 
     public static readonly CONVEYOR_BELT =                                 new InGameEntityImages.Null()
