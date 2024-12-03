@@ -697,6 +697,31 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link NSMBU} with an alternate {@link InGameImage_Regular} */
+    private static readonly ExistantAs4InOnlyNsmbuWith1Alternate = class ExistantAs3InOnlyNsmbuWith1Alternate_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
+                           private readonly folderNameAlt: FOLDER_NAME, private readonly fileNameAlt: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [NSMBU, inGameImage(this, folderName,         this.fileName1,),],
+                [NSMBU, inGameImage(this, folderName,         this.fileName2,),],
+                [NSMBU, inGameImage(this, folderName,         this.fileName3,),],
+                [NSMBU, inGameImage(this, folderName,         this.fileName4,),],
+                [NSMBU, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
+            ] as const
+        }
+
+    }
+
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
@@ -1523,7 +1548,7 @@ export abstract class InGameEntityImages
 
     public static readonly POWER_BALLOON =                                 new InGameEntityImages.ExistantAs1InOnlySmwWithAlternate('Power Balloon', 'MW Item - SpecialEX', 'wait.0', 'MW Item - SpecialEX2', 'wait.1',)
 
-    public static readonly PROPELLER_MUSHROOM =                            new InGameEntityImages.Null()
+    public static readonly PROPELLER_MUSHROOM =                            new InGameEntityImages.ExistantAs4InOnlyNsmbuWith1Alternate('Propeller Mushroom', 'WU Item - Special', 'l_propeller_Alb.000', 'l_propeller_Alb.002', 'l_propeller_Alb.004', 'l_propeller_Alb.006', 'WU Item - Special2', 'wait2_Alb.000',)
 
     public static readonly SUPER_ACORN =                                   new InGameEntityImages.Null()
 
