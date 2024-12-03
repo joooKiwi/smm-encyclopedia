@@ -435,6 +435,53 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 2 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * plus an undetermined amount of {@link InGameImageFile} in {@link NSMBU}
+     */
+    private static readonly ExistantAs2InNotSm3dw = class ExistantAs2InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileNames_nsmbu = this.nsmbuFileNames
+
+            const imageFiles = new Array<readonly [GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(6 + fileNames_nsmbu.length,)
+
+            imageFiles[0] = [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] = [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] = [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[3] = [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+            imageFiles[4] = [SMW,  inGameImage(this, folderName_smw,  fileName1,),]
+            imageFiles[5] = [SMW,  inGameImage(this, folderName_smw,  fileName2,),]
+
+            let index = 5
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 2 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * plus 1 {@link InGameImageFile} in {@link NSMBU}
      */
@@ -1717,7 +1764,11 @@ export abstract class InGameEntityImages
     public static readonly LAKITU =                                        new InGameEntityImages.Null()
     public static readonly LAKITU_CLOUD =                                  new InGameEntityImages.Null()
 
-    public static readonly BOO =                                           new InGameEntityImages.Null()
+    public static readonly BOO =                                           new InGameEntityImages.ExistantAs2InNotSm3dw('Boo', 'Enemy - Teresa', 'wait.0', 'walk.0', [
+        'edited_wait_Alb.000', 'edited_wait_Alb.005', 'edited_wait_Alb.010', 'edited_wait_Alb.015', 'edited_wait_Alb.020', 'edited_wait_Alb.025', 'edited_wait_Alb.030', 'edited_wait_Alb.035', 'edited_wait_Alb.040', 'edited_wait_Alb.045', 'edited_wait_Alb.050', 'edited_wait_Alb.055', 'edited_wait_Alb.060', 'edited_wait_Alb.065', 'edited_wait_Alb.070', 'edited_wait_Alb.075', 'edited_wait_Alb.080', 'edited_wait_Alb.085', 'edited_wait_Alb.090', 'edited_wait_Alb.095',
+        'glow',
+        'shay_teresaB_Alb.000', 'shay_teresaB_Alb.001', 'shay_teresaB_Alb.002', 'shay_teresaB_Alb.003', 'shay_teresaB_Alb.004',
+    ],)
     public static readonly STRETCH =                                       new InGameEntityImages.Null()
     public static readonly BOO_BUDDIES =                                   new InGameEntityImages.Null()
     public static readonly PEEPA =                                         new InGameEntityImages.Null()
