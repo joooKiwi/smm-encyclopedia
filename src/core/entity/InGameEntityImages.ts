@@ -1412,21 +1412,21 @@ export abstract class InGameEntityImages
         'out2_Alb.000', 'out2_Alb.003', 'out2_Alb.006', 'out2_Alb.009', 'out2_Alb.012', 'out2_Alb.015', 'out2_Alb.018', 'out2_Alb.021', 'out2_Alb.024', 'out2_Alb.027', 'out2_Alb.030', 'out2_Alb.033', 'out2_Alb.036', 'out2_Alb.039', 'out2_Alb.042', 'out2_Alb.045', 'out2_Alb.048', 'out2_Alb.051', 'out2_Alb.054', 'out2_Alb.057', 'out2_Alb.059', 'wait_Alb.000',], 'wait_Alb.000',)
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
 
-    public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.ExistantAs3InOnlySmbWith1Alternate('Superball Flower', 'Item - BallFLower', 'Item - BallFlower2', 'wait.0', 'wait.1', 'wait.2', 'wait.0',)
+    public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.ExistantAs3InOnlySmbWith1Alternate('Superball Flower', 'M1 Item - BallFLower', 'M1 Item - BallFlower2', 'wait.0', 'wait.1', 'wait.2', 'wait.0',)
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new InGameEntityImages.ExistantAs1InOnlySmb('Superball thrown by a player', 'M1 Object - Superball', 'superball',)
 
     public static readonly MYSTERY_MUSHROOM =                              new InGameEntityImages.ExistantAs1InOnlySmb('Mystery Mushroom', 'M1 Item - CharaKinoko', 'Add_kinoko',)
     public static readonly WEIRD_MUSHROOM =                                new InGameEntityImages.ExistantAs1InOnlySmb('Weird Mushroom', 'M1 Item - KinokoFunny', 'kinokofunny.0',)
 
-    public static readonly MASTER_SWORD =                                  new InGameEntityImages.ExistantAs4InOnlySmb('Master Sword', 'Item - Triforce', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly MASTER_SWORD =                                  new InGameEntityImages.ExistantAs4InOnlySmb('Master Sword', 'M1 Item - Triforce', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAs3InOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
     public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAs1InOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
 
-    public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('Big Mushroom', 'Item - Special', 'Item - Special2', 'Add_special.0', 'Add_special',)
+    public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('Big Mushroom', 'M1 Item - Special', 'Item - Special2', 'Add_special.0', 'Add_special',)
     public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
     public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
 
-    public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('SMB2 Mushroom', 'Item - Special', 'Item - Special2', 'wait.0', 'wait.0',)
+    public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('SMB2 Mushroom', 'M1 Item - Special', 'Item - Special2', 'wait.0', 'wait.0',)
 
     public static readonly SUPER_LEAF =                                    new InGameEntityImages.Null()
 
