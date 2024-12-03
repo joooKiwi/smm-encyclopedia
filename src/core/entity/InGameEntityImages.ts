@@ -366,6 +366,45 @@ export abstract class InGameEntityImages
 
     }
 
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 2 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
+     * plus 2 {@link InGameImageFile} in {@link NSMBU}
+     */
+    private static readonly ExistantAs2InNotSm3dwAnd2Nsmbu = class ExistantAs2InNotSm3dwAnd1Nsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly nsmbuFileName1: NSMBU_FILE_NAME, private readonly nsmbuFileName2: NSMBU_FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            return [
+                [SMB,   inGameImage(this, folderName_smb,   fileName1,),],
+                [SMB,   inGameImage(this, folderName_smb,   fileName2,),],
+                [SMB3,  inGameImage(this, folderName_smb3,  fileName1,),],
+                [SMB3,  inGameImage(this, folderName_smb3,  fileName2,),],
+                [SMW,   inGameImage(this, folderName_smw,   fileName1,),],
+                [SMW,   inGameImage(this, folderName_smw,   fileName2,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu, this.nsmbuFileName1,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu, this.nsmbuFileName2,),],
+            ] as const
+        }
+
+    }
+
     //endregion -------------------- Sub class (2 images) --------------------
     //region -------------------- Sub class (3 images) --------------------
 
@@ -1318,7 +1357,7 @@ export abstract class InGameEntityImages
     public static readonly RED_POW_BOX =                                   new InGameEntityImages.Null()
 
     public static readonly SUPER_STAR =                                    new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Super Star', 'Item - Star', 'wait.0', 'wait.1', 'wait.2', 'wait.3', ['wait2_Alb.000', 'wait2_Alb.003', 'wait2_Alb.006', 'wait2_Alb.009', 'wait2_Alb.012', 'wait2_Alb.015', 'wait2_Alb.018', 'wait2_Alb.021', 'wait2_Alb.024', 'wait2_Alb.027', 'wait2_Alb.030', 'wait2_Alb.033', 'wait2_Alb.036', 'wait2_Alb.039', 'wait2_Alb.042', 'wait2_Alb.045', 'wait2_Alb.048', 'wait2_Alb51', 'wait2_Alb54', 'wait2_Alb57', '9',],)
-    public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.Null()
+    public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('1-Up Mushroom', 'Item - Kinoko1up', 'wait.0', 'wait.1', 'edit_out2_Alb.000', 'out2_Alb.000',)
     public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Rotten Mushroom', 'Item - KinokoPoison', 'wait.0', 'out2_Alb.000',)
 
     public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Shoe Goomba', 'Enemy - KutsuKuriboA', 'edit_drag.0', 'edit_drag.1',)
