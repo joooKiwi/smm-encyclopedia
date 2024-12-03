@@ -874,6 +874,47 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 4 {@link InGameImageFile} in {@link SMB3}, {@link SMW} and {@link NSMBU}
+     */
+    private static readonly ExistantAs4InNotSmbSm3dw = class ExistantAs4InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M3' | 'MW' | 'WU'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
+                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileName4 = this.fileName4
+            return [
+                [SMB3,  inGameImage(this, folderName_smb3,  fileName1,),],
+                [SMB3,  inGameImage(this, folderName_smb3,  fileName2,),],
+                [SMB3,  inGameImage(this, folderName_smb3,  fileName3,),],
+                [SMB3,  inGameImage(this, folderName_smb3,  fileName4,),],
+                [SMW,   inGameImage(this, folderName_smw,   fileName1,),],
+                [SMW,   inGameImage(this, folderName_smw,   fileName2,),],
+                [SMW,   inGameImage(this, folderName_smw,   fileName3,),],
+                [SMW,   inGameImage(this, folderName_smw,   fileName4,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu, fileName1,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu, fileName2,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu, fileName3,),],
+                [NSMBU, inGameImage(this, folderName_nsmbu, fileName4,),],
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 4 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
@@ -2421,7 +2462,7 @@ export abstract class InGameEntityImages
 
     public static readonly P_SWITCH =                                      new InGameEntityImages.Null()
 
-    public static readonly STONE =                                         new InGameEntityImages.Null()
+    public static readonly STONE =                                         new InGameEntityImages.ExistantAs4InNotSmbSm3dw('Stone', 'Object - Stone', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly WARP_DOOR =                                     new InGameEntityImages.Null()
     public static readonly P_WARP_DOOR =                                   new InGameEntityImages.Null()
