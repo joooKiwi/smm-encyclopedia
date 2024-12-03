@@ -1571,6 +1571,52 @@ export abstract class InGameEntityImages
 
     }
 
+    private static readonly ExistantAsBlueVariantWithSameSmbSmb3SmwAndBlueSmw = class ExistantAsBlueVariantWithSameSmbSmb3SmwAndBlueSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_SMB3_SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const folderName_smbAlt = `M1 ${endingFolderName} D` as const
+            const folderName_smb3Alt = `M3 ${endingFolderName} D` as const
+            const folderName_smwAlt = `MW ${endingFolderName} D` as const
+            const fileNames_smbSmb3SmW = this.smbSmb3SmwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
+            const fileNamesSize_smbSmb3Smw = fileNames_smbSmb3SmW.length
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_SMB3_SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize_smbSmb3Smw * 6 + fileNames_nsmbu.length,)
+
+            let index = -1
+            forEachByArray(fileNames_smbSmb3SmW, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw] = [SMB, inGameImage(this, folderName_smbAlt, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 2] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 3] = [SMB3, inGameImage(this, folderName_smb3Alt, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 4] = [SMW, inGameImage(this, folderName_smw, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw * 5] = [SMW, inGameImage(this, folderName_smwAlt, it,),]
+            },)
+            index += fileNamesSize_smbSmb3Smw * 4
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     //endregion -------------------- Sub class (blue variant) --------------------
 
     //endregion -------------------- Sub class --------------------
@@ -2346,7 +2392,7 @@ export abstract class InGameEntityImages
     public static readonly WING =                                          new InGameEntityImages.ExistantAs2InNotSm3dw('Wing', 'Enemy - WingCommon', 'wait.0', 'wait.1', [
         'wing_pata_Alb.000', 'wing_pata_Alb.001', 'wing_pata_Alb.002', 'wing_pata_Alb.003', 'wing_pata_Alb.004', 'wing_pata_Alb.005', 'wing_pata_Alb.006', 'wing_pata_Alb.007', 'wing_pata_Alb.008', 'wing_pata_Alb.009','wing_pata_Alb.010', 'wing_pata_Alb.011', 'wing_pata_Alb.012', 'wing_pata_Alb.013', 'wing_pata_Alb.014', 'wing_pata_Alb.015', 'wing_pata_Alb.016', 'wing_pata_Alb.017', 'wing_pata_Alb.018', 'wing_pata_Alb.019', 'wing_pata_Alb.020', 'wing_pata_Alb.021',
     ],)
-    public static readonly PARACHUTE =                                     new InGameEntityImages.Null()
+    public static readonly PARACHUTE =                                     new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3SmwAndBlueSmw('Parachute', 'Enemy - ParachuteCommon', ['parachute.tiff',], ['para_swing_Alb.000',],)
 
     public static readonly TOAD =                                          new InGameEntityImages.Null()
     public static readonly CAGED_TOADETTE =                                new InGameEntityImages.Null()
