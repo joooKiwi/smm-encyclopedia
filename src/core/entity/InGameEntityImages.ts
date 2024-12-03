@@ -1710,7 +1710,7 @@ export abstract class InGameEntityImages
     public static readonly NOTE_BLOCK =                                    new InGameEntityImages.ExistantAs1InNotSm3dw('Note Block', 'Object - BlockOnpu', 'wait.0',)
     public static readonly MUSIC_BLOCK =                                   new InGameEntityImages.Null()
 
-    public static readonly DONUT_BLOCK =                                   new InGameEntityImages.Null()
+    public static readonly DONUT_BLOCK =                                   new InGameEntityImages.ExistantAs3InNotSm3dw('Donut Block', 'Object - BlockChikuwa', 'fall.0', 'fall.1', 'wait.0', ['fall.0', 'fall.1', 'wait.0',],)
 
     public static readonly CLOUD_BLOCK =                                   new InGameEntityImages.Null()
 
