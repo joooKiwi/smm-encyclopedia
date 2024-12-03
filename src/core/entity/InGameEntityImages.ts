@@ -1276,7 +1276,7 @@ export abstract class InGameEntityImages
     public static readonly MYSTERY_MUSHROOM =                              new InGameEntityImages.ExistantAs1InOnlySmb('Mystery Mushroom', 'M1 Item - CharaKinoko', 'Add_kinoko',)
     public static readonly WEIRD_MUSHROOM =                                new InGameEntityImages.ExistantAs1InOnlySmb('Weird Mushroom', 'M1 Item - KinokoFunny', 'kinokofunny.0',)
 
-    public static readonly MASTER_SWORD =                                  new InGameEntityImages.Null()
+    public static readonly MASTER_SWORD =                                  new InGameEntityImages.ExistantAs4InOnlySmb('Master Sword', 'Item - Triforce', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAs3InOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
     public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAs1InOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
 
