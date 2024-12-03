@@ -2458,7 +2458,21 @@ export abstract class InGameEntityImages
     public static readonly TRACK =                                         new InGameEntityImages.Null()
     public static readonly TRACK_BLOCK =                                   new InGameEntityImages.Null()
 
-    public static readonly VINE =                                          new InGameEntityImages.Null()
+    public static readonly VINE =                                          new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Vine', 'Object - BlockTuta', [
+        'wait_head.0', 'wait_head.1',
+        'wait_top.0', 'wait_body.0', 'wait_under.0',
+    ], [
+        'wait_head.0', 'wait_head.1',
+        'wait_top.0', 'wait_top.1',
+        'wait_body.0', 'wait_body.1',
+        'wait_under.0', 'wait_under.1',
+    ], [
+        'edited_block_tuta_up_ani_Alb.048', 'edited_block_tuta_up_ani_Alb.050', 'edited_block_tuta_up_ani_Alb.052', 'edited_block_tuta_up_ani_Alb.054', 'edited_block_tuta_up_ani_Alb.056', 'edited_block_tuta_up_ani_Alb.058', 'edited_block_tuta_up_ani_Alb.060', 'edited_block_tuta_up_ani_Alb.062', 'edited_block_tuta_up_ani_Alb.064', 'edited_block_tuta_up_ani_Alb.066', 'edited_block_tuta_up_ani_Alb.068', 'edited_block_tuta_up_ani_Alb.070', 'edited_block_tuta_up_ani_Alb.072', 'edited_block_tuta_up_ani_Alb.074', 'edited_block_tuta_up_ani_Alb.076', 'edited_block_tuta_up_ani_Alb.078',
+        'edited_block_tuta_nomove_Alb.000',
+        'block_tuta_top_Alb.000', 'block_tuta_top_Alb.009', 'block_tuta_top_Alb.018', 'block_tuta_top_Alb.027', 'block_tuta_top_Alb.036', 'block_tuta_top_Alb.045', 'block_tuta_top_Alb.054', 'block_tuta_top_Alb.063', 'block_tuta_top_Alb.072', 'block_tuta_top_Alb.081', 'block_tuta_top_Alb.090', 'block_tuta_top_Alb.099', 'block_tuta_top_Alb.108', 'block_tuta_top_Alb.117', 'block_tuta_top_Alb.126', 'block_tuta_top_Alb.135', 'block_tuta_top_Alb.144', 'block_tuta_top_Alb.153', 'block_tuta_top_Alb.162', 'block_tuta_top_Alb.171', 'block_tuta_top_Alb.179',
+        'block_tuta_body_Alb.000', 'block_tuta_body_Alb.009', 'block_tuta_body_Alb.018', 'block_tuta_body_Alb.027', 'block_tuta_body_Alb.036', 'block_tuta_body_Alb.045', 'block_tuta_body_Alb.054', 'block_tuta_body_Alb.063', 'block_tuta_body_Alb.072', 'block_tuta_body_Alb.081', 'block_tuta_body_Alb.090', 'block_tuta_body_Alb.099', 'block_tuta_body_Alb.108', 'block_tuta_body_Alb.117', 'block_tuta_body_Alb.126', 'block_tuta_body_Alb.135', 'block_tuta_body_Alb.144', 'block_tuta_body_Alb.153', 'block_tuta_body_Alb.162', 'block_tuta_body_Alb.171', 'block_tuta_body_Alb.179',
+        'block_tuta_under_Alb.000', 'block_tuta_under_Alb.009', 'block_tuta_under_Alb.018', 'block_tuta_under_Alb.027', 'block_tuta_under_Alb.036', 'block_tuta_under_Alb.045', 'block_tuta_under_Alb.054', 'block_tuta_under_Alb.063', 'block_tuta_under_Alb.072', 'block_tuta_under_Alb.081', 'block_tuta_under_Alb.090', 'block_tuta_under_Alb.099', 'block_tuta_under_Alb.108', 'block_tuta_under_Alb.117', 'block_tuta_under_Alb.126', 'block_tuta_under_Alb.135', 'block_tuta_under_Alb.144', 'block_tuta_under_Alb.153', 'block_tuta_under_Alb.162', 'block_tuta_under_Alb.171', 'block_tuta_under_Alb.179',
+    ],)
     public static readonly TREE =                                          new InGameEntityImages.Null()
 
     public static readonly STARTING_ARROW =                                new InGameEntityImages.Null()
