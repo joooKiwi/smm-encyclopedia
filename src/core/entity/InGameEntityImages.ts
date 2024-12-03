@@ -1057,6 +1057,71 @@ export abstract class InGameEntityImages
 
     }
 
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 6 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
+     * plus an undetermined amount of {@link InGameImageFile} in {@link NSMBU}
+     */
+    private static readonly ExistantAs6InNotSm3dw = class ExistantAs6InNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileName4 = this.fileName4
+            const fileName5 = this.fileName5
+            const fileName6 = this.fileName6
+            const fileNames_nsmbu = this.nsmbuFileNames
+
+            const imageFiles = new Array<readonly [GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(18 + fileNames_nsmbu.length,)
+
+            imageFiles[0] =  [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] =  [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] =  [SMB,  inGameImage(this, folderName_smb,  fileName3,),]
+            imageFiles[3] =  [SMB,  inGameImage(this, folderName_smb,  fileName4,),]
+            imageFiles[4] =  [SMB,  inGameImage(this, folderName_smb,  fileName5,),]
+            imageFiles[5] =  [SMB,  inGameImage(this, folderName_smb,  fileName6,),]
+            imageFiles[6] =  [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[7] =  [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+            imageFiles[8] =  [SMB3, inGameImage(this, folderName_smb3, fileName3,),]
+            imageFiles[9] =  [SMB3, inGameImage(this, folderName_smb3, fileName4,),]
+            imageFiles[10] = [SMB3, inGameImage(this, folderName_smb3, fileName5,),]
+            imageFiles[11] = [SMB3, inGameImage(this, folderName_smb3, fileName6,),]
+            imageFiles[12] = [SMW,  inGameImage(this, folderName_smw,  fileName1,),]
+            imageFiles[13] = [SMW,  inGameImage(this, folderName_smw,  fileName2,),]
+            imageFiles[14] = [SMW,  inGameImage(this, folderName_smw,  fileName3,),]
+            imageFiles[15] = [SMW,  inGameImage(this, folderName_smw,  fileName4,),]
+            imageFiles[16] = [SMW,  inGameImage(this, folderName_smw,  fileName5,),]
+            imageFiles[17] = [SMW,  inGameImage(this, folderName_smw,  fileName6,),]
+
+            let index = 17
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     //endregion -------------------- Sub class (6 images) --------------------
     //region -------------------- Sub class (7 images) --------------------
 
@@ -1769,7 +1834,13 @@ export abstract class InGameEntityImages
         'glow',
         'shay_teresaB_Alb.000', 'shay_teresaB_Alb.001', 'shay_teresaB_Alb.002', 'shay_teresaB_Alb.003', 'shay_teresaB_Alb.004',
     ],)
-    public static readonly STRETCH =                                       new InGameEntityImages.Null()
+    public static readonly STRETCH =                                       new InGameEntityImages.ExistantAs6InNotSm3dw('Stretch', 'Enemy - Netchi', 'out.0', 'out.1', 'out.2', 'out.3', 'wait.0', 'walk.0', [
+        'glow',
+        'in_Alb.000', 'in_Alb.002', 'in_Alb.004', 'in_Alb.006', 'in_Alb.008', 'in_Alb.010', 'in_Alb.012', 'in_Alb.014', 'in_Alb.016', 'in_Alb.018', 'in_Alb.020', 'in_Alb.022', 'in_Alb.024', 'in_Alb.026', 'in_Alb.028', 'in_Alb.030', 'in_Alb.032', 'in_Alb.034', 'in_Alb.036', 'in_Alb.038', 'in_Alb.040',
+        'netch_shay_Alb.001', 'netch_shay_Alb.002', 'netch_shay_Alb.003', 'netch_shay_Alb.004', 'netch_shay_Alb.005',
+        'out_Alb.000', 'out_Alb.002', 'out_Alb.004', 'out_Alb.006', 'out_Alb.008', 'out_Alb.010', 'out_Alb.012', 'out_Alb.014', 'out_Alb.016', 'out_Alb.018', 'out_Alb.020', 'out_Alb.022', 'out_Alb.024', 'out_Alb.026', 'out_Alb.028', 'out_Alb.030', 'out_Alb.032', 'out_Alb.034', 'out_Alb.036', 'out_Alb.038', 'out_Alb.040',
+        'walk_Alb.000', 'walk_Alb.003', 'walk_Alb.006', 'walk_Alb.009', 'walk_Alb.012', 'walk_Alb.015', 'walk_Alb.018', 'walk_Alb.021', 'walk_Alb.024', 'walk_Alb.027', 'walk_Alb.030', 'walk_Alb.033', 'walk_Alb.036', 'walk_Alb.039', 'walk_Alb.042', 'walk_Alb.045',
+    ],)
     public static readonly BOO_BUDDIES =                                   new InGameEntityImages.Null()
     public static readonly PEEPA =                                         new InGameEntityImages.Null()
 
