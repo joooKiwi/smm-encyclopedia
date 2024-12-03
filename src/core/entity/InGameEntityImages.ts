@@ -306,6 +306,29 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile} in only {@link SMW} with 1 alternate {@link InGameImage_Regular} */
+    private static readonly ExistantAs2InOnlySmwWith1Alternate = class ExistantAs2InOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly folderNameAlt: FOLDER_NAME, private readonly fileNameAlt: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMW, inGameImage(this, folderName,         this.fileName1,),],
+                [SMW, inGameImage(this, folderName,         this.fileName2,),],
+                [SMW, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
+            ] as const
+        }
+
+    }
+
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
@@ -1476,7 +1499,7 @@ export abstract class InGameEntityImages
 
     public static readonly FROG_SUIT =                                     new InGameEntityImages.ExistantAs1InOnlySmb3WithAlternate('Frog Suit', 'M3 Item - SpecialEX', 'wait.0', 'M3 Item - SpecialEX2', 'wait.0',)
 
-    public static readonly CAPE_FEATHER =                                  new InGameEntityImages.Null()
+    public static readonly CAPE_FEATHER =                                  new InGameEntityImages.ExistantAs2InOnlySmwWith1Alternate('Cape Feather', 'MW Item - Special', 'wait.0', 'wait.1', 'MW - Item - Special2', 'wait.0',)
 
     public static readonly POWER_BALLOON =                                 new InGameEntityImages.Null()
 
