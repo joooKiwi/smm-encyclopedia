@@ -1317,8 +1317,7 @@ export abstract class InGameEntityImages
 
     public static readonly RED_POW_BOX =                                   new InGameEntityImages.Null()
 
-    public static readonly SUPER_STAR =                                    new InGameEntityImages.Null()
-
+    public static readonly SUPER_STAR =                                    new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Super Star', 'Item - Star', 'wait.0', 'wait.1', 'wait.2', 'wait.3', ['wait2_Alb.000', 'wait2_Alb.003', 'wait2_Alb.006', 'wait2_Alb.009', 'wait2_Alb.012', 'wait2_Alb.015', 'wait2_Alb.018', 'wait2_Alb.021', 'wait2_Alb.024', 'wait2_Alb.027', 'wait2_Alb.030', 'wait2_Alb.033', 'wait2_Alb.036', 'wait2_Alb.039', 'wait2_Alb.042', 'wait2_Alb.045', 'wait2_Alb.048', 'wait2_Alb51', 'wait2_Alb54', 'wait2_Alb57', '9',],)
     public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.Null()
     public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Rotten Mushroom', 'Item - KinokoPoison', 'wait.0', 'out2_Alb.000',)
 
