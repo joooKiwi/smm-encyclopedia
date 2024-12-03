@@ -373,7 +373,8 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -420,7 +421,8 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -451,7 +453,8 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -533,7 +536,9 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly nsmbuFileName: NSMBU_FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly nsmbuFileName: NSMBU_FILE_NAME,) {
             super(englishName,)
         }
 
@@ -569,8 +574,9 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly nsmbuFileName1: NSMBU_FILE_NAME, private readonly nsmbuFileName2: NSMBU_FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly nsmbuFileName1: NSMBU_FILE_NAME, private readonly nsmbuFileName2: NSMBU_FILE_NAME,) {
             super(englishName,)
         }
 
@@ -605,8 +611,8 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -679,8 +685,8 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -719,8 +725,9 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -765,8 +772,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -788,8 +796,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -811,8 +820,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
                            private readonly folderNameAlt: FOLDER_NAME, private readonly fileNameAlt: FILE_NAME,) {
             super(englishName,)
         }
@@ -840,8 +850,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -881,8 +892,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M3' | 'MW' | 'WU'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -925,8 +937,9 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
                            private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
@@ -977,9 +990,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
-                           private readonly fileName5: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -1011,7 +1024,8 @@ export abstract class InGameEntityImages
 
         public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
                            private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
-                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1071,7 +1085,8 @@ export abstract class InGameEntityImages
 
         public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
                            private readonly fileName1: SMB_SMB3_SMW_FILE_NAME, private readonly fileName2: SMB_SMB3_SMW_FILE_NAME, private readonly fileName3: SMB_SMB3_SMW_FILE_NAME,
-                           private readonly fileName4: SMB_SMB3_SMW_FILE_NAME, private readonly fileName5: SMB_SMB3_SMW_FILE_NAME, private readonly nsmbuSm3dwFileName: NSMBU_SM3DW_FILE_NAME,) {
+                           private readonly fileName4: SMB_SMB3_SMW_FILE_NAME, private readonly fileName5: SMB_SMB3_SMW_FILE_NAME,
+                           private readonly nsmbuSm3dwFileName: NSMBU_SM3DW_FILE_NAME,) {
             super(englishName,)
         }
 
@@ -1119,9 +1134,9 @@ export abstract class InGameEntityImages
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName1: FILE_NAME,
-                           private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,
-                           private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -1222,7 +1237,8 @@ export abstract class InGameEntityImages
         public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
                            private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
                            private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,
-                           private readonly fileName7: FILE_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+                           private readonly fileName7: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1289,7 +1305,9 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1333,8 +1351,9 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>,
-                           private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1375,8 +1394,9 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>,
-                           private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1475,7 +1495,9 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1518,7 +1540,9 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1558,7 +1582,9 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`${| 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, SMB3_SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3SmwFileNames: Array<SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3SmwFileNames: Array<SMB3_SMW_FILE_NAME>,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1608,7 +1634,9 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>, private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1663,7 +1691,8 @@ export abstract class InGameEntityImages
                                                   | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMB_SMB3_SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1708,7 +1737,8 @@ export abstract class InGameEntityImages
         extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D'}`, SMB_SMB3_SMW_FILE_NAME>
                                                   | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
 
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
             super(englishName,)
         }
 
@@ -1932,8 +1962,12 @@ export abstract class InGameEntityImages
     ],)
     public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAs6InOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAs6InOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
-    public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAs4InNotSm3dw('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
-    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dw('Red Koopa Shell', 'Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
+    public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAs4InNotSm3dw('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', [
+        'Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',
+    ],)
+    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dw('Red Koopa Shell', 'Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', [
+        'Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',
+    ],)
 
     public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
@@ -1973,7 +2007,9 @@ export abstract class InGameEntityImages
         'swim_Alb.000', 'swim_Alb.004', 'swim_Alb.008', 'swim_Alb.012', 'swim_Alb.016', 'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.036', 'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.048', 'swim_Alb.052', 'swim_Alb.056', 'swim_Alb.060', 'swim_Alb.063', 'swim_Alb.064', 'swim_Alb.068', 'swim_Alb.072', 'swim_Alb.076', 'swim_Alb.080', 'swim_Alb.083',
     ],)
 
-    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAs4InNotSm3dw('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', ['edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',],)
+    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAs4InNotSm3dw('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', [
+        'edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',
+    ],)
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
     public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAs2InNotSm3dwAnd1Nsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
 
@@ -2533,14 +2569,10 @@ export abstract class InGameEntityImages
     ],)
     public static readonly CLOUD_LIFT =                                    new InGameEntityImages.Null()
 
-    public static readonly SEESAW =                                        new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Seesaw', 'Object - Seesaw', [
+    public static readonly SEESAW =                                        new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Seesaw', 'Object - Seesaw', [
         'seesaw_sideL.00', 'seesaw_center.00', 'seesaw_sideR.00',
         'seesaw_point.00',
         'seesaw_point_rail.00', 'seesaw_point_rail.01',
-    ], [
-        'seesaw_sideL.00', 'seesaw_center.00', 'seesaw_sideR.00',
-        'seesaw_point.00',
-        'seesaw_point_rail.00', 'seesaw_point_rail.01', 'seesaw_point_rail.02', 'seesaw_point_rail.03',
     ], [
         'seesaw_sideL.00', 'seesaw_center.00', 'seesaw_sideR.00',
         'seesaw_point.00',
@@ -2551,22 +2583,10 @@ export abstract class InGameEntityImages
         'seesaw_point_rail_Alb.00', 'seesaw_point_rail_Alb.01', 'seesaw_point_rail_Alb.02', 'seesaw_point_rail_Alb.03', 'seesaw_point_rail_Alb.04', 'seesaw_point_rail_Alb.05', 'seesaw_point_rail_Alb.06', 'seesaw_point_rail_Alb.07',
     ],)
 
-    public static readonly LAVA_LIFT =                                     new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lava Lift', 'Object - LiftYougan', [
-        'wait.0',
-    ], [
-        'wait.0', 'wait.1',
-    ], [
-        'wait.0', 'wait.1',
-    ], [
+    public static readonly LAVA_LIFT =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Lava Lift', 'Object - LiftYougan', ['wait.0',], ['wait.0', 'wait.1',], [
         'lift_yougan_Alb.000', 'lift_yougan_Alb.001', 'lift_yougan_Alb.006', 'lift_yougan_Alb.012', 'lift_yougan_Alb.016', 'lift_yougan_Alb.019',
     ],)
-    public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lava Lift', 'Object - LiftYougan', [
-        'wait.0',
-    ], [
-        'wait.0', 'wait.1',
-    ], [
-        'wait.0', 'wait.1',
-    ], [
+    public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Lava Lift', 'Object - LiftYougan', ['wait.0',], ['wait.0', 'wait.1',], [
         'lift_yougan2_Alb.000', 'lift_yougan2_Alb.001', 'lift_yougan2_Alb.006', 'lift_yougan2_Alb.012', 'lift_yougan2_Alb.016', 'lift_yougan2_Alb.019',
     ],)
 
