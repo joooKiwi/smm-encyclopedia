@@ -993,6 +993,61 @@ export abstract class InGameEntityImages
 
     }
 
+    private static readonly ExistantAsNoVariantAndNotSm3dwWith1AlternateFile = class ExistantAsNoVariantAndNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName1: ENDING_FOLDER_NAME, private readonly endingFolderName2: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames1: Array<SMB_FILE_NAME>, private readonly smbFileName2: SMB_FILE_NAME,
+                           private readonly smb3FileNames1: Array<SMB3_FILE_NAME>, private readonly smb3FileName2: SMB3_FILE_NAME,
+                           private readonly smwFileNames1: Array<SMW_FILE_NAME>, private readonly smwFileName2: SMW_FILE_NAME,
+                           private readonly nsmbuFileNames1: Array<NSMBU_FILE_NAME>, private readonly nsmbuFileName2: NSMBU_FILE_NAME,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName1 = this.endingFolderName1
+            const endingFolderName2 = this.endingFolderName2
+            const folderName_smb = `M1 ${endingFolderName1}` as const
+            const folderName_smb3 = `M3 ${endingFolderName1}` as const
+            const folderName_smw = `MW ${endingFolderName1}` as const
+            const folderName_nsmbu = `WU ${endingFolderName1}` as const
+            const fileNames_smb = this.smbFileNames1
+            const fileNames_smb3 = this.smb3FileNames1
+            const fileNames_smw = this.smwFileNames1
+            const fileNames_nsmbu = this.nsmbuFileNames1
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
+                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length + fileNames_nsmbu.length + 4,)
+
+            let index = -1
+            forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
+            imageFiles[++index] = [SMB, inGameImage(this, `M1 ${endingFolderName2}`, this.smbFileName2,),]
+
+            forEachByArray(fileNames_smb3, it => imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),],)
+            imageFiles[++index] = [SMB3, inGameImage(this, `M3 ${endingFolderName2}`, this.smb3FileName2,),]
+
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+            imageFiles[++index] = [SMW, inGameImage(this, `MW ${endingFolderName2}`, this.smwFileName2,),]
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+            imageFiles[++index] = [NSMBU, inGameImage(this, `WU ${endingFolderName2}`, this.nsmbuFileName2,),]
+
+            return imageFiles
+        }
+
+    }
+
     private static readonly ExistantAsNoVariantWithSameSmbSmb3 = class ExistantAsNoVariantWithSameSmbSmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_SMB3_FILE_NAME extends string,
@@ -1306,7 +1361,11 @@ export abstract class InGameEntityImages
 
     public static readonly SUPER_MUSHROOM =                                new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Super Mushroom', 'Item - Kinoko', 'wait.0', 'out2_Alb.000',)
 
-    public static readonly FIRE_FLOWER =                                   new InGameEntityImages.Null()
+    public static readonly FIRE_FLOWER =                                   new InGameEntityImages.ExistantAsNoVariantAndNotSm3dwWith1AlternateFile('Fire Flower', 'Item - Flower', 'Item - Flower2', [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3'], 'wait.0', [
+        'wait.0',], 'wait.0', [
+        'wait.0', 'wait.1',], 'wait.0', [
+        'out2_Alb.000', 'out2_Alb.003', 'out2_Alb.006', 'out2_Alb.009', 'out2_Alb.012', 'out2_Alb.015', 'out2_Alb.018', 'out2_Alb.021', 'out2_Alb.024', 'out2_Alb.027', 'out2_Alb.030', 'out2_Alb.033', 'out2_Alb.036', 'out2_Alb.039', 'out2_Alb.042', 'out2_Alb.045', 'out2_Alb.048', 'out2_Alb.051', 'out2_Alb.054', 'out2_Alb.057', 'out2_Alb.059', 'wait_Alb.000',], 'wait_Alb.000',)
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
 
     public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.Null()
