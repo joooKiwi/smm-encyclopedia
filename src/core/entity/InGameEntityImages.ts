@@ -438,7 +438,7 @@ export abstract class InGameEntityImages
      * as 2 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      * plus an undetermined amount of {@link InGameImageFile} in {@link NSMBU}
      */
-    private static readonly ExistantAs2InNotSm3dw = class ExistantAs2InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs2InNotSm3dw = class ExistantAs2InNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -671,7 +671,7 @@ export abstract class InGameEntityImages
      * as 3 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAs3InNotSm3dwWithNsmbu = class ExistantAs3InNotSm3dwWithNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3InNotSm3dw = class ExistantAs3InNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -794,7 +794,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 4 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAs4InNotNsmbuAndSm3dw = class ExistantAs4InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InNotNsmbuSm3dw = class ExistantAs4InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -836,7 +836,7 @@ export abstract class InGameEntityImages
      * as 4 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAs4InNotSm3dwWithNsmbu = class ExistantAs4InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InNotSm3dw = class ExistantAs4InNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -920,7 +920,7 @@ export abstract class InGameEntityImages
      * as 5 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAs5InNotSm3dwWithNsmbu = class ExistantAs5InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs5InNotSm3dw = class ExistantAs5InNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -1130,7 +1130,7 @@ export abstract class InGameEntityImages
      * as 7 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAs7InNotSm3dwWithNsmbu = class ExistantAs7InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs7InNotSm3dw = class ExistantAs7InNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -1589,8 +1589,8 @@ export abstract class InGameEntityImages
     public static readonly OCCLUDE_BLOCK =                                 new InGameEntityImages.Null()
 
     public static readonly WATER =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Water', 'Object - WaterHalf', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], ['body.0', 'body.1', 'body.2', 'body.3', 'top.0', 'top.1', 'top.2', 'top.3',], ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
-    public static readonly LAVA =                                          new InGameEntityImages.ExistantAs4InNotNsmbuAndSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
-    public static readonly POISON =                                        new InGameEntityImages.ExistantAs4InNotNsmbuAndSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly LAVA =                                          new InGameEntityImages.ExistantAs4InNotNsmbuSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly POISON =                                        new InGameEntityImages.ExistantAs4InNotNsmbuSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly PIPE =                                          new InGameEntityImages.Null()
     public static readonly CLEAR_PIPE =                                    new InGameEntityImages.Null()
@@ -1703,7 +1703,7 @@ export abstract class InGameEntityImages
 
     public static readonly RED_POW_BOX =                                   new InGameEntityImages.Null()
 
-    public static readonly SUPER_STAR =                                    new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Super Star', 'Item - Star', 'wait.0', 'wait.1', 'wait.2', 'wait.3', ['wait2_Alb.000', 'wait2_Alb.003', 'wait2_Alb.006', 'wait2_Alb.009', 'wait2_Alb.012', 'wait2_Alb.015', 'wait2_Alb.018', 'wait2_Alb.021', 'wait2_Alb.024', 'wait2_Alb.027', 'wait2_Alb.030', 'wait2_Alb.033', 'wait2_Alb.036', 'wait2_Alb.039', 'wait2_Alb.042', 'wait2_Alb.045', 'wait2_Alb.048', 'wait2_Alb51', 'wait2_Alb54', 'wait2_Alb57', '9',],)
+    public static readonly SUPER_STAR =                                    new InGameEntityImages.ExistantAs4InNotSm3dw('Super Star', 'Item - Star', 'wait.0', 'wait.1', 'wait.2', 'wait.3', ['wait2_Alb.000', 'wait2_Alb.003', 'wait2_Alb.006', 'wait2_Alb.009', 'wait2_Alb.012', 'wait2_Alb.015', 'wait2_Alb.018', 'wait2_Alb.021', 'wait2_Alb.024', 'wait2_Alb.027', 'wait2_Alb.030', 'wait2_Alb.033', 'wait2_Alb.036', 'wait2_Alb.039', 'wait2_Alb.042', 'wait2_Alb.045', 'wait2_Alb.048', 'wait2_Alb51', 'wait2_Alb54', 'wait2_Alb57', '9',],)
     public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('1-Up Mushroom', 'Item - Kinoko1up', 'wait.0', 'wait.1', 'edit_out2_Alb.000', 'out2_Alb.000',)
     public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Rotten Mushroom', 'Item - KinokoPoison', 'wait.0', 'out2_Alb.000',)
 
@@ -1756,8 +1756,8 @@ export abstract class InGameEntityImages
     ],)
     public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAs6InOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAs6InOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
-    public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
-    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Red Koopa Shell', 'Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
+    public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAs4InNotSm3dw('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
+    public static readonly RED_KOOPA_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dw('Red Koopa Shell', 'Enemy - NokonokoB', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
 
     public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
@@ -1790,14 +1790,14 @@ export abstract class InGameEntityImages
     public static readonly CHEEP_CHEEP =                                   new InGameEntityImages.Null()
     public static readonly BLURPS =                                        new InGameEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
-    public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dwWithNsmbu('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
+    public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dw('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
         'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.031',
         'attack_st_Alb.000', 'attack_st_Alb.002', 'attack_st_Alb.004', 'attack_st_Alb.006', 'attack_st_Alb.008', 'attack_st_Alb.010', 'attack_st_Alb.012', 'attack_st_Alb.014', 'attack_st_Alb.016', 'attack_st_Alb.018', 'attack_st_Alb.020', 'attack_st_Alb.022', 'attack_st_Alb.024', 'attack_st_Alb.026', 'attack_st_Alb.028', 'attack_st_Alb.030', 'attack_st_Alb.032', 'attack_st_Alb.034', 'attack_st_Alb.036', 'attack_st_Alb.038', 'attack_st_Alb.040',
         'break_Alb.000',
         'swim_Alb.000', 'swim_Alb.004', 'swim_Alb.008', 'swim_Alb.012', 'swim_Alb.016', 'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.036', 'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.048', 'swim_Alb.052', 'swim_Alb.056', 'swim_Alb.060', 'swim_Alb.063', 'swim_Alb.064', 'swim_Alb.068', 'swim_Alb.072', 'swim_Alb.076', 'swim_Alb.080', 'swim_Alb.083',
     ],)
 
-    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', ['edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',],)
+    public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAs4InNotSm3dw('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', ['edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',],)
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
     public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAs2InNotSm3dwAnd1Nsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
 
@@ -1817,7 +1817,7 @@ export abstract class InGameEntityImages
     public static readonly UNCHAINED_CHOMP =                               new InGameEntityImages.Null()
     public static readonly CHAIN_CHOMP_STUMP =                             new InGameEntityImages.Null()
 
-    public static readonly SPIKE =                                         new InGameEntityImages.ExistantAs7InNotSm3dwWithNsmbu('Spike', 'Enemy - Gabon', 'throw_ed.0', 'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'wait.0', 'wait.1', [
+    public static readonly SPIKE =                                         new InGameEntityImages.ExistantAs7InNotSm3dw('Spike', 'Enemy - Gabon', 'throw_ed.0', 'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'wait.0', 'wait.1', [
         'parawait_Alb.000', 'parawait_Alb.002', 'parawait_Alb.004', 'parawait_Alb.006', 'parawait_Alb.008', 'parawait_Alb.010', 'parawait_Alb.012', 'parawait_Alb.014', 'parawait_Alb.016', 'parawait_Alb.018', 'parawait_Alb.020', 'parawait_Alb.022', 'parawait_Alb.024', 'parawait_Alb.026', 'parawait_Alb.028', 'parawait_Alb.030', 'parawait_Alb.032', 'parawait_Alb.034', 'parawait_Alb.036', 'parawait_Alb.038', 'parawait_Alb.040', 'parawait_Alb.042', 'parawait_Alb.044',
         'throw_Alb.000', 'throw_Alb.003', 'throw_Alb.006', 'throw_Alb.009', 'throw_Alb.012', 'throw_Alb.015', 'throw_Alb.018', 'throw_Alb.021', 'throw_Alb.024', 'throw_Alb.027', 'throw_Alb.031', 'throw_Alb.033', 'throw_Alb.036', 'throw_Alb.039', 'throw_Alb.042', 'throw_Alb.045', 'throw_Alb.048', 'throw_Alb.051', 'throw_Alb.054', 'throw_Alb.057', 'throw_Alb.060', 'throw_Alb.063', 'throw_Alb.066', 'throw_Alb.069', 'throw_Alb.072', 'throw_Alb.075', 'throw_Alb.078', 'throw_Alb.081', 'throw_Alb.084', 'throw_Alb.087', 'throw_Alb.090', 'throw_Alb.093', 'throw_Alb.096', 'throw_Alb.099', 'throw_Alb.102', 'throw_Alb.105', 'throw_Alb.108', 'throw_Alb.111', 'throw_Alb.114', 'throw_Alb.117', 'throw_Alb.120', 'throw_Alb.123', 'throw_Alb.126', 'throw_Alb.129', 'throw_Alb.132', 'throw_Alb.134',
         'throw_held_Alb.000', 'throw_held_Alb.003', 'throw_held_Alb.006', 'throw_held_Alb.009', 'throw_held_Alb.012', 'throw_held_Alb.015', 'throw_held_Alb.018', 'throw_held_Alb.021', 'throw_held_Alb.024', 'throw_held_Alb.027', 'throw_held_Alb.031', 'throw_held_Alb.033', 'throw_held_Alb.036', 'throw_held_Alb.039', 'throw_held_Alb.042', 'throw_held_Alb.045', 'throw_held_Alb.048', 'throw_held_Alb.051', 'throw_held_Alb.054', 'throw_held_Alb.057', 'throw_held_Alb.060', 'throw_held_Alb.063', 'throw_held_Alb.066', 'throw_held_Alb.069', 'throw_held_Alb.072', 'throw_held_Alb.075', 'throw_held_Alb.078', 'throw_held_Alb.081', 'throw_held_Alb.084', 'throw_held_Alb.087', 'throw_held_Alb.090', 'throw_held_Alb.093', 'throw_held_Alb.096', 'throw_held_Alb.099', 'throw_held_Alb.102', 'throw_held_Alb.105', 'throw_held_Alb.108', 'throw_held_Alb.111', 'throw_held_Alb.114', 'throw_held_Alb.117', 'throw_held_Alb.120', 'throw_held_Alb.123', 'throw_held_Alb.126', 'throw_held_Alb.129', 'throw_held_Alb.132', 'throw_held_Alb.134',
@@ -1862,13 +1862,13 @@ export abstract class InGameEntityImages
 
     public static readonly THWOMP =                                        new InGameEntityImages.Null()
 
-    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3InNotSm3dwWithNsmbu('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
+    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3InNotSm3dw('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
         'go_out_st_Alb.000', 'go_out_st_Alb.002', 'go_out_st_Alb.004', 'go_out_st_Alb.006', 'go_out_st_Alb.008', 'go_out_st_Alb.010', 'go_out_st_Alb.012', 'go_out_st_Alb.014', 'go_out_st_Alb.016', 'go_out_st_Alb.018',
         'in_dokan_Alb.000', 'in_dokan_Alb.002', 'in_dokan_Alb.004', 'in_dokan_Alb.006', 'in_dokan_Alb.008', 'in_dokan_Alb.009',
         'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008', 'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018', 'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028', 'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
         'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007', 'walk_Alb.008', 'walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018',],)
     public static readonly ROCKY_WRENCH =                                  new InGameEntityImages.Null()
-     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
+     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAs4InNotSm3dw('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
 
     public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
     public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAs5WithSameSmbSmb3SmwAnd1NsmbuSm3dw('Magikoopa', 'Enemy - Kameck', 'effect.0', 'effect.1', 'effect.2', 'wing_wait.0', 'wing_wait.1', 'effect.0',)
@@ -2295,7 +2295,7 @@ export abstract class InGameEntityImages
 
     public static readonly CASTLE =                                        new InGameEntityImages.Null()
     public static readonly ENDING_CASTLE_DOOR =                            new InGameEntityImages.Null()
-    public static readonly AXE =                                           new InGameEntityImages.ExistantAs5InNotSm3dwWithNsmbu('Axe', 'Object - Ono', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'ono_Xlu', [
+    public static readonly AXE =                                           new InGameEntityImages.ExistantAs5InNotSm3dw('Axe', 'Object - Ono', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'ono_Xlu', [
         'ono_Alb.000', 'ono_Alb.001', 'ono_Alb.002', 'ono_Alb.003', 'ono_Alb.004', 'ono_Alb.005', 'ono_Alb.006', 'ono_Alb.007',
         'onoXlu_Alb.000',
     ],)
