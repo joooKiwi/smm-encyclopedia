@@ -104,8 +104,28 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             return [
-                [SMB, inGameImage(this, this.folderName,    this.fileName,),],
+                [SMB, inGameImage(this, this.folderName, this.fileName,),],
                 [SMB, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMB3} with 1 alternate {@link InGameImageFile} */
+    private static readonly ExistantAs1InOnlySmb3WithAlternate = class ExistantAs1InOnlySmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName: FILE_NAME,
+                           private readonly folderNameAlt: FOLDER_NAME, private readonly fileNameAlt: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            return [
+                [SMB3, inGameImage(this, this.folderName,    this.fileName,),],
+                [SMB3, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
             ] as const
         }
 
@@ -465,9 +485,9 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const folderName = this.folderName
             return [
-                [SMB, inGameImage(this, folderName, this.fileName1,),],
-                [SMB, inGameImage(this, folderName, this.fileName2,),],
-                [SMB, inGameImage(this, folderName, this.fileName3,),],
+                [SMB, inGameImage(this, folderName,         this.fileName1,),],
+                [SMB, inGameImage(this, folderName,         this.fileName2,),],
+                [SMB, inGameImage(this, folderName,         this.fileName3,),],
                 [SMB, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
             ] as const
         }
@@ -1454,7 +1474,7 @@ export abstract class InGameEntityImages
 
     public static readonly SUPER_LEAF =                                    new InGameEntityImages.ExistantAs3InOnlySmb3With1Alternate('Super Leaf', 'M3 Item - Special', 'wait.0', 'wait.1', 'wait.2', 'M3 Item - Special2', 'wait.0',)
 
-    public static readonly FROG_SUIT =                                     new InGameEntityImages.Null()
+    public static readonly FROG_SUIT =                                     new InGameEntityImages.ExistantAs1InOnlySmb3WithAlternate('Frog Suit', 'M3 Item - SpecialEX', 'wait.0', 'M3 Item - SpecialEX2', 'wait.0',)
 
     public static readonly CAPE_FEATHER =                                  new InGameEntityImages.Null()
 
