@@ -2464,7 +2464,10 @@ export abstract class InGameEntityImages
     ],)
     public static readonly RED_POW_BLOCK =                                 new InGameEntityImages.Null()
 
-    public static readonly P_SWITCH =                                      new InGameEntityImages.Null()
+    public static readonly P_SWITCH =                                      new InGameEntityImages.ExistantAs7InNotSm3dw('P Switch', 'Object - PSwitch', 'push.0', 'push.1', 'push.2', 'wait.0', 'wait.1', 'wait.2', 'wait.3', [
+        'down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004', 'down_switch_hatena_Alb.005', 'down_switch_hatena_Alb.006',
+        'wait_Alb.000', 'wait_Alb.001', 'wait_Alb.002', 'wait_Alb.003', 'wait_Alb.004', 'wait_Alb.005', 'wait_Alb.006',
+    ],)
 
     public static readonly STONE =                                         new InGameEntityImages.ExistantAs4InNotSmbSm3dw('Stone', 'Object - Stone', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
