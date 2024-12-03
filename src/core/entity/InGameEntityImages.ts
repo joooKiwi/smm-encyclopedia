@@ -2182,7 +2182,12 @@ export abstract class InGameEntityImages
         'center_firebar_Alb.000', 'firebar', 'firebar_code',
     ],)
 
-    public static readonly SKEWER =                                        new InGameEntityImages.Null()
+    public static readonly SKEWER =                                        new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Skewer', 'Object - Daikonbou', ['edit', 'top', 'wait_body.0', 'wait_under.0',], [
+        'edit_daikonbou_Alb.000',
+        'daikonbou_top_Alb.000',
+        'daikonbou_body_Alb.000', 'daikonbou_body_Alb.001', 'daikonbou_body_Alb.002', 'daikonbou_body_Alb.003', 'daikonbou_body_Alb.004', 'daikonbou_body_Alb.005', 'daikonbou_body_Alb.006', 'daikonbou_body_Alb.007', 'daikonbou_body_Alb.008', 'daikonbou_body_Alb.009', 'daikonbou_body_Alb.010', 'daikonbou_body_Alb.011', 'daikonbou_body_Alb.012', 'daikonbou_body_Alb.013', 'daikonbou_body_Alb.014',
+        'daikonbou_under_Alb.000', 'daikonbou_under_Alb.001', 'daikonbou_under_Alb.002', 'daikonbou_under_Alb.003', 'daikonbou_under_Alb.004', 'daikonbou_under_Alb.005', 'daikonbou_under_Alb.006', 'daikonbou_under_Alb.007', 'daikonbou_under_Alb.008', 'daikonbou_under_Alb.009', 'daikonbou_under_Alb.010', 'daikonbou_under_Alb.011', 'daikonbou_under_Alb.012', 'daikonbou_under_Alb.013', 'daikonbou_under_Alb.014',
+    ],)
 
     public static readonly KOOPA_CLOWN_CAR =                               new InGameEntityImages.Null()
     public static readonly JUNIOR_CLOWN_CAR =                              new InGameEntityImages.Null()
