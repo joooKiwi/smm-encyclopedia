@@ -1698,7 +1698,7 @@ export abstract class InGameEntityImages
     public static readonly CRISTAL_BLOCK =                                 new InGameEntityImages.Null()
     public static readonly ROTATING_BLOCK =                                new InGameEntityImages.ExistantAs1InOnlySmw('Rotating Block', 'MW Object - BlockRenga', 'wait.0',)
 
-    public static readonly HARD_BLOCK =                                    new InGameEntityImages.Null()
+    public static readonly HARD_BLOCK =                                    new InGameEntityImages.ExistantAs1InNotSm3dw('Hard Block', 'Object - BlockKatai', 'wait.0',)
     public static readonly ROCK_BLOCK =                                    new InGameEntityImages.Null()
 
     public static readonly QUESTION_MARK_BLOCK =                           new InGameEntityImages.Null()
