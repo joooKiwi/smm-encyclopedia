@@ -470,8 +470,8 @@ export abstract class InGameEntityImages
 
     }
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} with an alternate {@link InGameImage_Regular} */
-    private static readonly ExistantAs3InOnlySmbWith1Alternate = class ExistantAs3InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} with 1 alternate {@link InGameImage_Regular} */
+    private static readonly ExistantAs3InOnlySmbWith1Alternate = class ExistantAs3InOnlySmbWith1Alternate_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -495,7 +495,7 @@ export abstract class InGameEntityImages
     }
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB3} with an alternate {@link InGameImage_Regular} */
-    private static readonly ExistantAs3InOnlySmb3With1Alternate = class ExistantAs3InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3InOnlySmb3With1Alternate = class ExistantAs3InOnlySmb3With1Alternate_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -523,7 +523,7 @@ export abstract class InGameEntityImages
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 3 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAs3InNotNsmbuSm3dw = class ExistantAs3InNotNsmbuAndSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3InNotNsmbuSm3dw = class ExistantAs3InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -561,7 +561,7 @@ export abstract class InGameEntityImages
      * as 3 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
      * and an unspecified amount of {@link InGameImageFile} on {@link NSMBU}
      */
-    private static readonly ExistantAs3AndNotSm3dwWithNsmbu = class ExistantAs3InNotSm3dwWithNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs3InNotSm3dwWithNsmbu = class ExistantAs3InNotSm3dwWithNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string,
         const NSMBU_FILE_NAME extends string, >
@@ -1635,7 +1635,7 @@ export abstract class InGameEntityImages
 
     public static readonly THWOMP =                                        new InGameEntityImages.Null()
 
-    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3AndNotSm3dwWithNsmbu('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
+    public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3InNotSm3dwWithNsmbu('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
         'go_out_st_Alb.000', 'go_out_st_Alb.002', 'go_out_st_Alb.004', 'go_out_st_Alb.006', 'go_out_st_Alb.008', 'go_out_st_Alb.010', 'go_out_st_Alb.012', 'go_out_st_Alb.014', 'go_out_st_Alb.016', 'go_out_st_Alb.018',
         'in_dokan_Alb.000', 'in_dokan_Alb.002', 'in_dokan_Alb.004', 'in_dokan_Alb.006', 'in_dokan_Alb.008', 'in_dokan_Alb.009',
         'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008', 'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018', 'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028', 'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
