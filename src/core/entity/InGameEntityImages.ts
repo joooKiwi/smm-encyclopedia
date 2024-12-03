@@ -2157,7 +2157,7 @@ export abstract class InGameEntityImages
     public static readonly KOOPA_TROOPA_CAR =                              new InGameEntityImages.Null()
     public static readonly CAR =                                           new InGameEntityImages.Null()
 
-    public static readonly GRINDER =                                       new InGameEntityImages.Null()
+    public static readonly GRINDER =                                       new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Grinder', 'Object - Saw', 'wait.0', 'saw_model_Alb.000',)
 
     public static readonly ANGRY_SUN =                                     new InGameEntityImages.Null()
     public static readonly MOON =                                          new InGameEntityImages.Null()
