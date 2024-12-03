@@ -2493,7 +2493,15 @@ export abstract class InGameEntityImages
 
     public static readonly SEESAW =                                        new InGameEntityImages.Null()
 
-    public static readonly LAVA_LIFT =                                     new InGameEntityImages.Null()
+    public static readonly LAVA_LIFT =                                     new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lava Lift', 'Object - LiftYougan', [
+        'wait.0',
+    ], [
+        'wait.0', 'wait.1',
+    ], [
+        'wait.0', 'wait.1',
+    ], [
+        'lift_yougan_Alb.000', 'lift_yougan_Alb.001', 'lift_yougan_Alb.006', 'lift_yougan_Alb.012', 'lift_yougan_Alb.016', 'lift_yougan_Alb.019',
+    ],)
     public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.Null()
 
     public static readonly CRATE =                                         new InGameEntityImages.ExistantAs5InOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
