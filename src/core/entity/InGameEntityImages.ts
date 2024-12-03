@@ -2519,7 +2519,23 @@ export abstract class InGameEntityImages
     ],)
     public static readonly CLOUD_LIFT =                                    new InGameEntityImages.Null()
 
-    public static readonly SEESAW =                                        new InGameEntityImages.Null()
+    public static readonly SEESAW =                                        new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Seesaw', 'Object - Seesaw', [
+        'seesaw_sideL.00', 'seesaw_center.00', 'seesaw_sideR.00',
+        'seesaw_point.00',
+        'seesaw_point_rail.00', 'seesaw_point_rail.01',
+    ], [
+        'seesaw_sideL.00', 'seesaw_center.00', 'seesaw_sideR.00',
+        'seesaw_point.00',
+        'seesaw_point_rail.00', 'seesaw_point_rail.01', 'seesaw_point_rail.02', 'seesaw_point_rail.03',
+    ], [
+        'seesaw_sideL.00', 'seesaw_center.00', 'seesaw_sideR.00',
+        'seesaw_point.00',
+        'seesaw_point_rail.00', 'seesaw_point_rail.01', 'seesaw_point_rail.02', 'seesaw_point_rail.03',
+    ], [
+        'seesaw_sideL_Alb.00', 'seesaw_center_Alb.00', 'seesaw_sideR_Alb.00',
+        'seesaw_point_Alb.00',
+        'seesaw_point_rail_Alb.00', 'seesaw_point_rail_Alb.01', 'seesaw_point_rail_Alb.02', 'seesaw_point_rail_Alb.03', 'seesaw_point_rail_Alb.04', 'seesaw_point_rail_Alb.05', 'seesaw_point_rail_Alb.06', 'seesaw_point_rail_Alb.07',
+    ],)
 
     public static readonly LAVA_LIFT =                                     new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lava Lift', 'Object - LiftYougan', [
         'wait.0',
