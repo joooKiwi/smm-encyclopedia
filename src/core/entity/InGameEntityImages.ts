@@ -1707,7 +1707,7 @@ export abstract class InGameEntityImages
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new InGameEntityImages.Null()
 
-    public static readonly NOTE_BLOCK =                                    new InGameEntityImages.Null()
+    public static readonly NOTE_BLOCK =                                    new InGameEntityImages.ExistantAs1InNotSm3dw('Note Block', 'Object - BlockOnpu', 'wait.0',)
     public static readonly MUSIC_BLOCK =                                   new InGameEntityImages.Null()
 
     public static readonly DONUT_BLOCK =                                   new InGameEntityImages.Null()
