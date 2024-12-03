@@ -2459,7 +2459,9 @@ export abstract class InGameEntityImages
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()
 
-    public static readonly POW_BLOCK =                                     new InGameEntityImages.Null()
+    public static readonly POW_BLOCK =                                     new InGameEntityImages.ExistantAs4InNotSm3dw('POW Block', 'Object - BlockPow', 'wait.0', 'wait.1', 'wait.2', 'wait.3', [
+        'block_pow_Alb.000', 'block_pow_Alb.001', 'block_pow_Alb.002', 'block_pow_Alb.003', 'block_pow_Alb.004', 'block_pow_Alb.005', 'block_pow_Alb.006', 'block_pow_Alb.007',
+    ],)
     public static readonly RED_POW_BLOCK =                                 new InGameEntityImages.Null()
 
     public static readonly P_SWITCH =                                      new InGameEntityImages.Null()
