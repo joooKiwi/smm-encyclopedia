@@ -1320,7 +1320,7 @@ export abstract class InGameEntityImages
     public static readonly SUPER_STAR =                                    new InGameEntityImages.Null()
 
     public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.Null()
-    public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.Null()
+    public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Rotten Mushroom', 'Item - KinokoPoison', 'wait.0', 'out2_Alb.000',)
 
     public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Shoe Goomba', 'Enemy - KutsuKuriboA', 'edit_drag.0', 'edit_drag.1',)
     public static readonly SHOE =                                          new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Shoe', 'Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)
