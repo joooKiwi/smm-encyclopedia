@@ -2343,7 +2343,9 @@ export abstract class InGameEntityImages
     public static readonly WARP_BOX =                                      new InGameEntityImages.Null()
     public static readonly WARP_BOX_WITH_KEY =                             new InGameEntityImages.Null()
 
-    public static readonly WING =                                          new InGameEntityImages.Null()
+    public static readonly WING =                                          new InGameEntityImages.ExistantAs2InNotSm3dw('Wing', 'Enemy - WingCommon', 'wait.0', 'wait.1', [
+        'wing_pata_Alb.000', 'wing_pata_Alb.001', 'wing_pata_Alb.002', 'wing_pata_Alb.003', 'wing_pata_Alb.004', 'wing_pata_Alb.005', 'wing_pata_Alb.006', 'wing_pata_Alb.007', 'wing_pata_Alb.008', 'wing_pata_Alb.009','wing_pata_Alb.010', 'wing_pata_Alb.011', 'wing_pata_Alb.012', 'wing_pata_Alb.013', 'wing_pata_Alb.014', 'wing_pata_Alb.015', 'wing_pata_Alb.016', 'wing_pata_Alb.017', 'wing_pata_Alb.018', 'wing_pata_Alb.019', 'wing_pata_Alb.020', 'wing_pata_Alb.021',
+    ],)
     public static readonly PARACHUTE =                                     new InGameEntityImages.Null()
 
     public static readonly TOAD =                                          new InGameEntityImages.Null()
