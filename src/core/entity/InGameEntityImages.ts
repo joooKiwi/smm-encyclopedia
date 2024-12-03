@@ -2122,7 +2122,7 @@ export abstract class InGameEntityImages
     public static readonly TREE =                                          new InGameEntityImages.Null()
 
     public static readonly STARTING_ARROW =                                new InGameEntityImages.Null()
-    public static readonly ARROW_SIGN =                                    new InGameEntityImages.Null()
+    public static readonly ARROW_SIGN =                                    new InGameEntityImages.ExistantAs1InNotSm3dw('Arrow Sign', 'Object - YajirushiAir', 'yajirushi_air',)
 
     public static readonly CHECKPOINT_FLAG =                               new InGameEntityImages.Null()
     public static readonly GOAL_POLE =                                     new InGameEntityImages.Null()
