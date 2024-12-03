@@ -1538,7 +1538,7 @@ export abstract class InGameEntityImages
     public static readonly SUPER_MUSHROOM =                                new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Super Mushroom', 'Item - Kinoko', 'wait.0', 'out2_Alb.000',)
 
     public static readonly FIRE_FLOWER =                                   new InGameEntityImages.ExistantAsNoVariantAndNotSm3dwWith1AlternateFile('Fire Flower', 'Item - Flower', 'Item - Flower2', [
-        'wait.0', 'wait.1', 'wait.2', 'wait.3'], 'wait.0', [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], 'wait.0', [
         'wait.0',], 'wait.0', [
         'wait.0', 'wait.1',], 'wait.0', [
         'out2_Alb.000', 'out2_Alb.003', 'out2_Alb.006', 'out2_Alb.009', 'out2_Alb.012', 'out2_Alb.015', 'out2_Alb.018', 'out2_Alb.021', 'out2_Alb.024', 'out2_Alb.027', 'out2_Alb.030', 'out2_Alb.033', 'out2_Alb.036', 'out2_Alb.039', 'out2_Alb.042', 'out2_Alb.045', 'out2_Alb.048', 'out2_Alb.051', 'out2_Alb.054', 'out2_Alb.057', 'out2_Alb.059', 'wait_Alb.000',], 'wait_Alb.000',)
@@ -1628,7 +1628,8 @@ export abstract class InGameEntityImages
     ], [
         'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
         'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
-        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',],)
+        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',
+    ],)
     public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Red Koopa Troopa', 'Enemy - NokonokoB', [
         'revival.0', 'revival.1', 'revival.2',
         'walk.0', 'walk.1',
@@ -1639,7 +1640,8 @@ export abstract class InGameEntityImages
     ], [
         'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
         'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
-        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',],)
+        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',
+    ],)
     public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAs6InOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAs6InOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly GREEN_KOOPA_SHELL =                             new InGameEntityImages.ExistantAs4InNotSm3dwWithNsmbu('Green Koopa Shell', 'Enemy - NokonokoA', 'shell.0', 'shell.1', 'shell.2', 'shell.3', ['Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',],)
@@ -1720,7 +1722,17 @@ export abstract class InGameEntityImages
     public static readonly BOO_BUDDIES =                                   new InGameEntityImages.Null()
     public static readonly PEEPA =                                         new InGameEntityImages.Null()
 
-    public static readonly BOB_OMB =                                       new InGameEntityImages.ExistantAsBlueVariant('Bob-omb', 'Enemy - Bombhei', ['damage.0', 'fly.0', 'parawait.0', 'parawait.1', 'walk.0', 'walk.1',], ['damage.0', 'fly.0', 'parawait.0', 'parawait.1', 'walk.0', 'walk.1',], ['damage.0', 'fly.0', 'walk.0', 'walk.1',], ['fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb32', 'fly_Alb34', 'fly_Alb36', 'fly_Alb38', 'fly_Alb39', 'stop_Alb000', 'walk_Alb000', 'walk_Alb001', 'walk_Alb002', 'walk_Alb003', 'walk_Alb004', 'walk_Alb005', 'walk_Alb006', 'walk_Alb007', 'walk_Alb008', 'walk_Alb009', 'walk_Alb010', 'walk_Alb011', 'walk_Alb012', 'walk_Alb013', 'walk_Alb014', 'walk_Alb015', 'walk_Alb016', 'walk_Alb017', 'walk_Alb018', 'walk_Alb019',],)
+    public static readonly BOB_OMB =                                       new InGameEntityImages.ExistantAsBlueVariant('Bob-omb', 'Enemy - Bombhei', [
+        'damage.0', 'fly.0', 'parawait.0', 'parawait.1', 'walk.0', 'walk.1',
+    ], [
+        'damage.0', 'fly.0', 'parawait.0', 'parawait.1', 'walk.0', 'walk.1',
+    ], [
+        'damage.0', 'fly.0', 'walk.0', 'walk.1',
+    ], [
+        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb32', 'fly_Alb34', 'fly_Alb36', 'fly_Alb38', 'fly_Alb39',
+        'stop_Alb000',
+        'walk_Alb000', 'walk_Alb001', 'walk_Alb002', 'walk_Alb003', 'walk_Alb004', 'walk_Alb005', 'walk_Alb006', 'walk_Alb007', 'walk_Alb008', 'walk_Alb009', 'walk_Alb010', 'walk_Alb011', 'walk_Alb012', 'walk_Alb013', 'walk_Alb014', 'walk_Alb015', 'walk_Alb016', 'walk_Alb017', 'walk_Alb018', 'walk_Alb019',
+    ],)
     public static readonly LIT_BOB_OMB =                                   new InGameEntityImages.Null()
 
     public static readonly POKEY =                                         new InGameEntityImages.Null()
@@ -1792,10 +1804,29 @@ export abstract class InGameEntityImages
     //endregion -------------------- General enemy --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
-    public static readonly BILL_BLASTER =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bill Blaster', 'Enemy - KillerHoudai', ['wait.0', 'unit.0',], ['killer_houdai_Alb.000', 'killer_houdai_Alb.002', 'killer_houdai_Alb.004', 'killer_houdai_Alb.006', 'killer_houdai_Alb.008', 'killer_houdai_Alb.0010', 'killer_houdai_Alb.0012', 'killer_houdai_Alb.0014', 'killer_houdai_Alb.0016', 'killer_houdai_Alb.0018', 'killer_houdai_Alb.0020', 'killer_houdai_Alb.0022', 'killer_houdai_Alb.0024', 'killer_houdai_Alb.0026', 'killer_houdai_Alb.0028', 'killer_houdai_Alb.0029', 'unit_Alb.000',],)
-    public static readonly BULLET_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bullet Bill', 'Enemy - Killer', ['wait.0',], ['search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018', 'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039', 'search_Alb.042', 'search_Alb.045', 'search_Alb.047',],)
-    public static readonly BULL_EYE_BLASTER =                              new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Blaster', 'Enemy - KillerHoudai', ['search.0', 'unit_search.0',], ['SK_killer_houdai_Alb.000', 'SK_killer_houdai_Alb.002', 'SK_killer_houdai_Alb.004', 'SK_killer_houdai_Alb.006', 'SK_killer_houdai_Alb.008', 'SK_killer_houdai_Alb.0010', 'SK_killer_houdai_Alb.0012', 'SK_killer_houdai_Alb.0014', 'SK_killer_houdai_Alb.0016', 'SK_killer_houdai_Alb.0018', 'SK_killer_houdai_Alb.0020', 'SK_killer_houdai_Alb.0022', 'SK_killer_houdai_Alb.0024', 'SK_killer_houdai_Alb.0026', 'SK_killer_houdai_Alb.0028', 'SK_killer_houdai_Alb.0029', 'SK_unit_Alb.000',],)
-    public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Bill', 'Enemy - Killer', ['search.0',], ['SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018', 'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039', 'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',],)
+    public static readonly BILL_BLASTER =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bill Blaster', 'Enemy - KillerHoudai', [
+        'wait.0', 'unit.0',
+    ], [
+        'killer_houdai_Alb.000', 'killer_houdai_Alb.002', 'killer_houdai_Alb.004', 'killer_houdai_Alb.006', 'killer_houdai_Alb.008', 'killer_houdai_Alb.0010', 'killer_houdai_Alb.0012', 'killer_houdai_Alb.0014', 'killer_houdai_Alb.0016', 'killer_houdai_Alb.0018', 'killer_houdai_Alb.0020', 'killer_houdai_Alb.0022', 'killer_houdai_Alb.0024', 'killer_houdai_Alb.0026', 'killer_houdai_Alb.0028', 'killer_houdai_Alb.0029',
+        'unit_Alb.000',
+    ],)
+    public static readonly BULLET_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bullet Bill', 'Enemy - Killer', [
+        'wait.0',
+    ], [
+        'search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018', 'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039', 'search_Alb.042', 'search_Alb.045',
+        'search_Alb.047',
+    ],)
+    public static readonly BULL_EYE_BLASTER =                              new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Blaster', 'Enemy - KillerHoudai', [
+        'search.0', 'unit_search.0',
+    ], [
+        'SK_killer_houdai_Alb.000', 'SK_killer_houdai_Alb.002', 'SK_killer_houdai_Alb.004', 'SK_killer_houdai_Alb.006', 'SK_killer_houdai_Alb.008', 'SK_killer_houdai_Alb.0010', 'SK_killer_houdai_Alb.0012', 'SK_killer_houdai_Alb.0014', 'SK_killer_houdai_Alb.0016', 'SK_killer_houdai_Alb.0018', 'SK_killer_houdai_Alb.0020', 'SK_killer_houdai_Alb.0022', 'SK_killer_houdai_Alb.0024', 'SK_killer_houdai_Alb.0026', 'SK_killer_houdai_Alb.0028', 'SK_killer_houdai_Alb.0029',
+        'SK_unit_Alb.000',
+    ],)
+    public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Bill', 'Enemy - Killer', [
+        'search.0',
+    ], [
+        'SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018', 'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039', 'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',
+    ],)
     public static readonly CAT_BULLET_BILL =                               new InGameEntityImages.Null()
 
     public static readonly BANZAI_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Banzai Bill', 'Enemy - KillerMagnum', ['wait.0',], ['killer_mag_Alb.000',],)
@@ -1809,7 +1840,13 @@ export abstract class InGameEntityImages
 
     public static readonly BURNER =                                        new InGameEntityImages.Null()
 
-    public static readonly FIRE_BAR =                                      new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Fire Bar', 'Object - Firebar', ['block', 'fire.0',], ['block', 'fire.0', 'fire.1', 'fire.2',], ['center_firebar_Alb.000', 'firebar', 'firebar_code',],)
+    public static readonly FIRE_BAR =                                      new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Fire Bar', 'Object - Firebar', [
+        'block', 'fire.0',
+    ], [
+        'block', 'fire.0', 'fire.1', 'fire.2',
+    ], [
+        'center_firebar_Alb.000', 'firebar', 'firebar_code',
+    ],)
 
     public static readonly SKEWER =                                        new InGameEntityImages.Null()
 
@@ -2136,7 +2173,10 @@ export abstract class InGameEntityImages
 
     public static readonly CASTLE =                                        new InGameEntityImages.Null()
     public static readonly ENDING_CASTLE_DOOR =                            new InGameEntityImages.Null()
-    public static readonly AXE =                                           new InGameEntityImages.ExistantAs5InNotSm3dwWithNsmbu('Axe', 'Object - Ono', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'ono_Xlu', ['ono_Alb.000', 'ono_Alb.001', 'ono_Alb.002', 'ono_Alb.003', 'ono_Alb.004', 'ono_Alb.005', 'ono_Alb.006', 'ono_Alb.007', 'onoXlu_Alb.000',],)
+    public static readonly AXE =                                           new InGameEntityImages.ExistantAs5InNotSm3dwWithNsmbu('Axe', 'Object - Ono', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'ono_Xlu', [
+        'ono_Alb.000', 'ono_Alb.001', 'ono_Alb.002', 'ono_Alb.003', 'ono_Alb.004', 'ono_Alb.005', 'ono_Alb.006', 'ono_Alb.007',
+        'onoXlu_Alb.000',
+    ],)
 
     public static readonly DASH_BLOCK =                                    new InGameEntityImages.Null()
 
