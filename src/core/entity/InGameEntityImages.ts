@@ -2502,7 +2502,21 @@ export abstract class InGameEntityImages
         'lift_sideL_Alb.00', 'lift_center_Alb.00', 'lift_sideR_Alb.00',
         'lift_point_rail_Alb.00', 'lift_point_rail_Alb.01', 'lift_point_rail_Alb.02', 'lift_point_rail_Alb.03', 'lift_point_rail_Alb.04', 'lift_point_rail_Alb.05', 'lift_point_rail_Alb.06', 'lift_point_rail_Alb.07',
     ],)
-    public static readonly FLIMSY_LIFT =                                   new InGameEntityImages.Null()
+    public static readonly FLIMSY_LIFT =                                   new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Flimsy Lift', 'Object - LiftUnite', [
+        'lift_sideL.01', 'lift_center.01', 'lift_sideR.01',
+        'lift_point.01',
+        'lift_point_rail_fall.00', 'lift_point_rail_fall.01',
+    ], [
+        'lift_sideL.01', 'lift_center.01', 'lift_sideR.01',
+        'lift_point.01',
+        'lift_point_rail_fall.00', 'lift_point_rail_fall.01', 'lift_point_rail_fall.02', 'lift_point_rail_fall.03',
+    ], [
+        'lift_sideL.01', 'lift_center.01', 'lift_sideR.01',
+        'lift_point_rail.00', 'lift_point_rail.01', 'lift_point_rail.02', 'lift_point_rail.03',
+    ], [
+        'lift_sideL_Alb.01', 'lift_center_Alb.01', 'lift_sideR_Alb.01',
+        'lift_point_rail_Alb.00', 'lift_point_rail_Alb.01', 'lift_point_rail_Alb.02', 'lift_point_rail_Alb.03', 'lift_point_rail_Alb.04', 'lift_point_rail_Alb.05', 'lift_point_rail_Alb.06', 'lift_point_rail_Alb.07',
+    ],)
     public static readonly CLOUD_LIFT =                                    new InGameEntityImages.Null()
 
     public static readonly SEESAW =                                        new InGameEntityImages.Null()
