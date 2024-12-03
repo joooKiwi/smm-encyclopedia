@@ -1265,7 +1265,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectile --------------------
 
-    public static readonly SUPER_MUSHROOM =                                new InGameEntityImages.Null()
+    public static readonly SUPER_MUSHROOM =                                new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Super Mushroom', 'Item - Kinoko', 'wait.0', 'out2_Alb.000',)
 
     public static readonly FIRE_FLOWER =                                   new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
