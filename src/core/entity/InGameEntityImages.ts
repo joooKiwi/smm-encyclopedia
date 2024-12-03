@@ -1426,7 +1426,7 @@ export abstract class InGameEntityImages
     public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
     public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
 
-    public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.Null()
+    public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('SMB2 Mushroom', 'Item - Special', 'Item - Special2', 'wait.0', 'wait.0',)
 
     public static readonly SUPER_LEAF =                                    new InGameEntityImages.Null()
 
