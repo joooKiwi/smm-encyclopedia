@@ -151,6 +151,26 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link NSMBU} with 1 alternate {@link InGameImageFile} */
+    private static readonly ExistantAs1InOnlyNsmbuWithAlternate = class ExistantAs1InOnlySmb3_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName: FILE_NAME,
+                           private readonly folderNameAlt: FOLDER_NAME, private readonly fileNameAlt: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            return [
+                [NSMBU, inGameImage(this, this.folderName,    this.fileName,),],
+                [NSMBU, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
+            ] as const
+        }
+
+    }
+
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
@@ -1550,7 +1570,7 @@ export abstract class InGameEntityImages
 
     public static readonly PROPELLER_MUSHROOM =                            new InGameEntityImages.ExistantAs4InOnlyNsmbuWith1Alternate('Propeller Mushroom', 'WU Item - Special', 'l_propeller_Alb.000', 'l_propeller_Alb.002', 'l_propeller_Alb.004', 'l_propeller_Alb.006', 'WU Item - Special2', 'wait2_Alb.000',)
 
-    public static readonly SUPER_ACORN =                                   new InGameEntityImages.Null()
+    public static readonly SUPER_ACORN =                                   new InGameEntityImages.ExistantAs1InOnlyNsmbuWithAlternate('Super Acorn', 'WU Item - SpecialEX', 'out2_Alb.000', 'WU Item - SpecialEX2', 'out2_Alb.000',)
 
     public static readonly SUPER_BELL =                                    new InGameEntityImages.Null()
 
