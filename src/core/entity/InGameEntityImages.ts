@@ -2487,7 +2487,21 @@ export abstract class InGameEntityImages
     public static readonly MUSHROOM_TRAMPOLINE =                           new InGameEntityImages.Null()
     public static readonly ON_OFF_TRAMPOLINE =                             new InGameEntityImages.Null()
 
-    public static readonly LIFT =                                          new InGameEntityImages.Null()
+    public static readonly LIFT =                                          new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lift', 'Object - LiftUnite', [
+        'lift_sideL.00', 'lift_center.00', 'lift_sideR.00',
+        'lift_point.00',
+        'lift_point_rail.00', 'lift_point_rail.01',
+    ], [
+        'lift_sideL.00', 'lift_center.00', 'lift_sideR.00',
+        'lift_point.00',
+        'lift_point_rail.00', 'lift_point_rail.01', 'lift_point_rail.02', 'lift_point_rail.03',
+    ], [
+        'lift_sideL.00', 'lift_center.00', 'lift_sideR.00',
+        'lift_point_rail.00', 'lift_point_rail.01', 'lift_point_rail.02', 'lift_point_rail.03',
+    ], [
+        'lift_sideL_Alb.00', 'lift_center_Alb.00', 'lift_sideR_Alb.00',
+        'lift_point_rail_Alb.00', 'lift_point_rail_Alb.01', 'lift_point_rail_Alb.02', 'lift_point_rail_Alb.03', 'lift_point_rail_Alb.04', 'lift_point_rail_Alb.05', 'lift_point_rail_Alb.06', 'lift_point_rail_Alb.07',
+    ],)
     public static readonly FLIMSY_LIFT =                                   new InGameEntityImages.Null()
     public static readonly CLOUD_LIFT =                                    new InGameEntityImages.Null()
 
