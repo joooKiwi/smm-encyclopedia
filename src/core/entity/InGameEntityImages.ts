@@ -91,6 +91,26 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMB} with 1 alternate {@link InGameImageFile} */
+    private static readonly ExistantAs1InOnlySmbWithAlternate = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName: FILE_NAME,
+                           private readonly folderNameAlt: FOLDER_NAME, private readonly fileNameAlt: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            return [
+                [SMB, inGameImage(this, this.folderName,    this.fileName,),],
+                [SMB, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
+            ] as const
+        }
+
+    }
+
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
@@ -1402,7 +1422,7 @@ export abstract class InGameEntityImages
     public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAs3InOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
     public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAs1InOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
 
-    public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.Null()
+    public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('Big Mushroom', 'Item - Special', 'Item - Special2', 'Add_special.0', 'Add_special',)
     public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
     public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
 
