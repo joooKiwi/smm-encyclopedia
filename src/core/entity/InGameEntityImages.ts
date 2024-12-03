@@ -1722,7 +1722,7 @@ export abstract class InGameEntityImages
     public static readonly BLINKING_BLOCK =                                new InGameEntityImages.Null()
 
     public static readonly ICE_BLOCK =                                     new InGameEntityImages.ExistantAs1InNotSm3dw('Ice Block', 'Object - BlockKori', 'wait.0',)
-    public static readonly ICICLE =                                        new InGameEntityImages.Null()
+    public static readonly ICICLE =                                        new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('Icicle', 'Object - Icicle', 'fall', 'hold', 'fall', 'hold',)
 
     public static readonly COIN =                                          new InGameEntityImages.Null()
     public static readonly FROZEN_COIN =                                   new InGameEntityImages.Null()
