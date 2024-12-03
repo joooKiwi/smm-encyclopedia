@@ -91,6 +91,22 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMW} */
+    private static readonly ExistantAs1InOnlySmw = class ExistantAs1InOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            return [[SMW, inGameImage(this, this.folderName, this.fileName,),],] as const
+        }
+
+    }
+
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMB} with 1 alternate {@link InGameImageFile} */
     private static readonly ExistantAs1InOnlySmbWithAlternate = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
@@ -174,9 +190,34 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 1 only {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link NSMBU}
+     */
+    private static readonly ExistantAs1InNotSmwSm3dw = class ExistantAs1InNotSmwSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'WU'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME, private readonly fileName: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.fileName
+            const endingFolderName = this.endingFolderName
+            return [
+                [SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, fileName,),],
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 1 only {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
-    private static readonly ExistantAs1InNotNsmbuSm3dw = class ExistantAs1InOnlySmbInNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs1InNotNsmbuSm3dw = class ExistantAs1InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
@@ -1653,9 +1694,9 @@ export abstract class InGameEntityImages
     //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
     //region -------------------- Block / Coin --------------------
 
-    public static readonly BRICK_BLOCK =                                   new InGameEntityImages.Null()
+    public static readonly BRICK_BLOCK =                                   new InGameEntityImages.ExistantAs1InNotSmwSm3dw('Brick Block', 'Object - BlockRenga', 'wait.0',)
     public static readonly CRISTAL_BLOCK =                                 new InGameEntityImages.Null()
-    public static readonly ROTATING_BLOCK =                                new InGameEntityImages.Null()
+    public static readonly ROTATING_BLOCK =                                new InGameEntityImages.ExistantAs1InOnlySmw('Rotating Block', 'MW Object - BlockRenga', 'wait.0',)
 
     public static readonly HARD_BLOCK =                                    new InGameEntityImages.Null()
     public static readonly ROCK_BLOCK =                                    new InGameEntityImages.Null()
