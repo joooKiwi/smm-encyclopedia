@@ -2044,7 +2044,9 @@ export abstract class InGameEntityImages
         'togezo_shell2_Alb.000', 'togezo_shell2_Alb.001', 'togezo_shell2_Alb.002', 'togezo_shell2_Alb.003', 'togezo_shell2_Alb.004', 'togezo_shell2_Alb.005', 'togezo_shell2_Alb.006', 'togezo_shell2_Alb.007', 'togezo_shell2_Alb.008', 'togezo_shell2_Alb.009', 'togezo_shell2_Alb.010',
     ],)
 
-    public static readonly SPIKE_TOP =                                     new InGameEntityImages.Null()
+    public static readonly SPIKE_TOP =                                     new InGameEntityImages.ExistantAs2InNotSm3dw('Spike Top', 'Enemy - TogemetA', 'walk.0', 'walk.1', [
+        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032', 'walk_Alb.033',
+    ],)
     public static readonly WINGED_SPIKE_TOP =                              new InGameEntityImages.Null()
     public static readonly FAST_SPIKE_TOP =                                new InGameEntityImages.Null()
     public static readonly FAST_WINGED_SPIKE_TOP =                         new InGameEntityImages.Null()
