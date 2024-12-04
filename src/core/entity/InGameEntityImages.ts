@@ -2140,7 +2140,13 @@ export abstract class InGameEntityImages
         'dokan_attack_Alb.070', 'dokan_attack_Alb.071',
     ],)
     public static readonly JUMPING_PIRANHA_PLANT =                         new InGameEntityImages.ExistantAs4InOnlySmw('Jumping Piranha Plant', 'MW Enemy - Packun', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
-    public static readonly FIRE_PIRANHA_PLANT =                            new InGameEntityImages.Null()
+    public static readonly FIRE_PIRANHA_PLANT =                            new InGameEntityImages.ExistantAs4InNotSm3dw('Fire Piranha Plant', 'Enemy - PackunFire', 'down.0', 'down.1', 'up.0', 'up.1', [
+        'downfire1_Alb.000', 'downfire1_Alb.003', 'downfire1_Alb.006', 'downfire1_Alb.009', 'downfire1_Alb.012', 'downfire1_Alb.015', 'downfire1_Alb.018', 'downfire1_Alb.021', 'downfire1_Alb.024', 'downfire1_Alb.027', 'downfire1_Alb.030', 'downfire1_Alb.033', 'downfire1_Alb.036', 'downfire1_Alb.039', 'downfire1_Alb.042', 'downfire1_Alb.045', 'downfire1_Alb.048', 'downfire1_Alb.051', 'downfire1_Alb.054', 'downfire1_Alb.057', 'downfire1_Alb.059',
+        'downfire2_Alb.000', 'downfire2_Alb.002', 'downfire2_Alb.004', 'downfire2_Alb.006', 'downfire2_Alb.008', 'downfire2_Alb.010', 'downfire2_Alb.012', 'downfire2_Alb.014', 'downfire2_Alb.016', 'downfire2_Alb.018', 'downfire2_Alb.020', 'downfire2_Alb.022', 'downfire2_Alb.024', 'downfire2_Alb.026', 'downfire2_Alb.028', 'downfire2_Alb.030', 'downfire2_Alb.032', 'downfire2_Alb.034', 'downfire2_Alb.036', 'downfire2_Alb.038', 'downfire2_Alb.040', 'downfire2_Alb.042', 'downfire2_Alb.044',
+        'JumpOutSign_Alb.000',
+        'upfire1_Alb.000', 'upfire1_Alb.003', 'upfire1_Alb.006', 'upfire1_Alb.009', 'upfire1_Alb.012', 'upfire1_Alb.015', 'upfire1_Alb.018', 'upfire1_Alb.021', 'upfire1_Alb.024', 'upfire1_Alb.027', 'upfire1_Alb.030', 'upfire1_Alb.033', 'upfire1_Alb.036', 'upfire1_Alb.039', 'upfire1_Alb.042', 'upfire1_Alb.045', 'upfire1_Alb.048', 'upfire1_Alb.051', 'upfire1_Alb.054', 'upfire1_Alb.057', 'upfire1_Alb.059',
+        'upfire2_Alb.000', 'upfire2_Alb.002', 'upfire2_Alb.004', 'upfire2_Alb.006', 'upfire2_Alb.008', 'upfire2_Alb.010', 'upfire2_Alb.012', 'upfire2_Alb.014', 'upfire2_Alb.016', 'upfire2_Alb.018', 'upfire2_Alb.020', 'upfire2_Alb.022', 'upfire2_Alb.024', 'upfire2_Alb.026', 'upfire2_Alb.028', 'upfire2_Alb.030', 'upfire2_Alb.032', 'upfire2_Alb.034', 'upfire2_Alb.036', 'upfire2_Alb.038', 'upfire2_Alb.040', 'upfire2_Alb.042', 'upfire2_Alb.044',
+    ],)
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new InGameEntityImages.Null()
     public static readonly MUNCHER =                                       new InGameEntityImages.Null()
     public static readonly PIRANHA_CREEPER =                               new InGameEntityImages.Null()
