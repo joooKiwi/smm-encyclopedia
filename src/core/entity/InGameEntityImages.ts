@@ -1620,6 +1620,47 @@ export abstract class InGameEntityImages
 
     }
 
+    private static readonly ExistantAsNoVariantWithSameSmbSmb3Smw = class ExistantAsNoVariantWithSameSmbSmb3Smw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileNames: Array<FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileNames = this.fileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
+            const fileNamesSize = fileNames.length
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize * 3 + fileNames_nsmbu.length,)
+
+            let index = -1
+            forEachByArray(fileNames, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize] = [SMW, inGameImage(this, folderName_smw, it,),]
+            },)
+            index += fileNamesSize * 2
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
     //endregion -------------------- Sub class (no variant) --------------------
     //region -------------------- Sub class (blue variant) --------------------
 
@@ -1989,7 +2030,9 @@ export abstract class InGameEntityImages
     ],)
 
     public static readonly SPINY =                                         new InGameEntityImages.Null()
-    public static readonly WINGED_SPINY =                                  new InGameEntityImages.Null()
+    public static readonly WINGED_SPINY =                                  new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3Smw('Winged Spiny', 'Enemy - Togezo', ['fly.0',], [
+        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.029',
+    ],)
     public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0', 'toge_Alb.000',)
     public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAs2InNotSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1', [
         'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038', 'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
