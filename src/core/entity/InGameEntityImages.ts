@@ -2490,7 +2490,10 @@ export abstract class InGameEntityImages
 
     public static readonly BUMPER =                                        new InGameEntityImages.ExistantAs3InNotSm3dw('Bumper', 'Object - Saw', 'blink.0', 'blink.1', 'saw_maru', ['saw_maru_blink_model_Alb.000', 'saw_maru_blink_model_Alb.001',],)
 
-    public static readonly SWINGING_CLAW =                                 new InGameEntityImages.Null()
+    public static readonly SWINGING_CLAW =                                 new InGameEntityImages.ExistantAs5InNotSm3dw('Swinging Claw', 'Object - SwingCrane', 'neji', 'chain', 'arm.0', 'arm.1', 'arm.2', [
+        'wanwan_chainB_Alb.000', 'chain_Alb.000',
+        'swingcrane_model_Alb.000', 'swingcrane_model_Alb.001', 'swingcrane_model_Alb.002',
+    ],)
 
     public static readonly TWISTER =                                       new InGameEntityImages.Null()
 
