@@ -2129,7 +2129,7 @@ export abstract class InGameEntityImages
     public static readonly WIGGLER =                                       new InGameEntityImages.Null()
     public static readonly ANGRY_WIGGLER =                                 new InGameEntityImages.Null()
 
-    public static readonly PIRANHA_PLANT =                                 new InGameEntityImages.ExistantAs2InNotSm3dw('Piranha Plant', 'Enemy - Packun', 'wait.0', 'wait.1', [
+    public static readonly PIRANHA_PLANT =                                 new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Piranha Plant', 'Enemy - Packun', 'wait.0', 'wait.1', [
         'dokan_attack_Alb.000', 'dokan_attack_Alb.001', 'dokan_attack_Alb.002', 'dokan_attack_Alb.003', 'dokan_attack_Alb.004', 'dokan_attack_Alb.005', 'dokan_attack_Alb.006', 'dokan_attack_Alb.007', 'dokan_attack_Alb.008', 'dokan_attack_Alb.009',
         'dokan_attack_Alb.010', 'dokan_attack_Alb.011', 'dokan_attack_Alb.012', 'dokan_attack_Alb.013', 'dokan_attack_Alb.014', 'dokan_attack_Alb.015', 'dokan_attack_Alb.016', 'dokan_attack_Alb.017', 'dokan_attack_Alb.018', 'dokan_attack_Alb.019',
         'dokan_attack_Alb.020', 'dokan_attack_Alb.021', 'dokan_attack_Alb.022', 'dokan_attack_Alb.023', 'dokan_attack_Alb.024', 'dokan_attack_Alb.025', 'dokan_attack_Alb.026', 'dokan_attack_Alb.027', 'dokan_attack_Alb.028', 'dokan_attack_Alb.029',
@@ -2139,7 +2139,7 @@ export abstract class InGameEntityImages
         'dokan_attack_Alb.060', 'dokan_attack_Alb.061', 'dokan_attack_Alb.062', 'dokan_attack_Alb.063', 'dokan_attack_Alb.064', 'dokan_attack_Alb.065', 'dokan_attack_Alb.066', 'dokan_attack_Alb.067', 'dokan_attack_Alb.068', 'dokan_attack_Alb.069',
         'dokan_attack_Alb.070', 'dokan_attack_Alb.071',
     ],)
-    public static readonly JUMPING_PIRANHA_PLANT =                         new InGameEntityImages.Null()
+    public static readonly JUMPING_PIRANHA_PLANT =                         new InGameEntityImages.ExistantAs4InOnlySmw('Jumping Piranha Plant', 'MW Enemy - Packun', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly FIRE_PIRANHA_PLANT =                            new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new InGameEntityImages.Null()
     public static readonly MUNCHER =                                       new InGameEntityImages.Null()
