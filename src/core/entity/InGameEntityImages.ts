@@ -2056,7 +2056,9 @@ export abstract class InGameEntityImages
     public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAs4InOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
-    public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.Null()
+    public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dw('Dry Bones Shell', 'Enemy - Karon', 'shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3', [
+        'Player_Karon_model_Alb.000', 'Player_Karon_model_Alb.002', 'Player_Karon_model_Alb.004', 'Player_Karon_model_Alb.006', 'Player_Karon_model_Alb.008', 'Player_Karon_model_Alb.010',
+    ],)
 
     public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Buzzy Beetle', 'Enemy - Met', [
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
