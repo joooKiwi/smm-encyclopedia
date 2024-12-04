@@ -1044,7 +1044,7 @@ export abstract class InGameEntityImages
 
             const imageFiles = new Array<readonly [GameStyles,
                     | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
-                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(16 + fileNames_nsmbu.length,)
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(15 + fileNames_nsmbu.length,)
 
             imageFiles[0] =  [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
             imageFiles[1] =  [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
@@ -1119,7 +1119,7 @@ export abstract class InGameEntityImages
                 [SMW,   inGameImage(this, folderName_smw,            fileName4_smbSmb3Smw,),],
                 [SMW,   inGameImage(this, folderName_smw,            fileName5_smbSmb3Smw,),],
                 [NSMBU, inGameImage(this, `WU ${endingFolderName}`,  fileName_nsmbuSm3dw,),],
-                [NSMBU, inGameImage(this, `3W ${endingFolderName}`,  fileName_nsmbuSm3dw,),],
+                [SM3DW, inGameImage(this, `3W ${endingFolderName}`,  fileName_nsmbuSm3dw,),],
             ] as const
         }
 
@@ -1794,7 +1794,7 @@ export abstract class InGameEntityImages
     public static readonly START_BLOCK =                                   new InGameEntityImages.ExistantAs1InNotSm3dw('Start Block', 'Object - StartBlock', 'startblock',)
     public static readonly OCCLUDE_BLOCK =                                 new InGameEntityImages.Null()
 
-    public static readonly WATER =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Water', 'Object - WaterHalf', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], ['body.0', 'body.1', 'body.2', 'body.3', 'top.0', 'top.1', 'top.2', 'top.3',], ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
+    public static readonly WATER =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Water', 'Object - WaterHalf', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], ['body.0', 'body.1', 'body.2', 'body.3', 'top.0', 'top.1', 'top.2', 'top.3',], ['body.0', 'body.1', 'body.2', 'body.3',],)
     public static readonly LAVA =                                          new InGameEntityImages.ExistantAs4InNotNsmbuSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly POISON =                                        new InGameEntityImages.ExistantAs4InNotNsmbuSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
@@ -1872,11 +1872,11 @@ export abstract class InGameEntityImages
     public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAs3InOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
     public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAs1InOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
 
-    public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('Big Mushroom', 'M1 Item - Special', 'Add_special.0', 'Item - Special2', 'Add_special',)
+    public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('Big Mushroom', 'M1 Item - Special', 'Add_special.0', 'M1 Item - Special2', 'Add_special',)
     public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
     public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAs1InNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
 
-    public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('SMB2 Mushroom', 'M1 Item - SpecialEX', 'wait.0', 'Item - SpecialEX2', 'wait.0',)
+    public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.ExistantAs1InOnlySmbWithAlternate('SMB2 Mushroom', 'M1 Item - SpecialEX', 'wait.0', 'M1 Item - SpecialEX2', 'wait.0',)
 
     public static readonly SUPER_LEAF =                                    new InGameEntityImages.ExistantAs3InOnlySmb3With1Alternate('Super Leaf', 'M3 Item - Special', 'wait.0', 'wait.1', 'wait.2', 'M3 Item - Special2', 'wait.0',)
 
@@ -1884,9 +1884,9 @@ export abstract class InGameEntityImages
 
     public static readonly CAPE_FEATHER =                                  new InGameEntityImages.ExistantAs2InOnlySmwWith1Alternate('Cape Feather', 'MW Item - Special', 'wait.0', 'wait.1', 'MW - Item - Special2', 'wait.0',)
 
-    public static readonly POWER_BALLOON =                                 new InGameEntityImages.ExistantAs1InOnlySmwWithAlternate('Power Balloon', 'MW Item - SpecialEX', 'wait.0', 'MW Item - SpecialEX2', 'wait.1',)
+    public static readonly POWER_BALLOON =                                 new InGameEntityImages.ExistantAs1InOnlySmwWithAlternate('Power Balloon', 'MW Item - SpecialEX', 'wait.0', 'MW Item - SpecialEX2', 'wait.0',)
 
-    public static readonly PROPELLER_MUSHROOM =                            new InGameEntityImages.ExistantAs4InOnlyNsmbuWith1Alternate('Propeller Mushroom', 'WU Item - Special', 'l_propeller_Alb.000', 'l_propeller_Alb.002', 'l_propeller_Alb.004', 'l_propeller_Alb.006', 'WU Item - Special2', 'wait2_Alb.000',)
+    public static readonly PROPELLER_MUSHROOM =                            new InGameEntityImages.ExistantAs4InOnlyNsmbuWith1Alternate('Propeller Mushroom', 'WU Item - Special', 'I_propeller_Alb.000', 'I_propeller_Alb.002', 'I_propeller_Alb.004', 'I_propeller_Alb.006', 'WU Item - Special2', 'wait2_Alb.000',)
 
     public static readonly SUPER_ACORN =                                   new InGameEntityImages.ExistantAs1InOnlyNsmbuWithAlternate('Super Acorn', 'WU Item - SpecialEX', 'out2_Alb.000', 'WU Item - SpecialEX2', 'out2_Alb.000',)
 
@@ -2179,7 +2179,7 @@ export abstract class InGameEntityImages
     ], [
         'block', 'fire.0', 'fire.1', 'fire.2',
     ], [
-        'center_firebar_Alb.000', 'firebar', 'firebar_code',
+        'center_firebar_Alb.000', 'firebar', 'firebar_core',
     ],)
 
     public static readonly SKEWER =                                        new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Skewer', 'Object - Daikonbou', ['edit', 'top', 'wait_body.0', 'wait_under.0',], [
@@ -2545,7 +2545,7 @@ export abstract class InGameEntityImages
     public static readonly LIFT =                                          new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lift', 'Object - LiftUnite', [
         'lift_sideL.00', 'lift_center.00', 'lift_sideR.00',
         'lift_point.00',
-        'lift_point_rail.00', 'lift_point_rail.01',
+        'lift_point_rail_.00', 'lift_point_rail_.01',
     ], [
         'lift_sideL.00', 'lift_center.00', 'lift_sideR.00',
         'lift_point.00',
@@ -2591,7 +2591,7 @@ export abstract class InGameEntityImages
     public static readonly LAVA_LIFT =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Lava Lift', 'Object - LiftYougan', ['wait.0',], ['wait.0', 'wait.1',], [
         'lift_yougan_Alb.000', 'lift_yougan_Alb.001', 'lift_yougan_Alb.006', 'lift_yougan_Alb.012', 'lift_yougan_Alb.016', 'lift_yougan_Alb.019',
     ],)
-    public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Lava Lift', 'Object - LiftYougan', ['wait.0',], ['wait.0', 'wait.1',], [
+    public static readonly FAST_LAVA_LIFT =                                new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Lava Lift', 'Object - LiftYougan2', ['wait.0',], ['wait.0', 'wait.1',], [
         'lift_yougan2_Alb.000', 'lift_yougan2_Alb.001', 'lift_yougan2_Alb.006', 'lift_yougan2_Alb.012', 'lift_yougan2_Alb.016', 'lift_yougan2_Alb.019',
     ],)
 
