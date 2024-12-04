@@ -73,7 +73,7 @@ export abstract class InGameEntityImages
         return Existant_InGameEntityImages
     })()
 
-    //region -------------------- Sub class (1 image) --------------------
+    //region -------------------- Sub class (single game style) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMB} */
     private static readonly ExistantAs1InOnlySmb = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
@@ -91,6 +91,53 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} */
+    private static readonly ExistantAs3InOnlySmb = class ExistantAs3InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMB, inGameImage(this, folderName, this.fileName1,),],
+                [SMB, inGameImage(this, folderName, this.fileName2,),],
+                [SMB, inGameImage(this, folderName, this.fileName3,),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SMB} */
+    private static readonly ExistantAs4InOnlySmb = class ExistantAs4InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMB, inGameImage(this, folderName, this.fileName1,),],
+                [SMB, inGameImage(this, folderName, this.fileName2,),],
+                [SMB, inGameImage(this, folderName, this.fileName3,),],
+                [SMB, inGameImage(this, folderName, this.fileName4,),],
+            ] as const
+        }
+
+    }
+
+
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMW} */
     private static readonly ExistantAs1InOnlySmw = class ExistantAs1InOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
@@ -106,6 +153,129 @@ export abstract class InGameEntityImages
         }
 
     }
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile} in only {@link SMW} */
+    private static readonly ExistantAs2InOnlySmw = class ExistantAsTwoInOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SMW} */
+    private static readonly ExistantAs4InOnlySmw = class ExistantAs4InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
+                [SMW, inGameImage(this, folderName, this.fileName3,),],
+                [SMW, inGameImage(this, folderName, this.fileName4,),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 6 {@link InGameImageFile} in only {@link SMW} */
+    private static readonly ExistantAs6InOnlySmw = class ExistantAs6InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
+                [SMW, inGameImage(this, folderName, this.fileName3,),],
+                [SMW, inGameImage(this, folderName, this.fileName4,),],
+                [SMW, inGameImage(this, folderName, this.fileName5,),],
+                [SMW, inGameImage(this, folderName, this.fileName6,),],
+            ] as const
+        }
+
+    }
+
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as an undetermined amount of {@link InGameImageFile} in only {@link NSMBU} */
+    private static readonly ExistantInOnlyNsmbu = class ExistantInOnlyNsmbu_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileNames: Array<FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const folderName = this.folderName
+            const fileNames = this.fileNames
+
+            const imageFiles = new Array<readonly[GameStyles, InGameImageFile<FOLDER_NAME, FILE_NAME>,]>(fileNames.length,)
+            forEachByArray(fileNames, (it, i,) => imageFiles[i] = [SMB, inGameImage(this, folderName, it,),],)
+            return imageFiles
+        }
+
+    }
+
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 5 {@link InGameImageFile} in only {@link SM3DW} */
+    private static readonly ExistantAs5InOnlySm3dw = class ExistantAs5InOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SM3DW, inGameImage(this, folderName, this.fileName1,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName2,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName3,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName4,),],
+                [SM3DW, inGameImage(this, folderName, this.fileName5,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (single game style) --------------------
+    //region -------------------- Sub class (1 image) --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SMB} with 1 alternate {@link InGameImageFile} */
     private static readonly ExistantAs1InOnlySmbWithAlternate = class ExistantAs1InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
@@ -367,27 +537,6 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (1 image) --------------------
     //region -------------------- Sub class (2 images) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAs2InOnlySmw = class ExistantAsTwoInOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
-                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const folderName = this.folderName
-            return [
-                [SMW, inGameImage(this, folderName, this.fileName1,),],
-                [SMW, inGameImage(this, folderName, this.fileName2,),],
-            ] as const
-        }
-
-    }
-
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 2 {@link InGameImageFile} in only {@link SMW} with 1 alternate {@link InGameImage_Regular} */
     private static readonly ExistantAs2InOnlySmwWith1Alternate = class ExistantAs2InOnlySmw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
@@ -648,28 +797,6 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (2 images) --------------------
     //region -------------------- Sub class (3 images) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAs3InOnlySmb = class ExistantAs3InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
-                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const folderName = this.folderName
-            return [
-                [SMB, inGameImage(this, folderName, this.fileName1,),],
-                [SMB, inGameImage(this, folderName, this.fileName2,),],
-                [SMB, inGameImage(this, folderName, this.fileName3,),],
-            ] as const
-        }
-
-    }
-
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link SMB} with 1 alternate {@link InGameImage_Regular} */
     private static readonly ExistantAs3InOnlySmbWith1Alternate = class ExistantAs3InOnlySmbWith1Alternate_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
@@ -809,56 +936,8 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (3 images) --------------------
     //region -------------------- Sub class (4 images) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SMB} */
-    private static readonly ExistantAs4InOnlySmb = class ExistantAs4InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
-                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
-                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const folderName = this.folderName
-            return [
-                [SMB, inGameImage(this, folderName, this.fileName1,),],
-                [SMB, inGameImage(this, folderName, this.fileName2,),],
-                [SMB, inGameImage(this, folderName, this.fileName3,),],
-                [SMB, inGameImage(this, folderName, this.fileName4,),],
-            ] as const
-        }
-
-    }
-
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAs4InOnlySmw = class ExistantAs4InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
-                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
-                           private readonly fileName3: FILE_NAME, private readonly fileName4: FILE_NAME,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const folderName = this.folderName
-            return [
-                [SMW, inGameImage(this, folderName, this.fileName1,),],
-                [SMW, inGameImage(this, folderName, this.fileName2,),],
-                [SMW, inGameImage(this, folderName, this.fileName3,),],
-                [SMW, inGameImage(this, folderName, this.fileName4,),],
-            ] as const
-        }
-
-    }
-
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 3 {@link InGameImageFile} in only {@link NSMBU} with an alternate {@link InGameImage_Regular} */
-    private static readonly ExistantAs4InOnlyNsmbuWith1Alternate = class ExistantAs3InOnlyNsmbuWith1Alternate_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAs4InOnlyNsmbuWith1Alternate = class ExistantAs4InOnlyNsmbuWith1Alternate_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
@@ -1027,32 +1106,6 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (4 images) --------------------
     //region -------------------- Sub class (5 images) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 5 {@link InGameImageFile} in only {@link SM3DW} */
-    private static readonly ExistantAs5InOnlySm3dw = class ExistantAs5InOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
-                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
-                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const folderName = this.folderName
-            return [
-                [SM3DW, inGameImage(this, folderName, this.fileName1,),],
-                [SM3DW, inGameImage(this, folderName, this.fileName2,),],
-                [SM3DW, inGameImage(this, folderName, this.fileName3,),],
-                [SM3DW, inGameImage(this, folderName, this.fileName4,),],
-                [SM3DW, inGameImage(this, folderName, this.fileName5,),],
-            ] as const
-        }
-
-    }
-
-
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 5 {@link InGameImageFile} in {@link SMB}, {@link SMB3} and {@link SMW}
@@ -1170,33 +1223,6 @@ export abstract class InGameEntityImages
 
     //endregion -------------------- Sub class (5 images) --------------------
     //region -------------------- Sub class (6 images) --------------------
-
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 6 {@link InGameImageFile} in only {@link SMW} */
-    private static readonly ExistantAs6InOnlySmw = class ExistantAs6InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
-                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
-                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const folderName = this.folderName
-            return [
-                [SMW, inGameImage(this, folderName, this.fileName1,),],
-                [SMW, inGameImage(this, folderName, this.fileName2,),],
-                [SMW, inGameImage(this, folderName, this.fileName3,),],
-                [SMW, inGameImage(this, folderName, this.fileName4,),],
-                [SMW, inGameImage(this, folderName, this.fileName5,),],
-                [SMW, inGameImage(this, folderName, this.fileName6,),],
-            ] as const
-        }
-
-    }
-
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
@@ -2053,7 +2079,6 @@ export abstract class InGameEntityImages
         'Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',
     ],)
 
-    public static readonly PARABONES =                                     new InGameEntityImages.Null()
     public static readonly DRY_BONES =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Dry Bones', 'Enemy - Karon', [
         'break_modelA', 'break_modelB', 'break_modelC',
         'damage.0', 'damage.1',
@@ -2087,6 +2112,7 @@ export abstract class InGameEntityImages
         'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018',
         'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032',
     ],)
+    public static readonly PARABONES =                                     new InGameEntityImages.ExistantInOnlyNsmbu('Parabones', 'WU Enemy - Karon', ['flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',],)
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAs4InOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
     public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dw('Dry Bones Shell', 'Enemy - Karon', 'shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3', [
         'Player_Karon_model_Alb.000', 'Player_Karon_model_Alb.002', 'Player_Karon_model_Alb.004', 'Player_Karon_model_Alb.006', 'Player_Karon_model_Alb.008', 'Player_Karon_model_Alb.010',
