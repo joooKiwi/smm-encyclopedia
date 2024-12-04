@@ -2512,7 +2512,13 @@ export abstract class InGameEntityImages
         'swingcrane_model_Alb.000', 'swingcrane_model_Alb.001', 'swingcrane_model_Alb.002',
     ],)
 
-    public static readonly TWISTER =                                       new InGameEntityImages.Null()
+    public static readonly TWISTER =                                       new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Twister', 'Object - Tornado', [
+        'wait.0', 'wait.1',
+    ], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', 'wait.5', 'wait.6', 'wait.7',
+    ], [
+        'wait_Alb.000', 'wait_Alb.003', 'wait_Alb.006', 'wait_Alb.009', 'wait_Alb.012', 'wait_Alb.015', 'wait_Alb.018', 'wait_Alb.024', 'wait_Alb.027', 'wait_Alb.030', 'wait_Alb.033', 'wait_Alb.036', 'wait_Alb.039', 'wait_Alb.042', 'wait_Alb.045', 'wait_Alb.048', 'wait_Alb.051', 'wait_Alb.054', 'wait_Alb.057',
+    ],)
 
     public static readonly ONE_WAY_WALL =                                  new InGameEntityImages.ExistantAs5InNotSm3dw('One-Way Wall', 'Object - Hanatari', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', [
         'hanatari_model_Alb.000', 'hanatari_model_Alb.004', 'hanatari_model_Alb.008', 'hanatari_model_Alb.012', 'hanatari_model_Alb.016', 'hanatari_model_Alb.020', 'hanatari_model_Alb.024', 'hanatari_model_Alb.028', 'hanatari_model_Alb.032', 'hanatari_model_Alb.036', 'hanatari_model_Alb.040', 'hanatari_model_Alb.044 ',
