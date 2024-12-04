@@ -2210,7 +2210,15 @@ export abstract class InGameEntityImages
         'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.032', 'attack_Alb.034', 'attack_Alb.036', 'attack_Alb.038', 'attack_Alb.040', 'attack_Alb.042', 'attack_Alb.044', 'attack_Alb.046', 'attack_Alb.048', 'attack_Alb.050', 'attack_Alb.052', 'attack_Alb.054', 'attack_Alb.056', 'attack_Alb.058',
         'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038', 'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
     ],)
-    public static readonly MOON =                                          new InGameEntityImages.Null()
+    public static readonly MOON =                                          new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Moon', 'Object - Moon', [
+        'attack.0', 'attack.1',
+        'wait.0',
+    ], [
+        'attack.0', 'attack.1',
+        'wait.0', 'wait.1',
+    ], [
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038', 'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
+    ],)
 
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
     //region -------------------- Boss + projectile --------------------
