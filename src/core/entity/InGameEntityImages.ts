@@ -2494,7 +2494,9 @@ export abstract class InGameEntityImages
 
     public static readonly TWISTER =                                       new InGameEntityImages.Null()
 
-    public static readonly ONE_WAY_WALL =                                  new InGameEntityImages.Null()
+    public static readonly ONE_WAY_WALL =                                  new InGameEntityImages.ExistantAs5InNotSm3dw('One-Way Wall', 'Object - Hanatari', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', [
+        'hanatari_model_Alb.000', 'hanatari_model_Alb.004', 'hanatari_model_Alb.008', 'hanatari_model_Alb.012', 'hanatari_model_Alb.016', 'hanatari_model_Alb.020', 'hanatari_model_Alb.024', 'hanatari_model_Alb.028', 'hanatari_model_Alb.032', 'hanatari_model_Alb.036', 'hanatari_model_Alb.040', 'hanatari_model_Alb.044 ',
+    ],)
 
     public static readonly TRACK =                                         new InGameEntityImages.Null()
     public static readonly TRACK_BLOCK =                                   new InGameEntityImages.Null()
