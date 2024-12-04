@@ -2029,7 +2029,10 @@ export abstract class InGameEntityImages
         'met_shell_model2_Alb.000', 'met_shell_model2_Alb.002', 'met_shell_model2_Alb.004', 'met_shell_model2_Alb.006', 'met_shell_model2_Alb.008', 'met_shell_model2_Alb.010',
     ],)
 
-    public static readonly SPINY =                                         new InGameEntityImages.Null()
+    public static readonly SPINY =                                         new InGameEntityImages.ExistantAs6InNotSm3dw('Spiny', 'Enemy - Togezo', 'shell.0', 'shell.1', 'shell.2', 'shell.3', 'walk.0', 'walk.1', [
+        'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007','walk_Alb.008','walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018', 'walk_Alb.019', 'walk_Alb.020', 'walk_Alb.021', 'walk_Alb.022', 'walk_Alb.023', 'walk_Alb.024', 'walk_Alb.025', 'walk_Alb.026', 'walk_Alb.027', 'walk_Alb.028', 'walk_Alb.029',
+        'Yrot_togezo_shell_Alb.000', 'Yrot_togezo_shell_Alb.001', 'Yrot_togezo_shell_Alb.002', 'Yrot_togezo_shell_Alb.003', 'Yrot_togezo_shell_Alb.004', 'Yrot_togezo_shell_Alb.005', 'Yrot_togezo_shell_Alb.006', 'Yrot_togezo_shell_Alb.007', 'Yrot_togezo_shell_Alb.008', 'Yrot_togezo_shell_Alb.009', 'Yrot_togezo_shell_Alb.010',
+    ],)
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3Smw('Winged Spiny', 'Enemy - Togezo', ['fly.0',], [
         'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.029',
     ],)
