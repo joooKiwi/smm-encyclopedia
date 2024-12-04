@@ -1976,7 +1976,9 @@ export abstract class InGameEntityImages
 
     public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.Null()
     public static readonly PARA_BEETLE =                                   new InGameEntityImages.Null()
-    public static readonly BUZZY_SHELL =                                   new InGameEntityImages.Null()
+    public static readonly BUZZY_SHELL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Buzzy Shell', 'Enemy - Met', ['shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3',], [
+        'met_shell_model2_Alb.000', 'met_shell_model2_Alb.002', 'met_shell_model2_Alb.004', 'met_shell_model2_Alb.006', 'met_shell_model2_Alb.008', 'met_shell_model2_Alb.010',
+    ],)
 
     public static readonly SPINY =                                         new InGameEntityImages.Null()
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.Null()
