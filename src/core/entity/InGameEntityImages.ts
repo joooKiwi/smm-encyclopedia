@@ -1974,7 +1974,13 @@ export abstract class InGameEntityImages
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAs4InOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
     public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.Null()
 
-    public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.Null()
+    public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Buzzy Beetle', 'Enemy - Met', [
+        'shell.0', 'shell.1', 'shell.2', 'shell.3',
+        'walk.0', 'walk.1',
+    ], [
+        'walk_Alb.000', 'walk_Alb.003', 'walk_Alb.006', 'walk_Alb.009', 'walk_Alb.012', 'walk_Alb.015', 'walk_Alb.016',
+        'Yrot_met_shell_Alb.000', 'Yrot_met_shell_Alb.002', 'Yrot_met_shell_Alb.004', 'Yrot_met_shell_Alb.006', 'Yrot_met_shell_Alb.008', 'Yrot_met_shell_Alb.010',
+    ],)
     public static readonly PARA_BEETLE =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Para-Beetle', 'Enemy - Met', ['fly.0',], [
         'fly_Alb.000', 'fly_Alb.003', 'fly_Alb.006', 'fly_Alb.009', 'fly_Alb.012', 'fly_Alb.015', 'fly_Alb.018', 'fly_Alb.021', 'fly_Alb.024', 'fly_Alb.027', 'fly_Alb.029',
     ],)
