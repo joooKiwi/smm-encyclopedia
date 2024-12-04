@@ -2053,8 +2053,40 @@ export abstract class InGameEntityImages
         'Yrot_nokonokoA_shell_Alb.000', 'Yrot_nokonokoA_shell_Alb.002', 'Yrot_nokonokoA_shell_Alb.004', 'Yrot_nokonokoA_shell_Alb.006', 'Yrot_nokonokoA_shell_Alb.008', 'Yrot_nokonokoA_shell_Alb.009',
     ],)
 
-    public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
+    public static readonly DRY_BONES =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Dry Bones', 'Enemy - Karon', [
+        'break_modelA', 'break_modelB', 'break_modelC',
+        'damage.0', 'damage.1',
+        'revival.0', 'revival.1',
+        'shake.0', 'shake.1',
+        'walk.0', 'walk.1',
+    ], [
+        'break_modelA', 'break_modelB', 'break_modelC',
+        'damage.0', 'damage.1',
+        'revival.0', 'revival.1',
+        'shake.0', 'shake.1',
+        'throw.0', 'throw.1',
+        'walk.0', 'walk.1',
+    ], [
+        'big_stop_Alb.000', 'big_stop_Alb.002', 'big_stop_Alb.004', 'big_stop_Alb.006', 'big_stop_Alb.008', 'big_stop_Alb.009', 'big_stop_Alb.010',
+        'big_stop_Alb.011', 'big_stop_Alb.012', 'big_stop_Alb.013', 'big_stop_Alb.014', 'big_stop_Alb.036', 'big_stop_Alb.038', 'big_stop_Alb.040',
+        'bone_Alb.000',
+        'down_Alb.000', 'down_Alb.002', 'down_Alb.004', 'down_Alb.006', 'down_Alb.008', 'down_Alb.010', 'down_Alb.012', 'down_Alb.014', 'down_Alb.016', 'down_Alb.018',
+        'down_Alb.020', 'down_Alb.022', 'down_Alb.024', 'down_Alb.026', 'down_Alb.028', 'down_Alb.030', 'down_Alb.032', 'down_Alb.034', 'down_Alb.036', 'down_Alb.038',
+        'down_Alb.040', 'down_Alb.042', 'down_Alb.044', 'down_Alb.046', 'down_Alb.048', 'down_Alb.050', 'down_Alb.052', 'down_Alb.054', 'down_Alb.056', 'down_Alb.058',
+        'down_Alb.060', 'down_Alb.062', 'down_Alb.064', 'down_Alb.066', 'down_Alb.068', 'down_Alb.070', 'down_Alb.072', 'down_Alb.074', 'down_Alb.076', 'down_Alb.078',
+        'down_Alb.080', 'down_Alb.082',
+        'karon_partsA_Alb.000', 'karon_partsB_Alb.000', 'karon_partsC_Alb.000', 'karon_partsF_Alb.000',
+        'revive_Alb.000', 'revive_Alb.002', 'revive_Alb.004', 'revive_Alb.006', 'revive_Alb.008', 'revive_Alb.010', 'revive_Alb.012', 'revive_Alb.014', 'revive_Alb.016', 'revive_Alb.018',
+        'revive_Alb.020', 'revive_Alb.022', 'revive_Alb.024', 'revive_Alb.026', 'revive_Alb.028', 'revive_Alb.030', 'revive_Alb.032', 'revive_Alb.034', 'revive_Alb.036', 'revive_Alb.038',
+        'revive_Alb.040', 'revive_Alb.042', 'revive_Alb.044', 'revive_Alb.046', 'revive_Alb.048', 'revive_Alb.050', 'revive_Alb.052', 'revive_Alb.054', 'revive_Alb.056', 'revive_Alb.058',
+        'revive_Alb.060', 'revive_Alb.062', 'revive_Alb.064', 'revive_Alb.066', 'revive_Alb.068', 'revive_Alb.070', 'revive_Alb.072', 'revive_Alb.074', 'revive_Alb.076', 'revive_Alb.078',
+        'revive_Alb.080', 'revive_Alb.082', 'revive_Alb.084', 'revive_Alb.086', 'revive_Alb.088', 'revive_Alb.090', 'revive_Alb.092', 'revive_Alb.094', 'revive_Alb.096', 'revive_Alb.098',
+        'revive_Alb.100', 'revive_Alb.102', 'revive_Alb.104', 'revive_Alb.106', 'revive_Alb.108', 'revive_Alb.110', 'revive_Alb.112', 'revive_Alb.114', 'revive_Alb.116', 'revive_Alb.118',
+        'revive_Alb.120', 'revive_Alb.122', 'revive_Alb.124', 'revive_Alb.126', 'revive_Alb.128', 'revive_Alb.130', 'revive_Alb.132', 'revive_Alb.134', 'revive_Alb.136', 'revive_Alb.138',
+        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018',
+        'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032',
+    ],)
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAs4InOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
     public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.ExistantAs4InNotSm3dw('Dry Bones Shell', 'Enemy - Karon', 'shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3', [
         'Player_Karon_model_Alb.000', 'Player_Karon_model_Alb.002', 'Player_Karon_model_Alb.004', 'Player_Karon_model_Alb.006', 'Player_Karon_model_Alb.008', 'Player_Karon_model_Alb.010',
