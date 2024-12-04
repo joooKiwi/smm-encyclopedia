@@ -1980,7 +1980,7 @@ export abstract class InGameEntityImages
 
     public static readonly SPINY =                                         new InGameEntityImages.Null()
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.Null()
-    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0',)
+    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0', 'toge_Alb.000',)
     public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAs2InNotNsmbuSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1',)
     public static readonly SPINY_SHELL =                                   new InGameEntityImages.Null()
 
