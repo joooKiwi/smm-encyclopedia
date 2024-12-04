@@ -479,6 +479,49 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 2 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link NSMBU}
+     */
+    private static readonly ExistantAs2InNotSmwSm3dw = class ExistantAs2InNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileNames_nsmbu = this.nsmbuFileNames
+
+            const imageFiles = new Array<readonly [GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(4 + fileNames_nsmbu.length,)
+
+            imageFiles[0] = [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] = [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] = [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[3] = [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+
+            let index = 5
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 2 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      * plus an undetermined amount of {@link InGameImageFile} in {@link NSMBU}
      */
@@ -2086,7 +2129,16 @@ export abstract class InGameEntityImages
     public static readonly WIGGLER =                                       new InGameEntityImages.Null()
     public static readonly ANGRY_WIGGLER =                                 new InGameEntityImages.Null()
 
-    public static readonly PIRANHA_PLANT =                                 new InGameEntityImages.Null()
+    public static readonly PIRANHA_PLANT =                                 new InGameEntityImages.ExistantAs2InNotSm3dw('Piranha Plant', 'Enemy - Packun', 'wait.0', 'wait.1', [
+        'dokan_attack_Alb.000', 'dokan_attack_Alb.001', 'dokan_attack_Alb.002', 'dokan_attack_Alb.003', 'dokan_attack_Alb.004', 'dokan_attack_Alb.005', 'dokan_attack_Alb.006', 'dokan_attack_Alb.007', 'dokan_attack_Alb.008', 'dokan_attack_Alb.009',
+        'dokan_attack_Alb.010', 'dokan_attack_Alb.011', 'dokan_attack_Alb.012', 'dokan_attack_Alb.013', 'dokan_attack_Alb.014', 'dokan_attack_Alb.015', 'dokan_attack_Alb.016', 'dokan_attack_Alb.017', 'dokan_attack_Alb.018', 'dokan_attack_Alb.019',
+        'dokan_attack_Alb.020', 'dokan_attack_Alb.021', 'dokan_attack_Alb.022', 'dokan_attack_Alb.023', 'dokan_attack_Alb.024', 'dokan_attack_Alb.025', 'dokan_attack_Alb.026', 'dokan_attack_Alb.027', 'dokan_attack_Alb.028', 'dokan_attack_Alb.029',
+        'dokan_attack_Alb.030', 'dokan_attack_Alb.031', 'dokan_attack_Alb.032', 'dokan_attack_Alb.033', 'dokan_attack_Alb.034', 'dokan_attack_Alb.035', 'dokan_attack_Alb.036', 'dokan_attack_Alb.037', 'dokan_attack_Alb.038', 'dokan_attack_Alb.039',
+        'dokan_attack_Alb.040', 'dokan_attack_Alb.041', 'dokan_attack_Alb.042', 'dokan_attack_Alb.043', 'dokan_attack_Alb.044', 'dokan_attack_Alb.045', 'dokan_attack_Alb.046', 'dokan_attack_Alb.047', 'dokan_attack_Alb.048', 'dokan_attack_Alb.049',
+        'dokan_attack_Alb.050', 'dokan_attack_Alb.051', 'dokan_attack_Alb.052', 'dokan_attack_Alb.053', 'dokan_attack_Alb.054', 'dokan_attack_Alb.055', 'dokan_attack_Alb.056', 'dokan_attack_Alb.057', 'dokan_attack_Alb.058', 'dokan_attack_Alb.059',
+        'dokan_attack_Alb.060', 'dokan_attack_Alb.061', 'dokan_attack_Alb.062', 'dokan_attack_Alb.063', 'dokan_attack_Alb.064', 'dokan_attack_Alb.065', 'dokan_attack_Alb.066', 'dokan_attack_Alb.067', 'dokan_attack_Alb.068', 'dokan_attack_Alb.069',
+        'dokan_attack_Alb.070', 'dokan_attack_Alb.071',
+    ],)
     public static readonly JUMPING_PIRANHA_PLANT =                         new InGameEntityImages.Null()
     public static readonly FIRE_PIRANHA_PLANT =                            new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new InGameEntityImages.Null()
