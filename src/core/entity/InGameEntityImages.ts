@@ -2050,7 +2050,9 @@ export abstract class InGameEntityImages
     public static readonly WINGED_SPIKE_TOP =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3Smw('Winged Spike Top', 'Enemy - TogemetA', ['fly.0',], [
         'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb.032', 'fly_Alb.034', 'fly_Alb.036', 'fly_Alb.038',
     ],)
-    public static readonly FAST_SPIKE_TOP =                                new InGameEntityImages.Null()
+    public static readonly FAST_SPIKE_TOP =                                new InGameEntityImages.ExistantAs2InNotSm3dw('Fast Spike Top', 'Enemy - TogemetB', 'walk.0', 'walk.1', [
+        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032', 'walk_Alb.033',
+    ],)
     public static readonly FAST_WINGED_SPIKE_TOP =                         new InGameEntityImages.Null()
 
     public static readonly SKIPSQUEAK =                                    new InGameEntityImages.Null()
