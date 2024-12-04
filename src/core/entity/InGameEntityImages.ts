@@ -2148,7 +2148,15 @@ export abstract class InGameEntityImages
         'upfire2_Alb.000', 'upfire2_Alb.002', 'upfire2_Alb.004', 'upfire2_Alb.006', 'upfire2_Alb.008', 'upfire2_Alb.010', 'upfire2_Alb.012', 'upfire2_Alb.014', 'upfire2_Alb.016', 'upfire2_Alb.018', 'upfire2_Alb.020', 'upfire2_Alb.022', 'upfire2_Alb.024', 'upfire2_Alb.026', 'upfire2_Alb.028', 'upfire2_Alb.030', 'upfire2_Alb.032', 'upfire2_Alb.034', 'upfire2_Alb.036', 'upfire2_Alb.038', 'upfire2_Alb.040', 'upfire2_Alb.042', 'upfire2_Alb.044',
     ],)
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new InGameEntityImages.Null()
-    public static readonly MUNCHER =                                       new InGameEntityImages.Null()
+    public static readonly MUNCHER =                                       new InGameEntityImages.ExistantAsBlueVariant('Muncher', 'Enemy - PackunBlack', [
+        'wait.0', 'wait.1',
+    ], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
+        'wait.0', 'wait.1',
+    ], [
+        'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014',
+    ],)
     public static readonly PIRANHA_CREEPER =                               new InGameEntityImages.Null()
 
     public static readonly CHAIN_CHOMP =                                   new InGameEntityImages.Null()
