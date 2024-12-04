@@ -1975,7 +1975,9 @@ export abstract class InGameEntityImages
     public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.Null()
 
     public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.Null()
-    public static readonly PARA_BEETLE =                                   new InGameEntityImages.Null()
+    public static readonly PARA_BEETLE =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Para-Beetle', 'Enemy - Met', ['fly.0',], [
+        'fly_Alb.000', 'fly_Alb.003', 'fly_Alb.006', 'fly_Alb.009', 'fly_Alb.012', 'fly_Alb.015', 'fly_Alb.018', 'fly_Alb.021', 'fly_Alb.024', 'fly_Alb.027', 'fly_Alb.029',
+    ],)
     public static readonly BUZZY_SHELL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Buzzy Shell', 'Enemy - Met', ['shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3',], [
         'met_shell_model2_Alb.000', 'met_shell_model2_Alb.002', 'met_shell_model2_Alb.004', 'met_shell_model2_Alb.006', 'met_shell_model2_Alb.008', 'met_shell_model2_Alb.010',
     ],)
