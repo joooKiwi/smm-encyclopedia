@@ -2336,7 +2336,18 @@ export abstract class InGameEntityImages
         'edited_koopaJr_clown_smile_Alb.000', 'edited_koopaJr_clown_smile_Alb.001', 'edited_koopaJr_clown_smile_Alb.002', 'edited_koopaJr_clown_smile_Alb.003', 'edited_koopaJr_clown_smile_Alb.004', 'edited_koopaJr_clown_smile_Alb.005',
         'edited_koopaJr_clown_weep_Alb.000', 'edited_koopaJr_clown_weep_Alb.001', 'edited_koopaJr_clown_weep_Alb.002', 'edited_koopaJr_clown_weep_Alb.003', 'edited_koopaJr_clown_weep_Alb.004', 'edited_koopaJr_clown_weep_Alb.005',
     ],)
-    public static readonly FIRE_KOOPA_CLOWN_CAR =                          new InGameEntityImages.Null()
+    public static readonly FIRE_KOOPA_CLOWN_CAR =                          new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Fire Koopa Clown Car', 'Enemy - KoopaClownFire', [
+        'anger.0', 'anger.1', 'anger.2', 'anger.3',
+        'blink.0', 'blink.1', 'blink.2', 'blink.3',
+        'bomb.0', 'bomb.1', 'bomb.2', 'bomb.3',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+        'weep.0', 'weep.1', 'weep.2', 'weep.3',
+    ], [
+        'anger.0', 'anger.1', 'anger.2', 'anger.3',
+        'blink.0', 'blink.1', 'blink.2', 'blink.3',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+        'weep.0', 'weep.1', 'weep.2', 'weep.3',
+    ], EMPTY_ARRAY,)
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_FIRE_KOOPA_JUNIOR_CLOWN_CAR =  new InGameEntityImages.Null()
 
