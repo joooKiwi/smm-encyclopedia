@@ -1413,54 +1413,6 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantAndNotSm3dw = class ExistantAsNoVariantAndNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const ENDING_FOLDER_NAME extends string,
-        const SMB_FILE_NAME extends string,
-        const SMB3_FILE_NAME extends string,
-        const SMW_FILE_NAME extends string,
-        const NSMBU_FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
-                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
-                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
-                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
-                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
-                           private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
-            super(englishName,)
-        }
-
-        protected override _createImageFiles() {
-            const endingFolderName = this.endingFolderName
-            const folderName_smb = `M1 ${endingFolderName}` as const
-            const folderName_smb3 = `M3 ${endingFolderName}` as const
-            const folderName_smw = `MW ${endingFolderName}` as const
-            const folderName_nsmbu = `WU ${endingFolderName}` as const
-            const fileNames_smb = this.smbFileNames
-            const fileNames_smb3 = this.smb3FileNames
-            const fileNames_smw = this.smwFileNames
-            const fileNames_nsmbu = this.nsmbuFileNames
-
-            const imageFiles = new Array<readonly[GameStyles,
-                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
-                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
-                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
-                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length + fileNames_nsmbu.length,)
-
-            let index = -1
-            forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
-
-            forEachByArray(fileNames_smb3, it => imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),],)
-
-            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
-
-            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
-
-            return imageFiles
-        }
-
-    }
-
     private static readonly ExistantAsNoVariantWith1AlternateFile = class ExistantAsNoVariantWith1AlternateFile_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
@@ -2252,7 +2204,7 @@ export abstract class InGameEntityImages
     public static readonly HEAVY_FIRE_BRO =                                new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_HEAVY_FIRE_BRO =           new InGameEntityImages.Null()
 
-    public static readonly LAVA_BUBBLE =                                   new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lava Bubble', 'Enemy - Bubble', ['wait.0',], ['wait.0', 'wait.1', 'wait.2',], ['wait.0', 'wait.1',], ['bubble_Alb.000',],)
+    public static readonly LAVA_BUBBLE =                                   new InGameEntityImages.ExistantAsNoVariant('Lava Bubble', 'Enemy - Bubble', ['wait.0',], ['wait.0', 'wait.1', 'wait.2',], ['wait.0', 'wait.1',], ['bubble_Alb.000',],)
 
     public static readonly MECHAKOOPA =                                    new InGameEntityImages.Null()
     public static readonly BLASTA_MECHAKOOPA =                             new InGameEntityImages.Null()
@@ -2731,7 +2683,7 @@ export abstract class InGameEntityImages
     public static readonly MUSHROOM_TRAMPOLINE =                           new InGameEntityImages.Null()
     public static readonly ON_OFF_TRAMPOLINE =                             new InGameEntityImages.Null()
 
-    public static readonly LIFT =                                          new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Lift', 'Object - LiftUnite', [
+    public static readonly LIFT =                                          new InGameEntityImages.ExistantAsNoVariant('Lift', 'Object - LiftUnite', [
         'lift_sideL.00', 'lift_center.00', 'lift_sideR.00',
         'lift_point.00',
         'lift_point_rail_.00', 'lift_point_rail_.01',
@@ -2746,7 +2698,7 @@ export abstract class InGameEntityImages
         'lift_sideL_Alb.00', 'lift_center_Alb.00', 'lift_sideR_Alb.00',
         'lift_point_rail_Alb.00', 'lift_point_rail_Alb.01', 'lift_point_rail_Alb.02', 'lift_point_rail_Alb.03', 'lift_point_rail_Alb.04', 'lift_point_rail_Alb.05', 'lift_point_rail_Alb.06', 'lift_point_rail_Alb.07',
     ],)
-    public static readonly FLIMSY_LIFT =                                   new InGameEntityImages.ExistantAsNoVariantAndNotSm3dw('Flimsy Lift', 'Object - LiftUnite', [
+    public static readonly FLIMSY_LIFT =                                   new InGameEntityImages.ExistantAsNoVariant('Flimsy Lift', 'Object - LiftUnite', [
         'lift_sideL.01', 'lift_center.01', 'lift_sideR.01',
         'lift_point.01',
         'lift_point_rail_fall.00', 'lift_point_rail_fall.01',
