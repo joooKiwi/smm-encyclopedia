@@ -1872,7 +1872,7 @@ export abstract class InGameEntityImages
 
     public static readonly FROG_SUIT =                                     new InGameEntityImages.ExistantAs1InOnlySmb3WithAlternate('Frog Suit', 'M3 Item - SpecialEX', 'wait.0', 'M3 Item - SpecialEX2', 'wait.0',)
 
-    public static readonly CAPE_FEATHER =                                  new InGameEntityImages.ExistantAs2InOnlySmwWith1Alternate('Cape Feather', 'MW Item - Special', 'wait.0', 'wait.1', 'MW - Item - Special2', 'wait.0',)
+    public static readonly CAPE_FEATHER =                                  new InGameEntityImages.ExistantAs2InOnlySmwWith1Alternate('Cape Feather', 'MW Item - Special', 'wait.0', 'wait.1', 'MW Item - Special2', 'wait.0',)
 
     public static readonly POWER_BALLOON =                                 new InGameEntityImages.ExistantAs1InOnlySmwWithAlternate('Power Balloon', 'MW Item - SpecialEX', 'wait.0', 'MW Item - SpecialEX2', 'wait.0',)
 
