@@ -15,12 +15,14 @@ import {inGameImage}                  from 'core/entity/file/fileCreator'
 import {EmptyInGameImage_Regular}     from 'core/entity/images/inGame/EmptyInGameImage_Regular'
 import {InGameImage_RegularContainer} from 'core/entity/images/inGame/InGameImage_Regular.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import {Empty}                        from 'util/emptyVariables'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import NSMBU =       GameStyles.NSMBU
+import SMB =         GameStyles.SMB
+import SMB3 =        GameStyles.SMB3
+import SMW =         GameStyles.SMW
+import SM3DW =       GameStyles.SM3DW
 
 /**
  * An {@link InGameEntityImages} class made to hold an {@link InGameImage_Regular}
@@ -2390,7 +2392,18 @@ export abstract class InGameEntityImages
         'daikonbou_under_Alb.000', 'daikonbou_under_Alb.001', 'daikonbou_under_Alb.002', 'daikonbou_under_Alb.003', 'daikonbou_under_Alb.004', 'daikonbou_under_Alb.005', 'daikonbou_under_Alb.006', 'daikonbou_under_Alb.007', 'daikonbou_under_Alb.008', 'daikonbou_under_Alb.009', 'daikonbou_under_Alb.010', 'daikonbou_under_Alb.011', 'daikonbou_under_Alb.012', 'daikonbou_under_Alb.013', 'daikonbou_under_Alb.014',
     ],)
 
-    public static readonly KOOPA_CLOWN_CAR =                               new InGameEntityImages.Null()
+    public static readonly KOOPA_CLOWN_CAR =                               new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Koopa Clown Car', 'Enemy - KoopaClown', [
+        'anger.0', 'anger.1', 'anger.2', 'anger.3',
+        'blink.0', 'blink.1', 'blink.2', 'blink.3',
+        'bomb.0', 'bomb.1', 'bomb.2', 'bomb.3',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+        'weep.0', 'weep.1', 'weep.2', 'weep.3',
+    ], [
+        'anger.0', 'anger.1', 'anger.2', 'anger.3',
+        'blink.0', 'blink.1', 'blink.2', 'blink.3',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+        'weep.0', 'weep.1', 'weep.2', 'weep.3',
+    ], EMPTY_ARRAY,)
     public static readonly JUNIOR_CLOWN_CAR =                              new InGameEntityImages.Null()
     public static readonly FIRE_KOOPA_CLOWN_CAR =                          new InGameEntityImages.Null()
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new InGameEntityImages.Null()
