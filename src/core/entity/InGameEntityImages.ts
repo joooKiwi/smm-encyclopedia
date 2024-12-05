@@ -1413,47 +1413,6 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantAndNotNsmbuSm3dw = class ExistantAsNoVariantAndNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const ENDING_FOLDER_NAME extends string,
-        const SMB_FILE_NAME extends string,
-        const SMB3_FILE_NAME extends string,
-        const SMW_FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
-                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
-                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
-                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
-                           private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
-            super(englishName,)
-        }
-
-        protected override _createImageFiles() {
-            const endingFolderName = this.endingFolderName
-            const folderName_smb = `M1 ${endingFolderName}` as const
-            const folderName_smb3 = `M3 ${endingFolderName}` as const
-            const folderName_smw = `MW ${endingFolderName}` as const
-            const fileNames_smb = this.smbFileNames
-            const fileNames_smb3 = this.smb3FileNames
-            const fileNames_smw = this.smwFileNames
-
-            const imageFiles = new Array<readonly[GameStyles,
-                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}`, SMB_FILE_NAME>
-                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}`, SMB3_FILE_NAME>
-                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>,]>(fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length,)
-
-            let index = -1
-            forEachByArray(fileNames_smb, it => imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),],)
-
-            forEachByArray(fileNames_smb3, it => imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),],)
-
-            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
-
-            return imageFiles
-        }
-
-    }
-
     private static readonly ExistantAsNoVariantAndNotSm3dw = class ExistantAsNoVariantAndNotSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
@@ -1502,7 +1461,7 @@ export abstract class InGameEntityImages
 
     }
 
-    private static readonly ExistantAsNoVariantAndNotSm3dwWith1AlternateFile = class ExistantAsNoVariantAndNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantAsNoVariantWith1AlternateFile = class ExistantAsNoVariantWith1AlternateFile_InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
         const SMB_FILE_NAME extends string,
         const SMB3_FILE_NAME extends string,
@@ -1598,46 +1557,6 @@ export abstract class InGameEntityImages
             forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
-
-            return imageFiles
-        }
-
-    }
-
-    private static readonly ExistantAsNoVariantWithSameSmbSmb3AndNotNsmbuSm3dw = class ExistantAsNoVariantWithSameSmbSmb3AndNotNsmbuSm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
-        const ENDING_FOLDER_NAME extends string,
-        const SMB_SMB3_FILE_NAME extends string,
-        const SMW_FILE_NAME extends string, >
-        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
-                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>> {
-
-        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
-                           private readonly smbSmb3FileNames: Array<SMB_SMB3_FILE_NAME>,
-                           private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
-            super(englishName,)
-        }
-
-        protected override _createImageFiles() {
-            const endingFolderName = this.endingFolderName
-            const folderName_smb = `M1 ${endingFolderName}` as const
-            const folderName_smb3 = `M3 ${endingFolderName}` as const
-            const folderName_smw = `MW ${endingFolderName}` as const
-            const fileNames_smbSmb3 = this.smbSmb3FileNames
-            const fileNames_smw = this.smwFileNames
-            const fileNamesSize_smbSmb3 = fileNames_smbSmb3.length
-
-            const imageFiles = new Array<readonly[GameStyles,
-                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, SMB_SMB3_FILE_NAME>
-                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>,]>(fileNamesSize_smbSmb3 * 2 + fileNames_smw.length)
-
-            let index = -1
-            forEachByArray(fileNames_smbSmb3, it => {
-                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
-                imageFiles[index + fileNamesSize_smbSmb3] = [SMB3, inGameImage(this, folderName_smb3, it,),]
-            },)
-            index += fileNamesSize_smbSmb3
-
-            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
 
             return imageFiles
         }
@@ -1906,7 +1825,14 @@ export abstract class InGameEntityImages
     public static readonly START_BLOCK =                                   new InGameEntityImages.ExistantAs1InNotSm3dw('Start Block', 'Object - StartBlock', 'startblock',)
     public static readonly OCCLUDE_BLOCK =                                 new InGameEntityImages.Null()
 
-    public static readonly WATER =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Water', 'Object - WaterHalf', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], ['body.0', 'body.1', 'body.2', 'body.3', 'top.0', 'top.1', 'top.2', 'top.3',], ['body.0', 'body.1', 'body.2', 'body.3',],)
+    public static readonly WATER =                                         new InGameEntityImages.ExistantAsNoVariant('Water', 'Object - WaterHalf', [
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
+        'body.0', 'body.1', 'body.2', 'body.3',
+        'top.0', 'top.1', 'top.2', 'top.3',
+    ], [
+        'body.0', 'body.1', 'body.2', 'body.3',
+    ], EMPTY_ARRAY,)
     public static readonly LAVA =                                          new InGameEntityImages.ExistantAs4InNotNsmbuSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly POISON =                                        new InGameEntityImages.ExistantAs4InNotNsmbuSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
@@ -1967,7 +1893,7 @@ export abstract class InGameEntityImages
 
     public static readonly SUPER_MUSHROOM =                                new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Super Mushroom', 'Item - Kinoko', 'wait.0', 'out2_Alb.000',)
 
-    public static readonly FIRE_FLOWER =                                   new InGameEntityImages.ExistantAsNoVariantAndNotSm3dwWith1AlternateFile('Fire Flower', 'Item - Flower', 'Item - Flower2', [
+    public static readonly FIRE_FLOWER =                                   new InGameEntityImages.ExistantAsNoVariantWith1AlternateFile('Fire Flower', 'Item - Flower', 'Item - Flower2', [
         'wait.0', 'wait.1', 'wait.2', 'wait.3',], 'wait.0', [
         'wait.0',], 'wait.0', [
         'wait.0', 'wait.1',], 'wait.0', [
@@ -2442,7 +2368,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
     //region -------------------- Boss + projectile --------------------
 
-    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Bowser', 'Enemy - Koopa', [
+    public static readonly BOWSER =                                        new InGameEntityImages.ExistantAsNoVariant('Bowser', 'Enemy - Koopa', [
         'fall.0', 'fall.1',
         'fire.0',
         'wait.0', 'wait.1',
@@ -2473,13 +2399,13 @@ export abstract class InGameEntityImages
         'turn.0', 'turn.1', 'turn.2',
         'wait.0',
         'walk.0', 'walk.1', 'walk.2', 'walk.3',
-    ],)
+    ], EMPTY_ARRAY,)
     public static readonly MEOWSER =                                       new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAs2InNotNsmbuSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAs4InOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
     public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new InGameEntityImages.Null()
 
-    public static readonly BOWSER_JR =                                     new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Bowser Jr.', 'Enemy - KoopaJr', [
+    public static readonly BOWSER_JR =                                     new InGameEntityImages.ExistantAsNoVariant('Bowser Jr.', 'Enemy - KoopaJr', [
         'before.0',
         'fall.0', 'fall.1',
         'fire.0', 'fire.1',
@@ -2516,10 +2442,10 @@ export abstract class InGameEntityImages
         'touchdown.0',
         'wait.0',
         'walk.0', 'walk.1',
-    ],)
+    ], EMPTY_ARRAY,)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new InGameEntityImages.Null()
 
-    public static readonly BOOM_BOOM =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3AndNotNsmbuSm3dw('Boom Boom', 'Enemy - Bunbun', [
+    public static readonly BOOM_BOOM =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Boom Boom', 'Enemy - Bunbun', [
         'damage.0', 'damage.1',
         'damage_fly.0', 'damage_fly.1',
         'fly.0', 'fly.1', 'fly.2', 'fly.3', 'fly.4', 'fly.5',
@@ -2542,12 +2468,12 @@ export abstract class InGameEntityImages
         'standup.0', 'standup.1', 'standup.2',
         'standup_fly.0', 'standup_fly.1', 'standup_fly.2',
         'walk.0', 'walk.1', 'walk.2', 'walk.3', 'walk.4', 'walk.5'
-    ],)
+    ], EMPTY_ARRAY,)
     public static readonly POM_POM =                                       new InGameEntityImages.Null()
     public static readonly POM_POM_CLONE =                                 new InGameEntityImages.Null()
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new InGameEntityImages.Null()
 
-    public static readonly LARRY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Larry', 'Enemy - Larry', [
+    public static readonly LARRY =                                         new InGameEntityImages.ExistantAsNoVariant('Larry', 'Enemy - Larry', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -2565,11 +2491,11 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',],)
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], EMPTY_ARRAY,)
     public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Larry’s Wand', 'Enemy - Larry', 'wand',)
     public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Larry’s projectile)', 'Enemy - Larry', 'effect.0',)
 
-    public static readonly IGGY =                                          new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Iggy', 'Enemy - Iggy', [
+    public static readonly IGGY =                                          new InGameEntityImages.ExistantAsNoVariant('Iggy', 'Enemy - Iggy', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -2588,11 +2514,11 @@ export abstract class InGameEntityImages
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
         'wait.0', 'wait.1', 'wait.2', 'wait.3',
-        'walkl.0', 'walkl.1', 'walkl.2', 'walkl.3',],)
+        'walkl.0', 'walkl.1', 'walkl.2', 'walkl.3',], EMPTY_ARRAY,)
     public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Iggy’s Wand', 'Enemy - Iggy', 'wand',)
     public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Iggy’s projectile)', 'Enemy - Iggy', 'effect.0',)
 
-    public static readonly WENDY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Wendy', 'Enemy - Wendy', [
+    public static readonly WENDY =                                         new InGameEntityImages.ExistantAsNoVariant('Wendy', 'Enemy - Wendy', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -2610,12 +2536,12 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3',],)
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',], EMPTY_ARRAY,)
     public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Wendy’s Wand', 'Enemy - Wendy', 'wand',)
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAs3InNotNsmbuSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
     public static readonly WENDY_PROJECTILE =                              new InGameEntityImages.Null()
 
-    public static readonly LEMMY =                                         new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Lemmy', 'Enemy - Lemmy', [
+    public static readonly LEMMY =                                         new InGameEntityImages.ExistantAsNoVariant('Lemmy', 'Enemy - Lemmy', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
@@ -2634,12 +2560,12 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2',],)
+        'wait.0', 'wait.1', 'wait.2',], EMPTY_ARRAY,)
     public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Lemmy’s Wand', 'Enemy - Lemmy', 'wand',)
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAs1InNotNsmbuSm3dwAnd2Smw('Magic Ball thrown by a Lemmy', 'Enemy - Lemmy', 'ball.0', 'ball.0', 'ball_specular',)
     public static readonly LEMMY_PROJECTILE =                              new InGameEntityImages.Null()
 
-    public static readonly ROY =                                           new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Lemmy', 'Enemy - Lemmy', [
+    public static readonly ROY =                                           new InGameEntityImages.ExistantAsNoVariant('Lemmy', 'Enemy - Lemmy', [
         'damage.0',
         'head.0', 'head.1', 'head.2', 'head.3', 'head.4',
         'pose.0', 'pose.1', 'pose.2', 'pose.3',
@@ -2663,11 +2589,11 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3', 'shell.4', 'shell.5', 'shell.6', 'shell.7',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2',],)
+        'wait.0', 'wait.1', 'wait.2',], EMPTY_ARRAY,)
     public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Roy’s Wand', 'Enemy - Roy', 'wand',)
     public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Roy’s projectile)', 'Enemy - Roy', 'effect.0',)
 
-    public static readonly MORTON =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Lemmy', 'Enemy - Lemmy', [
+    public static readonly MORTON =                                        new InGameEntityImages.ExistantAsNoVariant('Lemmy', 'Enemy - Lemmy', [
         'damage.0',
         'jump_quake.0', 'jump_quake.1', 'jump_quake.2',
         'jump_quake_ed.0', 'jump_quake_ed.1', 'jump_quake_ed.2',
@@ -2692,12 +2618,12 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2',],)
+        'wait.0', 'wait.1', 'wait.2',], EMPTY_ARRAY,)
     public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Morton’s Wand', 'Enemy - Morton', 'wand',)
     public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Morton’s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
     public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAs2InNotNsmbuSm3dw('(Morton’s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
 
-    public static readonly LUDWIG =                                        new InGameEntityImages.ExistantAsNoVariantAndNotNsmbuSm3dw('Ludwig', 'Enemy - Ludwig', [
+    public static readonly LUDWIG =                                        new InGameEntityImages.ExistantAsNoVariant('Ludwig', 'Enemy - Ludwig', [
         'damage.0',
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2', 'throw_ed.3', 'throw_ed.4', 'throw_ed.5',
@@ -2717,7 +2643,7 @@ export abstract class InGameEntityImages
         'shell.0', 'shell.1', 'shell.2', 'shell.3',
         'throw_ed.0', 'throw_ed.1', 'throw_ed.2',
         'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'throw_st.4', 'throw_st.5',
-        'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', 'wait.5', 'wait.6',],)
+        'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', 'wait.5', 'wait.6',], EMPTY_ARRAY,)
     public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('Ludwig’s Wand', 'Enemy - Ludwig', 'wand',)
     public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAs1InNotNsmbuSm3dw('(Ludwig’s projectile)', 'Enemy - Ludwig', 'effect.0',)
 
