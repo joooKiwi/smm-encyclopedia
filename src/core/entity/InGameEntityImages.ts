@@ -2206,7 +2206,38 @@ export abstract class InGameEntityImages
 
     public static readonly LAVA_BUBBLE =                                   new InGameEntityImages.ExistantAsNoVariant('Lava Bubble', 'Enemy - Bubble', ['wait.0',], ['wait.0', 'wait.1', 'wait.2',], ['wait.0', 'wait.1',], ['bubble_Alb.000',],)
 
-    public static readonly MECHAKOOPA =                                    new InGameEntityImages.Null()
+    public static readonly MECHAKOOPA =                                    new InGameEntityImages.ExistantAsNoVariant('Mechakoopa', 'Enemy - KoopaMecha', [
+        'break_modelA', 'break_modelB', 'break_modelC', 'break_modelD',
+        'damage.0', 'damage.1', 'damage.2',
+        'dokan.0', 'edit_indokan.0',
+        'fly.0', 'fly.1',
+        'walk.0', 'walk.1',
+    ], [
+        'break_modelA', 'break_modelB', 'break_modelC', 'break_modelD',
+        'damage.0', 'damage.1', 'damage.2',
+        'dokan.0', 'edit_indokan.0',
+        'fly.0', 'fly.1', 'fly.2', 'fly.3',
+        'walk.0', 'walk.1', 'walk.2', 'walk.3',
+    ], [
+        'break_modelA', 'break_modelB', 'break_modelC', 'break_modelD',
+        'damage.0', 'damage.1', 'damage.2',
+        'dokan.0', 'dokan.1', 'dokan.2', 'edit_indokan.0',
+        'fly.0', 'fly.1', 'fly.2', 'fly.3',
+        'walk.0', 'walk.1', 'walk.2', 'walk.3',
+    ], [
+        'damage_Alb.000', 'damage_Alb.002', 'damage_Alb.004', 'damage_Alb.006', 'damage_Alb.008', 'damage_Alb.010', 'damage_Alb.012', 'damage_Alb.014', 'damage_Alb.016',
+        'dokan_Alb.000', 'dokan_Alb.001', 'dokan_Alb.003', 'dokan_Alb.005', 'dokan_Alb.007', 'dokan_Alb.009', 'in_dokan_Alb.000',
+        'jump_ed_Alb.000', 'jump_ed_Alb.002', 'jump_ed_Alb.004', 'jump_ed_Alb.006',
+        'jump_md_Alb.000', 'jump_md_Alb.002', 'jump_md_Alb.004', 'jump_md_Alb.006', 'jump_md_Alb.008', 'jump_md_Alb.010', 'jump_md_Alb.012', 'jump_md_Alb.014',
+        'jump_st_Alb.000', 'jump_st_Alb.002', 'jump_st_Alb.004', 'jump_st_Alb.006',
+        'mechakoopa_Alb.000',
+        'parawait_Alb.000', 'parawait_Alb.001', 'parawait_Alb.002', 'parawait_Alb.003', 'parawait_Alb.004', 'parawait_Alb.005', 'parawait_Alb.006', 'parawait_Alb.007', 'parawait_Alb.008', 'parawait_Alb.009',
+        'parawait_Alb.010', 'parawait_Alb.011', 'parawait_Alb.012', 'parawait_Alb.013', 'parawait_Alb.014', 'parawait_Alb.015', 'parawait_Alb.016', 'parawait_Alb.017', 'parawait_Alb.018', 'parawait_Alb.019',
+        'partsA_Alb.000', 'partsB_Alb.000', 'partsC_Alb.000', 'partsD_Alb.000',
+        'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016',
+        'sign_Alb.000', 'sign_Alb.002', 'sign_Alb.004', 'sign_Alb.006', 'sign_Alb.008', 'sign_Alb.010',
+        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018',
+    ],)
     public static readonly BLASTA_MECHAKOOPA =                             new InGameEntityImages.Null()
     public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAs2InNotSm3dwAnd1Nsmbu('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1', 'mechabomb_Alb.000',)
     public static readonly ZAPPA_MECHAKOOPA =                              new InGameEntityImages.Null()
