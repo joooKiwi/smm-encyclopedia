@@ -2048,7 +2048,7 @@ export abstract class InGameEntityImages
 
     public static readonly STINGBY =                                       new InGameEntityImages.Null()
 
-    public static readonly GREEN_CHEEP_CHEEP =                             new InGameEntityImages.Null()
+    public static readonly GREEN_CHEEP_CHEEP =                             new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Green Cheep Cheep', 'Enemy - PukupukuA', 'wait.0', 'wait.1', EMPTY_ARRAY,)
     public static readonly BLURPS =                                        new InGameEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
     public static readonly RED_CHEEP_CHEEP =                               new InGameEntityImages.Null()
