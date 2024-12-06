@@ -2050,7 +2050,15 @@ export abstract class InGameEntityImages
 
     public static readonly GREEN_CHEEP_CHEEP =                             new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Green Cheep Cheep', 'Enemy - PukupukuA', 'wait.0', 'wait.1', EMPTY_ARRAY,)
     public static readonly BLURPS =                                        new InGameEntityImages.ExistantAs2InOnlySmw('Blurps', 'Enemy - PukupukuA', 'wait.0', 'wait.1',)
-    public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
+    public static readonly DEEP_CHEEP =                                    new InGameEntityImages.ExistantInOnlyNsmbu('Deep Cheep', 'Enemy - PukupukuA', [
+        'swim_Alb.000', 'swim_Alb.002', 'swim_Alb.004', 'swim_Alb.006', 'swim_Alb.008',
+        'swim_Alb.010', 'swim_Alb.012', 'swim_Alb.014', 'swim_Alb.016', 'swim_Alb.018',
+        'swim_Alb.020', 'swim_Alb.022', 'swim_Alb.024', 'swim_Alb.026', 'swim_Alb.028',
+        'swim_Alb.030', 'swim_Alb.032', 'swim_Alb.034', 'swim_Alb.036', 'swim_Alb.038',
+        'swim_Alb.040', 'swim_Alb.042', 'swim_Alb.044', 'swim_Alb.046', 'swim_Alb.048',
+        'swim_Alb.050', 'swim_Alb.052', 'swim_Alb.054', 'swim_Alb.056', 'swim_Alb.058',
+        'swim_Alb.060', 'swim_Alb.062', 'swim_Alb.064',
+    ],)
     public static readonly RED_CHEEP_CHEEP =                               new InGameEntityImages.Null()
     public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dw('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
         'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.031',
