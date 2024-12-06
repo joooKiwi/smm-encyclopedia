@@ -201,6 +201,31 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 5 {@link InGameImageFile} in only {@link SMW} */
+    private static readonly ExistantAs5InOnlySmw = class ExistantAs6InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.folderName
+            return [
+                [SMW, inGameImage(this, folderName, this.fileName1,),],
+                [SMW, inGameImage(this, folderName, this.fileName2,),],
+                [SMW, inGameImage(this, folderName, this.fileName3,),],
+                [SMW, inGameImage(this, folderName, this.fileName4,),],
+                [SMW, inGameImage(this, folderName, this.fileName5,),],
+            ] as const
+        }
+
+    }
+
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 6 {@link InGameImageFile} in only {@link SMW} */
     private static readonly ExistantAs6InOnlySmw = class ExistantAs6InOnlySmb_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
@@ -1993,7 +2018,7 @@ export abstract class InGameEntityImages
         'walk_Alb.040', 'walk_Alb.044', 'walk_Alb.048', 'walk_Alb.052', 'walk_Alb.056',
         'walk_Alb.060',
     ],)
-    public static readonly GALOOMBA =                                      new InGameEntityImages.Null()
+    public static readonly GALOOMBA =                                      new InGameEntityImages.ExistantAs5InOnlySmw('Galoomba', 'MW Enemy - Kuribo', 'damage.0', 'swim.0', 'swim.1', 'walk.0', 'walk.1',)
     public static readonly GOOMBRAT =                                      new InGameEntityImages.Null()
     public static readonly GOOMBUD =                                       new InGameEntityImages.Null()
 
