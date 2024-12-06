@@ -2019,7 +2019,23 @@ export abstract class InGameEntityImages
         'walk_Alb.060',
     ],)
     public static readonly GALOOMBA =                                      new InGameEntityImages.ExistantAs5InOnlySmw('Galoomba', 'MW Enemy - Kuribo', 'damage.0', 'swim.0', 'swim.1', 'walk.0', 'walk.1',)
-    public static readonly GOOMBRAT =                                      new InGameEntityImages.Null()
+    public static readonly GOOMBRAT =                                      new InGameEntityImages.ExistantAs6InNotSmw('Goombrat', 'Enemy - Kakibo', 'damage.0', 'kutsu.0', 'swim.0', 'swim.1', 'walk.0', 'walk.1', [
+        'damage_Alb.000', 'damage_Alb.003', 'damage_Alb.006', 'damage_Alb.009',
+        'damage_Alb.012', 'damage_Alb.015', 'damage_Alb.018',
+        'damage_Alb.021', 'damage_Alb.024', 'damage_Alb.027',
+        'swim_Alb.001', 'swim_Alb.005', 'swim_Alb.009', 'swim_Alb.012', 'swim_Alb.016',
+        'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.037',
+        'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.049', 'swim_Alb.052', 'swim_Alb.057',
+        'swim_Alb.060', 'swim_Alb.065', 'swim_Alb.068', 'swim_Alb.073', 'swim_Alb.077', 'swim_Alb.079',
+        'swim_wait_Alb.000', 'swim_wait_Alb.004', 'swim_wait_Alb.008', 'swim_wait_Alb.012', 'swim_wait_Alb.016',
+        'swim_wait_Alb.020', 'swim_wait_Alb.024', 'swim_wait_Alb.028', 'swim_wait_Alb.032', 'swim_wait_Alb.036', 'swim_wait_Alb.039',
+        'walk1_Alb.000', 'walk1_Alb.002', 'walk1_Alb.004', 'walk1_Alb.006', 'walk1_Alb.008',
+        'walk1_Alb.010', 'walk1_Alb.012', 'walk1_Alb.014', 'walk1_Alb.016', 'walk1_Alb.018',
+        'walk1_Alb.020', 'walk1_Alb.022', 'walk1_Alb.024', 'walk1_Alb.026', 'walk1_Alb.028',
+        'walk1_Alb.030', 'walk1_Alb.032', 'walk1_Alb.034', 'walk1_Alb.036', 'walk1_Alb.038',
+        'walk1_Alb.040', 'walk1_Alb.042', 'walk1_Alb.044', 'walk1_Alb.046', 'walk1_Alb.048',
+        'walk1_Alb.050', 'walk1_Alb.052', 'walk1_Alb.054', 'walk1_Alb.056', 'walk1_Alb.058',
+    ],)
     public static readonly GOOMBUD =                                       new InGameEntityImages.Null()
 
     public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Green Koopa Troopa', 'Enemy - NokonokoA', [
