@@ -628,9 +628,10 @@ export abstract class ClearConditionEntityImages
 
     public static readonly STINGBY =                                       new ClearConditionEntityImages.ExistantOnOnlySm3dw('Stingby', 'Hacchin_00',)
 
-    public static readonly CHEEP_CHEEP =                                   new ClearConditionEntityImages.ExistantOnNotSmwAndNsmbu('Cheep Cheep', 'Pukupuku_00',)
+    public static readonly GREEN_CHEEP_CHEEP =                             new ClearConditionEntityImages.ExistantOnNotSmwAndNsmbu('Green Cheep Cheep', 'Pukupuku_00',)
     public static readonly BLURPS =                                        new ClearConditionEntityImages.ExistantOnOnlySmw('Blurps', 'Pukupuku_01',)
     public static readonly DEEP_CHEEP =                                    new ClearConditionEntityImages.ExistantOnOnlyNsmbu('Deep Cheep', 'Pukupuku_01',)
+    public static readonly RED_CHEEP_CHEEP =                               new ClearConditionEntityImages.Null()
     public static readonly FISH_BONE =                                     new ClearConditionEntityImages.ExistantOnAll('Fish Bone', 'FishBone_00',)
 
     public static readonly BLOOPER =                                       new ClearConditionEntityImages.ExistantOnAll('Blooper', 'Gesso_00',)

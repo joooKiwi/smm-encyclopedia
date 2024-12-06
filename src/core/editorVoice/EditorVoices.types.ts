@@ -202,6 +202,6 @@ export type PossibleReference = | Entity | CharacterName
 
 export type PossibleEnglishName = | PossibleEnglishName_EditorVoice
                                   | PossibleEnglishName_PlayableCharacter
-                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| EmptyString | 2})` | 'Sun'
+                                  | 'Koopa Troopa' | 'Cheep Cheep' | 'Block' | `Big Mushroom (SMM${| EmptyString | 2})` | 'Sun'
 
 //endregion -------------------- English name --------------------

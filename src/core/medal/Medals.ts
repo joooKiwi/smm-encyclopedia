@@ -29,7 +29,7 @@ export class Medals
     public static readonly KOOPA_TROOPA =   new Medals('Koopa Troopa', 1, Entities.GREEN_KOOPA_TROOPA,)
     public static readonly PIRANHA_PLANT =  new Medals('Piranha Plant', 2, Entities.PIRANHA_PLANT,)
     public static readonly SPINY =          new Medals('Spiny', 3, Entities.SPINY,)
-    public static readonly CHEEP_CHEEP =    new Medals('Cheep Cheep', 4, Entities.CHEEP_CHEEP,)
+    public static readonly CHEEP_CHEEP =    new Medals('Cheep Cheep', 4, Entities.GREEN_CHEEP_CHEEP,)
     public static readonly BLOOPER =        new Medals('Blooper', 5, Entities.BLOOPER,)
     public static readonly LAKITU =         new Medals('Lakitu', 6, Entities.LAKITU,)
     public static readonly BOWSER =         new Medals('Bowser', 7, Entities.BOWSER,)

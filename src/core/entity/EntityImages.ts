@@ -639,9 +639,10 @@ export abstract class EntityImages
 
     public static readonly STINGBY =                                       new EntityImages.Editor('Stingby', EditorEntityImages.STINGBY,)
 
-    public static readonly CHEEP_CHEEP =                                   new EntityImages.Editor('Cheep Cheep', EditorEntityImages.CHEEP_CHEEP,)
+    public static readonly GREEN_CHEEP_CHEEP =                             new EntityImages.Editor('Green Cheep Cheep', EditorEntityImages.GREEN_CHEEP_CHEEP,)
     public static readonly BLURPS =                                        new EntityImages.Editor('Blurps', EditorEntityImages.BLURPS,)
     public static readonly DEEP_CHEEP =                                    new EntityImages.Editor('Deep Cheep', EditorEntityImages.DEEP_CHEEP,)
+    public static readonly RED_CHEEP_CHEEP =                               new EntityImages.Editor('Red Cheep Cheep', EditorEntityImages.RED_CHEEP_CHEEP,)
     public static readonly FISH_BONE =                                     new EntityImages.Editor('Fish Bone', EditorEntityImages.FISH_BONE,)
 
     public static readonly BLOOPER =                                       new EntityImages.Editor('Blooper', EditorEntityImages.BLOOPER,)

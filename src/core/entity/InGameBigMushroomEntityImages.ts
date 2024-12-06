@@ -114,27 +114,6 @@ export abstract class InGameBigMushroomEntityImages
 
     }
 
-    /** A subclass of an {@link InGameBigMushroomEntityImages} to hold an existant {@link InGameSmm1ImageFile_BigMushroom} stored in 2 different folder */
-    private static readonly ExistantIn2DifferentFolder = class ExistantIn2Folder_InGameBigMushroomEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME extends string,
-        const FILE_NAME extends string, >
-        extends InGameBigMushroomEntityImages.Existant<NAME, `${FOLDER_NAME}${| EmptyString | ' D'}`, FILE_NAME> {
-
-        public constructor(englishName: NAME, private readonly folderName1: FOLDER_NAME, private readonly folderName2: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
-            super(englishName, fileNames,)
-        }
-
-        protected override _createImageFiles(fileNames: Array<FILE_NAME>,) {
-            const folderName1 = this.folderName1
-            const folderName2 = this.folderName2
-            return new GenericCollectionHolder(join(
-                mapByArray(fileNames, it => bigMushroomImage(this, folderName1, it,),),
-                mapByArray(fileNames, it => bigMushroomImage(this, folderName2, it,),),
-            ),)
-        }
-
-    }
-
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
 
@@ -323,9 +302,10 @@ export abstract class InGameBigMushroomEntityImages
 
     public static readonly STINGBY =                                       new InGameBigMushroomEntityImages.Null()
 
-    public static readonly CHEEP_CHEEP =                                   new InGameBigMushroomEntityImages.ExistantIn2DifferentFolder('Cheep Cheep', 'PukupukuA', 'PukupukuB', 'wait.0', 'wait.1',)
+    public static readonly GREEN_CHEEP_CHEEP =                             new InGameBigMushroomEntityImages.ExistantIn1Folder('Green Cheep Cheep', 'PukupukuA', 'wait.0', 'wait.1',)
     public static readonly BLURPS =                                        new InGameBigMushroomEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new InGameBigMushroomEntityImages.Null()
+    public static readonly RED_CHEEP_CHEEP =                               new InGameBigMushroomEntityImages.ExistantIn1Folder('Red Cheep Cheep', 'PukupukuB', 'wait.0', 'wait.1',)
     public static readonly FISH_BONE =                                     new InGameBigMushroomEntityImages.ExistantIn1Folder('Fish Bone', 'Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'break_modelC', 'swim.0', 'swim.1',)
 
     public static readonly BLOOPER =                                       new InGameBigMushroomEntityImages.ExistantIn1Folder('Blooper', 'Gesso', 'wait.0', 'wait.1',)

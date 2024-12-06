@@ -212,6 +212,7 @@ export class OtherWordInTheGames<const SINGULAR extends PossibleEnglishName_Sing
     public static readonly KOOPA_TROOPA =          new OtherWordInTheGames.CompleteOtherWordInTheGame('Koopa Troopa',)
     public static readonly BEACH_KOOPA =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Beach Koopa',)
     public static readonly KOOPA_SHELL =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Koopa Shell',)
+    public static readonly CHEEP_CHEEP =           new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Cheep Cheep',)
 
     public static readonly MYSTERY_MUSHROOM =      new OtherWordInTheGames.UnfinishedOtherWordInTheGame('Mystery Mushroom', 'Mystery Mushrooms',)
     public static readonly MII_COSTUME =           new class OtherWordInTheGames_MiiCostume extends OtherWordInTheGames.UnfinishedOtherWordInTheGame<'Mii costume', 'Mii costumes'> {

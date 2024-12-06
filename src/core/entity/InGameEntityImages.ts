@@ -2048,9 +2048,10 @@ export abstract class InGameEntityImages
 
     public static readonly STINGBY =                                       new InGameEntityImages.Null()
 
-    public static readonly CHEEP_CHEEP =                                   new InGameEntityImages.Null()
+    public static readonly GREEN_CHEEP_CHEEP =                             new InGameEntityImages.Null()
     public static readonly BLURPS =                                        new InGameEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
+    public static readonly RED_CHEEP_CHEEP =                               new InGameEntityImages.Null()
     public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dw('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
         'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.031',
         'attack_st_Alb.000', 'attack_st_Alb.002', 'attack_st_Alb.004', 'attack_st_Alb.006', 'attack_st_Alb.008', 'attack_st_Alb.010', 'attack_st_Alb.012', 'attack_st_Alb.014', 'attack_st_Alb.016', 'attack_st_Alb.018', 'attack_st_Alb.020', 'attack_st_Alb.022', 'attack_st_Alb.024', 'attack_st_Alb.026', 'attack_st_Alb.028', 'attack_st_Alb.030', 'attack_st_Alb.032', 'attack_st_Alb.034', 'attack_st_Alb.036', 'attack_st_Alb.038', 'attack_st_Alb.040',

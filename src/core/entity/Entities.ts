@@ -250,9 +250,10 @@ export class Entities
 
     public static readonly STINGBY =                                       new Entities('Stingby',)
 
-    public static readonly CHEEP_CHEEP =                                   new Entities('Cheep Cheep',)
+    public static readonly GREEN_CHEEP_CHEEP =                             new Entities('Green Cheep Cheep',)
     public static readonly BLURPS =                                        new Entities('Blurps',)
     public static readonly DEEP_CHEEP =                                    new Entities('Deep Cheep',)
+    public static readonly RED_CHEEP_CHEEP =                               new Entities('Red Cheep Cheep',)
     public static readonly FISH_BONE =                                     new Entities('Fish Bone',)
 
     public static readonly BLOOPER =                                       new Entities('Blooper',)

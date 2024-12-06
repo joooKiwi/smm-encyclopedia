@@ -263,9 +263,10 @@ export abstract class UnusedBigMushroomEntityImages
 
     public static readonly STINGBY =                                       new UnusedBigMushroomEntityImages.Null()
 
-    public static readonly CHEEP_CHEEP =                                   new UnusedBigMushroomEntityImages.Null()
+    public static readonly GREEN_CHEEP_CHEEP =                             new UnusedBigMushroomEntityImages.Null()
     public static readonly BLURPS =                                        new UnusedBigMushroomEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new UnusedBigMushroomEntityImages.Null()
+    public static readonly RED_CHEEP_CHEEP =                               new UnusedBigMushroomEntityImages.Null()
     public static readonly FISH_BONE =                                     new UnusedBigMushroomEntityImages.Null()
 
     public static readonly BLOOPER =                                       new UnusedBigMushroomEntityImages.Null()

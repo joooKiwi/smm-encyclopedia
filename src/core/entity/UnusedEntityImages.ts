@@ -378,9 +378,10 @@ export abstract class UnusedEntityImages
 
     public static readonly STINGBY =                                       new UnusedEntityImages.Null()
 
-    public static readonly CHEEP_CHEEP =                                   new UnusedEntityImages.Null()
+    public static readonly GREEN_CHEEP_CHEEP =                             new UnusedEntityImages.Null()
     public static readonly BLURPS =                                        new UnusedEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new UnusedEntityImages.Null()
+    public static readonly RED_CHEEP_CHEEP =                               new UnusedEntityImages.Null()
     public static readonly FISH_BONE =                                     new UnusedEntityImages.Null()
 
     public static readonly BLOOPER =                                       new UnusedEntityImages.Null()

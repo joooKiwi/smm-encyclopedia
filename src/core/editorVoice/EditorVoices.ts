@@ -325,7 +325,7 @@ export abstract class EditorVoices
     public static readonly CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices.EntityEditorVoices {
 
         protected override _createEntityReferences() {
-            return [Import.Entities.CHEEP_CHEEP, Import.Entities.BLURPS, Import.Entities.DEEP_CHEEP,]
+            return [Import.Entities.GREEN_CHEEP_CHEEP, Import.Entities.DEEP_CHEEP, Import.Entities.RED_CHEEP_CHEEP, Import.Entities.BLURPS,]
         }
 
     }('Cheep Cheep', SoundCreator.singleEditorVoiceWithVoice('cheapcheap',),)

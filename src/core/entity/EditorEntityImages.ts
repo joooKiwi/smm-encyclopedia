@@ -322,6 +322,34 @@ export abstract class EditorEntityImages
 
     /**
      * A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile}
+     * in only {@link SMB}, {@link SMB3} and {@link SM3DW}
+     */
+    private static readonly ExistantAsOneInNotSmwAndNsmbu = class ExistantAsOneInNotSmwAndNsmbuEditorEntityImages<const NAME extends PossibleEnglishName,
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<| GameStyles_SMB | GameStyles_SMB3 | GameStyles_SM3DW, FILE_NAME, NAME>> {
+
+        readonly #fileName
+
+        public constructor(englishName: NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#fileName = fileName
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.#fileName
+            const time = Times.DAY
+            const theme = Themes.GROUND
+            return [
+                [time, SMB,   theme, editorImage(this, fileName, SMB,),],
+                [time, SMB3,  theme, editorImage(this, fileName, SMB3,),],
+                [time, SM3DW, theme, editorImage(this, fileName, SM3DW,),],
+            ] as const
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile}
      * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
     private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInNotNsmbuAndSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
@@ -1547,34 +1575,6 @@ export abstract class EditorEntityImages
 
     }
 
-    /** A subclass of an {@link EditorEntityImages} for only the {@link CHEEP_CHEEP} */
-    private static readonly ExistantAsCheepCheep = class ExistantAsCheepCheep
-        extends EditorEntityImages.Existant<'Cheep Cheep', | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3 | GameStyles_SM3DW, `Pukupuku_0${| 0 | 1}`, 'Cheep Cheep'>
-                                                           | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, `Pukupuku_01`, 'Cheep Cheep'>> {
-
-        public constructor() { super('Cheep Cheep',) }
-
-        public override _createImageFiles() {
-            const time = Times.DAY
-            const theme = Themes.GROUND
-            return [
-                [time, SMB,   theme, editorImage(this, 'Pukupuku_00', SMB,),],
-                [time, SMB,   theme, editorImage(this, 'Pukupuku_01', SMB,),],
-
-                [time, SMB3,  theme, editorImage(this, 'Pukupuku_00', SMB3,),],
-                [time, SMB3,  theme, editorImage(this, 'Pukupuku_01', SMB3,),],
-
-                [time, SMW,   theme, editorImage(this, 'Pukupuku_01', SMW,),],
-
-                [time, NSMBU, theme, editorImage(this, 'Pukupuku_01', NSMBU,),],
-
-                [time, SM3DW, theme, editorImage(this, 'Pukupuku_00', SM3DW,),],
-                [time, SM3DW, theme, editorImage(this, 'Pukupuku_01', SM3DW,),],
-            ] as const
-        }
-
-    }
-
     /** A subclass of an {@link EditorEntityImages} for only the {@link SPIKE_BALL} */
     private static readonly ExistantAsSpikeBall = class ExistantAsSpikeBall
         extends EditorEntityImages.Existant<'Spike Ball', | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, `Gabon${| EmptyString | `_${| 'plain_night' | 'underground' | 'water' | 'desert_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_01`, 'Spike Ball'>
@@ -1912,9 +1912,10 @@ export abstract class EditorEntityImages
 
     public static readonly STINGBY =                                       new EditorEntityImages.ExistantAsOneInOnlySm3dw('Stingby', 'Hacchin_00',)
 
-    public static readonly CHEEP_CHEEP =                                   new EditorEntityImages.ExistantAsCheepCheep()
+    public static readonly GREEN_CHEEP_CHEEP =                             new EditorEntityImages.ExistantAsOneInNotSmwAndNsmbu('Green Cheep Cheep', 'Pukupuku_00')
     public static readonly BLURPS =                                        new EditorEntityImages.ExistantAsOneInOnlySmw('Blurps', 'Pukupuku_00',)
     public static readonly DEEP_CHEEP =                                    new EditorEntityImages.ExistantAsOneInOnlyNsmbu('Deep Cheep', 'Pukupuku_00',)
+    public static readonly RED_CHEEP_CHEEP =                               new EditorEntityImages.ExistantAsOneInAll('Red Cheep Cheep', 'Pukupuku_01',)
     public static readonly FISH_BONE =                                     new EditorEntityImages.ExistantAsOneInAll('Fish Bone', 'FishBone_00',)
 
     public static readonly BLOOPER =                                       new EditorEntityImages.ExistantAsOneInAll('Blooper', 'Gesso_00',)
