@@ -2006,7 +2006,10 @@ export abstract class InGameEntityImages
         'wait.0', 'wait.1', 'wait.2', 'wait.3',], 'wait.0', [
         'wait.0',], 'wait.0', [
         'wait.0', 'wait.1',], 'wait.0', [
-        'out2_Alb.000', 'out2_Alb.003', 'out2_Alb.006', 'out2_Alb.009', 'out2_Alb.012', 'out2_Alb.015', 'out2_Alb.018', 'out2_Alb.021', 'out2_Alb.024', 'out2_Alb.027', 'out2_Alb.030', 'out2_Alb.033', 'out2_Alb.036', 'out2_Alb.039', 'out2_Alb.042', 'out2_Alb.045', 'out2_Alb.048', 'out2_Alb.051', 'out2_Alb.054', 'out2_Alb.057', 'out2_Alb.059', 'wait_Alb.000',], 'wait_Alb.000',)
+        'out2_Alb.000', 'out2_Alb.003', 'out2_Alb.006', 'out2_Alb.009', 'out2_Alb.012', 'out2_Alb.015', 'out2_Alb.018',
+        'out2_Alb.021', 'out2_Alb.024', 'out2_Alb.027', 'out2_Alb.030', 'out2_Alb.033', 'out2_Alb.036', 'out2_Alb.039',
+        'out2_Alb.042', 'out2_Alb.045', 'out2_Alb.048', 'out2_Alb.051', 'out2_Alb.054', 'out2_Alb.057', 'out2_Alb.059',
+        'wait_Alb.000',], 'wait_Alb.000',)
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
 
     public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.ExistantAs3InOnlySmbWith1Alternate('Superball Flower', 'M1 Item - BallFLower', 'wait.0', 'wait.1', 'wait.2', 'M1 Item - BallFlower2', 'wait.0',)
@@ -2065,7 +2068,9 @@ export abstract class InGameEntityImages
     public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Stiletto Goomba', 'Enemy - KutsuKuriboB', 'edit_drag.0', 'edit_drag.1',)
     public static readonly STILETTO =                                      new InGameEntityImages.ExistantAs2InOnlySmbAndSmb3('Stiletto', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)
     public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAsNoVariant('Yoshi’s Egg', 'Enemy - KutsuKuriboA', EMPTY_ARRAY, EMPTY_ARRAY, ['wait.0', 'wait.1',], [
-        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022',
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008',
+        'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018',
+        'wait_Alb.020', 'wait_Alb.022',
     ],)
     public static readonly YOSHI =                                         new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.ExistantAs2InOnlySmw('Fire thrown by a Yoshi', 'MW Player - YoshiFire', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi fire thrown" (if present)
@@ -2074,7 +2079,9 @@ export abstract class InGameEntityImages
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
     public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsNoVariant('Red Yoshi’s Egg', 'Enemy - KutsuKuriboB', EMPTY_ARRAY, EMPTY_ARRAY, ['wait.0', 'wait.1',], [
-        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022',
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008',
+        'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018',
+        'wait_Alb.020', 'wait_Alb.022',
     ],)
     public static readonly RED_YOSHI =                                     new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new InGameEntityImages.Null()
@@ -2125,9 +2132,21 @@ export abstract class InGameEntityImages
         'revival.0', 'revival.1',
         'walk.0', 'walk.1',
     ], [
-        'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
-        'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
-        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',
+        'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008',
+        'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018',
+        'flyA_Alb.020', 'flyA_Alb.022',
+        'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008',
+        'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018',
+        'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028',
+        'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038',
+        'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048',
+        'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058',
+        'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068',
+        'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
+        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008',
+        'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018',
+        'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028',
+        'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',
     ],)
     public static readonly RED_KOOPA_TROOPA =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Red Koopa Troopa', 'Enemy - NokonokoB', [
         'revival.0', 'revival.1', 'revival.2',
@@ -2137,9 +2156,21 @@ export abstract class InGameEntityImages
         'revival.0', 'revival.1',
         'walk.0', 'walk.1',
     ], [
-        'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008', 'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018', 'flyA_Alb.020', 'flyA_Alb.022',
-        'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008', 'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018', 'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028', 'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038', 'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048', 'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058', 'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068', 'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
-        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008', 'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018', 'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028', 'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',
+        'flyA_Alb.000', 'flyA_Alb.002', 'flyA_Alb.004', 'flyA_Alb.006', 'flyA_Alb.008',
+        'flyA_Alb.010', 'flyA_Alb.012', 'flyA_Alb.014', 'flyA_Alb.016', 'flyA_Alb.018',
+        'flyA_Alb.020', 'flyA_Alb.022',
+        'revival_Alb.000', 'revival_Alb.002', 'revival_Alb.004', 'revival_Alb.006', 'revival_Alb.008',
+        'revival_Alb.010', 'revival_Alb.012', 'revival_Alb.014', 'revival_Alb.016', 'revival_Alb.018',
+        'revival_Alb.020', 'revival_Alb.022', 'revival_Alb.024', 'revival_Alb.026', 'revival_Alb.028',
+        'revival_Alb.030', 'revival_Alb.032', 'revival_Alb.034', 'revival_Alb.036', 'revival_Alb.038',
+        'revival_Alb.040', 'revival_Alb.042', 'revival_Alb.044', 'revival_Alb.046', 'revival_Alb.048',
+        'revival_Alb.050', 'revival_Alb.052', 'revival_Alb.054', 'revival_Alb.056', 'revival_Alb.058',
+        'revival_Alb.060', 'revival_Alb.062', 'revival_Alb.064', 'revival_Alb.066', 'revival_Alb.068',
+        'revival_Alb.070', 'revival_Alb.072', 'revival_Alb.074', 'revival_Alb.076',
+        'walkA_Alb.000', 'walkA_Alb.002', 'walkA_Alb.004', 'walkA_Alb.006', 'walkA_Alb.008',
+        'walkA_Alb.010', 'walkA_Alb.012', 'walkA_Alb.014', 'walkA_Alb.016', 'walkA_Alb.018',
+        'walkA_Alb.020', 'walkA_Alb.022', 'walkA_Alb.024', 'walkA_Alb.026', 'walkA_Alb.028',
+        'walkA_Alb.030', 'walkA_Alb.032', 'walkA_Alb.034', 'walkA_Alb.036', 'walkA_Alb.038',
     ],)
     public static readonly GREEN_BEACH_KOOPA =                             new InGameEntityImages.ExistantAs6InOnlySmw('Green Beach Koopa', 'MW Enemy - NokonokoANaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
     public static readonly RED_BEACH_KOOPA =                               new InGameEntityImages.ExistantAs6InOnlySmw('Red Beach Koopa', 'MW Enemy - NokonokoBNaked', 'dead.0', 'kick.0', 'slide.0', 'slide.1', 'walk.0', 'walk.1',)
@@ -2197,7 +2228,8 @@ export abstract class InGameEntityImages
         'Yrot_met_shell_Alb.000', 'Yrot_met_shell_Alb.002', 'Yrot_met_shell_Alb.004', 'Yrot_met_shell_Alb.006', 'Yrot_met_shell_Alb.008', 'Yrot_met_shell_Alb.010',
     ],)
     public static readonly PARA_BEETLE =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Para-Beetle', 'Enemy - Met', ['fly.0',], [
-        'fly_Alb.000', 'fly_Alb.003', 'fly_Alb.006', 'fly_Alb.009', 'fly_Alb.012', 'fly_Alb.015', 'fly_Alb.018', 'fly_Alb.021', 'fly_Alb.024', 'fly_Alb.027', 'fly_Alb.029',
+        'fly_Alb.000', 'fly_Alb.003', 'fly_Alb.006', 'fly_Alb.009',
+        'fly_Alb.012', 'fly_Alb.015', 'fly_Alb.018', 'fly_Alb.021', 'fly_Alb.024', 'fly_Alb.027', 'fly_Alb.029',
     ],)
     public static readonly BUZZY_SHELL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Buzzy Shell', 'Enemy - Met', ['shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3',], [
         'met_shell_model2_Alb.000', 'met_shell_model2_Alb.002', 'met_shell_model2_Alb.004', 'met_shell_model2_Alb.006', 'met_shell_model2_Alb.008', 'met_shell_model2_Alb.010',
@@ -2205,30 +2237,52 @@ export abstract class InGameEntityImages
 
     public static readonly SPINY =                                         new InGameEntityImages.ExistantAs6InNotSm3dw('Spiny', 'Enemy - Togezo', 'shell.0', 'shell.1', 'shell.2', 'shell.3', 'walk.0', 'walk.1', [
         'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007','walk_Alb.008','walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018', 'walk_Alb.019', 'walk_Alb.020', 'walk_Alb.021', 'walk_Alb.022', 'walk_Alb.023', 'walk_Alb.024', 'walk_Alb.025', 'walk_Alb.026', 'walk_Alb.027', 'walk_Alb.028', 'walk_Alb.029',
-        'Yrot_togezo_shell_Alb.000', 'Yrot_togezo_shell_Alb.001', 'Yrot_togezo_shell_Alb.002', 'Yrot_togezo_shell_Alb.003', 'Yrot_togezo_shell_Alb.004', 'Yrot_togezo_shell_Alb.005', 'Yrot_togezo_shell_Alb.006', 'Yrot_togezo_shell_Alb.007', 'Yrot_togezo_shell_Alb.008', 'Yrot_togezo_shell_Alb.009', 'Yrot_togezo_shell_Alb.010',
+        'Yrot_togezo_shell_Alb.000', 'Yrot_togezo_shell_Alb.001', 'Yrot_togezo_shell_Alb.002', 'Yrot_togezo_shell_Alb.003', 'Yrot_togezo_shell_Alb.004',
+        'Yrot_togezo_shell_Alb.005', 'Yrot_togezo_shell_Alb.006', 'Yrot_togezo_shell_Alb.007', 'Yrot_togezo_shell_Alb.008', 'Yrot_togezo_shell_Alb.009', 'Yrot_togezo_shell_Alb.010',
     ],)
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3Smw('Winged Spiny', 'Enemy - Togezo', ['fly.0',], [
-        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.029',
+        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008',
+        'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018',
+        'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.029',
     ],)
     public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('(Winged Spiny’s projectile)', 'Enemy - Togezo', 'toge.0', 'toge_Alb.000',)
     public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAs2InNotSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1', [
-        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038', 'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008',
+        'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018',
+        'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028',
+        'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038',
+        'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048',
+        'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
     ],)
     public static readonly SPINY_SHELL =                                   new InGameEntityImages.ExistantAs4InNotSm3dw('Spiny Shell', 'Enemy - Togezo', 'shellkara.0', 'shellkara.1', 'shellkara.2', 'shellkara.3', [
-        'togezo_shell2_Alb.000', 'togezo_shell2_Alb.001', 'togezo_shell2_Alb.002', 'togezo_shell2_Alb.003', 'togezo_shell2_Alb.004', 'togezo_shell2_Alb.005', 'togezo_shell2_Alb.006', 'togezo_shell2_Alb.007', 'togezo_shell2_Alb.008', 'togezo_shell2_Alb.009', 'togezo_shell2_Alb.010',
+        'togezo_shell2_Alb.000', 'togezo_shell2_Alb.001', 'togezo_shell2_Alb.002', 'togezo_shell2_Alb.003', 'togezo_shell2_Alb.004',
+        'togezo_shell2_Alb.005', 'togezo_shell2_Alb.006', 'togezo_shell2_Alb.007', 'togezo_shell2_Alb.008', 'togezo_shell2_Alb.009',
+        'togezo_shell2_Alb.010',
     ],)
 
     public static readonly SPIKE_TOP =                                     new InGameEntityImages.ExistantAs2InNotSm3dw('Spike Top', 'Enemy - TogemetA', 'walk.0', 'walk.1', [
-        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032', 'walk_Alb.033',
+        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008',
+        'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018',
+        'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028',
+        'walk_Alb.030', 'walk_Alb.032', 'walk_Alb.033',
     ],)
     public static readonly WINGED_SPIKE_TOP =                              new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3Smw('Winged Spike Top', 'Enemy - TogemetA', ['fly.0',], [
-        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb.032', 'fly_Alb.034', 'fly_Alb.036', 'fly_Alb.038',
+        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008',
+        'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018',
+        'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028',
+        'fly_Alb.030', 'fly_Alb.032', 'fly_Alb.034', 'fly_Alb.036', 'fly_Alb.038',
     ],)
     public static readonly FAST_SPIKE_TOP =                                new InGameEntityImages.ExistantAs2InNotSm3dw('Fast Spike Top', 'Enemy - TogemetB', 'walk.0', 'walk.1', [
-        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008', 'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018', 'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028', 'walk_Alb.030', 'walk_Alb.032', 'walk_Alb.033',
+        'walk_Alb.000', 'walk_Alb.002', 'walk_Alb.004', 'walk_Alb.006', 'walk_Alb.008',
+        'walk_Alb.010', 'walk_Alb.012', 'walk_Alb.014', 'walk_Alb.016', 'walk_Alb.018',
+        'walk_Alb.020', 'walk_Alb.022', 'walk_Alb.024', 'walk_Alb.026', 'walk_Alb.028',
+        'walk_Alb.030', 'walk_Alb.032', 'walk_Alb.033',
     ],)
     public static readonly FAST_WINGED_SPIKE_TOP =                         new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3Smw('Fast Winged Spike Top', 'Enemy - TogemetB', ['fly.0',], [
-        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb.032', 'fly_Alb.034', 'fly_Alb.036', 'fly_Alb.038',
+        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008',
+        'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018',
+        'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028',
+        'fly_Alb.030', 'fly_Alb.032', 'fly_Alb.034', 'fly_Alb.036', 'fly_Alb.038',
     ],)
 
     public static readonly SKIPSQUEAK =                                    new InGameEntityImages.Null()
@@ -2260,14 +2314,27 @@ export abstract class InGameEntityImages
         'swim_Alb.060', 'swim_Alb.062', 'swim_Alb.064',
     ],)
     public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dw('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
-        'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.031',
-        'attack_st_Alb.000', 'attack_st_Alb.002', 'attack_st_Alb.004', 'attack_st_Alb.006', 'attack_st_Alb.008', 'attack_st_Alb.010', 'attack_st_Alb.012', 'attack_st_Alb.014', 'attack_st_Alb.016', 'attack_st_Alb.018', 'attack_st_Alb.020', 'attack_st_Alb.022', 'attack_st_Alb.024', 'attack_st_Alb.026', 'attack_st_Alb.028', 'attack_st_Alb.030', 'attack_st_Alb.032', 'attack_st_Alb.034', 'attack_st_Alb.036', 'attack_st_Alb.038', 'attack_st_Alb.040',
+        'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008',
+        'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018',
+        'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028',
+        'attack_Alb.030', 'attack_Alb.031',
+        'attack_st_Alb.000', 'attack_st_Alb.002', 'attack_st_Alb.004', 'attack_st_Alb.006', 'attack_st_Alb.008',
+        'attack_st_Alb.010', 'attack_st_Alb.012', 'attack_st_Alb.014', 'attack_st_Alb.016', 'attack_st_Alb.018',
+        'attack_st_Alb.020', 'attack_st_Alb.022', 'attack_st_Alb.024', 'attack_st_Alb.026', 'attack_st_Alb.028',
+        'attack_st_Alb.030', 'attack_st_Alb.032', 'attack_st_Alb.034', 'attack_st_Alb.036', 'attack_st_Alb.038',
+        'attack_st_Alb.040',
         'break_Alb.000',
-        'swim_Alb.000', 'swim_Alb.004', 'swim_Alb.008', 'swim_Alb.012', 'swim_Alb.016', 'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.036', 'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.048', 'swim_Alb.052', 'swim_Alb.056', 'swim_Alb.060', 'swim_Alb.063', 'swim_Alb.064', 'swim_Alb.068', 'swim_Alb.072', 'swim_Alb.076', 'swim_Alb.080', 'swim_Alb.083',
+        'swim_Alb.000', 'swim_Alb.004', 'swim_Alb.008', 'swim_Alb.012', 'swim_Alb.016',
+        'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.036',
+        'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.048', 'swim_Alb.052', 'swim_Alb.056',
+        'swim_Alb.060', 'swim_Alb.063', 'swim_Alb.064', 'swim_Alb.068',
+        'swim_Alb.072', 'swim_Alb.076', 'swim_Alb.080', 'swim_Alb.083',
     ],)
 
     public static readonly BLOOPER =                                       new InGameEntityImages.ExistantAs4InNotSm3dw('Blooper', 'Enemy - Gesso', 'parawait.0', 'parawait.1', 'wait.0', 'wait.1', [
-        'edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008', 'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018', 'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',
+        'edited_te_pata_Alb.000', 'edited_te_pata_Alb.002', 'edited_te_pata_Alb.004', 'edited_te_pata_Alb.006', 'edited_te_pata_Alb.008',
+        'edited_te_pata_Alb.010', 'edited_te_pata_Alb.012', 'edited_te_pata_Alb.014', 'edited_te_pata_Alb.016', 'edited_te_pata_Alb.018',
+        'edited_te_pata_Alb.020', 'edited_te_pata_Alb.022', 'edited_te_pata_Alb.024', 'edited_te_pata_Alb.026', 'edited_te_pata_Alb.028',
     ],)
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
     public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAs2InNotSm3dwAnd1Nsmbu('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1', 'gesso_mini_Alb.000',)
@@ -2289,11 +2356,29 @@ export abstract class InGameEntityImages
     ],)
     public static readonly JUMPING_PIRANHA_PLANT =                         new InGameEntityImages.ExistantAs4InOnlySmw('Jumping Piranha Plant', 'MW Enemy - Packun', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly FIRE_PIRANHA_PLANT =                            new InGameEntityImages.ExistantAs4InNotSm3dw('Fire Piranha Plant', 'Enemy - PackunFire', 'down.0', 'down.1', 'up.0', 'up.1', [
-        'downfire1_Alb.000', 'downfire1_Alb.003', 'downfire1_Alb.006', 'downfire1_Alb.009', 'downfire1_Alb.012', 'downfire1_Alb.015', 'downfire1_Alb.018', 'downfire1_Alb.021', 'downfire1_Alb.024', 'downfire1_Alb.027', 'downfire1_Alb.030', 'downfire1_Alb.033', 'downfire1_Alb.036', 'downfire1_Alb.039', 'downfire1_Alb.042', 'downfire1_Alb.045', 'downfire1_Alb.048', 'downfire1_Alb.051', 'downfire1_Alb.054', 'downfire1_Alb.057', 'downfire1_Alb.059',
-        'downfire2_Alb.000', 'downfire2_Alb.002', 'downfire2_Alb.004', 'downfire2_Alb.006', 'downfire2_Alb.008', 'downfire2_Alb.010', 'downfire2_Alb.012', 'downfire2_Alb.014', 'downfire2_Alb.016', 'downfire2_Alb.018', 'downfire2_Alb.020', 'downfire2_Alb.022', 'downfire2_Alb.024', 'downfire2_Alb.026', 'downfire2_Alb.028', 'downfire2_Alb.030', 'downfire2_Alb.032', 'downfire2_Alb.034', 'downfire2_Alb.036', 'downfire2_Alb.038', 'downfire2_Alb.040', 'downfire2_Alb.042', 'downfire2_Alb.044',
+        'downfire1_Alb.000', 'downfire1_Alb.003', 'downfire1_Alb.006', 'downfire1_Alb.009',
+        'downfire1_Alb.012', 'downfire1_Alb.015', 'downfire1_Alb.018',
+        'downfire1_Alb.021', 'downfire1_Alb.024', 'downfire1_Alb.027',
+        'downfire1_Alb.030', 'downfire1_Alb.033', 'downfire1_Alb.036', 'downfire1_Alb.039',
+        'downfire1_Alb.042', 'downfire1_Alb.045', 'downfire1_Alb.048',
+        'downfire1_Alb.051', 'downfire1_Alb.054', 'downfire1_Alb.057', 'downfire1_Alb.059',
+        'downfire2_Alb.000', 'downfire2_Alb.002', 'downfire2_Alb.004', 'downfire2_Alb.006', 'downfire2_Alb.008',
+        'downfire2_Alb.010', 'downfire2_Alb.012', 'downfire2_Alb.014', 'downfire2_Alb.016', 'downfire2_Alb.018',
+        'downfire2_Alb.020', 'downfire2_Alb.022', 'downfire2_Alb.024', 'downfire2_Alb.026', 'downfire2_Alb.028',
+        'downfire2_Alb.030', 'downfire2_Alb.032', 'downfire2_Alb.034', 'downfire2_Alb.036', 'downfire2_Alb.038',
+        'downfire2_Alb.040', 'downfire2_Alb.042', 'downfire2_Alb.044',
         'JumpOutSign_Alb.000',
-        'upfire1_Alb.000', 'upfire1_Alb.003', 'upfire1_Alb.006', 'upfire1_Alb.009', 'upfire1_Alb.012', 'upfire1_Alb.015', 'upfire1_Alb.018', 'upfire1_Alb.021', 'upfire1_Alb.024', 'upfire1_Alb.027', 'upfire1_Alb.030', 'upfire1_Alb.033', 'upfire1_Alb.036', 'upfire1_Alb.039', 'upfire1_Alb.042', 'upfire1_Alb.045', 'upfire1_Alb.048', 'upfire1_Alb.051', 'upfire1_Alb.054', 'upfire1_Alb.057', 'upfire1_Alb.059',
-        'upfire2_Alb.000', 'upfire2_Alb.002', 'upfire2_Alb.004', 'upfire2_Alb.006', 'upfire2_Alb.008', 'upfire2_Alb.010', 'upfire2_Alb.012', 'upfire2_Alb.014', 'upfire2_Alb.016', 'upfire2_Alb.018', 'upfire2_Alb.020', 'upfire2_Alb.022', 'upfire2_Alb.024', 'upfire2_Alb.026', 'upfire2_Alb.028', 'upfire2_Alb.030', 'upfire2_Alb.032', 'upfire2_Alb.034', 'upfire2_Alb.036', 'upfire2_Alb.038', 'upfire2_Alb.040', 'upfire2_Alb.042', 'upfire2_Alb.044',
+        'upfire1_Alb.000', 'upfire1_Alb.003', 'upfire1_Alb.006', 'upfire1_Alb.009',
+        'upfire1_Alb.012', 'upfire1_Alb.015', 'upfire1_Alb.018',
+        'upfire1_Alb.021', 'upfire1_Alb.024', 'upfire1_Alb.027',
+        'upfire1_Alb.030', 'upfire1_Alb.033', 'upfire1_Alb.036', 'upfire1_Alb.039',
+        'upfire1_Alb.042', 'upfire1_Alb.045', 'upfire1_Alb.048',
+        'upfire1_Alb.051', 'upfire1_Alb.054', 'upfire1_Alb.057', 'upfire1_Alb.059',
+        'upfire2_Alb.000', 'upfire2_Alb.002', 'upfire2_Alb.004', 'upfire2_Alb.006', 'upfire2_Alb.008',
+        'upfire2_Alb.010', 'upfire2_Alb.012', 'upfire2_Alb.014', 'upfire2_Alb.016', 'upfire2_Alb.018',
+        'upfire2_Alb.020', 'upfire2_Alb.022', 'upfire2_Alb.024', 'upfire2_Alb.026', 'upfire2_Alb.028',
+        'upfire2_Alb.030', 'upfire2_Alb.032', 'upfire2_Alb.034', 'upfire2_Alb.036', 'upfire2_Alb.038',
+        'upfire2_Alb.040', 'upfire2_Alb.042', 'upfire2_Alb.044',
     ],)
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new InGameEntityImages.Null()
     public static readonly MUNCHER =                                       new InGameEntityImages.ExistantAsBlueVariant('Muncher', 'Enemy - PackunBlack', [
@@ -2324,16 +2409,30 @@ export abstract class InGameEntityImages
     public static readonly LAKITU_CLOUD =                                  new InGameEntityImages.Null()
 
     public static readonly BOO =                                           new InGameEntityImages.ExistantAs2InNotSm3dw('Boo', 'Enemy - Teresa', 'wait.0', 'walk.0', [
-        'edited_wait_Alb.000', 'edited_wait_Alb.005', 'edited_wait_Alb.010', 'edited_wait_Alb.015', 'edited_wait_Alb.020', 'edited_wait_Alb.025', 'edited_wait_Alb.030', 'edited_wait_Alb.035', 'edited_wait_Alb.040', 'edited_wait_Alb.045', 'edited_wait_Alb.050', 'edited_wait_Alb.055', 'edited_wait_Alb.060', 'edited_wait_Alb.065', 'edited_wait_Alb.070', 'edited_wait_Alb.075', 'edited_wait_Alb.080', 'edited_wait_Alb.085', 'edited_wait_Alb.090', 'edited_wait_Alb.095',
+        'edited_wait_Alb.000', 'edited_wait_Alb.005', 'edited_wait_Alb.010', 'edited_wait_Alb.015',
+        'edited_wait_Alb.020', 'edited_wait_Alb.025', 'edited_wait_Alb.030', 'edited_wait_Alb.035',
+        'edited_wait_Alb.040', 'edited_wait_Alb.045', 'edited_wait_Alb.050', 'edited_wait_Alb.055',
+        'edited_wait_Alb.060', 'edited_wait_Alb.065', 'edited_wait_Alb.070', 'edited_wait_Alb.075',
+        'edited_wait_Alb.080', 'edited_wait_Alb.085', 'edited_wait_Alb.090', 'edited_wait_Alb.095',
         'glow',
         'shay_teresaB_Alb.000', 'shay_teresaB_Alb.001', 'shay_teresaB_Alb.002', 'shay_teresaB_Alb.003', 'shay_teresaB_Alb.004',
     ],)
     public static readonly STRETCH =                                       new InGameEntityImages.ExistantAs6InNotSm3dw('Stretch', 'Enemy - Netchi', 'out.0', 'out.1', 'out.2', 'out.3', 'wait.0', 'walk.0', [
         'glow',
-        'in_Alb.000', 'in_Alb.002', 'in_Alb.004', 'in_Alb.006', 'in_Alb.008', 'in_Alb.010', 'in_Alb.012', 'in_Alb.014', 'in_Alb.016', 'in_Alb.018', 'in_Alb.020', 'in_Alb.022', 'in_Alb.024', 'in_Alb.026', 'in_Alb.028', 'in_Alb.030', 'in_Alb.032', 'in_Alb.034', 'in_Alb.036', 'in_Alb.038', 'in_Alb.040',
+        'in_Alb.000', 'in_Alb.002', 'in_Alb.004', 'in_Alb.006', 'in_Alb.008',
+        'in_Alb.010', 'in_Alb.012', 'in_Alb.014', 'in_Alb.016', 'in_Alb.018',
+        'in_Alb.020', 'in_Alb.022', 'in_Alb.024', 'in_Alb.026', 'in_Alb.028',
+        'in_Alb.030', 'in_Alb.032', 'in_Alb.034', 'in_Alb.036', 'in_Alb.038', 'in_Alb.040',
         'netch_shay_Alb.001', 'netch_shay_Alb.002', 'netch_shay_Alb.003', 'netch_shay_Alb.004', 'netch_shay_Alb.005',
-        'out_Alb.000', 'out_Alb.002', 'out_Alb.004', 'out_Alb.006', 'out_Alb.008', 'out_Alb.010', 'out_Alb.012', 'out_Alb.014', 'out_Alb.016', 'out_Alb.018', 'out_Alb.020', 'out_Alb.022', 'out_Alb.024', 'out_Alb.026', 'out_Alb.028', 'out_Alb.030', 'out_Alb.032', 'out_Alb.034', 'out_Alb.036', 'out_Alb.038', 'out_Alb.040',
-        'walk_Alb.000', 'walk_Alb.003', 'walk_Alb.006', 'walk_Alb.009', 'walk_Alb.012', 'walk_Alb.015', 'walk_Alb.018', 'walk_Alb.021', 'walk_Alb.024', 'walk_Alb.027', 'walk_Alb.030', 'walk_Alb.033', 'walk_Alb.036', 'walk_Alb.039', 'walk_Alb.042', 'walk_Alb.045',
+        'out_Alb.000', 'out_Alb.002', 'out_Alb.004', 'out_Alb.006', 'out_Alb.008',
+        'out_Alb.010', 'out_Alb.012', 'out_Alb.014', 'out_Alb.016', 'out_Alb.018',
+        'out_Alb.020', 'out_Alb.022', 'out_Alb.024', 'out_Alb.026', 'out_Alb.028',
+        'out_Alb.030', 'out_Alb.032', 'out_Alb.034', 'out_Alb.036', 'out_Alb.038', 'out_Alb.040',
+        'walk_Alb.000', 'walk_Alb.003', 'walk_Alb.006', 'walk_Alb.009',
+        'walk_Alb.012', 'walk_Alb.015', 'walk_Alb.018',
+        'walk_Alb.021', 'walk_Alb.024', 'walk_Alb.027',
+        'walk_Alb.030', 'walk_Alb.033', 'walk_Alb.036', 'walk_Alb.039',
+        'walk_Alb.042', 'walk_Alb.045',
     ],)
     public static readonly BOO_BUDDIES =                                   new InGameEntityImages.Null()
     public static readonly PEEPA =                                         new InGameEntityImages.Null()
@@ -2345,9 +2444,11 @@ export abstract class InGameEntityImages
     ], [
         'damage.0', 'fly.0', 'walk.0', 'walk.1',
     ], [
-        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018', 'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb32', 'fly_Alb34', 'fly_Alb36', 'fly_Alb38', 'fly_Alb39',
+        'fly_Alb.000', 'fly_Alb.002', 'fly_Alb.004', 'fly_Alb.006', 'fly_Alb.008', 'fly_Alb.010', 'fly_Alb.012', 'fly_Alb.014', 'fly_Alb.016', 'fly_Alb.018',
+        'fly_Alb.020', 'fly_Alb.022', 'fly_Alb.024', 'fly_Alb.026', 'fly_Alb.028', 'fly_Alb.030', 'fly_Alb32', 'fly_Alb34', 'fly_Alb36', 'fly_Alb38', 'fly_Alb39',
         'stop_Alb000',
-        'walk_Alb000', 'walk_Alb001', 'walk_Alb002', 'walk_Alb003', 'walk_Alb004', 'walk_Alb005', 'walk_Alb006', 'walk_Alb007', 'walk_Alb008', 'walk_Alb009', 'walk_Alb010', 'walk_Alb011', 'walk_Alb012', 'walk_Alb013', 'walk_Alb014', 'walk_Alb015', 'walk_Alb016', 'walk_Alb017', 'walk_Alb018', 'walk_Alb019',
+        'walk_Alb000', 'walk_Alb001', 'walk_Alb002', 'walk_Alb003', 'walk_Alb004', 'walk_Alb005', 'walk_Alb006', 'walk_Alb007', 'walk_Alb008', 'walk_Alb009',
+        'walk_Alb010', 'walk_Alb011', 'walk_Alb012', 'walk_Alb013', 'walk_Alb014', 'walk_Alb015', 'walk_Alb016', 'walk_Alb017', 'walk_Alb018', 'walk_Alb019',
     ],)
     public static readonly LIT_BOB_OMB =                                   new InGameEntityImages.Null()
 
@@ -2357,17 +2458,46 @@ export abstract class InGameEntityImages
     public static readonly THWOMP =                                        new InGameEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3InNotSm3dw('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
-        'go_out_st_Alb.000', 'go_out_st_Alb.002', 'go_out_st_Alb.004', 'go_out_st_Alb.006', 'go_out_st_Alb.008', 'go_out_st_Alb.010', 'go_out_st_Alb.012', 'go_out_st_Alb.014', 'go_out_st_Alb.016', 'go_out_st_Alb.018',
+        'go_out_st_Alb.000', 'go_out_st_Alb.002', 'go_out_st_Alb.004', 'go_out_st_Alb.006', 'go_out_st_Alb.008',
+        'go_out_st_Alb.010', 'go_out_st_Alb.012', 'go_out_st_Alb.014', 'go_out_st_Alb.016', 'go_out_st_Alb.018',
         'in_dokan_Alb.000', 'in_dokan_Alb.002', 'in_dokan_Alb.004', 'in_dokan_Alb.006', 'in_dokan_Alb.008', 'in_dokan_Alb.009',
-        'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008', 'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018', 'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028', 'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
-        'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007', 'walk_Alb.008', 'walk_Alb.009', 'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018',],)
+        'parawait.Alb.000', 'parawait.Alb.002', 'parawait.Alb.004', 'parawait.Alb.006', 'parawait.Alb.008',
+        'parawait.Alb.010', 'parawait.Alb.012', 'parawait.Alb.014', 'parawait.Alb.016', 'parawait.Alb.018',
+        'parawait.Alb.020', 'parawait.Alb.022', 'parawait.Alb.024', 'parawait.Alb.026', 'parawait.Alb.028',
+        'parawait.Alb.030', 'parawait.Alb.032', 'parawait.Alb.034', 'parawait.Alb.036', 'parawait.Alb.038', 'parawait.Alb.040',
+        'walk_Alb.000', 'walk_Alb.001', 'walk_Alb.002', 'walk_Alb.003', 'walk_Alb.004', 'walk_Alb.005', 'walk_Alb.006', 'walk_Alb.007', 'walk_Alb.008', 'walk_Alb.009',
+        'walk_Alb.010', 'walk_Alb.011', 'walk_Alb.012', 'walk_Alb.013', 'walk_Alb.014', 'walk_Alb.015', 'walk_Alb.016', 'walk_Alb.017', 'walk_Alb.018',
+    ],)
     public static readonly ROCKY_WRENCH =                                  new InGameEntityImages.ExistantAs6InNotSm3dw('Rocky Wrench', 'Enemy - Poo', 'damage.0', 'damage.1', 'throw.0', 'throw.1', 'wait.0', 'wait2.0', [
         'dead_Alb.000', 'dead_Alb.002', 'dead_Alb.004', 'dead_Alb.006', 'dead_Alb.008', 'dead_Alb.010', 'dead_Alb.011',
-        'fly_Alb.000', 'fly_Alb.003', 'fly_Alb.006', 'fly_Alb.009', 'fly_Alb.012', 'fly_Alb.015', 'fly_Alb.018', 'fly_Alb.021', 'fly_Alb.024', 'fly_Alb.027', 'fly_Alb.029',
-        'poo_half_Alb.000', 'poo_half_Alb.004', 'poo_half_Alb.008', 'poo_half_Alb.012', 'poo_half_Alb.016', 'poo_half_Alb.020', 'poo_half_Alb.024', 'poo_half_Alb.028', 'poo_half_Alb.032', 'poo_half_Alb.036', 'poo_half_Alb.040', 'poo_half_Alb.044', 'poo_half_Alb.048', 'poo_half_Alb.052', 'poo_half_Alb.056', 'poo_half_Alb.060', 'poo_half_Alb.064', 'poo_half_Alb.068', 'poo_half_Alb.072',
-        'throw_2_Alb.000', 'throw_2_Alb.004', 'throw_2_Alb.008', 'throw_2_Alb.012', 'throw_2_Alb.016', 'throw_2_Alb.020', 'throw_2_Alb.024', 'throw_2_Alb.028', 'throw_2_Alb.032', 'throw_2_Alb.036', 'throw_2_Alb.040', 'throw_2_Alb.044', 'throw_2_Alb.048', 'throw_2_Alb.052', 'throw_2_Alb.056', 'throw_2_Alb.060', 'throw_2_Alb.064', 'throw_2_Alb.068', 'throw_2_Alb.072',
-        'throw_4_left_hand_Alb.000', 'throw_4_left_hand_Alb.003', 'throw_4_left_hand_Alb.006', 'throw_4_left_hand_Alb.009', 'throw_4_left_hand_Alb.012', 'throw_4_left_hand_Alb.015', 'throw_4_left_hand_Alb.018', 'throw_4_left_hand_Alb.021', 'throw_4_left_hand_Alb.024', 'throw_4_left_hand_Alb.027', 'throw_4_left_hand_Alb.030', 'throw_4_left_hand_Alb.033', 'throw_4_left_hand_Alb.036', 'throw_4_left_hand_Alb.039', 'throw_4_left_hand_Alb.042', 'throw_4_left_hand_Alb.045', 'throw_4_left_hand_Alb.048', 'throw_4_left_hand_Alb.051', 'throw_4_left_hand_Alb.054', 'throw_4_left_hand_Alb.057', 'throw_4_left_hand_Alb.060', 'throw_4_left_hand_Alb.063', 'throw_4_left_hand_Alb.066', 'throw_4_left_hand_Alb.069', 'throw_4_left_hand_Alb.072', 'throw_4_left_hand_Alb.075', 'throw_4_left_hand_Alb.078', 'throw_4_left_hand_Alb.081', 'throw_4_left_hand_Alb.084', 'throw_4_left_hand_Alb.086',
-        'throw_held_Alb.000', 'throw_held_Alb.003', 'throw_held_Alb.006', 'throw_held_Alb.009', 'throw_held_Alb.012', 'throw_held_Alb.015', 'throw_held_Alb.018', 'throw_held_Alb.021', 'throw_held_Alb.024', 'throw_held_Alb.027', 'throw_held_Alb.030', 'throw_held_Alb.033', 'throw_held_Alb.036', 'throw_held_Alb.039', 'throw_held_Alb.042', 'throw_held_Alb.045', 'throw_held_Alb.048', 'throw_held_Alb.051', 'throw_held_Alb.054', 'throw_held_Alb.057', 'throw_held_Alb.060', 'throw_held_Alb.063', 'throw_held_Alb.066', 'throw_held_Alb.069', 'throw_held_Alb.072', 'throw_held_Alb.075', 'throw_held_Alb.078', 'throw_held_Alb.081', 'throw_held_Alb.084', 'throw_held_Alb.086',
+        'fly_Alb.000', 'fly_Alb.003', 'fly_Alb.006', 'fly_Alb.009', 'fly_Alb.012', 'fly_Alb.015', 'fly_Alb.018',
+        'fly_Alb.021', 'fly_Alb.024', 'fly_Alb.027', 'fly_Alb.029',
+        'poo_half_Alb.000', 'poo_half_Alb.004', 'poo_half_Alb.008', 'poo_half_Alb.012', 'poo_half_Alb.016',
+        'poo_half_Alb.020', 'poo_half_Alb.024', 'poo_half_Alb.028', 'poo_half_Alb.032', 'poo_half_Alb.036',
+        'poo_half_Alb.040', 'poo_half_Alb.044', 'poo_half_Alb.048', 'poo_half_Alb.052', 'poo_half_Alb.056',
+        'poo_half_Alb.060', 'poo_half_Alb.064', 'poo_half_Alb.068', 'poo_half_Alb.072',
+        'throw_2_Alb.000', 'throw_2_Alb.004', 'throw_2_Alb.008', 'throw_2_Alb.012', 'throw_2_Alb.016',
+        'throw_2_Alb.020', 'throw_2_Alb.024', 'throw_2_Alb.028', 'throw_2_Alb.032', 'throw_2_Alb.036',
+        'throw_2_Alb.040', 'throw_2_Alb.044', 'throw_2_Alb.048', 'throw_2_Alb.052', 'throw_2_Alb.056',
+        'throw_2_Alb.060', 'throw_2_Alb.064', 'throw_2_Alb.068', 'throw_2_Alb.072',
+        'throw_4_left_hand_Alb.000', 'throw_4_left_hand_Alb.003', 'throw_4_left_hand_Alb.006', 'throw_4_left_hand_Alb.009',
+        'throw_4_left_hand_Alb.012', 'throw_4_left_hand_Alb.015', 'throw_4_left_hand_Alb.018',
+        'throw_4_left_hand_Alb.021', 'throw_4_left_hand_Alb.024', 'throw_4_left_hand_Alb.027',
+        'throw_4_left_hand_Alb.030', 'throw_4_left_hand_Alb.033', 'throw_4_left_hand_Alb.036', 'throw_4_left_hand_Alb.039',
+        'throw_4_left_hand_Alb.042', 'throw_4_left_hand_Alb.045', 'throw_4_left_hand_Alb.048',
+        'throw_4_left_hand_Alb.051', 'throw_4_left_hand_Alb.054', 'throw_4_left_hand_Alb.057',
+        'throw_4_left_hand_Alb.060', 'throw_4_left_hand_Alb.063', 'throw_4_left_hand_Alb.066', 'throw_4_left_hand_Alb.069',
+        'throw_4_left_hand_Alb.072', 'throw_4_left_hand_Alb.075', 'throw_4_left_hand_Alb.078',
+        'throw_4_left_hand_Alb.081', 'throw_4_left_hand_Alb.084', 'throw_4_left_hand_Alb.086',
+        'throw_held_Alb.000', 'throw_held_Alb.003', 'throw_held_Alb.006', 'throw_held_Alb.009',
+        'throw_held_Alb.012', 'throw_held_Alb.015', 'throw_held_Alb.018',
+        'throw_held_Alb.021', 'throw_held_Alb.024', 'throw_held_Alb.027',
+        'throw_held_Alb.030', 'throw_held_Alb.033', 'throw_held_Alb.036', 'throw_held_Alb.039',
+        'throw_held_Alb.042', 'throw_held_Alb.045', 'throw_held_Alb.048',
+        'throw_held_Alb.051', 'throw_held_Alb.054', 'throw_held_Alb.057',
+        'throw_held_Alb.060', 'throw_held_Alb.063', 'throw_held_Alb.066', 'throw_held_Alb.069',
+        'throw_held_Alb.072', 'throw_held_Alb.075', 'throw_held_Alb.078',
+        'throw_held_Alb.081', 'throw_held_Alb.084', 'throw_held_Alb.086',
     ],)
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAs4InNotSm3dw('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
 
@@ -2611,25 +2741,33 @@ export abstract class InGameEntityImages
     public static readonly BILL_BLASTER =                                  new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bill Blaster', 'Enemy - KillerHoudai', [
         'wait.0', 'unit.0',
     ], [
-        'killer_houdai_Alb.000', 'killer_houdai_Alb.002', 'killer_houdai_Alb.004', 'killer_houdai_Alb.006', 'killer_houdai_Alb.008', 'killer_houdai_Alb.0010', 'killer_houdai_Alb.0012', 'killer_houdai_Alb.0014', 'killer_houdai_Alb.0016', 'killer_houdai_Alb.0018', 'killer_houdai_Alb.0020', 'killer_houdai_Alb.0022', 'killer_houdai_Alb.0024', 'killer_houdai_Alb.0026', 'killer_houdai_Alb.0028', 'killer_houdai_Alb.0029',
+        'killer_houdai_Alb.000', 'killer_houdai_Alb.002', 'killer_houdai_Alb.004', 'killer_houdai_Alb.006', 'killer_houdai_Alb.008',
+        'killer_houdai_Alb.0010', 'killer_houdai_Alb.0012', 'killer_houdai_Alb.0014', 'killer_houdai_Alb.0016', 'killer_houdai_Alb.0018',
+        'killer_houdai_Alb.0020', 'killer_houdai_Alb.0022', 'killer_houdai_Alb.0024', 'killer_houdai_Alb.0026', 'killer_houdai_Alb.0028', 'killer_houdai_Alb.0029',
         'unit_Alb.000',
     ],)
     public static readonly BULLET_BILL =                                   new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bullet Bill', 'Enemy - Killer', [
         'wait.0',
     ], [
-        'search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018', 'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039', 'search_Alb.042', 'search_Alb.045',
+        'search_Alb.000', 'search_Alb.003', 'search_Alb.006', 'search_Alb.009', 'search_Alb.012', 'search_Alb.015', 'search_Alb.018',
+        'search_Alb.021', 'search_Alb.024', 'search_Alb.027', 'search_Alb.030', 'search_Alb.033', 'search_Alb.036', 'search_Alb.039',
+        'search_Alb.042', 'search_Alb.045',
         'search_Alb.047',
     ],)
     public static readonly BULL_EYE_BLASTER =                              new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Blaster', 'Enemy - KillerHoudai', [
         'search.0', 'unit_search.0',
     ], [
-        'SK_killer_houdai_Alb.000', 'SK_killer_houdai_Alb.002', 'SK_killer_houdai_Alb.004', 'SK_killer_houdai_Alb.006', 'SK_killer_houdai_Alb.008', 'SK_killer_houdai_Alb.0010', 'SK_killer_houdai_Alb.0012', 'SK_killer_houdai_Alb.0014', 'SK_killer_houdai_Alb.0016', 'SK_killer_houdai_Alb.0018', 'SK_killer_houdai_Alb.0020', 'SK_killer_houdai_Alb.0022', 'SK_killer_houdai_Alb.0024', 'SK_killer_houdai_Alb.0026', 'SK_killer_houdai_Alb.0028', 'SK_killer_houdai_Alb.0029',
+        'SK_killer_houdai_Alb.000', 'SK_killer_houdai_Alb.002', 'SK_killer_houdai_Alb.004', 'SK_killer_houdai_Alb.006', 'SK_killer_houdai_Alb.008',
+        'SK_killer_houdai_Alb.0010', 'SK_killer_houdai_Alb.0012', 'SK_killer_houdai_Alb.0014', 'SK_killer_houdai_Alb.0016', 'SK_killer_houdai_Alb.0018',
+        'SK_killer_houdai_Alb.0020', 'SK_killer_houdai_Alb.0022', 'SK_killer_houdai_Alb.0024', 'SK_killer_houdai_Alb.0026', 'SK_killer_houdai_Alb.0028', 'SK_killer_houdai_Alb.0029',
         'SK_unit_Alb.000',
     ],)
     public static readonly BULL_EYE_BILL =                                 new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Bill', 'Enemy - Killer', [
         'search.0',
     ], [
-        'SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018', 'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039', 'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',
+        'SK_search_Alb.000', 'SK_search_Alb.003', 'SK_search_Alb.006', 'SK_search_Alb.009', 'SK_search_Alb.012', 'SK_search_Alb.015', 'SK_search_Alb.018',
+        'SK_search_Alb.021', 'SK_search_Alb.024', 'SK_search_Alb.027', 'SK_search_Alb.030', 'SK_search_Alb.033', 'SK_search_Alb.036', 'SK_search_Alb.039',
+        'SK_search_Alb.042', 'SK_search_Alb.045', 'SK_search_Alb.047',
     ],)
     public static readonly CAT_BULLET_BILL =                               new InGameEntityImages.Null()
 
@@ -2655,8 +2793,10 @@ export abstract class InGameEntityImages
     public static readonly SKEWER =                                        new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Skewer', 'Object - Daikonbou', ['edit', 'top', 'wait_body.0', 'wait_under.0',], [
         'edit_daikonbou_Alb.000',
         'daikonbou_top_Alb.000',
-        'daikonbou_body_Alb.000', 'daikonbou_body_Alb.001', 'daikonbou_body_Alb.002', 'daikonbou_body_Alb.003', 'daikonbou_body_Alb.004', 'daikonbou_body_Alb.005', 'daikonbou_body_Alb.006', 'daikonbou_body_Alb.007', 'daikonbou_body_Alb.008', 'daikonbou_body_Alb.009', 'daikonbou_body_Alb.010', 'daikonbou_body_Alb.011', 'daikonbou_body_Alb.012', 'daikonbou_body_Alb.013', 'daikonbou_body_Alb.014',
-        'daikonbou_under_Alb.000', 'daikonbou_under_Alb.001', 'daikonbou_under_Alb.002', 'daikonbou_under_Alb.003', 'daikonbou_under_Alb.004', 'daikonbou_under_Alb.005', 'daikonbou_under_Alb.006', 'daikonbou_under_Alb.007', 'daikonbou_under_Alb.008', 'daikonbou_under_Alb.009', 'daikonbou_under_Alb.010', 'daikonbou_under_Alb.011', 'daikonbou_under_Alb.012', 'daikonbou_under_Alb.013', 'daikonbou_under_Alb.014',
+        'daikonbou_body_Alb.000', 'daikonbou_body_Alb.001', 'daikonbou_body_Alb.002', 'daikonbou_body_Alb.003', 'daikonbou_body_Alb.004', 'daikonbou_body_Alb.005', 'daikonbou_body_Alb.006', 'daikonbou_body_Alb.007', 'daikonbou_body_Alb.008', 'daikonbou_body_Alb.009',
+        'daikonbou_body_Alb.010', 'daikonbou_body_Alb.011', 'daikonbou_body_Alb.012', 'daikonbou_body_Alb.013', 'daikonbou_body_Alb.014',
+        'daikonbou_under_Alb.000', 'daikonbou_under_Alb.001', 'daikonbou_under_Alb.002', 'daikonbou_under_Alb.003', 'daikonbou_under_Alb.004', 'daikonbou_under_Alb.005', 'daikonbou_under_Alb.006', 'daikonbou_under_Alb.007', 'daikonbou_under_Alb.008', 'daikonbou_under_Alb.009',
+        'daikonbou_under_Alb.010', 'daikonbou_under_Alb.011', 'daikonbou_under_Alb.012', 'daikonbou_under_Alb.013', 'daikonbou_under_Alb.014',
     ],)
 
     public static readonly KOOPA_CLOWN_CAR =                               new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Koopa Clown Car', 'Enemy - KoopaClown', [
@@ -2709,8 +2849,12 @@ export abstract class InGameEntityImages
         'attack.0', 'attack.1', 'attack.2', 'attack.3',
         'wait.0', 'wait.1', 'wait.2', 'wait.3',
     ], [
-        'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018', 'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.032', 'attack_Alb.034', 'attack_Alb.036', 'attack_Alb.038', 'attack_Alb.040', 'attack_Alb.042', 'attack_Alb.044', 'attack_Alb.046', 'attack_Alb.048', 'attack_Alb.050', 'attack_Alb.052', 'attack_Alb.054', 'attack_Alb.056', 'attack_Alb.058',
-        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038', 'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
+        'attack_Alb.000', 'attack_Alb.002', 'attack_Alb.004', 'attack_Alb.006', 'attack_Alb.008', 'attack_Alb.010', 'attack_Alb.012', 'attack_Alb.014', 'attack_Alb.016', 'attack_Alb.018',
+        'attack_Alb.020', 'attack_Alb.022', 'attack_Alb.024', 'attack_Alb.026', 'attack_Alb.028', 'attack_Alb.030', 'attack_Alb.032', 'attack_Alb.034', 'attack_Alb.036', 'attack_Alb.038',
+        'attack_Alb.040', 'attack_Alb.042', 'attack_Alb.044', 'attack_Alb.046', 'attack_Alb.048', 'attack_Alb.050', 'attack_Alb.052', 'attack_Alb.054', 'attack_Alb.056', 'attack_Alb.058',
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018',
+        'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038',
+        'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
     ],)
     public static readonly MOON =                                          new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Moon', 'Object - Moon', [
         'attack.0', 'attack.1',
@@ -2719,7 +2863,9 @@ export abstract class InGameEntityImages
         'attack.0', 'attack.1',
         'wait.0', 'wait.1',
     ], [
-        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018', 'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038', 'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008', 'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018',
+        'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028', 'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038',
+        'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048', 'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
     ],)
 
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
@@ -3019,11 +3165,14 @@ export abstract class InGameEntityImages
     ], [
         'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', 'wait.5', 'wait.6', 'wait.7',
     ], [
-        'wait_Alb.000', 'wait_Alb.003', 'wait_Alb.006', 'wait_Alb.009', 'wait_Alb.012', 'wait_Alb.015', 'wait_Alb.018', 'wait_Alb.024', 'wait_Alb.027', 'wait_Alb.030', 'wait_Alb.033', 'wait_Alb.036', 'wait_Alb.039', 'wait_Alb.042', 'wait_Alb.045', 'wait_Alb.048', 'wait_Alb.051', 'wait_Alb.054', 'wait_Alb.057',
+        'wait_Alb.000', 'wait_Alb.003', 'wait_Alb.006', 'wait_Alb.009', 'wait_Alb.012', 'wait_Alb.015', 'wait_Alb.018',
+        'wait_Alb.024', 'wait_Alb.027', 'wait_Alb.030', 'wait_Alb.033', 'wait_Alb.036', 'wait_Alb.039',
+        'wait_Alb.042', 'wait_Alb.045', 'wait_Alb.048', 'wait_Alb.051', 'wait_Alb.054', 'wait_Alb.057',
     ],)
 
     public static readonly ONE_WAY_WALL =                                  new InGameEntityImages.ExistantAs5InNotSm3dw('One-Way Wall', 'Object - Hanatari', 'wait.0', 'wait.1', 'wait.2', 'wait.3', 'wait.4', [
-        'hanatari_model_Alb.000', 'hanatari_model_Alb.004', 'hanatari_model_Alb.008', 'hanatari_model_Alb.012', 'hanatari_model_Alb.016', 'hanatari_model_Alb.020', 'hanatari_model_Alb.024', 'hanatari_model_Alb.028', 'hanatari_model_Alb.032', 'hanatari_model_Alb.036', 'hanatari_model_Alb.040', 'hanatari_model_Alb.044 ',
+        'hanatari_model_Alb.000', 'hanatari_model_Alb.004', 'hanatari_model_Alb.008', 'hanatari_model_Alb.012', 'hanatari_model_Alb.016',
+        'hanatari_model_Alb.020', 'hanatari_model_Alb.024', 'hanatari_model_Alb.028', 'hanatari_model_Alb.032', 'hanatari_model_Alb.036', 'hanatari_model_Alb.040', 'hanatari_model_Alb.044 ',
     ],)
 
     public static readonly TRACK =                                         new InGameEntityImages.Null()
@@ -3038,11 +3187,19 @@ export abstract class InGameEntityImages
         'wait_body.0', 'wait_body.1',
         'wait_under.0', 'wait_under.1',
     ], [
-        'edited_block_tuta_up_ani_Alb.048', 'edited_block_tuta_up_ani_Alb.050', 'edited_block_tuta_up_ani_Alb.052', 'edited_block_tuta_up_ani_Alb.054', 'edited_block_tuta_up_ani_Alb.056', 'edited_block_tuta_up_ani_Alb.058', 'edited_block_tuta_up_ani_Alb.060', 'edited_block_tuta_up_ani_Alb.062', 'edited_block_tuta_up_ani_Alb.064', 'edited_block_tuta_up_ani_Alb.066', 'edited_block_tuta_up_ani_Alb.068', 'edited_block_tuta_up_ani_Alb.070', 'edited_block_tuta_up_ani_Alb.072', 'edited_block_tuta_up_ani_Alb.074', 'edited_block_tuta_up_ani_Alb.076', 'edited_block_tuta_up_ani_Alb.078',
+        'edited_block_tuta_up_ani_Alb.048', 'edited_block_tuta_up_ani_Alb.050', 'edited_block_tuta_up_ani_Alb.052', 'edited_block_tuta_up_ani_Alb.054', 'edited_block_tuta_up_ani_Alb.056', 'edited_block_tuta_up_ani_Alb.058',
+        'edited_block_tuta_up_ani_Alb.060', 'edited_block_tuta_up_ani_Alb.062', 'edited_block_tuta_up_ani_Alb.064', 'edited_block_tuta_up_ani_Alb.066', 'edited_block_tuta_up_ani_Alb.068',
+        'edited_block_tuta_up_ani_Alb.070', 'edited_block_tuta_up_ani_Alb.072', 'edited_block_tuta_up_ani_Alb.074', 'edited_block_tuta_up_ani_Alb.076', 'edited_block_tuta_up_ani_Alb.078',
         'edited_block_tuta_nomove_Alb.000',
-        'block_tuta_top_Alb.000', 'block_tuta_top_Alb.009', 'block_tuta_top_Alb.018', 'block_tuta_top_Alb.027', 'block_tuta_top_Alb.036', 'block_tuta_top_Alb.045', 'block_tuta_top_Alb.054', 'block_tuta_top_Alb.063', 'block_tuta_top_Alb.072', 'block_tuta_top_Alb.081', 'block_tuta_top_Alb.090', 'block_tuta_top_Alb.099', 'block_tuta_top_Alb.108', 'block_tuta_top_Alb.117', 'block_tuta_top_Alb.126', 'block_tuta_top_Alb.135', 'block_tuta_top_Alb.144', 'block_tuta_top_Alb.153', 'block_tuta_top_Alb.162', 'block_tuta_top_Alb.171', 'block_tuta_top_Alb.179',
-        'block_tuta_body_Alb.000', 'block_tuta_body_Alb.009', 'block_tuta_body_Alb.018', 'block_tuta_body_Alb.027', 'block_tuta_body_Alb.036', 'block_tuta_body_Alb.045', 'block_tuta_body_Alb.054', 'block_tuta_body_Alb.063', 'block_tuta_body_Alb.072', 'block_tuta_body_Alb.081', 'block_tuta_body_Alb.090', 'block_tuta_body_Alb.099', 'block_tuta_body_Alb.108', 'block_tuta_body_Alb.117', 'block_tuta_body_Alb.126', 'block_tuta_body_Alb.135', 'block_tuta_body_Alb.144', 'block_tuta_body_Alb.153', 'block_tuta_body_Alb.162', 'block_tuta_body_Alb.171', 'block_tuta_body_Alb.179',
-        'block_tuta_under_Alb.000', 'block_tuta_under_Alb.009', 'block_tuta_under_Alb.018', 'block_tuta_under_Alb.027', 'block_tuta_under_Alb.036', 'block_tuta_under_Alb.045', 'block_tuta_under_Alb.054', 'block_tuta_under_Alb.063', 'block_tuta_under_Alb.072', 'block_tuta_under_Alb.081', 'block_tuta_under_Alb.090', 'block_tuta_under_Alb.099', 'block_tuta_under_Alb.108', 'block_tuta_under_Alb.117', 'block_tuta_under_Alb.126', 'block_tuta_under_Alb.135', 'block_tuta_under_Alb.144', 'block_tuta_under_Alb.153', 'block_tuta_under_Alb.162', 'block_tuta_under_Alb.171', 'block_tuta_under_Alb.179',
+        'block_tuta_top_Alb.000', 'block_tuta_top_Alb.009', 'block_tuta_top_Alb.018', 'block_tuta_top_Alb.027', 'block_tuta_top_Alb.036', 'block_tuta_top_Alb.045', 'block_tuta_top_Alb.054',
+        'block_tuta_top_Alb.063', 'block_tuta_top_Alb.072', 'block_tuta_top_Alb.081', 'block_tuta_top_Alb.090', 'block_tuta_top_Alb.099', 'block_tuta_top_Alb.108', 'block_tuta_top_Alb.117',
+        'block_tuta_top_Alb.126', 'block_tuta_top_Alb.135', 'block_tuta_top_Alb.144', 'block_tuta_top_Alb.153', 'block_tuta_top_Alb.162', 'block_tuta_top_Alb.171', 'block_tuta_top_Alb.179',
+        'block_tuta_body_Alb.000', 'block_tuta_body_Alb.009', 'block_tuta_body_Alb.018', 'block_tuta_body_Alb.027', 'block_tuta_body_Alb.036', 'block_tuta_body_Alb.045', 'block_tuta_body_Alb.054',
+        'block_tuta_body_Alb.063', 'block_tuta_body_Alb.072', 'block_tuta_body_Alb.081', 'block_tuta_body_Alb.090', 'block_tuta_body_Alb.099', 'block_tuta_body_Alb.108', 'block_tuta_body_Alb.117',
+        'block_tuta_body_Alb.126', 'block_tuta_body_Alb.135', 'block_tuta_body_Alb.144', 'block_tuta_body_Alb.153', 'block_tuta_body_Alb.162', 'block_tuta_body_Alb.171', 'block_tuta_body_Alb.179',
+        'block_tuta_under_Alb.000', 'block_tuta_under_Alb.009', 'block_tuta_under_Alb.018', 'block_tuta_under_Alb.027', 'block_tuta_under_Alb.036', 'block_tuta_under_Alb.045', 'block_tuta_under_Alb.054',
+        'block_tuta_under_Alb.063', 'block_tuta_under_Alb.072', 'block_tuta_under_Alb.081', 'block_tuta_under_Alb.090', 'block_tuta_under_Alb.099', 'block_tuta_under_Alb.108', 'block_tuta_under_Alb.117',
+        'block_tuta_under_Alb.126', 'block_tuta_under_Alb.135', 'block_tuta_under_Alb.144', 'block_tuta_under_Alb.153', 'block_tuta_under_Alb.162', 'block_tuta_under_Alb.171', 'block_tuta_under_Alb.179',
     ],)
     public static readonly TREE =                                          new InGameEntityImages.Null()
 
@@ -3156,7 +3313,9 @@ export abstract class InGameEntityImages
     public static readonly WARP_BOX_WITH_KEY =                             new InGameEntityImages.Null()
 
     public static readonly WING =                                          new InGameEntityImages.ExistantAs2InNotSm3dw('Wing', 'Enemy - WingCommon', 'wait.0', 'wait.1', [
-        'wing_pata_Alb.000', 'wing_pata_Alb.001', 'wing_pata_Alb.002', 'wing_pata_Alb.003', 'wing_pata_Alb.004', 'wing_pata_Alb.005', 'wing_pata_Alb.006', 'wing_pata_Alb.007', 'wing_pata_Alb.008', 'wing_pata_Alb.009','wing_pata_Alb.010', 'wing_pata_Alb.011', 'wing_pata_Alb.012', 'wing_pata_Alb.013', 'wing_pata_Alb.014', 'wing_pata_Alb.015', 'wing_pata_Alb.016', 'wing_pata_Alb.017', 'wing_pata_Alb.018', 'wing_pata_Alb.019', 'wing_pata_Alb.020', 'wing_pata_Alb.021',
+        'wing_pata_Alb.000', 'wing_pata_Alb.001', 'wing_pata_Alb.002', 'wing_pata_Alb.003', 'wing_pata_Alb.004', 'wing_pata_Alb.005', 'wing_pata_Alb.006', 'wing_pata_Alb.007', 'wing_pata_Alb.008', 'wing_pata_Alb.009',
+        'wing_pata_Alb.010', 'wing_pata_Alb.011', 'wing_pata_Alb.012', 'wing_pata_Alb.013', 'wing_pata_Alb.014', 'wing_pata_Alb.015', 'wing_pata_Alb.016', 'wing_pata_Alb.017', 'wing_pata_Alb.018', 'wing_pata_Alb.019',
+        'wing_pata_Alb.020', 'wing_pata_Alb.021',
     ],)
     public static readonly PARACHUTE =                                     new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3SmwAndBlueSmw('Parachute', 'Enemy - ParachuteCommon', ['parachute.tiff',], ['para_swing_Alb.000',],)
 
