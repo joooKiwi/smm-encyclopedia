@@ -3305,7 +3305,9 @@ export abstract class InGameEntityImages
 
     public static readonly STONE =                                         new InGameEntityImages.ExistantAs4InNotSmbSm3dw('Stone', 'Object - Stone', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
-    public static readonly WARP_DOOR =                                     new InGameEntityImages.Null()
+    public static readonly WARP_DOOR =                                     new InGameEntityImages.ExistantAs3InNotSm3dw('Warp Door', 'Object - Door', 'wait.0', 'wait.1', 'wait.2', [
+        'door_model_Alb.000', 'door_model_Alb.002', 'door_model_Alb.004', 'door_model_Alb.006', 'door_model_Alb.008', 'door_model_Alb.010',
+    ],)
     public static readonly P_WARP_DOOR =                                   new InGameEntityImages.Null()
     public static readonly KEY_DOOR =                                      new InGameEntityImages.Null()
 
