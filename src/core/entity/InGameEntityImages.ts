@@ -2161,8 +2161,8 @@ export abstract class InGameEntityImages
     public static readonly STINGBY =                                       new InGameEntityImages.Null()
 
     public static readonly GREEN_CHEEP_CHEEP =                             new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Green Cheep Cheep', 'Enemy - PukupukuA', 'wait.0', 'wait.1', EMPTY_ARRAY,)
-    public static readonly BLURPS =                                        new InGameEntityImages.ExistantAs2InOnlySmw('Blurps', 'Enemy - PukupukuA', 'wait.0', 'wait.1',)
-    public static readonly DEEP_CHEEP =                                    new InGameEntityImages.ExistantInOnlyNsmbu('Deep Cheep', 'Enemy - PukupukuA', [
+    public static readonly BLURPS =                                        new InGameEntityImages.ExistantAs2InOnlySmw('Blurps', 'MW Enemy - PukupukuA', 'wait.0', 'wait.1',)
+    public static readonly DEEP_CHEEP =                                    new InGameEntityImages.ExistantInOnlyNsmbu('Deep Cheep', 'WU Enemy - PukupukuA', [
         'swim_Alb.000', 'swim_Alb.002', 'swim_Alb.004', 'swim_Alb.006', 'swim_Alb.008',
         'swim_Alb.010', 'swim_Alb.012', 'swim_Alb.014', 'swim_Alb.016', 'swim_Alb.018',
         'swim_Alb.020', 'swim_Alb.022', 'swim_Alb.024', 'swim_Alb.026', 'swim_Alb.028',
