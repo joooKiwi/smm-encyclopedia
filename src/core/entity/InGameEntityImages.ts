@@ -1911,6 +1911,132 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (blue variant) --------------------
+    //region -------------------- Sub class (blue+gray variant) --------------------
+
+    private static readonly ExistantAsBlueGrayVariant = class ExistantAsBlueGrayVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_FILE_NAME extends string,
+        const SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}${| EmptyString | ' D' | ' Y'}`, SMB_FILE_NAME>
+                                                  | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}${| EmptyString | ' D' | ' Y'}`, SMB3_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbFileNames: Array<SMB_FILE_NAME>, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
+                           private readonly smwFileNames: Array<SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const folderName_smbBlue = `M1 ${endingFolderName} D` as const
+            const folderName_smbGray = `M1 ${endingFolderName} Y` as const
+            const folderName_smb3Blue = `M3 ${endingFolderName} D` as const
+            const folderName_smb3Gray = `M3 ${endingFolderName} Y` as const
+            const fileNames_smb = this.smbFileNames
+            const fileNames_smb3 = this.smb3FileNames
+            const fileNames_smw = this.smwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
+            const fileNamesSize_smb = fileNames_smb.length
+            const fileNamesSize2_smb = fileNamesSize_smb * 2
+            const fileNamesSize_smb3 = fileNames_smb3.length
+            const fileNamesSize2_smb3 = fileNamesSize_smb3 * 2
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`M1 ${ENDING_FOLDER_NAME}${| EmptyString | ' D' | ' Y'}`, SMB_FILE_NAME>
+                    | InGameImageFile<`M3 ${ENDING_FOLDER_NAME}${| EmptyString | ' D' | ' Y'}`, SMB3_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize_smb * 3 + fileNamesSize_smb3 * 3 + fileNames_smw.length + fileNames_nsmbu.length,)
+
+            let index = -1
+            forEachByArray(fileNames_smb, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smb] = [SMB, inGameImage(this, folderName_smbBlue, it,),]
+                imageFiles[index + fileNamesSize2_smb] = [SMB, inGameImage(this, folderName_smbGray, it,),]
+            },)
+            index += fileNamesSize2_smb
+
+            forEachByArray(fileNames_smb3, it => {
+                imageFiles[++index] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize_smb3] = [SMB3, inGameImage(this, folderName_smb3Blue, it,),]
+                imageFiles[index + fileNamesSize2_smb3] = [SMB3, inGameImage(this, folderName_smb3Gray, it,),]
+            },)
+            index += fileNamesSize2_smb3
+
+            forEachByArray(fileNames_smw, it => imageFiles[++index] = [SMW, inGameImage(this, folderName_smw, it,),],)
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    private static readonly ExistantAsBlueGrayVariantWithSameSmbSmb3Smw = class ExistantAsBlueGrayVariant_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const SMB_SMB3_SMW_FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D' | ' Y'}`, SMB_SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMB_SMB3_SMW_FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly smbSmb3SmwFileNames: Array<SMB_SMB3_SMW_FILE_NAME>, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_smw = `MW ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const folderName_smbBlue = `M1 ${endingFolderName} D` as const
+            const folderName_smbGray = `M1 ${endingFolderName} Y` as const
+            const folderName_smb3Blue = `M3 ${endingFolderName} D` as const
+            const folderName_smb3Gray = `M3 ${endingFolderName} Y` as const
+            const fileNames_smbSmb3Smw = this.smbSmb3SmwFileNames
+            const fileNames_nsmbu = this.nsmbuFileNames
+            const fileNamesSize_smbSmb3Smw = fileNames_smbSmb3Smw.length
+            const fileNamesSize2_smbSmb3Smw  = fileNamesSize_smbSmb3Smw * 2
+            const fileNamesSize3_smbSmb3Smw  = fileNamesSize_smbSmb3Smw * 3
+            const fileNamesSize4_smbSmb3Smw  = fileNamesSize_smbSmb3Smw * 4
+            const fileNamesSize5_smbSmb3Smw  = fileNamesSize_smbSmb3Smw * 5
+            const fileNamesSize6_smbSmb3Smw  = fileNamesSize_smbSmb3Smw * 6
+            const fileNamesSize7_smbSmb3Smw  = fileNamesSize_smbSmb3Smw * 7
+
+            const imageFiles = new Array<readonly[GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}${| EmptyString | ' D' | ' Y'}`, SMB_SMB3_SMW_FILE_NAME>
+                    | InGameImageFile<`MW ${ENDING_FOLDER_NAME}`, SMB_SMB3_SMW_FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(fileNamesSize7_smbSmb3Smw + fileNames_nsmbu.length,)
+
+            let index = -1
+            forEachByArray(fileNames_smbSmb3Smw, it => {
+                imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
+                imageFiles[index + fileNamesSize_smbSmb3Smw] = [SMB, inGameImage(this, folderName_smbBlue, it,),]
+                imageFiles[index + fileNamesSize2_smbSmb3Smw] = [SMB, inGameImage(this, folderName_smbGray, it,),]
+                imageFiles[index + fileNamesSize3_smbSmb3Smw] = [SMB3, inGameImage(this, folderName_smb3, it,),]
+                imageFiles[index + fileNamesSize4_smbSmb3Smw] = [SMB3, inGameImage(this, folderName_smb3Blue, it,),]
+                imageFiles[index + fileNamesSize5_smbSmb3Smw] = [SMB3, inGameImage(this, folderName_smb3Gray, it,),]
+                imageFiles[index + fileNamesSize6_smbSmb3Smw] = [SMW, inGameImage(this, folderName_smw, it,),]
+            },)
+            index += fileNamesSize7_smbSmb3Smw
+
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    //endregion -------------------- Sub class (blue+gray variant) --------------------
     //region -------------------- Sub class (predefined) --------------------
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link BURNER} */
@@ -2066,7 +2192,15 @@ export abstract class InGameEntityImages
     public static readonly ICE_BLOCK =                                     new InGameEntityImages.ExistantAs1InNotSm3dw('Ice Block', 'Object - BlockKori', 'wait.0',)
     public static readonly ICICLE =                                        new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('Icicle', 'Object - Icicle', 'fall', 'hold', 'fall', 'hold',)
 
-    public static readonly COIN =                                          new InGameEntityImages.Null()
+    public static readonly COIN =                                          new InGameEntityImages.ExistantAsBlueGrayVariantWithSameSmbSmb3Smw('Coin', 'Object - CoinRotate', [
+        'fast.0', 'fast.1', 'fast.2', 'fast.3',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
+        'fast.00', 'fast.02', 'fast.04', 'fast.06', 'fast.08',
+        'fast.10', 'fast.12', 'fast.14',
+        'wait.00', 'wait.01', 'wait.02', 'wait.03', 'wait.04', 'wait.05', 'wait.06', 'wait.07', 'wait.08', 'wait.09',
+        'wait.10', 'wait.11', 'wait.12', 'wait.13', 'wait.14', 'wait.15',
+    ],)
     public static readonly FROZEN_COIN =                                   new InGameEntityImages.Null()
     public static readonly TEN_COIN =                                      new InGameEntityImages.Null()
     public static readonly THIRTY_COIN =                                   new InGameEntityImages.Null()
