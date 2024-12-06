@@ -3617,7 +3617,9 @@ export abstract class InGameEntityImages
     public static readonly CURSED_KEY =                                    new InGameEntityImages.ExistantAs4InOnlySmb('Cursed Key', 'M1 Object - Key2', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
     public static readonly PHANTO =                                        new InGameEntityImages.ExistantAs4InOnlySmb('Phanto', 'M1 Object - Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
-    public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
+    public static readonly TRAMPOLINE =                                    new InGameEntityImages.ExistantAs3InNotSm3dw('Trampoline', 'Object - Jumpstep', 'jump.0', 'jump.1', 'jump.2', [
+        'jumpstep.Alb.000', 'jumpstep.Alb.004', 'jumpstep.Alb.007',
+    ],)
     public static readonly SIDEWAYS_TRAMPOLINE =                           new InGameEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()
 
