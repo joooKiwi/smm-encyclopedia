@@ -3313,7 +3313,10 @@ export abstract class InGameEntityImages
         'door_p_edit_model_Alb.000',
         'door_p_model_Alb.000', 'door_p_model_Alb.002', 'door_p_model_Alb.004', 'door_p_model_Alb.006', 'door_p_model_Alb.008', 'door_p_model_Alb.010',
     ],)
-    public static readonly KEY_DOOR =                                      new InGameEntityImages.Null()
+    public static readonly KEY_DOOR =                                      new InGameEntityImages.ExistantAs4InNotSm3dw('Key Door', 'Object - Door', 'key_wait.0', 'nokey_wait.0', 'nokey_wait.1', 'nokey_wait.2', [
+        'door_key_model_Alb.000',
+        'door_nokey_model_Alb.000', 'door_nokey_model_Alb.002', 'door_nokey_model_Alb.004', 'door_nokey_model_Alb.006', 'door_nokey_model_Alb.008', 'door_nokey_model_Alb.010',
+    ],)
 
     public static readonly WARP_BOX =                                      new InGameEntityImages.Null()
     public static readonly WARP_BOX_WITH_KEY =                             new InGameEntityImages.Null()
