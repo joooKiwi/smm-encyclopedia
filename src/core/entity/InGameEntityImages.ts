@@ -2296,7 +2296,30 @@ export abstract class InGameEntityImages
     ],)
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAs4InNotSm3dw('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3', ['spanner_Alb.000',],)
 
-    public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
+    public static readonly MAGIKOOPA =                                     new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Magikoopa', 'Enemy - Kameck', [
+        'throw.0', 'throw.1',
+        'wait.0',
+        'wait2.0', 'wait2.1',
+    ], [
+        'throw.0', 'throw.1', 'throw.2',
+        'wait.0',
+        'wait2.0', 'wait2.1',
+    ], [
+        'in_dokan_Alb.000', 'in_dokan_Alb.002', 'in_dokan_Alb.004', 'in_dokan_Alb.006', 'in_dokan_Alb.008',
+        'in_dokan_Alb.010', 'in_dokan_Alb.012', 'in_dokan_Alb.014', 'in_dokan_Alb.016', 'in_dokan_Alb.018',
+        'in_dokan_Alb.020', 'in_dokan_Alb.022', 'in_dokan_Alb.024', 'in_dokan_Alb.026', 'in_dokan_Alb.028',
+        'in_dokan_Alb.030',
+        'throw_wait_Alb.000', 'throw_wait_Alb.002', 'throw_wait_Alb.004', 'throw_wait_Alb.006', 'throw_wait_Alb.008',
+        'throw_wait_Alb.010', 'throw_wait_Alb.012', 'throw_wait_Alb.014', 'throw_wait_Alb.016', 'throw_wait_Alb.018',
+        'throw_wait_Alb.020', 'throw_wait_Alb.022', 'throw_wait_Alb.024', 'throw_wait_Alb.026', 'throw_wait_Alb.028', 'throw_wait_Alb.029',
+        'throw_wait_Alb.031', 'throw_wait_Alb.033', 'throw_wait_Alb.035', 'throw_wait_Alb.037',
+        'wait_Alb.000', 'wait_Alb.002', 'wait_Alb.004', 'wait_Alb.006', 'wait_Alb.008',
+        'wait_Alb.010', 'wait_Alb.012', 'wait_Alb.014', 'wait_Alb.016', 'wait_Alb.018',
+        'wait_Alb.020', 'wait_Alb.022', 'wait_Alb.024', 'wait_Alb.026', 'wait_Alb.028',
+        'wait_Alb.030', 'wait_Alb.032', 'wait_Alb.034', 'wait_Alb.036', 'wait_Alb.038',
+        'wait_Alb.040', 'wait_Alb.042', 'wait_Alb.044', 'wait_Alb.046', 'wait_Alb.048',
+        'wait_Alb.050', 'wait_Alb.052', 'wait_Alb.054', 'wait_Alb.056', 'wait_Alb.058',
+    ],)
     public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAs5WithSameSmbSmb3SmwAnd1NsmbuSm3dw('Magikoopa', 'Enemy - Kameck', 'effect.0', 'effect.1', 'effect.2', 'wing_wait.0', 'wing_wait.1', 'effect.0',)
 
     public static readonly HAMMER_BRO =                                    new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Hammer Bro', 'Enemy - Bros', [
