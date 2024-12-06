@@ -1835,6 +1835,89 @@ export abstract class InGameEntityImages
     }
 
     //endregion -------------------- Sub class (blue variant) --------------------
+    //region -------------------- Sub class (predefined) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} for only the {@link BURNER} */
+    private static readonly ExistantAsBurner = class ExistantAsBurner_InGameEntityImages
+        extends InGameEntityImages.Existant<'Burner', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Burner${| EmptyString | 2}`, | 'standB' | `wait.${| 0 | 1}`| `wait_st.${| 0 | 1 | 2 | 3 | 4 | 5}`>
+                                                      | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Burner2`, 'wait_edit.0'>
+                                                      | InGameImageFile<`WU Object - Burner${| EmptyString | 2}`, | 'fire' | 'fire_cannon_Alb.000' | 'glow'>
+                                                      | InGameImageFile<'WU Object - Burner2', 'burner2_edit'>> {
+
+        public constructor() { super('Burner',) }
+
+        protected override _createImageFiles() {
+            return [
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'standB',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait.1',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait_st.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait_st.1',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait_st.2',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait_st.3',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait_st.4',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner',  'wait_st.5',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'standB',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait.1',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_edit.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_st.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_st.1',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_st.2',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_st.3',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_st.4',),],
+                [SMB,   inGameImage(this, 'M1 Object - Burner2', 'wait_st.5',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'standB',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait.1',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait_st.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait_st.1',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait_st.2',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait_st.3',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait_st.4',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner',  'wait_st.5',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'standB',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait.1',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_edit.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_st.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_st.1',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_st.2',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_st.3',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_st.4',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Burner2', 'wait_st.5',),],
+                [SMW,   inGameImage(this, 'M3 Object - Burner',  'standB',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait.1',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait_st.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait_st.1',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait_st.2',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait_st.3',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait_st.4',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner',  'wait_st.5',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'standB',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait.1',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_edit.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_st.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_st.1',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_st.2',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_st.3',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_st.4',),],
+                [SMW,   inGameImage(this, 'MW Object - Burner2', 'wait_st.5',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner',  'fire',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner',  'fire_cannon_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner',  'glow',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner2', 'burner2_edit',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner2', 'fire',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner2', 'fire_cannon_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Burner2', 'glow',),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (predefined) --------------------
 
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
@@ -2520,7 +2603,7 @@ export abstract class InGameEntityImages
     public static readonly RED_CANNON =                                    new InGameEntityImages.Null()
     public static readonly RED_CANNONBALL =                                new InGameEntityImages.Null()
 
-    public static readonly BURNER =                                        new InGameEntityImages.Null()
+    public static readonly BURNER =                                        new InGameEntityImages.ExistantAsBurner()
 
     public static readonly FIRE_BAR =                                      new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Fire Bar', 'Object - Firebar', [
         'block', 'fire.0',
