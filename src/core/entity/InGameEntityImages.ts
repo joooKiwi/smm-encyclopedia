@@ -1731,6 +1731,7 @@ export abstract class InGameEntityImages
             const fileNames_nsmbu = this.nsmbuFileNames
             const fileNames_sm3dw = this.sm3dwFileNames
             const fileNamesSize = fileNames.length
+            const fileNamesSize2 = fileNamesSize * 2
 
             const imageFiles = new Array<readonly[GameStyles,
                     | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
@@ -1741,9 +1742,9 @@ export abstract class InGameEntityImages
             forEachByArray(fileNames, it => {
                 imageFiles[++index] = [SMB, inGameImage(this, folderName_smb, it,),]
                 imageFiles[index + fileNamesSize] = [SMB3, inGameImage(this, folderName_smb3, it,),]
-                imageFiles[index + fileNamesSize] = [SMW, inGameImage(this, folderName_smw, it,),]
+                imageFiles[index + fileNamesSize2] = [SMW, inGameImage(this, folderName_smw, it,),]
             },)
-            index += fileNamesSize * 2
+            index += fileNamesSize2
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
             forEachByArray(fileNames_sm3dw, it => imageFiles[++index] = [SM3DW, inGameImage(this, folderName_sm3dw, it,),],)
@@ -2775,6 +2776,7 @@ export abstract class InGameEntityImages
     public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3SmwAndSm3dw('Magikoopa', 'Enemy - Kameck', [
         'effect.0', 'effect.1', 'effect.2', 'wing_wait.0', 'wing_wait.1',
     ], [
+        'effect.0',
         'wing_pata_Alb.000', 'wing_pata_Alb.001', 'wing_pata_Alb.002', 'wing_pata_Alb.003', 'wing_pata_Alb.004', 'wing_pata_Alb.005', 'wing_pata_Alb.006', 'wing_pata_Alb.007', 'wing_pata_Alb.008', 'wing_pata_Alb.009',
         'wing_pata_Alb.010', 'wing_pata_Alb.011', 'wing_pata_Alb.012', 'wing_pata_Alb.013', 'wing_pata_Alb.014', 'wing_pata_Alb.015', 'wing_pata_Alb.016', 'wing_pata_Alb.017', 'wing_pata_Alb.018', 'wing_pata_Alb.019',
         'wing_pata_Alb.020', 'wing_pata_Alb.021', 'wing_pata_Alb.022',
