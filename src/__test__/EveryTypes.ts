@@ -611,7 +611,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleMixedName_instrument() {
-        return this.#everyPossibleMixedName_instrument ??= ['Unchain Chomp → Piano 1\nStump → Mokugyo', 'Regular → Cymbal\nSideway → Hi-hat', 'Bottom → Hello\nTop → Ok',]
+        return this.#everyPossibleMixedName_instrument ??= ['Unchain Chomp → Piano 1\nStump → Mokugyo', 'Bottom → Hello\nTop → Ok',]
     }
 
     //endregion -------------------- Instrument --------------------
