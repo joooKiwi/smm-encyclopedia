@@ -2277,7 +2277,7 @@ export abstract class InGameEntityImages
     public static readonly LIT_BOB_OMB =                                   new InGameEntityImages.Null()
 
     public static readonly POKEY =                                         new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('Pokey', 'Enemy - Sambo', 'body.0', 'head.0', 'sanbo_body_model_Alb.000', 'sanbo_head_model_Alb.000')
-    public static readonly SNOW_POKEY =                                    new InGameEntityImages.Null()
+    public static readonly SNOW_POKEY =                                    new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('Snow Pokey', 'Enemy - SamboSnow', 'body.0', 'head.0', 'sanbo_body_model_Alb.000', 'sanbo_head_model_Alb.000',)
 
     public static readonly THWOMP =                                        new InGameEntityImages.Null()
 
