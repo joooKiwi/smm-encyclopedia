@@ -1228,6 +1228,63 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
+     * as 6 {@link InGameImageFile} in only {@link SMB} and {@link SMB3}
+     * plus an undetermined amount of {@link InGameImageFile} in {@link NSMBU}
+     */
+    private static readonly ExistantAs6InNotSmw = class ExistantAs6InNotSmw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                                                  | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly endingFolderName: ENDING_FOLDER_NAME,
+                           private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
+                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME, private readonly fileName6: FILE_NAME,
+                           private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.endingFolderName
+            const folderName_smb = `M1 ${endingFolderName}` as const
+            const folderName_smb3 = `M3 ${endingFolderName}` as const
+            const folderName_nsmbu = `WU ${endingFolderName}` as const
+            const fileName1 = this.fileName1
+            const fileName2 = this.fileName2
+            const fileName3 = this.fileName3
+            const fileName4 = this.fileName4
+            const fileName5 = this.fileName5
+            const fileName6 = this.fileName6
+            const fileNames_nsmbu = this.nsmbuFileNames
+
+            const imageFiles = new Array<readonly [GameStyles,
+                    | InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>
+                    | InGameImageFile<`WU ${ENDING_FOLDER_NAME}`, NSMBU_FILE_NAME>,]>(12 + fileNames_nsmbu.length,)
+
+            imageFiles[0] =  [SMB,  inGameImage(this, folderName_smb,  fileName1,),]
+            imageFiles[1] =  [SMB,  inGameImage(this, folderName_smb,  fileName2,),]
+            imageFiles[2] =  [SMB,  inGameImage(this, folderName_smb,  fileName3,),]
+            imageFiles[3] =  [SMB,  inGameImage(this, folderName_smb,  fileName4,),]
+            imageFiles[4] =  [SMB,  inGameImage(this, folderName_smb,  fileName5,),]
+            imageFiles[5] =  [SMB,  inGameImage(this, folderName_smb,  fileName6,),]
+            imageFiles[6] =  [SMB3, inGameImage(this, folderName_smb3, fileName1,),]
+            imageFiles[7] =  [SMB3, inGameImage(this, folderName_smb3, fileName2,),]
+            imageFiles[8] =  [SMB3, inGameImage(this, folderName_smb3, fileName3,),]
+            imageFiles[9] =  [SMB3, inGameImage(this, folderName_smb3, fileName4,),]
+            imageFiles[10] = [SMB3, inGameImage(this, folderName_smb3, fileName5,),]
+            imageFiles[11] = [SMB3, inGameImage(this, folderName_smb3, fileName6,),]
+
+            let index = 11
+            forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
+
+            return imageFiles
+        }
+
+    }
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular}
      * as 6 {@link InGameImageFile} in only {@link SMB}, {@link SMB3} and {@link SMW}
      * plus an undetermined amount of {@link InGameImageFile} in {@link NSMBU}
      */
@@ -1921,7 +1978,21 @@ export abstract class InGameEntityImages
     //endregion -------------------- Power-up / Yoshi / Shoe + projectile --------------------
     //region -------------------- General enemy --------------------
 
-    public static readonly GOOMBA =                                        new InGameEntityImages.Null()
+    public static readonly GOOMBA =                                        new InGameEntityImages.ExistantAs6InNotSmw('Goomba', 'Enemy - Kuribo', 'damage.0', 'kutsu.0', 'swim.0', 'swim.1', 'walk.0', 'walk.1', [
+        'damage_Alb.000', 'damage_Alb.002', 'damage_Alb.004', 'damage_Alb.006', 'damage_Alb.008',
+        'damage_Alb.010', 'damage_Alb.012', 'damage_Alb.014', 'damage_Alb.016', 'damage_Alb.018',
+        'damage_Alb.020', 'damage_Alb.022', 'damage_Alb.024', 'damage_Alb.026',
+        'swim_Alb.001', 'swim_Alb.005', 'swim_Alb.009', 'swim_Alb.012', 'swim_Alb.016',
+        'swim_Alb.020', 'swim_Alb.024', 'swim_Alb.028', 'swim_Alb.032', 'swim_Alb.037',
+        'swim_Alb.040', 'swim_Alb.044', 'swim_Alb.049', 'swim_Alb.052', 'swim_Alb.057',
+        'swim_Alb.060', 'swim_Alb.065', 'swim_Alb.068', 'swim_Alb.073', 'swim_Alb.077', 'swim_Alb.079',
+        'swim_wait_Alb.000', 'swim_wait_Alb.004', 'swim_wait_Alb.008', 'swim_wait_Alb.012', 'swim_wait_Alb.016',
+        'swim_wait_Alb.020', 'swim_wait_Alb.024', 'swim_wait_Alb.028', 'swim_wait_Alb.032', 'swim_wait_Alb.036', 'swim_wait_Alb.039',
+        'walk_Alb.000', 'walk_Alb.004', 'walk_Alb.008', 'walk_Alb.012', 'walk_Alb.016',
+        'walk_Alb.020', 'walk_Alb.024', 'walk_Alb.028', 'walk_Alb.032',
+        'walk_Alb.040', 'walk_Alb.044', 'walk_Alb.048', 'walk_Alb.052', 'walk_Alb.056',
+        'walk_Alb.060',
+    ],)
     public static readonly GALOOMBA =                                      new InGameEntityImages.Null()
     public static readonly GOOMBRAT =                                      new InGameEntityImages.Null()
     public static readonly GOOMBUD =                                       new InGameEntityImages.Null()
