@@ -8,13 +8,13 @@ import type {ClassWithEnglishName}                                            fr
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
 import type {EditorVoiceSound}                                                from 'core/editorVoice/sound/EditorVoiceSound'
-import type {CompanionEnumByNameWithValidationSingleton}                      from 'util/enumerable/Singleton.types'
+import type {CompanionEnumByNameSingleton}                                    from 'util/enumerable/Singleton.types'
 
-import {CharacterNameLoader}               from 'core/characterName/CharacterName.loader'
-import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
-import {StringContainer}                   from 'util/StringContainer'
-import {getValueByEnglishName}             from 'util/utilitiesMethods'
-import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
+import {EditorVoices}          from 'core/editorVoice/EditorVoices'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {CompanionEnumByName}   from 'util/enumerable/companion/CompanionEnumByName'
 
 import EditorVoiceCompanion = EditorVoices.Companion
 
@@ -178,8 +178,8 @@ export class CharacterNames
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByNameWithValidationSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
-        extends CompanionEnumByNameWithValidation<CharacterNames, typeof CharacterNames> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
+        extends CompanionEnumByName<CharacterNames, typeof CharacterNames> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -197,14 +197,6 @@ export class CharacterNames
 
         public override getValueByName(value: Nullable<| CharacterNames | string>,): CharacterNames {
             return getValueByEnglishName(value, this,)
-        }
-
-        public override hasValueByName(value: Nullable<| CharacterNames | string>,): boolean {
-            if (value == null)
-                return false
-            if (value instanceof this.instance)
-                return true
-            return hasByArray(this.instance.everyEnglishNames, value,)
         }
 
     }

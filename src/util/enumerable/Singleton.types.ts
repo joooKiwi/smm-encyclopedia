@@ -4,7 +4,6 @@ import type {EnumerableUsedInRoute, EnumerableWithEnglishNameAndNullableAcronym,
 import type {CompanionEnumByAcronym}                                                                                                                                                   from 'util/enumerable/companion/CompanionEnumByAcronym'
 import type {CompanionEnumByAcronymOrName}                                                                                                                                             from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 import type {CompanionEnumByName}                                                                                                                                                      from 'util/enumerable/companion/CompanionEnumByName'
-import type {CompanionEnumByNameWithValidation}                                                                                                                                        from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 import type {CompanionEnumByReference}                                                                                                                                                 from 'util/enumerable/companion/CompanionEnumByReference'
 import type {CompanionEnumByTranslationKey}                                                                                                                                            from 'util/enumerable/companion/CompanionEnumByTranslationKey'
 import type {CompanionEnumByType}                                                                                                                                                      from 'util/enumerable/companion/CompanionEnumByType'
@@ -34,13 +33,6 @@ export type CompanionEnumByAcronymOrNameSingleton<ENUM extends EnumerableWithEng
  */
 export type CompanionEnumByNameSingleton<ENUM extends Enumerable,
     ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByName<ENUM, ENUM_CONSTRUCTOR>>
-
-/**
- * A type-alias of the {@link import('@joookiwi/enumerable').CompanionEnumSingleton CompanionEnumSingleton},
- * but with the {@link CompanionEnumByNameWithValidation} in replacement
- */
-export type CompanionEnumByNameWithValidationSingleton<ENUM extends Enumerable,
-    ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, > = Singleton<CompanionEnumByNameWithValidation<ENUM, ENUM_CONSTRUCTOR>>
 
 
 /**

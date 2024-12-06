@@ -1,5 +1,4 @@
 import type {Nullable, NullOr, UndefinedOr} from '@joookiwi/type'
-import {hasByArray}                         from '@joookiwi/collection'
 import {Enum}                               from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                        from 'core/ClassWithEnglishName'
@@ -16,20 +15,20 @@ import type {InGameImage_Regular}                         from 'core/entity/imag
 import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
 import type {ClassWithImage}                              from 'util/ClassWithImage'
-import type {CompanionEnumByNameWithValidationSingleton}  from 'util/enumerable/Singleton.types'
+import type {CompanionEnumByNameSingleton}                from 'util/enumerable/Singleton.types'
 
-import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
-import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
-import type {EditorEntityImages}           from 'core/entity/EditorEntityImages'
-import type {EntityImages}                 from 'core/entity/EntityImages'
-import {InGameBigMushroomEntityImages}     from 'core/entity/InGameBigMushroomEntityImages'
-import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
-import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
-import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
-import {StringContainer}                   from 'util/StringContainer'
-import {Import}                            from 'util/DynamicImporter'
-import {getValueByEnglishName}             from 'util/utilitiesMethods'
-import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+import {EditorVoices}                  from 'core/editorVoice/EditorVoices'
+import {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}       from 'core/entity/EditorEntityImages'
+import type {EntityImages}             from 'core/entity/EntityImages'
+import {InGameBigMushroomEntityImages} from 'core/entity/InGameBigMushroomEntityImages'
+import {InGameEntityImages}            from 'core/entity/InGameEntityImages'
+import {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
+import {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
+import {StringContainer}               from 'util/StringContainer'
+import {Import}                        from 'util/DynamicImporter'
+import {getValueByEnglishName}         from 'util/utilitiesMethods'
+import {CompanionEnumByName}           from 'util/enumerable/companion/CompanionEnumByName'
 
 import EditorVoiceCompanion = EditorVoices.Companion
 
@@ -494,8 +493,8 @@ export class Entities
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByNameWithValidationSingleton<Entities, typeof Entities> = class CompanionEnum_Entities
-        extends CompanionEnumByNameWithValidation<Entities, typeof Entities> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Entities, typeof Entities> = class CompanionEnum_Entities
+        extends CompanionEnumByName<Entities, typeof Entities> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -513,14 +512,6 @@ export class Entities
 
         public override getValueByName(value: Nullable<| Entities | string>,): Entities {
             return getValueByEnglishName(value, this,)
-        }
-
-        public override hasValueByName(value: Nullable<| Entities | string>,): boolean {
-            if (value == null)
-                return false
-            if (value instanceof this.instance)
-                return true
-            return hasByArray(this.instance.everyEnglishNames, value,)
         }
 
     }
