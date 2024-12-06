@@ -3308,7 +3308,11 @@ export abstract class InGameEntityImages
     public static readonly WARP_DOOR =                                     new InGameEntityImages.ExistantAs3InNotSm3dw('Warp Door', 'Object - Door', 'wait.0', 'wait.1', 'wait.2', [
         'door_model_Alb.000', 'door_model_Alb.002', 'door_model_Alb.004', 'door_model_Alb.006', 'door_model_Alb.008', 'door_model_Alb.010',
     ],)
-    public static readonly P_WARP_DOOR =                                   new InGameEntityImages.Null()
+    public static readonly P_WARP_DOOR =                                   new InGameEntityImages.ExistantAs5InNotSm3dw('P Warp Door', 'Object - Door', 'door_dot', 'door_p', 'p_wait.0', 'p_wait.1', 'p_wait.2', [
+        'door_dot_model_Alb.000',
+        'door_p_edit_model_Alb.000',
+        'door_p_model_Alb.000', 'door_p_model_Alb.002', 'door_p_model_Alb.004', 'door_p_model_Alb.006', 'door_p_model_Alb.008', 'door_p_model_Alb.010',
+    ],)
     public static readonly KEY_DOOR =                                      new InGameEntityImages.Null()
 
     public static readonly WARP_BOX =                                      new InGameEntityImages.Null()
