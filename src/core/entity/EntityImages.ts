@@ -853,6 +853,7 @@ export abstract class EntityImages
     public static readonly PHANTO =                                        new EntityImages.InGame('Phanto', InGameEntityImages.PHANTO,)
 
     public static readonly TRAMPOLINE =                                    new EntityImages.Editor('Trampoline', EditorEntityImages.TRAMPOLINE,)
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new EntityImages.Editor('Sideways Trampoline', EditorEntityImages.SIDEWAYS_TRAMPOLINE,)
     public static readonly HOP_CHOPS =                                     new EntityImages.Editor('Hop-Chops', EditorEntityImages.HOP_CHOPS,)
 
     public static readonly POW_BLOCK =                                     new EntityImages.Editor('POW Block', EditorEntityImages.POW_BLOCK,)

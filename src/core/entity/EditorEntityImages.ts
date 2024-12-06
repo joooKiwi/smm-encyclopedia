@@ -2125,7 +2125,8 @@ export abstract class EditorEntityImages
     public static readonly CURSED_KEY =                                    new EditorEntityImages.ExistantAsOneInOnlySmb('Cursed Key', 'Key_01',)
     public static readonly PHANTO =                                        new EditorEntityImages.Null()
 
-    public static readonly TRAMPOLINE =                                    new EditorEntityImages.ExistantAsTwoInAll('Trampoline', 'JumpStep_00', 'JumpStep_01',)
+    public static readonly TRAMPOLINE =                                    new EditorEntityImages.ExistantAsOneInAll('Trampoline', 'JumpStep_00',)
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new EditorEntityImages.ExistantAsOneInAll('Sideways Trampoline', 'JumpStep_01',)
     public static readonly HOP_CHOPS =                                     new EditorEntityImages.ExistantAsOneInOnlySm3dw('Hop-Chops', 'Hopper_00',)
 
     public static readonly POW_BLOCK =                                     new EditorEntityImages.ExistantAsOneInAll('POW Block', 'PowBlock_00',)

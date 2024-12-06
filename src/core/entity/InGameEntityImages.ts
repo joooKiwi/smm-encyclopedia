@@ -3618,6 +3618,7 @@ export abstract class InGameEntityImages
     public static readonly PHANTO =                                        new InGameEntityImages.ExistantAs4InOnlySmb('Phanto', 'M1 Object - Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new InGameEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new InGameEntityImages.ExistantAs4InNotSm3dw('POW Block', 'Object - BlockPow', 'wait.0', 'wait.1', 'wait.2', 'wait.3', [

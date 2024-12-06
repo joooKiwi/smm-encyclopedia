@@ -842,6 +842,7 @@ export abstract class ClearConditionEntityImages
     public static readonly PHANTO =                                        new ClearConditionEntityImages.Null()
 
     public static readonly TRAMPOLINE =                                    new ClearConditionEntityImages.ExistantOnNotSmb('Trampoline', 'JumpStep_00',)
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new ClearConditionEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new ClearConditionEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new ClearConditionEntityImages.ExistantOnAll('POW Block', 'PowBlock_00',)

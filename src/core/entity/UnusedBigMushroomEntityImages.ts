@@ -477,6 +477,7 @@ export abstract class UnusedBigMushroomEntityImages
     public static readonly PHANTO =                                        new UnusedBigMushroomEntityImages.Null()
 
     public static readonly TRAMPOLINE =                                    new UnusedBigMushroomEntityImages.Null()
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new UnusedBigMushroomEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new UnusedBigMushroomEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new UnusedBigMushroomEntityImages.Null()

@@ -147,7 +147,7 @@ enum Enum {
     LAVA_LIFT, FAST_LAVA_LIFT,
     CRATE,
     KEY, CURSED_KEY, PHANTO,
-    TRAMPOLINE, HOP_CHOPS,
+    TRAMPOLINE, SIDEWAYS_TRAMPOLINE, HOP_CHOPS,
     POW_BLOCK, RED_POW_BLOCK,
     P_SWITCH,
     STONE,
@@ -174,12 +174,14 @@ type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`
 type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`
 type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`
 type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`
+type PossibleEnglishName_CheepCheep = `${| 'Green' | 'Red'} Cheep Cheep`
 type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
 type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
 type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`
 type PossibleEnglishName_SpikeTop = `${| EmptyString | 'Fast '}${| EmptyString | 'Winged '}Spike Top`
 type PossibleEnglishName_BulletBill = `${`${| EmptyString | 'Cat '}Bullet` | 'Bull’s-Eye'} Bill`
 type PossibleEnglishName_BanzaiBill = `${| EmptyString | 'Cat '}Banzai Bill` | 'Bull’s-Eye Banzai'
+type PossibleEnglishName_Trampoline = | 'Trampoline' | 'Sideways Trampoline'
 type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate'
 export type PossibleEnglishName =
     | `${| EmptyString | `${| 'Start' | 'Goal'} `}Ground`
@@ -231,7 +233,7 @@ export type PossibleEnglishName =
     | `${| EmptyString | 'Spiny '}Skipsqueak`
     | `${| EmptyString | 'Horned '}Ant Trooper`
     | 'Stingby'
-    | `${| 'Cheep' | 'Deep'} Cheep` | 'Blurps' | 'Fish Bone'
+    | PossibleEnglishName_CheepCheep | 'Deep Cheep' | 'Blurps' | 'Fish Bone'
     | Exclude<`${| EmptyString | 'Baby '}Blooper${| EmptyString | ' Nanny'}`, 'Baby Blooper Nanny'>
     | 'Porcupuffer'
     | `${| EmptyString | 'Angry '}Wiggler`
@@ -288,7 +290,7 @@ export type PossibleEnglishName =
     | `${| EmptyString | 'Fast '}Lava Lift`
     | 'Crate'
     | `${| EmptyString | 'Cursed '}Key` | 'Phanto'
-    | 'Trampoline' | 'Hop-Chops'
+    | PossibleEnglishName_Trampoline | 'Hop-Chops'
     | `${| EmptyString | 'Red '}POW Block`
     | 'P Switch'
     | 'Stone'
@@ -303,16 +305,17 @@ export type PossibleEnglishName =
 
 type PossibleEnglishName_Projectile = EmptyString//TODO change to every projectile name
 type PossibleEnglishName_Object = EmptyString//TODO change to every object name
-/** The possible english anme that are in both {@link Entities} and {@link EditorVoices} */
+/** The possible english name that are in both {@link Entities} and {@link EditorVoices} */
 export type PossibleEnglishName_EditorVoice = Exclude<PossibleEnglishName,
     | PossibleEnglishName_BigMushroom | PossibleEnglishName_Shoe | PossibleEnglishName_Yoshi
     | PossibleEnglishName_Block | Exclude<PossibleEnglishName_HardBlock, 'Hard Block'>
     | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
     | Exclude<PossibleEnglishName_DryBones, 'Dry Bones'> | Exclude<PossibleEnglishName_BuzzyBeetleAndShell, 'Buzzy Beetle'>
     | Exclude<PossibleEnglishName_SpinyAndShell, 'Spiny'> | Exclude<PossibleEnglishName_SpikeTop, 'Spike Top'>
+    | PossibleEnglishName_CheepCheep
     | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
     | 'Empty Block' | 'Chain Chomp’s Stump' | 'Angry Sun'
-    | PossibleEnglishName_Goals | 'Phanto' | 'Stone' | 'Parachute' | 'Bubble'
+    | PossibleEnglishName_Goals | 'Phanto' | PossibleEnglishName_Trampoline | 'Stone' | 'Parachute' | 'Bubble'
     | PossibleEnglishName_Projectile | PossibleEnglishName_Object>
 
 //endregion -------------------- English name (editor voice) --------------------

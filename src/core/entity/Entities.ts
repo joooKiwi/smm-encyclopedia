@@ -464,6 +464,7 @@ export class Entities
     public static readonly PHANTO =                                        new Entities('Phanto',)
 
     public static readonly TRAMPOLINE =                                    new Entities('Trampoline',)
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new Entities('Sideways Trampoline',)
     public static readonly HOP_CHOPS =                                     new Entities('Hop-Chops',)
 
     public static readonly POW_BLOCK =                                     new Entities('POW Block',)

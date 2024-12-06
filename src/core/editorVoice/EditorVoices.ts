@@ -495,7 +495,14 @@ export abstract class EditorVoices
     public static readonly KEY =                      new EditorVoices.EntityEditorVoices('Key',                             SoundCreator.singleEditorVoiceWithSigningPart('key',),)
     public static readonly CURSED_KEY =               new EditorVoices.EntityEditorVoices('Cursed Key',                      SoundCreator.singleEditorVoiceWithSigningPart('cursedkey',),)
 
-    public static readonly TRAMPOLINE =               new EditorVoices.EntityEditorVoices('Trampoline',                      SoundCreator.singleEditorVoiceWithVoice('trampline',),)
+    public static readonly TRAMPOLINE =               new class EditorVoices_Trampoline extends EditorVoices.EntityEditorVoices {
+
+        protected override _createEntityReferences() {
+            const Entities = Import.Entities
+            return [Entities.TRAMPOLINE, Entities.SIDEWAYS_TRAMPOLINE,]
+        }
+
+    }('Trampoline',                      SoundCreator.singleEditorVoiceWithVoice('trampline',),)
     public static readonly HOP_CHOPS =                new EditorVoices.EntityEditorVoices('Hop-Chops',                       SoundCreator.singleEditorVoiceWithSigningPart('Hop-Chops',),)
 
     public static readonly POW_BLOCK =                new EditorVoices.EntityEditorVoices('POW Block',                       SoundCreator.singleEditorVoiceWithVoice('powblock',),)

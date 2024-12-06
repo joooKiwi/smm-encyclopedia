@@ -516,6 +516,7 @@ export abstract class InGameBigMushroomEntityImages
     public static readonly PHANTO =                                        new InGameBigMushroomEntityImages.Null()
 
     public static readonly TRAMPOLINE =                                    new InGameBigMushroomEntityImages.Null()
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new InGameBigMushroomEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameBigMushroomEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new InGameBigMushroomEntityImages.Null()

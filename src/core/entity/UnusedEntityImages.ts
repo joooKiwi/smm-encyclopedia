@@ -592,6 +592,7 @@ export abstract class UnusedEntityImages
     public static readonly PHANTO =                                        new UnusedEntityImages.Null()
 
     public static readonly TRAMPOLINE =                                    new UnusedEntityImages.Null()
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new UnusedEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new UnusedEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new UnusedEntityImages.Null()
