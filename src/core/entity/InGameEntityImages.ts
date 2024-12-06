@@ -3620,7 +3620,10 @@ export abstract class InGameEntityImages
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.ExistantAs3InNotSm3dw('Trampoline', 'Object - Jumpstep', 'jump.0', 'jump.1', 'jump.2', [
         'jumpstep.Alb.000', 'jumpstep.Alb.004', 'jumpstep.Alb.007',
     ],)
-    public static readonly SIDEWAYS_TRAMPOLINE =                           new InGameEntityImages.Null()
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new InGameEntityImages.ExistantAs4InNotSm3dw('Sideways Trampoline', 'Object - Jumpstep2', 'jump.0', 'jump.1', 'jump.2', 'jump.3', [
+        'jumpstep2_Alb.000', 'jumpstep2_Alb.001', 'jumpstep2_Alb.002', 'jumpstep2_Alb.003', 'jumpstep2_Alb.004',
+        'jumpstep2_Alb.005', 'jumpstep2_Alb.006', 'jumpstep2_Alb.007', 'jumpstep2_Alb.008', 'jumpstep2_Alb.009',
+    ],)
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new InGameEntityImages.ExistantAs4InNotSm3dw('POW Block', 'Object - BlockPow', 'wait.0', 'wait.1', 'wait.2', 'wait.3', [
