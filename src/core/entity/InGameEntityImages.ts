@@ -2036,7 +2036,7 @@ export abstract class InGameEntityImages
         'walk1_Alb.040', 'walk1_Alb.042', 'walk1_Alb.044', 'walk1_Alb.046', 'walk1_Alb.048',
         'walk1_Alb.050', 'walk1_Alb.052', 'walk1_Alb.054', 'walk1_Alb.056', 'walk1_Alb.058',
     ],)
-    public static readonly GOOMBUD =                                       new InGameEntityImages.Null()
+    public static readonly GOOMBUD =                                       new InGameEntityImages.ExistantAs5InOnlySmw('Goombud', 'MW Enemy - Kakibo', 'damage.0', 'swim.0', 'swim.1', 'walk.0', 'walk.1',)
 
     public static readonly GREEN_KOOPA_TROOPA =                            new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Green Koopa Troopa', 'Enemy - NokonokoA', [
         'revival.0', 'revival.1', 'revival.2',
