@@ -2214,7 +2214,18 @@ export abstract class InGameEntityImages
         'wait_Alb.00', 'wait_Alb.01', 'wait_Alb.02', 'wait_Alb.03', 'wait_Alb.04', 'wait_Alb.05', 'wait_Alb.06', 'wait_Alb.07', 'wait_Alb.08', 'wait_Alb.09',
         'wait_Alb.10', 'wait_Alb.11', 'wait_Alb.12',
     ],)
-    public static readonly THIRTY_COIN =                                   new InGameEntityImages.Null()
+    public static readonly THIRTY_COIN =                                   new InGameEntityImages.ExistantAsBlueGrayVariant('30-Coin', 'Object - Coin30', [
+        'fast.0', 'fast.1', 'fast.2', 'fast.2',
+        'wait.0', 'wait.1', 'wait.2', 'wait.2',
+    ], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.2',
+    ], [
+        'wait.0', 'wait.1', 'wait.2', 'wait.2',
+    ], [
+        'fast_Alb.00', 'fast_Alb.02', 'fast_Alb.04', 'fast_Alb.06', 'fast_Alb.08', 'fast_Alb.10',
+        'wait_Alb.00', 'wait_Alb.01', 'wait_Alb.02', 'wait_Alb.03', 'wait_Alb.04', 'wait_Alb.05', 'wait_Alb.06', 'wait_Alb.07', 'wait_Alb.08', 'wait_Alb.09',
+        'wait_Alb.10', 'wait_Alb.11', 'wait_Alb.12',
+    ],)
     public static readonly FIFTY_COIN =                                    new InGameEntityImages.Null()
     public static readonly PINK_COIN =                                     new InGameEntityImages.ExistantAs8InNotSm3dw('Pink Coin', 'Object - CoinRotatePink', 'fast.0', 'fast.1', 'fast.2', 'fast.3', 'wait.0', 'wait.1', 'wait.2', 'wait.3', [
         'wait_Alb.00', 'wait_Alb.01', 'wait_Alb.02', 'wait_Alb.03', 'wait_Alb.04',
