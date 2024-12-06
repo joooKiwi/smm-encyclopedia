@@ -1,14 +1,16 @@
 import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
 import type {Array, NullOr}                        from '@joookiwi/type'
-import {getFirstByArray, hasByArray, isArray}      from '@joookiwi/collection'
+import {getFirstByArray, hasByArray, mapByArray}   from '@joookiwi/collection'
 import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                      from 'core/ClassWithReference'
+import type {Names as Names_CharacterNames}                           from 'core/characterName/CharacterNames.types'
 import type {ClassWithEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
 import type {Names, Ordinals, PossibleEnglishName, PossibleReference} from 'core/editorVoice/EditorVoices.types'
 import type {EditorVoiceSound}                                        from 'core/editorVoice/sound/EditorVoiceSound'
 import type {CompanionEnumDeclaration_EditorVoices}                   from 'core/editorVoice/EditorVoice.companionEnumDeclaration'
+import type {Names as Names_Entities}                                 from 'core/entity/Entities.types'
 
 import type {CharacterNames}            from 'core/characterName/CharacterNames'
 import * as SoundCreator                from 'core/editorVoice/sound/soundCreator'
@@ -41,7 +43,7 @@ export abstract class EditorVoices
     private static readonly EntityEditorVoices = class EntityEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
-            return this.entityReferences.map(it => it.reference,)
+            return mapByArray(this.entityReferences, it => it.reference,).toArray()
         }
 
         protected override _retrieveReference() {
@@ -57,7 +59,7 @@ export abstract class EditorVoices
     private static readonly CharacterNameEditorVoices = class CharacterNameEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
-            return this.characterNameReferences.map(it => it.reference,)
+            return mapByArray(this.characterNameReferences, it => it.reference,).toArray()
         }
 
         protected override _retrieveReference() {
@@ -98,16 +100,16 @@ export abstract class EditorVoices
 
     public static readonly BLOCK =                    new class EditorVoices_Block extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.BRICK_BLOCK, Import.Entities.CRISTAL_BLOCK, Import.Entities.ROTATING_BLOCK,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.BRICK_BLOCK, instance.CRISTAL_BLOCK, instance.ROTATING_BLOCK,]
         }
 
     }('Block', SoundCreator.singleEditorVoiceWithVoice('block',),)
 
     public static readonly HARD_BLOCK =               new class EditorVoices_HardBlock extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.HARD_BLOCK, Import.Entities.ROCK_BLOCK,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.HARD_BLOCK, instance.ROCK_BLOCK,]
         }
 
     }('Hard Block', SoundCreator.singleEditorVoiceWithVoice('hardblock',),)
@@ -172,15 +174,15 @@ export abstract class EditorVoices
 
     public static readonly BIG_MUSHROOM_SMM1 =        new class EditorVoices_BigMushroomSMM1 extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.BIG_MUSHROOM_CLASSIC, Import.Entities.BIG_MUSHROOM_MODERN,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.BIG_MUSHROOM_CLASSIC, instance.BIG_MUSHROOM_MODERN,]
         }
 
     }('Big Mushroom (SMM)', SoundCreator.singleEditorVoiceWithVoice('bigmashroom',),)
     public static readonly BIG_MUSHROOM_SMM2 =        new class EditorVoices_BigMushroomSMM2 extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.BIG_MUSHROOM,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.BIG_MUSHROOM,]
         }
 
     }('Big Mushroom (SMM2)', SoundCreator.singleEditorVoiceWithSigningPart('BigMushroom',),)
@@ -275,16 +277,16 @@ export abstract class EditorVoices
 
     public static readonly KOOPA_TROOPA =             new class EditorVoices_KoopaTroopa extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.GREEN_KOOPA_TROOPA, Import.Entities.RED_KOOPA_TROOPA,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.GREEN_KOOPA_TROOPA, instance.RED_KOOPA_TROOPA,]
         }
 
     }('Koopa Troopa', SoundCreator.singleEditorVoiceWithVoice('koopatrooper',),)
 
     public static readonly DRY_BONES =                new class EditorVoices_DryBones extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.DRY_BONES, Import.Entities.PARABONES,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.DRY_BONES, instance.PARABONES,]
         }
 
     }('Dry Bones', SoundCreator.singleEditorVoiceWithVoice('drybones',),)
@@ -292,24 +294,24 @@ export abstract class EditorVoices
 
     public static readonly BUZZY_BEETLE =             new class EditorVoices_BuzzyBeetle extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.BUZZY_BEETLE, Import.Entities.PARA_BEETLE, Import.Entities.BUZZY_SHELL,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.BUZZY_BEETLE, instance.PARA_BEETLE, instance.BUZZY_SHELL,]
         }
 
     }('Buzzy Beetle', SoundCreator.singleEditorVoiceWithVoice('buzzybeatle',),)
 
     public static readonly SPINY =                    new class EditorVoices_Spiny extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.SPINY, Import.Entities.WINGED_SPINY, Import.Entities.SPINY_EGG, Import.Entities.SPINY_SHELL,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.SPINY, instance.WINGED_SPINY, instance.SPINY_EGG, instance.SPINY_SHELL,]
         }
 
     }('Spiny', SoundCreator.singleEditorVoiceWithVoice('spiny',),)
 
     public static readonly SPIKE_TOP =                new class EditorVoices_SpikeTop extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.SPIKE_TOP, Import.Entities.WINGED_SPIKE_TOP, Import.Entities.FAST_SPIKE_TOP, Import.Entities.FAST_WINGED_SPIKE_TOP,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.SPIKE_TOP, instance.WINGED_SPIKE_TOP, instance.FAST_SPIKE_TOP, instance.FAST_WINGED_SPIKE_TOP,]
         }
 
     }('Spike Top', SoundCreator.singleEditorVoiceWithVoice('spiketop',),)
@@ -324,8 +326,8 @@ export abstract class EditorVoices
 
     public static readonly CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.GREEN_CHEEP_CHEEP, Import.Entities.DEEP_CHEEP, Import.Entities.RED_CHEEP_CHEEP, Import.Entities.BLURPS,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.GREEN_CHEEP_CHEEP, instance.BLURPS, instance.DEEP_CHEEP, instance.RED_CHEEP_CHEEP,]
         }
 
     }('Cheep Cheep', SoundCreator.singleEditorVoiceWithVoice('cheapcheap',),)
@@ -397,8 +399,8 @@ export abstract class EditorVoices
     public static readonly BANZAI_BILL =              new EditorVoices.EntityEditorVoices('Banzai Bill',                     SoundCreator.singleEditorVoiceWithSigningPart('BanzaiBill',),)
     public static readonly BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.BULL_EYE_BANZAI, Import.Entities.CAT_BANZAI_BILL,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.BULL_EYE_BANZAI, instance.CAT_BANZAI_BILL,]
         }
 
     }('Bull’s-Eye Banzai',  SoundCreator.singleEditorVoiceWithSigningPart('Bulls-EyeBanzai',),)
@@ -423,8 +425,8 @@ export abstract class EditorVoices
 
     public static readonly SUN =                      new class EditorVoices_Sun extends EditorVoices.EntityEditorVoices {
 
-        protected override _createEntityReferences() {
-            return [Import.Entities.ANGRY_SUN,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.ANGRY_SUN,]
         }
 
     }('Sun', SoundCreator.singleEditorVoiceWithSigningPart('Sun',),)
@@ -632,22 +634,15 @@ export abstract class EditorVoices
 
     //region -------------------- Character name references --------------------
 
-    protected _createCharacterNameReference(): | PossibleEnglishName | Array<CharacterNames> {
-        return this.englishName
+    protected _createCharacterNameReference(instance: typeof CharacterNames,): Array<CharacterNames> {
+        const name = this.name
+        if (name in instance)
+            return [instance[name as Names_CharacterNames],]
+        return EMPTY_ARRAY
     }
 
     public get characterNameReferences(): Array<CharacterNames> {
-        if (this.#characterNameReference != null)
-            return this.#characterNameReference
-
-        const reference = this._createCharacterNameReference()
-        if (isArray(reference,))
-            return this.#characterNameReference = reference
-
-        const Companion = Import.CharacterNames.Companion
-        if (Companion.hasValueByName(reference,))
-            return this.#characterNameReference = [Companion.getValueByName(reference,),]
-        return this.#characterNameReference = EMPTY_ARRAY
+        return this.#characterNameReference ??= this._createCharacterNameReference(Import.CharacterNames,)
     }
 
     //endregion -------------------- Character name references --------------------
@@ -657,11 +652,15 @@ export abstract class EditorVoices
      * Create a temporary array containing the references applicable
      * to create a {@link EntityReferenceHolder entity reference}
      *
+     * @param instance The {@link Entities} instance
      * @protected
      * @onlyCalledOnce
      */
-    protected _createEntityReferences(): | PossibleEnglishName | Array<Entities> {
-        return this.englishName
+    protected _createEntityReferences(instance: typeof Entities,): Array<Entities> {
+        const name = this.name
+        if (name in instance)
+            return [instance[name as Names_Entities],]
+        return EMPTY_ARRAY
     }
 
     /**
@@ -672,17 +671,7 @@ export abstract class EditorVoices
      *  multiple {@link Entities entity instance} (from 2 to 4) associated to {@link EditorVoices this instance}.
      */
     public get entityReferences(): Array<Entities> {
-        if (this.#entityReferences != null)
-            return this.#entityReferences
-
-        const reference = this._createEntityReferences()
-        if (isArray(reference,))
-            return this.#entityReferences = reference
-
-        const Companion = Import.Entities.Companion
-        if (Companion.hasValueByName(reference,))
-            return this.#entityReferences = [Companion.getValueByName(reference,),]
-        return this.#entityReferences = EMPTY_ARRAY
+        return this.#entityReferences ??= this._createEntityReferences(Import.Entities,)
     }
 
     //endregion -------------------- Entity references --------------------
