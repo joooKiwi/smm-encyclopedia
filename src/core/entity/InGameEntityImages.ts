@@ -2049,7 +2049,7 @@ export abstract class InGameEntityImages
     public static readonly STINGBY =                                       new InGameEntityImages.Null()
 
     public static readonly GREEN_CHEEP_CHEEP =                             new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Green Cheep Cheep', 'Enemy - PukupukuA', 'wait.0', 'wait.1', EMPTY_ARRAY,)
-    public static readonly BLURPS =                                        new InGameEntityImages.Null()
+    public static readonly BLURPS =                                        new InGameEntityImages.ExistantAs2InOnlySmw('Blurps', 'Enemy - PukupukuA', 'wait.0', 'wait.1',)
     public static readonly DEEP_CHEEP =                                    new InGameEntityImages.Null()
     public static readonly RED_CHEEP_CHEEP =                               new InGameEntityImages.Null()
     public static readonly FISH_BONE =                                     new InGameEntityImages.ExistantAs7InNotSm3dw('Fish Bone', 'Enemy - Fishbone', 'attack.0', 'attack.1', 'break_modelA', 'break_modelB', 'breakModelC', 'swim.0', 'swim.1', [
