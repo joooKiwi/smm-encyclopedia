@@ -2120,6 +2120,29 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} for only the {@link STARTING_ARROW} */
+    private static readonly ExistantAsStartingArrow = class ExistantAsBurner_InGameEntityImages
+        extends InGameEntityImages.Existant<'Starting Arrow', | InGameImageFile<`${| 'M1' | 'M3' | 'MW' | 'WU'} Object - Yajirushi${| EmptyString | ' S'}`, 'yajirushi'>
+                                                              | InGameImageFile<`WU Object - Yajirushi I`, 'yajirushi'>> {
+
+        public constructor() { super('Starting Arrow',) }
+
+        protected override _createImageFiles() {
+            return [
+                [SMB,   inGameImage(this, 'M1 Object - Yajirushi',    'yajirushi',),],
+                [SMB,   inGameImage(this, 'M1 Object - Yajirushi S',  'yajirushi',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Yajirushi',    'yajirushi',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Yajirushi S',  'yajirushi',),],
+                [SMW,   inGameImage(this, 'MW Object - Yajirushi',    'yajirushi',),],
+                [SMW,   inGameImage(this, 'MW Object - Yajirushi S',  'yajirushi',),],
+                [NSMBU, inGameImage(this, 'WU Object - Yajirushi',    'yajirushi',),],
+                [NSMBU, inGameImage(this, 'WU Object - Yajirushi I',  'yajirushi',),],
+                [NSMBU, inGameImage(this, 'WU Object - Yajirushi S',  'yajirushi',),],
+            ] as const
+        }
+
+    }
+
     //endregion -------------------- Sub class (predefined) --------------------
 
     //endregion -------------------- Sub class --------------------
@@ -3452,7 +3475,7 @@ export abstract class InGameEntityImages
     ],)
     public static readonly TREE =                                          new InGameEntityImages.Null()
 
-    public static readonly STARTING_ARROW =                                new InGameEntityImages.Null()
+    public static readonly STARTING_ARROW =                                new InGameEntityImages.ExistantAsStartingArrow()
     public static readonly ARROW_SIGN =                                    new InGameEntityImages.ExistantAs1InNotSm3dw('Arrow Sign', 'Object - YajirushiAir', 'yajirushi_air',)
 
     public static readonly CHECKPOINT_FLAG =                               new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Checkpoint Flag', 'Object - MiddleFlag', [
