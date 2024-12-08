@@ -2789,7 +2789,7 @@ export abstract class InGameEntityImages
     public static readonly POKEY =                                         new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('Pokey', 'Enemy - Sambo', 'body.0', 'head.0', 'sanbo_body_model_Alb.000', 'sanbo_head_model_Alb.000')
     public static readonly SNOW_POKEY =                                    new InGameEntityImages.ExistantAs2InNotSm3dwAnd2Nsmbu('Snow Pokey', 'Enemy - SamboSnow', 'body.0', 'head.0', 'sanbo_body_model_Alb.000', 'sanbo_head_model_Alb.000',)
 
-    public static readonly THWOMP =                                        new InGameEntityImages.Null()
+    public static readonly THWOMP =                                        new InGameEntityImages.ExistantAs3InNotSm3dw('Thwomp', 'Enemy - Dossun', 'down.0', 'look.0', 'wait.0', ['dossun_close_edited_Alb.000', 'dossun_look_edited_Alb.000', 'dossun_open_edited_Alb.000',],)
     public static readonly SIDEWAYS_THWOMP =                               new InGameEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new InGameEntityImages.ExistantAs3InNotSm3dw('Monty Mole', 'Enemy - Choropoo', 'appear.0', 'walk.0', 'walk.1', [
