@@ -2612,7 +2612,29 @@ export abstract class InGameEntityImages
 
     public static readonly PORCUPUFFER =                                   new InGameEntityImages.Null()
 
-    public static readonly WIGGLER =                                       new InGameEntityImages.Null()
+    public static readonly WIGGLER =                                       new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Wiggler', 'Enemy - Hanachan', [
+        'head.0',
+        'edit_body',
+        'fly.0',
+        'walk.0', 'walk.1',
+    ], [
+        'head.0',
+        'edit_body',
+        'fly.0',
+        'walk.0', 'walk.1',
+        'walk.2', 'walk.3',
+    ], [
+        'walk_normal_head_Alb.000', 'walk_normal_head_Alb.002', 'walk_normal_head_Alb.004', 'walk_normal_head_Alb.006', 'walk_normal_head_Alb.008',
+        'walk_normal_head_Alb.010', 'walk_normal_head_Alb.012', 'walk_normal_head_Alb.014', 'walk_normal_head_Alb.016', 'walk_normal_head_Alb.018',
+        'walk_normal_head_Alb.020', 'walk_normal_head_Alb.022', 'walk_normal_head_Alb.024', 'walk_normal_head_Alb.026', 'walk_normal_head_Alb.028',
+        'walk_normal_head_Alb.030', 'walk_normal_head_Alb.032', 'walk_normal_head_Alb.034', 'walk_normal_head_Alb.036', 'walk_normal_head_Alb.038',
+        'walk_normal_head_Alb.040', 'walk_normal_head_Alb.042', 'walk_normal_head_Alb.043',
+        'walk_normal_body_Alb.000', 'walk_normal_body_Alb.002', 'walk_normal_body_Alb.004', 'walk_normal_body_Alb.006', 'walk_normal_body_Alb.008',
+        'walk_normal_body_Alb.010', 'walk_normal_body_Alb.012', 'walk_normal_body_Alb.014', 'walk_normal_body_Alb.016', 'walk_normal_body_Alb.018',
+        'walk_normal_body_Alb.020', 'walk_normal_body_Alb.022', 'walk_normal_body_Alb.024', 'walk_normal_body_Alb.026', 'walk_normal_body_Alb.028',
+        'walk_normal_body_Alb.030', 'walk_normal_body_Alb.032', 'walk_normal_body_Alb.034', 'walk_normal_body_Alb.036', 'walk_normal_body_Alb.038',
+        'walk_normal_body_Alb.040', 'walk_normal_body_Alb.042', 'walk_normal_body_Alb.043',
+    ],)
     public static readonly ANGRY_WIGGLER =                                 new InGameEntityImages.Null()
 
     public static readonly PIRANHA_PLANT =                                 new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Piranha Plant', 'Enemy - Packun', 'wait.0', 'wait.1', [
