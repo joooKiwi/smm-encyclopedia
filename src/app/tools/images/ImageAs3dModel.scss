@@ -1,0 +1,16 @@
+.image-as-3d-model {
+  font-size: var(--bs-sub-sup-font-size);
+  font-style: italic;
+  text-align: center;
+  background-color: rgba(var(--bs-warning-rgb), 75%);
+  border-radius: var(--bs-border-radius);
+  &:after { content: var(--3d-modal) }
+}
+
+:root {
+  --3d-modal: '3d model'
+}
+
+:is([lang^='fr']):root {
+  --3d-modal: 'Modèle 3d'
+}

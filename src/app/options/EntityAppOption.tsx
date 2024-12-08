@@ -12,6 +12,7 @@ import type {Entities}            from 'core/entity/Entities'
 import {isInProduction}                 from 'variables'
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import Image                            from 'app/tools/images/Image'
+import ImageAs3dModel                   from 'app/tools/images/ImageAs3dModel'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent        from 'core/editorVoice/EditorVoiceSound.component'
 import CanBeFiredOutOfABulletLauncher   from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
@@ -66,6 +67,10 @@ export class EntityAppOption
                 return null
             }
 
+            // if (imageFiles.length === 0)
+            //     if (reference.isInSuperMarioBrosStyle)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
                 images[i] = <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
@@ -86,6 +91,10 @@ export class EntityAppOption
                     console.warn("The images were null when attempting to retrieve the SMB3 images", image,)
                 return null
             }
+
+            // if (imageFiles.length === 0)
+            //     if (reference.isInSuperMarioBros3Style)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
@@ -108,6 +117,10 @@ export class EntityAppOption
                 return null
             }
 
+            // if (imageFiles.length === 0)
+            //     if (reference.isInSuperMarioWorldStyle)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
                 images[i] = <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
@@ -129,6 +142,10 @@ export class EntityAppOption
                 return null
             }
 
+            // if (imageFiles.length === 0)
+            //     if (reference.isInNewSuperMarioBrosUStyle)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
                     images[i] = <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
@@ -142,13 +159,17 @@ export class EntityAppOption
     }('nsmbu-images',)
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
+        protected override _createContentOption({englishName, englishNameInHtml, image, reference,}: Entities,) {
             const imageFiles = image.get(SM3DW,)
             if (imageFiles == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SM3DW images", image,)
                 return null
             }
+
+            if (imageFiles.length === 0)
+                if (reference.isInSuperMario3DWorldStyle)
+                    return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
             const images = new Array<ReactJSXElement>(imageFiles.length,)
             forEachByArray(imageFiles, (it, i,) =>
