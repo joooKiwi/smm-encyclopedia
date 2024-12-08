@@ -294,6 +294,7 @@ export class Entities
     public static readonly SNOW_POKEY =                                    new Entities('Snow Pokey',)
 
     public static readonly THWOMP =                                        new Entities('Thwomp',)
+    public static readonly SIDEWAYS_THWOMP =                               new Entities('Sideways Thwomp',)
 
     public static readonly MONTY_MOLE =                                    new Entities('Monty Mole',)
     public static readonly ROCKY_WRENCH =                                  new Entities('Rocky Wrench',)

@@ -86,7 +86,7 @@ enum Enum {
     BOO, STRETCH, BOO_BUDDIES, PEEPA,
     BOB_OMB, LIT_BOB_OMB,
     POKEY, SNOW_POKEY,
-    THWOMP,
+    THWOMP, SIDEWAYS_THWOMP,
     MONTY_MOLE, ROCKY_WRENCH, WRENCH_THROWN_BY_A_ROCKY_WRENCH,
     MAGIKOOPA, MAGIKOOPA_PROJECTILE,
     HAMMER_BRO, SLEDGE_BRO, HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO,
@@ -179,6 +179,7 @@ type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
 type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
 type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | 'Spiny Egg' | 'Spiny Shell'
 type PossibleEnglishName_SpikeTop = 'Spike Top' | 'Winged Spike Top' | 'Fast Spike Top' | 'Fast Winged Spike Top'
+type PossibleEnglishName_Thwomp = 'Thwomp' | 'Sideways Thwomp'
 type PossibleEnglishName_BulletBill = 'Bullet Bill' | 'Cat Bullet Bill' | 'Bull’s-Eye Bill'
 type PossibleEnglishName_BanzaiBill = 'Banzai Bill' | 'Cat Banzai Bill' | 'Bull’s-Eye Banzai'
 type PossibleEnglishName_Trampoline = | 'Trampoline' | 'Sideways Trampoline'
@@ -246,7 +247,7 @@ export type PossibleEnglishName =
     | 'Boo' | 'Boo Buddies' | 'Stretch' | 'Peepa'
     | 'Bob-omb' | 'Lit Bob-omb'
     | 'Pokey' | 'Snow Pokey'
-    | 'Thwomp'
+    | PossibleEnglishName_Thwomp
     | 'Monty Mole' | 'Rocky Wrench' | 'Wrench thrown by a Rocky Wrench'
     | 'Magikoopa' | '(Magikoopa’s projectile)'
     | 'Hammer Bro' | 'Sledge Bro' | 'Fire Bro' | 'Heavy Fire Bro' | 'Hammer thrown by a Hammer / Sledge Bro' | 'Fireball thrown by a (Heavy) Fire Bro'
@@ -317,10 +318,11 @@ export type PossibleEnglishName_EditorVoice = Exclude<PossibleEnglishName,
     | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
     | Exclude<PossibleEnglishName_DryBones, 'Dry Bones'> | Exclude<PossibleEnglishName_BuzzyBeetleAndShell, 'Buzzy Beetle'>
     | Exclude<PossibleEnglishName_SpinyAndShell, 'Spiny'> | Exclude<PossibleEnglishName_SpikeTop, 'Spike Top'>
+    | Exclude<PossibleEnglishName_Thwomp, 'Thwomp'>
     | PossibleEnglishName_CheepCheep
     | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
     | 'Empty Block' | 'Chain Chomp’s Stump' | 'Angry Sun'
-    | PossibleEnglishName_Goals | 'Phanto' | PossibleEnglishName_Trampoline | 'Stone' | 'Parachute' | 'Bubble'
+    | PossibleEnglishName_Goals | 'Phanto' | Exclude<PossibleEnglishName_Trampoline, 'Trampoline'> | 'Stone' | 'Parachute' | 'Bubble'
     | PossibleEnglishName_Projectile | PossibleEnglishName_Object>
 
 //endregion -------------------- English name (editor voice) --------------------

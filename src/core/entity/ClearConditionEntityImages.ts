@@ -673,6 +673,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SNOW_POKEY =                                    new ClearConditionEntityImages.Null()
 
     public static readonly THWOMP =                                        new ClearConditionEntityImages.ExistantOnAll('Thwomp', 'Dossun_00',)
+    public static readonly SIDEWAYS_THWOMP =                               new ClearConditionEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new ClearConditionEntityImages.ExistantOnNotSm3dw('Monty Mole', 'ChoroPoo_00',)
     public static readonly ROCKY_WRENCH =                                  new ClearConditionEntityImages.ExistantOnNotSm3dw('Rocky Wrench', 'Poo_00',)

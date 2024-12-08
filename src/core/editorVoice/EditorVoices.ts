@@ -368,7 +368,13 @@ export abstract class EditorVoices
     public static readonly POKEY =                    new EditorVoices.EntityEditorVoices('Pokey',                           SoundCreator.singleEditorVoiceWithSigningPart('Pokey',),)
     public static readonly SNOW_POKEY =               new EditorVoices.EntityEditorVoices('Snow Pokey',                      SoundCreator.singleEditorVoiceWithSigningPart('SnowPokey',),)
 
-    public static readonly THWOMP =                   new EditorVoices.EntityEditorVoices('Thwomp',                          SoundCreator.singleEditorVoiceWithVoice('thwomp',),)
+    public static readonly THWOMP =                   new class EditorVoices_Thwomp extends EditorVoices.EntityEditorVoices {
+
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return [instance.THWOMP, instance.SIDEWAYS_THWOMP,]
+        }
+
+    }('Thwomp',                          SoundCreator.singleEditorVoiceWithVoice('thwomp',),)
 
     public static readonly MONTY_MOLE =               new EditorVoices.EntityEditorVoices('Monty Mole',                      SoundCreator.singleEditorVoiceWithVoice('montymole',),)
     public static readonly ROCKY_WRENCH =             new EditorVoices.EntityEditorVoices('Rocky Wrench',                    SoundCreator.singleEditorVoiceWithVoice('rockeyrench',),)

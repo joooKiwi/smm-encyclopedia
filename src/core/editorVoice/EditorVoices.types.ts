@@ -204,6 +204,5 @@ export type PossibleEnglishName = | PossibleEnglishName_EditorVoice
                                   | PossibleEnglishName_PlayableCharacter
                                   | 'Block' | `Big Mushroom (SMM${| EmptyString | 2})`
                                   | 'Koopa Troopa' | 'Cheep Cheep' | 'Sun'
-                                  | 'Trampoline'
 
 //endregion -------------------- English name --------------------

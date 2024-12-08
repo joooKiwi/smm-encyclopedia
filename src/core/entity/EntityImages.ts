@@ -684,6 +684,7 @@ export abstract class EntityImages
     public static readonly SNOW_POKEY =                                    new EntityImages.Editor('Snow Pokey', EditorEntityImages.SNOW_POKEY,)
 
     public static readonly THWOMP =                                        new EntityImages.Editor('Thwomp', EditorEntityImages.THWOMP,)
+    public static readonly SIDEWAYS_THWOMP =                               new EntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new EntityImages.Editor('Monty Mole', EditorEntityImages.MONTY_MOLE,)
     public static readonly ROCKY_WRENCH =                                  new EntityImages.Editor('Rocky Wrench', EditorEntityImages.ROCKY_WRENCH,)

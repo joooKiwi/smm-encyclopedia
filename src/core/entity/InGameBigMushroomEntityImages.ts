@@ -347,6 +347,7 @@ export abstract class InGameBigMushroomEntityImages
     public static readonly SNOW_POKEY =                                    new InGameBigMushroomEntityImages.Null()
 
     public static readonly THWOMP =                                        new InGameBigMushroomEntityImages.ExistantIn1Folder('Thwomp', 'Dossun', 'wait.0',)
+    public static readonly SIDEWAYS_THWOMP =                               new InGameBigMushroomEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new InGameBigMushroomEntityImages.ExistantIn1Folder('Monty Mole', 'Choropoo', 'appear.0', 'walk.0', 'walk.1',)
     public static readonly ROCKY_WRENCH =                                  new InGameBigMushroomEntityImages.ExistantIn1Folder('Rocky Wrench', 'Poo', 'damage.0', 'damage.1', 'throw.0', 'throw.1', 'wait.0', 'wait2.0',)

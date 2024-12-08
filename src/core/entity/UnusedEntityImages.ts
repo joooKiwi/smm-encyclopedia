@@ -423,6 +423,7 @@ export abstract class UnusedEntityImages
     public static readonly SNOW_POKEY =                                    new UnusedEntityImages.Null()
 
     public static readonly THWOMP =                                        new UnusedEntityImages.Null()
+    public static readonly SIDEWAYS_THWOMP =                               new UnusedEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new UnusedEntityImages.Null()
     public static readonly ROCKY_WRENCH =                                  new UnusedEntityImages.Null()

@@ -1957,6 +1957,7 @@ export abstract class EditorEntityImages
     public static readonly SNOW_POKEY =                                    new EditorEntityImages.ExistantAsOneInOnlySnow('Snow Pokey', 'Sambo_snow_00',)
 
     public static readonly THWOMP =                                        new EditorEntityImages.ExistantAsOneInAll('Thwomp', 'Dossun_00',)
+    public static readonly SIDEWAYS_THWOMP =                               new EditorEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new EditorEntityImages.ExistantAsOneInNotSm3dw('Monty Mole', 'ChoroPoo_00',)
     public static readonly ROCKY_WRENCH =                                  new EditorEntityImages.ExistantAsOneInNotSm3dw('Rocky Wrench', 'Poo_00',)

@@ -308,6 +308,7 @@ export abstract class UnusedBigMushroomEntityImages
     public static readonly SNOW_POKEY =                                    new UnusedBigMushroomEntityImages.Null()
 
     public static readonly THWOMP =                                        new UnusedBigMushroomEntityImages.Null()
+    public static readonly SIDEWAYS_THWOMP =                               new UnusedBigMushroomEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new UnusedBigMushroomEntityImages.Null()
     public static readonly ROCKY_WRENCH =                                  new UnusedBigMushroomEntityImages.Null()
