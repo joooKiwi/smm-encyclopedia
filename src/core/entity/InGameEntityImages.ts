@@ -276,15 +276,31 @@ export abstract class InGameEntityImages
     }
 
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 5 {@link InGameImageFile} in only {@link SM3DW} */
-    private static readonly ExistantAs5InOnlySm3dw = class ExistantAs5InOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 1 {@link InGameImageFile} in only {@link SM3DW} */
+    private static readonly ExistantAs1InOnlySm3dw = class ExistantAs1InOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, private readonly fileName: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        public override _createImageFiles() {
+            return [[SM3DW, inGameImage(this, this.folderName, this.fileName,),],] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage_Regular} as 4 {@link InGameImageFile} in only {@link SM3DW} */
+    private static readonly ExistantAs4InOnlySm3dw = class ExistantAs4InOnlySm3dw_InGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
 
         public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME,
                            private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,
-                           private readonly fileName4: FILE_NAME, private readonly fileName5: FILE_NAME,) {
+                           private readonly fileName4: FILE_NAME,) {
             super(englishName,)
         }
 
@@ -295,7 +311,6 @@ export abstract class InGameEntityImages
                 [SM3DW, inGameImage(this, folderName, this.fileName2,),],
                 [SM3DW, inGameImage(this, folderName, this.fileName3,),],
                 [SM3DW, inGameImage(this, folderName, this.fileName4,),],
-                [SM3DW, inGameImage(this, folderName, this.fileName5,),],
             ] as const
         }
 
@@ -2314,7 +2329,7 @@ export abstract class InGameEntityImages
     public static readonly SUPER_BELL =                                    new InGameEntityImages.Null()
 
     public static readonly SUPER_HAMMER =                                  new InGameEntityImages.Null()
-    public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER =                new InGameEntityImages.Null()
+    public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER =                new InGameEntityImages.ExistantAs4InOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
 
     public static readonly BOOMERANG_FLOWER =                              new InGameEntityImages.Null()
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER =                  new InGameEntityImages.Null()
@@ -3722,7 +3737,7 @@ export abstract class InGameEntityImages
         'lift_yougan2_Alb.000', 'lift_yougan2_Alb.001', 'lift_yougan2_Alb.006', 'lift_yougan2_Alb.012', 'lift_yougan2_Alb.016', 'lift_yougan2_Alb.019',
     ],)
 
-    public static readonly CRATE =                                         new InGameEntityImages.ExistantAs5InOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0', 'WoodBox_Alb.1', 'WoodBox_Alb.2', 'WoodBox_Alb.3', 'WoodBox_Alb.4',)
+    public static readonly CRATE =                                         new InGameEntityImages.ExistantAs1InOnlySm3dw('Crate', '3W Object - WoodBox', 'WoodBox_Alb.0',)
 
     public static readonly KEY =                                           new InGameEntityImages.ExistantAs4InNotSm3dw('Key', 'Object - Key', 'wait.0', 'wait.1', 'wait.2', 'wait.3', [
         'key_Alb.000', 'key_Alb.001', 'key_Alb.002', 'key_Alb.003', 'key_Alb.004', 'key_Alb.009', 'key_Alb.010', 'key_Alb.011', 'key_Alb.012',

@@ -560,7 +560,7 @@ export abstract class EntityImages
     public static readonly SUPER_BELL =                                    new EntityImages.Editor('Super Bell', EditorEntityImages.SUPER_BELL,)
 
     public static readonly SUPER_HAMMER =                                  new EntityImages.Editor('Super Hammer', EditorEntityImages.SUPER_HAMMER,)
-    public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER =                new EntityImages.Null()
+    public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER =                new EntityImages.InGame('Builder Box thrown by a player', InGameEntityImages.BUILDER_BOX_THROWN_BY_A_PLAYER,)
 
     public static readonly BOOMERANG_FLOWER =                              new EntityImages.Editor('Boomerang Flower', EditorEntityImages.BOOMERANG_FLOWER,)
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER =                  new EntityImages.Null()
