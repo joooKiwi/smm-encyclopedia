@@ -2710,7 +2710,7 @@ export abstract class InGameEntityImages
         'wait_Alb.012', 'wait_Alb.013', 'wait_Alb.014', 'wait_Alb.015', 'wait_Alb.016', 'wait_Alb.017', 'wait_Alb.018', 'wait_Alb.019',
         'wait_Alb.020', 'wait_Alb.021', 'wait_Alb.022',
     ],)
-    public static readonly CHAIN_CHOMP_STUMP =                             new InGameEntityImages.Null()
+     public static readonly CHAIN_CHOMP_STUMP =                             new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Chain Chomp’s Stump', 'Enemy - Wanwan', ['kui.0',], ['wanwan_kui_Alb.000',],)
 
     public static readonly SPIKE =                                         new InGameEntityImages.ExistantAs7InNotSm3dw('Spike', 'Enemy - Gabon', 'throw_ed.0', 'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'wait.0', 'wait.1', [
         'parawait_Alb.000', 'parawait_Alb.002', 'parawait_Alb.004', 'parawait_Alb.006', 'parawait_Alb.008', 'parawait_Alb.010', 'parawait_Alb.012', 'parawait_Alb.014', 'parawait_Alb.016', 'parawait_Alb.018', 'parawait_Alb.020', 'parawait_Alb.022', 'parawait_Alb.024', 'parawait_Alb.026', 'parawait_Alb.028', 'parawait_Alb.030', 'parawait_Alb.032', 'parawait_Alb.034', 'parawait_Alb.036', 'parawait_Alb.038', 'parawait_Alb.040', 'parawait_Alb.042', 'parawait_Alb.044',
