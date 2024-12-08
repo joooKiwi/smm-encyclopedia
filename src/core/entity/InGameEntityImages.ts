@@ -3110,7 +3110,7 @@ export abstract class InGameEntityImages
     public static readonly BULL_EYE_BANZAI =                               new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Bull’s-Eye Banzai', 'Enemy - KillerMagnum', ['search.0',], ['killer_mag_surch_Alb.000',],)
     public static readonly CAT_BANZAI_BILL =                               new InGameEntityImages.Null()
 
-    public static readonly CANNON =                                        new InGameEntityImages.Null()
+    public static readonly CANNON =                                        new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Cannon', 'Enemy - SenkanHoudai', ['senkan_houdai_base', 'senkan_houdai_houshin',], ['houdai_slope_Alb.000', 'houdai_houshin_Alb.000',],)
     public static readonly CANNONBALL =                                    new InGameEntityImages.Null()
     public static readonly RED_CANNON =                                    new InGameEntityImages.Null()
     public static readonly RED_CANNONBALL =                                new InGameEntityImages.Null()
