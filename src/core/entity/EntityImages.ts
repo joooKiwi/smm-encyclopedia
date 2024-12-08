@@ -663,7 +663,7 @@ export abstract class EntityImages
 
     public static readonly CHAIN_CHOMP =                                   new EntityImages.EditorWithNoBlueVariantDuplicate('Chain Chomp', EditorEntityImages.CHAIN_CHOMP,)
     public static readonly UNCHAINED_CHOMP =                               new EntityImages.EditorWithNoBlueVariantDuplicate('Unchained Chomp', EditorEntityImages.UNCHAINED_CHOMP,)
-    public static readonly CHAIN_CHOMP_STUMP =                             new EntityImages.Null()
+    public static readonly CHAIN_CHOMP_STUMP =                             new EntityImages.InGame('Chain Chomp’s Stump', InGameEntityImages.CHAIN_CHOMP_STUMP,)
 
     public static readonly SPIKE =                                         new EntityImages.Editor('Spike', EditorEntityImages.SPIKE,)
     public static readonly SPIKE_BALL =                                    new EntityImages.EditorWithNoBlueVariantDuplicate('Spike Ball', EditorEntityImages.SPIKE_BALL,)
@@ -814,7 +814,7 @@ export abstract class EntityImages
     public static readonly VINE =                                          new EntityImages.Editor('Vine', EditorEntityImages.VINE,)
     public static readonly TREE =                                          new EntityImages.EditorAsTree()
 
-    public static readonly STARTING_ARROW =                                new EntityImages.Null()
+    public static readonly STARTING_ARROW =                                new EntityImages.InGame('Starting Arrow', InGameEntityImages.STARTING_ARROW,)
     public static readonly ARROW_SIGN =                                    new EntityImages.Editor('Arrow Sign', EditorEntityImages.ARROW_SIGN,)
 
     public static readonly CHECKPOINT_FLAG =                               new EntityImages.Editor('Checkpoint Flag', EditorEntityImages.CHECKPOINT_FLAG,)
