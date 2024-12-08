@@ -2635,7 +2635,25 @@ export abstract class InGameEntityImages
         'walk_normal_body_Alb.030', 'walk_normal_body_Alb.032', 'walk_normal_body_Alb.034', 'walk_normal_body_Alb.036', 'walk_normal_body_Alb.038',
         'walk_normal_body_Alb.040', 'walk_normal_body_Alb.042', 'walk_normal_body_Alb.043',
     ],)
-    public static readonly ANGRY_WIGGLER =                                 new InGameEntityImages.Null()
+    public static readonly ANGRY_WIGGLER =                                 new InGameEntityImages.ExistantAsNoVariantWithSameSmb3Smw('Angry Wiggler', 'Enemy - Hanachan', [
+        'head_angry.0',
+        'edit_body_angry',
+        'fly_angry.0',
+        'walk_angry.0', 'walk_angry.1',
+    ], [
+        'head_angry.0',
+        'edit_body_angry',
+        'fly_angry.0',
+        'walk_angry.0', 'walk_angry.1',
+        'walk_angry.2', 'walk_angry.3',
+    ], [
+        'walk_angry_head_Alb.000', 'walk_angry_head_Alb.002', 'walk_angry_head_Alb.004', 'walk_angry_head_Alb.006', 'walk_angry_head_Alb.008',
+        'walk_angry_head_Alb.010', 'walk_angry_head_Alb.012', 'walk_angry_head_Alb.014', 'walk_angry_head_Alb.016', 'walk_angry_head_Alb.018',
+        'walk_angry_head_Alb.020', 'walk_angry_head_Alb.021',
+        'walk_angry_body_Alb.000', 'walk_angry_body_Alb.002', 'walk_angry_body_Alb.004', 'walk_angry_body_Alb.006', 'walk_angry_body_Alb.008',
+        'walk_angry_body_Alb.010', 'walk_angry_body_Alb.012', 'walk_angry_body_Alb.014', 'walk_angry_body_Alb.016', 'walk_angry_body_Alb.018',
+        'walk_angry_body_Alb.020', 'walk_angry_body_Alb.021',
+    ],)
 
     public static readonly PIRANHA_PLANT =                                 new InGameEntityImages.ExistantAs2InNotSmwSm3dw('Piranha Plant', 'Enemy - Packun', 'wait.0', 'wait.1', [
         'dokan_attack_Alb.000', 'dokan_attack_Alb.001', 'dokan_attack_Alb.002', 'dokan_attack_Alb.003', 'dokan_attack_Alb.004', 'dokan_attack_Alb.005', 'dokan_attack_Alb.006', 'dokan_attack_Alb.007', 'dokan_attack_Alb.008', 'dokan_attack_Alb.009',
