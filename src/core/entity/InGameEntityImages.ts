@@ -2704,7 +2704,12 @@ export abstract class InGameEntityImages
     public static readonly PIRANHA_CREEPER =                               new InGameEntityImages.Null()
 
     public static readonly CHAIN_CHOMP =                                   new InGameEntityImages.Null()
-    public static readonly UNCHAINED_CHOMP =                               new InGameEntityImages.Null()
+    public static readonly UNCHAINED_CHOMP =                               new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Unchained Chomp', 'Enemy - Wanwan', ['chain.0', 'wait.0', 'wait.1',], [
+        'wanwan_chainB_Alb.000',
+        'wait_Alb.000', 'wait_Alb.001', 'wait_Alb.002', 'wait_Alb.003', 'wait_Alb.004', 'wait_Alb.005', 'wait_Alb.006', 'wait_Alb.007', 'wait_Alb.008',
+        'wait_Alb.012', 'wait_Alb.013', 'wait_Alb.014', 'wait_Alb.015', 'wait_Alb.016', 'wait_Alb.017', 'wait_Alb.018', 'wait_Alb.019',
+        'wait_Alb.020', 'wait_Alb.021', 'wait_Alb.022',
+    ],)
     public static readonly CHAIN_CHOMP_STUMP =                             new InGameEntityImages.Null()
 
     public static readonly SPIKE =                                         new InGameEntityImages.ExistantAs7InNotSm3dw('Spike', 'Enemy - Gabon', 'throw_ed.0', 'throw_st.0', 'throw_st.1', 'throw_st.2', 'throw_st.3', 'wait.0', 'wait.1', [
