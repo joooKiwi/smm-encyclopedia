@@ -166,63 +166,63 @@ export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
-type PossibleEnglishName_BigMushroom = `Big Mushroom${| EmptyString | ` (${'classic' | 'modern'})`}`
+type PossibleEnglishName_BigMushroom = 'Big Mushroom' | 'Big Mushroom (classic)' | 'Big Mushroom (modern)'
 type PossibleEnglishName_Shoe = | 'Shoe' | 'Stiletto'
-type PossibleEnglishName_Yoshi = `${| EmptyString | 'Red '}Yoshi`
-type PossibleEnglishName_Block = `${| 'Brick' | 'Cristal' | 'Rotating'} Block`
-type PossibleEnglishName_HardBlock = `${| 'Hard' | 'Rock'} Block`
-type PossibleEnglishName_KoopaTroopa = `${| 'Green' | 'Red'} Koopa Troopa`
-type PossibleEnglishName_BeachKoopa = `${| 'Green' | 'Red'} Beach Koopa`
-type PossibleEnglishName_KoopaShell = `${| 'Green' | 'Red'} Koopa Shell`
-type PossibleEnglishName_CheepCheep = `${| 'Green' | 'Red'} Cheep Cheep`
+type PossibleEnglishName_Yoshi = 'Yoshi' | 'Red Yoshi'
+type PossibleEnglishName_Block = 'Brick Block' | 'Cristal Block' | 'Rotating Block'
+type PossibleEnglishName_HardBlock = 'Hard Block' | 'Rock Block'
+type PossibleEnglishName_KoopaTroopa = 'Green Koopa Troopa' | 'Red Koopa Troopa'
+type PossibleEnglishName_BeachKoopa = 'Green Beach Koopa' | 'Red Beach Koopa'
+type PossibleEnglishName_KoopaShell = 'Green Koopa Shell' | 'Red Koopa Shell'
+type PossibleEnglishName_CheepCheep = 'Green Cheep Cheep' | 'Red Cheep Cheep'
 type PossibleEnglishName_DryBones = 'Dry Bones' | 'Parabones'
 type PossibleEnglishName_BuzzyBeetleAndShell = 'Buzzy Beetle' | 'Para-Beetle' | 'Buzzy Shell'
-type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | `Spiny ${| 'Egg' | 'Shell'}`
-type PossibleEnglishName_SpikeTop = `${| EmptyString | 'Fast '}${| EmptyString | 'Winged '}Spike Top`
-type PossibleEnglishName_BulletBill = `${`${| EmptyString | 'Cat '}Bullet` | 'Bull’s-Eye'} Bill`
-type PossibleEnglishName_BanzaiBill = `${| EmptyString | 'Cat '}Banzai Bill` | 'Bull’s-Eye Banzai'
+type PossibleEnglishName_SpinyAndShell = 'Spiny' | 'Winged Spiny' | 'Spiny Egg' | 'Spiny Shell'
+type PossibleEnglishName_SpikeTop = 'Spike Top' | 'Winged Spike Top' | 'Fast Spike Top' | 'Fast Winged Spike Top'
+type PossibleEnglishName_BulletBill = 'Bullet Bill' | 'Cat Bullet Bill' | 'Bull’s-Eye Bill'
+type PossibleEnglishName_BanzaiBill = 'Banzai Bill' | 'Cat Banzai Bill' | 'Bull’s-Eye Banzai'
 type PossibleEnglishName_Trampoline = | 'Trampoline' | 'Sideways Trampoline'
 type PossibleEnglishName_Goals = | 'Goal Pole' | 'Cards Roulette' | 'Giant Gate'
 export type PossibleEnglishName =
-    | `${| EmptyString | `${| 'Start' | 'Goal'} `}Ground`
-    | `${| 'Steep' | 'Gentle'} Slope`
+    | 'Ground' | 'Start Ground' | 'Goal Ground'
+    | 'Steep Slope' | 'Gentle Slope'
     | 'Water' | 'Lava' | 'Poison'
-    | `${| EmptyString | 'Clear '}Pipe`
-    | `Spike ${| 'Trap' | 'Block'}` | 'Jelectro' | 'Sea Urchin'
-    | `${| 'Mushroom' | 'Semisolid'} Platform` | 'Bridge'
+    | 'Pipe' | 'Clear Pipe'
+    | 'Spike Trap' | 'Jelectro' | 'Sea Urchin' | 'Spike Block'
+    | 'Mushroom Platform' | 'Semisolid Platform' | 'Bridge'
 
     | PossibleEnglishName_Block
     | PossibleEnglishName_HardBlock
-    | `${| 'Start' | 'Occlude'
-         | '?' | 'Hidden' | 'Empty' | '!'
-         | 'Note' | 'Music'
-         | 'Donut'
-         | 'Cloud'
-         | 'Dotted-Line'
-         | 'P'
-         | 'Blinking'
-         | 'Ice'} Block` | 'ON/OFF Switch'
+    | 'Start Block' | 'Occlude Block'
+    | '? Block' | 'Hidden Block' | 'Empty Block' | '! Block'
+    | 'Note Block' | 'Music Block'
+    | 'Donut Block'
+    | 'Cloud Block'
+    | 'Dotted-Line Block'
+    | 'P Block'
+    | 'Blinking Block'
+    | 'Ice Block' | 'ON/OFF Switch'
     | 'Icicle'
-    | `${| EmptyString | `${| 'Frozen' | 'Pink'} ` | `${10 | 30 | 50}-`}Coin`
+    | 'Coin' | 'Frozen Coin' | 'Pink Coin' | '10-Coin' | '30-Coin' | '50-Coin'
 
-    | `${| 'Super' | 'Mystery' | 'Weird' | 'SMB2'} Mushroom`
-    | `${| 'Fire' | 'Superball'} Flower`
+    | 'Super Mushroom' | 'Mystery Mushroom' | 'Weird Mushroom' | 'SMB2 Mushroom'
+    | 'Fire Flower' | 'Superball Flower'
     | 'Master Sword'
     | PossibleEnglishName_BigMushroom
     | 'Super Leaf' | 'Frog Suit'
     | 'Cape Feather' | 'Power Balloon'
     | 'Propeller Mushroom' | 'Super Acorn'
-    | `Super ${| 'Bell' | 'Hammer'}` | 'Boomerang Flower'
-    | `${| 'Cannon' | 'Propeller' | 'Red POW'} Box` | `${| 'Goomba' | 'Bullet Bill'} Mask`
-    | `${| 'Fireball' | 'Superball' | 'Builder Box' | 'Boomerang' | 'Cannonball'} thrown by a player`
-    | `${| 'Bomb' | 'Arrow'} thrown by a Link`
+    | 'Super Bell' | 'Super Hammer' | 'Boomerang Flower'
+    | 'Cannon Box' | 'Propeller Box' | 'Red POW Box' | 'Goomba Mask' | 'Bullet Bill Mask'
+    | 'Fireball thrown by a player' | 'Superball thrown by a player' | 'Builder Box thrown by a player' | 'Boomerang thrown by a player' | 'Cannonball thrown by a player'
+    | 'Bomb thrown by a Link' | 'Arrow thrown by a Link'
     | 'Super Star'
-    | `${| '1-Up' | 'Rotten'} Mushroom`
+    | '1-Up Mushroom' | 'Rotten Mushroom'
 
-    | `${PossibleEnglishName_Shoe}${| EmptyString | ' Goomba'}`
-    | PossibleEnglishName_Yoshi | `${| EmptyString | 'Red '}Yoshi’s Egg`
-    | `${| 'Fire' | 'Poison' | 'Bone' | 'Wrench' | 'Hammer'} thrown by a Yoshi`
-    | `${|'Fire'} thrown by a Red Yoshi`
+    | PossibleEnglishName_Shoe | 'Shoe Goomba' | 'Stiletto Goomba'
+    | PossibleEnglishName_Yoshi | 'Yoshi’s Egg' | 'Red Yoshi’s Egg'
+    | 'Fire thrown by a Yoshi' | 'Poison thrown by a Yoshi' | 'Bone thrown by a Yoshi' | 'Wrench thrown by a Yoshi' | 'Hammer thrown by a Yoshi'
+    | 'Fire thrown by a Red Yoshi'
 
     | 'Goomba' | 'Galoomba' | 'Goombrat' | 'Goombud'
     | PossibleEnglishName_KoopaTroopa | PossibleEnglishName_BeachKoopa | PossibleEnglishName_KoopaShell
@@ -230,72 +230,77 @@ export type PossibleEnglishName =
     | PossibleEnglishName_BuzzyBeetleAndShell
     | PossibleEnglishName_SpinyAndShell | '(Winged Spiny’s projectile)'
     | PossibleEnglishName_SpikeTop
-    | `${| EmptyString | 'Spiny '}Skipsqueak`
-    | `${| EmptyString | 'Horned '}Ant Trooper`
+    | 'Skipsqueak' | 'Spiny Skipsqueak'
+    | 'Ant Trooper' | 'Horned Ant Trooper'
     | 'Stingby'
     | PossibleEnglishName_CheepCheep | 'Deep Cheep' | 'Blurps' | 'Fish Bone'
-    | Exclude<`${| EmptyString | 'Baby '}Blooper${| EmptyString | ' Nanny'}`, 'Baby Blooper Nanny'>
+    | 'Blooper' | 'Blooper Nanny' | 'Baby Blooper'
     | 'Porcupuffer'
-    | `${| EmptyString | 'Angry '}Wiggler`
-    | `${| EmptyString | `${| 'Jumping' | 'Fire'} `}Piranha Plant` | 'Fireball thrown by a Fire Piranha Plant'
+    | 'Wiggler' | 'Angry Wiggler'
+    | 'Piranha Plant' | 'Jumping Piranha Plant' | 'Fire Piranha Plant' | 'Fireball thrown by a Fire Piranha Plant'
     | 'Muncher'
     | 'Piranha Creeper'
-    | `${| 'Chain' | 'Unchained'} Chomp` | 'Chain Chomp’s Stump'
+    | 'Chain Chomp' | 'Unchained Chomp' | 'Chain Chomp’s Stump'
     | 'Spike' | 'Spike Ball' | 'Snowball'
-    | `Lakitu${| EmptyString | '’s Cloud'}`
-    | `Boo${| EmptyString | ' Buddies'}` | 'Stretch' | 'Peepa'
-    | `${| EmptyString | 'Lit '}Bob-omb`
-    | `${| EmptyString | 'Snow '}Pokey`
+    | 'Lakitu' | 'Lakitu’s Cloud'
+    | 'Boo' | 'Boo Buddies' | 'Stretch' | 'Peepa'
+    | 'Bob-omb' | 'Lit Bob-omb'
+    | 'Pokey' | 'Snow Pokey'
     | 'Thwomp'
     | 'Monty Mole' | 'Rocky Wrench' | 'Wrench thrown by a Rocky Wrench'
     | 'Magikoopa' | '(Magikoopa’s projectile)'
-    | `${| 'Hammer' | 'Sledge' | `${| EmptyString | 'Heavy '}Fire`} Bro` | 'Hammer thrown by a Hammer / Sledge Bro' | 'Fireball thrown by a (Heavy) Fire Bro'
+    | 'Hammer Bro' | 'Sledge Bro' | 'Fire Bro' | 'Heavy Fire Bro' | 'Hammer thrown by a Hammer / Sledge Bro' | 'Fireball thrown by a (Heavy) Fire Bro'
     | 'Lava Bubble'
-    | `${| EmptyString | `${| 'Blasta' | 'Zappa'} `}Mechakoopa` | 'Homing Missile thrown by a Blasta Mechakoopa' | 'Electricity Beam thrown by a Zappa Mechakoopa'
+    | 'Mechakoopa' | 'Blasta Mechakoopa' | 'Zappa Mechakoopa' | 'Homing Missile thrown by a Blasta Mechakoopa' | 'Electricity Beam thrown by a Zappa Mechakoopa'
     | 'Charvaargh'
     | 'Bully'
 
-    | `${| 'Bill' | 'Bull’s-Eye'} Blaster` | PossibleEnglishName_BulletBill
+    | 'Bill Blaster' | 'Bull’s-Eye Blaster' | PossibleEnglishName_BulletBill
     | PossibleEnglishName_BanzaiBill
-    | `${| EmptyString | 'Red '}${|`Cannon${| EmptyString | 'ball'}`}`
+    | 'Cannon' | 'Cannonball' | 'Red Cannon' | 'Red Cannonball'
     | 'Burner'
     | 'Fire Bar'
     | 'Skewer'
-    | `${| EmptyString | 'Fire '}${| 'Koopa' | 'Junior'} Clown Car` | 'Fire thrown by a Fire [Koopa / Junior] Clown Car'
-    | `${| EmptyString | 'Koopa Troopa '}Car`
+    | 'Koopa Clown Car' | 'Junior Clown Car' | 'Fire Koopa Clown Car' | 'Fire Junior Clown Car' | 'Fire thrown by a Fire [Koopa / Junior] Clown Car'
+    | 'Koopa Troopa Car' | 'Car'
     | 'Grinder'
     | 'Angry Sun' | 'Moon'
 
-    | 'Bowser' | 'Meowser' | `${| 'Fire' | 'Hammer' | 'Falling Fire'} thrown by a Bowser`
+    | 'Bowser' | 'Meowser' | 'Fire thrown by a Bowser' | 'Hammer thrown by a Bowser' | 'Falling Fire thrown by a Bowser'
     | 'Bowser Jr.' | 'Fire thrown by a Bowser Jr.'
-    | 'Boom Boom' | `Pom Pom${| EmptyString | '’s clone'}` | 'Shuriken thrown by a Pom Pom'
-    | `${| 'Larry' | 'Iggy' | 'Wendy' | 'Lemmy' | 'Roy' | 'Morton' | 'Ludwig'}${| EmptyString | '’s Wand'}`
-    | `(${| 'Larry’s' | 'Iggy’s' | 'Wendy’s' | 'Lemmy’s' | 'Roy’s' | `Morton’s ${| 'Thrown' | 'Ground'}` | 'Ludwig’s'} projectile)` | 'Candy Ring thrown by a Wendy' | 'Magic Ball thrown by a Lemmy'
+    | 'Boom Boom' | 'Pom Pom' | 'Pom Pom’s clone' | 'Shuriken thrown by a Pom Pom'
+    | 'Larry' | 'Larry’s Wand' | '(Larry’s projectile)'
+    | 'Iggy' | 'Iggy’s Wand' | '(Iggy’s projectile)'
+    | 'Wendy' | 'Wendy’s Wand' | 'Candy Ring thrown by a Wendy' | '(Wendy’s projectile)'
+    | 'Lemmy' | 'Lemmy’s Wand' | 'Magic Ball thrown by a Lemmy' | '(Lemmy’s projectile)'
+    | 'Roy' | 'Roy’s Wand' | '(Roy’s projectile)'
+    | 'Morton' | 'Morton’s Wand' | '(Morton’s Thrown projectile)' | '(Morton’s Ground projectile)'
+    | 'Ludwig' | 'Ludwig’s Wand' | '(Ludwig’s projectile)'
 
     | 'Bumper'
     | 'Swinging Claw'
     | 'Twister'
     | 'One-Way Wall'
-    | `Track${| EmptyString | ' Block'}`
+    | 'Track' | 'Track Block'
     | 'Vine' | 'Tree'
     | 'Starting Arrow' | 'Arrow Sign'
     | 'Checkpoint Flag' | PossibleEnglishName_Goals
     | 'Castle' | 'Ending Castle Door' | 'Axe'
     | 'Dash Block'
-    | `${| EmptyString | 'Fast '}Snake Block`
-    | `${| EmptyString | 'Fast '}Conveyor Belt`
-    | `${| 'Mushroom' | 'ON/OFF'} Trampoline`
-    | `${| EmptyString | `${| 'Flimsy' | 'Cloud'} `}Lift`
+    | 'Snake Block' | 'Fast Snake Block'
+    | 'Conveyor Belt' | 'Fast Conveyor Belt'
+    | 'Mushroom Trampoline' | 'ON/OFF Trampoline'
+    | 'Lift' | 'Flimsy Lift' | 'Cloud Lift'
     | 'Seesaw'
-    | `${| EmptyString | 'Fast '}Lava Lift`
+    | 'Lava Lift' | 'Fast Lava Lift'
     | 'Crate'
-    | `${| EmptyString | 'Cursed '}Key` | 'Phanto'
+    | 'Key' | 'Cursed Key' | 'Phanto'
     | PossibleEnglishName_Trampoline | 'Hop-Chops'
-    | `${| EmptyString | 'Red '}POW Block`
+    | 'POW Block' | 'Red POW Block'
     | 'P Switch'
     | 'Stone'
-    | `${| `${| EmptyString | 'P '}Warp` | 'Key'} Door`
-    | `Warp Box${| EmptyString | ' (With Key)'}`
+    | 'Warp Door' | 'P Warp Door' | 'Key Door'
+    | 'Warp Box' | 'Warp Box (With Key)'
     | 'Wing' | 'Parachute'
     | 'Toad' | 'Caged Toadette'
     | 'Bubble'
