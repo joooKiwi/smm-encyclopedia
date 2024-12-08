@@ -3113,7 +3113,7 @@ export abstract class InGameEntityImages
     public static readonly CANNON =                                        new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Cannon', 'Enemy - SenkanHoudai', ['senkan_houdai_base', 'senkan_houdai_houshin',], ['houdai_slope_Alb.000', 'houdai_houshin_Alb.000',],)
     public static readonly CANNONBALL =                                    new InGameEntityImages.ExistantAsBlueVariant('Cannonball', 'Enemy - SenkanHoudai', ['senkan_houdai_ball.0', 'senkan_houdai_ball.1', 'senkan_houdai_ball.2', 'senkan_houdai_ball.3',], ['senkan_houdai_ball',], ['senkan_houdai_ball',], ['houdai_ball_Alb.000',],)
     public static readonly RED_CANNON =                                    new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Red Cannon', 'Enemy - SenkanHoudai', ['search', 'senkan_houdai_search',], ['S_houdai_slope_Alb.000', 'S_houdai_houshin_Alb.000',],)
-    public static readonly RED_CANNONBALL =                                new InGameEntityImages.Null()
+    public static readonly RED_CANNONBALL =                                new InGameEntityImages.ExistantAsBlueVariant('Red Cannonball', 'Enemy - SenkanHoudai', ['senkan_houdai_ball_search.0', 'senkan_houdai_ball_search.1', 'senkan_houdai_ball_search.2', 'senkan_houdai_ball_search.3',], ['senkan_houdai_ball_search',], ['senkan_houdai_ball_search',], ['S_houdai_ball_Alb.000',],)
 
     public static readonly BURNER =                                        new InGameEntityImages.ExistantAsBurner()
 
