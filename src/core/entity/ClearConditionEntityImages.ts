@@ -863,7 +863,7 @@ export abstract class ClearConditionEntityImages
     public static readonly WING =                                          new ClearConditionEntityImages.Null()
     public static readonly PARACHUTE =                                     new ClearConditionEntityImages.Null()
 
-    public static readonly TOAD =                                          new ClearConditionEntityImages.Null()
+    public static readonly TOAD =                                          new ClearConditionEntityImages.ExistantOnOnlyNsmbu('Toad', 'Kinopio_00',)
     public static readonly CAGED_TOADETTE =                                new ClearConditionEntityImages.Null()
 
     public static readonly BUBBLE =                                        new ClearConditionEntityImages.Null()

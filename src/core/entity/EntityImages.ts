@@ -874,7 +874,7 @@ export abstract class EntityImages
     public static readonly WING =                                          new EntityImages.Editor('Wing', EditorEntityImages.WING,)
     public static readonly PARACHUTE =                                     new EntityImages.Editor('Parachute', EditorEntityImages.PARACHUTE,)
 
-    public static readonly TOAD =                                          new EntityImages.Null()
+    public static readonly TOAD =                                          new EntityImages.ClearCondition('Toad', ClearConditionEntityImages.TOAD,)
     public static readonly CAGED_TOADETTE =                                new EntityImages.Null()
 
     public static readonly BUBBLE =                                        new EntityImages.InGame('Bubble', InGameEntityImages.BUBBLE,)
