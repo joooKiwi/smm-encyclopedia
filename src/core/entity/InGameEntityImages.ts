@@ -2122,8 +2122,8 @@ export abstract class InGameEntityImages
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link STARTING_ARROW} */
     private static readonly ExistantAsStartingArrow = class ExistantAsBurner_InGameEntityImages
-        extends InGameEntityImages.Existant<'Starting Arrow', | InGameImageFile<`${| 'M1' | 'M3' | 'MW' | 'WU'} Object - Yajirushi${| EmptyString | ' S'}`, 'yajirushi'>
-                                                              | InGameImageFile<`WU Object - Yajirushi I`, 'yajirushi'>> {
+        extends InGameEntityImages.Existant<'Starting Arrow', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Yajirushi${| EmptyString | ' S'}`, 'yajirushi'>
+                                                              | InGameImageFile<`WU Object - Yajirushi${| EmptyString | ' S' | ' I'}`, 'kanban_yajirushi_Alb.000'>> {
 
         public constructor() { super('Starting Arrow',) }
 
@@ -2135,9 +2135,9 @@ export abstract class InGameEntityImages
                 [SMB3,  inGameImage(this, 'M3 Object - Yajirushi S',  'yajirushi',),],
                 [SMW,   inGameImage(this, 'MW Object - Yajirushi',    'yajirushi',),],
                 [SMW,   inGameImage(this, 'MW Object - Yajirushi S',  'yajirushi',),],
-                [NSMBU, inGameImage(this, 'WU Object - Yajirushi',    'yajirushi',),],
-                [NSMBU, inGameImage(this, 'WU Object - Yajirushi I',  'yajirushi',),],
-                [NSMBU, inGameImage(this, 'WU Object - Yajirushi S',  'yajirushi',),],
+                [NSMBU, inGameImage(this, 'WU Object - Yajirushi',    'kanban_yajirushi_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Yajirushi I',  'kanban_yajirushi_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Yajirushi S',  'kanban_yajirushi_Alb.000',),],
             ] as const
         }
 
