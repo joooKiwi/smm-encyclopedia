@@ -2740,7 +2740,7 @@ export abstract class InGameEntityImages
         'wait_Alb.000', 'wait_Alb.004', 'wait_Alb.008', 'wait_Alb.012', 'wait_Alb.016',
         'wait_Alb.020', 'wait_Alb.024', 'wait_Alb.028', 'wait_Alb.032', 'wait_Alb.036', 'wait_Alb.039',
     ],)
-    public static readonly LAKITU_CLOUD =                                  new InGameEntityImages.Null()
+    public static readonly LAKITU_CLOUD =                                  new InGameEntityImages.ExistantAsNoVariantWithSameSmbSmb3('Lakitu’s Cloud', 'Enemy - JugemCloud', ['wait.0',], ['wait.0', 'wait.1', 'wait.2', 'wait.3',], ['cloud_Alb.000',],)
 
     public static readonly BOO =                                           new InGameEntityImages.ExistantAs2InNotSm3dw('Boo', 'Enemy - Teresa', 'wait.0', 'walk.0', [
         'edited_wait_Alb.000', 'edited_wait_Alb.005', 'edited_wait_Alb.010', 'edited_wait_Alb.015',
