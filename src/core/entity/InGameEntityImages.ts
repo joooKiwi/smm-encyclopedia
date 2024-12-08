@@ -2721,7 +2721,25 @@ export abstract class InGameEntityImages
     public static readonly SPIKE_BALL =                                    new InGameEntityImages.ExistantAsBlueVariantWithSameSmbSmb3Smw('Spike Ball', 'Enemy - Gabonball', ['gabonball_model',], ['ball_model_Alb.000',],)
     public static readonly SNOWBALL =                                      new InGameEntityImages.ExistantAs1InNotSm3dwButDifferentNsmbu('Snowball', 'Enemy - GabonballSnow', 'gabonball_model', 'ball_model_Alb.000',)
 
-    public static readonly LAKITU =                                        new InGameEntityImages.Null()
+    public static readonly LAKITU =                                        new InGameEntityImages.ExistantAsNoVariant('Lakitu', 'Enemy - Jugem', [
+        'lift.0', 'lift.1',
+        'throw.0',
+        'wait.0',
+    ], [
+        'throw.0', 'throw.1', 'throw.2', 'throw.3', 'throw.4',
+        'wait.0', 'wait.1', 'wait.2', 'wait.3',
+    ], [
+        'throw.0', 'throw.1', 'throw.2',
+        'wait.0', 'wait.1',
+    ], [
+        'dead_Alb.000', 'dead_Alb.002', 'dead_Alb.004', 'dead_Alb.006', 'dead_Alb.008', 'dead_Alb.009',
+        'throw_Alb.000', 'throw_Alb.003', 'throw_Alb.006', 'throw_Alb.009', 'throw_Alb.012', 'throw_Alb.015', 'throw_Alb.018',
+        'throw_Alb.021', 'throw_Alb.024', 'throw_Alb.027', 'throw_Alb.030', 'throw_Alb.033', 'throw_Alb.036', 'throw_Alb.039', 'throw_Alb.041',
+        'throwR_Alb.000', 'throwR_Alb.003', 'throwR_Alb.006', 'throwR_Alb.009', 'throwR_Alb.012', 'throwR_Alb.015', 'throwR_Alb.018',
+        'throwR_Alb.021', 'throwR_Alb.024', 'throwR_Alb.027', 'throwR_Alb.030', 'throwR_Alb.033', 'throwR_Alb.036', 'throwR_Alb.039', 'throwR_Alb.041',
+        'wait_Alb.000', 'wait_Alb.004', 'wait_Alb.008', 'wait_Alb.012', 'wait_Alb.016',
+        'wait_Alb.020', 'wait_Alb.024', 'wait_Alb.028', 'wait_Alb.032', 'wait_Alb.036', 'wait_Alb.039',
+    ],)
     public static readonly LAKITU_CLOUD =                                  new InGameEntityImages.Null()
 
     public static readonly BOO =                                           new InGameEntityImages.ExistantAs2InNotSm3dw('Boo', 'Enemy - Teresa', 'wait.0', 'walk.0', [
