@@ -52,23 +52,23 @@ interface TableProperties<out CONTENT extends Content,
  */
 export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, color, headersColor, caption,}: TableProperties<CONTENT, OPTION>,) {
     const nonNullOptions = filterNotNull(options,)
-    const additionalClasses = retrieveAssociatedClass(nonNullOptions,)
+    const associatedClass = retrieveAssociatedClass(nonNullOptions,)
     const contents = retrieveContent(items, nonNullOptions,)
     const headers = retrieveHeader(nonNullOptions,)
 
     return <div id={id} className={`ttable ${color == null ? EMPTY_STRING : `table-${color}`} ${headersColor == null ? EMPTY_STRING : `headers-${headersColor}`} w-100`}>
-        <TableHeader>{additionalClasses}{headers}</TableHeader>
-        <TableContent>{additionalClasses}{contents}</TableContent>
-        <TableFooter>{additionalClasses}{headers}</TableFooter>
+        <TableHeader>{associatedClass}{headers}</TableHeader>
+        <TableContent>{associatedClass}{contents}</TableContent>
+        <TableFooter>{associatedClass}{headers}</TableFooter>
         <TableCaption>{caption}</TableCaption>
     </div>
 }
 
-function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
+function TableHeader({children: [additionalClass, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
     const columns = new Array<ReactJSXElement>(headers.length,)
     headers.forEach((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
-        columns[i] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses.get(i,)}`}>
+        columns[i] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell ${additionalClass.get(i,)}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
@@ -76,7 +76,7 @@ function TableHeader({children: [additionalClasses, headers,],}: SimpleReactProp
     return <div className="theader">{columns}</div>
 }
 
-function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleTableContent>]>,) {
+function TableContent({children: [associatedClass, contents,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleTableContent>]>,) {
     const tableContent = new Array<ReactJSXElement>(contents.length,)
     contents.forEach((content, i,) => {
         const rowContentKey = content[0]
@@ -85,7 +85,7 @@ function TableContent({children: [additionalClasses, contents,],}: SimpleReactPr
             if (rowColumnContent == null)
                 rowContent[j] = <div key={`table content (empty ${rowContentKey} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
             else
-                rowContent[j] = <div key={`table content (${rowContentKey} ${i + 1}-${j + 2})`} className={`tcell${additionalClasses.get(j,)}`}>{rowColumnContent}</div>
+                rowContent[j] = <div key={`table content (${rowContentKey} ${i + 1}-${j + 2})`} className={`tcell ${associatedClass.get(j,)}`}>{rowColumnContent}</div>
         },)
 
         tableContent[i] =
@@ -94,11 +94,11 @@ function TableContent({children: [additionalClasses, contents,],}: SimpleReactPr
     return <div className="tcontent">{tableContent}</div>
 }
 
-function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
+function TableFooter({children: [associatedClass, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
     const columns = new Array<ReactJSXElement>(headers.length,)
     headers.forEach((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
-        columns[i] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses.get(i,)}`}>
+        columns[i] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
             <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
