@@ -1,5 +1,3 @@
-import './LimitAppOption.scss'
-
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 

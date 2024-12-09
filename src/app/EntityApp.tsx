@@ -2,7 +2,6 @@ import 'app/_GameAsideContent.scss'
 import 'app/_GameStyleAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './EntityApp.scss'
-import 'app/options/EntityAppOption.scss'
 
 import type {Array, MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
