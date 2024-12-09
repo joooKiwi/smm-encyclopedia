@@ -47,32 +47,6 @@ class PredefinedMessageAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('predefined message.all', {
-        singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
-        pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
-    },) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<PredefinedMessageAppOption> {
-        return [PredefinedMessageAppOption.NAME,]
-    }
-
-
-    public getAdditionalClass(option: PredefinedMessageAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: PredefinedMessages, option: PredefinedMessageAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: PredefinedMessageAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -82,6 +56,8 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyPredefinedMessage (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new PredefinedMessageAppInterpreter()
+const items = appInterpreter.content
+const options = [PredefinedMessageAppOption.NAME,] as const
 
 /** @reactComponent */
 export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterProperties,) {
@@ -97,10 +73,17 @@ export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterP
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <PredefinedMessageList items={appInterpreter.content}/>
+        return <PredefinedMessageList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="predefinedMessage" interpreter={appInterpreter}/>
-    return <Table id="predefinedMessage-table" interpreter={appInterpreter}/>
+    return <Table id="predefinedMessage-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    return gameContentTranslation('predefined message.all', {
+        singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
+        pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
+    },)
 }
 
 //region -------------------- List --------------------

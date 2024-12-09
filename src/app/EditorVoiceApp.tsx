@@ -88,29 +88,6 @@ class EditorVoiceAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('editor voice.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<EditorVoiceAppOption> {
-        return [EditorVoiceAppOption.NAME, EditorVoiceAppOption.EDITOR_VOICE,]
-    }
-
-
-    public getAdditionalClass(option: EditorVoiceAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: EditorVoices, option: EditorVoiceAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: EditorVoiceAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -119,6 +96,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
     [ViewDisplays.TABLE, 'everyEditorVoice (table)',],
 ] as const satisfies Array<ViewAndRouteName>
+const options = [EditorVoiceAppOption.NAME, EditorVoiceAppOption.EDITOR_VOICE,] as const
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
@@ -148,12 +126,13 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
 /** @reactComponent */
 function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'gameStyles'>,) {
     const appInterpreter = new EditorVoiceAppInterpreter(games, times,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <EditorVoiceList items={appInterpreter.content}/>
+        return <EditorVoiceList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
-    return <Table id="editorVoice-table" interpreter={appInterpreter}/>
+    return <Table id="editorVoice-table" items={items} options={options} caption={gameContentTranslation('editor voice.all',)} headersColor="info"/>
 }
 
 //region -------------------- List --------------------

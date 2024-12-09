@@ -86,29 +86,6 @@ class CharacterNameAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('character name.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<CharacterNameAppOption> {
-        return [CharacterNameAppOption.NAME, CharacterNameAppOption.EDITOR_VOICE,]
-    }
-
-
-    public getAdditionalClass(option: CharacterNameAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: CharacterNames, option: CharacterNameAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: CharacterNameAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -117,6 +94,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
     [ViewDisplays.TABLE, 'everyCharacterName (table)',],
 ] as const satisfies Array<ViewAndRouteName>
+const options = [CharacterNameAppOption.NAME, CharacterNameAppOption.EDITOR_VOICE,] as const
 const uniqueNameRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
@@ -147,12 +125,13 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
 /** @reactComponent */
 function SubContent({viewDisplay, games, times,}: Omit<CharacterNameProperties, 'gameStyles'>,) {
     const appInterpreter = new CharacterNameAppInterpreter(games, times,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <CharacterNameList items={appInterpreter.content}/>
+        return <CharacterNameList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={uniqueNameRetriever}/>
-    return <Table id="characterName-table" interpreter={appInterpreter}/>
+    return <Table id="characterName-table" items={items} options={options} caption={gameContentTranslation('character name.all',)} headersColor="info"/>
 }
 
 //region -------------------- List --------------------

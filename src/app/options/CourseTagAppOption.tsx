@@ -1,41 +1,39 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}         from '@joookiwi/enumerable'
 
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/CourseTagAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {CourseTags}          from 'core/courseTag/CourseTags'
 
 import {CommonOptions}  from 'app/options/CommonOptions'
+import {TableOption}         from 'app/tools/table/TableOption'
 import {unfinishedText} from 'app/tools/text/UnfinishedText'
 
 export abstract class CourseTagAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<CourseTags> {
+    extends TableOption<CourseTags, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly NAME = new class CourseTagAppOption_Name extends CourseTagAppOption {
 
-        protected override _createContentOption(enumeration: CourseTags,) {
+        public override renderContent(enumeration: CourseTags,) {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly FIRST_APPEARANCE = new class CourseTagAppOption_Name extends CourseTagAppOption {
 
-        protected override _createContentOption(enumeration: CourseTags,) {
+        public override renderContent(enumeration: CourseTags,) {
             const value = enumeration.reference.firstAppearance
             if (value == null)
                 return null
             return <small className="text-body text-opacity-50">{value.simpleName}</small>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: 'first-appearance', element: unfinishedText('First appearance',),}
         }
 
@@ -65,51 +63,17 @@ export abstract class CourseTagAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: CourseTags,): ReactElement
-
-    public renderContent(enumeration: CourseTags,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

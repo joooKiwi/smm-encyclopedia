@@ -57,38 +57,6 @@ class MiiCostumeAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('mii costume.all', {
-        singularName: <TextComponent key="miiCostume-singularName" content={OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)} className="text-decoration-underline"/>,
-        pluralName: <TextComponent key="miiCostume-pluralName" content={OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)} className="text-decoration-underline"/>,
-    },) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<MiiCostumeAppOption> {
-        return [
-            MiiCostumeAppOption.IMAGE,
-            MiiCostumeAppOption.NAME,
-            MiiCostumeAppOption.OFFICIAL_NOTIFICATION,
-            MiiCostumeAppOption.CATEGORY,
-        ]
-    }
-
-
-    public getAdditionalClass(option: MiiCostumeAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: MiiCostumeAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -98,11 +66,19 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyMiiCostume (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MiiCostumeAppInterpreter()
+const items = appInterpreter.content
+const options = [
+    MiiCostumeAppOption.IMAGE,
+    MiiCostumeAppOption.NAME,
+    MiiCostumeAppOption.OFFICIAL_NOTIFICATION,
+    MiiCostumeAppOption.CATEGORY,
+] as const
 
 /** @reactComponent */
 export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
-    const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+    const {MII_COSTUME,} = OtherWordInTheGames
+    const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
 
     return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('mii costume.all', {singularName: miiCostume, pluralName: miiCostumes,},)}>
@@ -113,10 +89,21 @@ export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperti
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <MiiCostumeList items={appInterpreter.content}/>
+        return <MiiCostumeList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="miiCostume" interpreter={appInterpreter}/>
-    return <Table id="miiCostume-table" interpreter={appInterpreter}/>
+    return <Table id="miiCostume-table" items={items} options={options} caption={getCaption()} color="primary" headersColor="info"/>
+}
+
+function getCaption() {
+    const {MII_COSTUME,} = OtherWordInTheGames
+    const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+
+    return gameContentTranslation('mii costume.all', {
+        singularName: <TextComponent key="miiCostume-singularName" content={miiCostume} className="text-decoration-underline"/>,
+        pluralName: <TextComponent key="miiCostume-pluralName" content={miiCostumes} className="text-decoration-underline"/>,
+    },)
 }
 
 //region -------------------- List --------------------

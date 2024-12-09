@@ -102,41 +102,6 @@ class InstrumentAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('instrument.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<InstrumentAppOption> {
-        const gameStyles = this.#gameStyles
-
-        const options: MutableArray<InstrumentAppOption> = [InstrumentAppOption.NAME,]
-        if (gameStyles.hasSmb)
-            options.push(InstrumentAppOption.REFERENCE_SMB,)
-        if (gameStyles.hasSmb3)
-            options.push(InstrumentAppOption.REFERENCE_SMB3,)
-        if (gameStyles.hasSmw)
-            options.push(InstrumentAppOption.REFERENCE_SMW,)
-        if (gameStyles.hasNsmbu)
-            options.push(InstrumentAppOption.REFERENCE_NSMBU,)
-        options.push(InstrumentAppOption.SOUND,)
-        return options
-    }
-
-
-    public getAdditionalClass(option: InstrumentAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: Instruments, option: InstrumentAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: InstrumentAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -197,12 +162,27 @@ export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: 
 /** @reactComponent */
 function SubContent({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
     const appInterpreter = new InstrumentAppInterpreter(games, gameStyles, times,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <InstrumentList items={appInterpreter.content}/>
+        return <InstrumentList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="instrument" interpreter={appInterpreter}/>
-    return <Table id="instrument-table" interpreter={appInterpreter}/>
+    return <Table id="instrument-table" items={items} options={getOptions(gameStyles,)} caption={gameContentTranslation('instrument.all',)} headersColor="info"/>
+}
+
+function getOptions(gameStyles: GameStyleCollection,): Array<InstrumentAppOption> {
+    const options: MutableArray<InstrumentAppOption> = [InstrumentAppOption.NAME,]
+    if (gameStyles.hasSmb)
+        options.push(InstrumentAppOption.REFERENCE_SMB,)
+    if (gameStyles.hasSmb3)
+        options.push(InstrumentAppOption.REFERENCE_SMB3,)
+    if (gameStyles.hasSmw)
+        options.push(InstrumentAppOption.REFERENCE_SMW,)
+    if (gameStyles.hasNsmbu)
+        options.push(InstrumentAppOption.REFERENCE_NSMBU,)
+    options.push(InstrumentAppOption.SOUND,)
+    return options
 }
 
 //region -------------------- List --------------------

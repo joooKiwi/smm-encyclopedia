@@ -108,66 +108,6 @@ class EntityAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'secondary' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-        const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-        return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<EntityAppOption> {
-        const games = this.#games
-        const gameStyles = this.#gameStyles
-        const hasSmm2 = games.hasSmm2
-
-        const options: MutableArray<EntityAppOption> = []
-        if (gameStyles.hasSmb)
-            options.push(EntityAppOption.IMAGE_IN_SMB,)
-        if (gameStyles.hasSmb3)
-            options.push(EntityAppOption.IMAGE_IN_SMB3,)
-        if (gameStyles.hasSmw)
-            options.push(EntityAppOption.IMAGE_IN_SMW,)
-        if (gameStyles.hasNsmbu)
-            options.push(EntityAppOption.IMAGE_IN_NSMBU,)
-        if (gameStyles.hasSm3dw && hasSmm2) // The SMM2 validation is a fail-safe
-            options.push(EntityAppOption.IMAGE_IN_SM3DW,)
-        options.push(
-            EntityAppOption.NAME,
-            // EntityAppOption.GAME,
-            // EntityAppOption.GAME_STYLE,
-            // EntityAppOption.COURSE_THEME,
-            // EntityAppOption.TIME,
-            EntityAppOption.CATEGORY,
-        )
-        if (games.hasAllGames)
-            options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
-        else {
-            if (games.hasSmm1Or3ds)
-                options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
-            if (hasSmm2)
-                options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
-        }
-        options.push(EntityAppOption.PLAY_LIMIT,)
-        return options
-    }
-
-
-    public getAdditionalClass(option: EntityAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: Entities, option: EntityAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: EntityAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -249,12 +189,54 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
 /** @reactComponent */
 function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
     const appInterpreter = new EntityAppInterpreter(games, gameStyles, times,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <EntityList items={appInterpreter.content} gameStyles={gameStyles}/>
+        return <EntityList items={items} gameStyles={gameStyles}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="entity" interpreter={appInterpreter}/>
-    return <Table id="entity-table" interpreter={appInterpreter}/>
+    return <Table id="entity-table" items={items} options={getOptions(games, gameStyles,)} caption={getCaption()} headersColor="secondary"/>
+}
+
+function getOptions(games: GameCollection, gameStyles: GameStyleCollection, ): Array<EntityAppOption> {
+    const {hasSmm2,} = games
+    const options: MutableArray<EntityAppOption> = []
+    if (gameStyles.hasSmb)
+        options.push(EntityAppOption.IMAGE_IN_SMB,)
+    if (gameStyles.hasSmb3)
+        options.push(EntityAppOption.IMAGE_IN_SMB3,)
+    if (gameStyles.hasSmw)
+        options.push(EntityAppOption.IMAGE_IN_SMW,)
+    if (gameStyles.hasNsmbu)
+        options.push(EntityAppOption.IMAGE_IN_NSMBU,)
+    if (gameStyles.hasSm3dw && hasSmm2) // The SMM2 validation is a fail-safe
+        options.push(EntityAppOption.IMAGE_IN_SM3DW,)
+    options.push(
+        EntityAppOption.NAME,
+        // EntityAppOption.GAME,
+        // EntityAppOption.GAME_STYLE,
+        // EntityAppOption.COURSE_THEME,
+        // EntityAppOption.TIME,
+        EntityAppOption.CATEGORY,
+    )
+    if (games.hasAllGames)
+        options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
+    else {
+        if (games.hasSmm1Or3ds)
+            options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
+        if (hasSmm2)
+            options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
+    }
+    options.push(EntityAppOption.PLAY_LIMIT,)
+    return options
+}
+
+function getCaption() {
+    const {ENTITY,} = OtherWordInTheGames
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+
+    return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},)
 }
 
 //region -------------------- List --------------------

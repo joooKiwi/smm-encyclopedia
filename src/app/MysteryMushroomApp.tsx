@@ -66,48 +66,6 @@ class MysteryMushroomAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('mystery mushroom.all', {
-        singularName: OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,).toLowerCase(),
-        pluralName: OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName,).toLowerCase(),
-    },) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<MysteryMushroomAppOption> {
-        return [
-            MysteryMushroomAppOption.CONDITION_TO_UNLOCK_IT,
-            MysteryMushroomAppOption.GAME,
-            MysteryMushroomAppOption.NAME,
-
-            MysteryMushroomAppOption.POWER_UP_COLLECTED,
-            MysteryMushroomAppOption.WAITING,
-            MysteryMushroomAppOption.TAUNT,
-            MysteryMushroomAppOption.PRESSING_DOWN,
-            MysteryMushroomAppOption.WALK,
-            MysteryMushroomAppOption.RUNNING,
-            MysteryMushroomAppOption.SWIMMING,
-            MysteryMushroomAppOption.JUMP,
-            MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
-            MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
-            MysteryMushroomAppOption.TURNING,
-            MysteryMushroomAppOption.CLIMBING,
-            MysteryMushroomAppOption.GOAL_POLE,
-            MysteryMushroomAppOption.LOST_A_LIFE,
-        ]
-    }
-
-
-    public createTableContent(content: MysteryMushrooms, option: MysteryMushroomAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: MysteryMushroomAppOption) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -117,12 +75,34 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyMysteryMushroom (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MysteryMushroomAppInterpreter()
+const items = appInterpreter.content
+const options = [
+    MysteryMushroomAppOption.CONDITION_TO_UNLOCK_IT,
+    MysteryMushroomAppOption.GAME,
+    MysteryMushroomAppOption.NAME,
+
+    MysteryMushroomAppOption.POWER_UP_COLLECTED,
+    MysteryMushroomAppOption.WAITING,
+    MysteryMushroomAppOption.TAUNT,
+    MysteryMushroomAppOption.PRESSING_DOWN,
+    MysteryMushroomAppOption.WALK,
+    MysteryMushroomAppOption.RUNNING,
+    MysteryMushroomAppOption.SWIMMING,
+    MysteryMushroomAppOption.JUMP,
+    MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
+    MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
+    MysteryMushroomAppOption.TURNING,
+    MysteryMushroomAppOption.CLIMBING,
+    MysteryMushroomAppOption.GOAL_POLE,
+    MysteryMushroomAppOption.LOST_A_LIFE,
+] as const
 const uniqueEnglishNameRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
-    const mysteryMushrooms = OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
+    const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
+    const mysteryMushroom = MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
+    const mysteryMushrooms = MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
 
     return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)}>
@@ -133,10 +113,18 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <MysteryMushroomList items={appInterpreter.content}/>
+        return <MysteryMushroomList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={uniqueEnglishNameRetriever}/>
-    return <Table id="mysteryMushroom-table" interpreter={appInterpreter}/>
+    return <Table id="mysteryMushroom-table" items={items} options={options} caption={getCaption()} color="primary" headersColor="info"/>
+}
+
+function getCaption() {
+    const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
+    const mysteryMushroom = MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,).toLowerCase()
+    const mysteryMushrooms = MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName,).toLowerCase()
+
+    return gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)
 }
 
 //region -------------------- List --------------------

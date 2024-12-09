@@ -45,29 +45,6 @@ class MedalAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('medal.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<MedalAppOption> {
-        return [MedalAppOption.ICON, MedalAppOption.NAME,]
-    }
-
-
-    public getAdditionalClass(option: MedalAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: Medals, option: MedalAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: MedalAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -77,6 +54,8 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyMedal (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MedalAppInterpreter()
+const items = appInterpreter.content
+const options = [MedalAppOption.ICON, MedalAppOption.NAME,] as const
 
 /** @reactComponent */
 export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {
@@ -89,10 +68,10 @@ export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <MedalList items={appInterpreter.content}/>
+        return <MedalList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="medal" interpreter={appInterpreter}/>
-    return <Table id="medal-table" interpreter={appInterpreter}/>
+    return <Table id="medal-table" items={items} options={options} caption={gameContentTranslation('medal.all',)} headersColor="info"/>
 }
 
 //region -------------------- List --------------------

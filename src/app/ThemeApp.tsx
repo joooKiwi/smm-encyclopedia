@@ -98,32 +98,15 @@ class ThemeAppInterpreter
     }
 
     //endregion -------------------- Card  --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('theme.all.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<ThemeAppOption> {
-        return [
-            ThemeAppOption.ICON,
-            ThemeAppOption.ENDLESS_MARIO_ICON,
-            ThemeAppOption.NAME,
-            ThemeAppOption.NIGHT_EFFECT,
-        ]
-    }
-
-
-    public createTableContent(content: Themes, option: ThemeAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: ThemeAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
+
+const options = [
+    ThemeAppOption.ICON,
+    ThemeAppOption.ENDLESS_MARIO_ICON,
+    ThemeAppOption.NAME,
+    ThemeAppOption.NIGHT_EFFECT,
+] as const
 
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {
@@ -144,12 +127,13 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
 /** @reactComponent */
 function SubContent({viewDisplay, type, games,}: Omit<ThemeAppProperties, | 'gameStyles' | 'times'>,) {
     const appInterpreter = new ThemeAppInterpreter(type, games,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <ThemeList items={appInterpreter.content}/>
+        return <ThemeList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="theme" interpreter={appInterpreter}/>
-    return <Table id="theme-table" interpreter={appInterpreter}/>
+    return <Table id="theme-table" items={items} options={options} caption={gameContentTranslation('theme.all.all',)} headersColor="info"/>
 }
 
 //region -------------------- List --------------------

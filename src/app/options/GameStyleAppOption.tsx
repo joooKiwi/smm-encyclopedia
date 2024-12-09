@@ -1,12 +1,12 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/GameStyleAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
+import {TableOption}            from 'app/tools/table/TableOption'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
@@ -20,40 +20,39 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import LanguageCompanion = ProjectLanguages.Companion
 
 export abstract class GameStyleAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<GameStyles> {
+    extends TableOption<GameStyles, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ICON =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-        protected override _createContentOption(enumeration: GameStyles,) {
+        public override renderContent(enumeration: GameStyles,) {
             return <GameStyleImage reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return CommonOptions.get.iconHeader
         }
 
-    }()
+    }('icon',)
     public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-        protected override _createContentOption(enumeration: GameStyles,) {
+        public override renderContent(enumeration: GameStyles,) {
             return CommonOptions.get.getNameContent(enumeration)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
-    }()
+    }('name',)
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-        protected override _createContentOption({reference,}: GameStyles,) {
+        public override renderContent({reference,}: GameStyles,) {
             return <NightEffectComponent gameStyle={reference}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {
                 key: 'nightDesertWind',
                 element: <div className="night-desert-wind-effect-container">
@@ -67,7 +66,7 @@ export abstract class GameStyleAppOption
             }
         }
 
-    }()
+    }('nightDesertWind',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -96,34 +95,14 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
-        super()
+    private constructor(associatedClass: string,) {
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: GameStyles,): ReactElement
-
-    public renderContent(enumeration: GameStyles,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

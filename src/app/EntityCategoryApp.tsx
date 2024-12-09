@@ -47,35 +47,6 @@ class EntityCategoryAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-        const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-
-        return gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<EntityCategoryAppOption> {
-        return [EntityCategoryAppOption.NAME, EntityCategoryAppOption.ICON,]
-    }
-
-
-    public getAdditionalClass(option: EntityCategoryAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: EntityCategories, option: EntityCategoryAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: EntityCategoryAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -85,11 +56,14 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyEntityCategory (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new EntityCategoryAppInterpreter()
+const items = appInterpreter.content
+const options = [EntityCategoryAppOption.NAME, EntityCategoryAppOption.ICON,] as const
 
 /** @reactComponent */
 export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const {ENTITY,} = OtherWordInTheGames
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
 
     const titleContent = gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)
 
@@ -101,10 +75,18 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <EntityCategoryList items={appInterpreter.content}/>
+        return <EntityCategoryList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
-    return <Table id="entityCategory-table" interpreter={appInterpreter}/>
+    return <Table id="entityCategory-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    const {ENTITY,} = OtherWordInTheGames
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+
+    return gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
 }
 
 //region -------------------- List --------------------

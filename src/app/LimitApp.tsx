@@ -112,47 +112,6 @@ class LimitAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        return gameContentTranslation(`limit.${this.#type.type}.all`,) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<LimitAppOption> {
-        const games = this.#games
-
-        const options: MutableArray<LimitAppOption> = [
-            LimitAppOption.ACRONYM,
-            LimitAppOption.NAME,
-            LimitAppOption.DESCRIPTION,
-        ]
-        if (games.hasAllGames)
-            options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
-        else {
-            if (games.hasSmm1Or3ds)
-                options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
-            if (games.hasSmm2)
-                options.push(LimitAppOption.AMOUNT_IN_SMM2,)
-        }
-        return options
-    }
-
-
-    public getAdditionalClass(option: LimitAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: Limits, option: LimitAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: LimitAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -212,12 +171,30 @@ export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitA
 /** @reactComponent */
 function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gameStyles' | 'times'>,){
     const appInterpreter = new LimitAppInterpreter(type, games,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-           return <LimitList items={appInterpreter.content} games={games}/>
+           return <LimitList items={items} games={games}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
             return <CardList reactKey="limit" interpreter={appInterpreter}/>
-    return<Table id="limit-table" interpreter={appInterpreter}/>
+    return<Table id="limit-table" items={items} options={getOptions(games,)} caption={gameContentTranslation(`limit.${type.type}.all`,)} headersColor="info"/>
+}
+
+function getOptions(games: GameCollection,): Array<LimitAppOption> {
+    const options: MutableArray<LimitAppOption> = [
+        LimitAppOption.ACRONYM,
+        LimitAppOption.NAME,
+        LimitAppOption.DESCRIPTION,
+    ]
+    if (games.hasAllGames)
+        options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
+    else {
+        if (games.hasSmm1Or3ds)
+            options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
+        if (games.hasSmm2)
+            options.push(LimitAppOption.AMOUNT_IN_SMM2,)
+    }
+    return options
 }
 
 //region -------------------- List --------------------

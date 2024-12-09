@@ -47,36 +47,6 @@ class MiiCostumeCategoryAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
-        const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
-
-        return gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<MiiCostumeCategoryAppOption> {
-        return [MiiCostumeCategoryAppOption.NAME, MiiCostumeCategoryAppOption.ICON,]
-    }
-
-
-    public getAdditionalClass(option: MiiCostumeCategoryAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: MiiCostumeCategories, option: MiiCostumeCategoryAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: MiiCostumeCategoryAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -86,11 +56,14 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyMiiCostumeCategory (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MiiCostumeCategoryAppInterpreter()
+const items = appInterpreter.content
+const options = [MiiCostumeCategoryAppOption.NAME, MiiCostumeCategoryAppOption.ICON,] as const
 
 /** @reactComponent */
 export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
-    const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+    const {MII_COSTUME,} = OtherWordInTheGames
+    const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
 
     return <SubMainContainer reactKey="miiCostumeCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)}>
@@ -101,10 +74,18 @@ export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreter
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <MiiCostumeCategoryList items={appInterpreter.content}/>
+        return <MiiCostumeCategoryList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
-    return <Table id="miiCostumeCategory-table" interpreter={appInterpreter}/>
+    return <Table id="miiCostumeCategory-table" items={items} options={options} caption={getCaption()} color="primary" headersColor="info"/>
+}
+
+function getCaption() {
+    const {MII_COSTUME,} = OtherWordInTheGames
+    const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+
+    return gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)
 }
 
 //region -------------------- List --------------------

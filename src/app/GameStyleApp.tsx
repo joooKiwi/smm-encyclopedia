@@ -82,28 +82,6 @@ class GameStyleAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('game style.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<GameStyleAppOption> {
-        return [
-            GameStyleAppOption.ICON,
-            GameStyleAppOption.NAME,
-            GameStyleAppOption.NIGHT_DESERT_WIND,
-        ]
-    }
-
-    public createTableContent(content: GameStyles, option: GameStyleAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: GameStyleAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -112,6 +90,11 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
     [ViewDisplays.TABLE, 'everyGameStyle (table)',],
 ] as const satisfies Array<ViewAndRouteName>
+const options = [
+    GameStyleAppOption.ICON,
+    GameStyleAppOption.NAME,
+    GameStyleAppOption.NIGHT_DESERT_WIND,
+] as const
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
@@ -130,12 +113,13 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
 /** @reactComponent */
 function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyles' | 'times'>,) {
     const appInterpreter = new GameStyleAppInterpreter(games,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <GameStyleList items={appInterpreter.content}/>
+        return <GameStyleList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
-    return <Table id="gameStyle-table" interpreter={appInterpreter}/>
+    return <Table id="gameStyle-table" items={items} options={options} caption={gameContentTranslation('game style.all',)} headersColor="info"/>
 }
 
 //region -------------------- List --------------------

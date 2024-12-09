@@ -1,31 +1,43 @@
 import './Table.scss'
 
-import type {CollectionHolder}                                                                    from '@joookiwi/collection'
-import type {Enumerable}                                                                          from '@joookiwi/enumerable'
-import type {MutableArray}                                                                        from '@joookiwi/type'
-import {dropByArray, filterNotNull, forEachByArray, GenericCollectionHolder, joinToStringByArray} from '@joookiwi/collection'
+import type {CollectionHolder}                from '@joookiwi/collection'
+import type {Array, Nullable, NullableString} from '@joookiwi/type'
+import {dropByArray, filterNotNull}           from '@joookiwi/collection'
 
-import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
+import type {Content}                                                                         from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
 import type {SingleTableContent}                                                              from 'app/tools/table/Table.types'
+import type {TableOption}                                                                     from 'app/tools/table/TableOption'
 import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Image             from 'app/tools/images/Image'
 import Tooltip           from 'bootstrap/tooltip/Tooltip'
 import {Empty}           from 'util/emptyVariables'
-import {SPACE}           from 'util/commonVariables'
 import {StringContainer} from 'util/StringContainer'
 import {assert}          from 'util/utilitiesMethods'
-
 import EMPTY_STRING = Empty.EMPTY_STRING
-import getInHtml =    StringContainer.getInHtml
+import getInHtml = StringContainer.getInHtml
 
-interface TableProperties
+interface TableProperties<out CONTENT extends Content,
+    out OPTION extends TableOption<CONTENT>, >
     extends ReactProperties {
 
+    /** The element id */
     readonly id: string
 
-    readonly interpreter: AppInterpreterWithTable
+    /** The content to be displayed in a {@link HTMLTableElement} form */
+    readonly items: CollectionHolder<CONTENT>
+
+    /** The option displayed in the {@link HTMLTableElement} */
+    readonly options: Array<Nullable<OPTION>>
+
+    /** The {@link HTMLTableCaptionElement} applicable to the table */
+    readonly caption: ReactElementOrString
+
+    /** The table base colour */
+    readonly color?: NullableString<BootstrapThemeColor>
+    /** The colour that will be used in both {@link HTMLTableSectionElement} (thead and tfoot) */
+    readonly headersColor?: NullableString<BootstrapThemeColor>
 
 }
 
@@ -36,18 +48,13 @@ interface TableProperties
  *  - footer
  *  - caption
  *
- * @param id The element id
- * @param interpreter The interpreter to retrieve its content
  * @reactComponent
  */
-export default function Table({id, interpreter,}: TableProperties,) {
-    const options = filterNotNull(interpreter.tableOptions,)
-    const color = interpreter.tableColor
-    const headersColor = interpreter.tableHeadersColor
-    const caption = interpreter.tableCaption
-    const additionalClasses = retrieveAdditionalClasses(interpreter, options,)
-    const contents = retrieveContent(interpreter, options,)
-    const headers = retrieveHeader(interpreter, options,)
+export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, color, headersColor, caption,}: TableProperties<CONTENT, OPTION>,) {
+    const nonNullOptions = filterNotNull(options,)
+    const additionalClasses = retrieveAssociatedClass(nonNullOptions,)
+    const contents = retrieveContent(items, nonNullOptions,)
+    const headers = retrieveHeader(nonNullOptions,)
 
     return <div id={id} className={`ttable ${color == null ? EMPTY_STRING : `table-${color}`} ${headersColor == null ? EMPTY_STRING : `headers-${headersColor}`} w-100`}>
         <TableHeader>{additionalClasses}{headers}</TableHeader>
@@ -145,47 +152,34 @@ function getHeaderKey(header: SingleHeaderContent,): string {
 /**
  * Get the classes with a space before and between the values
  *
- * @param interpreter The {@link AppInterpreterWithTable} to retrieve its possible classes
  * @param options The displayed options in the table
  * @private
  */
-function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<string> {
-    if (getAdditionalClass == null)
-        return new GenericCollectionHolder(Array.from({length: options.length,}, () => EMPTY_STRING,),)
-    return options.map(it => joinToStringByArray(getAdditionalClass(it,), SPACE, SPACE, EMPTY_STRING,),)
+function retrieveAssociatedClass<const OPTION extends TableOption, >(options: CollectionHolder<OPTION>,): CollectionHolder<string> {
+    return options.map(it => it.associatedClass,)
 }
 
 /**
  * Retrieve the {@link SingleTableContent content} of the {@link interpreter} into a {@link CollectionHolder}
  *
- * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
+ * @param items   The values to generate the table content
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleTableContent> {
-    return content.map(contentValue => {
+function retrieveContent<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >(items: CollectionHolder<CONTENT>, options: CollectionHolder<OPTION>,): CollectionHolder<SingleTableContent> {
+    return items.map(contentValue => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
-        options.forEach(option =>
-            forEachByArray(createTableContent(contentValue, option,), it => tableContent.push(it,),),)
+        options.forEach(option => tableContent.push(option.renderContent(contentValue,),),)
         return tableContent
     },)
 }
 
 /**
- * Retrieve the {@link SingleHeaderContent header} of the {@link interpreter} into an{@link ReadonlyArray array}
+ * Retrieve the {@link SingleHeaderContent header} from the given {@link options}
  *
- *
- * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
  * @param options The displayed options in the table
  * @private
  */
-function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleHeaderContent> {
-    const headerContent: MutableArray<SingleHeaderContent> = []
-    options.forEach(it => {
-        const tableHeader = createTableHeader(it,)
-        if (tableHeader == null)
-            return
-        headerContent.push(tableHeader,)
-    },)
-    return new GenericCollectionHolder(headerContent,)
+function retrieveHeader<const OPTION extends TableOption, >(options: CollectionHolder<OPTION>,): CollectionHolder<SingleHeaderContent> {
+    return options.map(it => it.renderHeader(),)
 }

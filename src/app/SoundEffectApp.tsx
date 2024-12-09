@@ -92,51 +92,6 @@ class SoundEffectAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('sound effect.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<SoundEffectAppOption> {
-        const games = this.#games
-        const {hasSmm2, hasSmm1Or3ds,} = games
-
-        const options: MutableArray<SoundEffectAppOption> = []
-        if (hasSmm1Or3ds)
-            options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
-        if (hasSmm2)
-            options.push(SoundEffectAppOption.SMM2_ICON,)
-        options.push(
-            SoundEffectAppOption.NAME,
-            SoundEffectAppOption.CATEGORY,
-            SoundEffectAppOption.PLAYER_BEHAVIOUR,
-        )
-        if (games.hasAllGames)
-            options.push(SoundEffectAppOption.SOUNDS,)
-        else {
-            if (hasSmm1Or3ds)
-                options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
-            if (hasSmm2)
-                options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
-        }
-        return options
-    }
-
-
-    public getAdditionalClass(option: SoundEffectAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
-        //TODO add content based on the game style parameter
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: SoundEffectAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -210,12 +165,36 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
 /** @reactComponent */
 function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
     const appInterpreter = new SoundEffectAppInterpreter(games,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SoundEffectList items={appInterpreter.content} games={games}/>
+        return <SoundEffectList items={items} games={games}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
-    return <Table id="soundEffect-table" interpreter={appInterpreter}/>
+    return <Table id="soundEffect-table" items={items} options={getOptions(games,)} caption={gameContentTranslation('sound effect.all',)} headersColor="info"/>
+}
+
+function getOptions(games: GameCollection,): Array<SoundEffectAppOption> {
+    const {hasSmm2, hasSmm1Or3ds,} = games
+    const options: MutableArray<SoundEffectAppOption> = []
+    if (hasSmm1Or3ds)
+        options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
+    if (hasSmm2)
+        options.push(SoundEffectAppOption.SMM2_ICON,)
+    options.push(
+        SoundEffectAppOption.NAME,
+        SoundEffectAppOption.CATEGORY,
+        SoundEffectAppOption.PLAYER_BEHAVIOUR,
+    )
+    if (games.hasAllGames)
+        options.push(SoundEffectAppOption.SOUNDS,)
+    else {
+        if (hasSmm1Or3ds)
+            options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
+        if (hasSmm2)
+            options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
+    }
+    return options
 }
 
 //region -------------------- List --------------------

@@ -55,39 +55,6 @@ class EventCourseAppInterpreter
     }
 
     //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('official course.all', {
-        singularName: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase(),
-        pluralName: OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase(),
-    },) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<OfficialCourseAppOption> {
-        return [
-            OfficialCourseAppOption.REWARD,
-            OfficialCourseAppOption.NAME,
-            OfficialCourseAppOption.DESCRIPTION,
-            OfficialCourseAppOption.GAME_STYLE_AND_AREAS,
-            OfficialCourseAppOption.TIME,
-            OfficialCourseAppOption.AVAILABILITY,
-        ]
-    }
-
-    public getAdditionalClass(option: OfficialCourseAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: OfficialCourses, option: OfficialCourseAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: OfficialCourseAppOption,) {
-        return option.renderTableHeader()
-    }
-
-
-    //endregion -------------------- Table interpreter --------------------
 
 }
 
@@ -97,11 +64,21 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everyOfficialCourse (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new EventCourseAppInterpreter()
+const items = appInterpreter.content
+const options = [
+    OfficialCourseAppOption.REWARD,
+    OfficialCourseAppOption.NAME,
+    OfficialCourseAppOption.DESCRIPTION,
+    OfficialCourseAppOption.GAME_STYLE_AND_AREAS,
+    OfficialCourseAppOption.TIME,
+    OfficialCourseAppOption.AVAILABILITY,
+] as const
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperties,) {
-    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
-    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
+    const {COURSE,} = OtherWordInTheGames
+    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
+    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
 
     return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)}>
@@ -112,10 +89,18 @@ export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperti
 /** @reactComponent */
 function SubContent({viewDisplay,}: Pick<OfficialCourseProperties, 'viewDisplay'>,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <OfficialCourseList items={appInterpreter.content}/>
+        return <OfficialCourseList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="officialCourse" interpreter={appInterpreter}/>
-    return <Table id="officialCourse-table" interpreter={appInterpreter}/>
+    return <Table id="officialCourse-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    const {COURSE,} = OtherWordInTheGames
+    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
+    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
+
+    return gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)
 }
 
 //region -------------------- List --------------------

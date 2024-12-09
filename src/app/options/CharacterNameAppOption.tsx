@@ -1,39 +1,38 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}         from '@joookiwi/enumerable'
 
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/CharacterNameAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {CharacterNames}      from 'core/characterName/CharacterNames'
 
 import {CommonOptions}           from 'app/options/CommonOptions'
+import {TableOption}             from 'app/tools/table/TableOption'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 export abstract class CharacterNameAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<CharacterNames> {
+    extends TableOption<CharacterNames, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly NAME = new class CharacterNameAppOption_Name extends CharacterNameAppOption {
 
-        protected override _createContentOption(enumeration: CharacterNames,) {
+        public override renderContent(enumeration: CharacterNames,) {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly EDITOR_VOICE = new class CharacterNameAppOption_Name extends CharacterNameAppOption {
 
-        protected override _createContentOption(enumeration: CharacterNames,) {
+        public override renderContent(enumeration: CharacterNames,) {
             return <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.uniqueEnglishName}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {key: 'editorSound', element: gameContentTranslation('editor voice.singular',),}
         }
 
@@ -63,51 +62,17 @@ export abstract class CharacterNameAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: CharacterNames,): ReactElement
-
-    public renderContent(enumeration: CharacterNames,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

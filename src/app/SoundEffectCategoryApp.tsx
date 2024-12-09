@@ -46,29 +46,6 @@ class SoundEffectCategoryAppInterpreter
     }
 
     //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('sound effect category.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<SoundEffectCategoryAppOption> {
-        return [SoundEffectCategoryAppOption.NAME, SoundEffectCategoryAppOption.ICON,]
-    }
-
-
-    public getAdditionalClass(option: SoundEffectCategoryAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: SoundEffectCategories, option: SoundEffectCategoryAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: SoundEffectCategoryAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
 
@@ -78,6 +55,8 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everySoundEffectCategory (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new SoundEffectCategoryAppInterpreter()
+const items = appInterpreter.content
+const options = [SoundEffectCategoryAppOption.NAME, SoundEffectCategoryAppOption.ICON,] as const
 
 /** @reactComponent */
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
@@ -90,10 +69,10 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SoundEffectCategoryList items={appInterpreter.content}/>
+        return <SoundEffectCategoryList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
-    return <Table id="soundEffectCategory-table" interpreter={appInterpreter}/>
+    return <Table id="soundEffectCategory-table" items={items} options={options} caption={gameContentTranslation('sound effect category.all',)} headersColor="info"/>
 }
 
 //region -------------------- List --------------------

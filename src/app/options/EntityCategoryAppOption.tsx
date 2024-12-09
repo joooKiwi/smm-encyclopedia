@@ -1,38 +1,36 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {AppOption}           from 'app/options/AppOption'
-import type {Names, Ordinals}     from 'app/options/EntityCategoryAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {EntityCategories}    from 'core/entityCategory/EntityCategories'
+import type {Names, Ordinals}  from 'app/options/EntityCategoryAppOption.types'
+import type {EntityCategories} from 'core/entityCategory/EntityCategories'
 
 import {CommonOptions}    from 'app/options/CommonOptions'
+import {TableOption}      from 'app/tools/table/TableOption'
 import EntityCategoryIcon from 'core/entityCategory/component/EntityCategoryIcon'
 
 export abstract class EntityCategoryAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<EntityCategories> {
+    extends TableOption<EntityCategories, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ICON = new class EntityCategoryAppOption_Icon extends EntityCategoryAppOption {
 
-        protected override _createContentOption(enumeration: EntityCategories,) {
+        public override renderContent(enumeration: EntityCategories,) {
             return <EntityCategoryIcon reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME = new class EntityCategoryAppOption_Name extends EntityCategoryAppOption {
 
-        protected override _createContentOption(enumeration: EntityCategories,) {
+        public override renderContent(enumeration: EntityCategories,) {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
@@ -62,51 +60,17 @@ export abstract class EntityCategoryAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: EntityCategories,): ReactElement
-
-    public renderContent(enumeration: EntityCategories,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

@@ -70,42 +70,10 @@ class CourseTagAppInterpreter
     }
 
     //endregion -------------------- Card  --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
-        const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
-        const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
-        const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
-
-        return gameContentTranslation('course tag.all', {
-            course: course, courses: courses,
-            tag: tag, tags: tags,
-        },) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<CourseTagAppOption> {
-        return [CourseTagAppOption.NAME, CourseTagAppOption.FIRST_APPEARANCE,]
-    }
-
-
-    public getAdditionalClass(option: CourseTagAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: CourseTags, option: CourseTagAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: CourseTagAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
 
 }
+
+const options = [CourseTagAppOption.NAME, CourseTagAppOption.FIRST_APPEARANCE,] as const
 
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {
@@ -134,12 +102,26 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
 /** @reactComponent */
 function SubContent({viewDisplay, type,}: CourseTagAppProperties,) {
     const appInterpreter = new CourseTagAppInterpreter(type,)
+    const items = appInterpreter.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <CourseTagList items={appInterpreter.content}/>
+        return <CourseTagList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="courseTag" interpreter={appInterpreter}/>
-    return <Table id="courseTag-table" interpreter={appInterpreter}/>
+    return <Table id="courseTag-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    const {COURSE, TAG,} = OtherWordInTheGames
+    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase()
+    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
+    const tag = TAG.singularLowerCaseNameOnReference
+    const tags = TAG.pluralLowerCaseNameOnReference
+
+    return gameContentTranslation('course tag.all', {
+        course: course, courses: courses,
+        tag: tag, tags: tags,
+    },)
 }
 
 //region -------------------- List --------------------

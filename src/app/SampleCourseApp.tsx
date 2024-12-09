@@ -47,38 +47,6 @@ class SampleCourseInterpreter
     }
 
     //endregion -------------------- Card list interpreter --------------------
-    //region -------------------- Table interpreter --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
-        const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
-        return gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<SampleCourseAppOption> {
-        return [
-            SampleCourseAppOption.LEVEL_NUMBER,
-            SampleCourseAppOption.NAME,
-            SampleCourseAppOption.GAME_STYLE_AND_AREAS,
-            SampleCourseAppOption.TIME,
-        ]
-    }
-
-    public getAdditionalClass(option: SampleCourseAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: SampleCourses, option: SampleCourseAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: SampleCourseAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table interpreter --------------------
 
 }
 
@@ -88,11 +56,19 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.TABLE, 'everySampleCourse (table)',],
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new SampleCourseInterpreter()
+const items = appInterpreter.content
+const options = [
+    SampleCourseAppOption.LEVEL_NUMBER,
+    SampleCourseAppOption.NAME,
+    SampleCourseAppOption.GAME_STYLE_AND_AREAS,
+    SampleCourseAppOption.TIME,
+] as const
 
 /** @reactComponent */
 export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
-    const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+    const {COURSE,} = OtherWordInTheGames
+    const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
+    const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
 
     return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)}>
@@ -103,10 +79,17 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SampleCourseList items={appInterpreter.content}/>
+        return <SampleCourseList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="sampleCourse" interpreter={appInterpreter}/>
-    return <Table id="sampleCourse-table" interpreter={appInterpreter}/>
+    return <Table id="sampleCourse-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    const {COURSE,} = OtherWordInTheGames
+    const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
+    const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+    return gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)
 }
 
 //region -------------------- List --------------------
