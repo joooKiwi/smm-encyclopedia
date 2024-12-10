@@ -1,9 +1,9 @@
 import type {Array} from '@joookiwi/type'
 
-import type {InGameImageFile}   from 'core/entity/file/EntityImageFile'
-import type {InGameEntityImage} from 'core/entity/images/InGameEntityImage'
-import type {InGameImage}       from 'core/entity/images/inGame/InGameImage'
-import type {GameStyles}        from 'core/gameStyle/GameStyles'
+import type {InGameImageFile}     from 'core/entity/file/EntityImageFile'
+import type {InGameEntityImage}   from 'core/entity/images/InGameEntityImage'
+import type {InGameImage_Regular} from 'core/entity/images/inGame/InGameImage_Regular'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
 export class InGameEntityImageContainer<const T extends InGameImageFile, >
     implements InGameEntityImage<T> {
@@ -15,7 +15,7 @@ export class InGameEntityImageContainer<const T extends InGameImageFile, >
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(reference: InGameImage<T>,) {
+    public constructor(reference: InGameImage_Regular<T>,) {
         this.#reference = reference
     }
 
