@@ -1,8 +1,4 @@
-import type {OtherWordInTheGame} from 'core/otherWordInTheGame/OtherWordInTheGame'
+import type {NameTrait}                from 'lang/name/NameTrait'
 
 export interface OtherPluralWordInTheGame
-    extends OtherWordInTheGame {
-
-    get pluralForm(): null
-
-}
+    extends NameTrait<string> {}
