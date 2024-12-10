@@ -76,7 +76,7 @@ interface TableHeaderProperties
 
 /** @reactComponent */
 function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
-    return <div className="theader">{headers.map((it, i,) => {
+    return <div className="theader sticky-top">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
         return <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
