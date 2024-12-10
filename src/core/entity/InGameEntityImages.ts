@@ -16,6 +16,7 @@ import {EmptyInGameImage_Regular}     from 'core/entity/images/inGame/EmptyInGam
 import {InGameImage_RegularContainer} from 'core/entity/images/inGame/InGameImage_Regular.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {Empty}                        from 'util/emptyVariables'
+import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 import NSMBU =       GameStyles.NSMBU
@@ -266,11 +267,8 @@ export abstract class InGameEntityImages
 
         protected override _createImageFiles() {
             const folderName = this.folderName
-            const fileNames = this.fileNames
 
-            const imageFiles = new Array<readonly[GameStyles, InGameImageFile<FOLDER_NAME, FILE_NAME>,]>(fileNames.length,)
-            forEachByArray(fileNames, (it, i,) => imageFiles[i] = [SMB, inGameImage(this, folderName, it,),],)
-            return imageFiles
+            return new ArrayAsCollection(this.fileNames,).map(it => [SMB, inGameImage(this, folderName, it,),],).toArray()
         }
 
     }

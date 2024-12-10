@@ -1,8 +1,8 @@
-import type {CollectionHolder}                from '@joookiwi/collection'
-import type {Singleton}                       from '@joookiwi/enumerable'
-import type {Array, Nullable}                 from '@joookiwi/type'
-import {getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
-import {Enum}                                 from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
+import type {Array, Nullable}  from '@joookiwi/type'
+import {isArray}               from '@joookiwi/collection'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                      from 'core/ClassWithEnglishName'
@@ -18,6 +18,7 @@ import {gameImage}                                                              
 import {StringContainer}                                                                 from 'util/StringContainer'
 import {Empty}                                                                           from 'util/emptyVariables'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlName, getValueByUrlValue} from 'util/utilitiesMethods'
+import {ArrayAsCollection}                                                               from 'util/collection/ArrayAsCollection'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                          from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
@@ -129,7 +130,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
                 return EMPTY_ARRAY
 
             /** All the possible {@link Games.urlValue} that could be found in the url */
-            const valuesFound = getFirstByArray(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),)
+            const valuesFound = new ArrayAsCollection(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
             const withSmm1 = valuesFound.includes('1',)
             const withSmm3ds = valuesFound.includes('3ds',)
             const withSmm2 = valuesFound.includes('2',)
@@ -181,10 +182,10 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         }
 
         public getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue {
-            const isGamesArray = isArray(games,)
-            const withSmm1 = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_1,) : games.has(Games.SUPER_MARIO_MAKER_1,)
-            const withSmm3ds = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,) : games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-            const withSmm2 = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_2,) : games.has(Games.SUPER_MARIO_MAKER_2,)
+            const games2 = isArray(games,) ? new ArrayAsCollection(games,) : games
+            const withSmm1 = games2.has(Games.SUPER_MARIO_MAKER_1,)
+            const withSmm3ds = games2.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+            const withSmm2 = games2.has(Games.SUPER_MARIO_MAKER_2,)
 
             if (withSmm1) {
                 if (withSmm3ds) {
@@ -207,10 +208,10 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         }
 
         public getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName {
-            const isGamesArray = isArray(games,)
-            const withSmm1 = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_1,) : games.has(Games.SUPER_MARIO_MAKER_1,)
-            const withSmm3ds = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,) : games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-            const withSmm2 = isGamesArray ? hasByArray(games, Games.SUPER_MARIO_MAKER_2,) : games.has(Games.SUPER_MARIO_MAKER_2,)
+            const games2 = isArray(games,) ? new ArrayAsCollection(games,) : games
+            const withSmm1 = games2.has(Games.SUPER_MARIO_MAKER_1,)
+            const withSmm3ds = games2.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+            const withSmm2 = games2.has(Games.SUPER_MARIO_MAKER_2,)
 
             if (withSmm1) {
                 if (withSmm3ds) {

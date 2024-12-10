@@ -1,8 +1,7 @@
 import './MysteryMushroomApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
@@ -21,6 +20,7 @@ import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
 import NameComponent              from 'lang/name/component/Name.component'
+import {ArrayAsCollection}        from 'util/collection/ArrayAsCollection'
 
 import ALL = MysteryMushrooms.ALL
 
@@ -28,7 +28,7 @@ class MysteryMushroomAppInterpreter
     implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card --------------------

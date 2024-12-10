@@ -1,11 +1,11 @@
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array} from '@joookiwi/type'
 
 import type {PossibleEnglishName, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
 import type {SMM1SoundEffectImageFile, SMM2SoundEffectImageFile}                          from 'core/soundEffect/file/SoundEffectImageFile'
 import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile}                          from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {PossibleSoundEffectSoundName_SMM1, PossibleSoundEffectSoundName_SMM2}        from 'core/soundEffect/sound/types'
 
+import {ArrayAsCollection}                       from 'util/collection/ArrayAsCollection'
 import {SimpleImageFile}                         from 'util/file/image/SimpleImageFile'
 import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
@@ -93,9 +93,7 @@ export function smm1SoundFiles<const NAME1 extends PossibleSoundEffectSoundName_
  */
 export function smm1SoundFiles<const NAME1 extends PossibleSoundEffectSoundName_SMM1, const NAME2 extends PossibleSoundEffectSoundName_SMM1, const NAME3 extends PossibleSoundEffectSoundName_SMM1, const NAME4 extends PossibleSoundEffectSoundName_SMM1, const NAME5 extends PossibleSoundEffectSoundName_SMM1, const NAME6 extends PossibleSoundEffectSoundName_SMM1, >(name1: NAME1, name2: NAME2, name3: NAME3, name4: NAME4, name5: NAME5, name6: NAME6,): readonly [SMM1SoundEffectSoundFile<NAME1>, SMM1SoundEffectSoundFile<NAME2>, SMM1SoundEffectSoundFile<NAME3>, SMM1SoundEffectSoundFile<NAME4>, SMM1SoundEffectSoundFile<NAME5>, SMM1SoundEffectSoundFile<NAME6>,]
 export function smm1SoundFiles(...names: Array<PossibleSoundEffectSoundName_SMM1>): Array<SMM1SoundEffectSoundFile> {
-    const files = new Array<SMM1SoundEffectSoundFile>(names.length,)
-    forEachByArray(names, (it, i,) => files[i] = smm1SoundFile(it,),)
-    return files
+    return new ArrayAsCollection(names,).map(it => smm1SoundFile(it,),).toArray()
 }
 
 /**
@@ -186,7 +184,5 @@ export function smm2SoundFiles<const NAME1 extends PossibleSoundEffectSoundName_
  */
 export function smm2SoundFiles<const NAME1 extends PossibleSoundEffectSoundName_SMM2, const NAME2 extends PossibleSoundEffectSoundName_SMM2, const NAME3 extends PossibleSoundEffectSoundName_SMM2, const NAME4 extends PossibleSoundEffectSoundName_SMM2, const NAME5 extends PossibleSoundEffectSoundName_SMM2, const NAME6 extends PossibleSoundEffectSoundName_SMM2, const NAME7 extends PossibleSoundEffectSoundName_SMM2, const NAME8 extends PossibleSoundEffectSoundName_SMM2, const NAME9 extends PossibleSoundEffectSoundName_SMM2, >(name1: NAME1, name2: NAME2, name3: NAME3, name4: NAME4, name5: NAME5, name6: NAME6, name7: NAME7, name8: NAME8, name9: NAME9,): readonly [SMM2SoundEffectSoundFile<NAME1>, SMM2SoundEffectSoundFile<NAME2>, SMM2SoundEffectSoundFile<NAME3>, SMM2SoundEffectSoundFile<NAME4>, SMM2SoundEffectSoundFile<NAME5>, SMM2SoundEffectSoundFile<NAME6>, SMM2SoundEffectSoundFile<NAME7>, SMM2SoundEffectSoundFile<NAME8>, SMM2SoundEffectSoundFile<NAME9>,]
 export function smm2SoundFiles(...names: Array<PossibleSoundEffectSoundName_SMM2>): Array<SMM2SoundEffectSoundFile> {
-    const files = new Array<SMM2SoundEffectSoundFile>(names.length,)
-    forEachByArray(names, (it, i,) => files[i] = smm2SoundFile(it,),)
-    return files
+    return new ArrayAsCollection(names,).map(it => smm2SoundFile(it,),).toArray()
 }

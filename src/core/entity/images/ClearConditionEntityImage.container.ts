@@ -1,12 +1,12 @@
-import type {Array}             from '@joookiwi/type'
-import {findFirstOrNullByArray} from '@joookiwi/collection'
+import type {Array} from '@joookiwi/type'
 
 import type {ClearConditionImageFile}   from 'core/entity/file/EntityImageFile'
 import type {ClearConditionEntityImage} from 'core/entity/images/ClearConditionEntityImage'
 import type {ClearConditionImage}       from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {GameStyles}                from 'core/gameStyle/GameStyles'
 
-import {Empty} from 'util/emptyVariables'
+import {Empty}             from 'util/emptyVariables'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -39,7 +39,7 @@ export class ClearConditionEntityImageContainer<const T extends ClearConditionIm
     //region -------------------- Methods --------------------
 
     public get(gameStyle: GameStyles,): Array<T> {
-        const value = findFirstOrNullByArray(this.imagesWithAssociation, it => it[0] === gameStyle,)
+        const value = new ArrayAsCollection(this.imagesWithAssociation,).findFirstOrNull(it => it[0] === gameStyle,)
         if (value == null)
             return EMPTY_ARRAY
         return [value[1],]

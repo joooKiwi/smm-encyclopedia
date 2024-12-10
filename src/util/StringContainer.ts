@@ -1,7 +1,6 @@
-import {mapByArray} from '@joookiwi/collection'
-
-import {Empty}   from 'util/emptyVariables'
-import {forEach} from 'util/utilitiesMethods'
+import {Empty}             from 'util/emptyVariables'
+import {forEach}           from 'util/utilitiesMethods'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
@@ -57,10 +56,10 @@ export namespace StringContainer {
         if (ALREADY_CONVERTED_VALUES.has(value))
             return ALREADY_CONVERTED_VALUES.get(value)!
 
-        const splitValues = mapByArray(value.toLowerCase()
+        const splitValues = new ArrayAsCollection(value.toLowerCase()
                 .replaceAll(REMOVAL_REGEX, EMPTY_STRING,)
-                .split(WORD_SEPARATOR_REGEX,),
-            it => REPLACE_CHARACTERS.get(it as never,) ?? it,)
+                .split(WORD_SEPARATOR_REGEX,),)
+            .map(it => REPLACE_CHARACTERS.get(it as never,) ?? it,)
             .map(it => {
                 let changeableValue = it
                 forEach(REPLACE_CHARACTERS, it => {

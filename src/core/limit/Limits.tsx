@@ -1,6 +1,5 @@
 import type {Array, Nullable, NullOr, StringOrNumeric} from '@joookiwi/type'
-import {CollectionHolder, getFirstByArray}             from '@joookiwi/collection'
-import {GenericCollectionHolder}                       from '@joookiwi/collection'
+import type {CollectionHolder}                         from '@joookiwi/collection'
 import {Enum}                                          from '@joookiwi/enumerable'
 
 import type {ClassWithNullableAcronym}                                                                                          from 'core/ClassWithAcronym'
@@ -20,6 +19,7 @@ import {LimitLoader}         from 'core/limit/Limit.loader'
 import {Import}              from 'util/DynamicImporter'
 import {Empty}               from 'util/emptyVariables'
 import {StringContainer}     from 'util/StringContainer'
+import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
 
 import EMPTY_ARRAY =             Empty.EMPTY_ARRAY
@@ -127,14 +127,14 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                mushroomPlatformImage:  <Image key="mushroomPlatformImage"  file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                semisolidPlatformImage: <Image key="semisolidPlatformImage" file={getFirstByArray(links.get(1,).image.get(SMW,),)} className="entity-image"/>,
-                bridgeImage:            <Image key="bridgeImage"            file={getFirstByArray(links.get(2,).image.get(SMW,),)} className="entity-image"/>,
-                slopeImage:             <Image key="slopeImage"             file={getFirstByArray(links.get(3,).image.get(SMW,),)} className="entity-image"/>,
-                conveyorBeltImage:      <Image key="conveyorBeltImage"      file={getFirstByArray(links.get(5,).image.get(SMW,),)} className="entity-image"/>,
-                pipeImage:              <Image key="pipeImage"              file={getFirstByArray(links.get(7,).image.get(SMW,),)} className="entity-image"/>,
-                clearPipeImage:         <Image key="clearPipeImage"         file={getFirstByArray(links.get(8,).image.get(SM3DW,),)} className="entity-image"/>,
-                vineImage:              <Image key="vineImage"              file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                mushroomPlatformImage:  <Image key="mushroomPlatformImage"  file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                semisolidPlatformImage: <Image key="semisolidPlatformImage" file={new ArrayAsCollection(links.get(1,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                bridgeImage:            <Image key="bridgeImage"            file={new ArrayAsCollection(links.get(2,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                slopeImage:             <Image key="slopeImage"             file={new ArrayAsCollection(links.get(3,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                conveyorBeltImage:      <Image key="conveyorBeltImage"      file={new ArrayAsCollection(links.get(5,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                pipeImage:              <Image key="pipeImage"              file={new ArrayAsCollection(links.get(7,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                clearPipeImage:         <Image key="clearPipeImage"         file={new ArrayAsCollection(links.get(8,).image.get(SM3DW,),).getFirst()} className="entity-image"/>,
+                vineImage:              <Image key="vineImage"              file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -242,9 +242,9 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                oneWayWallImage: <Image key="oneWayWallImage" file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                arrowSignImage:  <Image key="arrowSignImage"  file={getFirstByArray(links.get(1,).image.get(SMW,),)} className="entity-image"/>,
-                dashBlockImage:  <Image key="dashBlockImage"  file={getFirstByArray(links.getLast().image.get(SM3DW,),)} className="entity-image"/>,
+                oneWayWallImage: <Image key="oneWayWallImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                arrowSignImage:  <Image key="arrowSignImage"  file={new ArrayAsCollection(links.get(1,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                dashBlockImage:  <Image key="dashBlockImage"  file={new ArrayAsCollection(links.getLast().image.get(SM3DW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -271,8 +271,8 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                snowballImage: <Image key="snowballImage" file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                spikeImage:    <Image key="spikeImage"    file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                snowballImage: <Image key="snowballImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                spikeImage:    <Image key="spikeImage"    file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -294,9 +294,9 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                '10CoinImage': <Image key="10CoinImage" file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                '30CoinImage': <Image key="30CoinImage" file={getFirstByArray(links.get(1,).image.get(SMW,),)} className="entity-image"/>,
-                '50CoinImage': <Image key="50CoinImage" file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                '10CoinImage': <Image key="10CoinImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                '30CoinImage': <Image key="30CoinImage" file={new ArrayAsCollection(links.get(1,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                '50CoinImage': <Image key="50CoinImage" file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -337,8 +337,8 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                keyImage:       <Image key="keyImage"       file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                cursedKeyImage: <Image key="cursedKeyImage" file={getFirstByArray(links.getLast().image.get(SMB,),)} className="entity-image"/>,
+                keyImage:       <Image key="keyImage"       file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                cursedKeyImage: <Image key="cursedKeyImage" file={new ArrayAsCollection(links.getLast().image.get(SMB,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -477,8 +477,8 @@ export class Limits
             return {
                 yoshiImage:    <Image key="yoshiImage" className="entity-image yoshi-image" variable="yoshi" isSquared/>,
                 redYoshiImage: <Image key="red-yoshiImage" className="entity-image redYoshi-image" variable="red-yoshi" isSquared/>,
-                // yoshiImage:    <Image key="yoshiImage"    file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                // redYoshiImage: <Image key="redYoshiImage" file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                // yoshiImage:    <Image key="yoshiImage"    file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                // redYoshiImage: <Image key="redYoshiImage" file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -521,8 +521,8 @@ export class Limits
         protected override _createReferenceMapForDescription(): TranslationReplaceKeysMap<ReactJSXElement> {
             const links = this.entityLink
             return {
-                bowserImage: <Image key="bowserImage" file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                bowserJrImage: <Image key="bowserJrImage" file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                bowserImage: <Image key="bowserImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                bowserJrImage: <Image key="bowserJrImage" file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             }
         }
 
@@ -541,8 +541,8 @@ export class Limits
         protected override _createReferenceMapForDescription(): TranslationReplaceKeysMap<ReactJSXElement> {
             const links = this.entityLink
             return {
-                boomBoomImage: <Image key="boomBoomImage" file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                pomPomImage: <Image key="pomPomImage" file={getFirstByArray(links.getLast().image.get(SM3DW,),)} className="entity-image"/>,
+                boomBoomImage: <Image key="boomBoomImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                pomPomImage: <Image key="pomPomImage" file={new ArrayAsCollection(links.getLast().image.get(SM3DW,),).getFirst()} className="entity-image"/>,
             }
         }
 
@@ -561,13 +561,13 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                larryImage:  <Image key="larryImage"  file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                iggyImage:   <Image key="iggyImage"   file={getFirstByArray(links.get(1,).image.get(SMW,),)} className="entity-image"/>,
-                wendyImage:  <Image key="wendyImage"  file={getFirstByArray(links.get(2,).image.get(SMW,),)} className="entity-image"/>,
-                lemmyImage:  <Image key="lemmyImage"  file={getFirstByArray(links.get(3,).image.get(SMW,),)} className="entity-image"/>,
-                royImage:    <Image key="royImage"    file={getFirstByArray(links.get(4,).image.get(SMW,),)} className="entity-image"/>,
-                mortonImage: <Image key="mortonImage" file={getFirstByArray(links.get(5,).image.get(SMW,),)} className="entity-image"/>,
-                ludwigImage: <Image key="ludwigImage" file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                larryImage:  <Image key="larryImage"  file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                iggyImage:   <Image key="iggyImage"   file={new ArrayAsCollection(links.get(1,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                wendyImage:  <Image key="wendyImage"  file={new ArrayAsCollection(links.get(2,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                lemmyImage:  <Image key="lemmyImage"  file={new ArrayAsCollection(links.get(3,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                royImage:    <Image key="royImage"    file={new ArrayAsCollection(links.get(4,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                mortonImage: <Image key="mortonImage" file={new ArrayAsCollection(links.get(5,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                ludwigImage: <Image key="ludwigImage" file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -586,8 +586,8 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                angrySunImage: <Image key="angrySunImage" file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                moonImage:     <Image key="moonImage"     file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                angrySunImage: <Image key="angrySunImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                moonImage:     <Image key="moonImage"     file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -629,9 +629,9 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                warpDoorImage:  <Image key="warpDoorImage"  file={getFirstByArray(links.getFirst().image.get(SMW,),)} className="entity-image"/>,
-                pWarpDoorImage: <Image key="pWarpDoorImage" file={getFirstByArray(links.get(1,).image.get(SMW,),)} className="entity-image"/>,
-                keyDoorImage:   <Image key="keyDoorImage"   file={getFirstByArray(links.getLast().image.get(SMW,),)} className="entity-image"/>,
+                warpDoorImage:  <Image key="warpDoorImage"  file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>,
+                pWarpDoorImage: <Image key="pWarpDoorImage" file={new ArrayAsCollection(links.get(1,).image.get(SMW,),).getFirst()} className="entity-image"/>,
+                keyDoorImage:   <Image key="keyDoorImage"   file={new ArrayAsCollection(links.getLast().image.get(SMW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -650,8 +650,8 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                warpBoxImage:        <Image key="warpBoxImage"        file={getFirstByArray(links.getFirst().image.get(SM3DW,),)} className="entity-image"/>,
-                warpBoxWithKeyImage: <Image key="warpBoxWithKeyImage" file={getFirstByArray(links.getLast().image.get(SM3DW,),)} className="entity-image"/>,
+                warpBoxImage:        <Image key="warpBoxImage"        file={new ArrayAsCollection(links.getFirst().image.get(SM3DW,),).getFirst()} className="entity-image"/>,
+                warpBoxWithKeyImage: <Image key="warpBoxWithKeyImage" file={new ArrayAsCollection(links.getLast().image.get(SM3DW,),).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -665,7 +665,7 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                entityImage: <Image key="entityImage" file={links.getFirst().image.get(SMW,)[5]} className="entity-image"/>,
+                entityImage: <Image key="entityImage" file={new ArrayAsCollection(links.getFirst().image.get(SMW,),).get(5,)} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 
@@ -757,7 +757,7 @@ export class Limits
      * @semiAsynchronously
      */
     public get reference(): Limit {
-        return this.#reference ??= Limits.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Limits.REFERENCE_MAP.get(this.englishName,)!
     }
 
     //endregion -------------------- Reference --------------------
@@ -869,7 +869,7 @@ export class Limits
         const links = this._entityLink
         if (links.length === 0)
             return this.#entityLink = EMPTY_COLLECTION_HOLDER
-        return this.#entityLink = new GenericCollectionHolder(links,)
+        return this.#entityLink = new ArrayAsCollection(links,)
     }
 
     //endregion -------------------- Entity link --------------------
@@ -878,15 +878,15 @@ export class Limits
     //region -------------------- Methods --------------------
 
     protected _createEntityImageTranslation(): TranslationReplaceKeysMap<ReactJSXElement> {
-        return { entityImage: <Image key="entityImage" file={getFirstByArray(this.entityLink.getFirst().image.get(SMW,),)} className="entity-image"/>, }
+        return { entityImage: <Image key="entityImage" file={new ArrayAsCollection(this.entityLink.getFirst().image.get(SMW,),).getFirst()} className="entity-image"/>, }
     }
 
     protected _createEntityImageTranslationInSmb(): TranslationReplaceKeysMap<ReactJSXElement> {
-        return { entityImage: <Image key="entityImage" file={getFirstByArray(this.entityLink.getFirst().image.get(SMB,),)} className="entity-image"/>, }
+        return { entityImage: <Image key="entityImage" file={new ArrayAsCollection(this.entityLink.getFirst().image.get(SMB,),).getFirst()} className="entity-image"/>, }
     }
 
     protected _createEntityImageTranslationInSm3dw(): TranslationReplaceKeysMap<ReactJSXElement> {
-        return { entityImage: <Image key="entityImage" file={getFirstByArray(this.entityLink.getFirst().image.get(SM3DW,),)} className="entity-image"/>, }
+        return { entityImage: <Image key="entityImage" file={new ArrayAsCollection(this.entityLink.getFirst().image.get(SM3DW,),).getFirst()} className="entity-image"/>, }
     }
 
     //endregion -------------------- Methods --------------------

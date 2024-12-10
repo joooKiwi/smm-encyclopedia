@@ -1,5 +1,4 @@
 import type {Array} from '@joookiwi/type'
-import {mapByArray} from '@joookiwi/collection'
 import {Enum}       from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
@@ -11,6 +10,7 @@ import type {CompanionEnumByNameSingleton}                                      
 import {instrumentSound}                from 'core/instrument/file/fileCreator'
 import {Import}                         from 'util/DynamicImporter'
 import {StringContainer}                from 'util/StringContainer'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class Instruments
@@ -164,7 +164,7 @@ export class Instruments
      * @semiAsynchronously
      */
     public get reference(): Instrument {
-        return this.#reference ??= Instruments.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Instruments.REFERENCE_MAP.get(this.englishName,)!
     }
 
 
@@ -181,7 +181,7 @@ export class Instruments
     }
 
     public get sounds(): Array<InstrumentSoundFile> {
-        return this.#sounds ??= mapByArray(this.fileNames, it => instrumentSound(it,),).toArray()
+        return this.#sounds ??= new ArrayAsCollection(this.fileNames,).map(it => instrumentSound(it,),).toArray()
     }
 
     //endregion -------------------- Getter methods --------------------

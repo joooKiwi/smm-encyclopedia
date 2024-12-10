@@ -1,6 +1,6 @@
-import type {Array, NullOr}       from '@joookiwi/type'
-import {getFirstByArray, isArray} from '@joookiwi/collection'
-import {Enum}                     from '@joookiwi/enumerable'
+import type {Array, NullOr} from '@joookiwi/type'
+import {isArray}            from '@joookiwi/collection'
+import {Enum}               from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
@@ -31,6 +31,7 @@ import {Import}                                                         from 'ut
 import {Empty}                                                          from 'util/emptyVariables'
 import {StringContainer}                                                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly}                                 from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+import {ArrayAsCollection}                                              from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -1230,7 +1231,7 @@ export abstract class SoundEffects
         if (value == null)
             return this.#sounds_exclusiveSmm1 = EmptySound.get
         if (isArray(value,))
-            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, getFirstByArray(value,),)
+            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, new ArrayAsCollection(value,).getFirst(),)
         return this.#sounds_exclusiveSmm1 = value
     }
 
@@ -1308,7 +1309,7 @@ export abstract class SoundEffects
         if (value == null)
             return this.#sounds_smm2 = EmptySound.get
         if (isArray(value,))
-            return this.#sounds_smm2 = new SMM2Sound(value, getFirstByArray(value,), EMPTY_ARRAY, EMPTY_ARRAY,)
+            return this.#sounds_smm2 = new SMM2Sound(value, new ArrayAsCollection(value,).getFirst(), EMPTY_ARRAY, EMPTY_ARRAY,)
         if (value instanceof Import.Musics)
             return this.#sounds_smm2 = new SoundEffectFromMusicAdaptorContainer(value,)
         return this.#sounds_smm2 = value

@@ -3,7 +3,6 @@ import './GameStyleApp.scss'
 
 import type {Array, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}    from '@joookiwi/collection'
-import {filterByArray}            from '@joookiwi/collection'
 
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -31,6 +30,7 @@ import GameStyleImage                               from 'core/gameStyle/compone
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =    GameStyles.ALL
 import SMM1 =   Games.SMM1
@@ -60,7 +60,7 @@ class GameStyleAppInterpreter
 
     public get content() {
         const games = this.#games
-        return filterByArray(ALL, ({reference,},) =>
+        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
             games.hasAnyIn(reference,),)
     }
 

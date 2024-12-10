@@ -5,7 +5,6 @@ import './SoundEffectApp.scss'
 
 import type {Array, MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
-import {filterByArray}                    from '@joookiwi/collection'
 
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -35,6 +34,7 @@ import TimeImage                                    from 'core/time/component/Ti
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =                   SoundEffects.ALL
 import ALL_GAME_STYLES =       GameStyles.ALL
@@ -67,7 +67,7 @@ class SoundEffectAppInterpreter
 
     public get content() {
         const games = this.#games
-        return filterByArray(ALL, ({reference,},) =>
+        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
             games.hasAnyIn(reference,),)
     }
 

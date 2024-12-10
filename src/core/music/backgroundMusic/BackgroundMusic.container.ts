@@ -1,10 +1,11 @@
 import type {Array, MutableArray, Nullable} from '@joookiwi/type'
-import {forEachByArray, hasByArray}         from '@joookiwi/collection'
+import {forEachByArray}                     from '@joookiwi/collection'
 
 import type {BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer} from 'core/music/backgroundMusic/BackgroundMusic'
 import type {SingleBackgroundMusic}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 import {SingleBackgroundMusicFactory} from 'core/music/backgroundMusic/SingleBackgroundMusic.factory'
+import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 /**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used and better */
 export class BackgroundMusicContainer<const SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer,
@@ -102,13 +103,13 @@ export class BackgroundMusicContainer<const SMB_EDITOR_MUSIC extends PossibleSMB
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
         const regularMusic = this.regularMusic
-        const regularMusics = regularMusic.all
+        const regularMusics = new ArrayAsCollection(regularMusic.all,)
         forEachByArray(this.editorMusic.all, it => {
             if (it == null)
                 return
-            if (hasByArray(regularMusics, it,))
+            if (regularMusics.has(it,))
                 return
-            if (hasByArray(all, it,))
+            if (new ArrayAsCollection(all,).has(it,))
                 return
             all.push(it,)
         },)
@@ -126,7 +127,7 @@ export class BackgroundMusicContainer<const SMB_EDITOR_MUSIC extends PossibleSMB
         function add<const T, >(array: MutableArray<T>, value: Nullable<T>,) {
             if (value == null)
                 return
-            if (hasByArray(array, value,))
+            if (new ArrayAsCollection(array,).has(value,))
                 return
             array.push(value,)
         }

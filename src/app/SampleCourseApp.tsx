@@ -1,8 +1,7 @@
 import './SampleCourseApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -22,6 +21,7 @@ import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGame
 import {SampleCourses}          from 'core/sampleCourse/SampleCourses'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
+import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 
 import ALL = SampleCourses.ALL
 
@@ -29,7 +29,7 @@ class SampleCourseInterpreter
     implements AppInterpreterWithTable<SampleCourses, SampleCourseAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card list interpreter --------------------

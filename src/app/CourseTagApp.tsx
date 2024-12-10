@@ -2,7 +2,6 @@ import './CourseTagApp.scss'
 
 import type {Array, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}    from '@joookiwi/collection'
-import {GenericCollectionHolder}  from '@joookiwi/collection'
 import {Link}                     from 'react-router-dom'
 
 import type {CourseTagAppProperties}  from 'app/AppProperties.types'
@@ -30,6 +29,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import SMM2 = Games.SMM2
 
@@ -50,7 +50,7 @@ class CourseTagAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return new GenericCollectionHolder(this.#type.content,)
+        return new ArrayAsCollection(this.#type.content,)
     }
 
     //region -------------------- Card --------------------

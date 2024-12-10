@@ -1,6 +1,6 @@
-import type {EmptyArray, Nullable, NullOr}                         from '@joookiwi/type'
-import {CollectionHolder, getFirstByArray, hasByArray, mapByArray} from '@joookiwi/collection'
-import {Enum}                                                      from '@joookiwi/enumerable'
+import type {EmptyArray, Nullable, NullOr} from '@joookiwi/type'
+import type {CollectionHolder}             from '@joookiwi/collection'
+import {Enum}                              from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
@@ -19,6 +19,7 @@ import {SingleFileNameContainer as SingleFile} from 'core/mysteryMushroom/file/n
 import {Empty}                                 from 'util/emptyVariables'
 import {StringContainer}                       from 'util/StringContainer'
 import {CompanionEnumByName}                   from 'util/enumerable/companion/CompanionEnumByName'
+import {ArrayAsCollection}                     from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 import EMPTY_ARRAY =             Empty.EMPTY_ARRAY
@@ -727,8 +728,8 @@ export class MysteryMushrooms
                     return true
 
                 const fileName = it.__fileName
-                return hasByArray(fileName.imageFileNames, value,)
-                    || hasByArray(fileName.soundFileName, value,)
+                return new ArrayAsCollection<string>(fileName.imageFileNames,).has(value,)
+                    || new ArrayAsCollection<string>(fileName.soundFileName,).has(value,)
             },)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
@@ -824,7 +825,7 @@ export class MysteryMushrooms
     }
 
     get #soundFileName(): PossibleFileName {
-        return getFirstByArray(this.__fileName.soundFileName,)
+        return new ArrayAsCollection(this.__fileName.soundFileName,).getFirst()
     }
 
     get imageFileNames(): PossibleImageFileNames {
@@ -958,7 +959,7 @@ export class MysteryMushrooms
 
     /**@deprecated Relocate elsewhere */#createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): CollectionHolder<T> {
         const englishName = this.englishName
-        return mapByArray(this.__fileName.imageFileNames, it => callback(englishName, it,),)
+        return new ArrayAsCollection(this.__fileName.imageFileNames,).map(it => callback(englishName, it,),)
     }
 
     //endregion -------------------- Methods --------------------

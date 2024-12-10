@@ -1,6 +1,7 @@
-import {CollectionHolder, getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
-import type {Singleton}                                         from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
 import type {Array, Nullable}  from '@joookiwi/type'
+import {isArray}               from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
@@ -18,6 +19,7 @@ import {StringContainer}                                        from 'util/Strin
 import {Empty}                                                  from 'util/emptyVariables'
 import {getValueByEnglishName, getValueByUrlValue}              from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {ArrayAsCollection}                                      from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -109,7 +111,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
                 return EMPTY_ARRAY
 
             /** All the possible {@link Times.urlValue} that could be found in the url */
-            const valuesFound = getFirstByArray(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),)
+            const valuesFound = new ArrayAsCollection(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
             const withDay = valuesFound.includes('day',)
             const withNight = valuesFound.includes('night',)
 
@@ -143,9 +145,9 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
 
 
         public getGroupUrl(times: | Array<Times> | CollectionHolder<Times>,): GroupUrl {
-            const isTimesArray = isArray(times,)
-            const withDay = isTimesArray ? hasByArray(times, Times.DAY,) : times.has(Times.DAY,)
-            const withNight = isTimesArray ? hasByArray(times, Times.NIGHT,) : times.has(Times.NIGHT,)
+            const times2 = isArray(times,) ? new ArrayAsCollection(times,) : times
+            const withDay = times2.has(Times.DAY,)
+            const withNight = times2.has(Times.NIGHT,)
 
             if (withDay)
                 if (withNight)

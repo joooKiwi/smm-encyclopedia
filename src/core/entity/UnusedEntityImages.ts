@@ -1,7 +1,7 @@
-import type {CompanionEnumWithParentSingleton}               from '@joookiwi/enumerable'
-import type {Array}                                          from '@joookiwi/type'
-import {forEachByArray, GenericCollectionHolder, mapByArray} from '@joookiwi/collection'
-import {CompanionEnumWithParent, EnumWithParent}             from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import type {Array}                              from '@joookiwi/type'
+import {forEachByArray}                          from '@joookiwi/collection'
+import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
@@ -15,6 +15,7 @@ import {EmptyUnusedImage_Regular}     from 'core/entity/images/unused/EmptyUnuse
 import {UnusedImage_RegularContainer} from 'core/entity/images/unused/UnusedImage_Regular.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {join}                         from 'util/utilitiesMethods'
+import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB
@@ -94,7 +95,7 @@ export abstract class UnusedEntityImages
 
             const gameStyle = this.gameStyle
             const folderName = this.folderName
-            return this.#image = new UnusedImage_RegularContainer(mapByArray(this.#fileNames, it => [gameStyle, unusedImage(this, folderName, it,),],),)
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [gameStyle, unusedImage(this, folderName, it,),],),)
         }
 
     }
@@ -129,9 +130,9 @@ export abstract class UnusedEntityImages
             const folderName1 = this.folderName1
             const folderName2 = this.folderName2
 
-            return this.#image = new UnusedImage_RegularContainer(new GenericCollectionHolder(join<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>,]>(
-                mapByArray(this.fileNames1, it => [gameStyle1, unusedImage(this, folderName1, it,),] as const,),
-                mapByArray(this.fileNames2, it => [gameStyle2, unusedImage(this, folderName2, it,),] as const,),
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(join<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>,]>(
+                new ArrayAsCollection(this.fileNames1,).map(it => [gameStyle1, unusedImage(this, folderName1, it,),],),
+                new ArrayAsCollection(this.fileNames2,).map(it => [gameStyle2, unusedImage(this, folderName2, it,),],),
             ),),)
         }
 
@@ -185,7 +186,7 @@ export abstract class UnusedEntityImages
             const gameStyle3 = this.gameStyle3
             forEachByArray(fileNames3, it => images[++index] = [gameStyle3, unusedImage(this, folderName3, it,),],)
 
-            return new UnusedImage_RegularContainer(new GenericCollectionHolder(images,),)
+            return new UnusedImage_RegularContainer(new ArrayAsCollection(images,),)
         }
 
     }

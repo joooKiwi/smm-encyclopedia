@@ -2,7 +2,6 @@ import './Table.scss'
 
 import type {CollectionHolder}                from '@joookiwi/collection'
 import type {Array, Nullable, NullableString} from '@joookiwi/type'
-import {dropByArray, filterNotNull}           from '@joookiwi/collection'
 
 import type {Content}                                                                         from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
@@ -10,10 +9,11 @@ import type {SingleTableContent}                                                
 import type {TableOption}                                                                     from 'app/tools/table/TableOption'
 import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
-import Image    from 'app/tools/images/Image'
-import Tooltip  from 'bootstrap/tooltip/Tooltip'
-import {Empty}  from 'util/emptyVariables'
-import {assert} from 'util/utilitiesMethods'
+import Image               from 'app/tools/images/Image'
+import Tooltip             from 'bootstrap/tooltip/Tooltip'
+import {Empty}             from 'util/emptyVariables'
+import {assert}            from 'util/utilitiesMethods'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
 import EMPTY_STRING =   Empty.EMPTY_STRING
@@ -53,7 +53,7 @@ interface TableProperties<out CONTENT extends Content,
  * @reactComponent
  */
 export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, caption, color, headersColor, onRowClicked = EMPTY_CALLBACK,}: TableProperties<CONTENT, OPTION>,) {
-    const nonNullOptions = filterNotNull(options,)
+    const nonNullOptions = new ArrayAsCollection(options,).filterNotNull()
     const associatedClass = retrieveAssociatedClass(nonNullOptions,)
     const contents = retrieveContent(items, nonNullOptions,)
     const headers = retrieveHeader(nonNullOptions,)
@@ -102,7 +102,7 @@ function TableContent<const CONTENT extends Content, >({associatedClass, items, 
         const {englishName, englishNameInHtml,} = items.get(i,)
 
         return <div key={`table row content (${englishName} ${i + 1})`} className={`trow table-row-${englishNameInHtml}`}
-                    onClick={() => onRowClicked(items.get(i,),)}>{dropByArray(content, 1,).map((rowColumnContent, j,) =>
+                    onClick={() => onRowClicked(items.get(i,),)}>{new ArrayAsCollection(content,).drop(1,).map((rowColumnContent, j,) =>
             rowColumnContent == null
                 ? <div key={`table content (empty ${englishName} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
                 : <div key={`table content (${englishName} ${i + 1}-${j + 2})`} className={`tcell ${associatedClass.get(j,)}`}>{rowColumnContent}</div>,)

@@ -1,8 +1,8 @@
-import type {CollectionHolder}                from '@joookiwi/collection'
-import type {Singleton}                       from '@joookiwi/enumerable'
-import type {Array, Nullable}                 from '@joookiwi/type'
-import {getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
-import {Enum}                                 from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
+import type {Array, Nullable}  from '@joookiwi/type'
+import {isArray}               from '@joookiwi/collection'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                              from 'core/ClassWithEnglishName'
@@ -23,6 +23,7 @@ import {StringContainer}                                                        
 import {Empty}                                                                           from 'util/emptyVariables'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlName, getValueByUrlValue} from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                          from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {ArrayAsCollection}                                                               from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -172,7 +173,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
                 return EMPTY_ARRAY
 
             /** All the possible {@link GameStyles.urlValue} that could be found in the url */
-            const valuesFound = getFirstByArray(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),)
+            const valuesFound = new ArrayAsCollection(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
             const withSmb = valuesFound.includes('smb',)
             const withSmb3 = valuesFound.includes('smb3',)
             const withSmw = valuesFound.includes('smw',)
@@ -337,12 +338,12 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
 
         public getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue {
-            const isGameStylesArray = isArray(gameStyles,)
-            const withSmb = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
-            const withSmb3 = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS_3,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
-            const withSmw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_WORLD,)
-            const withNsmbu = isGameStylesArray ? hasByArray(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,) : gameStyles.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
-            const withSm3dw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_3D_WORLD,)
+            const gameStyles2 = isArray(gameStyles,) ? new ArrayAsCollection(gameStyles,) : gameStyles
+            const withSmb = gameStyles2.has(GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = gameStyles2.has(GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = gameStyles2.has(GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = gameStyles2.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = gameStyles2.has(GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {
@@ -425,12 +426,12 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
         public getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName {
-            const isGameStylesArray = isArray(gameStyles,)
-            const withSmb = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
-            const withSmb3 = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS_3,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
-            const withSmw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_WORLD,)
-            const withNsmbu = isGameStylesArray ? hasByArray(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,) : gameStyles.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
-            const withSm3dw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_3D_WORLD,)
+            const gameStyles2 = isArray(gameStyles,) ? new ArrayAsCollection(gameStyles,) : gameStyles
+            const withSmb = gameStyles2.has(GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = gameStyles2.has(GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = gameStyles2.has(GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = gameStyles2.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = gameStyles2.has(GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {

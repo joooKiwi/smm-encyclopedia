@@ -1,11 +1,10 @@
 import './TextComponent.scss'
 
-import {isEmptyByArray} from '@joookiwi/collection'
-
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
 import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
 import {Empty}                             from 'util/emptyVariables'
+import {ArrayAsCollection}                 from 'util/collection/ArrayAsCollection'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
@@ -20,8 +19,9 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
 
     switch (content) {
         case null:
-            if (isEmptyByArray(Object.getOwnPropertyNames(otherProperties,),) && className == null)
-                return null
+            if (new ArrayAsCollection(Object.getOwnPropertyNames(otherProperties,),).isEmpty)
+                if (className == null)
+                    return null
             if (className == null)
                 return <span {...otherProperties}/>
             return <span className={className} {...otherProperties}/>

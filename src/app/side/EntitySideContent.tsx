@@ -1,7 +1,6 @@
 import './EntitySideContent.scss'
 
-import {useRef}                                                                     from 'react'
-import {getFirstByArray, mapByArray, sliceWithARangeByArray, sliceWithArrayByArray} from '@joookiwi/collection'
+import {useRef} from 'react'
 
 import type {ReactProperties} from 'util/react/ReactProperties'
 
@@ -21,6 +20,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
 import {Empty}                                      from 'util/emptyVariables'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import CategoryCompanion =   EntityCategories.Companion
 import EMPTY_STRING =        Empty.EMPTY_STRING
@@ -119,7 +119,7 @@ function HasAMushroomVariantListItem({reference,}: EntitySideContentListItemProp
         return null
 
     return <li id="hasAMushroomVariant-listItem" className="list-group-item">
-        <Image file={getFirstByArray(SUPER_MUSHROOM.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(SUPER_MUSHROOM.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Has a mushroom variant',)}</span>
     </li>
 }
@@ -131,7 +131,7 @@ function CanBeInAParachuteListItem({reference,}: EntitySideContentListItemProper
 
     const comment = reference.canBeInAParachuteComment
     return <li id="canBeInAParachute-listItem" className="list-group-item">
-        <Image file={getFirstByArray(PARACHUTE.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(PARACHUTE.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be put in a parachute',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {acronym: LOOSE_COIN_LIMIT.acronym!, limit: LOOSE_COIN_LIMIT.reference.languageValue,},)
@@ -146,7 +146,7 @@ function CanHaveWingsListItem({reference,}: EntitySideContentListItemProperties,
 
     const comment = reference.canHaveWingsComment
     return <li id="canHaveWings-listItem" className="list-group-item">
-        <Image file={getFirstByArray(WING.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(WING.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can have wings',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {acronym: LOOSE_COIN_LIMIT.acronym!, limit: LOOSE_COIN_LIMIT.reference.languageValue,},)
@@ -161,9 +161,9 @@ function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentLi
 
     const comment = reference.canMakeASoundOutOfAMusicBlockComment
     return <li id="canMakeASoundOutOfAMusicBlock-listItem" className="list-group-item">
-        <Image file={getFirstByArray(MUSIC_BLOCK.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(MUSIC_BLOCK.image.get(SMW,),).getFirst()} className="entity-image"/>
         <div id="instrument-sounds" className="d-inline-block">
-            {mapByArray(reference.instruments, it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
+            {new ArrayAsCollection(reference.instruments,).map(it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
                 <InstrumentSound key={`Instrument sound #${i + 1}`} value={it}/>,)}
         </div>
         <span>{unfinishedText('Can make a sound out of a Music Block',)}</span>
@@ -178,7 +178,7 @@ function CanContainOrSpawnAKeyListItem({reference,}: EntitySideContentListItemPr
     if (!reference.canContainOrSpawnAKey)
         return null
     return <li id="canContainOrSpawnAKey-listItem" className="list-group-item">
-        <Image file={getFirstByArray(KEY.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(KEY.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can contain or spawn a Key',)}</span>
     </li>
 }
@@ -192,7 +192,7 @@ function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideConten
     const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
     const comment = reference.isAffectDirectlyByAnOnOffStateComment
     return <li id="isAffectDirectlyByAnOnOffState-listItem" className="list-group-item">
-        <Image file={getFirstByArray(ON_OFF_SWITCH.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(ON_OFF_SWITCH.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Is affected directly by an ON/OFF state',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {entity: entityAsLowerCase,},)
@@ -205,7 +205,7 @@ function CanSpawnOutOfAPipeListItem({reference,}: EntitySideContentListItemPrope
     if (!reference.canSpawnOutOfAPipe)
         return null
     return <li id="canSpawnOutOfAPipe-listItem" className="list-group-item">
-        <Image file={getFirstByArray(PIPE.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(PIPE.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can spawn out of a Pipe',)}</span>
     </li>
 }
@@ -218,7 +218,7 @@ function CanBePutOnASwingingClawListItem({reference,}: EntitySideContentListItem
     const images = SWINGING_CLAW.inGameImage.get(SMW,)
     return <li id="canBePutOnASwingingClaw-listItem" className="list-group-item">
         <div id="swingingClaw-groupImage" className="d-inline-flex flex-column align-items-center">
-            {sliceWithArrayByArray(images, [0, 1, 1, 1, 1, 2,]).map((it, i,) =>
+            {new ArrayAsCollection(images,).slice([0, 1, 1, 1, 1, 2,],).map((it, i,) =>
                 <Image key={`Swinging Claw image #${i + 1}`} file={it} className="entity-image"/>,)}
         </div>
         <span>{unfinishedText('Can be put on a Swinging Claw',)}</span>
@@ -231,10 +231,10 @@ function CanBeThrownByALakituListItem({reference,}: EntitySideContentListItemPro
         return null
     return <li id="canBeThrownByALakitu-listItem" className="list-group-item">
         <div id="lakitu-groupImage" className="d-inline-flex">
-            <Image partialId="animated-lakitu" images={mapByArray(LAKITU.inGameImage.get(SMW,), it => ({file: it,}),).toArray()}/>
-            <Image partialId="animated-lakituCloud" images={mapByArray(LAKITU_CLOUD.inGameImage.get(SMW,), it => ({file: it,}),).toArray()}/>
-            {/*<Image file={LAKITU.inGameImage.get(SMW,)[2]} className="entity-image top-0"/>*/}
-            {/*<Image file={getFirstByArray(LAKITU_CLOUD.image.get(SMW,),)} className="entity-image bottom-0"/>*/}
+            <Image partialId="animated-lakitu" images={new ArrayAsCollection(LAKITU.inGameImage.get(SMW,),).map( it => ({file: it,}),).toArray()}/>
+            <Image partialId="animated-lakituCloud" images={new ArrayAsCollection(LAKITU_CLOUD.inGameImage.get(SMW,),).map(it => ({file: it,}),).toArray()}/>
+            {/*<Image file={new ArrayAsCollection(LAKITU.inGameImage.get(SMW,),).get(2,)} className="entity-image top-0"/>*/}
+            {/*<Image file={new ArrayAsCollection(LAKITU_CLOUD.image.get(SMW,),).getFirst()} className="entity-image bottom-0"/>*/}
         </div>
         <span>{unfinishedText('Can be thrown by a Lakitu',)}</span>
     </li>
@@ -245,8 +245,8 @@ function CanBePutInALakituCloudListItem({reference,}: EntitySideContentListItemP
     if (!reference.canBePutInALakituCloud)
         return null
     return <li id="canBePutInALakituCloud-listItem" className="list-group-item">
-        <Image partialId="animated-cloud" className="d-inline-block" images={mapByArray(LAKITU_CLOUD.inGameImage.get(SMW,), it => ({file: it,}),).toArray()}/>
-        {/*<Image file={getFirstByArray(LAKITU_CLOUD.image.get(SMW,),)} className="entity-image"/>*/}
+        <Image partialId="animated-cloud" className="d-inline-block" images={new ArrayAsCollection(LAKITU_CLOUD.inGameImage.get(SMW,),).map(it => ({file: it,}),).toArray()}/>
+        {/*<Image file={new ArrayAsCollection(LAKITU_CLOUD.image.get(SMW,),).getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be put in a Lakitu’s Cloud',)}</span>
     </li>
 }
@@ -256,8 +256,8 @@ function CanBePutInAClownCarListItem({reference,}: EntitySideContentListItemProp
     if (!reference.canBePutInAClownCar)
         return null
     return <li id="canBePutInAClownCar-listItem" className="list-group-item">
-        <Image partialId="animated-clownCar" className="d-inline-block" images={sliceWithARangeByArray(KOOPA_CLOWN_CAR.inGameImage.get(SMW,), 8, 11,).map(it => ({file: it,}),).toArray()}/>
-        {/*<Image file={getFirstByArray(KOOPA_CLOWN_CAR.image.get(SMW,),)} className="entity-image"/>*/}
+        <Image partialId="animated-clownCar" className="d-inline-block" images={new ArrayAsCollection(KOOPA_CLOWN_CAR.inGameImage.get(SMW,),).slice(8, 11,).map(it => ({file: it,}),).toArray()}/>
+        {/*<Image file={new ArrayAsCollection(KOOPA_CLOWN_CAR.image.get(SMW,),).getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be put in a Clown Car',)}</span>
     </li>
 }
@@ -267,7 +267,7 @@ function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentL
     if (!reference.canBeFiredOutOfABulletLauncher)
         return null
     return <li id="canBeFiredOutOfABillBlaster-listItem" className="list-group-item">
-        <Image file={getFirstByArray(BILL_BLASTER.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(BILL_BLASTER.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be fired out of a Bill Blaster',)}</span>
     </li>
 }
@@ -277,7 +277,7 @@ function CanComeOutOfABlockListItem({reference,}: EntitySideContentListItemPrope
     if (!reference.canComeOutOfABlock)
         return null
     return <li id="canComeOutOfABlock-listItem" className="list-group-item">
-        <Image file={getFirstByArray(QUESTION_MARK_BLOCK.image.get(SMW,),)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(QUESTION_MARK_BLOCK.image.get(SMW,),).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can come out of a Block',)}</span>
     </li>
 }
@@ -287,7 +287,7 @@ function CanBePutInATreeListItem({reference,}: EntitySideContentListItemProperti
     if (!reference.canBePutInATree)
         return null
     return <li id="canBePutInATree-listItem" className="list-group-item">
-        <Image file={getFirstByArray(TREE.image.images,)} className="entity-image"/>
+        <Image file={new ArrayAsCollection(TREE.image.images,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be put in a Tree',)}</span>
     </li>
 }
@@ -297,14 +297,14 @@ function CanBeStackedListItem({reference,}: EntitySideContentListItemProperties,
     if (!reference.canBeStacked)
         return null
 
-    const images = sliceWithARangeByArray(GALOOMBA.inGameImage.get(SMW,), 3, 4,)
+    const images = new ArrayAsCollection(GALOOMBA.inGameImage.get(SMW,),).slice(3, 4,)
     return <li id="canBeStacked-listItem" className="list-group-item">
         <div id="stackedGaloomba-groupImage" className="d-inline-flex flex-column">
             <Image partialId="animated-galoomba1" images={images.map(it => ({file: it,}),).toArray()}/>
             <Image partialId="animated-galoomba2" images={images.map(it => ({file: it,}),).toArray()}/>
         </div>
-        {/*<Image file={getFirstByArray(GALOOMBA.image.get(SMW,),)} className="entity-image"/>*/}
-        {/*<Image file={getFirstByArray(GALOOMBA.image.get(SMW,),)} className="entity-image"/>*/}
+        {/*<Image file={images.getFirst()} className="entity-image"/>*/}
+        {/*<Image file={images.getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be stacked',)}</span>
     </li>
 }

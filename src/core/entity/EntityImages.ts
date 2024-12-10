@@ -1,7 +1,6 @@
-import type {CompanionEnumWithParentSingleton}                                               from '@joookiwi/enumerable'
-import type {Array}                                                                          from '@joookiwi/type'
-import {getFirstByArray, indexOfFirstByArray, sliceWithARangeByArray, sliceWithArrayByArray} from '@joookiwi/collection'
-import {CompanionEnumWithParent, EnumWithParent}                                             from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import type {Array}                              from '@joookiwi/type'
+import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName}                                       from 'core/entity/Entities.types'
 import type {ClearConditionImageFile, EditorImageFile, EntityImageFile, InGameImageFile} from 'core/entity/file/EntityImageFile'
@@ -27,6 +26,7 @@ import {EditorImageContainer}               from 'core/entity/images/editor/Edit
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
 import {InGameImage_RegularContainer}       from 'core/entity/images/inGame/InGameImage_Regular.container'
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
+import {ArrayAsCollection}                  from 'util/collection/ArrayAsCollection'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB
@@ -243,7 +243,7 @@ export abstract class EntityImages
                 [SMB,   inGameImages.get(SMB,),],
                 [SMB3,  inGameImages.get(SMB3,),],
                 [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, [getFirstByArray(inGameImages.get(NSMBU,),),],],
+                [NSMBU, [new ArrayAsCollection(inGameImages.get(NSMBU,),).getFirst(),],],
                 [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
             ] as const
         }
@@ -271,7 +271,7 @@ export abstract class EntityImages
                 [SMB,   inGameImages.get(SMB,),],
                 [SMB3,  inGameImages.get(SMB3,),],
                 [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, sliceWithArrayByArray(inGameImages.get(NSMBU,), [0, -1,],).toArray(),],
+                [NSMBU, new ArrayAsCollection(inGameImages.get(NSMBU,),).slice([0, -1,],).toArray(),],
                 [SM3DW, editorReference.image.get(SM3DW,).toArray(),],
             ] as const
         }
@@ -296,10 +296,10 @@ export abstract class EntityImages
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
             return [
-                [SMB,   sliceWithARangeByArray(inGameImages.get(SMB,), 0, 1,).toArray(),],
-                [SMB3,  sliceWithARangeByArray(inGameImages.get(SMB3,), 0, 1,).toArray(),],
-                [SMW,   sliceWithARangeByArray(inGameImages.get(SMW,), 0, 1,).toArray(),],
-                [NSMBU, sliceWithArrayByArray(inGameImages.get(NSMBU,), [0, -1,],).toArray(),],
+                [SMB,   new ArrayAsCollection(inGameImages.get(SMB,),).slice(0, 1,).toArray(),],
+                [SMB3,  new ArrayAsCollection(inGameImages.get(SMB3,),).slice(0, 1,).toArray(),],
+                [SMW,   new ArrayAsCollection(inGameImages.get(SMW,),).slice(0, 1,).toArray(),],
+                [NSMBU, new ArrayAsCollection(inGameImages.get(NSMBU,),).slice([0, -1,],).toArray(),],
                 [SM3DW, editorReference.image.get(SM3DW,).toArray(),],
             ] as const
         }
@@ -318,24 +318,24 @@ export abstract class EntityImages
         extends EntityImages.ExistantEditor<NAME, IMAGE> {
 
         protected override _createImage(image: EditorImage<IMAGE>) {
-            const images = image.imagesWithAssociation
+            const images = new ArrayAsCollection(image.imagesWithAssociation,)
             const size = images.length
-            const smb3ImageIndex = indexOfFirstByArray(images, it => it[1] === SMB3,)
-            const smwImageIndex = indexOfFirstByArray(images, it => it[1] === SMW,)
+            const smb3ImageIndex = images.indexOfFirst(it => it[1] === SMB3,)
+            const smwImageIndex = images.indexOfFirst(it => it[1] === SMW,)
             if (size === smwImageIndex + 2) //without sm3dw
-                return new EditorImageContainer([
-                    images[0]!, images[1]!,
-                    images[smb3ImageIndex]!, images[smb3ImageIndex + 1]!,
-                    images[smwImageIndex]!,
-                    images[smwImageIndex + 1]!,//nsmbu
-                ],)
-            return new EditorImageContainer([
-                images[0]!, images[1]!,
-                images[smb3ImageIndex]!, images[smb3ImageIndex + 1]!,
-                images[smwImageIndex]!,
-                images[smwImageIndex + 1]!,//nsmbu
-                images[smwImageIndex + 2]!,//sm3dw
-            ],)
+                return new EditorImageContainer(images.slice([
+                    0, 1,
+                    smb3ImageIndex, smb3ImageIndex + 1,
+                    smwImageIndex,
+                    smwImageIndex + 1,//nsmbu
+                ],).toArray(),)
+            return new EditorImageContainer(images.slice([
+                0, 1,
+                smb3ImageIndex, smb3ImageIndex + 1,
+                smwImageIndex,
+                smwImageIndex + 1,//nsmbu
+                smwImageIndex + 2,//sm3dw
+            ]).toArray(),)
         }
 
     }
@@ -348,13 +348,12 @@ export abstract class EntityImages
         public constructor() { super('Bridge', EditorEntityImages.BRIDGE,) }
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['BRIDGE']['image']['images'][number]>,) {
-            const images = image.imagesWithAssociation
-            return new EditorImageContainer([
-                images[0]!, images[1]!, images[2]!, images[3]!, images[4]!,//smb
-                images[6]!, images[7]!, images[8]!,//smb3
-                images[9]!, images[10]!, images[11]!, images[12]!,//smw
-                images[15]!, images[16]!, images[17]!, images[18]!, images[19]!, images[20]!, images[21]!, images[22]!, images[23]!,//nsmbu
-            ],)
+            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([
+                0, 1, 2, 3, 4,//smb
+                6, 7, 8,//smb3
+                9, 10, 11, 12,//smw
+                15, 16, 17, 18, 19, 20, 21, 22, 23,//nsmbu
+            ],).toArray(),)
         }
 
     }
@@ -366,13 +365,12 @@ export abstract class EntityImages
         public constructor() { super('Brick Block', EditorEntityImages.BRICK_BLOCK,) }
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]>,) {
-            const images = image.imagesWithAssociation
-            return new EditorImageContainer([
-                images[0]!, images[1]!, images[2]!, images[3]!, images[5]!,//smb
-                images[6]!, images[7]!,//smb3
-                images[9]!,//smw
-                images[10]!,//nsmbu
-            ],)
+            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([
+                0, 1, 2, 3, 5,//smb
+                6, 7,//smb3
+                9,//smw
+                10,//nsmbu
+            ],).toArray(),)
         }
 
     }
@@ -384,7 +382,7 @@ export abstract class EntityImages
         public constructor() { super('Cristal Block', EditorEntityImages.CRISTAL_BLOCK,) }
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]>,) {
-            return new EditorImageContainer([image.imagesWithAssociation[0]!,],)
+            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([0,]).toArray(),)
         }
 
     }
@@ -396,13 +394,12 @@ export abstract class EntityImages
         public constructor() { super('Hard Block', EditorEntityImages.HARD_BLOCK,) }
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]>,) {
-            const images = image.imagesWithAssociation
-            return new EditorImageContainer([
-                images[0]!, images[1]!, images[3]!, images[4]!, images[5]!, images[7]!,//smb
-                images[9]!, images[11]!,//smb3
-                images[12]!, images[13]!,//smw
-                images[16]!, images[17]!,//nsmbu
-            ],)
+            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([
+                0, 1, 3, 4, 5, 7,//smb
+                9, 11,//smb3
+                12, 13,//smw
+                16, 17,//nsmbu
+            ],).toArray(),)
         }
 
     }
@@ -442,7 +439,7 @@ export abstract class EntityImages
         public constructor() { super('Skewer', InGameEntityImages.SKEWER,) }
 
         protected override _createImage(image: InGameImage_Regular<typeof InGameEntityImages['SKEWER']['image']['images'][number]>,) {
-            return new InGameImage_RegularContainer(sliceWithArrayByArray(image.imagesWithAssociation, [0, 4, 8, 12, 16, 20,],).toArray(),)
+            return new InGameImage_RegularContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([0, 4, 8, 12, 16, 20,],).toArray(),)
         }
 
     }
@@ -454,8 +451,7 @@ export abstract class EntityImages
         public constructor() { super('Tree', EditorEntityImages.TREE,) }
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['TREE']['image']['images'][number]>,) {
-            const images = image.imagesWithAssociation
-            return new EditorImageContainer([images[0]!, images[1]!, images[2]!, images[3]!, images[4]!,],)
+            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([0, 1, 2, 3, 4,],).toArray(),)
         }
 
     }

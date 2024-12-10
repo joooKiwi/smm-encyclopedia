@@ -4,7 +4,6 @@ import './EditorVoiceApp.scss'
 
 import type {Array, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
-import {filterByArray}                    from '@joookiwi/collection'
 
 import type {EditorVoiceProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -38,6 +37,7 @@ import {Themes}                                     from 'core/theme/Themes'
 import ThemeImage                                   from 'core/theme/component/ThemeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =    EditorVoices.ALL
 import SMM1 =   Games.SMM1
@@ -65,7 +65,7 @@ class EditorVoiceAppInterpreter
     public get content() {
         const games = this.#games
         const times = this.#times
-        return filterByArray(ALL, ({reference,},) =>
+        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
             games.hasAnyIn(reference,)
             && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }

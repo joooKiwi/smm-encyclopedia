@@ -1,8 +1,7 @@
 import './EntityCategoryApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -22,6 +21,7 @@ import EntityCategoryIcon        from 'core/entityCategory/component/EntityCateg
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 import NameComponent             from 'lang/name/component/Name.component'
+import {ArrayAsCollection}       from 'util/collection/ArrayAsCollection'
 
 import ALL = EntityCategories.ALL
 
@@ -29,7 +29,7 @@ class EntityCategoryAppInterpreter
     implements AppInterpreterWithTable<EntityCategories, EntityCategoryAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card --------------------

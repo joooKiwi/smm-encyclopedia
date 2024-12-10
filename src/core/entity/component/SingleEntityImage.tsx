@@ -1,11 +1,10 @@
-import {getFirstOrNullByArray} from '@joookiwi/collection'
-
 import type {Entities}            from 'core/entity/Entities'
 import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
 import type {ReactProperties}     from 'util/react/ReactProperties'
 
-import Image        from 'app/tools/images/Image'
-import {GameStyles} from 'core/gameStyle/GameStyles'
+import Image               from 'app/tools/images/Image'
+import {GameStyles}        from 'core/gameStyle/GameStyles'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB
@@ -37,30 +36,30 @@ export default function SingleEntityImage({reference, gameStyles,}:SingleEntityI
     if (gameStyles.size === 1)
         if (gameStyles.hasSmb)
             return <div className="singleEntityImage unique-singleEntityImage smb-singleEntityImage">
-                <Image file={getFirstOrNullByArray(reference.image.get(SMB,),)} className="entity-image"/>
+                <Image file={new ArrayAsCollection(reference.image.get(SMB,),).getFirstOrNull()} className="entity-image"/>
             </div>
         else if (gameStyles.hasSmb3)
             return <div className="singleEntityImage unique-singleEntityImage smb3-singleEntityImage">
-                <Image file={getFirstOrNullByArray(reference.image.get(SMB3,),)} className="entity-image"/>
+                <Image file={new ArrayAsCollection(reference.image.get(SMB3,),).getFirstOrNull()} className="entity-image"/>
             </div>
         else if (gameStyles.hasSmw)
             return <div className="singleEntityImage unique-singleEntityImage smw-singleEntityImage">
-                <Image file={getFirstOrNullByArray(reference.image.get(SMW,),)} className="entity-image"/>
+                <Image file={new ArrayAsCollection(reference.image.get(SMW,),).getFirstOrNull()} className="entity-image"/>
             </div>
         else if (gameStyles.hasNsmbu)
             return <div className="singleEntityImage unique-singleEntityImage nsmbu-singleEntityImage">
-                <Image file={getFirstOrNullByArray(reference.image.get(NSMBU,),)} className="entity-image"/>
+                <Image file={new ArrayAsCollection(reference.image.get(NSMBU,),).getFirstOrNull()} className="entity-image"/>
             </div>
         else
             return <div className="singleEntityImage unique-singleEntityImage sm3dw-singleEntityImage">
-                <Image file={getFirstOrNullByArray(reference.image.get(SM3DW,),)} className="entity-image"/>
+                <Image file={new ArrayAsCollection(reference.image.get(SM3DW,),).getFirstOrNull()} className="entity-image"/>
             </div>
     return <div className="singleEntityImage mixedGameStyle-singleEntityImage">
-        {gameStyles.hasSmb ? <Image file={getFirstOrNullByArray(reference.image.get(SMB,),)} className="entity-image"/> : null}
-        {gameStyles.hasSmb3 ? <Image file={getFirstOrNullByArray(reference.image.get(SMB3,),)} className="entity-image"/> : null}
-        {gameStyles.hasSmw ? <Image file={getFirstOrNullByArray(reference.image.get(SMW,),)} className="entity-image"/> : null}
-        {gameStyles.hasNsmbu ? <Image file={getFirstOrNullByArray(reference.image.get(NSMBU,),)} className="entity-image"/> : null}
-        {gameStyles.hasSm3dw ? <Image file={getFirstOrNullByArray(reference.image.get(SM3DW,),)} className="entity-image"/> : null}
+        {gameStyles.hasSmb ? <Image file={new ArrayAsCollection(reference.image.get(SMB,),).getFirstOrNull()} className="entity-image"/> : null}
+        {gameStyles.hasSmb3 ? <Image file={new ArrayAsCollection(reference.image.get(SMB3,),).getFirstOrNull()} className="entity-image"/> : null}
+        {gameStyles.hasSmw ? <Image file={new ArrayAsCollection(reference.image.get(SMW,),).getFirstOrNull()} className="entity-image"/> : null}
+        {gameStyles.hasNsmbu ? <Image file={new ArrayAsCollection(reference.image.get(NSMBU,),).getFirstOrNull()} className="entity-image"/> : null}
+        {gameStyles.hasSm3dw ? <Image file={new ArrayAsCollection(reference.image.get(SM3DW,),).getFirstOrNull()} className="entity-image"/> : null}
     </div>
 
 }

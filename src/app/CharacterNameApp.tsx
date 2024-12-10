@@ -4,7 +4,6 @@ import './CharacterNameApp.scss'
 
 import type {Array, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
-import {filterByArray}                    from '@joookiwi/collection'
 
 import type {CharacterNameProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -36,6 +35,7 @@ import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =    CharacterNames.ALL
 import SMM1 =   Games.SMM1
@@ -63,7 +63,7 @@ class CharacterNameAppInterpreter
     public get content() {
         const games = this.#games
         const times = this.#times
-        return filterByArray(ALL, ({reference,},) =>
+        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
             games.hasAnyIn(reference,)
             && (times.hasAllTimes || times.hasAnyIn(reference,)),)
     }

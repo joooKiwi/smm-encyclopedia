@@ -6,7 +6,6 @@ import './EntityApp.scss'
 import type {Array, MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
 import type {Dispatch, SetStateAction}    from 'react'
-import {filterByArray}                    from '@joookiwi/collection'
 import {useState}                         from 'react'
 
 import type {EntityProperties}        from 'app/AppProperties.types'
@@ -46,6 +45,7 @@ import NameComponent                                from 'lang/name/component/Na
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =             Entities.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
@@ -83,7 +83,7 @@ class EntityAppInterpreter
         const games = this.#games
         const gameStyles = this.#gameStyles
         const times = this.#times
-        return filterByArray(ALL, ({reference,},) =>
+        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
             games.hasAnyIn(reference,)
             && gameStyles.hasAnyIn(reference,)
             && times.hasAnyIn(reference,),)

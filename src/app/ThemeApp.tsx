@@ -3,7 +3,6 @@ import './ThemeApp.scss'
 
 import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
-import {filterByArray}         from '@joookiwi/collection'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -32,6 +31,7 @@ import ThemeImage                                        from 'core/theme/compon
 import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import NameComponent                                     from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                               from 'util/collection/ArrayAsCollection'
 
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
@@ -57,7 +57,7 @@ class ThemeAppInterpreter
 
     public get content() {
         const games = this.#games
-        return filterByArray(this.#type.content, ({reference,},) =>
+        return new ArrayAsCollection(this.#type.content,).filter(({reference,},) =>
             games.hasAnyIn(reference,),)
     }
 

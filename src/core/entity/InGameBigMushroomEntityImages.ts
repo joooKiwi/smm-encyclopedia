@@ -1,7 +1,6 @@
 import type {CollectionHolder}                   from '@joookiwi/collection'
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import type {Array, EmptyString}                 from '@joookiwi/type'
-import {GenericCollectionHolder, mapByArray}     from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
@@ -15,6 +14,7 @@ import {bigMushroomImage}                 from 'core/entity/file/fileCreator'
 import {EmptyInGameImage_BigMushroom}     from 'core/entity/images/inGame/EmptyInGameImage_BigMushroom'
 import {InGameImage_BigMushroomContainer} from 'core/entity/images/inGame/InGameImage_BigMushroom.container'
 import {join}                             from 'util/utilitiesMethods'
+import {ArrayAsCollection}                from 'util/collection/ArrayAsCollection'
 
 /**
  * A {@link InGameBigMushroomEntityImages} class made to hold an {@link InGameImage_BigMushroom}
@@ -88,7 +88,7 @@ export abstract class InGameBigMushroomEntityImages
 
         protected override _createImageFiles(fileNames: Array<FILE_NAME>,) {
             const folderName = this.folderName
-            return mapByArray(fileNames, it => bigMushroomImage(this, folderName, it,),)
+            return new ArrayAsCollection(fileNames,).map(it => bigMushroomImage(this, folderName, it,),)
         }
 
     }
@@ -106,9 +106,9 @@ export abstract class InGameBigMushroomEntityImages
         protected override _createImageFiles(fileNames: Array<FILE_NAME>,) {
             const folderName = this.folderName
             const folderNameAlt = `${folderName} D` as const
-            return new GenericCollectionHolder(join<InGameSmm1ImageFile_BigMushroom<`${FOLDER_NAME}${| EmptyString | ' D'}`, FILE_NAME, NAME>>(
-                mapByArray(fileNames, it => bigMushroomImage(this, folderName, it,),),
-                mapByArray(fileNames, it => bigMushroomImage(this, folderNameAlt, it,),),
+            return new ArrayAsCollection(join<InGameSmm1ImageFile_BigMushroom<`${FOLDER_NAME}${| EmptyString | ' D'}`, FILE_NAME, NAME>>(
+                new ArrayAsCollection(fileNames).map(it => bigMushroomImage(this, folderName, it,),),
+                new ArrayAsCollection(fileNames).map(it => bigMushroomImage(this, folderNameAlt, it,),),
             ),)
         }
 

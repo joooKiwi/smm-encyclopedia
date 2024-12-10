@@ -1,9 +1,10 @@
 import type {Array}             from '@joookiwi/type'
-import {findFirstOrNullByArray} from '@joookiwi/collection'
 
 import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile'
 import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {GameStyles}              from 'core/gameStyle/GameStyles'
+
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 export class ClearConditionImageContainer<const T extends ClearConditionImageFile = ClearConditionImageFile, >
     implements ClearConditionImage {
@@ -16,7 +17,7 @@ export class ClearConditionImageContainer<const T extends ClearConditionImageFil
     }
 
     public get images(): Array<T> {
-        return this.#images ??= this.imagesWithAssociation.map(it => it[1],)
+        return this.#images ??= new ArrayAsCollection(this.imagesWithAssociation,).map(it => it[1],).toArray()
     }
 
     public get imagesWithAssociation(): Array<readonly [GameStyles, T,]> {
@@ -24,7 +25,7 @@ export class ClearConditionImageContainer<const T extends ClearConditionImageFil
     }
 
     public get(gameStyle: GameStyles,): T {
-        const value = findFirstOrNullByArray(this.imagesWithAssociation, it => it[0] === gameStyle,)
+        const value = new ArrayAsCollection(this.imagesWithAssociation,).findFirstOrNull(it => it[0] === gameStyle,)
         if (value == null)
             throw new ReferenceError(`The game style "${gameStyle.englishName}" does not exist for the clear condition image.`,)
         return value[1]

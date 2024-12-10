@@ -1,6 +1,5 @@
 import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
 import type {Array, NullOr}                        from '@joookiwi/type'
-import {getFirstByArray, hasByArray, mapByArray}   from '@joookiwi/collection'
 import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
@@ -19,6 +18,7 @@ import {Import}                         from 'util/DynamicImporter'
 import {Empty}                          from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -43,11 +43,11 @@ export abstract class EditorVoices
     private static readonly EntityEditorVoices = class EntityEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
-            return mapByArray(this.entityReferences, it => it.reference,).toArray()
+            return new ArrayAsCollection(this.entityReferences,).map(it => it.reference,).toArray()
         }
 
         protected override _retrieveReference() {
-            return getFirstByArray(this.entityReferences,).reference
+            return new ArrayAsCollection(this.entityReferences,).getFirst().reference
         }
 
         public override get characterNameReferences() {
@@ -59,11 +59,11 @@ export abstract class EditorVoices
     private static readonly CharacterNameEditorVoices = class CharacterNameEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
-            return mapByArray(this.characterNameReferences, it => it.reference,).toArray()
+            return new ArrayAsCollection(this.characterNameReferences,).map(it => it.reference,).toArray()
         }
 
         protected override _retrieveReference() {
-            return getFirstByArray(this.characterNameReferences,).reference
+            return new ArrayAsCollection(this.characterNameReferences,).getFirst().reference
         }
 
         public override get entityReferences() {
@@ -579,11 +579,11 @@ export abstract class EditorVoices
         }
 
         #findByEntity(value: Entities,): NullOr<EditorVoices> {
-            return this.values.findFirstOrNull(it => hasByArray(it.entityReferences, value,),)
+            return this.values.findFirstOrNull(it => new ArrayAsCollection(it.entityReferences,).has(value,),)
         }
 
         #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-            return this.values.findFirstOrNull(it => hasByArray(it.characterNameReferences, value,),)
+            return this.values.findFirstOrNull(it => new ArrayAsCollection(it.characterNameReferences,).has(value,),)
         }
 
     }

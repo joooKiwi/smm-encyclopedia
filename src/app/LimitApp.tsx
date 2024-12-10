@@ -4,7 +4,6 @@ import './LimitApp.scss'
 
 import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}                  from '@joookiwi/collection'
-import {filterByArray}                          from '@joookiwi/collection'
 
 import type {LimitAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -39,6 +38,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import NameComponent                                from 'lang/name/component/Name.component'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL_GAME_STYLES = GameStyles.ALL
 import EMPTY_STRING =    Empty.EMPTY_STRING
@@ -71,7 +71,7 @@ class LimitAppInterpreter
 
     public get content() {
         const games = this.#games
-        return filterByArray(this.#type.content, it =>
+        return new ArrayAsCollection(this.#type.content,).filter(it =>
             games.hasAnyIn(it.reference,),)
     }
 

@@ -1,8 +1,7 @@
 import './SoundEffectCategoryApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -20,6 +19,7 @@ import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffect
 import SoundEffectCategoryIcon        from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 import NameComponent                  from 'lang/name/component/Name.component'
+import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import ALL = SoundEffectCategories.ALL
 
@@ -27,7 +27,7 @@ class SoundEffectCategoryAppInterpreter
     implements AppInterpreterWithTable<SoundEffectCategories, SoundEffectCategoryAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card --------------------

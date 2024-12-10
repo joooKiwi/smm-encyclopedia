@@ -1,6 +1,5 @@
 import type {Singleton}                                           from '@joookiwi/enumerable'
 import type {Array, MutableArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
-import {findFirstOrNullByArray, forEachByArray, isEmptyByArray}   from '@joookiwi/collection'
 import {CompanionEnum, Enum}                                      from '@joookiwi/enumerable'
 import {lazy}                                                     from 'react'
 
@@ -19,6 +18,7 @@ import {Times}                 from 'core/time/Times'
 import {ProjectLanguages}      from 'lang/ProjectLanguages'
 import {SimpleRoute}           from 'route/SimpleRoute'
 import {Empty}                 from 'util/emptyVariables'
+import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
 import {GameCollection}        from 'util/collection/GameCollection'
 import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
 import {TimeCollection}        from 'util/collection/TimeCollection'
@@ -2189,8 +2189,8 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             for (const value of this.values) {
                 const urlName = value.urlName
                 if (urlName === name) {
-                    const everyRoute = value.everyRoute
-                    const routeFoundByName = findFirstOrNullByArray(everyRoute, it => it.name === name,)
+                    const everyRoute = new ArrayAsCollection(value.everyRoute,)
+                    const routeFoundByName = everyRoute.findFirstOrNull(it => it.name === name,)
                     if (routeFoundByName != null)
                         return value.getPath(language, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.times, routeFoundByName.viewDisplay,)
 
@@ -2200,7 +2200,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                         value._getPathFromTimes()}${
                         value._getPathFromViewDisplay()}${
                         value.urlValue}`
-                    const routeFoundByPath = findFirstOrNullByArray(everyRoute, it => it.path === pathToFind,)
+                    const routeFoundByPath = everyRoute.findFirstOrNull(it => it.path === pathToFind,)
                     if (routeFoundByPath != null)
                         return value.getPath(language, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.times, routeFoundByPath.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the direct name "${name}".`,)
@@ -2217,7 +2217,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                         value._getPathFromTimes(TimeCompanion.findInName(name,),)}${
                         value._getPathFromViewDisplay(ViewDisplayCompanion.findInName(name,),)}${
                         value.urlValue}`
-                    const routeFound = findFirstOrNullByArray(value.everyRoute, it => it.path === pathToFind,)
+                    const routeFound = new ArrayAsCollection(value.everyRoute,).findFirstOrNull(it => it.path === pathToFind,)
                     if (routeFound != null)
                         return value.getPath(language, routeFound.games, routeFound.gameStyles, routeFound.times, routeFound.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the name starting by "${name}".`,)
@@ -2373,7 +2373,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/game-${GameCompanion.getGroupUrlValue(currentGames,)}`
         }
-        if (isEmptyByArray(value,)) {
+        if (new ArrayAsCollection(value,).isEmpty) {
             const defaultGame = this.defaultGame
             if (defaultGame == null)
                 return EMPTY_STRING
@@ -2398,7 +2398,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/time-${TimeCompanion.getGroupUrl(currentTime,)}`
         }
-        if (isEmptyByArray(value,)) {
+        if (new ArrayAsCollection(value,).isEmpty) {
             const defaultTimes = this.defaultTimes
             if (defaultTimes == null)
                 return EMPTY_STRING
@@ -2423,7 +2423,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/game-style-${GameStyleCompanion.getGroupUrlValue(currentGameStyles,)}`
         }
-        if (isEmptyByArray(values,)) {
+        if (new ArrayAsCollection(values,).isEmpty) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
                 return EMPTY_STRING
@@ -2466,7 +2466,7 @@ export namespace EveryRoutes {
 
     function __retrieveAllRoutes() {
         const routes: MutableArray<SimpleRoute> = []
-        Companion.values.forEach(it => forEachByArray(it.everyRoute, it => routes.push(it,),),)
+        Companion.values.forEach(it => new ArrayAsCollection(it.everyRoute,).forEach(it => routes.push(it,),),)
         return routes
     }
 

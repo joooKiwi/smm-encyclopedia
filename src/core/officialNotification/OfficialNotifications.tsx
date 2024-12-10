@@ -2,7 +2,6 @@ import './OfficialNotifications.scss'
 
 import type {Lazy}                                                 from '@joookiwi/lazy'
 import type {Array, EmptyString, Nullable, NullableNumber, NullOr} from '@joookiwi/type'
-import {hasByArray}                                                from '@joookiwi/collection'
 import {Enum}                                                      from '@joookiwi/enumerable'
 import {lazy}                                                      from '@joookiwi/lazy'
 import {Fragment}                                                  from 'react'
@@ -23,6 +22,7 @@ import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                      
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {Empty}                                                                   from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
+import {ArrayAsCollection}                                                       from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
 
 import EMPTY_ARRAY  = Empty.EMPTY_ARRAY
@@ -504,7 +504,7 @@ export class OfficialNotifications
                 return value
             const valueFound = this.values.findFirstOrNull(it =>
                 it.englishName === value
-                || hasByArray(it.additionalEnglishName, value,),)
+                || new ArrayAsCollection<string>(it.additionalEnglishName,).has(value,),)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -531,7 +531,7 @@ export class OfficialNotifications
         super()
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
-        this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : amount.map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount)
+        this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : new ArrayAsCollection(amount,).map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount).toArray()
         this.#additionalTranslationKeyHolder = lazy(() => this._createAdditionalTranslationKey,)
     }
 

@@ -1,8 +1,7 @@
 import './OfficialCourseApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {OfficialCourseProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}  from 'app/interpreter/AppInterpreterWithTable'
@@ -24,6 +23,7 @@ import OfficialCourseReward            from 'core/officialCourse/component/Offic
 import {OtherWordInTheGames}           from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}        from 'lang/components/translationMethods'
 import NameComponent                   from 'lang/name/component/Name.component'
+import {ArrayAsCollection}             from 'util/collection/ArrayAsCollection'
 
 import ALL = OfficialCourses.ALL
 
@@ -31,7 +31,7 @@ class EventCourseAppInterpreter
     implements AppInterpreterWithTable<OfficialCourses, OfficialCourseAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card list interpreter --------------------

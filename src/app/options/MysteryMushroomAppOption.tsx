@@ -1,8 +1,8 @@
-import type {CompanionEnumSingleton}                   from '@joookiwi/enumerable'
-import type {Array, Nullable}                          from '@joookiwi/type'
-import {CollectionHolder, getFirstByArray, mapByArray} from '@joookiwi/collection'
-import {CompanionEnum}                                 from '@joookiwi/enumerable'
-import {Fragment}                                      from 'react'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {Array, Nullable}        from '@joookiwi/type'
+import type {CollectionHolder}       from '@joookiwi/collection'
+import {CompanionEnum}               from '@joookiwi/enumerable'
+import {Fragment}                    from 'react'
 
 import type {Names, Ordinals, PossibleMysteryMushroomType} from 'app/options/MysteryMushroomAppOption.types'
 import type {SingleHeaderContent}                          from 'app/tools/table/SimpleHeader'
@@ -18,6 +18,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import {MysteryMushrooms}               from 'core/mysteryMushroom/MysteryMushrooms'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import NameComponent                    from 'lang/name/component/Name.component'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 import SimpleSoundComponent             from 'util/file/sound/component/SimpleSound.component'
 
 import LanguageCompanion = ProjectLanguages.Companion
@@ -43,11 +44,11 @@ export abstract class MysteryMushroomAppOption
         public override renderContent(enumeration: MysteryMushrooms,) {
             const {uniqueEnglishName, englishNameInHtml, reference,} = enumeration
 
-            const games = reference.games
-            return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{mapByArray(games, (it, i,) =>
+            const games = new ArrayAsCollection(reference.games,)
+            return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{games.map((it, i,) =>
                     <Fragment key={`game (${i + 1}) - ${uniqueEnglishName}`}>
                         <NameComponent id={`game_${i + 1}_${englishNameInHtml}`} name={it.reference} popoverOrientation="right"/>
-                        {i === games.length - 1 ? null : <>{LanguageCompanion.current.comma}<br/></>}
+                        {i === games.size - 1 ? null : <>{LanguageCompanion.current.comma}<br/></>}
                     </Fragment>
                 ,)}</div>
         }
@@ -197,7 +198,7 @@ export abstract class MysteryMushroomAppOption
                 return null
             if (images.getFirst().length > 1)
                 return this._createAnimatedImages(enumeration, images, renderDiv,)
-            return this._createImage(enumeration, images.map(images => getFirstByArray(images,),), renderDiv,)
+            return this._createImage(enumeration, images.map(it => new ArrayAsCollection(it,).getFirst(),), renderDiv,)
         }
 
         protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
@@ -405,7 +406,7 @@ export abstract class MysteryMushroomAppOption
         const englishNameInHtml = enumeration.englishNameInHtml
 
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <>{imageFiles.map((it, i,) =>
-            <Image key={`${uniqueEnglishName} #${i + 1}`} partialId={`${englishNameInHtml}-${i + 1}`} images={mapByArray(it, it => ({file: it,}),).toArray()}/>
+            <Image key={`${uniqueEnglishName} #${i + 1}`} partialId={`${englishNameInHtml}-${i + 1}`} images={new ArrayAsCollection(it,).map(it => ({file: it,}),).toArray()}/>
         )}</>,)
     }
 

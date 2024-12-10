@@ -1,8 +1,7 @@
 import './MiiCostumeApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -24,6 +23,7 @@ import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGame
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 import {Empty}                  from 'util/emptyVariables'
+import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 
 import ALL =          MiiCostumes.ALL
 import EMPTY_STRING = Empty.EMPTY_STRING
@@ -32,7 +32,7 @@ class MiiCostumeAppInterpreter
     implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card --------------------

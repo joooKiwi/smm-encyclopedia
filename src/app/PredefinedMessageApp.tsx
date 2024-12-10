@@ -1,8 +1,7 @@
 import './PredefinedMessageApp.scss'
 
-import type {Array}                                from '@joookiwi/type'
+import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -20,6 +19,7 @@ import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {PredefinedMessages}         from 'core/predefinedMessage/PredefinedMessages'
 import {gameContentTranslation}     from 'lang/components/translationMethods'
 import NameComponent                from 'lang/name/component/Name.component'
+import {ArrayAsCollection}          from 'util/collection/ArrayAsCollection'
 
 import ALL = PredefinedMessages.ALL
 
@@ -27,7 +27,7 @@ class PredefinedMessageAppInterpreter
     implements AppInterpreterWithTable<PredefinedMessages> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card --------------------

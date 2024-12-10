@@ -1,8 +1,7 @@
 import './MedalApp.scss'
 
-import type {Array}              from '@joookiwi/type'
-import type {CollectionHolder}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
@@ -20,6 +19,7 @@ import {Medals}                 from 'core/medal/Medals'
 import MedalIcon                from 'core/medal/component/MedalIcon'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
+import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 
 import ALL = Medals.ALL
 
@@ -27,7 +27,7 @@ class MedalAppInterpreter
     implements AppInterpreterWithTable<Medals, MedalAppOption> {
 
     public get content() {
-        return new GenericCollectionHolder(ALL,)
+        return new ArrayAsCollection(ALL,)
     }
 
     //region -------------------- Card --------------------

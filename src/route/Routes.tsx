@@ -1,6 +1,5 @@
 import type {MutableArray, NullOrString}    from '@joookiwi/type'
 import type {RouteObject}                   from 'react-router/dist'
-import {findFirstOrNullByArray, mapByArray} from '@joookiwi/collection'
 import {RouterProvider}                     from 'react-router/dist'
 import {createHashRouter}                   from 'react-router-dom/dist'
 import {Suspense}                           from 'react'
@@ -17,6 +16,7 @@ import {redirectToByUrl}             from 'route/method/redirectTo.byUrl'
 import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
 import {Empty}                       from 'util/emptyVariables'
+import {ArrayAsCollection}           from 'util/collection/ArrayAsCollection'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
@@ -30,7 +30,9 @@ import GameStyleCompanion = GameStyles.Companion
 import LanguageCompanion =  ProjectLanguages.Companion
 import TimeCompanion =      Times.Companion
 
-const homeRoute = EveryRoutes.HOME
+const home =         EveryRoutes.HOME
+const all =          new ArrayAsCollection(ALL,)
+const allLanguages = new ArrayAsCollection(ALL_LANGUAGES,)
 
 // const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
@@ -58,20 +60,20 @@ const router = createHashRouter([{
     element: <PageLayout/>,
     HydrateFallback: LoadingApp,//TODO change the loading app to have a different visual than afterward
     children: [
-        new StraightRouteObject('/', () => redirectTo(homeRoute,),),
+        new StraightRouteObject('/', () => redirectTo(home,),),
         //region -------------------- Path from route path --------------------
 
-        ...mapByArray(ALL, it => new StraightRouteObject(it.urlValue, () => redirectTo(it,),),),
+        ...all.map(it => new StraightRouteObject(it.urlValue, () => redirectTo(it,),),),
 
         //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
 
-        ...mapByArray<ProjectLanguages, RouteObject>(ALL_LANGUAGES, language => {
+        ...allLanguages.map<RouteObject>(language => {
             const pathFromLanguage = `/${language.projectAcronym}` as const
             return {
                 path: pathFromLanguage,
                 id: `language-${language.projectAcronym}`,
-                children: mapByArray(ALL, it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
+                children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
                 loader() {
                     LanguageCompanion.current = language
                     return null
@@ -100,7 +102,7 @@ const router = createHashRouter([{
  * @param action The action to add a {@link RouteObject} for the {@link SimpleRoute route found}
  */
 function resolveLazyRoute(path: string, action: (routeId: NullOrString, children: MutableArray<RouteObject>,) => void,): void {
-    const route = findFirstOrNullByArray(ALL_ROUTES, it => path.endsWith(it.path,),)
+    const route = new ArrayAsCollection(ALL_ROUTES,).findFirstOrNull(it => path.endsWith(it.path,),)
     if (route == null)
         return
 

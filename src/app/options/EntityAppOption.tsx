@@ -1,5 +1,4 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {forEachByArray}              from '@joookiwi/collection'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
@@ -41,6 +40,7 @@ import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.compone
 import CourseThemeComponent             from 'core/theme/CourseTheme.component'
 import TimeComponent                    from 'core/time/Time.component'
 import {Empty}                          from 'util/emptyVariables'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import CategoryCompanion = EntityCategories.Companion
 import EMPTY_STRING =      Empty.EMPTY_STRING
@@ -69,10 +69,9 @@ export abstract class EntityAppOption
             //     if (reference.isInSuperMarioBrosStyle)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                images[i] = <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
         public override renderHeader() {
@@ -94,10 +93,9 @@ export abstract class EntityAppOption
             //     if (reference.isInSuperMarioBros3Style)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                images[i] = <Image key={`Entity image (${englishName} - SMB3 - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SMB3 - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
         public override renderHeader() {
@@ -119,10 +117,9 @@ export abstract class EntityAppOption
             //     if (reference.isInSuperMarioWorldStyle)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                images[i] = <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
         public override renderHeader() {
@@ -144,10 +141,9 @@ export abstract class EntityAppOption
             //     if (reference.isInNewSuperMarioBrosUStyle)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                    images[i] = <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i) =>
+                <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
         public override renderHeader() {
@@ -169,10 +165,9 @@ export abstract class EntityAppOption
                 if (reference.isInSuperMario3DWorldStyle)
                     return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                    images[i] = <Image key={`Entity image (${englishName} - SM3DW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SM3DW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
         public override renderHeader() {

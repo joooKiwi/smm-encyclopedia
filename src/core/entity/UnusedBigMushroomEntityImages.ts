@@ -1,6 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import type {Array}                              from '@joookiwi/type'
-import {mapByArray}                              from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -13,6 +12,7 @@ import {Entities}                         from 'core/entity/Entities'
 import {unusedBigMushroomImage}           from 'core/entity/file/fileCreator'
 import {EmptyUnusedImage_BigMushroom}     from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
 import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/UnusedImage_BigMushroom.container'
+import {ArrayAsCollection}                from 'util/collection/ArrayAsCollection'
 
 /**
  * An {@link Entities} class made to hold a {@link UnusedImage_BigMushroom}
@@ -70,7 +70,7 @@ export abstract class UnusedBigMushroomEntityImages
                 return value
 
             const folderName = this.folderName
-            return this.#image = new UnusedImage_BigMushroomContainer(mapByArray(this.#fileNames, it => unusedBigMushroomImage(this, folderName, it,),),)
+            return this.#image = new UnusedImage_BigMushroomContainer(new ArrayAsCollection(this.#fileNames,).map(it => unusedBigMushroomImage(this, folderName, it,),),)
         }
 
     }

@@ -1,18 +1,18 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {getFirstOrNullByArray}       from '@joookiwi/collection'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}   from 'app/options/InstrumentAppOption.types'
 import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
 import type {Instruments}       from 'core/instrument/Instruments'
 
-import {CommonOptions} from 'app/options/CommonOptions'
-import Image           from 'app/tools/images/Image'
-import {TableOption}   from 'app/tools/table/TableOption'
-import {Entities}      from 'core/entity/Entities'
-import {GameStyles}    from 'core/gameStyle/GameStyles'
-import GameStyleImage  from 'core/gameStyle/component/GameStyleImage'
-import InstrumentSound from 'core/instrument/component/InstrumentSound'
+import {CommonOptions}     from 'app/options/CommonOptions'
+import Image               from 'app/tools/images/Image'
+import {TableOption}       from 'app/tools/table/TableOption'
+import {Entities}          from 'core/entity/Entities'
+import {GameStyles}        from 'core/gameStyle/GameStyles'
+import GameStyleImage      from 'core/gameStyle/component/GameStyleImage'
+import InstrumentSound     from 'core/instrument/component/InstrumentSound'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EntityCompanion = Entities.Companion
 import NSMBU =           GameStyles.NSMBU
@@ -43,7 +43,7 @@ export abstract class InstrumentAppOption
             if (references == null)
                 return null
             return <div className="instrumentReference-smb">{references.map(it =>
-                <Image key={`instrument reference (SMB - ${it.english})`} file={getFirstOrNullByArray(EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMB,),)}/>,)
+                <Image key={`instrument reference (SMB - ${it.english})`} file={new ArrayAsCollection(EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMB,),).getFirstOrNull()}/>,)
             }</div>
         }
 
@@ -59,7 +59,7 @@ export abstract class InstrumentAppOption
             if (references == null)
                 return null
             return <div className="instrumentReference-smb3">{references.map(it =>
-                <Image key={`instrument reference (SMB3 - ${it.english})`} file={getFirstOrNullByArray(EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMB3,),)}/>,)
+                <Image key={`instrument reference (SMB3 - ${it.english})`} file={new ArrayAsCollection(EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMB3,),).getFirstOrNull()}/>,)
             }</div>
         }
 
@@ -75,7 +75,7 @@ export abstract class InstrumentAppOption
             if (references == null)
                 return null
             return <div className="instrumentReference-smw">{references.map(it =>
-                <Image key={`instrument reference (SMW - ${it.english})`} file={getFirstOrNullByArray(EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMW,),)}/>,)
+                <Image key={`instrument reference (SMW - ${it.english})`} file={new ArrayAsCollection(EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMW,),).getFirstOrNull()}/>,)
             }</div>
         }
 
@@ -91,7 +91,7 @@ export abstract class InstrumentAppOption
             if (references == null)
                 return null
             return <div className="instrumentReference-nsmbu">{references.map(it =>
-                <Image key={`instrument reference (NSMBU - ${it.english})`} file={getFirstOrNullByArray(EntityCompanion.getValueByName(it.americanEnglish,).image.get(NSMBU,),)}/>,)
+                <Image key={`instrument reference (NSMBU - ${it.english})`} file={new ArrayAsCollection(EntityCompanion.getValueByName(it.americanEnglish,).image.get(NSMBU,),).getFirstOrNull()}/>,)
             }</div>
         }
 

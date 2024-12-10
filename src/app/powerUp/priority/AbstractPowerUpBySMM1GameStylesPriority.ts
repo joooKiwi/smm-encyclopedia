@@ -1,7 +1,7 @@
-import type {Lazy}           from '@joookiwi/lazy'
-import type {Array}          from '@joookiwi/type'
-import {isArray, mapByArray} from '@joookiwi/collection'
-import {CommonLazy, lazy}    from '@joookiwi/lazy'
+import type {Lazy}        from '@joookiwi/lazy'
+import type {Array}       from '@joookiwi/type'
+import {isArray}          from '@joookiwi/collection'
+import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {ImagesRetrieverCallback, PossibleGameStyles, PowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                                                     from 'core/entity/Entities'
@@ -10,6 +10,7 @@ import type {ClassInAnySuperMarioMakerGame}                                     
 
 import {AbstractPowerUpPriority} from 'app/powerUp/priority/AbstractPowerUpPriority'
 import {GameStyles}              from 'core/gameStyle/GameStyles'
+import {ArrayAsCollection}       from 'util/collection/ArrayAsCollection'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB
@@ -35,7 +36,7 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
                           callback: ImagesRetrieverCallback,
                           isIn: ClassInAnySuperMarioMakerGame,) {
         super(() => entity.reference.nameContainer,
-            () => mapByArray(isArray(gameStylesDisplayed,) ? gameStylesDisplayed : [gameStylesDisplayed], gameStyle => callback(entity, gameStyle)).toArray().flat(),
+            () => new ArrayAsCollection(isArray(gameStylesDisplayed,) ? gameStylesDisplayed : [gameStylesDisplayed],).map(it => callback(entity, it,),).toArray().flat(),
             isIn,)
         this.#smbImagesHolder = entity.reference.isInSuperMarioBrosStyle ? lazy(() => callback(entity, SMB,),) : CommonLazy.EMPTY_ARRAY
         this.#smb3ImagesHolder = entity.reference.isInSuperMarioBros3Style ? lazy(() => callback(entity, SMB3,),) : CommonLazy.EMPTY_ARRAY
