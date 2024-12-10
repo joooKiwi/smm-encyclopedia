@@ -1,18 +1,11 @@
-import type {Lazy}           from '@joookiwi/lazy'
-import type {Array}          from '@joookiwi/type'
-import {isArray, mapByArray} from '@joookiwi/collection'
-import {lazy}                from '@joookiwi/lazy'
+import type {Lazy}  from '@joookiwi/lazy'
+import type {Array} from '@joookiwi/type'
+import {lazy}       from '@joookiwi/lazy'
 
-import type {ImagesCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {Entities}                                            from 'core/entity/Entities'
-import type {EntityImageFile}                                     from 'core/entity/file/EntityImageFile'
-import type {ClassInAnySuperMarioMakerGame}                       from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {Name}                                                from 'lang/name/Name'
-
-import {ImageCallbacks} from 'app/powerUp/priority/ImageCallbacks'
-import {GameStyles}     from 'core/gameStyle/GameStyles'
-
-import EDITOR_IMAGE_CALLBACK = ImageCallbacks.EDITOR_IMAGE_CALLBACK
+import type {ImagesCallback, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {EntityImageFile}                 from 'core/entity/file/EntityImageFile'
+import type {ClassInAnySuperMarioMakerGame}   from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Name}                            from 'lang/name/Name'
 
 export abstract class AbstractPowerUpPriority
     implements PowerUpPriority {
@@ -51,8 +44,4 @@ export abstract class AbstractPowerUpPriority
 
     //endregion -------------------- Getter methods --------------------
 
-}
-
-export function getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): Array<EntityImageFile> {//TODO relocate elsewhere
-    return mapByArray(isArray(gameStyles,) ? gameStyles : [gameStyles], it => EDITOR_IMAGE_CALLBACK(entity, it,),).toArray().flat()
 }
