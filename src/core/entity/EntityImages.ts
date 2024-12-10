@@ -435,6 +435,18 @@ export abstract class EntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameEntityImage} for only the {@link SKEWER} */
+    private static readonly InGameAsSkewer = class InGameAsSkewer_EntityImages
+        extends EntityImages.ExistantInGame<'Skewer', typeof InGameEntityImages['SKEWER']['image']['images'][number]> {
+
+        public constructor() { super('Skewer', InGameEntityImages.SKEWER,) }
+
+        protected override _createImage(image: InGameImage_Regular<typeof InGameEntityImages['SKEWER']['image']['images'][number]>,) {
+            return new InGameImage_RegularContainer(sliceWithArrayByArray(image.imagesWithAssociation, [0, 4, 8, 12, 16, 20,],).toArray(),)
+        }
+
+    }
+
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link TREE} */
     private static readonly EditorAsTree = class EditorAsTree_EntityImages
         extends EntityImages.ExistantEditor<'Tree', typeof EditorEntityImages['TREE']['image']['images'][number]> {
@@ -683,8 +695,8 @@ export abstract class EntityImages
     public static readonly POKEY =                                         new EntityImages.Editor('Pokey', EditorEntityImages.POKEY,)
     public static readonly SNOW_POKEY =                                    new EntityImages.Editor('Snow Pokey', EditorEntityImages.SNOW_POKEY,)
 
-    public static readonly THWOMP =                                        new EntityImages.Editor('Thwomp', EditorEntityImages.THWOMP,)
-    public static readonly SIDEWAYS_THWOMP =                               new EntityImages.Null()
+    public static readonly THWOMP =                                        new EntityImages.InGame('Thwomp', InGameEntityImages.THWOMP,)
+    public static readonly SIDEWAYS_THWOMP =                               new EntityImages.InGame('Sideways Thwomp', InGameEntityImages.SIDEWAYS_THWOMP,)
 
     public static readonly MONTY_MOLE =                                    new EntityImages.Editor('Monty Mole', EditorEntityImages.MONTY_MOLE,)
     public static readonly ROCKY_WRENCH =                                  new EntityImages.Editor('Rocky Wrench', EditorEntityImages.ROCKY_WRENCH,)
@@ -734,7 +746,7 @@ export abstract class EntityImages
 
     public static readonly FIRE_BAR =                                      new EntityImages.InGame('Fire Bar', InGameEntityImages.FIRE_BAR,)
 
-    public static readonly SKEWER =                                        new EntityImages.EditorWithNoBlueVariantDuplicate('Skewer', EditorEntityImages.SKEWER,)
+    public static readonly SKEWER =                                        new EntityImages.InGameAsSkewer()
 
     public static readonly KOOPA_CLOWN_CAR =                               new EntityImages.Editor('Koopa Clown Car', EditorEntityImages.KOOPA_CLOWN_CAR,)
     public static readonly JUNIOR_CLOWN_CAR =                              new EntityImages.Editor('Junior Clown Car', EditorEntityImages.JUNIOR_CLOWN_CAR,)
@@ -745,7 +757,7 @@ export abstract class EntityImages
     public static readonly KOOPA_TROOPA_CAR =                              new EntityImages.Editor('Koopa Troopa Car', EditorEntityImages.KOOPA_TROOPA_CAR,)
     public static readonly CAR =                                           new EntityImages.Null()
 
-    public static readonly GRINDER =                                       new EntityImages.Editor('Grinder', EditorEntityImages.GRINDER,)
+    public static readonly GRINDER =                                       new EntityImages.InGame('Grinder', InGameEntityImages.GRINDER,)
 
     public static readonly ANGRY_SUN =                                     new EntityImages.Editor('Angry Sun', EditorEntityImages.ANGRY_SUN,)
     public static readonly MOON =                                          new EntityImages.Editor('Moon', EditorEntityImages.MOON,)
@@ -801,7 +813,7 @@ export abstract class EntityImages
     //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    public static readonly BUMPER =                                        new EntityImages.Editor('Bumper', EditorEntityImages.BUMPER,)
+    public static readonly BUMPER =                                        new EntityImages.InGame('Bumper', InGameEntityImages.BUMPER,)
 
     public static readonly SWINGING_CLAW =                                 new EntityImages.Editor('Swinging Claw', EditorEntityImages.SWINGING_CLAW,)
 
