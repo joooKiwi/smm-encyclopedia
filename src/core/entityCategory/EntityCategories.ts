@@ -80,7 +80,7 @@ export class EntityCategories<const NAME extends PossibleEnglishName = PossibleE
      * @semiAsynchronously
      */
     public get reference(): EntityCategory {
-        return this.#reference ??= EntityCategories.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= EntityCategories.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

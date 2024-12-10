@@ -802,7 +802,7 @@ export class MysteryMushrooms
      * @semiAsynchronously
      */
     public get reference(): MysteryMushroom {
-        return this.#reference ??= MysteryMushrooms.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= MysteryMushrooms.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

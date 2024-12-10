@@ -565,7 +565,7 @@ export class Entities
      * @semiAsynchronously
      */
     public get reference(): Entity {
-        return this.#reference ??= Entities.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Entities.REFERENCE_MAP.get(this.englishName,)!
     }
 
     //endregion -------------------- Getter methods (reference) --------------------

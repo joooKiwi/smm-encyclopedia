@@ -344,7 +344,7 @@ export class OtherWordInTheGames<const SINGULAR extends PossibleEnglishName_Sing
      * @semiAsynchronously
      */
     public get reference(): OtherWordInTheGame {
-        return this.#reference ??= OtherWordInTheGames.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= OtherWordInTheGames.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

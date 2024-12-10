@@ -1118,7 +1118,7 @@ export abstract class SoundEffects
      * @semiAsynchronously
      */
     public get reference(): SoundEffect {
-        return this.#reference ??= SoundEffects.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= SoundEffects.REFERENCE_MAP.get(this.englishName,)!
     }
 
     public get englishName(): PossibleEnglishName {

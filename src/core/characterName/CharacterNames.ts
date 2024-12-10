@@ -1,5 +1,4 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
-import {hasByArray}            from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithReference}                                              from 'core/ClassWithReference'
@@ -234,7 +233,7 @@ export class CharacterNames
      * @semiAsynchronously
      */
     public get reference(): CharacterName {
-        return this.#reference ??= CharacterNames.REFERENCE_MAP.get(this.uniqueEnglishName)!
+        return this.#reference ??= CharacterNames.REFERENCE_MAP.get(this.uniqueEnglishName,)!
     }
 
 

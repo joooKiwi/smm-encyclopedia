@@ -81,7 +81,7 @@ export class SoundEffectCategories<const NAME extends PossibleEnglishName = Poss
      * @semiAsynchronously
      */
     public get reference(): SoundEffectCategory {
-        return this.#reference ??= SoundEffectCategories.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= SoundEffectCategories.REFERENCE_MAP.get(this.englishName,)!
     }
 
     public get englishName(): NAME {

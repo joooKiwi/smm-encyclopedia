@@ -81,7 +81,7 @@ export class MiiCostumeCategories
      * @semiAsynchronously
      */
     public get reference(): MiiCostumeCategory {
-        return this.#reference ??= MiiCostumeCategories.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= MiiCostumeCategories.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

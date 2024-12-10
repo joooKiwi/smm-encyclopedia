@@ -552,7 +552,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
      * @semiAsynchronously
      */
     public get reference(): GameStyle {
-        return this.#reference ??= GameStyles.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= GameStyles.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

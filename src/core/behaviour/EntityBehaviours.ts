@@ -93,7 +93,7 @@ export class EntityBehaviours
      * @semiAsynchronously
      */
     public get reference(): EntityBehaviour {
-        return this.#reference ??= EntityBehaviours.REFERENCE_MAP.get(this.translationKey)!
+        return this.#reference ??= EntityBehaviours.REFERENCE_MAP.get(this.translationKey,)!
     }
 
 

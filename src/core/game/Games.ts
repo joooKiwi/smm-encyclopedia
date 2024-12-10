@@ -256,7 +256,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
     }
 
     //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter & setter methods --------------------
+    //region -------------------- Getter methods --------------------
 
     public get acronym(): ACRONYM {
         return this.#acronym
@@ -282,7 +282,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
         return this.#imageFile ??= gameImage(this.englishName,)
     }
 
-    //endregion -------------------- Getter & setter methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public abstract get(property: GameProperty,): boolean

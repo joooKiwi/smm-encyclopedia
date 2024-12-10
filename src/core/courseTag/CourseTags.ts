@@ -103,7 +103,7 @@ export class CourseTags
      * @semiAsynchronously
      */
     public get reference(): CourseTag {
-        return this.#reference ??= CourseTags.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= CourseTags.REFERENCE_MAP.get(this.englishName,)!
     }
 
     public get englishName(): PossibleEnglishName {

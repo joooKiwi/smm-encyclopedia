@@ -220,7 +220,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
      * @semiAsynchronously
      */
     public get reference(): CourseAndWorldTheme {
-        return this.#reference ??= Themes.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Themes.REFERENCE_MAP.get(this.englishName,)!
     }
 
 
