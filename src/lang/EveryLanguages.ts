@@ -3,14 +3,14 @@ import type {EmptyArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
 import {Enum}                                            from '@joookiwi/enumerable'
 import i18n                                              from 'i18next'
 
-import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleChevrons_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInChevrons, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
-import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from 'lang/ClassWithEveryLanguages'
-import type {CompanionEnumDeclaration_EveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'lang/EveryLanguages.companionEnumDeclaration'
-import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName, PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'lang/EveryLanguages.types'
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'lang/LanguageEnumerable'
-import type {PossibleDifferentWord}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'lang/ProjectLanguages.types'
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'lang/name/containers/Language'
-import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'util/enumerable/ClassWithIsCurrent'
+import type {PossibleBraces_Collection, PossibleBrackets_Collection, PossibleChevrons_Collection, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Collection, PossibleNumbers_Collection, PossibleParentheses_Collection, PossiblePoint, PossiblePoints_Collection, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Collection, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Collection, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInChevrons, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'lang/ClassWithEveryLanguages'
+import type {CompanionEnumDeclaration_EveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/EveryLanguages.companionEnumDeclaration'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName, PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from 'lang/EveryLanguages.types'
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'lang/LanguageEnumerable'
+import type {PossibleDifferentWord}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/ProjectLanguages.types'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/name/containers/Language'
+import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'util/enumerable/ClassWithIsCurrent'
 
 import {Characters}                                 from 'lang/Characters'
 import {SPACE}                                      from 'util/commonVariables'
@@ -630,18 +630,18 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
     #children?: PossibleChildrenLanguages
 
     #space?: PossibleSpaceCharacter
-    #points?: PossiblePoints_Array
+    #points?: PossiblePoints_Collection
     #comma?: PossibleComma
     #unionTrait?: PossibleUnionTrait
     #commercialAnd?: PossibleCommercialAnd
-    #parentheses?: PossibleParentheses_Array
-    #brackets?: PossibleBrackets_Array
-    #braces?: PossibleBraces_Array
-    #chevrons?: PossibleChevrons_Array
-    #slashes?: PossibleSlashes_Array
-    #romainLowercaseAlphabet?: PossibleLowercaseRomainAlphabet_Array
-    #romainUppercaseAlphabet?: PossibleUppercaseRomainAlphabet_Array
-    #numbers?: PossibleNumbers_Array
+    #parentheses?: PossibleParentheses_Collection
+    #brackets?: PossibleBrackets_Collection
+    #braces?: PossibleBraces_Collection
+    #chevrons?: PossibleChevrons_Collection
+    #slashes?: PossibleSlashes_Collection
+    #romainLowercaseAlphabet?: PossibleLowercaseRomainAlphabet_Collection
+    #romainUppercaseAlphabet?: PossibleUppercaseRomainAlphabet_Collection
+    #numbers?: PossibleNumbers_Collection
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -731,28 +731,28 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
         return this.#space ??= this.hasSpace ? SPACE : EMPTY_STRING
     }
 
-    public get points(): PossiblePoints_Array {
-        return this.#points ??= Characters.getPoints(this.isASpaceEvenLanguage)
+    public get points(): PossiblePoints_Collection {
+        return this.#points ??= Characters.getPoints(this.isASpaceEvenLanguage,)
     }
 
     public get point(): PossiblePoint {
-        return this.points[0]
+        return this.points.getFirst() as PossiblePoint
     }
 
     public get interrogationPoint(): PossibleInterrogationPoint {
-        return this.points[1]
+        return this.points.get(1,) as PossibleInterrogationPoint
     }
 
     public get exclamationPoint(): PossibleExclamationPoint {
-        return this.points[2]
+        return this.points.get(2,) as PossibleExclamationPoint
     }
 
     public get colon(): PossibleColon {
-        return this.points[3]
+        return this.points.get(3,) as PossibleColon
     }
 
     public get semicolon(): PossibleSemicolon {
-        return this.points[4]
+        return this.points.getLast() as PossibleSemicolon
     }
 
     public get comma(): PossibleComma {
@@ -769,81 +769,81 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
     }
 
 
-    public get parentheses(): PossibleParentheses_Array {
+    public get parentheses(): PossibleParentheses_Collection {
         return this.#parentheses ??= getParentheses(this.isASpaceEvenLanguage,)
     }
 
     public get startingParenthesis(): PossibleStartingParentheses {
-        return this.parentheses[0]
+        return this.parentheses.getFirst() as PossibleStartingParentheses
     }
 
     public get endingParenthesis(): PossibleEndingParentheses {
-        return this.parentheses[1]
+        return this.parentheses.getLast() as PossibleEndingParentheses
     }
 
 
-    public get brackets(): PossibleBrackets_Array {
+    public get brackets(): PossibleBrackets_Collection {
         return this.#brackets ??= getBrackets(this.isASpaceEvenLanguage,)
     }
 
     public get startingBrackets(): PossibleStartingBracket {
-        return this.brackets[0]
+        return this.brackets.getFirst() as PossibleStartingBracket
     }
 
     public get endingBrackets(): PossibleEndingBracket {
-        return this.brackets[1]
+        return this.brackets.getLast() as PossibleEndingBracket
     }
 
 
-    public get braces(): PossibleBraces_Array {
+    public get braces(): PossibleBraces_Collection {
         return this.#braces ??= getBraces(this.isASpaceEvenLanguage,)
     }
 
     public get startingBraces(): PossibleStartingBrace {
-        return this.braces[0]
+        return this.braces.getFirst() as PossibleStartingBrace
     }
 
     public get endingBraces(): PossibleEndingBrace {
-        return this.braces[1]
+        return this.braces.getLast() as PossibleEndingBrace
     }
 
 
-    public get chevrons(): PossibleChevrons_Array {
+    public get chevrons(): PossibleChevrons_Collection {
         return this.#chevrons ??= getChevrons(this.isASpaceEvenLanguage,)
     }
 
     public get startingChevrons(): PossibleStartingChevron {
-        return this.chevrons[0]
+        return this.chevrons.getFirst() as PossibleStartingChevron
     }
 
     public get endingChevrons(): PossibleEndingChevron {
-        return this.chevrons[1]
+        return this.chevrons.getLast() as PossibleEndingChevron
     }
 
 
-    public get slashes(): PossibleSlashes_Array {
+    public get slashes(): PossibleSlashes_Collection {
         return this.#slashes ??= getSlashes(this.isASpaceEvenLanguage,)
     }
 
     public get slash(): PossibleSlash {
-        return this.slashes[0]
+        return this.slashes.getFirst() as PossibleSlash
     }
 
     public get verticalSlash(): PossibleVerticalSlash {
-        return this.slashes[1]
+        return this.slashes.getLast() as PossibleVerticalSlash
     }
 
 
-    public get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Array {
+    public get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Collection {
         return this.#romainLowercaseAlphabet ??= getLowercaseLetters(this.isASpaceEvenLanguage,)
     }
 
-    public get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Array {
+    public get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Collection {
         return this.#romainUppercaseAlphabet ??= getUppercaseLetters(this.isASpaceEvenLanguage,)
     }
 
 
-    public get numbers(): PossibleNumbers_Array {
+    public get numbers(): PossibleNumbers_Collection {
         return this.#numbers ??= getNumbers(this.isASpaceEvenLanguageForEverythingExcludingThePointsAndSpace,)
     }
 

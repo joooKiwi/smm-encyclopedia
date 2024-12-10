@@ -125,16 +125,16 @@ export type PossibleVerticalSlash =       typeof Characters['VERTICAL_SLASH']   
 //endregion -------------------- Possible types --------------------
 //region -------------------- Array types --------------------
 
-export type PossiblePoints_Array =                  typeof Characters[| 'POINTS_SPACE_UNEVEN'        | 'POINTS_SPACE_EVEN']
-export type PossibleParentheses_Array =             typeof Characters[| 'PARENTHESES_SPACE_UNEVEN'   | 'PARENTHESES_SPACE_EVEN']
-export type PossibleBrackets_Array =                typeof Characters[| 'BRACKETS_SPACE_UNEVEN'      | 'BRACKETS_SPACE_EVEN']
-export type PossibleBraces_Array =                  typeof Characters[| 'BRACES_SPACE_UNEVEN'        | 'BRACES_SPACE_EVEN']
-export type PossibleChevrons_Array =                typeof Characters[| 'CHEVRONS_SPACE_UNEVEN'      | 'CHEVRONS_SPACE_EVEN']
-export type PossibleSlashes_Array =                 typeof Characters[| 'SLASHES_SPACE_UNEVEN'       | 'SLASHES_SPACE_EVEN']
-export type PossibleRomainAlphabet_Array =          typeof Characters[| 'LETTERS_SPACE_UNEVEN'       | 'LETTERS_SPACE_EVEN']
-export type PossibleLowercaseRomainAlphabet_Array = typeof Characters[| 'LOWER_LETTERS_SPACE_UNEVEN' | 'LOWER_LETTERS_SPACE_EVEN']
-export type PossibleUppercaseRomainAlphabet_Array = typeof Characters[| 'UPPER_LETTERS_SPACE_UNEVEN' | 'UPPER_LETTERS_SPACE_EVEN']
-export type PossibleNumbers_Array =                 typeof Characters[| 'NUMBERS_SPACE_UNEVEN'       | 'NUMBERS_SPACE_EVEN']
+export type PossiblePoints_Collection =                  typeof Characters[| 'POINTS_SPACE_UNEVEN' | 'POINTS_SPACE_EVEN']
+export type PossibleParentheses_Collection =             typeof Characters[| 'PARENTHESES_SPACE_UNEVEN' | 'PARENTHESES_SPACE_EVEN']
+export type PossibleBrackets_Collection =                typeof Characters[| 'BRACKETS_SPACE_UNEVEN' | 'BRACKETS_SPACE_EVEN']
+export type PossibleBraces_Collection =                  typeof Characters[| 'BRACES_SPACE_UNEVEN' | 'BRACES_SPACE_EVEN']
+export type PossibleChevrons_Collection =                typeof Characters[| 'CHEVRONS_SPACE_UNEVEN' | 'CHEVRONS_SPACE_EVEN']
+export type PossibleSlashes_Collection =                 typeof Characters[| 'SLASHES_SPACE_UNEVEN' | 'SLASHES_SPACE_EVEN']
+export type PossibleRomainAlphabet_Collection =          typeof Characters[| 'LETTERS_SPACE_UNEVEN' | 'LETTERS_SPACE_EVEN']
+export type PossibleLowercaseRomainAlphabet_Collection = typeof Characters[| 'LOWER_LETTERS_SPACE_UNEVEN' | 'LOWER_LETTERS_SPACE_EVEN']
+export type PossibleUppercaseRomainAlphabet_Collection = typeof Characters[| 'UPPER_LETTERS_SPACE_UNEVEN' | 'UPPER_LETTERS_SPACE_EVEN']
+export type PossibleNumbers_Collection =                 typeof Characters[| 'NUMBERS_SPACE_UNEVEN' | 'NUMBERS_SPACE_EVEN']
 
 //endregion -------------------- Array types --------------------
 //region -------------------- Equivalence types --------------------
