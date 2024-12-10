@@ -5,7 +5,9 @@ import './EntityApp.scss'
 
 import type {Array, MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
+import type {Dispatch, SetStateAction}    from 'react'
 import {filterByArray}                    from '@joookiwi/collection'
+import {useState}                         from 'react'
 
 import type {EntityProperties}        from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -24,9 +26,11 @@ import {EntityTimes}                                from 'app/property/EntityTim
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import EntitySideContent                            from 'app/side/EntitySideContent'
 import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                                   from 'core/entity/Entities'
 import SingleEntityImage                            from 'core/entity/component/SingleEntityImage'
@@ -39,6 +43,7 @@ import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
 
@@ -118,6 +123,7 @@ const viewDisplayAndRouteName = [
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
+    const [sideEntity, setSideEntity,] = useState<NullOr<Entities>>(null,)
     const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
     const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
     const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
@@ -181,12 +187,20 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
                                  Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
                              },)}
                              asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
+        <>
+            {sideEntity == null ? null : <EntitySideContent reference={sideEntity}/>}
+            <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} displaySideContent={it => displaySideContent(setSideEntity, it,)}/>
+        </>
     </SubMainContainer>
 }
 
+function displaySideContent(action: Dispatch<SetStateAction<NullOr<Entities>>>, entity: Entities,) {
+    action(entity,)
+    BootstrapInstanceHandler.get.getOffcanvasInstanceOrNull(ENTITY_SIDE_CONTENT,)?.instance.show()
+}
+
 /** @reactComponent */
-function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
+function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityProperties & {displaySideContent(entity: Entities,): void,},) {
     const appInterpreter = new EntityAppInterpreter(games, gameStyles, times,)
     const items = appInterpreter.content
 
@@ -194,7 +208,7 @@ function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,)
         return <EntityList items={items} gameStyles={gameStyles}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <CardList reactKey="entity" interpreter={appInterpreter}/>
-    return <Table id="entity-table" items={items} options={getOptions(games, gameStyles,)} caption={getCaption()} headersColor="secondary"/>
+    return <Table id="entity-table" items={items} options={getOptions(games, gameStyles,)} caption={getCaption()} onRowClicked={displaySideContent} headersColor="secondary"/>
 }
 
 function getOptions(games: GameCollection, gameStyles: GameStyleCollection, ): Array<EntityAppOption> {
