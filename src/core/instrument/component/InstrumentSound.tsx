@@ -14,6 +14,7 @@ interface InstrumentSoundProperties
 
 }
 
+/** @reactComponent */
 export default function InstrumentSound({value,}: InstrumentSoundProperties,) {
     const name = value.name
     const englishName = value.englishName

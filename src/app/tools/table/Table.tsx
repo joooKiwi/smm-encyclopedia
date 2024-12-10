@@ -74,6 +74,7 @@ interface TableHeaderProperties
 
 }
 
+/** @reactComponent */
 function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
     return <div className="theader">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
@@ -95,6 +96,7 @@ interface TableContentProperties<CONTENT extends Content,>
 
 }
 
+/** @reactComponent */
 function TableContent<const CONTENT extends Content, >({associatedClass, items, contents, onRowClicked,}: TableContentProperties<CONTENT>,) {
     return <div className="tcontent">{contents.map((content, i,) => {
         const {englishName, englishNameInHtml,} = items.get(i,)
@@ -117,6 +119,7 @@ interface TableFooterProperties
 
 }
 
+/** @reactComponent */
 function TableFooter({associatedClass, headers,}: TableFooterProperties,) {
     return <div className="tfooter mb-2">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
@@ -128,6 +131,7 @@ function TableFooter({associatedClass, headers,}: TableFooterProperties,) {
 }
 
 
+/** @reactComponent */
 function HeaderTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
     assert(typeof children != 'string', 'No tooltip can be displayed on a header that is a string.',)
 
@@ -137,6 +141,7 @@ function HeaderTooltip({children, elementId,}: ReactPropertiesWithChildren<{ rea
     return <Tooltip option={{title: tooltip, placement: 'bottom',}} reference={elementId}/>
 }
 
+/** @reactComponent */
 function FooterTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
     assert(typeof children != 'string', 'No tooltip can be displayed on a footer that is a string.',)
 
@@ -146,6 +151,7 @@ function FooterTooltip({children, elementId,}: ReactPropertiesWithChildren<{ rea
     return <Tooltip option={{title: tooltip, placement: 'top',}} reference={elementId}/>
 }
 
+/** @reactComponent */
 function HeaderOrFooterContent({children,}: SimpleReactPropertiesWithChildren<SingleHeaderContent>,) {
     if (typeof children == 'string')
         return <>{children}</>
@@ -154,6 +160,7 @@ function HeaderOrFooterContent({children,}: SimpleReactPropertiesWithChildren<Si
     return <Image source={children.path} fallbackName={children.alt}/>
 }
 
+/** @reactComponent */
 function TableCaption({children,}: SimpleReactPropertiesWithChildren<ReactElementOrString>,) {
     if (children == null)
         return null
