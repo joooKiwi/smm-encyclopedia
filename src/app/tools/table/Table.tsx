@@ -10,13 +10,13 @@ import type {SingleTableContent}                                                
 import type {TableOption}                                                                     from 'app/tools/table/TableOption'
 import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
-import Image             from 'app/tools/images/Image'
-import Tooltip           from 'bootstrap/tooltip/Tooltip'
-import {Empty}           from 'util/emptyVariables'
-import {StringContainer} from 'util/StringContainer'
-import {assert}          from 'util/utilitiesMethods'
-import EMPTY_STRING = Empty.EMPTY_STRING
-import getInHtml = StringContainer.getInHtml
+import Image    from 'app/tools/images/Image'
+import Tooltip  from 'bootstrap/tooltip/Tooltip'
+import {Empty}  from 'util/emptyVariables'
+import {assert} from 'util/utilitiesMethods'
+
+import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
+import EMPTY_STRING =   Empty.EMPTY_STRING
 
 interface TableProperties<out CONTENT extends Content,
     out OPTION extends TableOption<CONTENT>, >
@@ -39,6 +39,8 @@ interface TableProperties<out CONTENT extends Content,
     /** The colour that will be used in both {@link HTMLTableSectionElement} (thead and tfoot) */
     readonly headersColor?: NullableString<BootstrapThemeColor>
 
+    onRowClicked?(content: CONTENT,): void
+
 }
 
 /**
@@ -50,62 +52,81 @@ interface TableProperties<out CONTENT extends Content,
  *
  * @reactComponent
  */
-export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, color, headersColor, caption,}: TableProperties<CONTENT, OPTION>,) {
+export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, caption, color, headersColor, onRowClicked = EMPTY_CALLBACK,}: TableProperties<CONTENT, OPTION>,) {
     const nonNullOptions = filterNotNull(options,)
     const associatedClass = retrieveAssociatedClass(nonNullOptions,)
     const contents = retrieveContent(items, nonNullOptions,)
     const headers = retrieveHeader(nonNullOptions,)
 
     return <div id={id} className={`ttable ${color == null ? EMPTY_STRING : `table-${color}`} ${headersColor == null ? EMPTY_STRING : `headers-${headersColor}`} w-100`}>
-        <TableHeader>{associatedClass}{headers}</TableHeader>
-        <TableContent>{associatedClass}{contents}</TableContent>
-        <TableFooter>{associatedClass}{headers}</TableFooter>
+        <TableHeader associatedClass={associatedClass} headers={headers}/>
+        <TableContent associatedClass={associatedClass} items={items} contents={contents} onRowClicked={onRowClicked}/>
+        <TableFooter associatedClass={associatedClass} headers={headers}/>
         <TableCaption>{caption}</TableCaption>
     </div>
 }
 
-function TableHeader({children: [additionalClass, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
-    const columns = new Array<ReactJSXElement>(headers.length,)
-    headers.forEach((it, i,) => {
+interface TableHeaderProperties
+    extends ReactProperties {
+
+    readonly associatedClass: CollectionHolder<string>
+    readonly headers: CollectionHolder<SingleHeaderContent>
+
+}
+
+function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
+    return <div className="theader">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
-        columns[i] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell ${additionalClass.get(i,)}`}>
+        return <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
-    },)
-    return <div className="theader">{columns}</div>
+    },)}</div>
 }
 
-function TableContent({children: [associatedClass, contents,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleTableContent>]>,) {
-    const tableContent = new Array<ReactJSXElement>(contents.length,)
-    contents.forEach((content, i,) => {
-        const rowContentKey = content[0]
-        const rowContent = new Array<ReactJSXElement>(content.length - 1,)
-        dropByArray(content, 1,).forEach((rowColumnContent, j,) => {
-            if (rowColumnContent == null)
-                rowContent[j] = <div key={`table content (empty ${rowContentKey} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
-            else
-                rowContent[j] = <div key={`table content (${rowContentKey} ${i + 1}-${j + 2})`} className={`tcell ${associatedClass.get(j,)}`}>{rowColumnContent}</div>
-        },)
 
-        tableContent[i] =
-            <div key={`table row content (${rowContentKey} ${i + 1})`} className={`trow table-row-${getInHtml(rowContentKey,)}`}>{rowContent}</div>
-    },)
-    return <div className="tcontent">{tableContent}</div>
+interface TableContentProperties<CONTENT extends Content,>
+    extends ReactProperties {
+
+    readonly associatedClass: CollectionHolder<string>
+    readonly items: CollectionHolder<CONTENT>
+    readonly contents: CollectionHolder<SingleTableContent>
+    readonly onRowClicked: (content: CONTENT,) => void
+
 }
 
-function TableFooter({children: [associatedClass, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
-    const columns = new Array<ReactJSXElement>(headers.length,)
-    headers.forEach((it, i,) => {
+function TableContent<const CONTENT extends Content, >({associatedClass, items, contents, onRowClicked,}: TableContentProperties<CONTENT>,) {
+    return <div className="tcontent">{contents.map((content, i,) => {
+        const {englishName, englishNameInHtml,} = items.get(i,)
+
+        return <div key={`table row content (${englishName} ${i + 1})`} className={`trow table-row-${englishNameInHtml}`}
+                    onClick={() => onRowClicked(items.get(i,),)}>{dropByArray(content, 1,).map((rowColumnContent, j,) =>
+            rowColumnContent == null
+                ? <div key={`table content (empty ${englishName} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
+                : <div key={`table content (${englishName} ${i + 1}-${j + 2})`} className={`tcell ${associatedClass.get(j,)}`}>{rowColumnContent}</div>,)
+        }</div>
+    },)}</div>
+}
+
+
+interface TableFooterProperties
+    extends ReactProperties {
+
+    readonly associatedClass: CollectionHolder<string>
+    readonly headers: CollectionHolder<SingleHeaderContent>
+
+}
+
+function TableFooter({associatedClass, headers,}: TableFooterProperties,) {
+    return <div className="tfooter mb-2">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
-        columns[i] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
+        return <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
             <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
-    },)
-
-    return <div className="tfooter mb-2">{columns}</div>
+    },)}</div>
 }
+
 
 function HeaderTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
     assert(typeof children != 'string', 'No tooltip can be displayed on a header that is a string.',)
