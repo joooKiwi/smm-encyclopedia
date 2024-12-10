@@ -1,7 +1,5 @@
 import './DisplayView.scss'
 
-import {CollectionConstants} from '@joookiwi/collection'
-
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
 import {unfinishedText}                                  from 'app/tools/text/UnfinishedText'
@@ -10,13 +8,15 @@ import {useCurrentGames}                                 from 'core/game/gamesHo
 import {OtherWordInTheGames}                             from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
+import {Empty}                                           from 'util/emptyVariables'
 
-import SMM1 = Games.SMM1
-import SMM2 = Games.SMM2
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import SMM1 =                    Games.SMM1
+import SMM2 =                     Games.SMM2
 
 /** @reactComponent */
 export default function DisplayViewBody() {
-    const games = useCurrentGames('display view body',) ?? CollectionConstants.EMPTY_COLLECTION_HOLDER
+    const games = useCurrentGames('display view body',) ?? EMPTY_COLLECTION_HOLDER
 
     const isSMM1Selected = games.has(SMM1,)
     // const isSMM3DSSelected = games.has(SMM3DS,)

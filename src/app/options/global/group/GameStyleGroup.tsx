@@ -1,7 +1,6 @@
 import './GameStyleGroup.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
-import {CollectionConstants}   from '@joookiwi/collection'
 import {Link, useLocation}     from 'react-router-dom'
 
 import type {ReactProperties} from 'util/react/ReactProperties'
@@ -16,21 +15,22 @@ import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 import {Empty}                    from 'util/emptyVariables'
 
-import EMPTY_STRING =      Empty.EMPTY_STRING
-import Companion =         GameStyles.Companion
-import GameCompanion =     Games.Companion
-import LanguageCompanion = ProjectLanguages.Companion
-import NSMBU =             GameStyles.NSMBU
-import SMB =               GameStyles.SMB
-import SMB3 =              GameStyles.SMB3
-import SMM2 =              Games.SMM2
-import SMW =               GameStyles.SMW
-import SM3DW =             GameStyles.SM3DW
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_STRING =            Empty.EMPTY_STRING
+import Companion =               GameStyles.Companion
+import GameCompanion =           Games.Companion
+import LanguageCompanion =       ProjectLanguages.Companion
+import NSMBU =                   GameStyles.NSMBU
+import SMB =                     GameStyles.SMB
+import SMB3 =                    GameStyles.SMB3
+import SMM2 =                    Games.SMM2
+import SMW =                     GameStyles.SMW
+import SM3DW =                   GameStyles.SM3DW
 
 /** @reactComponent */
 export default function GameStyleGroup() {
     const gameStyles = useCurrentGameStyles('game style group',)
-    const games = useCurrentGames('game style group (game)',) ?? CollectionConstants.EMPTY_COLLECTION_HOLDER
+    const games = useCurrentGames('game style group (game)',) ?? EMPTY_COLLECTION_HOLDER
     if (gameStyles == null)
         return null
     if (gameStyles.isEmpty)
