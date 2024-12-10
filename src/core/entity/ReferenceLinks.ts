@@ -1,5 +1,5 @@
-import type {Array, NullOrString} from '@joookiwi/type'
-import {forEachByArray}           from '@joookiwi/collection'
+import type {Array, NullOrString}                from '@joookiwi/type'
+import {forEachByArray, GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
@@ -117,7 +117,7 @@ export class ReferenceLinks {
             gameStyleLinks: gameStyleLinks.size === 0 ? EMPTY_ARRAY : Array.from(gameStyleLinks,),
             themeLinks: themeLinks.size === 0 ? EMPTY_ARRAY : Array.from(themeLinks,),
             timeLinks: timeLinks.size === 0 ? EMPTY_ARRAY : Array.from(timeLinks,),
-            allLinks: Array.from(allLinks,),
+            allLinks: new GenericCollectionHolder(allLinks,).toArray(),
         },)
     }
 

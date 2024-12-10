@@ -1,4 +1,5 @@
 import type {Array, StringArray} from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'core/behaviour/EntityBehaviours.types'
@@ -338,11 +339,11 @@ export class EveryTypes {
     //region -------------------- Limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...Limits.Companion.values.map(it => it.acronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= new GenericCollectionHolder(Limits.Companion.values.map(it => it.acronym,).filterNotNull().toSet(),).toArray()
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.Companion.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= new GenericCollectionHolder(Limits.Companion.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),).toArray()
     }
 
 
