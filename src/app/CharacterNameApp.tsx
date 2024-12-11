@@ -27,7 +27,7 @@ import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
-import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import GameImage                                    from 'core/game/component/GameImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {Games}                                      from 'core/game/Games'
@@ -79,9 +79,9 @@ class CharacterNameAppInterpreter
         } as const satisfies DimensionOnList
     }
 
-    public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
+    public createCardListContent(enumeration: CharacterNames,) {
         return <div className="card-body">
-            <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
+            <EditorVoiceSound editorVoice={enumeration.editorVoice} name={enumeration.uniqueEnglishName}/>
         </div>
     }
 
@@ -148,7 +148,7 @@ function CharacterNameList({items,}: CharacterName_ListProperties,) {
     return <List partialId="characterName" items={items} withSeparator nameRetriever={uniqueNameRetriever}>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="characterName-name" name={it.reference} popoverOrientation="top"/>
-            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.uniqueEnglishName}/>
+            <EditorVoiceSound editorVoice={it.editorVoice} name={it.uniqueEnglishName}/>
         </div>
     }</List>
 }

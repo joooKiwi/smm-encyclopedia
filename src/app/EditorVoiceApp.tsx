@@ -27,7 +27,7 @@ import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
-import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -83,7 +83,7 @@ class EditorVoiceAppInterpreter
 
     public createCardListContent(enumerable: EditorVoices,) {
         return <div className="editorVoices-container">
-            <EditorVoiceSoundComponent editorVoiceSound={enumerable.editorVoiceSoundFileHolder} name={enumerable.englishName}/>
+            <EditorVoiceSound editorVoice={enumerable}/>
         </div>
     }
 
@@ -149,7 +149,7 @@ function EditorVoiceList({items,}: EditorVoice_ListProperties,) {
     return <List partialId="editorVoice" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
-            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.englishName}/>
+            <EditorVoiceSound editorVoice={it}/>
         </div>
     }</List>
 }

@@ -5,8 +5,6 @@ import type {ClassWithReference}                                              fr
 import type {CharacterName}                                                   from 'core/characterName/CharacterName'
 import type {ClassWithEnglishName}                                            from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
-import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
-import type {EditorVoiceSound}                                                from 'core/editorVoice/sound/EditorVoiceSound'
 import type {CompanionEnumByNameSingleton}                                    from 'util/enumerable/Singleton.types'
 
 import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
@@ -23,8 +21,7 @@ import EditorVoiceCompanion = EditorVoices.Companion
 export class CharacterNames
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CharacterName>,
-        ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithNullableEditorVoiceSoundFileHolder {
+        ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -208,7 +205,7 @@ export class CharacterNames
     #reference?: CharacterName
     readonly #englishName
     readonly #uniqueEnglishName
-    #editorVoiceSound?: NullOr<EditorVoiceSound>
+    #editorVoice?: NullOr<EditorVoices>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -249,17 +246,14 @@ export class CharacterNames
         return this.#englishName.getInHtml
     }
 
-    //region -------------------- editor sound --------------------
 
-    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
-        if (this.#editorVoiceSound !== undefined)
-            return this.#editorVoiceSound
+    public get editorVoice(): NullOr<EditorVoices> {
+        if (this.#editorVoice !== undefined)
+            return this.#editorVoice
         if (EditorVoiceCompanion.hasReference(this,))
-            return this.#editorVoiceSound = EditorVoiceCompanion.getValueByCharacterName(this,).editorVoiceSoundFileHolder
-        return this.#editorVoiceSound = null
+            return this.#editorVoice = EditorVoiceCompanion.getValueByCharacterName(this,)
+        return this.#editorVoice = null
     }
-
-    //endregion -------------------- editor sound --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------

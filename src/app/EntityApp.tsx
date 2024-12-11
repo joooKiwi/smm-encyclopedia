@@ -30,7 +30,7 @@ import List                                         from 'app/util/List'
 import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
-import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import {Entities}                                   from 'core/entity/Entities'
 import SingleEntityImage                            from 'core/entity/component/SingleEntityImage'
 import {Games}                                      from 'core/game/Games'
@@ -107,7 +107,7 @@ class EntityAppInterpreter
         //TODO encapsulate the voiceSound into a sound interpreter.
         return <div className={`${category}`}>
             <SingleEntityImage reference={entity} gameStyles={this.#gameStyles}/>
-            <EditorVoiceSoundComponent editorVoiceSound={entity.editorVoiceSoundFileHolder} name={entity.englishName}/>
+            <EditorVoiceSound editorVoice={entity.editorVoiceReference} name={entity.englishName}/>
         </div>
     }
 
@@ -271,7 +271,7 @@ function EntityList({items, gameStyles,}: Entity_ListProperties,) {
                 <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
                 <SingleEntityImage reference={it} gameStyles={gameStyles}/>
             </div>
-            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.englishName}/>
+            <EditorVoiceSound editorVoice={it.editorVoiceReference} name={it.englishName}/>
         </div>
     }</List>
 }

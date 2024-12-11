@@ -1,21 +1,19 @@
 import type {Nullable, NullOr, UndefinedOr} from '@joookiwi/type'
 import {Enum}                               from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                        from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                          from 'core/ClassWithReference'
-import type {ClassWithNullableEditorVoiceSoundFileHolder} from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
-import type {EditorVoiceSound}                            from 'core/editorVoice/sound/EditorVoiceSound'
-import type {Names, Ordinals, PossibleEnglishName}        from 'core/entity/Entities.types'
-import type {Entity}                                      from 'core/entity/Entity'
-import type {EntityImage}                                 from 'core/entity/images/EntityImage'
-import type {ClearConditionImage}                         from 'core/entity/images/clearCondition/ClearConditionImage'
-import type {EditorImage}                                 from 'core/entity/images/editor/EditorImage'
-import type {InGameImage_BigMushroom}                     from 'core/entity/images/inGame/InGameImage_BigMushroom'
-import type {InGameImage_Regular}                         from 'core/entity/images/inGame/InGameImage_Regular'
-import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
-import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
-import type {ClassWithImage}                              from 'util/ClassWithImage'
-import type {CompanionEnumByNameSingleton}                from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                   from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
+import type {Entity}                               from 'core/entity/Entity'
+import type {EntityImage}                          from 'core/entity/images/EntityImage'
+import type {ClearConditionImage}                  from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}                          from 'core/entity/images/editor/EditorImage'
+import type {InGameImage_BigMushroom}              from 'core/entity/images/inGame/InGameImage_BigMushroom'
+import type {InGameImage_Regular}                  from 'core/entity/images/inGame/InGameImage_Regular'
+import type {UnusedImage_BigMushroom}              from 'core/entity/images/unused/UnusedImage_BigMushroom'
+import type {UnusedImage_Regular}                  from 'core/entity/images/unused/UnusedImage_Regular'
+import type {ClassWithImage}                       from 'util/ClassWithImage'
+import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
 import {EditorVoices}                  from 'core/editorVoice/EditorVoices'
 import {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
@@ -40,8 +38,7 @@ import EditorVoiceCompanion = EditorVoices.Companion
  * {@link InGameImage_Regular in game (regular form)},
  * {@link InGameImage_BigMushroom in game (Big Mushroom form)},
  * {@link UnusedImage_Regular unused (regular form)}
- * and {@link UnusedImage_BigMushroom unused (Big Mushroom form)}),
- * sound ({@link EditorVoiceSound})
+ * and {@link UnusedImage_BigMushroom unused (Big Mushroom form)})
  * and data ({@link Entity})
  *
  * @recursiveReference<{@link ClearConditionEntityImages}>
@@ -58,8 +55,7 @@ export class Entities
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithReference<Entity>,
-        ClassWithImage<EntityImage>,
-        ClassWithNullableEditorVoiceSoundFileHolder {
+        ClassWithImage<EntityImage> {
 
     //region -------------------- Enum instances --------------------
 
@@ -532,8 +528,6 @@ export class Entities
     #unusedRegularImage?: UnusedImage_Regular
     #unusedBigMushroomImage?: UnusedImage_BigMushroom
 
-    #editorVoiceSound?: NullOr<EditorVoiceSound>
-
     #editorVoiceReference?: NullOr<EditorVoices>
     #entityImageReference?: EntityImages
     #editorEntityImageReference?: EditorEntityImages
@@ -597,20 +591,6 @@ export class Entities
     public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedBigMushroomEntityImageReference.image }
 
     //endregion -------------------- Getter methods (image) --------------------
-    //region -------------------- Getter methods (sound) --------------------
-
-    //region -------------------- editor sound --------------------
-
-    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
-        const value = this.#editorVoiceSound
-        if (value !== undefined)
-            return value
-        return this.#editorVoiceSound = this.editorVoiceReference?.editorVoiceSoundFileHolder ?? null
-    }
-
-    //endregion -------------------- editor sound --------------------
-
-    //endregion -------------------- Getter methods (sound) --------------------
     //region -------------------- Getter methods (linked reference) --------------------
 
     public get editorVoiceReference(): NullOr<EditorVoices> {
