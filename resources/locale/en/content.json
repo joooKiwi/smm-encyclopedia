@@ -51,6 +51,9 @@
       "4. editor":           "Only the editor musics are separated in different sections."
     }
   },
+  "parameter": {
+    "instruction": "Select the “games”, “game styles”, “theme” (to be added), and “times” to be displayed across the application."
+  },
 
   "Yes": "Yes",
   "No":  "No",

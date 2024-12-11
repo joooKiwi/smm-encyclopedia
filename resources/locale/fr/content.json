@@ -51,6 +51,9 @@
       "4. editor":           "Seul la musique d'éditeur est séparée en différentes sections."
     }
   },
+  "parameter": {
+    "instruction": "Sélectionnez les «jeux», «style de jeux», «décor» (à venir) et “temps” à afficher au travers de l'application."
+  },
 
   "Yes": "Oui",
   "No":  "Non",
