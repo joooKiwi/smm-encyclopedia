@@ -10,7 +10,11 @@ interface ModalButtonProperties
 
     readonly elementToShow: | string | HTMLElement
 
+    readonly elementToHide?: | string | HTMLElement
+
 }
+
+const instanceHandler = BootstrapInstanceHandler.get
 
 /**
  * A button made to trigger a {@link bootstrap.Modal} from a Javascript standpoint
@@ -19,7 +23,11 @@ interface ModalButtonProperties
  * @param properties
  * @see https://getbootstrap.com/docs/5.3/components/modal
  */
-const ModalButton = forwardRef<HTMLButtonElement, ModalButtonProperties>(({elementToShow, ...otherProperties}, ref,) =>
-    <button ref={ref} {...otherProperties} type="button" onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(elementToShow,)?.instance.show()}/>,)
+const ModalButton = forwardRef<HTMLButtonElement, ModalButtonProperties>(({elementToShow, elementToHide, ...otherProperties}, ref,) =>
+    <button ref={ref} {...otherProperties} type="button" onClick={() => {
+        instanceHandler.getModalInstanceOrNull(elementToShow,)?.instance.show()
+        if (elementToHide != null)
+            instanceHandler.getModalInstanceOrNull(elementToHide,)?.instance.hide()
+    }}/>,)
 
 export default ModalButton

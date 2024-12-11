@@ -18,6 +18,7 @@ import {Times}                    from 'core/time/Times'
 import TimeImage                  from 'core/time/component/TimeImage'
 import {contentTranslation}       from 'lang/components/translationMethods'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
+import ParameterToLanguageButton  from 'navigation/button/ParameterToLanguage.button'
 import {EveryRoutes}              from 'route/EveryRoutes'
 import {Empty}                    from 'util/emptyVariables'
 import {assert}                   from 'util/utilitiesMethods'
@@ -129,6 +130,10 @@ export default function ParameterModal() {
             <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
+                        <div className="btn-group" role="group">
+                            <button className="btn btn-outline-primary rounded-pill bi bi-palette-fill" disabled/>
+                            <ParameterToLanguageButton/>
+                        </div>
                         <h4 className="modal-title w-100 text-center">{contentTranslation('Options',)}</h4>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label={contentTranslation('Close',)}/>
                     </div>
