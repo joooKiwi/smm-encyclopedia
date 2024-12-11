@@ -47,7 +47,7 @@ export interface Entity
     readonly canBeThrownByALakitu: BooleanOrUnknownCharacter
     readonly canBePutInALakituCloud: BooleanOrUnknownCharacter
     readonly canBePutInAClownCar: boolean
-    readonly canBeFiredOutOfABulletLauncher: boolean//TODO add amount in a bunch + maximum amount
+    readonly canBeFiredOutOfABillBlaster: boolean//TODO add amount in a bunch + maximum amount
     readonly canComeOutOfABlock: boolean//TODO add maximum amount
     readonly canBePutInATree: boolean
 
@@ -90,10 +90,10 @@ export interface Entity
     readonly isInProjectileLimit: NullOrBooleanOrNotApplicable
     readonly isInProjectileLimitComment: NullOrString<PossibleProjectileLimitComment>
 
-    readonly isInRenderedObjectLimit: NullOrBooleanOrNotApplicable
-    readonly isInRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>
+    readonly isInDynamicRenderedObjectLimit: NullOrBooleanOrNotApplicable
+    readonly isInDynamicRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>
 
-    readonly isInCollectedCoinLimit: NullOrBooleanOrNotApplicable
+    readonly isInCollectedLooseCoinLimit: NullOrBooleanOrNotApplicable
 
     readonly otherLimit: NullOr<| Limits | NotApplicable>
     readonly otherLimitComment: NullOrString<PossibleOtherLimitComment>

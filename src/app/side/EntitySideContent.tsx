@@ -264,7 +264,7 @@ function CanBePutInAClownCarListItem({reference,}: EntitySideContentListItemProp
 
 /** @reactComponent */
 function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentListItemProperties,) {
-    if (!reference.canBeFiredOutOfABulletLauncher)
+    if (!reference.canBeFiredOutOfABillBlaster)
         return null
     return <li id="canBeFiredOutOfABillBlaster-listItem" className="list-group-item">
         <Image file={new ArrayAsCollection(BILL_BLASTER.image.get(SMW,),).getFirst()} className="entity-image"/>

@@ -59,7 +59,7 @@ export class EmptyEntity
     public readonly canBeThrownByALakitu = false
     public readonly canBePutInALakituCloud = false
     public readonly canBePutInAClownCar = false
-    public readonly canBeFiredOutOfABulletLauncher = false
+    public readonly canBeFiredOutOfABillBlaster = false
     public readonly canComeOutOfABlock = false
     public readonly canBePutInATree = false
 
@@ -125,10 +125,10 @@ export class EmptyEntity
     public readonly isInProjectileLimit = NOT_APPLICABLE
     public readonly isInProjectileLimitComment = null
 
-    public readonly isInRenderedObjectLimit = NOT_APPLICABLE
-    public readonly isInRenderedObjectLimitComment = null
+    public readonly isInDynamicRenderedObjectLimit = NOT_APPLICABLE
+    public readonly isInDynamicRenderedObjectLimitComment = null
 
-    public readonly isInCollectedCoinLimit = NOT_APPLICABLE
+    public readonly isInCollectedLooseCoinLimit = NOT_APPLICABLE
 
     public readonly otherLimit = NOT_APPLICABLE
     public readonly otherLimitComment = null

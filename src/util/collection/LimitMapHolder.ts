@@ -60,8 +60,8 @@ export class LimitMapHolder<const REFERENCE extends Entity, > {
             reference.isInGlobalGeneralLimit === true ? Limits.GENERAL_ENTITY_LIMIT : null,
             reference.isInPowerUpLimit === true ? Limits.POWER_UP_ENTITY_LIMIT : null,
             reference.isInProjectileLimit === true ? Limits.PROJECTILE_LIMIT : null,
-            reference.isInRenderedObjectLimit === true ? Limits.RENDERED_OBJECT_LIMIT : null,
-            reference.isInCollectedCoinLimit === true ? Limits.COLLECTED_COIN_LIMIT : null,
+            reference.isInDynamicRenderedObjectLimit === true ? Limits.DYNAMIC_RENDERED_OBJECT_LIMIT : null,
+            reference.isInCollectedLooseCoinLimit === true ? Limits.COLLECTED_LOOSE_COIN_LIMIT : null,
             otherLimits instanceof Limits ? otherLimits : null,
         )
     }
