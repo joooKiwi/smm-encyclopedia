@@ -12,7 +12,7 @@ interface GroupOf5PowerUpPriorityProperties
 
     readonly id: string
 
-    readonly children: readonly [ReactElement, ReactElement, ReactElement, ReactElement, ReactElement,]
+    readonly children: ArrayOf5<NonNullReactElement>
 
     readonly arrow?: GroupOf5PowerUpPriorityArrowProperties
 

@@ -1,26 +1,23 @@
 import 'app/PowerUpRideAndHatPriorityApp.scss'
 
-import type {Nullable, NullOr} from '@joookiwi/type'
-import {Component}             from 'react'
+import type {NullOr} from '@joookiwi/type'
+import {useState}    from 'react'
 
-import type {PowerUpAndRidePriorityProperties}                                                                                                                                         from 'app/AppProperties.types'
-import type {NSMBUPowerUpPriority, PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, SM3DWPowerUpPriority, SMB3PowerUpPriority, SMBPowerUpPriority, SMWPowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {NSMBUPowerUpPriorities, SM3DWPowerUpPriorities, SMB3PowerUpPriorities, SMBPowerUpPriorities, SMWPowerUpPriorities}                                                        from 'app/powerUp/priority/predefined/types'
-import type {PowerUpPriorityTypes}                                                                                                                                                     from 'app/property/PowerUpPriorityTypes'
-import type {ClassWithType}                                                                                                                                                            from 'core/ClassWithType'
-import type {ReactComponent}                                                                                                                                                           from 'util/react/ReactComponent'
+import type {PowerUpAndRidePriorityProperties}                                               from 'app/AppProperties.types'
+import type {GroupOf5PowerUpPriorityArrowProperties, GroupOf6PowerUpPriorityArrowProperties} from 'app/powerUp/group/GroupPriority.types'
+import type {PowerUpPriorityTypes}                                                           from 'app/property/PowerUpPriorityTypes'
+import type {ClassWithType}                                                                  from 'core/ClassWithType'
+import type {GameCollection}                                                                 from 'util/collection/GameCollection'
+import type {ReactProperties}                                                                from 'util/react/ReactProperties'
 
-import {ImageCallbacks}                             from 'app/powerUp/priority/ImageCallbacks'
-import {AllGamesPowerUpPriority}                    from 'app/powerUp/priority/AllGamesPowerUpPriority'
-import {SMM1PowerUpPriority}                        from 'app/powerUp/priority/SMM1PowerUpPriority'
-import {SMM2PowerUpPriority}                        from 'app/powerUp/priority/SMM2PowerUpPriority'
-import PowerUpPriorityInNSMBU                       from 'app/powerUp/priority/predefined/PowerUpPriorityInNSMBU'
-import PowerUpPriorityInSM3DW                       from 'app/powerUp/priority/predefined/PowerUpPriorityInSM3DW'
-import PowerUpPriorityInSMB                         from 'app/powerUp/priority/predefined/PowerUpPriorityInSMB'
-import PowerUpPriorityInSMB3                        from 'app/powerUp/priority/predefined/PowerUpPriorityInSMB3'
-import PowerUpPriorityInSMW                         from 'app/powerUp/priority/predefined/PowerUpPriorityInSMW'
+import GroupOf2PowerUpPriority                      from 'app/powerUp/group/GroupOf2PowerUpPriority'
+import GroupOf3PowerUpPriority                      from 'app/powerUp/group/GroupOf3PowerUpPriority'
+import GroupOf4PowerUpPriority                      from 'app/powerUp/group/GroupOf4PowerUpPriority'
+import GroupOf5PowerUpPriority                      from 'app/powerUp/group/GroupOf5PowerUpPriority'
+import GroupOf6PowerUpPriority                      from 'app/powerUp/group/GroupOf6PowerUpPriority'
 import Arrow                                        from 'app/tools/arrow/Arrow'
 import {Arrows}                                     from 'app/tools/arrow/Arrows'
+import GroupImages                                  from 'app/tools/images/GroupImages'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
 import {Entities}                                   from 'core/entity/Entities'
@@ -28,21 +25,13 @@ import {GameStyles}                                 from 'core/gameStyle/GameSty
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
-import NOT_SM3DW =                                                 GameStyles.NOT_SM3DW
-import NSMBU =                                                     GameStyles.NSMBU
-import SMB =                                                       GameStyles.SMB
-import SMB_AND_SMB3 =                                              GameStyles.SMB_AND_SMB3
-import SMB_AND_SMB3_AND_SMW =                                      GameStyles.SMB_AND_SMB3_AND_SMW
-import SMB3 =                                                      GameStyles.SMB3
-import SMW =                                                       GameStyles.SMW
-import SMW_AND_NSMBU =                                             GameStyles.SMW_AND_NSMBU
-import SM3DW =                                                     GameStyles.SM3DW
-import EDITOR_IMAGE_CALLBACK =                                     ImageCallbacks.EDITOR_IMAGE_CALLBACK
-import FIRST_EDITOR_IMAGE_CALLBACK =                               ImageCallbacks.FIRST_EDITOR_IMAGE_CALLBACK
-import FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK = ImageCallbacks.FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK
-import FIRST_IN_GAME_IMAGE_CALLBACK =                              ImageCallbacks.FIRST_IN_GAME_IMAGE_CALLBACK
-import IN_GAME_IMAGE_CALLBACK =                                    ImageCallbacks.IN_GAME_IMAGE_CALLBACK
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -57,287 +46,620 @@ const {
     CANNON_BOX, PROPELLER_BOX, GOOMBA_MASK, BULLET_BILL_MASK, RED_POW_BOX,
     SUPER_STAR,
     SHOE, STILETTO,
-    YOSHI, YOSHI_EGG, RED_YOSHI, RED_YOSHI_EGG,
+    YOSHI_EGG, RED_YOSHI_EGG,
     KOOPA_CLOWN_CAR, JUNIOR_CLOWN_CAR, FIRE_KOOPA_CLOWN_CAR, FIRE_JUNIOR_CLOWN_CAR,
-    KOOPA_TROOPA_CAR, CAR,
+    KOOPA_TROOPA_CAR,
     BUZZY_SHELL, SPINY_SHELL, DRY_BONES_SHELL,
     LAKITU_CLOUD,
 } = Entities
 const {POWER_UP,} = OtherWordInTheGames
+const {DOWN, RIGHT,} = Arrows
 
 //endregion -------------------- Import from deconstruction --------------------
+//region -------------------- Helper constants --------------------
+
+const superMushroom_smbImages =   SUPER_MUSHROOM.editorImage.get(SMB,)
+const superMushroom_smb3Images =  SUPER_MUSHROOM.editorImage.get(SMB3,)
+const superMushroom_smwImages =   SUPER_MUSHROOM.editorImage.get(SMW,)
+const superMushroom_nsmbuImages = SUPER_MUSHROOM.editorImage.get(NSMBU,)
+const superMushroom_sm3dwImages = SUPER_MUSHROOM.editorImage.get(SM3DW,)
+
+const fireFlower_smbImages =   FIRE_FLOWER.editorImage.get(SMB,).take(1,)
+const fireFlower_smb3Images =  FIRE_FLOWER.editorImage.get(SMB3,).take(1,)
+const fireFlower_smwImages =   FIRE_FLOWER.editorImage.get(SMW,).take(1,)
+const fireFlower_nsmbuImages = FIRE_FLOWER.editorImage.get(NSMBU,).take(1,)
+const fireFlower_sm3dwImages = FIRE_FLOWER.editorImage.get(SM3DW,).take(1,)
+
+const mysteryMushroom_images =    new ArrayAsCollection(MYSTERY_MUSHROOM.inGameImage.get(SMB,),)
+const weirdMushroom_images =      new ArrayAsCollection(WEIRD_MUSHROOM.inGameImage.get(SMB,),)
+const masterSword_images =        MASTER_SWORD.editorImage.get(SMB,)
+const superballFlower_images =    new ArrayAsCollection(SUPERBALL_FLOWER.editorImage.images,).take(1,)
+const bigMushroom_images =        new ArrayAsCollection(BIG_MUSHROOM.editorImage.images,).take(1,)
+const bigMushroomClassic_images = new ArrayAsCollection(BIG_MUSHROOM_CLASSIC.editorImage.images,).take(1,)
+const bigMushroomModern_images =  new ArrayAsCollection(BIG_MUSHROOM_MODERN.editorImage.images,).take(1,)
+const smb2Mushroom_images =       new ArrayAsCollection(SMB2_MUSHROOM.editorImage.images,).take(1,)
+
+const superLeaf_images = new ArrayAsCollection(SUPER_LEAF.editorImage.images,).take(1,)
+const frogSuit_images =  new ArrayAsCollection(FROG_SUIT.editorImage.images,).take(1,)
+
+const capeFeather_images =  new ArrayAsCollection(CAPE_FEATHER.editorImage.images,).take(1,)
+const powerBalloon_images = new ArrayAsCollection(POWER_BALLOON.editorImage.images,).take(1,)
+
+const propellerMushroom_images = new ArrayAsCollection(PROPELLER_MUSHROOM.editorImage.images,).take(1,)
+const superAcorn_images =        new ArrayAsCollection(SUPER_ACORN.editorImage.images,).take(1,)
+
+const superBell_images =       new ArrayAsCollection(SUPER_BELL.editorImage.images,).take(1,)
+const superHammer_images =     new ArrayAsCollection(SUPER_HAMMER.editorImage.images,).take(1,)
+const boomerangFlower_images = new ArrayAsCollection(BOOMERANG_FLOWER.editorImage.images,).take(1,)
+
+const cannonBox_images =      new ArrayAsCollection(CANNON_BOX.editorImage.images,)
+const propellerBox_images =   new ArrayAsCollection(PROPELLER_BOX.editorImage.images,)
+const goombaMask_images =     new ArrayAsCollection(GOOMBA_MASK.editorImage.images,)
+const bulletBillMask_images = new ArrayAsCollection(BULLET_BILL_MASK.editorImage.images,)
+const redPowBox_images =      new ArrayAsCollection(RED_POW_BOX.editorImage.images,)
+
+const superStar_smbImages =   SUPER_STAR.editorImage.get(SMB,)
+const superStar_smb3Images =  SUPER_STAR.editorImage.get(SMB3,)
+const superStar_smwImages =   SUPER_STAR.editorImage.get(SMW,)
+const superStar_nsmbuImages = SUPER_STAR.editorImage.get(NSMBU,)
+const superStar_sm3dwImages = SUPER_STAR.editorImage.get(SM3DW,)
+
+const shoe_smbImages =  new ArrayAsCollection(SHOE.inGameImage.get(SMB,),).take(1,)
+const shoe_smb3Images = new ArrayAsCollection(SHOE.inGameImage.get(SMB3,),).take(1,)
+
+const stiletto_smbImages =  new ArrayAsCollection(STILETTO.inGameImage.get(SMB,),).take(1,)
+const stiletto_smb3Images = new ArrayAsCollection(STILETTO.inGameImage.get(SMB3,),).take(1,)
+
+const yoshi_smwImages =   new ArrayAsCollection(YOSHI_EGG.inGameImage.get(SMW,),).take(1,)
+const yoshi_nsmbuImages = YOSHI_EGG.editorImage.get(NSMBU,).take(1,)
+
+const redYoshi_smwImages =   new ArrayAsCollection(RED_YOSHI_EGG.inGameImage.get(SMW,),).take(1,)
+const redYoshi_nsmbuImages = RED_YOSHI_EGG.editorImage.get(NSMBU,).take(1,)
+
+const buzzyShell_smbImages =   BUZZY_SHELL.editorImage.get(SMB,).take(1,)
+const buzzyShell_smb3Images =  BUZZY_SHELL.editorImage.get(SMB3,).take(1,)
+const buzzyShell_smwImages =   BUZZY_SHELL.editorImage.get(SMW,)
+const buzzyShell_nsmbuImages = BUZZY_SHELL.editorImage.get(NSMBU,)
+
+const spinyShell_smbImages =   SPINY_SHELL.editorImage.get(SMB,)
+const spinyShell_smb3Images =  SPINY_SHELL.editorImage.get(SMB3,)
+const spinyShell_smwImages =   SPINY_SHELL.editorImage.get(SMW,)
+const spinyShell_nsmbuImages = SPINY_SHELL.editorImage.get(NSMBU,)
+
+const dryBonesShell_smbImages =   DRY_BONES_SHELL.editorImage.get(SMB,)
+const dryBonesShell_smb3Images =  DRY_BONES_SHELL.editorImage.get(SMB3,)
+const dryBonesShell_smwImages =   DRY_BONES_SHELL.editorImage.get(SMW,)
+const dryBonesShell_nsmbuImages = DRY_BONES_SHELL.editorImage.get(NSMBU,)
+
+const clownCar_smbImages =   KOOPA_CLOWN_CAR.editorImage.get(SMB,)
+const clownCar_smb3Images =  KOOPA_CLOWN_CAR.editorImage.get(SMB3,)
+const clownCar_smwImages =   KOOPA_CLOWN_CAR.editorImage.get(SMW,)
+const clownCar_nsmbuImages = new ArrayAsCollection(JUNIOR_CLOWN_CAR.editorImage.images,)
+
+const fireClownCar_smbImages =   FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMB,)
+const fireClownCar_smb3Images =  FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMB3,)
+const fireClownCar_smwImages =   FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMW,)
+const fireClownCar_nsmbuImages = new ArrayAsCollection(FIRE_JUNIOR_CLOWN_CAR.editorImage.images,)
+
+const car_images = new ArrayAsCollection(KOOPA_TROOPA_CAR.editorImage.images,)
+
+const lakituCloud_smbImages =  LAKITU_CLOUD.editorImage.get(SMB,)
+const lakituCloud_smb3Images =  LAKITU_CLOUD.editorImage.get(SMB3,)
+const lakituCloud_smwImages =   LAKITU_CLOUD.editorImage.get(SMW,)
+const lakituCloud_nsmbuImages = LAKITU_CLOUD.editorImage.get(NSMBU,)
+
+//endregion -------------------- Helper constants --------------------
 
 /**
+ * @TODO Restructure the application to have a re-designed visual approach
+ * @TODO Replace the state with a property
  * @reactComponent
- * @todo Replace the state with a property
- * @todo Replace to a functional-based component
  */
-export default class PowerUpRideAndHatPriorityApp
-    extends Component<PowerUpAndRidePriorityProperties, { gameStyle: NullOr<GameStyles>, }>
-    implements ReactComponent, ClassWithType<PowerUpPriorityTypes> {
+export default function PowerUpRideAndHatPriorityApp({type, games,}: PowerUpAndRidePriorityProperties,) {
+    const [gameStyle, setGameStyle,] = useState<NullOr<GameStyles>>(null,)
 
-    //region -------------------- Power-up priority holders --------------------
-
-    static readonly #SUPER_MUSHROOM: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SUPER_MUSHROOM, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #MYSTERY_MUSHROOM: SMBPowerUpPriority = new SMM1PowerUpPriority(MYSTERY_MUSHROOM, SMB, IN_GAME_IMAGE_CALLBACK,)
-    static readonly #WEIRD_MUSHROOM: SMBPowerUpPriority = new SMM1PowerUpPriority(WEIRD_MUSHROOM, SMB, IN_GAME_IMAGE_CALLBACK,)
-    static readonly #MASTER_SWORD: SMBPowerUpPriority = new SMM2PowerUpPriority(MASTER_SWORD, SMB, EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #FIRE_FLOWER: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(FIRE_FLOWER, NOT_SM3DW, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #SUPERBALL_FLOWER: SMBPowerUpPriority = new SMM2PowerUpPriority(SUPERBALL_FLOWER, SMB, FIRST_EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #BIG_MUSHROOM: SMBPowerUpPriority = new SMM2PowerUpPriority(BIG_MUSHROOM, SMB, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #BIG_MUSHROOM_CLASSIC: SMBPowerUpPriority = new SMM1PowerUpPriority(BIG_MUSHROOM_CLASSIC, SMB, IN_GAME_IMAGE_CALLBACK,)
-    static readonly #BIG_MUSHROOM_MODERN: SMBPowerUpPriority = new SMM1PowerUpPriority(BIG_MUSHROOM_MODERN, SMB, IN_GAME_IMAGE_CALLBACK,)
-    static readonly #SMB2_MUSHROOM: SMBPowerUpPriority = new SMM2PowerUpPriority(SMB2_MUSHROOM, SMB, FIRST_EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #SUPER_LEAF: SMB3PowerUpPriority = new AllGamesPowerUpPriority(SUPER_LEAF, SMB3, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #FROG_SUIT: SMB3PowerUpPriority = new SMM2PowerUpPriority(FROG_SUIT, SMB3, FIRST_EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #CAPE_FEATHER: SMWPowerUpPriority = new AllGamesPowerUpPriority(CAPE_FEATHER, SMW, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #POWER_BALLOON: SMWPowerUpPriority = new SMM2PowerUpPriority(POWER_BALLOON, SMW, FIRST_EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #PROPELLER_MUSHROOM: NSMBUPowerUpPriority = new AllGamesPowerUpPriority(PROPELLER_MUSHROOM, NSMBU, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #SUPER_ACORN: NSMBUPowerUpPriority = new SMM2PowerUpPriority(SUPER_ACORN, NSMBU, FIRST_EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #SUPER_BELL: SM3DWPowerUpPriority = new SMM2PowerUpPriority(SUPER_BELL, SM3DW, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #SUPER_HAMMER: SM3DWPowerUpPriority = new SMM2PowerUpPriority(SUPER_HAMMER, SM3DW, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #BOOMERANG_FLOWER: SM3DWPowerUpPriority = new SMM2PowerUpPriority(BOOMERANG_FLOWER, SM3DW, FIRST_EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #CANNON_BOX: SM3DWPowerUpPriority = new SMM2PowerUpPriority(CANNON_BOX, SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #PROPELLER_BOX: SM3DWPowerUpPriority = new SMM2PowerUpPriority(PROPELLER_BOX, SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #GOOMBA_MASK: SM3DWPowerUpPriority = new SMM2PowerUpPriority(GOOMBA_MASK, SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #BULLET_BILL_MASK: SM3DWPowerUpPriority = new SMM2PowerUpPriority(BULLET_BILL_MASK, SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #RED_POW_BOX: SM3DWPowerUpPriority = new SMM2PowerUpPriority(RED_POW_BOX, SM3DW, EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #SUPER_STAR: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SUPER_STAR, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #SHOE: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SHOE, SMB_AND_SMB3, FIRST_IN_GAME_IMAGE_CALLBACK,)
-    static readonly #STILETTO: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(STILETTO, SMB_AND_SMB3, FIRST_IN_GAME_IMAGE_CALLBACK,)
-
-    static readonly #YOSHI: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(YOSHI, SMW_AND_NSMBU, (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(YOSHI_EGG, gameStyle,),)
-    static readonly #RED_YOSHI: PowerUpByAllGameStylesPriority = new SMM2PowerUpPriority(RED_YOSHI, SMW_AND_NSMBU, (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(RED_YOSHI_EGG, gameStyle,),)
-
-    static readonly #BUZZY_SHELL: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(BUZZY_SHELL, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #SPINY_SHELL: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SPINY_SHELL, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #DRY_BONES_SHELL: PowerUpByAllGameStylesPriority = new SMM2PowerUpPriority(DRY_BONES_SHELL, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-
-    // //TODO change to clown car group
-    // static readonly #CLOWN_CAR: PowerUpBySMM1GameStylesPriority =       new AllGamesPowerUpPriority(KOOPA_CLOWN_CAR,        NOT_SM3DW, (_, gameStyle,) =>
-    //     gameStyle === NSMBU
-    //         ? AbstractPowerUpPriority.getEditorImages(JUNIOR_CLOWN_CAR, gameStyle,)
-    //         : AbstractPowerUpPriority.getEditorImages(KOOPA_CLOWN_CAR, gameStyle,),)
-    static readonly #KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority = new AllGamesPowerUpPriority(KOOPA_CLOWN_CAR, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority = new AllGamesPowerUpPriority(JUNIOR_CLOWN_CAR, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-    // //TODO change to fire clown car group
-    // static readonly #FIRE_CLOWN_CAR: PowerUpBySMM1GameStylesPriority =  new AllGamesPowerUpPriority(FIRE_KOOPA_CLOWN_CAR,   NOT_SM3DW, (_, gameStyle,) =>
-    //     gameStyle === NSMBU
-    //         ? AbstractPowerUpPriority.getEditorImages(FIRE_JUNIOR_CLOWN_CAR, gameStyle,)
-    //         : AbstractPowerUpPriority.getEditorImages(FIRE_KOOPA_CLOWN_CAR, gameStyle,),)
-    static readonly #FIRE_KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority = new AllGamesPowerUpPriority(FIRE_KOOPA_CLOWN_CAR, SMB_AND_SMB3_AND_SMW, EDITOR_IMAGE_CALLBACK,)
-    static readonly #FIRE_JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority = new AllGamesPowerUpPriority(FIRE_JUNIOR_CLOWN_CAR, NSMBU, EDITOR_IMAGE_CALLBACK,)
-
-    static readonly #CAR: SM3DWPowerUpPriority = new SMM2PowerUpPriority(CAR, SM3DW, (_, gameStyle,) => EDITOR_IMAGE_CALLBACK(KOOPA_TROOPA_CAR, gameStyle,),)
-    static readonly #LAKITU_CLOUD: PowerUpBySMM1GameStylesPriority = new SMM2PowerUpPriority(LAKITU_CLOUD, NOT_SM3DW, EDITOR_IMAGE_CALLBACK,)
-
-
-    static readonly #SMB_POWER_UPS: SMBPowerUpPriorities = [
-        PowerUpRideAndHatPriorityApp.#SUPER_STAR,
-        PowerUpRideAndHatPriorityApp.#LAKITU_CLOUD, PowerUpRideAndHatPriorityApp.#KOOPA_CLOWN_CAR, PowerUpRideAndHatPriorityApp.#FIRE_KOOPA_CLOWN_CAR,
-        PowerUpRideAndHatPriorityApp.#BUZZY_SHELL, PowerUpRideAndHatPriorityApp.#SPINY_SHELL,
-        PowerUpRideAndHatPriorityApp.#DRY_BONES_SHELL, PowerUpRideAndHatPriorityApp.#SHOE, PowerUpRideAndHatPriorityApp.#STILETTO,
-
-        PowerUpRideAndHatPriorityApp.#SUPER_MUSHROOM, PowerUpRideAndHatPriorityApp.#WEIRD_MUSHROOM,
-        PowerUpRideAndHatPriorityApp.#FIRE_FLOWER,
-        PowerUpRideAndHatPriorityApp.#MYSTERY_MUSHROOM, PowerUpRideAndHatPriorityApp.#BIG_MUSHROOM_CLASSIC, PowerUpRideAndHatPriorityApp.#BIG_MUSHROOM_MODERN,
-        PowerUpRideAndHatPriorityApp.#MASTER_SWORD, PowerUpRideAndHatPriorityApp.#BIG_MUSHROOM, PowerUpRideAndHatPriorityApp.#SMB2_MUSHROOM, PowerUpRideAndHatPriorityApp.#SUPERBALL_FLOWER,
-    ]
-    static readonly #SMB3_POWER_UPS: SMB3PowerUpPriorities = [
-        PowerUpRideAndHatPriorityApp.#SUPER_STAR,
-        PowerUpRideAndHatPriorityApp.#LAKITU_CLOUD, PowerUpRideAndHatPriorityApp.#KOOPA_CLOWN_CAR, PowerUpRideAndHatPriorityApp.#FIRE_KOOPA_CLOWN_CAR,
-        PowerUpRideAndHatPriorityApp.#BUZZY_SHELL, PowerUpRideAndHatPriorityApp.#SPINY_SHELL,
-        PowerUpRideAndHatPriorityApp.#DRY_BONES_SHELL, PowerUpRideAndHatPriorityApp.#SHOE, PowerUpRideAndHatPriorityApp.#STILETTO,
-
-        PowerUpRideAndHatPriorityApp.#SUPER_MUSHROOM, PowerUpRideAndHatPriorityApp.#FIRE_FLOWER,
-        PowerUpRideAndHatPriorityApp.#SUPER_LEAF, PowerUpRideAndHatPriorityApp.#FROG_SUIT,
-    ]
-    static readonly #SMW_POWER_UPS: SMWPowerUpPriorities = [
-        PowerUpRideAndHatPriorityApp.#SUPER_STAR,
-        PowerUpRideAndHatPriorityApp.#LAKITU_CLOUD, PowerUpRideAndHatPriorityApp.#KOOPA_CLOWN_CAR, PowerUpRideAndHatPriorityApp.#FIRE_KOOPA_CLOWN_CAR,
-        PowerUpRideAndHatPriorityApp.#BUZZY_SHELL, PowerUpRideAndHatPriorityApp.#SPINY_SHELL,
-        PowerUpRideAndHatPriorityApp.#DRY_BONES_SHELL, PowerUpRideAndHatPriorityApp.#YOSHI, PowerUpRideAndHatPriorityApp.#RED_YOSHI,
-
-        PowerUpRideAndHatPriorityApp.#SUPER_MUSHROOM, PowerUpRideAndHatPriorityApp.#FIRE_FLOWER,
-        PowerUpRideAndHatPriorityApp.#CAPE_FEATHER, PowerUpRideAndHatPriorityApp.#POWER_BALLOON,
-    ]
-    static readonly #NSMBU_POWER_UPS: NSMBUPowerUpPriorities = [
-        PowerUpRideAndHatPriorityApp.#SUPER_STAR,
-        PowerUpRideAndHatPriorityApp.#LAKITU_CLOUD, PowerUpRideAndHatPriorityApp.#JUNIOR_CLOWN_CAR, PowerUpRideAndHatPriorityApp.#FIRE_JUNIOR_CLOWN_CAR,
-        PowerUpRideAndHatPriorityApp.#BUZZY_SHELL, PowerUpRideAndHatPriorityApp.#SPINY_SHELL,
-        PowerUpRideAndHatPriorityApp.#DRY_BONES_SHELL, PowerUpRideAndHatPriorityApp.#YOSHI, PowerUpRideAndHatPriorityApp.#RED_YOSHI,
-
-        PowerUpRideAndHatPriorityApp.#SUPER_MUSHROOM, PowerUpRideAndHatPriorityApp.#FIRE_FLOWER,
-        PowerUpRideAndHatPriorityApp.#PROPELLER_MUSHROOM, PowerUpRideAndHatPriorityApp.#SUPER_ACORN,
-    ]
-    static readonly #SM3DW_POWER_UPS: SM3DWPowerUpPriorities = [
-        PowerUpRideAndHatPriorityApp.#SUPER_STAR,
-        PowerUpRideAndHatPriorityApp.#CAR,
-        PowerUpRideAndHatPriorityApp.#CANNON_BOX, PowerUpRideAndHatPriorityApp.#PROPELLER_BOX, PowerUpRideAndHatPriorityApp.#GOOMBA_MASK, PowerUpRideAndHatPriorityApp.#BULLET_BILL_MASK, PowerUpRideAndHatPriorityApp.#RED_POW_BOX,
-        PowerUpRideAndHatPriorityApp.#SUPER_MUSHROOM,
-        PowerUpRideAndHatPriorityApp.#FIRE_FLOWER, PowerUpRideAndHatPriorityApp.#SUPER_HAMMER, PowerUpRideAndHatPriorityApp.#SUPER_BELL, PowerUpRideAndHatPriorityApp.#BOOMERANG_FLOWER,
-    ]
-
-    //endregion -------------------- Power-up priority holders --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(props: PowerUpAndRidePriorityProperties,) {
-        super(props,)
-        this.state = {gameStyle: null,}
-    }
-
-    //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter & setter methods --------------------
-
-    public get type(): PowerUpPriorityTypes {
-        return this.props.type
-    }
-
-    public get hasSmm2() {
-        return this.props.games.hasSmm2
-    }
-
-
-    public get hasSmb(): boolean {
-        return this.__gameStyle === SMB
-    }
-
-    public get hasSmb3(): boolean {
-        return this.__gameStyle === SMB3
-    }
-
-    public get hasSmw(): boolean {
-        return this.__gameStyle === SMW
-    }
-
-    public get hasNsmbu(): boolean {
-        return this.__gameStyle === NSMBU
-    }
-
-    public get hasSm3dw(): boolean {
-        return this.hasSmm2 && this.__gameStyle === SM3DW
-    }
-
-
-    private get __gameStyle(): NullOr<GameStyles> {
-        return this.state.gameStyle
-    }
-
-    private set __gameStyle(value: Nullable<GameStyles>,) {
-        this.setState({gameStyle: value ?? null,})
-    }
-
-    //endregion -------------------- Getter & setter methods --------------------
-
-    #createTitleContent(): ReactElementOrString {
-        const {type,} = this
-
-        return <h1 key="title (power-up, ride & hat priority)" className="text-center">{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
-            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
-            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
-            ride: gameContentTranslation('ride.singular',).toLowerCase(),
-            rides: gameContentTranslation('ride.plural',).toLowerCase(),
-            hat: gameContentTranslation('hat.singular',).toLowerCase(),
-            hats: gameContentTranslation('hat.plural',).toLowerCase(),
-        },)}</h1>
-    }
-
-    /**
-     * The {@link GameStyles} button switcher.
-     *
-     * Note that the implementation uses the state temporary until it is implemented in the route.
-     */
-    #createGameStyleContent(): NonNullReactElement {
-        const gameStyle = this.__gameStyle
-
-        //TODO replace the div by links (when changed from state to property)
-        return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
-            <div className="d-flex flex-wrap justify-content-center">
-                <div className={`btn ${this.hasSmb ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMB}>
-                    <GameStyleImage reference={SMB}/>
-                </div>
-                <div className={`btn ${this.hasSmb3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMB3}>
-                    <GameStyleImage reference={SMB3}/>
-                </div>
-                <div className={`btn ${this.hasSmw ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SMW}>
-                    <GameStyleImage reference={SMW}/>
-                </div>
-                <div className={`btn ${this.hasNsmbu ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NSMBU}>
-                    <GameStyleImage reference={NSMBU}/>
-                </div>
-                {this.hasSmm2 ? <div className={`btn ${gameStyle === SM3DW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SM3DW}>
-                    <GameStyleImage reference={SM3DW}/>
-                </div> : null}
+    return <>
+        <Title type={type}/>
+        <nav id="navigationButtonGroup-container">
+            <div className="d-flex flex-wrap justify-content-around align-items-center">
+                <div><GameStyleContent games={games} gameStyle={gameStyle} change={setGameStyle}/></div>
+                <div className="mt-2 mt-md-0"><OtherPath type={type}/></div>
+                <div className="mt-2 mt-lg-0"><Legend/></div>
             </div>
-            <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => this.__gameStyle = null}>{unfinishedText('None')}</div>
+        </nav>
+        <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
+        <div id="displayed-powerUpPriorityGroup">
+            <PowerUpPriorityInSmb isDisplayed={gameStyle === SMB} games={games}/>
+            <PowerUpPriorityInSmb3 isDisplayed={gameStyle === SMB3} games={games}/>
+            <PowerUpPriorityInSmw isDisplayed={gameStyle === SMW} games={games}/>
+            <PowerUpPriorityInNsmbu isDisplayed={gameStyle === NSMBU} games={games}/>
+            <PowerUpPriorityInSm3dw isDisplayed={gameStyle === SM3DW} games={games}/>
         </div>
-    }
+    </>
+}
 
-    #createOtherPathsContent(): NonNullReactElement {
-        const type = this.type
+//region -------------------- Title --------------------
 
-        return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
-            <button className="btn disabled">{unfinishedText('Feature in progress',)}</button>
-            <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
-            <div className="btn-group btn-group-sm" role="group">
-                <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
-                <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
-                <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
-            </div>
-            <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
-        </div>
-    }
+interface TitleProperties extends ReactProperties, ClassWithType<PowerUpPriorityTypes> {}
 
-    #createLegend(): NonNullReactElement {
-        return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 ms-auto">
-            <h3 className="text-center border border-0 border-bottom border-dark border-opacity-25 pb-1 mb-0">{unfinishedText('Can be obtained …')}</h3>
-            <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row flex-lg-column flex-xl-row">
-                <ul className="list-unstyled m-0">
-                    <li id="example-indirect" className="d-flex"><Arrow value={Arrows.RIGHT}/><UnfinishedText>Indirectly</UnfinishedText></li>
-                    <li id="example-direct" className="d-flex"><Arrow value={Arrows.RIGHT}/><UnfinishedText>Directly</UnfinishedText></li>
-                </ul>
-                <ul className="list-unstyled m-0">
-                    <li id="example-withLag" className="d-flex">
-                        <div className="color rounded my-auto"/>
-                        <UnfinishedText>With lag</UnfinishedText></li>
-                    <li id="example-withoutLag" className="d-flex">
-                        <div className="color rounded my-auto"/>
-                        <UnfinishedText>Without lag</UnfinishedText></li>
-                </ul>
-            </div>
-        </div>
-    }
+/** @reactComponent */
+function Title({type,}: TitleProperties,) {
+    return <h1 key="title (power-up, ride & hat priority)" className="text-center">{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
+        powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
+        powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
+        ride: gameContentTranslation('ride.singular',).toLowerCase(),
+        rides: gameContentTranslation('ride.plural',).toLowerCase(),
+        hat: gameContentTranslation('hat.singular',).toLowerCase(),
+        hats: gameContentTranslation('hat.plural',).toLowerCase(),
+    },)}</h1>
+}
 
-    public override render() {
-        const games = this.props.games
+//endregion -------------------- Title --------------------
+//region -------------------- Game style --------------------
 
-        return <>
-            {this.#createTitleContent()}
-            <nav id="navigationButtonGroup-container">
-                <div className="d-flex flex-wrap justify-content-around align-items-center">
-                    <div>{this.#createGameStyleContent()}</div>
-                    <div className="mt-2 mt-md-0">{this.#createOtherPathsContent()}</div>
-                    <div className="mt-2 mt-lg-0">{this.#createLegend()}</div>
-                </div>
-            </nav>
-            <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
-            <div id="displayed-powerUpPriorityGroup">
-                {this.hasSmb ? <PowerUpPriorityInSMB games={games}>{PowerUpRideAndHatPriorityApp.#SMB_POWER_UPS}</PowerUpPriorityInSMB> : null}
-                {this.hasSmb3 ? <PowerUpPriorityInSMB3 games={games}>{PowerUpRideAndHatPriorityApp.#SMB3_POWER_UPS}</PowerUpPriorityInSMB3> : null}
-                {this.hasSmw ? <PowerUpPriorityInSMW games={games}>{PowerUpRideAndHatPriorityApp.#SMW_POWER_UPS}</PowerUpPriorityInSMW> : null}
-                {this.hasNsmbu ? <PowerUpPriorityInNSMBU games={games}>{PowerUpRideAndHatPriorityApp.#NSMBU_POWER_UPS}</PowerUpPriorityInNSMBU> : null}
-                {this.hasSm3dw ? <PowerUpPriorityInSM3DW>{PowerUpRideAndHatPriorityApp.#SM3DW_POWER_UPS}</PowerUpPriorityInSM3DW> : null}
-            </div>
-        </>
-    }
+interface GameStyleContentProperties
+    extends ReactProperties {
+
+    readonly games: GameCollection
+
+    readonly gameStyle: NullOr<GameStyles>
+
+    change(value: NullOr<GameStyles>,): void
 
 }
+
+/**
+ * The {@link GameStyles} button switcher
+ *
+ * @note The implementation uses the state temporary until it is implemented in the route
+ * @reactComponent
+ */
+function GameStyleContent({games, gameStyle, change,}: GameStyleContentProperties,) {
+    //TODO replace the div by links (when changed from state to property)
+    return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
+        <div className="d-flex flex-wrap justify-content-center">
+            <div className={`btn ${gameStyle === SMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SMB,)}>
+                <GameStyleImage reference={SMB}/>
+            </div>
+            <div className={`btn ${gameStyle === SMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SMB3,)}>
+                <GameStyleImage reference={SMB3}/>
+            </div>
+            <div className={`btn ${gameStyle === SMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SMW,)}>
+                <GameStyleImage reference={SMW}/>
+            </div>
+            <div className={`btn ${gameStyle === NSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(NSMBU,)}>
+                <GameStyleImage reference={NSMBU}/>
+            </div>
+            {games.hasSmm2
+                ? <div className={`btn ${gameStyle === SM3DW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SM3DW,)}>
+                    <GameStyleImage reference={SM3DW}/>
+                </div> : null}
+        </div>
+        <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => change(null,)}>{unfinishedText('None')}</div>
+    </div>
+}
+
+//endregion -------------------- Game style --------------------
+//region -------------------- Other path --------------------
+
+interface OtherPathProperties extends ReactProperties, ClassWithType<PowerUpPriorityTypes> {}
+
+/** @reactComponent */
+function OtherPath({type,}: OtherPathProperties,) {
+    return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
+        <button className="btn disabled">{unfinishedText('Feature in progress',)}</button>
+        <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div className="btn-group btn-group-sm" role="group">
+            <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
+            <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
+            <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
+        </div>
+        <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
+    </div>
+}
+
+//endregion -------------------- Other path --------------------
+//region -------------------- Legend --------------------
+
+/** @reactComponent */
+function Legend() {
+    return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 ms-auto">
+        <h3 className="text-center border border-0 border-bottom border-dark border-opacity-25 pb-1 mb-0">{unfinishedText('Can be obtained …')}</h3>
+        <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row flex-lg-column flex-xl-row">
+            <ul className="list-unstyled m-0">
+                <li id="example-indirect" className="d-flex"><Arrow value={RIGHT}/><UnfinishedText>Indirectly</UnfinishedText></li>
+                <li id="example-direct" className="d-flex"><Arrow value={RIGHT}/><UnfinishedText>Directly</UnfinishedText></li>
+            </ul>
+            <ul className="list-unstyled m-0">
+                <li id="example-withLag" className="d-flex">
+                    <div className="color rounded my-auto"/>
+                    <UnfinishedText>With lag</UnfinishedText></li>
+                <li id="example-withoutLag" className="d-flex">
+                <div className="color rounded my-auto"/>
+                    <UnfinishedText>Without lag</UnfinishedText></li>
+            </ul>
+        </div>
+    </div>
+}
+
+//endregion -------------------- Legend --------------------
+//region -------------------- Power-up priority --------------------
+
+const SMB_SMM1_ARROW_PROPERTIES = {
+    topLeftTo: {topRight: RIGHT, centerLeft: DOWN, centerRight: DOWN, bottomLeft: DOWN, bottomRight: DOWN,},
+    topRightTo: {centerLeft: DOWN, centerRight: DOWN, bottomLeft: DOWN, bottomRight: DOWN,},
+} as const satisfies GroupOf6PowerUpPriorityArrowProperties
+const SMB_SMM2_ARROW_PROPERTIES = {
+    topLeftTo: {topRight: RIGHT, centerLeft: DOWN, centerRight: DOWN, bottomLeft: DOWN, bottomRight: DOWN,},
+} as const satisfies GroupOf6PowerUpPriorityArrowProperties
+const SM3DW_ARROW_PROPERTIES = {topTo: {centerLeft: DOWN, centerRight: DOWN, bottomLeft: DOWN, bottomRight: DOWN,},} as const satisfies GroupOf5PowerUpPriorityArrowProperties
+
+interface PowerUpPriorityProperties
+    extends ReactProperties {
+
+    readonly isDisplayed: boolean
+
+    readonly games: GameCollection
+
+}
+
+/** @reactComponent */
+function PowerUpPriorityInSmb({isDisplayed, games,}: PowerUpPriorityProperties,) {
+    if (!isDisplayed)
+        return null
+
+    const {hasSmm1, hasSmm2, hasSmm3ds,} = games
+    if (games.hasOnlySmm2)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+            <GroupImages key="Power-up priority (SMB - Super Star)" id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+            <GroupOf6PowerUpPriority id="powerUpPriority-group-smm2-smb-others" arrow={SMB_SMM2_ARROW_PROPERTIES}>
+                <GroupImages id="powerUpPriority-smm2-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-masterSword"            images={masterSword_images}/>
+                <GroupImages id="powerUpPriority-bigMushroom"            images={bigMushroom_images}/>
+                <GroupImages id="powerUpPriority-smb2Mushroom"           images={smb2Mushroom_images}/>
+                <GroupImages id="powerUpPriority-smm2-smb-fireFlower"    images={fireFlower_smbImages}/>
+                <GroupImages id="powerUpPriority-superballFlower"        images={superballFlower_images}/>
+            </GroupOf6PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+                <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf5PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb-dryBonesShell" images={dryBonesShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-buzzyShell"    images={buzzyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-spinyShell"    images={spinyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-shoe"          images={shoe_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-stiletto"      images={stiletto_smbImages}/>
+            </GroupOf5PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+    if (games.hasOnlySmm1)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+            <GroupImages key="Power-up priority (SMB - Super Star)" id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+            <GroupOf6PowerUpPriority id="powerUpPriority-group-smm-smb-others" arrow={SMB_SMM1_ARROW_PROPERTIES}>
+                <GroupImages id="powerUpPriority-smm1-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-weirdMushroom"          images={weirdMushroom_images}/>
+                <GroupImages id="powerUpPriority-mysteryMushroom"        images={mysteryMushroom_images}/>
+                <GroupImages id="powerUpPriority-bigMushroomClassic"     images={bigMushroomClassic_images}/>
+                <GroupImages id="powerUpPriority-smm1-smb-fireFlower"    images={fireFlower_smbImages}/>
+                <GroupImages id="powerUpPriority-bigMushroomModern"      images={bigMushroomModern_images}/>
+            </GroupOf6PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+                <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf4PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb-buzzyShell" images={buzzyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-spinyShell" images={spinyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-shoe"       images={shoe_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-stiletto"   images={stiletto_smbImages}/>
+            </GroupOf4PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+    if (games.hasOnlySmm3ds)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+            <GroupImages key="Power-up priority (SMB - Super Star)" id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+            <GroupOf2PowerUpPriority id="powerUpPriority-group-smm3ds-smb-others" arrow={RIGHT}>
+                <GroupImages id="powerUpPriority-smm3ds-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-smm3ds-smb-fireFlower"    images={fireFlower_smbImages}/>
+            </GroupOf2PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+                <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf4PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb-buzzyShell" images={buzzyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-spinyShell" images={spinyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-shoe"       images={shoe_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-stiletto"   images={stiletto_smbImages}/>
+            </GroupOf4PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+
+    if (hasSmm1 && hasSmm2)
+        return <GroupOf5PowerUpPriority id="powerUpPriority-group-smb">
+            <GroupImages id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+            <GroupOf6PowerUpPriority id="powerUpPriority-group-smm-smb-others" arrow={SMB_SMM1_ARROW_PROPERTIES}>
+                <GroupImages id="powerUpPriority-smm1-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-weirdMushroom"          images={weirdMushroom_images}/>
+                <GroupImages id="powerUpPriority-mysteryMushroom"        images={mysteryMushroom_images}/>
+                <GroupImages id="powerUpPriority-bigMushroomClassic"     images={bigMushroomClassic_images}/>
+                <GroupImages id="powerUpPriority-smm1-smb-fireFlower"    images={fireFlower_smbImages}/>
+                <GroupImages id="powerUpPriority-bigMushroomModern"      images={bigMushroomModern_images}/>
+            </GroupOf6PowerUpPriority>
+            <GroupOf6PowerUpPriority id="powerUpPriority-group-smm2-smb-others" arrow={SMB_SMM2_ARROW_PROPERTIES}>
+                <GroupImages id="powerUpPriority-smm2-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-masterSword"            images={masterSword_images}/>
+                <GroupImages id="powerUpPriority-bigMushroom"            images={bigMushroom_images}/>
+                <GroupImages id="powerUpPriority-smb2Mushroom"           images={smb2Mushroom_images}/>
+                <GroupImages id="powerUpPriority-smm2-smb-fireFlower"    images={fireFlower_smbImages}/>
+                <GroupImages id="powerUpPriority-superballFlower"        images={superballFlower_images}/>
+            </GroupOf6PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+                <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf5PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb-dryBonesShell" images={dryBonesShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-buzzyShell"    images={buzzyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-spinyShell"    images={spinyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-shoe"          images={shoe_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-stiletto"      images={stiletto_smbImages}/>
+            </GroupOf5PowerUpPriority>
+        </GroupOf5PowerUpPriority>
+    if (hasSmm1 && hasSmm3ds)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb" isTopArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated isBottomArrowSeparated>
+            <GroupImages id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+            <GroupOf6PowerUpPriority id="powerUpPriority-group-smm-smb-others" arrow={SMB_SMM1_ARROW_PROPERTIES}>
+                <GroupImages id="powerUpPriority-smm1-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-weirdMushroom"          images={weirdMushroom_images}/>
+                <GroupImages id="powerUpPriority-mysteryMushroom"        images={mysteryMushroom_images}/>
+                <GroupImages id="powerUpPriority-bigMushroomClassic"     images={bigMushroomClassic_images}/>
+                <GroupImages id="powerUpPriority-smm1-smb-fireFlower"    images={fireFlower_smbImages}/>
+                <GroupImages id="powerUpPriority-bigMushroomModern"      images={bigMushroomModern_images}/>
+            </GroupOf6PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+                <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf4PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb-buzzyShell" images={buzzyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-spinyShell" images={spinyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-shoe"       images={shoe_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-stiletto"   images={stiletto_smbImages}/>
+            </GroupOf4PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+    if (hasSmm3ds && hasSmm2)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb">
+            <GroupImages id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+            <GroupOf6PowerUpPriority id="powerUpPriority-group-smm2-smb-others" arrow={SMB_SMM2_ARROW_PROPERTIES}>
+                <GroupImages id="powerUpPriority-smm2-smb-superMushroom" images={superMushroom_smbImages}/>
+                <GroupImages id="powerUpPriority-masterSword"            images={masterSword_images}/>
+                <GroupImages id="powerUpPriority-bigMushroom"            images={bigMushroom_images}/>
+                <GroupImages id="powerUpPriority-smb2Mushroom"           images={smb2Mushroom_images}/>
+                <GroupImages id="powerUpPriority-smm2-smb-fireFlower"    images={fireFlower_smbImages}/>
+                <GroupImages id="powerUpPriority-superballFlower"        images={superballFlower_images}/>
+            </GroupOf6PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+                <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf5PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb-dryBonesShell" images={dryBonesShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-buzzyShell"    images={buzzyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-spinyShell"    images={spinyShell_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-shoe"          images={shoe_smbImages}/>
+                <GroupImages id="powerUpPriority-smb-stiletto"      images={stiletto_smbImages}/>
+            </GroupOf5PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+
+    //has all games
+    return <GroupOf5PowerUpPriority id="powerUpPriority-group-smb">
+        <GroupImages id="powerUpPriority-smb-superStar" images={superStar_smbImages}/>
+        <GroupOf6PowerUpPriority id="powerUpPriority-group-smm-smb-others" arrow={SMB_SMM1_ARROW_PROPERTIES}>
+            <GroupImages id="powerUpPriority-smm1-smb-superMushroom" images={superMushroom_smbImages}/>
+            <GroupImages id="powerUpPriority-weirdMushroom"          images={weirdMushroom_images}/>
+            <GroupImages id="powerUpPriority-mysteryMushroom"        images={mysteryMushroom_images}/>
+            <GroupImages id="powerUpPriority-bigMushroomClassic"     images={bigMushroomClassic_images}/>
+            <GroupImages id="powerUpPriority-smm1-smb-fireFlower"    images={fireFlower_smbImages}/>
+            <GroupImages id="powerUpPriority-bigMushroomModern"      images={bigMushroomModern_images}/>
+        </GroupOf6PowerUpPriority>
+        <GroupOf6PowerUpPriority id="powerUpPriority-group-smm2-smb-others" arrow={SMB_SMM2_ARROW_PROPERTIES}>
+            <GroupImages id="powerUpPriority-smm2-smb-superMushroom" images={superMushroom_smbImages}/>
+            <GroupImages id="powerUpPriority-masterSword"            images={masterSword_images}/>
+            <GroupImages id="powerUpPriority-bigMushroom"            images={bigMushroom_images}/>
+            <GroupImages id="powerUpPriority-smb2Mushroom"           images={smb2Mushroom_images}/>
+            <GroupImages id="powerUpPriority-smm2-smb-fireFlower"    images={fireFlower_smbImages}/>
+            <GroupImages id="powerUpPriority-superballFlower"        images={superballFlower_images}/>
+        </GroupOf6PowerUpPriority>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountableObject">
+            <GroupImages id="powerUpPriority-smb-lakituCloud"  images={lakituCloud_smbImages}/>
+            <GroupImages id="powerUpPriority-smb-clownCar"     images={clownCar_smbImages}/>
+            <GroupImages id="powerUpPriority-smb-fireClownCar" images={fireClownCar_smbImages}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf5PowerUpPriority id="powerUpPriority-group-smb-shellAndShoe">
+            <GroupImages id="powerUpPriority-smb-dryBonesShell" images={dryBonesShell_smbImages}/>
+            <GroupImages id="powerUpPriority-smb-buzzyShell"    images={buzzyShell_smbImages}/>
+            <GroupImages id="powerUpPriority-smb-spinyShell"    images={spinyShell_smbImages}/>
+            <GroupImages id="powerUpPriority-smb-shoe"          images={shoe_smbImages}/>
+            <GroupImages id="powerUpPriority-smb-stiletto"      images={stiletto_smbImages}/>
+        </GroupOf5PowerUpPriority>
+    </GroupOf5PowerUpPriority>
+}
+
+/** @reactComponent */
+function PowerUpPriorityInSmb3({isDisplayed, games,}: PowerUpPriorityProperties,) {
+    if (!isDisplayed)
+        return null
+
+    const {hasSmm2,} = games
+    if (hasSmm2)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb3" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+            <GroupImages id="powerUpPriority-smb3-superStar" images={superStar_smb3Images}/>
+            <GroupOf4PowerUpPriority id="powerUpPriority-group-smb3-powerUp" topArrow={RIGHT} leftArrow={DOWN} firstDiagonalArrow={DOWN}>
+                <GroupImages id="powerUpPriority-smb3-superMushroom"   images={superMushroom_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-fireFlower"      images={fireFlower_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-specialPowerUp1" images={superLeaf_images}/>
+                <GroupImages id="powerUpPriority-smb3-specialPowerUp2" images={frogSuit_images}/>
+            </GroupOf4PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-mountableObject">
+                <GroupImages id="powerUpPriority-smb3-lakituCloud"  images={lakituCloud_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-clownCar"     images={clownCar_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-fireClownCar" images={fireClownCar_smb3Images}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf5PowerUpPriority id="powerUpPriority-group-smb3-shellAndShoe">
+                <GroupImages id="powerUpPriority-smb3-dryBonesShell" images={dryBonesShell_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-buzzyShell"    images={buzzyShell_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-spinyShell"    images={spinyShell_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-shoe"          images={shoe_smb3Images}/>
+                <GroupImages id="powerUpPriority-smb3-stiletto"      images={stiletto_smb3Images}/>
+            </GroupOf5PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+    return <GroupOf4PowerUpPriority id="powerUpPriority-group-smb3" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+        <GroupImages id="powerUpPriority-smb3-superStar" images={superStar_smb3Images}/>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-powerUp" leftArrow={DOWN} rightArrow={DOWN}>
+            <GroupImages id="powerUpPriority-smb3-superMushroom"  images={superMushroom_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-fireFlower"     images={fireFlower_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-specialPowerUp" images={superLeaf_images}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-mountableObject">
+            <GroupImages id="powerUpPriority-smb3-lakituCloud"  images={lakituCloud_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-clownCar"     images={clownCar_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-fireClownCar" images={fireClownCar_smb3Images}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf4PowerUpPriority id="powerUpPriority-group-smb3-shellAndShoe">
+            <GroupImages id="powerUpPriority-smb3-buzzyShell" images={buzzyShell_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-spinyShell" images={spinyShell_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-shoe"       images={shoe_smb3Images}/>
+            <GroupImages id="powerUpPriority-smb3-stiletto"   images={stiletto_smb3Images}/>
+        </GroupOf4PowerUpPriority>
+    </GroupOf4PowerUpPriority>
+}
+
+/** @reactComponent */
+function PowerUpPriorityInSmw({isDisplayed, games,}: PowerUpPriorityProperties,) {
+    if (!isDisplayed)
+        return null
+
+    const {hasSmm2,} = games
+    if (hasSmm2)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-smw" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+            <GroupImages id="powerUpPriority-smw-superStar" images={superStar_smwImages}/>
+            <GroupOf4PowerUpPriority id="powerUpPriority-group-smw-powerUp" topArrow={RIGHT} leftArrow={DOWN} firstDiagonalArrow={DOWN}>
+                <GroupImages id="powerUpPriority-smw-superMushroom"   images={superMushroom_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-fireFlower"      images={fireFlower_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-specialPowerUp1" images={capeFeather_images}/>
+                <GroupImages id="powerUpPriority-smw-specialPowerUp2" images={powerBalloon_images}/>
+            </GroupOf4PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-mountableObject">
+                <GroupImages id="powerUpPriority-smw-lakituCloud"  images={lakituCloud_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-clownCar"     images={clownCar_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-fireClownCar" images={fireClownCar_smwImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf5PowerUpPriority id="powerUpPriority-group-smw-shellAndYoshi">
+                <GroupImages id="powerUpPriority-smw-dryBonesShell" images={dryBonesShell_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-buzzyShell"    images={buzzyShell_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-spinyShell"    images={spinyShell_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-yoshi"         images={yoshi_smwImages}/>
+                <GroupImages id="powerUpPriority-smw-redYoshi"      images={redYoshi_smwImages}/>
+            </GroupOf5PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+    return <GroupOf4PowerUpPriority id="powerUpPriority-group-smw" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+        <GroupImages id="powerUpPriority-smw-superStar" images={superStar_smwImages}/>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-powerUp" leftArrow={DOWN} rightArrow={DOWN}>
+            <GroupImages id="powerUpPriority-smw-superMushroom"  images={superMushroom_smwImages}/>
+            <GroupImages id="powerUpPriority-smw-fireFlower"     images={fireFlower_smwImages}/>
+            <GroupImages id="powerUpPriority-smw-specialPowerUp" images={capeFeather_images}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-mountableObject">
+            <GroupImages id="powerUpPriority-smw-lakituCloud"  images={lakituCloud_smwImages}/>
+            <GroupImages id="powerUpPriority-smw-clownCar"     images={clownCar_smwImages}/>
+            <GroupImages id="powerUpPriority-smw-fireClownCar" images={fireClownCar_smwImages}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-shellAndYoshi">
+            <GroupImages id="powerUpPriority-smw-buzzyShell" images={buzzyShell_smwImages}/>
+            <GroupImages id="powerUpPriority-smw-spinyShell" images={spinyShell_smwImages}/>
+            <GroupImages id="powerUpPriority-smw-yoshi"      images={yoshi_smwImages}/>
+        </GroupOf3PowerUpPriority>
+    </GroupOf4PowerUpPriority>
+}
+
+/** @reactComponent */
+function PowerUpPriorityInNsmbu({isDisplayed, games,}: PowerUpPriorityProperties,) {
+    if (!isDisplayed)
+        return null
+
+    const {hasSmm2,} = games
+    if (hasSmm2)
+        return <GroupOf4PowerUpPriority id="powerUpPriority-group-nsmbu" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+            <GroupImages id="powerUpPriority-nsmbu-superStar" images={superStar_nsmbuImages}/>
+            <GroupOf4PowerUpPriority id="powerUpPriority-group-nsmbu-powerUp" topArrow={RIGHT} leftArrow={DOWN} firstDiagonalArrow={DOWN}>
+                <GroupImages id="powerUpPriority-nsmbu-superMushroom"   images={superMushroom_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-fireFlower"      images={fireFlower_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-specialPowerUp1" images={propellerMushroom_images}/>
+                <GroupImages id="powerUpPriority-nsmbu-specialPowerUp2" images={superAcorn_images}/>
+            </GroupOf4PowerUpPriority>
+            <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-mountableObject">
+                <GroupImages id="powerUpPriority-nsmbu-lakituCloud"  images={lakituCloud_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-clownCar"     images={clownCar_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-fireClownCar" images={fireClownCar_nsmbuImages}/>
+            </GroupOf3PowerUpPriority>
+            <GroupOf5PowerUpPriority id="powerUpPriority-group-nsmbu-shellAndYoshi">
+                <GroupImages id="powerUpPriority-nsmbu-dryBonesShell" images={dryBonesShell_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-buzzyShell"    images={buzzyShell_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-spinyShell"    images={spinyShell_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-yoshi"         images={yoshi_nsmbuImages}/>
+                <GroupImages id="powerUpPriority-nsmbu-redYoshi"      images={redYoshi_nsmbuImages}/>
+            </GroupOf5PowerUpPriority>
+        </GroupOf4PowerUpPriority>
+    return <GroupOf4PowerUpPriority id="powerUpPriority-group-nsmbu" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>
+        <GroupImages id="powerUpPriority-nsmbu-superStar" images={superStar_nsmbuImages}/>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-powerUp" leftArrow={DOWN} rightArrow={DOWN}>
+            <GroupImages id="powerUpPriority-nsmbu-superMushroom"  images={superMushroom_nsmbuImages}/>
+            <GroupImages id="powerUpPriority-nsmbu-fireFlower"     images={fireFlower_nsmbuImages}/>
+            <GroupImages id="powerUpPriority-nsmbu-specialPowerUp" images={propellerMushroom_images}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-mountableObject">
+            <GroupImages id="powerUpPriority-nsmbu-lakituCloud"  images={lakituCloud_nsmbuImages}/>
+            <GroupImages id="powerUpPriority-nsmbu-clownCar"     images={clownCar_nsmbuImages}/>
+            <GroupImages id="powerUpPriority-nsmbu-fireClownCar" images={fireClownCar_nsmbuImages}/>
+        </GroupOf3PowerUpPriority>
+        <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-shellAndYoshi">
+            <GroupImages id="powerUpPriority-nsmbu-buzzyShell" images={buzzyShell_nsmbuImages}/>
+            <GroupImages id="powerUpPriority-nsmbu-spinyShell" images={spinyShell_nsmbuImages}/>
+            <GroupImages id="powerUpPriority-nsmbu-yoshi"      images={yoshi_nsmbuImages}/>
+        </GroupOf3PowerUpPriority>
+    </GroupOf4PowerUpPriority>
+}
+
+/** @reactComponent */
+function PowerUpPriorityInSm3dw({isDisplayed, games,}: PowerUpPriorityProperties,) {
+    if (!games.hasSmm2)
+        return null
+    if (!isDisplayed)
+        return null
+
+    return <GroupOf3PowerUpPriority id="powerUpPriority-group-sm3dw" isRightArrowSeparated isBottomArrowSeparated>
+        <GroupImages key="Power-up priority (SM3DW - Super Star)" id="powerUpPriority-sm3dw-superStar" images={superStar_sm3dwImages}/>
+        <GroupOf6PowerUpPriority id="powerUpPriority-group-sm3dw-wearableAndCar">
+            <GroupImages id="powerUpPriority-car"            images={car_images}/>
+            <GroupImages id="powerUpPriority-cannonBox"      images={cannonBox_images}/>
+            <GroupImages id="powerUpPriority-propellerBox"   images={propellerBox_images}/>
+            <GroupImages id="powerUpPriority-goombaMask"     images={goombaMask_images}/>
+            <GroupImages id="powerUpPriority-bulletBillMask" images={bulletBillMask_images}/>
+            <GroupImages id="powerUpPriority-redPowBox"      images={redPowBox_images}/>
+        </GroupOf6PowerUpPriority>
+        <GroupOf5PowerUpPriority id="powerUpPriority-group-sm3dw-powerUp" arrow={SM3DW_ARROW_PROPERTIES}>
+            <GroupImages id="powerUpPriority-sm3dw-superMushroom"   images={superMushroom_sm3dwImages}/>
+            <GroupImages id="powerUpPriority-sm3dw-fireFlower"      images={fireFlower_sm3dwImages}/>
+            <GroupImages id="powerUpPriority-sm3dw-superHammer"     images={superHammer_images}/>
+            <GroupImages id="powerUpPriority-sm3dw-superBell"       images={superBell_images}/>
+            <GroupImages id="powerUpPriority-sm3dw-boomerangFlower" images={boomerangFlower_images}/>
+        </GroupOf5PowerUpPriority>
+    </GroupOf3PowerUpPriority>
+}
+
+//endregion -------------------- Power-up priority --------------------

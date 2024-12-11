@@ -11,7 +11,7 @@ interface GroupOf3PowerUpPriorityProperties
 
     readonly id: string
 
-    readonly children: readonly [ReactElement, ReactElement, ReactElement,]
+    readonly children: ArrayOf3<NonNullReactElement>
 
     readonly leftArrow?: Arrows
     readonly isLeftArrowSeparated?: boolean

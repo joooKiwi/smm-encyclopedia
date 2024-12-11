@@ -12,7 +12,7 @@ interface GroupOf6PowerUpPriorityProperties
 
     readonly id: string
 
-    readonly children: readonly [ReactElement, ReactElement, ReactElement, ReactElement, ReactElement, ReactElement,]
+    readonly children: ArrayOf6<NonNullReactElement>
 
 
     /** The arrow properties (from one child to another) */

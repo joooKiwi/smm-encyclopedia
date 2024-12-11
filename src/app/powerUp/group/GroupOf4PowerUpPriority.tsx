@@ -11,7 +11,7 @@ interface GroupOf4PowerUpPriorityProperties
 
     readonly id: string
 
-    readonly children: readonly [ReactElement, ReactElement, ReactElement, ReactElement,]
+    readonly children: ArrayOf4<NonNullReactElement>
 
     readonly topArrow?: Arrows
     readonly isTopArrowSeparated?: boolean

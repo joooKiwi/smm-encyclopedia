@@ -11,7 +11,7 @@ interface GroupOf2PowerUpPriorityProperties
 
     readonly id: string
 
-    readonly children: readonly [ReactElement, ReactElement,]
+    readonly children: ArrayOf2<NonNullReactElement>
 
     readonly arrow: Arrows
 

@@ -198,7 +198,7 @@ export abstract class MysteryMushroomAppOption
                 return null
             if (images.getFirst().length > 1)
                 return this._createAnimatedImages(enumeration, images, renderDiv,)
-            return this._createImage(enumeration, images.map(it => new ArrayAsCollection(it,).getFirst(),), renderDiv,)
+            return this._createImage(enumeration, images.map(it => it.getFirst(),), renderDiv,)
         }
 
         protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
@@ -384,7 +384,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <SimpleSoundComponent file={soundFile} title={`${englishName} - ${type}`}/>,)
     }
 
-    protected _createSounds(enumeration: MysteryMushrooms, soundFiles: Array<SoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSounds(enumeration: MysteryMushrooms, soundFiles: CollectionHolder<SoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         const englishName = enumeration.englishName
         const type = this._mysteryMushroomType
 
@@ -401,12 +401,12 @@ export abstract class MysteryMushroomAppOption
         )}</>,)
     }
 
-    protected _createAnimatedImages(enumeration: MysteryMushrooms, imageFiles: CollectionHolder<Array<ImageFile>>, renderDiv: boolean,): ReactElement {
+    protected _createAnimatedImages(enumeration: MysteryMushrooms, imageFiles: CollectionHolder<CollectionHolder<ImageFile>>, renderDiv: boolean,): ReactElement {
         const uniqueEnglishName = enumeration.uniqueEnglishName
         const englishNameInHtml = enumeration.englishNameInHtml
 
         return this.#createSingleImageAndSoundContainer(enumeration, renderDiv, <>{imageFiles.map((it, i,) =>
-            <Image key={`${uniqueEnglishName} #${i + 1}`} partialId={`${englishNameInHtml}-${i + 1}`} images={new ArrayAsCollection(it,).map(it => ({file: it,}),).toArray()}/>
+            <Image key={`${uniqueEnglishName} #${i + 1}`} partialId={`${englishNameInHtml}-${i + 1}`} images={it.map(it => ({file: it,}),).toArray()}/>
         )}</>,)
     }
 
