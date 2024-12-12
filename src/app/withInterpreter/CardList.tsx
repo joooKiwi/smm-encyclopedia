@@ -23,6 +23,7 @@ interface CardListProperties<CONTENT extends Content, >
  * It can be similar to the <u>simple list</u> but has more information displayed.
  *
  * @reactComponent
+ * @deprecated Replace with the one in "app/util"
  */
 export default function CardList<const CONTENT extends Content, >({reactKey, interpreter, keyRetriever,}: CardListProperties<CONTENT>,) {
     keyRetriever ??= enumerable => enumerable.englishName

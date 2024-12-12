@@ -2,7 +2,7 @@ import './_SubMainContainer.scss'
 
 import type {Array} from '@joookiwi/type'
 
-import type {ViewAndRouteName}                  from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ViewAndRouteName}                  from 'app/withInterpreter/ViewDisplays.types'
 import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import DisplayButtonGroup from 'app/withInterpreter/DisplayButtonGroup'

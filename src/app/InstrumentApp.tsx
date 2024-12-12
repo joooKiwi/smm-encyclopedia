@@ -9,7 +9,7 @@ import type {CollectionHolder}                          from '@joookiwi/collecti
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
 import type {TimeCollection}          from 'util/collection/TimeCollection'

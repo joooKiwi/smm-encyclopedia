@@ -1,3 +1,6 @@
+import type {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
+
 enum Enum {
 
     TABLE,
@@ -19,3 +22,6 @@ export type PossibleUrlValue = | 'table' | 'list' | 'card'
 // export type PossibleUrlValue = | 'table' | 'name' | 'list' | 'card'
 
 //endregion -------------------- Type --------------------
+
+/** A tuple of 2 containing the display and route */
+export type ViewAndRouteName = readonly [ViewDisplays, PossibleRouteName,]

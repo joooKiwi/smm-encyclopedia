@@ -6,7 +6,7 @@ import type {CollectionHolder} from '@joookiwi/collection'
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
 import SubMainContainer          from 'app/_SubMainContainer'
