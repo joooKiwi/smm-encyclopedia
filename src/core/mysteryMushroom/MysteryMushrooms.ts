@@ -1,6 +1,6 @@
-import type {EmptyArray, Nullable, NullOr} from '@joookiwi/type'
-import type {CollectionHolder}             from '@joookiwi/collection'
-import {Enum}                              from '@joookiwi/enumerable'
+import type {Nullable, NullOr} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
@@ -22,7 +22,6 @@ import {CompanionEnumByName}                   from 'util/enumerable/companion/C
 import {ArrayAsCollection}                     from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
-import EMPTY_ARRAY =             Empty.EMPTY_ARRAY
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
@@ -81,7 +80,7 @@ export class MysteryMushrooms
         }
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get onGroundAfterJumpASound() {
@@ -143,7 +142,7 @@ export class MysteryMushrooms
         }
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get onGroundAfterJumpASound() {
@@ -174,7 +173,7 @@ export class MysteryMushrooms
     private static readonly MysteryMushroomsWithNoJumpGroundAndTurnSounds =         class MysteryMushroomsWithNoJumpGroundAndTurnSounds extends MysteryMushrooms {
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get onGroundAfterJumpASound() {
@@ -189,7 +188,7 @@ export class MysteryMushrooms
     private static readonly MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds extends MysteryMushrooms {
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get onGroundAfterJumpASound() {
@@ -264,7 +263,7 @@ export class MysteryMushrooms
         }
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get fallingAfterAJumpImage() {
@@ -346,7 +345,7 @@ export class MysteryMushrooms
         }
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get onGroundAfterJumpASound() {
@@ -397,7 +396,7 @@ export class MysteryMushrooms
         }
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
         public override get onGroundAfterJumpASound() {
@@ -550,7 +549,7 @@ export class MysteryMushrooms
     public static readonly ARWING =                 new class MysteryMushrooms_Arwing extends MysteryMushrooms {
 
         public override get jumpSounds() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
     }(new SingleFile('Arwing',), 'Arwing',)
@@ -757,23 +756,23 @@ export class MysteryMushrooms
 
     #pressingDownImage?: CollectionHolder<PressingDownImageFile>
 
-    #walkImages?: CollectionHolder<readonly [WalkImageFile, WalkImageFile, WalkImageFile,]>
+    #walkImages?: CollectionHolder<CollectionHolder<WalkImageFile>>
 
-    #runningImages?: CollectionHolder<readonly [RunningImageFile, RunningImageFile, RunningImageFile,]>
+    #runningImages?: CollectionHolder<CollectionHolder<RunningImageFile>>
 
-    #swimmingImages?: CollectionHolder<readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,]>
+    #swimmingImages?: CollectionHolder<CollectionHolder<SwimmingImageFile>>
 
-    #jumpImages?: CollectionHolder<| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,]>
-    #jumpSounds?: | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,]
+    #jumpImages?: CollectionHolder<CollectionHolder<JumpImageFile>>
+    #jumpSounds?: CollectionHolder<JumpSoundFile>
     #fallingAfterAJumpImage?: CollectionHolder<FallingAfterAJumpImageFile>
     #onGroundAfterJumpSound?: OnGroundAfterAJumpSoundFile
 
     #turningSound?: TurningSoundFile
     #turningImage?: CollectionHolder<TurningImageFile>
 
-    #climbingImages?: CollectionHolder<readonly [ClimbingImageFile, ClimbingImageFile,]>
+    #climbingImages?: CollectionHolder<CollectionHolder<ClimbingImageFile>>
 
-    #goalPoleImages?: CollectionHolder<readonly [GoalPoleImageFile, GoalPoleImageFile,]>
+    #goalPoleImages?: CollectionHolder<CollectionHolder<GoalPoleImageFile>>
     #goalPoleSound?: GoalPoleSoundFile
 
     #lostALifeSound?: LostALifeSoundFile
@@ -866,41 +865,41 @@ export class MysteryMushrooms
     //endregion -------------------- Pressing ↓ --------------------
     //region -------------------- Walk --------------------
 
-    public get walkImages(): CollectionHolder<readonly [WalkImageFile, WalkImageFile, WalkImageFile,]> {
+    public get walkImages(): CollectionHolder<CollectionHolder<WalkImageFile>> {
         return this.#walkImages ??= this.#createImageFiles(FileCreator.walkImages,)
     }
 
     //endregion -------------------- Walk --------------------
     //region -------------------- Running --------------------
 
-    public get runningImages(): CollectionHolder<readonly [RunningImageFile, RunningImageFile, RunningImageFile,]> {
+    public get runningImages(): CollectionHolder<CollectionHolder<RunningImageFile>> {
         return this.#runningImages ??= this.#createImageFiles(FileCreator.runningImages,)
     }
 
     //endregion -------------------- Running --------------------
     //region -------------------- Swimming --------------------
 
-    public get swimmingImages(): CollectionHolder<readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,]> {
+    public get swimmingImages(): CollectionHolder<CollectionHolder<SwimmingImageFile>> {
         return this.#swimmingImages ??= this.#createImageFiles(FileCreator.swimmingImages,)
     }
 
     //endregion -------------------- Swimming --------------------
     //region -------------------- Jumping --------------------
 
-    protected _createJumpImages(englishName: PossibleEnglishName, name: PossibleFileName,): | readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,] {
+    protected _createJumpImages(englishName: PossibleEnglishName, name: PossibleFileName,): CollectionHolder<JumpImageFile> {
         return FileCreator.singleJumpImages(englishName, name,)
     }
 
-    public get jumpImages(): CollectionHolder<| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,]> {
+    public get jumpImages(): CollectionHolder<CollectionHolder<JumpImageFile>> {
         return this.#jumpImages ??= this.#createImageFiles((englishName, name,) => this._createJumpImages(englishName, name,))
     }
 
 
-    protected _createJumpSounds(name: PossibleFileName,): | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,] {
+    protected _createJumpSounds(name: PossibleFileName,): CollectionHolder<JumpSoundFile> {
         return FileCreator.singleJumpSounds(name,)
     }
 
-    public get jumpSounds(): | EmptyArray | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,] {
+    public get jumpSounds(): CollectionHolder<JumpSoundFile> {
         return this.#jumpSounds ??= this._createJumpSounds(this.#soundFileName,)
     }
 
@@ -928,14 +927,14 @@ export class MysteryMushrooms
     //endregion -------------------- Turning --------------------
     //region -------------------- Climbing --------------------
 
-    public get climbingImages(): CollectionHolder<readonly [ClimbingImageFile, ClimbingImageFile,]> {
+    public get climbingImages(): CollectionHolder<CollectionHolder<ClimbingImageFile>> {
         return this.#climbingImages ??= this.#createImageFiles(FileCreator.climbingImages,)
     }
 
     //endregion -------------------- Climbing --------------------
     //region -------------------- Goal pole --------------------
 
-    public get goalPoleImages(): CollectionHolder<readonly [GoalPoleImageFile, GoalPoleImageFile,]> {
+    public get goalPoleImages(): CollectionHolder<CollectionHolder<GoalPoleImageFile>> {
         return this.#goalPoleImages ??= this.#createImageFiles(FileCreator.goalPoleImages,)
     }
 
