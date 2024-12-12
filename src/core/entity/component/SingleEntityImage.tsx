@@ -2,9 +2,8 @@ import type {Entities}            from 'core/entity/Entities'
 import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
 import type {ReactProperties}     from 'util/react/ReactProperties'
 
-import Image               from 'app/tools/images/Image'
-import {GameStyles}        from 'core/gameStyle/GameStyles'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
+import Image        from 'app/tools/images/Image'
+import {GameStyles} from 'core/gameStyle/GameStyles'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB

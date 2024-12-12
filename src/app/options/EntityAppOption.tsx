@@ -40,7 +40,6 @@ import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.compone
 import CourseThemeComponent             from 'core/theme/CourseTheme.component'
 import TimeComponent                    from 'core/time/Time.component'
 import {Empty}                          from 'util/emptyVariables'
-import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import CategoryCompanion = EntityCategories.Companion
 import EMPTY_STRING =      Empty.EMPTY_STRING

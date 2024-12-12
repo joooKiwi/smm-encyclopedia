@@ -1,7 +1,7 @@
 import './Table.scss'
 
-import type {CollectionHolder}                from '@joookiwi/collection'
-import type {Array, Nullable, NullableString} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullableString}   from '@joookiwi/type'
 
 import type {Content}                                                                         from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'

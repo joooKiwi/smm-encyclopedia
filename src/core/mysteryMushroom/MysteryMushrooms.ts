@@ -30,7 +30,7 @@ export class MysteryMushrooms
 
     //region -------------------- Sub class --------------------
 
-    private static readonly MysteryMushroomsWithDualJumpAndNoGroundSounds =         class MysteryMushroomsWithDualJumpAndNoGroundSounds extends MysteryMushrooms {
+    private static readonly WithDualJumpAndNoGroundSounds =         class MysteryMushroomsWithDualJumpAndNoGroundSounds extends MysteryMushrooms {
 
         protected override _createJumpSounds(name: PossibleFileName,) {
             return FileCreator.dualJumpSounds(name,)
@@ -41,7 +41,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds =  class MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds extends MysteryMushrooms {
+    private static readonly WithDualJumpAndNoGroundAndTurnSounds =  class MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds extends MysteryMushrooms {
 
         protected override _createJumpSounds(name: PossibleFileName,) {
             return FileCreator.dualJumpSounds(name,)
@@ -56,7 +56,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithDualJumpAndNoTurnSounds =           class MysteryMushroomsWithDualJumpAndNoTurnSounds extends MysteryMushrooms {
+    private static readonly WithDualJumpAndNoTurnSounds =           class MysteryMushroomsWithDualJumpAndNoTurnSounds extends MysteryMushrooms {
 
         protected override _createJumpSounds(name: PossibleFileName,) {
             return FileCreator.dualJumpSounds(name,)
@@ -69,7 +69,7 @@ export class MysteryMushrooms
     }
 
 
-    private static readonly MysteryMushroomsWithNoSounds =                          class MysteryMushroomsWithNoSounds extends MysteryMushrooms {
+    private static readonly WithNoSounds =                          class MysteryMushroomsWithNoSounds extends MysteryMushrooms {
 
         public override get tauntSound() {
             return null
@@ -101,21 +101,21 @@ export class MysteryMushrooms
 
     }
 
-    private static readonly MysteryMushroomsWithNoTauntSounds =                     class MysteryMushroomsWithNoTauntSounds extends MysteryMushrooms {
+    private static readonly WithNoTauntSounds =                     class MysteryMushroomsWithNoTauntSounds extends MysteryMushrooms {
 
         public override get tauntSound() {
             return null
         }
 
     }
-    private static readonly MysteryMushroomsWithNoGroundSounds =                    class MysteryMushroomsWithNoGroundSounds extends MysteryMushrooms {
+    private static readonly WithNoGroundSounds =                    class MysteryMushroomsWithNoGroundSounds extends MysteryMushrooms {
 
         public override get onGroundAfterJumpASound() {
             return null
         }
 
     }
-    private static readonly MysteryMushroomsWithNoTurnSounds =                      class MysteryMushroomsWithNoTurnSounds extends MysteryMushrooms {
+    private static readonly WithNoTurnSounds =                      class MysteryMushroomsWithNoTurnSounds extends MysteryMushrooms {
 
         public override get turningSound() {
             return null
@@ -124,7 +124,7 @@ export class MysteryMushrooms
     }
 
 
-    private static readonly MysteryMushroomsWithNoTauntAndTurnSounds =              class MysteryMushroomsWithNoTauntAndTurnSounds extends MysteryMushrooms {
+    private static readonly WithNoTauntAndTurnSounds =              class MysteryMushroomsWithNoTauntAndTurnSounds extends MysteryMushrooms {
 
         public override get tauntSound() {
             return null
@@ -135,7 +135,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds =    class MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds extends MysteryMushrooms {
+    private static readonly WithNoTauntJumpGroundAndTurnSounds =    class MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds extends MysteryMushrooms {
 
         public override get tauntSound() {
             return null
@@ -154,7 +154,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithNoTauntGroundAndTurnSounds =        class MysteryMushroomsWithNoTauntGroundAndTurnSounds extends MysteryMushrooms {
+    private static readonly WithNoTauntGroundAndTurnSounds =        class MysteryMushroomsWithNoTauntGroundAndTurnSounds extends MysteryMushrooms {
 
         public override get tauntSound() {
             return null
@@ -170,7 +170,7 @@ export class MysteryMushrooms
 
     }
 
-    private static readonly MysteryMushroomsWithNoJumpGroundAndTurnSounds =         class MysteryMushroomsWithNoJumpGroundAndTurnSounds extends MysteryMushrooms {
+    private static readonly WithNoJumpGroundAndTurnSounds =         class MysteryMushroomsWithNoJumpGroundAndTurnSounds extends MysteryMushrooms {
 
         public override get jumpSounds() {
             return EMPTY_COLLECTION_HOLDER
@@ -185,7 +185,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds extends MysteryMushrooms {
+    private static readonly WithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds extends MysteryMushrooms {
 
         public override get jumpSounds() {
             return EMPTY_COLLECTION_HOLDER
@@ -209,7 +209,7 @@ export class MysteryMushrooms
 
     }
 
-    private static readonly MysteryMushroomsWithNoGroundAndTurnSounds =             class MysteryMushroomsWithNoGroundAndTurnSounds extends MysteryMushrooms {
+    private static readonly WithNoGroundAndTurnSounds =             class MysteryMushroomsWithNoGroundAndTurnSounds extends MysteryMushrooms {
 
         public override get onGroundAfterJumpASound() {
             return null
@@ -300,9 +300,9 @@ export class MysteryMushrooms
 
     }(EmptyFile.get, 'Mystery Mushroom',)
 
-    public static readonly YAMAMURA =               new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss017',), 'Yamamura',)
-    public static readonly MARY_O =                 new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss026',), 'Mary O.',)
-    public static readonly UNDODOG =                new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Boss048',), 'Undodog',)
+    public static readonly YAMAMURA =               new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss017',), 'Yamamura',)
+    public static readonly MARY_O =                 new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss026',), 'Mary O.',)
+    public static readonly UNDODOG =                new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Boss048',), 'Undodog',)
 
     public static readonly MR_GAME_AND_WATCH =      new class MysteryMushrooms_MrGameAndWatch extends MysteryMushrooms {
 
@@ -320,24 +320,24 @@ export class MysteryMushrooms
 
     }(new SingleFile('GameWatch',), 'Mr. Game & Watch',)
 
-    public static readonly PAC_MAN =                new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('PackMan',), 'PAC-MAN',)
+    public static readonly PAC_MAN =                new MysteryMushrooms.WithNoTurnSounds(new SingleFile('PackMan',), 'PAC-MAN',)
 
-    public static readonly MARIO =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Mario',), 'Mario',)
-    public static readonly LUIGI =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Luigi',), 'Luigi',)
-    public static readonly PROFESSOR_E_GADD =       new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss019',), 'Professor E. Gadd',)
-    public static readonly PEACH =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Peach',), 'Peach',)
-    public static readonly DAISY =                  new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss018',), 'Daisy',)
-    public static readonly ROSALINA =               new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Rosalina',), 'Rosalina',)
-    public static readonly TOAD =                   new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds(new SingleFile('Kinopio',), 'Toad',)
-    public static readonly CAPTAIN_TOAD =           new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoTurnSounds(new SingleFile('Boss014',), 'Captain Toad',)
-    public static readonly TOADETTE =               new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoTurnSounds(new SingleFile('Boss027',), 'Toadette',)
-    public static readonly YOSHI =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Yoshi',), 'Yoshi',)
-    public static readonly BIRDO =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss016',), 'Birdo',)
-    public static readonly WARIO =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntAndTurnSounds(new SingleFile('Wario',), 'Wario',)
-    public static readonly ASHLEY =                 new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoTurnSounds(new SingleFile('Ashley',), 'Ashley',)
-    public static readonly WALUIGI =                new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds(new SingleFile('Waluigi',), 'Waluigi',)
-    public static readonly BOWSER =                 new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('Koopa',), 'Bowser',)
-    public static readonly BOWSER_JR =              new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('KoopaJr',), 'Bowser Jr.',)
+    public static readonly MARIO =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Mario',), 'Mario',)
+    public static readonly LUIGI =                  new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Luigi',), 'Luigi',)
+    public static readonly PROFESSOR_E_GADD =       new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss019',), 'Professor E. Gadd',)
+    public static readonly PEACH =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Peach',), 'Peach',)
+    public static readonly DAISY =                  new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss018',), 'Daisy',)
+    public static readonly ROSALINA =               new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Rosalina',), 'Rosalina',)
+    public static readonly TOAD =                   new MysteryMushrooms.WithNoJumpGroundTurnGoalAndLostSounds(new SingleFile('Kinopio',), 'Toad',)
+    public static readonly CAPTAIN_TOAD =           new MysteryMushrooms.WithDualJumpAndNoTurnSounds(new SingleFile('Boss014',), 'Captain Toad',)
+    public static readonly TOADETTE =               new MysteryMushrooms.WithDualJumpAndNoTurnSounds(new SingleFile('Boss027',), 'Toadette',)
+    public static readonly YOSHI =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Yoshi',), 'Yoshi',)
+    public static readonly BIRDO =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss016',), 'Birdo',)
+    public static readonly WARIO =                  new MysteryMushrooms.WithNoTauntAndTurnSounds(new SingleFile('Wario',), 'Wario',)
+    public static readonly ASHLEY =                 new MysteryMushrooms.WithDualJumpAndNoTurnSounds(new SingleFile('Ashley',), 'Ashley',)
+    public static readonly WALUIGI =                new MysteryMushrooms.WithNoJumpGroundTurnGoalAndLostSounds(new SingleFile('Waluigi',), 'Waluigi',)
+    public static readonly BOWSER =                 new MysteryMushrooms.WithNoTurnSounds(new SingleFile('Koopa',), 'Bowser',)
+    public static readonly BOWSER_JR =              new MysteryMushrooms.WithNoTurnSounds(new SingleFile('KoopaJr',), 'Bowser Jr.',)
     public static readonly GOOMBA =                 new class MysteryMushrooms_Goomba extends MysteryMushrooms {
 
         public override get powerUpCollectedSound() {
@@ -365,13 +365,13 @@ export class MysteryMushrooms
         }
 
     }(new SingleFile('Kuribo',), 'Goomba',)
-    public static readonly SHY_GUY =                new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Heiho',), 'Shy Guy',)
-    public static readonly NABBIT =                 new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('Boss032',), 'Nabbit',)
-    public static readonly MARIO_SILVER =           new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('MarioSilver',), 'Mario (Silver)',)
-    public static readonly MARIO_GOLD =             new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('MarioGold',), 'Mario (Gold)',)
-    public static readonly BUILDER_MARIO =          new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('DiyMario',), 'Builder Mario',)
-    public static readonly DR_MARIO =               new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('DrMario',), 'Dr. Mario',)
-    public static readonly FROG_MARIO =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss006',), 'Frog Mario',)
+    public static readonly SHY_GUY =                new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Heiho',), 'Shy Guy',)
+    public static readonly NABBIT =                 new MysteryMushrooms.WithNoTurnSounds(new SingleFile('Boss032',), 'Nabbit',)
+    public static readonly MARIO_SILVER =           new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('MarioSilver',), 'Mario (Silver)',)
+    public static readonly MARIO_GOLD =             new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('MarioGold',), 'Mario (Gold)',)
+    public static readonly BUILDER_MARIO =          new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('DiyMario',), 'Builder Mario',)
+    public static readonly DR_MARIO =               new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('DrMario',), 'Dr. Mario',)
+    public static readonly FROG_MARIO =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss006',), 'Frog Mario',)
     public static readonly STATUE_MARIO =           new class MysteryMushrooms_StatueMario extends MysteryMushrooms {
 
         public override get tauntSound() {
@@ -383,12 +383,12 @@ export class MysteryMushrooms
         }
 
     }(new SingleFile('Boss025',), 'Statue Mario',)
-    public static readonly MARIO_TRIO =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss007',), 'Mario Trio',)
-    public static readonly KART_MARIO =             new MysteryMushrooms.MysteryMushroomsWithNoTauntSounds(new SingleFile('MarioKart',), 'Kart Mario',)
-    public static readonly CAT_MARIO =              new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss003',), 'Cat Mario',)
-    public static readonly CAT_PEACH =              new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss004',), 'Cat Peach',)
-    public static readonly SKY_POP =                new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss010',), 'Sky Pop',)
-    public static readonly BABY_MARIO =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss037',), 'Baby Mario',)
+    public static readonly MARIO_TRIO =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss007',), 'Mario Trio',)
+    public static readonly KART_MARIO =             new MysteryMushrooms.WithNoTauntSounds(new SingleFile('MarioKart',), 'Kart Mario',)
+    public static readonly CAT_MARIO =              new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss003',), 'Cat Mario',)
+    public static readonly CAT_PEACH =              new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss004',), 'Cat Peach',)
+    public static readonly SKY_POP =                new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss010',), 'Sky Pop',)
+    public static readonly BABY_MARIO =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss037',), 'Baby Mario',)
     public static readonly QUESTION_MARK_BLOCK =    new class MysteryMushrooms_QuestionMarkBlock extends MysteryMushrooms {
 
         public override get tauntSound() {
@@ -443,9 +443,9 @@ export class MysteryMushrooms
         }
 
     }(new SingleFile('Trampoline',), 'Trampoline',)
-    public static readonly MARIO_MB =               new MysteryMushrooms.MysteryMushroomsWithNoGroundSounds(new SingleFile('MarioOriginal',), 'Mario', 'Mario (MB)',)
-    public static readonly SIDESTEPPER =            new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('SideStepper',), 'Sidestepper',)
-    public static readonly SHELLCREEPER =           new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Shellcreeper',), 'Shellcreeper',)
+    public static readonly MARIO_MB =               new MysteryMushrooms.WithNoGroundSounds(new SingleFile('MarioOriginal',), 'Mario', 'Mario (MB)',)
+    public static readonly SIDESTEPPER =            new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('SideStepper',), 'Sidestepper',)
+    public static readonly SHELLCREEPER =           new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Shellcreeper',), 'Shellcreeper',)
     public static readonly FIGHTER_FLY =            new class MysteryMushrooms_FighterFly extends MysteryMushrooms {
 
         public override get powerUpCollectedSound() {
@@ -466,61 +466,61 @@ export class MysteryMushrooms
 
     }(new SingleFile('Fightfly',), 'Fighter Fly',)
 
-    public static readonly GREEN_YARN_YOSHI =       new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('WoolYoshiGreen',), 'Green Yarn Yoshi',)
-    public static readonly PINK_YARN_YOSHI =        new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('WoolYoshiPink',), 'Pink Yarn Yoshi',)
-    public static readonly LIGHT_BLUE_YARN_YOSHI =  new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('WoolYoshiAqua',), 'Light-Blue Yarn Yoshi',)
-    public static readonly MEGA_YARN_YOSHI =        new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('WoolYoshiBig',), 'Mega Yarn Yoshi',)
+    public static readonly GREEN_YARN_YOSHI =       new MysteryMushrooms.WithNoTurnSounds(new SingleFile('WoolYoshiGreen',), 'Green Yarn Yoshi',)
+    public static readonly PINK_YARN_YOSHI =        new MysteryMushrooms.WithNoTurnSounds(new SingleFile('WoolYoshiPink',), 'Pink Yarn Yoshi',)
+    public static readonly LIGHT_BLUE_YARN_YOSHI =  new MysteryMushrooms.WithNoTurnSounds(new SingleFile('WoolYoshiAqua',), 'Light-Blue Yarn Yoshi',)
+    public static readonly MEGA_YARN_YOSHI =        new MysteryMushrooms.WithNoTurnSounds(new SingleFile('WoolYoshiBig',), 'Mega Yarn Yoshi',)
 
-    public static readonly DONKEY_KONG =            new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('DonkeyKong',), 'Donkey Kong',)
-    public static readonly DONKEY_KONG_JR =         new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('DonkeyKongJr',), 'Donkey Kong Jr.',)
-    public static readonly DIDDY_KONG =             new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoTurnSounds(new SingleFile('DiddyKong',), 'Diddy Kong',)
+    public static readonly DONKEY_KONG =            new MysteryMushrooms.WithNoTurnSounds(new SingleFile('DonkeyKong',), 'Donkey Kong',)
+    public static readonly DONKEY_KONG_JR =         new MysteryMushrooms.WithNoTurnSounds(new SingleFile('DonkeyKongJr',), 'Donkey Kong Jr.',)
+    public static readonly DIDDY_KONG =             new MysteryMushrooms.WithDualJumpAndNoTurnSounds(new SingleFile('DiddyKong',), 'Diddy Kong',)
 
-    public static readonly LITTLE_MAC =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('LittleMac',), 'Little Mac',)
+    public static readonly LITTLE_MAC =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('LittleMac',), 'Little Mac',)
 
-    public static readonly DUCK_HUNT =              new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('DuckHunt',), 'Duck Hunt',)
+    public static readonly DUCK_HUNT =              new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('DuckHunt',), 'Duck Hunt',)
 
-    public static readonly BUBBLES =                new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss040',), 'Bubbles',)
+    public static readonly BUBBLES =                new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss040',), 'Bubbles',)
 
     public static readonly BIKE =                   new MysteryMushrooms(new SingleFile('Boss015',), 'Bike',)
 
-    public static readonly BALLOON_FIGHTER =        new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss031',), 'Balloon Fighter',)
+    public static readonly BALLOON_FIGHTER =        new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss031',), 'Balloon Fighter',)
 
-    public static readonly POPO_AND_NANA =          new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss044',), 'Popo & Nana',)
+    public static readonly POPO_AND_NANA =          new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss044',), 'Popo & Nana',)
 
-    public static readonly FOREMAN_SPIKE =          new MysteryMushrooms.MysteryMushroomsWithNoTauntAndTurnSounds(new SingleFile('Blackey',), 'Foreman Spike',)
+    public static readonly FOREMAN_SPIKE =          new MysteryMushrooms.WithNoTauntAndTurnSounds(new SingleFile('Blackey',), 'Foreman Spike',)
 
-    public static readonly LINK =                   new MysteryMushrooms.MysteryMushroomsWithNoGroundSounds(new SingleFile('Link',), 'Link',)
-    public static readonly ZELDA =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Zelda',), 'Zelda',)
-    public static readonly SHEIK =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Sheik',), 'Sheik',)
-    public static readonly TOON_LINK =              new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('ThunLink',), 'Toon Link',)
-    public static readonly TETRA =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss033',), 'Tetra',)
-    public static readonly TINGLE =                 new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Tincle',), 'Tingle',)
-    public static readonly GANONDORF =              new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Ganon',), 'Ganondorf',)
-    public static readonly WOLF_LINK =              new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss030',), 'Wolf Link',)
-    public static readonly TOTEM_LINK =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss000',), 'Totem Link',)
+    public static readonly LINK =                   new MysteryMushrooms.WithNoGroundSounds(new SingleFile('Link',), 'Link',)
+    public static readonly ZELDA =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Zelda',), 'Zelda',)
+    public static readonly SHEIK =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Sheik',), 'Sheik',)
+    public static readonly TOON_LINK =              new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('ThunLink',), 'Toon Link',)
+    public static readonly TETRA =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss033',), 'Tetra',)
+    public static readonly TINGLE =                 new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Tincle',), 'Tingle',)
+    public static readonly GANONDORF =              new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Ganon',), 'Ganondorf',)
+    public static readonly WOLF_LINK =              new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss030',), 'Wolf Link',)
+    public static readonly TOTEM_LINK =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss000',), 'Totem Link',)
 
-    public static readonly SAMUS =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Samus',), 'Samus',)
-    public static readonly ZERO_SUIT_SAMUS =        new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('ZeroSams',), 'Zero Suit Samus',)
+    public static readonly SAMUS =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Samus',), 'Samus',)
+    public static readonly ZERO_SUIT_SAMUS =        new MysteryMushrooms.WithNoTurnSounds(new SingleFile('ZeroSams',), 'Zero Suit Samus',)
 
-    public static readonly VOLLEYBALL_PLAYER =      new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Boss042',), 'Volleyball Player',)
+    public static readonly VOLLEYBALL_PLAYER =      new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Boss042',), 'Volleyball Player',)
 
-    public static readonly PIT =                    new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Pit',), 'Pit',)
-    public static readonly PALUTENA =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Palutena',), 'Palutena',)
-    public static readonly DARK_PIT =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('DarkPit',), 'Dark Pit',)
+    public static readonly PIT =                    new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Pit',), 'Pit',)
+    public static readonly PALUTENA =               new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Palutena',), 'Palutena',)
+    public static readonly DARK_PIT =               new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('DarkPit',), 'Dark Pit',)
 
-    public static readonly DONBE =                  new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss034',), 'Donbe',)
-    public static readonly HIKARI =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss035',), 'Hikari',)
+    public static readonly DONBE =                  new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss034',), 'Donbe',)
+    public static readonly HIKARI =                 new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss035',), 'Hikari',)
 
-    public static readonly MEGA_MAN =               new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('MegaMan',), 'Mega Man',)
+    public static readonly MEGA_MAN =               new MysteryMushrooms.WithNoTurnSounds(new SingleFile('MegaMan',), 'Mega Man',)
 
-    public static readonly AYUMI_TACHIBANA =        new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Boss036',), 'Ayumi Tachibana',)
+    public static readonly AYUMI_TACHIBANA =        new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Boss036',), 'Ayumi Tachibana',)
 
-    public static readonly MARTH =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Marth',), 'Marth',)
-    public static readonly IKE =                    new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Ike',), 'Ike',)
-    public static readonly LUCINA =                 new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Lucina',), 'Lucina',)
-    public static readonly ROBIN =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Robin',), 'Robin',)
+    public static readonly MARTH =                  new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Marth',), 'Marth',)
+    public static readonly IKE =                    new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Ike',), 'Ike',)
+    public static readonly LUCINA =                 new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Lucina',), 'Lucina',)
+    public static readonly ROBIN =                  new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Robin',), 'Robin',)
 
-    public static readonly CAPTAIN_FALCON =         new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new SingleFile('Falcon',), 'Captain Falcon',)
+    public static readonly CAPTAIN_FALCON =         new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new SingleFile('Falcon',), 'Captain Falcon',)
 
     public static readonly SONIC =                  new class MysteryMushrooms_Sonic extends MysteryMushrooms {
 
@@ -538,14 +538,14 @@ export class MysteryMushrooms
 
     }(new SingleFile('Sonic',), 'Sonic',)
 
-    public static readonly KIRBY =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntSounds(new SingleFile('Kirby',), 'Kirby',)
-    public static readonly KING_DEDEDE =            new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Dedede',), 'King Dedede',)
-    public static readonly META_KNIGHT =            new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('MetaKnight',), 'Meta Knight',)
+    public static readonly KIRBY =                  new MysteryMushrooms.WithNoTauntSounds(new SingleFile('Kirby',), 'Kirby',)
+    public static readonly KING_DEDEDE =            new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Dedede',), 'King Dedede',)
+    public static readonly META_KNIGHT =            new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('MetaKnight',), 'Meta Knight',)
 
-    public static readonly FOX_MCCLOUD =            new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Fox',), 'Fox McCloud',)
-    public static readonly FALCO_LOMBARDI =         new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Falco',), 'Falco Lombardi',)
-    public static readonly SLIPPY_TOAD =            new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Slippy',), 'Slippy Toad',)
-    public static readonly PEPPY_HARE =             new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Peppy',), 'Peppy Hare',)
+    public static readonly FOX_MCCLOUD =            new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Fox',), 'Fox McCloud',)
+    public static readonly FALCO_LOMBARDI =         new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Falco',), 'Falco Lombardi',)
+    public static readonly SLIPPY_TOAD =            new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Slippy',), 'Slippy Toad',)
+    public static readonly PEPPY_HARE =             new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Peppy',), 'Peppy Hare',)
     public static readonly ARWING =                 new class MysteryMushrooms_Arwing extends MysteryMushrooms {
 
         public override get jumpSounds() {
@@ -554,43 +554,43 @@ export class MysteryMushrooms
 
     }(new SingleFile('Arwing',), 'Arwing',)
 
-    public static readonly NESS =                   new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Ness',), 'Ness',)
-    public static readonly LUCAS =                  new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Lucas',), 'Lucas',)
-    public static readonly MASTER_BELCH =           new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Boss012',), 'Master Belch',)
-    public static readonly MR_SATURN =              new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Boss013',), 'Mr. Saturn',)
+    public static readonly NESS =                   new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Ness',), 'Ness',)
+    public static readonly LUCAS =                  new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Lucas',), 'Lucas',)
+    public static readonly MASTER_BELCH =           new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Boss012',), 'Master Belch',)
+    public static readonly MR_SATURN =              new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Boss013',), 'Mr. Saturn',)
 
-    public static readonly BULBASAUR =              new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss020',), 'Bulbasaur',)
-    public static readonly CHARMANDER =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss021',), 'Charmander',)
-    public static readonly CHARIZARD =              new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Charizard',), 'Charizard',)
-    public static readonly SQUIRTLE =               new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss022',), 'Squirtle',)
-    public static readonly PIKACHU =                new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Pikachu',), 'Pikachu',)
-    public static readonly JIGGLYPUFF =             new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Pudding',), 'Jigglypuff',)
-    public static readonly MEWTWO =                 new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Mewtwo',), 'Mewtwo',)
-    public static readonly LUCARIO =                new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Lucario',), 'Lucario',)
-    public static readonly GRENINJA =               new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Greninja',), 'Greninja',)
+    public static readonly BULBASAUR =              new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss020',), 'Bulbasaur',)
+    public static readonly CHARMANDER =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss021',), 'Charmander',)
+    public static readonly CHARIZARD =              new MysteryMushrooms.WithNoSounds(new SingleFile('Charizard',), 'Charizard',)
+    public static readonly SQUIRTLE =               new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss022',), 'Squirtle',)
+    public static readonly PIKACHU =                new MysteryMushrooms.WithNoSounds(new SingleFile('Pikachu',), 'Pikachu',)
+    public static readonly JIGGLYPUFF =             new MysteryMushrooms.WithNoSounds(new SingleFile('Pudding',), 'Jigglypuff',)
+    public static readonly MEWTWO =                 new MysteryMushrooms.WithNoSounds(new SingleFile('Mewtwo',), 'Mewtwo',)
+    public static readonly LUCARIO =                new MysteryMushrooms.WithNoSounds(new SingleFile('Lucario',), 'Lucario',)
+    public static readonly GRENINJA =               new MysteryMushrooms.WithNoSounds(new SingleFile('Greninja',), 'Greninja',)
 
-    public static readonly VILLAGER =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Murabito',), 'Villager',)
-    public static readonly TOM_NOOK =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Tanuki',), 'Tom Nook',)
-    public static readonly K_K_SLIDER =             new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Totakeke',), 'K.K. Slider',)
-    public static readonly RESETTI =                new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('ResetSan',), 'Resetti',)
-    public static readonly ROVER =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('MishiNeko',), 'Rover',)
-    public static readonly TIMMY_AND_TOMMY =        new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('TsubuMame',), 'Timmy & Tommy',)
-    public static readonly BLATHERS =               new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Futa',), 'Blathers',)
-    public static readonly MABEL =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Kinuyo',), 'Mabel',)
-    public static readonly KAPP_N =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Kappei',), 'Kapp’n',)
-    public static readonly CELESTE =                new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Fuko',), 'Celeste',)
-    public static readonly KICKS =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Shunk',), 'Kicks',)
-    public static readonly ISABELLE_SUMMER_OUTFIT = new MysteryMushrooms.MysteryMushroomsWithNoTauntAndTurnSounds(new SingleFile('Sizue',), 'Isabelle (Summer Outfit)',)
-    public static readonly ISABELLE_WINTER_OUTFIT = new MysteryMushrooms.MysteryMushroomsWithNoTauntAndTurnSounds(new SingleFile('SizueWinter',), 'Isabelle (Winter Outfit)',)
-    public static readonly DIGBY =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Kento',), 'Digby',)
-    public static readonly CYRUS =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Kaizo',), 'Cyrus',)
-    public static readonly REESE =                  new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Lisa',), 'Reese',)
-    public static readonly LOTTIE =                 new MysteryMushrooms.MysteryMushroomsWithNoTauntGroundAndTurnSounds(new SingleFile('Takumi',), 'Lottie',)
+    public static readonly VILLAGER =               new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Murabito',), 'Villager',)
+    public static readonly TOM_NOOK =               new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Tanuki',), 'Tom Nook',)
+    public static readonly K_K_SLIDER =             new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Totakeke',), 'K.K. Slider',)
+    public static readonly RESETTI =                new MysteryMushrooms.WithNoTurnSounds(new SingleFile('ResetSan',), 'Resetti',)
+    public static readonly ROVER =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('MishiNeko',), 'Rover',)
+    public static readonly TIMMY_AND_TOMMY =        new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('TsubuMame',), 'Timmy & Tommy',)
+    public static readonly BLATHERS =               new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Futa',), 'Blathers',)
+    public static readonly MABEL =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Kinuyo',), 'Mabel',)
+    public static readonly KAPP_N =                 new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Kappei',), 'Kapp’n',)
+    public static readonly CELESTE =                new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Fuko',), 'Celeste',)
+    public static readonly KICKS =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Shunk',), 'Kicks',)
+    public static readonly ISABELLE_SUMMER_OUTFIT = new MysteryMushrooms.WithNoTauntAndTurnSounds(new SingleFile('Sizue',), 'Isabelle (Summer Outfit)',)
+    public static readonly ISABELLE_WINTER_OUTFIT = new MysteryMushrooms.WithNoTauntAndTurnSounds(new SingleFile('SizueWinter',), 'Isabelle (Winter Outfit)',)
+    public static readonly DIGBY =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Kento',), 'Digby',)
+    public static readonly CYRUS =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Kaizo',), 'Cyrus',)
+    public static readonly REESE =                  new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Lisa',), 'Reese',)
+    public static readonly LOTTIE =                 new MysteryMushrooms.WithNoTauntGroundAndTurnSounds(new SingleFile('Takumi',), 'Lottie',)
 
-    public static readonly CAPTAIN_OLIMAR =         new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundSounds(new SingleFile('Orima',), 'Captain Olimar',)
-    public static readonly PIKMIN =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Pikmin',), 'Pikmin',)
+    public static readonly CAPTAIN_OLIMAR =         new MysteryMushrooms.WithDualJumpAndNoGroundSounds(new SingleFile('Orima',), 'Captain Olimar',)
+    public static readonly PIKMIN =                 new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Pikmin',), 'Pikmin',)
 
-    public static readonly CHIBI_ROBO =             new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoTurnSounds(new SingleFile('ChibiRobo',), 'Chibi-Robo',)
+    public static readonly CHIBI_ROBO =             new MysteryMushrooms.WithDualJumpAndNoTurnSounds(new SingleFile('ChibiRobo',), 'Chibi-Robo',)
 
     public static readonly WII_BALANCE_BOARD =      new class MysteryMushrooms_WiiBalanceBoard extends MysteryMushrooms {
 
@@ -599,7 +599,7 @@ export class MysteryMushrooms
         }
 
     }(new SingleFile('Wiibo',), 'Wii Balance Board',)
-    public static readonly WII_FIT_TRAINER =        new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Fit',), 'Wii Fit Trainer',)
+    public static readonly WII_FIT_TRAINER =        new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Fit',), 'Wii Fit Trainer',)
 
     public static readonly SHULK =                  new class MysteryMushrooms_Shulk extends MysteryMushrooms {
 
@@ -621,22 +621,22 @@ export class MysteryMushrooms
 
     }(new SingleFile('Shulk',), 'Shulk',)
 
-    public static readonly FELYNE =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss009',), 'Felyne',)
+    public static readonly FELYNE =                 new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss009',), 'Felyne',)
 
-    public static readonly YU_AYASAKI =             new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundSounds(new SingleFile('Boss028',), 'Yu Ayasaki',)
+    public static readonly YU_AYASAKI =             new MysteryMushrooms.WithDualJumpAndNoGroundSounds(new SingleFile('Boss028',), 'Yu Ayasaki',)
 
-    public static readonly DR_KAWASHIMA =           new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new SingleFile('Boss049',), 'Dr. Kawashima',)
+    public static readonly DR_KAWASHIMA =           new MysteryMushrooms.WithNoGroundAndTurnSounds(new SingleFile('Boss049',), 'Dr. Kawashima',)
 
-    public static readonly DR_LOBE =                new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('MrHakari',), 'Dr. Lobe',)
+    public static readonly DR_LOBE =                new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('MrHakari',), 'Dr. Lobe',)
 
-    public static readonly BARBARA_THE_BAT =        new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss024',), 'Barbara the Bat',)
+    public static readonly BARBARA_THE_BAT =        new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss024',), 'Barbara the Bat',)
 
-    public static readonly STARFY =                 new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('Boss029',), 'Starfy',)
+    public static readonly STARFY =                 new MysteryMushrooms.WithNoTurnSounds(new SingleFile('Boss029',), 'Starfy',)
 
-    public static readonly MALLO =                  new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('Boss039',), 'Mallo',)
+    public static readonly MALLO =                  new MysteryMushrooms.WithNoTurnSounds(new SingleFile('Boss039',), 'Mallo',)
 
-    public static readonly NIKKI =                  new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('Nikki',), 'Nikki',)
-    public static readonly IRIS_ARCHWELL =          new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('Boss038',), 'Iris Archwell',)
+    public static readonly NIKKI =                  new MysteryMushrooms.WithNoTurnSounds(new SingleFile('Nikki',), 'Nikki',)
+    public static readonly IRIS_ARCHWELL =          new MysteryMushrooms.WithNoTurnSounds(new SingleFile('Boss038',), 'Iris Archwell',)
     public static readonly ARCADE_BUNNY =           new MysteryMushrooms(new SingleFile('Boss011',), 'Arcade bunny',)
 
     public static readonly CHITOGE_KIRISAKI =       new class MysteryMushrooms_ChitogeKirisaki extends MysteryMushrooms {
@@ -659,18 +659,18 @@ export class MysteryMushrooms
 
     }(new SingleFile('Boss023',), 'Chitoge Kirisaki',)
 
-    public static readonly INKLING_SQUID =          new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoTurnSounds(new SingleFile('SplaIka', 'SplatIka',), 'Inkling Squid',)
-    public static readonly INKLING_BOY =            new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new DualFile('SplaBoy', 'SplaBoy W',), 'Inkling Boy',)
-    public static readonly INKLING_GIRL =           new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new DualFile('SplaGirl', 'SplaGirl W',), 'Inkling Girl',)
-    public static readonly CALLIE =                 new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new DualFile('Boss050', 'SplaAori W',), 'Callie',)
-    public static readonly MARIE =                  new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new DualFile('Boss051', 'SplaHotaru W',), 'Marie',)
+    public static readonly INKLING_SQUID =          new MysteryMushrooms.WithDualJumpAndNoTurnSounds(new SingleFile('SplaIka', 'SplatIka',), 'Inkling Squid',)
+    public static readonly INKLING_BOY =            new MysteryMushrooms.WithNoTurnSounds(new DualFile('SplaBoy', 'SplaBoy W',), 'Inkling Boy',)
+    public static readonly INKLING_GIRL =           new MysteryMushrooms.WithNoTurnSounds(new DualFile('SplaGirl', 'SplaGirl W',), 'Inkling Girl',)
+    public static readonly CALLIE =                 new MysteryMushrooms.WithNoTurnSounds(new DualFile('Boss050', 'SplaAori W',), 'Callie',)
+    public static readonly MARIE =                  new MysteryMushrooms.WithNoTurnSounds(new DualFile('Boss051', 'SplaHotaru W',), 'Marie',)
 
-    public static readonly ROB =                    new MysteryMushrooms.MysteryMushroomsWithNoTauntJumpGroundAndTurnSounds(new DualFile('Robot USEU', 'Robot JP', 'Robot',), 'R.O.B.',)
-    public static readonly DISKUN =                 new MysteryMushrooms.MysteryMushroomsWithNoJumpGroundAndTurnSounds(new SingleFile('Boss041',), 'Diskun',)
-    public static readonly MAHJONG_TILE =           new MysteryMushrooms.MysteryMushroomsWithNoTurnSounds(new SingleFile('MahjongTile',), 'Mahjong Tile',)
+    public static readonly ROB =                    new MysteryMushrooms.WithNoTauntJumpGroundAndTurnSounds(new DualFile('Robot USEU', 'Robot JP', 'Robot',), 'R.O.B.',)
+    public static readonly DISKUN =                 new MysteryMushrooms.WithNoJumpGroundAndTurnSounds(new SingleFile('Boss041',), 'Diskun',)
+    public static readonly MAHJONG_TILE =           new MysteryMushrooms.WithNoTurnSounds(new SingleFile('MahjongTile',), 'Mahjong Tile',)
 
-    public static readonly KITTY_WHITE =            new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new DualFile('Boss045', 'Boss045 L',), 'Kitty White',)
-    public static readonly MELODY =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new DualFile('Boss046', 'Boss046 L',), 'Melody',)
+    public static readonly KITTY_WHITE =            new MysteryMushrooms.WithNoGroundAndTurnSounds(new DualFile('Boss045', 'Boss045 L',), 'Kitty White',)
+    public static readonly MELODY =                 new MysteryMushrooms.WithNoGroundAndTurnSounds(new DualFile('Boss046', 'Boss046 L',), 'Melody',)
     public static readonly SHAUN_THE_SHEEP =        new class MysteryMushrooms_ShaunTheSheep extends MysteryMushrooms {
 
         protected override _createJumpSounds(name: PossibleFileName,) {
@@ -691,11 +691,11 @@ export class MysteryMushrooms
 
     }(new SingleFile('Boss047',), 'Shaun the Sheep',)
 
-    public static readonly ARINO_KACHO =            new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss001',), 'Arino KACHO',)
-    public static readonly SUPER_MARIO_KUN =        new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Boss002',), 'SUPER MARIO KUN',)
-    public static readonly NECKY =                  new MysteryMushrooms.MysteryMushroomsWithNoSounds(new SingleFile('Boss005',), 'Necky',)
-    public static readonly GLA =                    new MysteryMushrooms.MysteryMushroomsWithNoGroundSounds(new SingleFile('Boss008',), 'GLA',)
-    public static readonly BABYMETAL =              new MysteryMushrooms.MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss043',), 'BABYMETAL',)
+    public static readonly ARINO_KACHO =            new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss001',), 'Arino KACHO',)
+    public static readonly SUPER_MARIO_KUN =        new MysteryMushrooms.WithNoSounds(new SingleFile('Boss002',), 'SUPER MARIO KUN',)
+    public static readonly NECKY =                  new MysteryMushrooms.WithNoSounds(new SingleFile('Boss005',), 'Necky',)
+    public static readonly GLA =                    new MysteryMushrooms.WithNoGroundSounds(new SingleFile('Boss008',), 'GLA',)
+    public static readonly BABYMETAL =              new MysteryMushrooms.WithDualJumpAndNoGroundAndTurnSounds(new SingleFile('Boss043',), 'BABYMETAL',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -780,8 +780,6 @@ export class MysteryMushrooms
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(fileName: FileName, englishName: PossibleEnglishName,)
-    private constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
     private constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName = englishName,) {
         super()
         this.#englishName = new StringContainer(englishName)

@@ -5,7 +5,6 @@ import TextComponent            from 'app/tools/text/TextComponent'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 
 import ALL = GameStyles.ALL
 

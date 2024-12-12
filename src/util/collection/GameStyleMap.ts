@@ -1,5 +1,4 @@
 import type {UndefinedOr} from '@joookiwi/type'
-import {mapByArray}       from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 

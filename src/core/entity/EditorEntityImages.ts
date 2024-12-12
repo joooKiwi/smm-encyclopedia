@@ -1,6 +1,6 @@
 import type {CollectionHolder}                   from '@joookiwi/collection'
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import type {Array, EmptyString}                 from '@joookiwi/type'
+import type {EmptyString}                        from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                from 'core/ClassWithEnglishName'

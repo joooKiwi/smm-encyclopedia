@@ -1,6 +1,4 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import type {Array, Nullable}        from '@joookiwi/type'
-import type {CollectionHolder}       from '@joookiwi/collection'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 

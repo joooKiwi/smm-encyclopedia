@@ -12,7 +12,6 @@ import {Entities}          from 'core/entity/Entities'
 import {GameStyles}        from 'core/gameStyle/GameStyles'
 import GameStyleImage      from 'core/gameStyle/component/GameStyleImage'
 import InstrumentSound     from 'core/instrument/component/InstrumentSound'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EntityCompanion = Entities.Companion
 import NSMBU =           GameStyles.NSMBU
