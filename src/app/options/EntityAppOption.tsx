@@ -12,7 +12,7 @@ import Image                            from 'app/tools/images/Image'
 import ImageAs3dModel                   from 'app/tools/images/ImageAs3dModel'
 import {TableOption}                    from 'app/tools/table/TableOption'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
-import EditorVoiceSoundComponent        from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound                 from 'core/editorVoice/component/EditorVoiceSound'
 import CanBeFiredOutOfABulletLauncher   from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
 import CanBeInAParachute                from 'core/entity/properties/component/CanBeInAParachute'
 import CanBePutInABlock                 from 'core/entity/properties/component/CanBePutInABlock'
@@ -200,7 +200,7 @@ export abstract class EntityAppOption
                     </div>
                     {CommonOptions.get.getNameContent(enumeration,)}
                 </div>
-                <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
+                <EditorVoiceSound editorVoice={enumeration.editorVoiceReference} name={enumeration.englishName}/>
             </div>
         }
 

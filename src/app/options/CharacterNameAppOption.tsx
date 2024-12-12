@@ -7,7 +7,7 @@ import type {CharacterNames}      from 'core/characterName/CharacterNames'
 
 import {CommonOptions}           from 'app/options/CommonOptions'
 import {TableOption}             from 'app/tools/table/TableOption'
-import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound          from 'core/editorVoice/component/EditorVoiceSound'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 export abstract class CharacterNameAppOption
@@ -29,7 +29,7 @@ export abstract class CharacterNameAppOption
     public static readonly EDITOR_VOICE = new class CharacterNameAppOption_Name extends CharacterNameAppOption {
 
         public override renderContent(enumeration: CharacterNames,) {
-            return <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.uniqueEnglishName}/>
+            return <EditorVoiceSound editorVoice={enumeration.editorVoice} name={enumeration.uniqueEnglishName}/>
         }
 
         public override renderHeader(): SingleHeaderContent {
