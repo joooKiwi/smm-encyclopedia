@@ -1,6 +1,6 @@
-import {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection}                    from '@joookiwi/collection'
-import type {Array, NullOr}                                                                          from '@joookiwi/type'
-import {GenericCollectionHolder, getFirstByArray, hasAllWithCollectionHolderByArray, isEmptyByArray} from '@joookiwi/collection'
+import type {CollectionHolder, PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import type {NullOr}                                                                                     from '@joookiwi/type'
+import {GenericCollectionHolder, getFirstByArray, hasAllWithCollectionHolderByArray, isEmptyByArray}     from '@joookiwi/collection'
 
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
@@ -39,7 +39,7 @@ export class GameCollection<const T extends Games = Games,
 
     /** The collection has every game ({@link SMM1}, {@link SMM3DS} & {@link SMM2}) type in its values */
     public get hasAllGames(): boolean {
-        return this.#hasAllGames ??= this._hasAllByArray(ALL as unknown as Array<T>,)
+        return this.#hasAllGames ??= this._hasAllByCollectionHolder(ALL as unknown as CollectionHolder<T>,)
     }
 
 

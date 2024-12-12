@@ -44,7 +44,7 @@ export interface CompanionEnumDeclaration_Games
      * @param url The url to find the {@link Games} present
      * @arrayReutilization
      */
-    findInUrl(url: string,): Array<Games>
+    findInUrl(url: string,): CollectionHolder<Games>
 
     /**
      * Find all the {@link Games games} present in the {@link name} received
@@ -53,7 +53,7 @@ export interface CompanionEnumDeclaration_Games
      * @throws ReferenceError No games could be found in the name <i>(this should normally never happen)</i>
      * @arrayReutilization
      */
-    findInName(name: string,): Array<Games>
+    findInName(name: string,): CollectionHolder<Games>
 
 
     /**

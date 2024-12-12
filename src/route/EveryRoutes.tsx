@@ -1,3 +1,4 @@
+import type {CollectionHolder}                                    from '@joookiwi/collection'
 import type {Singleton}                                           from '@joookiwi/enumerable'
 import type {Array, MutableArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
 import {CompanionEnum, Enum}                                      from '@joookiwi/enumerable'
@@ -2358,11 +2359,11 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     //region -------------------- Methods --------------------
 
     /**
-     * Get the partial path from a {@link Nullable} {@link Games} {@link ReadonlyArray array}
+     * Get the partial path from a {@link Nullable} {@link Games} {@link CollectionHolder}
      *
      * @param value The {@link Games} to retrieve its {@link Games.urlValue}
      */
-    protected _getPathFromGames(value: NullableArray<Games> = null,): PossibleGamePath {
+    protected _getPathFromGames(value: Nullable<CollectionHolder<Games>> = null,): PossibleGamePath {
         if (value == null) {
             const currentGames = GameCompanion.currentOrNull
             if (currentGames == null) {
@@ -2373,7 +2374,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/game-${GameCompanion.getGroupUrlValue(currentGames,)}`
         }
-        if (new ArrayAsCollection(value,).isEmpty) {
+        if (value.isEmpty) {
             const defaultGame = this.defaultGame
             if (defaultGame == null)
                 return EMPTY_STRING
@@ -2447,7 +2448,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: Nullable<ProjectLanguages>, games: NullableArray<Games> = null, gameStyles: NullableArray<GameStyles> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
+    public getPath(language: Nullable<ProjectLanguages>, games: Nullable<CollectionHolder<Games>> = null, gameStyles: NullableArray<GameStyles> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
         language ??= LanguageCompanion.current
         return `/${language.projectAcronym}${this._getPathFromGames(games,)}${this._getPathFromGameStyles(gameStyles,)}${this._getPathFromTimes(times,)}${this._getPathFromViewDisplay(viewDisplay,)}${this.urlValue}`
     }

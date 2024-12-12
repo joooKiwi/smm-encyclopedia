@@ -1,4 +1,5 @@
-import type {NullOr} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOr}           from '@joookiwi/type'
 
 import type {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
 import type {Games}         from 'core/game/Games'
@@ -9,7 +10,7 @@ import type {RouteCallback} from 'route/EveryRoutes.types'
 /**
  * The route encapsulator for a path and its name.
  *
- * It also has an {@link ReadonlyArray Array} of {@link Games}, {@link Times} and {@link GameStyles}
+ * It also has an {@link CollectionHolder} of {@link Games}, {@link Times} and {@link GameStyles}
  * and value of {@link ViewDisplays} to help identify
  * the route without string interpretation.
  *
@@ -31,7 +32,7 @@ export class SimpleRoute<const NAME extends string = string,
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: NAME, path: PATH, games: NullOrArray<Games>, times: NullOrArray<Times>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
+    public constructor(name: NAME, path: PATH, games: NullOr<CollectionHolder<Games>>, times: NullOrArray<Times>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay

@@ -44,7 +44,7 @@ export interface CompanionEnumDeclaration_GameStyles
      * @param url The url to find the {@link GameStyles} present
      * @arrayReutilization
      */
-    findInUrl(url: string,): Array<GameStyles>
+    findInUrl(url: string,): CollectionHolder<GameStyles>
 
     /**
      * Find the {@link GameStyles game styles} present in the {@link name} received
@@ -52,7 +52,7 @@ export interface CompanionEnumDeclaration_GameStyles
      * @param name The name to find the {@link GameStyles} present
      * @arrayReutilization
      */
-    findInName(name: string,): Array<GameStyles>
+    findInName(name: string,): CollectionHolder<GameStyles>
 
 
     /**
