@@ -1,6 +1,5 @@
-import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array}                                                                    from '@joookiwi/type'
-import {GenericCollectionHolder, hasAllWithCollectionHolderByArray, isEmptyByArray}    from '@joookiwi/collection'
+import type {CollectionHolder, PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import {GenericCollectionHolder, hasAllWithCollectionHolderByArray, isEmptyByArray}                      from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -52,7 +51,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStyles(): boolean {
-        return this.#hasAllGameStyles ??= this._hasAllByArray(ALL as unknown as Array<T>,)
+        return this.#hasAllGameStyles ??= this._hasAllByCollectionHolder(ALL as unknown as CollectionHolder<T>,)
     }
 
     /**
@@ -61,7 +60,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStylesInSmm1(): boolean {
-        return this.#hasAllGameStylesInSmm1 ??= this._hasAllByArray(ALL_SMM1 as unknown as Array<T>,)
+        return this.#hasAllGameStylesInSmm1 ??= this._hasAllByCollectionHolder(ALL_SMM1 as unknown as CollectionHolder<T>,)
     }
 
 
@@ -92,12 +91,12 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
 
     /** The collection has the {@link SMB} or {@link SMB3} type in its values */
     public get hasSmbOrSmb3(): boolean {
-        return this.#hasSmbOrSmb3 ??= this._hasOneByArray(SMB_AND_SMB3 as unknown as Array<T>,)
+        return this.#hasSmbOrSmb3 ??= this._hasAllByCollectionHolder(SMB_AND_SMB3 as unknown as CollectionHolder<T>,)
     }
 
     /** The collection has the {@link SMW} or {@link NSMBU} type in its values */
     public get hasSmwOrNsmbu(): boolean {
-        return this.#hasSmwOrNsmbu ??= this._hasOneByArray(SMW_AND_NSMBU as unknown as Array<T>,)
+        return this.#hasSmwOrNsmbu ??= this._hasAllByCollectionHolder(SMW_AND_NSMBU as unknown as CollectionHolder<T>,)
     }
 
 

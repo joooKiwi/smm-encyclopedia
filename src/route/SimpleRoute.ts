@@ -32,7 +32,7 @@ export class SimpleRoute<const NAME extends string = string,
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: NAME, path: PATH, games: NullOr<CollectionHolder<Games>>, times: NullOrArray<Times>, gameStyles: NullOrArray<GameStyles>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
+    public constructor(name: NAME, path: PATH, games: NullOr<CollectionHolder<Games>>, times: NullOrArray<Times>, gameStyles: NullOr<CollectionHolder<GameStyles>>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay

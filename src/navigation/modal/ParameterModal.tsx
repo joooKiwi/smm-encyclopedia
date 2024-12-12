@@ -120,7 +120,7 @@ export default function ParameterModal() {
 
     const route = EveryRoutes.Companion.getValueInUrl(currentPath,)
     assert(route != null, `The route was not expected to be null with the path ${currentPath}.`,)
-    const pathToGo = route.getPath(null, selectedGames.toArray(), selectedGameStyles.toArray(), selectedTimes.toArray(),)
+    const pathToGo = route.getPath(null, selectedGames, selectedGameStyles, selectedTimes.toArray(),)
 
     //endregion -------------------- Route fields --------------------
 

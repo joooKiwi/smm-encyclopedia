@@ -40,8 +40,8 @@ const RETURN_OF_LINES = new ArrayAsCollection([
 
 const otherGameReferences = (() => {
     const alreadyIncludedNames = new ArrayAsCollection<string>(join(join(
-        new ArrayAsCollection(ALL_GAME_STYLES,).map(it => it.englishName,),),
         ALL_GAMES.map(it => it.englishName,),
+        ALL_GAME_STYLES.map(it => it.englishName,),),
         new ArrayAsCollection(soundEffect_games,).map(it => it.englishName,),),)
     return Companion.values.filter(it => !alreadyIncludedNames.has(it.englishName,),)
 })()
@@ -65,7 +65,7 @@ export default function GameReferenceApp() {
         <div id="gameStyle-names-container" className="names-container">
             <h3 id="gameStyle-names-title" className="names-title">{gameContentTranslation('game style.plural',)}</h3>
             <div id="gameStyle-name-container" className="container-fluid name-container">
-                {new ArrayAsCollection(ALL_GAME_STYLES,).map(it =>
+                {ALL_GAME_STYLES.map(it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>

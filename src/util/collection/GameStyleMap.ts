@@ -23,7 +23,7 @@ export class GameStyleMap<const REFERENCE extends GameStyleProperty = GameStyleP
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(mapByArray(GameStyles.ALL, it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(GameStyles.ALL.map(it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

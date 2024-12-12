@@ -30,7 +30,6 @@ import GameStyleImage                               from 'core/gameStyle/compone
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =    GameStyles.ALL
 import SMM1 =   Games.SMM1
@@ -60,7 +59,7 @@ class GameStyleAppInterpreter
 
     public get content() {
         const games = this.#games
-        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
+        return ALL.filter(({reference,},) =>
             games.hasAnyIn(reference,),)
     }
 

@@ -2279,7 +2279,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     private constructor(name: URL_NAME, path: URL_PATH,
                         viewDisplays: ViewDisplayCollection, defaultViewDisplay: NullOr<ViewDisplays>,
                         games: GameCollection, defaultGame: NullOr<Games>,
-                        gameStyles: GameStyleCollection, defaultGameStyles: NullOrArray<GameStyles>,
+                        gameStyles: GameStyleCollection, defaultGameStyles: NullOr<CollectionHolder<GameStyles>>,
                         times: TimeCollection, defaultTimes: NullOrArray<Times>,
                         routeCallback: RouteCallback,) {
         super()
@@ -2330,7 +2330,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return this.#gameStyles
     }
 
-    public get defaultGameStyles(): NullOrArray<GameStyles> {
+    public get defaultGameStyles(): NullOr<CollectionHolder<GameStyles>> {
         return this.#defaultGameStyles
     }
 
@@ -2409,11 +2409,11 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     }
 
     /**
-     * Get the partial path from a {@link Nullable} {@link GameStyles} {@link ReadonlyArray array}
+     * Get the partial path from a {@link Nullable} {@link GameStyles} {@link CollectionHolder}
      *
      * @param values The {@link GameStyles} to retrieve their {@link GameStyles.urlValue}
      */
-    protected _getPathFromGameStyles(values: NullableArray<GameStyles> = null,): PossibleGameStylePath {
+    protected _getPathFromGameStyles(values: Nullable<CollectionHolder<GameStyles>> = null,): PossibleGameStylePath {
         if (values == null) {
             const currentGameStyles = GameStyleCompanion.currentOrNull
             if (currentGameStyles == null) {
@@ -2424,7 +2424,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/game-style-${GameStyleCompanion.getGroupUrlValue(currentGameStyles,)}`
         }
-        if (new ArrayAsCollection(values,).isEmpty) {
+        if (values.isEmpty) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
                 return EMPTY_STRING
@@ -2448,7 +2448,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: Nullable<ProjectLanguages>, games: Nullable<CollectionHolder<Games>> = null, gameStyles: NullableArray<GameStyles> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
+    public getPath(language: Nullable<ProjectLanguages>, games: Nullable<CollectionHolder<Games>> = null, gameStyles: Nullable<CollectionHolder<GameStyles>> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
         language ??= LanguageCompanion.current
         return `/${language.projectAcronym}${this._getPathFromGames(games,)}${this._getPathFromGameStyles(gameStyles,)}${this._getPathFromTimes(times,)}${this._getPathFromViewDisplay(viewDisplay,)}${this.urlValue}`
     }
