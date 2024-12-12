@@ -1,31 +1,29 @@
-import type {Array} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {InGameImageFile}     from 'core/entity/file/EntityImageFile'
 import type {InGameImage_Regular} from 'core/entity/images/inGame/InGameImage_Regular'
 import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
-
 export class InGameImage_RegularContainer<const T extends InGameImageFile, >
     implements InGameImage_Regular<T> {
 
-    #images?: Array<T>
+    #images?: CollectionHolder<T>
     readonly #imagesWithAssociation
 
-    public constructor(images: Array<readonly [GameStyles, T,]>,) {
+    public constructor(images: CollectionHolder<readonly [GameStyles, T,]>,) {
         this.#imagesWithAssociation = images
     }
 
-    public get images(): Array<T> {
-        return this.#images ??= new ArrayAsCollection(this.imagesWithAssociation,).map(it => it[1],).toArray()
+    public get images(): CollectionHolder<T> {
+        return this.#images ??= this.imagesWithAssociation.map(it => it[1],)
     }
 
-    public get imagesWithAssociation(): Array<readonly [GameStyles, T,]> {
+    public get imagesWithAssociation(): CollectionHolder<readonly [GameStyles, T,]> {
         return this.#imagesWithAssociation
     }
 
-    public get(gameStyle: GameStyles,): Array<T> {
-        return new ArrayAsCollection(this.imagesWithAssociation,).filter(it => it[0] === gameStyle,).map(it => it[1],).toArray()
+    public get(gameStyle: GameStyles,): CollectionHolder<T> {
+        return this.imagesWithAssociation.filter(it => it[0] === gameStyle,).map(it => it[1],)
     }
 
 }

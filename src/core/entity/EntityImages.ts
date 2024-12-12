@@ -1,5 +1,5 @@
+import type {CollectionHolder}                   from '@joookiwi/collection'
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import type {Array}                              from '@joookiwi/type'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName}                                       from 'core/entity/Entities.types'
@@ -77,7 +77,7 @@ export abstract class EntityImages
 
             public override get image(): EntityImage<IMAGE> { return this.#image ??= new MixedReferenceEntityImage(this._createImage(),) }
 
-            protected abstract _createImage(): Array<readonly [GameStyles, Array<IMAGE>,]>
+            protected abstract _createImage(): CollectionHolder<readonly [GameStyles, CollectionHolder<IMAGE>,]>
 
         }
 
@@ -213,8 +213,7 @@ export abstract class EntityImages
         extends EntityImages.ExistantInGame<NAME, IMAGE> {
 
         protected override _createImage(image: InGameImage_Regular<IMAGE>,) {
-            const images = image.imagesWithAssociation
-            return new InGameImage_RegularContainer([images[0]!, images[2]!, images[4]!, images[5]!,],)
+            return new InGameImage_RegularContainer(image.imagesWithAssociation.slice([0, 2, 4, 5,],),)
         }
 
     }
@@ -232,20 +231,18 @@ export abstract class EntityImages
         const CLEAR_CONDITION_IMAGE extends ClearConditionImageFile, >
         extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | CLEAR_CONDITION_IMAGE> {
 
-        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly clearConditionReference: ClassWithImage<ClearConditionImage<CLEAR_CONDITION_IMAGE>>,) {
-            super(englishName,)
-        }
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly clearConditionReference: ClassWithImage<ClearConditionImage<CLEAR_CONDITION_IMAGE>>,) { super(englishName,) }
 
         protected override _createImage() {
             const clearConditionReference = this.clearConditionReference
             const inGameImages = this.inGameReference.image
-            return [
+            return new ArrayAsCollection([
                 [SMB,   inGameImages.get(SMB,),],
                 [SMB3,  inGameImages.get(SMB3,),],
                 [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, [new ArrayAsCollection(inGameImages.get(NSMBU,),).getFirst(),],],
-                [SM3DW, [clearConditionReference.image.get(SM3DW,),], ],
-            ] as const
+                [NSMBU, inGameImages.get(NSMBU,).take(1,),],
+                [SM3DW, new ArrayAsCollection([clearConditionReference.image.get(SM3DW,),],), ],
+            ],)
         }
 
     }
@@ -260,20 +257,18 @@ export abstract class EntityImages
         const EDITOR_IMAGE extends EditorImageFile, >
         extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | EDITOR_IMAGE> {
 
-        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
-            super(englishName,)
-        }
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) { super(englishName,) }
 
         protected override _createImage() {
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
-            return [
+            return new ArrayAsCollection([
                 [SMB,   inGameImages.get(SMB,),],
                 [SMB3,  inGameImages.get(SMB3,),],
                 [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, new ArrayAsCollection(inGameImages.get(NSMBU,),).slice([0, -1,],).toArray(),],
-                [SM3DW, editorReference.image.get(SM3DW,).toArray(),],
-            ] as const
+                [NSMBU, inGameImages.get(NSMBU,).slice([0, -1,],),],
+                [SM3DW, editorReference.image.get(SM3DW,),],
+            ],)
         }
 
     }
@@ -288,20 +283,18 @@ export abstract class EntityImages
         const EDITOR_IMAGE extends EditorImageFile, >
         extends EntityImages.ExistantMixed<NAME, | IN_GAME_IMAGE | EDITOR_IMAGE> {
 
-        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) {
-            super(englishName,)
-        }
+        public constructor(englishName: NAME, private readonly inGameReference: ClassWithImage<InGameImage_Regular<IN_GAME_IMAGE>>, private readonly editorReference: ClassWithImage<EditorImage<EDITOR_IMAGE>>,) { super(englishName,) }
 
         protected override _createImage() {
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
-            return [
-                [SMB,   new ArrayAsCollection(inGameImages.get(SMB,),).slice(0, 1,).toArray(),],
-                [SMB3,  new ArrayAsCollection(inGameImages.get(SMB3,),).slice(0, 1,).toArray(),],
-                [SMW,   new ArrayAsCollection(inGameImages.get(SMW,),).slice(0, 1,).toArray(),],
-                [NSMBU, new ArrayAsCollection(inGameImages.get(NSMBU,),).slice([0, -1,],).toArray(),],
-                [SM3DW, editorReference.image.get(SM3DW,).toArray(),],
-            ] as const
+            return new ArrayAsCollection([
+                [SMB,   inGameImages.get(SMB,).slice(0, 1,),],
+                [SMB3,  inGameImages.get(SMB3,).slice(0, 1,),],
+                [SMW,   inGameImages.get(SMW,).slice(0, 1,),],
+                [NSMBU, inGameImages.get(NSMBU,).slice([0, -1,],),],
+                [SM3DW, editorReference.image.get(SM3DW,),],
+            ],)
         }
 
     }
@@ -318,7 +311,7 @@ export abstract class EntityImages
         extends EntityImages.ExistantEditor<NAME, IMAGE> {
 
         protected override _createImage(image: EditorImage<IMAGE>) {
-            const images = new ArrayAsCollection(image.imagesWithAssociation,)
+            const images = image.imagesWithAssociation
             const size = images.length
             const smb3ImageIndex = images.indexOfFirst(it => it[1] === SMB3,)
             const smwImageIndex = images.indexOfFirst(it => it[1] === SMW,)
@@ -328,14 +321,14 @@ export abstract class EntityImages
                     smb3ImageIndex, smb3ImageIndex + 1,
                     smwImageIndex,
                     smwImageIndex + 1,//nsmbu
-                ],).toArray(),)
+                ],),)
             return new EditorImageContainer(images.slice([
                 0, 1,
                 smb3ImageIndex, smb3ImageIndex + 1,
                 smwImageIndex,
                 smwImageIndex + 1,//nsmbu
                 smwImageIndex + 2,//sm3dw
-            ]).toArray(),)
+            ]),)
         }
 
     }
@@ -343,63 +336,63 @@ export abstract class EntityImages
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link BRIDGE} */
     private static readonly EditorAsBridge = class EditorAsBridge_EntityImages
-        extends EntityImages.ExistantEditor<'Bridge', typeof EditorEntityImages['BRIDGE']['image']['images'][number]> {
+        extends EntityImages.ExistantEditor<'Bridge', NonNullable<typeof EditorEntityImages['BRIDGE']['image']['images'][number]>> {
 
         public constructor() { super('Bridge', EditorEntityImages.BRIDGE,) }
 
-        protected override _createImage(image: EditorImage<typeof EditorEntityImages['BRIDGE']['image']['images'][number]>,) {
-            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([
+        protected override _createImage(image: EditorImage<NonNullable<typeof EditorEntityImages['BRIDGE']['image']['images'][number]>>,) {
+            return new EditorImageContainer(image.imagesWithAssociation.slice([
                 0, 1, 2, 3, 4,//smb
                 6, 7, 8,//smb3
                 9, 10, 11, 12,//smw
                 15, 16, 17, 18, 19, 20, 21, 22, 23,//nsmbu
-            ],).toArray(),)
+            ],),)
         }
 
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link BRICK_BLOCK} */
     private static readonly EditorAsBrickBlock = class EditorAsBrickBlock_EntityImages
-        extends EntityImages.ExistantEditor<'Brick Block', typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]> {
+        extends EntityImages.ExistantEditor<'Brick Block', NonNullable<typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]>> {
 
         public constructor() { super('Brick Block', EditorEntityImages.BRICK_BLOCK,) }
 
-        protected override _createImage(image: EditorImage<typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]>,) {
-            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([
+        protected override _createImage(image: EditorImage<NonNullable<typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]>>,) {
+            return new EditorImageContainer(image.imagesWithAssociation.slice([
                 0, 1, 2, 3, 5,//smb
                 6, 7,//smb3
                 9,//smw
                 10,//nsmbu
-            ],).toArray(),)
+            ],),)
         }
 
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link CRISTAL_BLOCK} */
     private static readonly EditorAsCristalBlock = class EditorAsCristalBlock_EntityImages
-        extends EntityImages.ExistantEditor<'Cristal Block', typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]> {
+        extends EntityImages.ExistantEditor<'Cristal Block', NonNullable<typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]>> {
 
         public constructor() { super('Cristal Block', EditorEntityImages.CRISTAL_BLOCK,) }
 
-        protected override _createImage(image: EditorImage<typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]>,) {
-            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([0,]).toArray(),)
+        protected override _createImage(image: EditorImage<NonNullable<typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]>>,) {
+            return new EditorImageContainer(image.imagesWithAssociation.take(1,),)
         }
 
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link HARD_BLOCK} */
     private static readonly EditorAsHardBlock = class EditorAsHardBlock_EntityImages
-        extends EntityImages.ExistantEditor<'Hard Block', typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]> {
+        extends EntityImages.ExistantEditor<'Hard Block', NonNullable<typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]>> {
 
         public constructor() { super('Hard Block', EditorEntityImages.HARD_BLOCK,) }
 
-        protected override _createImage(image: EditorImage<typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]>,) {
-            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([
+        protected override _createImage(image: EditorImage<NonNullable<typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]>>,) {
+            return new EditorImageContainer(image.imagesWithAssociation.slice([
                 0, 1, 3, 4, 5, 7,//smb
                 9, 11,//smb3
                 12, 13,//smw
                 16, 17,//nsmbu
-            ],).toArray(),)
+            ],),)
         }
 
     }
@@ -411,7 +404,7 @@ export abstract class EntityImages
      * for only the {@link GREEN_KOOPA_SHELL}
      */
     private static readonly MixedAsGreenKoopaShell = class MixedAsGreenKoopaShell_EntityImages
-        extends EntityImages.ExistantMixed<'Green Koopa Shell', (| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]> {
+        extends EntityImages.ExistantMixed<'Green Koopa Shell', NonNullable<(| typeof ClearConditionEntityImages | typeof InGameEntityImages)['GREEN_KOOPA_SHELL']['image']['images'][number]>> {
 
         readonly #clearConditionReference = ClearConditionEntityImages.GREEN_KOOPA_SHELL
         readonly #inGameReference = InGameEntityImages.GREEN_KOOPA_SHELL
@@ -421,37 +414,37 @@ export abstract class EntityImages
         public override _createImage() {
             const clearConditionReference = this.#clearConditionReference
             const inGameReference = this.#inGameReference
-            return [
+            return new ArrayAsCollection([
                 [SMB,   inGameReference.image.get(SMB,),],
                 [SMB3,  inGameReference.image.get(SMB3,),],
                 [SMW,   inGameReference.image.get(SMW,),],
                 [NSMBU, inGameReference.image.get(NSMBU,),],
-                [SM3DW, [clearConditionReference.image.get(SM3DW,),],],
-            ] as const
+                [SM3DW, new ArrayAsCollection([clearConditionReference.image.get(SM3DW,),],),],
+            ],)
         }
 
     }
 
     /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameEntityImage} for only the {@link SKEWER} */
     private static readonly InGameAsSkewer = class InGameAsSkewer_EntityImages
-        extends EntityImages.ExistantInGame<'Skewer', typeof InGameEntityImages['SKEWER']['image']['images'][number]> {
+        extends EntityImages.ExistantInGame<'Skewer', NonNullable<typeof InGameEntityImages['SKEWER']['image']['images'][number]>> {
 
         public constructor() { super('Skewer', InGameEntityImages.SKEWER,) }
 
-        protected override _createImage(image: InGameImage_Regular<typeof InGameEntityImages['SKEWER']['image']['images'][number]>,) {
-            return new InGameImage_RegularContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([0, 4, 8, 12, 16, 20,],).toArray(),)
+        protected override _createImage(image: InGameImage_Regular<NonNullable<typeof InGameEntityImages['SKEWER']['image']['images'][number]>>,) {
+            return new InGameImage_RegularContainer(image.imagesWithAssociation.slice([0, 4, 8, 12, 16, 20,],),)
         }
 
     }
 
     /** A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage} for only the {@link TREE} */
     private static readonly EditorAsTree = class EditorAsTree_EntityImages
-        extends EntityImages.ExistantEditor<'Tree', typeof EditorEntityImages['TREE']['image']['images'][number]> {
+        extends EntityImages.ExistantEditor<'Tree', NonNullable<typeof EditorEntityImages['TREE']['image']['images'][number]>> {
 
         public constructor() { super('Tree', EditorEntityImages.TREE,) }
 
-        protected override _createImage(image: EditorImage<typeof EditorEntityImages['TREE']['image']['images'][number]>,) {
-            return new EditorImageContainer(new ArrayAsCollection(image.imagesWithAssociation,).slice([0, 1, 2, 3, 4,],).toArray(),)
+        protected override _createImage(image: EditorImage<NonNullable<typeof EditorEntityImages['TREE']['image']['images'][number]>>,) {
+            return new EditorImageContainer(image.imagesWithAssociation.take(5,),)
         }
 
     }

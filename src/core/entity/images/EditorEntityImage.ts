@@ -1,4 +1,4 @@
-import type {Array} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
 
 import type {EntityImage}     from 'core/entity/images/EntityImage'
 import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
@@ -9,6 +9,6 @@ import type {Themes}          from 'core/theme/Themes'
 export interface EditorEntityImage<out T extends EditorImageFile = EditorImageFile, >
     extends EntityImage<T> {
 
-    readonly imagesWithAssociation: Array<readonly [Times, GameStyles, Themes, T,]>
+    readonly imagesWithAssociation: CollectionHolder<readonly [Times, GameStyles, Themes, T,]>
 
 }

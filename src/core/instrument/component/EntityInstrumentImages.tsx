@@ -26,10 +26,10 @@ export default function EntityInstrumentImages({value,}: EntityInstrumentImagesP
         new ArrayAsCollection(value.reference.entities,)
             .map(it => EntityCompanion.getValueByName(it.americanEnglish,).image,)
             .map(it =>
-                new ArrayAsCollection(it.get(SMW,),).getFirstOrNull()
-                ?? new ArrayAsCollection(it.get(NSMBU,),).getFirstOrNull()
-                ?? new ArrayAsCollection(it.get(SMB3,),).getFirstOrNull()
-                ?? new ArrayAsCollection(it.get(SMB,),).getFirstOrNull(),)
+                it.get(SMW,).getFirstOrNull()
+                ?? it.get(NSMBU,).getFirstOrNull()
+                ?? it.get(SMB3,).getFirstOrNull()
+                ?? it.get(SMB,).getFirstOrNull(),)
             .filterNotNull()
             .map(it =>
                 <Image key={`Instrument entity image (${it.path}/${it.name})`} file={it}/>,)

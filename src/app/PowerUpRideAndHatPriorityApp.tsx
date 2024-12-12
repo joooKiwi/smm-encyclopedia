@@ -70,33 +70,33 @@ const fireFlower_smwImages =   FIRE_FLOWER.editorImage.get(SMW,).take(1,)
 const fireFlower_nsmbuImages = FIRE_FLOWER.editorImage.get(NSMBU,).take(1,)
 const fireFlower_sm3dwImages = FIRE_FLOWER.editorImage.get(SM3DW,).take(1,)
 
-const mysteryMushroom_images =    new ArrayAsCollection(MYSTERY_MUSHROOM.inGameImage.get(SMB,),)
-const weirdMushroom_images =      new ArrayAsCollection(WEIRD_MUSHROOM.inGameImage.get(SMB,),)
+const mysteryMushroom_images =    MYSTERY_MUSHROOM.inGameImage.get(SMB,)
+const weirdMushroom_images =      WEIRD_MUSHROOM.inGameImage.get(SMB,)
 const masterSword_images =        MASTER_SWORD.editorImage.get(SMB,)
-const superballFlower_images =    new ArrayAsCollection(SUPERBALL_FLOWER.editorImage.images,).take(1,)
-const bigMushroom_images =        new ArrayAsCollection(BIG_MUSHROOM.editorImage.images,).take(1,)
-const bigMushroomClassic_images = new ArrayAsCollection(BIG_MUSHROOM_CLASSIC.editorImage.images,).take(1,)
-const bigMushroomModern_images =  new ArrayAsCollection(BIG_MUSHROOM_MODERN.editorImage.images,).take(1,)
-const smb2Mushroom_images =       new ArrayAsCollection(SMB2_MUSHROOM.editorImage.images,).take(1,)
+const superballFlower_images =    SUPERBALL_FLOWER.editorImage.images.take(1,)
+const bigMushroom_images =        BIG_MUSHROOM.editorImage.images.take(1,)
+const bigMushroomClassic_images = BIG_MUSHROOM_CLASSIC.editorImage.images.take(1,)
+const bigMushroomModern_images =  BIG_MUSHROOM_MODERN.editorImage.images.take(1,)
+const smb2Mushroom_images =       SMB2_MUSHROOM.editorImage.images.take(1,)
 
-const superLeaf_images = new ArrayAsCollection(SUPER_LEAF.editorImage.images,).take(1,)
-const frogSuit_images =  new ArrayAsCollection(FROG_SUIT.editorImage.images,).take(1,)
+const superLeaf_images = SUPER_LEAF.editorImage.images.take(1,)
+const frogSuit_images =  FROG_SUIT.editorImage.images.take(1,)
 
-const capeFeather_images =  new ArrayAsCollection(CAPE_FEATHER.editorImage.images,).take(1,)
-const powerBalloon_images = new ArrayAsCollection(POWER_BALLOON.editorImage.images,).take(1,)
+const capeFeather_images =  CAPE_FEATHER.editorImage.images.take(1,)
+const powerBalloon_images = POWER_BALLOON.editorImage.images.take(1,)
 
-const propellerMushroom_images = new ArrayAsCollection(PROPELLER_MUSHROOM.editorImage.images,).take(1,)
-const superAcorn_images =        new ArrayAsCollection(SUPER_ACORN.editorImage.images,).take(1,)
+const propellerMushroom_images = PROPELLER_MUSHROOM.editorImage.images.take(1,)
+const superAcorn_images =        SUPER_ACORN.editorImage.images.take(1,)
 
-const superBell_images =       new ArrayAsCollection(SUPER_BELL.editorImage.images,).take(1,)
-const superHammer_images =     new ArrayAsCollection(SUPER_HAMMER.editorImage.images,).take(1,)
-const boomerangFlower_images = new ArrayAsCollection(BOOMERANG_FLOWER.editorImage.images,).take(1,)
+const superBell_images =       SUPER_BELL.editorImage.images.take(1,)
+const superHammer_images =     SUPER_HAMMER.editorImage.images.take(1,)
+const boomerangFlower_images = BOOMERANG_FLOWER.editorImage.images.take(1,)
 
-const cannonBox_images =      new ArrayAsCollection(CANNON_BOX.editorImage.images,)
-const propellerBox_images =   new ArrayAsCollection(PROPELLER_BOX.editorImage.images,)
-const goombaMask_images =     new ArrayAsCollection(GOOMBA_MASK.editorImage.images,)
-const bulletBillMask_images = new ArrayAsCollection(BULLET_BILL_MASK.editorImage.images,)
-const redPowBox_images =      new ArrayAsCollection(RED_POW_BOX.editorImage.images,)
+const cannonBox_images =      CANNON_BOX.editorImage.images
+const propellerBox_images =   PROPELLER_BOX.editorImage.images
+const goombaMask_images =     GOOMBA_MASK.editorImage.images
+const bulletBillMask_images = BULLET_BILL_MASK.editorImage.images
+const redPowBox_images =      RED_POW_BOX.editorImage.images
 
 const superStar_smbImages =   SUPER_STAR.editorImage.get(SMB,)
 const superStar_smb3Images =  SUPER_STAR.editorImage.get(SMB3,)
@@ -104,16 +104,16 @@ const superStar_smwImages =   SUPER_STAR.editorImage.get(SMW,)
 const superStar_nsmbuImages = SUPER_STAR.editorImage.get(NSMBU,)
 const superStar_sm3dwImages = SUPER_STAR.editorImage.get(SM3DW,)
 
-const shoe_smbImages =  new ArrayAsCollection(SHOE.inGameImage.get(SMB,),).take(1,)
-const shoe_smb3Images = new ArrayAsCollection(SHOE.inGameImage.get(SMB3,),).take(1,)
+const shoe_smbImages =  SHOE.inGameImage.get(SMB,).take(1,)
+const shoe_smb3Images = SHOE.inGameImage.get(SMB3,).take(1,)
 
-const stiletto_smbImages =  new ArrayAsCollection(STILETTO.inGameImage.get(SMB,),).take(1,)
-const stiletto_smb3Images = new ArrayAsCollection(STILETTO.inGameImage.get(SMB3,),).take(1,)
+const stiletto_smbImages =  STILETTO.inGameImage.get(SMB,).take(1,)
+const stiletto_smb3Images = STILETTO.inGameImage.get(SMB3,).take(1,)
 
-const yoshi_smwImages =   new ArrayAsCollection(YOSHI_EGG.inGameImage.get(SMW,),).take(1,)
+const yoshi_smwImages =   YOSHI_EGG.inGameImage.get(SMW,).take(1,)
 const yoshi_nsmbuImages = YOSHI_EGG.editorImage.get(NSMBU,).take(1,)
 
-const redYoshi_smwImages =   new ArrayAsCollection(RED_YOSHI_EGG.inGameImage.get(SMW,),).take(1,)
+const redYoshi_smwImages =   RED_YOSHI_EGG.inGameImage.get(SMW,).take(1,)
 const redYoshi_nsmbuImages = RED_YOSHI_EGG.editorImage.get(NSMBU,).take(1,)
 
 const buzzyShell_smbImages =   BUZZY_SHELL.editorImage.get(SMB,).take(1,)
@@ -134,14 +134,14 @@ const dryBonesShell_nsmbuImages = DRY_BONES_SHELL.editorImage.get(NSMBU,)
 const clownCar_smbImages =   KOOPA_CLOWN_CAR.editorImage.get(SMB,)
 const clownCar_smb3Images =  KOOPA_CLOWN_CAR.editorImage.get(SMB3,)
 const clownCar_smwImages =   KOOPA_CLOWN_CAR.editorImage.get(SMW,)
-const clownCar_nsmbuImages = new ArrayAsCollection(JUNIOR_CLOWN_CAR.editorImage.images,)
+const clownCar_nsmbuImages = JUNIOR_CLOWN_CAR.editorImage.images
 
 const fireClownCar_smbImages =   FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMB,)
 const fireClownCar_smb3Images =  FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMB3,)
 const fireClownCar_smwImages =   FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMW,)
-const fireClownCar_nsmbuImages = new ArrayAsCollection(FIRE_JUNIOR_CLOWN_CAR.editorImage.images,)
+const fireClownCar_nsmbuImages = FIRE_JUNIOR_CLOWN_CAR.editorImage.images
 
-const car_images = new ArrayAsCollection(KOOPA_TROOPA_CAR.editorImage.images,)
+const car_images = KOOPA_TROOPA_CAR.editorImage.images
 
 const lakituCloud_smbImages =  LAKITU_CLOUD.editorImage.get(SMB,)
 const lakituCloud_smb3Images =  LAKITU_CLOUD.editorImage.get(SMB3,)

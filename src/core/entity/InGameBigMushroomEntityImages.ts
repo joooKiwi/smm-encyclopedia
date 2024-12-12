@@ -65,10 +65,10 @@ export abstract class InGameBigMushroomEntityImages
             }
 
             public get image(): InGameImage_BigMushroom<InGameSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME>> {
-                return this.#image ??= new InGameImage_BigMushroomContainer(this._createImageFiles(this.fileNames,),)
+                return this.#image ??= new InGameImage_BigMushroomContainer(this._createImageFiles(new ArrayAsCollection(this.fileNames,),),)
             }
 
-            protected abstract _createImageFiles(fileNames: Array<FILE_NAME>,): CollectionHolder<InGameSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME>>
+            protected abstract _createImageFiles(fileNames: CollectionHolder<FILE_NAME>,): CollectionHolder<InGameSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME>>
 
         }
 
@@ -86,9 +86,9 @@ export abstract class InGameBigMushroomEntityImages
             super(englishName, fileNames,)
         }
 
-        protected override _createImageFiles(fileNames: Array<FILE_NAME>,) {
+        protected override _createImageFiles(fileNames: CollectionHolder<FILE_NAME>,) {
             const folderName = this.folderName
-            return new ArrayAsCollection(fileNames,).map(it => bigMushroomImage(this, folderName, it,),)
+            return fileNames.map(it => bigMushroomImage(this, folderName, it,),)
         }
 
     }
@@ -103,12 +103,12 @@ export abstract class InGameBigMushroomEntityImages
             super(englishName, fileNames,)
         }
 
-        protected override _createImageFiles(fileNames: Array<FILE_NAME>,) {
+        protected override _createImageFiles(fileNames: CollectionHolder<FILE_NAME>,) {
             const folderName = this.folderName
             const folderNameAlt = `${folderName} D` as const
             return new ArrayAsCollection(join<InGameSmm1ImageFile_BigMushroom<`${FOLDER_NAME}${| EmptyString | ' D'}`, FILE_NAME, NAME>>(
-                new ArrayAsCollection(fileNames).map(it => bigMushroomImage(this, folderName, it,),),
-                new ArrayAsCollection(fileNames).map(it => bigMushroomImage(this, folderNameAlt, it,),),
+                fileNames.map(it => bigMushroomImage(this, folderName, it,),),
+                fileNames.map(it => bigMushroomImage(this, folderNameAlt, it,),),
             ),)
         }
 

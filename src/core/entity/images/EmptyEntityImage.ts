@@ -1,10 +1,10 @@
-import type {EmptyArray} from '@joookiwi/type'
+import type {EmptyCollectionHolder} from '@joookiwi/collection'
 
 import type {EntityImage} from 'core/entity/images/EntityImage'
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 export class EmptyEntityImage
     implements EntityImage<never> {
@@ -21,8 +21,8 @@ export class EmptyEntityImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly images = EMPTY_ARRAY
+    public readonly images = EMPTY_COLLECTION_HOLDER
 
-    public get(): EmptyArray { return EMPTY_ARRAY }
+    public get(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
 
 }

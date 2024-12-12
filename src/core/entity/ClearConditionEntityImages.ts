@@ -13,6 +13,7 @@ import {clearConditionImage}          from 'core/entity/file/fileCreator'
 import {EmptyClearConditionImage}     from 'core/entity/images/clearCondition/EmptyClearConditionImage'
 import {ClearConditionImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import NSMBU = GameStyles.NSMBU
 import SMB =   GameStyles.SMB
@@ -72,26 +73,22 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [SMW,   clearConditionImage(this, fileName, 'MW',),],
                 [NSMBU, clearConditionImage(this, fileName, 'WU',),],
                 [SM3DW, clearConditionImage(this, fileName, '3W',),],
-            ],)
+            ],),)
         }
 
     }
@@ -105,15 +102,11 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<'M1', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'M1', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer([[SMB, clearConditionImage(this, this.#fileName, 'M1',),],],)
+            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[SMB, clearConditionImage(this, this.fileName, 'M1',),],],),)
         }
 
     }
@@ -124,15 +117,11 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<'M3', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'M3', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer([[SMB3, clearConditionImage(this, this.#fileName, 'M3',),],],)
+            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[SMB3, clearConditionImage(this, this.fileName, 'M3',),],],),)
         }
 
     }
@@ -143,15 +132,11 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<'MW', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'MW', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer([[SMW, clearConditionImage(this, this.#fileName, 'MW',),],],)
+            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[SMW, clearConditionImage(this, this.fileName, 'MW',),],],),)
         }
 
     }
@@ -162,15 +147,11 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<'WU', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'WU', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer([[NSMBU, clearConditionImage(this, this.#fileName, 'WU',),],],)
+            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[NSMBU, clearConditionImage(this, this.fileName, 'WU',),],],),)
         }
 
     }
@@ -181,15 +162,11 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<'3W', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'3W', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer([[SM3DW, clearConditionImage(this, this.#fileName, '3W',),],],)
+            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[SM3DW, clearConditionImage(this, this.fileName, '3W',),],],),)
         }
 
     }
@@ -203,23 +180,19 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,  clearConditionImage(this, fileName, 'M1',),],
                 [SMB3, clearConditionImage(this, fileName, 'M3',),],
-            ],)
+            ],),)
         }
 
     }
@@ -230,23 +203,19 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMW,   clearConditionImage(this, fileName, 'MW',),],
                 [NSMBU, clearConditionImage(this, fileName, 'WU',),],
-            ],)
+            ],),)
         }
 
     }
@@ -262,25 +231,21 @@ export abstract class ClearConditionEntityImages
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages.Existant<NAME> {
 
-        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>>
-        readonly #fileName
+        #image?: ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3' | '3W', FILE_NAME, NAME>>
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>> {
+        public get image(): ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3' | '3W', FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [SM3DW, clearConditionImage(this, fileName, '3W',),],
-            ],)
+            ],),)
         }
 
     }
@@ -294,24 +259,20 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [NSMBU, clearConditionImage(this, fileName, 'WU',),],
-            ],)
+            ],),)
         }
 
     }
@@ -325,24 +286,20 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,  clearConditionImage(this, fileName, 'M1',),],
                 [SMB3, clearConditionImage(this, fileName, 'M3',),],
                 [SMW,  clearConditionImage(this, fileName, 'MW',),],
-            ],)
+            ],),)
         }
 
     }
@@ -356,25 +313,21 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [SMW,   clearConditionImage(this, fileName, 'MW',),],
                 [NSMBU, clearConditionImage(this, fileName, 'WU',),],
                 [SM3DW, clearConditionImage(this, fileName, '3W',),],
-            ],)
+            ],),)
         }
 
     }
@@ -385,25 +338,21 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [NSMBU, clearConditionImage(this, fileName, 'WU',),],
                 [SM3DW, clearConditionImage(this, fileName, '3W',),],
-            ],)
+            ],),)
         }
 
     }
@@ -414,25 +363,21 @@ export abstract class ClearConditionEntityImages
         extends ClearConditionEntityImages.Existant<NAME> {
 
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>
-        readonly #fileName
 
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super(englishName,)
-            this.#fileName = fileName
-        }
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>([
+            const fileName = this.fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>(new ArrayAsCollection([
                 [SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [SMW,   clearConditionImage(this, fileName, 'MW',),],
                 [NSMBU, clearConditionImage(this, fileName, 'WU',),],
-            ],)
+            ],),)
         }
 
     }

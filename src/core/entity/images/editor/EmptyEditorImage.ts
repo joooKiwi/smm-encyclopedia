@@ -5,7 +5,6 @@ import type {ClassWithNullObjectPattern, EmptyEditorImageName} from 'util/ClassW
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_ARRAY =             Empty.EMPTY_ARRAY
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 /** @singleton */
@@ -25,8 +24,8 @@ export class EmptyEditorImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly images = EMPTY_ARRAY
-    public readonly imagesWithAssociation = EMPTY_ARRAY
+    public readonly images = EMPTY_COLLECTION_HOLDER
+    public readonly imagesWithAssociation = EMPTY_COLLECTION_HOLDER
 
     public get(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
     public getFromTheme(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }

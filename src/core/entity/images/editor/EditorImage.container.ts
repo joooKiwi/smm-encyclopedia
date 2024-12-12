@@ -1,5 +1,5 @@
-import type {CollectionHolder}              from '@joookiwi/collection'
-import type {Array, MutableArray, Nullable} from '@joookiwi/type'
+import {CollectionHolder}            from '@joookiwi/collection'
+import type {MutableArray, Nullable} from '@joookiwi/type'
 
 import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
 import type {EditorImage}     from 'core/entity/images/editor/EditorImage'
@@ -17,24 +17,24 @@ export class EditorImageContainer<const T extends EditorImageFile, >
 
     //region -------------------- Fields --------------------
 
-    #images?: Array<T>
+    #images?: CollectionHolder<T>
     readonly #imagesWithAssociation
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(images: Array<readonly [Times, GameStyles, Themes, T,]>,) {
+    public constructor(images: CollectionHolder<readonly [Times, GameStyles, Themes, T,]>,) {
         this.#imagesWithAssociation = images
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get images(): Array<T> {
-        return this.#images ??= new ArrayAsCollection(this.imagesWithAssociation,).map(it => it[3],).toArray()
+    public get images(): CollectionHolder<T> {
+        return this.#images ??= this.imagesWithAssociation.map(it => it[3],)
     }
 
-    public get imagesWithAssociation(): Array<readonly [Times, GameStyles, Themes, T,]> {
+    public get imagesWithAssociation(): CollectionHolder<readonly [Times, GameStyles, Themes, T,]> {
         return this.#imagesWithAssociation
     }
 
@@ -45,7 +45,7 @@ export class EditorImageContainer<const T extends EditorImageFile, >
         if (gameStyle == null && theme == null && time == null)
             return EMPTY_COLLECTION_HOLDER
 
-        const images = new ArrayAsCollection(this.imagesWithAssociation,)
+        const images = this.imagesWithAssociation
         if (images.isEmpty)
             return EMPTY_COLLECTION_HOLDER
 
@@ -89,19 +89,19 @@ export class EditorImageContainer<const T extends EditorImageFile, >
     public getFromGameStyle(gameStyle: Nullable<GameStyles>,): CollectionHolder<T> {
         if (gameStyle == null)
             return EMPTY_COLLECTION_HOLDER
-        return new ArrayAsCollection(this.imagesWithAssociation,).filter(it => it[1] === gameStyle,).map(it => it[3],)
+        return this.imagesWithAssociation.filter(it => it[1] === gameStyle,).map(it => it[3],)
     }
 
     public getFromTheme(theme: Nullable<Themes>,): CollectionHolder<T> {
         if (theme == null)
             return EMPTY_COLLECTION_HOLDER
-        return new ArrayAsCollection(this.imagesWithAssociation,).filter(it => it[2] === theme,).map(it => it[3],)
+        return this.imagesWithAssociation.filter(it => it[2] === theme,).map(it => it[3],)
     }
 
     public getFromTime(time: Nullable<Times>,): CollectionHolder<T> {
         if (time == null)
             return EMPTY_COLLECTION_HOLDER
-        return new ArrayAsCollection(this.imagesWithAssociation,).filter(it => it[0] === time,).map(it => it[3],)
+        return this.imagesWithAssociation.filter(it => it[0] === time,).map(it => it[3],)
     }
 
     //endregion -------------------- Methods --------------------

@@ -1,11 +1,11 @@
-import type {EmptyArray} from '@joookiwi/type'
+import type {EmptyCollectionHolder} from '@joookiwi/collection'
 
 import type {InGameImage_Regular}                              from 'core/entity/images/inGame/InGameImage_Regular'
 import type {ClassWithNullObjectPattern, EmptyInGameImageName} from 'util/ClassWithNullObjectPattern'
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 /** @singleton */
 export class EmptyInGameImage_Regular
@@ -24,11 +24,11 @@ export class EmptyInGameImage_Regular
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly images = EMPTY_ARRAY
-    public readonly imagesWithAssociation = EMPTY_ARRAY
+    public readonly images = EMPTY_COLLECTION_HOLDER
+    public readonly imagesWithAssociation = EMPTY_COLLECTION_HOLDER
 
-    public get(): EmptyArray {
-        return EMPTY_ARRAY
+    public get(): EmptyCollectionHolder {
+        return EMPTY_COLLECTION_HOLDER
     }
 
     public toString(): EmptyInGameImageName {

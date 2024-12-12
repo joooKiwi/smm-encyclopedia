@@ -119,7 +119,7 @@ function HasAMushroomVariantListItem({reference,}: EntitySideContentListItemProp
         return null
 
     return <li id="hasAMushroomVariant-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(SUPER_MUSHROOM.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={SUPER_MUSHROOM.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Has a mushroom variant',)}</span>
     </li>
 }
@@ -131,7 +131,7 @@ function CanBeInAParachuteListItem({reference,}: EntitySideContentListItemProper
 
     const comment = reference.canBeInAParachuteComment
     return <li id="canBeInAParachute-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(PARACHUTE.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={PARACHUTE.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be put in a parachute',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {acronym: LOOSE_COIN_LIMIT.acronym!, limit: LOOSE_COIN_LIMIT.reference.languageValue,},)
@@ -146,7 +146,7 @@ function CanHaveWingsListItem({reference,}: EntitySideContentListItemProperties,
 
     const comment = reference.canHaveWingsComment
     return <li id="canHaveWings-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(WING.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={WING.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can have wings',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {acronym: LOOSE_COIN_LIMIT.acronym!, limit: LOOSE_COIN_LIMIT.reference.languageValue,},)
@@ -161,7 +161,7 @@ function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentLi
 
     const comment = reference.canMakeASoundOutOfAMusicBlockComment
     return <li id="canMakeASoundOutOfAMusicBlock-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(MUSIC_BLOCK.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={MUSIC_BLOCK.image.get(SMW,).getFirst()} className="entity-image"/>
         <div id="instrument-sounds" className="d-inline-block">
             {new ArrayAsCollection(reference.instruments,).map(it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
                 <InstrumentSound key={`Instrument sound #${i + 1}`} value={it}/>,)}
@@ -178,7 +178,7 @@ function CanContainOrSpawnAKeyListItem({reference,}: EntitySideContentListItemPr
     if (!reference.canContainOrSpawnAKey)
         return null
     return <li id="canContainOrSpawnAKey-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(KEY.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={KEY.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can contain or spawn a Key',)}</span>
     </li>
 }
@@ -192,7 +192,7 @@ function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideConten
     const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
     const comment = reference.isAffectDirectlyByAnOnOffStateComment
     return <li id="isAffectDirectlyByAnOnOffState-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(ON_OFF_SWITCH.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={ON_OFF_SWITCH.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Is affected directly by an ON/OFF state',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {entity: entityAsLowerCase,},)
@@ -205,7 +205,7 @@ function CanSpawnOutOfAPipeListItem({reference,}: EntitySideContentListItemPrope
     if (!reference.canSpawnOutOfAPipe)
         return null
     return <li id="canSpawnOutOfAPipe-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(PIPE.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={PIPE.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can spawn out of a Pipe',)}</span>
     </li>
 }
@@ -218,7 +218,7 @@ function CanBePutOnASwingingClawListItem({reference,}: EntitySideContentListItem
     const images = SWINGING_CLAW.inGameImage.get(SMW,)
     return <li id="canBePutOnASwingingClaw-listItem" className="list-group-item">
         <div id="swingingClaw-groupImage" className="d-inline-flex flex-column align-items-center">
-            {new ArrayAsCollection(images,).slice([0, 1, 1, 1, 1, 2,],).map((it, i,) =>
+            {images.slice([0, 1, 1, 1, 1, 2,],).map((it, i,) =>
                 <Image key={`Swinging Claw image #${i + 1}`} file={it} className="entity-image"/>,)}
         </div>
         <span>{unfinishedText('Can be put on a Swinging Claw',)}</span>
@@ -231,8 +231,8 @@ function CanBeThrownByALakituListItem({reference,}: EntitySideContentListItemPro
         return null
     return <li id="canBeThrownByALakitu-listItem" className="list-group-item">
         <div id="lakitu-groupImage" className="d-inline-flex">
-            <Image partialId="animated-lakitu" images={new ArrayAsCollection(LAKITU.inGameImage.get(SMW,),).map( it => ({file: it,}),).toArray()}/>
-            <Image partialId="animated-lakituCloud" images={new ArrayAsCollection(LAKITU_CLOUD.inGameImage.get(SMW,),).map(it => ({file: it,}),).toArray()}/>
+            <Image partialId="animated-lakitu" images={LAKITU.inGameImage.get(SMW,).map( it => ({file: it,}),).toArray()}/>
+            <Image partialId="animated-lakituCloud" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),).toArray()}/>
             {/*<Image file={new ArrayAsCollection(LAKITU.inGameImage.get(SMW,),).get(2,)} className="entity-image top-0"/>*/}
             {/*<Image file={new ArrayAsCollection(LAKITU_CLOUD.image.get(SMW,),).getFirst()} className="entity-image bottom-0"/>*/}
         </div>
@@ -245,8 +245,8 @@ function CanBePutInALakituCloudListItem({reference,}: EntitySideContentListItemP
     if (!reference.canBePutInALakituCloud)
         return null
     return <li id="canBePutInALakituCloud-listItem" className="list-group-item">
-        <Image partialId="animated-cloud" className="d-inline-block" images={new ArrayAsCollection(LAKITU_CLOUD.inGameImage.get(SMW,),).map(it => ({file: it,}),).toArray()}/>
-        {/*<Image file={new ArrayAsCollection(LAKITU_CLOUD.image.get(SMW,),).getFirst()} className="entity-image"/>*/}
+        <Image partialId="animated-cloud" className="d-inline-block" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),).toArray()}/>
+        {/*<Image file={LAKITU_CLOUD.image.get(SMW,).getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be put in a Lakitu’s Cloud',)}</span>
     </li>
 }
@@ -256,8 +256,8 @@ function CanBePutInAClownCarListItem({reference,}: EntitySideContentListItemProp
     if (!reference.canBePutInAClownCar)
         return null
     return <li id="canBePutInAClownCar-listItem" className="list-group-item">
-        <Image partialId="animated-clownCar" className="d-inline-block" images={new ArrayAsCollection(KOOPA_CLOWN_CAR.inGameImage.get(SMW,),).slice(8, 11,).map(it => ({file: it,}),).toArray()}/>
-        {/*<Image file={new ArrayAsCollection(KOOPA_CLOWN_CAR.image.get(SMW,),).getFirst()} className="entity-image"/>*/}
+        <Image partialId="animated-clownCar" className="d-inline-block" images={KOOPA_CLOWN_CAR.inGameImage.get(SMW,).slice(8, 11,).map(it => ({file: it,}),).toArray()}/>
+        {/*<Image file={KOOPA_CLOWN_CAR.image.get(SMW,).getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be put in a Clown Car',)}</span>
     </li>
 }
@@ -267,7 +267,7 @@ function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentL
     if (!reference.canBeFiredOutOfABillBlaster)
         return null
     return <li id="canBeFiredOutOfABillBlaster-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(BILL_BLASTER.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={BILL_BLASTER.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be fired out of a Bill Blaster',)}</span>
     </li>
 }
@@ -277,7 +277,7 @@ function CanComeOutOfABlockListItem({reference,}: EntitySideContentListItemPrope
     if (!reference.canComeOutOfABlock)
         return null
     return <li id="canComeOutOfABlock-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(QUESTION_MARK_BLOCK.image.get(SMW,),).getFirst()} className="entity-image"/>
+        <Image file={QUESTION_MARK_BLOCK.image.get(SMW,).getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can come out of a Block',)}</span>
     </li>
 }
@@ -287,7 +287,7 @@ function CanBePutInATreeListItem({reference,}: EntitySideContentListItemProperti
     if (!reference.canBePutInATree)
         return null
     return <li id="canBePutInATree-listItem" className="list-group-item">
-        <Image file={new ArrayAsCollection(TREE.image.images,).getFirst()} className="entity-image"/>
+        <Image file={TREE.image.images.getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be put in a Tree',)}</span>
     </li>
 }
@@ -297,7 +297,7 @@ function CanBeStackedListItem({reference,}: EntitySideContentListItemProperties,
     if (!reference.canBeStacked)
         return null
 
-    const images = new ArrayAsCollection(GALOOMBA.inGameImage.get(SMW,),).slice(3, 4,)
+    const images = GALOOMBA.inGameImage.get(SMW,).slice(3, 4,)
     return <li id="canBeStacked-listItem" className="list-group-item">
         <div id="stackedGaloomba-groupImage" className="d-inline-flex flex-column">
             <Image partialId="animated-galoomba1" images={images.map(it => ({file: it,}),).toArray()}/>

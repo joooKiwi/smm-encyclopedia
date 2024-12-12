@@ -1,4 +1,4 @@
-import type {Array} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {InGameImageFile}     from 'core/entity/file/EntityImageFile'
 import type {InGameEntityImage}   from 'core/entity/images/InGameEntityImage'
@@ -22,18 +22,18 @@ export class InGameEntityImageContainer<const T extends InGameImageFile, >
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get images(): Array<T> {
+    public get images(): CollectionHolder<T> {
         return this.#reference.images
     }
 
-    public get imagesWithAssociation(): Array<readonly [GameStyles, T,]> {
+    public get imagesWithAssociation(): CollectionHolder<readonly [GameStyles, T,]> {
         return this.#reference.imagesWithAssociation
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(gameStyle: GameStyles,): Array<T> {
+    public get(gameStyle: GameStyles,): CollectionHolder<T> {
         return this.#reference.get(gameStyle,)
     }
 

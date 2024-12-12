@@ -3,7 +3,7 @@ import type {ClassWithNullObjectPattern, EmptyClearConditionImageName} from 'uti
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 export class EmptyClearConditionImage
     implements ClearConditionImage, ClassWithNullObjectPattern<EmptyClearConditionImageName> {
@@ -20,8 +20,8 @@ export class EmptyClearConditionImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly images = EMPTY_ARRAY
-    public readonly imagesWithAssociation = EMPTY_ARRAY
+    public readonly images = EMPTY_COLLECTION_HOLDER
+    public readonly imagesWithAssociation = EMPTY_COLLECTION_HOLDER
 
     public get(): never { throw new ReferenceError(`No game style exist on an empty clear condition image.`,) }
 

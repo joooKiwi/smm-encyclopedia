@@ -58,18 +58,18 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SMB,)
-            if (imageFiles == null) {
+            const images = image.get(SMB,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SMB images", image,)
                 return null
             }
 
-            // if (imageFiles.length === 0)
+            // if (images.length === 0)
             //     if (reference.isInSuperMarioBrosStyle)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
                 <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
             ,)}</Fragment>
         }
@@ -82,18 +82,18 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SMB3,)
-            if (imageFiles == null) {
+            const images = image.get(SMB3,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SMB3 images", image,)
                 return null
             }
 
-            // if (imageFiles.length === 0)
+            // if (images.isEmpty)
             //     if (reference.isInSuperMarioBros3Style)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
                 <Image key={`Entity image (${englishName} - SMB3 - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
             ,)}</Fragment>
         }
@@ -106,18 +106,18 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SMW,)
-            if (imageFiles == null) {
+            const images = image.get(SMW,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SMW images", image,)
                 return null
             }
 
-            // if (imageFiles.length === 0)
+            // if (images.isEmpty)
             //     if (reference.isInSuperMarioWorldStyle)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
                 <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
             ,)}</Fragment>
         }
@@ -130,18 +130,18 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(NSMBU,)
-            if (imageFiles == null) {
+            const images = image.get(NSMBU,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the NSMBU images", image,)
                 return null
             }
 
-            // if (imageFiles.length === 0)
+            // if (images.isEmpty)
             //     if (reference.isInNewSuperMarioBrosUStyle)
             //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i) =>
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i) =>
                 <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
             ,)}</Fragment>
         }
@@ -154,18 +154,18 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,) {
-            const imageFiles = image.get(SM3DW,)
-            if (imageFiles == null) {
+            const images = image.get(SM3DW,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SM3DW images", image,)
                 return null
             }
 
-            if (imageFiles.length === 0)
+            if (images.isEmpty)
                 if (reference.isInSuperMario3DWorldStyle)
                     return <ImageAs3dModel key={`unique image (${englishName})`}/>
 
-            return <Fragment key={`unique image (${englishName})`}>{new ArrayAsCollection(imageFiles,).map((it, i,) =>
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
                 <Image key={`Entity image (${englishName} - SM3DW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
             ,)}</Fragment>
         }
