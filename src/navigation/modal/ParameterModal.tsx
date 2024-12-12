@@ -37,13 +37,13 @@ import SMM3DS =             Games.SMM3DS
 import SMW =                GameStyles.SMW
 import TimeCompanion =      Times.Companion
 
-//region -------------------- Helper constants --------------------
+//region -------------------- Import from deconstruction --------------------
 
 const {DAY, NIGHT,} = Times
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,} = Themes
 const instanceHandler = BootstrapInstanceHandler.get
 
-//endregion -------------------- Helper constants --------------------
+//endregion -------------------- Import from deconstruction --------------------
 
 /** @reactComponent */
 export default function ParameterModal() {

@@ -27,8 +27,7 @@ import EMPTY_STRING =        Empty.EMPTY_STRING
 import InstrumentCompanion = Instruments.Companion
 import SMW =                 GameStyles.SMW
 
-
-//region -------------------- Helper constants --------------------
+//region -------------------- Import from deconstruction --------------------
 
 const {BILL_BLASTER, KOOPA_CLOWN_CAR, KEY, GALOOMBA, LAKITU,
     LAKITU_CLOUD, MUSIC_BLOCK, ON_OFF_SWITCH, PARACHUTE, PIPE,
@@ -36,7 +35,7 @@ const {BILL_BLASTER, KOOPA_CLOWN_CAR, KEY, GALOOMBA, LAKITU,
 const {LOOSE_COIN_LIMIT,} = Limits
 const {ENTITY,} = OtherWordInTheGames
 
-//endregion -------------------- Helper constants --------------------
+//endregion -------------------- Import from deconstruction --------------------
 
 interface EntitySideContentProperties
     extends ReactProperties {
