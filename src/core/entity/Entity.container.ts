@@ -1,8 +1,8 @@
-import type {Lazy}                        from '@joookiwi/lazy'
-import type {Array, NullOr, NullOrString} from '@joookiwi/type'
-import {lazyOf}                           from '@joookiwi/lazy'
+import type {CollectionHolder}     from '@joookiwi/collection'
+import type {NullOr, NullOrString} from '@joookiwi/type'
+import {lazyOf}                    from '@joookiwi/lazy'
 
-import type {Entity, PossibleOtherEntities}                                                                                                                                     from 'core/entity/Entity'
+import type {Entity}                                                                                                                                                            from 'core/entity/Entity'
 import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                     from 'core/entity/properties/instrument/loader.types'
 import type {PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
@@ -32,32 +32,8 @@ export class EntityContainer
     readonly #isInDayTime
     readonly #isInNightTime
 
-    readonly #instruments
-
-    readonly #referencesInSuperMarioBrosStyle
-    readonly #referencesInSuperMarioBros3Style
-    readonly #referencesInSuperMarioWorldStyle
-    readonly #referencesInNewSuperMarioBrosUStyle
-    readonly #referencesInSuperMario3DWorldStyle
-
-    readonly #referencesInGroundTheme
-    readonly #referencesInUndergroundTheme
-    readonly #referencesInUnderwaterTheme
-    readonly #referencesInDesertTheme
-    readonly #referencesInSnowTheme
-    readonly #referencesInSkyTheme
-    readonly #referencesInForestTheme
-    readonly #referencesInGhostHouseTheme
-    readonly #referencesInAirshipTheme
-    readonly #referencesInCastleTheme
-
     readonly #referencesInDayTime
     readonly #referencesInNightTime
-
-    readonly #everyGameStyleReferences
-    readonly #everyThemeReferences
-    readonly #everyTimeReferences
-    readonly #everyReferences
 
     #gameMap?: GameMap<Entity>
     #gameStyleMap?: GameStyleMap<Entity>
@@ -114,56 +90,32 @@ export class EntityContainer
         public readonly isInCollectedLooseCoinLimit: BooleanOrNotApplicable,
         public readonly otherLimit: NullOr<| NotApplicable | Limits>, public readonly otherLimitComment: NullOrString<PossibleOtherLimitComment>, public readonly isUnknown_otherLimit: boolean,
 
-        instruments: Lazy<Array<Instrument>>,
+        public readonly instruments: CollectionHolder<Instrument>,
         public readonly canMakeASoundOutOfAMusicBlock: boolean, public readonly canMakeASoundOutOfAMusicBlockComment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>,
 
-        referencesInSuperMarioBrosStyle: Lazy<PossibleOtherEntities>, referencesInSuperMarioBros3Style: Lazy<PossibleOtherEntities>,
-        referencesInSuperMarioWorldStyle: Lazy<PossibleOtherEntities>, referencesInNewSuperMarioBrosUStyle: Lazy<PossibleOtherEntities>,
-        referencesInSuperMario3DWorldStyle: Lazy<PossibleOtherEntities>,
+        public readonly referencesInSuperMarioBrosStyle: CollectionHolder<Entity>, public readonly referencesInSuperMarioBros3Style: CollectionHolder<Entity>,
+        public readonly referencesInSuperMarioWorldStyle: CollectionHolder<Entity>, public readonly referencesInNewSuperMarioBrosUStyle: CollectionHolder<Entity>,
+        public readonly referencesInSuperMario3DWorldStyle: CollectionHolder<Entity>,
 
-        referencesInGroundTheme: Lazy<PossibleOtherEntities>, referencesInUndergroundTheme: Lazy<PossibleOtherEntities>,
-        referencesInUnderwaterTheme: Lazy<PossibleOtherEntities>, referencesInDesertTheme: Lazy<PossibleOtherEntities>,
-        referencesInSnowTheme: Lazy<PossibleOtherEntities>, referencesInSkyTheme: Lazy<PossibleOtherEntities>,
-        referencesInForestTheme: Lazy<PossibleOtherEntities>, referencesInGhostHouseTheme: Lazy<PossibleOtherEntities>,
-        referencesInAirshipTheme: Lazy<PossibleOtherEntities>, referencesInCastleTheme: Lazy<PossibleOtherEntities>,
+        public readonly referencesInGroundTheme: CollectionHolder<Entity>, public readonly referencesInUndergroundTheme: CollectionHolder<Entity>,
+        public readonly referencesInUnderwaterTheme: CollectionHolder<Entity>, public readonly referencesInDesertTheme: CollectionHolder<Entity>,
+        public readonly referencesInSnowTheme: CollectionHolder<Entity>, public readonly referencesInSkyTheme: CollectionHolder<Entity>,
+        public readonly referencesInForestTheme: CollectionHolder<Entity>, public readonly referencesInGhostHouseTheme: CollectionHolder<Entity>,
+        public readonly referencesInAirshipTheme: CollectionHolder<Entity>, public readonly referencesInCastleTheme: CollectionHolder<Entity>,
 
-        referencesInDayTime: Lazy<PossibleOtherEntities>, referencesInNightTime: Lazy<PossibleOtherEntities>,
+        referencesInDayTime: CollectionHolder<Entity>, referencesInNightTime: CollectionHolder<Entity>,
 
-        everyGameStyleReferences: Lazy<Array<Entity>>,
-        everyThemeReferences: Lazy<Array<Entity>>,
-        everyTimeReferences: Lazy<Array<Entity>>,
-        everyReferences: Lazy<Array<Entity>>,
+        public readonly everyGameStyleReferences: CollectionHolder<Entity>,
+        public readonly everyThemeReferences: CollectionHolder<Entity>,
+        public readonly everyTimeReferences: CollectionHolder<Entity>,
+        public readonly everyReferences: CollectionHolder<Entity>,
     ) {
         super(name, lazyOf(category,),)
         this.#isInDayTime = isInDayTime
         this.#isInNightTime = isInNightTime
 
-        this.#instruments = instruments
-
-        this.#referencesInSuperMarioBrosStyle = referencesInSuperMarioBrosStyle
-        this.#referencesInSuperMarioBros3Style = referencesInSuperMarioBros3Style
-        this.#referencesInSuperMarioWorldStyle = referencesInSuperMarioWorldStyle
-        this.#referencesInNewSuperMarioBrosUStyle = referencesInNewSuperMarioBrosUStyle
-        this.#referencesInSuperMario3DWorldStyle = referencesInSuperMario3DWorldStyle
-
-        this.#referencesInGroundTheme = referencesInGroundTheme
-        this.#referencesInUndergroundTheme = referencesInUndergroundTheme
-        this.#referencesInUnderwaterTheme = referencesInUnderwaterTheme
-        this.#referencesInDesertTheme = referencesInDesertTheme
-        this.#referencesInSnowTheme = referencesInSnowTheme
-        this.#referencesInSkyTheme = referencesInSkyTheme
-        this.#referencesInForestTheme = referencesInForestTheme
-        this.#referencesInGhostHouseTheme = referencesInGhostHouseTheme
-        this.#referencesInAirshipTheme = referencesInAirshipTheme
-        this.#referencesInCastleTheme = referencesInCastleTheme
-
         this.#referencesInDayTime = referencesInDayTime
         this.#referencesInNightTime = referencesInNightTime
-
-        this.#everyGameStyleReferences = everyGameStyleReferences
-        this.#everyThemeReferences = everyThemeReferences
-        this.#everyTimeReferences = everyTimeReferences
-        this.#everyReferences = everyReferences
     }
 
     //endregion -------------------- Constructor --------------------
@@ -172,45 +124,17 @@ export class EntityContainer
     public get isInDayTheme() {   return this.#isInDayTime }
     public get isInNightTheme() { return this.#isInNightTime }
 
-    public get instruments() { return this.#instruments.value }
-
-    //region -------------------- References --------------------
-
-    public get referenceInSuperMarioBrosStyle() {     return this.#referencesInSuperMarioBrosStyle.value }
-    public get referenceInSuperMarioBros3Style() {    return this.#referencesInSuperMarioBros3Style.value }
-    public get referenceInSuperMarioWorldStyle() {    return this.#referencesInSuperMarioWorldStyle.value }
-    public get referenceInNewSuperMarioBrosUStyle() { return this.#referencesInNewSuperMarioBrosUStyle.value }
-    public get referenceInSuperMario3DWorldStyle() {  return this.#referencesInSuperMario3DWorldStyle.value }
-
-    public get referenceInGroundTheme() {      return this.#referencesInGroundTheme.value }
-    public get referenceInUndergroundTheme() { return this.#referencesInUndergroundTheme.value }
-    public get referenceInUnderwaterTheme() {  return this.#referencesInUnderwaterTheme.value }
-    public get referenceInDesertTheme() {      return this.#referencesInDesertTheme.value }
-    public get referenceInSnowTheme() {        return this.#referencesInSnowTheme.value }
-    public get referenceInSkyTheme() {         return this.#referencesInSkyTheme.value }
-    public get referenceInForestTheme() {      return this.#referencesInForestTheme.value }
-    public get referenceInGhostHouseTheme() {  return this.#referencesInGhostHouseTheme.value }
-    public get referenceInAirshipTheme() {     return this.#referencesInAirshipTheme.value }
-    public get referenceInCastleTheme() {      return this.#referencesInCastleTheme.value }
-
-    public get referenceInDayTheme() {    return this.#referencesInDayTime.value }
-    public get referenceInNightTheme() { return this.#referencesInNightTime.value }
-
-    public get everyGameStyleReferences() { return this.#everyGameStyleReferences.value }
-    public get everyThemeReferences() {     return this.#everyThemeReferences.value }
-    public get everyTimeReferences() {      return this.#everyTimeReferences.value }
-    public get everyReferences() {          return this.#everyReferences.value }
-
-    //endregion -------------------- References --------------------
+    public get referencesInDayTheme() {    return this.#referencesInDayTime }
+    public get referencesInNightTheme() { return this.#referencesInNightTime }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getReferenceFrom(theme: Themes,): PossibleOtherEntities
-    public getReferenceFrom(time: Times,): PossibleOtherEntities
-    public getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
-    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
-    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
+    public getReferencesFrom(theme: Themes,): CollectionHolder<Entity>
+    public getReferencesFrom(time: Times,): CollectionHolder<Entity>
+    public getReferencesFrom(gameStyle: GameStyles,): CollectionHolder<Entity>
+    public getReferencesFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): CollectionHolder<Entity>
+    public getReferencesFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
         return gameStyleOrThemeOrTime.getReference(this,)
     }
 

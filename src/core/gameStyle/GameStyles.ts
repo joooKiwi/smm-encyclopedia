@@ -12,7 +12,7 @@ import type {CompanionEnumDeclaration_GameStyles}                               
 import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleSimpleValue, PossibleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
 import type {GameStyle}                                                                                                                                         from 'core/gameStyle/GameStyle'
 import type {GameStyleImageFile}                                                                                                                                from 'core/gameStyle/file/GameStyleImageFile'
-import type {Entity, PossibleOtherEntities}                                                                                                                     from 'core/entity/Entity'
+import type {Entity}                                                                                                                                            from 'core/entity/Entity'
 import type {GameStyleProperty}                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {ClassUsedInRoute}                                                                                                                                  from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                from 'util/file/image/ClassWithImageFile'
@@ -42,7 +42,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         ClassWithEnglishName<NAME>,
         ClassWithImageFile<GameStyleImageFile>,
         ClassUsedInRoute<URL_VALUE, URL_NAME>,
-        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
+        PropertyReferenceGetter<Entity, CollectionHolder<Entity>>,
         PropertyGetter<GameStyleProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -54,7 +54,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInSuperMarioBrosStyle
+            return entity.referencesInSuperMarioBrosStyle
         }
 
     }('SMB', 'M1', '1', '1', 'Super Mario Bros.',)
@@ -65,7 +65,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInSuperMarioBros3Style
+            return entity.referencesInSuperMarioBros3Style
         }
 
     }('SMB3', 'M3', '3', '3', 'Super Mario Bros. 3',)
@@ -76,7 +76,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInSuperMarioWorldStyle
+            return entity.referencesInSuperMarioWorldStyle
         }
 
     }('SMW', 'MW', 'W', 'w', 'Super Mario World',)
@@ -87,7 +87,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInNewSuperMarioBrosUStyle
+            return entity.referencesInNewSuperMarioBrosUStyle
         }
 
     }('NSMBU', 'WU',  'U', 'u', 'New Super Mario Bros. U',)
@@ -98,7 +98,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInSuperMario3DWorldStyle
+            return entity.referencesInSuperMario3DWorldStyle
         }
 
     }('SM3DW', '3W', '3DW', '3dw', 'Super Mario 3D World',)
@@ -589,7 +589,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
     public abstract get(property: GameStyleProperty,): boolean
 
-    public abstract getReference(entity: Entity,): PossibleOtherEntities
+    public abstract getReference(entity: Entity,): CollectionHolder<Entity>
 
     //endregion -------------------- Methods --------------------
 

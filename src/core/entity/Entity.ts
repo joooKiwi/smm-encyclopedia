@@ -1,4 +1,5 @@
-import type {Array, EmptyArray, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
+import type {NullOr, NullOrString} from '@joookiwi/type'
 
 import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {GameProperty}                                                                                                                                                      from 'core/entity/properties/game/GameProperty'
@@ -102,7 +103,7 @@ export interface Entity
     //endregion -------------------- Limit properties --------------------
     //region -------------------- Instrument properties --------------------
 
-    readonly instruments: Array<Instrument>
+    readonly instruments: CollectionHolder<Instrument>
 
     readonly canMakeASoundOutOfAMusicBlock: boolean
     readonly canMakeASoundOutOfAMusicBlockComment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
@@ -110,39 +111,39 @@ export interface Entity
     //endregion -------------------- Instrument properties --------------------
     //region -------------------- Reference properties --------------------
 
-    readonly referenceInSuperMarioBrosStyle: PossibleOtherEntities
-    readonly referenceInSuperMarioBros3Style: PossibleOtherEntities
-    readonly referenceInSuperMarioWorldStyle: PossibleOtherEntities
-    readonly referenceInNewSuperMarioBrosUStyle: PossibleOtherEntities
-    readonly referenceInSuperMario3DWorldStyle: PossibleOtherEntities
+    readonly referencesInSuperMarioBrosStyle: CollectionHolder<Entity>
+    readonly referencesInSuperMarioBros3Style: CollectionHolder<Entity>
+    readonly referencesInSuperMarioWorldStyle: CollectionHolder<Entity>
+    readonly referencesInNewSuperMarioBrosUStyle: CollectionHolder<Entity>
+    readonly referencesInSuperMario3DWorldStyle: CollectionHolder<Entity>
 
-    readonly referenceInGroundTheme: PossibleOtherEntities
-    readonly referenceInUndergroundTheme: PossibleOtherEntities
-    readonly referenceInUnderwaterTheme: PossibleOtherEntities
-    readonly referenceInDesertTheme: PossibleOtherEntities
-    readonly referenceInSnowTheme: PossibleOtherEntities
-    readonly referenceInSkyTheme: PossibleOtherEntities
-    readonly referenceInForestTheme: PossibleOtherEntities
-    readonly referenceInGhostHouseTheme: PossibleOtherEntities
-    readonly referenceInAirshipTheme: PossibleOtherEntities
-    readonly referenceInCastleTheme: PossibleOtherEntities
+    readonly referencesInGroundTheme: CollectionHolder<Entity>
+    readonly referencesInUndergroundTheme: CollectionHolder<Entity>
+    readonly referencesInUnderwaterTheme: CollectionHolder<Entity>
+    readonly referencesInDesertTheme: CollectionHolder<Entity>
+    readonly referencesInSnowTheme: CollectionHolder<Entity>
+    readonly referencesInSkyTheme: CollectionHolder<Entity>
+    readonly referencesInForestTheme: CollectionHolder<Entity>
+    readonly referencesInGhostHouseTheme: CollectionHolder<Entity>
+    readonly referencesInAirshipTheme: CollectionHolder<Entity>
+    readonly referencesInCastleTheme: CollectionHolder<Entity>
 
-    readonly referenceInDayTheme: PossibleOtherEntities
-    readonly referenceInNightTheme: PossibleOtherEntities
+    readonly referencesInDayTheme: CollectionHolder<Entity>
+    readonly referencesInNightTheme: CollectionHolder<Entity>
 
-    getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
+    getReferencesFrom(gameStyle: GameStyles,): CollectionHolder<Entity>
 
-    getReferenceFrom(theme: Themes,): PossibleOtherEntities
+    getReferencesFrom(theme: Themes,): CollectionHolder<Entity>
 
-    getReferenceFrom(time: Times,): PossibleOtherEntities
+    getReferencesFrom(time: Times,): CollectionHolder<Entity>
 
-    getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
+    getReferencesFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): CollectionHolder<Entity>
 
 
-    readonly everyReferences: Array<Entity>
-    readonly everyGameStyleReferences: Array<Entity>
-    readonly everyThemeReferences: Array<Entity>
-    readonly everyTimeReferences: Array<Entity>
+    readonly everyReferences: CollectionHolder<Entity>
+    readonly everyGameStyleReferences: CollectionHolder<Entity>
+    readonly everyThemeReferences: CollectionHolder<Entity>
+    readonly everyTimeReferences: CollectionHolder<Entity>
 
     //endregion -------------------- Reference properties --------------------
 
@@ -176,5 +177,3 @@ export interface Entity
     //endregion -------------------- Conversion properties --------------------
 
 }
-
-export type PossibleOtherEntities = | EmptyArray | readonly [Entity,] | readonly [Entity, Entity,]

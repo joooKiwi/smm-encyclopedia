@@ -6,7 +6,7 @@ import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
 import type {PropertyGetter, PropertyReferenceGetter}                                              from 'core/PropertyGetter'
-import type {Entity, PossibleOtherEntities}                                                        from 'core/entity/Entity'
+import type {Entity}                                                                               from 'core/entity/Entity'
 import type {TimeProperty}                                                                         from 'core/entity/properties/time/TimeProperty'
 import type {CompanionEnumDeclaration_Times}                                                       from 'core/time/Times.companionEnum.declaration'
 import type {GroupUrl, Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath, PossibleUrl} from 'core/time/Times.types'
@@ -30,7 +30,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
     implements ClassWithEnglishName<NAME>,
         ClassWithImageFile<TimeImageFile<IMAGE_NAME>>,
         ClassUsedInRoute<URL, URL>,
-        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
+        PropertyReferenceGetter<Entity, CollectionHolder<Entity>>,
         PropertyGetter<TimeProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -42,7 +42,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInDayTheme
+            return entity.referencesInDayTheme
         }
 
     }('Day', 'day', 'Sun',)
@@ -53,7 +53,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInNightTheme
+            return entity.referencesInNightTheme
         }
 
     }('Night', 'night', 'Moon',)
@@ -213,7 +213,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
 
     public abstract get(property: TimeProperty,): boolean
 
-    public abstract getReference(entity: Entity,): PossibleOtherEntities
+    public abstract getReference(entity: Entity,): CollectionHolder<Entity>
 
     //endregion -------------------- Methods --------------------
 
