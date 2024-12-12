@@ -57,7 +57,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new EntityCategoryAppInterpreter()
 const items = appInterpreter.content
-const options = [EntityCategoryAppOption.NAME, EntityCategoryAppOption.ICON,] as const
+const options = EntityCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {

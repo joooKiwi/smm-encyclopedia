@@ -101,12 +101,7 @@ class ThemeAppInterpreter
 
 }
 
-const options = [
-    ThemeAppOption.ICON,
-    ThemeAppOption.ENDLESS_MARIO_ICON,
-    ThemeAppOption.NAME,
-    ThemeAppOption.NIGHT_EFFECT,
-] as const
+const options = ThemeAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {

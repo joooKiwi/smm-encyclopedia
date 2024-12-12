@@ -67,12 +67,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MiiCostumeAppInterpreter()
 const items = appInterpreter.content
-const options = [
-    MiiCostumeAppOption.IMAGE,
-    MiiCostumeAppOption.NAME,
-    MiiCostumeAppOption.OFFICIAL_NOTIFICATION,
-    MiiCostumeAppOption.CATEGORY,
-] as const
+const options = MiiCostumeAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperties,) {

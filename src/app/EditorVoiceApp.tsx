@@ -96,7 +96,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
     [ViewDisplays.TABLE, 'everyEditorVoice (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const options = [EditorVoiceAppOption.NAME, EditorVoiceAppOption.EDITOR_VOICE,] as const
+const options = EditorVoiceAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {

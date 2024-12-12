@@ -55,7 +55,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MedalAppInterpreter()
 const items = appInterpreter.content
-const options = [MedalAppOption.ICON, MedalAppOption.NAME,] as const
+const options = MedalAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {

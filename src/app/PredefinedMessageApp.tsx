@@ -57,7 +57,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new PredefinedMessageAppInterpreter()
 const items = appInterpreter.content
-const options = [PredefinedMessageAppOption.NAME,] as const
+const options = PredefinedMessageAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterProperties,) {

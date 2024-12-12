@@ -180,7 +180,7 @@ function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gam
     return<Table id="limit-table" items={items} options={getOptions(games,)} caption={gameContentTranslation(`limit.${type.type}.all`,)} headersColor="info"/>
 }
 
-function getOptions(games: GameCollection,): Array<LimitAppOption> {
+function getOptions(games: GameCollection,): CollectionHolder<LimitAppOption> {
     const options: MutableArray<LimitAppOption> = [
         LimitAppOption.ACRONYM,
         LimitAppOption.NAME,
@@ -194,7 +194,7 @@ function getOptions(games: GameCollection,): Array<LimitAppOption> {
         if (games.hasSmm2)
             options.push(LimitAppOption.AMOUNT_IN_SMM2,)
     }
-    return options
+    return new ArrayAsCollection(options,)
 }
 
 //region -------------------- List --------------------

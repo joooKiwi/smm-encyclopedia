@@ -211,7 +211,7 @@ function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}
     return <Table id="entity-table" items={items} options={getOptions(games, gameStyles,)} caption={getCaption()} onRowClicked={displaySideContent} headersColor="secondary"/>
 }
 
-function getOptions(games: GameCollection, gameStyles: GameStyleCollection, ): Array<EntityAppOption> {
+function getOptions(games: GameCollection, gameStyles: GameStyleCollection, ): CollectionHolder<EntityAppOption> {
     const {hasSmm2,} = games
     const options: MutableArray<EntityAppOption> = []
     if (gameStyles.hasSmb)
@@ -241,7 +241,7 @@ function getOptions(games: GameCollection, gameStyles: GameStyleCollection, ): A
             options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
     }
     options.push(EntityAppOption.PLAY_LIMIT,)
-    return options
+    return new ArrayAsCollection(options,)
 }
 
 function getCaption() {

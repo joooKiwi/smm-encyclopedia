@@ -94,7 +94,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
     [ViewDisplays.TABLE, 'everyCharacterName (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const options = [CharacterNameAppOption.NAME, CharacterNameAppOption.EDITOR_VOICE,] as const
+const options = CharacterNameAppOption.CompanionEnum.get.values
 const uniqueNameRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */

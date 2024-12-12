@@ -65,14 +65,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new EventCourseAppInterpreter()
 const items = appInterpreter.content
-const options = [
-    OfficialCourseAppOption.REWARD,
-    OfficialCourseAppOption.NAME,
-    OfficialCourseAppOption.DESCRIPTION,
-    OfficialCourseAppOption.GAME_STYLE_AND_AREAS,
-    OfficialCourseAppOption.TIME,
-    OfficialCourseAppOption.AVAILABILITY,
-] as const
+const options = OfficialCourseAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperties,) {

@@ -29,7 +29,7 @@ interface TableProperties<out CONTENT extends Content,
     readonly items: CollectionHolder<CONTENT>
 
     /** The option displayed in the {@link HTMLTableElement} */
-    readonly options: Array<Nullable<OPTION>>
+    readonly options: CollectionHolder<OPTION>
 
     /** The {@link HTMLTableCaptionElement} applicable to the table */
     readonly caption: ReactElementOrString
@@ -53,10 +53,9 @@ interface TableProperties<out CONTENT extends Content,
  * @reactComponent
  */
 export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, caption, color, headersColor, onRowClicked = EMPTY_CALLBACK,}: TableProperties<CONTENT, OPTION>,) {
-    const nonNullOptions = new ArrayAsCollection(options,).filterNotNull()
-    const associatedClass = retrieveAssociatedClass(nonNullOptions,)
-    const contents = retrieveContent(items, nonNullOptions,)
-    const headers = retrieveHeader(nonNullOptions,)
+    const associatedClass = retrieveAssociatedClass(options,)
+    const contents = retrieveContent(items, options,)
+    const headers = retrieveHeader(options,)
 
     return <div id={id} className={`ttable ${color == null ? EMPTY_STRING : `table-${color}`} ${headersColor == null ? EMPTY_STRING : `headers-${headersColor}`} w-100`}>
         <TableHeader associatedClass={associatedClass} headers={headers}/>

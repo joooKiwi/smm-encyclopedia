@@ -174,7 +174,7 @@ function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
     return <Table id="soundEffect-table" items={items} options={getOptions(games,)} caption={gameContentTranslation('sound effect.all',)} headersColor="info"/>
 }
 
-function getOptions(games: GameCollection,): Array<SoundEffectAppOption> {
+function getOptions(games: GameCollection,): CollectionHolder<SoundEffectAppOption> {
     const {hasSmm2, hasSmm1Or3ds,} = games
     const options: MutableArray<SoundEffectAppOption> = []
     if (hasSmm1Or3ds)
@@ -194,7 +194,7 @@ function getOptions(games: GameCollection,): Array<SoundEffectAppOption> {
         if (hasSmm2)
             options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
     }
-    return options
+    return new ArrayAsCollection(options,)
 }
 
 //region -------------------- List --------------------

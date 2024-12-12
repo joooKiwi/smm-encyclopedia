@@ -89,11 +89,7 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
     [ViewDisplays.TABLE, 'everyGameStyle (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const options = [
-    GameStyleAppOption.ICON,
-    GameStyleAppOption.NAME,
-    GameStyleAppOption.NIGHT_DESERT_WIND,
-] as const
+const options = GameStyleAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {

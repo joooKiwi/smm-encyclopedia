@@ -171,7 +171,7 @@ function SubContent({viewDisplay, games, gameStyles, times,}: InstrumentAppPrope
     return <Table id="instrument-table" items={items} options={getOptions(gameStyles,)} caption={gameContentTranslation('instrument.all',)} headersColor="info"/>
 }
 
-function getOptions(gameStyles: GameStyleCollection,): Array<InstrumentAppOption> {
+function getOptions(gameStyles: GameStyleCollection,): CollectionHolder<InstrumentAppOption> {
     const options: MutableArray<InstrumentAppOption> = [InstrumentAppOption.NAME,]
     if (gameStyles.hasSmb)
         options.push(InstrumentAppOption.REFERENCE_SMB,)
@@ -182,7 +182,7 @@ function getOptions(gameStyles: GameStyleCollection,): Array<InstrumentAppOption
     if (gameStyles.hasNsmbu)
         options.push(InstrumentAppOption.REFERENCE_NSMBU,)
     options.push(InstrumentAppOption.SOUND,)
-    return options
+    return new ArrayAsCollection(options,)
 }
 
 //region -------------------- List --------------------

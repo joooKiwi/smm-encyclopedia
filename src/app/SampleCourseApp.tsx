@@ -57,12 +57,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new SampleCourseInterpreter()
 const items = appInterpreter.content
-const options = [
-    SampleCourseAppOption.LEVEL_NUMBER,
-    SampleCourseAppOption.NAME,
-    SampleCourseAppOption.GAME_STYLE_AND_AREAS,
-    SampleCourseAppOption.TIME,
-] as const
+const options = SampleCourseAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {

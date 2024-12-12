@@ -73,7 +73,7 @@ class CourseTagAppInterpreter
 
 }
 
-const options = [CourseTagAppOption.NAME, CourseTagAppOption.FIRST_APPEARANCE,] as const
+const options = CourseTagAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {

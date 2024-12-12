@@ -76,26 +76,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new MysteryMushroomAppInterpreter()
 const items = appInterpreter.content
-const options = [
-    MysteryMushroomAppOption.CONDITION_TO_UNLOCK_IT,
-    MysteryMushroomAppOption.GAME,
-    MysteryMushroomAppOption.NAME,
-
-    MysteryMushroomAppOption.POWER_UP_COLLECTED,
-    MysteryMushroomAppOption.WAITING,
-    MysteryMushroomAppOption.TAUNT,
-    MysteryMushroomAppOption.PRESSING_DOWN,
-    MysteryMushroomAppOption.WALK,
-    MysteryMushroomAppOption.RUNNING,
-    MysteryMushroomAppOption.SWIMMING,
-    MysteryMushroomAppOption.JUMP,
-    MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
-    MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
-    MysteryMushroomAppOption.TURNING,
-    MysteryMushroomAppOption.CLIMBING,
-    MysteryMushroomAppOption.GOAL_POLE,
-    MysteryMushroomAppOption.LOST_A_LIFE,
-] as const
+const options = MysteryMushroomAppOption.CompanionEnum.get.values
 const uniqueEnglishNameRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */

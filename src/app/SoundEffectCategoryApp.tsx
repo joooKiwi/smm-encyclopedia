@@ -56,7 +56,7 @@ const viewDisplayAndRouteName = [
 ] as const satisfies Array<ViewAndRouteName>
 const appInterpreter = new SoundEffectCategoryAppInterpreter()
 const items = appInterpreter.content
-const options = [SoundEffectCategoryAppOption.NAME, SoundEffectCategoryAppOption.ICON,] as const
+const options = SoundEffectCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
