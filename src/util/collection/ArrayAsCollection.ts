@@ -1,106 +1,104 @@
 import type {Nullable, NullableNumber, NullableString, NullOr, NullOrNumber, NullOrUndefined}                                                                                                                                                                   from '@joookiwi/type'
 import type {CollectionHolder}                                                                                                                                                                                                                                  from '@joookiwi/collection'
-import type {CollectionHolder as CollectionHolder2}                                                                                                                                                                                                             from '@joookiwi/collection/src/CollectionHolder'
-import type {MinimalistCollectionHolder}                                                                                                                                                                                                                        from '@joookiwi/collection/src/MinimalistCollectionHolder'
+import type {MinimalistCollectionHolder}                                                                                                                                                                                                                        from '@joookiwi/collection'
 import type {CollectionIterator}                                                                                                                                                                                                                                from '@joookiwi/collection'
-import type {CollectionIterator as CollectionIterator2}                                                                                                                                                                                                         from '@joookiwi/collection/src/iterator/CollectionIterator'
-import type {BooleanCallback, IndexValueCallback, IndexValueWithReturnCallback, IndexWithReturnCallback, RestrainedBooleanCallback, ReverseBooleanCallback, ReverseRestrainedBooleanCallback, StringCallback, ValueIndexCallback, ValueIndexWithReturnCallback} from '@joookiwi/collection/src/type/callback'
+import type {BooleanCallback, IndexValueCallback, IndexValueWithReturnCallback, IndexWithReturnCallback, RestrainedBooleanCallback, ReverseBooleanCallback, ReverseRestrainedBooleanCallback, StringCallback, ValueIndexCallback, ValueIndexWithReturnCallback} from '@joookiwi/collection'
 
 import {AbstractCollectionHolder}                    from '@joookiwi/collection'
 import {LazyGenericCollectionHolder}                 from '@joookiwi/collection'
-import {EmptyCollectionException}                    from '@joookiwi/collection/src/exception/EmptyCollectionException'
-import {ForbiddenIndexException}                     from '@joookiwi/collection/src/exception/ForbiddenIndexException'
-import {IndexOutOfBoundsException}                   from '@joookiwi/collection/src/exception/IndexOutOfBoundsException'
-import {allByArray}                                  from '@joookiwi/collection/src/method/all'
-import {anyByArray}                                  from '@joookiwi/collection/src/method/any'
-import {dropByArray}                                 from '@joookiwi/collection/src/method/drop'
-import {dropLastByArray}                             from '@joookiwi/collection/src/method/dropLast'
-import {dropLastWhileByArray}                        from '@joookiwi/collection/src/method/dropLastWhile'
-import {dropLastWhileIndexedByArray}                 from '@joookiwi/collection/src/method/dropLastWhileIndexed'
-import {dropWhileByArray}                            from '@joookiwi/collection/src/method/dropWhile'
-import {dropWhileIndexedByArray}                     from '@joookiwi/collection/src/method/dropWhileIndexed'
-import {filterByArray}                               from '@joookiwi/collection/src/method/filter'
-import {filterIndexedByArray}                        from '@joookiwi/collection/src/method/filterIndexed'
-import {filterNotByArray}                            from '@joookiwi/collection/src/method/filterNot'
-import {filterNotIndexedByArray}                     from '@joookiwi/collection/src/method/filterNotIndexed'
-import {findFirstByArray}                            from '@joookiwi/collection/src/method/findFirst'
-import {findFirstOrNullByArray}                      from '@joookiwi/collection/src/method/findFirstOrNull'
-import {findFirstIndexedByArray}                     from '@joookiwi/collection/src/method/findFirstIndexed'
-import {findFirstIndexedOrNullByArray}               from '@joookiwi/collection/src/method/findFirstIndexedOrNull'
-import {findLastByArray}                             from '@joookiwi/collection/src/method/findLast'
-import {findLastOrNullByArray}                       from '@joookiwi/collection/src/method/findLastOrNull'
-import {findLastIndexedByArray}                      from '@joookiwi/collection/src/method/findLastIndexed'
-import {findLastIndexedOrNullByArray}                from '@joookiwi/collection/src/method/findLastIndexedOrNull'
-import {firstIndexOfByArray}                         from '@joookiwi/collection/src/method/firstIndexOf'
-import {firstIndexOfOrNullByArray}                   from '@joookiwi/collection/src/method/firstIndexOfOrNull'
-import {forEachByArray}                              from '@joookiwi/collection/src/method/forEach'
-import {forEachIndexedByArray}                       from '@joookiwi/collection/src/method/forEachIndexed'
-import {getFirstByArray}                             from '@joookiwi/collection/src/method/getFirst'
-import {getLastByArray}                              from '@joookiwi/collection/src/method/getLast'
-import {getOrElseByArray}                            from '@joookiwi/collection/src/method/getOrElse'
-import {getOrNullByArray}                            from '@joookiwi/collection/src/method/getOrNull'
-import {getFirstOrNullByArray}                       from '@joookiwi/collection/src/method/getFirstOrNull'
-import {getLastOrNullByArray}                        from '@joookiwi/collection/src/method/getLastOrNull'
-import {hasByArray}                                  from '@joookiwi/collection/src/method/has'
-import {hasAllWithArrayByArray}                      from '@joookiwi/collection/src/method/hasAll.withArray'
-import {hasAllWithCollectionHolderByArray}           from '@joookiwi/collection/src/method/hasAll.withCollectionHolder'
-import {hasAllWithCollectionIteratorByArray}         from '@joookiwi/collection/src/method/hasAll.withCollectionIterator'
-import {hasAllWithIterableByArray}                   from '@joookiwi/collection/src/method/hasAll.withIterable'
-import {hasAllWithMinimalistCollectionHolderByArray} from '@joookiwi/collection/src/method/hasAll.withMinimalistCollectionHolder'
-import {hasAllWithSetByArray}                        from '@joookiwi/collection/src/method/hasAll.withSet'
-import {hasDuplicateByArray}                         from '@joookiwi/collection/src/method/hasDuplicate'
-import {hasOneWithArrayByArray}                      from '@joookiwi/collection/src/method/hasOne.withArray'
-import {hasOneWithCollectionHolderByArray}           from '@joookiwi/collection/src/method/hasOne.withCollectionHolder'
-import {hasOneWithCollectionIteratorByArray}         from '@joookiwi/collection/src/method/hasOne.withCollectionIterator'
-import {hasOneWithIterableByArray}                   from '@joookiwi/collection/src/method/hasOne.withIterable'
-import {hasOneWithMinimalistCollectionHolderByArray} from '@joookiwi/collection/src/method/hasOne.withMinimalistCollectionHolder'
-import {hasOneWithSetByArray}                        from '@joookiwi/collection/src/method/hasOne.withSet'
-import {hasNullByArray}                              from '@joookiwi/collection/src/method/hasNull'
-import {indexOfFirstByArray}                         from '@joookiwi/collection/src/method/indexOfFirst'
-import {indexOfFirstIndexedByArray}                  from '@joookiwi/collection/src/method/indexOfFirstIndexed'
-import {indexOfFirstIndexedOrNullByArray}            from '@joookiwi/collection/src/method/indexOfFirstIndexedOrNull'
-import {indexOfFirstOrNullByArray}                   from '@joookiwi/collection/src/method/indexOfFirstOrNull'
-import {indexOfLastByArray}                          from '@joookiwi/collection/src/method/indexOfLast'
-import {indexOfLastIndexedByArray}                   from '@joookiwi/collection/src/method/indexOfLastIndexed'
-import {indexOfLastIndexedOrNullByArray}             from '@joookiwi/collection/src/method/indexOfLastIndexedOrNull'
-import {indexOfLastOrNullByArray}                    from '@joookiwi/collection/src/method/indexOfLastOrNull'
-import {joinToStringByArray}                         from '@joookiwi/collection/src/method/joinToString'
-import {lastIndexOfByArray}                          from '@joookiwi/collection/src/method/lastIndexOf'
-import {lastIndexOfOrNullByArray}                    from '@joookiwi/collection/src/method/lastIndexOfOrNull'
-import {noneByArray}                                 from '@joookiwi/collection/src/method/none'
-import {mapByArray}                                  from '@joookiwi/collection/src/method/map'
-import {mapIndexedByArray}                           from '@joookiwi/collection/src/method/mapIndexed'
-import {mapNotNullByArray}                           from '@joookiwi/collection/src/method/mapNotNull'
-import {mapNotNullIndexedByArray}                    from '@joookiwi/collection/src/method/mapNotNullIndexed'
-import {onEachByArray}                               from '@joookiwi/collection/src/method/onEach'
-import {onEachIndexedByArray}                        from '@joookiwi/collection/src/method/onEachIndexed'
-import {sliceWithARangeByArray}                      from '@joookiwi/collection/src/method/slice.withARange'
-import {sliceWithArrayByArray}                       from '@joookiwi/collection/src/method/slice.withArray'
-import {sliceWithIterableByArray}                    from '@joookiwi/collection/src/method/slice.withIterable'
-import {sliceWithCollectionHolderByArray}            from '@joookiwi/collection/src/method/slice.withCollectionHolder'
-import {sliceWithCollectionIteratorByArray}          from '@joookiwi/collection/src/method/slice.withCollectionIterator'
-import {sliceWithMinimalistCollectionHolderByArray}  from '@joookiwi/collection/src/method/slice.withMinimalistCollectionHolder'
-import {sliceWithSetByArray}                         from '@joookiwi/collection/src/method/slice.withSet'
-import {takeByArray}                                 from '@joookiwi/collection/src/method/take'
-import {takeLastByArray}                             from '@joookiwi/collection/src/method/takeLast'
-import {takeLastWhileByArray}                        from '@joookiwi/collection/src/method/takeLastWhile'
-import {takeLastWhileIndexedByArray}                 from '@joookiwi/collection/src/method/takeLastWhileIndexed'
-import {takeWhileByArray}                            from '@joookiwi/collection/src/method/takeWhile'
-import {takeWhileIndexedByArray}                     from '@joookiwi/collection/src/method/takeWhileIndexed'
-import {toArrayByArray}                              from '@joookiwi/collection/src/method/toArray'
-import {toIteratorByArray}                           from '@joookiwi/collection/src/method/toIterator'
-import {toLocaleLowerCaseStringByArray}              from '@joookiwi/collection/src/method/toLocaleLowerCaseString'
-import {toLocaleStringByArray}                       from '@joookiwi/collection/src/method/toLocaleString'
-import {toLocaleUpperCaseStringByArray}              from '@joookiwi/collection/src/method/toLocaleUpperCaseString'
-import {toLowerCaseStringByArray}                    from '@joookiwi/collection/src/method/toLowerCaseString'
-import {toMapByArray}                                from '@joookiwi/collection/src/method/toMap'
-import {toMutableArrayByArray}                       from '@joookiwi/collection/src/method/toMutableArray'
-import {toMutableMapByArray}                         from '@joookiwi/collection/src/method/toMutableMap'
-import {toMutableSetByArray}                         from '@joookiwi/collection/src/method/toMutableSet'
-import {toReverseByArray}                            from '@joookiwi/collection/src/method/toReverse'
-import {toSetByArray}                                from '@joookiwi/collection/src/method/toSet'
-import {toStringByArray}                             from '@joookiwi/collection/src/method/toString'
-import {toUpperCaseStringByArray}                    from '@joookiwi/collection/src/method/toUpperCaseString'
+import {EmptyCollectionException}                    from '@joookiwi/collection'
+import {ForbiddenIndexException}                     from '@joookiwi/collection'
+import {IndexOutOfBoundsException}                   from '@joookiwi/collection'
+import {allByArray}                                  from '@joookiwi/collection'
+import {anyByArray}                                  from '@joookiwi/collection'
+import {dropByArray}                                 from '@joookiwi/collection'
+import {dropLastByArray}                             from '@joookiwi/collection'
+import {dropLastWhileByArray}                        from '@joookiwi/collection'
+import {dropLastWhileIndexedByArray}                 from '@joookiwi/collection'
+import {dropWhileByArray}                            from '@joookiwi/collection'
+import {dropWhileIndexedByArray}                     from '@joookiwi/collection'
+import {filterByArray}                               from '@joookiwi/collection'
+import {filterIndexedByArray}                        from '@joookiwi/collection'
+import {filterNotByArray}                            from '@joookiwi/collection'
+import {filterNotIndexedByArray}                     from '@joookiwi/collection'
+import {findFirstByArray}                            from '@joookiwi/collection'
+import {findFirstOrNullByArray}                      from '@joookiwi/collection'
+import {findFirstIndexedByArray}                     from '@joookiwi/collection'
+import {findFirstIndexedOrNullByArray}               from '@joookiwi/collection'
+import {findLastByArray}                             from '@joookiwi/collection'
+import {findLastOrNullByArray}                       from '@joookiwi/collection'
+import {findLastIndexedByArray}                      from '@joookiwi/collection'
+import {findLastIndexedOrNullByArray}                from '@joookiwi/collection'
+import {firstIndexOfByArray}                         from '@joookiwi/collection'
+import {firstIndexOfOrNullByArray}                   from '@joookiwi/collection'
+import {forEachByArray}                              from '@joookiwi/collection'
+import {forEachIndexedByArray}                       from '@joookiwi/collection'
+import {getFirstByArray}                             from '@joookiwi/collection'
+import {getLastByArray}                              from '@joookiwi/collection'
+import {getOrElseByArray}                            from '@joookiwi/collection'
+import {getOrNullByArray}                            from '@joookiwi/collection'
+import {getFirstOrNullByArray}                       from '@joookiwi/collection'
+import {getLastOrNullByArray}                        from '@joookiwi/collection'
+import {hasByArray}                                  from '@joookiwi/collection'
+import {hasAllWithArrayByArray}                      from '@joookiwi/collection'
+import {hasAllWithCollectionHolderByArray}           from '@joookiwi/collection'
+import {hasAllWithCollectionIteratorByArray}         from '@joookiwi/collection'
+import {hasAllWithIterableByArray}                   from '@joookiwi/collection'
+import {hasAllWithMinimalistCollectionHolderByArray} from '@joookiwi/collection'
+import {hasAllWithSetByArray}                        from '@joookiwi/collection'
+import {hasDuplicateByArray}                         from '@joookiwi/collection'
+import {hasOneWithArrayByArray}                      from '@joookiwi/collection'
+import {hasOneWithCollectionHolderByArray}           from '@joookiwi/collection'
+import {hasOneWithCollectionIteratorByArray}         from '@joookiwi/collection'
+import {hasOneWithIterableByArray}                   from '@joookiwi/collection'
+import {hasOneWithMinimalistCollectionHolderByArray} from '@joookiwi/collection'
+import {hasOneWithSetByArray}                        from '@joookiwi/collection'
+import {hasNullByArray}                              from '@joookiwi/collection'
+import {indexOfFirstByArray}                         from '@joookiwi/collection'
+import {indexOfFirstIndexedByArray}                  from '@joookiwi/collection'
+import {indexOfFirstIndexedOrNullByArray}            from '@joookiwi/collection'
+import {indexOfFirstOrNullByArray}                   from '@joookiwi/collection'
+import {indexOfLastByArray}                          from '@joookiwi/collection'
+import {indexOfLastIndexedByArray}                   from '@joookiwi/collection'
+import {indexOfLastIndexedOrNullByArray}             from '@joookiwi/collection'
+import {indexOfLastOrNullByArray}                    from '@joookiwi/collection'
+import {joinToStringByArray}                         from '@joookiwi/collection'
+import {lastIndexOfByArray}                          from '@joookiwi/collection'
+import {lastIndexOfOrNullByArray}                    from '@joookiwi/collection'
+import {noneByArray}                                 from '@joookiwi/collection'
+import {mapByArray}                                  from '@joookiwi/collection'
+import {mapIndexedByArray}                           from '@joookiwi/collection'
+import {mapNotNullByArray}                           from '@joookiwi/collection'
+import {mapNotNullIndexedByArray}                    from '@joookiwi/collection'
+import {onEachByArray}                               from '@joookiwi/collection'
+import {onEachIndexedByArray}                        from '@joookiwi/collection'
+import {sliceWithARangeByArray}                      from '@joookiwi/collection'
+import {sliceWithArrayByArray}                       from '@joookiwi/collection'
+import {sliceWithIterableByArray}                    from '@joookiwi/collection'
+import {sliceWithCollectionHolderByArray}            from '@joookiwi/collection'
+import {sliceWithCollectionIteratorByArray}          from '@joookiwi/collection'
+import {sliceWithMinimalistCollectionHolderByArray}  from '@joookiwi/collection'
+import {sliceWithSetByArray}                         from '@joookiwi/collection'
+import {takeByArray}                                 from '@joookiwi/collection'
+import {takeLastByArray}                             from '@joookiwi/collection'
+import {takeLastWhileByArray}                        from '@joookiwi/collection'
+import {takeLastWhileIndexedByArray}                 from '@joookiwi/collection'
+import {takeWhileByArray}                            from '@joookiwi/collection'
+import {takeWhileIndexedByArray}                     from '@joookiwi/collection'
+import {toArrayByArray}                              from '@joookiwi/collection'
+import {toIteratorByArray}                           from '@joookiwi/collection'
+import {toLocaleLowerCaseStringByArray}              from '@joookiwi/collection'
+import {toLocaleStringByArray}                       from '@joookiwi/collection'
+import {toLocaleUpperCaseStringByArray}              from '@joookiwi/collection'
+import {toLowerCaseStringByArray}                    from '@joookiwi/collection'
+import {toMapByArray}                                from '@joookiwi/collection'
+import {toMutableArrayByArray}                       from '@joookiwi/collection'
+import {toMutableMapByArray}                         from '@joookiwi/collection'
+import {toMutableSetByArray}                         from '@joookiwi/collection'
+import {toReverseByArray}                            from '@joookiwi/collection'
+import {toSetByArray}                                from '@joookiwi/collection'
+import {toStringByArray}                             from '@joookiwi/collection'
+import {toUpperCaseStringByArray}                    from '@joookiwi/collection'
 
 import {Empty} from 'util/emptyVariables'
 
@@ -375,11 +373,11 @@ export class ArrayAsCollection<const T, >
     }
 
     protected override _hasOneByCollectionHolder(values: CollectionHolder<T>,): boolean {
-        return hasOneWithCollectionHolderByArray(this.reference, values as CollectionHolder2<T>,)
+        return hasOneWithCollectionHolderByArray(this.reference, values,)
     }
 
     protected override _hasOneByCollectionIterator(values: CollectionIterator<T>,): boolean {
-        return hasOneWithCollectionIteratorByArray(this.reference, values as CollectionIterator2<T>,)
+        return hasOneWithCollectionIteratorByArray(this.reference, values,)
     }
 
     protected override _hasOneByIterable(values: Iterable<T>,): boolean {
@@ -402,11 +400,11 @@ export class ArrayAsCollection<const T, >
     }
 
     protected override _hasAllByCollectionHolder(values: CollectionHolder<T>,): boolean {
-        return hasAllWithCollectionHolderByArray(this.reference, values as CollectionHolder2<T>,)
+        return hasAllWithCollectionHolderByArray(this.reference, values,)
     }
 
     protected override _hasAllByCollectionIterator(values: CollectionIterator<T>,): boolean {
-        return hasAllWithCollectionIteratorByArray(this.reference, values as CollectionIterator2<T>,)
+        return hasAllWithCollectionIteratorByArray(this.reference, values,)
     }
 
     protected override _hasAllByIterable(values: Iterable<T>,): boolean {
@@ -435,26 +433,26 @@ export class ArrayAsCollection<const T, >
     public override filter<const S extends T, >(predicate: RestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override filter(predicate: BooleanCallback<T>,): CollectionHolder<T>
     public override filter(predicate: BooleanCallback<T>,) {
-        return filterByArray(this.reference, predicate,) as CollectionHolder<T>
+        return filterByArray(this.reference, predicate,)
     }
 
     public override filterIndexed<const S extends T, >(predicate: ReverseRestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override filterIndexed(predicate: ReverseBooleanCallback<T>,): CollectionHolder<T>
     public override filterIndexed(predicate: ReverseBooleanCallback<T>,) {
-        return filterIndexedByArray(this.reference, predicate,) as CollectionHolder<T>
+        return filterIndexedByArray(this.reference, predicate,)
     }
 
 
     public override filterNot<const S extends T, >(predicate: RestrainedBooleanCallback<T, S>,): CollectionHolder<Exclude<T, S>>
     public override filterNot(predicate: BooleanCallback<T>,): CollectionHolder<T>
     public override filterNot(predicate: BooleanCallback<T>,) {
-        return filterNotByArray(this.reference, predicate,) as CollectionHolder<T>
+        return filterNotByArray(this.reference, predicate,)
     }
 
     public override filterNotIndexed<const S extends T, >(predicate: ReverseRestrainedBooleanCallback<T, S>,): CollectionHolder<Exclude<T, S>>
     public override filterNotIndexed(predicate: ReverseBooleanCallback<T>,): CollectionHolder<T>
     public override filterNotIndexed(predicate: ReverseBooleanCallback<T>,) {
-        return filterNotIndexedByArray(this.reference, predicate,) as CollectionHolder<T>
+        return filterNotIndexedByArray(this.reference, predicate,)
     }
 
 
@@ -481,136 +479,136 @@ export class ArrayAsCollection<const T, >
     //region -------------------- Slice --------------------
 
     protected override _sliceWith0Argument(): CollectionHolder<T> {
-        return sliceWithARangeByArray(this.reference,) as CollectionHolder<T>
+        return sliceWithARangeByArray(this.reference,)
     }
 
     protected override _sliceWith1Argument(fromIndex: number,): CollectionHolder<T> {
-        return sliceWithARangeByArray(this.reference, fromIndex,) as CollectionHolder<T>
+        return sliceWithARangeByArray(this.reference, fromIndex,)
     }
 
     protected override _sliceWith2Argument(fromIndex: number, toIndex: number,): CollectionHolder<T> {
-        return sliceWithARangeByArray(this.reference, fromIndex, toIndex,) as CollectionHolder<T>
+        return sliceWithARangeByArray(this.reference, fromIndex, toIndex,)
     }
 
     protected override _sliceWith2ArgumentWhere1stIsNull(fromIndex: NullOrUndefined, toIndex: number,): CollectionHolder<T> {
-        return sliceWithARangeByArray(this.reference, fromIndex, toIndex,) as CollectionHolder<T>
+        return sliceWithARangeByArray(this.reference, fromIndex, toIndex,)
     }
 
     protected override _sliceByArray(indices: readonly number[],): CollectionHolder<T> {
-        return sliceWithArrayByArray(this.reference, indices,) as CollectionHolder<T>
+        return sliceWithArrayByArray(this.reference, indices,)
     }
 
     protected override _sliceBySet(indices: ReadonlySet<number>,): CollectionHolder<T> {
-        return sliceWithSetByArray(this.reference, indices,) as CollectionHolder<T>
+        return sliceWithSetByArray(this.reference, indices,)
     }
 
     protected override _sliceByMinimalistCollectionHolder(indices: MinimalistCollectionHolder<number>,): CollectionHolder<T> {
-        return sliceWithMinimalistCollectionHolderByArray(this.reference, indices,) as CollectionHolder<T>
+        return sliceWithMinimalistCollectionHolderByArray(this.reference, indices,)
     }
 
     protected override _sliceByCollectionHolder(indices: CollectionHolder<number>,): CollectionHolder<T> {
-        return sliceWithCollectionHolderByArray(this.reference, indices as CollectionHolder2<number>,) as CollectionHolder<T>
+        return sliceWithCollectionHolderByArray(this.reference, indices,)
     }
 
     protected override _sliceByCollectionIterator(indices: CollectionIterator<number>,): CollectionHolder<T> {
-        return sliceWithCollectionIteratorByArray(this.reference, indices as CollectionIterator2<number>,) as CollectionHolder<T>
+        return sliceWithCollectionIteratorByArray(this.reference, indices,)
     }
 
     protected override _sliceByIterable(indices: Iterable<number>,): CollectionHolder<T> {
-        return sliceWithIterableByArray(this.reference, indices,) as CollectionHolder<T>
+        return sliceWithIterableByArray(this.reference, indices,)
     }
 
     //endregion -------------------- Slice --------------------
     //region -------------------- Take --------------------
 
     public override take(n: number,): CollectionHolder<T> {
-        return takeByArray(this.reference, n,) as CollectionHolder<T>
+        return takeByArray(this.reference, n,)
     }
 
     public override takeWhile<const S extends T, >(predicate: RestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override takeWhile(predicate: BooleanCallback<T>,): CollectionHolder<T>
     public override takeWhile(predicate: BooleanCallback<T>,) {
-        return takeWhileByArray(this.reference, predicate,) as CollectionHolder<T>
+        return takeWhileByArray(this.reference, predicate,)
     }
 
     public override takeWhileIndexed<const S extends T, >(predicate: ReverseRestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override takeWhileIndexed(predicate: ReverseBooleanCallback<T>,): CollectionHolder<T>
     public override takeWhileIndexed(predicate: ReverseBooleanCallback<T>,) {
-        return takeWhileIndexedByArray(this.reference, predicate,) as CollectionHolder<T>
+        return takeWhileIndexedByArray(this.reference, predicate,)
     }
 
 
     public override takeLast(n: number,): CollectionHolder<T> {
-        return takeLastByArray(this.reference, n,) as CollectionHolder<T>
+        return takeLastByArray(this.reference, n,)
     }
 
 
     public override takeLastWhile<const S extends T, >(predicate: RestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override takeLastWhile(predicate: BooleanCallback<T>,): CollectionHolder<T>
     public override takeLastWhile(predicate: BooleanCallback<T>,) {
-        return takeLastWhileByArray(this.reference, predicate,) as CollectionHolder<T>
+        return takeLastWhileByArray(this.reference, predicate,)
     }
 
     public override takeLastWhileIndexed<const S extends T, >(predicate: ReverseRestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override takeLastWhileIndexed(predicate: ReverseBooleanCallback<T>,): CollectionHolder<T>
     public override takeLastWhileIndexed(predicate: ReverseBooleanCallback<T>,) {
-        return takeLastWhileIndexedByArray(this.reference, predicate,) as CollectionHolder<T>
+        return takeLastWhileIndexedByArray(this.reference, predicate,)
     }
 
     //endregion -------------------- Take --------------------
     //region -------------------- Drop --------------------
 
     public override drop(n: number,): CollectionHolder<T> {
-        return dropByArray(this.reference, n,) as CollectionHolder<T>
+        return dropByArray(this.reference, n,)
     }
 
     public override dropWhile<const S extends T, >(predicate: RestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override dropWhile(predicate: BooleanCallback<T>,): CollectionHolder<T>
     public override dropWhile(predicate: BooleanCallback<T>,) {
-        return dropWhileByArray(this.reference, predicate,) as CollectionHolder<T>
+        return dropWhileByArray(this.reference, predicate,)
     }
 
     public override dropWhileIndexed<const S extends T, >(predicate: ReverseRestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override dropWhileIndexed(predicate: ReverseBooleanCallback<T>,): CollectionHolder<T>
     public override dropWhileIndexed(predicate: ReverseBooleanCallback<T>,) {
-        return dropWhileIndexedByArray(this.reference, predicate,) as CollectionHolder<T>
+        return dropWhileIndexedByArray(this.reference, predicate,)
     }
 
 
     public override dropLast(n: number,): CollectionHolder<T> {
-        return dropLastByArray(this.reference, n,) as CollectionHolder<T>
+        return dropLastByArray(this.reference, n,)
     }
 
     public override dropLastWhile<const S extends T, >(predicate: RestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override dropLastWhile(predicate: BooleanCallback<T>,): CollectionHolder<T>
     public override dropLastWhile(predicate: BooleanCallback<T>,) {
-        return dropLastWhileByArray(this.reference, predicate,) as CollectionHolder<T>
+        return dropLastWhileByArray(this.reference, predicate,)
     }
 
     public override dropLastWhileIndexed<const S extends T, >(predicate: ReverseRestrainedBooleanCallback<T, S>,): CollectionHolder<S>
     public override dropLastWhileIndexed(predicate: ReverseBooleanCallback<T>,): CollectionHolder<T>
     public override dropLastWhileIndexed(predicate: ReverseBooleanCallback<T>,) {
-        return dropLastWhileIndexedByArray(this.reference, predicate,) as CollectionHolder<T>
+        return dropLastWhileIndexedByArray(this.reference, predicate,)
     }
 
     //endregion -------------------- Drop --------------------
     //region -------------------- Map --------------------
 
     public override map<const U, >(transform: ValueIndexWithReturnCallback<T, U>,): CollectionHolder<U> {
-        return mapByArray(this.reference, transform,) as CollectionHolder<U>
+        return mapByArray(this.reference, transform,)
     }
 
     public override mapIndexed<const U, >(transform: IndexValueWithReturnCallback<T, U>,): CollectionHolder<U> {
-        return mapIndexedByArray(this.reference, transform,) as CollectionHolder<U>
+        return mapIndexedByArray(this.reference, transform,)
     }
 
 
     public override mapNotNull<const U extends NonNullable<unknown>, >(transform: ValueIndexWithReturnCallback<T, Nullable<U>>,): CollectionHolder<U> {
-        return mapNotNullByArray(this.reference, transform,) as CollectionHolder<U>
+        return mapNotNullByArray(this.reference, transform,)
     }
 
     public override mapNotNullIndexed<const U extends NonNullable<unknown>, >(transform: IndexValueWithReturnCallback<T, Nullable<U>>,): CollectionHolder<U> {
-        return mapNotNullIndexedByArray(this.reference, transform,) as CollectionHolder<U>
+        return mapNotNullIndexedByArray(this.reference, transform,)
     }
 
     //endregion -------------------- Map --------------------
@@ -649,7 +647,7 @@ export class ArrayAsCollection<const T, >
     //region -------------------- To reverse --------------------
 
     public override toReverse(fromIndex?: NullableNumber, toIndex?: NullableNumber,): CollectionHolder<T> {
-        return toReverseByArray(this.reference, fromIndex, toIndex,) as CollectionHolder<T>
+        return toReverseByArray(this.reference, fromIndex, toIndex,)
     }
 
     //endregion -------------------- To reverse --------------------
