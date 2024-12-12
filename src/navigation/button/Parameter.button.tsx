@@ -9,9 +9,8 @@ import {PARAMETER_MODAL_ID} from 'navigation/button/modalIds'
 export default function ParameterButton() {
     const htmlElement = useRef<HTMLButtonElement>(null,)
 
-    //FIXME: Re-enable once the global parameter works
     return <Tooltip option={({title: contentTranslation('Options',), placement: 'left',})} reference={htmlElement}>
-        <ModalButton ref={htmlElement} id="parameter-button" className="btn btn-outline-primary btn-navigation bi bi-gear-fill" elementToShow={PARAMETER_MODAL_ID} disabled aria-disabled>
+        <ModalButton ref={htmlElement} id="parameter-button" className="btn btn-outline-primary btn-navigation bi bi-gear-fill" elementToShow={PARAMETER_MODAL_ID}>
             <span className={`btn-navigation-text d-none d-lg-inline-block`}>{contentTranslation('Options',)}</span>
         </ModalButton>
     </Tooltip>
