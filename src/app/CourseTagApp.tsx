@@ -29,7 +29,6 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import SMM2 = Games.SMM2
 
@@ -50,7 +49,7 @@ class CourseTagAppInterpreter
     //endregion -------------------- Constructor --------------------
 
     public get content() {
-        return new ArrayAsCollection(this.#type.content,)
+        return this.#type.content
     }
 
     //region -------------------- Card --------------------

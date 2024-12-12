@@ -71,7 +71,7 @@ class LimitAppInterpreter
 
     public get content() {
         const games = this.#games
-        return new ArrayAsCollection(this.#type.content,).filter(it =>
+        return this.#type.content.filter(it =>
             games.hasAnyIn(it.reference,),)
     }
 
