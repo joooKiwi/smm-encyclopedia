@@ -10,6 +10,7 @@ import type {Name}                 from 'lang/name/Name'
  *
  * @see AppInterpreterWithCardList
  * @see AppInterpreterWithTable
+ * @deprecated This interface should no longer be used
  */
 export interface AppInterpreter<out CONTENT extends Content = Content, > {
 
@@ -19,4 +20,7 @@ export interface AppInterpreter<out CONTENT extends Content = Content, > {
 }
 
 //TODO change the ClassWithReference<{nameContainer}> to be ClassHavingReferenceWithName
-export type Content = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<{ get nameContainer(): Name<string> }>
+export interface Content
+    extends Enumerable<any, any>,
+        ClassWithEnglishName<string>,
+        ClassWithReference<{ get nameContainer(): Name<string> }> {}

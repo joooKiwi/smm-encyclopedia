@@ -55,7 +55,7 @@ export abstract class EntityAppOption
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMB = new class EntityAppOption_ImageInSmb extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(SMB,)
@@ -79,7 +79,7 @@ export abstract class EntityAppOption
         }
 
     }('smb-images',)
-    public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_ImageInSmb3 extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(SMB3,)
@@ -103,7 +103,7 @@ export abstract class EntityAppOption
         }
 
     }('smb3-images',)
-    public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMW = new class EntityAppOption_ImageInSmw extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(SMW,)
@@ -127,7 +127,7 @@ export abstract class EntityAppOption
         }
 
     }('smw-images',)
-    public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_ImageInNsmbu extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(NSMBU,)
@@ -151,7 +151,7 @@ export abstract class EntityAppOption
         }
 
     }('nsmbu-images',)
-    public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_ImageInSm3dw extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,) {
             const images = image.get(SM3DW,)

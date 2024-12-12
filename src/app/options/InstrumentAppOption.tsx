@@ -36,7 +36,7 @@ export abstract class InstrumentAppOption
         }
 
     }('name',)
-    public static readonly REFERENCE_SMB = new class InstrumentAppOption_Name extends InstrumentAppOption {
+    public static readonly REFERENCE_SMB = new class InstrumentAppOption_ReferenceSmb extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
             const references = enumeration.reference.entities
@@ -52,7 +52,7 @@ export abstract class InstrumentAppOption
         }
 
     }('reference-smb',)
-    public static readonly REFERENCE_SMB3 = new class InstrumentAppOption_Name extends InstrumentAppOption {
+    public static readonly REFERENCE_SMB3 = new class InstrumentAppOption_ReferenceSmb3 extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
             const references = enumeration.reference.entities
@@ -68,7 +68,7 @@ export abstract class InstrumentAppOption
         }
 
     }('reference-smb3',)
-    public static readonly REFERENCE_SMW = new class InstrumentAppOption_Name extends InstrumentAppOption {
+    public static readonly REFERENCE_SMW = new class InstrumentAppOption_ReferenceSmw extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
             const references = enumeration.reference.entities
@@ -84,7 +84,7 @@ export abstract class InstrumentAppOption
         }
 
     }('reference-smb3',)
-    public static readonly REFERENCE_NSMBU = new class InstrumentAppOption_Name extends InstrumentAppOption {
+    public static readonly REFERENCE_NSMBU = new class InstrumentAppOption_ReferenceNsmbu extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
             const references = enumeration.reference.entities
