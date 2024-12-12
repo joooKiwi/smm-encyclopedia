@@ -1,5 +1,6 @@
+import type {CollectionHolder}                     from '@joookiwi/collection'
 import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import type {Array, NullOr}                        from '@joookiwi/type'
+import type {NullOr}                               from '@joookiwi/type'
 import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
@@ -19,7 +20,7 @@ import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 /**
  * @todo change the english name to the enum name for the _createEntityReference
@@ -41,16 +42,12 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     private static readonly EntityEditorVoices = class EntityEditorVoices<const FILE_NAME extends string, >
         extends EditorVoices<FILE_NAME> {
 
-        protected override _retrieveReferences() {
-            return new ArrayAsCollection(this.entityReferences,).map(it => it.reference,).toArray()
-        }
-
         protected override _retrieveReference() {
-            return new ArrayAsCollection(this.entityReferences,).getFirst().reference
+            return this.entityReferences.getFirst().reference
         }
 
         public override get characterNameReferences() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
     }
@@ -59,16 +56,12 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     private static readonly CharacterNameEditorVoices = class CharacterNameEditorVoices<const FILE_NAME extends string, >
         extends EditorVoices<FILE_NAME> {
 
-        protected override _retrieveReferences() {
-            return new ArrayAsCollection(this.characterNameReferences,).map(it => it.reference,).toArray()
-        }
-
         protected override _retrieveReference() {
-            return new ArrayAsCollection(this.characterNameReferences,).getFirst().reference
+            return this.characterNameReferences.getFirst().reference
         }
 
         public override get entityReferences() {
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         }
 
     }
@@ -102,7 +95,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly BLOCK =                    new class EditorVoices_Block extends EditorVoices.EntityEditorVoices<'voice_block'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.BRICK_BLOCK, instance.CRISTAL_BLOCK, instance.ROTATING_BLOCK,]
+            return new ArrayAsCollection([instance.BRICK_BLOCK, instance.CRISTAL_BLOCK, instance.ROTATING_BLOCK,],)
         }
 
     }('Block', 'voice_block',)
@@ -110,7 +103,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly HARD_BLOCK =               new class EditorVoices_HardBlock extends EditorVoices.EntityEditorVoices<'voice_hardblock'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.HARD_BLOCK, instance.ROCK_BLOCK,]
+            return new ArrayAsCollection([instance.HARD_BLOCK, instance.ROCK_BLOCK,],)
         }
 
     }('Hard Block', 'voice_hardblock',)
@@ -176,14 +169,14 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly BIG_MUSHROOM_SMM1 =        new class EditorVoices_BigMushroomSMM1 extends EditorVoices.EntityEditorVoices<'voice_bigmashroom'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.BIG_MUSHROOM_CLASSIC, instance.BIG_MUSHROOM_MODERN,]
+            return new ArrayAsCollection([instance.BIG_MUSHROOM_CLASSIC, instance.BIG_MUSHROOM_MODERN,],)
         }
 
     }('Big Mushroom (SMM)', 'voice_bigmashroom',)
     public static readonly BIG_MUSHROOM_SMM2 =        new class EditorVoices_BigMushroomSMM2 extends EditorVoices.EntityEditorVoices<'voice_BigMushroom'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.BIG_MUSHROOM,]
+            return new ArrayAsCollection([instance.BIG_MUSHROOM,],)
         }
 
     }('Big Mushroom (SMM2)', 'voice_BigMushroom',)
@@ -279,7 +272,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly KOOPA_TROOPA =             new class EditorVoices_KoopaTroopa extends EditorVoices.EntityEditorVoices<'voice_koopatrooper'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.GREEN_KOOPA_TROOPA, instance.RED_KOOPA_TROOPA,]
+            return new ArrayAsCollection([instance.GREEN_KOOPA_TROOPA, instance.RED_KOOPA_TROOPA,],)
         }
 
     }('Koopa Troopa', 'voice_koopatrooper',)
@@ -287,7 +280,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly DRY_BONES =                new class EditorVoices_DryBones extends EditorVoices.EntityEditorVoices<'voice_drybones'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.DRY_BONES, instance.PARABONES,]
+            return new ArrayAsCollection([instance.DRY_BONES, instance.PARABONES,],)
         }
 
     }('Dry Bones', 'voice_drybones',)
@@ -296,7 +289,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly BUZZY_BEETLE =             new class EditorVoices_BuzzyBeetle extends EditorVoices.EntityEditorVoices<'voice_buzzybeatle'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.BUZZY_BEETLE, instance.PARA_BEETLE, instance.BUZZY_SHELL,]
+            return new ArrayAsCollection([instance.BUZZY_BEETLE, instance.PARA_BEETLE, instance.BUZZY_SHELL,],)
         }
 
     }('Buzzy Beetle', 'voice_buzzybeatle',)
@@ -304,7 +297,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly SPINY =                    new class EditorVoices_Spiny extends EditorVoices.EntityEditorVoices<'voice_spiny'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.SPINY, instance.WINGED_SPINY, instance.SPINY_EGG, instance.SPINY_SHELL,]
+            return new ArrayAsCollection([instance.SPINY, instance.WINGED_SPINY, instance.SPINY_EGG, instance.SPINY_SHELL,],)
         }
 
     }('Spiny', 'voice_spiny',)
@@ -312,7 +305,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly SPIKE_TOP =                new class EditorVoices_SpikeTop extends EditorVoices.EntityEditorVoices<'voice_spiketop'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.SPIKE_TOP, instance.WINGED_SPIKE_TOP, instance.FAST_SPIKE_TOP, instance.FAST_WINGED_SPIKE_TOP,]
+            return new ArrayAsCollection([instance.SPIKE_TOP, instance.WINGED_SPIKE_TOP, instance.FAST_SPIKE_TOP, instance.FAST_WINGED_SPIKE_TOP,],)
         }
 
     }('Spike Top', 'voice_spiketop',)
@@ -328,7 +321,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly CHEEP_CHEEP =              new class EditorVoices_CheepCheep extends EditorVoices.EntityEditorVoices<'voice_cheapcheap'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.GREEN_CHEEP_CHEEP, instance.BLURPS, instance.DEEP_CHEEP, instance.RED_CHEEP_CHEEP,]
+            return new ArrayAsCollection([instance.GREEN_CHEEP_CHEEP, instance.BLURPS, instance.DEEP_CHEEP, instance.RED_CHEEP_CHEEP,],)
         }
 
     }('Cheep Cheep', 'voice_cheapcheap',)
@@ -372,7 +365,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly THWOMP =                   new class EditorVoices_Thwomp extends EditorVoices.EntityEditorVoices<'voice_thwomp'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.THWOMP, instance.SIDEWAYS_THWOMP,]
+            return new ArrayAsCollection([instance.THWOMP, instance.SIDEWAYS_THWOMP,],)
         }
 
     }('Thwomp',                          'voice_thwomp',)
@@ -407,7 +400,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly BULL_EYE_BANZAI =          new class EditorVoices_BullEyeBanzai extends EditorVoices.EntityEditorVoices<'se_ui_singingparts_Bulls-EyeBanzai'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.BULL_EYE_BANZAI, instance.CAT_BANZAI_BILL,]
+            return new ArrayAsCollection([instance.BULL_EYE_BANZAI, instance.CAT_BANZAI_BILL,],)
         }
 
     }('Bull’s-Eye Banzai',  'se_ui_singingparts_Bulls-EyeBanzai',)
@@ -433,7 +426,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     public static readonly SUN =                      new class EditorVoices_Sun extends EditorVoices.EntityEditorVoices<'se_ui_singingparts_Sun'> {
 
         protected override _createEntityReferences(instance: typeof Entities,) {
-            return [instance.ANGRY_SUN,]
+            return new ArrayAsCollection([instance.ANGRY_SUN,],)
         }
 
     }('Sun', 'se_ui_singingparts_Sun',)
@@ -506,9 +499,8 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
 
     public static readonly TRAMPOLINE =               new class EditorVoices_Trampoline extends EditorVoices.EntityEditorVoices<'voice_trampline'> {
 
-        protected override _createEntityReferences() {
-            const Entities = Import.Entities
-            return [Entities.TRAMPOLINE, Entities.SIDEWAYS_TRAMPOLINE,]
+        protected override _createEntityReferences(instance: typeof Entities,) {
+            return new ArrayAsCollection([instance.TRAMPOLINE, instance.SIDEWAYS_TRAMPOLINE,],)
         }
 
     }('Trampoline',                      'voice_trampline',)
@@ -580,11 +572,11 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
         }
 
         #findByEntity(value: Entities,): NullOr<EditorVoices> {
-            return this.values.findFirstOrNull(it => new ArrayAsCollection(it.entityReferences,).has(value,),)
+            return this.values.findFirstOrNull(it => it.entityReferences.has(value,),)
         }
 
         #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-            return this.values.findFirstOrNull(it => new ArrayAsCollection(it.characterNameReferences,).has(value,),)
+            return this.values.findFirstOrNull(it => it.characterNameReferences.has(value,),)
         }
 
     }
@@ -595,10 +587,9 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     readonly #englishNameContainer
     readonly #regularFile
     readonly #europeanFile
-    #references?: Array<PossibleReference>
     #reference?: PossibleReference
-    #characterNameReference?: Array<CharacterNames>
-    #entityReferences?: Array<Entities>
+    #characterNameReference?: CollectionHolder<CharacterNames>
+    #entityReferences?: CollectionHolder<Entities>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -638,23 +629,16 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
 
     protected abstract _retrieveReference(): PossibleReference
 
-
-    public get references(): Array<PossibleReference> {
-        return this.#references ??= this._retrieveReferences()
-    }
-
-    protected abstract _retrieveReferences(): Array<PossibleReference>
-
     //region -------------------- Character name references --------------------
 
-    protected _createCharacterNameReference(instance: typeof CharacterNames,): Array<CharacterNames> {
+    protected _createCharacterNameReference(instance: typeof CharacterNames,): CollectionHolder<CharacterNames> {
         const name = this.name
         if (name in instance)
-            return [instance[name as Names_CharacterNames],]
-        return EMPTY_ARRAY
+            return new ArrayAsCollection([instance[name as Names_CharacterNames],],)
+        return EMPTY_COLLECTION_HOLDER
     }
 
-    public get characterNameReferences(): Array<CharacterNames> {
+    public get characterNameReferences(): CollectionHolder<CharacterNames> {
         return this.#characterNameReference ??= this._createCharacterNameReference(Import.CharacterNames,)
     }
 
@@ -662,18 +646,18 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
     //region -------------------- Entity references --------------------
 
     /**
-     * Create a temporary array containing the references applicable
+     * Create a temporary collection containing the references applicable
      * to create a {@link EntityReferenceHolder entity reference}
      *
      * @param instance The {@link Entities} instance
      * @protected
      * @onlyCalledOnce
      */
-    protected _createEntityReferences(instance: typeof Entities,): Array<Entities> {
+    protected _createEntityReferences(instance: typeof Entities,): CollectionHolder<Entities> {
         const name = this.name
         if (name in instance)
-            return [instance[name as Names_Entities],]
-        return EMPTY_ARRAY
+            return new ArrayAsCollection([instance[name as Names_Entities],],)
+        return EMPTY_COLLECTION_HOLDER
     }
 
     /**
@@ -683,7 +667,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
      *  a single {@link Entities entity instance} similar to {@link EditorVoices this instance} or
      *  multiple {@link Entities entity instance} (from 2 to 4) associated to {@link EditorVoices this instance}.
      */
-    public get entityReferences(): Array<Entities> {
+    public get entityReferences(): CollectionHolder<Entities> {
         return this.#entityReferences ??= this._createEntityReferences(Import.Entities,)
     }
 
