@@ -9,18 +9,29 @@ import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer           from 'app/_SubMainContainer'
-import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
-import Table                      from 'app/tools/table/Table'
-import {unfinishedText}           from 'app/tools/text/UnfinishedText'
-import List                       from 'app/util/List'
-import CardList                   from 'app/withInterpreter/CardList'
-import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
-import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
-import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}   from 'lang/components/translationMethods'
-import NameComponent              from 'lang/name/component/Name.component'
-import {ArrayAsCollection}        from 'util/collection/ArrayAsCollection'
+import SubMainContainer                      from 'app/_SubMainContainer'
+import {MysteryMushroomAppOption}            from 'app/options/MysteryMushroomAppOption'
+import Table                                 from 'app/tools/table/Table'
+import {unfinishedText}                      from 'app/tools/text/UnfinishedText'
+import List                                  from 'app/util/List'
+import CardList                              from 'app/withInterpreter/CardList'
+import {ViewDisplays}                        from 'app/withInterpreter/ViewDisplays'
+import {MysteryMushrooms}                    from 'core/mysteryMushroom/MysteryMushrooms'
+import MysteryMushroomClimbingImage          from 'core/mysteryMushroom/component/MysteryMushroom.climbing.image'
+import MysteryMushroomFallingAfterAJumpImage from 'core/mysteryMushroom/component/MysteryMushroom.fallingAfterAJump.image'
+import MysteryMushroomGoalPoleImage          from 'core/mysteryMushroom/component/MysteryMushroom.goalPole.image'
+import MysteryMushroomJumpImage              from 'core/mysteryMushroom/component/MysteryMushroom.jump.image'
+import MysteryMushroomPressingDownImage      from 'core/mysteryMushroom/component/MysteryMushroom.pressingDown.image'
+import MysteryMushroomRunningImage           from 'core/mysteryMushroom/component/MysteryMushroom.running.image'
+import MysteryMushroomSwimmingImage          from 'core/mysteryMushroom/component/MysteryMushroom.swimming.image'
+import MysteryMushroomTauntImage             from 'core/mysteryMushroom/component/MysteryMushroom.taunt.image'
+import MysteryMushroomTurningImage           from 'core/mysteryMushroom/component/MysteryMushroom.turning.image'
+import MysteryMushroomWaitingImage           from 'core/mysteryMushroom/component/MysteryMushroom.waiting.image'
+import MysteryMushroomWalkImage              from 'core/mysteryMushroom/component/MysteryMushroom.walk.image'
+import {OtherWordInTheGames}                 from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}              from 'lang/components/translationMethods'
+import NameComponent                         from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                   from 'util/collection/ArrayAsCollection'
 
 import ALL = MysteryMushrooms.ALL
 
@@ -44,24 +55,22 @@ class MysteryMushroomAppInterpreter
     }
 
     public createCardListContent(enumerable: MysteryMushrooms,) {
-        const amountOfImages = enumerable.imageFileNames.length
-        const contains2Images = amountOfImages === 2
+        if (enumerable.imageFileName1 == null)
+            return null
 
-        return amountOfImages === 0
-            ? null
-            : <div key={`image content container (${enumerable.englishName})`} className={`image-content-container ${contains2Images ? 'dual' : 'single'}-image-content-container`}>
-                <>{MysteryMushroomAppOption.WAITING.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.TAUNT.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.PRESSING_DOWN.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.WALK.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.WALK.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.RUNNING.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.SWIMMING.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.JUMP.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.FALLING_AFTER_A_JUMP.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.TURNING.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.CLIMBING.renderImageContent(enumerable, contains2Images,)}</>
-                <>{MysteryMushroomAppOption.GOAL_POLE.renderImageContent(enumerable, contains2Images,)}</>
+        const contains2Images = enumerable.imageFileName2 != null
+        return <div key={`image content container (${enumerable.englishName})`} className={`image-content-container ${contains2Images ? 'dual' : 'single'}-image-content-container`}>
+                <MysteryMushroomWaitingImage value={enumerable}/>
+                <MysteryMushroomTauntImage value={enumerable}/>
+                <MysteryMushroomPressingDownImage value={enumerable}/>
+                <MysteryMushroomWalkImage value={enumerable}/>
+                <MysteryMushroomRunningImage value={enumerable}/>
+                <MysteryMushroomSwimmingImage value={enumerable}/>
+                <MysteryMushroomJumpImage value={enumerable}/>
+                <MysteryMushroomFallingAfterAJumpImage value={enumerable}/>
+                <MysteryMushroomTurningImage value={enumerable}/>
+                <MysteryMushroomClimbingImage value={enumerable}/>
+                <MysteryMushroomGoalPoleImage value={enumerable}/>
             </div>
     }
 
@@ -123,7 +132,7 @@ function MysteryMushroomList({items,}:MysteryMushroom_ListProperties,) {
         <div className="d-flex justify-content-between">
             <NameComponent id="mysteryMushroom-name" name={it.reference} popoverOrientation="right"/>
             <div className="images-container">
-                {MysteryMushroomAppOption.WAITING.renderImageContent(it,)}
+                <MysteryMushroomWaitingImage value={it}/>
             </div>
         </div>
     }</List>

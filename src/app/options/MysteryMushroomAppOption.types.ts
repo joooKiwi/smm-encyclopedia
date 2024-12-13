@@ -1,5 +1,3 @@
-import type {EmptyString, NullOrString} from '@joookiwi/type'
-
 enum Enum {
 
     CONDITION_TO_UNLOCK_IT,
@@ -23,18 +21,3 @@ enum Enum {
 
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
-
-
-export type PossibleMysteryMushroomType =
-    NullOrString<| 'power-up collected'
-                 | 'waiting'
-                 | 'taunt'
-                 | 'pressing ↓'
-                 | 'walk'
-                 | 'running'
-                 | 'swimming'
-                 | `${| EmptyString | `${| 'falling' | 'ground'} after a `}jump`
-                 | 'turning'
-                 | 'climbing'
-                 | 'goal pole'
-                 | 'lost a life'>
