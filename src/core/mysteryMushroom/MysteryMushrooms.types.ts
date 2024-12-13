@@ -1,4 +1,6 @@
-import type {EmptyString} from '@joookiwi/type'
+import type {EmptyString}      from '@joookiwi/type'
+import {MysteryMushroomSounds} from 'core/mysteryMushroom/MysteryMushroomSounds'
+import {MysteryMushroomImages} from 'core/mysteryMushroom/MysteryMushroomImages'
 
 enum Enum {
     MYSTERY_MUSHROOM,
@@ -152,32 +154,16 @@ export type Names = keyof typeof Enum
 
 //region -------------------- File name --------------------
 
-export type PossibleFileName =
-    | 'Arwing' | 'Ashley'
-    | 'Blackey' | WithLeftVariant<'Block'> | `Boss0${`${| 0 | 1 | 2 | 3 | 4}${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | `5${| 0 | 1}`}` | WithLeftVariant<`Boss04${| 5 | 6}`>
-    | 'Charizard' | 'ChibiRobo'
-    | 'DarkPit' | 'Dedede' | 'DiddyKong' | 'DiyMario' | `DonkeyKong${| EmptyString | 'Jr'}` | 'DrMario' | 'DuckHunt'
-    | 'Falco' | 'Falcon' | 'Fightfly' | 'Fit' | 'Fox' | 'Fuko' | 'Futa'
-    | 'GameWatch' | 'Ganon' | 'Greninja'
-    | 'Heiho'
-    | 'Ike'
-    | 'Kaizo' | 'Kappei' | 'Kento' | 'Kinopio' | 'Kinuyo' | 'Kirby' | `Koopa${| EmptyString | 'Jr'}` | 'Kuribo'
-    | 'Link' | 'Lisa' | 'LittleMac' | 'Lucario' | 'Lucas' | 'Lucina' | 'Luigi'
-    | 'MahjongTile' | `Mario${| EmptyString | 'Gold' | 'Kart' | 'Original' | 'Silver'}` | 'Marth' | 'MegaMan' | 'MetaKnight' | 'Mewtwo' | 'MishiNeko' | 'MrHakari' | 'Murabito'
-    | 'Ness' | 'Nikki'
-    | 'Orima'
-    | 'PackMan' | 'Palutena' | 'Peach' | 'Peppy' | 'Pikachu' | 'Pikmin' | 'Pit' | 'Pudding'
-    | 'ResetSan' | 'Robin' | 'Robot' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| EmptyString | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | `Spla${| EmptyString | 't'}Ika`
-    | 'Takumi' | 'Tanuki' | 'ThunLink' | 'Tincle' | 'Totakeke' | 'Trampoline' | 'TsubuMame'
-    | 'Waluigi' | 'Wario' | 'Wiibo' | `WoolYoshi${| 'Aqua' | 'Big' | 'Green' | 'Pink'}`
-    | 'Yoshi'
-    | 'Zelda' | 'ZeroSams'
+/** The possible file name associated to a {@link MysteryMushrooms} sound */
+export type PossibleSoundFileName = typeof MysteryMushroomSounds[Names]['fileName']
 
-type WithOnlyUnderwaterVariant<T extends string, > = `${T} W`
-type WithUnderwaterVariant<T extends string, > = `${T}${| EmptyString | ' W'}`
-type WithLeftVariant<T extends string, > = `${T}${| EmptyString | ' L'}`
-type WithJapaneseVariant<T extends string, > = `${T} ${| 'JP' | 'USEU'}`
+/** The possible first file name associated to a {@link MysteryMushrooms} images */
+export type PossibleImageFileName1 = typeof MysteryMushroomImages[Names]['fileName1']
+/** The possible second file name associated to a {@link MysteryMushrooms} images */
+export type PossibleImageFileName2 = typeof MysteryMushroomImages[Names]['fileName2']
 
+/** The possible file name associated to a {@link MysteryMushrooms} images */
+export type PossibleImagesFileName = typeof MysteryMushroomImages[Names][| 'fileName1' | 'fileName2']
 
 //endregion -------------------- File name --------------------
 //region -------------------- English name --------------------
