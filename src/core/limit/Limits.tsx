@@ -665,7 +665,7 @@ export class Limits
         protected override _createReferenceMapForDescription() {
             const links = this.entityLink
             return {
-                entityImage: <Image key="entityImage" file={links.getFirst().image.get(SMW,).get(5,)} className="entity-image"/>,
+                entityImage: <Image key="entityImage" file={links.getFirst().image.get(SMW,).getFirst()} className="entity-image"/>,
             } as const satisfies TranslationReplaceKeysMap<NonNullReactElement>
         }
 

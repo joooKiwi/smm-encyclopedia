@@ -36,7 +36,8 @@ export default function LimitComponent({id, limits, displayAcronymIfApplicable,}
     if (limits instanceof Limits)
         return createSingleComponent(id, limits, displayAcronymIfApplicable,)
 
-    const selectedLimits = new GenericCollectionHolder(limits,).filter(it => it[1],).map(it => it[0],)
+    //TODO remove the "limits[Symbol.iterator]()" once it can be implemented by a Map directly
+    const selectedLimits = new GenericCollectionHolder(limits[Symbol.iterator](),).filter(it => it[1],).map(it => it[0],)
     return <>{selectedLimits.map((it, i,) =>
             <Fragment key={`${it.englishName} #${i + 1} → ${id}`}>{createSingleComponent(id, it, displayAcronymIfApplicable,)}{createReturnOfLine(selectedLimits, i,)}</Fragment>
         )}</>

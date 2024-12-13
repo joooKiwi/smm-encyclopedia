@@ -160,8 +160,9 @@ export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second:
 
     let index = finalSize
     while (index-- > firstSize)
-        newArray[index] = second.at(index,) as T
+        newArray[index] = second.at(index - firstSize,) as T
 
+    index++
     while (index-- > 0)
         newArray[index] = first.at(index,) as T
 
