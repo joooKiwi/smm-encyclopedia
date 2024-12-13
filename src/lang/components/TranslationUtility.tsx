@@ -53,7 +53,7 @@ export namespace TranslationUtility {
         const argumentsFoundSize = argumentsFound2.size
         let finalArguments: MutableArray<ReactElementOrStringOrNumber> = []
         for (let i = 0, j = 0; i < argumentsFoundSize || j < splitArgumentsSize; i++, j++)
-            __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound2.get(i,)],)
+            __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound2.getOrNull(i,) ?? EMPTY_STRING],)
 
         if (__containsOnlyStringOrNumber(keyMap, argumentsFound2,))
             return new ArrayAsCollection(finalArguments,).joinToString(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)

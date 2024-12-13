@@ -20,7 +20,6 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
 import {Empty}                                      from 'util/emptyVariables'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import CategoryCompanion =   EntityCategories.Companion
 import EMPTY_STRING =        Empty.EMPTY_STRING
@@ -162,7 +161,7 @@ function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentLi
     return <li id="canMakeASoundOutOfAMusicBlock-listItem" className="list-group-item">
         <Image file={MUSIC_BLOCK.image.get(SMW,).getFirst()} className="entity-image"/>
         <div id="instrument-sounds" className="d-inline-block">
-            {new ArrayAsCollection(reference.instruments,).map(it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
+            {reference.instruments.map(it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
                 <InstrumentSound key={`Instrument sound #${i + 1}`} value={it}/>,)}
         </div>
         <span>{unfinishedText('Can make a sound out of a Music Block',)}</span>
