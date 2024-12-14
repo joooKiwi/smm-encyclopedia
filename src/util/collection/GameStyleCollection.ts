@@ -1,5 +1,6 @@
 import type {CollectionHolder, PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import {GenericCollectionHolder, hasAllWithCollectionHolderByArray, isEmptyByArray}                      from '@joookiwi/collection'
+import type {Nullable}                                                                                   from '@joookiwi/type'
+import {GenericCollectionHolder}                                                                         from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -193,13 +194,15 @@ export namespace GameStyleCollection {
      *
      * @param values The values to create a new {@link GameStyleCollection}
      */
-    export function of<const T extends GameStyles,>(values: NullableArray<T>,): GameStyleCollection<T>
-    export function of(values: NullableArray<GameStyles>,): GameStyleCollection {
-        if (isEmptyByArray(values,))
+    export function of<const T extends GameStyles,>(values: Nullable<CollectionHolder<T>>,): GameStyleCollection<T>
+    export function of(values: Nullable<CollectionHolder<GameStyles>>,): GameStyleCollection {
+        if (values == null)
             return EMPTY
-        if (hasAllWithCollectionHolderByArray(values, ALL,))
+        if (values.isEmpty)
+            return EMPTY
+        if (values.hasAll(ALL,))
             return ALL
-        return new GameStyleCollection(values!,)
+        return new GameStyleCollection(values,)
     }
 
 }
