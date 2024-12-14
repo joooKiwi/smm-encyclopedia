@@ -1,11 +1,15 @@
-.list.withSeparator .listItem {
-  &:not(:first-child) { padding-top: var(--bs-spacer-sm) }
-  &:not(:last-child) {
-    padding-bottom: var(--bs-spacer-sm);
-    border-bottom: {
-      style: dotted;
-      color: var(--bs-primary-200);
-      width: var(--bs-border-width-1);
-    }
+.customList.list-group {
+  --bs-list-group-bg: transparent;
+  --bs-list-group-border-color: var(--bs-primary-200);
+  --bs-list-group-item-padding-x: var(--bs-spacer-xs);
+  --bs-list-group-item-padding-y: var(--bs-spacer-sm);
+
+  &:not(.withSeparator) > .list-group-item { border-width: 0 }
+
+  > .list-group-item {
+    border-style: dotted;
+    &:first-child { padding-top: var(--bs-spacer-xs) }
+    &:last-child { padding-bottom: var(--bs-spacer-xs) }
   }
+
 }

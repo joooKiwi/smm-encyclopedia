@@ -145,7 +145,7 @@ interface CharacterName_ListProperties
 
 /** @reactComponent */
 function CharacterNameList({items,}: CharacterName_ListProperties,) {
-    return <List partialId="characterName" items={items} withSeparator nameRetriever={uniqueNameRetriever}>{it =>
+    return <List partialId="characterName" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="characterName-name" name={it.reference} popoverOrientation="top"/>
             <EditorVoiceSound editorVoice={it.editorVoice} name={it.uniqueEnglishName}/>
