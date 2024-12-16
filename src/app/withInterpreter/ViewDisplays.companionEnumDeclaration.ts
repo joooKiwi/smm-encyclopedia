@@ -1,6 +1,7 @@
+import type {NullOr} from '@joookiwi/type'
+
 import type {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 import type {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import type {NullOr}                                     from '@joookiwi/type'
 
 export interface CompanionEnumDeclaration_ViewDisplays
     extends CompanionEnumWithCurrentAndSetCurrentEvent<ViewDisplays, typeof ViewDisplays> {
