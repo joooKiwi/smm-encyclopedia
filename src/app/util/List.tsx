@@ -3,16 +3,13 @@ import './List.scss'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
-import type {ClassWithReference}   from 'core/ClassWithReference'
-import type {Name}                 from 'lang/name/Name'
+import type {ReactProperties}      from 'util/react/ReactProperties'
 
-import {Empty}                     from 'util/emptyVariables'
-
+import {Empty} from 'util/emptyVariables'
 import EMPTY_STRING = Empty.EMPTY_STRING
 
-type ElementWithEnglishNameAndReferenceWithName = & ClassWithEnglishName<string> & ClassWithReference<Name<string>>
-
-interface ListProperties<out T extends ElementWithEnglishNameAndReferenceWithName, > {
+interface ListProperties<out T extends ClassWithEnglishName<string>, >
+    extends ReactProperties {
 
     /** The partial identifier that is used in the list as well as in the list item */
     readonly partialId: string
@@ -28,7 +25,7 @@ interface ListProperties<out T extends ElementWithEnglishNameAndReferenceWithNam
 
 }
 
-export default function List<const T extends ElementWithEnglishNameAndReferenceWithName, >
+export default function List<const T extends ClassWithEnglishName<string>, >
 ({partialId, items, withSeparator = false, children,}: ListProperties<T>,) {
     return <div className="bg-dark bg-gradient bg-opacity-10 w-auto py-2 px-2 mx-auto rounded">
         <ul id={`${partialId}-list`} className={`customList list-group list-group-flush${withSeparator ? ' withSeparator' : EMPTY_STRING} mb-0`}>{items.map((it, i,) =>
