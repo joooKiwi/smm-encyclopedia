@@ -235,7 +235,7 @@ function updateGlobalOptions(games: CollectionHolder<Games>, gameStyles: Collect
 }
 
 interface SwitchableButtonProperties
-    extends SimpleReactPropertiesWithChildren<| NonNullReactElement | string> {
+    extends SimpleReactPropertiesWithChildren<NonNullReactElementOrString> {
 
     /** The value that is it selected or not */
     readonly value: boolean
