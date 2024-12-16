@@ -8,14 +8,11 @@ import type {CollectionHolder}            from '@joookiwi/collection'
 import type {Dispatch, SetStateAction}    from 'react'
 import {useState}                         from 'react'
 
-import type {EntityProperties}        from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {TimeCollection}          from 'util/collection/TimeCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {EntityProperties}    from 'app/AppProperties.types'
+import type {ViewAndRouteName}    from 'app/withInterpreter/ViewDisplays.types'
+import type {GameCollection}      from 'util/collection/GameCollection'
+import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import type {ReactProperties}     from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {EntityAppOption}                            from 'app/options/EntityAppOption'
@@ -26,8 +23,8 @@ import LinkButton                                   from 'app/tools/button/LinkB
 import Table                                        from 'app/tools/table/Table'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import EntitySideContent                            from 'app/side/EntitySideContent'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
@@ -59,62 +56,8 @@ import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 import SM3DW =           GameStyles.SM3DW
 
-class EntityAppInterpreter
-    implements AppInterpreterWithTable<Entities, EntityAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #games
-    readonly #gameStyles
-    readonly #times
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection, gameStyles: GameStyleCollection, times: TimeCollection) {
-        this.#games = games
-        this.#gameStyles = gameStyles
-        this.#times = times
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        const gameStyles = this.#gameStyles
-        const times = this.#times
-        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
-            games.hasAnyIn(reference,)
-            && gameStyles.hasAnyIn(reference,)
-            && times.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(entity: Entities,) {
-        const reference = entity.reference
-        const category = reference.categoryEnglish === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
-        //TODO encapsulate the voiceSound into a sound interpreter.
-        return <div className={`${category}`}>
-            <SingleEntityImage reference={entity} gameStyles={this.#gameStyles}/>
-            <EditorVoiceSound editorVoice={entity.editorVoiceReference} name={entity.englishName}/>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
-
+const all = new ArrayAsCollection(ALL,)
+const {ENTITY,} = OtherWordInTheGames
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEntity (list)',],
     [ViewDisplays.CARD_LIST, 'everyEntity (card)',],
@@ -124,10 +67,10 @@ const viewDisplayAndRouteName = [
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
     const [sideEntity, setSideEntity,] = useState<NullOr<Entities>>(null,)
-    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-    const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
-    const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const entities = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName,)
+    const entitiesAsLowerCase = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
 
     //region -------------------- Game selection --------------------
 
@@ -199,19 +142,70 @@ function displaySideContent(action: Dispatch<SetStateAction<NullOr<Entities>>>, 
     BootstrapInstanceHandler.get.getOffcanvasInstanceOrNull(ENTITY_SIDE_CONTENT,)?.instance.show()
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityProperties & {displaySideContent(entity: Entities,): void,},) {
-    const appInterpreter = new EntityAppInterpreter(games, gameStyles, times,)
-    const items = appInterpreter.content
+    const items = all.filter(({reference,},) =>
+        games.hasAnyIn(reference,)
+        && gameStyles.hasAnyIn(reference,)
+        && times.hasAnyIn(reference,),)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <EntityList items={items} gameStyles={gameStyles}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="entity" interpreter={appInterpreter}/>
+        return <EntityCardList items={items} gameStyles={gameStyles}/>
+    return <EntityTable items={items} games={games} gameStyles={gameStyles} displaySideContent={displaySideContent}/>
+}
+
+
+interface Entity_SubContentProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<Entities>
+
+    readonly games: GameCollection
+
+    readonly gameStyles: GameStyleCollection
+
+    displaySideContent(entity: Entities,): void
+
+}
+
+/** @reactComponent */
+function EntityList({items, gameStyles,}: Pick<Entity_SubContentProperties, | 'items' | 'gameStyles'>,) {
+    return <List partialId="entity" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <div className="d-flex">
+                <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
+                <SingleEntityImage reference={it} gameStyles={gameStyles}/>
+            </div>
+            <EditorVoiceSound editorVoice={it.editorVoiceReference} name={it.englishName}/>
+        </div>
+    }</List>
+}
+
+/** @reactComponent */
+function EntityCardList({items, gameStyles,}: Pick<Entity_SubContentProperties, | 'items' | 'gameStyles'>,) {
+    return <CardList partial-id="entity" items={items} default={1} small={2} medium={3} large={4} extra-large={5} extra-extra-large={6}>{it => {
+
+        const reference = it.reference
+        const categoryName = reference.categoryEnglish
+        //TODO encapsulate the voiceSound into a sound interpreter.
+        return <div className={categoryName === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${categoryName}`}>
+            <NameComponent id="entity-name" name={it.reference} popoverOrientation="left"/>
+            <SingleEntityImage reference={it} gameStyles={gameStyles}/>
+            <EditorVoiceSound editorVoice={it.editorVoiceReference} name={it.englishName}/>
+        </div>
+    }}</CardList>
+}
+
+/** @reactComponent */
+function EntityTable({items, games, gameStyles, displaySideContent,}: Entity_SubContentProperties,) {
     return <Table id="entity-table" items={items} options={getOptions(games, gameStyles,)} caption={getCaption()} onRowClicked={displaySideContent} headersColor="secondary"/>
 }
 
-function getOptions(games: GameCollection, gameStyles: GameStyleCollection, ): CollectionHolder<EntityAppOption> {
+function getOptions(games: GameCollection, gameStyles: GameStyleCollection,): CollectionHolder<EntityAppOption> {
     const {hasSmm2,} = games
     const options: MutableArray<EntityAppOption> = []
     if (gameStyles.hasSmb)
@@ -252,31 +246,7 @@ function getCaption() {
     return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},)
 }
 
-//region -------------------- List --------------------
-
-interface Entity_ListProperties
-    extends ReactProperties {
-
-    readonly items: CollectionHolder<Entities>
-
-    readonly gameStyles: GameStyleCollection
-
-}
-
-/** @reactComponent */
-function EntityList({items, gameStyles,}: Entity_ListProperties,) {
-    return <List partialId="entity" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
-            <div className="d-flex">
-                <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
-                <SingleEntityImage reference={it} gameStyles={gameStyles}/>
-            </div>
-            <EditorVoiceSound editorVoice={it.editorVoiceReference} name={it.englishName}/>
-        </div>
-    }</List>
-}
-
-//endregion -------------------- List --------------------
+//endregion -------------------- Sub content --------------------
 //region -------------------- Aside content --------------------
 
 interface EntityAsideContentProperties

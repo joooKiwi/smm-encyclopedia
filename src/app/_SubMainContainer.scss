@@ -13,16 +13,12 @@
   flex-wrap: wrap;
 }
 
-.simpleListElement-container, .cardListElement-container, {
+.cardListElement-container, {
   background-color: rgba(var(--bs-primary-400-rgb), 75%,);
   margin: var(--bs-spacer-sm);
   padding: var(--bs-spacer-md);
 
   display: flex;
-}
-
-.simpleListElement-container {
-  justify-content: center;
 }
 
 .cardListElement-container {

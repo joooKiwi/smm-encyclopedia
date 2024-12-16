@@ -10,11 +10,7 @@
 }
 
 #editorVoice-list {
-  .listItem {
-    min-height: 3rem;
-    :has(.double-editorVoiceSound-container) { min-height: 5.5rem }
-    > * > :where(.single-editorVoiceSound-container, .double-editorVoiceSound-container) { margin-left: var(--bs-spacer-sm) }
-  }
+  .list-group-item > * > :where(.single-editorVoiceSound-container, .double-editorVoiceSound-container) { margin-left: var(--bs-spacer-sm) }
 }
 
 #editorVoice-table {

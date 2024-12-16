@@ -7,12 +7,8 @@ import type {Array, MutableArray, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}                          from '@joookiwi/collection'
 
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
 import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {TimeCollection}          from 'util/collection/TimeCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
@@ -22,8 +18,8 @@ import {InstrumentGames}                            from 'app/property/Instrumen
 import {InstrumentGameStyles}                       from 'app/property/Instrument.gameStyles'
 import {InstrumentTimes}                            from 'app/property/InstrumentTimes'
 import Table                                        from 'app/tools/table/Table'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import LinkText                                     from 'app/tools/text/LinkText'
@@ -52,59 +48,7 @@ import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 
-class InstrumentAppInterpreter
-    implements AppInterpreterWithTable<Instruments, InstrumentAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #games
-    readonly #gameStyles
-    readonly #times
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection, gameStyles: GameStyleCollection, times: TimeCollection,) {
-        this.#games = games
-        this.#gameStyles = gameStyles
-        this.#times = times
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        const gameStyles = this.#gameStyles
-        const times = this.#times
-        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
-            games.hasAnyIn(reference,)
-            && gameStyles.hasAnyIn(reference,)
-            && times.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 3,
-            medium: 4,
-            large: 5,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: Instruments,) {
-        return <div className="instrument-sounds">
-            <EntityInstrumentImages value={enumerable}/>
-            <InstrumentSound value={enumerable}/>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
-
+const all = new ArrayAsCollection(ALL,)
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyInstrument (list)',],
     [ViewDisplays.CARD_LIST, 'everyInstrument (card)',],
@@ -159,15 +103,58 @@ export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: 
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
-    const appInterpreter = new InstrumentAppInterpreter(games, gameStyles, times,)
-    const items = appInterpreter.content
+    const items = all.filter(({reference,},) =>
+        games.hasAnyIn(reference,)
+        && gameStyles.hasAnyIn(reference,)
+        && times.hasAnyIn(reference,),)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <InstrumentList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="instrument" interpreter={appInterpreter}/>
+        return <InstrumentCard items={items}/>
+    return <InstrumentTable items={items} gameStyles={gameStyles}/>
+}
+
+
+interface Instrument_SubContentProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<Instruments>
+
+    readonly gameStyles: GameStyleCollection
+
+}
+
+/** @reactComponent */
+function InstrumentList({items,}: Pick<Instrument_SubContentProperties, 'items'>,) {
+    return <List partialId="instrument" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <div className="d-flex">
+                <NameComponent id="instrument-name" name={it.reference} popoverOrientation="top"/>
+                <EntityInstrumentImages value={it}/>
+            </div>
+            <InstrumentSound value={it}/>
+        </div>
+    }</List>
+}
+
+/** @reactComponent */
+function InstrumentCard({items,}: Pick<Instrument_SubContentProperties, 'items'>,) {
+    return <CardList partial-id="instrument" items={items} default={1} small={3} medium={4} large={5} extra-large={6}>{it =>
+        <>
+            <NameComponent id="instrument-name" name={it.reference} popoverOrientation="left"/>
+            <EntityInstrumentImages value={it}/>
+            <InstrumentSound value={it}/>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function InstrumentTable({items, gameStyles,}: Instrument_SubContentProperties,) {
     return <Table id="instrument-table" items={items} options={getOptions(gameStyles,)} caption={gameContentTranslation('instrument.all',)} headersColor="info"/>
 }
 
@@ -185,29 +172,7 @@ function getOptions(gameStyles: GameStyleCollection,): CollectionHolder<Instrume
     return new ArrayAsCollection(options,)
 }
 
-//region -------------------- List --------------------
-
-interface Instrument_ListProperties
-    extends ReactProperties {
-
-    readonly items: CollectionHolder<Instruments>
-
-}
-
-/** @reactComponent */
-function InstrumentList({items,}: Instrument_ListProperties,) {
-    return <List partialId="instrument" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
-            <div className="d-flex">
-                <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
-                <EntityInstrumentImages value={it}/>
-            </div>
-            <InstrumentSound value={it}/>
-        </div>
-    }</List>
-}
-
-//endregion -------------------- List --------------------
+//endregion -------------------- Sub content --------------------
 //region -------------------- Description content --------------------
 
 interface InstrumentDescriptionProperties

@@ -4,13 +4,11 @@ import type {Array, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}    from '@joookiwi/collection'
 import {Link}                     from 'react-router-dom'
 
-import type {CourseTagAppProperties}  from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {CourseTags}              from 'core/courseTag/CourseTags'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {CourseTagAppProperties} from 'app/AppProperties.types'
+import type {ViewAndRouteName}       from 'app/withInterpreter/ViewDisplays.types'
+import type {CourseTags}             from 'core/courseTag/CourseTags'
+import type {PossibleRouteName}      from 'route/EveryRoutes.types'
+import type {ReactProperties}        from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {CourseTagAppOption}                         from 'app/options/CourseTagAppOption'
@@ -19,8 +17,8 @@ import {unfinishedText}                             from 'app/tools/text/Unfinis
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import FirstAppearance                              from 'core/courseTag/component/FirstAppearance'
 import {Games}                                      from 'core/game/Games'
@@ -32,46 +30,7 @@ import NameComponent                                from 'lang/name/component/Na
 
 import SMM2 = Games.SMM2
 
-class CourseTagAppInterpreter
-    implements AppInterpreterWithTable<CourseTags> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #type
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    constructor(type: CourseTagTypes,) {
-        this.#type = type
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        return this.#type.content
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 4,
-            large: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent({reference,}: CourseTags,) {
-        return <FirstAppearance reference={reference}/>
-        //TODO add Maker Central name
-    }
-
-    //endregion -------------------- Card  --------------------
-
-}
-
+const {COURSE, TAG,} = OtherWordInTheGames
 const options = CourseTagAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
@@ -98,20 +57,58 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, type,}: CourseTagAppProperties,) {
-    const appInterpreter = new CourseTagAppInterpreter(type,)
-    const items = appInterpreter.content
+    const items = type.content
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <CourseTagList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="courseTag" interpreter={appInterpreter}/>
+        return <CourseTagCardList items={items}/>
+    return <CourseTagTable items={items}/>
+}
+
+
+interface CourseTag_SubContentProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<CourseTags>
+
+}
+
+/** @reactComponent */
+function CourseTagList({items,}: CourseTag_SubContentProperties,) {
+    return <List partialId="courseTag" items={items}>{({reference,},) =>
+        <div className="d-flex">
+            <NameComponent id="courseTag-name" name={reference} popoverOrientation="top"/>
+            <FirstAppearance reference={reference}/>
+        </div>
+    }</List>
+}
+
+/** @reactComponent */
+function CourseTagCardList({items,}: CourseTag_SubContentProperties,) {
+    return <CardList partial-id="courseTag" items={items} default={1} small={2} medium={4} large={6}>{it => {
+        const reference = it.reference
+        const firstAppearance = reference.firstAppearance
+        const makerCentralName = reference.makerCentralName
+
+        return <>
+            <NameComponent id="courseTag-name" name={reference} popoverOrientation="left"/>
+            {firstAppearance == null ? null : <div><FirstAppearance reference={reference}/></div>}
+            {makerCentralName == null ? null : <small lang="en">{unfinishedText(`MC: ${makerCentralName}`,)}</small>}
+        </>
+    }}</CardList>
+}
+
+/** @reactComponent */
+function CourseTagTable({items,}: CourseTag_SubContentProperties,) {
     return <Table id="courseTag-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
 }
 
 function getCaption() {
-    const {COURSE, TAG,} = OtherWordInTheGames
     const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase()
     const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
     const tag = TAG.singularLowerCaseNameOnReference
@@ -123,26 +120,7 @@ function getCaption() {
     },)
 }
 
-//region -------------------- List --------------------
-
-interface CourseTag_ListProperties
-    extends ReactProperties {
-
-    readonly items: CollectionHolder<CourseTags>
-
-}
-
-/** @reactComponent */
-function CourseTagList({items,}: CourseTag_ListProperties,) {
-    return <List partialId="courseTag" items={items}>{({reference,},) =>
-        <div className="d-flex">
-            <NameComponent id="courseTag-name" name={reference} popoverOrientation="top"/>
-            <FirstAppearance reference={reference}/>
-        </div>
-    }</List>
-}
-
-//endregion -------------------- List --------------------
+//endregion -------------------- Sub content --------------------
 //region -------------------- Description content --------------------
 
 interface CourseTagDescriptionProperties
@@ -156,10 +134,10 @@ interface CourseTagDescriptionProperties
 
 /** @reactComponent */
 function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperties,) {
-    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
-    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
-    const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
-    const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase()
+    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
+    const tag = TAG.singularLowerCaseNameOnReference
+    const tags = TAG.pluralLowerCaseNameOnReference
 
     const officialLink = type === CourseTagTypes.OFFICIAL ? null : type.officialRouteName satisfies NullOrString<PossibleRouteName>
     const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : type.unofficialRouteName satisfies NullOrString<PossibleRouteName>

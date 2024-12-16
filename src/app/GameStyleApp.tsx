@@ -4,13 +4,10 @@ import './GameStyleApp.scss'
 import type {Array, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}    from '@joookiwi/collection'
 
-import type {GameStyleProperties}     from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {GameStyleProperties} from 'app/AppProperties.types'
+import type {ViewAndRouteName}    from 'app/withInterpreter/ViewDisplays.types'
+import type {ReactProperties}     from 'util/react/ReactProperties'
+import type {PossibleRouteName}   from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {GameStyleAppOption}                         from 'app/options/GameStyleAppOption'
@@ -20,8 +17,8 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -41,48 +38,7 @@ import SMB3 =   GameStyles.SMB3
 import SMW =    GameStyles.SMW
 import SM3DW =  GameStyles.SM3DW
 
-class GameStyleAppInterpreter
-    implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #games
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection,) {
-        this.#games = games
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        return ALL.filter(({reference,},) =>
-            games.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            extraLarge: 5,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: GameStyles,) {
-        return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>
-            <GameStyleImage reference={enumerable}/>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
+const {ENTITY,} = OtherWordInTheGames
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyGameStyle (list)',],
@@ -105,21 +61,22 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyles' | 'times'>,) {
-    const appInterpreter = new GameStyleAppInterpreter(games,)
-    const items = appInterpreter.content
+    const items = ALL.filter(({reference,},) =>
+        games.hasAnyIn(reference,),)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <GameStyleList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
-    return <Table id="gameStyle-table" items={items} options={options} caption={gameContentTranslation('game style.all',)} headersColor="info"/>
+        return <GameStyleCardList items={items}/>
+    return <GameStyleTable items={items}/>
 }
 
-//region -------------------- List --------------------
 
-interface GameStyle_ListProperties
+interface GameStyle_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<GameStyles>
@@ -127,7 +84,7 @@ interface GameStyle_ListProperties
 }
 
 /** @reactComponent */
-function GameStyleList({items,}:GameStyle_ListProperties,) {
+function GameStyleList({items,}: GameStyle_SubContentProperties,) {
     return <List partialId="gameStyle" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="gameStyle-name" name={it.reference} popoverOrientation="top"/>
@@ -136,7 +93,22 @@ function GameStyleList({items,}:GameStyle_ListProperties,) {
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function GameStyleCardList({items,}: GameStyle_SubContentProperties,) {
+    return <CardList partial-id="gameStyle" items={items} default={1} small={2} medium={3} extra-large={5}>{it =>
+        <>
+            <NameComponent id="gameStyle-name" name={it.reference} popoverOrientation="left"/>
+            <GameStyleImage reference={it}/>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function GameStyleTable({items,}: GameStyle_SubContentProperties,) {
+    return <Table id="gameStyle-table" items={items} options={options} caption={gameContentTranslation('game style.all',)} headersColor="info"/>
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Description content --------------------
 
 interface GameStyleDescriptionProperties
@@ -150,8 +122,8 @@ interface GameStyleDescriptionProperties
 
 /** @reactComponent */
 function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperties,) {
-    const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
-    const entities = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName.toLowerCase(),)
+    const entity = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName.toLowerCase(),)
+    const entities = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName.toLowerCase(),)
 
     const smm1OrSmm3dsLink = game.smm1Or3dsRouteName satisfies NullOrString<PossibleRouteName>
     const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>

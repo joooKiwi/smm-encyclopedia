@@ -4,72 +4,40 @@ import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {OfficialCourseProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}  from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}          from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}         from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}          from 'util/react/ReactProperties'
 
-import SubMainContainer                from 'app/_SubMainContainer'
-import {OfficialCourseAppOption}       from 'app/options/OfficialCourseAppOption'
-import Table                           from 'app/tools/table/Table'
-import {unfinishedText}                from 'app/tools/text/UnfinishedText'
-import List                            from 'app/util/List'
-import CardList                        from 'app/withInterpreter/CardList'
-import {ViewDisplays}                  from 'app/withInterpreter/ViewDisplays'
-import LevelGameStyleAndTheme          from 'core/_component/LevelGameStyleAndTheme'
-import {OfficialCourses}               from 'core/officialCourse/OfficialCourses'
-import OfficialCourseAvailability      from 'core/officialCourse/component/OfficialCourseAvailability'
-import OfficialCourseReward            from 'core/officialCourse/component/OfficialCourseReward'
-import {OtherWordInTheGames}           from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}        from 'lang/components/translationMethods'
-import NameComponent                   from 'lang/name/component/Name.component'
-import {ArrayAsCollection}             from 'util/collection/ArrayAsCollection'
+import SubMainContainer           from 'app/_SubMainContainer'
+import {OfficialCourseAppOption}  from 'app/options/OfficialCourseAppOption'
+import Table                      from 'app/tools/table/Table'
+import {unfinishedText}           from 'app/tools/text/UnfinishedText'
+import CardList                   from 'app/util/CardList'
+import List                       from 'app/util/List'
+import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
+import LevelGameStyleAndTheme     from 'core/_component/LevelGameStyleAndTheme'
+import {OfficialCourses}          from 'core/officialCourse/OfficialCourses'
+import OfficialCourseAvailability from 'core/officialCourse/component/OfficialCourseAvailability'
+import OfficialCourseReward       from 'core/officialCourse/component/OfficialCourseReward'
+import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}   from 'lang/components/translationMethods'
+import NameComponent              from 'lang/name/component/Name.component'
+import {ArrayAsCollection}        from 'util/collection/ArrayAsCollection'
 
 import ALL = OfficialCourses.ALL
 
-class EventCourseAppInterpreter
-    implements AppInterpreterWithTable<OfficialCourses, OfficialCourseAppOption> {
-
-    public get content() {
-        return new ArrayAsCollection(ALL,)
-    }
-
-    //region -------------------- Card list interpreter --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            large: 3,
-            extraLarge: 4,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: OfficialCourses,) {
-        const reference = enumerable.reference
-        return <div className="d-flex flex-column align-items-center">
-            <OfficialCourseReward reference={enumerable}/>
-            <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.courseThemeInTheMainArea} subArea={reference.courseThemeInTheSubArea}/>
-            <small className="text-body-secondary fst-italic"><OfficialCourseAvailability reference={enumerable}/></small>
-        </div>
-    }
-
-    //endregion -------------------- Card list interpreter --------------------
-
-}
+const {COURSE,} = OtherWordInTheGames
+const all = new ArrayAsCollection(ALL,)
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyOfficialCourse (list)',],
     [ViewDisplays.CARD_LIST, 'everyOfficialCourse (card)',],
     [ViewDisplays.TABLE, 'everyOfficialCourse (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const appInterpreter = new EventCourseAppInterpreter()
-const items = appInterpreter.content
+const items = all
 const options = OfficialCourseAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperties,) {
-    const {COURSE,} = OtherWordInTheGames
     const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
     const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
 
@@ -79,26 +47,19 @@ export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperti
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay,}: Pick<OfficialCourseProperties, 'viewDisplay'>,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <OfficialCourseList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="officialCourse" interpreter={appInterpreter}/>
-    return <Table id="officialCourse-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+        return <OfficialCourseCardList items={items}/>
+    return <OfficialCourseTable items={items}/>
 }
 
-function getCaption() {
-    const {COURSE,} = OtherWordInTheGames
-    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
-    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
 
-    return gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)
-}
-
-//region -------------------- List --------------------
-
-interface OfficialCourse_ListProperties
+interface OfficialCourse_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<OfficialCourses>
@@ -106,7 +67,7 @@ interface OfficialCourse_ListProperties
 }
 
 /** @reactComponent */
-function OfficialCourseList({items,}: OfficialCourse_ListProperties,) {
+function OfficialCourseList({items,}: OfficialCourse_SubContentProperties,) {
     return <List partialId="officialCourse" items={items} withSeparator>{it => {
         const reference = it.reference
         return <div className="d-flex justify-content-between">
@@ -119,4 +80,30 @@ function OfficialCourseList({items,}: OfficialCourse_ListProperties,) {
     }}</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function OfficialCourseCardList({items}: OfficialCourse_SubContentProperties,) {
+    return <CardList partial-id="offialCourse" items={items} default={1} small={2} large={3} extra-large={4}>{it => {
+        const reference = it.reference
+
+        return <>
+            <NameComponent id="officialCourse-name" name={reference} popoverOrientation="left"/>
+            <OfficialCourseReward reference={it}/>
+            <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.courseThemeInTheMainArea} subArea={reference.courseThemeInTheSubArea}/>
+            <small className="text-body-secondary fst-italic"><OfficialCourseAvailability reference={it}/></small>
+        </>
+    }}</CardList>
+}
+
+/** @reactComponent */
+function OfficialCourseTable({items,}: OfficialCourse_SubContentProperties,) {
+    return <Table id="officialCourse-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
+    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
+
+    return gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)
+}
+
+//endregion -------------------- Sub content --------------------

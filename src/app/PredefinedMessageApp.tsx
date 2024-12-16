@@ -4,8 +4,6 @@ import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
@@ -13,8 +11,8 @@ import SubMainContainer             from 'app/_SubMainContainer'
 import Table                        from 'app/tools/table/Table'
 import {unfinishedText}             from 'app/tools/text/UnfinishedText'
 import {PredefinedMessageAppOption} from 'app/options/PredefinedMessageAppOption'
+import CardList                     from 'app/util/CardList'
 import List                         from 'app/util/List'
-import CardList                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {PredefinedMessages}         from 'core/predefinedMessage/PredefinedMessages'
 import {gameContentTranslation}     from 'lang/components/translationMethods'
@@ -23,40 +21,14 @@ import {ArrayAsCollection}          from 'util/collection/ArrayAsCollection'
 
 import ALL = PredefinedMessages.ALL
 
-class PredefinedMessageAppInterpreter
-    implements AppInterpreterWithTable<PredefinedMessages> {
-
-    public get content() {
-        return new ArrayAsCollection(ALL,)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 5,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(): null {
-        return null
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
+const all = new ArrayAsCollection(ALL,)
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyPredefinedMessage (list)',],
     [ViewDisplays.CARD_LIST, 'everyPredefinedMessage (card)',],
     [ViewDisplays.TABLE, 'everyPredefinedMessage (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const appInterpreter = new PredefinedMessageAppInterpreter()
-const items = appInterpreter.content
+const items = all
 const options = PredefinedMessageAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
@@ -70,12 +42,41 @@ export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterP
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <PredefinedMessageList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="predefinedMessage" interpreter={appInterpreter}/>
+        return <PredefinedMessageCardList items={items}/>
+    return <PredefinedMessageTable items={items}/>
+}
+
+
+interface PredefinedMessage_SubContentProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<PredefinedMessages>
+
+}
+
+/** @reactComponent */
+function PredefinedMessageList({items,}: PredefinedMessage_SubContentProperties,) {
+    return <List partialId="predefinedMessage" items={items}>{it =>
+        <NameComponent id="predefinedMessage-name" name={it.reference} popoverOrientation="right"/>
+    }</List>
+}
+
+/** @reactComponent */
+function PredefinedMessageCardList({items,}: PredefinedMessage_SubContentProperties,) {
+    return <CardList partial-id="predefinedMessage" items={items} default={1} small={2} medium={3} large={5} extra-large={6}>{it =>
+        <NameComponent id="predefinedMessage-name" name={it.reference} popoverOrientation="left"/>
+    }</CardList>
+}
+
+/** @reactComponent */
+function PredefinedMessageTable({items,}: PredefinedMessage_SubContentProperties,) {
     return <Table id="predefinedMessage-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
 }
 
@@ -86,20 +87,4 @@ function getCaption() {
     },)
 }
 
-//region -------------------- List --------------------
-
-interface PredefinedMessage_ListProperties
-    extends ReactProperties {
-
-    readonly items: CollectionHolder<PredefinedMessages>
-
-}
-
-/** @reactComponent */
-function PredefinedMessageList({items,}: PredefinedMessage_ListProperties,) {
-    return <List partialId="predefinedMessage" items={items}>{it =>
-        <NameComponent id="predefinedMessage-name" name={it.reference} popoverOrientation="right"/>
-    }</List>
-}
-
-//endregion -------------------- List --------------------
+//endregion -------------------- Sub content --------------------

@@ -1,17 +1,19 @@
 #miiCostume-list .miiCostume-image { max-height: 4rem }
 
-.cardListElement-container .miiCostume-image { max-height: 6rem }
-
-.question-block-image {
-  translate: 0 var(--bs-spacer-md);
-  --image-width: 24px;
+#miiCostume-cardList {
+  .miiCostume-image { max-height: 6rem }
+  .miiCostumeCategory-icon { max-height: 3rem }
 }
-
 
 #miiCostume-table {
   width: auto;
   margin-left: auto;
   margin-right: auto;
+
+  .question-block-image {
+    translate: 0 var(--bs-spacer-md);
+    --image-width: 24px;
+  }
 
   .tcell {
     &.image {}

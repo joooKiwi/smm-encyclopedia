@@ -4,16 +4,14 @@ import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
 import SubMainContainer               from 'app/_SubMainContainer'
 import {SoundEffectCategoryAppOption} from 'app/options/SoundEffectCategoryAppOption'
-import CardList                       from 'app/withInterpreter/CardList'
-import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
+import CardList                       from 'app/util/CardList'
 import List                           from 'app/util/List'
+import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
 import Table                          from 'app/tools/table/Table'
 import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
 import SoundEffectCategoryIcon        from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
@@ -23,39 +21,14 @@ import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import ALL = SoundEffectCategories.ALL
 
-class SoundEffectCategoryAppInterpreter
-    implements AppInterpreterWithTable<SoundEffectCategories, SoundEffectCategoryAppOption> {
-
-    public get content() {
-        return new ArrayAsCollection(ALL,)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 5,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: SoundEffectCategories,) {
-        return <SoundEffectCategoryIcon reference={enumerable} asWhiteImage/>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
+const all = new ArrayAsCollection(ALL,)
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffectCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everySoundEffectCategory (card)',],
     [ViewDisplays.TABLE, 'everySoundEffectCategory (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const appInterpreter = new SoundEffectCategoryAppInterpreter()
-const items = appInterpreter.content
+const items = all
 const options = SoundEffectCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
@@ -66,18 +39,19 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SoundEffectCategoryList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
-    return <Table id="soundEffectCategory-table" items={items} options={options} caption={gameContentTranslation('sound effect category.all',)} headersColor="info"/>
+        return <SoundEffectCategoryCardList items={items}/>
+    return <SoundEffectCategoryTable items={items}/>
 }
 
-//region -------------------- List --------------------
 
-interface SoundEffectCategory_ListProperties
+interface SoundEffectCategory_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<SoundEffectCategories>
@@ -85,7 +59,7 @@ interface SoundEffectCategory_ListProperties
 }
 
 /** @reactComponent */
-function SoundEffectCategoryList({items,}: SoundEffectCategory_ListProperties,) {
+function SoundEffectCategoryList({items,}: SoundEffectCategory_SubContentProperties,) {
     return <List partialId="soundEffectCategory" items={items}>{it =>
         <div className="d-flex justify-content-between align-items-center">
             <NameComponent id="soundEffectCategory-name" name={it.reference} popoverOrientation="right"/>
@@ -94,4 +68,19 @@ function SoundEffectCategoryList({items,}: SoundEffectCategory_ListProperties,) 
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function SoundEffectCategoryCardList({items,}: SoundEffectCategory_SubContentProperties,) {
+    return <CardList partial-id="soundEffectCategory" items={items} default={1} small={2} medium={3} large={5}>{it =>
+        <>
+            <NameComponent id="soundEffectCategory-name" name={it.reference} popoverOrientation="left"/>
+            <SoundEffectCategoryIcon reference={it} asWhiteImage/>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function SoundEffectCategoryTable({items,}: SoundEffectCategory_SubContentProperties,) {
+    return <Table id="soundEffectCategory-table" items={items} options={options} caption={gameContentTranslation('sound effect category.all',)} headersColor="info"/>
+}
+
+//endregion -------------------- Sub content --------------------

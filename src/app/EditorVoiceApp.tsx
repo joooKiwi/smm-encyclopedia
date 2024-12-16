@@ -5,14 +5,10 @@ import './EditorVoiceApp.scss'
 import type {Array, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
 
-import type {EditorVoiceProperties}   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {TimeCollection}          from 'util/collection/TimeCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {EditorVoiceProperties} from 'app/AppProperties.types'
+import type {ViewAndRouteName}      from 'app/withInterpreter/ViewDisplays.types'
+import type {ReactProperties}       from 'util/react/ReactProperties'
+import type {PossibleRouteName}     from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
@@ -23,8 +19,8 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
@@ -44,53 +40,7 @@ import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
-class EditorVoiceAppInterpreter
-    implements AppInterpreterWithTable<EditorVoices, EditorVoiceAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #games
-    readonly #times
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection, times: TimeCollection,) {
-        this.#games = games
-        this.#times = times
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        const times = this.#times
-        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
-            games.hasAnyIn(reference,)
-            && (times.hasAllTimes || times.hasAnyIn(reference,)),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 3,
-            medium: 4,
-            large: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: EditorVoices,) {
-        return <div className="editorVoices-container">
-            <EditorVoiceSound editorVoice={enumerable}/>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
-
+const all = new ArrayAsCollection(ALL,)
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEditorVoice (list)',],
     [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
@@ -123,21 +73,23 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'gameStyles'>,) {
-    const appInterpreter = new EditorVoiceAppInterpreter(games, times,)
-    const items = appInterpreter.content
+    const items = all.filter(({reference,},) =>
+        games.hasAnyIn(reference,)
+        && (times.hasAllTimes || times.hasAnyIn(reference,)),)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <EditorVoiceList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
-    return <Table id="editorVoice-table" items={items} options={options} caption={gameContentTranslation('editor voice.all',)} headersColor="info"/>
+        return <EditorVoiceCardList items={items}/>
+    return <EditorVoiceTable items={items}/>
 }
 
-//region -------------------- List --------------------
 
-interface EditorVoice_ListProperties
+interface EditorVoice_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<EditorVoices>
@@ -145,7 +97,7 @@ interface EditorVoice_ListProperties
 }
 
 /** @reactComponent */
-function EditorVoiceList({items,}: EditorVoice_ListProperties,) {
+function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
     return <List partialId="editorVoice" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
@@ -154,7 +106,22 @@ function EditorVoiceList({items,}: EditorVoice_ListProperties,) {
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function EditorVoiceCardList({items,}: EditorVoice_SubContentProperties,) {
+    return <CardList partial-id="editorVoice" items={items} default={1} small={3} medium={4} large={6}>{it =>
+        <>
+            <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="left"/>
+            <EditorVoiceSound editorVoice={it}/>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function EditorVoiceTable({items,}: EditorVoice_SubContentProperties,) {
+    return <Table id="editorVoice-table" items={items} options={options} caption={gameContentTranslation('editor voice.all',)} headersColor="info"/>
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Description content --------------------
 
 interface EditorVoiceDescriptionProperties

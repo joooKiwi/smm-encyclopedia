@@ -5,16 +5,14 @@ import './LimitApp.scss'
 import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}                  from '@joookiwi/collection'
 
-import type {LimitAppProperties}      from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {LimitTypes}              from 'app/property/LimitTypes'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {Limits}                  from 'core/limit/Limits'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {LimitAppProperties}  from 'app/AppProperties.types'
+import type {LimitTypes}          from 'app/property/LimitTypes'
+import type {ViewAndRouteName}    from 'app/withInterpreter/ViewDisplays.types'
+import type {Limits}              from 'core/limit/Limits'
+import type {PossibleRouteName}   from 'route/EveryRoutes.types'
+import type {GameCollection}      from 'util/collection/GameCollection'
+import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import type {ReactProperties}     from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {LimitAppOption}                             from 'app/options/LimitAppOption'
@@ -27,8 +25,8 @@ import Table                                        from 'app/tools/table/Table'
 import TextComponent                                from 'app/tools/text/TextComponent'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -50,70 +48,6 @@ import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 import SM3DW =           GameStyles.SM3DW
-
-class LimitAppInterpreter
-    implements AppInterpreterWithTable<Limits, LimitAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #type
-    readonly #games
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(type: LimitTypes, games: GameCollection,) {
-        this.#type = type
-        this.#games = games
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        return this.#type.content.filter(it =>
-            games.hasAnyIn(it.reference,),)
-    }
-
-    //region -------------------- Card  --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 4,
-            large: 5,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumeration: Limits,) {
-        const games = this.#games
-        const amountOption = games.hasAllGames
-            ? LimitAppOption.AMOUNT_IN_ALL_GAMES
-            : games.hasSmm1Or3ds
-                ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
-                : LimitAppOption.AMOUNT_IN_SMM2
-
-        const hasAlternativeAcronym = enumeration.alternativeAcronym != null
-        const hasAlternativeName = enumeration.alternativeEnglishName != null
-        const isEditor = enumeration.isEditorLimit
-
-        return <div id={`limit-${enumeration.englishNameInHtml}`} className={`card-body ${isEditor ? 'card-bodyWithEditor' : EMPTY_STRING} text-center`}>
-            {isEditor ? <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 top-0"/> : null}
-            {hasAlternativeName ? <NameComponent id="limit-alternativeName" name={enumeration.reference.alternativeContainer} className="alternativeName"/> : null}
-            {amountOption.renderContent(enumeration,)}
-            <div className="acronyms-container d-flex align-content-center text-body text-opacity-50 fst-italic">
-                <TextComponent content={enumeration.acronym}/>
-                {hasAlternativeAcronym ? <div className="vr mx-2"/> : null}
-                <TextComponent content={enumeration.alternativeAcronym}/>
-            </div>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
 
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitAppProperties,) {
@@ -168,53 +102,42 @@ export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitA
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gameStyles' | 'times'>,){
-    const appInterpreter = new LimitAppInterpreter(type, games,)
-    const items = appInterpreter.content
+    const items = type.content.filter(it =>
+        games.hasAnyIn(it.reference,),)
+
+    const amountOption = games.hasAllGames
+        ? LimitAppOption.AMOUNT_IN_ALL_GAMES
+        : games.hasSmm1Or3ds
+            ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
+            : LimitAppOption.AMOUNT_IN_SMM2
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-           return <LimitList items={items} games={games}/>
+        return <LimitList items={items} amountOption={amountOption}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-            return <CardList reactKey="limit" interpreter={appInterpreter}/>
-    return<Table id="limit-table" items={items} options={getOptions(games,)} caption={gameContentTranslation(`limit.${type.type}.all`,)} headersColor="info"/>
+        return <LimitCardList items={items} amountOption={amountOption}/>
+    return <LimitTable items={items} type={type} games={games}/>
 }
 
-function getOptions(games: GameCollection,): CollectionHolder<LimitAppOption> {
-    const options: MutableArray<LimitAppOption> = [
-        LimitAppOption.ACRONYM,
-        LimitAppOption.NAME,
-        LimitAppOption.DESCRIPTION,
-    ]
-    if (games.hasAllGames)
-        options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
-    else {
-        if (games.hasSmm1Or3ds)
-            options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
-        if (games.hasSmm2)
-            options.push(LimitAppOption.AMOUNT_IN_SMM2,)
-    }
-    return new ArrayAsCollection(options,)
-}
-
-//region -------------------- List --------------------
 
 interface Limit_ListProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<Limits>
 
+    readonly amountOption: LimitAppOption
+
+    readonly type: LimitTypes
+
     readonly games: GameCollection
 
 }
 
 /** @reactComponent */
-function LimitList({items, games,}: Limit_ListProperties,) {
-    const amountOption = games.hasAllGames
-        ? LimitAppOption.AMOUNT_IN_ALL_GAMES
-        : games.hasSmm1Or3ds
-            ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
-            : LimitAppOption.AMOUNT_IN_SMM2
+function LimitList({items, amountOption,}: Pick<Limit_ListProperties, | 'items' | 'amountOption'>,) {
     return <List partialId="limit" items={items} withSeparator>{it => {
         const reference = it.reference
         const hasAlternative = it.alternativeAcronym != null
@@ -234,7 +157,49 @@ function LimitList({items, games,}: Limit_ListProperties,) {
     }}</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function LimitCardList({items, amountOption,}: Pick<Limit_ListProperties, | 'items' | 'amountOption'>,) {
+    return <CardList partial-id="limit" items={items} default={1} small={2} medium={4} large={5} extra-large={6}>{it => {
+        const reference = it.reference
+        const hasAlternative = it.alternativeAcronym != null
+        const isEditor = it.isEditorLimit
+
+        return <div className={`d-inline${isEditor ? ' asEditorLimit' : EMPTY_STRING}`}>
+            {isEditor ? <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 opacity-25"/> : null}
+            <NameComponent id="limit-name" name={reference} popoverOrientation="top"/>
+            {hasAlternative ? <NameComponent id="limit-alternativeName" name={reference.alternativeContainer} popoverOrientation="top"/> : null}
+            {amountOption.renderContent(it,)}
+            <div className="w-100"/>
+            <TextComponent content={it.acronym} className="text-body text-opacity-50 fst-italic me-1"/>
+            {hasAlternative ? <div className="vr mx-2"/> : null}
+            {hasAlternative ? <TextComponent content={it.alternativeAcronym} className="text-body text-opacity-50 fst-italic me-1"/> : null}
+        </div>
+    }}</CardList>
+}
+
+/** @reactComponent */
+function LimitTable({items, type, games,}: Omit<Limit_ListProperties, 'amountOption'>,) {
+    return <Table id="limit-table" items={items} options={getOptions(games,)} caption={gameContentTranslation(`limit.${type.type}.all`,)} headersColor="info"/>
+}
+
+function getOptions(games: GameCollection,): CollectionHolder<LimitAppOption> {
+    const options: MutableArray<LimitAppOption> = [
+        LimitAppOption.ACRONYM,
+        LimitAppOption.NAME,
+        LimitAppOption.DESCRIPTION,
+    ]
+    if (games.hasAllGames)
+        options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
+    else {
+        if (games.hasSmm1Or3ds)
+            options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
+        if (games.hasSmm2)
+            options.push(LimitAppOption.AMOUNT_IN_SMM2,)
+    }
+    return new ArrayAsCollection(options,)
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Description content --------------------
 
 interface LimitDescriptionProperties

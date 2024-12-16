@@ -121,11 +121,7 @@ export abstract class ThemeTypes
         return this.#routeName
     }
 
-    /**
-     * Retrieve the content applicable to the {@link ThemeTypes}
-     *
-     * @see AppInterpreter.content
-     */
+    /** Retrieve the content applicable to the {@link ThemeTypes} */
     public abstract get content(): CollectionHolder<Themes>
 
     //region -------------------- Link button methods --------------------

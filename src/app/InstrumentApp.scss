@@ -8,6 +8,15 @@
 
 }
 
+#instrument-list {}
+
+#instrument-cardList {
+  .grouped-instrumentSound-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 #instrument-table {
   width: auto;
   margin-left: auto;

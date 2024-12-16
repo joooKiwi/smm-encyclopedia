@@ -4,8 +4,6 @@ import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
@@ -13,8 +11,8 @@ import SubMainContainer          from 'app/_SubMainContainer'
 import {EntityCategoryAppOption} from 'app/options/EntityCategoryAppOption'
 import Table                     from 'app/tools/table/Table'
 import {unfinishedText}          from 'app/tools/text/UnfinishedText'
+import CardList                  from 'app/util/CardList'
 import List                      from 'app/util/List'
-import CardList                  from 'app/withInterpreter/CardList'
 import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
 import {EntityCategories}        from 'core/entityCategory/EntityCategories'
 import EntityCategoryIcon        from 'core/entityCategory/component/EntityCategoryIcon'
@@ -25,38 +23,14 @@ import {ArrayAsCollection}       from 'util/collection/ArrayAsCollection'
 
 import ALL = EntityCategories.ALL
 
-class EntityCategoryAppInterpreter
-    implements AppInterpreterWithTable<EntityCategories, EntityCategoryAppOption> {
-
-    public get content() {
-        return new ArrayAsCollection(ALL,)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            large: 4,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: EntityCategories,) {
-        return <EntityCategoryIcon reference={enumerable} asWhiteImage/>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
-
+const {ENTITY,} = OtherWordInTheGames
+const all = new ArrayAsCollection(ALL,)
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEntityCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everyEntityCategory (card)',],
     [ViewDisplays.TABLE, 'everyEntityCategory (table)',],
 ] as const satisfies Array<ViewAndRouteName>
-const appInterpreter = new EntityCategoryAppInterpreter()
-const items = appInterpreter.content
+const items = all
 const options = EntityCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
@@ -72,26 +46,19 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <EntityCategoryList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
-    return <Table id="entityCategory-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+        return <EntityCategoryCardList items={items}/>
+    return <EntityCategoryTable items={items}/>
 }
 
-function getCaption() {
-    const {ENTITY,} = OtherWordInTheGames
-    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
-    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
 
-    return gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
-}
-
-//region -------------------- List --------------------
-
-interface EntityCategory_ListProperties
+interface EntityCategory_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<EntityCategories>
@@ -99,7 +66,7 @@ interface EntityCategory_ListProperties
 }
 
 /** @reactComponent */
-function EntityCategoryList({items,}:EntityCategory_ListProperties,) {
+function EntityCategoryList({items,}: EntityCategory_SubContentProperties,) {
     return <List partialId="entityCategory" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="entityCategory-name" name={it.reference} popoverOrientation="top"/>
@@ -108,4 +75,26 @@ function EntityCategoryList({items,}:EntityCategory_ListProperties,) {
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function EntityCategoryCardList({items,}: EntityCategory_SubContentProperties,) {
+    return <CardList partial-id="entityCategory" items={items} default={1} small={2} large={4}>{it =>
+        <>
+            <NameComponent id="entityCategory-name" name={it.reference} popoverOrientation="left"/>
+            <EntityCategoryIcon reference={it}/>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function EntityCategoryTable({items,}: EntityCategory_SubContentProperties,) {
+    return <Table id="entityCategory-table" items={items} options={options} caption={getCaption()} headersColor="info"/>
+}
+
+function getCaption() {
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+
+    return gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
+}
+
+//endregion -------------------- Sub content --------------------

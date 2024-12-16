@@ -1,19 +1,13 @@
 //TODO find better colors
-#soundEffectCategory-feelings-container .cardListElement-container {
-  background-color: var(--soundEffectCategory-feelings-bg-color)
-}
-#soundEffectCategory-stingers-container .cardListElement-container {
-  background-color: var(--soundEffectCategory-stingers-bg-color)
-}
-#soundEffectCategory-reactions-container .cardListElement-container {
-  background-color: var(--soundEffectCategory-reactions-bg-color)
-}
-#soundEffectCategory-animations-container .cardListElement-container {
-    background-color: var(--soundEffectCategory-animations-bg-color)
-}
-#soundEffectCategory-music-container .cardListElement-container {
-  background-color: var(--soundEffectCategory-music-bg-color)
-}
+#soundEffectCategory-feelings-cardList-item   > * { background-color: var(--soundEffectCategory-feelings-bg-color) }
+#soundEffectCategory-stingers-cardList-item   > * { background-color: var(--soundEffectCategory-stingers-bg-color) }
+#soundEffectCategory-reactions-cardList-item  > * { background-color: var(--soundEffectCategory-reactions-bg-color) }
+#soundEffectCategory-animations-cardList-item > * { background-color: var(--soundEffectCategory-animations-bg-color) }
+#soundEffectCategory-music-cardList-item      > * { background-color: var(--soundEffectCategory-music-bg-color) }
+
+#soundEffectCategory-list {}
+
+#soundEffectCategory-cardList {}
 
 #soundEffectCategory-table {
   width: auto;

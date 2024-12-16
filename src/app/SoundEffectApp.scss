@@ -5,10 +5,11 @@
     position: initial;
   }
 
-  .cardListElement-container .soundEffect-image { max-height: 4rem }
 }
 
 #soundEffect-list .soundEffect-image { max-height: 3rem }
+
+#soundEffect-cardList .soundEffect-image { max-height: 4rem }
 
 #soundEffect-table {
   width: auto;

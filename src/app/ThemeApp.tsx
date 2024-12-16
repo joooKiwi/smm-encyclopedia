@@ -5,8 +5,6 @@ import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
 import type {Themes}                  from 'core/theme/Themes'
 import type {GameCollection}          from 'util/collection/GameCollection'
@@ -21,8 +19,8 @@ import {ThemeTypes}                                      from 'app/property/Them
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
 import Table                                             from 'app/tools/table/Table'
+import CardList                                          from 'app/util/CardList'
 import List                                              from 'app/util/List'
-import CardList                                          from 'app/withInterpreter/CardList'
 import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
 import {Games}                                           from 'core/game/Games'
 import GameImage                                         from 'core/game/component/GameImage'
@@ -35,70 +33,6 @@ import NameComponent                                     from 'lang/name/compone
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
-
-class ThemeAppInterpreter
-    implements AppInterpreterWithTable<Themes, ThemeAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #type
-    readonly #games
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(type: ThemeTypes, games: GameCollection,) {
-        this.#type = type
-        this.#games = games
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        return this.#type.content.filter(({reference,},) =>
-            games.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        const type = this.#type
-        if (type === ThemeTypes.COURSE)
-            return {
-                default: 1,
-                small: 2,
-                medium: 5,
-            } as const satisfies DimensionOnList
-        if (type === ThemeTypes.WORLD)
-            return {
-                default: 1,
-                small: 2,
-                medium: 4,
-            } as const satisfies DimensionOnList
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: Themes,) {
-        return <div className="card-body" id={`theme-${enumerable.englishNameInHtml}`}>
-            <div className="col-2">{CommonOptions.get.getGameContent(enumerable,)}</div>
-            <div className="images-container col-7">
-                <ThemeImage reference={enumerable} isSmallPath/>
-                <EndlessMarioImage reference={enumerable}/>
-            </div>
-            <div className="col-2"><ThemeTypeImages reference={enumerable}/></div>
-        </div>
-    }
-
-    //endregion -------------------- Card  --------------------
-
-}
 
 const options = ThemeAppOption.CompanionEnum.get.values
 
@@ -118,29 +52,32 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, type, games,}: Omit<ThemeAppProperties, | 'gameStyles' | 'times'>,) {
-    const appInterpreter = new ThemeAppInterpreter(type, games,)
-    const items = appInterpreter.content
+    const items = type.content.filter(({reference,},) =>
+        games.hasAnyIn(reference,),)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <ThemeList items={items}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="theme" interpreter={appInterpreter}/>
-    return <Table id="theme-table" items={items} options={options} caption={gameContentTranslation('theme.all.all',)} headersColor="info"/>
+        return <ThemeCardList items={items} type={type}/>
+    return <ThemeTable items={items}/>
 }
 
-//region -------------------- List --------------------
 
-interface Theme_ListProperties
+interface Theme_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<Themes>
 
+    readonly type: ThemeTypes
+
 }
 
 /** @reactComponent */
-function ThemeList({items,}: Theme_ListProperties,) {
+function ThemeList({items,}: Pick<Theme_SubContentProperties, 'items'>,) {
     return <List partialId="theme" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between align-items-center">
             <NameComponent id="theme-name" name={it.reference} popoverOrientation="right"/>
@@ -153,7 +90,50 @@ function ThemeList({items,}: Theme_ListProperties,) {
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function ThemeCardList({items, type,}: Theme_SubContentProperties,){
+    if (type === ThemeTypes.COURSE)
+        return <CardList partial-id="courseTheme" items={items} default={1} small={2} medium={5}>{it =>
+            <>
+                <NameComponent id="course-theme-name" name={it.reference} popoverOrientation="left"/>
+                {CommonOptions.get.getGameContent(it,)}
+                <div className="d-flex flex-row flex-md-column flex-lg-row">
+                    <ThemeImage reference={it} isSmallPath/>
+                    <EndlessMarioImage reference={it}/>
+                </div>
+            </>
+        }</CardList>
+
+    if (type === ThemeTypes.WORLD)
+        return <CardList partial-id="worldTheme" items={items} default={1} small={2} medium={4}>{it =>
+            <>
+                <NameComponent id="world-theme-name" name={it.reference} popoverOrientation="left"/>
+                {CommonOptions.get.getGameContent(it,)}
+                <ThemeImage reference={it} isSmallPath/>
+            </>
+        }</CardList>
+
+    return <CardList partial-id="theme" items={items} default={1} small={2} medium={3} large={4} extra-extra-large={6}>{it =>
+        <>
+            <NameComponent id="theme-name" name={it.reference} popoverOrientation="left"/>
+            <div className="d-flex align-items-center justify-content-between">
+                <div className="col-2">{CommonOptions.get.getGameContent(it,)}</div>
+                <div className="col-7 d-flex flex-row flex-sm-column align-items-center justify-content-center">
+                    <ThemeImage reference={it} isSmallPath/>
+                    <EndlessMarioImage reference={it}/>
+                </div>
+                <div className="col-2"><ThemeTypeImages reference={it}/></div>
+            </div>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function ThemeTable({items,}: Pick<Theme_SubContentProperties, 'items'>,) {
+    return <Table id="theme-table" items={items} options={options} caption={gameContentTranslation('theme.all.all',)} headersColor="info"/>
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Aside content --------------------
 
 interface ThemeAsideContentProperties
@@ -176,7 +156,7 @@ function ThemeAsideContent({type, games,}: ThemeAsideContentProperties,) {
 
 /** @reactComponent */
 function TypeAsideContent({type,}: Pick<ThemeAsideContentProperties, 'type'>,) {
-    return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
+    return <div id="theme-linkButton-container" className="btn-group-vertical btn-group-sm">
         <LinkButton partialId="allTheme" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
             <LinkButton partialId="courseTheme" routeName={type.courseRouteName} color={type.courseColor}>

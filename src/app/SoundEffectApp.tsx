@@ -6,13 +6,11 @@ import './SoundEffectApp.scss'
 import type {Array, MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}            from '@joookiwi/collection'
 
-import type {SoundEffectProperties}   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {SoundEffectProperties} from 'app/AppProperties.types'
+import type {ViewAndRouteName}      from 'app/withInterpreter/ViewDisplays.types'
+import type {GameCollection}        from 'util/collection/GameCollection'
+import type {GameStyleCollection}   from 'util/collection/GameStyleCollection'
+import type {ReactProperties}       from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {SoundEffectAppOption}                       from 'app/options/SoundEffectAppOption'
@@ -21,8 +19,8 @@ import Table                                        from 'app/tools/table/Table'
 import {SoundEffectGames}                           from 'app/property/SoundEffectGames'
 import {SoundEffectGameStyles}                      from 'app/property/SoundEffect.gameStyles'
 import {SoundEffectTimes}                           from 'app/property/SoundEffect.times'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -49,51 +47,7 @@ import SMM3DS =                Games.SMM3DS
 import SMW =                   GameStyles.SMW
 import SM3DW =                 GameStyles.SM3DW
 
-class SoundEffectAppInterpreter
-    implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
-
-    //region -------------------- Fields --------------------
-
-    readonly #games
-
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection,) {
-        this.#games = games
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        return new ArrayAsCollection(ALL,).filter(({reference,},) =>
-            games.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 3,
-            medium: 4,
-            large: 5,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: SoundEffects,) {
-        const games = this.#games
-        return <div className="soundEffect-images-container">
-            {games.hasSmm1Or3ds ? renderSMM1And3DSImage(enumerable,) : null}
-            {games.hasSmm2 ? renderSMM2Image(enumerable,) : null}
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-
-}
+const all = new ArrayAsCollection(ALL,)
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffect (list)',],
@@ -162,15 +116,58 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
     </SubMainContainer>
 }
 
+//region -------------------- Sub content --------------------
+
 /** @reactComponent */
 function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
-    const appInterpreter = new SoundEffectAppInterpreter(games,)
-    const items = appInterpreter.content
+    const items = all.filter(({reference,},) =>
+        games.hasAnyIn(reference,),)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SoundEffectList items={items} games={games}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
+        return <SoundEffectCardList items={items} games={games}/>
+    return <SoundEffectTable items={items} games={games}/>
+}
+
+
+interface SoundEffect_SubContentProperties
+    extends ReactProperties {
+
+    readonly items: CollectionHolder<SoundEffects>
+
+    readonly games: GameCollection
+
+}
+
+/** @reactComponent */
+function SoundEffectList({items, games: {hasSmm1Or3ds, hasSmm2,},}: SoundEffect_SubContentProperties,) {
+    return <List partialId="soundEffect" items={items} withSeparator>{it =>
+        <div className="d-flex justify-content-between">
+            <NameComponent id="soundEffect-name" name={it.reference} popoverOrientation="right"/>
+            <div className="soundEffect-images-container">
+                {hasSmm1Or3ds ? renderSMM1And3DSImage(it,) : null}
+                {hasSmm2 ? renderSMM2Image(it,) : null}
+            </div>
+        </div>
+    }</List>
+}
+
+/** @reactComponent */
+function SoundEffectCardList({items, games: {hasSmm1Or3ds, hasSmm2,},}: SoundEffect_SubContentProperties,) {
+    return <CardList partial-id="soundEffect" items={items} default={1} small={3} medium={4} large={5} extra-large={6}>{it =>
+        <>
+            <NameComponent id="soundEffect-name" name={it.reference} popoverOrientation="right"/>
+            <div className="soundEffect-images-container">
+                {hasSmm1Or3ds ? renderSMM1And3DSImage(it,) : null}
+                {hasSmm2 ? renderSMM2Image(it,) : null}
+            </div>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function SoundEffectTable({items, games,}: SoundEffect_SubContentProperties,) {
     return <Table id="soundEffect-table" items={items} options={getOptions(games,)} caption={gameContentTranslation('sound effect.all',)} headersColor="info"/>
 }
 
@@ -197,31 +194,7 @@ function getOptions(games: GameCollection,): CollectionHolder<SoundEffectAppOpti
     return new ArrayAsCollection(options,)
 }
 
-//region -------------------- List --------------------
-
-interface SoundEffect_ListProperties
-    extends ReactProperties {
-
-    readonly items: CollectionHolder<SoundEffects>
-
-    readonly games: GameCollection
-
-}
-
-/** @reactComponent */
-function SoundEffectList({items, games: {hasSmm1Or3ds, hasSmm2,},}: SoundEffect_ListProperties,) {
-    return <List partialId="soundEffect" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
-            <NameComponent id="soundEffect-name" name={it.reference} popoverOrientation="right"/>
-            <div className="soundEffect-images-container">
-                {hasSmm1Or3ds ? renderSMM1And3DSImage(it,) : null}
-                {hasSmm2 ? renderSMM2Image(it,) : null}
-            </div>
-        </div>
-    }</List>
-}
-
-//endregion -------------------- List --------------------
+//endregion -------------------- Sub content --------------------
 //region -------------------- Aside content --------------------
 
 interface SoundEffectAsideContentProperties

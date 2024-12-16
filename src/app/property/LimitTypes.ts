@@ -122,11 +122,7 @@ export abstract class LimitTypes
         return this.#routeName
     }
 
-    /**
-     * Retrieve the content applicable to the {@link LimitTypes}
-     *
-     * @see AppInterpreter.content
-     */
+    /** Retrieve the content applicable to the {@link LimitTypes} */
     public abstract get content(): CollectionHolder<Limits>
 
     //region -------------------- Link button methods --------------------

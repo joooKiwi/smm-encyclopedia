@@ -155,11 +155,7 @@ export abstract class CourseTagTypes
         return this.#routeName
     }
 
-    /**
-     * Retrieve the content applicable to the {@link CourseTagTypes}
-     *
-     * @see AppInterpreter.content
-     */
+    /** Retrieve the content applicable to the {@link CourseTagTypes} */
     public abstract get content(): CollectionHolder<CourseTags>
 
     //region -------------------- Link button methods --------------------

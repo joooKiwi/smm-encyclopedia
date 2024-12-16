@@ -22,6 +22,31 @@
   .endlessMario-image { max-width: 3rem }
 }
 
+#courseTheme-cardList {}
+#worldTheme-cardList {}
+#theme-cardList {}
+:is(#courseTheme-cardList, #worldTheme-cardList, #theme-cardList) {
+
+  .game-image {
+    min-height: 2rem;
+    max-width: 2rem;
+  }
+
+  .theme-image {
+    max-height: 5rem;
+    max-width: 5rem;
+  }
+
+  .endlessMario-image {
+    max-height: 4rem;
+  }
+
+  .themeType-image {
+    max-height: 2rem;
+  }
+
+}
+
 #theme-table {
   width: auto;
   margin-left: auto;
@@ -57,82 +82,3 @@
   }
 
 }
-
-.images-container, .gameContentImages-container, .themeTypesImages-container {
-  img {
-    width: fit-content;
-  }
-}
-
-.cardListElement-container {
-
-  .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .images-container, {
-      display: flex;
-      flex-direction: row;
-      width: 5cm;
-      justify-content: center;
-      align-items: center;
-
-      @include media-breakpoint-up($grid-breakpoint-sm) {
-        flex-direction: column;
-        width: auto;
-      }
-    }
-
-    .gameContentImages-container {
-      display: flex;
-      flex-direction: column;
-    }
-
-  }
-
-
-  :where(.theme-image, .endlessMario-image) {
-    max-height: 2cm;
-    @include media-breakpoint-between($grid-breakpoint-lg, $grid-breakpoint-xl) {
-      max-height: 1.5cm;
-    }
-  }
-
-  .gameContentImages-container img {
-    min-height: .5cm;
-    max-height: 1cm;
-  }
-
-  .themeTypesImages-container img {
-    min-height: .5cm;
-    max-height: 1cm;
-  }
-
-}
-
-//region  -------------------- Link buttons --------------------
-
-#theme-linkButton-courseAndWorld-container {
-  margin-left: 0;
-}
-
-#allTheme-button {
-  border: {
-    top-right-radius: var(--bs-btn-border-radius);
-    bottom: {
-      left-radius: 0;
-      right-radius: 0;
-    }
-  };
-}
-
-#courseTheme-button {
-  border-bottom-left-radius: var(--bs-btn-border-radius);
-}
-
-#worldTheme-button {
-  border-bottom-right-radius: var(--bs-btn-border-radius);
-}
-
-//endregion  -------------------- Link buttons --------------------
