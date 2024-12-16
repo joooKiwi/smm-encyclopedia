@@ -21,8 +21,8 @@ export class MiiCostumeCategories
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly HEADGEAR = new MiiCostumeCategories('Headgear', 1,)
-    public static readonly TOP =      new MiiCostumeCategories('Top', 0,)
+    public static readonly HEADGEAR = new MiiCostumeCategories('Headgear', 0,)
+    public static readonly TOP =      new MiiCostumeCategories('Top', 1,)
     public static readonly COSTUME =  new MiiCostumeCategories('Costume', 3,)
     public static readonly BOTTOM =   new MiiCostumeCategories('Bottom', 2,)
 
