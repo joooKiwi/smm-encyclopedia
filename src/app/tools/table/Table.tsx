@@ -7,7 +7,6 @@ import type {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
 import {useRef}                               from 'react'
 
 import type {SingleHeaderContent}                                from 'app/tools/table/SimpleHeader'
-import type {SingleTableContent}                                 from 'app/tools/table/Table.types'
 import type {TableOption}                                        from 'app/tools/table/TableOption'
 import type {ClassWithEnglishName}                               from 'core/ClassWithEnglishName'
 import type {ReactProperties, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
@@ -15,7 +14,6 @@ import type {ReactProperties, SimpleReactPropertiesWithChildren} from 'util/reac
 import Image               from 'app/tools/images/Image'
 import Tooltip             from 'bootstrap/tooltip/Tooltip'
 import {Empty}             from 'util/emptyVariables'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
 import EMPTY_STRING =   Empty.EMPTY_STRING
@@ -91,7 +89,7 @@ interface TableContentProperties<CONTENT extends ContentOnATable, >
 
     readonly associatedClass: CollectionHolder<string>
     readonly items: CollectionHolder<CONTENT>
-    readonly contents: CollectionHolder<SingleTableContent>
+    readonly contents: CollectionHolder<CollectionHolder<ReactElement>>
     readonly onRowClicked: (content: CONTENT,) => void
 
 }
@@ -102,7 +100,7 @@ function TableContent<const CONTENT extends ContentOnATable, >({associatedClass,
         const {englishName, englishNameInHtml,} = items.get(i,)
 
         return <div key={`table row content (${englishName} ${i + 1})`} className={`trow table-row-${englishNameInHtml}`}
-                    onClick={() => onRowClicked(items.get(i,),)}>{new ArrayAsCollection(content,).drop(1,).map((rowColumnContent, j,) =>
+                    onClick={() => onRowClicked(items.get(i,),)}>{content.map((rowColumnContent, j,) =>
             rowColumnContent == null
                 ? <div key={`table content (empty ${englishName} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
                 : <div key={`table content (${englishName} ${i + 1}-${j + 2})`} className={`tcell ${associatedClass.get(j,)}`}>{rowColumnContent}</div>,)
@@ -194,12 +192,8 @@ function retrieveAssociatedClass<const OPTION extends TableOption, >(options: Co
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent<const CONTENT extends ContentOnATable, const OPTION extends TableOption<CONTENT>, >(items: CollectionHolder<CONTENT>, options: CollectionHolder<OPTION>,): CollectionHolder<SingleTableContent> {
-    return items.map(contentValue => {
-        const tableContent: SingleTableContent = [contentValue.englishName,]
-        options.forEach(option => tableContent.push(option.renderContent(contentValue,),),)
-        return tableContent
-    },)
+function retrieveContent<const CONTENT extends ContentOnATable, const OPTION extends TableOption<CONTENT>, >(items: CollectionHolder<CONTENT>, options: CollectionHolder<OPTION>,): CollectionHolder<CollectionHolder<ReactElement>> {
+    return items.map(contentValue => options.map(option => option.renderContent(contentValue,),),)
 }
 
 /**
