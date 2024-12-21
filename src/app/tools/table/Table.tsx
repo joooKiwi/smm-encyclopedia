@@ -1,12 +1,13 @@
 import './Table.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
+import type {Enumerable}       from '@joookiwi/enumerable'
 import type {NullableString}   from '@joookiwi/type'
 
-import type {Content}                                                                         from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
 import type {SingleTableContent}                                                              from 'app/tools/table/Table.types'
 import type {TableOption}                                                                     from 'app/tools/table/TableOption'
+import type {ClassWithEnglishName}                                                            from 'core/ClassWithEnglishName'
 import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Image               from 'app/tools/images/Image'
@@ -18,7 +19,9 @@ import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
 import EMPTY_STRING =   Empty.EMPTY_STRING
 
-interface TableProperties<out CONTENT extends Content,
+type ContentOnATable = Enumerable & ClassWithEnglishName<string>
+
+interface TableProperties<out CONTENT extends ContentOnATable,
     out OPTION extends TableOption<CONTENT>, >
     extends ReactProperties {
 
@@ -52,7 +55,7 @@ interface TableProperties<out CONTENT extends Content,
  *
  * @reactComponent
  */
-export default function Table<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >({id, items, options, caption, color, headersColor, onRowClicked = EMPTY_CALLBACK,}: TableProperties<CONTENT, OPTION>,) {
+export default function Table<const CONTENT extends ContentOnATable, const OPTION extends TableOption<CONTENT>, >({id, items, options, caption, color, headersColor, onRowClicked = EMPTY_CALLBACK,}: TableProperties<CONTENT, OPTION>,) {
     const associatedClass = retrieveAssociatedClass(options,)
     const contents = retrieveContent(items, options,)
     const headers = retrieveHeader(options,)
@@ -77,7 +80,7 @@ interface TableHeaderProperties
 function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
     return <div className="theader sticky-top">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
-        return <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
+        return <div id={elementId} key={`table header # ${i}`} className={`tcell ${associatedClass.get(i,)}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
@@ -85,7 +88,7 @@ function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
 }
 
 
-interface TableContentProperties<CONTENT extends Content,>
+interface TableContentProperties<CONTENT extends ContentOnATable,>
     extends ReactProperties {
 
     readonly associatedClass: CollectionHolder<string>
@@ -96,7 +99,7 @@ interface TableContentProperties<CONTENT extends Content,>
 }
 
 /** @reactComponent */
-function TableContent<const CONTENT extends Content, >({associatedClass, items, contents, onRowClicked,}: TableContentProperties<CONTENT>,) {
+function TableContent<const CONTENT extends ContentOnATable, >({associatedClass, items, contents, onRowClicked,}: TableContentProperties<CONTENT>,) {
     return <div className="tcontent">{contents.map((content, i,) => {
         const {englishName, englishNameInHtml,} = items.get(i,)
 
@@ -122,7 +125,7 @@ interface TableFooterProperties
 function TableFooter({associatedClass, headers,}: TableFooterProperties,) {
     return <div className="tfooter mb-2">{headers.map((it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
-        return <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell ${associatedClass.get(i,)}`}>
+        return <div id={elementId} key={`table footer #${i + 1}`} className={`tcell ${associatedClass.get(i,)}`}>
             <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
@@ -193,7 +196,7 @@ function retrieveAssociatedClass<const OPTION extends TableOption, >(options: Co
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent<const CONTENT extends Content, const OPTION extends TableOption<CONTENT>, >(items: CollectionHolder<CONTENT>, options: CollectionHolder<OPTION>,): CollectionHolder<SingleTableContent> {
+function retrieveContent<const CONTENT extends ContentOnATable, const OPTION extends TableOption<CONTENT>, >(items: CollectionHolder<CONTENT>, options: CollectionHolder<OPTION>,): CollectionHolder<SingleTableContent> {
     return items.map(contentValue => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
         options.forEach(option => tableContent.push(option.renderContent(contentValue,),),)

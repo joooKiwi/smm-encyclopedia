@@ -1,15 +1,16 @@
 import type {Array} from '@joookiwi/type'
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader
-export type SingleHeadersContent = Array<SingleHeaderContent>
 
 export interface SimpleHeader {
 
-    key: string
+    /** The partial id that will be used in the table column */
+    readonly key: string
 
-    subHeaders?: SingleHeadersContent
+    readonly subHeaders?: Array<SingleHeaderContent>
 
-    tooltip?: string
+    /** The Bootstrap tooltip to be displayed bellow on top and above on bottom */
+    readonly tooltip?: string
 
 }
 
@@ -17,16 +18,17 @@ export interface SimpleImageHeader
     extends SimpleHeader {
 
     /** The name if the image cannot be loaded */
-    alt: string
+    readonly alt: string
 
     /** The path of the image */
-    path: string
+    readonly path: string
 
 }
 
 export interface SimpleReactHeader
     extends SimpleHeader {
 
-    element: ReactElementOrString
+    /** The element to be displayed in the table row */
+    readonly element: ReactElementOrString
 
 }
