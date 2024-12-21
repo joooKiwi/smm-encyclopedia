@@ -1,19 +1,20 @@
 import './Table.scss'
 
-import type {CollectionHolder} from '@joookiwi/collection'
-import type {Enumerable}       from '@joookiwi/enumerable'
-import type {NullableString}   from '@joookiwi/type'
+import type {CollectionHolder}                from '@joookiwi/collection'
+import type {Enumerable}                      from '@joookiwi/enumerable'
+import type {NullableString}                  from '@joookiwi/type'
+import type {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
+import {useRef}                               from 'react'
 
-import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
-import type {SingleTableContent}                                                              from 'app/tools/table/Table.types'
-import type {TableOption}                                                                     from 'app/tools/table/TableOption'
-import type {ClassWithEnglishName}                                                            from 'core/ClassWithEnglishName'
-import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {SingleHeaderContent}                                from 'app/tools/table/SimpleHeader'
+import type {SingleTableContent}                                 from 'app/tools/table/Table.types'
+import type {TableOption}                                        from 'app/tools/table/TableOption'
+import type {ClassWithEnglishName}                               from 'core/ClassWithEnglishName'
+import type {ReactProperties, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Image               from 'app/tools/images/Image'
 import Tooltip             from 'bootstrap/tooltip/Tooltip'
 import {Empty}             from 'util/emptyVariables'
-import {assert}            from 'util/utilitiesMethods'
 import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
@@ -68,6 +69,7 @@ export default function Table<const CONTENT extends ContentOnATable, const OPTIO
     </div>
 }
 
+
 interface TableHeaderProperties
     extends ReactProperties {
 
@@ -78,17 +80,13 @@ interface TableHeaderProperties
 
 /** @reactComponent */
 function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
-    return <div className="theader sticky-top">{headers.map((it, i,) => {
-        const elementId = `${getHeaderKey(it,)}-header`
-        return <div id={elementId} key={`table header # ${i}`} className={`tcell ${associatedClass.get(i,)}`}>
-            <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
-            <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
-        </div>
-    },)}</div>
+    return <div className="theader sticky-top">{headers.map((it, i,) =>
+        <HeaderOrFooterContent key={`table header # ${i}`} type="header" content={it} associatedClass={associatedClass.get(i,)} tooltip-placement="bottom"/>
+    ,)}</div>
 }
 
 
-interface TableContentProperties<CONTENT extends ContentOnATable,>
+interface TableContentProperties<CONTENT extends ContentOnATable, >
     extends ReactProperties {
 
     readonly associatedClass: CollectionHolder<string>
@@ -123,44 +121,53 @@ interface TableFooterProperties
 
 /** @reactComponent */
 function TableFooter({associatedClass, headers,}: TableFooterProperties,) {
-    return <div className="tfooter mb-2">{headers.map((it, i,) => {
-        const elementId = `${getHeaderKey(it,)}-footer`
-        return <div id={elementId} key={`table footer #${i + 1}`} className={`tcell ${associatedClass.get(i,)}`}>
-            <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
-            <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
+    return <div className="tfooter mb-2">{headers.map((it, i,) =>
+        <HeaderOrFooterContent key={`table footer #${i + 1}`} type="footer" content={it} associatedClass={associatedClass.get(i,)} tooltip-placement="top"/>
+    ,)}</div>
+}
+
+
+interface HeaderOrFooterContentProperties
+    extends ReactProperties {
+
+    readonly type: | 'header' | 'footer'
+
+    readonly content: SingleHeaderContent
+
+    readonly associatedClass: string
+
+    readonly 'tooltip-placement': Extract<TooltipFromBootstrap.PopoverPlacement, | 'top' | 'bottom'>
+
+}
+
+/** @reactComponent */
+function HeaderOrFooterContent(properties: HeaderOrFooterContentProperties,) {
+    const htmlElement = useRef<HTMLDivElement>(null,)
+    const {content, associatedClass,} = properties
+    if (typeof content === 'string')
+        return <div id={content} className={`tcell ${associatedClass}`}>{content}</div>
+
+    const {key, tooltip,} = content
+    if (tooltip == null)
+        if ('element' in content)
+            return <div id={key} className={`tcell ${associatedClass}`}>{content.element}</div>
+        else
+            return <div id={key} className={`tcell ${associatedClass}`}>
+                <Image source={content.path} fallbackName={content.alt}/>
+            </div>
+
+    const tooltipPlacement = properties['tooltip-placement']
+    if ('element' in content)
+        return <div ref={htmlElement} id={key} className={`tcell ${associatedClass}`}>
+            <Tooltip option={{title: tooltip, placement: tooltipPlacement,}} reference={htmlElement}/>
+            {content.element}
         </div>
-    },)}</div>
+    return <div ref={htmlElement} id={key} className={`tcell ${associatedClass}`}>
+        <Tooltip option={{title: tooltip, placement: tooltipPlacement,}} reference={htmlElement}/>
+        <Image source={content.path} fallbackName={content.alt}/>
+    </div>
 }
 
-
-/** @reactComponent */
-function HeaderTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
-    assert(typeof children != 'string', 'No tooltip can be displayed on a header that is a string.',)
-
-    const tooltip = children.tooltip
-    if (tooltip == null)
-        return null
-    return <Tooltip option={{title: tooltip, placement: 'bottom',}} reference={elementId}/>
-}
-
-/** @reactComponent */
-function FooterTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
-    assert(typeof children != 'string', 'No tooltip can be displayed on a footer that is a string.',)
-
-    const tooltip = children.tooltip
-    if (tooltip == null)
-        return null
-    return <Tooltip option={{title: tooltip, placement: 'top',}} reference={elementId}/>
-}
-
-/** @reactComponent */
-function HeaderOrFooterContent({children,}: SimpleReactPropertiesWithChildren<SingleHeaderContent>,) {
-    if (typeof children == 'string')
-        return <>{children}</>
-    if ('element' in children)
-        return children.element
-    return <Image source={children.path} fallbackName={children.alt}/>
-}
 
 /** @reactComponent */
 function TableCaption({children,}: SimpleReactPropertiesWithChildren<ReactElementOrString>,) {
@@ -169,15 +176,6 @@ function TableCaption({children,}: SimpleReactPropertiesWithChildren<ReactElemen
     return <small className="tcaption alert alert-info flex-grow-1 py-2" role="alert">{children}</small>
 }
 
-
-/**
- * Get the header key from either a {@link String} or a {@link SimpleHeader}
- *
- * @param header The header to retrieve its key
- */
-function getHeaderKey(header: SingleHeaderContent,): string {
-    return typeof header == 'string' ? header : header.key
-}
 
 /**
  * Get the classes with a space before and between the values
