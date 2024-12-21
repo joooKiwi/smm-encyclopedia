@@ -1,13 +1,9 @@
-import type {Array} from '@joookiwi/type'
-
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader
 
 export interface SimpleHeader {
 
     /** The partial id that will be used in the table column */
     readonly key: string
-
-    readonly subHeaders?: Array<SingleHeaderContent>
 
     /** The Bootstrap tooltip to be displayed bellow on top and above on bottom */
     readonly tooltip?: string
