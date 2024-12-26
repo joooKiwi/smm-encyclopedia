@@ -210,9 +210,17 @@
   //endregion -------------------- Z-index --------------------
   //region -------------------- Font-size --------------------
 
-  --bs-font-size-base:    #{$font-size-base};
+  --bs-font-size-base:    #{$font-size-base-original};
   --bs-font-size-sm:      #{$font-size-sm-original};
   --bs-font-size-lg:      #{$font-size-lg-original};
+
+  //--bs-h1-font-size:      #{$h1-font-size-original};
+  //--bs-h2-font-size:      #{$h2-font-size-original};
+  //--bs-h3-font-size:      #{$h3-font-size-original};
+  //--bs-h4-font-size:      #{$h4-font-size-original};
+  //--bs-h5-font-size:      #{$h5-font-size-original};
+  //--bs-h6-font-size:      #{$h6-font-size-original};
+
   --bs-small-font-size:   #{$small-font-size-original};
   --bs-sub-sup-font-size: #{$sub-sup-font-size-original};
 

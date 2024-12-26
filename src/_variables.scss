@@ -112,10 +112,26 @@ $zindex-toast: var(--bs-z-index-toast);
 //endregion -------------------- Z-index variables --------------------
 //region -------------------- Font-size variables --------------------
 
+$font-size-base-original: $font-size-base;
+$font-size-base: var(--bs-font-size-base);
+
 $font-size-sm-original: $font-size-sm;
 $font-size-sm: var(--bs-font-size-sm);
 $font-size-lg-original: $font-size-lg;
 $font-size-lg: var(--bs-font-size-lg);
+
+//$h1-font-size-original: $h1-font-size;
+//$h1-font-size: calc(var(--bs-h1-font-size) + 1.5vw);    // calc(1.375rem + 1.5vw)   @media(min-width: 1200px): 2.5rem
+//$h2-font-size-original: $h2-font-size;
+//$h2-font-size: calc(var(--bs-h2-font-size) + 0.9vw);    // calc(1.325rem + 0.9vw)   @media(min-width: 1200px): 2rem
+//$h3-font-size-original: $h3-font-size;
+//$h3-font-size: calc(var(--bs-h3-font-size) + 0.6vw);    // calc(1.3rem + 0.6vw)     @media(min-width: 1200px): 1.75rem
+//$h4-font-size-original: $h4-font-size;
+//$h4-font-size: calc(var(--bs-h4-font-size) + 0.3vw);    // calc(1.275rem + 0.3vw)   @media(min-width: 1200px): 1.5rem
+//$h5-font-size-original: $h5-font-size;
+//$h5-font-size: var(--bs-h5-font-size);                  // 1.25rem
+//$h6-font-size-original: $h6-font-size;
+//$h6-font-size: var(--bs-h6-font-size);                  // 1rem
 
 $small-font-size-original: $small-font-size;
 $small-font-size: var(--bs-small-font-size);
