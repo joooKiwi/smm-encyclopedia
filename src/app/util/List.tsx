@@ -27,7 +27,7 @@ interface ListProperties<out T extends ClassWithEnglishName<string>, >
 
 export default function List<const T extends ClassWithEnglishName<string>, >
 ({partialId, items, withSeparator = false, children,}: ListProperties<T>,) {
-    return <div className="bg-dark bg-gradient bg-opacity-10 w-auto py-2 px-2 mx-auto rounded">
+    return <div className="customList-container bg-dark bg-gradient bg-opacity-10 py-2 px-2 mx-auto rounded">
         <ul id={`${partialId}-list`} className={`customList list-group list-group-flush${withSeparator ? ' withSeparator' : EMPTY_STRING} mb-0`}>{items.map((it, i,) =>
             <li key={`list item #${i}`} id={`${partialId}-${it.englishNameInHtml}-listItem`} className="list-group-item">{children(it,)}</li>,)
         }</ul>
