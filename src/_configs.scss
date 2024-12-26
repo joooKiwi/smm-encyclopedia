@@ -1157,7 +1157,8 @@
   border-radius: var(--bs-border-circle-radius);
 }
 
-.btn.bi::before, .btn .bi, { margin-right: var(--bs-spacer-sm) }
+.btn.bi:has(span)::before,
+.btn .bi, { margin-right: var(--bs-spacer-sm) }
 
 //region -------------------- Button colors --------------------
 
