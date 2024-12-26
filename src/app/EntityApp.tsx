@@ -279,24 +279,24 @@ function GameAsideContent({game, gameStyles,}: Pick<EntityAsideContentProperties
     if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
         return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
             <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
-                <GameImage reference={SMM2}/>
-            </LinkButton>
+            <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
+                <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
+                    <GameImage reference={SMM1}/>
+                </LinkButton>
+                <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
+                    <GameImage reference={SMM3DS}/>
+                </LinkButton>
+                <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+                    <GameImage reference={SMM2}/>
+                </LinkButton>
+            </div>
         </div>
 
     return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
-        <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
-                <GameImage reference={SMM1}/>
-            </LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
-                <GameImage reference={SMM3DS}/>
-            </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
-                <GameImage reference={SMM2}/>
-            </LinkButton>
-        </div>
+        <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+            <GameImage reference={SMM2}/>
+        </LinkButton>
     </div>
 }
 
