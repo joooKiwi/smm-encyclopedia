@@ -1,3 +1,6 @@
+@import "~bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
 @import "functions";
 @import "variables";
 @import "~bootstrap/scss/maps";
