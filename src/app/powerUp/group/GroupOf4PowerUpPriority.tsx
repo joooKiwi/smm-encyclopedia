@@ -1,17 +1,15 @@
 import './GroupOfPowerUpPriority.scss'
 import './GroupOf4PowerUpPriority.scss'
 
-import type {ReactProperties} from 'util/react/ReactProperties'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Arrow    from 'app/tools/arrow/Arrow'
 import {Arrows} from 'app/tools/arrow/Arrows'
 
 interface GroupOf4PowerUpPriorityProperties
-    extends ReactProperties {
+    extends ReactPropertiesWithChildren<ArrayOf4<NonNullReactElement>> {
 
     readonly id: string
-
-    readonly children: ArrayOf4<NonNullReactElement>
 
     readonly topArrow?: Arrows
     readonly isTopArrowSeparated?: boolean

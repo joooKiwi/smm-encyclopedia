@@ -11,9 +11,10 @@ import EMPTY_OBJECT = Empty.EMPTY_OBJECT
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalContainerProperties
-    extends ReactPropertiesWithOptionalChildren<ReactElementOrArray>, Omit<HTMLDivProperties, 'key'> {
+    extends ReactPropertiesWithOptionalChildren<NonNullReactElementOrArray>,
+        Omit<HTMLDivProperties, 'key'> {
 
-    readonly children?: ReactElementOrArray
+    readonly children?: NonNullReactElementOrArray
 
     /** The reference to associate on the div having the {@link id} received */
     readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>

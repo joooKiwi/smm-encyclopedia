@@ -6,9 +6,10 @@ import {Empty} from 'util/emptyVariables'
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalBodyProperties
-    extends ReactPropertiesWithChildren<ReactElementOrArray>, HTMLDivProperties {
+    extends ReactPropertiesWithChildren<NonNullReactElementOrArray>,
+        HTMLDivProperties {
 
-    readonly children: ReactElementOrArray
+    readonly children: NonNullReactElementOrArray
 
 }
 
