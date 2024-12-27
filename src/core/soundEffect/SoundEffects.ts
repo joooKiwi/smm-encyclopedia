@@ -18,7 +18,7 @@ import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                       
 import type {CompanionEnumByNameSingleton}                                                                                         from 'util/enumerable/Singleton.types'
 
 import type {Musics}                                                    from 'core/music/Musics'
-import {IndividualMusics}                                               from 'core/music/IndividualMusics'
+import {Tracks}                                                         from 'core/track/Tracks'
 import {EmptySoundEffectFromMusicAdaptor}                               from 'core/soundEffect/EmptySoundEffectFromMusicAdaptor'
 import {SoundEffectFromMusicAdaptorContainer}                           from 'core/soundEffect/SoundEffectFromMusicAdaptor.container'
 import {SoundEffectLoader}                                              from 'core/soundEffect/SoundEffect.loader'
@@ -779,7 +779,7 @@ export abstract class SoundEffects
         #sounds_smm2?: PossibleSMM2SoundEffect
 
         public override get sounds_smm2(): PossibleSMM2SoundEffect {
-            return this.#sounds_smm2 ??= [IndividualMusics.PEACEFUL_LINK.file, IndividualMusics.PEACEFUL_SMB2.file, super.sounds_smm2,].flat()
+            return this.#sounds_smm2 ??= [Tracks.PEACEFUL_LINK.file, Tracks.PEACEFUL_SMB2.file, super.sounds_smm2,].flat()
         }
 
         protected override _createSMM2Sounds() {

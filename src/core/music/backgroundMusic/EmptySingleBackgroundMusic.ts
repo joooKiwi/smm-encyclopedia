@@ -7,7 +7,7 @@ import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @singleton
- * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
+ * @deprecated The use of {@link Tracks} should be used instead
  */
 export class EmptySingleBackgroundMusic
     implements SingleBackgroundMusic<null, null, null, null, null>,

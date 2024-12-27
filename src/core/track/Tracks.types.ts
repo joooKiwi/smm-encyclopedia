@@ -1,4 +1,4 @@
-import type {IndividualMusics} from 'core/music/IndividualMusics'
+import type {Tracks} from 'core/track/Tracks'
 
 enum Enum {
     TITLE_SCREEN, //TODO add other "title" musics
@@ -211,7 +211,7 @@ enum Enum {
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
-/** A type-alias of the possible {@link IndividualMusics.file} */
-export type PossibleMusicFileName = typeof IndividualMusics[Names]['file']
-/** A type-alias of the possible {@link IndividualMusics.titleName} */
-export type PossibleTitleName = typeof IndividualMusics[Names]['titleName']
+/** A type-alias of the possible {@link Tracks.file} */
+export type PossibleMusicFileName = typeof Tracks[Names]['file']
+/** A type-alias of the possible {@link Tracks.titleName} */
+export type PossibleTitleName = typeof Tracks[Names]['titleName']

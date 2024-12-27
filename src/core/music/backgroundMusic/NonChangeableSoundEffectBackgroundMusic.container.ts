@@ -8,7 +8,7 @@ import {SingleBackgroundMusicContainer} from 'core/music/backgroundMusic/SingleB
 
 const emptyMusic = EmptySingleBackgroundMusic.get
 
-/**@deprecated The use of a more simplistic {@link IndividualMusics} is used and better*/
+/** @deprecated The use of {@link Tracks} should be used instead */
 export class NonChangeableSoundEffectBackgroundMusicContainer<const MUSIC extends MusicSoundFile<PossibleOther_RegularMusic>,
     const FAST_MUSIC extends MusicSoundFile<PossibleOther_FastMusic>, >
     implements NonChangeableSoundEffectBackgroundMusic<MUSIC, FAST_MUSIC> {

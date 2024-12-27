@@ -2,7 +2,7 @@ import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM
 
 import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */
+/** @deprecated The use of {@link Tracks} is used */
 export class SingleBackgroundMusicContainer<const SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
     const SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
     const SMW_MUSIC extends PossibleSMW_Music_SingleContainer,

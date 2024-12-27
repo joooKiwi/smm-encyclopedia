@@ -9,8 +9,8 @@ import type {SingleSoundEffectMusic}                                   from 'cor
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 import type {CompanionEnumByReferenceSingleton}                        from 'util/enumerable/Singleton.types'
 
-import {IndividualMusics}         from 'core/music/IndividualMusics'
-import * as MusicCreator          from 'core/music/musicCreator'
+import {Tracks}          from 'core/track/Tracks'
+import * as MusicCreator from 'core/music/musicCreator'
 import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
 import type {Themes}              from 'core/theme/Themes'
 import {Import}                   from 'util/DynamicImporter'
@@ -167,7 +167,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.linkAndSmb2BackgroundMusic(IndividualMusics.PEACEFUL_LINK.file, IndividualMusics.PEACEFUL_SMB2.file,)
+            return MusicCreator.linkAndSmb2BackgroundMusic(Tracks.PEACEFUL_LINK.file, Tracks.PEACEFUL_SMB2.file,)
         }
 
     }()
@@ -180,36 +180,36 @@ export class Musics
 
         protected override _createMusic() {
             return MusicCreator.backgroundMusic(
-                IndividualMusics.BONUS_SMB_EDITOR.file,
-                IndividualMusics.BONUS_SMB.file,
-                IndividualMusics.BONUS_SMB_FAST.file,
+                Tracks.BONUS_SMB_EDITOR.file,
+                Tracks.BONUS_SMB.file,
+                Tracks.BONUS_SMB_FAST.file,
 
-                IndividualMusics.BONUS_LINK.file,
-                IndividualMusics.BONUS_LINK_FAST.file,
+                Tracks.BONUS_LINK.file,
+                Tracks.BONUS_LINK_FAST.file,
 
-                IndividualMusics.BONUS_SMB2.file,
-                IndividualMusics.BONUS_SMB2_FAST.file,
+                Tracks.BONUS_SMB2.file,
+                Tracks.BONUS_SMB2_FAST.file,
 
-                IndividualMusics.BONUS_SMB3_EDITOR.file,
-                IndividualMusics.BONUS_SMB3.file,
-                IndividualMusics.BONUS_SMB3_FAST.file,
+                Tracks.BONUS_SMB3_EDITOR.file,
+                Tracks.BONUS_SMB3.file,
+                Tracks.BONUS_SMB3_FAST.file,
 
-                IndividualMusics.BONUS_SMW_EDITOR.file,
-                IndividualMusics.BONUS_SMW.file,
+                Tracks.BONUS_SMW_EDITOR.file,
+                Tracks.BONUS_SMW.file,
                 null,
-                IndividualMusics.BONUS_SMW_FAST.file,
+                Tracks.BONUS_SMW_FAST.file,
                 null,
 
-                IndividualMusics.BONUS_NSMBU_EDITOR.file,
-                IndividualMusics.BONUS_NSMBU.file,
-                IndividualMusics.BONUS_NSMBU_YOSHI.file,
-                IndividualMusics.BONUS_NSMBU_FAST.file,
-                IndividualMusics.BONUS_NSMBU_YOSHI_FAST.file,
+                Tracks.BONUS_NSMBU_EDITOR.file,
+                Tracks.BONUS_NSMBU.file,
+                Tracks.BONUS_NSMBU_YOSHI.file,
+                Tracks.BONUS_NSMBU_FAST.file,
+                Tracks.BONUS_NSMBU_YOSHI_FAST.file,
 
-                IndividualMusics.BONUS_SM3DW_EDITOR.file,
-                IndividualMusics.BONUS_SM3DW.file,
+                Tracks.BONUS_SM3DW_EDITOR.file,
+                Tracks.BONUS_SM3DW.file,
                 null,
-                IndividualMusics.BONUS_SM3DW_FAST.file,
+                Tracks.BONUS_SM3DW_FAST.file,
                 null,
             )
         }
@@ -223,36 +223,36 @@ export class Musics
 
         protected override _createMusic() {
             return MusicCreator.backgroundMusic(
-                IndividualMusics.BOSS_SMB_EDITOR.file,
-                IndividualMusics.BOSS_SMB.file,
-                IndividualMusics.BOSS_SMB_FAST.file,
+                Tracks.BOSS_SMB_EDITOR.file,
+                Tracks.BOSS_SMB.file,
+                Tracks.BOSS_SMB_FAST.file,
 
-                IndividualMusics.BOSS_LINK.file,
-                IndividualMusics.BOSS_LINK_FAST.file,
+                Tracks.BOSS_LINK.file,
+                Tracks.BOSS_LINK_FAST.file,
 
-                IndividualMusics.BOSS_SMB2.file,
-                IndividualMusics.BOSS_SMB2_FAST.file,
+                Tracks.BOSS_SMB2.file,
+                Tracks.BOSS_SMB2_FAST.file,
 
-                IndividualMusics.BOSS_SMB3_EDITOR.file,
-                IndividualMusics.BOSS_SMB3.file,
-                IndividualMusics.BOSS_SMB3_FAST.file,
+                Tracks.BOSS_SMB3_EDITOR.file,
+                Tracks.BOSS_SMB3.file,
+                Tracks.BOSS_SMB3_FAST.file,
 
-                IndividualMusics.BOSS_SMW.file,
-                IndividualMusics.BOSS_SMW.file,
+                Tracks.BOSS_SMW.file,
+                Tracks.BOSS_SMW.file,
                 null,
-                IndividualMusics.BOSS_SMW_FAST.file,
-                null,
-
-                IndividualMusics.BOSS_NSMBU_EDITOR.file,
-                IndividualMusics.BOSS_NSMBU.file,
-                null,
-                IndividualMusics.BOSS_NSMBU_FAST.file,
+                Tracks.BOSS_SMW_FAST.file,
                 null,
 
-                IndividualMusics.BOSS_SM3DW_EDITOR.file,
-                IndividualMusics.BOSS_SM3DW.file,
+                Tracks.BOSS_NSMBU_EDITOR.file,
+                Tracks.BOSS_NSMBU.file,
                 null,
-                IndividualMusics.BOSS_SM3DW_FAST.file,
+                Tracks.BOSS_NSMBU_FAST.file,
+                null,
+
+                Tracks.BOSS_SM3DW_EDITOR.file,
+                Tracks.BOSS_SM3DW.file,
+                null,
+                Tracks.BOSS_SM3DW_FAST.file,
                 null,
             )
         }
@@ -265,41 +265,41 @@ export class Musics
         }
 
         protected override _createMusic() {
-            const smb3Editor = IndividualMusics.FINAL_BOSS_SMB3_EDITOR.file
-            const smb3 = IndividualMusics.FINAL_BOSS_SMB3.file
-            const smb3Fast = IndividualMusics.FINAL_BOSS_SMB3_FAST.file
+            const smb3Editor = Tracks.FINAL_BOSS_SMB3_EDITOR.file
+            const smb3 = Tracks.FINAL_BOSS_SMB3.file
+            const smb3Fast = Tracks.FINAL_BOSS_SMB3_FAST.file
 
             return MusicCreator.backgroundMusic(
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                IndividualMusics.FINAL_BOSS_LINK.file,
-                IndividualMusics.FINAL_BOSS_LINK_FAST.file,
+                Tracks.FINAL_BOSS_LINK.file,
+                Tracks.FINAL_BOSS_LINK_FAST.file,
 
-                IndividualMusics.FINAL_BOSS_SMB2.file,
-                IndividualMusics.FINAL_BOSS_SMB2_FAST.file,
+                Tracks.FINAL_BOSS_SMB2.file,
+                Tracks.FINAL_BOSS_SMB2_FAST.file,
 
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                IndividualMusics.FINAL_BOSS_SMW_EDITOR.file,
-                IndividualMusics.FINAL_BOSS_SMW.file,
+                Tracks.FINAL_BOSS_SMW_EDITOR.file,
+                Tracks.FINAL_BOSS_SMW.file,
                 null,
-                IndividualMusics.FINAL_BOSS_SMW_FAST.file,
-                null,
-
-                IndividualMusics.FINAL_BOSS_NSMBU_EDITOR.file,
-                IndividualMusics.FINAL_BOSS_NSMBU.file,
-                null,
-                IndividualMusics.FINAL_BOSS_NSMBU_FAST.file,
+                Tracks.FINAL_BOSS_SMW_FAST.file,
                 null,
 
-                IndividualMusics.FINAL_BOSS_SM3DW_EDITOR.file,
-                IndividualMusics.FINAL_BOSS_SM3DW.file,
+                Tracks.FINAL_BOSS_NSMBU_EDITOR.file,
+                Tracks.FINAL_BOSS_NSMBU.file,
                 null,
-                IndividualMusics.FINAL_BOSS_SM3DW_FAST.file,
+                Tracks.FINAL_BOSS_NSMBU_FAST.file,
+                null,
+
+                Tracks.FINAL_BOSS_SM3DW_EDITOR.file,
+                Tracks.FINAL_BOSS_SM3DW.file,
+                null,
+                Tracks.FINAL_BOSS_SM3DW_FAST.file,
                 null,
             )
         }
@@ -313,7 +313,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SMK.file, IndividualMusics.SMK_FAST.file,)
+            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SMK.file, Tracks.SMK_FAST.file,)
         }
 
     }()
@@ -324,7 +324,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SM64.file, IndividualMusics.SM64_FAST.file,)
+            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SM64.file, Tracks.SM64_FAST.file,)
         }
 
     }()
@@ -335,7 +335,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SMS.file, IndividualMusics.SMS_FAST.file,)
+            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SMS.file, Tracks.SMS_FAST.file,)
         }
 
     }()
@@ -346,7 +346,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SMG.file, IndividualMusics.SMG_FAST.file,)
+            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SMG.file, Tracks.SMG_FAST.file,)
         }
 
     }()

@@ -7,7 +7,7 @@ import type {SingleBackgroundMusic}                                             
 import {SingleBackgroundMusicFactory} from 'core/music/backgroundMusic/SingleBackgroundMusic.factory'
 import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used and better */
+/** @deprecated The use of {@link Tracks} should be used instead */
 export class BackgroundMusicContainer<const SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer,
     const SMB_MUSIC extends PossibleSMB_RegularMusic_GroupContainer,
     const SMB_FAST_MUSIC extends PossibleSMB_FastMusic_GroupContainer,

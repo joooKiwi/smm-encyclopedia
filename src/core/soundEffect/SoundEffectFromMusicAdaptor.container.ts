@@ -11,7 +11,7 @@ import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 /**
  * @todo find a better implementation than using only this (this works for now, but is not-efficient)
- * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
+ * @deprecated The use of {@link Tracks} should be used instead
  */
 export class SoundEffectFromMusicAdaptorContainer
     implements SoundEffectFromMusicAdaptor {

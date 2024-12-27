@@ -1,16 +1,16 @@
-import type {IndividualMusics} from 'core/music/IndividualMusics'
-import type {ReactProperties}  from 'util/react/ReactProperties'
+import type {Tracks}          from 'core/track/Tracks'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 
-interface IndividualMusicSoundProperties
+interface TrackProperties
     extends ReactProperties {
 
-    readonly value: IndividualMusics
+    readonly value: Tracks
 
 }
 
-export default function IndividualMusicSound({value,}: IndividualMusicSoundProperties,) {
+export default function Track({value,}: TrackProperties,) {
     const file = value.file
     const titleName = value.titleName
     if (file == null || titleName == null)

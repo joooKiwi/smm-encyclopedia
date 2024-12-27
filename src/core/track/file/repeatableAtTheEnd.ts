@@ -1,4 +1,4 @@
-import type {RepeatableAtTheEndSoundFile} from 'util/file/sound/RepeatableAtTheEndSoundFile'
+import type {RepeatableAtTheEndTrackSoundFile} from 'core/track/file/TrackSoundFile'
 
 import {RESSOURCE_PATH}                               from 'variables'
 import {RepeatableAtTheEndExternalSoundFileContainer} from 'util/file/sound/RepeatableAtTheEndExternalSoundFile.container'
@@ -8,6 +8,6 @@ import {RepeatableAtTheEndExternalSoundFileContainer} from 'util/file/sound/Repe
  *
  * @param name The file name
  */
-export function repeatableAtTheEnd<const NAME extends string, >(name: NAME,): RepeatableAtTheEndSoundFile<`${string}/resources/music/SMM2`, NAME, 'wav'> {
+export function repeatableAtTheEnd<const FILE_NAME extends string, >(name: FILE_NAME,): RepeatableAtTheEndTrackSoundFile<FILE_NAME> {
     return new RepeatableAtTheEndExternalSoundFileContainer(`${RESSOURCE_PATH}music/SMM2`, name, 'wav',)
 }
