@@ -16,17 +16,19 @@ export default function Footer() {
                 <div id="bottomLanguageChanger-button-container" className="col-auto col-sm-12"><BottomLanguageChangerButton/></div>
             </div>
             <div className="row">
-                <small id="version" className="text-center text-light">
-                    {contentTranslation('Version',)} 0.26 <sub className="opacity-50">beta</sub>
-                </small>
-                <small id="copyright" className="text-center text-light">
-                    {contentTranslation('Copyright',)}<sup className="opacity-50">©</sup> Nintendo<span className="opacity-50">™</span>
-                </small>
-                <span id="copyright_madeBy" className="text-center text-light">
+                 <span className="text-center text-light">
                     <small>{contentTranslation('React application made by',)}: </small>JóôòKiwi
                 </span>
-                <small id="copyright_lastEdited" className="text-center text-light">
+                <small className="text-center text-light">
+                    {contentTranslation('Every image are the propriety of Nintendo', {
+                        Nintendo: <strong key="Nintendo" className="Nintendo text-white bg-danger bg-opacity-75 border border-white rounded rounded-pill p-1">Nintendo<span className="opacity-50">™</span></strong>,
+                    },)}
+                </small>
+                <small className="text-center text-light">
                     {contentTranslation('Last update',)}: <em><SimpleDate day={25} month={11} year={2024}/></em>
+                </small>
+                <small className="text-center text-light">
+                    {contentTranslation('Version',)} 0.26 <sub className="opacity-50">beta</sub>
                 </small>
             </div>
         </div>
