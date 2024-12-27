@@ -1,4 +1,5 @@
-import type {Array, NullOr} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOr}           from '@joookiwi/type'
 
 import type {GameStyles}           from 'core/gameStyle/GameStyles'
 import type {MysteryMushrooms}     from 'core/mysteryMushroom/MysteryMushrooms'
@@ -28,7 +29,7 @@ export class OfficialCourseContainer
 
     public constructor(
         name: Name<string>, description: Name<string>,
-        reward: Array<MysteryMushrooms>,
+        reward: CollectionHolder<MysteryMushrooms>,
         releaseDate: Date, removalDate: NullOr<| Date | UnknownReference>,
         gameStyle: GameStyles,
         courseThemeInMainArea: Themes, courseThemeInSubArea: NullOr<Themes>,

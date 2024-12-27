@@ -1,4 +1,5 @@
-import type {Array, NullOr} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOr}           from '@joookiwi/type'
 
 import type {GameStyles}                from 'core/gameStyle/GameStyles'
 import type {MysteryMushrooms}          from 'core/mysteryMushroom/MysteryMushrooms'
@@ -10,7 +11,7 @@ import type {NameTraitWithADescription} from 'lang/name/NameTraitWithADescriptio
 export interface OfficialCourse
     extends NameTraitWithADescription<string, string, Name<string>> {
 
-    get reward(): Array<MysteryMushrooms>
+    get reward(): CollectionHolder<MysteryMushrooms>
 
 
     get releaseDate(): Date

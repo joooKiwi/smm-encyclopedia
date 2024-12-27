@@ -1,7 +1,8 @@
 import file from 'resources/compiled/Official course (SMM).json'
 
-import type {Array, NullOr} from '@joookiwi/type'
-import {forEachByArray}     from '@joookiwi/collection'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Array, NullOr}    from '@joookiwi/type'
+import {forEachByArray}        from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent}                                                     from 'core/_template/DescriptionLanguageContent'
@@ -20,8 +21,9 @@ import {Themes}                                                  from 'core/them
 import {createNameFromContent, createNameFromContentDescription} from 'lang/name/createNameFromContent'
 import {UNKNOWN_REFERENCE}                                       from 'util/commonVariables'
 import {Empty}                                                   from 'util/emptyVariables'
+import {ArrayAsCollection}                                       from 'util/collection/ArrayAsCollection'
 
-import EMPTY_ARRAY =              Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER =  Empty.EMPTY_COLLECTION_HOLDER
 import GameStyleCompanion =       GameStyles.Companion
 import MysteryMushroomCompanion = MysteryMushrooms.Companion
 import ThemeCompanion =           Themes.Companion
@@ -131,16 +133,16 @@ function createReference(content: Content,): OfficialCourse {
 }
 
 
-function retrieveReward(value: PossibleReward,): Array<MysteryMushrooms> {
+function retrieveReward(value: PossibleReward,): CollectionHolder<MysteryMushrooms> {
     if (value == null)
-        return EMPTY_ARRAY
+        return EMPTY_COLLECTION_HOLDER
     if (value === 'Bulbasaur / Charmander / Squirtle')
-        return [MysteryMushrooms.BULBASAUR, MysteryMushrooms.CHARMANDER, MysteryMushrooms.SQUIRTLE,]
+        return new ArrayAsCollection([MysteryMushrooms.BULBASAUR, MysteryMushrooms.CHARMANDER, MysteryMushrooms.SQUIRTLE,],)
     if (value === 'Kitty White / Melody')
-        return [MysteryMushrooms.KITTY_WHITE, MysteryMushrooms.MELODY,]
+        return new ArrayAsCollection([MysteryMushrooms.KITTY_WHITE, MysteryMushrooms.MELODY,],)
     if (value === 'Callie / Marie')
-        return [MysteryMushrooms.CALLIE, MysteryMushrooms.MARIE,]
-    return [MysteryMushroomCompanion.getValueByName(value,),]
+        return new ArrayAsCollection([MysteryMushrooms.CALLIE, MysteryMushrooms.MARIE,],)
+    return new ArrayAsCollection([MysteryMushroomCompanion.getValueByName(value,),],)
 }
 
 function createReleaseDate(value: PossibleReleaseDate,): Date {
