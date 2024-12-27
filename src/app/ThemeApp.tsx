@@ -22,19 +22,25 @@ import List                                              from 'app/util/List'
 import AppTitle                                          from 'app/util/PageTitle'
 import PageViewChanger                                   from 'app/util/PageViewChanger'
 import SubMain                                           from 'app/util/SubMain'
-import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
 import {Games}                                           from 'core/game/Games'
 import GameImage                                         from 'core/game/component/GameImage'
 import EndlessMarioImage                                 from 'core/theme/component/EndlessMarioImage'
 import ThemeImage                                        from 'core/theme/component/ThemeImage'
 import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
 import DisplayButtonGroup                                from 'display/DisplayButtonGroup'
+import {ViewDisplays}                                    from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import NameComponent                                     from 'lang/name/component/Name.component'
 
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
+
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 const options = ThemeAppOption.CompanionEnum.get.values
 
@@ -63,9 +69,9 @@ function SubContent({viewDisplay, type, games,}: Omit<ThemeAppProperties, | 'gam
     const items = type.content.filter(({reference,},) =>
         games.hasAnyIn(reference,),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <ThemeList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <ThemeCardList items={items} type={type}/>
     return <ThemeTable items={items}/>
 }

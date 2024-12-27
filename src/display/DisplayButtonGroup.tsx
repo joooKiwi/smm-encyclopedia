@@ -3,24 +3,24 @@ import {Link, useLocation} from 'react-router-dom'
 import type {PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}   from 'util/react/ReactProperties'
 
-import {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
+import {ViewDisplays}  from 'display/ViewDisplays'
 import {routeFromName} from 'route/method/route.fromName'
 
 import Companion = ViewDisplays.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
-const {SIMPLE_LIST: LIST, CARD_LIST: CARD, TABLE,} = ViewDisplays
+const {LIST, CARD, TABLE,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
 interface DisplayButtonGroupProperties
     extends ReactProperties {
 
-    /** The route name that is displayed for the {@link ViewDisplays.SIMPLE_LIST} */
+    /** The route name that is displayed for the {@link ViewDisplays.LIST} */
     readonly list: PossibleRouteName
 
-    /** The route name that is displayed for the {@link ViewDisplays.CARD_LIST} */
+    /** The route name that is displayed for the {@link ViewDisplays.CARD} */
     readonly card: PossibleRouteName
 
     /** The route name that is displayed for the {@link ViewDisplays.TABLE} */
@@ -62,8 +62,8 @@ function DisplayListButton({currentView, routeName,}: DisplayButtonProperties,) 
     const path = routeFromName(routeName,)
 
     if (currentPath === path || currentView === LIST)
-        return <button className={`btn btn-success bi-${LIST.htmlType} btn-viewDisplay`} type="button" disabled/>
-    return <Link to={path} className={`btn btn-dark bi-${LIST.htmlType} btn-viewDisplay`} onClick={() => Companion.current = LIST}/>
+        return <button className={`btn btn-success bi-${LIST.icon} btn-viewDisplay`} type="button" disabled/>
+    return <Link to={path} className={`btn btn-dark bi-${LIST.icon} btn-viewDisplay`} onClick={() => Companion.current = LIST}/>
 }
 
 /** @reactComponent */
@@ -72,8 +72,8 @@ function DisplayCardButton({currentView, routeName,}: DisplayButtonProperties,) 
     const path = routeFromName(routeName,)
 
     if (currentPath === path || currentView === CARD)
-        return <button className={`btn btn-success bi-${CARD.htmlType} btn-viewDisplay`} type="button" disabled/>
-    return <Link to={path} className={`btn btn-dark bi-${CARD.htmlType} btn-viewDisplay`} onClick={() => Companion.current = CARD}/>
+        return <button className={`btn btn-success bi-${CARD.icon} btn-viewDisplay`} type="button" disabled/>
+    return <Link to={path} className={`btn btn-dark bi-${CARD.icon} btn-viewDisplay`} onClick={() => Companion.current = CARD}/>
 }
 
 /** @reactComponent */
@@ -82,6 +82,6 @@ function DisplayTableButton({currentView, routeName,}: DisplayButtonProperties,)
     const path = routeFromName(routeName,)
 
     if (currentPath === path || currentView === TABLE)
-        return <button className={`btn btn-success bi-${TABLE.htmlType} btn-viewDisplay`} type="button" disabled/>
-    return <Link to={path} className={`btn btn-dark bi-${TABLE.htmlType} btn-viewDisplay`} onClick={() => Companion.current = TABLE}/>
+        return <button className={`btn btn-success bi-${TABLE.icon} btn-viewDisplay`} type="button" disabled/>
+    return <Link to={path} className={`btn btn-dark bi-${TABLE.icon} btn-viewDisplay`} onClick={() => Companion.current = TABLE}/>
 }

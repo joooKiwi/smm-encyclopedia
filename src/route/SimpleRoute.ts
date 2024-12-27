@@ -1,10 +1,10 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {NullOr}           from '@joookiwi/type'
 
-import type {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
 import type {Games}         from 'core/game/Games'
 import type {GameStyles}    from 'core/gameStyle/GameStyles'
 import type {Times}         from 'core/time/Times'
+import type {ViewDisplays}  from 'display/ViewDisplays'
 import type {RouteCallback} from 'route/EveryRoutes.types'
 
 /**

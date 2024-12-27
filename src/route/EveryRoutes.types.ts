@@ -1,10 +1,10 @@
 import type {EmptyString} from '@joookiwi/type'
 
-import type {ViewDisplays}                                                                                                                                                                  from 'app/withInterpreter/ViewDisplays'
-import type {PossibleUrlValue as UrlValue_ViewDisplay}                                                                                                                                      from 'app/withInterpreter/ViewDisplays.types'
 import type {FullGroupUrlName as FullUrlName_Game, FullGroupUrlName_WithNotSMM2, FullGroupUrlName_WithSMM2, FullUrlValue as UrlValue_Game, FullUrlValue_WithNotSMM2, FullUrlValue_WithSMM2} from 'core/game/Games.types'
 import type {FullGroupUrlName as FullUrlName_GameStyle, FullGroupUrlName_SMM1, FullUrlValue as FullUrlValue_GameStyle, FullUrlValue_SMM1}                                                   from 'core/gameStyle/GameStyles.types'
 import type {FullUrlName as FullUrlName_Time, FullUrlValue as FullUrlValue_Time}                                                                                                            from 'core/time/Times.types'
+import type {ViewDisplays}                                                                                                                                                                  from 'display/ViewDisplays'
+import type {Type as Type_ViewDisplay}                                                                                                                                                      from 'display/ViewDisplays.types'
 import type {EveryRoutes}                                                                                                                                                                   from 'route/EveryRoutes'
 import type {SimpleRoute}                                                                                                                                                                   from 'route/SimpleRoute'
 import type {GameCollection}                                                                                                                                                                from 'util/collection/GameCollection'
@@ -257,7 +257,7 @@ export type GameRouteCallback = (games: GameCollection,) => ReactJSXElement
 export type NothingRouteCallback = () => ReactJSXElement
 
 /** The partial path of a {@link EveryRoutes} made from a {@link ViewDisplays} */
-export type PossibleViewDisplayPath = | EmptyString | `/${UrlValue_ViewDisplay}`
+export type PossibleViewDisplayPath = | EmptyString | `/${Type_ViewDisplay}`
 /** The partial path of a {@link EveryRoutes} made from the {@link Games} */
 export type PossibleGamePath = | EmptyString | `/${UrlValue_Game}`
 /** The partial path of a {@link EveryRoutes} made from the {@link GameStyles} */

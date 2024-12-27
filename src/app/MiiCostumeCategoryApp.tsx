@@ -13,11 +13,11 @@ import List                             from 'app/util/List'
 import AppTitle                         from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
-import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumeCategories}           from 'core/miiCostumeCategory/MiiCostumeCategories'
 import MiiCostumeCategoryIcon           from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {ViewDisplays}                   from 'display/ViewDisplays'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import NameComponent                    from 'lang/name/component/Name.component'
 import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
@@ -27,6 +27,7 @@ import ALL = MiiCostumeCategories.ALL
 //region -------------------- Import from deconstruction --------------------
 
 const {MII_COSTUME,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -56,9 +57,9 @@ export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreter
 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <MiiCostumeCategoryList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <MiiCostumeCategoryCardList items={items}/>
     return <MiiCostumeCategoryTable items={items}/>
 }

@@ -13,11 +13,11 @@ import List                             from 'app/util/List'
 import AppTitle                         from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
-import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
 import {EntityCategories}               from 'core/entityCategory/EntityCategories'
 import EntityCategoryIcon               from 'core/entityCategory/component/EntityCategoryIcon'
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {ViewDisplays}                   from 'display/ViewDisplays'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import NameComponent                    from 'lang/name/component/Name.component'
 import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
@@ -27,6 +27,7 @@ import ALL = EntityCategories.ALL
 //region -------------------- Import from deconstruction --------------------
 
 const {ENTITY,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -55,9 +56,9 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <EntityCategoryList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <EntityCategoryCardList items={items}/>
     return <EntityCategoryTable items={items}/>
 }

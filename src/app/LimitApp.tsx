@@ -30,12 +30,12 @@ import AppTitle                                     from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import List                                         from 'app/util/List'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {Empty}                                      from 'util/emptyVariables'
@@ -52,6 +52,12 @@ import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 import SM3DW =           GameStyles.SM3DW
+
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitAppProperties,) {
@@ -111,7 +117,7 @@ export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitA
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gameStyles' | 'times'>,){
+function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gameStyles' | 'times'>,) {
     const items = type.content.filter(it =>
         games.hasAnyIn(it.reference,),)
 
@@ -121,9 +127,9 @@ function SubContent({viewDisplay, type, games,}: Omit<LimitAppProperties, | 'gam
             ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
             : LimitAppOption.AMOUNT_IN_SMM2
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <LimitList items={items} amountOption={amountOption}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <LimitCardList items={items} amountOption={amountOption}/>
     return <LimitTable items={items} type={type} games={games}/>
 }

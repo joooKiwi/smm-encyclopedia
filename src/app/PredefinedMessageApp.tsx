@@ -13,14 +13,20 @@ import List                             from 'app/util/List'
 import AppTitle                         from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
-import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
 import {PredefinedMessages}             from 'core/predefinedMessage/PredefinedMessages'
 import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {ViewDisplays}                   from 'display/ViewDisplays'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import NameComponent                    from 'lang/name/component/Name.component'
 import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = PredefinedMessages.ALL
+
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 const all = new ArrayAsCollection(ALL,)
 
@@ -48,9 +54,9 @@ export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterP
 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <PredefinedMessageList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <PredefinedMessageCardList items={items}/>
     return <PredefinedMessageTable items={items}/>
 }

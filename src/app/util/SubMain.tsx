@@ -1,4 +1,4 @@
-import type {ViewDisplays}                from 'app/withInterpreter/ViewDisplays'
+import type {ViewDisplays}                from 'display/ViewDisplays'
 import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 interface SubMainProperties
@@ -7,7 +7,7 @@ interface SubMainProperties
     /** The starting {@link Element.id id} of the {@link HTMLDivElement} */
     readonly 'partial-id': string
 
-    /** The {@link ViewDisplays} to retrieve its {@link ViewDisplays.htmlType html type} */
+    /** The {@link ViewDisplays} to retrieve its {@link ViewDisplays.icon html type} */
     readonly viewDisplay: ViewDisplays
 
 }

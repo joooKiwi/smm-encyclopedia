@@ -24,7 +24,6 @@ import List                                         from 'app/util/List'
 import AppTitle                                     from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import {Games}                                      from 'core/game/Games'
@@ -35,6 +34,7 @@ import TimeImage                                    from 'core/time/component/Ti
 import {Themes}                                     from 'core/theme/Themes'
 import ThemeImage                                   from 'core/theme/component/ThemeImage'
 import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
@@ -47,6 +47,7 @@ import SMM3DS = Games.SMM3DS
 //region -------------------- Import from deconstruction --------------------
 
 const {ENTITY,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -100,9 +101,9 @@ function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'g
         games.hasAnyIn(reference,)
         && (times.hasAllTimes || times.hasAnyIn(reference,)),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <EditorVoiceList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <EditorVoiceCardList items={items}/>
     return <EditorVoiceTable items={items}/>
 }

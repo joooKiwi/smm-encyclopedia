@@ -22,12 +22,12 @@ import List                                         from 'app/util/List'
 import AppTitle                                     from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import FirstAppearance                              from 'core/courseTag/component/FirstAppearance'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
@@ -38,6 +38,7 @@ import SMM2 = Games.SMM2
 
 const {OFFICIAL, UNOFFICIAL, MAKER_CENTRAL,} = CourseTagTypes
 const {COURSE, TAG,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -72,9 +73,9 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
 function SubContent({viewDisplay, type,}: CourseTagAppProperties,) {
     const items = type.content
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <CourseTagList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <CourseTagCardList items={items}/>
     return <CourseTagTable items={items}/>
 }

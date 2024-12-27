@@ -26,7 +26,6 @@ import List                                         from 'app/util/List'
 import AppTitle                                     from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import {Entities}                                   from 'core/entity/Entities'
@@ -39,6 +38,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
@@ -61,6 +61,7 @@ import SM3DW =           GameStyles.SM3DW
 //region -------------------- Import from deconstruction --------------------
 
 const {ENTITY,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -161,9 +162,9 @@ function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}
         && gameStyles.hasAnyIn(reference,)
         && times.hasAnyIn(reference,),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <EntityList items={items} gameStyles={gameStyles}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <EntityCardList items={items} gameStyles={gameStyles}/>
     return <EntityTable items={items} games={games} gameStyles={gameStyles} displaySideContent={displaySideContent}/>
 }

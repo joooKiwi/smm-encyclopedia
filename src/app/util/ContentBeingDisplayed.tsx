@@ -1,11 +1,15 @@
 import type {PossibleStraightRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}           from 'util/react/ReactProperties'
 
-import {ViewDisplays}       from 'app/withInterpreter/ViewDisplays'
 import LinkText             from 'app/tools/text/LinkText'
+import {ViewDisplays}       from 'display/ViewDisplays'
 import {contentTranslation} from 'lang/components/translationMethods'
 
-const {SIMPLE_LIST: LIST, CARD_LIST: CARD, TABLE,} = ViewDisplays
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD, TABLE,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 type ExcludedRouteName = | 'home' | 'about' | 'sources' | 'everyMusic'
                          | 'everyPowerUp&Ride&HatPriority'

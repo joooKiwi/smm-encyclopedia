@@ -16,7 +16,6 @@ import {InstrumentGames}                            from 'app/property/Instrumen
 import {InstrumentGameStyles}                       from 'app/property/Instrument.gameStyles'
 import {InstrumentTimes}                            from 'app/property/InstrumentTimes'
 import Table                                        from 'app/tools/table/Table'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import CardList                                     from 'app/util/CardList'
 import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
 import Description                                  from 'app/util/Description'
@@ -36,6 +35,7 @@ import InstrumentSound                              from 'core/instrument/compon
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
@@ -50,6 +50,12 @@ import SMM1 =            Games.SMM1
 import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
+
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 const all = new ArrayAsCollection(ALL,)
 
@@ -116,9 +122,9 @@ function SubContent({viewDisplay, games, gameStyles, times,}: InstrumentAppPrope
         && gameStyles.hasAnyIn(reference,)
         && times.hasAnyIn(reference,),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <InstrumentList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <InstrumentCard items={items}/>
     return <InstrumentTable items={items} gameStyles={gameStyles}/>
 }

@@ -22,13 +22,13 @@ import List                     from 'app/util/List'
 import AppTitle                 from 'app/util/PageTitle'
 import PageViewChanger          from 'app/util/PageViewChanger'
 import SubMain                  from 'app/util/SubMain'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Games}                  from 'core/game/Games'
 import GameImage                from 'core/game/component/GameImage'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import DisplayButtonGroup       from 'display/DisplayButtonGroup'
+import {ViewDisplays}           from 'display/ViewDisplays'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
@@ -45,6 +45,7 @@ import SM3DW =  GameStyles.SM3DW
 //region -------------------- Import from deconstruction --------------------
 
 const {ENTITY,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -76,9 +77,9 @@ function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyl
     const items = ALL.filter(({reference,},) =>
         games.hasAnyIn(reference,),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <GameStyleList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <GameStyleCardList items={items}/>
     return <GameStyleTable items={items}/>
 }

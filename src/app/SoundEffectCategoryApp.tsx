@@ -11,17 +11,23 @@ import List                           from 'app/util/List'
 import AppTitle                       from 'app/util/PageTitle'
 import PageViewChanger                from 'app/util/PageViewChanger'
 import SubMain                        from 'app/util/SubMain'
-import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
 import Table                          from 'app/tools/table/Table'
 import UnfinishedText                 from 'app/tools/text/UnfinishedText'
 import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
 import SoundEffectCategoryIcon        from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
 import DisplayButtonGroup             from 'display/DisplayButtonGroup'
+import {ViewDisplays}                 from 'display/ViewDisplays'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 import NameComponent                  from 'lang/name/component/Name.component'
 import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import ALL = SoundEffectCategories.ALL
+
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 const all = new ArrayAsCollection(ALL,)
 
@@ -46,9 +52,9 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <SoundEffectCategoryList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <SoundEffectCategoryCardList items={items}/>
     return <SoundEffectCategoryTable items={items}/>
 }

@@ -5,7 +5,7 @@ import {IntlProvider}         from 'react-intl'
 import type {ReactComponentWithState} from 'util/react/ReactComponent'
 import type {ReactState}              from 'util/react/ReactState'
 
-import {useCurrentViewDisplay} from 'app/withInterpreter/viewDisplayHook'
+import {useCurrentViewDisplay} from 'display/viewDisplayHook'
 import {useCurrentLanguage}    from 'lang/languageHook'
 import {EveryLanguages}        from 'lang/EveryLanguages'
 import Routes                  from 'route/Routes'

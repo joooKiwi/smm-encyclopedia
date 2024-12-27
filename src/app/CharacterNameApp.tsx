@@ -23,7 +23,6 @@ import List                                         from 'app/util/List'
 import AppTitle                                     from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -32,6 +31,7 @@ import {Games}                                      from 'core/game/Games'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
@@ -44,6 +44,7 @@ import SMM3DS = Games.SMM3DS
 //region -------------------- Import from deconstruction --------------------
 
 const {MYSTERY_MUSHROOM, STORY_MODE,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -97,9 +98,9 @@ function SubContent({viewDisplay, games, times,}: Omit<CharacterNameProperties, 
         games.hasAnyIn(reference,)
         && (times.hasAllTimes || times.hasAnyIn(reference,)),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <CharacterNameList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <CharacterNameCardList items={items}/>
     return <CharacterNameTable items={items}/>
 }

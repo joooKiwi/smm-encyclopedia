@@ -2,28 +2,28 @@ import type {Singleton} from '@joookiwi/enumerable'
 import type {NullOr}    from '@joookiwi/type'
 import {Enum}           from '@joookiwi/enumerable'
 
-import type {CompanionEnumDeclaration_ViewDisplays}   from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
-import type {Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
-import type {ClassWithType}                           from 'core/ClassWithType'
-import type {ClassUsedInRoute}                        from 'route/ClassUsedInRoute'
-import type {ClassWithIsCurrent}                      from 'util/enumerable/ClassWithIsCurrent'
+import type {ClassWithType}                         from 'core/ClassWithType'
+import type {CompanionEnumDeclaration_ViewDisplays} from 'display/ViewDisplays.companionEnumDeclaration'
+import type {Names, Ordinals, Type}                 from 'display/ViewDisplays.types'
+import type {ClassUsedInRoute}                      from 'route/ClassUsedInRoute'
+import type {ClassWithIsCurrent}                    from 'util/enumerable/ClassWithIsCurrent'
 
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 /** @usedByTheRouting */
 export class ViewDisplays<const TYPE extends Type = Type,
-    const URL extends PossibleUrlValue = PossibleUrlValue,>
+    const ICON extends PossibleBootstrapIcon = PossibleBootstrapIcon, >
     extends Enum<Ordinals, Names>
     implements ClassWithType<TYPE>,
-        ClassUsedInRoute<URL, URL>,
+        ClassUsedInRoute<TYPE, TYPE>,
         ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly TABLE =       new ViewDisplays('table', 'table', 'table',)
-    // public static readonly NAME_LIST =   new ViewDisplays('name-list', 'name', 'list-nested',)
-    public static readonly SIMPLE_LIST = new ViewDisplays('simple-list', 'list', 'list-ul',)
-    public static readonly CARD_LIST =   new ViewDisplays('card-list', 'card', 'card-list',)
+    public static readonly TABLE = new ViewDisplays('table', 'table',)
+    public static readonly CARD =  new ViewDisplays('card', 'grid',)
+    // public static readonly NAME =  new ViewDisplays('name', 'list-nested',)
+    public static readonly LIST =  new ViewDisplays('list', 'list-ul',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -51,9 +51,11 @@ export class ViewDisplays<const TYPE extends Type = Type,
         public findInUrl(url: string,): NullOr<ViewDisplays> {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes('/list/',))
-                return ViewDisplays.SIMPLE_LIST
+                return ViewDisplays.LIST
+            // if (lowerCasedUrl.includes('/name/',))
+            //     return ViewDisplays.NAME
             if (lowerCasedUrl.includes('/card/',))
-                return ViewDisplays.CARD_LIST
+                return ViewDisplays.CARD
             if (lowerCasedUrl.includes('/table/',))
                 return ViewDisplays.TABLE
             return null
@@ -61,9 +63,11 @@ export class ViewDisplays<const TYPE extends Type = Type,
 
         public findInName(name: string,): NullOr<ViewDisplays> {
             if (name.endsWith('(list)',) || name.includes('(list',))
-                return ViewDisplays.SIMPLE_LIST
+                return ViewDisplays.LIST
+            // if (name.endsWith('(name)',) || name.includes('(name',))
+            //     return ViewDisplays.NAME
             if (name.endsWith('(card)',) || name.includes('(card',))
-                return ViewDisplays.CARD_LIST
+                return ViewDisplays.CARD
             if (name.endsWith('(table)',) || name.includes('(table',))
                 return ViewDisplays.TABLE
             return null
@@ -75,17 +79,15 @@ export class ViewDisplays<const TYPE extends Type = Type,
     //region -------------------- Fields --------------------
 
     readonly #type
-    readonly #url
-    readonly #htmlType
+    readonly #icon
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(type: TYPE, url: URL, htmlType: PossibleBootstrapIcon,) {
+    private constructor(type: TYPE, icon: ICON,) {
         super()
         this.#type = type
-        this.#url = url
-        this.#htmlType = htmlType
+        this.#icon = icon
     }
 
     //endregion -------------------- Constructor --------------------
@@ -95,16 +97,16 @@ export class ViewDisplays<const TYPE extends Type = Type,
         return this.#type
     }
 
-    public get urlValue(): URL {
-        return this.#url
+    public get urlValue(): TYPE {
+        return this.#type
     }
 
-    public get urlName(): URL {
-        return this.#url
+    public get urlName(): TYPE {
+        return this.#type
     }
 
-    public get htmlType(): PossibleBootstrapIcon {
-        return this.#htmlType
+    public get icon(): ICON {
+        return this.#icon
     }
 
     /** The current instance is the current one selected in the application */
@@ -123,6 +125,6 @@ export namespace ViewDisplays {
     /** The companion instance of a {@link ViewDisplays} */
     export const Companion = ViewDisplays.CompanionEnum.get
 
-    export const ALL = [ViewDisplays.TABLE, ViewDisplays.CARD_LIST, /*ViewDisplays.NAME_LIST, */ViewDisplays.SIMPLE_LIST,] as const
+    export const ALL = Companion.values
 
 }

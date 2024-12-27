@@ -12,10 +12,10 @@ import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
 import {PowerUpPriorityTypes}  from 'app/property/PowerUpPriorityTypes'
 import {ThemeTypes}            from 'app/property/ThemeTypes'
-import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import {Games}                 from 'core/game/Games'
 import {GameStyles}            from 'core/gameStyle/GameStyles'
 import {Times}                 from 'core/time/Times'
+import {ViewDisplays}          from 'display/ViewDisplays'
 import {ProjectLanguages}      from 'lang/ProjectLanguages'
 import {SimpleRoute}           from 'route/SimpleRoute'
 import {Empty}                 from 'util/emptyVariables'
@@ -85,6 +85,11 @@ import SM3DW_ONLY =                 GameStyles.SM3DW_ONLY
 import TimeCompanion =              Times.Companion
 import ViewDisplayCompanion =       ViewDisplays.Companion
 
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD, TABLE,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 //region -------------------- Dynamic imports --------------------
 
 const AboutApp =                     lazy(() => import('app/AboutApp'))
@@ -116,10 +121,6 @@ const RouteApp =                     lazy(() => import('app/RouteApp'))
 
 //endregion -------------------- Dynamic imports --------------------
 //region -------------------- Helper constants --------------------
-
-const LIST =  ViewDisplays.SIMPLE_LIST
-const CARD =  ViewDisplays.CARD_LIST
-const TABLE = ViewDisplays.TABLE
 
 // //region -------------------- Possibility group constants --------------------
 //

@@ -1,11 +1,17 @@
 import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
 import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
-import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import {ViewDisplays} from 'display/ViewDisplays'
 import {Empty}        from 'util/emptyVariables'
 
 import ALL_VIEW_DISPLAYS = ViewDisplays.ALL
 import EMPTY_ARRAY =       Empty.EMPTY_ARRAY
+
+//region -------------------- Import from deconstruction --------------------
+
+const {LIST, CARD, TABLE,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
 
 export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
@@ -23,32 +29,32 @@ export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
     //region -------------------- Getter methods --------------------
 
     /**
-     * The collection has every view display ({@link ViewDisplays.SIMPLE_LIST},
-     * {@link ViewDisplays.CARD_LIST} & {@link ViewDisplays.TABLE})
+     * The collection has every view display ({@link ViewDisplays.LIST},
+     * {@link ViewDisplays.CARD} & {@link ViewDisplays.TABLE})
      * type in its values
      */
     public get hasAllViewDisplay(): boolean {
-        return this.#hasAllViewDisplay ??= this.hasAll([ViewDisplays.SIMPLE_LIST as unknown as T, ViewDisplays.CARD_LIST as unknown as T, ViewDisplays.TABLE as unknown as T,],)
+        return this.#hasAllViewDisplay ??= this.hasAll([LIST as unknown as T, CARD as unknown as T, TABLE as unknown as T,],)
     }
 
-    /** The collection has the {@link ViewDisplays.SIMPLE_LIST} type in its values */
+    /** The collection has the {@link ViewDisplays.LIST} type in its values */
     public get hasSimpleList(): boolean {
-        return this.#hasSimpleList ??= this.has(ViewDisplays.SIMPLE_LIST as unknown as T,)
+        return this.#hasSimpleList ??= this.has(LIST as unknown as T,)
     }
 
-    /** The collection has the {@link ViewDisplays.CARD_LIST} type in its values */
+    /** The collection has the {@link ViewDisplays.CARD} type in its values */
     public get hasCardList(): boolean {
-        return this.#hasCardList ??= this.has(ViewDisplays.CARD_LIST as unknown as T,)
+        return this.#hasCardList ??= this.has(CARD as unknown as T,)
     }
 
-    /** The collection has the {@link ViewDisplays.SIMPLE_LIST} or {@link ViewDisplays.CARD_LIST} type in its values */
+    /** The collection has the {@link ViewDisplays.LIST} or {@link ViewDisplays.CARD} type in its values */
     public get hasSimpleOrCardList(): boolean {
-        return this.#hasSimpleOrCardList ??= this.hasOne([ViewDisplays.SIMPLE_LIST as unknown as T, ViewDisplays.CARD_LIST as unknown as T,],)
+        return this.#hasSimpleOrCardList ??= this.hasOne([LIST as unknown as T, CARD as unknown as T,],)
     }
 
     /** The collection has the {@link ViewDisplays.TABLE} type in its values */
     public get hasTable(): boolean {
-        return this.#hasTable ??= this.has(ViewDisplays.TABLE as unknown as T,)
+        return this.#hasTable ??= this.has(TABLE as unknown as T,)
     }
 
     //endregion -------------------- Getter methods --------------------

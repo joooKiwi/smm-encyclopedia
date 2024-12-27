@@ -13,11 +13,11 @@ import List                             from 'app/util/List'
 import AppTitle                         from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
-import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
 import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {SampleCourses}                  from 'core/sampleCourse/SampleCourses'
 import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {ViewDisplays}                   from 'display/ViewDisplays'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import NameComponent                    from 'lang/name/component/Name.component'
 import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
@@ -26,6 +26,7 @@ import ALL = SampleCourses.ALL
 
 //region -------------------- Import from deconstruction --------------------
 
+const {LIST, CARD,} = ViewDisplays
 const {COURSE,} = OtherWordInTheGames
 
 //endregion -------------------- Import from deconstruction --------------------
@@ -56,9 +57,9 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <SampleCourseList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <SampleCourseCardList items={items}/>
     return <SampleCourseTable items={items}/>
 }

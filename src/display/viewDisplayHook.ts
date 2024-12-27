@@ -1,7 +1,7 @@
 import type {NullOr} from '@joookiwi/type'
 import {useState}    from 'react'
 
-import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import {ViewDisplays} from 'display/ViewDisplays'
 
 import Companion = ViewDisplays.Companion
 

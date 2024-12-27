@@ -13,7 +13,6 @@ import List                                  from 'app/util/List'
 import AppTitle                              from 'app/util/PageTitle'
 import PageViewChanger                       from 'app/util/PageViewChanger'
 import SubMain                               from 'app/util/SubMain'
-import {ViewDisplays}                        from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}                    from 'core/mysteryMushroom/MysteryMushrooms'
 import MysteryMushroomClimbingImage          from 'core/mysteryMushroom/component/MysteryMushroom.climbing.image'
 import MysteryMushroomFallingAfterAJumpImage from 'core/mysteryMushroom/component/MysteryMushroom.fallingAfterAJump.image'
@@ -28,6 +27,7 @@ import MysteryMushroomWaitingImage           from 'core/mysteryMushroom/componen
 import MysteryMushroomWalkImage              from 'core/mysteryMushroom/component/MysteryMushroom.walk.image'
 import {OtherWordInTheGames}                 from 'core/otherWordInTheGame/OtherWordInTheGames'
 import DisplayButtonGroup                    from 'display/DisplayButtonGroup'
+import {ViewDisplays}                        from 'display/ViewDisplays'
 import {gameContentTranslation}              from 'lang/components/translationMethods'
 import NameComponent                         from 'lang/name/component/Name.component'
 import {Empty}                               from 'util/emptyVariables'
@@ -39,6 +39,7 @@ import EMPTY_STRING = Empty.EMPTY_STRING
 //region -------------------- Import from deconstruction --------------------
 
 const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -68,9 +69,9 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
 
 /** @reactComponent */
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+    if (viewDisplay === LIST)
         return <MysteryMushroomList items={items}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
+    if (viewDisplay === CARD)
         return <MysteryMushroomCardList items={items}/>
     return <MysteryMushroomTable items={items}/>
 }
