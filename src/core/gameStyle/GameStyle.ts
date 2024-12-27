@@ -7,12 +7,13 @@ import type {GameProperty}                     from 'core/entity/properties/game
 import type {NameTrait}                        from 'lang/name/NameTrait'
 
 export interface GameStyle
-    extends NameTrait<string>, GameProperty,
+    extends NameTrait<string>,
+        GameProperty,
         ClassThatIsAvailableFromTheStart<NullOrBoolean, NullOrTrue, NullOrTrue> {
 
-    get entities(): CollectionHolder<Entity>
+    readonly entities: CollectionHolder<Entity>
 
-    get nightDesertWindTranslationKey(): PossibleNightDesertWindTranslationKey
+    readonly nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey
 
 }
 

@@ -28,51 +28,28 @@ export interface ClassWithEveryLanguages<out T,
     out GREEK extends NullOr<T> = NullOr<T>, >
     extends ClassWithOnlyProjectLanguages<T, GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, HEBREW, POLISH, UKRAINIAN, GREEK> {
 
-    //region -------------------- English properties --------------------
+    readonly english: T
+    readonly originalEnglish: AmericanOrEuropeanOriginal<T>
 
-    get english(): T
+    readonly french: T
+    readonly originalFrench: CanadianOrEuropeanOriginal<T>
 
-    get originalEnglish(): AmericanOrEuropeanOriginal<T>
+    readonly spanish: SPANISH
+    readonly originalSpanish: ORIGINAL_SPANISH
 
-    //endregion -------------------- English properties --------------------
-    //region -------------------- French properties --------------------
+    readonly portuguese: PORTUGUESE
+    readonly originalPortuguese: ORIGINAL_PORTUGUESE
 
-    get french(): T
+    readonly chinese: CHINESE
+    readonly originalChinese: ORIGINAL_CHINESE
 
-    get originalFrench(): CanadianOrEuropeanOriginal<T>
-
-    //endregion -------------------- French properties --------------------
-    //region -------------------- Spanish properties --------------------
-
-    get spanish(): SPANISH
-
-    get originalSpanish(): ORIGINAL_SPANISH
-
-    //endregion -------------------- Spanish properties --------------------
-    //region -------------------- Portuguese properties --------------------
-
-    get portuguese(): PORTUGUESE
-
-    get originalPortuguese(): ORIGINAL_PORTUGUESE
-
-    //endregion -------------------- Portuguese properties --------------------
-    //region -------------------- Chinese properties --------------------
-
-    get chinese(): CHINESE
-
-    get originalChinese(): ORIGINAL_CHINESE
-
-    //endregion -------------------- Chinese properties --------------------
-
-    /**
-     * The original languages used when the instance was constructed.
-     */
-    get originalLanguages(): Array<EveryLanguages>
+    /** The original languages used when the instance was constructed */
+    readonly originalLanguages: Array<EveryLanguages>
 
 
     /**
      * Return a {@link Map} based on the enum {@link EveryLanguages}
-     * with every values used by the original value stored for this instance.
+     * with every value used by the original value stored for this instance.
      */
     toNameMap(): ReadonlyMap<EveryLanguages, T>
 

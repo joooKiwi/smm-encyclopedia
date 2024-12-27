@@ -6,6 +6,6 @@ import type {ClassWithEveryLanguages} from 'lang/ClassWithEveryLanguages'
 export interface Name<out T, >
     extends ClassWithEveryLanguages<T> {
 
-    get languageValue(): T
+    readonly languageValue: T
 
 }
