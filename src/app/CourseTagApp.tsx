@@ -46,10 +46,10 @@ const options = CourseTagAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {
-    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
-    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
-    const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
-    const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase()
+    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
+    const tag = TAG.singularLowerCaseNameOnReference
+    const tags = TAG.pluralLowerCaseNameOnReference
 
     return <SubMain partial-id="courseTag" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('course tag.all', {
