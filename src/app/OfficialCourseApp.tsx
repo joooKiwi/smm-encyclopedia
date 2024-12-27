@@ -26,7 +26,12 @@ import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = OfficialCourses.ALL
 
+//region -------------------- Import from deconstruction --------------------
+
 const {COURSE,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const all = new ArrayAsCollection(ALL,)
 
 const items = all

@@ -24,7 +24,12 @@ import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = EntityCategories.ALL
 
+//region -------------------- Import from deconstruction --------------------
+
 const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = EntityCategoryAppOption.CompanionEnum.get.values

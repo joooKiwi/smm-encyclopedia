@@ -44,6 +44,12 @@ import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
+//region -------------------- Import from deconstruction --------------------
+
+const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const all = new ArrayAsCollection(ALL,)
 const options = EditorVoiceAppOption.CompanionEnum.get.values
 
@@ -148,7 +154,7 @@ interface EditorVoiceDescriptionProperties
 
 /** @reactComponent */
 function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProperties,) {
-    const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
+    const entity = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName.toLowerCase(),)
 
     const smm1Link = game.smm1RouteName satisfies NullOrString<PossibleRouteName>
     const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>

@@ -42,7 +42,11 @@ import SMB3 =   GameStyles.SMB3
 import SMW =    GameStyles.SMW
 import SM3DW =  GameStyles.SM3DW
 
+//region -------------------- Import from deconstruction --------------------
+
 const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
 
 const options = GameStyleAppOption.CompanionEnum.get.values
 

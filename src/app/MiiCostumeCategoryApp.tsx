@@ -24,7 +24,12 @@ import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = MiiCostumeCategories.ALL
 
+//region -------------------- Import from deconstruction --------------------
+
 const {MII_COSTUME,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const all = new ArrayAsCollection(ALL,)
 
 const items = all

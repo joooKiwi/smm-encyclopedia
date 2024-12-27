@@ -58,8 +58,13 @@ import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 import SM3DW =           GameStyles.SM3DW
 
-const all = new ArrayAsCollection(ALL,)
+//region -------------------- Import from deconstruction --------------------
+
 const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
+const all = new ArrayAsCollection(ALL,)
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {

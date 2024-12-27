@@ -34,7 +34,13 @@ import NameComponent                                from 'lang/name/component/Na
 
 import SMM2 = Games.SMM2
 
+//region -------------------- Import from deconstruction --------------------
+
+const {OFFICIAL, UNOFFICIAL, MAKER_CENTRAL,} = CourseTagTypes
 const {COURSE, TAG,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const options = CourseTagAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
@@ -142,9 +148,9 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
     const tag = TAG.singularLowerCaseNameOnReference
     const tags = TAG.pluralLowerCaseNameOnReference
 
-    const officialLink = type === CourseTagTypes.OFFICIAL ? null : type.officialRouteName satisfies NullOrString<PossibleRouteName>
-    const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : type.unofficialRouteName satisfies NullOrString<PossibleRouteName>
-    const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : type.makerCentralRouteName satisfies NullOrString<PossibleRouteName>
+    const officialLink = type === OFFICIAL ? null : type.officialRouteName satisfies NullOrString<PossibleRouteName>
+    const unofficialLink = type === UNOFFICIAL ? null : type.unofficialRouteName satisfies NullOrString<PossibleRouteName>
+    const makerCentralLink = type === MAKER_CENTRAL ? null : type.makerCentralRouteName satisfies NullOrString<PossibleRouteName>
 
     return <Description>
         <p>

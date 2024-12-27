@@ -36,7 +36,12 @@ import {ArrayAsCollection}                   from 'util/collection/ArrayAsCollec
 import ALL =          MysteryMushrooms.ALL
 import EMPTY_STRING = Empty.EMPTY_STRING
 
+//region -------------------- Import from deconstruction --------------------
+
 const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const all = new ArrayAsCollection(ALL,)
 
 const items = all

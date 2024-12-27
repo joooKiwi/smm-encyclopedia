@@ -41,6 +41,12 @@ import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
+//region -------------------- Import from deconstruction --------------------
+
+const {MYSTERY_MUSHROOM, STORY_MODE,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 const all = new ArrayAsCollection(ALL,)
 const options = CharacterNameAppOption.CompanionEnum.get.values
 
@@ -149,11 +155,9 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
     const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
+    const mysteryMushroom = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,)
+    const mysteryMushroomAsLowerCase = MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,)
 
-    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
-    const mysteryMushroomAsLowerCase = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
-
-    return <>
     return <Description>
         <p>
             {gameContentTranslation('character name.description.intro page', {
