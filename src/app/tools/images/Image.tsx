@@ -42,16 +42,14 @@ function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties
 }
 
 
-function AnimatedImages(properties: AnimatedImagesProperties,) {
-    const {className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters} = properties
-    const partialId = properties['partial-id']
-    assert(images.size >= 2 && images.size <= 10, `The array received for “${partialId}” is required to have between than 2 & 10 items. The length received is ${images.size}.`,)
+function AnimatedImages({id, className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
+    assert(images.size >= 2 && images.size <= 10, `The array received for “${id}” is required to have between than 2 & 10 items. The length received is ${images.size}.`,)
 
     if (!displayEveryImages)
-        return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...images.getFirst()}/></div>
+        return <div id={id} className={`${className} non-animated-image`} {...otherParameters}><Image {...images.getFirst()}/></div>
 
     if (!displayAnimations)
-        return <div key={`${partialId} - not animated`} id={partialId} className={`${className} non-animated-image non-animated-image-${images.size}`} {...otherParameters}>
+        return <div id={id} className={`${className} non-animated-image non-animated-image-${images.size}`} {...otherParameters}>
             {images.map((properties, index,) =>
                 'file' in properties
                     ? <ImageFromFile className={`image image-${index + 1}`} file={properties.file}/>
@@ -61,5 +59,5 @@ function AnimatedImages(properties: AnimatedImagesProperties,) {
     const {style = {}, ...otherParametersExcludingStyle} = otherParameters
     images.forEach((properties, index) =>
         style[`--image-${index + 1}`] = `url('${'file' in properties ? properties.file?.fullName : properties.source}')`)
-    return <div key={`${partialId} - animated`} id={partialId} className={`${className} animated-image animated-image-${images.length}`} style={style} {...otherParametersExcludingStyle}/>
+    return <div id={id} className={`${className} animated-image animated-image-${images.length}`} style={style} {...otherParametersExcludingStyle}/>
 }

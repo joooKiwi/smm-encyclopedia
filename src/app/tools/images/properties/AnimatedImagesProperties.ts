@@ -6,9 +6,10 @@ import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {HTMLDivProperties}       from 'util/react/html/HTMLDivProperties'
 
 export interface AnimatedImagesProperties
-    extends ReactProperties, Omit<HTMLDivProperties, | 'key' | 'id'> {
+    extends ReactProperties,
+        HTMLDivProperties {
 
-    readonly 'partial-id': string
+    readonly id: string
 
     /**
      * Multiple images

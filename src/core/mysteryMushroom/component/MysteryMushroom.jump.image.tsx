@@ -21,7 +21,7 @@ export default function MysteryMushroomJumpImage({value,}: MysteryMushroomJumpIm
     const {englishNameInHtml,} = value
     if (images.getFirst().size > 1)
         return <div className="mysteryMushroom-image mysteryMushroom-animated-image">{images.map((it, i,) =>
-            <Image key={`Jump animation #${i + 1}`} partial-id={`${englishNameInHtml}-${i + 1}`} images={it.map(it => ({file: it,}),)}/>
+            <Image key={`Jump animation #${i + 1}`} id={`${englishNameInHtml}-${i + 1}`} images={it.map(it => ({file: it,}),)}/>
         ,)}</div>
     return <div className="mysteryMushroom-image mysteryMushroom-standalone-image">{images.map(it => it.getFirst(),).map((it, i,) =>
         <Image key={`Jump image #${i + 1}`} file={it}/>
