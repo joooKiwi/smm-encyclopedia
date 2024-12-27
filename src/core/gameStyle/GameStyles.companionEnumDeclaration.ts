@@ -60,13 +60,13 @@ export interface CompanionEnumDeclaration_GameStyles
      *
      * @param gameStyles The given {@link GameStyles}
      */
-    getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue
+    getGroupUrlValue(gameStyles: CollectionHolder<GameStyles>,): GroupUrlValue
 
     /**
      * Generate a {@link GroupUrlName} for the {@link GameStyles} from the {@link gameStyles} received
      *
      * @param gameStyles The given {@link GameStyles}
      */
-    getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName
+    getGroupUrlName(gameStyles: CollectionHolder<GameStyles>,): GroupUrlName
 
 }

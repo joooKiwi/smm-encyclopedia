@@ -1,7 +1,6 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
 import type {Array, Nullable}  from '@joookiwi/type'
-import {isArray}               from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                  from 'core/ClassWithAcronym'
@@ -337,13 +336,12 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
         }
 
 
-        public getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue {
-            const gameStyles2 = isArray(gameStyles,) ? new ArrayAsCollection(gameStyles,) : gameStyles
-            const withSmb = gameStyles2.has(GameStyles.SUPER_MARIO_BROS,)
-            const withSmb3 = gameStyles2.has(GameStyles.SUPER_MARIO_BROS_3,)
-            const withSmw = gameStyles2.has(GameStyles.SUPER_MARIO_WORLD,)
-            const withNsmbu = gameStyles2.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
-            const withSm3dw = gameStyles2.has(GameStyles.SUPER_MARIO_3D_WORLD,)
+        public getGroupUrlValue(gameStyles: CollectionHolder<GameStyles>,): GroupUrlValue {
+            const withSmb = gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = gameStyles.has(GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = gameStyles.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = gameStyles.has(GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {
@@ -425,13 +423,12 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
             throw new ReferenceError('No game style group url value is findable from empty array or collection.',)
         }
 
-        public getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName {
-            const gameStyles2 = isArray(gameStyles,) ? new ArrayAsCollection(gameStyles,) : gameStyles
-            const withSmb = gameStyles2.has(GameStyles.SUPER_MARIO_BROS,)
-            const withSmb3 = gameStyles2.has(GameStyles.SUPER_MARIO_BROS_3,)
-            const withSmw = gameStyles2.has(GameStyles.SUPER_MARIO_WORLD,)
-            const withNsmbu = gameStyles2.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
-            const withSm3dw = gameStyles2.has(GameStyles.SUPER_MARIO_3D_WORLD,)
+        public getGroupUrlName(gameStyles: CollectionHolder<GameStyles>,): GroupUrlName {
+            const withSmb = gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = gameStyles.has(GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = gameStyles.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = gameStyles.has(GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {
