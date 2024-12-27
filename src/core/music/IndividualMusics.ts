@@ -5,6 +5,7 @@ import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 import type {Names, Ordinals}     from 'core/music/IndividualMusics.types'
 import type {RepeatableSoundFile} from 'util/file/sound/RepeatableSoundFile'
 
+import {nonRepeatable}           from 'core/music/file/nonRepeatable'
 import {repeatableAtTheEnd}      from 'core/music/file/repeatableAtTheEnd'
 import {repeatableDuringThePlay} from 'core/music/file/repeatableDuringThePlay'
 
@@ -699,56 +700,70 @@ export class IndividualMusics<const FILE extends PossibleSoundFile = PossibleSou
     //endregion -------------------- Enum instances (peaceful) --------------------
     //region -------------------- Enum instances (bonus) --------------------
 
+    public static readonly BONUS_SMB_EDITOR =       new IndividualMusics('editor bonus music (SMB)',       nonRepeatable('M1_BGM_Otoasobi_Bonus',),)//TODO replace with specific time interval
     public static readonly BONUS_SMB =              new IndividualMusics('bonus music (SMB)',              repeatableDuringThePlay('M1_BGM_Otoasobi_Bonus', 4,),)
     public static readonly BONUS_SMB_FAST =         new IndividualMusics('fast bonus music (SMB)',         repeatableAtTheEnd('M1_BGM_Otoasobi_BonusHurry',),)
     public static readonly BONUS_LINK =             new IndividualMusics('bonus music (Link)',             repeatableDuringThePlay('M1_BGM_Otoasobi_Link_Bonus', 148_531,),)
     public static readonly BONUS_LINK_FAST =        new IndividualMusics('fast bonus music (Link)',        repeatableDuringThePlay('M1_BGM_Otoasobi_Link_BonusHurry', 122_177,),)
     public static readonly BONUS_SMB2 =             new IndividualMusics('bonus music (SMB2)',             repeatableDuringThePlay('BGM_M1_USA_CharacterSelect', 172_512,),)
     public static readonly BONUS_SMB2_FAST =        new IndividualMusics('fast bonus music (SMB2)',        repeatableDuringThePlay('BGM_M1_USA_CharacterSelect_hurry', 129_152,),)
+    public static readonly BONUS_SMB3_EDITOR =      new IndividualMusics('editor bonus music (SMB3)',      nonRepeatable('M3_BGM_Otoasobi_Bonus',),)//TODO replace with specific time interval
     public static readonly BONUS_SMB3 =             new IndividualMusics('bonus music (SMB3)',             repeatableDuringThePlay('M3_BGM_Otoasobi_Bonus', 244,),)
     public static readonly BONUS_SMB3_FAST =        new IndividualMusics('fast bonus music (SMB3)',        repeatableAtTheEnd('M3_BGM_Otoasobi_BonusHurry',),)
+    public static readonly BONUS_SMW_EDITOR =       new IndividualMusics('editor bonus music (SMW)',       nonRepeatable('MW_BGM_Otoasobi_Bonus',),)//TODO replace with specific time interval
     public static readonly BONUS_SMW =              new IndividualMusics('bonus music (SMW)',              repeatableDuringThePlay('MW_BGM_Otoasobi_Bonus', 97_302,),)
     public static readonly BONUS_SMW_FAST =         new IndividualMusics('fast bonus music (SMW)',         repeatableDuringThePlay('MW_BGM_Otoasobi_BonusHurry', 83_895,),)
+    public static readonly BONUS_NSMBU_EDITOR =     new IndividualMusics('editor bonus music (NSMBU)',     nonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),)//TODO replace with specific time interval
     public static readonly BONUS_NSMBU =            new IndividualMusics('bonus music (NSMBU)',            repeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 1', 49_563,),)
     public static readonly BONUS_NSMBU_YOSHI =      new IndividualMusics('fast bonus music (NSMBU)',       repeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 2', 49_563,),)
     public static readonly BONUS_NSMBU_FAST =       new IndividualMusics('bonus music (NSMBU Yoshi)',      repeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 1', 94_334,),)
     public static readonly BONUS_NSMBU_YOSHI_FAST = new IndividualMusics('fast bonus music (NSMBU Yoshi)', repeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 2', 94_334,),)
+    public static readonly BONUS_SM3DW_EDITOR =     new IndividualMusics('editor bonus music (SM3DW)',     nonRepeatable('3W_BGM_Otoasobi_Bonus',),)//TODO replace with specific time interval
     public static readonly BONUS_SM3DW =            new IndividualMusics('bonus music (SM3DW)',            repeatableDuringThePlay('3W_BGM_Otoasobi_Bonus', 233_756,),)
     public static readonly BONUS_SM3DW_FAST =       new IndividualMusics('fast bonus music (SM3DW)',       repeatableDuringThePlay('3W_BGM_Otoasobi_BonusHurry', 241_918,),)
 
     //endregion -------------------- Enum instances (bonus) --------------------
     //region -------------------- Enum instances (boss) --------------------
 
-    public static readonly BOSS_SMB =        new IndividualMusics('boss music (SMB)',        repeatableDuringThePlay('M1_BGM_Otoasobi_Boss', 265_559,),)
-    public static readonly BOSS_SMB_FAST =   new IndividualMusics('fast boss music (SMB)',   repeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', 220_012,),)
-    public static readonly BOSS_LINK =       new IndividualMusics('boss music (Link)',       repeatableDuringThePlay('M1_BGM_Link_Boss', 15_931,),)
-    public static readonly BOSS_LINK_FAST =  new IndividualMusics('fast boss music (Link)',  repeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', 11_872,),)
-    public static readonly BOSS_SMB2 =       new IndividualMusics('boss music (SMB2)',       repeatableDuringThePlay('BGM_M1_USA_Boss', 115_011,),)
-    public static readonly BOSS_SMB2_FAST =  new IndividualMusics('fast boss music (SMB2)',  repeatableDuringThePlay('BGM_M1_USA_Boss_hurry', 102_231,),)
-    public static readonly BOSS_SMB3 =       new IndividualMusics('boss music (SMB3)',       repeatableDuringThePlay('M3_BGM_Otoasobi_Boss', 206_172,),)
-    public static readonly BOSS_SMB3_FAST =  new IndividualMusics('fast boss music (SMB3)',  repeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', 198_170,),)
-    public static readonly BOSS_SMW =        new IndividualMusics('boss music (SMW)',        repeatableDuringThePlay('MW_BGM_Otoasobi_Boss', 69_552,),)
-    public static readonly BOSS_SMW_FAST =   new IndividualMusics('fast boss music (SMW)',   repeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', 187_181,),)
-    public static readonly BOSS_NSMBU =      new IndividualMusics('boss music (NSMBU)',      repeatableDuringThePlay('WU_BGM_Otoasobi_Boss', 280_392,),)
-    public static readonly BOSS_NSMBU_FAST = new IndividualMusics('fast boss music (NSMBU)', repeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', 236_907,),)
-    public static readonly BOSS_SM3DW =      new IndividualMusics('boss music (SM3DW)',      repeatableDuringThePlay('3W_BGM_Otoasobi_Boss', 233_238,),)
-    public static readonly BOSS_SM3DW_FAST = new IndividualMusics('fast boss music (SM3DW)', repeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', 267_965,),)
+    public static readonly BOSS_SMB_EDITOR =   new IndividualMusics('editor boss music (SMB)',   nonRepeatable('M1_BGM_Otoasobi_Boss',),)//TODO replace with specific time interval
+    public static readonly BOSS_SMB =          new IndividualMusics('boss music (SMB)',          repeatableDuringThePlay('M1_BGM_Otoasobi_Boss', 265_559,),)
+    public static readonly BOSS_SMB_FAST =     new IndividualMusics('fast boss music (SMB)',     repeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', 220_012,),)
+    public static readonly BOSS_LINK =         new IndividualMusics('boss music (Link)',         repeatableDuringThePlay('M1_BGM_Link_Boss', 15_931,),)
+    public static readonly BOSS_LINK_FAST =    new IndividualMusics('fast boss music (Link)',    repeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', 11_872,),)
+    public static readonly BOSS_SMB2 =         new IndividualMusics('boss music (SMB2)',         repeatableDuringThePlay('BGM_M1_USA_Boss', 115_011,),)
+    public static readonly BOSS_SMB2_FAST =    new IndividualMusics('fast boss music (SMB2)',    repeatableDuringThePlay('BGM_M1_USA_Boss_hurry', 102_231,),)
+    public static readonly BOSS_SMB3_EDITOR =  new IndividualMusics('editor boss music (SMB3)',  nonRepeatable('M3_BGM_Otoasobi_Boss',),)//TODO replace with specific time interval
+    public static readonly BOSS_SMB3 =         new IndividualMusics('boss music (SMB3)',         repeatableDuringThePlay('M3_BGM_Otoasobi_Boss', 206_172,),)
+    public static readonly BOSS_SMB3_FAST =    new IndividualMusics('fast boss music (SMB3)',    repeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', 198_170,),)
+    public static readonly BOSS_SMW_EDITOR =   new IndividualMusics('editor boss music (SMW)',   nonRepeatable('MW_BGM_Otoasobi_Boss',),)//TODO replace with specific time interval
+    public static readonly BOSS_SMW =          new IndividualMusics('boss music (SMW)',          repeatableDuringThePlay('MW_BGM_Otoasobi_Boss', 69_552,),)
+    public static readonly BOSS_SMW_FAST =     new IndividualMusics('fast boss music (SMW)',     repeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', 187_181,),)
+    public static readonly BOSS_NSMBU_EDITOR = new IndividualMusics('editor boss music (NSMBU)', nonRepeatable('WU_BGM_Otoasobi_Boss',),)//TODO replace with specific time interval
+    public static readonly BOSS_NSMBU =        new IndividualMusics('boss music (NSMBU)',        repeatableDuringThePlay('WU_BGM_Otoasobi_Boss', 280_392,),)
+    public static readonly BOSS_NSMBU_FAST =   new IndividualMusics('fast boss music (NSMBU)',   repeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', 236_907,),)
+    public static readonly BOSS_SM3DW_EDITOR = new IndividualMusics('editor boss music (SM3DW)', nonRepeatable('3W_BGM_Otoasobi_Boss',),)//TODO replace with specific time interval
+    public static readonly BOSS_SM3DW =        new IndividualMusics('boss music (SM3DW)',        repeatableDuringThePlay('3W_BGM_Otoasobi_Boss', 233_238,),)
+    public static readonly BOSS_SM3DW_FAST =   new IndividualMusics('fast boss music (SM3DW)',   repeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', 267_965,),)
 
     //endregion -------------------- Enum instances (boss) --------------------
     //region -------------------- Enum instances (final boss) --------------------
 
-    public static readonly FINAL_BOSS_LINK =       new IndividualMusics('final boss music (Link)',       repeatableDuringThePlay('M1_BGM_Link_LastBoss', 23_984,),)
-    public static readonly FINAL_BOSS_LINK_FAST =  new IndividualMusics('fast final boss music (Link)',  repeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', 20_284,),)
-    public static readonly FINAL_BOSS_SMB2 =       new IndividualMusics('final boss music (SMB2)',       repeatableDuringThePlay('BGM_M1_USA_LastBoss', 115_011,),)
-    public static readonly FINAL_BOSS_SMB2_FAST =  new IndividualMusics('fast final boss music (SMB2)',  repeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', 102_231,),)
-    public static readonly FINAL_BOSS_SMB3 =       new IndividualMusics('final boss music (SMB3)',       repeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', 89_453,),)
-    public static readonly FINAL_BOSS_SMB3_FAST =  new IndividualMusics('fast final boss music (SMB3)',  repeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', 76_674,),)
-    public static readonly FINAL_BOSS_SMW =        new IndividualMusics('final boss music (SMW)',        repeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', 90_251,),)
-    public static readonly FINAL_BOSS_SMW_FAST =   new IndividualMusics('fast final boss music (SMW)',   repeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', 72_957,),)
-    public static readonly FINAL_BOSS_NSMBU =      new IndividualMusics('final boss music (NSMBU)',      repeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', 487_912,),)
-    public static readonly FINAL_BOSS_NSMBU_FAST = new IndividualMusics('fast final boss music (NSMBU)', repeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', 454_360,),)
-    public static readonly FINAL_BOSS_SM3DW =      new IndividualMusics('final boss music (SM3DW)',      repeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', 2_794_396,),)
-    public static readonly FINAL_BOSS_SM3DW_FAST = new IndividualMusics('fast final boss music (SM3DW)', repeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', 2_307_013,),)
+    public static readonly FINAL_BOSS_LINK =         new IndividualMusics('final boss music (Link)',         repeatableDuringThePlay('M1_BGM_Link_LastBoss', 23_984,),)
+    public static readonly FINAL_BOSS_LINK_FAST =    new IndividualMusics('fast final boss music (Link)',    repeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', 20_284,),)
+    public static readonly FINAL_BOSS_SMB2 =         new IndividualMusics('final boss music (SMB2)',         repeatableDuringThePlay('BGM_M1_USA_LastBoss', 115_011,),)
+    public static readonly FINAL_BOSS_SMB2_FAST =    new IndividualMusics('fast final boss music (SMB2)',    repeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', 102_231,),)
+    public static readonly FINAL_BOSS_SMB3_EDITOR =  new IndividualMusics('editor final boss music (SMB3)',  nonRepeatable('M3_BGM_Otoasobi_LastBoss',),)//TODO replace with specific time interval
+    public static readonly FINAL_BOSS_SMB3 =         new IndividualMusics('final boss music (SMB3)',         repeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', 89_453,),)
+    public static readonly FINAL_BOSS_SMB3_FAST =    new IndividualMusics('fast final boss music (SMB3)',    repeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', 76_674,),)
+    public static readonly FINAL_BOSS_SMW_EDITOR =   new IndividualMusics('editor final boss music (SMW)',   nonRepeatable('MW_BGM_Otoasobi_LastBoss',),)//README for some reason, it is set at 1 in the files (but it is ignored)//TODO replace with specific time interval
+    public static readonly FINAL_BOSS_SMW =          new IndividualMusics('final boss music (SMW)',          repeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', 90_251,),)
+    public static readonly FINAL_BOSS_SMW_FAST =     new IndividualMusics('fast final boss music (SMW)',     repeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', 72_957,),)
+    public static readonly FINAL_BOSS_NSMBU_EDITOR = new IndividualMusics('editor final boss music (NSMBU)', nonRepeatable('WU_BGM_Otoasobi_LastBoss',),)//TODO replace with specific time interval
+    public static readonly FINAL_BOSS_NSMBU =        new IndividualMusics('final boss music (NSMBU)',        repeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', 487_912,),)
+    public static readonly FINAL_BOSS_NSMBU_FAST =   new IndividualMusics('fast final boss music (NSMBU)',   repeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', 454_360,),)
+    public static readonly FINAL_BOSS_SM3DW_EDITOR = new IndividualMusics('editor final boss music (SM3DW)', nonRepeatable('3W_BGM_Otoasobi_LastBoss',),)//TODO replace with specific time interval
+    public static readonly FINAL_BOSS_SM3DW =        new IndividualMusics('final boss music (SM3DW)',        repeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', 2_794_396,),)
+    public static readonly FINAL_BOSS_SM3DW_FAST =   new IndividualMusics('fast final boss music (SM3DW)',   repeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', 2_307_013,),)
 
     //endregion -------------------- Enum instances (final boss) --------------------
     //region -------------------- Enum instances (other game) --------------------

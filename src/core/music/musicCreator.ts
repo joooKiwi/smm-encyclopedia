@@ -9,7 +9,7 @@ import {BackgroundMusicContainer}                                          from 
 import {NonChangeableSoundEffectBackgroundMusicContainer}                  from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'
 import {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect}          from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
 import {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer} from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect.container'
-import {nonRepeatable}                                                     from 'core/music/file/fileCreator'
+import {nonRepeatable}                                                     from 'core/music/file/nonRepeatable'
 import {SingleSoundEffectMusicContainer}                                   from 'core/music/soundEffect/SingleSoundEffectMusic.container'
 import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
 

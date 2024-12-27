@@ -11,7 +11,6 @@ import type {CompanionEnumByReferenceSingleton}                        from 'uti
 
 import {IndividualMusics}         from 'core/music/IndividualMusics'
 import * as MusicCreator          from 'core/music/musicCreator'
-import * as FileCreator           from 'core/music/file/fileCreator'
 import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
 import type {Themes}              from 'core/theme/Themes'
 import {Import}                   from 'util/DynamicImporter'
@@ -181,7 +180,7 @@ export class Musics
 
         protected override _createMusic() {
             return MusicCreator.backgroundMusic(
-                FileCreator.nonRepeatable('M1_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                IndividualMusics.BONUS_SMB_EDITOR.file,
                 IndividualMusics.BONUS_SMB.file,
                 IndividualMusics.BONUS_SMB_FAST.file,
 
@@ -191,23 +190,23 @@ export class Musics
                 IndividualMusics.BONUS_SMB2.file,
                 IndividualMusics.BONUS_SMB2_FAST.file,
 
-                FileCreator.nonRepeatable('M3_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                IndividualMusics.BONUS_SMB3_EDITOR.file,
                 IndividualMusics.BONUS_SMB3.file,
                 IndividualMusics.BONUS_SMB3_FAST.file,
 
-                FileCreator.nonRepeatable('MW_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                IndividualMusics.BONUS_SMW_EDITOR.file,
                 IndividualMusics.BONUS_SMW.file,
                 null,
                 IndividualMusics.BONUS_SMW_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),//TODO replace with specific time interval
+                IndividualMusics.BONUS_NSMBU_EDITOR.file,
                 IndividualMusics.BONUS_NSMBU.file,
                 IndividualMusics.BONUS_NSMBU_YOSHI.file,
                 IndividualMusics.BONUS_NSMBU_FAST.file,
                 IndividualMusics.BONUS_NSMBU_YOSHI_FAST.file,
 
-                FileCreator.nonRepeatable('3W_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                IndividualMusics.BONUS_SM3DW_EDITOR.file,
                 IndividualMusics.BONUS_SM3DW.file,
                 null,
                 IndividualMusics.BONUS_SM3DW_FAST.file,
@@ -224,7 +223,7 @@ export class Musics
 
         protected override _createMusic() {
             return MusicCreator.backgroundMusic(
-                FileCreator.nonRepeatable('M1_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                IndividualMusics.BOSS_SMB_EDITOR.file,
                 IndividualMusics.BOSS_SMB.file,
                 IndividualMusics.BOSS_SMB_FAST.file,
 
@@ -234,23 +233,23 @@ export class Musics
                 IndividualMusics.BOSS_SMB2.file,
                 IndividualMusics.BOSS_SMB2_FAST.file,
 
-                FileCreator.nonRepeatable('M3_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                IndividualMusics.BOSS_SMB3_EDITOR.file,
                 IndividualMusics.BOSS_SMB3.file,
                 IndividualMusics.BOSS_SMB3_FAST.file,
 
-                FileCreator.nonRepeatable('MW_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                IndividualMusics.BOSS_SMW.file,
                 IndividualMusics.BOSS_SMW.file,
                 null,
                 IndividualMusics.BOSS_SMW_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('WU_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                IndividualMusics.BOSS_NSMBU_EDITOR.file,
                 IndividualMusics.BOSS_NSMBU.file,
                 null,
                 IndividualMusics.BOSS_NSMBU_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('3W_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                IndividualMusics.BOSS_SM3DW_EDITOR.file,
                 IndividualMusics.BOSS_SM3DW.file,
                 null,
                 IndividualMusics.BOSS_SM3DW_FAST.file,
@@ -266,7 +265,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            const smb3Editor = FileCreator.nonRepeatable('M3_BGM_Otoasobi_LastBoss',)//TODO replace with specific time interval
+            const smb3Editor = IndividualMusics.FINAL_BOSS_SMB3_EDITOR.file
             const smb3 = IndividualMusics.FINAL_BOSS_SMB3.file
             const smb3Fast = IndividualMusics.FINAL_BOSS_SMB3_FAST.file
 
@@ -285,19 +284,19 @@ export class Musics
                 smb3,
                 smb3Fast,
 
-                FileCreator.nonRepeatable('MW_BGM_Otoasobi_LastBossIcon',),//README for some reason, it is set at 1 in the files (but it is ignored)
+                IndividualMusics.FINAL_BOSS_SMW_EDITOR.file,
                 IndividualMusics.FINAL_BOSS_SMW.file,
                 null,
                 IndividualMusics.FINAL_BOSS_SMW_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('WU_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                IndividualMusics.FINAL_BOSS_NSMBU_EDITOR.file,
                 IndividualMusics.FINAL_BOSS_NSMBU.file,
                 null,
                 IndividualMusics.FINAL_BOSS_NSMBU_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('3W_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                IndividualMusics.FINAL_BOSS_SM3DW_EDITOR.file,
                 IndividualMusics.FINAL_BOSS_SM3DW.file,
                 null,
                 IndividualMusics.FINAL_BOSS_SM3DW_FAST.file,
