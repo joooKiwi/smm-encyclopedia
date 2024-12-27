@@ -54,6 +54,9 @@
   "parameter": {
     "instruction": "Select the “games”, “game styles”, “theme” (to be added), and “times” to be displayed across the application."
   },
+  "description": {
+    "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
+  },
 
   "Yes": "Yes",
   "No":  "No",

@@ -10,8 +10,6 @@
 
 
 
-
-
   },
   "course tag": {
 
@@ -26,13 +24,9 @@
       "intro page (unofficial)":   "Sur cette page, tous les {{tags}} de {{course}} {{unofficials}} sont seulement utilisés dans {{smm2Image}}. ",
       "intro page (makerCentral)": "Sur cette page, tous les {{tags}} de {{course}} sur {{MakerCentralLink}} sont seulement utilisés dans {{smm2Image}}. ",
       "intro references":          "Ces derniers sont utilisé pour représenter des {{courses}} qui sont {{officialsLink}}, {{unofficialsLink}} ou sur {{MakerCentralLink}}."
-
-
     }
   },
   "editor voice": {
-
-
 
 
 
@@ -101,8 +95,6 @@
 
 
 
-
-
   },
   "instrument": {
 
@@ -117,12 +109,8 @@
 
 
 
-
-
   },
   "limit": {
-
-
 
 
 

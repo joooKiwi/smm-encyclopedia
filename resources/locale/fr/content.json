@@ -54,6 +54,9 @@
   "parameter": {
     "instruction": "Sélectionnez les «jeux», «style de jeux», «décor» (à venir) et “temps” à afficher au travers de l'application."
   },
+  "description": {
+    "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+  },
 
   "Yes": "Oui",
   "No":  "Non",

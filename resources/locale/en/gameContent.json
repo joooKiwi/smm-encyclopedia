@@ -8,9 +8,7 @@
 
     "description": {
       "intro page":       "On this page, all of the names are referenced or used in the games ({{smm1Link}} {{smm3dsLink}} or {{smm2Link}}). ",
-      "intro references": "These are used in the {{StoryMode}} ({{smm2Link}} exclusive), by a {{MysteryMushroom}} ({{smm1Link}} exclusive) or in the editor (in general).",
-
-      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{cardLink}}."
+      "intro references": "These are used in the {{StoryMode}} ({{smm2Link}} exclusive), by a {{MysteryMushroom}} ({{smm1Link}} exclusive) or in the editor (in general)."
     }
   },
   "course tag": {
@@ -25,9 +23,7 @@
       "intro page (official)":     "On this page, all of the {{official}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
       "intro page (unofficial)":   "On this page, all of the {{unofficial}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
       "intro page (makerCentral)": "On this page, all of the {{MakerCentralLink}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
-      "intro references":          "These are used to represent {{courses}} that are {{officialLink}}, {{unofficialLink}} or in {{MakerCentralLink}}.",
-
-      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
+      "intro references":          "These are used to represent {{courses}} that are {{officialLink}}, {{unofficialLink}} or in {{MakerCentralLink}}."
     }
   },
   "editor voice": {
@@ -42,9 +38,7 @@
       "intro games":       "They are also on every games ({{smm1Link}} {{smm3dsLink}} or {{smm2Link}}). ",
       "intro smm1" :       "There are some voices in {{smm1Link}} that are no longer used in {{smm2Link}}. ",
       "intro characters" : "Some that are only applicable to the characters. ",
-      "intro variants":    "There might be variant of a same {{entityLink}} in the {{underwaterLink}} or as an {{europeanVariantLink}}.",
-
-      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
+      "intro variants":    "There might be variant of a same {{entityLink}} in the {{underwaterLink}} or as an {{europeanVariantLink}}."
     }
   },
   "entity": {
@@ -99,9 +93,7 @@
     "description": {
       "intro page":   "On this page, all of the {{gameStyles}} are present in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
       "intro sm3dw":  "But, there is only {{smm3dwImage}} that is specific to {{smm2Link}}. ",
-      "intro entity": "Also, there is some {{entityLink}} specific to a selected game style ({{smbLink}}, {{smb3Link}}, {{smwLink}}, {{nsmbuLink}}, {{sm3dwLink}}). ",
-
-      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
+      "intro entity": "Also, there is some {{entityLink}} specific to a selected game style ({{smbLink}}, {{smb3Link}}, {{smwLink}}, {{nsmbuLink}}, {{sm3dwLink}}). "
     }
   },
   "instrument": {
@@ -115,9 +107,7 @@
 
     "description": {
       "intro page":     "On this page, all of the instruments are present in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
-      "intro variants": "And some instruments in {{smm2Link}} are the same as in {{smm1Link}} / {{smm3dsLink}}.",
-
-      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
+      "intro variants": "And some instruments in {{smm2Link}} are the same as in {{smm1Link}} / {{smm3dsLink}}."
     }
   },
   "limit": {
@@ -211,9 +201,7 @@
       "intro page (play)":    "On this page, all of the play limits are used in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
       "intro game changes":   "From {{smm1Link}} and {{smm3dsLink}} to {{smm2Link}}, some limits were added. ",
       "intro other entities": "And other entities have a different limit associated to them. ",
-      "intro references":     "These are used to represent limits that are {{playLink}} or {{editorLink}}.",
-
-      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
+      "intro references":     "These are used to represent limits that are {{playLink}} or {{editorLink}}."
     }
   },
   "medal": {
