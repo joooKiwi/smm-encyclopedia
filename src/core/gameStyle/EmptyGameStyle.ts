@@ -5,8 +5,8 @@ import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 import {EmptyStringName}      from 'lang/name/EmptyStringName'
 import {Empty}                from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
-import EMPTY_MAP =   Empty.EMPTY_MAP
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_MAP =               Empty.EMPTY_MAP
 
 /** @singleton */
 export class EmptyGameStyle
@@ -38,7 +38,7 @@ export class EmptyGameStyle
     public readonly isAvailableFromTheStartInSMM2 = null
 
 
-    public readonly entities = EMPTY_ARRAY
+    public readonly entities = EMPTY_COLLECTION_HOLDER
 
     public readonly nightDesertWindTranslationKey = null
 

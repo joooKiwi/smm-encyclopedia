@@ -1,4 +1,5 @@
-import type {Array, NullOr, NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+import type {CollectionHolder}                  from '@joookiwi/collection'
+import type {NullOr, NullOrBoolean, NullOrTrue} from '@joookiwi/type'
 
 import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {Entity}                           from 'core/entity/Entity'
@@ -9,7 +10,7 @@ export interface GameStyle
     extends NameTrait<string>, GameProperty,
         ClassThatIsAvailableFromTheStart<NullOrBoolean, NullOrTrue, NullOrTrue> {
 
-    get entities(): Array<Entity>
+    get entities(): CollectionHolder<Entity>
 
     get nightDesertWindTranslationKey(): PossibleNightDesertWindTranslationKey
 
