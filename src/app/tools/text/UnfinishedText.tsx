@@ -14,14 +14,14 @@ interface UnfinishedTextProperties
 }
 
 /** @reactComponent */
-    return isInProduction
-        ? isHidden ? null : type === 'text'
-            ? <span>{children}</span>
-            : <p>{children}</p>
-        : type === 'text'
-            ? <span>--{children}--</span>
-            : <p>--{children}--</p>
 export default function UnfinishedText({children, isHidden = false, type = 'text',}: UnfinishedTextProperties,) {
+    if (isInProduction)
+        if (isHidden)
+            return null
+
+    if (type === 'text')
+        return <span>--{children}--</span>
+    return <p>--{children}--</p>
 }
 
 export function unfinishedText(value: string,) {
