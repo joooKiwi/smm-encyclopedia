@@ -76,7 +76,7 @@ interface OfficialCourse_SubContentProperties
 
 /** @reactComponent */
 function OfficialCourseList({items,}: OfficialCourse_SubContentProperties,) {
-    return <List partialId="officialCourse" items={items} withSeparator>{it => {
+    return <List partial-id="officialCourse" items={items} withSeparator>{it => {
         const reference = it.reference
         return <div className="d-flex justify-content-between">
             <NameComponent id="officialCourse-name" name={reference} popoverOrientation="right"/>

@@ -115,7 +115,7 @@ interface CharacterName_SubContentProperties
 
 /** @reactComponent */
 function CharacterNameList({items,}: CharacterName_SubContentProperties,) {
-    return <List partialId="characterName" items={items} withSeparator>{it =>
+    return <List partial-id="characterName" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="characterName-name" name={it.reference} popoverOrientation="top"/>
             <EditorVoiceSound editorVoice={it.editorVoice} name={it.uniqueEnglishName}/>
@@ -195,11 +195,11 @@ function GameAsideContent({game,}: Pick<CharacterName_AsideContentProperties, 'g
     if (game == null)
         return null
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="characterName-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+            <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
         </div>
     </div>
 }
@@ -209,12 +209,12 @@ function TimeAsideContent({time,}: Pick<CharacterName_AsideContentProperties, 't
     if (time == null)
         return null
     return <div id="characterName-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
         <div className="btn-group btn-group-sm">
-            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+            <LinkButton partial-id="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
                 <TimeImage reference={Times.DAY}/>
             </LinkButton>
-            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+            <LinkButton partial-id="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
                 <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>

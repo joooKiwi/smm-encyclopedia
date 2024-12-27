@@ -78,7 +78,7 @@ interface MiiCostume_SubContentProperties
 
 /** @reactComponent */
 function MiiCostumeList({items,}: MiiCostume_SubContentProperties,) {
-    return <List partialId="miiCostume" items={items} withSeparator>{it =>
+    return <List partial-id="miiCostume" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between align-items-center">
             <NameComponent id="miiCostume-name" name={it.reference} popoverOrientation="right"/>
             <MiiCostumeImage reference={it}/>

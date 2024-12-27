@@ -90,7 +90,7 @@ interface CourseTag_SubContentProperties
 
 /** @reactComponent */
 function CourseTagList({items,}: CourseTag_SubContentProperties,) {
-    return <List partialId="courseTag" items={items}>{({reference,},) =>
+    return <List partial-id="courseTag" items={items}>{({reference,},) =>
         <div className="d-flex">
             <NameComponent id="courseTag-name" name={reference} popoverOrientation="top"/>
             <FirstAppearance reference={reference}/>
@@ -167,11 +167,11 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
             },)}
             {gameContentTranslation('course tag.description.intro references', {
                 course: course, courses: courses,
-                officialLink: <LinkText key="official link (singular)" partialId="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.singular',).toLowerCase()}</LinkText>,
-                officialsLink: <LinkText key="official link (plural)" partialId="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.plural',).toLowerCase()}</LinkText>,
-                unofficialLink: <LinkText key="unofficial link (singular)" partialId="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.singular',).toLowerCase()}</LinkText>,
-                unofficialsLink: <LinkText key="unofficial link (plural)" partialId="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.plural',).toLowerCase()}</LinkText>,
-                MakerCentralLink: <LinkText key="Maker Central link" partialId="makerCentralLink" routeName={makerCentralLink} color="primary">Maker Central</LinkText>,
+                officialLink: <LinkText key="official link (singular)" partial-id="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.singular',).toLowerCase()}</LinkText>,
+                officialsLink: <LinkText key="official link (plural)" partial-id="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.plural',).toLowerCase()}</LinkText>,
+                unofficialLink: <LinkText key="unofficial link (singular)" partial-id="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.singular',).toLowerCase()}</LinkText>,
+                unofficialsLink: <LinkText key="unofficial link (plural)" partial-id="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.plural',).toLowerCase()}</LinkText>,
+                MakerCentralLink: <LinkText key="Maker Central link" partial-id="makerCentralLink" routeName={makerCentralLink} color="primary">Maker Central</LinkText>,
             },)}
         </p>
         <ContentBeingDisplayed viewDisplay={viewDisplay} routeName={type.routeName}/>
@@ -191,12 +191,12 @@ interface CourseTag_AsideContentProperties
 /** @reactComponent */
 function CourseTagAsideContent({type,}: CourseTag_AsideContentProperties,) {
     return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
-        <LinkButton partialId="everyCourseTag" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="everyCourseTag" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="officialCourseTag" routeName={type.officialRouteName} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
-            <LinkButton partialId="unofficialCourseTag" routeName={type.unofficialRouteName} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
+            <LinkButton partial-id="officialCourseTag" routeName={type.officialRouteName} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
+            <LinkButton partial-id="unofficialCourseTag" routeName={type.unofficialRouteName} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
         </div>
-        <LinkButton partialId="makerCentralCourseTag" routeName={type.makerCentralRouteName} color={type.makerCentralColor}>Maker Central</LinkButton>
+        <LinkButton partial-id="makerCentralCourseTag" routeName={type.makerCentralRouteName} color={type.makerCentralColor}>Maker Central</LinkButton>
     </div>
 }
 

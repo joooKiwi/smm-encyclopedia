@@ -94,7 +94,7 @@ interface GameStyle_SubContentProperties
 
 /** @reactComponent */
 function GameStyleList({items,}: GameStyle_SubContentProperties,) {
-    return <List partialId="gameStyle" items={items} withSeparator>{it =>
+    return <List partial-id="gameStyle" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="gameStyle-name" name={it.reference} popoverOrientation="top"/>
             <GameStyleImage reference={it}/>
@@ -146,17 +146,17 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro sm3dw', {
-                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
+                sm3dwLink: <LinkText key="sm3dwLink" partial-id="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro entity', {
-                entityLink: <LinkText key="entityLink"  partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
-                entitiesLink: <LinkText key="entitiesLink" partialId="entityLink" routeName="everyEntity" color="primary">{entities}</LinkText>,
-                smbLink: <LinkText key="smbLink" partialId="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={SMB}/></LinkText>,
-                smb3Link: <LinkText key="smb3Link" partialId="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={SMB3}/></LinkText>,
-                smwLink: <LinkText key="smwLink" partialId="smwLink" routeName="everyEntity (card GameStyle=W)" color="primary"><GameStyleImage reference={SMW}/></LinkText>,
-                nsmbuLink: <LinkText key="nsmbuLink" partialId="nsmbuLink" routeName="everyEntity (card GameStyle=U)" color="primary"><GameStyleImage reference={NSMBU}/></LinkText>,
-                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
+                entityLink: <LinkText key="entityLink"  partial-id="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
+                entitiesLink: <LinkText key="entitiesLink" partial-id="entityLink" routeName="everyEntity" color="primary">{entities}</LinkText>,
+                smbLink: <LinkText key="smbLink" partial-id="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={SMB}/></LinkText>,
+                smb3Link: <LinkText key="smb3Link" partial-id="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={SMB3}/></LinkText>,
+                smwLink: <LinkText key="smwLink" partial-id="smwLink" routeName="everyEntity (card GameStyle=W)" color="primary"><GameStyleImage reference={SMW}/></LinkText>,
+                nsmbuLink: <LinkText key="nsmbuLink" partial-id="nsmbuLink" routeName="everyEntity (card GameStyle=U)" color="primary"><GameStyleImage reference={NSMBU}/></LinkText>,
+                sm3dwLink: <LinkText key="sm3dwLink" partial-id="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
             },)}
         </p>
         <ContentBeingDisplayed viewDisplay={viewDisplay} routeName="everyGameStyle"/>
@@ -176,11 +176,11 @@ interface GameStyleAsideContentProperties
 /** @reactComponent */
 function GameAsideContent({game,}: GameStyleAsideContentProperties,) {
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={game.smm1Or3dsRouteName} color={game.smm1Or3dsColor}>
+        <LinkButton partial-id="smm1Or3dsGame" routeName={game.smm1Or3dsRouteName} color={game.smm1Or3dsColor}>
             <GameImage reference={SMM1}/>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+        <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>

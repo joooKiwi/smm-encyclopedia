@@ -141,7 +141,7 @@ interface Instrument_SubContentProperties
 
 /** @reactComponent */
 function InstrumentList({items,}: Pick<Instrument_SubContentProperties, 'items'>,) {
-    return <List partialId="instrument" items={items} withSeparator>{it =>
+    return <List partial-id="instrument" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <div className="d-flex">
                 <NameComponent id="instrument-name" name={it.reference} popoverOrientation="top"/>
@@ -234,13 +234,13 @@ interface InstrumentAsideContentProperties
 /** @reactComponent */
 function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'>,) {
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
+        <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
             <GameImage reference={SMM1}/>
         </LinkButton>
-        <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
+        <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+        <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>
@@ -249,20 +249,20 @@ function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'
 /** @reactComponent */
 function GameStyleAsideContent({gameStyle, gameStyles,}: Pick<InstrumentAsideContentProperties, | 'gameStyle' | 'gameStyles'>,) {
     return <div id="instrument-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
+            <LinkButton partial-id="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
                 <GameStyleImage reference={SMB}/>
             </LinkButton>
-            <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
+            <LinkButton partial-id="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
                 <GameStyleImage reference={SMB3}/>
             </LinkButton>
         </div>
         <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
+            <LinkButton partial-id="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
                 <GameStyleImage reference={SMW}/>
             </LinkButton>
-            <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
+            <LinkButton partial-id="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
                 <GameStyleImage reference={NSMBU}/>
             </LinkButton>
         </div>
@@ -274,12 +274,12 @@ function TimeAsideContent({time,}: Pick<InstrumentAsideContentProperties, 'time'
     if (time == null)
         return null
     return <div id="instrument-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
         <div className="btn-group btn-group-sm">
-            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+            <LinkButton partial-id="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
                 <TimeImage reference={Times.DAY}/>
             </LinkButton>
-            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+            <LinkButton partial-id="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
                 <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>

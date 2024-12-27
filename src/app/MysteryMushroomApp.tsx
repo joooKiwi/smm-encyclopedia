@@ -86,7 +86,7 @@ interface MysteryMushroom_SubContentProperties
 
 /** @reactComponent */
 function MysteryMushroomList({items,}: MysteryMushroom_SubContentProperties,) {
-    return <List partialId="mysteryMushroom" items={items}>{it =>
+    return <List partial-id="mysteryMushroom" items={items}>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="mysteryMushroom-name" name={it.reference} popoverOrientation="right"/>
             <div className="images-container">

@@ -20,6 +20,6 @@ export default function MysteryMushroomSwimmingImage({value,}: MysteryMushroomSw
 
     const {englishNameInHtml,} = value
     return <div className="mysteryMushroom-image mysteryMushroom-animated-image">{images.map((it, i,) =>
-        <Image key={`Swimming animation #${i + 1}`} partialId={`${englishNameInHtml}-${i + 1}`} images={it.map(it => ({file: it,}),)}/>
+        <Image key={`Swimming animation #${i + 1}`} partial-id={`${englishNameInHtml}-${i + 1}`} images={it.map(it => ({file: it,}),)}/>
     ,)}</div>
 }

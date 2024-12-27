@@ -247,13 +247,13 @@ interface OtherPathProperties extends ReactProperties, ClassWithType<PowerUpPrio
 function OtherPath({type,}: OtherPathProperties,) {
     return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
         <button className="btn disabled">{unfinishedText('Feature in progress',)}</button>
-        <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div className="btn-group btn-group-sm" role="group">
-            <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
-            <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
-            <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
+            <LinkButton partial-id="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
+            <LinkButton partial-id="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
+            <LinkButton partial-id="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
         </div>
-        <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
+        <LinkButton partial-id="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
     </div>
 }
 

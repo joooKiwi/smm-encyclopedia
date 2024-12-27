@@ -22,26 +22,26 @@ export default function RouteApp() {
 
         <UniqueSection id="musics-paths" target="musics-linkPaths" name="Musics" path="everyMusic"/>
 
-        <ListCardTableAllGameAllGameStyleSection partialId="entity" name="Entity" route={EveryRoutes.EVERY_ENTITY}/>
+        <ListCardTableAllGameAllGameStyleSection partial-id="entity" name="Entity" route={EveryRoutes.EVERY_ENTITY}/>
 
-        <AnyGameSection partialId="characterName" name="Character name" route={EveryRoutes.EVERY_CHARACTER_NAME}/>
+        <AnyGameSection partial-id="characterName" name="Character name" route={EveryRoutes.EVERY_CHARACTER_NAME}/>
         <EmptySection id="clearCondition-paths" name="Clear condition"/>
         <EmptySection id="clearConditionCategory-paths" name="Clear condition category"/>
-        <ListCardTableAllGameSection partialId="limit" name="Limit" names={['Play', 'Editor',]} routes={[EveryRoutes.EVERY_LIMIT, EveryRoutes.EVERY_EDITOR_LIMIT, EveryRoutes.EVERY_PLAY_LIMIT,]}/>
+        <ListCardTableAllGameSection partial-id="limit" name="Limit" names={['Play', 'Editor',]} routes={[EveryRoutes.EVERY_LIMIT, EveryRoutes.EVERY_EDITOR_LIMIT, EveryRoutes.EVERY_PLAY_LIMIT,]}/>
         <EmptySection id="projectile-paths" name="Projectile"/>
         <EmptySection id="object-paths" name="Object"/>
-        <OnlySmm2Section partialId="entityCategory" name="Entity category" route={EveryRoutes.EVERY_ENTITY_CATEGORY}/>
+        <OnlySmm2Section partial-id="entityCategory" name="Entity category" route={EveryRoutes.EVERY_ENTITY_CATEGORY}/>
         <EmptySection id="entityGroup-paths" name="Entity group"/>
 
-        <ListCardTableAllGameSection partialId="theme" name="Theme" names={['Course', 'World',]} routes={[EveryRoutes.EVERY_THEME, EveryRoutes.EVERY_COURSE_THEME, EveryRoutes.EVERY_WORLD_THEME,]}/>
+        <ListCardTableAllGameSection partial-id="theme" name="Theme" names={['Course', 'World',]} routes={[EveryRoutes.EVERY_THEME, EveryRoutes.EVERY_COURSE_THEME, EveryRoutes.EVERY_WORLD_THEME,]}/>
         <EmptySection id="time-paths" name="Time"/>
 
-        <AllGamesSection partialId="gameReference" name="Game reference" route={EveryRoutes.EVERY_GAME_REFERENCE}/>
-        <AnyGameSection partialId="gameStyle" name="Game style" route={EveryRoutes.EVERY_GAME_STYLE}/>
+        <AllGamesSection partial-id="gameReference" name="Game reference" route={EveryRoutes.EVERY_GAME_REFERENCE}/>
+        <AnyGameSection partial-id="gameStyle" name="Game style" route={EveryRoutes.EVERY_GAME_STYLE}/>
         <EmptySection id="entityBehaviour-paths" name="Entity behaviour"/>
 
-        <ListCardTableAllGameAllGameStyleSection partialId="soundEffect" name="Sound effect" route={EveryRoutes.EVERY_SOUND_EFFECT}/>
-        <OnlySmm2Section partialId="soundEffectCategory" name="Sound effect category" route={EveryRoutes.EVERY_SOUND_EFFECT_CATEGORY}/>
+        <ListCardTableAllGameAllGameStyleSection partial-id="soundEffect" name="Sound effect" route={EveryRoutes.EVERY_SOUND_EFFECT}/>
+        <OnlySmm2Section partial-id="soundEffectCategory" name="Sound effect category" route={EveryRoutes.EVERY_SOUND_EFFECT_CATEGORY}/>
 
         <div id="courseTag-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
             <SectionTitle name="Course tag" target="courseTag-linkPaths" route={EveryRoutes.EVERY_COURSE_TAG} multiplyBy={4}/>
@@ -96,21 +96,21 @@ export default function RouteApp() {
                 </div>
             </div>
         </div>
-        <OnlySmm2Section partialId="predefinedMessage" name="Predefined message" route={EveryRoutes.EVERY_PREDEFINED_MESSAGE}/>
-        <OnlySmm1Section partialId="sampleCourse" name="Sample course" route={EveryRoutes.EVERY_SAMPLE_COURSE}/>
-        <OnlySmm1Section partialId="medal" name="Medal" route={EveryRoutes.EVERY_MEDAL}/>
+        <OnlySmm2Section partial-id="predefinedMessage" name="Predefined message" route={EveryRoutes.EVERY_PREDEFINED_MESSAGE}/>
+        <OnlySmm1Section partial-id="sampleCourse" name="Sample course" route={EveryRoutes.EVERY_SAMPLE_COURSE}/>
+        <OnlySmm1Section partial-id="medal" name="Medal" route={EveryRoutes.EVERY_MEDAL}/>
         <EmptySection id="superMarioChallengeLevel-paths" name="Super Mario Challenges level"/>
         <EmptySection id="job-paths" name="Job"/>
         <EmptySection id="officialNotification-paths" name="Official notification"/>
         <EmptySection id="ninjiSpeedrun-paths" name="Ninji speedrun"/>
 
-        <OnlySmm1Section partialId="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
-        <AnyGameSection partialId="officialCourse" name="Official course" route={EveryRoutes.EVERY_OFFICIAL_COURSE}/>
-        <OnlySmm2Section partialId="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
-        <OnlySmm2Section partialId="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
+        <OnlySmm1Section partial-id="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
+        <AnyGameSection partial-id="officialCourse" name="Official course" route={EveryRoutes.EVERY_OFFICIAL_COURSE}/>
+        <OnlySmm2Section partial-id="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
+        <OnlySmm2Section partial-id="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
 
-        <AnyGameSection partialId="editorVoice" name="Editor voice" route={EveryRoutes.EVERY_EDITOR_VOICE}/>
-        <AnyGameSection partialId="instrument" name="Instrument" route={EveryRoutes.EVERY_INSTRUMENT}/>
+        <AnyGameSection partial-id="editorVoice" name="Editor voice" route={EveryRoutes.EVERY_EDITOR_VOICE}/>
+        <AnyGameSection partial-id="instrument" name="Instrument" route={EveryRoutes.EVERY_INSTRUMENT}/>
         <div id="powerUpRideHatPriority-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
             <SectionTitle name="Power-up/ride/hat priority" target="powerUpRideHatPriority-linkPaths" route={EveryRoutes.EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY} multiplyBy={8}/>
             <div id="powerUpRideHatPriority-linkPaths" className="row row-cols-auto justify-content-center collapse">
@@ -272,7 +272,9 @@ function UniqueSection({id, name, target, path, handleException,}: { id: string,
 //region -------------------- Filled section (with every game and game style) components --------------------
 
 /** @reactComponent */
-function ListCardTableAllGameAllGameStyleSection({partialId, name, route,}: FilledSectionProperties<| 'EVERY_ENTITY' | 'EVERY_SOUND_EFFECT'>,) {
+function ListCardTableAllGameAllGameStyleSection(properties: FilledSectionProperties<| 'EVERY_ENTITY' | 'EVERY_SOUND_EFFECT'>,) {
+    const {name, route,} = properties
+    const partialId = properties['partial-id']
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
     const subLinkPaths = [
@@ -2178,14 +2180,16 @@ function ListCardTableAllGameAllGameStyleSection({partialId, name, route,}: Fill
 
 interface FilledSectionWithEveryGameProperties<out ROUTE1 extends Names, out ROUTE2 extends Names, out ROUTE3 extends Names, >
     extends ReactProperties {
-    readonly partialId: string
+    readonly 'partial-id': string
     readonly name: string
     readonly names: readonly [name2: string, name3: string,]
     readonly routes: readonly [route1: typeof EveryRoutes[ROUTE1], route2: typeof EveryRoutes[ROUTE2], route3: typeof EveryRoutes[ROUTE3],]
 }
 
 /** @reactComponent */
-function ListCardTableAllGameSection({partialId, name, names: [name2, name3,], routes: [route1, route2, route3,],}: FilledSectionWithEveryGameProperties<| 'EVERY_LIMIT' | 'EVERY_THEME', | 'EVERY_EDITOR_LIMIT' | 'EVERY_COURSE_THEME', | 'EVERY_PLAY_LIMIT' | 'EVERY_WORLD_THEME'>,) {
+function ListCardTableAllGameSection(properties: FilledSectionWithEveryGameProperties<| 'EVERY_LIMIT' | 'EVERY_THEME', | 'EVERY_EDITOR_LIMIT' | 'EVERY_COURSE_THEME', | 'EVERY_PLAY_LIMIT' | 'EVERY_WORLD_THEME'>,) {
+    const {name, names: [name2, name3,], routes: [route1, route2, route3,],} = properties
+    const partialId = properties['partial-id']
     const urlName1 = route1.urlName
     const urlName2 = route2.urlName
     const urlName3 = route3.urlName
@@ -2418,14 +2422,16 @@ function ListCardTableAllGameSection({partialId, name, names: [name2, name3,], r
 
 interface FilledSectionProperties<out ROUTE extends Names, >
     extends ReactProperties {
-    readonly partialId: string
+    readonly 'partial-id': string
     readonly name: string
     readonly route: typeof EveryRoutes[ROUTE]
 }
 
 
 /** @reactComponent */
-function AnyGameSection({partialId, name, route,}: FilledSectionProperties<| 'EVERY_CHARACTER_NAME' | 'EVERY_GAME_STYLE' | 'EVERY_OFFICIAL_COURSE' | 'EVERY_INSTRUMENT' | 'EVERY_EDITOR_VOICE'>,) {
+function AnyGameSection(properties: FilledSectionProperties<| 'EVERY_CHARACTER_NAME' | 'EVERY_GAME_STYLE' | 'EVERY_OFFICIAL_COURSE' | 'EVERY_INSTRUMENT' | 'EVERY_EDITOR_VOICE'>,) {
+    const {name, route,} = properties
+    const partialId = properties['partial-id']
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
 
@@ -2485,7 +2491,9 @@ function AnyGameSection({partialId, name, route,}: FilledSectionProperties<| 'EV
 
 
 /** @reactComponent */
-function OnlySmm1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_MEDAL'>,) {
+function OnlySmm1Section(properties: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_MEDAL'>,) {
+    const {name, route,} = properties
+    const partialId = properties['partial-id']
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
 
@@ -2505,7 +2513,9 @@ function OnlySmm1Section({partialId, name, route,}: FilledSectionProperties<| 'E
 }
 
 /** @reactComponent */
-function OnlySmm2Section({partialId, name, route,}: FilledSectionProperties<|'EVERY_ENTITY_CATEGORY' | 'EVERY_SOUND_EFFECT_CATEGORY' | 'EVERY_MII_COSTUME' | 'EVERY_MII_COSTUME_CATEGORY' | 'EVERY_PREDEFINED_MESSAGE'>,) {
+function OnlySmm2Section(properties: FilledSectionProperties<|'EVERY_ENTITY_CATEGORY' | 'EVERY_SOUND_EFFECT_CATEGORY' | 'EVERY_MII_COSTUME' | 'EVERY_MII_COSTUME_CATEGORY' | 'EVERY_PREDEFINED_MESSAGE'>,) {
+    const {name, route,} = properties
+    const partialId = properties['partial-id']
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
 
@@ -2525,7 +2535,9 @@ function OnlySmm2Section({partialId, name, route,}: FilledSectionProperties<|'EV
 }
 
 /** @reactComponent */
-function AllGamesSection({partialId, name, route,}: FilledSectionProperties<'EVERY_GAME_REFERENCE'>,) {
+function AllGamesSection(properties: FilledSectionProperties<'EVERY_GAME_REFERENCE'>,) {
+    const {name, route,} = properties
+    const partialId = properties['partial-id']
     const urlName = route.urlName
     const linkPaths = `${partialId}-linkPaths`
 

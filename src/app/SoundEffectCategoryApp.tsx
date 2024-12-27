@@ -69,7 +69,7 @@ interface SoundEffectCategory_SubContentProperties
 
 /** @reactComponent */
 function SoundEffectCategoryList({items,}: SoundEffectCategory_SubContentProperties,) {
-    return <List partialId="soundEffectCategory" items={items}>{it =>
+    return <List partial-id="soundEffectCategory" items={items}>{it =>
         <div className="d-flex justify-content-between align-items-center">
             <NameComponent id="soundEffectCategory-name" name={it.reference} popoverOrientation="right"/>
             <SoundEffectCategoryIcon reference={it}/>

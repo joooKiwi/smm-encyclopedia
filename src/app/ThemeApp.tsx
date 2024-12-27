@@ -88,7 +88,7 @@ interface Theme_SubContentProperties
 
 /** @reactComponent */
 function ThemeList({items,}: Pick<Theme_SubContentProperties, 'items'>,) {
-    return <List partialId="theme" items={items} withSeparator>{it =>
+    return <List partial-id="theme" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between align-items-center">
             <NameComponent id="theme-name" name={it.reference} popoverOrientation="right"/>
             <div className="images-container ms-1">
@@ -158,12 +158,12 @@ interface ThemeAsideContentProperties
 /** @reactComponent */
 function TypeAsideContent({type,}: Pick<ThemeAsideContentProperties, 'type'>,) {
     return <div id="theme-linkButton-container" className="btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTheme" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allTheme" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="courseTheme" routeName={type.courseRouteName} color={type.courseColor}>
+            <LinkButton partial-id="courseTheme" routeName={type.courseRouteName} color={type.courseColor}>
                 <Image id="courseTheme-button-image" file={COURSE_THEME_IMAGE_FILE} className="theme-button-image"/>
             </LinkButton>
-            <LinkButton partialId="worldTheme" routeName={type.worldRouteName} color={type.worldColor}>
+            <LinkButton partial-id="worldTheme" routeName={type.worldRouteName} color={type.worldColor}>
                 <Image id="worldTheme-button-image" file={WORLD_THEME_IMAGE_FILE} className="theme-button-image"/>
             </LinkButton>
         </div>
@@ -177,11 +177,11 @@ function GameAsideContent({type, games,}: ThemeAsideContentProperties,) {
         : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="theme-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type,)} color={themeGame.smm1Or3dsColor}>
+        <LinkButton partial-id="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type,)} color={themeGame.smm1Or3dsColor}>
             <GameImage reference={SMM1}/>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type,)} color={themeGame.smm2Color}>
+        <LinkButton partial-id="smm2Game" routeName={themeGame.getSmm2RouteName(type,)} color={themeGame.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>

@@ -118,7 +118,7 @@ interface EditorVoice_SubContentProperties
 
 /** @reactComponent */
 function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
-    return <List partialId="editorVoice" items={items} withSeparator>{it =>
+    return <List partial-id="editorVoice" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
             <EditorVoiceSound editorVoice={it}/>
@@ -177,10 +177,10 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
             {gameContentTranslation('editor voice.description.intro variants', {
                 //TODO change the underwater link to a different link
                 //TODO change the european link to a different link
-                entityLink: <LinkText key="entityLink" partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
-                underwaterLink: <LinkText key="underwaterLink" partialId="underwaterEntityLink" routeName="everyEntity" color="primary"><ThemeImage reference={Themes.UNDERWATER}
+                entityLink: <LinkText key="entityLink" partial-id="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
+                underwaterLink: <LinkText key="underwaterLink" partial-id="underwaterEntityLink" routeName="everyEntity" color="primary"><ThemeImage reference={Themes.UNDERWATER}
                                                                                                                                                     isSmallPath/></LinkText>,
-                europeanVariantLink: <LinkText key="europeanVariantLink" partialId="europeanEntityLink" routeName="everyEntity" color="primary">{contentTranslation('variant.European',)}</LinkText>,
+                europeanVariantLink: <LinkText key="europeanVariantLink" partial-id="europeanEntityLink" routeName="everyEntity" color="primary">{contentTranslation('variant.European',)}</LinkText>,
             },)}
         </p>
         <ContentBeingDisplayed viewDisplay={viewDisplay} routeName="everyEditorVoice"/>
@@ -203,11 +203,11 @@ function GameAsideContent({game,}: Pick<EditorVoice_AsideContentProperties, 'gam
     if (game == null)
         return null
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+            <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
         </div>
     </div>
 }
@@ -217,12 +217,12 @@ function TimeAsideContent({time,}: Pick<EditorVoice_AsideContentProperties, 'tim
     if (time == null)
         return null
     return <div id="editorVoice-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
         <div className="btn-group btn-group-sm">
-            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+            <LinkButton partial-id="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
                 <TimeImage reference={Times.DAY}/>
             </LinkButton>
-            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+            <LinkButton partial-id="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
                 <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>

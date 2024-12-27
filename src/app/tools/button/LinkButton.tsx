@@ -9,7 +9,7 @@ import {routeFromName} from 'route/method/route.fromName'
 interface LinkButtonsProperties
     extends ReactPropertiesWithChildren<ReactElementOrStringOrArray> {
 
-    readonly partialId: string
+    readonly 'partial-id': string
 
     readonly routeName: NullableString<PossibleRouteName>
 
@@ -22,9 +22,10 @@ interface LinkButtonsProperties
  *
  * @reactComponent
  */
-export default function LinkButton({partialId, routeName, color, children,}: LinkButtonsProperties,) {
-    const id = `${partialId}-button`
-    const className = `btn btn-${color} link-button`
+export default function LinkButton(properties: LinkButtonsProperties,) {
+    const {routeName, children,} = properties
+    const id = `${properties['partial-id']}-button`
+    const className = `btn btn-${properties.color} link-button`
 
     if (routeName == null)
         return <button type="button" id={id} className={className} disabled>{children}</button>

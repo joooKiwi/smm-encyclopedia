@@ -74,7 +74,7 @@ interface SampleCourse_SubContentProperties
 
 /** @reactComponent */
 function SampleCourseList({items,}: SampleCourse_SubContentProperties,) {
-    return <List partialId="sampleCourse" items={items} withSeparator>{it => {
+    return <List partial-id="sampleCourse" items={items} withSeparator>{it => {
         const reference = it.reference
         return <div className="d-flex justify-content-between">
             <NameComponent id="sampleCourse-name" name={it.reference} popoverOrientation="right"/>

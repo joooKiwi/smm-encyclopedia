@@ -73,7 +73,7 @@ interface EntityCategory_SubContentProperties
 
 /** @reactComponent */
 function EntityCategoryList({items,}: EntityCategory_SubContentProperties,) {
-    return <List partialId="entityCategory" items={items} withSeparator>{it =>
+    return <List partial-id="entityCategory" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="entityCategory-name" name={it.reference} popoverOrientation="top"/>
             <EntityCategoryIcon reference={it}/>

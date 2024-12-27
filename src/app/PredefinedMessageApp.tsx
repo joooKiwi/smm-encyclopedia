@@ -71,7 +71,7 @@ interface PredefinedMessage_SubContentProperties
 
 /** @reactComponent */
 function PredefinedMessageList({items,}: PredefinedMessage_SubContentProperties,) {
-    return <List partialId="predefinedMessage" items={items}>{it =>
+    return <List partial-id="predefinedMessage" items={items}>{it =>
         <NameComponent id="predefinedMessage-name" name={it.reference} popoverOrientation="right"/>
     }</List>
 }

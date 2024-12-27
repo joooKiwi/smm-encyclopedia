@@ -42,7 +42,9 @@ function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties
 }
 
 
-function AnimatedImages({partialId, className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
+function AnimatedImages(properties: AnimatedImagesProperties,) {
+    const {className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters} = properties
+    const partialId = properties['partial-id']
     assert(images.size >= 2 && images.size <= 10, `The array received for “${partialId}” is required to have between than 2 & 10 items. The length received is ${images.size}.`,)
 
     if (!displayEveryImages)

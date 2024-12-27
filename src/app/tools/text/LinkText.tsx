@@ -9,7 +9,7 @@ import {routeFromName} from 'route/method/route.fromName'
 interface LinkTextProperties
     extends ReactPropertiesWithChildren<ReactElementOrStringOrArray> {
 
-    readonly partialId: string
+    readonly 'partial-id': string
 
     readonly routeName: NullableString<PossibleRouteName>
 
@@ -22,8 +22,9 @@ interface LinkTextProperties
  *
  * @reactComponent
  */
-export default function LinkText({partialId, routeName, color, children,}: LinkTextProperties,) {
-    const id = `${partialId}-text`
+export default function LinkText(properties: LinkTextProperties,) {
+    const {routeName, color, children,} = properties
+    const id = `${properties['partial-id']}-text`
 
     if (routeName == null)
         return <span id={id} className="text-decoration-underline">{children}</span>

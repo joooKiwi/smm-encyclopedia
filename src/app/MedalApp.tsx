@@ -69,7 +69,7 @@ interface Medal_SubContentProperties
 
 /** @reactComponent */
 function MedalList({items,}: Medal_SubContentProperties,) {
-    return <List partialId="medal" items={items} withSeparator>{it =>
+    return <List partial-id="medal" items={items} withSeparator>{it =>
         <div className="d-flex align-items-center">
             <MedalIcon reference={it}/>
             <NameComponent id="medal-name" name={it.reference} popoverOrientation="top"/>
