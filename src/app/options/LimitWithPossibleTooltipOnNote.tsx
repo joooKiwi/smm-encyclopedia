@@ -21,7 +21,7 @@ export default function LimitWithPossibleTooltipOnNote({value, children,}: Limit
     const note = value.reference.amountComment
 
     if (note == null)
-        return children
+        return <div className="limit-withNoTooltipOnNote-container d-inline">{children}</div>
     return <Tooltip option={{title: gameContentTranslation(`limit.note.${note}`, value.noteForTranslation,),}} reference={htmlElement}>
         <div ref={htmlElement} className="limitWithPossibleTooltipOnNote-container text-withInformativeTooltip-container d-inline">
             {children}
