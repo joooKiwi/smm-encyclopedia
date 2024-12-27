@@ -1,3 +1,5 @@
+#mysteryMushroom-app-container {}
+
 :is(#mysteryMushroom-table, #mysteryMushroom-cardList) :is(.animated-image, .non-animated-image) {
   --amount-of-blocks: 1;
   --single-height: 24px;
