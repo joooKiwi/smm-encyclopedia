@@ -1,5 +1,5 @@
-import type {MusicSoundFile}                                                      from 'core/music/file/MusicSoundFile'
-import type {PossibleMusicArray, PossibleSoundEffectName, SingleSoundEffectMusic} from 'core/music/soundEffect/SingleSoundEffectMusic'
+import type {MusicSoundFile}                                  from 'core/music/file/MusicSoundFile'
+import type {PossibleSoundEffectName, SingleSoundEffectMusic} from 'core/music/soundEffect/SingleSoundEffectMusic'
 
 export class SingleSoundEffectMusicContainer<const NAME extends MusicSoundFile<PossibleSoundEffectName>, >
     implements SingleSoundEffectMusic<NAME> {
@@ -11,7 +11,7 @@ export class SingleSoundEffectMusicContainer<const NAME extends MusicSoundFile<P
         this.#everyMusic = [this.#soundEffect = name,] as const
     }
 
-    public get everyMusics(): PossibleMusicArray<NAME> {
+    public get everyMusics(): ArrayOf1<NAME> {
         return this.#everyMusic
     }
 
