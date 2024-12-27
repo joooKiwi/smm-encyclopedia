@@ -229,8 +229,8 @@ function CanBeThrownByALakituListItem({reference,}: EntitySideContentListItemPro
         return null
     return <li id="canBeThrownByALakitu-listItem" className="list-group-item">
         <div id="lakitu-groupImage" className="d-inline-flex">
-            <Image partialId="animated-lakitu" images={LAKITU.inGameImage.get(SMW,).map( it => ({file: it,}),).toArray()}/>
-            <Image partialId="animated-lakituCloud" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),).toArray()}/>
+            <Image partialId="animated-lakitu" images={LAKITU.inGameImage.get(SMW,).map( it => ({file: it,}),)}/>
+            <Image partialId="animated-lakituCloud" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),)}/>
             {/*<Image file={new ArrayAsCollection(LAKITU.inGameImage.get(SMW,),).get(2,)} className="entity-image top-0"/>*/}
             {/*<Image file={new ArrayAsCollection(LAKITU_CLOUD.image.get(SMW,),).getFirst()} className="entity-image bottom-0"/>*/}
         </div>
@@ -243,7 +243,7 @@ function CanBePutInALakituCloudListItem({reference,}: EntitySideContentListItemP
     if (!reference.canBePutInALakituCloud)
         return null
     return <li id="canBePutInALakituCloud-listItem" className="list-group-item">
-        <Image partialId="animated-cloud" className="d-inline-block" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),).toArray()}/>
+        <Image partialId="animated-cloud" className="d-inline-block" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),)}/>
         {/*<Image file={LAKITU_CLOUD.image.get(SMW,).getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be put in a Lakitu’s Cloud',)}</span>
     </li>
@@ -254,7 +254,7 @@ function CanBePutInAClownCarListItem({reference,}: EntitySideContentListItemProp
     if (!reference.canBePutInAClownCar)
         return null
     return <li id="canBePutInAClownCar-listItem" className="list-group-item">
-        <Image partialId="animated-clownCar" className="d-inline-block" images={KOOPA_CLOWN_CAR.inGameImage.get(SMW,).slice(8, 11,).map(it => ({file: it,}),).toArray()}/>
+        <Image partialId="animated-clownCar" className="d-inline-block" images={KOOPA_CLOWN_CAR.inGameImage.get(SMW,).slice(8, 11,).map(it => ({file: it,}),)}/>
         {/*<Image file={KOOPA_CLOWN_CAR.image.get(SMW,).getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be put in a Clown Car',)}</span>
     </li>
@@ -298,8 +298,8 @@ function CanBeStackedListItem({reference,}: EntitySideContentListItemProperties,
     const images = GALOOMBA.inGameImage.get(SMW,).slice(3, 4,)
     return <li id="canBeStacked-listItem" className="list-group-item">
         <div id="stackedGaloomba-groupImage" className="d-inline-flex flex-column">
-            <Image partialId="animated-galoomba1" images={images.map(it => ({file: it,}),).toArray()}/>
-            <Image partialId="animated-galoomba2" images={images.map(it => ({file: it,}),).toArray()}/>
+            <Image partialId="animated-galoomba1" images={images.map(it => ({file: it,}),)}/>
+            <Image partialId="animated-galoomba2" images={images.map(it => ({file: it,}),)}/>
         </div>
         {/*<Image file={images.getFirst()} className="entity-image"/>*/}
         {/*<Image file={images.getFirst()} className="entity-image"/>*/}

@@ -8,7 +8,6 @@ import type {ImageProperties}             from 'app/tools/images/properties/Imag
 
 import {Empty}             from 'util/emptyVariables'
 import {assert}            from 'util/utilitiesMethods'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
@@ -43,17 +42,14 @@ function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties
 }
 
 
-const MINIMUM_AMOUNT_OF_IMAGES = 2
-const MAXIMUM_AMOUNT_OF_IMAGES = 10
-
 function AnimatedImages({partialId, className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
-    assert(images.length >= MINIMUM_AMOUNT_OF_IMAGES && images.length <= MAXIMUM_AMOUNT_OF_IMAGES, `The array received for "${partialId}" is required to have between than ${MINIMUM_AMOUNT_OF_IMAGES} & ${MAXIMUM_AMOUNT_OF_IMAGES} items. The length received is ${images.length}.`,)
+    assert(images.size >= 2 && images.size <= 10, `The array received for “${partialId}” is required to have between than 2 & 10 items. The length received is ${images.size}.`,)
 
     if (!displayEveryImages)
-        return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...new ArrayAsCollection(images,).getFirst()}/></div>
+        return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...images.getFirst()}/></div>
 
     if (!displayAnimations)
-        return <div key={`${partialId} - not animated`} id={partialId} className={`${className} non-animated-image non-animated-image-${images.length}`} {...otherParameters}>
+        return <div key={`${partialId} - not animated`} id={partialId} className={`${className} non-animated-image non-animated-image-${images.size}`} {...otherParameters}>
             {images.map((properties, index,) =>
                 'file' in properties
                     ? <ImageFromFile className={`image image-${index + 1}`} file={properties.file}/>
