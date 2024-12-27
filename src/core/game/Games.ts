@@ -1,7 +1,6 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
 import type {Array, Nullable}  from '@joookiwi/type'
-import {isArray}               from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
@@ -181,11 +180,10 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             throw new ReferenceError(`No games have a name associated to the name "${name}".`,)
         }
 
-        public getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue {
-            const games2 = isArray(games,) ? new ArrayAsCollection(games,) : games
-            const withSmm1 = games2.has(Games.SUPER_MARIO_MAKER_1,)
-            const withSmm3ds = games2.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-            const withSmm2 = games2.has(Games.SUPER_MARIO_MAKER_2,)
+        public getGroupUrlValue(games: CollectionHolder<Games>,): GroupUrlValue {
+            const withSmm1 = games.has(Games.SUPER_MARIO_MAKER_1,)
+            const withSmm3ds = games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+            const withSmm2 = games.has(Games.SUPER_MARIO_MAKER_2,)
 
             if (withSmm1) {
                 if (withSmm3ds) {
@@ -207,11 +205,10 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
             throw new ReferenceError('No game group url value is findable from empty array or collection.',)
         }
 
-        public getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName {
-            const games2 = isArray(games,) ? new ArrayAsCollection(games,) : games
-            const withSmm1 = games2.has(Games.SUPER_MARIO_MAKER_1,)
-            const withSmm3ds = games2.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-            const withSmm2 = games2.has(Games.SUPER_MARIO_MAKER_2,)
+        public getGroupUrlName(games: CollectionHolder<Games>,): GroupUrlName {
+            const withSmm1 = games.has(Games.SUPER_MARIO_MAKER_1,)
+            const withSmm3ds = games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+            const withSmm2 = games.has(Games.SUPER_MARIO_MAKER_2,)
 
             if (withSmm1) {
                 if (withSmm3ds) {
