@@ -1,6 +1,7 @@
 import type {MusicSoundFile}                                                                                                                        from 'core/music/file/MusicSoundFile'
 import type {PossibleMusicArray, PossibleSoundEffectEditorOnly_EditorName, PossibleSoundEffectEditorOnly_Name, SoundEffectMusicWithDifferentEditor} from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 
+/** @deprecated The use of {@link Tracks} should be used instead */
 export class SoundEffectMusicWithDifferentEditorContainer<const NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_Name>,
     const EDITOR_NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_EditorName>, >
     implements SoundEffectMusicWithDifferentEditor<NAME, EDITOR_NAME> {

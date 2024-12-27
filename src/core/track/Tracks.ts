@@ -693,6 +693,27 @@ export class Tracks<const FILE extends NullOr<SoundFile> = NullOr<SoundFile>,
 
     public static readonly SUPER_STAR = new Tracks('super star', null,)
 
+    //region -------------------- Enum instances (ninja attack) --------------------
+
+    public static readonly NINJA_ATTACK_EDITOR = new Tracks('audience', nonRepeatable('BGM_Otoasobi_Dtbt_MurasameIcon',),)
+    public static readonly NINJA_ATTACK =        new Tracks('audience', nonRepeatable('BGM_Otoasobi_Dtbt_Murasame',),)
+
+    //endregion -------------------- Enum instances (ninja attack) --------------------
+    //region -------------------- Enum instances (audience) --------------------
+
+    public static readonly AUDIENCE = new Tracks('audience', nonRepeatable('se_otoasobi_clowd',),)
+
+    //endregion -------------------- Enum instances (audience) --------------------
+    //region -------------------- Enum instances (scatting) --------------------
+
+    public static readonly SCATTING = new Tracks('scatting', nonRepeatable('otoasobi_scat',),)
+
+    //endregion -------------------- Enum instances (scatting) --------------------
+    //region -------------------- Enum instances (traditional) --------------------
+
+    public static readonly TRADITIONAL = new Tracks('traditional', nonRepeatable('se_otoasobi_ohayashi',),)
+
+    //endregion -------------------- Enum instances (traditional) --------------------
     //region -------------------- Enum instances (peaceful) --------------------
 
     public static readonly PEACEFUL_LINK = new Tracks('peaceful music (Link)', repeatableDuringThePlay('M1_BGM_Otoasobi_Link_Healing', 148_074,), )

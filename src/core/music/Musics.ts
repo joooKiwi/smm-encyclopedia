@@ -9,12 +9,16 @@ import type {SingleSoundEffectMusic}                                   from 'cor
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 import type {CompanionEnumByReferenceSingleton}                        from 'util/enumerable/Singleton.types'
 
-import {Tracks}          from 'core/track/Tracks'
-import * as MusicCreator from 'core/music/musicCreator'
-import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
-import type {Themes}              from 'core/theme/Themes'
-import {Import}                   from 'util/DynamicImporter'
-import {CompanionEnumByReference} from 'util/enumerable/companion/CompanionEnumByReference'
+import {BackgroundMusicContainer}                                          from 'core/music/backgroundMusic/BackgroundMusic.container'
+import {NonChangeableSoundEffectBackgroundMusicContainer}                  from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'
+import {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer} from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect.container'
+import {SingleSoundEffectMusicContainer}                                   from 'core/music/soundEffect/SingleSoundEffectMusic.container'
+import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
+import type {SoundEffects}                                                 from 'core/soundEffect/SoundEffects'
+import type {Themes}                                                       from 'core/theme/Themes'
+import {Tracks}                                                            from 'core/track/Tracks'
+import {Import}                                                            from 'util/DynamicImporter'
+import {CompanionEnumByReference}                                          from 'util/enumerable/companion/CompanionEnumByReference'
 
 /**
  * @todo add other musics (from title screen, theme, star, p-switch)
@@ -123,7 +127,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.separatedSoundEffectMusic('BGM_Otoasobi_Dtbt_Murasame', 'BGM_Otoasobi_Dtbt_MurasameIcon',)
+            return new SoundEffectMusicWithDifferentEditorContainer(Tracks.NINJA_ATTACK.file, Tracks.NINJA_ATTACK_EDITOR.file,)
         }
 
     }()
@@ -134,7 +138,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.singleSoundEffectMusic('se_otoasobi_clowd',)
+            return new SingleSoundEffectMusicContainer(Tracks.AUDIENCE.file,)
         }
 
     }()
@@ -145,7 +149,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.singleSoundEffectMusic('otoasobi_scat',)
+            return new SingleSoundEffectMusicContainer(Tracks.SCATTING.file,)
         }
 
     }()
@@ -156,7 +160,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.singleSoundEffectMusic('se_otoasobi_ohayashi',)
+            return new SingleSoundEffectMusicContainer(Tracks.TRADITIONAL.file,)
         }
 
     }()
@@ -167,7 +171,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.linkAndSmb2BackgroundMusic(Tracks.PEACEFUL_LINK.file, Tracks.PEACEFUL_SMB2.file,)
+            return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer(Tracks.PEACEFUL_LINK.file, Tracks.PEACEFUL_SMB2.file,)
         }
 
     }()
@@ -179,7 +183,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.backgroundMusic(
+            return new BackgroundMusicContainer(
                 Tracks.BONUS_SMB_EDITOR.file,
                 Tracks.BONUS_SMB.file,
                 Tracks.BONUS_SMB_FAST.file,
@@ -222,7 +226,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.backgroundMusic(
+            return new BackgroundMusicContainer(
                 Tracks.BOSS_SMB_EDITOR.file,
                 Tracks.BOSS_SMB.file,
                 Tracks.BOSS_SMB_FAST.file,
@@ -269,7 +273,7 @@ export class Musics
             const smb3 = Tracks.FINAL_BOSS_SMB3.file
             const smb3Fast = Tracks.FINAL_BOSS_SMB3_FAST.file
 
-            return MusicCreator.backgroundMusic(
+            return new BackgroundMusicContainer(
                 smb3Editor,
                 smb3,
                 smb3Fast,
@@ -313,7 +317,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SMK.file, Tracks.SMK_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SMK.file, Tracks.SMK_FAST.file,)
         }
 
     }()
@@ -324,7 +328,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SM64.file, Tracks.SM64_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SM64.file, Tracks.SM64_FAST.file,)
         }
 
     }()
@@ -335,7 +339,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SMS.file, Tracks.SMS_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SMS.file, Tracks.SMS_FAST.file,)
         }
 
     }()
@@ -346,7 +350,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(Tracks.SMG.file, Tracks.SMG_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SMG.file, Tracks.SMG_FAST.file,)
         }
 
     }()

@@ -1,6 +1,7 @@
 import type {MusicSoundFile}                                  from 'core/music/file/MusicSoundFile'
 import type {PossibleSoundEffectName, SingleSoundEffectMusic} from 'core/music/soundEffect/SingleSoundEffectMusic'
 
+/** @deprecated The use of {@link Tracks} should be used instead */
 export class SingleSoundEffectMusicContainer<const NAME extends MusicSoundFile<PossibleSoundEffectName>, >
     implements SingleSoundEffectMusic<NAME> {
 
