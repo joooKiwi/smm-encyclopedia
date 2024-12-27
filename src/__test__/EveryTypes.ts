@@ -214,11 +214,11 @@ export class EveryTypes {
     //region -------------------- Game style --------------------
 
     public get everyPossibleAcronym_gameStyle() {
-        return this.#everyPossibleAcronym_gameStyle ??= new ArrayAsCollection(ALL_GAME_STYLES,).map(it => it.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameStyle ??= ALL_GAME_STYLES.map(it => it.acronym,).toArray()
     }
 
     public get everyPossibleAcronym_gameStyle_smm1() {
-        return this.#everyPossibleAcronym_gameStyle_smm1 ??= new ArrayAsCollection(ALL_GAME_STYLES_SMM1,).map(it => it.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameStyle_smm1 ??= ALL_GAME_STYLES_SMM1.map(it => it.acronym,).toArray()
     }
 
     //endregion -------------------- Game style --------------------
