@@ -23,7 +23,7 @@ interface EntityInstrumentImagesProperties
 
 export default function EntityInstrumentImages({value,}: EntityInstrumentImagesProperties,) {
     return <div className="instrument-entity-images-container text-center mb-1">{
-        new ArrayAsCollection(value.reference.entities,)
+        value.reference.entities
             .map(it => EntityCompanion.getValueByName(it.americanEnglish,).image,)
             .map(it =>
                 it.get(SMW,).getFirstOrNull()

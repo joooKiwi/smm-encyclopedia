@@ -1,4 +1,4 @@
-import type {Array} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {Entity}     from 'core/entity/Entity'
 import type {Instrument} from 'core/instrument/Instrument'
@@ -35,7 +35,7 @@ export class InstrumentContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: Name<string>, entities: Array<Entity>,
+    public constructor(name: Name<string>, entities: CollectionHolder<Entity>,
                        isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean,
                        isInSuperMarioBros: boolean, isInSuperMarioBros3: boolean, isInSuperMarioWorld: boolean, isInNewSuperMarioBrosU: boolean,
                        isInDayTime: boolean, isInNightTime: boolean,) {

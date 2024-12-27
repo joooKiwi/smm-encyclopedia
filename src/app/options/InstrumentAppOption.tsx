@@ -38,10 +38,7 @@ export abstract class InstrumentAppOption
     public static readonly REFERENCE_SMB = new class InstrumentAppOption_ReferenceSmb extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
-            const references = enumeration.reference.entities
-            if (references == null)
-                return null
-            return <div className="instrumentReference-smb">{references.map(it =>
+            return <div className="instrumentReference-smb">{enumeration.reference.entities.map(it =>
                 <Image key={`instrument reference (SMB - ${it.english})`} file={EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMB,).getFirstOrNull()}/>,)
             }</div>
         }
@@ -54,10 +51,7 @@ export abstract class InstrumentAppOption
     public static readonly REFERENCE_SMB3 = new class InstrumentAppOption_ReferenceSmb3 extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
-            const references = enumeration.reference.entities
-            if (references == null)
-                return null
-            return <div className="instrumentReference-smb3">{references.map(it =>
+            return <div className="instrumentReference-smb3">{enumeration.reference.entities.map(it =>
                 <Image key={`instrument reference (SMB3 - ${it.english})`} file={EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMB3,).getFirstOrNull()}/>,)
             }</div>
         }
@@ -70,10 +64,7 @@ export abstract class InstrumentAppOption
     public static readonly REFERENCE_SMW = new class InstrumentAppOption_ReferenceSmw extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
-            const references = enumeration.reference.entities
-            if (references == null)
-                return null
-            return <div className="instrumentReference-smw">{references.map(it =>
+            return <div className="instrumentReference-smw">{enumeration.reference.entities.map(it =>
                 <Image key={`instrument reference (SMW - ${it.english})`} file={EntityCompanion.getValueByName(it.americanEnglish,).image.get(SMW,).getFirstOrNull()}/>,)
             }</div>
         }
@@ -86,10 +77,7 @@ export abstract class InstrumentAppOption
     public static readonly REFERENCE_NSMBU = new class InstrumentAppOption_ReferenceNsmbu extends InstrumentAppOption {
 
         public override renderContent(enumeration: Instruments,) {
-            const references = enumeration.reference.entities
-            if (references == null)
-                return null
-            return <div className="instrumentReference-nsmbu">{references.map(it =>
+            return <div className="instrumentReference-nsmbu">{enumeration.reference.entities.map(it =>
                 <Image key={`instrument reference (NSMBU - ${it.english})`} file={EntityCompanion.getValueByName(it.americanEnglish,).image.get(NSMBU,).getFirstOrNull()}/>,)
             }</div>
         }

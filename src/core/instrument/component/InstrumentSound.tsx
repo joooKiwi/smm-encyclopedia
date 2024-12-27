@@ -18,7 +18,7 @@ export default function InstrumentSound({value,}: InstrumentSoundProperties,) {
     const name = value.name
     const englishName = value.englishName
 
-    const elements = new ArrayAsCollection(value.sounds,).map((it, i,) =>
+    const elements = value.sounds.map((it, i,) =>
         <SimpleSoundComponent key={`instrument sounds #${i} (${englishName})`} file={it} title={`${name} (instrument sound #${i})`}/>,)
     if (elements.isEmpty)
         return <div className="instrumentSound-container individual-instrumentSound-container">{elements}</div>

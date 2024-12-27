@@ -1,5 +1,6 @@
-import type {Array} from '@joookiwi/type'
-import {Enum}       from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from 'core/instrument/Instruments.types'
@@ -136,7 +137,7 @@ export class Instruments
     #reference?: Instrument
     readonly #englishName
     readonly #fileNames
-    #sounds?: Array<InstrumentSoundFile>
+    #sounds?: CollectionHolder<InstrumentSoundFile>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -180,8 +181,8 @@ export class Instruments
         return this.#fileNames
     }
 
-    public get sounds(): Array<InstrumentSoundFile> {
-        return this.#sounds ??= new ArrayAsCollection(this.fileNames,).map(it => instrumentSound(it,),).toArray()
+    public get sounds(): CollectionHolder<InstrumentSoundFile> {
+        return this.#sounds ??= new ArrayAsCollection(this.fileNames,).map(it => instrumentSound(it,),)
     }
 
     //endregion -------------------- Getter methods --------------------
