@@ -580,7 +580,7 @@ export class EveryTypes {
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification() {
-        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.Companion.values.map(it => [it.englishName, it.additionalEnglishName,],).toArray().flat(2,)
+        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.Companion.values.map(it => [it.englishName, it.additionalEnglishName.toArray(),],).toArray().flat(2,)
     }
 
     //endregion -------------------- Official notification --------------------
