@@ -1,36 +1,32 @@
 import './MiiCostumeCategoryApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer              from 'app/_SubMainContainer'
-import {MiiCostumeCategoryAppOption} from 'app/options/MiiCostumeCategoryAppOption'
-import Table                         from 'app/tools/table/Table'
-import {unfinishedText}              from 'app/tools/text/UnfinishedText'
-import CardList                      from 'app/util/CardList'
-import List                          from 'app/util/List'
-import {ViewDisplays}                from 'app/withInterpreter/ViewDisplays'
-import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
-import MiiCostumeCategoryIcon        from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
-import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}      from 'lang/components/translationMethods'
-import NameComponent                 from 'lang/name/component/Name.component'
-import {ArrayAsCollection}           from 'util/collection/ArrayAsCollection'
+import {MiiCostumeCategoryAppOption}    from 'app/options/MiiCostumeCategoryAppOption'
+import Table                            from 'app/tools/table/Table'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import CardList                         from 'app/util/CardList'
+import List                             from 'app/util/List'
+import AppTitle                         from 'app/util/PageTitle'
+import PageViewChanger                  from 'app/util/PageViewChanger'
+import SubMain                          from 'app/util/SubMain'
+import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
+import {MiiCostumeCategories}           from 'core/miiCostumeCategory/MiiCostumeCategories'
+import MiiCostumeCategoryIcon           from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
+import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import NameComponent                    from 'lang/name/component/Name.component'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = MiiCostumeCategories.ALL
 
 const {MII_COSTUME,} = OtherWordInTheGames
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyMiiCostumeCategory (list)',],
-    [ViewDisplays.CARD_LIST, 'everyMiiCostumeCategory (card)',],
-    [ViewDisplays.TABLE, 'everyMiiCostumeCategory (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = MiiCostumeCategoryAppOption.CompanionEnum.get.values
 
@@ -39,10 +35,16 @@ export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreter
     const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
     const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
 
-    return <SubMainContainer reactKey="miiCostumeCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="miiCostumeCategory" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everyMiiCostumeCategory (list)" card="everyMiiCostumeCategory (card)" table="everyMiiCostumeCategory (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>Mii costume category description</UnfinishedText>
+        <section id="miiCostumeCategory-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

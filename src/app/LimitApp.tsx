@@ -2,19 +2,17 @@ import 'app/_GameAsideContent.scss'
 import 'app/_GameStyleAsideContent.scss'
 import './LimitApp.scss'
 
-import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}                  from '@joookiwi/collection'
+import type {CollectionHolder}           from '@joookiwi/collection'
+import type {MutableArray, NullOrString} from '@joookiwi/type'
 
 import type {LimitAppProperties}  from 'app/AppProperties.types'
 import type {LimitTypes}          from 'app/property/LimitTypes'
-import type {ViewAndRouteName}    from 'app/withInterpreter/ViewDisplays.types'
 import type {Limits}              from 'core/limit/Limits'
 import type {PossibleRouteName}   from 'route/EveryRoutes.types'
 import type {GameCollection}      from 'util/collection/GameCollection'
 import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
 import type {ReactProperties}     from 'util/react/ReactProperties'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {LimitAppOption}                             from 'app/options/LimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
 import {LimitGames}                                 from 'app/property/LimitGames'
@@ -26,12 +24,18 @@ import TextComponent                                from 'app/tools/text/TextCom
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import CardList                                     from 'app/util/CardList'
+import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
+import Description                                  from 'app/util/Description'
+import AppTitle                                     from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import List                                         from 'app/util/List'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {Empty}                                      from 'util/emptyVariables'
@@ -52,11 +56,6 @@ import SM3DW =           GameStyles.SM3DW
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitAppProperties,) {
     const routeName = type.routeName
-    const viewDisplayAndRouteName = [
-        [ViewDisplays.SIMPLE_LIST, `${routeName} (list)`,],
-        [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
-        [ViewDisplays.TABLE, `${routeName} (table)`,],
-    ] as const satisfies Array<ViewAndRouteName>
 
     //region -------------------- Game selection --------------------
 
@@ -94,12 +93,19 @@ export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitA
 
     //endregion -------------------- Game style selection --------------------
 
-    return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation(`limit.${type.type}.all`,)}
-                             description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
-                             asideContent={<LimitAsideContent type={type} game={game} gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>}>
-        <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
-    </SubMainContainer>
+    return <SubMain partial-id="limit" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation(`limit.${type.type}.all`,)}</AppTitle>
+        <PageViewChanger>
+            <TypeAsideContent type={type}/>
+            <GameAsideContent type={type} game={game}/>
+            <GameStyleAsideContent type={type} gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
+            <DisplayButtonGroup list={`${routeName} (list)`} card={`${routeName} (card)`} table={`${routeName} (table)`} current={viewDisplay}/>
+        </PageViewChanger>
+        <LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>
+        <section id="limit-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
@@ -221,11 +227,7 @@ function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties
     const playLink = type.playRouteName satisfies NullOrString<PossibleRouteName>
     const editorLink = type.editorRouteName satisfies NullOrString<PossibleRouteName>
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyLimit (list)' satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyLimit (card)' satisfies PossibleRouteName
-    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyLimit (table)' satisfies PossibleRouteName
-
-    return <>
+    return <Description>
         <p>
             {gameContentTranslation(`limit.page description.intro page (${type.type})`, {
                 smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Or3dsLink}><GameImage reference={SMM1}/></TextOrLink>,
@@ -243,13 +245,8 @@ function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties
                 editorLink: <LinkText key="editorLink" partialId="editorLink" routeName={editorLink} color="primary">{gameContentTranslation('limit.editor.simplified',).toLowerCase()}</LinkText>,
             },)}
         </p>
-        <p>{gameContentTranslation('limit.page description.viewable', {
-            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
-        },)}</p>
-    </>
+        <ContentBeingDisplayed viewDisplay={viewDisplay} routeName={type.routeName}/>
+    </Description>
 }
 
 //endregion -------------------- Description content --------------------
@@ -265,17 +262,6 @@ interface LimitAsideContentProperties
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
 
-}
-
-/** @reactComponent */
-function LimitAsideContent({type, game, gameStyle, games, gameStyles,}: LimitAsideContentProperties,) {
-    return <div id="limit-asideContent-container">
-        <TypeAsideContent type={type}/>
-        <div className="d-inline mx-1"/>
-        <GameAsideContent type={type} game={game}/>
-        <div className="d-inline mx-1"/>
-        <GameStyleAsideContent type={type} gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
-    </div>
 }
 
 /** @reactComponent */
@@ -302,14 +288,16 @@ function GameStyleAsideContent({type, gameStyle, games, gameStyles,}: Pick<Limit
                 <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.getSmb3RouteName(type,)} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
                     <GameStyleImage reference={SMB3}/>
                 </LinkButton>
-                <LinkButton partialId="sm3dwGameStyleLimit" routeName={gameStyle.getSm3dwRouteName(type,)} color={gameStyle.sm3dwColor(gameStyles.hasSm3dw,)}>
-                    <GameStyleImage reference={SM3DW}/>
-                </LinkButton>
             </div>
             <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
                 <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.getSmwOrNsmbuRouteName(type,)} color={gameStyle.smwOrNsmbuColor(gameStyles.hasNsmbu,)}>
                     <GameStyleImage reference={SMW} className="me-1"/>
                     <GameStyleImage reference={NSMBU}/>
+                </LinkButton>
+            </div>
+            <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+                <LinkButton partialId="sm3dwGameStyleLimit" routeName={gameStyle.getSm3dwRouteName(type,)} color={gameStyle.sm3dwColor(gameStyles.hasSm3dw,)}>
+                    <GameStyleImage reference={SM3DW}/>
                 </LinkButton>
             </div>
         </div>

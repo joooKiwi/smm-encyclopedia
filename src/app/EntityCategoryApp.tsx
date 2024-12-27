@@ -1,49 +1,49 @@
 import './EntityCategoryApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer          from 'app/_SubMainContainer'
-import {EntityCategoryAppOption} from 'app/options/EntityCategoryAppOption'
-import Table                     from 'app/tools/table/Table'
-import {unfinishedText}          from 'app/tools/text/UnfinishedText'
-import CardList                  from 'app/util/CardList'
-import List                      from 'app/util/List'
-import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
-import {EntityCategories}        from 'core/entityCategory/EntityCategories'
-import EntityCategoryIcon        from 'core/entityCategory/component/EntityCategoryIcon'
-import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}  from 'lang/components/translationMethods'
-import NameComponent             from 'lang/name/component/Name.component'
-import {ArrayAsCollection}       from 'util/collection/ArrayAsCollection'
+import {EntityCategoryAppOption}        from 'app/options/EntityCategoryAppOption'
+import Table                            from 'app/tools/table/Table'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import CardList                         from 'app/util/CardList'
+import List                             from 'app/util/List'
+import AppTitle                         from 'app/util/PageTitle'
+import PageViewChanger                  from 'app/util/PageViewChanger'
+import SubMain                          from 'app/util/SubMain'
+import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
+import {EntityCategories}               from 'core/entityCategory/EntityCategories'
+import EntityCategoryIcon               from 'core/entityCategory/component/EntityCategoryIcon'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
+import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import NameComponent                    from 'lang/name/component/Name.component'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = EntityCategories.ALL
 
 const {ENTITY,} = OtherWordInTheGames
 const all = new ArrayAsCollection(ALL,)
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyEntityCategory (list)',],
-    [ViewDisplays.CARD_LIST, 'everyEntityCategory (card)',],
-    [ViewDisplays.TABLE, 'everyEntityCategory (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = EntityCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const {ENTITY,} = OtherWordInTheGames
     const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
     const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
 
-    const titleContent = gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)
-
-    return <SubMainContainer reactKey="entityCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="entityCategory" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everyEntityCategory (list)" card="everyEntityCategory (card)" table="everyEntityCategory (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>entity category description</UnfinishedText>
+        <section id="entityCategory-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

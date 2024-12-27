@@ -1,36 +1,32 @@
 import './SampleCourseApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer         from 'app/_SubMainContainer'
-import {SampleCourseAppOption}  from 'app/options/SampleCourseAppOption'
-import Table                    from 'app/tools/table/Table'
-import {unfinishedText}         from 'app/tools/text/UnfinishedText'
-import CardList                 from 'app/util/CardList'
-import List                     from 'app/util/List'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import LevelGameStyleAndTheme   from 'core/_component/LevelGameStyleAndTheme'
-import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {SampleCourses}          from 'core/sampleCourse/SampleCourses'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import NameComponent            from 'lang/name/component/Name.component'
-import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
+import {SampleCourseAppOption}          from 'app/options/SampleCourseAppOption'
+import Table                            from 'app/tools/table/Table'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import CardList                         from 'app/util/CardList'
+import List                             from 'app/util/List'
+import AppTitle                         from 'app/util/PageTitle'
+import PageViewChanger                  from 'app/util/PageViewChanger'
+import SubMain                          from 'app/util/SubMain'
+import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
+import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {SampleCourses}                  from 'core/sampleCourse/SampleCourses'
+import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import NameComponent                    from 'lang/name/component/Name.component'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = SampleCourses.ALL
 
 const {COURSE,} = OtherWordInTheGames
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everySampleCourse (list)',],
-    [ViewDisplays.CARD_LIST, 'everySampleCourse (card)',],
-    [ViewDisplays.TABLE, 'everySampleCourse (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = SampleCourseAppOption.CompanionEnum.get.values
 
@@ -39,10 +35,16 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
     const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
     const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
 
-    return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="sampleCourse" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everySampleCourse (list)" card="everySampleCourse (card)" table="everySampleCourse (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>sample course description</UnfinishedText>
+        <section id="sampleCourse-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

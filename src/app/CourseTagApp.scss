@@ -1,13 +1,4 @@
-#courseTag-app-container {
-
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-  .description-container .game-image { height: var(--bs-font-size-lg) }
-
-}
+#courseTag-app-container {}
 
 #courseTag-list {
   .first-appearance { margin-left: var(--bs-spacer-sm) }

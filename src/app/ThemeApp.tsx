@@ -1,16 +1,13 @@
 import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
 import type {Themes}                  from 'core/theme/Themes'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
-import SubMainContainer                                  from 'app/_SubMainContainer'
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
@@ -18,15 +15,20 @@ import {ThemeGames}                                      from 'app/property/Them
 import {ThemeTypes}                                      from 'app/property/ThemeTypes'
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
+import UnfinishedText                                    from 'app/tools/text/UnfinishedText'
 import Table                                             from 'app/tools/table/Table'
 import CardList                                          from 'app/util/CardList'
 import List                                              from 'app/util/List'
+import AppTitle                                          from 'app/util/PageTitle'
+import PageViewChanger                                   from 'app/util/PageViewChanger'
+import SubMain                                           from 'app/util/SubMain'
 import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
 import {Games}                                           from 'core/game/Games'
 import GameImage                                         from 'core/game/component/GameImage'
 import EndlessMarioImage                                 from 'core/theme/component/EndlessMarioImage'
 import ThemeImage                                        from 'core/theme/component/ThemeImage'
 import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
+import DisplayButtonGroup                                from 'display/DisplayButtonGroup'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import NameComponent                                     from 'lang/name/component/Name.component'
 
@@ -39,17 +41,19 @@ const options = ThemeAppOption.CompanionEnum.get.values
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {
     const routeName = type.routeName
-    const viewDisplayAndRouteName = [
-        [ViewDisplays.SIMPLE_LIST, `${routeName} (list)`,],
-        [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
-        [ViewDisplays.TABLE, `${routeName} (table)`,],
-    ] as const satisfies Array<ViewAndRouteName>
 
-    return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('theme.all.all',)}
-                             asideContent={<ThemeAsideContent type={type} games={games}/>}>
-        <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
-    </SubMainContainer>
+    return <SubMain partial-id="theme" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('theme.all.all',)}</AppTitle>
+        <PageViewChanger>
+            <TypeAsideContent type={type}/>
+            <GameAsideContent type={type} games={games}/>
+            <DisplayButtonGroup list={`${routeName} (list)`} card={`${routeName} (card)`} table={`${routeName} (table)`} current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>theme description</UnfinishedText>
+        <section id="theme-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
@@ -143,15 +147,6 @@ interface ThemeAsideContentProperties
 
     readonly games: GameCollection
 
-}
-
-/** @reactComponent */
-function ThemeAsideContent({type, games,}: ThemeAsideContentProperties,) {
-    return <div className="theme-asideContent-container">
-        <TypeAsideContent type={type}/>
-        <div className="d-inline mx-1"/>
-        <GameAsideContent type={type} games={games}/>
-    </div>
 }
 
 /** @reactComponent */

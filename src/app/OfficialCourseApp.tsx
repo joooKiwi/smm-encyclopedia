@@ -1,38 +1,34 @@
 import './OfficialCourseApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {OfficialCourseProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}         from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}          from 'util/react/ReactProperties'
 
-import SubMainContainer           from 'app/_SubMainContainer'
-import {OfficialCourseAppOption}  from 'app/options/OfficialCourseAppOption'
-import Table                      from 'app/tools/table/Table'
-import {unfinishedText}           from 'app/tools/text/UnfinishedText'
-import CardList                   from 'app/util/CardList'
-import List                       from 'app/util/List'
-import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
-import LevelGameStyleAndTheme     from 'core/_component/LevelGameStyleAndTheme'
-import {OfficialCourses}          from 'core/officialCourse/OfficialCourses'
-import OfficialCourseAvailability from 'core/officialCourse/component/OfficialCourseAvailability'
-import OfficialCourseReward       from 'core/officialCourse/component/OfficialCourseReward'
-import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}   from 'lang/components/translationMethods'
-import NameComponent              from 'lang/name/component/Name.component'
-import {ArrayAsCollection}        from 'util/collection/ArrayAsCollection'
+import {OfficialCourseAppOption}        from 'app/options/OfficialCourseAppOption'
+import Table                            from 'app/tools/table/Table'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import CardList                         from 'app/util/CardList'
+import List                             from 'app/util/List'
+import AppTitle                         from 'app/util/PageTitle'
+import PageViewChanger                  from 'app/util/PageViewChanger'
+import SubMain                          from 'app/util/SubMain'
+import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
+import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
+import {OfficialCourses}                from 'core/officialCourse/OfficialCourses'
+import OfficialCourseAvailability       from 'core/officialCourse/component/OfficialCourseAvailability'
+import OfficialCourseReward             from 'core/officialCourse/component/OfficialCourseReward'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
+import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import NameComponent                    from 'lang/name/component/Name.component'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = OfficialCourses.ALL
 
 const {COURSE,} = OtherWordInTheGames
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyOfficialCourse (list)',],
-    [ViewDisplays.CARD_LIST, 'everyOfficialCourse (card)',],
-    [ViewDisplays.TABLE, 'everyOfficialCourse (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = OfficialCourseAppOption.CompanionEnum.get.values
 
@@ -41,10 +37,16 @@ export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperti
     const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
     const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
 
-    return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="officialCourse" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everyOfficialCourse (list)" card="everyOfficialCourse (card)" table="everyOfficialCourse (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>Official course description</UnfinishedText>
+        <section id="officialCourse-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

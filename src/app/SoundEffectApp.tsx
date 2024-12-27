@@ -3,24 +3,26 @@ import 'app/_GameStyleAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './SoundEffectApp.scss'
 
-import type {Array, MutableArray, NullOr} from '@joookiwi/type'
-import type {CollectionHolder}            from '@joookiwi/collection'
+import type {MutableArray, NullOr} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
 
 import type {SoundEffectProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}      from 'app/withInterpreter/ViewDisplays.types'
 import type {GameCollection}        from 'util/collection/GameCollection'
 import type {GameStyleCollection}   from 'util/collection/GameStyleCollection'
 import type {ReactProperties}       from 'util/react/ReactProperties'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {SoundEffectAppOption}                       from 'app/options/SoundEffectAppOption'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
+import UnfinishedText                               from 'app/tools/text/UnfinishedText'
 import {SoundEffectGames}                           from 'app/property/SoundEffectGames'
 import {SoundEffectGameStyles}                      from 'app/property/SoundEffect.gameStyles'
 import {SoundEffectTimes}                           from 'app/property/SoundEffect.times'
 import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
+import AppTitle                                     from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -29,6 +31,7 @@ import GameStyleImage                               from 'core/gameStyle/compone
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
@@ -49,15 +52,8 @@ import SM3DW =                 GameStyles.SM3DW
 
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everySoundEffect (list)',],
-    [ViewDisplays.CARD_LIST, 'everySoundEffect (card)',],
-    [ViewDisplays.TABLE, 'everySoundEffect (table)',],
-] as const satisfies Array<ViewAndRouteName>
-
 /** @reactComponent */
 export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}: SoundEffectProperties,) {
-
     //region -------------------- Game selection --------------------
 
     const game = games.hasAllGames
@@ -109,11 +105,19 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
 
     //endregion -------------------- Time selection --------------------
 
-    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('sound effect.all',)}
-                             asideContent={<SoundEffectAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
-    </SubMainContainer>
+    return <SubMain partial-id="soundEffect" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('sound effect.all',)}</AppTitle>
+        <PageViewChanger>
+            <GameAsideContent game={game} gameStyles={gameStyles}/>
+            <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
+            <TimeAsideContent time={time}/>
+            <DisplayButtonGroup list="everySoundEffect (list)" card="everySoundEffect (card)" table="everySoundEffect (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>sound effect description</UnfinishedText>
+        <section id="soundEffect-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
@@ -207,17 +211,6 @@ interface SoundEffectAsideContentProperties
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
 
-}
-
-/** @reactComponent */
-function SoundEffectAsideContent({game, gameStyle, time, games, gameStyles,}: SoundEffectAsideContentProperties,) {
-    return <div id="soundEffect-asideContent-container">
-        <GameAsideContent game={game} gameStyles={gameStyles}/>
-        {game == null ? null : <div className="d-inline mx-1"/>}
-        <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
-        {time == null ? null : <div className="d-inline mx-1"/>}
-        <TimeAsideContent time={time}/>
-    </div>
 }
 
 /** @reactComponent */

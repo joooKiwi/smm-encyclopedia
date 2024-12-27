@@ -3,28 +3,29 @@ import 'app/_GameStyleAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './EntityApp.scss'
 
-import type {Array, MutableArray, NullOr} from '@joookiwi/type'
-import type {CollectionHolder}            from '@joookiwi/collection'
-import type {Dispatch, SetStateAction}    from 'react'
-import {useState}                         from 'react'
+import type {MutableArray, NullOr}     from '@joookiwi/type'
+import type {CollectionHolder}         from '@joookiwi/collection'
+import type {Dispatch, SetStateAction} from 'react'
+import {useState}                      from 'react'
 
 import type {EntityProperties}    from 'app/AppProperties.types'
-import type {ViewAndRouteName}    from 'app/withInterpreter/ViewDisplays.types'
 import type {GameCollection}      from 'util/collection/GameCollection'
 import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
 import type {ReactProperties}     from 'util/react/ReactProperties'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {EntityAppOption}                            from 'app/options/EntityAppOption'
 import {EntityGames}                                from 'app/property/EntityGames'
 import {EntityGameStyles}                           from 'app/property/EntityGameStyles'
 import {EntityTimes}                                from 'app/property/EntityTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
 import EntitySideContent                            from 'app/side/EntitySideContent'
 import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
+import AppTitle                                     from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
@@ -37,6 +38,7 @@ import GameStyleImage                               from 'core/gameStyle/compone
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
@@ -58,11 +60,6 @@ import SM3DW =           GameStyles.SM3DW
 
 const all = new ArrayAsCollection(ALL,)
 const {ENTITY,} = OtherWordInTheGames
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyEntity (list)',],
-    [ViewDisplays.CARD_LIST, 'everyEntity (card)',],
-    [ViewDisplays.TABLE, 'everyEntity (table)',],
-] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
@@ -125,16 +122,24 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
 
     //endregion -------------------- Time selection --------------------
 
-    return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('entity.all', {
-                                 Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
-                             },)}
-                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles}/>}>
-        <>
+    return <SubMain partial-id="entity" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('entity.all', {
+            Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
+        },)}</AppTitle>
+        <aside id="entity-side-content">
             {sideEntity == null ? null : <EntitySideContent reference={sideEntity}/>}
+        </aside>
+        <PageViewChanger>
+            <GameAsideContent game={game} gameStyles={gameStyles}/>
+            <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
+            <TimeAsideContent time={time}/>
+            <DisplayButtonGroup list="everyEntity (list)" card="everyEntity (card)" table="everyEntity (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>entity description</UnfinishedText>
+        <section id="entity-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} displaySideContent={it => displaySideContent(setSideEntity, it,)}/>
-        </>
-    </SubMainContainer>
+        </section>
+    </SubMain>
 }
 
 function displaySideContent(action: Dispatch<SetStateAction<NullOr<Entities>>>, entity: Entities,) {
@@ -259,17 +264,6 @@ interface EntityAsideContentProperties
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
 
-}
-
-/** @reactComponent */
-function EntityAsideContent({games, gameStyles, time, game, gameStyle,}: EntityAsideContentProperties,) {
-    return <div className="entity-asideContent-container">
-        <GameAsideContent game={game} gameStyles={gameStyles}/>
-        {game == null ? null : <div className="d-inline mx-1"/>}
-        <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
-        {time == null ? null : <div className="d-inline mx-1"/>}
-        <TimeAsideContent time={time}/>
-    </div>
 }
 
 /** @reactComponent */

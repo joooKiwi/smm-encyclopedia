@@ -2,25 +2,27 @@ import 'app/_GameAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './CharacterNameApp.scss'
 
-import type {Array, NullOr, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}            from '@joookiwi/collection'
+import type {NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
 
 import type {CharacterNameProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {CharacterNameAppOption}                     from 'app/options/CharacterNameAppOption'
 import {CharacterNameGames}                         from 'app/property/CharacterNameGames'
 import {CharacterNameTimes}                         from 'app/property/CharacterNameTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
-import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import CardList                                     from 'app/util/CardList'
+import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
+import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
+import AppTitle                                     from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
@@ -29,6 +31,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {Games}                                      from 'core/game/Games'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
@@ -39,15 +42,12 @@ import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
 const all = new ArrayAsCollection(ALL,)
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyCharacterName (list)',],
-    [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
-    [ViewDisplays.TABLE, 'everyCharacterName (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const options = CharacterNameAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
+    //region -------------------- Game selection --------------------
+
     const game = games.hasAllGames
         ? CharacterNameGames.ALL_GAMES
         : games.hasSmm2
@@ -55,6 +55,10 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
             : games.hasSmm1
                 ? CharacterNameGames.SUPER_MARIO_MAKER
                 : CharacterNameGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    //endregion -------------------- Game selection --------------------
+    //region -------------------- Time selection --------------------
+
     const time = games.hasNotSmm2AndSmm1Or3ds
         ? null
         : times.hasAllTimes
@@ -63,12 +67,20 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
                 ? CharacterNameTimes.DAY
                 : CharacterNameTimes.NIGHT
 
-    return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('character name.all',)}
-                             description={<CharacterNameDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<CharacterNameAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
-    </SubMainContainer>
+    //endregion -------------------- Time selection --------------------
+
+    return <SubMain partial-id="characterName" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('character name.all',)}</AppTitle>
+        <PageViewChanger>
+            <GameAsideContent game={game}/>
+            <TimeAsideContent time={time}/>
+            <DisplayButtonGroup list="everyCharacterName (list)" card="everyCharacterName (card)" table="everyCharacterName (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <CharacterNameDescription viewDisplay={viewDisplay} game={game}/>
+        <section id="characterName-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
@@ -125,7 +137,7 @@ function CharacterNameTable({items,}: CharacterName_SubContentProperties,) {
 interface CharacterNameDescriptionProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays,
+    readonly viewDisplay: ViewDisplays
 
     readonly game: CharacterNameGames
 
@@ -137,14 +149,12 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
     const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyCharacterName (list)' satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyCharacterName (card)' satisfies PossibleRouteName
-    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyCharacterName (table)' satisfies PossibleRouteName
 
     const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
     const mysteryMushroomAsLowerCase = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
 
     return <>
+    return <Description>
         <p>
             {gameContentTranslation('character name.description.intro page', {
                 smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={SMM1}/></TextOrLink>,
@@ -153,26 +163,21 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
             },)}
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
-                StoryMode: <em key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</em>,//TODO: Add a mystery mushroom "character name" link
+                StoryMode: <em key="StoryMode">{STORY_MODE.singularNameOnReference}</em>,//TODO: Add a mystery mushroom "character name" link
                 mysteryMushroom: <em key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</em>,
                 MysteryMushroom: <em key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</em>,
                 smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={SMM1}/></span>,
                 smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={SMM2}/></span>,
             },)}
         </p>
-        <p>{gameContentTranslation('character name.description.viewable', {
-            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
-        },)}</p>
-    </>
+        <ContentBeingDisplayed viewDisplay={viewDisplay} routeName="everyCharacterName"/>
+    </Description>
 }
 
 //endregion -------------------- Description content --------------------
 //region -------------------- Aside content --------------------
 
-interface CharacterNameAsideContentProperties
+interface CharacterName_AsideContentProperties
     extends ReactProperties {
 
     readonly game: NullOr<CharacterNameGames>
@@ -181,16 +186,7 @@ interface CharacterNameAsideContentProperties
 }
 
 /** @reactComponent */
-function CharacterNameAsideContent({game, time,}: CharacterNameAsideContentProperties,) {
-    return <div id="characterName-asideContent-container">
-        <GameAsideContent game={game}/>
-        {time == null ? null : <div className="d-inline mx-1"/>}
-        <TimeAsideContent time={time}/>
-    </div>
-}
-
-/** @reactComponent */
-function GameAsideContent({game,}: Pick<CharacterNameAsideContentProperties, 'game'>,) {
+function GameAsideContent({game,}: Pick<CharacterName_AsideContentProperties, 'game'>,) {
     if (game == null)
         return null
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
@@ -204,7 +200,7 @@ function GameAsideContent({game,}: Pick<CharacterNameAsideContentProperties, 'ga
 }
 
 /** @reactComponent */
-function TimeAsideContent({time,}: Pick<CharacterNameAsideContentProperties, 'time'>,) {
+function TimeAsideContent({time,}: Pick<CharacterName_AsideContentProperties, 'time'>,) {
     if (time == null)
         return null
     return <div id="characterName-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">

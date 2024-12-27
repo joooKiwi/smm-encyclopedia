@@ -2,18 +2,7 @@
 @import '../variables';
 @import '../mixin';
 
-#theme-app-container {
-
-  .theme-button-image {
-    max-height: .75cm;
-  }
-
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-}
+#theme-app-container .theme-button-image { max-height: 1.5rem }
 
 #theme-list {
   .images-container { min-width: 3rem * 3 + 2rem }

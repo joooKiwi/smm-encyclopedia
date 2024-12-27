@@ -1,0 +1,18 @@
+#pageViewChanger-container {
+  width: fit-content;
+  background-image:
+          radial-gradient(var(--bs-body-bg), rgba(var(--bs-body-bg-rgb), 50%)),
+          radial-gradient(ellipse at left center, rgba(var(--bs-primary-rgb), 75%), transparent);
+
+}
+
+#pageViewChanger-content-container {
+  > *:has(> * ~ *) { margin-bottom: var(--bs-negative-spacer-sm) }
+  > * > *:has(+ *) {
+    margin-right: var(--bs-spacer-sm);
+    margin-bottom: var(--bs-spacer-sm);
+  }
+}
+
+#btn-expand:not(.collapsed) { display: none }
+#btn-collapse.collapsed { display: none }

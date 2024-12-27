@@ -1,20 +1,22 @@
 import './MedalApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer         from 'app/_SubMainContainer'
 import {MedalAppOption}         from 'app/options/MedalAppOption'
 import Table                    from 'app/tools/table/Table'
+import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import CardList                 from 'app/util/CardList'
 import List                     from 'app/util/List'
+import AppTitle                 from 'app/util/PageTitle'
+import PageViewChanger          from 'app/util/PageViewChanger'
+import SubMain                  from 'app/util/SubMain'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Medals}                 from 'core/medal/Medals'
 import MedalIcon                from 'core/medal/component/MedalIcon'
+import DisplayButtonGroup       from 'display/DisplayButtonGroup'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
@@ -22,20 +24,22 @@ import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 import ALL = Medals.ALL
 
 const all = new ArrayAsCollection(ALL,)
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyMedal (list)',],
-    [ViewDisplays.CARD_LIST, 'everyMedal (card)',],
-    [ViewDisplays.TABLE, 'everyMedal (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = MedalAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('medal.all',)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+
+    return <SubMain partial-id="medal" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('medal.all',)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everyMedal (list)" card="everyMedal (card)" table="everyMedal (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>medal description</UnfinishedText>
+        <section id="medal-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

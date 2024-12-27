@@ -3,16 +3,14 @@ import 'app/_GameStyleAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './InstrumentApp.scss'
 
-import type {Array, MutableArray, NullOr, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}                          from '@joookiwi/collection'
+import type {MutableArray, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}                   from '@joookiwi/collection'
 
 import type {InstrumentAppProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}        from 'app/withInterpreter/ViewDisplays.types'
 import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
 import {InstrumentGameStyles}                       from 'app/property/Instrument.gameStyles'
@@ -20,9 +18,13 @@ import {InstrumentTimes}                            from 'app/property/Instrumen
 import Table                                        from 'app/tools/table/Table'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import CardList                                     from 'app/util/CardList'
+import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
+import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
+import AppTitle                                     from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import LinkButton                                   from 'app/tools/button/LinkButton'
-import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -33,6 +35,7 @@ import EntityInstrumentImages                       from 'core/instrument/compon
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
@@ -49,15 +52,9 @@ import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 
 const all = new ArrayAsCollection(ALL,)
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyInstrument (list)',],
-    [ViewDisplays.CARD_LIST, 'everyInstrument (card)',],
-    [ViewDisplays.TABLE, 'everyInstrument (table)',],
-] as const satisfies Array<ViewAndRouteName>
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
-
     //region -------------------- Game selection --------------------
 
     const game = games.hasSmm2
@@ -95,12 +92,19 @@ export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: 
 
     //endregion -------------------- Time selection --------------------
 
-    return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('instrument.all',)}
-                             description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<InstrumentAsideContent game={times.hasOnlyNight ? null : game} gameStyle={gameStyle} time={time} gameStyles={gameStyles}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
-    </SubMainContainer>
+    return <SubMain partial-id="instrument" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('instrument.all',)}</AppTitle>
+        <PageViewChanger>
+            <GameAsideContent game={game}/>
+            <GameStyleAsideContent gameStyle={gameStyle} gameStyles={gameStyles}/>
+            <TimeAsideContent time={time}/>
+            <DisplayButtonGroup list="everyInstrument (list)" card="everyInstrument (card)" table="everyInstrument (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <InstrumentDescription viewDisplay={viewDisplay} game={game}/>
+        <section id="instrument-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
@@ -190,11 +194,7 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
     const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
     const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyInstrument (list)' satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyInstrument (card)' satisfies PossibleRouteName
-    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyInstrument (table)' satisfies PossibleRouteName
-
-    return <>
+    return <Description>
         <p>
             {gameContentTranslation('instrument.description.intro page', {
                 smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={SMM1}/></TextOrLink>,
@@ -207,13 +207,8 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-variant-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
         </p>
-        <p>{gameContentTranslation('instrument.description.viewable', {
-            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
-        },)}</p>
-    </>
+        <ContentBeingDisplayed viewDisplay={viewDisplay} routeName="everyInstrument"/>
+    </Description>
 }
 
 //endregion -------------------- Description content --------------------
@@ -222,7 +217,7 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
 interface InstrumentAsideContentProperties
     extends ReactProperties {
 
-    readonly game: NullOr<InstrumentGames>
+    readonly game: InstrumentGames
     readonly gameStyle: InstrumentGameStyles
     readonly time: NullOr<InstrumentTimes>
 
@@ -231,20 +226,7 @@ interface InstrumentAsideContentProperties
 }
 
 /** @reactComponent */
-function InstrumentAsideContent({game, gameStyle, time, gameStyles,}: InstrumentAsideContentProperties,) {
-    return <div id="instrument-asideContent-container">
-        <GameAsideContent game={game}/>
-        {game == null ? null : <div className="d-inline mx-1"/>}
-        <GameStyleAsideContent gameStyle={gameStyle} gameStyles={gameStyles}/>
-        {time == null ? null : <div className="d-inline mx-1"/>}
-        <TimeAsideContent time={time}/>
-    </div>
-}
-
-/** @reactComponent */
 function GameAsideContent({game,}: Pick<InstrumentAsideContentProperties, 'game'>,) {
-    if (game == null)
-        return null
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
             <GameImage reference={SMM1}/>

@@ -1,20 +1,22 @@
 import './SoundEffectCategoryApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer               from 'app/_SubMainContainer'
 import {SoundEffectCategoryAppOption} from 'app/options/SoundEffectCategoryAppOption'
 import CardList                       from 'app/util/CardList'
 import List                           from 'app/util/List'
+import AppTitle                       from 'app/util/PageTitle'
+import PageViewChanger                from 'app/util/PageViewChanger'
+import SubMain                        from 'app/util/SubMain'
 import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
 import Table                          from 'app/tools/table/Table'
+import UnfinishedText                 from 'app/tools/text/UnfinishedText'
 import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
 import SoundEffectCategoryIcon        from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
+import DisplayButtonGroup             from 'display/DisplayButtonGroup'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 import NameComponent                  from 'lang/name/component/Name.component'
 import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
@@ -23,20 +25,21 @@ import ALL = SoundEffectCategories.ALL
 
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everySoundEffectCategory (list)',],
-    [ViewDisplays.CARD_LIST, 'everySoundEffectCategory (card)',],
-    [ViewDisplays.TABLE, 'everySoundEffectCategory (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = SoundEffectCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('sound effect category.all',)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="soundEffectCategory" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('sound effect category.all',)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everySoundEffectCategory (list)" card="everySoundEffectCategory (card)" table="everySoundEffectCategory (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>sound effect category description</UnfinishedText>
+        <section id="soundEffectCategory-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

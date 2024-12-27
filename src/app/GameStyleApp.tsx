@@ -1,32 +1,36 @@
 import 'app/_GameAsideContent.scss'
 import './GameStyleApp.scss'
 
-import type {Array, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}    from '@joookiwi/collection'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOrString}     from '@joookiwi/type'
 
 import type {GameStyleProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}    from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}     from 'util/react/ReactProperties'
 import type {PossibleRouteName}   from 'route/EveryRoutes.types'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
-import {GameStyleAppOption}                         from 'app/options/GameStyleAppOption'
-import {GameStyleGames}                             from 'app/property/GameStyleGames'
-import LinkButton                                   from 'app/tools/button/LinkButton'
-import Table                                        from 'app/tools/table/Table'
-import LinkText                                     from 'app/tools/text/LinkText'
-import TextOrLink                                   from 'app/tools/text/TextOrLink'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
-import CardList                                     from 'app/util/CardList'
-import List                                         from 'app/util/List'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import {Games}                                      from 'core/game/Games'
-import GameImage                                    from 'core/game/component/GameImage'
-import {GameStyles}                                 from 'core/gameStyle/GameStyles'
-import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
-import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import NameComponent                                from 'lang/name/component/Name.component'
+import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
+import {GameStyleGames}         from 'app/property/GameStyleGames'
+import LinkButton               from 'app/tools/button/LinkButton'
+import Table                    from 'app/tools/table/Table'
+import LinkText                 from 'app/tools/text/LinkText'
+import TextOrLink               from 'app/tools/text/TextOrLink'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import CardList                 from 'app/util/CardList'
+import ContentBeingDisplayed    from 'app/util/ContentBeingDisplayed'
+import Description              from 'app/util/Description'
+import List                     from 'app/util/List'
+import AppTitle                 from 'app/util/PageTitle'
+import PageViewChanger          from 'app/util/PageViewChanger'
+import SubMain                  from 'app/util/SubMain'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {Games}                  from 'core/game/Games'
+import GameImage                from 'core/game/component/GameImage'
+import {GameStyles}             from 'core/gameStyle/GameStyles'
+import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
+import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
+import DisplayButtonGroup       from 'display/DisplayButtonGroup'
+import {gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent            from 'lang/name/component/Name.component'
 
 import ALL =    GameStyles.ALL
 import SMM1 =   Games.SMM1
@@ -40,11 +44,6 @@ import SM3DW =  GameStyles.SM3DW
 
 const {ENTITY,} = OtherWordInTheGames
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyGameStyle (list)',],
-    [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
-    [ViewDisplays.TABLE, 'everyGameStyle (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const options = GameStyleAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
@@ -53,12 +52,17 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
         ? GameStyleGames.SUPER_MARIO_MAKER_2
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('game style.all',)}
-                             description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<GameStyleAsideContent game={game}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games}/>
-    </SubMainContainer>
+    return <SubMain partial-id="gameStyle" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('game style.all',)}</AppTitle>
+        <PageViewChanger>
+            <GameAsideContent game={game}/>
+            <DisplayButtonGroup list="everyGameStyle (list)" card="everyGameStyle (card)" table="everyGameStyle (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <GameStyleDescription viewDisplay={viewDisplay} game={game}/>
+        <section id="gameStyle-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} games={games}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
@@ -128,11 +132,7 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
     const smm1OrSmm3dsLink = game.smm1Or3dsRouteName satisfies NullOrString<PossibleRouteName>
     const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyGameStyle (list)' satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyGameStyle (card)' satisfies PossibleRouteName
-    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyGameStyle (table)' satisfies PossibleRouteName
-
-    return <>
+    return <Description>
         <p>
             {gameContentTranslation('game style.description.intro page', {
                 gameStyles: <em key="gameStyles">{gameContentTranslation('game style.plural',).toLowerCase()}</em>,
@@ -154,13 +154,8 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
                 sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
             },)}
         </p>
-        <p>{gameContentTranslation('game style.description.viewable', {
-            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
-        },)}</p>
-    </>
+        <ContentBeingDisplayed viewDisplay={viewDisplay} routeName="everyGameStyle"/>
+    </Description>
 }
 
 //endregion -------------------- Description content --------------------
@@ -174,7 +169,7 @@ interface GameStyleAsideContentProperties
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({game,}: GameStyleAsideContentProperties,) {
+function GameAsideContent({game,}: GameStyleAsideContentProperties,) {
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Or3dsGame" routeName={game.smm1Or3dsRouteName} color={game.smm1Or3dsColor}>
             <GameImage reference={SMM1}/>

@@ -1,18 +1,18 @@
 import './MysteryMushroomApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer                      from 'app/_SubMainContainer'
 import {MysteryMushroomAppOption}            from 'app/options/MysteryMushroomAppOption'
 import Table                                 from 'app/tools/table/Table'
-import {unfinishedText}                      from 'app/tools/text/UnfinishedText'
+import UnfinishedText, {unfinishedText}      from 'app/tools/text/UnfinishedText'
 import CardList                              from 'app/util/CardList'
 import List                                  from 'app/util/List'
+import AppTitle                              from 'app/util/PageTitle'
+import PageViewChanger                       from 'app/util/PageViewChanger'
+import SubMain                               from 'app/util/SubMain'
 import {ViewDisplays}                        from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}                    from 'core/mysteryMushroom/MysteryMushrooms'
 import MysteryMushroomClimbingImage          from 'core/mysteryMushroom/component/MysteryMushroom.climbing.image'
@@ -27,6 +27,7 @@ import MysteryMushroomTurningImage           from 'core/mysteryMushroom/componen
 import MysteryMushroomWaitingImage           from 'core/mysteryMushroom/component/MysteryMushroom.waiting.image'
 import MysteryMushroomWalkImage              from 'core/mysteryMushroom/component/MysteryMushroom.walk.image'
 import {OtherWordInTheGames}                 from 'core/otherWordInTheGame/OtherWordInTheGames'
+import DisplayButtonGroup                    from 'display/DisplayButtonGroup'
 import {gameContentTranslation}              from 'lang/components/translationMethods'
 import NameComponent                         from 'lang/name/component/Name.component'
 import {Empty}                               from 'util/emptyVariables'
@@ -38,24 +39,24 @@ import EMPTY_STRING = Empty.EMPTY_STRING
 const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyMysteryMushroom (list)',],
-    [ViewDisplays.CARD_LIST, 'everyMysteryMushroom (card)',],
-    [ViewDisplays.TABLE, 'everyMysteryMushroom (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = MysteryMushroomAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
     const mysteryMushroom = MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
     const mysteryMushrooms = MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
 
-    return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="mysteryMushroom" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everyMysteryMushroom (list)" card="everyMysteryMushroom (card)" table="everyMysteryMushroom (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>Mystery Mushroom description</UnfinishedText>
+        <section id="mysteryMushroom-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------

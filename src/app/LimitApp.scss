@@ -1,11 +1,4 @@
 #limit-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-  .description-container .game-image { height: var(--bs-font-size-lg) }
-
   .course-theme-image {
     background-image: none;
     padding: 0;

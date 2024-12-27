@@ -1,45 +1,47 @@
 import './PredefinedMessageApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ViewAndRouteName}             from 'app/withInterpreter/ViewDisplays.types'
 import type {ReactProperties}              from 'util/react/ReactProperties'
 
-import SubMainContainer             from 'app/_SubMainContainer'
-import Table                        from 'app/tools/table/Table'
-import {unfinishedText}             from 'app/tools/text/UnfinishedText'
-import {PredefinedMessageAppOption} from 'app/options/PredefinedMessageAppOption'
-import CardList                     from 'app/util/CardList'
-import List                         from 'app/util/List'
-import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
-import {PredefinedMessages}         from 'core/predefinedMessage/PredefinedMessages'
-import {gameContentTranslation}     from 'lang/components/translationMethods'
-import NameComponent                from 'lang/name/component/Name.component'
-import {ArrayAsCollection}          from 'util/collection/ArrayAsCollection'
+import Table                            from 'app/tools/table/Table'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import {PredefinedMessageAppOption}     from 'app/options/PredefinedMessageAppOption'
+import CardList                         from 'app/util/CardList'
+import List                             from 'app/util/List'
+import AppTitle                         from 'app/util/PageTitle'
+import PageViewChanger                  from 'app/util/PageViewChanger'
+import SubMain                          from 'app/util/SubMain'
+import {ViewDisplays}                   from 'app/withInterpreter/ViewDisplays'
+import {PredefinedMessages}             from 'core/predefinedMessage/PredefinedMessages'
+import DisplayButtonGroup               from 'display/DisplayButtonGroup'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import NameComponent                    from 'lang/name/component/Name.component'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 
 import ALL = PredefinedMessages.ALL
 
 const all = new ArrayAsCollection(ALL,)
 
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyPredefinedMessage (list)',],
-    [ViewDisplays.CARD_LIST, 'everyPredefinedMessage (card)',],
-    [ViewDisplays.TABLE, 'everyPredefinedMessage (table)',],
-] as const satisfies Array<ViewAndRouteName>
 const items = all
 const options = PredefinedMessageAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    return <SubMainContainer reactKey="predefinedMessage" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('predefined message.all', {
-                                 singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
-                                 pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
-                             },)}>
-        <SubContent viewDisplay={viewDisplay}/>
-    </SubMainContainer>
+    return <SubMain partial-id="predefinedMessage" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('predefined message.all', {
+            singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
+            pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
+        },)}</AppTitle>
+        <PageViewChanger>
+            <DisplayButtonGroup list="everyPredefinedMessage (list)" card="everyPredefinedMessage (card)" table="everyPredefinedMessage (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>predefined message description</UnfinishedText>
+        <section id="predefinedMessage-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay}/>
+        </section>
+    </SubMain>
 }
 
 //region -------------------- Sub content --------------------
