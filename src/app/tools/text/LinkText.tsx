@@ -1,13 +1,13 @@
 import type {NullableString} from '@joookiwi/type'
 import {Link}                from 'react-router-dom'
 
-import type {PossibleRouteName}                            from 'route/EveryRoutes.types'
-import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {PossibleRouteName}                 from 'route/EveryRoutes.types'
+import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {routeFromName} from 'route/method/route.fromName'
 
 interface LinkTextProperties
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<ReactElementOrStringOrArray> {
 
     readonly partialId: string
 
@@ -22,7 +22,7 @@ interface LinkTextProperties
  *
  * @reactComponent
  */
-export default function LinkText({partialId, routeName, color, children,}: ReactPropertiesWithChildren<LinkTextProperties, ReactElementOrStringOrArray>,) {
+export default function LinkText({partialId, routeName, color, children,}: LinkTextProperties,) {
     const id = `${partialId}-text`
 
     if (routeName == null)

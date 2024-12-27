@@ -1,13 +1,13 @@
 import type {NullableString} from '@joookiwi/type'
 import {Link}                from 'react-router-dom'
 
-import type {PossibleRouteName}                            from 'route/EveryRoutes.types'
-import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {PossibleRouteName}                 from 'route/EveryRoutes.types'
+import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {routeFromName} from 'route/method/route.fromName'
 
 interface TextOrLinkProperties
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<ReactElementOrStringOrArray> {
 
     readonly id: string
 
@@ -20,7 +20,7 @@ interface TextOrLinkProperties
  *
  * @reactComponent
  */
-export default function TextOrLink({id, routeName, children,}: ReactPropertiesWithChildren<TextOrLinkProperties, ReactElementOrStringOrArray>,) {
+export default function TextOrLink({id, routeName, children,}: TextOrLinkProperties,) {
     if (routeName == null)
         return <span id={id}>{children}</span>
     return <Link id={id} to={routeFromName(routeName,)}>{children}</Link>

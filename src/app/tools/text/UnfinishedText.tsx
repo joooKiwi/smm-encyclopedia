@@ -1,9 +1,9 @@
-import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {isInProduction} from 'variables'
 
 interface UnfinishedTextProperties
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<string> {
 
     /** Tell if the text is hidden in production */
     readonly isHidden?: boolean
@@ -14,7 +14,6 @@ interface UnfinishedTextProperties
 }
 
 /** @reactComponent */
-export default function UnfinishedText({children, isHidden = false, type = 'text',}: ReactPropertiesWithChildren<UnfinishedTextProperties, string>,) {
     return isInProduction
         ? isHidden ? null : type === 'text'
             ? <span>{children}</span>
@@ -22,6 +21,7 @@ export default function UnfinishedText({children, isHidden = false, type = 'text
         : type === 'text'
             ? <span>--{children}--</span>
             : <p>--{children}--</p>
+export default function UnfinishedText({children, isHidden = false, type = 'text',}: UnfinishedTextProperties,) {
 }
 
 export function unfinishedText(value: string,) {
