@@ -1,10 +1,10 @@
 import './PageViewChanger.scss'
 
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {contentTranslation} from 'lang/components/translationMethods'
 
-export default function PageViewChanger({children,}: SimpleReactPropertiesWithChildren<NonNullReactElementOrArray>,) {
+export default function PageViewChanger({children,}: ReactPropertiesWithChildren<NonNullReactElementOrArray>,) {
     return <aside id="pageViewChanger-container" className="rounded-5 p-3 ms-auto">
         <h4 className="fst-italic text-end">
             <span className="me-1">{contentTranslation('Visual',)}</span>

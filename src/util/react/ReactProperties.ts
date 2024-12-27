@@ -1,15 +1,24 @@
 /** An interface to help identify a React property */
 export interface ReactProperties {}
 
-/** An interface to help identify a React property with a children property */
-export interface SimpleReactPropertiesWithChildren<out T, >
+/**
+ * An interface of {@link ReactProperties} with a children property
+ *
+ * @see ReactPropertiesWithOptionalChildren
+ */
+export interface ReactPropertiesWithChildren<out T, >
     extends ReactProperties {
 
     readonly children: T
 
 }
 
-export interface SimpleReactPropertiesWithOptionalChildren<out T, >
+/**
+ * An interface of {@link ReactProperties} with an optional children property
+ *
+ * @see ReactPropertiesWithChildren
+ */
+export interface ReactPropertiesWithOptionalChildren<out T, >
     extends ReactProperties {
 
     readonly children?: T

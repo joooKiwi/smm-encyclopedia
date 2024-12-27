@@ -4,7 +4,7 @@ import type {CollectionHolder} from '@joookiwi/collection'
 import {useRef, useState}      from 'react'
 import {Link, useLocation}     from 'react-router-dom'
 
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import Modal                      from 'bootstrap/modal/Modal'
@@ -235,7 +235,7 @@ function updateGlobalOptions(games: CollectionHolder<Games>, gameStyles: Collect
 }
 
 interface SwitchableButtonProperties
-    extends SimpleReactPropertiesWithChildren<NonNullReactElementOrString> {
+    extends ReactPropertiesWithChildren<NonNullReactElementOrString> {
 
     /** The value that is it selected or not */
     readonly value: boolean

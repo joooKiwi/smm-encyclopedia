@@ -2,14 +2,14 @@ import 'app/tools/text/TextWithInformativeTooltip.scss'
 
 import {useRef} from 'react'
 
-import type {Limits}                            from 'core/limit/Limits'
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {Limits}                      from 'core/limit/Limits'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Tooltip                  from 'bootstrap/tooltip/Tooltip'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 interface LimitAmountNoteProperties
-    extends SimpleReactPropertiesWithChildren<ReactElementOrStringOrNumberOrArray> {
+    extends ReactPropertiesWithChildren<ReactElementOrStringOrNumberOrArray> {
 
     readonly value: Limits
 

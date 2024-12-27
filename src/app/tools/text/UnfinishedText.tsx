@@ -1,9 +1,9 @@
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {isInProduction} from 'variables'
 
 interface UnfinishedTextProperties
-    extends SimpleReactPropertiesWithChildren<string> {
+    extends ReactPropertiesWithChildren<string> {
 
     /** Tell if the text is hidden in production */
     readonly isHidden?: boolean

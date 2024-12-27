@@ -2,15 +2,15 @@ import type {NullOr}           from '@joookiwi/type'
 import type {MutableRefObject} from 'react'
 import {useEffect}             from 'react'
 
-import type {OffcanvasConfiguration}                    from 'bootstrap/offcanvas/Offcanvas.types'
-import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {OffcanvasConfiguration}              from 'bootstrap/offcanvas/Offcanvas.types'
+import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {OffcanvasInstance}        from 'bootstrap/offcanvas/OffcanvasInstance'
 
 interface OffcanvasProperties<out T extends ReactElement, >
     extends Omit<OffcanvasConfiguration, 'elementId'>,
-        SimpleReactPropertiesWithOptionalChildren<T> {
+        ReactPropertiesWithOptionalChildren<T> {
 
     readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>
 

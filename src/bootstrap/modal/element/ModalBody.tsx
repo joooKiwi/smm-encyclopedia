@@ -1,12 +1,12 @@
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
-import type {HTMLDivProperties}                 from 'util/react/html/HTMLDivProperties'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {HTMLDivProperties}           from 'util/react/html/HTMLDivProperties'
 
 import {Empty} from 'util/emptyVariables'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalBodyProperties
-    extends SimpleReactPropertiesWithChildren<ReactElementOrArray>, HTMLDivProperties {
+    extends ReactPropertiesWithChildren<ReactElementOrArray>, HTMLDivProperties {
 
     readonly children: ReactElementOrArray
 

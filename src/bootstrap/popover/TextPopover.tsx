@@ -1,11 +1,11 @@
-import type {PopoverConfiguration}              from 'bootstrap/popover/Popover.types'
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {PopoverConfiguration}        from 'bootstrap/popover/Popover.types'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Popover       from 'bootstrap/popover/Popover'
 import TextComponent from 'app/tools/text/TextComponent'
 
 interface TextPopoverProperties
-    extends SimpleReactPropertiesWithChildren<ReactElementOrString>, PopoverConfiguration {}
+    extends ReactPropertiesWithChildren<ReactElementOrString>, PopoverConfiguration {}
 
 /**
  *

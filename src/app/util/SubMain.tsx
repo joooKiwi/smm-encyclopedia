@@ -1,8 +1,8 @@
-import type {ViewDisplays}                      from 'app/withInterpreter/ViewDisplays'
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {ViewDisplays}                from 'app/withInterpreter/ViewDisplays'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 interface SubMainProperties
-    extends SimpleReactPropertiesWithChildren<ArrayNonNullReactElement> {
+    extends ReactPropertiesWithChildren<ArrayNonNullReactElement> {
 
     /** The starting {@link Element.id id} of the {@link HTMLDivElement} */
     readonly 'partial-id': string

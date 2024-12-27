@@ -2,7 +2,7 @@ import 'app/MusicApp.scss'
 
 import {Link} from 'react-router-dom'
 
-import {ReactProperties, SimpleReactPropertiesWithChildren, SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import {ReactProperties, ReactPropertiesWithChildren, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
@@ -1049,7 +1049,8 @@ function getYoshiImage(gameStyle: GameStyles,) {
 interface MusicsProperties<out FILES extends ArrayOf1To8<IndividualMusics>, >
     extends ReactProperties { readonly files: FILES }
 
-interface GroupedMusicsProperties extends SimpleReactPropertiesWithChildren<ReactElementOrArray> {}
+interface GroupedMusicsProperties
+    extends ReactPropertiesWithChildren<ReactElementOrArray> {}
 
 // /** @reactComponent */
 // function MusicsContainer({type, files,}: MusicsProperties,) {
@@ -1381,7 +1382,7 @@ function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsPrope
 
 interface TimeMusicsProperties
     extends MusicsProperties<ArrayOf4<IndividualMusics>>,
-    SimpleReactPropertiesWithOptionalChildren<ReactElement> {}
+    ReactPropertiesWithOptionalChildren<ReactElement> {}
 
 /** @reactComponent */
 function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {

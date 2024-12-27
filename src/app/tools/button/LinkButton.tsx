@@ -1,13 +1,13 @@
 import type {NullableString} from '@joookiwi/type'
 import {Link}                from 'react-router-dom'
 
-import type {PossibleRouteName}                 from 'route/EveryRoutes.types'
-import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {PossibleRouteName}           from 'route/EveryRoutes.types'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {routeFromName} from 'route/method/route.fromName'
 
 interface LinkButtonsProperties
-    extends SimpleReactPropertiesWithChildren<ReactElementOrStringOrArray> {
+    extends ReactPropertiesWithChildren<ReactElementOrStringOrArray> {
 
     readonly partialId: string
 

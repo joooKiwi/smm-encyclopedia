@@ -1,13 +1,13 @@
 import {useEffect} from 'react'
 
-import type {PopoverConfiguration}                      from 'bootstrap/popover/Popover.types'
-import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {PopoverConfiguration}                from 'bootstrap/popover/Popover.types'
+import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {PopoverInstance}          from 'bootstrap/popover/PopoverInstance'
 
 interface PopoverProperties
-    extends SimpleReactPropertiesWithOptionalChildren<NonNullReactElement>, PopoverConfiguration {}
+    extends ReactPropertiesWithOptionalChildren<NonNullReactElement>, PopoverConfiguration {}
 
 /**
  * Create a new {@link bootstrap.Popover Popover} instance

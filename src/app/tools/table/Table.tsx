@@ -6,10 +6,10 @@ import type {NullableString}                  from '@joookiwi/type'
 import type {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
 import {useRef}                               from 'react'
 
-import type {SingleHeaderContent}                                from 'app/tools/table/SimpleHeader'
-import type {TableOption}                                        from 'app/tools/table/TableOption'
-import type {ClassWithEnglishName}                               from 'core/ClassWithEnglishName'
-import type {ReactProperties, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {SingleHeaderContent}                          from 'app/tools/table/SimpleHeader'
+import type {TableOption}                                  from 'app/tools/table/TableOption'
+import type {ClassWithEnglishName}                         from 'core/ClassWithEnglishName'
+import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Image               from 'app/tools/images/Image'
 import Tooltip             from 'bootstrap/tooltip/Tooltip'
@@ -168,7 +168,7 @@ function HeaderOrFooterContent(properties: HeaderOrFooterContentProperties,) {
 
 
 /** @reactComponent */
-function TableCaption({children,}: SimpleReactPropertiesWithChildren<ReactElementOrString>,) {
+function TableCaption({children,}: ReactPropertiesWithChildren<ReactElementOrString>,) {
     if (children == null)
         return null
     return <small className="tcaption alert alert-info flex-grow-1 py-2" role="alert">{children}</small>

@@ -2,8 +2,8 @@ import type {Nullable}                        from '@joookiwi/type'
 import type {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
 import {RefObject, useEffect}                 from 'react'
 
-import type {TooltipEvents}                             from 'bootstrap/tooltip/TooltipEvents'
-import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {TooltipEvents}                       from 'bootstrap/tooltip/TooltipEvents'
+import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {TooltipInstance}          from 'bootstrap/tooltip/TooltipInstance'
@@ -12,7 +12,7 @@ import {Empty}                    from 'util/emptyVariables'
 import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
 
 interface TooltipProperties
-    extends SimpleReactPropertiesWithOptionalChildren<ReactElement> {
+    extends ReactPropertiesWithOptionalChildren<ReactElement> {
 
     readonly option: Partial<TooltipFromBootstrap.Options>
 

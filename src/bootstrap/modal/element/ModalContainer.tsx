@@ -1,9 +1,9 @@
 import type {NullOr}           from '@joookiwi/type'
 import type {MutableRefObject} from 'react'
 
-import type {PossibleModalSize}                         from 'bootstrap/modal/ModalInstance.declaration'
-import type {HTMLDivProperties}                         from 'util/react/html/HTMLDivProperties'
-import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {PossibleModalSize}                   from 'bootstrap/modal/ModalInstance.declaration'
+import type {HTMLDivProperties}                   from 'util/react/html/HTMLDivProperties'
+import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {Empty} from 'util/emptyVariables'
 
@@ -11,7 +11,7 @@ import EMPTY_OBJECT = Empty.EMPTY_OBJECT
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 interface ModalContainerProperties
-    extends SimpleReactPropertiesWithOptionalChildren<ReactElementOrArray>, Omit<HTMLDivProperties, 'key'> {
+    extends ReactPropertiesWithOptionalChildren<ReactElementOrArray>, Omit<HTMLDivProperties, 'key'> {
 
     readonly children?: ReactElementOrArray
 
