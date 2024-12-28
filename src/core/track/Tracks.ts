@@ -3,7 +3,6 @@ import type {NullOr}                 from '@joookiwi/type'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}     from 'core/track/Tracks.types'
-import type {RepeatableSoundFile} from 'util/file/sound/RepeatableSoundFile'
 import type {SoundFile}           from 'util/file/sound/SoundFile'
 
 import {nonRepeatable}           from 'core/track/file/nonRepeatable'
@@ -1035,5 +1034,3 @@ export namespace Tracks {
     //endregion -------------------- Fields (sound effect) --------------------
 
 }
-
-/**@deprecated This type is temporary to allow null value */type PossibleSoundFile = NullOr<RepeatableSoundFile>
