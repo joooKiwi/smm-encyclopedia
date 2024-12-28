@@ -23,9 +23,10 @@
 
     &.playerBehaviour {}
 
-    &.sounds {
-      min-width: calc(1cm + var(--bs-spacer-sm) * 2);
-      width: 8.5cm;
+    &.smm1And3ds-sounds,
+    &.smm2-sounds,
+    &.sounds, {
+      max-width: 45rem;
     }
 
   }

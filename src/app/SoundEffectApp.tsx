@@ -195,7 +195,7 @@ function getOptions(games: GameCollection,): CollectionHolder<SoundEffectAppOpti
         SoundEffectAppOption.PLAYER_BEHAVIOUR,
     )
     if (games.hasAllGames)
-        options.push(SoundEffectAppOption.SOUNDS,)
+        options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS, SoundEffectAppOption.SOUNDS_IN_SMM2,)
     else {
         if (hasSmm1Or3ds)
             options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)

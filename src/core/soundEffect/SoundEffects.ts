@@ -1,43 +1,30 @@
 import type {Array, NullOr} from '@joookiwi/type'
-import {isArray}            from '@joookiwi/collection'
+import {CollectionHolder}   from '@joookiwi/collection'
 import {Enum}               from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
-import type {MusicSoundFile}                                                                                                       from 'core/music/file/MusicSoundFile'
-import type {PossibleSoundEffectMusicEditorName}                                                                                   from 'core/music/soundEffect/SoundEffectMusic'
 import type {SoundEffect}                                                                                                          from 'core/soundEffect/SoundEffect'
-import type {SoundEffectFromMusicAdaptor}                                                                                          from 'core/soundEffect/SoundEffectFromMusicAdaptor'
 import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
 import type {SMM2SoundEffectImageFile}                                                                                             from 'core/soundEffect/file/SoundEffectImageFile'
-import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                             from 'core/soundEffect/file/SoundEffectSoundFile'
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                            from 'core/soundEffect/sound/SMM2SoundEffectSound'
-import type {SMM1ExclusiveSoundEffectSound}                                                                                        from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
-import type {SMM1StandaloneSoundEffectSound}                                                                                       from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
-import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                          from 'core/soundEffect/sound/types'
+import type {SMM2SoundEffectSoundFile}                                                                                             from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {CompanionEnumByNameSingleton}                                                                                         from 'util/enumerable/Singleton.types'
+import type {SoundFile}                                                                                                            from 'util/file/sound/SoundFile'
 
-import type {Musics}                                                    from 'core/music/Musics'
-import {Tracks}                                                         from 'core/track/Tracks'
-import {EmptySoundEffectFromMusicAdaptor}                               from 'core/soundEffect/EmptySoundEffectFromMusicAdaptor'
-import {SoundEffectFromMusicAdaptorContainer}                           from 'core/soundEffect/SoundEffectFromMusicAdaptor.container'
-import {SoundEffectLoader}                                              from 'core/soundEffect/SoundEffect.loader'
-import * as FileCreator                                                 from 'core/soundEffect/file/fileCreator'
-import {EmptySMMSoundEffectSound as EmptySound}                         from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
-import {SMM1ExclusiveSoundEffectSoundContainer as SMM1ExclusiveSound}   from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound.container'
-import {SMM1StandaloneSoundEffectSoundContainer as SMM1StandaloneSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'
-import {SMM2SoundEffectSoundContainer as SMM2Sound}                     from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
-import {Import}                                                         from 'util/DynamicImporter'
-import {Empty}                                                          from 'util/emptyVariables'
-import {StringContainer}                                                from 'util/StringContainer'
-import {CompanionEnumByEnglishNameOnly}                                 from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
-import {ArrayAsCollection}                                              from 'util/collection/ArrayAsCollection'
+import {Tracks}                         from 'core/track/Tracks'
+import {SoundEffectLoader}              from 'core/soundEffect/SoundEffect.loader'
+import {smm1ImageFiles}                 from 'core/soundEffect/file/smm1.imageFile'
+import {smm1SoundFile}                  from 'core/soundEffect/file/smm1.soundFile'
+import {smm2ImageFile}                  from 'core/soundEffect/file/smm2.imageFile'
+import {smm2SoundFile}                  from 'core/soundEffect/file/smm2.soundFile'
+import {Empty}                          from 'util/emptyVariables'
+import {StringContainer}                from 'util/StringContainer'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
-/**
- * @recursiveReference<{@link Musics}>
- */
+/** @todo add the unused sound effects */
 export abstract class SoundEffects
     extends Enum<Ordinals, Names>
     implements ClassWithReference<SoundEffect>,
@@ -56,16 +43,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_01_OssanOdoroki_L_pxsps_l_ear', 'yr_SToy_01_OssanOdoroki_R_pxsps_r_ear',)
+        //README: The editor sound → SE_OssanOdoroki
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_01_OssanOdoroki_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_01_OssanOdoroki_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('SE_OssanOdoroki',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('SE_OssanOdoroki',),],)
         }
 
     }('Shock',)
@@ -80,16 +65,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_01_OssanHimei4_L_pxsps_l_ear','yr_SToy_01_OssanHimei4_R_pxsps_r_ear',)
+        //README: The editor sound → SE_OssanHimei4
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_01_OssanHimei4_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_01_OssanHimei4_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('SE_OssanHimei4',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('SE_OssanHimei4',),],)
         }
 
     }('Scream',)
@@ -104,21 +87,22 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_v_Laugh_Tsuji_01_pxsps_l_ear', 'yr_v_Laugh_Tsuji_02_pxsps_r_ear', 'yr_v_Laugh_Tsuji_03_pxsps_l_ear', 'yr_v_Laugh_Tsuji_04_pxsps_r_ear',)
+        //README: The editor sound → yr_v_Laugh_Tsuji_04
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([
+                smm2.getFirst(), smm1SoundFile('yr_v_Laugh_Tsuji_01_pxsps_l_ear',),
+                smm2.get(1,),    smm1SoundFile('yr_v_Laugh_Tsuji_02_pxsps_r_ear',),
+                smm2.get(2,),    smm1SoundFile('yr_v_Laugh_Tsuji_03_pxsps_l_ear',),
+                smm2.getLast(),  smm1SoundFile('yr_v_Laugh_Tsuji_04_pxsps_r_ear',)
+            ,],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            const smm1Sounds = smm1.sounds
-            const smm2Sounds = smm2.sounds
-
-            return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm2Sounds[1]!, smm1Sounds[1]!, smm2Sounds[2]!, smm1Sounds[2]!, smm2Sounds[3]!, smm1Sounds[3]!,], smm2.editorSound, smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            const sounds = FileCreator.smm2SoundFiles('yr_v_Laugh_Tsuji_01', 'yr_v_Laugh_Tsuji_02', 'yr_v_Laugh_Tsuji_03', 'yr_v_Laugh_Tsuji_04',)
-
-            return new SMM2Sound(sounds, sounds[3], EMPTY_ARRAY, EMPTY_ARRAY,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([
+                smm2SoundFile('yr_v_Laugh_Tsuji_01',), smm2SoundFile('yr_v_Laugh_Tsuji_02',),
+                smm2SoundFile('yr_v_Laugh_Tsuji_03',), smm2SoundFile('yr_v_Laugh_Tsuji_04',),
+            ],)
         }
 
     }('Laughter',)
@@ -129,19 +113,19 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            const sounds = FileCreator.smm2SoundFiles(
-                'se_otoasobi_oowarai_00',
-                'se_otoasobi_oowarai_01',
-                'se_otoasobi_oowarai_02',
-                'se_otoasobi_oowarai_03',
-                'se_otoasobi_oowarai_04',
-                'se_otoasobi_oowarai_05',
-                'se_otoasobi_oowarai_06',
-                'se_otoasobi_oowarai_07',
-            )
+        //README: The editor sound in Smm2 → se_otoasobi_oowarai_06
 
-            return new SMM2Sound(sounds, sounds[6], EMPTY_ARRAY, EMPTY_ARRAY,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([
+                smm2SoundFile('se_otoasobi_oowarai_00',),
+                smm2SoundFile('se_otoasobi_oowarai_01',),
+                smm2SoundFile('se_otoasobi_oowarai_02',),
+                smm2SoundFile('se_otoasobi_oowarai_03',),
+                smm2SoundFile('se_otoasobi_oowarai_04',),
+                smm2SoundFile('se_otoasobi_oowarai_05',),
+                smm2SoundFile('se_otoasobi_oowarai_06',),
+                smm2SoundFile('se_otoasobi_oowarai_07',),
+            ],)
         }
 
     }('Guffaw',)
@@ -152,8 +136,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_Booing01',)
+        //README: The editor sound in Smm2 → Otoasobi_Booing01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_Booing01',),],)
         }
 
     }('Booo!',)
@@ -168,12 +154,15 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_DaigunshuShort', 'SE_daikansei_3d',)
+        //README: The editor sound in Smm1 → SE_DaigunshuShort
+        //README: The editor sound in Smm2 → Otoasobi_Crowd_yubibue
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('SE_DaigunshuShort',), smm1SoundFile('SE_daikansei_3d',),],)
         }
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_Crowd_yubibue', 'Otoasobi_Crowd_donpafu',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_Crowd_yubibue',), smm2SoundFile('Otoasobi_Crowd_donpafu',),],)
         }
 
     }('Cheer',)
@@ -188,16 +177,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_Affun_outL_type4_invF_Rmic', 'SE_Affun_outR_type4_invF_Rmic',)
+        //README: The editor sound → SE_Affun
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('SE_Affun_outL_type4_invF_Rmic',), smm1SoundFile('SE_Affun_outR_type4_invF_Rmic',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('SE_Affun', 'se_otoasobi_affun_night',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('SE_Affun',), smm2SoundFile('se_otoasobi_affun_night',),],)
         }
 
     }('Baby',)
@@ -208,8 +195,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_Cracker',)
+        //README: The editor sound in Smm2 → Otoasobi_Cracker
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_Cracker',),],)
         }
 
     }('Party Popper',)
@@ -224,12 +213,15 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_KANSEI', 'SE_KANSEI_pxsps_l_ear', 'SE_KANSEI_pxsps_r_ear',)
+        //README: The editor sound in Smm1 → SE_KANSEI
+        //README: The editor sound in Smm2 → Otoasobi_Crap
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('SE_KANSEI',), smm1SoundFile('SE_KANSEI_pxsps_l_ear',), smm1SoundFile('SE_KANSEI_pxsps_r_ear',),],)
         }
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_Crap',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_Crap',),],)
         }
 
     }('Applause',)
@@ -240,8 +232,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('se_otoasobi_hiyarihat_07_edit', 'se_otoasobi_hiyarihat_07',)
+        //README: The editor sound in Smm2 → se_otoasobi_hiyarihat_07_edit
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('se_otoasobi_hiyarihat_07_edit',), smm2SoundFile('se_otoasobi_hiyarihat_07',),],)
         }
 
     }('Near Miss',)
@@ -257,16 +251,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_02_destruction01_2D_L_pxsps_l_ear', 'yr_SToy_02_destruction01_3D_L_pxsps_l_ear', 'yr_SToy_02_destruction01_3D_R_pxsps_r_ear',)
+        //README: The editor sound → yr_SToy_02_destruction01_2D_L_pxsps_l_ear
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_02_destruction01_3D_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_02_destruction01_3D_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_02_destruction01_2D_L_pxsps_l_ear',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_02_destruction01_2D_L_pxsps_l_ear',),],)
         }
 
     }('Clatter',)
@@ -281,12 +273,15 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_02_shocking4_2D_L_pxsps_l_ear', 'yr_SToy_02_shocking4_3D_L_pxsps_l_ear', 'yr_SToy_02_shocking4_3D_R_pxsps_r_ear',)
+        //README: The editor sound in Smm1 → yr_SToy_02_shocking4_2D_L_pxsps_l_ear
+        //README: The editor sound in Smm2 → se_otoasobi_gagaaan
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('yr_SToy_02_shocking4_2D_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_02_shocking4_3D_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_02_shocking4_3D_R_pxsps_r_ear',),],)
         }
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('se_otoasobi_gagaaan',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('se_otoasobi_gagaaan',),],)
         }
 
     }('Drama!',)
@@ -301,16 +296,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_03_Aw_3D_L_pxsps_l_ear', 'yr_SToy_03_Aw_3D_R_pxsps_r_ear',)
+        //README: The editor sound → yr_SToy_03_Aw_2D
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_03_Aw_3D_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_03_Aw_3D_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_03_Aw_2D',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_03_Aw_2D',),],)
         }
 
     }('Kick',)
@@ -325,16 +318,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_03_How_3D_L_pxsps_r_ear', 'yr_SToy_03_How_3D_R_pxsps_r_ear',)
+        //README: The editor sound in Smm2 → yr_SToy_03_How_2D
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_03_How_3D_L_pxsps_r_ear',), smm1SoundFile('yr_SToy_03_How_3D_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_03_How_2D',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_03_How_2D',),],)
         }
 
     }('Jump',)
@@ -349,19 +340,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_03_How_3D_L_pxsps_r_ear', 'yr_SToy_03_How_3D_R_pxsps_r_ear',)
+        //README: The editor sound → bse_pafu00.a.44.cn4
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm2.getLast(), smm1SoundFile('yr_SToy_03_How_3D_L_pxsps_r_ear',), smm1SoundFile('yr_SToy_03_How_3D_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            const smm1Sounds = smm1.sounds
-            const smm2Sounds = smm2.sounds
-
-            return new SMM1StandaloneSound([smm2Sounds[0]!, smm2Sounds[1]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2.editorSound, smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('bse_pafu00.a.44.cn4', 'bse_pafu00_e.44.cn4',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('bse_pafu00.a.44.cn4',), smm2SoundFile('bse_pafu00_e.44.cn4',),],)
         }
 
     }('Honk Honk',)
@@ -376,21 +362,15 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_Punch3_pxsps_r_ear', 'SE_Punch4_pxsps_l_ear', 'bse_cat00_pxsps_r_ear',)
+        //README: The editor sound in Smm1 → SE_Punch3_pxsps_r_ear
+        //README: The editor sound in Smm2 → SE_Punch4
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('SE_Punch3_pxsps_r_ear',), smm1SoundFile('SE_Punch4_pxsps_l_ear',), smm1SoundFile('bse_cat00_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            const smm1Sounds = smm1.sounds
-            const smm2Sounds = smm2.sounds
-
-            return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm1Sounds[1]!, smm1Sounds[2]!,], smm1.editorSound, smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            const sounds = FileCreator.smm2SoundFiles('SE_Punch3_excited', 'SE_Punch4', 'SE_Punch4_excited',)
-
-            return new SMM2Sound(sounds, sounds[1], EMPTY_ARRAY, EMPTY_ARRAY,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('SE_Punch3_excited',), smm2SoundFile('SE_Punch4',), smm2SoundFile('SE_Punch4_excited',),],)
         }
 
     }('Punch',)
@@ -401,8 +381,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('se_otoasobi_oimo', 'se_mariopaint-pig', 'se_otoasobi_whoopee_0',)
+        //README: The editor sound in Smm2 → se_otoasobi_oimo
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('se_otoasobi_oimo',), smm2SoundFile('se_mariopaint-pig',), smm2SoundFile('se_otoasobi_whoopee_0',),],)
         }
 
     }('Oink',)
@@ -413,8 +395,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_dodon',)
+        //README: The editor sound in Smm2 → Otoasobi_dodon
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_dodon',),],)
         }
 
     }('Kuh-thunk!',)
@@ -425,8 +409,15 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('glitch_M1_000', 'glitch_M1_001', 'glitch_M1_002', 'glitch_M1_003', 'glitch_M1_004', 'glitch_M1_005', 'glitch_M1_006', 'glitch_M1_007', 'muon_2sec',)
+        //README: The editor sound in Smm2 → glitch_M1_000
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([
+                smm2SoundFile('glitch_M1_000',), smm2SoundFile('glitch_M1_001',), smm2SoundFile('glitch_M1_002',),
+                smm2SoundFile('glitch_M1_003',), smm2SoundFile('glitch_M1_004',), smm2SoundFile('glitch_M1_005',),
+                smm2SoundFile('glitch_M1_006',), smm2SoundFile('glitch_M1_007',),
+                smm2SoundFile('muon_2sec',),
+            ],)
         }
 
     }('Beep!',)
@@ -437,8 +428,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.NINJA_ATTACK
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.NINJA_ATTACK_EDITOR.file, Tracks.NINJA_ATTACK.file,],)
         }
 
     }('Ninja Attack!',)
@@ -449,8 +440,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('se_otoasobi_gaaann',)
+        //README: The editor sound in Smm2 → se_otoasobi_gaaann
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('se_otoasobi_gaaann',),],)
         }
 
     }('Zap!',)
@@ -466,18 +459,18 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_BELL_pxsps_l_ear', 'SE_BELL_pxsps_r_ear',)
+        //README: The editor sound → SE_BELL
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('SE_BELL_pxsps_l_ear',), smm1SoundFile('SE_BELL_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('SE_BELL',), smm2SoundFile('SE_BELL_excited',),],)
         }
 
-        protected override _createSMM2Sounds() {
-            const sounds = FileCreator.smm2SoundFiles('SE_BELL', 'SE_BELL_excited', 'SE_LinkItemAppear',)
-
-            return new SMM2Sound(sounds, sounds[0], [sounds[2],] as const, EMPTY_ARRAY,)
+        protected override _createSoundsInSmbOnLink() {
+            return new ArrayAsCollection([smm2SoundFile('SE_LinkItemAppear',),],)
         }
 
     }('Ding Dong',)
@@ -492,16 +485,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_BU_pxsps_l_ear', 'SE_BU_pxsps_r_ear',)
+        //README: The editor sound → SE_BU=
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('SE_BU_pxsps_l_ear',), smm1SoundFile('SE_BU_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('SE_BU=', 'SE_BU=_excited',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('SE_BU=',), smm2SoundFile('SE_BU=_excited',),],)
         }
 
     }('Bzzzt!',)
@@ -516,16 +507,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_06_Godd_01_pxsps_r_ear',)
+        //README: The editor sound → yr_SToy_06_Godd_01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_06_Godd_01_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundWhere1IsFromSmm1And2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_06_Godd_01',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_06_Godd_01',),],)
         }
 
     }('Glory',)
@@ -540,16 +529,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_06_Devil_01_pxsps_l_ear',)
+        //README: The editor sound → yr_SToy_06_Devil_01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_06_Devil_01_pxsps_l_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundWhere1IsFromSmm1And2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_06_Devil_01',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_06_Devil_01',),],)
         }
 
     }('Doom',)
@@ -560,8 +547,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_YEAH',)
+        //README: The editor sound in Smm2 → Otoasobi_YEAH
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_YEAH',),],)
         }
 
     }('Yeah!',)
@@ -572,8 +561,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_AAHH',)
+        //README: The editor sound in Smm2 → Otoasobi_AAHH
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_AAHH',),],)
         }
 
     }('Aww...',)
@@ -589,16 +580,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_07_FireWorks_01_1_pxsps_r_ear', 'yr_SToy_07_FireWorks_01_2_pxsps_l_ear',)
+        //README: The editor sound → yr_SToy_07_FireWorks_01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm1SoundFile('yr_SToy_07_FireWorks_01_1_pxsps_r_ear',), smm1SoundFile('yr_SToy_07_FireWorks_01_2_pxsps_l_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_07_FireWorks_01', 'yr_SToy_07_FireWorks_01_1', 'yr_SToy_07_FireWorks_01_2',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_07_FireWorks_01',), smm2SoundFile('yr_SToy_07_FireWorks_01_1',), smm2SoundFile('yr_SToy_07_FireWorks_01_2',),],)
         }
 
     }('Fireworks',)
@@ -609,8 +598,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.AUDIENCE
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.AUDIENCE.file,],)
         }
 
 
@@ -622,8 +611,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.SCATTING
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.SCATTING.file,],)
         }
 
 
@@ -635,8 +624,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',)
+        //README: The editor sound in Smm1 → SE_UGUISU
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('SE_UGUISU',), smm1SoundFile('SE_UGUISU_Edit',), smm1SoundFile('SE_UGUISU_pxsps_r_ear',),],)
         }
 
     }('Bird’s Chirping',)
@@ -647,16 +638,16 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            const sounds = FileCreator.smm2SoundFiles(
-                'se_otoasobi_spark_00',
-                'se_otoasobi_spark_01',
-                'se_otoasobi_spark_02',
-                'se_otoasobi_spark_03',
-                'se_otoasobi_spark_04',
-            )
+        //README: The editor sound in Smm2 → se_otoasobi_spark_02
 
-            return new SMM2Sound(sounds, sounds[2], EMPTY_ARRAY, EMPTY_ARRAY,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([
+                smm2SoundFile('se_otoasobi_spark_00',),
+                smm2SoundFile('se_otoasobi_spark_01',),
+                smm2SoundFile('se_otoasobi_spark_02',),
+                smm2SoundFile('se_otoasobi_spark_03',),
+                smm2SoundFile('se_otoasobi_spark_04',),
+            ],)
         }
 
     }('Spark',)
@@ -667,8 +658,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.TRADITIONAL
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.TRADITIONAL.file,],)
         }
 
 
@@ -680,8 +671,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('Otoasobi_Guitar01', 'Otoasobi_Guitar02',)
+        //README: The editor sound in Smm2 → Otoasobi_Guitar01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('Otoasobi_Guitar01',), smm2SoundFile('Otoasobi_Guitar02',),],)
         }
 
     }('Electric Guitar',)
@@ -692,8 +685,13 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_TaoeDown_01', 'yr_SToy_13_Sweep_01', 'yr_SToy_13_Sweep_01_l_ear', 'yr_SToy_13_Sweep_01_r_ear', 'yr_Sweep_Up_01',)
+        //README: The editor sound in Smm1 → yr_TaoeDown_01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([
+                smm1SoundFile('yr_TaoeDown_01',),
+                smm1SoundFile('yr_SToy_13_Sweep_01',), smm1SoundFile('yr_SToy_13_Sweep_01_l_ear',), smm1SoundFile('yr_SToy_13_Sweep_01_r_ear',), smm1SoundFile('yr_Sweep_Up_01',),
+            ],)
         }
 
     }('Distortion',)
@@ -703,8 +701,9 @@ export abstract class SoundEffects
             return 'Filter' as const satisfies SoundEffectImageName_SMM2
         }
 
+        //README: The editor sound in Smm2 → Otoasobi_DJ00
 
-        protected override _createSMM2Sounds() {
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
             return SoundEffects._soundsForTwistyTurnyAndWoozy
         }
 
@@ -716,10 +715,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            const sounds = SoundEffects._soundsForTwistyTurnyAndWoozy
+        //README: The editor sound in Smm2 → Otoasobi_DJ03
 
-            return new SMM2Sound(sounds, sounds[4], EMPTY_ARRAY, EMPTY_ARRAY,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return SoundEffects._soundsForTwistyTurnyAndWoozy
         }
 
     }('Woozy',)
@@ -730,29 +729,29 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            const sounds = [
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Long_L',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Long_R',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_L',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_mono',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_R',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Long_L',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Long_R',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Short_L',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Short_R',),
+        //README: The editor sound in Smm1 → yr_SToy_11_TEL_2D_H_Long_R
 
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Long_L_pxsps_l_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Long_R_pxsps_r_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Short_L_pxsps_l_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Short_R_pxsps_r_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_L_pxsps_l_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_R_pxsps_r_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_L_pxsps_l_ear',),
-                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_R_pxsps_r_ear',),
-            ] as const
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([
+                smm1SoundFile('yr_SToy_11_TEL_2D_H_Long_L',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_H_Long_R',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_L',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_mono',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_R',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_L_Long_L',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_L_Long_R',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_L_Short_L',),
+                smm1SoundFile('yr_SToy_11_TEL_2D_L_Short_R',),
 
-            return new SMM1ExclusiveSound(sounds, sounds[1],)
+                smm1SoundFile('yr_SToy_11_TEL_3D_H_Long_L_pxsps_l_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_H_Long_R_pxsps_r_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_H_Short_L_pxsps_l_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_H_Short_R_pxsps_r_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_L_pxsps_l_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_R_pxsps_r_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_L_pxsps_l_ear',),
+                smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_R_pxsps_r_ear',),
+            ],)
         }
 
     }('Telephone',)
@@ -763,8 +762,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('se_otoasobi_haloeffect',)
+        //README: The editor sound in Smm2 → se_otoasobi_haloeffect
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('se_otoasobi_haloeffect',),],)
         }
 
     }('Flash',)
@@ -776,44 +777,48 @@ export abstract class SoundEffects
         }
 
 
-        #sounds_smm2?: PossibleSMM2SoundEffect
+        //README: The editor sound in Smm2 → Otoasobi_Calm_Hit_01
 
-        public override get sounds_smm2(): PossibleSMM2SoundEffect {
-            return this.#sounds_smm2 ??= [Tracks.PEACEFUL_LINK.file, Tracks.PEACEFUL_SMB2.file, super.sounds_smm2,].flat()
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([
+                smm2SoundFile('Otoasobi_Calm_Hit_01',),
+                smm2SoundFile('Otoasobi_Calm_Harp_01',),
+                smm2SoundFile('Otoasobi_Calm_Harp_02',),
+                smm2SoundFile('Otoasobi_Calm_Harp_03',),
+                smm2SoundFile('Otoasobi_Calm_Harp_04',),
+                smm2SoundFile('Otoasobi_Calm_Harp_05',),
+                SoundEffects._calmHarp6Sound,
+                smm2SoundFile('Otoasobi_Calm_Harp_07',),
+                smm2SoundFile('Otoasobi_Calm_Harp_09',),
+                smm2SoundFile('Otoasobi_Calm_Harp_10',),
+                smm2SoundFile('Otoasobi_Calm_Pad_01',),
+                smm2SoundFile('Otoasobi_Calm_Pad_02',),
+                smm2SoundFile('Otoasobi_Calm_Pad_03',),
+                smm2SoundFile('Otoasobi_Calm_Pad_04',),
+                smm2SoundFile('Otoasobi_Calm_Pad_05',),
+                smm2SoundFile('Otoasobi_Calm_Pad_06',),
+                smm2SoundFile('Otoasobi_Calm_Pad_07',),
+                smm2SoundFile('Otoasobi_Calm_Pad_09',),
+                smm2SoundFile('Otoasobi_Calm_Pad_10',),
+                smm2SoundFile('Otoasobi_Calm_Pad_11',),
+                smm2SoundFile('Otoasobi_Calm_SE_01',),
+                smm2SoundFile('Otoasobi_Calm_SE_02',),
+                smm2SoundFile('Otoasobi_Calm_SE_03',),
+                smm2SoundFile('Otoasobi_Calm_SE_04',),
+                smm2SoundFile('Otoasobi_Calm_SE_05',),
+                smm2SoundFile('Otoasobi_Calm_SE_06',),
+                smm2SoundFile('Otoasobi_Calm_SE_07',),
+                smm2SoundFile('Otoasobi_Calm_SE_08_edit',),
+                SoundEffects._horror4Sound,
+            ],)
         }
 
-        protected override _createSMM2Sounds() {
-            return [
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Hit_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_02',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_03',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_04',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_05',),
-                SoundEffects._calmHarp6Sound,
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_07',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_09',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_10',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_02',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_03',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_04',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_05',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_06',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_07',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_09',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_10',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_11',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_02',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_03',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_04',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_05',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_06',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_07',),
-                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_08_edit',),
-                SoundEffects._horror4Sound,
-            ] as const
+        protected override _createSoundsInSmbOnLink() {
+            return new ArrayAsCollection([Tracks.PEACEFUL_LINK.file,],)
+        }
+
+        protected override _createSoundsInSmbOnSmb2() {
+            return new ArrayAsCollection([Tracks.PEACEFUL_SMB2.file,],)
         }
 
     }('Peaceful',)
@@ -824,28 +829,28 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds() {
-            //'se_otoasobi_hachoo'
-            const sounds = [
-                SoundEffects._calmHarp6Sound,
-                FileCreator.smm2SoundFile('Otoasobi_Horror_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_02',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_03',),
-                SoundEffects._horror4Sound,
-                FileCreator.smm2SoundFile('Otoasobi_Horror_05',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_02',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_03',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_04',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_05',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_06',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_07',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_08',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_Strings_01',),
-                FileCreator.smm2SoundFile('Otoasobi_Horror_Strings_02',),
-            ] as const
+        //README: The editor sound in Smm2 → Otoasobi_Horror_01
 
-            return new SMM2Sound(sounds, sounds[1], EMPTY_ARRAY, EMPTY_ARRAY,)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            //'se_otoasobi_hachoo'
+            return new ArrayAsCollection([
+                SoundEffects._calmHarp6Sound,
+                smm2SoundFile('Otoasobi_Horror_01',),
+                smm2SoundFile('Otoasobi_Horror_02',),
+                smm2SoundFile('Otoasobi_Horror_03',),
+                SoundEffects._horror4Sound,
+                smm2SoundFile('Otoasobi_Horror_05',),
+                smm2SoundFile('Otoasobi_Horror_SE_01',),
+                smm2SoundFile('Otoasobi_Horror_SE_02',),
+                smm2SoundFile('Otoasobi_Horror_SE_03',),
+                smm2SoundFile('Otoasobi_Horror_SE_04',),
+                smm2SoundFile('Otoasobi_Horror_SE_05',),
+                smm2SoundFile('Otoasobi_Horror_SE_06',),
+                smm2SoundFile('Otoasobi_Horror_SE_07',),
+                smm2SoundFile('Otoasobi_Horror_SE_08',),
+                smm2SoundFile('Otoasobi_Horror_Strings_01',),
+                smm2SoundFile('Otoasobi_Horror_Strings_02',),
+            ],)
         }
 
     }('Horror',)
@@ -856,10 +861,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            const sounds = FileCreator.smm1SoundFiles('SE_SAMBA_3D_Perc', 'SE_Samba3',)
+        //README: The editor sound in Smm1 → SE_Samba3
 
-            return new SMM1ExclusiveSound(sounds, sounds[1],)
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('SE_SAMBA_3D_Perc',), smm1SoundFile('SE_Samba3',),])
         }
 
     }('Festive Music',)
@@ -870,10 +875,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            const sounds = FileCreator.smm1SoundFiles('SE_Disco6measure', 'SE_Disco6measure_InUp2',)
+        //README: The editor sound in Smm2 → SE_Disco6measure_InUp2
 
-            return new SMM1ExclusiveSound(sounds, sounds[1],)
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('SE_Disco6measure',), smm1SoundFile('SE_Disco6measure_InUp2',),])
         }
 
     }('Rave Music',)
@@ -888,19 +893,14 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_04_HeartBeat_H_L_pxsps_l_ear', 'yr_SToy_04_HeartBeat_H_R_pxsps_r_ear',)
+        //README: The editor sound → yr_SToy_04_HeartBeat_p1
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,) {
+            return new ArrayAsCollection([smm2.getFirst(), smm2.get(1,), smm2.getLast(), smm1SoundFile('yr_SToy_04_HeartBeat_H_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_04_HeartBeat_H_R_pxsps_r_ear',),],)
         }
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            const smm1Sounds = smm1.sounds
-            const smm2Sounds = smm2.sounds
-
-            return new SMM1StandaloneSound([smm2Sounds[0]!, smm2Sounds[1]!, smm2Sounds[2]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2.editorSound, smm1, smm2,)
-        }
-
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('yr_SToy_04_HeartBeat_p1', 'yr_SToy_04_HeartBeat_p2', 'yr_SToy_04_HeartBeat_p3',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('yr_SToy_04_HeartBeat_p1',), smm2SoundFile('yr_SToy_04_HeartBeat_p2',), smm2SoundFile('yr_SToy_04_HeartBeat_p3',),],)
         }
 
     }('Heartbeat',)
@@ -915,12 +915,19 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_NOISE_short_1', 'yr_NOISE_short_1_pxsps_l_ear', 'yr_NOISE_short_2', 'yr_NOISE_short_2_pxsps_r_ear', 'yr_NOISE_short_3', 'yr_NOISE_short_3_pxsps_l_ear',)
+        //README: The editor sound in Smm1 → yr_NOISE_short_1
+        //README: The editor sound in Smm2 → se_otoasobi_silence
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([
+                smm1SoundFile('yr_NOISE_short_1',), smm1SoundFile('yr_NOISE_short_1_pxsps_l_ear',),
+                smm1SoundFile('yr_NOISE_short_2',), smm1SoundFile('yr_NOISE_short_2_pxsps_r_ear',),
+                smm1SoundFile('yr_NOISE_short_3',), smm1SoundFile('yr_NOISE_short_3_pxsps_l_ear',),
+            ],)
         }
 
-        protected override _createSMM2Sounds() {
-            return FileCreator.smm2SoundFiles('se_otoasobi_silence',)
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([smm2SoundFile('se_otoasobi_silence',),],)
         }
 
     }('Silence',)
@@ -931,8 +938,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',)
+        //README: The editor sound in Smm2 → hz_inco_1_removed1s50per
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('hz_inco_1_removed1s50per',), smm1SoundFile('hz_inco_1_L_pxsps_l_ear',), smm1SoundFile('hz_inco_1_R_pxsps_r_ear',),],)
         }
 
     }('Bird’s Tweeting Noise',)
@@ -943,8 +952,10 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createExclusiveSMM1Sounds() {
-            return FileCreator.smm1SoundFiles('yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',)
+        //README: The editor sound in Smm2 → yr_SToy_14_Bird_B_01
+
+        protected override _createSoundsInNoSpecificGameStyleInSmm1() {
+            return new ArrayAsCollection([smm1SoundFile('yr_SToy_14_Bird_B_01',), smm1SoundFile('yr_SToy_14_Bird_B_L_pxsps_l_ear',), smm1SoundFile('yr_SToy_14_Bird_B_R_pxsps_r_ear',),],)
         }
 
     }('Chicken’s Clucking Noise',)
@@ -960,15 +971,28 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound, smm2Adaptor: SoundEffectFromMusicAdaptor,) {
-            const sounds = smm2Adaptor.sounds
-
-            // @ts-ignore: TODO handle the music sound file as a valid possible instance
-            return new SMM1StandaloneSound([sounds[5], sounds[8], sounds[9], sounds[10], sounds[13], sounds[16], sounds[17], sounds[18],], smm2Adaptor.editorSound, smm1, smm2Adaptor,)
+        protected override _createSoundsInSmb() {
+            return new ArrayAsCollection([Tracks.BONUS_SMB_EDITOR.file, Tracks.BONUS_SMB.file, Tracks.BONUS_SMB_FAST.file,],)
         }
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.BONUS
+        protected override _createSoundsInSmb3() {
+            return new ArrayAsCollection([Tracks.BONUS_SMB3_EDITOR.file, Tracks.BONUS_SMB3.file, Tracks.BONUS_SMB3_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmw() {
+            return new ArrayAsCollection([Tracks.BONUS_SMW_EDITOR.file, Tracks.BONUS_SMW.file, Tracks.BONUS_SMW_FAST.file,],)
+        }
+
+        protected override _createSoundsInNsmbu() {
+            return new ArrayAsCollection([Tracks.BONUS_NSMBU_EDITOR.file, Tracks.BONUS_NSMBU.file, Tracks.BONUS_NSMBU_FAST.file,],)
+        }
+
+        protected override _createSoundsInNsmbuOnYoshi() {
+            return new ArrayAsCollection([Tracks.BONUS_NSMBU_YOSHI.file, Tracks.BONUS_NSMBU_YOSHI_FAST.file,],)
+        }
+
+        protected override _createSoundsInSm3dw() {
+            return new ArrayAsCollection([Tracks.BONUS_SM3DW_EDITOR.file, Tracks.BONUS_SM3DW.file, Tracks.BONUS_SM3DW_FAST.file,],)
         }
 
     }('Bonus Music',)
@@ -983,15 +1007,24 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound, smm2Adaptor: SoundEffectFromMusicAdaptor,) {
-            const sounds = smm2Adaptor.sounds
-
-            // @ts-ignore: TODO handle the music sound file as a valid possible instance
-            return new SMM1StandaloneSound([sounds[5], sounds[8], sounds[9], sounds[10], sounds[12], sounds[15], sounds[16], sounds[17],], smm2Adaptor.editorSound, smm1, smm2Adaptor,)
+        protected override _createSoundsInSmb() {
+            return new ArrayAsCollection([Tracks.BOSS_SMB_EDITOR.file, Tracks.BOSS_SMB.file, Tracks.BOSS_SMB_FAST.file,],)
         }
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.BOSS
+        protected override _createSoundsInSmb3() {
+            return new ArrayAsCollection([Tracks.BOSS_SMB3_EDITOR.file, Tracks.BOSS_SMB3.file, Tracks.BOSS_SMB3_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmw() {
+            return new ArrayAsCollection([Tracks.BOSS_SMW_EDITOR.file, Tracks.BOSS_SMW.file, Tracks.BOSS_SMW_FAST.file,],)
+        }
+
+        protected override _createSoundsInNsmbu() {
+            return new ArrayAsCollection([Tracks.BOSS_NSMBU_EDITOR.file, Tracks.BOSS_NSMBU.file, Tracks.BOSS_NSMBU_FAST.file,],)
+        }
+
+        protected override _createSoundsInSm3dw() {
+            return new ArrayAsCollection([Tracks.BOSS_SM3DW_EDITOR.file, Tracks.BOSS_SM3DW.file, Tracks.BOSS_SM3DW_FAST.file,],)
         }
 
     }('Boss Music',)
@@ -1002,8 +1035,24 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.FINAL_BOSS
+        protected override _createSoundsInSmb() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_SMB3_EDITOR.file, Tracks.FINAL_BOSS_SMB3.file, Tracks.FINAL_BOSS_SMB3_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmb3() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_SMB3_EDITOR.file, Tracks.FINAL_BOSS_SMB3.file, Tracks.FINAL_BOSS_SMB3_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmw() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_SMW_EDITOR.file, Tracks.FINAL_BOSS_SMW.file, Tracks.FINAL_BOSS_SMW_FAST.file,],)
+        }
+
+        protected override _createSoundsInNsmbu() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_NSMBU_EDITOR.file, Tracks.FINAL_BOSS_NSMBU.file, Tracks.FINAL_BOSS_NSMBU_FAST.file,],)
+        }
+
+        protected override _createSoundsInSm3dw() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_SM3DW_EDITOR.file, Tracks.FINAL_BOSS_SM3DW.file, Tracks.FINAL_BOSS_SM3DW_FAST.file,],)
         }
 
     }('Final Boss',)
@@ -1014,8 +1063,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.SUPER_MARIO_KART
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.SMK_EDITOR.file, Tracks.SMK.file,],)
         }
 
     }('Super Mario Kart',)
@@ -1026,8 +1075,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.SUPER_MARIO_64
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.SM64_EDITOR.file, Tracks.SM64.file,],)
         }
 
     }('Super Mario 64',)
@@ -1038,8 +1087,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.SUPER_MARIO_SUNSHINE
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.SMS_EDITOR.file, Tracks.SMS.file,],)
         }
 
     }('Super Mario Sunshine',)
@@ -1050,8 +1099,8 @@ export abstract class SoundEffects
         }
 
 
-        protected override _createSMM2Sounds(): Musics {
-            return Import.Musics.SUPER_MARIO_GALAXY
+        protected override _createSoundsInNoSpecificGameStyleInSmm2() {
+            return new ArrayAsCollection([Tracks.SMG_EDITOR.file, Tracks.SMG.file,],)
         }
 
     }('Super Mario Galaxy',)
@@ -1094,9 +1143,19 @@ export abstract class SoundEffects
     static #SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY?: TwistyTurnyAndWoozySounds
     static #CALM_HARP_6_SOUND?: CalmHarp6Sound
     static #HORROR_4_SOUND?: Horror4Sound
-    #sounds_exclusiveSmm1?: SMM1ExclusiveSoundEffectSound
-    #sounds_standaloneSmm1?: SMM1StandaloneSoundEffectSound
-    #sounds_smm2?: | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor
+
+    #soundsInNoSpecificGameStyleInSmm1?: CollectionHolder<SoundFile>
+    #soundsInNoSpecificGameStyleInSmm2?: CollectionHolder<SoundFile>
+
+    #soundsInSmb?: CollectionHolder<SoundFile>
+    #soundsInSmbOnLink?: CollectionHolder<SoundFile>
+    #soundsInSmbOnSmb2?: CollectionHolder<SoundFile>
+
+    #soundsInSmb3?: CollectionHolder<SoundFile>
+    #soundsInSmw?: CollectionHolder<SoundFile>
+    #soundsInNsmbu?: CollectionHolder<SoundFile>
+    #soundsInNsmbuOnYoshi?: CollectionHolder<SoundFile>
+    #soundsInSm3dw?: CollectionHolder<SoundFile>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -1140,7 +1199,7 @@ export abstract class SoundEffects
             const imageNumbers = this._createSMM1ImageNumbers()
             if (imageNumbers == null)
                 return this.#smm1ImageFiles = null
-            return this.#smm1ImageFiles = FileCreator.smm1ImageFiles(this.englishName, imageNumbers,)
+            return this.#smm1ImageFiles = smm1ImageFiles(this.englishName, imageNumbers,)
         }
         return this.#smm1ImageFiles
     }
@@ -1155,7 +1214,7 @@ export abstract class SoundEffects
             const imageName = this._createSMM2ImageName()
             if (imageName == null)
                 return this.#smm2ImageFile = null
-            return this.#smm2ImageFile = FileCreator.smm2ImageFile(this.englishName, imageName,)
+            return this.#smm2ImageFile = smm2ImageFile(this.englishName, imageName,)
         }
         return this.#smm2ImageFile
     }
@@ -1163,180 +1222,54 @@ export abstract class SoundEffects
     //endregion -------------------- Getter methods (image) --------------------
     //region -------------------- Getter methods (sound) --------------------
 
-    //region -------------------- Getter methods (SMM1 sound) --------------------
+    public get soundsInNoSpecificGameStyleInSmm1(): CollectionHolder<SoundFile> { return this.#soundsInNoSpecificGameStyleInSmm1 ??= this._createSoundsInNoSpecificGameStyleInSmm1(this.soundsInNoSpecificGameStyleInSmm2,) }
+    protected _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-    /**
-     * Create a {@link SMM1StandaloneSoundEffectSound} in that order:
-     *  - 1 image is from {@link smm2}
-     *  - 1 image are from {@link smm1}
-     *
-     * @param smm1 The {@link SMM1ExclusiveSoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds}
-     * @param smm2 The {@link SMM2SoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds} and {@link SoundEffectSound.editorSound editor sound}
-     * @onlyCalledByChildren
-     */
-    protected static _createExclusiveSmm1SoundWhere1IsFromSmm1And2(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): SMM1StandaloneSoundEffectSound {
-        const smm1Sounds = smm1.sounds
-        const smm2Sounds = smm2.sounds
-        const smm2EditorSound = smm2.editorSound
+    public get soundsInNoSpecificGameStyleInSmm2(): CollectionHolder<SoundFile> { return this.#soundsInNoSpecificGameStyleInSmm2 ??= this._createSoundsInNoSpecificGameStyleInSmm2() }
+    protected _createSoundsInNoSpecificGameStyleInSmm2(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-        return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!,], smm2EditorSound, smm1, smm2,)
-    }
+    public get soundsInSmb(): CollectionHolder<SoundFile> { return this.#soundsInSmb ??= this._createSoundsInSmb() }
+    protected _createSoundsInSmb(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-    /**
-     * Create a {@link SMM1StandaloneSoundEffectSound} in that order:
-     *  - 1 image is from {@link smm2}
-     *  - 2 images are from {@link smm1}
-     *
-     * @param smm1 The {@link SMM1ExclusiveSoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds}
-     * @param smm2 The {@link SMM2SoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds} and {@link SoundEffectSound.editorSound editor sound}
-     * @onlyCalledByChildren
-     */
-    protected static _createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): SMM1StandaloneSoundEffectSound {
-        const smm1Sounds = smm1.sounds
-        const smm2Sounds = smm2.sounds
-        const smm2EditorSound = smm2.editorSound
+    public get soundsInSmbOnLink(): CollectionHolder<SoundFile> { return this.#soundsInSmbOnLink ??= this._createSoundsInSmbOnLink() }
+    protected _createSoundsInSmbOnLink(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-        return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2EditorSound, smm1, smm2,)
-    }
+    public get soundsInSmbOnSmb2(): CollectionHolder<SoundFile> { return this.#soundsInSmbOnSmb2 ??= this._createSoundsInSmbOnSmb2() }
+    protected _createSoundsInSmbOnSmb2(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-    /** Create an exclusive {@link SMM1ExclusiveSoundEffectSound} from either:
-     *  - a <b>null</b>
-     *  - a {@link SMM1ExclusiveSoundEffectSound} directly
-     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a {@link SMM1ExclusiveSoundEffectSound} after-end)
-     *
-     * @onlyCalledOnce
-     * @onlyCalledBy soundsContainer_exclusiveSmm1
-     */
-    protected _createExclusiveSMM1Sounds(): NullOr<| SMM1ExclusiveSoundEffectSound | Array<SMM1SoundEffectSoundFile>> {
-        return null
-    }
+    public get soundsInSmb3(): CollectionHolder<SoundFile> { return this.#soundsInSmb3 ??= this._createSoundsInSmb3() }
+    protected _createSoundsInSmb3(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-    /**
-     * Create a standalone {@link SMM1StandaloneSoundEffectSound}
-     * from a {@link SMM1ExclusiveSoundEffectSound}, a {@link SMM2SoundEffectSound} and a {@link SoundEffectFromMusicAdaptor}
-     *
-     * @onlyCalledOnce
-     * @onlyCalledBy soundsContainer_standaloneSMM1
-     */
-    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound, smm2Adaptor: SoundEffectFromMusicAdaptor,): NullOr<SMM1StandaloneSoundEffectSound> {
-        return null
-    }
+    public get soundsInSmw(): CollectionHolder<SoundFile> { return this.#soundsInSmw ??= this._createSoundsInSmw() }
+    protected _createSoundsInSmw(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-    /** The "sound effect" exclusive sounds (in a container) of the {@link SMM1} game (& {@link SMM3DS} inclusively) */
-    public get soundsContainer_exclusiveSmm1(): SMM1ExclusiveSoundEffectSound {
-        if (this.#sounds_exclusiveSmm1 != null)
-            return this.#sounds_exclusiveSmm1
+    public get soundsInNsmbu(): CollectionHolder<SoundFile> { return this.#soundsInNsmbu ??= this._createSoundsInNsmbu() }
+    protected _createSoundsInNsmbu(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-        const value = this._createExclusiveSMM1Sounds()
-        if (value == null)
-            return this.#sounds_exclusiveSmm1 = EmptySound.get
-        if (isArray(value,))
-            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, new ArrayAsCollection(value,).getFirst(),)
-        return this.#sounds_exclusiveSmm1 = value
-    }
+    public get soundsInNsmbuOnYoshi(): CollectionHolder<SoundFile> { return this.#soundsInNsmbuOnYoshi ??= this._createSoundsInNsmbuOnYoshi() }
+    protected _createSoundsInNsmbuOnYoshi(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-    /** The "sound effect" sounds (in a container) of the {@link SMM1} game (& {@link SMM3DS} inclusively) */
-    public get soundsContainer_standaloneSMM1(): SMM1StandaloneSoundEffectSound {
-        if (this.#sounds_standaloneSmm1 != null)
-            return this.#sounds_standaloneSmm1
+    public get soundsInSm3dw(): CollectionHolder<SoundFile> { return this.#soundsInSm3dw ??= this._createSoundsInSm3dw() }
+    protected _createSoundsInSm3dw(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
 
-        const smm1 = this.soundsContainer_exclusiveSmm1
-        const smm2 = this.soundsContainer_smm2
-        const valueToCreate = smm2 instanceof SoundEffectFromMusicAdaptorContainer
-            ? this._createStandaloneSMM1Sounds(smm1, EmptySound.get, smm2,)
-            : this._createStandaloneSMM1Sounds(smm1, smm2 as SMM2SoundEffectSound, EmptySoundEffectFromMusicAdaptor.get,)
-
-        if (valueToCreate != null)
-            return this.#sounds_standaloneSmm1 = valueToCreate
-        if (smm1 === EmptySound.get)
-            return this.#sounds_standaloneSmm1 = EmptySound.get
-
-        return this.#sounds_standaloneSmm1 = new SMM1StandaloneSound(smm1.sounds, smm1.editorSound, smm1, EmptySound.get,)
-    }
-
-    /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS} exclusively */
-    public get sounds_exclusiveSmm1(): Array<SMM1SoundEffectSoundFile> {
-        return this.soundsContainer_exclusiveSmm1.sounds
-    }
-
-    /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS}, but using some {@link SMM2} sounds */
-    public get sounds_standaloneSmm1(): Array<SoundEffectSoundFile> {
-        return this.soundsContainer_standaloneSMM1.sounds
-    }
-
-    /** The "sound effect" sound for a {@link SMM1}/{@link SMM3DS} when placed in the editor */
-    public get editorSound_smm1(): NullOr<SoundEffectSoundFile> {
-        return this.soundsContainer_standaloneSMM1.editorSound
-    }
-
-    //endregion -------------------- Getter methods (SMM1 sound) --------------------
+    //endregion -------------------- Getter methods (sound) --------------------
     //region -------------------- Getter methods (shared sound) --------------------
 
     protected static get _soundsForTwistyTurnyAndWoozy(): TwistyTurnyAndWoozySounds {
-        return this.#SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY ??= FileCreator.smm2SoundFiles('Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',)
+        return this.#SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY ??= new ArrayAsCollection([smm2SoundFile('Otoasobi_DJ00',), smm2SoundFile('Otoasobi_DJ01',), smm2SoundFile('Otoasobi_DJ02',), smm2SoundFile('Otoasobi_DJ03',), smm2SoundFile('Otoasobi_DJ04',), smm2SoundFile('Otoasobi_DJ05',),],)
     }
 
     protected static get _calmHarp6Sound(): CalmHarp6Sound {
-        return this.#CALM_HARP_6_SOUND ??= FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_06',)
+        return this.#CALM_HARP_6_SOUND ??= smm2SoundFile('Otoasobi_Calm_Harp_06',)
     }
 
     protected static get _horror4Sound(): Horror4Sound {
-        return this.#HORROR_4_SOUND ??= FileCreator.smm2SoundFile('Otoasobi_Horror_SE_04',)
+        return this.#HORROR_4_SOUND ??= smm2SoundFile('Otoasobi_Horror_SE_04',)
     }
 
     //endregion -------------------- Getter methods (shared sound) --------------------
-    //region -------------------- Getter methods (SMM2 sound) --------------------
 
-    /** Create an exclusive {@link SMM2SoundEffectSound} from either:
-     *  - a <b>null</b>
-     *  - a {@link SMM2SoundEffectSound} directly
-     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a {@link SMM2SoundEffectSound} after-end)
-     *  - a {@link Musics} reference
-     *
-     * @onlyCalledOnce
-     * @onlyCalledBy soundsContainer_smm2
-     */
-    protected _createSMM2Sounds(): NullOr<| SMM2SoundEffectSound | Array<SMM2SoundEffectSoundFile> | Musics> {
-        return null
-    }
-
-    /** The "sound effect" sounds (in a container) of the {@link SMM2} game */
-    public get soundsContainer_smm2(): | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor {
-        if (this.#sounds_smm2 != null)
-            return this.#sounds_smm2
-
-        const value = this._createSMM2Sounds()
-        if (value == null)
-            return this.#sounds_smm2 = EmptySound.get
-        if (isArray(value,))
-            return this.#sounds_smm2 = new SMM2Sound(value, new ArrayAsCollection(value,).getFirst(), EMPTY_ARRAY, EMPTY_ARRAY,)
-        if (value instanceof Import.Musics)
-            return this.#sounds_smm2 = new SoundEffectFromMusicAdaptorContainer(value,)
-        return this.#sounds_smm2 = value
-    }
-
-    /** Every "sound effect" sounds stored in a {@link SMM2SoundEffectSound SMM2 "sound effect" sound} */
-    public get sounds_smm2(): PossibleSMM2SoundEffect {
-        return this.soundsContainer_smm2.sounds
-    }
-
-    /** The "sound effect" sound for a {@link SMM2} when placed in the editor */
-    public get editorSound_smm2(): NullOr<| SMM2SoundEffectSoundFile | PossibleSoundEffectMusicEditorName> {
-        return this.soundsContainer_smm2.editorSound
-    }
-
-    /** The "sound effect" link sounds stored in a {@link SMM2SoundEffectSound SMM2 "sound effect" sound} */
-    public get linkSounds(): PossibleValueOnLinkOrSMB2Value_SMM2 {
-        return this.soundsContainer_smm2.linkSounds
-    }
-
-    /** The "sound effect" {@link GameReferences.SUPER_MARIO_BROS_2 SMB2} sounds stored in a {@link SMM2SoundEffectSound SMM2 "sound effect" sound} */
-    public get smb2Sounds(): PossibleValueOnLinkOrSMB2Value_SMM2 {
-        return this.soundsContainer_smm2.smb2Sounds
-    }
-
-    //endregion -------------------- Getter methods (SMM2 sound) --------------------
-
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
 
@@ -1366,21 +1299,8 @@ export namespace SoundEffects {
 // @ts-ignore: TODO remove this test variable when the application will be complete
 (window.test ??= {}).SoundEffects = SoundEffects
 
-type PossibleSMM2SoundEffect = Array<| SMM2SoundEffectSoundFile | MusicSoundFile>
-
-//region -------------------- SMM2 sound file --------------------
-
-/** The {@link SMM2SoundEffectSoundFile} associated to every {@link SoundEffectSoundNamesForTwistyTurnyAndWoozy} */
-type TwistyTurnyAndWoozySounds = readonly [
-    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[0]>,
-    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[1]>,
-    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[2]>,
-    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[3]>,
-    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[4]>,
-    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[5]>,
-]
+/** The {@link SMM2SoundEffectSoundFile} associated to both {@link SoundEffects.TWISTY_TURNY} and {@link SoundEffects.WOOZY} */
+type TwistyTurnyAndWoozySounds = CollectionHolder<SMM2SoundEffectSoundFile<`Otoasobi_DJ0${| 0 | 1 | 2 | 3 | 4 | 5}`>>
 
 type CalmHarp6Sound = SMM2SoundEffectSoundFile<'Otoasobi_Calm_Harp_06'>
 type Horror4Sound = SMM2SoundEffectSoundFile<'Otoasobi_Horror_SE_04'>
-
-//endregion -------------------- SMM2 sound file --------------------
