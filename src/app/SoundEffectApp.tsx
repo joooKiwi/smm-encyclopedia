@@ -36,6 +36,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
 import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
+import {TimeCollection}                             from 'util/collection/TimeCollection'
 
 import ALL =                   SoundEffects.ALL
 import ALL_GAME_STYLES =       GameStyles.ALL
@@ -114,7 +115,7 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
     return <SubMain partial-id="soundEffect" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('sound effect.all',)}</AppTitle>
         <PageViewChanger>
-            <GameAsideContent game={game} gameStyles={gameStyles}/>
+            <GameAsideContent game={game} gameStyles={gameStyles} times={times}/>
             <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
             <TimeAsideContent time={time}/>
             <DisplayButtonGroup list="everySoundEffect (list)" card="everySoundEffect (card)" table="everySoundEffect (table)" current={viewDisplay}/>
@@ -216,14 +217,15 @@ interface SoundEffectAsideContentProperties
 
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
+    readonly times: TimeCollection
 
 }
 
 /** @reactComponent */
-function GameAsideContent({game, gameStyles,}: Pick<SoundEffectAsideContentProperties, | 'game' | 'gameStyles'>,) {
+function GameAsideContent({game, gameStyles, times,}: Pick<SoundEffectAsideContentProperties, | 'game' | 'gameStyles' | 'times'>,) {
     if (game == null)
         return null
-    if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
+    if (gameStyles.hasOnlySm3dw || times.hasOnlyNight)
         return <div id="soundEffect-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
             <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
             <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>

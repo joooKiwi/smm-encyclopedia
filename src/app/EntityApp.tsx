@@ -45,6 +45,7 @@ import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas i
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
 import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
+import {TimeCollection}                             from 'util/collection/TimeCollection'
 
 import ALL =             Entities.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
@@ -136,7 +137,7 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
             {sideEntity == null ? null : <EntitySideContent reference={sideEntity}/>}
         </aside>
         <PageViewChanger>
-            <GameAsideContent game={game} gameStyles={gameStyles}/>
+            <GameAsideContent game={game} gameStyles={gameStyles} times={times}/>
             <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
             <TimeAsideContent time={time}/>
             <DisplayButtonGroup list="everyEntity (list)" card="everyEntity (card)" table="everyEntity (table)" current={viewDisplay}/>
@@ -269,34 +270,35 @@ interface EntityAsideContentProperties
 
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
+    readonly times: TimeCollection
 
 }
 
 /** @reactComponent */
-function GameAsideContent({game, gameStyles,}: Pick<EntityAsideContentProperties, | 'game' | 'gameStyles'>,) {
+function GameAsideContent({game, gameStyles, times,}: Pick<EntityAsideContentProperties, | 'game' | 'gameStyles' | 'times'>,) {
     if (game == null)
         return null
-    if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
+    if (gameStyles.hasOnlySm3dw || times.hasOnlyNight)
         return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
             <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
-            <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-                <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
-                    <GameImage reference={SMM1}/>
-                </LinkButton>
-                <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
-                    <GameImage reference={SMM3DS}/>
-                </LinkButton>
-                <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
-                    <GameImage reference={SMM2}/>
-                </LinkButton>
-            </div>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+                <GameImage reference={SMM2}/>
+            </LinkButton>
         </div>
 
     return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
-        <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
-            <GameImage reference={SMM2}/>
-        </LinkButton>
+        <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
+            <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
+                <GameImage reference={SMM1}/>
+            </LinkButton>
+            <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
+                <GameImage reference={SMM3DS}/>
+            </LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+                <GameImage reference={SMM2}/>
+            </LinkButton>
+        </div>
     </div>
 }
 
