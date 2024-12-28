@@ -359,6 +359,12 @@
 
   "Category": "Category",
   "Group":    "Group",
+  "sound": {
+    "singular in Smm2":     "Sound ({{Name}})",
+    "singular in Smm1&3ds": "Sound ({{Name1}} & {{Name3ds}})",
+    "plural in Smm2":       "Sounds ({{Name}})",
+    "plural in Smm1&3ds":   "Sounds ({{Name1}} & {{Name3ds}})"
+  },
 
   "power-up": {"singular": "Power-up", "plural": "Power-ups" },
   "ride":     {"singular": "Ride",     "plural": "Rides" },

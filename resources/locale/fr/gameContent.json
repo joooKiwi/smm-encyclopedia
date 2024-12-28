@@ -359,6 +359,12 @@
 
   "Category": "Catégorie",
   "Group":    "Groupe",
+  "sound": {
+    "singular in Smm2":     "Son ({{Name}})",
+    "singular in Smm1&3ds": "Son ({{Name1}} & {{Name3ds}})",
+    "plural in Smm2":       "Sons ({{Name}})",
+    "plural in Smm1&3ds":   "Sons ({{Name1}} & {{Name3ds}})"
+  },
 
   "power-up": {"singular": "Amélioration", "plural": "Améliorations" },
   "ride":     {"singular": "Monture",      "plural": "Montures" },
