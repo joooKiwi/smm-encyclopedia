@@ -789,14 +789,21 @@ export class Tracks<const FILE extends NullOr<SoundFile> = NullOr<SoundFile>,
     //endregion -------------------- Enum instances (final boss) --------------------
     //region -------------------- Enum instances (other game) --------------------
 
-    public static readonly SMK =       new Tracks('music (SMK)',       repeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', 130_927,),)
-    public static readonly SMK_FAST =  new Tracks('fast music (SMK)',  repeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', 102_494,),)
-    public static readonly SM64 =      new Tracks('music (SM64)',      repeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', 181_140,),)
-    public static readonly SM64_FAST = new Tracks('fast music (SM64)', repeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', 151_154,),)
-    public static readonly SMS =       new Tracks('music (SMS)',       repeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', 434_950,),)
-    public static readonly SMS_FAST =  new Tracks('fast music (SMS)',  repeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', 392_890,),)
-    public static readonly SMG =       new Tracks('music (SMG)',       repeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', 419_760,),)
-    public static readonly SMG_FAST =  new Tracks('fast music (SMG)',  repeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', 353_407),)
+    public static readonly SMK_EDITOR = new Tracks('music (SMK)',       nonRepeatable('BGM_Otoasobi_SFCMarioKart_Circuit',),)
+    public static readonly SMK =        new Tracks('music (SMK)',       repeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', 130_927,),)
+    public static readonly SMK_FAST =   new Tracks('fast music (SMK)',  repeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', 102_494,),)
+
+    public static readonly SM64_EDITOR = new Tracks('music (SM64)',      nonRepeatable('BGM_Otoasobi_SuperMario64_Slider',),)
+    public static readonly SM64 =        new Tracks('music (SM64)',      repeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', 181_140,),)
+    public static readonly SM64_FAST =   new Tracks('fast music (SM64)', repeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', 151_154,),)
+
+    public static readonly SMS_EDITOR = new Tracks('music (SMS)',       nonRepeatable('BGM_Otoasobi_MarioSunshine_DolphicTown',),)
+    public static readonly SMS =        new Tracks('music (SMS)',       repeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', 434_950,),)
+    public static readonly SMS_FAST =   new Tracks('fast music (SMS)',  repeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', 392_890,),)
+
+    public static readonly SMG_EDITOR = new Tracks('music (SMG)',       nonRepeatable('BGM_Otoasobi_MarioGalaxy_WindGarden',),)
+    public static readonly SMG =        new Tracks('music (SMG)',       repeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', 419_760,),)
+    public static readonly SMG_FAST =   new Tracks('fast music (SMG)',  repeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', 353_407),)
 
     //endregion -------------------- Enum instances (other game) --------------------
 
