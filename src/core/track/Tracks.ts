@@ -1005,6 +1005,16 @@ export namespace Tracks {
     export const LINK_BONUSES = [Tracks.BONUS_LINK, Tracks.BONUS_LINK_FAST,] as const
     export const SMB2_BONUSES = [Tracks.BONUS_SMB2, Tracks.BONUS_SMB2_FAST,] as const
 
+    export const BONUSES = [
+        Tracks.BONUS_SMB_EDITOR,   Tracks.BONUS_SMB,   Tracks.BONUS_SMB_FAST,
+                                   Tracks.BONUS_LINK,  Tracks.BONUS_LINK_FAST,
+                                   Tracks.BONUS_SMB2,  Tracks.BONUS_SMB2_FAST,
+        Tracks.BONUS_SMB3_EDITOR,  Tracks.BONUS_SMB3,  Tracks.BONUS_SMB3_FAST,
+        Tracks.BONUS_SMW_EDITOR,   Tracks.BONUS_SMW,   Tracks.BONUS_SMW_FAST,
+        Tracks.BONUS_NSMBU_EDITOR, Tracks.BONUS_NSMBU, Tracks.BONUS_NSMBU_FAST,
+        Tracks.BONUS_SM3DW_EDITOR, Tracks.BONUS_SM3DW, Tracks.BONUS_SM3DW_FAST,
+    ] as const
+
 
     export const SMB_BOSSES =   [Tracks.BOSS_SMB,   Tracks.BOSS_SMB_FAST,   Tracks.BOSS_LINK, Tracks.BOSS_LINK_FAST, Tracks.BOSS_SMB2, Tracks.BOSS_SMB2_FAST,] as const
     export const SMB3_BOSSES =  [Tracks.BOSS_SMB3,  Tracks.BOSS_SMB3_FAST, ] as const
@@ -1015,6 +1025,16 @@ export namespace Tracks {
     export const LINK_BOSSES = [Tracks.BOSS_LINK, Tracks.BOSS_LINK_FAST,] as const
     export const SMB2_BOSSES = [Tracks.BOSS_SMB2, Tracks.BOSS_SMB2_FAST,] as const
 
+    export const BOSSES = [
+        Tracks.BOSS_SMB,   Tracks.BOSS_SMB_FAST,
+        Tracks.BOSS_LINK,  Tracks.BOSS_LINK_FAST,
+        Tracks.BOSS_SMB2,  Tracks.BOSS_SMB2_FAST,
+        Tracks.BOSS_SMB3,  Tracks.BOSS_SMB3_FAST,
+        Tracks.BOSS_SMW,   Tracks.BOSS_SMW_FAST,
+        Tracks.BOSS_SM3DW, Tracks.BOSS_SM3DW_FAST,
+        Tracks.BOSS_NSMBU, Tracks.BOSS_NSMBU_FAST,
+    ] as const
+
 
     export const SMB_FINAL_BOSSES =   [Tracks.FINAL_BOSS_SMB3,  Tracks.FINAL_BOSS_SMB3_FAST, Tracks.FINAL_BOSS_LINK, Tracks.FINAL_BOSS_LINK_FAST, Tracks.FINAL_BOSS_SMB2, Tracks.FINAL_BOSS_SMB2_FAST,] as const
     export const SMB3_FINAL_BOSSES =  [Tracks.FINAL_BOSS_SMB3,  Tracks.FINAL_BOSS_SMB3_FAST, ] as const
@@ -1024,6 +1044,15 @@ export namespace Tracks {
 
     export const LINK_FINAL_BOSSES = [Tracks.FINAL_BOSS_LINK, Tracks.FINAL_BOSS_LINK_FAST,] as const
     export const SMB2_FINAL_BOSSES = [Tracks.FINAL_BOSS_SMB2, Tracks.FINAL_BOSS_SMB2_FAST,] as const
+
+    export const FINAL_BOSSES = [
+        Tracks.FINAL_BOSS_LINK,  Tracks.FINAL_BOSS_LINK_FAST,
+        Tracks.FINAL_BOSS_SMB2,  Tracks.FINAL_BOSS_SMB2_FAST,
+        Tracks.FINAL_BOSS_SMB3,  Tracks.FINAL_BOSS_SMB3_FAST,
+        Tracks.FINAL_BOSS_SMW,   Tracks.FINAL_BOSS_SMW_FAST,
+        Tracks.FINAL_BOSS_SM3DW, Tracks.FINAL_BOSS_SM3DW_FAST,
+        Tracks.FINAL_BOSS_NSMBU, Tracks.FINAL_BOSS_NSMBU_FAST,
+    ] as const
 
 
     export const SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES =  [Tracks.BONUS_SMB3,  Tracks.BONUS_SMB3_FAST,                                                                               Tracks.BOSS_SMB3,  Tracks.BOSS_SMB3_FAST,  Tracks.FINAL_BOSS_SMB3,  Tracks.FINAL_BOSS_SMB3_FAST, ] as const
