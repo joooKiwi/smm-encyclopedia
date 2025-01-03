@@ -150,7 +150,7 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro entity', {
-                entityLink: <LinkText key="entityLink"  partial-id="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
+                entityLink: <LinkText key="entityLink" partial-id="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
                 entitiesLink: <LinkText key="entitiesLink" partial-id="entityLink" routeName="everyEntity" color="primary">{entities}</LinkText>,
                 smbLink: <LinkText key="smbLink" partial-id="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={SMB}/></LinkText>,
                 smb3Link: <LinkText key="smb3Link" partial-id="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={SMB3}/></LinkText>,

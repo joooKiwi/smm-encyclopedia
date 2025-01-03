@@ -157,7 +157,7 @@ function displaySideContent(action: Dispatch<SetStateAction<NullOr<Entities>>>, 
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityProperties & {displaySideContent(entity: Entities,): void,},) {
+function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityProperties & { displaySideContent(entity: Entities,): void, },) {
     const items = all.filter(({reference,},) =>
         games.hasAnyIn(reference,)
         && gameStyles.hasAnyIn(reference,)

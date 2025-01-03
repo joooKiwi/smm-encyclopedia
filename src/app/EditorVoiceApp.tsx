@@ -2,8 +2,8 @@ import 'app/_GameAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './EditorVoiceApp.scss'
 
-import type { NullOr, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}            from '@joookiwi/collection'
+import type {NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
 
 import type {EditorVoiceProperties} from 'app/AppProperties.types'
 import type {ReactProperties}       from 'util/react/ReactProperties'

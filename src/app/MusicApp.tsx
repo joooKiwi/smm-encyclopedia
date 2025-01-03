@@ -21,6 +21,7 @@ import SoundEffectImage                                  from 'core/soundEffect/
 import {SoundEffects}                                    from 'core/soundEffect/SoundEffects'
 import {DONT_VIEW_TRACE_IMAGE, VIEW_TRACE_IMAGE}         from 'core/editor/viewTraceImages'
 import {routeFromName}                                   from 'route/method/route.fromName'
+import {ArrayAsCollection}                               from 'util/collection/ArrayAsCollection'
 
 import BONUS_NSMBU =                           Tracks.BONUS_NSMBU
 import BONUS_NSMBU_FAST =                      Tracks.BONUS_NSMBU_FAST
@@ -149,7 +150,6 @@ import SM3DW_UNDERWATER_EDITORS =              Tracks.SM3DW_UNDERWATER_EDITORS
 import SM3DW_UNDERWATER_TIMES =                Tracks.SM3DW_UNDERWATER_TIMES
 import UNDERWATER_LESSON_EDITORS =             Tracks.UNDERWATER_LESSON_EDITORS
 import SM64 =                                  SoundEffects.SM64
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 /** @reactComponent */
 export default function MusicApp() {
@@ -1381,8 +1381,7 @@ function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsPrope
 //region -------------------- Time musics --------------------
 
 interface TimeMusicsProperties
-    extends MusicsProperties<ArrayOf4<Tracks>>,
-    ReactPropertiesWithOptionalChildren<ReactElement> {}
+    extends MusicsProperties<ArrayOf4<Tracks>>, ReactPropertiesWithOptionalChildren<ReactElement> {}
 
 /** @reactComponent */
 function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {

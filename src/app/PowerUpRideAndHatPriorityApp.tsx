@@ -274,7 +274,7 @@ function Legend() {
                     <div className="color rounded my-auto"/>
                     <UnfinishedText>With lag</UnfinishedText></li>
                 <li id="example-withoutLag" className="d-flex">
-                <div className="color rounded my-auto"/>
+                    <div className="color rounded my-auto"/>
                     <UnfinishedText>Without lag</UnfinishedText></li>
             </ul>
         </div>

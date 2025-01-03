@@ -74,16 +74,16 @@ export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: 
 
     const amountOfSelectedGameStyles = intersect(ALL_GAME_STYLES, gameStyles,).length
     const gameStyle = amountOfSelectedGameStyles === 5 || amountOfSelectedGameStyles === 4
-            ? InstrumentGameStyles.ALL_GAME_STYLES
-            : amountOfSelectedGameStyles !== 1
-                ? InstrumentGameStyles.MIXED_GAME_STYLE
-                : gameStyles.hasSmb
-                    ? InstrumentGameStyles.SMB
-                    : gameStyles.hasSmb3
-                        ? InstrumentGameStyles.SMB3
-                        : gameStyles.hasSmw
-                            ? InstrumentGameStyles.SMW
-                            : InstrumentGameStyles.NSMBU
+        ? InstrumentGameStyles.ALL_GAME_STYLES
+        : amountOfSelectedGameStyles !== 1
+            ? InstrumentGameStyles.MIXED_GAME_STYLE
+            : gameStyles.hasSmb
+                ? InstrumentGameStyles.SMB
+                : gameStyles.hasSmb3
+                    ? InstrumentGameStyles.SMB3
+                    : gameStyles.hasSmw
+                        ? InstrumentGameStyles.SMW
+                        : InstrumentGameStyles.NSMBU
 
     //endregion -------------------- Game style selection --------------------
     //region -------------------- Time selection --------------------

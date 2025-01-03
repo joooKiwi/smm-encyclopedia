@@ -3,10 +3,10 @@ import './ThemeApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {ThemeAppProperties}      from 'app/AppProperties.types'
-import type {Themes}                  from 'core/theme/Themes'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {ThemeAppProperties} from 'app/AppProperties.types'
+import type {Themes}             from 'core/theme/Themes'
+import type {GameCollection}     from 'util/collection/GameCollection'
+import type {ReactProperties}    from 'util/react/ReactProperties'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
@@ -101,7 +101,7 @@ function ThemeList({items,}: Pick<Theme_SubContentProperties, 'items'>,) {
 }
 
 /** @reactComponent */
-function ThemeCardList({items, type,}: Theme_SubContentProperties,){
+function ThemeCardList({items, type,}: Theme_SubContentProperties,) {
     if (type === ThemeTypes.COURSE)
         return <CardList partial-id="courseTheme" items={items} default={1} small={2} medium={5}>{it =>
             <>

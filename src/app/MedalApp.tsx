@@ -88,7 +88,7 @@ function MedalCardList({items,}: Medal_SubContentProperties,) {
 }
 
 /** @reactComponent */
-function MedalTable({items,}: Medal_SubContentProperties,){
+function MedalTable({items,}: Medal_SubContentProperties,) {
     return <Table id="medal-table" items={items} options={options} caption={gameContentTranslation('medal.all',)} headersColor="info"/>
 }
 

@@ -40,8 +40,8 @@ const RETURN_OF_LINES = new ArrayAsCollection([
 
 const otherGameReferences = (() => {
     const alreadyIncludedNames = new ArrayAsCollection<string>(join(join(
-        ALL_GAMES.map(it => it.englishName,),
-        ALL_GAME_STYLES.map(it => it.englishName,),),
+            ALL_GAMES.map(it => it.englishName,),
+            ALL_GAME_STYLES.map(it => it.englishName,),),
         new ArrayAsCollection(soundEffect_games,).map(it => it.englishName,),),)
     return Companion.values.filter(it => !alreadyIncludedNames.has(it.englishName,),)
 })()
