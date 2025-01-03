@@ -162,7 +162,7 @@ function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentLi
         <Image file={MUSIC_BLOCK.image.get(SMW,).getFirst()} className="entity-image"/>
         <div id="instrument-sounds" className="d-inline-block">
             {reference.instruments.map(it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
-                <InstrumentSound key={`Instrument sound #${i + 1}`} value={it}/>,)}
+                <InstrumentSound key={`Instrument sound #${i + 1} (${it.englishName})`} value={it}/>,)}
         </div>
         <span>{unfinishedText('Can make a sound out of a Music Block',)}</span>
         {comment == null ? null : <small className="comment">{
