@@ -16,7 +16,7 @@ import type {RouteCallback} from 'route/EveryRoutes.types'
  *
  * @see EveryRoutes
  */
-export class SimpleRoute<const NAME extends string = string,
+export class Route<const NAME extends string = string,
     const PATH extends string = string, > {
 
     //region -------------------- Fields --------------------

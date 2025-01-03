@@ -6,7 +6,7 @@ import type {FullUrlName as FullUrlName_Time, FullUrlValue as FullUrlValue_Time}
 import type {ViewDisplays}                                                                                                                                                                  from 'display/ViewDisplays'
 import type {Type as Type_ViewDisplay}                                                                                                                                                      from 'display/ViewDisplays.types'
 import type {EveryRoutes}                                                                                                                                                                   from 'route/EveryRoutes'
-import type {SimpleRoute}                                                                                                                                                                   from 'route/SimpleRoute'
+import type {Route}                                                                                                                                                                         from 'route/Route'
 import type {GameCollection}                                                                                                                                                                from 'util/collection/GameCollection'
 import type {GameStyleCollection}                                                                                                                                                           from 'util/collection/GameStyleCollection'
 import type {TimeCollection}                                                                                                                                                                from 'util/collection/TimeCollection'
@@ -245,7 +245,7 @@ export type PossibleRouteName = SimpleRouteMap[Names][0]
 export type PossibleStraightRoutePath = typeof EveryRoutes[Names]['urlValue']
 export type PossibleRoutePath = SimpleRouteMap[Names][1]
 /** All the possible route instances */
-export type PossibleRoute = SimpleRoute<PossibleRouteName, PossibleRoutePath>
+export type PossibleRoute = Route<PossibleRouteName, PossibleRoutePath>
 
 
 export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection, time: TimeCollection,) => ReactJSXElement

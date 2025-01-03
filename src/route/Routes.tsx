@@ -45,7 +45,7 @@ const allLanguages = new ArrayAsCollection(ALL_LANGUAGES,)
  *
  * At the root it has a "/"
  * and then the {@link ProjectLanguages project language} {@link ProjectLanguages.acronym acronym}
- * in parallel to the {@link EveryRoutes route instances} {@link SimpleRoute.path basic path}.
+ * in parallel to the {@link EveryRoutes route instances} {@link Route.path path}.
  *
  * If the path is correct for the {@link ProjectLanguages language},
  * then the {@link EveryRoutes route instances}'s values are processed with the mutation
@@ -94,10 +94,10 @@ const router = createHashRouter([{
 },)
 
 /**
- * Add the {@link SimpleRoute route found} if it exists by the {@link path} received
+ * Add the {@link Route} if it exists by the {@link path} received
  *
  * @param path   The path to find a route
- * @param action The action to add a {@link RouteObject} for the {@link SimpleRoute route found}
+ * @param action The action to add a {@link RouteObject} for the {@link Route}
  */
 function resolveLazyRoute(path: string, action: (routeId: NullOrString, children: MutableArray<RouteObject>,) => void,): void {
     const route = new ArrayAsCollection(ALL_ROUTES,).findFirstOrNull(it => path.endsWith(it.path,),)
