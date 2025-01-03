@@ -68,18 +68,15 @@ const router = createHashRouter([{
         //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
 
-        ...allLanguages.map<RouteObject>(language => {
-            const pathFromLanguage = `/${language.projectAcronym}` as const
-            return {
-                path: pathFromLanguage,
-                id: `language-${language.projectAcronym}`,
-                children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
-                loader() {
-                    LanguageCompanion.current = language
-                    return null
-                },
-            }
-        },),
+        ...allLanguages.map<RouteObject>(language => ({
+            path: language.projectAcronym,
+            id: `language-${language.projectAcronym}`,
+            children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
+            loader() {
+                LanguageCompanion.current = language
+                return null
+            },
+        }),),
 
         //endregion -------------------- Path from language --------------------
         new StraightFallbackRouteObject(EMPTY_STRING, it => redirectToByUrl(it,),),
@@ -91,6 +88,7 @@ const router = createHashRouter([{
         v7_fetcherPersist: true,
         v7_normalizeFormMethod: true,
         v7_partialHydration: true,
+        v7_relativeSplatPath: true,
         v7_skipActionErrorRevalidation: true,
     },
 },)
