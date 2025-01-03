@@ -5,7 +5,7 @@ import type {Nullable} from '@joookiwi/type'
 import type {EditorVoices}    from 'core/editorVoice/EditorVoices'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
-import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
+import StandaloneSound from 'util/file/sound/component/StandaloneSound'
 
 interface EditorVoiceSoundProperties
     extends ReactProperties {
@@ -25,14 +25,14 @@ export default function EditorVoiceSound({editorVoice, name,}: EditorVoiceSoundP
     const {regularFile, europeanFile,} = editorVoice
     if (europeanFile == null)
         return <div className="single-editorVoiceSound-container">
-            <SimpleSoundComponent file={regularFile} title={name}/>
+            <StandaloneSound file={regularFile} title={name}/>
         </div>
     return <div className="double-editorVoiceSound-container container">
         <div className="single-editorVoiceSound-container">
-            <SimpleSoundComponent file={regularFile} title={name}/>
+            <StandaloneSound file={regularFile} title={name}/>
         </div>
         <div className="single-editorVoiceSound-container">
-            <SimpleSoundComponent file={europeanFile} title={name}/>
+            <StandaloneSound file={europeanFile} title={name}/>
         </div>
     </div>
 

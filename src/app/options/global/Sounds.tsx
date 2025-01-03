@@ -2,11 +2,12 @@ import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}               from 'app/options/global/Sounds.types'
 import type {CompanionEnumByValueSingleton} from 'util/enumerable/Singleton.types'
-import type {SimpleSoundProperties}         from 'util/file/sound/component/property/SimpleSoundProperties'
+import type {SoundFile}                     from 'util/file/sound/SoundFile'
 import type {ClassWithValue}                from 'util/types/ClassWithValue'
+import type {ReactProperties}               from 'util/react/ReactProperties'
 
 import {CompanionEnumByValue} from 'util/enumerable/companion/CompanionEnumByValue'
-import SimpleSoundComponent   from 'util/file/sound/component/SimpleSound.component'
+import StandaloneSound        from 'util/file/sound/component/StandaloneSound'
 
 /**
  * The possible sound as either
@@ -15,8 +16,6 @@ import SimpleSoundComponent   from 'util/file/sound/component/SimpleSound.compon
  *  <li>Yes → Display the sound viewer</li>
  *  <li>No → Display no sound viewer</li>
  * </ul>
- *
- * @see SimpleSoundComponent
  */
 export abstract class Sounds
     extends Enum<Ordinals, Names>
@@ -26,8 +25,8 @@ export abstract class Sounds
 
     public static readonly YES = new class Sounds_Yes extends Sounds {
 
-        public override renderComponent(properties: SimpleSoundProperties,) {
-            return <SimpleSoundComponent {...properties}/>
+        public override renderComponent(properties: StandaloneSoundProperties,) {
+            return <StandaloneSound {...properties}/>
         }
 
     }(true,)
@@ -84,8 +83,17 @@ export abstract class Sounds
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract renderComponent(properties: SimpleSoundProperties,): ReactElement
+    public abstract renderComponent(properties: StandaloneSoundProperties,): ReactElement
 
     //endregion -------------------- Methods --------------------
+
+}
+
+interface StandaloneSoundProperties
+    extends ReactProperties {
+
+    readonly file: SoundFile
+
+    readonly title: string
 
 }

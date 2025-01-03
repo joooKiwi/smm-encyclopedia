@@ -3,7 +3,7 @@ import './MysteryMushroom.sound.scss'
 import type {MysteryMushrooms} from 'core/mysteryMushroom/MysteryMushrooms'
 import type {ReactProperties}  from 'util/react/ReactProperties'
 
-import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
+import StandaloneSound from 'util/file/sound/component/StandaloneSound'
 
 interface MysteryMushroomJumpSoundProperties
     extends ReactProperties {
@@ -21,10 +21,10 @@ export default function MysteryMushroomJumpSound({value,}: MysteryMushroomJumpSo
     const sound2 = value.jumpSound2
     if (sound2 == null)
         return <div className="mysteryMushroom-sound mysteryMushroom-single-sound">
-            <SimpleSoundComponent file={sound1} title="jumpSound-1"/>
+            <StandaloneSound file={sound1} title="jumpSound-1"/>
         </div>
     return <div className="mysteryMushroom-sound mysteryMushroom-dual-sound">
-        <SimpleSoundComponent file={sound1} title="jumpSound-1"/>
-        <SimpleSoundComponent file={sound2} title="jumpSound-2"/>
+        <StandaloneSound file={sound1} title="jumpSound-1"/>
+        <StandaloneSound file={sound2} title="jumpSound-2"/>
     </div>
 }

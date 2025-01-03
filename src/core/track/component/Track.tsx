@@ -1,7 +1,7 @@
 import type {Tracks}          from 'core/track/Tracks'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
-import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
+import StandaloneSound from 'util/file/sound/component/StandaloneSound'
 
 interface TrackProperties
     extends ReactProperties {
@@ -15,7 +15,7 @@ export default function Track({value,}: TrackProperties,) {
     const titleName = value.titleName
     if (file == null || titleName == null)
         return <NonPresentMusicAudio/> //FIXME: Remove once the file are all present
-    return <SimpleSoundComponent file={file} title={titleName}/>
+    return <StandaloneSound file={file} title={titleName}/>
 }
 
 function NonPresentMusicAudio() {

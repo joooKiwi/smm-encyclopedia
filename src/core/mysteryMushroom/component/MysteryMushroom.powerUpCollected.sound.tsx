@@ -3,7 +3,7 @@ import './MysteryMushroom.sound.scss'
 import type {MysteryMushrooms} from 'core/mysteryMushroom/MysteryMushrooms'
 import type {ReactProperties}  from 'util/react/ReactProperties'
 
-import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
+import StandaloneSound from 'util/file/sound/component/StandaloneSound'
 
 interface MysteryMushroomPowerUpCollectedSoundProperties
     extends ReactProperties {
@@ -17,6 +17,6 @@ export default function MysteryMushroomPowerUpCollectedSound({value,}: MysteryMu
     if (sound == null)
         return null
     return <div className="mysteryMushroom-sound mysteryMushroom-single-sound">
-        <SimpleSoundComponent file={sound} title="powerUpCollected-sound"/>
+        <StandaloneSound file={sound} title="powerUpCollected-sound"/>
     </div>
 }
