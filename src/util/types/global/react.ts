@@ -3,6 +3,8 @@ import type React                      from 'react'
 
 declare global {
 
+    type ReactReference<T,> = React.Ref<T>
+
     /** A type-alias of the {@link React}.{@link React.JSX JSX}.{@link React.JSX.Element Element} */
     type ReactJSXElement = React.JSX.Element
     type ReactElement = Nullable<React.ReactElement>
