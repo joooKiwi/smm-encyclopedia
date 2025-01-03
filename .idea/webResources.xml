@@ -10,6 +10,7 @@
             <path value="file://$PROJECT_DIR$/.github" />
             <path value="file://$PROJECT_DIR$/resources" />
             <path value="file://$PROJECT_DIR$/src/lang/locale" />
+            <path value="file://$PROJECT_DIR$/.idea" />
           </resourceRoots>
         </entryData>
       </entry>
