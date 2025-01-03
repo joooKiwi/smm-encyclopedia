@@ -1,8 +1,8 @@
 import './StandaloneSound.scss'
 
-import type {Nullable, NullOr, NullOrNumber} from '@joookiwi/type'
-import {MouseEvent, TouchEvent, useRef}      from 'react'
-import {useEffect, useMemo, useState}        from 'react'
+import type {Nullable, NullOrNumber}    from '@joookiwi/type'
+import {MouseEvent, TouchEvent, useRef} from 'react'
+import {useEffect, useMemo, useState}   from 'react'
 
 import type {SoundFile}       from 'util/file/sound/SoundFile'
 import type {SoundPlayer}     from 'util/file/sound/SoundPlayer'
@@ -174,7 +174,7 @@ function TimeRange({current, total,}: TimeRangeProperties,) {
 }
 
 function ProgressBar({current, setCurrent, total,}: ProgressBarProperties,) {
-    const progressBarContainerElement = useRef<NullOr<HTMLDivElement>>(null,)
+    const progressBarContainerElement = useRef<HTMLDivElement>(null,)
     const [canMove, setMove,] = useState(false,)
     const [fingerTargetToFollow, setFingerTargetToFollow,] = useState<NullOrNumber>(null,)
     const visualCurrentPercentage = Number((current / total * 100).toFixed(0,),)
