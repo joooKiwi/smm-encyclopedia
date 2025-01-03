@@ -11,22 +11,16 @@ import type {NameTraitWithADescription} from 'lang/name/NameTraitWithADescriptio
 export interface OfficialCourse
     extends NameTraitWithADescription<string, string, Name<string>> {
 
-    get reward(): CollectionHolder<MysteryMushrooms>
+    readonly reward: CollectionHolder<MysteryMushrooms>
 
+    readonly releaseDate: Date
+    readonly removalDate: NullOr<| Date | UnknownReference>
 
-    get releaseDate(): Date
+    readonly gameStyle: GameStyles
 
-    get removalDate(): NullOr<| Date | UnknownReference>
+    readonly courseThemeInTheMainArea: Themes
+    readonly courseThemeInTheSubArea: NullOr<Themes>
 
-
-    get gameStyle(): GameStyles
-
-
-    get courseThemeInTheMainArea(): Themes
-
-    get courseThemeInTheSubArea(): NullOr<Themes>
-
-
-    get amountOfTime(): PossibleAmountOfTime
+    readonly amountOfTime: PossibleAmountOfTime
 
 }
