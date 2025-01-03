@@ -67,7 +67,10 @@ interface ProgressBarProperties
 
 }
 
-/** @reactComponent */
+/**
+ * @todo load the same sound file at the position that is if it was already loaded on play
+ * @reactComponent
+ */
 export default function StandaloneSound({file, title,}: StandaloneSoundProperties,) {
     useEffect(() => () => {
         const soundPlayer = getSoundPlayer(file, title,)
@@ -177,7 +180,7 @@ function ProgressBar({current, setCurrent, total,}: ProgressBarProperties,) {
     const progressBarContainerElement = useRef<HTMLDivElement>(null,)
     const [canMove, setMove,] = useState(false,)
     const [fingerTargetToFollow, setFingerTargetToFollow,] = useState<NullOrNumber>(null,)
-    const visualCurrentPercentage = Number((current / total * 100).toFixed(0,),)
+    const visualCurrentPercentage = Number((current / total * 100).toFixed(2,),)
 
     return <div ref={progressBarContainerElement} className={`progressBar-container${canMove ? ' with-user-movement' : EMPTY_STRING} d-flex align-items-center bg-light bg-opacity-50 rounded mx-2`}
          role="progressbar"
