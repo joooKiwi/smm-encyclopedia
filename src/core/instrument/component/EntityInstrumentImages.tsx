@@ -3,10 +3,9 @@ import './EntityInstrumentImages.scss'
 import type {ReactProperties} from 'util/react/ReactProperties'
 import type {Instruments}     from 'core/instrument/Instruments'
 
-import Image               from 'app/tools/images/Image'
-import {GameStyles}        from 'core/gameStyle/GameStyles'
-import {Entities}          from 'core/entity/Entities'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
+import Image        from 'app/tools/images/Image'
+import {GameStyles} from 'core/gameStyle/GameStyles'
+import {Entities}   from 'core/entity/Entities'
 
 import EntityCompanion = Entities.Companion
 import NSMBU =           GameStyles.NSMBU
