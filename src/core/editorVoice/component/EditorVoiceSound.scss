@@ -3,7 +3,7 @@
   margin: var(--bs-spacer-xs);
   padding: var(--bs-spacer-xs);
 
-  :nth-child(1) {
+  > :nth-child(1) {
     margin-bottom: var(--bs-spacer-sm);
   }
 }
