@@ -155,6 +155,7 @@ function Controls({current, setCurrent, total,}: ControlsProperties,) {
     </div>
 }
 
+/** @reactComponent */
 function TimeRange({current, total,}: TimeRangeProperties,) {
     const currentMinute = Math.floor(current / 60,)
     const currentSecond = (current % 60).toFixed(1,)
@@ -176,6 +177,11 @@ function TimeRange({current, total,}: TimeRangeProperties,) {
     </div>
 }
 
+/**
+ * @todo Maybe look the pointer event instead of mouse/touch event → https://medium.com/@elmarti/farewell-mouse-touch-events-welcome-pointer-events-db36cee48a8a
+ * @todo Follow mouse movement outside of trigger → https://stackoverflow.com/questions/52410124/how-can-i-track-mouse-move-events-in-javascript-once-the-cursor-is-off-of-the-ta
+ * @reactComponent
+ */
 function ProgressBar({current, setCurrent, total,}: ProgressBarProperties,) {
     const progressBarContainerElement = useRef<HTMLDivElement>(null,)
     const [canMove, setMove,] = useState(false,)
