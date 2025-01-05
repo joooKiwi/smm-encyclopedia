@@ -12,7 +12,13 @@ import {Empty}                                           from 'util/emptyVariabl
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 import SMM1 =                    Games.SMM1
-import SMM2 =                     Games.SMM2
+import SMM2 =                    Games.SMM2
+
+//region -------------------- Import from deconstruction --------------------
+
+const {COURSE, ENTITY, MII_COSTUME, MYSTERY_MUSHROOM, POWER_UP, TAG,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
 
 /** @reactComponent */
 export default function DisplayViewBody() {
@@ -21,29 +27,29 @@ export default function DisplayViewBody() {
     const isSMM1Selected = games.has(SMM1,)
     // const isSMM3DSSelected = games.has(SMM3DS,)
     const isSMM2Selected = games.has(SMM2,)
-    const tag = OtherWordInTheGames.TAG.singularNameOnReference
-    const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
-    // const tags = OtherWordInTheGames.TAG.pluralNameOnReference
-    const tagsAsLowerCase = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
-    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+    const tag = TAG.singularNameOnReference
+    const tagAsLowerCase = TAG.singularLowerCaseNameOnReference
+    // const tags = TAG.pluralNameOnReference
+    const tagsAsLowerCase = TAG.pluralLowerCaseNameOnReference
+    const mysteryMushroom = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,)
     const mysteryMushroomAsLowerCase = mysteryMushroom.toLowerCase()
-    const mysteryMushrooms = OtherWordInTheGames.MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName,)
+    const mysteryMushrooms = MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName,)
     const mysteryMushroomsAsLowerCase = mysteryMushrooms.toLowerCase()
-    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
-    const miiCostumeAsLowerCase = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
-    // const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
-    const miiCostumesAsLowerCase = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
-    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-    const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
-    const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
-    const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
-    const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReference
-    const courses = OtherWordInTheGames.COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,)
-    const coursesAsLowerCase = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? courses.toLowerCase()
-    const powerUp = OtherWordInTheGames.POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.POWER_UP.singularEnglishName,)
+    const miiCostume = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumeAsLowerCase = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    // const miiCostumes = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const miiCostumesAsLowerCase = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const entities = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName,)
+    const entitiesAsLowerCase = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
+    const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
+    const courseAsLowerCase = COURSE.singularLowerCaseNameOnReference
+    const courses = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,)
+    const coursesAsLowerCase = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? courses.toLowerCase()
+    const powerUp = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,)
     const powerUpAsLowerCase = powerUp.toLowerCase()
-    const powerUps = OtherWordInTheGames.POWER_UP.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.POWER_UP.pluralEnglishName,)
+    const powerUps = POWER_UP.pluralNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralEnglishName,)
     const powerUpsAsLowerCase = powerUps.toLowerCase()
 
     return <div id="display-modal-body-container" className="container">
