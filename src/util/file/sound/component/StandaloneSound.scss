@@ -64,4 +64,5 @@
   }
 }
 
-
+// https://medium.com/@yev-/how-to-prevent-scroll-touch-move-on-mobile-web-parent-elements-while-allowing-it-on-children-f7acb793c621
+#root :has(.progressBar-container.with-user-movement) { touch-action: none }
