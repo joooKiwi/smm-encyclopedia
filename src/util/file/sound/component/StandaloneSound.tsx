@@ -182,7 +182,7 @@ function ProgressBar({current, setCurrent, total,}: ProgressBarProperties,) {
     const [fingerTargetToFollow, setFingerTargetToFollow,] = useState<NullOrNumber>(null,)
     const visualCurrentPercentage = Number((current / total * 100).toFixed(2,),)
 
-    return <div ref={progressBarContainerElement} className={`progressBar-container${canMove ? ' with-user-movement' : EMPTY_STRING} d-flex align-items-center bg-light bg-opacity-50 rounded mx-2`}
+    return <div ref={progressBarContainerElement} className={`progressBar-container${canMove || fingerTargetToFollow != null ? ' with-user-movement' : EMPTY_STRING} d-flex align-items-center bg-light bg-opacity-50 rounded mx-2`}
          role="progressbar"
          aria-valuemin={0} aria-valuenow={visualCurrentPercentage} aria-valuemax={100} style={{'--progress-percentage': `${visualCurrentPercentage}%`,}}
          onClick={it => changeCurrent(setCurrent, total, progressBarContainerElement.current, it,) }
