@@ -20,8 +20,8 @@ export default function Footer() {
                     <small>{contentTranslation('React application made by',)}: </small>JóôòKiwi
                 </span>
                 <small className="text-center text-light">
-                    {contentTranslation('Every image are the propriety of Nintendo', {
-                        Nintendo: <strong key="Nintendo" className="Nintendo text-white bg-danger bg-opacity-75 border border-white rounded rounded-pill p-1">Nintendo<span className="opacity-50">™</span></strong>,
+                    {contentTranslation('Every image and sound are the propriety of Nintendo', {
+                        Nintendo: <strong key="Nintendo" className="Nintendo text-white bg-danger bg-opacity-75 rounded rounded-pill p-1">Nintendo<span className="opacity-50">™</span></strong>,
                     },)}
                 </small>
                 <small className="text-center text-light">
