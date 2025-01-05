@@ -21,6 +21,7 @@ import CardList                                     from 'app/util/CardList'
 import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
 import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import LinkButton                                   from 'app/tools/button/LinkButton'
@@ -100,6 +101,7 @@ export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: 
 
     return <SubMain partial-id="instrument" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('instrument.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('instrument.singular',)}/>
         <PageViewChanger>
             <GameAsideContent game={game}/>
             <GameStyleAsideContent gameStyle={gameStyle} gameStyles={gameStyles}/>

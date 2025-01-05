@@ -1,5 +1,6 @@
 import {unfinishedText}                                                                from 'app/tools/text/UnfinishedText'
 import PageProgress                                                                    from 'app/util/PageProgress'
+import PageTitle                                                                       from 'app/util/PageTitle'
 import {OtherWordInTheGames}                                                           from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}                                    from 'lang/components/translationMethods'
 import {MARIO_MAKER_2_WIKI_FANDOM_LINK, SUPER_MARIO_WIKI_LINK, THE_CUTTING_FLOOR_LINK} from 'external/WikiLinks'
@@ -28,6 +29,7 @@ export default function HomeApp() {
 
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title',)}</h1>
+        <PageTitle value={contentTranslation('Home',)}/>
         <div className="container-lg alert alert-warning" role="alert">
             {contentTranslation('home.warning.in construction',)}
             {contentTranslation('home.warning.more details',)}

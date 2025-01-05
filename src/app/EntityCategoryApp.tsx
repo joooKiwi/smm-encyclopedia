@@ -11,6 +11,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import AppTitle                         from 'app/util/AppTitle'
 import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
+import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
 import {EntityCategories}               from 'core/entityCategory/EntityCategories'
@@ -42,6 +43,7 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
 
     return <SubMain partial-id="entityCategory" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)}</AppTitle>
+        <PageTitle value={gameContentTranslation('entity category.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyEntityCategory (list)" card="everyEntityCategory (card)" table="everyEntityCategory (table)" current={viewDisplay}/>
         </PageViewChanger>

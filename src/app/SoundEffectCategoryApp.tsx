@@ -9,6 +9,7 @@ import {SoundEffectCategoryAppOption} from 'app/options/SoundEffectCategoryAppOp
 import AppTitle                       from 'app/util/AppTitle'
 import CardList                       from 'app/util/CardList'
 import List                           from 'app/util/List'
+import PageTitle                      from 'app/util/PageTitle'
 import PageViewChanger                from 'app/util/PageViewChanger'
 import SubMain                        from 'app/util/SubMain'
 import Table                          from 'app/tools/table/Table'
@@ -38,6 +39,7 @@ const options = SoundEffectCategoryAppOption.CompanionEnum.get.values
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
     return <SubMain partial-id="soundEffectCategory" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('sound effect category.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('sound effect category.singular',)}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everySoundEffectCategory (list)" card="everySoundEffectCategory (card)" table="everySoundEffectCategory (table)" current={viewDisplay}/>
         </PageViewChanger>

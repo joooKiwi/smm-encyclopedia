@@ -7,6 +7,7 @@ import {ReactProperties, ReactPropertiesWithChildren, ReactPropertiesWithOptiona
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
 import UnfinishedText                                    from 'app/tools/text/UnfinishedText'
+import PageTitle                                         from 'app/util/PageTitle'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {Entities}                                        from 'core/entity/Entities'
 import {GameStyles}                                      from 'core/gameStyle/GameStyles'
@@ -155,6 +156,7 @@ import SM64 =                                  SoundEffects.SM64
 export default function MusicApp() {
     return <div id="music-app-container">
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('music.title',)}</h1>
+        <PageTitle value={contentTranslation('music.singular',)}/>
         <div className="container-md mb-3">
             {contentTranslation('music.introduction.1. present',)}
             {contentTranslation('music.introduction.2. no sound effect', {

@@ -27,9 +27,10 @@ import AppTitle                                     from 'app/util/AppTitle'
 import CardList                                     from 'app/util/CardList'
 import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
 import Description                                  from 'app/util/Description'
+import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
-import List                                         from 'app/util/List'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
@@ -101,6 +102,7 @@ export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitA
 
     return <SubMain partial-id="limit" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation(`limit.${type.type}.all`,)}</AppTitle>
+        <PageTitle value={gameContentTranslation('limit.singular',)}/>
         <PageViewChanger>
             <TypeAsideContent type={type}/>
             <GameAsideContent type={type} game={game}/>

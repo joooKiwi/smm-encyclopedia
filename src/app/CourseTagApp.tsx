@@ -20,6 +20,7 @@ import CardList                                     from 'app/util/CardList'
 import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
 import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import FirstAppearance                              from 'core/courseTag/component/FirstAppearance'
@@ -46,16 +47,16 @@ const options = CourseTagAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {
-    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase()
-    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
-    const tag = TAG.singularLowerCaseNameOnReference
-    const tags = TAG.pluralLowerCaseNameOnReference
+    const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
+    const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+    const coursesAsLowerCase = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
+    const tag = TAG.singularNameOnReference
+    const tagAsLowerCase = TAG.singularLowerCaseNameOnReference
+    const tagsAsLowerCase = TAG.pluralLowerCaseNameOnReference
 
     return <SubMain partial-id="courseTag" viewDisplay={viewDisplay}>
-        <AppTitle>{gameContentTranslation('course tag.all', {
-            course: course, courses: courses,
-            tag: tag, tags: tags,
-        },)}</AppTitle>
+        <AppTitle>{gameContentTranslation('course tag.all', {course: courseAsLowerCase, courses: coursesAsLowerCase, tag: tagAsLowerCase, tags: tagsAsLowerCase,},)}</AppTitle>
+        <PageTitle value={gameContentTranslation('course tag.singular', {Course: course, course: courseAsLowerCase, Tag: tag, tag: tagAsLowerCase,},)}/>
         <PageViewChanger>
             <CourseTagAsideContent type={type}/>
             <DisplayButtonGroup list={`${type.routeName} (list)`} card={`${type.routeName} (card)`} table={`${type.routeName} (table)`} current={viewDisplay}/>

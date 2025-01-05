@@ -21,6 +21,7 @@ import CardList                                     from 'app/util/CardList'
 import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
 import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
@@ -78,6 +79,7 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
 
     return <SubMain partial-id="characterName" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('character name.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('character name.singular',)}/>
         <PageViewChanger>
             <GameAsideContent game={game}/>
             <TimeAsideContent time={time}/>

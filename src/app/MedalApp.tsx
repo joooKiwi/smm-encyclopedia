@@ -11,6 +11,7 @@ import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import AppTitle                 from 'app/util/AppTitle'
 import CardList                 from 'app/util/CardList'
 import List                     from 'app/util/List'
+import PageTitle                from 'app/util/PageTitle'
 import PageViewChanger          from 'app/util/PageViewChanger'
 import SubMain                  from 'app/util/SubMain'
 import {Medals}                 from 'core/medal/Medals'
@@ -38,6 +39,7 @@ export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) 
 
     return <SubMain partial-id="medal" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('medal.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('medal.singular',)}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMedal (list)" card="everyMedal (card)" table="everyMedal (table)" current={viewDisplay}/>
         </PageViewChanger>

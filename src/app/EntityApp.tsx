@@ -24,6 +24,7 @@ import EntitySideContent                            from 'app/side/EntitySideCon
 import AppTitle                                     from 'app/util/AppTitle'
 import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
@@ -133,6 +134,7 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
         <AppTitle>{gameContentTranslation('entity.all', {
             Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
         },)}</AppTitle>
+        <PageTitle value={entity}/>
         <aside id="entity-side-content">
             {sideEntity == null ? null : <EntitySideContent reference={sideEntity}/>}
         </aside>

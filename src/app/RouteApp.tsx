@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 
 import type {Names, PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}          from 'util/react/ReactProperties'
+
+import PageTitle                       from 'app/util/PageTitle'
 import {EveryRoutes}                   from 'route/EveryRoutes'
 
 import Companion = EveryRoutes.Companion
@@ -16,6 +18,7 @@ import Companion = EveryRoutes.Companion
 export default function RouteApp() {
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">Every paths in the application</h1>
+        <PageTitle value="Route"/>
         <UniqueSection id="home-paths" target="home-linkPaths" name="Home" path="home"/>
         <UniqueSection id="about-paths" target="about-linkPaths" name="About" path="about"/>
         <UniqueSection id="sources-paths" target="sources-linkPaths" name="Sources" path="sources"/>

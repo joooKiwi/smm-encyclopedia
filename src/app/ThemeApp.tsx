@@ -20,6 +20,7 @@ import Table                                             from 'app/tools/table/T
 import AppTitle                                          from 'app/util/AppTitle'
 import CardList                                          from 'app/util/CardList'
 import List                                              from 'app/util/List'
+import PageTitle                                         from 'app/util/PageTitle'
 import PageViewChanger                                   from 'app/util/PageViewChanger'
 import SubMain                                           from 'app/util/SubMain'
 import {Games}                                           from 'core/game/Games'
@@ -50,6 +51,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
 
     return <SubMain partial-id="theme" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('theme.all.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('theme.singular',)}/>
         <PageViewChanger>
             <TypeAsideContent type={type}/>
             <GameAsideContent type={type} games={games}/>

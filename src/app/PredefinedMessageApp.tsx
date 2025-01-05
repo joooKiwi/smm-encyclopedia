@@ -11,6 +11,7 @@ import {PredefinedMessageAppOption}     from 'app/options/PredefinedMessageAppOp
 import AppTitle                         from 'app/util/AppTitle'
 import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
+import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
 import {PredefinedMessages}             from 'core/predefinedMessage/PredefinedMessages'
@@ -40,6 +41,7 @@ export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterP
             singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
             pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
         },)}</AppTitle>
+        <PageTitle value={unfinishedText('Predefined message',)}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyPredefinedMessage (list)" card="everyPredefinedMessage (card)" table="everyPredefinedMessage (table)" current={viewDisplay}/>
         </PageViewChanger>

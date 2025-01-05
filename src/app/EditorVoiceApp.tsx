@@ -22,6 +22,7 @@ import CardList                                     from 'app/util/CardList'
 import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
 import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
@@ -81,6 +82,7 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
 
     return <SubMain partial-id="editorVoice" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('editor voice.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('editor voice.singular',)}/>
         <PageViewChanger>
             <GameAsideContent game={game}/>
             <TimeAsideContent time={time}/>

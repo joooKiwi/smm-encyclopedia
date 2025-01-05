@@ -20,6 +20,7 @@ import CardList                 from 'app/util/CardList'
 import ContentBeingDisplayed    from 'app/util/ContentBeingDisplayed'
 import Description              from 'app/util/Description'
 import List                     from 'app/util/List'
+import PageTitle                from 'app/util/PageTitle'
 import PageViewChanger          from 'app/util/PageViewChanger'
 import SubMain                  from 'app/util/SubMain'
 import {Games}                  from 'core/game/Games'
@@ -59,6 +60,7 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
 
     return <SubMain partial-id="gameStyle" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('game style.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('game.singular',)}/>
         <PageViewChanger>
             <GameAsideContent game={game}/>
             <DisplayButtonGroup list="everyGameStyle (list)" card="everyGameStyle (card)" table="everyGameStyle (table)" current={viewDisplay}/>

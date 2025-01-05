@@ -2,6 +2,7 @@ import './GameReferenceApp.scss'
 
 import {Fragment} from 'react'
 
+import PageTitle                from 'app/util/PageTitle'
 import {Games}                  from 'core/game/Games'
 import GameImage                from 'core/game/component/GameImage'
 import {GameReferences}         from 'core/gameReference/GameReferences'
@@ -50,6 +51,7 @@ const otherGameReferences = (() => {
 export default function GameReferenceApp() {
     return <div id="gameReference-container" className="container-fluid main-container">
         <h2 id="main-names-title" className="names-title">{gameContentTranslation('game reference.plural',)}</h2>
+        <PageTitle value={gameContentTranslation('game reference.singular',)}/>
         <div id="game-names-container" className="names-container">
             <h3 id="game-names-title" className="names-title">{gameContentTranslation('game.plural',)}</h3>
             <div id="game-name-container" className="container-fluid name-container">

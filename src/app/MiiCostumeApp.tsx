@@ -12,6 +12,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import AppTitle                         from 'app/util/AppTitle'
 import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
+import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
 import {MiiCostumes}                    from 'core/miiCostume/MiiCostumes'
@@ -42,11 +43,13 @@ const options = MiiCostumeAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
-    const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const miiCostume = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumeAsLowerCase = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumesAsLowerCase = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
 
     return <SubMain partial-id="miiCostume" viewDisplay={viewDisplay}>
-        <AppTitle>{gameContentTranslation('mii costume.all', {singularName: miiCostume, pluralName: miiCostumes,},)}</AppTitle>
+        <AppTitle>{gameContentTranslation('mii costume.all', {singularName: miiCostumeAsLowerCase, pluralName: miiCostumesAsLowerCase,},)}</AppTitle>
+        <PageTitle value={miiCostume}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMiiCostume (list)" card="everyMiiCostume (card)" table="everyMiiCostume (table)" current={viewDisplay}/>
         </PageViewChanger>

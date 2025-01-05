@@ -11,6 +11,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import AppTitle                         from 'app/util/AppTitle'
 import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
+import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
 import {MiiCostumeCategories}           from 'core/miiCostumeCategory/MiiCostumeCategories'
@@ -38,11 +39,14 @@ const options = MiiCostumeCategoryAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const miiCostume = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
-    const miiCostumes = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const miiCostume = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumeAsLowerCase = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumes = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const miiCostumesAsLowerCase = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
 
     return <SubMain partial-id="miiCostumeCategory" viewDisplay={viewDisplay}>
-        <AppTitle>{gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)}</AppTitle>
+        <AppTitle>{gameContentTranslation('mii costume category.all', {singularName: miiCostumeAsLowerCase, pluralName: miiCostumesAsLowerCase,},)}</AppTitle>
+        <PageTitle value={gameContentTranslation('mii costume category.singular', {SingularName: miiCostume, singularName: miiCostumeAsLowerCase, PluralName: miiCostumes, pluralName: miiCostumesAsLowerCase,},)}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMiiCostumeCategory (list)" card="everyMiiCostumeCategory (card)" table="everyMiiCostumeCategory (table)" current={viewDisplay}/>
         </PageViewChanger>

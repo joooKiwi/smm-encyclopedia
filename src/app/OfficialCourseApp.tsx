@@ -11,6 +11,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import AppTitle                         from 'app/util/AppTitle'
 import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
+import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
 import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
@@ -40,11 +41,13 @@ const options = OfficialCourseAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperties,) {
-    const course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName.toLowerCase(),)
-    const courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
+    const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
+    const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+    const coursesAsLowerCase = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
 
     return <SubMain partial-id="officialCourse" viewDisplay={viewDisplay}>
-        <AppTitle>{gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)}</AppTitle>
+        <AppTitle>{gameContentTranslation('official course.all', {singularName: courseAsLowerCase, pluralName: coursesAsLowerCase,},)}</AppTitle>
+        <PageTitle value={gameContentTranslation('official course.singular', {singularName: courseAsLowerCase, SingularName: course,})}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyOfficialCourse (list)" card="everyOfficialCourse (card)" table="everyOfficialCourse (table)" current={viewDisplay}/>
         </PageViewChanger>

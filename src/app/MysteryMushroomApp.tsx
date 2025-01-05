@@ -11,6 +11,7 @@ import UnfinishedText, {unfinishedText}      from 'app/tools/text/UnfinishedText
 import AppTitle                              from 'app/util/AppTitle'
 import CardList                              from 'app/util/CardList'
 import List                                  from 'app/util/List'
+import PageTitle                             from 'app/util/PageTitle'
 import PageViewChanger                       from 'app/util/PageViewChanger'
 import SubMain                               from 'app/util/SubMain'
 import {MysteryMushrooms}                    from 'core/mysteryMushroom/MysteryMushrooms'
@@ -50,11 +51,13 @@ const options = MysteryMushroomAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    const mysteryMushroom = MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
-    const mysteryMushrooms = MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
+    const mysteryMushroom = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,)
+    const mysteryMushroomAsLowerCase = mysteryMushroom.toLowerCase()
+    const mysteryMushroomsAsLowerCase = MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
 
     return <SubMain partial-id="mysteryMushroom" viewDisplay={viewDisplay}>
-        <AppTitle>{gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)}</AppTitle>
+        <AppTitle>{gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroomAsLowerCase, pluralName: mysteryMushroomsAsLowerCase,},)}</AppTitle>
+        <PageTitle value={mysteryMushroom}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMysteryMushroom (list)" card="everyMysteryMushroom (card)" table="everyMysteryMushroom (table)" current={viewDisplay}/>
         </PageViewChanger>

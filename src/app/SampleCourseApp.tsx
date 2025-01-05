@@ -11,6 +11,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import AppTitle                         from 'app/util/AppTitle'
 import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
+import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
 import SubMain                          from 'app/util/SubMain'
 import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
@@ -43,6 +44,7 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
 
     return <SubMain partial-id="sampleCourse" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)}</AppTitle>
+        <PageTitle value={gameContentTranslation('sample course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everySampleCourse (list)" card="everySampleCourse (card)" table="everySampleCourse (table)" current={viewDisplay}/>
         </PageViewChanger>

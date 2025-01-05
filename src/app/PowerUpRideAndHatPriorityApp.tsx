@@ -20,6 +20,7 @@ import {Arrows}                                     from 'app/tools/arrow/Arrows
 import GroupImages                                  from 'app/tools/images/GroupImages'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
+import PageTitle                                    from 'app/util/PageTitle'
 import {Entities}                                   from 'core/entity/Entities'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
@@ -159,6 +160,7 @@ export default function PowerUpRideAndHatPriorityApp({type, games,}: PowerUpAndR
 
     return <>
         <Title type={type}/>
+        <PageTitle value={unfinishedText('Priority',)}/>
         <nav id="navigationButtonGroup-container">
             <div className="d-flex flex-wrap justify-content-around align-items-center">
                 <div><GameStyleContent games={games} gameStyle={gameStyle} change={setGameStyle}/></div>

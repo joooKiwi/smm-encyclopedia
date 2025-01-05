@@ -21,6 +21,7 @@ import {SoundEffectTimes}                           from 'app/property/SoundEffe
 import AppTitle                                     from 'app/util/AppTitle'
 import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
+import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
 import {Games}                                      from 'core/game/Games'
@@ -114,6 +115,7 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
 
     return <SubMain partial-id="soundEffect" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('sound effect.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('sound effect.singular',)}/>
         <PageViewChanger>
             <GameAsideContent game={game} gameStyles={gameStyles} times={times}/>
             <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
