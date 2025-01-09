@@ -1,12 +1,9 @@
-import 'app/PowerUpRideAndHatPriorityApp.scss'
+import 'app/_GameAsideContent.scss'
+import 'app/_GameStyleAsideContent.scss'
+import './PriorityApp.scss'
 
-import type {NullOr} from '@joookiwi/type'
-import {useState}    from 'react'
-
-import type {PowerUpAndRidePriorityProperties}                                               from 'app/AppProperties.types'
+import type {PriorityProperties}                                                             from 'app/AppProperties.types'
 import type {GroupOf5PowerUpPriorityArrowProperties, GroupOf6PowerUpPriorityArrowProperties} from 'app/powerUp/group/GroupPriority.types'
-import type {PowerUpPriorityTypes}                                                           from 'app/property/PowerUpPriorityTypes'
-import type {ClassWithType}                                                                  from 'core/ClassWithType'
 import type {GameCollection}                                                                 from 'util/collection/GameCollection'
 import type {ReactProperties}                                                                from 'util/react/ReactProperties'
 
@@ -20,18 +17,27 @@ import {Arrows}                                     from 'app/tools/arrow/Arrows
 import GroupImages                                  from 'app/tools/images/GroupImages'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
+import AppTitle                                     from 'app/util/AppTitle'
 import PageTitle                                    from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import {Entities}                                   from 'core/entity/Entities'
+import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
+import NSMBU =  GameStyles.NSMBU
+import SMB =    GameStyles.SMB
+import SMB3 =   GameStyles.SMB3
+import SMM1 =   Games.SMM1
+import SMM2 =   Games.SMM2
+import SMM3DS = Games.SMM3DS
+import SMW =    GameStyles.SMW
+import SM3DW =  GameStyles.SM3DW
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -155,116 +161,126 @@ const lakituCloud_nsmbuImages = LAKITU_CLOUD.editorImage.get(NSMBU,)
  * @TODO Replace the state with a property
  * @reactComponent
  */
-export default function PowerUpRideAndHatPriorityApp({type, games,}: PowerUpAndRidePriorityProperties,) {
-    const [gameStyle, setGameStyle,] = useState<NullOr<GameStyles>>(null,)
-
-    return <>
-        <Title type={type}/>
+export default function PriorityApp({type, games, gameStyles,}: PriorityProperties,) {
+    return <SubMain partial-id="priority" viewDisplay={ViewDisplays.NONE}>
+        <AppTitle>{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
+            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
+            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
+            ride: gameContentTranslation('ride.singular',).toLowerCase(),
+            rides: gameContentTranslation('ride.plural',).toLowerCase(),
+            hat: gameContentTranslation('hat.singular',).toLowerCase(),
+            hats: gameContentTranslation('hat.plural',).toLowerCase(),
+        },)}</AppTitle>
         <PageTitle value={unfinishedText('Priority',)}/>
-        <nav id="navigationButtonGroup-container">
-            <div className="d-flex flex-wrap justify-content-around align-items-center">
-                <div><GameStyleContent games={games} gameStyle={gameStyle} change={setGameStyle}/></div>
-                <div className="mt-2 mt-md-0"><OtherPath type={type}/></div>
-                <div className="mt-2 mt-lg-0"><Legend/></div>
-            </div>
-        </nav>
-        <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
-        <div id="displayed-powerUpPriorityGroup">
-            <PowerUpPriorityInSmb isDisplayed={gameStyle === SMB} games={games}/>
-            <PowerUpPriorityInSmb3 isDisplayed={gameStyle === SMB3} games={games}/>
-            <PowerUpPriorityInSmw isDisplayed={gameStyle === SMW} games={games}/>
-            <PowerUpPriorityInNsmbu isDisplayed={gameStyle === NSMBU} games={games}/>
-            <PowerUpPriorityInSm3dw isDisplayed={gameStyle === SM3DW} games={games}/>
+        <PageViewChanger>
+            <GameAsideContent type={type} games={games} gameStyles={gameStyles}/>
+            <GameStyleAsideContent type={type} games={games} gameStyles={gameStyles}/>
+            {/*<OtherPathAsideContent type={type}/>*/}
+            <OtherPathAsideContent/>
+        </PageViewChanger>
+        <Legend/>
+        <UnfinishedText type="paragraph" isHidden>priority description</UnfinishedText>{/*TODO add description*/}
+        <div id="displayed-powerUpPriorityGroup" className="app-content">
+            <PowerUpPriorityInSmb isDisplayed={gameStyles.hasOnlySmb} games={games}/>
+            <PowerUpPriorityInSmb3 isDisplayed={gameStyles.hasOnlySmb3} games={games}/>
+            <PowerUpPriorityInSmw isDisplayed={gameStyles.hasOnlySmw} games={games}/>
+            <PowerUpPriorityInNsmbu isDisplayed={gameStyles.hasOnlyNsmbu} games={games}/>
+            <PowerUpPriorityInSm3dw isDisplayed={gameStyles.hasOnlySm3dw} games={games}/>
         </div>
-    </>
+    </SubMain>
 }
 
-//region -------------------- Title --------------------
-
-interface TitleProperties extends ReactProperties, ClassWithType<PowerUpPriorityTypes> {}
+//region -------------------- Aside content --------------------
 
 /** @reactComponent */
-function Title({type,}: TitleProperties,) {
-    return <h1 key="title (power-up, ride & hat priority)" className="text-center">{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
-        powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
-        powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
-        ride: gameContentTranslation('ride.singular',).toLowerCase(),
-        rides: gameContentTranslation('ride.plural',).toLowerCase(),
-        hat: gameContentTranslation('hat.singular',).toLowerCase(),
-        hats: gameContentTranslation('hat.plural',).toLowerCase(),
-    },)}</h1>
-}
+function GameAsideContent({type, games, gameStyles,}: Pick<PriorityProperties, | 'type' | 'games' | 'gameStyles'>, ) {
+    const routeName = type.routeName
+    const {hasAllGames,} = games
+    const allRoute = hasAllGames ? null : `${routeName} (Game=all)` as const
+    const smm1Route = hasAllGames ? `${routeName} (Game=1)` as const : games.hasSmm1 ? null : `${routeName} (Game=1)` as const
+    const smm3dsRoute = hasAllGames ? `${routeName} (Game=3DS)` as const : games.hasSmm3ds ? null : `${routeName} (Game=3DS)` as const
+    const smm2Route = hasAllGames ? `${routeName} (Game=2)` as const : games.hasSmm2 ? null : `${routeName} (Game=2)` as const
 
-//endregion -------------------- Title --------------------
-//region -------------------- Game style --------------------
-
-interface GameStyleContentProperties
-    extends ReactProperties {
-
-    readonly games: GameCollection
-
-    readonly gameStyle: NullOr<GameStyles>
-
-    change(value: NullOr<GameStyles>,): void
-
-}
-
-/**
- * The {@link GameStyles} button switcher
- *
- * @note The implementation uses the state temporary until it is implemented in the route
- * @reactComponent
- */
-function GameStyleContent({games, gameStyle, change,}: GameStyleContentProperties,) {
-    //TODO replace the div by links (when changed from state to property)
-    return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
-        <div className="d-flex flex-wrap justify-content-center">
-            <div className={`btn ${gameStyle === SMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SMB,)}>
-                <GameStyleImage reference={SMB}/>
-            </div>
-            <div className={`btn ${gameStyle === SMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SMB3,)}>
-                <GameStyleImage reference={SMB3}/>
-            </div>
-            <div className={`btn ${gameStyle === SMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SMW,)}>
-                <GameStyleImage reference={SMW}/>
-            </div>
-            <div className={`btn ${gameStyle === NSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(NSMBU,)}>
-                <GameStyleImage reference={NSMBU}/>
-            </div>
-            {games.hasSmm2
-                ? <div className={`btn ${gameStyle === SM3DW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => change(SM3DW,)}>
-                    <GameStyleImage reference={SM3DW}/>
-                </div> : null}
+    if (gameStyles.hasOnlySm3dw)
+        return <div id="priority-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+            <LinkButton partial-id="allGamePriority" routeName={allRoute} color="primary">{contentTranslation('All',)}</LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={smm2Route} color="primary"><GameImage reference={SMM2}/></LinkButton>
         </div>
-        <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => change(null,)}>{unfinishedText('None')}</div>
+    return <div id="priority-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partial-id="allGamePriority" routeName={allRoute} color="primary">{contentTranslation('All',)}</LinkButton>
+        <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
+            <LinkButton partial-id="smm1Game" routeName={smm1Route} color="primary"><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partial-id="smm3dsGame" routeName={smm3dsRoute} color="primary"><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={smm2Route} color="primary"><GameImage reference={SMM2}/></LinkButton>
+        </div>
     </div>
 }
 
-//endregion -------------------- Game style --------------------
-//region -------------------- Other path --------------------
+/** @reactComponent */
+function GameStyleAsideContent({type, games, gameStyles,}: Pick<PriorityProperties, | 'type' | 'games' | 'gameStyles'>,) {
+    const routeName = type.routeName
+    const {hasAllGameStyles,} = gameStyles
+    const allRoute = hasAllGameStyles ? null : `${routeName} (GameStyle=all)` as const
+    const smbRoute = hasAllGameStyles ? `${routeName} (GameStyle=1)` as const : gameStyles.hasSmb ? null : `${routeName} (GameStyle=1)` as const
+    const smb3Route = hasAllGameStyles ? `${routeName} (GameStyle=3)` as const : gameStyles.hasSmb3 ? null : `${routeName} (GameStyle=3)` as const
+    const smwRoute = hasAllGameStyles ? `${routeName} (GameStyle=W)` as const : gameStyles.hasSmw ? null : `${routeName} (GameStyle=W)` as const
+    const nsmbuRoute = hasAllGameStyles ? `${routeName} (GameStyle=U)` as const : gameStyles.hasNsmbu ? null : `${routeName} (GameStyle=U)` as const
+    const sm3dwRoute = hasAllGameStyles ? `${routeName} (GameStyle=3DW)` as const : gameStyles.hasSm3dw ? null : `${routeName} (GameStyle=3DW)` as const
 
-interface OtherPathProperties extends ReactProperties, ClassWithType<PowerUpPriorityTypes> {}
+    if (games.hasSmm2)
+        return <div id="priority-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
+            <LinkButton partial-id="allGamePriority" routeName={allRoute} color="primary">{contentTranslation('All',)}</LinkButton>
+            <div id="priority-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
+                <LinkButton partial-id="smbGameStylePriority" routeName={smbRoute} color="primary"><GameStyleImage reference={SMB}/></LinkButton>
+                <LinkButton partial-id="smb3GameStylePriority" routeName={smb3Route} color="primary"><GameStyleImage reference={SMB3}/></LinkButton>
+            </div>
+            <div id="priority-gameStylesButton-singularGameStyle-center-container" className="btn-group btn-group-sm">
+                <LinkButton partial-id="smwGameStylePriority" routeName={smwRoute} color="primary"><GameStyleImage reference={SMW}/></LinkButton>
+                <LinkButton partial-id="nsmbuGameStylePriority" routeName={nsmbuRoute} color="primary"><GameStyleImage reference={NSMBU}/></LinkButton>
+            </div>
+            <div id="priority-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+                <LinkButton partial-id="sm3dwGameStylePriority" routeName={sm3dwRoute} color="primary"><GameStyleImage reference={SM3DW}/></LinkButton>
+            </div>
+        </div>
+    return <div id="priority-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partial-id="allGamePriority" routeName={allRoute} color="primary">{contentTranslation('All',)}</LinkButton>
+        <div id="priority-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
+            <LinkButton partial-id="smbGameStylePriority" routeName={smbRoute} color="primary"><GameStyleImage reference={SMB}/></LinkButton>
+            <LinkButton partial-id="smb3GameStylePriority" routeName={smb3Route} color="primary"><GameStyleImage reference={SMB3}/></LinkButton>
+        </div>
+        <div id="priority-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+            <LinkButton partial-id="smwGameStylePriority" routeName={smwRoute} color="primary"><GameStyleImage reference={SMW}/></LinkButton>
+            <LinkButton partial-id="nsmbuGameStylePriority" routeName={nsmbuRoute} color="primary"><GameStyleImage reference={NSMBU}/></LinkButton>
+        </div>
+    </div>
+}
 
 /** @reactComponent */
-function OtherPath({type,}: OtherPathProperties,) {
+// function OtherPathAsideContent({type,}: Pick<PriorityProperties, 'type'>,) {
+function OtherPathAsideContent() {
     return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
-        <button className="btn disabled">{unfinishedText('Feature in progress',)}</button>
-        <LinkButton partial-id="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <button className="btn" disabled>{contentTranslation('All',)}</button>
         <div className="btn-group btn-group-sm" role="group">
-            <LinkButton partial-id="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
-            <LinkButton partial-id="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
-            <LinkButton partial-id="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
+            <button className="btn" disabled>{gameContentTranslation('power-up.singular',)}</button>
+            <button className="btn" disabled>{gameContentTranslation('ride.singular',)}</button>
+            <button className="btn" disabled>{gameContentTranslation('hat.singular',)}</button>
         </div>
-        <LinkButton partial-id="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
     </div>
+    // return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
+    //     <LinkButton partial-id="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+    //     <LinkButton partial-id="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
+    //     <LinkButton partial-id="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
+    //     <LinkButton partial-id="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
+    // </div>
 }
 
-//endregion -------------------- Other path --------------------
+//endregion -------------------- Aside content --------------------
+
 //region -------------------- Legend --------------------
 
 /** @reactComponent */
 function Legend() {
-    return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 ms-auto">
+    return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 mt-2 ms-auto">
         <h3 className="text-center border border-0 border-bottom border-dark border-opacity-25 pb-1 mb-0">{unfinishedText('Can be obtained …')}</h3>
         <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row flex-lg-column flex-xl-row">
             <ul className="list-unstyled m-0">

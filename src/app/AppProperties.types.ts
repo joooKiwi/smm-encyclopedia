@@ -31,8 +31,8 @@ interface AppWithInterpreter_Games_GameStyle_TimeProperties
 
 //region -------------------- Specific properties --------------------
 
-export interface PowerUpAndRidePriorityProperties
-    extends AppPropertiesWithType<PowerUpPriorityTypes>, AppWithGamesProperties {}
+export interface PriorityProperties
+    extends AppPropertiesWithType<PowerUpPriorityTypes>, AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 export interface CharacterNameProperties
     extends AppWithInterpreter_Games_GameStyle_TimeProperties {}
