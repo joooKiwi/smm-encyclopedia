@@ -7,8 +7,11 @@
 }
 
 #pageViewChanger-content-container {
-  > *:has(> * ~ *) { margin-bottom: var(--bs-negative-spacer-sm) }
-  > * > *:has(+ *) {
+  > *:has(> * ~ *) {
+    margin-right: var(--bs-negative-spacer-sm);
+    margin-bottom: var(--bs-negative-spacer-sm);
+  }
+  > * > * {
     margin-right: var(--bs-spacer-sm);
     margin-bottom: var(--bs-spacer-sm);
   }
