@@ -20,6 +20,7 @@ export class ViewDisplays<const TYPE extends Type = Type,
 
     //region -------------------- Enum instances --------------------
 
+    public static readonly NONE =  new ViewDisplays('none', 'slash-circle',)
     public static readonly TABLE = new ViewDisplays('table', 'table',)
     public static readonly CARD =  new ViewDisplays('card', 'grid',)
     // public static readonly NAME =  new ViewDisplays('name', 'list-nested',)
