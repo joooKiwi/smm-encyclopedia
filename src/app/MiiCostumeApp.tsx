@@ -53,7 +53,7 @@ export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperti
         <PageViewChanger>
             <DisplayButtonGroup list="everyMiiCostume (list)" card="everyMiiCostume (card)" table="everyMiiCostume (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>Mii costume description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>Mii costume description</UnfinishedText>{/*TODO add description*/}
         <section id="miiCostume-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

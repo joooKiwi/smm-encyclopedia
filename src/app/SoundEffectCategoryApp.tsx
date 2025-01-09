@@ -43,7 +43,7 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
         <PageViewChanger>
             <DisplayButtonGroup list="everySoundEffectCategory (list)" card="everySoundEffectCategory (card)" table="everySoundEffectCategory (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>sound effect category description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>sound effect category description</UnfinishedText>{/*TODO add description*/}
         <section id="soundEffectCategory-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

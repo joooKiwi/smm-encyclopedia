@@ -50,7 +50,7 @@ export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreter
         <PageViewChanger>
             <DisplayButtonGroup list="everyMiiCostumeCategory (list)" card="everyMiiCostumeCategory (card)" table="everyMiiCostumeCategory (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>Mii costume category description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>Mii costume category description</UnfinishedText>{/*TODO add description*/}
         <section id="miiCostumeCategory-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

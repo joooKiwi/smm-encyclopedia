@@ -122,7 +122,7 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
             <TimeAsideContent time={time}/>
             <DisplayButtonGroup list="everySoundEffect (list)" card="everySoundEffect (card)" table="everySoundEffect (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>sound effect description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>sound effect description</UnfinishedText>{/*TODO add description*/}
         <section id="soundEffect-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
         </section>

@@ -57,7 +57,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
             <GameAsideContent type={type} games={games}/>
             <DisplayButtonGroup list={`${routeName} (list)`} card={`${routeName} (card)`} table={`${routeName} (table)`} current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>theme description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>theme description</UnfinishedText>{/*TODO add description*/}
         <section id="theme-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
         </section>

@@ -61,7 +61,7 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
         <PageViewChanger>
             <DisplayButtonGroup list="everyMysteryMushroom (list)" card="everyMysteryMushroom (card)" table="everyMysteryMushroom (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>Mystery Mushroom description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>Mystery Mushroom description</UnfinishedText>{/*TODO add description*/}
         <section id="mysteryMushroom-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

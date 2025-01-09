@@ -43,7 +43,7 @@ export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) 
         <PageViewChanger>
             <DisplayButtonGroup list="everyMedal (list)" card="everyMedal (card)" table="everyMedal (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>medal description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>medal description</UnfinishedText>{/*TODO add description*/}
         <section id="medal-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

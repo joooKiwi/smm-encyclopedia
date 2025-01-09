@@ -48,7 +48,7 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
         <PageViewChanger>
             <DisplayButtonGroup list="everySampleCourse (list)" card="everySampleCourse (card)" table="everySampleCourse (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>sample course description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>sample course description</UnfinishedText>{/*TODO add description*/}
         <section id="sampleCourse-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

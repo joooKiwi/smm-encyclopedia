@@ -47,7 +47,7 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
         <PageViewChanger>
             <DisplayButtonGroup list="everyEntityCategory (list)" card="everyEntityCategory (card)" table="everyEntityCategory (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>entity category description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>entity category description</UnfinishedText>{/*TODO add description*/}
         <section id="entityCategory-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

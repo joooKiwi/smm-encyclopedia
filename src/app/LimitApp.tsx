@@ -297,7 +297,7 @@ function GameStyleAsideContent({type, gameStyle, games, gameStyles,}: Pick<Limit
                     <GameStyleImage reference={SMB3}/>
                 </LinkButton>
             </div>
-            <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
+            <div id="entity-gameStylesButton-singularGameStyle-center-container" className="btn-group btn-group-sm">
                 <LinkButton partial-id="nsmbuGameStyleLimit" routeName={gameStyle.getSmwOrNsmbuRouteName(type,)} color={gameStyle.smwOrNsmbuColor(gameStyles.hasNsmbu,)}>
                     <GameStyleImage reference={SMW} className="me-1"/>
                     <GameStyleImage reference={NSMBU}/>

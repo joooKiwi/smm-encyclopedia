@@ -45,7 +45,7 @@ export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterP
         <PageViewChanger>
             <DisplayButtonGroup list="everyPredefinedMessage (list)" card="everyPredefinedMessage (card)" table="everyPredefinedMessage (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>predefined message description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>predefined message description</UnfinishedText>{/*TODO add description*/}
         <section id="predefinedMessage-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

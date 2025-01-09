@@ -51,7 +51,7 @@ export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperti
         <PageViewChanger>
             <DisplayButtonGroup list="everyOfficialCourse (list)" card="everyOfficialCourse (card)" table="everyOfficialCourse (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>Official course description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>Official course description</UnfinishedText>{/*TODO add description*/}
         <section id="officialCourse-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay}/>
         </section>

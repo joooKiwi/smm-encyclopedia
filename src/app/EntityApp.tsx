@@ -144,7 +144,7 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
             <TimeAsideContent time={time}/>
             <DisplayButtonGroup list="everyEntity (list)" card="everyEntity (card)" table="everyEntity (table)" current={viewDisplay}/>
         </PageViewChanger>
-        <UnfinishedText type="paragraph" isHidden>entity description</UnfinishedText>
+        <UnfinishedText type="paragraph" isHidden>entity description</UnfinishedText>{/*TODO add description*/}
         <section id="entity-app-content" className="app-content">
             <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} displaySideContent={it => displaySideContent(setSideEntity, it,)}/>
         </section>
