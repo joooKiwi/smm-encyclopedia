@@ -262,14 +262,16 @@ function GameStyleAsideContent({gameStyle, games, gameStyles,}: Pick<SoundEffect
                 <LinkButton partial-id="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
                     <GameStyleImage reference={SMB3}/>
                 </LinkButton>
+            </div>
+            <div id="entity-gameStylesButton-singularGameStyle-center-container" className="btn-group btn-group-sm">
                 <LinkButton partial-id="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
                     <GameStyleImage reference={SMW}/>
                 </LinkButton>
-            </div>
-            <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
                 <LinkButton partial-id="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
                     <GameStyleImage reference={NSMBU}/>
                 </LinkButton>
+            </div>
+            <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
                 <LinkButton partial-id="sm3dwGameStyleLimit" routeName={gameStyle.sm3dwRouteName} color={gameStyle.sm3dwColor(gameStyles.hasSm3dw,)}>
                     <GameStyleImage reference={SM3DW}/>
                 </LinkButton>
