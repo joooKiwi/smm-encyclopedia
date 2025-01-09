@@ -6,9 +6,10 @@ import type {PlayerSoundEffectTriggerProperty} from 'core/soundEffect/property/P
 import type {PlayerSoundEffectTriggers}        from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 
 export interface SoundEffect
-    extends NameTrait<string>, NameTraitFromACategory<string, SoundEffectCategory>,
+    extends NameTrait<string>,
+        NameTraitFromACategory<string, SoundEffectCategory>,
         GameProperty, PlayerSoundEffectTriggerProperty {
 
-    get playerSoundEffectTrigger(): PlayerSoundEffectTriggers
+    readonly playerSoundEffectTrigger: PlayerSoundEffectTriggers
 
 }

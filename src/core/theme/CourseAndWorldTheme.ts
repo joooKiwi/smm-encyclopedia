@@ -5,13 +5,10 @@ import type {WorldTheme}  from 'core/theme/WorldTheme'
 export interface CourseAndWorldTheme
     extends Theme {
 
-    get courseTheme(): CourseTheme
+    readonly courseTheme: CourseTheme
+    readonly isInCourseTheme: boolean
 
-    get isInCourseTheme(): boolean
-
-
-    get worldTheme(): WorldTheme
-
-    get isInWorldTheme(): boolean
+    readonly worldTheme: WorldTheme
+    readonly isInWorldTheme: boolean
 
 }

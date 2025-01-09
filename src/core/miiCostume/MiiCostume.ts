@@ -7,13 +7,13 @@ import type {NameTrait}              from 'lang/name/NameTrait'
 import type {NameTraitFromACategory} from 'lang/name/NameTraitFromACategory'
 
 export interface MiiCostume
-    extends NameTrait<string>, NameTraitFromACategory<string, MiiCostumeCategory> {
+    extends NameTrait<string>,
+        NameTraitFromACategory<string,
+        MiiCostumeCategory> {
 
-    get officialNotification(): NullOr<OfficialNotifications>
+    readonly officialNotification: NullOr<OfficialNotifications>
+    readonly officialNotificationAmount: NullOrNumber
 
-    get officialNotificationAmount(): NullOrNumber
-
-
-    get version(): NullOr<Versions>
+    readonly version: NullOr<Versions>
 
 }

@@ -7,6 +7,6 @@ export interface CharacterName
         GameProperty,
         TimeProperty {
 
-    get hasNameSaidInTheEditor(): boolean
+    readonly hasNameSaidInTheEditor: boolean
 
 }

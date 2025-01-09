@@ -16,18 +16,13 @@ export interface SingleBackgroundMusic<out SMB_MUSIC extends PossibleSMB_Music_S
     out NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer = PossibleNSMBU_Music_SingleContainer,
     out SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer = PossibleSM3DW_Music_SingleContainer, > {
 
-    get all(): PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
+    readonly all: PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
 
-
-    get smb(): SMB_MUSIC
-
-    get smb3(): SMB3_MUSIC
-
-    get smw(): SMW_MUSIC
-
-    get nsmbu(): NSMBU_MUSIC
-
-    get sm3dw(): SM3DW_MUSIC
+    readonly smb: SMB_MUSIC
+    readonly smb3: SMB3_MUSIC
+    readonly smw: SMW_MUSIC
+    readonly nsmbu: NSMBU_MUSIC
+    readonly sm3dw: SM3DW_MUSIC
 
 }
 

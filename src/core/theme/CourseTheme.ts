@@ -7,8 +7,8 @@ import type {Theme}        from 'core/theme/Theme'
 export interface CourseTheme
     extends Theme {
 
-    get entities(): Array<Entity>
+    readonly entities: Array<Entity>
 
-    get effect(): NullOr<NightEffects>
+    readonly effect: NullOr<NightEffects>
 
 }

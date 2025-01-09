@@ -33,29 +33,19 @@ export interface BackgroundMusic<out SMB_EDITOR_MUSIC extends PossibleSMB_Editor
     out SM3DW_FAST_UNDERWATER_MUSIC extends PossibleSM3DW_FastUnderwaterMusic_GroupContainer = PossibleSM3DW_FastUnderwaterMusic_GroupContainer, >
     extends Music<Array<MusicSoundFile<Possible_Music>>> {
 
-    get editorMusic(): SingleBackgroundMusic<SMB_EDITOR_MUSIC, SMB3_EDITOR_MUSIC, SMW_EDITOR_MUSIC, NSMBU_EDITOR_MUSIC, SM3DW_EDITOR_MUSIC>
+    readonly editorMusic: SingleBackgroundMusic<SMB_EDITOR_MUSIC, SMB3_EDITOR_MUSIC, SMW_EDITOR_MUSIC, NSMBU_EDITOR_MUSIC, SM3DW_EDITOR_MUSIC>
 
+    readonly regularMusic: SingleBackgroundMusic<SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC>
+    readonly linkMusic: SingleBackgroundMusic<LINK_MUSIC, null, null, null, null>
+    readonly smb2Music: SingleBackgroundMusic<SMB2_MUSIC, null, null, null, null>
+    readonly underwaterMusic: SingleBackgroundMusic<null, null, null, null, SM3DW_UNDERWATER_MUSIC>
+    readonly yoshiSound: SingleBackgroundMusic<null, null, SMW_YOSHI_SOUND, NSMBU_YOSHI_SOUND, null>
 
-    get regularMusic(): SingleBackgroundMusic<SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC>
-
-    get linkMusic(): SingleBackgroundMusic<LINK_MUSIC, null, null, null, null>
-
-    get smb2Music(): SingleBackgroundMusic<SMB2_MUSIC, null, null, null, null>
-
-    get underwaterMusic(): SingleBackgroundMusic<null, null, null, null, SM3DW_UNDERWATER_MUSIC>
-
-    get yoshiSound(): SingleBackgroundMusic<null, null, SMW_YOSHI_SOUND, NSMBU_YOSHI_SOUND, null>
-
-
-    get fastMusic(): SingleBackgroundMusic<SMB_FAST_MUSIC, SMB3_FAST_MUSIC, SMW_FAST_MUSIC, NSMBU_FAST_MUSIC, SM3DW_FAST_MUSIC>
-
-    get fastLinkMusic(): SingleBackgroundMusic<LINK_FAST_MUSIC, null, null, null, null>
-
-    get fastSmb2Music(): SingleBackgroundMusic<SMB2_FAST_MUSIC, null, null, null, null>
-
-    get fastUnderwaterMusic(): SingleBackgroundMusic<null, null, null, null, SM3DW_FAST_UNDERWATER_MUSIC>
-
-    get fastYoshiSound(): SingleBackgroundMusic<null, null, SMW_FAST_YOSHI_SOUND, NSMBU_FAST_YOSHI_SOUND, null>
+    readonly fastMusic: SingleBackgroundMusic<SMB_FAST_MUSIC, SMB3_FAST_MUSIC, SMW_FAST_MUSIC, NSMBU_FAST_MUSIC, SM3DW_FAST_MUSIC>
+    readonly fastLinkMusic: SingleBackgroundMusic<LINK_FAST_MUSIC, null, null, null, null>
+    readonly fastSmb2Music: SingleBackgroundMusic<SMB2_FAST_MUSIC, null, null, null, null>
+    readonly fastUnderwaterMusic: SingleBackgroundMusic<null, null, null, null, SM3DW_FAST_UNDERWATER_MUSIC>
+    readonly fastYoshiSound: SingleBackgroundMusic<null, null, SMW_FAST_YOSHI_SOUND, NSMBU_FAST_YOSHI_SOUND, null>
 
 }
 
