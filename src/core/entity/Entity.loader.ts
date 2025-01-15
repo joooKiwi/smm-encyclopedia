@@ -230,20 +230,20 @@ interface Content
     readonly editorLimit_SMM2: NullOr<| PossibleEnglishName_Limit | NotApplicable>
     readonly editorLimit_SMM2_isUnknown: boolean
 
-    readonly whilePlaying_isInGEL: BooleanOrNotApplicable
+    readonly whilePlaying_isInGEL: boolean
     readonly whilePlaying_isInGEL_comment: NullOr<PossibleGeneralLimitComment>
-    readonly whilePlaying_isInGEL_isSuperGlobal: BooleanOrNotApplicable
+    readonly whilePlaying_isInGEL_isSuperGlobal: boolean
     readonly whilePlaying_isInGEL_isSuperGlobal_comment: NullOr<PossibleGeneralGlobalLimitComment>
 
-    readonly whilePlaying_isInPL: BooleanOrNotApplicable
+    readonly whilePlaying_isInPL: boolean
 
-    readonly whilePlaying_isInPJL: BooleanOrNotApplicable
+    readonly whilePlaying_isInPJL: boolean
     readonly whilePlaying_isInPJL_comment: NullOr<PossibleProjectileLimitComment>
 
-    readonly whilePlaying_isInObjectRenderedLimit: BooleanOrNotApplicable
+    readonly whilePlaying_isInObjectRenderedLimit: boolean
     readonly whilePlaying_isInObjectRenderedLimit_comment: NullOr<PossibleRenderedObjectLimitTypeComment>
 
-    readonly whilePlaying_isInCollectedCoinLimit: BooleanOrNotApplicable
+    readonly whilePlaying_isInCollectedCoinLimit: boolean
 
     readonly whilePlaying_otherLimit: NullOr<PossibleOtherLimit>
     readonly whilePlaying_otherLimit_comment: NullOr<PossibleOtherLimitComment>
@@ -406,7 +406,9 @@ function getCategory(content: Content, entityCategoryMap: EntityCategoryMap,): E
 //endregion -------------------- Get entity category --------------------
 //region -------------------- Create limit --------------------
 
-function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,): NullOr<| Limits | NotApplicable> {
+function getLimit(value: NullableString<PossibleEnglishName_Limit>,): NullOr<Limits>
+function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,): NullOr<| Limits | NotApplicable>
+function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,) {
     if (value == null)
         return null
     if (value === NOT_APPLICABLE)

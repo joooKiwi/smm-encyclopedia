@@ -56,12 +56,12 @@ export class LimitMapHolder<const REFERENCE extends Entity, > {
         const otherLimits = reference.otherLimit
 
         return this.#newMap(
-            reference.isInGeneralLimit === true ? Limits.GENERAL_ENTITY_LIMIT : null,
-            reference.isInGlobalGeneralLimit === true ? Limits.GENERAL_ENTITY_LIMIT : null,
-            reference.isInPowerUpLimit === true ? Limits.POWER_UP_ENTITY_LIMIT : null,
-            reference.isInProjectileLimit === true ? Limits.PROJECTILE_LIMIT : null,
-            reference.isInDynamicRenderedObjectLimit === true ? Limits.DYNAMIC_RENDERED_OBJECT_LIMIT : null,
-            reference.isInCollectedLooseCoinLimit === true ? Limits.COLLECTED_LOOSE_COIN_LIMIT : null,
+            reference.isInGeneralLimit ? Limits.GENERAL_ENTITY_LIMIT : null,
+            reference.isInGlobalGeneralLimit ? Limits.GENERAL_ENTITY_LIMIT : null,
+            reference.isInPowerUpLimit ? Limits.POWER_UP_ENTITY_LIMIT : null,
+            reference.isInProjectileLimit ? Limits.PROJECTILE_LIMIT : null,
+            reference.isInDynamicRenderedObjectLimit ? Limits.DYNAMIC_RENDERED_OBJECT_LIMIT : null,
+            reference.isInCollectedLooseCoinLimit ? Limits.COLLECTED_LOOSE_COIN_LIMIT : null,
             otherLimits instanceof Limits ? otherLimits : null,
         )
     }

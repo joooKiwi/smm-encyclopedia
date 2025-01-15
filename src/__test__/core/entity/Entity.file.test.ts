@@ -29,7 +29,7 @@ describe('Entity (file test)', () => {
     const everyEditorLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_editorLimit,]                                                    as const satisfies Array<NullOr<| NotApplicable | PossibleEnglishName_Limit>>
     // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,],
     const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]
-    const everyPlayLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_playLimit,]                                                        as const satisfies Array<NullOr<| NotApplicable | PossibleEnglishName_Limit>>
+    const everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,]                                                                                        as const satisfies Array<NullOr<PossibleEnglishName_Limit>>
     const possibleBasicPropertyComment = [null, 'While playing → LCL',]                                                                                                  as const satisfies Array<NullOr<LCL_Play>>
     const possibleAffectedByOnOffStateComment = [null, 'Only some variants',]                                                                                            as const satisfies Array<NullOr<OnlySomeVariants>>
     const everyWeight = [null, UNKNOWN_CHARACTER, ...types.everyPossibleWeight_entity,]                                                                                  as const satisfies Array<PossibleWeight>
@@ -181,29 +181,29 @@ describe('Entity (file test)', () => {
                 })
                 describe('Play', () => {
                     describe('General Entity (GEL)', () => {
-                        test('value', () => expect(it.whilePlaying_isInGEL,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInGEL,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInGEL_comment,).toBeOneOf(everyGELComment,),)
                         //TODO add coherence test
                     },)
                     describe('Global General Entity (GEL)', () => {
-                        test('value', () => expect(it.whilePlaying_isInGEL,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInGEL_isSuperGlobal,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInGEL_isSuperGlobal_comment,).toBeOneOf(everyGELGlobalComment,),)
                         //TODO add coherence test
                     },)
-                    test('Power-up (PL)', () => expect(it.whilePlaying_isInPL,).toBeBooleanOrNotApplicable(),)
+                    test('Power-up (PL)', () => expect(it.whilePlaying_isInPL,).toBeBoolean(),)
                     describe('Projectile (PJL)', () => {
-                        test('value', () => expect(it.whilePlaying_isInPJL,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInPJL,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInPJL_comment,).toBeOneOf(everyPJLComment,),)
                         //TODO add coherence test
                     },)
                     describe('Object rendered', () => {
-                        test('value', () => expect(it.whilePlaying_isInObjectRenderedLimit,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInObjectRenderedLimit,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInObjectRenderedLimit_comment,).toBeOneOf(everyObjectRenderedLimitComment,),)
                         //TODO add coherence test
                     },)
-                    test('Collected Coin', () => expect(it.whilePlaying_isInCollectedCoinLimit,).toBeBooleanOrNotApplicable(),)
+                    test('Collected Coin', () => expect(it.whilePlaying_isInCollectedCoinLimit,).toBeBoolean(),)
                     describe('Other', () => {
-                        test('value', () => expect(it.whilePlaying_otherLimit,).toBeOneOf(everyPlayLimitsWithNullAndNotApplicable,),)
+                        test('value', () => expect(it.whilePlaying_otherLimit,).toBeOneOf(everyPlayLimitsWithNull,),)
                         test('comment', () => expect(it.whilePlaying_otherLimit_comment,).toBeOneOf(everyOtherLimitComment,),)
                         test('is unknown', () => expect(it.whilePlaying_otherLimit_isUnknown,).toBeBoolean(),)
                         //TODO add coherence test

@@ -115,23 +115,23 @@ export class EmptyEntity
     public readonly editorLimit_smm2 = NOT_APPLICABLE
     public readonly isUnknown_editorLimit_smm2 = false
 
-    public readonly isInGeneralLimit = NOT_APPLICABLE
+    public readonly isInGeneralLimit = false
     public readonly isInGeneralLimitComment = null
 
-    public readonly isInGlobalGeneralLimit = NOT_APPLICABLE
+    public readonly isInGlobalGeneralLimit = false
     public readonly isInGlobalGeneralLimitComment = null
 
-    public readonly isInPowerUpLimit = NOT_APPLICABLE
+    public readonly isInPowerUpLimit = false
 
-    public readonly isInProjectileLimit = NOT_APPLICABLE
+    public readonly isInProjectileLimit = false
     public readonly isInProjectileLimitComment = null
 
-    public readonly isInDynamicRenderedObjectLimit = NOT_APPLICABLE
+    public readonly isInDynamicRenderedObjectLimit = false
     public readonly isInDynamicRenderedObjectLimitComment = null
 
-    public readonly isInCollectedLooseCoinLimit = NOT_APPLICABLE
+    public readonly isInCollectedLooseCoinLimit = false
 
-    public readonly otherLimit = NOT_APPLICABLE
+    public readonly otherLimit = null
     public readonly otherLimitComment = null
     public readonly isUnknown_otherLimit = false
 

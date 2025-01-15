@@ -80,23 +80,23 @@ export interface Entity
     readonly editorLimit_smm2: NullOr<| Limits | NotApplicable>
     readonly isUnknown_editorLimit_smm2: boolean
 
-    readonly isInGeneralLimit: BooleanOrNotApplicable
+    readonly isInGeneralLimit: boolean
     readonly isInGeneralLimitComment: NullOrString<PossibleGeneralLimitComment>
 
-    readonly isInGlobalGeneralLimit: BooleanOrNotApplicable
+    readonly isInGlobalGeneralLimit: boolean
     readonly isInGlobalGeneralLimitComment: NullOrString<PossibleGeneralGlobalLimitComment>
 
-    readonly isInPowerUpLimit: NullOrBooleanOrNotApplicable
+    readonly isInPowerUpLimit: boolean
 
-    readonly isInProjectileLimit: NullOrBooleanOrNotApplicable
+    readonly isInProjectileLimit: boolean
     readonly isInProjectileLimitComment: NullOrString<PossibleProjectileLimitComment>
 
-    readonly isInDynamicRenderedObjectLimit: NullOrBooleanOrNotApplicable
+    readonly isInDynamicRenderedObjectLimit: boolean
     readonly isInDynamicRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>
 
-    readonly isInCollectedLooseCoinLimit: NullOrBooleanOrNotApplicable
+    readonly isInCollectedLooseCoinLimit: boolean
 
-    readonly otherLimit: NullOr<| Limits | NotApplicable>
+    readonly otherLimit: NullOr<Limits>
     readonly otherLimitComment: NullOrString<PossibleOtherLimitComment>
     readonly isUnknown_otherLimit: boolean
 
