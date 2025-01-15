@@ -25,10 +25,10 @@ describe('Entity (file test)', () => {
     const possibleFirstAppearance = [1, 2,]                                                                                                                              as const satisfies Array<PossibleFirstAppearanceInMarioMaker>
     const everyVersion = [null, ...types.everyPossibleName_version,]                                                                                                     as const satisfies Array<NullOr<PossibleName_Version>>
     const everyPossibleCategory = [null, ...types.everyPossibleName_entityCategory,]                                                                                     as const satisfies Array<NullOr<PossibleEnglishName_Category>>
-    // const everyEditorLimits = types.everyPossibleName_editorLimit,
+    // const everyEditorLimits = types.everyPossibleName_editorLimit
     const everyEditorLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_editorLimit,]                                                    as const satisfies Array<NullOr<| NotApplicable | PossibleEnglishName_Limit>>
-    // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,],
-    const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]
+    // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,]                                   as const
+    const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]                                                           as const
     const everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,]                                                                                        as const satisfies Array<NullOr<PossibleEnglishName_Limit>>
     const possibleBasicPropertyComment = [null, 'While playing → LCL',]                                                                                                  as const satisfies Array<NullOr<LCL_Play>>
     const possibleAffectedByOnOffStateComment = [null, 'Only some variants',]                                                                                            as const satisfies Array<NullOr<OnlySomeVariants>>
@@ -171,7 +171,7 @@ describe('Entity (file test)', () => {
                 test('Can be spawned by Magikoopa', () => expect(it.canBeSpawnedByMagikoopa,).toBeBooleanOrNull(),)
                 test('Can be spawned by Winged Magikoopa', () => expect(it.canBeSpawnedByWingedMagikoopa,).toBeOneOf(possibleCanBeSpawnedByWingedMagikoopa,),)
             },)
-            describe('Entity limit properties', () => {
+            describe('Limit properties', () => {
                 test('Amount', () => expect(it.limitAmount,).toBeOneOf(everyLimitAmountType,),)
                 describe('Editor', () => {
                     test('SMM & SMM3DW', () => expect(it.editorLimit_SMM1And3DS,).toBeOneOf(everyEditorLimitsWithNullAndNotApplicable,),)

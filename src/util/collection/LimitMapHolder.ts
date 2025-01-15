@@ -48,7 +48,7 @@ export class LimitMapHolder<const REFERENCE extends Entity, > {
         const reference = this.reference
         const editorLimits = [reference.editorLimit_smm1And3ds, reference.editorLimit_smm2,]
 
-        return this.#newMap(...new ArrayAsCollection(editorLimits,).map(editorLimit => editorLimit instanceof Limits ? editorLimit : null))
+        return this.#newMap(...new ArrayAsCollection(editorLimits,).map(editorLimit => editorLimit instanceof Limits ? editorLimit : null,),)
     }
 
     public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
