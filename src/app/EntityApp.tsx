@@ -136,7 +136,7 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
         },)}</AppTitle>
         <PageTitle value={entity}/>
         <aside id="entity-side-content">
-            {sideEntity == null ? null : <EntitySideContent reference={sideEntity}/>}
+            {sideEntity == null ? null : <EntitySideContent reference={sideEntity} games={games}/>}
         </aside>
         <PageViewChanger>
             <GameAsideContent game={game} gameStyles={gameStyles} times={times}/>

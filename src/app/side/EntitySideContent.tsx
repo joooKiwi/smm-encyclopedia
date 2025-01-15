@@ -2,15 +2,19 @@ import './EntitySideContent.scss'
 
 import {useRef} from 'react'
 
+import type {GameCollection}  from 'util/collection/GameCollection'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Image                                        from 'app/tools/images/Image'
+import TextComponent                                from 'app/tools/text/TextComponent'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import Offcanvas                                    from 'bootstrap/offcanvas/Offcanvas'
 import {Entities}                                   from 'core/entity/Entities'
 import {Entity}                                     from 'core/entity/Entity'
 import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
 import EntityCategoryIcon                           from 'core/entityCategory/component/EntityCategoryIcon'
+import {Games}                                      from 'core/game/Games'
+import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {Instruments}                                from 'core/instrument/Instruments'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
@@ -19,19 +23,24 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
+import {NOT_APPLICABLE}                             from 'util/commonVariables'
 import {Empty}                                      from 'util/emptyVariables'
 
 import CategoryCompanion =   EntityCategories.Companion
 import EMPTY_STRING =        Empty.EMPTY_STRING
 import InstrumentCompanion = Instruments.Companion
 import SMW =                 GameStyles.SMW
+import SMM1 =                Games.SMM1
+import SMM2 =                Games.SMM2
+import SMM3DS =              Games.SMM3DS
 
 //region -------------------- Import from deconstruction --------------------
 
 const {BILL_BLASTER, KOOPA_CLOWN_CAR, KEY, GALOOMBA, LAKITU,
     LAKITU_CLOUD, MUSIC_BLOCK, ON_OFF_SWITCH, PARACHUTE, PIPE,
     SUPER_MUSHROOM, QUESTION_MARK_BLOCK, SWINGING_CLAW, TREE, WING,} = Entities
-const {LOOSE_COIN_LIMIT,} = Limits
+const {COLLECTED_LOOSE_COIN_LIMIT, DYNAMIC_RENDERED_OBJECT_LIMIT, GENERAL_ENTITY_LIMIT,
+    LOOSE_COIN_LIMIT, POWER_UP_ENTITY_LIMIT, PROJECTILE_LIMIT,} = Limits
 const {ENTITY,} = OtherWordInTheGames
 
 //endregion -------------------- Import from deconstruction --------------------
@@ -39,12 +48,28 @@ const {ENTITY,} = OtherWordInTheGames
 interface EntitySideContentProperties
     extends ReactProperties {
 
-    reference: Entities
+    readonly reference: Entities
+
+    readonly games: GameCollection
+
+}
+
+interface EntitySideContentReferenceProperties
+    extends ReactProperties {
+
+    readonly reference: Entity
+
+}
+
+interface EntitySideContentWithGameReferenceProperties
+    extends EntitySideContentReferenceProperties {
+
+    readonly games: GameCollection
 
 }
 
 /** @reactComponent */
-export default function EntitySideContent({reference,}: EntitySideContentProperties,) {
+export default function EntitySideContent({reference, games,}: EntitySideContentProperties,) {
     const offcanvas = useRef<HTMLDivElement>(null,)
     const {englishName, englishNameInHtml, reference: entityReference,} = reference
 
@@ -56,11 +81,8 @@ export default function EntitySideContent({reference,}: EntitySideContentPropert
                 </h1>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-labelledby={contentTranslation('Close',)}/>
             </div>
-            <div className="offcanvas-body">
-                <div className="d-flex align-items-center">
-                    <h2>{gameContentTranslation('Category',)}</h2>
-                    <EntityCategorySideIcon reference={entityReference}/>
-                </div>
+            <div className="offcanvas-body pb-5">
+                <EntityCategorySideContent reference={entityReference}/>
                 <h2>{unfinishedText('Properties',)}</h2>
                 <ul className="list-group list-group-flush">
                     <HasAMushroomVariantListItem reference={entityReference}/>
@@ -79,40 +101,41 @@ export default function EntitySideContent({reference,}: EntitySideContentPropert
                     <CanBePutInATreeListItem reference={entityReference}/>
                     <CanBeStackedListItem reference={entityReference}/>
                 </ul>
+                <h2>{gameContentTranslation('limit.singular',)}</h2>
+                <h3 className="fs-5 ms-2">{gameContentTranslation('limit.editor.complete',)}</h3>
+                <ul id="entity-sideContent-editorLimit-container" className="ms-2"><EditorLimitListItem key={`Editor limit list-item (${englishName})`} reference={entityReference} games={games}/></ul>
+                <h3 className="fs-5 ms-2">{gameContentTranslation('limit.play.complete',)}</h3>
+                <ul id="entity-sideContent-playLimit-container" className="ms-2">
+                    <GeneralLimitListItem reference={entityReference}/>
+                    <PowerUpLimitListItem reference={entityReference}/>
+                    <ProjectileLimitListItem reference={entityReference}/>
+                    <DynamicRenderedObjectLimitListItem reference={entityReference}/>
+                    <CollectedLooseCoinLimitListItem reference={entityReference}/>
+                    <OtherLimitListItem reference={entityReference}/>
+                </ul>
             </div>
         </div>
     </Offcanvas>
 }
 
-//region -------------------- Side icon --------------------
-
-interface EntitySideContentIconProperties
-    extends ReactProperties {
-
-    readonly reference: Entity
-
-}
+//region -------------------- Category icon --------------------
 
 /** @reactComponent */
-function EntityCategorySideIcon({reference,}: EntitySideContentIconProperties,) {
+function EntityCategorySideContent({reference,}: EntitySideContentReferenceProperties,) {
     const name = reference.categoryAmericanEnglish
     if (name === EMPTY_STRING)
         return null
-    return <EntityCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
+    return <div className="d-flex align-items-center">
+        <h2>{gameContentTranslation('Category',)}</h2>
+        <EntityCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
+    </div>
 }
 
-//endregion -------------------- Side icon --------------------
-//region -------------------- Side content --------------------
-
-interface EntitySideContentListItemProperties
-    extends ReactProperties {
-
-    readonly reference: Entity
-
-}
+//endregion -------------------- Category icon --------------------
+//region -------------------- Properties --------------------
 
 /** @reactComponent */
-function HasAMushroomVariantListItem({reference,}: EntitySideContentListItemProperties,) {
+function HasAMushroomVariantListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.hasAMushroomVariant)
         return null
 
@@ -123,7 +146,7 @@ function HasAMushroomVariantListItem({reference,}: EntitySideContentListItemProp
 }
 
 /** @reactComponent */
-function CanBeInAParachuteListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBeInAParachuteListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBeInAParachute)
         return null
 
@@ -138,7 +161,7 @@ function CanBeInAParachuteListItem({reference,}: EntitySideContentListItemProper
 }
 
 /** @reactComponent */
-function CanHaveWingsListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanHaveWingsListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canHaveWings)
         return null
 
@@ -153,7 +176,7 @@ function CanHaveWingsListItem({reference,}: EntitySideContentListItemProperties,
 }
 
 /** @reactComponent */
-function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canMakeASoundOutOfAMusicBlock)
         return null
 
@@ -172,7 +195,7 @@ function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentLi
 }
 
 /** @reactComponent */
-function CanContainOrSpawnAKeyListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanContainOrSpawnAKeyListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canContainOrSpawnAKey)
         return null
     return <li id="canContainOrSpawnAKey-listItem" className="list-group-item">
@@ -182,7 +205,7 @@ function CanContainOrSpawnAKeyListItem({reference,}: EntitySideContentListItemPr
 }
 
 /** @reactComponent */
-function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideContentListItemProperties,) {
+function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.isAffectDirectlyByAnOnOffState)
         return null
 
@@ -199,7 +222,7 @@ function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideConten
 }
 
 /** @reactComponent */
-function CanSpawnOutOfAPipeListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanSpawnOutOfAPipeListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canSpawnOutOfAPipe)
         return null
     return <li id="canSpawnOutOfAPipe-listItem" className="list-group-item">
@@ -209,7 +232,7 @@ function CanSpawnOutOfAPipeListItem({reference,}: EntitySideContentListItemPrope
 }
 
 /** @reactComponent */
-function CanBePutOnASwingingClawListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBePutOnASwingingClawListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBePutOnASwingingClaw)
         return null
 
@@ -224,7 +247,7 @@ function CanBePutOnASwingingClawListItem({reference,}: EntitySideContentListItem
 }
 
 /** @reactComponent */
-function CanBeThrownByALakituListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBeThrownByALakituListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBeThrownByALakitu)
         return null
     return <li id="canBeThrownByALakitu-listItem" className="list-group-item">
@@ -239,7 +262,7 @@ function CanBeThrownByALakituListItem({reference,}: EntitySideContentListItemPro
 }
 
 /** @reactComponent */
-function CanBePutInALakituCloudListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBePutInALakituCloudListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBePutInALakituCloud)
         return null
     return <li id="canBePutInALakituCloud-listItem" className="list-group-item">
@@ -250,7 +273,7 @@ function CanBePutInALakituCloudListItem({reference,}: EntitySideContentListItemP
 }
 
 /** @reactComponent */
-function CanBePutInAClownCarListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBePutInAClownCarListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBePutInAClownCar)
         return null
     return <li id="canBePutInAClownCar-listItem" className="list-group-item">
@@ -261,7 +284,7 @@ function CanBePutInAClownCarListItem({reference,}: EntitySideContentListItemProp
 }
 
 /** @reactComponent */
-function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBeFiredOutOfABillBlaster)
         return null
     return <li id="canBeFiredOutOfABillBlaster-listItem" className="list-group-item">
@@ -271,7 +294,7 @@ function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentL
 }
 
 /** @reactComponent */
-function CanComeOutOfABlockListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanComeOutOfABlockListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canComeOutOfABlock)
         return null
     return <li id="canComeOutOfABlock-listItem" className="list-group-item">
@@ -281,7 +304,7 @@ function CanComeOutOfABlockListItem({reference,}: EntitySideContentListItemPrope
 }
 
 /** @reactComponent */
-function CanBePutInATreeListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBePutInATreeListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBePutInATree)
         return null
     return <li id="canBePutInATree-listItem" className="list-group-item">
@@ -291,7 +314,7 @@ function CanBePutInATreeListItem({reference,}: EntitySideContentListItemProperti
 }
 
 /** @reactComponent */
-function CanBeStackedListItem({reference,}: EntitySideContentListItemProperties,) {
+function CanBeStackedListItem({reference,}: EntitySideContentReferenceProperties,) {
     if (!reference.canBeStacked)
         return null
 
@@ -307,4 +330,180 @@ function CanBeStackedListItem({reference,}: EntitySideContentListItemProperties,
     </li>
 }
 
-//endregion -------------------- Side content --------------------
+//endregion -------------------- Properties --------------------
+//region -------------------- Limit --------------------
+
+/** @reactComponent */
+function EditorLimitListItem({reference: {editorLimit_smm2, editorLimit_smm1And3ds,}, games,}: EntitySideContentWithGameReferenceProperties,) {
+    const limit_smm1And3ds = editorLimit_smm1And3ds === NOT_APPLICABLE ? null : editorLimit_smm1And3ds
+    const limit_smm2 = editorLimit_smm2 === NOT_APPLICABLE ? null : editorLimit_smm2
+
+    if (games.hasOnlySmm2)
+        if (limit_smm2 == null)
+            return null
+        else
+            return <li>
+                <NameComponent id={`limit-sideName-smm2Editor-${limit_smm2.englishNameInHtml}`} name={limit_smm2.reference}/>
+            </li>
+
+    if (games.hasOnlySmm1Or3ds)
+        if (limit_smm1And3ds == null)
+            return null
+        else
+            return <li>
+                <NameComponent id={`limit-sideName-smm1And3dsEditor-${limit_smm1And3ds.englishNameInHtml}`} name={limit_smm1And3ds.reference}/>
+            </li>
+
+    if (limit_smm2 == null && limit_smm1And3ds == null)
+        return null
+
+    if (limit_smm2 === limit_smm1And3ds)
+        if (limit_smm2 == null)
+            return null
+        else
+            return <li>
+                <NameComponent id={`limit-sideName-smm1And3dsAnd2Editor-${limit_smm2.englishNameInHtml}`} name={limit_smm2.reference}/>
+            </li>
+
+    if (limit_smm2 == null)
+        return <>
+            {limit_smm1And3ds == null ? null : <li>
+                <NameComponent id={`limit-sideName-smm1And3dsEditor-${limit_smm1And3ds.englishNameInHtml}`} name={limit_smm1And3ds.reference}/>
+                <sup>
+                    <GameImage reference={SMM1}/>
+                    <GameImage reference={SMM3DS}/>
+                </sup>
+            </li>}
+            <li>
+                <TextComponent content={NOT_APPLICABLE}/>
+                <sup><GameImage reference={SMM2}/></sup>
+            </li>
+        </>
+    if (limit_smm1And3ds == null)
+        return <>
+            <li>
+                <TextComponent content={NOT_APPLICABLE}/>
+                <sup>
+                    <GameImage reference={SMM1}/>
+                    <GameImage reference={SMM3DS}/>
+                </sup>
+            </li>
+            <li>
+                <NameComponent id={`limit-sideName-smm2Editor-${limit_smm2.englishNameInHtml}`} name={limit_smm2.reference}/>
+                <sup><GameImage reference={SMM2}/></sup>
+            </li>
+        </>
+    return <>
+        <li>
+            <NameComponent id={`limit-sideName-smm1And3dsEditor-${limit_smm1And3ds.englishNameInHtml}`} name={limit_smm1And3ds.reference}/>
+            <sup>
+                <GameImage reference={SMM1}/>
+                <GameImage reference={SMM3DS}/>
+            </sup>
+        </li>
+        <li>
+            <NameComponent id={`limit-sideName-smm2Editor-${limit_smm2.englishNameInHtml}`} name={limit_smm2.reference}/>
+            <sup><GameImage reference={SMM2}/></sup>
+        </li>
+    </>
+}
+
+
+/** @reactComponent */
+function GeneralLimitListItem({reference,}: EntitySideContentReferenceProperties,) {
+    const limit = reference.isInGeneralLimit
+    // const globalLimit = reference.isInGlobalGeneralLimit
+
+    if (!limit)
+        return null
+
+    const {englishNameInHtml, reference: limitReference,} = GENERAL_ENTITY_LIMIT
+    return <li>
+        <TextComponent content={`${GENERAL_ENTITY_LIMIT.acronym} `} className="text-body text-opacity-75 fst-italic"/>
+        <NameComponent id={`limit-sideName-${englishNameInHtml}`} name={limitReference}/>
+        <small className="text-body text-opacity-50">
+            <TextComponent content={' ('}/>
+            <TextComponent content={`${GENERAL_ENTITY_LIMIT.alternativeAcronym} `} className="fst-italic"/>
+            <NameComponent id={`limit-sideName-alternative-${englishNameInHtml}`} name={limitReference.alternativeContainer}/>
+            <TextComponent content=")"/>
+        </small>
+    </li>
+}
+
+/** @reactComponent */
+function PowerUpLimitListItem({reference,}: EntitySideContentReferenceProperties,) {
+    const limit = reference.isInPowerUpLimit
+
+    if (!limit)
+        return null
+
+    const {englishNameInHtml, reference: limitReference,} = POWER_UP_ENTITY_LIMIT
+    return <li>
+        <TextComponent content={`${POWER_UP_ENTITY_LIMIT.acronym} `} className="text-body text-opacity-75 fst-italic"/>
+        <NameComponent id={`limit-sideName-${englishNameInHtml}`} name={limitReference}/>
+        <small className="text-body text-opacity-50">
+            <TextComponent content={' ('}/>
+            <TextComponent content={`${POWER_UP_ENTITY_LIMIT.alternativeAcronym} `} className="fst-italic"/>
+            <NameComponent id={`limit-sideName-alternative-${englishNameInHtml}`} name={limitReference.alternativeContainer}/>
+            <TextComponent content=")"/>
+        </small>
+    </li>
+}
+
+/** @reactComponent */
+function ProjectileLimitListItem({reference,}: EntitySideContentReferenceProperties,) {
+    const limit = reference.isInProjectileLimit
+
+    if (!limit)
+        return null
+
+    return <li>
+        <TextComponent content={`${PROJECTILE_LIMIT.acronym} `} className="text-body text-opacity-75 fst-italic"/>
+        <NameComponent id={`limit-sideName-${PROJECTILE_LIMIT.englishNameInHtml}`} name={PROJECTILE_LIMIT.reference}/>
+    </li>
+}
+
+/** @reactComponent */
+function DynamicRenderedObjectLimitListItem({reference,}: EntitySideContentReferenceProperties,) {
+    const limit = reference.isInDynamicRenderedObjectLimit
+
+    if (!limit)
+        return null
+
+    const {englishNameInHtml, reference: limitReference,} = DYNAMIC_RENDERED_OBJECT_LIMIT
+    return <li>
+        <NameComponent id={`limit-sideName-${englishNameInHtml}`} name={limitReference}/>
+        <small className="text-body text-opacity-50">
+            <TextComponent content={' ('}/>
+            <NameComponent id={`limit-sideName-alternative-${englishNameInHtml}`} name={limitReference.alternativeContainer}/>
+            <TextComponent content=")"/>
+        </small>
+    </li>
+}
+
+/** @reactComponent */
+function CollectedLooseCoinLimitListItem({reference,}: EntitySideContentReferenceProperties,) {
+    const limit = reference.isInCollectedLooseCoinLimit
+
+    if (!limit)
+        return null
+    return <li>
+        <NameComponent id={`limit-sideName-${COLLECTED_LOOSE_COIN_LIMIT.englishNameInHtml}`} name={COLLECTED_LOOSE_COIN_LIMIT.reference}/>
+    </li>
+}
+
+/** @reactComponent */
+function OtherLimitListItem({reference,}: EntitySideContentReferenceProperties,) {
+    const limit = reference.otherLimit
+
+    if (limit == null)
+        return null
+
+    const acronym = limit.acronym
+    return <li>
+        {acronym == null ? null : <TextComponent content={`${acronym} `} className="text-body text-opacity-75 fst-italic"/>}
+        <NameComponent id={`limit-sideName-${limit.englishNameInHtml}`} name={limit.reference}/>
+    </li>
+}
+
+//endregion -------------------- Limit --------------------

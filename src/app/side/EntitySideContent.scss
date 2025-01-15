@@ -60,4 +60,9 @@
     --single-height: 1rem;
   }
 
+  .game-image { max-height: 1rem }
+
 }
+
+#entity-sideContent-editorLimit-container sup { top: -.75rem }
+:is(#entity-sideContent-editorLimit-container, #entity-sideContent-playLimit-container) .name-container { display: inline }
