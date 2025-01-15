@@ -1,3 +1,5 @@
+import type {NullableString} from '@joookiwi/type'
+
 export {}
 
 interface CustomMatchers<R = void, > {
@@ -21,6 +23,13 @@ interface CustomMatchers<R = void, > {
 
     /** Check if the value is a {@link Boolean} (primitive only), <b>null</b>, <b>?</b> or <b>N/A</b> */
     toBeBooleanOrNullOrNotApplicableOrUnknown(): R
+
+
+    /** Check if the value (as `null` or a {@link String}) is null whenever the {@link value} is <b>true</b> */
+    toBeCoherentWith(value: boolean,): R
+
+    /** Check if the value (as `null` or a {@link String}) is null whenever the {@link value} is not a null {@link String} */
+    toBeCoherentWith(value: NullableString,): R
 
 }
 

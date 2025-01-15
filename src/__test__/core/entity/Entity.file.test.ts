@@ -103,12 +103,12 @@ describe('Entity (file test)', () => {
                 describe('Can be in a parachute', () => {
                     test('value', () => expect(it.canBeInAParachute,).toBeBoolean(),)
                     test('comment', () => expect(it.canBeInAParachute_comment,).toBeOneOf(possibleBasicPropertyComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.canBeInAParachute_comment,).toBeCoherentWith(it.canBeInAParachute,),)
                 },)
                 describe('Can have wings', () => {
                     test('value', () => expect(it.canHaveWings,).toBeBoolean(),)
                     test('comment', () => expect(it.canHaveWings_comment,).toBeOneOf(possibleBasicPropertyComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.canHaveWings_comment,).toBeCoherentWith(it.canHaveWings,),)
                 },)
             },)
             describe('Specific properties', () => {
@@ -116,7 +116,7 @@ describe('Entity (file test)', () => {
                 describe('Is directly affected by an ON/OFF state', () => {
                     test('value', () => expect(it.isAffectedDirectlyByAnOnOrOffState,).toBeBoolean(),)
                     test('comment', () => expect(it.isAffectedDirectlyByAnOnOrOffState_comment,).toBeOneOf(possibleAffectedByOnOffStateComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.isAffectedDirectlyByAnOnOrOffState_comment,).toBeCoherentWith(it.isAffectedDirectlyByAnOnOrOffState,),)
                 },)
                 describe('Can be put on a Track', () => {
                     test('value', () => expect(it.canBePutOnATrack,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
@@ -183,30 +183,33 @@ describe('Entity (file test)', () => {
                     describe('General Entity (GEL)', () => {
                         test('value', () => expect(it.whilePlaying_isInGEL,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInGEL_comment,).toBeOneOf(everyGELComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInGEL_comment,).toBeCoherentWith(it.whilePlaying_isInGEL,),)
                     },)
                     describe('Global General Entity (GEL)', () => {
                         test('value', () => expect(it.whilePlaying_isInGEL_isSuperGlobal,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInGEL_isSuperGlobal_comment,).toBeOneOf(everyGELGlobalComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInGEL_isSuperGlobal_comment,).toBeCoherentWith(it.whilePlaying_isInGEL_isSuperGlobal,),)
                     },)
                     test('Power-up (PL)', () => expect(it.whilePlaying_isInPL,).toBeBoolean(),)
                     describe('Projectile (PJL)', () => {
                         test('value', () => expect(it.whilePlaying_isInPJL,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInPJL_comment,).toBeOneOf(everyPJLComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInPJL_comment,).toBeCoherentWith(it.whilePlaying_isInPJL,),)
                     },)
                     describe('Object rendered', () => {
                         test('value', () => expect(it.whilePlaying_isInObjectRenderedLimit,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInObjectRenderedLimit_comment,).toBeOneOf(everyObjectRenderedLimitComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInObjectRenderedLimit_comment,).toBeCoherentWith(it.whilePlaying_isInObjectRenderedLimit,),)
                     },)
                     test('Collected Coin', () => expect(it.whilePlaying_isInCollectedCoinLimit,).toBeBoolean(),)
                     describe('Other', () => {
                         test('value', () => expect(it.whilePlaying_otherLimit,).toBeOneOf(everyPlayLimitsWithNull,),)
                         test('comment', () => expect(it.whilePlaying_otherLimit_comment,).toBeOneOf(everyOtherLimitComment,),)
                         test('is unknown', () => expect(it.whilePlaying_otherLimit_isUnknown,).toBeBoolean(),)
-                        //TODO add coherence test
+                        describe('coherence', () => {
+                            test('with comment', () => expect(it.whilePlaying_otherLimit_comment,).toBeCoherentWith(it.whilePlaying_otherLimit,),)
+                            //TODO add unknown coherence test
+                        },)
                     },)
                 })
             },)
