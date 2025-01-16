@@ -145,7 +145,7 @@ describe('Entity (file test)', () => {
                 },)
                 test('Can be affected by a Twister', () => expect(it.canBeAffectedByATwister,).toBeOneOf(possibleAffectedByTwister,),)
                 describe('Can go through a wall', () => {
-                    test('value', () => expect(it.canGoThroughWalls,).toBeBooleanOrNull(),)
+                    test('value', () => expect(it.canGoThroughWalls,).toBeBoolean(),)
                     test('in SM3DW', () => expect(it.canGoThroughWalls_SM3DW,).toBeOneOf(possibleCanGoThroughWallsInSM3DW,),)
                     //TODO add coherence test
                 },)
@@ -159,7 +159,7 @@ describe('Entity (file test)', () => {
                 describe('Can make a sound out of a Music Block', () => {
                     test('value', () => expect(it.canMakeASoundOutOfAMusicBlock,).toBeBoolean(),)
                     test('comment', () => expect(it.canMakeASoundOutOfAMusicBlock_comment,).toBeOneOf(possibleCanMakeASoundOutOfMusicBlockComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.canMakeASoundOutOfAMusicBlock_comment,).toBeCoherentWith(it.canMakeASoundOutOfAMusicBlock,),)
                 },)
             },)
             describe('Bowser / Bowser Jr. / Magikoopa properties', () => {
