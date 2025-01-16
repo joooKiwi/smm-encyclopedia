@@ -18,14 +18,14 @@
     "prepare-project": "npm-run-all -p convert-csv-to-json copy-locale-to-src copy-images-for-css",
 
     "prestart": "npm run prepare-project",
-    "start": "react-scripts start",
-    "fast-start": "react-scripts start",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "fast-start": "react-scripts --max_old_space_size=4096 start",
 
     "test": "react-scripts test",
     "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
 
-    "build": "react-scripts build",
-    "deploy": "gh-pages -m \"Deployment of the version 0.26 (beta)\" -d build"
+    "build": "react-scripts --max_old_space_size=4096 build",
+    "deploy": "gh-pages -m \"Deployment of the version 0.27 (beta)\" -d build"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
