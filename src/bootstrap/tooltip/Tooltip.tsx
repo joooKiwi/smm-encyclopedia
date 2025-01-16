@@ -18,7 +18,7 @@ interface TooltipProperties
 
     readonly on?: Nullable<Partial<TooltipEvents<any>>>
 
-    readonly reference: Nullable<| RefObject<HTMLElement> | HTMLElement | string>
+    readonly reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>
 
 }
 
@@ -40,7 +40,7 @@ export default function Tooltip({children, option, on: triggers, reference,}: To
     return children ?? null
 }
 
-function getReference(reference: Nullable<| RefObject<HTMLElement> | HTMLElement | string>,) {
+function getReference(reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>,) {
     if (reference == null)
         return null
 
