@@ -1,3 +1,5 @@
+import type {NullOrString} from '@joookiwi/type'
+
 import {EveryTypes} from '__test__/EveryTypes'
 
 const ENTITY_LINK_SEPARATOR = ' / '
