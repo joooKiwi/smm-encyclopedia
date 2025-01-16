@@ -90,7 +90,7 @@ export default function HomeApp() {
             <PageProgress progress="completed"                   link="everyMiiCostume"               exclusiveGame="SMM2"   content={miiCostume}/>
             <PageProgress progress="completed"                   link="everyMiiCostumeCategory"       exclusiveGame="SMM2"   content={gameContentTranslation('mii costume category.singular', {SingularName: miiCostume, singularName: miiCostumeAsLowerCase, PluralName: miiCostumes, pluralName: miiCostumesAsLowerCase,},)}/>
             <PageProgress progress="page in progress"            link="everyEditorVoice"                                     content={gameContentTranslation('editor voice.singular',)}/>
-            <PageProgress progress="page in progress"            link="everyInstrument"                                      content={gameContentTranslation('instrument.singular',)}/>
+            <PageProgress progress="page almost done"            link="everyInstrument"                                      content={gameContentTranslation('instrument.singular',)}/>
             <PageProgress progress="page in progress"            link="everyPowerUp&Ride&HatPriority"                        content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: powerUp, powerUp: powerUpAsLowerCase, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
         </div>
     </>
