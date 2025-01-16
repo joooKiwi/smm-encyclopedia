@@ -63,7 +63,10 @@ export interface Entity
     // can survive in the lava or poison
     // can ignite a Bob-omb
     // can be broken or killed by a Bob-omb
-    // can be affected by a Twister
+
+    readonly canBeAffectedByATwister: boolean
+    readonly canBeAffectedByATwisterWhenItIsWithAParachute: boolean
+    readonly canBeAffectedByATwisterWhenInAFallingState: boolean
 
     // can go through walls
     // can go through walls (in SM3DW)

@@ -55,6 +55,12 @@
     translate: 0 25%;
   }
 
+  #animated-twister {
+    --amount-of-blocks: 1;
+    --single-height: 1rem;
+    translate: 0 25%;
+  }
+
   :is(#animated-galoomba1, #animated-galoomba2) {
     --amount-of-blocks: 1;
     --single-height: 1rem;

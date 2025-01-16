@@ -62,6 +62,8 @@ export class EntityContainer
         public readonly canComeOutOfABlock: boolean,
         public readonly canBePutInATree: boolean,
 
+        public readonly canBeAffectedByATwister: boolean, public readonly canBeAffectedByATwisterWhenItIsWithAParachute: boolean, public readonly canBeAffectedByATwisterWhenInAFallingState: boolean,
+
         public readonly canBeStacked: boolean,
         public readonly isGlobalGroundOrGlobal: boolean, public readonly isGlobalGroundOrGlobalInSm3dw: boolean,
 

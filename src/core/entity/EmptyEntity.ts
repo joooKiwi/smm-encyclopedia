@@ -67,6 +67,10 @@ export class EmptyEntity
     //endregion -------------------- Directly affected --------------------
     //region -------------------- Indirect --------------------
 
+    public readonly canBeAffectedByATwister = false
+    public readonly canBeAffectedByATwisterWhenItIsWithAParachute = false
+    public readonly canBeAffectedByATwisterWhenInAFallingState = false
+
     public readonly canBeStacked = false
 
     public readonly isGlobalGroundOrGlobal = false

@@ -38,7 +38,7 @@ import SMM3DS =              Games.SMM3DS
 
 const {BILL_BLASTER, KOOPA_CLOWN_CAR, KEY, GALOOMBA, LAKITU,
     LAKITU_CLOUD, MUSIC_BLOCK, ON_OFF_SWITCH, PARACHUTE, PIPE,
-    SUPER_MUSHROOM, QUESTION_MARK_BLOCK, SWINGING_CLAW, TREE, WING,} = Entities
+    SUPER_MUSHROOM, QUESTION_MARK_BLOCK, SWINGING_CLAW, TWISTER, TREE, WING,} = Entities
 const {COLLECTED_LOOSE_COIN_LIMIT, DYNAMIC_RENDERED_OBJECT_LIMIT, GENERAL_ENTITY_LIMIT,
     LOOSE_COIN_LIMIT, POWER_UP_ENTITY_LIMIT, PROJECTILE_LIMIT,} = Limits
 const {ENTITY,} = OtherWordInTheGames
@@ -99,6 +99,7 @@ export default function EntitySideContent({reference, games,}: EntitySideContent
                     <CanBeFiredOutOfABulletLauncherListItem reference={entityReference}/>
                     <CanComeOutOfABlockListItem reference={entityReference}/>
                     <CanBePutInATreeListItem reference={entityReference}/>
+                    <CanBeAffectedByATwisterListItem reference={entityReference}/>
                     <CanBeStackedListItem reference={entityReference}/>
                 </ul>
                 <h2>{gameContentTranslation('limit.singular',)}</h2>
@@ -310,6 +311,23 @@ function CanBePutInATreeListItem({reference,}: EntitySideContentReferencePropert
     return <li id="canBePutInATree-listItem" className="list-group-item">
         <Image file={TREE.image.images.getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be put in a Tree',)}</span>
+    </li>
+}
+
+/** @reactComponent */
+function CanBeAffectedByATwisterListItem({reference,}: EntitySideContentReferenceProperties,) {
+    //TODO add differentiation when it is in a falling state
+    //TODO add differentiation when it is with a parachute
+
+    const value = reference.canBeAffectedByATwister
+    const inAParachute = reference.canBeAffectedByATwisterWhenItIsWithAParachute
+    const fallingState = reference.canBeAffectedByATwisterWhenInAFallingState
+    if (!(value || inAParachute || fallingState))
+        return null
+
+    return <li id="canBeAffectedByATwister-listItem" className="list-group-item">
+        <Image id="animated-twister" className="d-inline-block" images={TWISTER.inGameImage.get(SMW,).map(it => ({file: it,}),)}/>
+        <span>{unfinishedText('Can be affected by a Twister',)}</span>
     </li>
 }
 

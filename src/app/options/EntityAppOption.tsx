@@ -13,6 +13,7 @@ import ImageAs3dModel                   from 'app/tools/images/ImageAs3dModel'
 import {TableOption}                    from 'app/tools/table/TableOption'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import EditorVoiceSound                 from 'core/editorVoice/component/EditorVoiceSound'
+import CanBeAffectedByATwister          from 'core/entity/properties/component/CanBeAffectedByATwister'
 import CanBeFiredOutOfABulletLauncher   from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
 import CanBeInAParachute                from 'core/entity/properties/component/CanBeInAParachute'
 import CanBePutInABlock                 from 'core/entity/properties/component/CanBePutInABlock'
@@ -195,6 +196,7 @@ export abstract class EntityAppOption
                         <CanBeFiredOutOfABulletLauncher value={enumeration}/>
                         <CanBePutInABlock value={enumeration}/>
                         <CanBePutInATree value={enumeration}/>
+                        <CanBeAffectedByATwister value={enumeration}/>
                         <CanBeStacked value={enumeration}/>
                     </div>
                     {CommonOptions.get.getNameContent(enumeration,)}

@@ -20,8 +20,6 @@ export type PossibleGroupName = string
 /** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle'
 /** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed'
 
-/** @temporaryLocation */export type CanBeAffectedByATwister = NullOr<| boolean | NotApplicable | 'When falling' | 'Parachute'>
-
 /** @temporaryLocation */export type CanGoThroughWalls = NullOrBoolean
 /** @temporaryLocation */export type CanGoThroughWallsInSM3DW = NullOr<| boolean | 'on down curve'>
 
