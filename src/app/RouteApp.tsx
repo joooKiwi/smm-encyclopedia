@@ -1,6 +1,6 @@
 import './RouteApp.scss'
 
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router'
 
 import type {Names, PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}          from 'util/react/ReactProperties'

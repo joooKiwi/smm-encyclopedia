@@ -1,5 +1,5 @@
 import type {Nullable} from '@joookiwi/type'
-import {redirect}      from 'react-router/dist'
+import {redirect}      from 'react-router'
 
 import {getUserLanguage}  from 'lang/getUserLanguage'
 import {ProjectLanguages} from 'lang/ProjectLanguages'

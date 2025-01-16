@@ -1,5 +1,5 @@
 import {Enum} from '@joookiwi/enumerable'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'

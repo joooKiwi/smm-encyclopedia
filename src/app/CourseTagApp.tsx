@@ -2,7 +2,7 @@ import './CourseTagApp.scss'
 
 import type {NullOrString}     from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
-import {Link}                  from 'react-router-dom'
+import {Link}                  from 'react-router'
 
 import type {CourseTagAppProperties} from 'app/AppProperties.types'
 import type {CourseTags}             from 'core/courseTag/CourseTags'

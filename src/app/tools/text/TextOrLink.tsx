@@ -1,5 +1,5 @@
 import type {NullableString} from '@joookiwi/type'
-import {Link}                from 'react-router-dom'
+import {Link}                from 'react-router'
 
 import type {PossibleRouteName}           from 'route/EveryRoutes.types'
 import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'

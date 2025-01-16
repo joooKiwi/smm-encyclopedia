@@ -1,5 +1,5 @@
 import {useRef}            from 'react'
-import {Link, useLocation} from 'react-router-dom'
+import {Link, useLocation} from 'react-router'
 
 import type {PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}   from 'util/react/ReactProperties'

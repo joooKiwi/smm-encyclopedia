@@ -2,7 +2,7 @@ import './ParameterModal.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 import {useRef, useState}      from 'react'
-import {Link, useLocation}     from 'react-router-dom'
+import {Link, useLocation}     from 'react-router'
 
 import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 

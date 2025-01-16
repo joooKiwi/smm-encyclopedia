@@ -1,7 +1,7 @@
 import './_PageLayout.scss'
 
 import {Fragment} from 'react'
-import {Outlet}   from 'react-router-dom/dist'
+import {Outlet}   from 'react-router'
 
 import {useCurrentGames}      from 'core/game/gamesHook'
 import {useCurrentGameStyles} from 'core/gameStyle/gameStylesHook'

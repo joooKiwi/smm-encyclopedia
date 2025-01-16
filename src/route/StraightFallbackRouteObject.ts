@@ -1,4 +1,4 @@
-import type {LoaderFunctionArgs} from 'react-router/dist'
+import type {LoaderFunctionArgs} from 'react-router'
 
 import {StraightRouteObject} from 'route/StraightRouteObject'
 

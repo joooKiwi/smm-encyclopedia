@@ -1,6 +1,6 @@
 import type {Nullable}           from '@joookiwi/type'
-import type {LoaderFunctionArgs} from 'react-router/dist'
-import {redirect}                from 'react-router/dist'
+import type {LoaderFunctionArgs} from 'react-router'
+import {redirect}                from 'react-router'
 
 import {Games}            from 'core/game/Games'
 import {GameStyles}       from 'core/gameStyle/GameStyles'

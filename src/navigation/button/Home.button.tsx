@@ -1,5 +1,5 @@
 import {useRef} from 'react'
-import {Link}   from 'react-router-dom'
+import {Link}   from 'react-router'
 
 import Tooltip                    from 'bootstrap/tooltip/Tooltip'
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'

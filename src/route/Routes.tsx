@@ -1,8 +1,7 @@
-import type {MutableArray, NullOrString}    from '@joookiwi/type'
-import type {RouteObject}                   from 'react-router/dist'
-import {RouterProvider}                     from 'react-router/dist'
-import {createHashRouter}                   from 'react-router-dom/dist'
-import {Suspense}                           from 'react'
+import type {MutableArray, NullOrString}  from '@joookiwi/type'
+import type {RouteObject}                 from 'react-router'
+import {createHashRouter, RouterProvider} from 'react-router'
+import {Suspense}                         from 'react'
 
 import PageLayout                    from 'app/_PageLayout'
 import LoadingApp                    from 'app/LoadingApp'
@@ -131,7 +130,7 @@ function resolveLazyRoute(path: string, action: (routeId: NullOrString, children
 
 /** @reactComponent */
 export default function Routes() {
-    return <RouterProvider router={router} future={{v7_startTransition: true,}}/>
+    return <RouterProvider router={router}/>
 }
 
 // @ts-ignore: TODO remove once the application is more complete
