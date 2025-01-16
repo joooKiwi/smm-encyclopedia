@@ -105,6 +105,7 @@
     "@humanwhocodes/config-array":                        "https://registry.npmjs.org/@eslint/config-array/-/config-array-0.19.1.tgz",
     "@humanwhocodes/object-schema":                       "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-2.1.5.tgz",
 
+    "react":      "^19.0.0",
     "typescript": "^5.7.3"
   }
 }
