@@ -1,13 +1,13 @@
 import type {Array, Nullable} from '@joookiwi/type'
-import {filterNotNull}        from '@joookiwi/collection'
 
 import type {Entity} from 'core/entity/Entity'
 
-import {Limits} from 'core/limit/Limits'
+import {Limits}            from 'core/limit/Limits'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import Companion = Limits.Companion
 
-export class LimitMapHolder<const out REFERENCE extends Entity, > {
+export class LimitMapHolder<const REFERENCE extends Entity, > {
 
     //region -------------------- Fields --------------------
 
@@ -36,7 +36,7 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
      * @param values the values (null are ignored)
      */
     #newMap(...values: Array<Nullable<Limits>>): ReadonlyMap<Limits, boolean> {
-        const newValues = filterNotNull(values,)
+        const newValues = new ArrayAsCollection(values,).filterNotNull()
         return new Map(Companion.values.map(limit => [limit, newValues.has(limit,),],),)
     }
 
@@ -48,7 +48,7 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
         const reference = this.reference
         const editorLimits = [reference.editorLimit_smm1And3ds, reference.editorLimit_smm2,]
 
-        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof Limits ? editorLimit : null))
+        return this.#newMap(...new ArrayAsCollection(editorLimits,).map(editorLimit => editorLimit instanceof Limits ? editorLimit : null,),)
     }
 
     public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
@@ -56,12 +56,12 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
         const otherLimits = reference.otherLimit
 
         return this.#newMap(
-            reference.isInGeneralLimit === true ? Limits.GENERAL_ENTITY_LIMIT : null,
-            reference.isInGlobalGeneralLimit === true ? Limits.GENERAL_ENTITY_LIMIT : null,
-            reference.isInPowerUpLimit === true ? Limits.POWER_UP_ENTITY_LIMIT : null,
-            reference.isInProjectileLimit === true ? Limits.PROJECTILE_LIMIT : null,
-            reference.isInRenderedObjectLimit === true ? Limits.RENDERED_OBJECT_LIMIT : null,
-            reference.isInCollectedCoinLimit === true ? Limits.COLLECTED_COIN_LIMIT : null,
+            reference.isInGeneralLimit ? Limits.GENERAL_ENTITY_LIMIT : null,
+            reference.isInGlobalGeneralLimit ? Limits.GENERAL_ENTITY_LIMIT : null,
+            reference.isInPowerUpLimit ? Limits.POWER_UP_ENTITY_LIMIT : null,
+            reference.isInProjectileLimit ? Limits.PROJECTILE_LIMIT : null,
+            reference.isInDynamicRenderedObjectLimit ? Limits.DYNAMIC_RENDERED_OBJECT_LIMIT : null,
+            reference.isInCollectedLooseCoinLimit ? Limits.COLLECTED_LOOSE_COIN_LIMIT : null,
             otherLimits instanceof Limits ? otherLimits : null,
         )
     }

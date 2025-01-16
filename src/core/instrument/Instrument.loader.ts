@@ -1,5 +1,6 @@
 import file from 'resources/compiled/Instrument.json'
 
+import type {CollectionHolder}                  from '@joookiwi/collection'
 import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
 import {forEachByArray}                         from '@joookiwi/collection'
 
@@ -16,8 +17,9 @@ import {EntityLoader}          from 'core/entity/Entity.loader'
 import {InstrumentContainer}   from 'core/instrument/Instrument.container'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
 import {Empty}                 from 'util/emptyVariables'
+import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 /** @singleton */
 export class InstrumentLoader
@@ -106,7 +108,7 @@ function createReference(content: Content, entityMap: EntityMap,): Instrument {
     )
 }
 
-function retrieveEntity(content: Content, entityMap: EntityMap,): Array<Entity> {
+function retrieveEntity(content: Content, entityMap: EntityMap,): CollectionHolder<Entity> {
     const entities: MutableArray<Entity> = []
     if (content.entityReference1 != null)
         entities.push(entityMap.get(content.entityReference1,)!,)
@@ -120,6 +122,6 @@ function retrieveEntity(content: Content, entityMap: EntityMap,): Array<Entity> 
         entities.push(entityMap.get(content.indirectEntityReference,)!,)
 
     if (entities.length === 0)
-        return EMPTY_ARRAY
-    return entities
+        return EMPTY_COLLECTION_HOLDER
+    return new ArrayAsCollection(entities,)
 }

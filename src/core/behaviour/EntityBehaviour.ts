@@ -9,20 +9,11 @@ export interface EntityBehaviour
     extends ClassWithTranslationKey<PossibleTranslationKeys>,
         ClassWithAcronym<PossibleAcronym> {
 
-    //region -------------------- Is in only --------------------
+    readonly isOnlineOnly: boolean
+    readonly isMultiplayerOnly: boolean
 
-    get isOnlineOnly(): boolean
-
-    get isMultiplayerOnly(): boolean
-
-    //endregion -------------------- Is in only --------------------
-    //region -------------------- Links --------------------
-
-    get groupLink(): PossibleGroup
-
-    get entityLink(): NullOr<Entity>
-
-    //endregion -------------------- Links --------------------
+    readonly groupLink: PossibleGroup
+    readonly entityLink: NullOr<Entity>
 
 }
 

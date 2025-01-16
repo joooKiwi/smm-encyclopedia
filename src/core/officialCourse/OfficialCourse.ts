@@ -1,4 +1,5 @@
-import type {Array, NullOr} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOr}           from '@joookiwi/type'
 
 import type {GameStyles}                from 'core/gameStyle/GameStyles'
 import type {MysteryMushrooms}          from 'core/mysteryMushroom/MysteryMushrooms'
@@ -10,22 +11,16 @@ import type {NameTraitWithADescription} from 'lang/name/NameTraitWithADescriptio
 export interface OfficialCourse
     extends NameTraitWithADescription<string, string, Name<string>> {
 
-    get reward(): Array<MysteryMushrooms>
+    readonly reward: CollectionHolder<MysteryMushrooms>
 
+    readonly releaseDate: Date
+    readonly removalDate: NullOr<| Date | UnknownReference>
 
-    get releaseDate(): Date
+    readonly gameStyle: GameStyles
 
-    get removalDate(): NullOr<| Date | UnknownReference>
+    readonly courseThemeInTheMainArea: Themes
+    readonly courseThemeInTheSubArea: NullOr<Themes>
 
-
-    get gameStyle(): GameStyles
-
-
-    get courseThemeInTheMainArea(): Themes
-
-    get courseThemeInTheSubArea(): NullOr<Themes>
-
-
-    get amountOfTime(): PossibleAmountOfTime
+    readonly amountOfTime: PossibleAmountOfTime
 
 }

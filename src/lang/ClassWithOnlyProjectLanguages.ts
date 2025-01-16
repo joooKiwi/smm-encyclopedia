@@ -22,98 +22,43 @@ export interface ClassWithOnlyProjectLanguages<T,
     UKRAINIAN extends NullOr<T> = NullOr<T>,
     GREEK extends NullOr<T> = NullOr<T>, > {
 
-    //region -------------------- English properties --------------------
+    readonly americanEnglish: T
+    readonly europeanEnglish: T
 
-    get americanEnglish(): T
+    readonly canadianFrench: T
+    readonly europeanFrench: T
 
-    get europeanEnglish(): T
+    readonly german: GERMAN
 
-    //endregion -------------------- English properties --------------------
-    //region -------------------- French properties --------------------
+    readonly americanSpanish: AMERICAN_SPANISH
+    readonly europeanSpanish: EUROPEAN_SPANISH
 
-    get canadianFrench(): T
+    readonly italian: ITALIAN
 
-    get europeanFrench(): T
+    readonly dutch: DUTCH
 
-    //endregion -------------------- French properties --------------------
-    //region -------------------- German properties --------------------
+    readonly americanPortuguese: AMERICAN_PORTUGUESE
+    readonly europeanPortuguese: EUROPEAN_PORTUGUESE
 
-    get german(): GERMAN
+    readonly russian: RUSSIAN
 
-    //endregion -------------------- German properties --------------------
-    //region -------------------- Spanish properties --------------------
+    readonly japanese: JAPANESE
 
-    get americanSpanish(): AMERICAN_SPANISH
+    readonly traditionalChinese: TRADITIONAL_CHINESE
+    readonly simplifiedChinese: SIMPLIFIED_CHINESE
 
-    get europeanSpanish(): EUROPEAN_SPANISH
+    readonly korean: KOREAN
 
-    //endregion -------------------- Spanish properties --------------------
-    //region -------------------- Italian properties --------------------
+    readonly isHebrewUsed: boolean
+    readonly hebrew: HEBREW
 
-    get italian(): ITALIAN
+    readonly isPolishUsed: boolean
+    readonly polish: POLISH
 
-    //endregion -------------------- Italian properties --------------------
-    //region -------------------- Dutch properties --------------------
+    readonly isUkrainianUsed: boolean
+    readonly ukrainian: UKRAINIAN
 
-    get dutch(): DUTCH
-
-    //endregion -------------------- Dutch properties --------------------
-    //region -------------------- Portuguese properties --------------------
-
-    get americanPortuguese(): AMERICAN_PORTUGUESE
-
-    get europeanPortuguese(): EUROPEAN_PORTUGUESE
-
-    //endregion -------------------- Portuguese properties --------------------
-    //region -------------------- Russian properties --------------------
-
-    get russian(): RUSSIAN
-
-    //endregion -------------------- Russian properties --------------------
-    //region -------------------- Japanese properties --------------------
-
-    get japanese(): JAPANESE
-
-    //endregion -------------------- Japanese properties --------------------
-    //region -------------------- Chinese properties --------------------
-
-    get traditionalChinese(): TRADITIONAL_CHINESE
-
-    get simplifiedChinese(): SIMPLIFIED_CHINESE
-
-    //endregion -------------------- Chinese properties --------------------
-    //region -------------------- Korean properties --------------------
-
-    get korean(): KOREAN
-
-    //endregion -------------------- Korean properties --------------------
-    //region -------------------- Hebrew properties --------------------
-
-    get isHebrewUsed(): boolean
-
-    get hebrew(): HEBREW
-
-    //endregion -------------------- Hebrew properties --------------------
-    //region -------------------- Polish properties --------------------
-
-    get isPolishUsed(): boolean
-
-    get polish(): POLISH
-
-    //endregion -------------------- Polish properties --------------------
-    //region -------------------- Ukrainian properties --------------------
-
-    get isUkrainianUsed(): boolean
-
-    get ukrainian(): UKRAINIAN
-
-    //endregion -------------------- Ukrainian properties --------------------
-    //region -------------------- Greek properties --------------------
-
-    get isGreekUsed(): boolean
-
-    get greek(): GREEK
-
-    //endregion -------------------- Greek properties --------------------
+    readonly isGreekUsed: boolean
+    readonly greek: GREEK
 
 }

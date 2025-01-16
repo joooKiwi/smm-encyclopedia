@@ -1,9 +1,6 @@
-import './LimitAppOption.scss'
-
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/LimitAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Limit}               from 'core/limit/Limit'
@@ -12,6 +9,7 @@ import type {Limits}              from 'core/limit/Limits'
 import {CommonOptions}                              from 'app/options/CommonOptions'
 import LimitWithPossibleTooltipOnNote               from 'app/options/LimitWithPossibleTooltipOnNote'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
+import {TableOption}                                from 'app/tools/table/TableOption'
 import TextComponent                                from 'app/tools/text/TextComponent'
 import Image                                        from 'app/tools/images/Image'
 import {EmptyAlternativeLimit}                      from 'core/limit/EmptyAlternativeLimit'
@@ -22,14 +20,13 @@ import NameComponent                                from 'lang/name/component/Na
 import LanguageCompanion = ProjectLanguages.Companion
 
 export abstract class LimitAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<Limits> {
+    extends TableOption<Limits, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ACRONYM = new class LimitAppOption_Acronym extends LimitAppOption {
 
-        protected override _createContentOption({acronym, alternativeAcronym,}: Limits,) {
+        public override renderContent({acronym, alternativeAcronym,}: Limits,) {
             if (alternativeAcronym == null) {
                 if (acronym == null)
                     return null
@@ -43,14 +40,14 @@ export abstract class LimitAppOption
             </div>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {key: 'acronym', element: contentTranslation('Acronym(s)',),}
         }
 
     }('acronym',)
     public static readonly NAME = new class LimitAppOption_Name extends LimitAppOption {
 
-        protected override _createContentOption({reference, isEditorLimit,}: Limits,) {
+        public override renderContent({reference, isEditorLimit,}: Limits,) {
             const alternativeContainer = reference.alternativeContainer
             if (alternativeContainer instanceof EmptyAlternativeLimit)
                 return this.#createNameComponent(reference, isEditorLimit,)
@@ -72,25 +69,25 @@ export abstract class LimitAppOption
         }
 
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly DESCRIPTION = new class LimitAppOption_Description extends LimitAppOption {
 
-        protected override _createContentOption({reference: {description,}, descriptionForTranslation,}: Limits,) {
+        public override renderContent({reference: {description,}, descriptionForTranslation,}: Limits,) {
             return <TextComponent content={gameContentTranslation(`limit.description.${description}`, descriptionForTranslation,)}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {key: 'description', element: contentTranslation('Description',),}
         }
 
     }('description',)
     public static readonly AMOUNT_IN_ALL_GAMES = new class LimitAppOption_Amount extends LimitAppOption {
 
-        protected override _createContentOption(enumeration: Limits,) {
+        public override renderContent(enumeration: Limits,) {
             const reference = enumeration.reference
             const amountInSMM2 = reference.limitAmountInSMM2
             const {englishName,} = enumeration
@@ -107,34 +104,35 @@ export abstract class LimitAppOption
             </LimitWithPossibleTooltipOnNote>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return CommonOptions.get.limitHeader
         }
+
     }('allGame-amount',)
     public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class LimitAppOption_AmountInSMM1AndSMM3DS extends LimitAppOption {
 
-        protected override _createContentOption(enumeration: Limits,) {
+        public override renderContent(enumeration: Limits,) {
             const reference = enumeration.reference
             return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM1 & SMM3DS`}>
                 <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
             </LimitWithPossibleTooltipOnNote>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return CommonOptions.get.limitHeader
         }
 
     }('smm1-amount',)
     public static readonly AMOUNT_IN_SMM2 = new class LimitAppOption_AmountInSMM2 extends LimitAppOption {
 
-        protected override _createContentOption(enumeration: Limits,) {
+        public override renderContent(enumeration: Limits,) {
             const reference = enumeration.reference
             return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM2`}>
                 <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
             </LimitWithPossibleTooltipOnNote>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return CommonOptions.get.limitHeader
         }
 
@@ -164,51 +162,17 @@ export abstract class LimitAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: Limits,): ReactElement
-
-    public renderContent(enumeration: Limits,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

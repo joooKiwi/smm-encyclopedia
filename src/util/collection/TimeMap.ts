@@ -11,7 +11,7 @@ import {Times} from 'core/time/Times'
  *
  * @see TimeCollection
  */
-export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
+export class TimeMap<const REFERENCE extends TimeProperty = TimeProperty, >
     implements ReadonlyMap<Times, boolean> {
 
     //region -------------------- Fields --------------------

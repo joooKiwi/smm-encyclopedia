@@ -1,0 +1,74 @@
+#entity-side-content {
+  --bs-offcanvas-width: 500px;
+
+  .entity-image { max-height: 2rem }
+  .comment {
+    color: rgba(var(--bs-body-color-rgb), 50%)
+  }
+
+  #swingingClaw-groupImage .entity-image {
+    &:first-child {
+      // The anchor is 16x16px and the image is 12x12, the rest is transparent
+      margin: -2px;
+      max-height: 1rem;
+    }
+    &:not(:is(:first-child, :last-child)) {
+      // The chain is 16x16px and the image is 8x8px, the rest is transparent
+      margin: -4px;
+      max-height: 1rem;
+    }
+    &:last-child {
+      //The grip is 38x14px and the image is 48x32px, but the rest transparent has top (2px, left-right: 5px, bottom: 17px)
+      margin-top: -2px;
+      margin-left: -5px;
+      margin-right: -5px;
+      max-height: 1.5rem;
+    }
+  }
+
+  #animated-lakitu {
+    --amount-of-blocks: 2;
+    --single-width: .5rem;
+    --single-height: 1rem;
+  }
+  #animated-lakituCloud {
+    --amount-of-blocks: 2;
+    --single-height: 1rem;
+  }
+  #lakitu-groupImage {
+    margin-left: .5rem;
+    :last-child {
+      translate: -75% 50%;
+    }
+    + * { margin-left: -1.5rem } // We re-align the content with 1 less image
+  }
+
+  #animated-cloud {
+    --amount-of-blocks: 2;
+    --single-height: 1rem;
+    translate: 0 25%;
+  }
+
+  #animated-clownCar {
+    --amount-of-blocks: 2;
+    --single-height: 1rem;
+    translate: 0 25%;
+  }
+
+  #animated-twister {
+    --amount-of-blocks: 1;
+    --single-height: 1rem;
+    translate: 0 25%;
+  }
+
+  :is(#animated-galoomba1, #animated-galoomba2) {
+    --amount-of-blocks: 1;
+    --single-height: 1rem;
+  }
+
+  .game-image { max-height: 1rem }
+
+}
+
+#entity-sideContent-editorLimit-container sup { top: -.75rem }
+:is(#entity-sideContent-editorLimit-container, #entity-sideContent-playLimit-container) .name-container { display: inline }

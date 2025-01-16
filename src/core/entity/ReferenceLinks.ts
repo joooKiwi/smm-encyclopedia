@@ -1,26 +1,27 @@
-import type {Array, NullOrString} from '@joookiwi/type'
-import {forEachByArray}           from '@joookiwi/collection'
+import type {Array, MutableSet, NullOrString}    from '@joookiwi/type'
+import type {CollectionHolder}                   from '@joookiwi/collection'
+import {forEachByArray, GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 interface ReferenceHolder {
 
     /** The unique reference links associated to a {@link GameStyles} */
-    readonly gameStyleLinks: Array<PossibleEnglishName>
+    readonly gameStyleLinks: CollectionHolder<PossibleEnglishName>
 
     /** The unique reference links associated to a {@link Themes} */
-    readonly themeLinks: Array<PossibleEnglishName>
+    readonly themeLinks: CollectionHolder<PossibleEnglishName>
 
     /** The unique reference links associated to a {@link Times} */
-    readonly timeLinks: Array<PossibleEnglishName>
+    readonly timeLinks: CollectionHolder<PossibleEnglishName>
 
     /** Every unique reference that is a link */
-    readonly allLinks: Array<PossibleEnglishName>
+    readonly allLinks: CollectionHolder<PossibleEnglishName>
 
 }
 
@@ -85,43 +86,43 @@ export class ReferenceLinks {
                            airshipReferences: NullOrString<EntityLink>,
                            castleReferences: NullOrString<EntityLink>,
     ): void {
-        const allLinks = new Set<PossibleEnglishName>()
-        let timeLinks = new Set<PossibleEnglishName>()
-        let themeLinks = new Set<PossibleEnglishName>()
-        let gameStyleLinks = new Set<PossibleEnglishName>()
+        const allLinks: MutableSet<PossibleEnglishName> = new Set()
+        let timeLinks: MutableSet<PossibleEnglishName> = new Set()
+        let themeLinks: MutableSet<PossibleEnglishName> = new Set()
+        let gameStyleLinks: MutableSet<PossibleEnglishName> = new Set()
 
-        this._addReferenceTo(englishName, dayReferences, allLinks, timeLinks,)
-        this._addReferenceTo(englishName, nightReferences, allLinks, timeLinks,)
+        this._addReferenceTo(dayReferences, allLinks, timeLinks,)
+        this._addReferenceTo(nightReferences, allLinks, timeLinks,)
 
-        this._addReferenceTo(englishName, smbReferences, allLinks, gameStyleLinks,)
-        this._addReferenceTo(englishName, smb3References, allLinks, gameStyleLinks,)
-        this._addReferenceTo(englishName, smwReferences, allLinks, gameStyleLinks,)
-        this._addReferenceTo(englishName, nsmbuReferences, allLinks, gameStyleLinks,)
-        this._addReferenceTo(englishName, sm3dwReferences, allLinks, gameStyleLinks,)
+        this._addReferenceTo(smbReferences, allLinks, gameStyleLinks,)
+        this._addReferenceTo(smb3References, allLinks, gameStyleLinks,)
+        this._addReferenceTo(smwReferences, allLinks, gameStyleLinks,)
+        this._addReferenceTo(nsmbuReferences, allLinks, gameStyleLinks,)
+        this._addReferenceTo(sm3dwReferences, allLinks, gameStyleLinks,)
 
-        this._addReferenceTo(englishName, groundStyleReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, undergroundReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, underwaterReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, desertReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, snowReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, skyReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, forestReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, ghostHouseReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, airshipReferences, allLinks, themeLinks,)
-        this._addReferenceTo(englishName, castleReferences, allLinks, themeLinks,)
+        this._addReferenceTo(groundStyleReferences, allLinks, themeLinks,)
+        this._addReferenceTo(undergroundReferences, allLinks, themeLinks,)
+        this._addReferenceTo(underwaterReferences, allLinks, themeLinks,)
+        this._addReferenceTo(desertReferences, allLinks, themeLinks,)
+        this._addReferenceTo(snowReferences, allLinks, themeLinks,)
+        this._addReferenceTo(skyReferences, allLinks, themeLinks,)
+        this._addReferenceTo(forestReferences, allLinks, themeLinks,)
+        this._addReferenceTo(ghostHouseReferences, allLinks, themeLinks,)
+        this._addReferenceTo(airshipReferences, allLinks, themeLinks,)
+        this._addReferenceTo(castleReferences, allLinks, themeLinks,)
 
         if (allLinks.size === 0)
             return
 
         this._references.set(englishName, {
-            gameStyleLinks: gameStyleLinks.size === 0 ? EMPTY_ARRAY : Array.from(gameStyleLinks,),
-            themeLinks: themeLinks.size === 0 ? EMPTY_ARRAY : Array.from(themeLinks,),
-            timeLinks: timeLinks.size === 0 ? EMPTY_ARRAY : Array.from(timeLinks,),
-            allLinks: Array.from(allLinks,),
+            gameStyleLinks: gameStyleLinks.size === 0 ? EMPTY_COLLECTION_HOLDER : new GenericCollectionHolder(gameStyleLinks,),
+            themeLinks: themeLinks.size === 0 ? EMPTY_COLLECTION_HOLDER : new GenericCollectionHolder(themeLinks,),
+            timeLinks: timeLinks.size === 0 ? EMPTY_COLLECTION_HOLDER : new GenericCollectionHolder(timeLinks,),
+            allLinks: new GenericCollectionHolder(allLinks,),
         },)
     }
 
-    protected _addReferenceTo(englishName: PossibleEnglishName, content: NullOrString<EntityLink>, allLinks: Set<PossibleEnglishName>, links: Set<PossibleEnglishName>,): void {
+    protected _addReferenceTo(content: NullOrString<EntityLink>, allLinks: MutableSet<PossibleEnglishName>, links: MutableSet<PossibleEnglishName>,): void {
         if (content == null)
             return
         if (content === 'this')
@@ -146,31 +147,31 @@ export class ReferenceLinks {
         return this._references.has(englishName,)
     }
 
-    public getGameStyleReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
+    public getGameStyleReferenceLinks(englishName: PossibleEnglishName,): CollectionHolder<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         return value.gameStyleLinks
     }
 
-    public getThemeReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
+    public getThemeReferenceLinks(englishName: PossibleEnglishName,): CollectionHolder<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         return value.themeLinks
     }
 
-    public getTimeReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
+    public getTimeReferenceLinks(englishName: PossibleEnglishName,): CollectionHolder<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         return value.timeLinks
     }
 
-    public getEveryReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
+    public getEveryReferenceLinks(englishName: PossibleEnglishName,): CollectionHolder<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
-            return EMPTY_ARRAY
+            return EMPTY_COLLECTION_HOLDER
         return value.allLinks
     }
 

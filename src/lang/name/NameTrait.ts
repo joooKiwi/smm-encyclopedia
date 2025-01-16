@@ -14,128 +14,59 @@ import type {Name} from 'lang/name/Name'
 export interface NameTrait<out T, >
     extends Name<T> {
 
-    get nameContainer(): Name<T>
+    readonly nameContainer: Name<T>
 
-    //region -------------------- Properties --------------------
+    readonly languageValue: this['nameContainer']['languageValue']
 
-    get languageValue(): this['nameContainer']['languageValue']
+    readonly originalEnglish: this['nameContainer']['originalEnglish']
+    readonly english: this['nameContainer']['english']
+    readonly americanEnglish: this['nameContainer']['americanEnglish']
+    readonly europeanEnglish: this['nameContainer']['europeanEnglish']
 
-    //region -------------------- English properties --------------------
+    readonly originalFrench: this['nameContainer']['originalFrench']
+    readonly french: this['nameContainer']['french']
+    readonly canadianFrench: this['nameContainer']['canadianFrench']
+    readonly europeanFrench: this['nameContainer']['europeanFrench']
 
-    get originalEnglish(): this['nameContainer']['originalEnglish']
+    readonly german: this['nameContainer']['german']
 
-    get english(): this['nameContainer']['english']
+    readonly originalSpanish: this['nameContainer']['originalSpanish']
+    readonly spanish: this['nameContainer']['spanish']
+    readonly americanSpanish: this['nameContainer']['americanSpanish']
+    readonly europeanSpanish: this['nameContainer']['europeanSpanish']
 
-    get americanEnglish(): this['nameContainer']['americanEnglish']
+    readonly italian: this['nameContainer']['italian']
 
-    get europeanEnglish(): this['nameContainer']['europeanEnglish']
+    readonly dutch: this['nameContainer']['dutch']
 
-    //endregion -------------------- English properties --------------------
-    //region -------------------- French properties --------------------
+    readonly originalPortuguese: this['nameContainer']['originalPortuguese']
+    readonly portuguese: this['nameContainer']['portuguese']
+    readonly americanPortuguese: this['nameContainer']['americanPortuguese']
+    readonly europeanPortuguese: this['nameContainer']['europeanPortuguese']
 
-    get originalFrench(): this['nameContainer']['originalFrench']
+    readonly russian: this['nameContainer']['russian']
 
-    get french(): this['nameContainer']['french']
+    readonly japanese: this['nameContainer']['japanese']
 
-    get canadianFrench(): this['nameContainer']['canadianFrench']
+    readonly originalChinese: this['nameContainer']['originalChinese']
+    readonly chinese: this['nameContainer']['chinese']
+    readonly traditionalChinese: this['nameContainer']['traditionalChinese']
+    readonly simplifiedChinese: this['nameContainer']['simplifiedChinese']
 
-    get europeanFrench(): this['nameContainer']['europeanFrench']
+    readonly korean: this['nameContainer']['korean']
 
-    //endregion -------------------- French properties --------------------
-    //region -------------------- German properties --------------------
+    readonly isHebrewUsed: this['nameContainer']['isHebrewUsed']
+    readonly hebrew: this['nameContainer']['hebrew']
 
-    get german(): this['nameContainer']['german']
+    readonly isPolishUsed: this['nameContainer']['isPolishUsed']
+    readonly polish: this['nameContainer']['polish']
 
-    //endregion -------------------- German properties --------------------
-    //region -------------------- Spanish properties --------------------
+    readonly isUkrainianUsed: this['nameContainer']['isUkrainianUsed']
+    readonly ukrainian: this['nameContainer']['ukrainian']
 
-    get originalSpanish(): this['nameContainer']['originalSpanish']
+    readonly isGreekUsed: this['nameContainer']['isGreekUsed']
+    readonly greek: this['nameContainer']['greek']
 
-    get spanish(): this['nameContainer']['spanish']
-
-    get americanSpanish(): this['nameContainer']['americanSpanish']
-
-    get europeanSpanish(): this['nameContainer']['europeanSpanish']
-
-    //endregion -------------------- Spanish properties --------------------
-    //region -------------------- Italian properties --------------------
-
-    get italian(): this['nameContainer']['italian']
-
-    //endregion -------------------- Italian properties --------------------
-    //region -------------------- Dutch properties --------------------
-
-    get dutch(): this['nameContainer']['dutch']
-
-    //endregion -------------------- Dutch properties --------------------
-    //region -------------------- Portuguese properties --------------------
-
-    get originalPortuguese(): this['nameContainer']['originalPortuguese']
-
-    get portuguese(): this['nameContainer']['portuguese']
-
-    get americanPortuguese(): this['nameContainer']['americanPortuguese']
-
-    get europeanPortuguese(): this['nameContainer']['europeanPortuguese']
-
-    //endregion -------------------- Portuguese properties --------------------
-    //region -------------------- Russian properties --------------------
-
-    get russian(): this['nameContainer']['russian']
-
-    //endregion -------------------- Russian properties --------------------
-    //region -------------------- Japanese properties --------------------
-
-    get japanese(): this['nameContainer']['japanese']
-
-    //endregion -------------------- Japanese properties --------------------
-    //region -------------------- Chinese properties --------------------
-
-    get originalChinese(): this['nameContainer']['originalChinese']
-
-    get chinese(): this['nameContainer']['chinese']
-
-    get traditionalChinese(): this['nameContainer']['traditionalChinese']
-
-    get simplifiedChinese(): this['nameContainer']['simplifiedChinese']
-
-    //endregion -------------------- Chinese properties --------------------
-    //region -------------------- Korean properties --------------------
-
-    get korean(): this['nameContainer']['korean']
-
-    //endregion -------------------- Korean properties --------------------
-    //region -------------------- Hebrew properties --------------------
-
-    get isHebrewUsed(): this['nameContainer']['isHebrewUsed']
-
-    get hebrew(): this['nameContainer']['hebrew']
-
-    //endregion -------------------- Hebrew properties --------------------
-    //region -------------------- Polish properties --------------------
-
-    get isPolishUsed(): this['nameContainer']['isPolishUsed']
-
-    get polish(): this['nameContainer']['polish']
-
-    //endregion -------------------- Polish properties --------------------
-    //region -------------------- Ukrainian properties --------------------
-
-    get isUkrainianUsed(): this['nameContainer']['isUkrainianUsed']
-
-    get ukrainian(): this['nameContainer']['ukrainian']
-
-    //endregion -------------------- Ukrainian properties --------------------
-    //region -------------------- Greek properties --------------------
-
-    get isGreekUsed(): this['nameContainer']['isGreekUsed']
-
-    get greek(): this['nameContainer']['greek']
-
-    //endregion -------------------- Greek properties --------------------
-
-    get originalLanguages(): this['nameContainer']['originalLanguages']
-
-    //endregion -------------------- Properties --------------------
+    readonly originalLanguages: this['nameContainer']['originalLanguages']
 
 }

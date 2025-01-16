@@ -2,18 +2,19 @@ import type {CollectionHolder}                                            from '
 import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
 import type {Array, NullOr}                                               from '@joookiwi/type'
 import type {Dispatch, SetStateAction}                                    from 'react'
-import {GenericCollectionHolder, isArray}                                 from '@joookiwi/collection'
+import {isArray}                                                          from '@joookiwi/collection'
 import {CompanionEnum}                                                    from '@joookiwi/enumerable'
 
 import {Empty}                            from 'util/emptyVariables'
 import {forEachValue, isCollectionEquals} from 'util/utilitiesMethods'
+import {ArrayAsCollection}                from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 import EMPTY_MAP =               Empty.EMPTY_MAP
 
 /** A {@link CompanionEnum} that hold a "current" values ({@link CollectionHolder}) as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM extends Enumerable,
-    const out ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
+    const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {
 
     //region -------------------- Fields --------------------
@@ -64,7 +65,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
         if (value === current)
             return
         if (isArray(value,))
-            value = new GenericCollectionHolder(value,)
+            value = new ArrayAsCollection(value,)
         if (current != null)
             if (isCollectionEquals(value, current,))
                 return

@@ -34,6 +34,9 @@ export class CommonOptions {
     #nameHeader?: SimpleReactHeader
     #iconHeader?: SimpleReactHeader
     #soundHeader?: SimpleReactHeader
+    #soundsHeader?: SimpleReactHeader
+    #soundsInSmm1And3dsHeader?: SimpleReactHeader
+    #soundsInSmm2Header?: SimpleReactHeader
     #smm1And3DSGameHeader?: SimpleImageHeader
     #smm2GameHeader?: SimpleImageHeader
     #gameHeader?: SimpleReactHeader
@@ -62,6 +65,21 @@ export class CommonOptions {
 
     public get soundHeader(): SimpleReactHeader {
         return this.#soundHeader ??= {key: 'sound', element: contentTranslation('sound.singular',),}
+    }
+
+    public get soundsHeader(): SimpleReactHeader {
+        return this.#soundsHeader ??= {key: 'sounds', element: contentTranslation('sound.plural',),}
+    }
+
+    public get soundsInSmm1And3dsHeader(): SimpleReactHeader {
+        return this.#soundsInSmm1And3dsHeader ??= {key: 'sounds-smm1-and-smm3ds', element: gameContentTranslation('sound.plural in Smm1&3ds', {
+                Name1: SMM1.acronym,
+                Name3ds: SMM3DS.acronym,
+            },),}
+    }
+
+    public get soundsInSmm2Header(): SimpleReactHeader {
+        return this.#soundsInSmm2Header ??= {key: 'sounds-smm2', element: gameContentTranslation('sound.plural in Smm2', { Name: SMM2.acronym, },),}
     }
 
     public get categoryHeader(): SimpleReactHeader {
@@ -118,11 +136,7 @@ export class CommonOptions {
     }
 
     public get completeEditorLimitInSmm2Header(): SingleHeaderContent {
-        return this.#completeEditorLimitInSmm2Header ??= {
-            key: 'limit-editor-smm2', element: gameContentTranslation('limit.editor.complete in SMM2', {
-                Name: SMM2.acronym,
-            }),
-        }
+        return this.#completeEditorLimitInSmm2Header ??= { key: 'limit-editor-smm2', element: gameContentTranslation('limit.editor.complete in SMM2', { Name: SMM2.acronym, }), }
     }
 
 }

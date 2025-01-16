@@ -1,20 +1,17 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
-import {hasByArray}            from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithReference}                                              from 'core/ClassWithReference'
 import type {CharacterName}                                                   from 'core/characterName/CharacterName'
 import type {ClassWithEnglishName}                                            from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
-import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
-import type {EditorVoiceSound}                                                from 'core/editorVoice/sound/EditorVoiceSound'
-import type {CompanionEnumByNameWithValidationSingleton}                      from 'util/enumerable/Singleton.types'
+import type {CompanionEnumByNameSingleton}                                    from 'util/enumerable/Singleton.types'
 
-import {CharacterNameLoader}               from 'core/characterName/CharacterName.loader'
-import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
-import {StringContainer}                   from 'util/StringContainer'
-import {getValueByEnglishName}             from 'util/utilitiesMethods'
-import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
+import {EditorVoices}          from 'core/editorVoice/EditorVoices'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {CompanionEnumByName}   from 'util/enumerable/companion/CompanionEnumByName'
 
 import EditorVoiceCompanion = EditorVoices.Companion
 
@@ -24,8 +21,7 @@ import EditorVoiceCompanion = EditorVoices.Companion
 export class CharacterNames
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CharacterName>,
-        ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithNullableEditorVoiceSoundFileHolder {
+        ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -178,8 +174,8 @@ export class CharacterNames
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByNameWithValidationSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
-        extends CompanionEnumByNameWithValidation<CharacterNames, typeof CharacterNames> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
+        extends CompanionEnumByName<CharacterNames, typeof CharacterNames> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -199,14 +195,6 @@ export class CharacterNames
             return getValueByEnglishName(value, this,)
         }
 
-        public override hasValueByName(value: Nullable<| CharacterNames | string>,): boolean {
-            if (value == null)
-                return false
-            if (value instanceof this.instance)
-                return true
-            return hasByArray(this.instance.everyEnglishNames, value,)
-        }
-
     }
 
     //endregion -------------------- Enum fields --------------------
@@ -217,7 +205,7 @@ export class CharacterNames
     #reference?: CharacterName
     readonly #englishName
     readonly #uniqueEnglishName
-    #editorVoiceSound?: NullOr<EditorVoiceSound>
+    #editorVoice?: NullOr<EditorVoices>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -242,7 +230,7 @@ export class CharacterNames
      * @semiAsynchronously
      */
     public get reference(): CharacterName {
-        return this.#reference ??= CharacterNames.REFERENCE_MAP.get(this.uniqueEnglishName)!
+        return this.#reference ??= CharacterNames.REFERENCE_MAP.get(this.uniqueEnglishName,)!
     }
 
 
@@ -258,17 +246,14 @@ export class CharacterNames
         return this.#englishName.getInHtml
     }
 
-    //region -------------------- editor sound --------------------
 
-    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
-        if (this.#editorVoiceSound !== undefined)
-            return this.#editorVoiceSound
+    public get editorVoice(): NullOr<EditorVoices> {
+        if (this.#editorVoice !== undefined)
+            return this.#editorVoice
         if (EditorVoiceCompanion.hasReference(this,))
-            return this.#editorVoiceSound = EditorVoiceCompanion.getValueByCharacterName(this,).editorVoiceSoundFileHolder
-        return this.#editorVoiceSound = null
+            return this.#editorVoice = EditorVoiceCompanion.getValueByCharacterName(this,)
+        return this.#editorVoice = null
     }
-
-    //endregion -------------------- editor sound --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------

@@ -1,0 +1,487 @@
+#powerUpRideAndHatPriority-gameStyle-buttonGroup-container {
+  img {
+    max-width: 2cm;
+  }
+}
+
+#powerUpRideAndHatPriority-legend-container {
+  --group-no-lag-color: var(--bs-green);
+  --group-lag-color: var(--bs-purple);
+  --group-direct-line-style: solid;
+  --group-indirect-line-style: dashed;
+  width: fit-content;
+
+  :where(.arrow-container),
+  :where(.color), {
+    min-width: 1cm;
+    max-width: 3cm;
+    margin-right: var(--bs-spacer-md);
+  }
+  :where(.color) {
+    height: 7.5px;
+    flex-grow: 1;
+  }
+
+  :where(#example-indirect .arrow-container) {
+    --line-style: var(--group-indirect-line-style);
+  }
+  :where(#example-direct .arrow-container) {
+    --line-style: var(--group-direct-line-style);
+  }
+  :where(#example-withLag .color) {
+    background-color: var(--group-lag-color);
+  }
+  :where(#example-withoutLag .color) {
+    background-color: var(--group-no-lag-color);
+  }
+}
+
+#displayed-powerUpPriorityGroup {
+  --image-height: 1cm;
+  --group-no-lag-color: var(--bs-green);
+  --group-lag-color: var(--bs-purple);
+  --group-direct-line-style: solid;
+  --group-indirect-line-style: dashed;
+  --group-line-style: solid;
+
+  overflow-x: auto;
+  > * {
+    width: 15cm;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img {
+    height: var(--image-height);
+  }
+
+  //region -------------------- Color --------------------
+
+  :where(.powerUp-group-priority),
+  :where(#powerUpPriority-smb-superStar),
+  :where(#powerUpPriority-smb3-superStar),
+  :where(#powerUpPriority-smw-superStar),
+  :where(#powerUpPriority-nsmbu-superStar),
+  :where(#powerUpPriority-sm3dw-superStar),
+  :where(.arrow-container), {
+    --group-color: transparent;
+
+    border-color: var(--group-color);
+    --line-color: var(--group-color);
+    --arrow-color: var(--group-color);
+  }
+
+  :where(.powerUp-group-priority) {
+    --group-color: rgba(var(--bs-black-rgb), 25%);
+  }
+
+
+  :where(#powerUpPriority-smb-superStar),
+  :where(#powerUpPriority-group-smb-mountableObject),
+  :where(#powerUpPriority-group-smb-shellAndMountable),
+  :where(#powerUpPriority-smb3-superStar),
+  :where(#powerUpPriority-group-smb3-mountableObject),
+  :where(#powerUpPriority-group-smb3-shellAndShoe),
+  :where(#powerUpPriority-smw-superStar),
+  :where(#powerUpPriority-group-smw-mountableObject),
+  :where(#powerUpPriority-group-smw-shellAndYoshi),
+  :where(#powerUpPriority-nsmbu-superStar),
+  :where(#powerUpPriority-group-nsmbu-mountableObject),
+  :where(#powerUpPriority-group-nsmbu-shellAndYoshi),
+  :where(#powerUpPriority-sm3dw-superStar),
+  :where(#powerUpPriority-group-sm3dw-wearableAndCar), {
+    --group-color: var(--group-no-lag-color);
+    .arrow-container {
+      --group-color: var(--group-no-lag-color);
+    }
+  }
+
+
+  :where(#powerUpPriority-group-smm-smb-others),
+  :where(#powerUpPriority-group-smm2-smb-others),
+  :where(#powerUpPriority-group-smb3-powerUp),
+  :where(#powerUpPriority-group-smw-powerUp),
+  :where(#powerUpPriority-group-nsmbu-powerUp),
+  :where(#powerUpPriority-group-sm3dw-powerUp), {
+    --group-color: var(--group-lag-color);
+    .arrow-container {
+      --group-color: var(--group-lag-color);
+    }
+  }
+
+
+  :where(#powerUpPriority-group-smb > .start-container > .arrows-container),
+  :where(#powerUpPriority-group-smb3 > .start-container > .arrows-container),
+  :where(#powerUpPriority-group-smw > .start-container > .arrows-container),
+  :where(#powerUpPriority-group-nsmbu > .start-container > .arrows-container),
+  :where(#powerUpPriority-group-smb > .end-container),
+  :where(#powerUpPriority-group-smb3 > .end-container),
+  :where(#powerUpPriority-group-smw > .end-container),
+  :where(#powerUpPriority-group-nsmbu > .end-container),
+  :where(#powerUpPriority-group-smb > .arrow-group-container),
+  :where(#powerUpPriority-group-smb3 > .arrow-group-container),
+  :where(#powerUpPriority-group-smw > .arrow-group-container),
+  :where(#powerUpPriority-group-nsmbu > .arrow-group-container), { .arrow-container {
+    --group-color: var(--group-no-lag-color);
+  } }
+
+  :where(#powerUpPriority-group-smb > .start-container > .arrows-container) .arrow-container:where(:last-child),
+  :where(#powerUpPriority-group-smb3 > .start-container > .arrows-container) .arrow-container:where(:last-child),
+  :where(#powerUpPriority-group-smw > .start-container > .arrows-container) .arrow-container:where(:last-child),
+  :where(#powerUpPriority-group-nsmbu > .start-container > .arrows-container) .arrow-container:where(:last-child),
+  :where(#powerUpPriority-group-smb > .arrow-group-container > :nth-child(3)) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-smb > .arrow-group-container > :last-child) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-smb3 > .arrow-group-container > :nth-child(3)) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-smb3 > .arrow-group-container > :last-child) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-smw > .arrow-group-container > :nth-child(3)) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-smw > .arrow-group-container > :last-child) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :nth-child(3)) .arrow-container:where(:first-child),
+  :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :last-child) .arrow-container:where(:first-child), {
+    --group-color: var(--group-lag-color);
+  }
+
+
+  :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container, #powerUpPriority-group-sm3dw > .end-container > .arrows-container) .arrow-container {
+    --group-color: var(--group-no-lag-color);
+  }
+
+
+  :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container > :last-child) .arrow-container:where(:last-child),
+  :where(#powerUpPriority-group-sm3dw > .end-container > .arrows-container) .arrow-container:where(:last-child), {
+    --group-color: var(--group-lag-color);
+  }
+
+  //endregion -------------------- Color --------------------
+  //region -------------------- Border --------------------
+
+  //TODO replace duplicated CSS content with a more elegant reusable CSS
+
+  :where(.powerUp-group-priority),
+  :where(#powerUpPriority-smb-superStar),
+  :where(#powerUpPriority-smb3-superStar),
+  :where(#powerUpPriority-smw-superStar),
+  :where(#powerUpPriority-nsmbu-superStar),
+  :where(#powerUpPriority-sm3dw-superStar), {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: var(--bs-border-radius);
+  }
+
+  :where(#powerUpPriority-smb-superStar),
+  :where(#powerUpPriority-smb3-superStar),
+  :where(#powerUpPriority-smw-superStar),
+  :where(#powerUpPriority-nsmbu-superStar),
+  :where(#powerUpPriority-sm3dw-superStar), { border: {
+    style: var(--group-line-style);
+    width: 1px;
+  } }
+
+
+  :where(#powerUpPriority-group-smb #powerUpPriority-smb-superStar) { border: {
+    top: 0;
+    left: 0;
+    top-right-radius: 0;
+    bottom-left-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smb #powerUpPriority-group-smm2-smb-others),
+  :where(#powerUpPriority-group-smb #powerUpPriority-group-smm-smb-others) { border: {
+    top: 0;
+    right: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smb #powerUpPriority-group-smb-mountableObject) { border : {
+    left: 0;
+    bottom: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smb #powerUpPriority-group-smb-shellAndShoe) { border: {
+    bottom: 0;
+    right: 0;
+    bottom-left-radius: 0;
+    top-right-radius: 0;
+  } }
+
+
+  :where(#powerUpPriority-group-smb3 #powerUpPriority-smb3-superStar) { border: {
+    top: 0;
+    left: 0;
+    top-right-radius: 0;
+    bottom-left-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smb3 #powerUpPriority-group-smb3-powerUp) { border: {
+    top: 0;
+    right: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smb3 #powerUpPriority-group-smb3-mountableObject) { border : {
+    left: 0;
+    bottom: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smb3 #powerUpPriority-group-smb3-shellAndShoe) { border: {
+    bottom: 0;
+    right: 0;
+    bottom-left-radius: 0;
+    top-right-radius: 0;
+  } }
+
+
+  :where(#powerUpPriority-group-smw #powerUpPriority-smw-superStar) { border: {
+    top: 0;
+    left: 0;
+    top-right-radius: 0;
+    bottom-left-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smw #powerUpPriority-group-smw-powerUp) { border: {
+    top: 0;
+    right: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smw #powerUpPriority-group-smw-mountableObject) { border : {
+    left: 0;
+    bottom: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-smw #powerUpPriority-group-smw-shellAndYoshi) { border: {
+    bottom: 0;
+    right: 0;
+    bottom-left-radius: 0;
+    top-right-radius: 0;
+  } }
+
+
+  :where(#powerUpPriority-group-nsmbu #powerUpPriority-nsmbu-superStar) { border: {
+    top: 0;
+    left: 0;
+    top-right-radius: 0;
+    bottom-left-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-nsmbu #powerUpPriority-group-nsmbu-powerUp) { border: {
+    top: 0;
+    right: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-nsmbu #powerUpPriority-group-nsmbu-mountableObject) { border : {
+    left: 0;
+    bottom: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-nsmbu #powerUpPriority-group-nsmbu-shellAndYoshi) { border: {
+    bottom: 0;
+    right: 0;
+    bottom-left-radius: 0;
+    top-right-radius: 0;
+  } }
+
+
+  :where(#powerUpPriority-group-sm3dw #powerUpPriority-sm3dw-superStar) { border: {
+    top: 0;
+    top-left-radius: 0;
+    top-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-sm3dw #powerUpPriority-group-sm3dw-wearableAndCar) { border : {
+    left: 0;
+    bottom: 0;
+    top-left-radius: 0;
+    bottom-right-radius: 0;
+  } }
+
+  :where(#powerUpPriority-group-sm3dw #powerUpPriority-group-sm3dw-powerUp) { border: {
+    bottom: 0;
+    right: 0;
+    bottom-left-radius: 0;
+    top-right-radius: 0;
+  } }
+
+  //endregion -------------------- Border --------------------
+  //region -------------------- Arrow style --------------------
+
+  :where(.powerUp-group-priority) .arrow-container {
+    --line-style: var(--group-line-style);
+  }
+
+
+  :where(#powerUpPriority-group-smb > .center-arrow-group-container > :nth-child(2) > .arrows-container > :last-child),
+  :where(#powerUpPriority-group-smb3 > .center-arrow-group-container > :nth-child(2) > .arrows-container > :last-child),
+  :where(#powerUpPriority-group-smw > .center-arrow-group-container > :nth-child(2) > .arrows-container > :last-child),
+  :where(#powerUpPriority-group-nsmbu > .center-arrow-group-container > :nth-child(2) > .arrows-container > :last-child),
+  :where(#powerUpPriority-group-smb-mountableObject),
+  :where(#powerUpPriority-group-smb3-mountableObject),
+  :where(#powerUpPriority-group-smw-mountableObject),
+  :where(#powerUpPriority-group-nsmbu-mountableObject), {
+    --group-line-style: var(--group-indirect-line-style);
+  }
+
+
+  :where(#powerUpPriority-group-smb-shellAndShoe),
+  :where(#powerUpPriority-group-smb3-shellAndShow),
+  :where(#powerUpPriority-group-smw-shellAndYoshi),
+  :where(#powerUpPriority-group-nsmbu-shellAndYoshi), {
+    --group-line-style: var(--group-direct-line-style);
+  }
+
+  :where(#powerUpPriority-group-smb-shellAndShoe > :nth-child(2) > .internal-arrow-container),
+  :where(#powerUpPriority-group-smb3-shellAndShoe > :nth-child(2) > .internal-arrow-container),
+  :where(#powerUpPriority-group-smw-shellAndYoshi > :nth-child(2) > .internal-arrow-container),
+  :where(#powerUpPriority-group-nsmbu-shellAndYoshi > :nth-child(2) > .internal-arrow-container),
+  :where(#powerUpPriority-group-smb-shellAndShow > .middle-container),
+  :where(#powerUpPriority-group-smb-shellAndShow > .end-container),
+  :where(#powerUpPriority-group-smb3-shellAndShow > .middle-container),
+  :where(#powerUpPriority-group-smb3-shellAndShow > .end-container),
+  :where(#powerUpPriority-group-smb3-shellAndShow > .middle-container),
+  :where(#powerUpPriority-group-smb3-shellAndShow > .end-container),
+  :where(#powerUpPriority-group-smw-shellAndYoshi > .middle-container),
+  :where(#powerUpPriority-group-smw-shellAndYoshi > .end-container),
+  :where(#powerUpPriority-group-nsmbu-shellAndYoshi > .middle-container),
+  :where(#powerUpPriority-group-nsmbu-shellAndYoshi > .end-container), {
+    --group-line-style: var(--group-indirect-line-style);
+  }
+
+  //endregion -------------------- Arrow style --------------------
+  //region -------------------- Size --------------------
+
+  //region -------------------- General sizing --------------------
+
+  :where(#powerUpPriority-group-smb) {
+    --group-height: calc(var(--group-top-height) + var(--group-bottom-height) + (var(--group-size-on-4) - 2 * var(--image-height)));
+    --group-top-height: var(--group-size-on-6);
+    --group-bottom-height: var(--group-size-on-5);
+    --group-start-width: var(--group-size-on-3);
+    --group-end-width: var(--group-size-on-6);
+  }
+
+  :where(#powerUpPriority-group-smb3),
+  :where(#powerUpPriority-group-smw),
+  :where(#powerUpPriority-group-nsmbu), {
+    --group-height: calc(var(--group-top-height) + var(--group-bottom-height) + (var(--group-size-on-4) - 2 * var(--image-height)));
+    --group-top-height: var(--group-size-on-4);
+    --group-bottom-height: var(--group-size-on-5);
+    --group-start-width: var(--group-size-on-3);
+    --group-end-width: var(--group-size-on-4);
+  }
+
+  //endregion -------------------- General sizing --------------------
+  //region -------------------- Specific sizing adjustment --------------------
+
+  :where(#powerUpPriority-group-smb > .arrow-group-container > :nth-child(2)) {
+    --angle: -72.5deg;
+    .arrow-container {
+      --line-size: 5.75cm;
+    }
+  }
+
+  :where(#powerUpPriority-group-smb > .arrow-group-container > :nth-child(3)) {
+    --angle: 70.5deg;
+    .arrow-container {
+      --line-size: 4.75cm;
+    }
+  }
+
+
+  :where(#powerUpPriority-group-smb3 > .arrow-group-container > :nth-child(2)),
+  :where(#powerUpPriority-group-smw > .arrow-group-container > :nth-child(2)),
+  :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :nth-child(2)), {
+    --angle: -72.5deg;
+    .arrow-container {
+      --line-size: 5.75cm;
+    }
+  }
+
+  :where(#powerUpPriority-group-smb3 > .arrow-group-container > :nth-child(3)),
+  :where(#powerUpPriority-group-smw > .arrow-group-container > :nth-child(3)),
+  :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :nth-child(3)), {
+    --angle: 77.5deg;
+    .arrow-container {
+      --line-size: 7.75cm;
+    }
+  }
+
+
+  :where(#powerUpPriority-group-smb3-shellAndShoe > .top-center-top-arrow-group-container > .internal-arrow-container),{ .arrow-container {
+    --line-size: 3.25cm;
+  } }
+
+  :where(#powerUpPriority-group-smw-shellAndYoshi > .top-center-top-arrow-group-container > .internal-arrow-container),{ .arrow-container {
+    --line-size: 2.85cm;
+  } }
+
+  :where(#powerUpPriority-group-nsmbu-shellAndYoshi > .top-center-top-arrow-group-container > .internal-arrow-container), { .arrow-container {
+      --line-size: 3cm;
+  } }
+
+
+  :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container > :first-child) {
+    --angle: 20deg;
+    .arrow-container {
+      --line-size: 1.25cm;
+    }
+  }
+
+  :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container > :last-child) {
+    --angle: -35deg;
+    .arrow-container {
+      --line-size: 2cm;
+    }
+  }
+
+  //endregion -------------------- Specific sizing adjustment --------------------
+  //region -------------------- Width / height adjustment --------------------
+
+  :where(#powerUpPriority-smb-superStar),
+  :where(#powerUpPriority-smb3-superStar),
+  :where(#powerUpPriority-smw-superStar),
+  :where(#powerUpPriority-nsmbu-superStar),
+  :where(#powerUpPriority-sm3dw-superStar), {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  :where(#powerUpPriority-smb-superStar),
+  :where(#powerUpPriority-smb3-superStar),
+  :where(#powerUpPriority-group-smb3-mountableObject),
+  :where(#powerUpPriority-smw-superStar),
+  :where(#powerUpPriority-group-smw-mountableObject),
+  :where(#powerUpPriority-nsmbu-superStar),
+  :where(#powerUpPriority-group-nsmbu-mountableObject), {
+    min-width: max(var(--image-height), var(--group-size-on-3));
+  }
+
+  //:where(#powerUpPriority-group-smb3-powerUp),
+  //:where(#powerUpPriority-group-smw-powerUp),
+  //:where(#powerUpPriority-group-smw-powerUp), {
+  //  min-width: max(var(--group-size-on-4), var(--group-size-on-5));
+  //}
+
+
+  :where(#powerUpPriority-group-sm3dw) {
+    min-height: calc(var(--group-size-on-3) + max(var(--group-size-on-6), var(--group-size-on-5)));
+    justify-content: space-between;
+  }
+
+  //endregion -------------------- Width / height adjustment --------------------
+
+  //endregion -------------------- Size --------------------
+
+}

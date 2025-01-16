@@ -1,10 +1,11 @@
-import type {NullOr} from '@joookiwi/type'
-import {Enum}        from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {NullOr}           from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                      from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                        from 'core/ClassWithReference'
 import type {PropertyGetter, PropertyReferenceGetter}                                                   from 'core/PropertyGetter'
-import type {Entity, PossibleOtherEntities}                                                             from 'core/entity/Entity'
+import type {Entity}                                                                                    from 'core/entity/Entity'
 import type {ThemeProperty}                                                                             from 'core/entity/properties/theme/ThemeProperty'
 import type {CourseTheme}                                                                               from 'core/theme/CourseTheme'
 import type {Names, Ordinals, PossibleEnglishName}                                                      from 'core/theme/Themes.types'
@@ -18,14 +19,14 @@ import {Empty}                          from 'util/emptyVariables'
 import {Import}                         from 'util/DynamicImporter'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEnglishName,
     const NAME_IN_FILE extends PossibleName_InFile = PossibleName_InFile, >
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseAndWorldTheme>,
         ClassWithEnglishName<NAME, Lowercase<NAME>>,
-        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
+        PropertyReferenceGetter<Entity, CollectionHolder<Entity>>,
         PropertyGetter<ThemeProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -37,7 +38,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInGroundTheme
+            return entity.referencesInGroundTheme
         }
 
     }('Ground', 'plain',)
@@ -48,7 +49,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInUndergroundTheme
+            return entity.referencesInUndergroundTheme
         }
 
     }('Underground', 'underground',)
@@ -59,7 +60,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInUnderwaterTheme
+            return entity.referencesInUnderwaterTheme
         }
 
     }('Underwater', 'water',)
@@ -70,7 +71,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInDesertTheme
+            return entity.referencesInDesertTheme
         }
 
     }('Desert', 'desert',)
@@ -81,7 +82,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInSnowTheme
+            return entity.referencesInSnowTheme
         }
 
     }('Snow', 'snow',)
@@ -92,7 +93,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInSkyTheme
+            return entity.referencesInSkyTheme
         }
 
     }('Sky', 'athletic',)
@@ -103,7 +104,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInForestTheme
+            return entity.referencesInForestTheme
         }
 
     }('Forest', 'woods',)
@@ -114,7 +115,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInGhostHouseTheme
+            return entity.referencesInGhostHouseTheme
         }
 
     }('Ghost House', 'hauntedhouse',)
@@ -125,7 +126,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInAirshipTheme
+            return entity.referencesInAirshipTheme
         }
 
     }('Airship', 'airship',)
@@ -136,7 +137,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
         }
 
         public override getReference(entity: Entity,) {
-            return entity.referenceInCastleTheme
+            return entity.referencesInCastleTheme
         }
 
     }('Castle', 'castle',)
@@ -220,7 +221,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
      * @semiAsynchronously
      */
     public get reference(): CourseAndWorldTheme {
-        return this.#reference ??= Themes.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Themes.REFERENCE_MAP.get(this.englishName,)!
     }
 
 
@@ -262,8 +263,8 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
 
     public abstract get(property: ThemeProperty,): boolean
 
-    public getReference(entity: Entity,): PossibleOtherEntities {
-        return EMPTY_ARRAY
+    public getReference(entity: Entity,): CollectionHolder<Entity> {
+        return EMPTY_COLLECTION_HOLDER
     }
 
     //endregion -------------------- Methods --------------------

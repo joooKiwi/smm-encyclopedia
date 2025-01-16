@@ -1,16 +1,39 @@
 #entity-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
+  .nameAndEditorVoiceSound-container {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--bs-spacer-xs);
   }
+
+  .nameAndEditorVoiceSound-nameAndProperties-container {
+    display: flex;
+    flex-direction: column;
+
+    .properties {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
 }
 
-.cardListName-content-container {
+#entity-list {
+  .entity-image {
+    &:not(:last-child) { margin-right: var(--bs-spacer-sm) }
+    height: 2.5rem;
+    image-rendering: pixelated;
+  }
+  .singleEntityImage { margin-left: var(--bs-spacer-sm) }
+}
 
-  &.entityCategory-Terrain { background-color: var(--entityCategory-terrain-bg-color) }
-  &.entityCategory-Item    { background-color: var(--entityCategory-item-bg-color) }
-  &.entityCategory-Enemy   { background-color: var(--entityCategory-ennemy-bg-color) }
-  &.entityCategory-Gizmo   { background-color: var(--entityCategory-gizmo-bg-color) }
+#entity-cardList {
+
+  //.cardList-item > * {
+  //  &:has(.entityCategory-Terrain) { background-color: var(--entityCategory-terrain-bg-color) }
+  //  &:has(.entityCategory-Item)    { background-color: var(--entityCategory-item-bg-color) }
+  //  &:has(.entityCategory-Enemy)   { background-color: var(--entityCategory-ennemy-bg-color) }
+  //  &:has(.entityCategory-Gizmo)   { background-color: var(--entityCategory-gizmo-bg-color) }
+  //}
 
   .singleEntityImage {
     display: flex;
@@ -31,15 +54,6 @@
     }
   }
 
-}
-
-#entity-list {
-  .entity-image {
-    &:not(:last-child) { margin-right: var(--bs-spacer-sm) }
-    height: 2.5rem;
-    image-rendering: pixelated;
-  }
-  .singleEntityImage { margin-left: var(--bs-spacer-sm) }
 }
 
 #entity-table {
@@ -76,6 +90,11 @@
       max-width: 7.5cm;
     }
 
+  }
+
+  :is(.table-row-bulletBill, .table-row-billBlaster, .table-row-bulleyeBill, .table-row-bulleyeBlaster) img {
+    max-width: 2rem;
+    max-height: initial;
   }
 
   //region -------------------- Helper guide for the user to distinguish the group by game style --------------------

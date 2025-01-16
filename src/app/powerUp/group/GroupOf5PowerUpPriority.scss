@@ -23,7 +23,7 @@
     }
 
     .diagonal-arrow-container {
-      top: calc((var(--image-height)) * -1); //calc((var(--image-height)) * -1);
+      top: calc((var(--image-height)) * -1);
       margin-top: calc(7px * 1.5); //var(--arrow-size) * 1.5
     }
 
@@ -63,7 +63,7 @@
     }
 
     .diagonal-arrow-container {
-      margin-top: calc((var(--image-height)) * -.75); //calc((var(--image-height)) * -.75);
+      margin-top: calc((var(--image-height)) * -.75);
     }
 
     & > :first-child {

@@ -12,6 +12,7 @@ import {Entities}                         from 'core/entity/Entities'
 import {unusedBigMushroomImage}           from 'core/entity/file/fileCreator'
 import {EmptyUnusedImage_BigMushroom}     from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
 import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/UnusedImage_BigMushroom.container'
+import {ArrayAsCollection}                from 'util/collection/ArrayAsCollection'
 
 /**
  * An {@link Entities} class made to hold a {@link UnusedImage_BigMushroom}
@@ -21,7 +22,7 @@ import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/Unused
 export abstract class UnusedBigMushroomEntityImages
     extends EnumWithParent<Entities, Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImage<UnusedImage_BigMushroom>{
+        ClassWithImage<UnusedImage_BigMushroom> {
 
     //region -------------------- Sub class --------------------
 
@@ -53,13 +54,11 @@ export abstract class UnusedBigMushroomEntityImages
 
         readonly #englishName
         #image?: UnusedImage_BigMushroom<UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME>>
-        readonly #folderName
         readonly #fileNames
 
-        public constructor(englishName: NAME, folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
             super()
             this.#englishName = englishName
-            this.#folderName = folderName
             this.#fileNames = fileNames
         }
 
@@ -70,9 +69,10 @@ export abstract class UnusedBigMushroomEntityImages
             if (value != null)
                 return value
 
-            const folderName = this.#folderName
-            return this.#image = new UnusedImage_BigMushroomContainer(this.#fileNames.map(it => unusedBigMushroomImage(this, folderName, it,),),)
+            const folderName = this.folderName
+            return this.#image = new UnusedImage_BigMushroomContainer(new ArrayAsCollection(this.#fileNames,).map(it => unusedBigMushroomImage(this, folderName, it,),),)
         }
+
     }
 
     //endregion -------------------- Sub class --------------------
@@ -263,9 +263,10 @@ export abstract class UnusedBigMushroomEntityImages
 
     public static readonly STINGBY =                                       new UnusedBigMushroomEntityImages.Null()
 
-    public static readonly CHEEP_CHEEP =                                   new UnusedBigMushroomEntityImages.Null()
+    public static readonly GREEN_CHEEP_CHEEP =                             new UnusedBigMushroomEntityImages.Null()
     public static readonly BLURPS =                                        new UnusedBigMushroomEntityImages.Null()
     public static readonly DEEP_CHEEP =                                    new UnusedBigMushroomEntityImages.Null()
+    public static readonly RED_CHEEP_CHEEP =                               new UnusedBigMushroomEntityImages.Null()
     public static readonly FISH_BONE =                                     new UnusedBigMushroomEntityImages.Null()
 
     public static readonly BLOOPER =                                       new UnusedBigMushroomEntityImages.Null()
@@ -307,6 +308,7 @@ export abstract class UnusedBigMushroomEntityImages
     public static readonly SNOW_POKEY =                                    new UnusedBigMushroomEntityImages.Null()
 
     public static readonly THWOMP =                                        new UnusedBigMushroomEntityImages.Null()
+    public static readonly SIDEWAYS_THWOMP =                               new UnusedBigMushroomEntityImages.Null()
 
     public static readonly MONTY_MOLE =                                    new UnusedBigMushroomEntityImages.Null()
     public static readonly ROCKY_WRENCH =                                  new UnusedBigMushroomEntityImages.Null()
@@ -379,6 +381,7 @@ export abstract class UnusedBigMushroomEntityImages
     public static readonly MEOWSER =                                       new UnusedBigMushroomEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new UnusedBigMushroomEntityImages.Null()
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new UnusedBigMushroomEntityImages.Null()
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new UnusedBigMushroomEntityImages.Null()
 
     public static readonly BOWSER_JR =                                     new UnusedBigMushroomEntityImages.Existant('Bowser Jr.', 'KoopaJr', 'fire.1',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new UnusedBigMushroomEntityImages.Null()
@@ -475,6 +478,7 @@ export abstract class UnusedBigMushroomEntityImages
     public static readonly PHANTO =                                        new UnusedBigMushroomEntityImages.Null()
 
     public static readonly TRAMPOLINE =                                    new UnusedBigMushroomEntityImages.Null()
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new UnusedBigMushroomEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new UnusedBigMushroomEntityImages.Null()
 
     public static readonly POW_BLOCK =                                     new UnusedBigMushroomEntityImages.Null()

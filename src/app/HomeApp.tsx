@@ -1,27 +1,35 @@
 import {unfinishedText}                                                                from 'app/tools/text/UnfinishedText'
 import PageProgress                                                                    from 'app/util/PageProgress'
+import PageTitle                                                                       from 'app/util/PageTitle'
 import {OtherWordInTheGames}                                                           from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}                                    from 'lang/components/translationMethods'
 import {MARIO_MAKER_2_WIKI_FANDOM_LINK, SUPER_MARIO_WIKI_LINK, THE_CUTTING_FLOOR_LINK} from 'external/WikiLinks'
 
+//region -------------------- Import from deconstruction --------------------
+
+const {COURSE, ENTITY, MII_COSTUME, MYSTERY_MUSHROOM, POWER_UP, TAG,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
 /** @reactComponent */
 export default function HomeApp() {
-    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-    const tag = OtherWordInTheGames.TAG.singularNameOnReference
-    const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
-    const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
-    const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
-    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
-    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
-    const miiCostumeAsLowerCase = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? miiCostume.toLowerCase()
-    const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
-    const miiCostumesAsLowerCase = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
-    const powerUp = OtherWordInTheGames.POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.POWER_UP.singularEnglishName,)
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const tag = TAG.singularNameOnReference
+    const tagAsLowerCase = TAG.singularLowerCaseNameOnReference
+    const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
+    const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+    const mysteryMushroom = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,)
+    const miiCostume = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumeAsLowerCase = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
+    const miiCostumes = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const miiCostumesAsLowerCase = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
+    const powerUp = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,)
     const powerUpAsLowerCase = powerUp.toLowerCase()
 
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title',)}</h1>
+        <PageTitle value={contentTranslation('Home',)}/>
         <div className="container-lg alert alert-warning" role="alert">
             {contentTranslation('home.warning.in construction',)}
             {contentTranslation('home.warning.more details',)}
@@ -82,7 +90,7 @@ export default function HomeApp() {
             <PageProgress progress="completed"                   link="everyMiiCostume"               exclusiveGame="SMM2"   content={miiCostume}/>
             <PageProgress progress="completed"                   link="everyMiiCostumeCategory"       exclusiveGame="SMM2"   content={gameContentTranslation('mii costume category.singular', {SingularName: miiCostume, singularName: miiCostumeAsLowerCase, PluralName: miiCostumes, pluralName: miiCostumesAsLowerCase,},)}/>
             <PageProgress progress="page in progress"            link="everyEditorVoice"                                     content={gameContentTranslation('editor voice.singular',)}/>
-            <PageProgress progress="page in progress"            link="everyInstrument"                                      content={gameContentTranslation('instrument.singular',)}/>
+            <PageProgress progress="page almost done"            link="everyInstrument"                                      content={gameContentTranslation('instrument.singular',)}/>
             <PageProgress progress="page in progress"            link="everyPowerUp&Ride&HatPriority"                        content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: powerUp, powerUp: powerUpAsLowerCase, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
         </div>
     </>

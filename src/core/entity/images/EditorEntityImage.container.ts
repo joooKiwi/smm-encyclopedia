@@ -1,4 +1,5 @@
-import type {Array, Nullable} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Nullable}         from '@joookiwi/type'
 
 import type {EditorImageFile}   from 'core/entity/file/EntityImageFile'
 import type {EditorEntityImage} from 'core/entity/images/EditorEntityImage'
@@ -7,7 +8,7 @@ import type {GameStyles}        from 'core/gameStyle/GameStyles'
 import type {Themes}            from 'core/theme/Themes'
 import type {Times}             from 'core/time/Times'
 
-export class EditorEntityImageContainer<const out T extends EditorImageFile, >
+export class EditorEntityImageContainer<const T extends EditorImageFile, >
     implements EditorEntityImage<T> {
 
     //region -------------------- Fields --------------------
@@ -24,19 +25,19 @@ export class EditorEntityImageContainer<const out T extends EditorImageFile, >
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get images(): Array<T> {
+    public get images(): CollectionHolder<T> {
         return this.#reference.images
     }
 
-    public get imagesWithAssociation(): Array<readonly [Times, GameStyles, Themes, T,]> {
+    public get imagesWithAssociation(): CollectionHolder<readonly [Times, GameStyles, Themes, T,]> {
         return this.#reference.imagesWithAssociation
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(gameStyle?: Nullable<GameStyles>,): Array<T> {
-        return this.#reference.getFromGameStyle(gameStyle,).toArray()
+    public get(gameStyle?: Nullable<GameStyles>,): CollectionHolder<T> {
+        return this.#reference.getFromGameStyle(gameStyle,)
     }
 
     //endregion -------------------- Methods --------------------

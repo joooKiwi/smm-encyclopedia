@@ -51,6 +51,12 @@
       "4. editor":           "Seul la musique d'éditeur est séparée en différentes sections."
     }
   },
+  "parameter": {
+    "instruction": "Sélectionnez les «jeux», «style de jeux», «décor» (à venir) et “temps” à afficher au travers de l'application."
+  },
+  "description": {
+    "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+  },
 
   "Yes": "Oui",
   "No":  "Non",
@@ -118,15 +124,17 @@
   "GitHub repository":           "Répertoire GitHub",
   "Go to the GitHub repository": "Aller au répertoire GitHub",
 
-  "Version":                   "Version",
-  "Copyright":                 "Droit d'auteur",
-  "React application made by": "Application React faite par",
-  "and helped by":             "et aidé par",
-  "Last update":               "Dernière mise à jour",
+  "Version":                                             "Version",
+  "Copyright":                                           "Droit d'auteur",
+  "Every image and sound are the propriety of Nintendo": "Toutes les images et sons sont la propriété de {{Nintendo}}",
+  "React application made by":                           "Application React faite par",
+  "and helped by":                                       "et aidé par",
+  "Last update":                                         "Dernière mise à jour",
 
   "Home":    "Accueil",
   "Display": "Afficher",
   "Search":  "Rechercher",
+  "Visual":  "Visuel",
 
   "N/A": "N/A"
 }

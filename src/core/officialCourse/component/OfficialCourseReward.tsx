@@ -1,5 +1,3 @@
-import {mapByArray} from '@joookiwi/collection'
-
 import type {OfficialCourses} from 'core/officialCourse/OfficialCourses'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
@@ -14,7 +12,7 @@ interface OfficialCourseRewardProperties
 
 /** @reactComponent */
 export default function OfficialCourseReward({reference,}: OfficialCourseRewardProperties,) {
-    return <div className="officialCourse-reward">{mapByArray(reference.reference.reward, it =>
-            <Image key={`Reward (${it.englishName})`} file={it.waitingImage[0]}/>
+    return <div className="officialCourse-reward">{reference.reference.reward.map(it =>
+            <Image key={`Reward (${it.englishName})`} file={it.waitingImage.getFirstOrNull()}/>
         ,)}</div>
 }

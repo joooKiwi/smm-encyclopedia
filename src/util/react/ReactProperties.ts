@@ -2,27 +2,23 @@
 export interface ReactProperties {}
 
 /**
- * A type-alias to have the {@link ReactProperties} with a children field
+ * An interface of {@link ReactProperties} with a children property
  *
- * @see SimpleReactPropertiesWithChildren
+ * @see ReactPropertiesWithOptionalChildren
  */
-export type ReactPropertiesWithChildren<T extends object, CHILDREN, > = T & SimpleReactPropertiesWithChildren<CHILDREN>
-/**
- * A type-alias to have of the {@link ReactProperties} with an optional children fields
- *
- * @see SimpleReactPropertiesWithOptionalChildren
- */
-export type ReactPropertiesWithOptionalChildren<T extends object, CHILDREN, > = T & SimpleReactPropertiesWithOptionalChildren<CHILDREN>
-
-/** An interface to help identify a React property with a children property */
-export interface SimpleReactPropertiesWithChildren<T, >
+export interface ReactPropertiesWithChildren<out T, >
     extends ReactProperties {
 
     readonly children: T
 
 }
 
-export interface SimpleReactPropertiesWithOptionalChildren<T, >
+/**
+ * An interface of {@link ReactProperties} with an optional children property
+ *
+ * @see ReactPropertiesWithChildren
+ */
+export interface ReactPropertiesWithOptionalChildren<out T, >
     extends ReactProperties {
 
     readonly children?: T

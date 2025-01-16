@@ -1,20 +1,15 @@
-:is(#mysteryMushroom-table, .cardListElement-container) :is(.animated-image, .non-animated-image) {
+#mysteryMushroom-app-container {}
+
+:is(#mysteryMushroom-table, #mysteryMushroom-cardList) :is(.animated-image, .non-animated-image) {
   --amount-of-blocks: 1;
   --single-height: 24px;
 }
 
-.cardListElement-container {
-  .image-content-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+#mysteryMushroom-list {}
 
-  .dual-image-content-container > div {
-    display: flex;
-    flex-direction: column;
-  }
+#mysteryMushroom-cardList .with2Images > .mysteryMushroom-image {
+  display: flex;
+  flex-direction: column;
 }
 
 #mysteryMushroom-table {

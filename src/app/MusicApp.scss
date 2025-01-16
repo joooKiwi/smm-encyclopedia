@@ -18,7 +18,7 @@
     height: 1cm
   } }
 
-  :where(.editor-musics-container, .lessonEditor-musics-container) .audio-state-container:not(:last-child) { margin-bottom: var(--bs-spacer-sm) }
+  :where(.editor-music-container, .lessonEditor-music-container) > :not(:last-child) { margin-bottom: var(--bs-spacer-sm) }
 
   //.musics-container:has(img) img { height: 1cm }
 
@@ -110,8 +110,8 @@
 
 }
 
-#smb-musics-container, #smb3-musics-container, #smw-musics-container, #nsmbu-musics-container, #sm3dw-musics-container { :first-child {
-  margin-bottom: vaR(--bs-spacer-sm)
+#smb-musics-container, #smb3-musics-container, #smw-musics-container, #nsmbu-musics-container, #sm3dw-musics-container {  > :first-child {
+  margin-bottom: var(--bs-spacer-sm)
 } }
 
 #otherGames-musics-container > .musics-container { grid-template-columns: 1.5cm auto auto }
@@ -121,7 +121,11 @@
 }
 #finalBoss-musics-container :is(:nth-child(8), :nth-child(9)) { margin-top: -50% }
 
-#world-musics-container .theme-image { height: .9cm }
+#world-musics-container .theme-image {
+  height: .9cm;
+  margin-right: var(--bs-spacer-sm);
+  &:not(:nth-last-child(3)) { margin-bottom: var(--bs-spacer-sm) }
+}
 
 
 #link-musics-container, #smb2-musics-container, {

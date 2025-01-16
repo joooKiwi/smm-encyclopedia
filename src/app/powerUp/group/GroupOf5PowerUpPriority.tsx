@@ -2,17 +2,15 @@ import './GroupOfPowerUpPriority.scss'
 import './GroupOf5PowerUpPriority.scss'
 
 import type {GroupOf5PowerUpPriorityArrowProperties} from 'app/powerUp/group/GroupPriority.types'
-import type {ReactProperties}                        from 'util/react/ReactProperties'
+import type {ReactPropertiesWithChildren}            from 'util/react/ReactProperties'
 
 import Arrow    from 'app/tools/arrow/Arrow'
 import {Arrows} from 'app/tools/arrow/Arrows'
 
 interface GroupOf5PowerUpPriorityProperties
-    extends ReactProperties {
+    extends ReactPropertiesWithChildren<ArrayOf5<NonNullReactElement>> {
 
     readonly id: string
-
-    readonly children: readonly [ReactElement, ReactElement, ReactElement, ReactElement, ReactElement,]
 
     readonly arrow?: GroupOf5PowerUpPriorityArrowProperties
 

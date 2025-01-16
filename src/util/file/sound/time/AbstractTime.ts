@@ -1,7 +1,7 @@
 import type {Time} from 'util/file/sound/time/Time'
 
-export abstract class AbstractTime<const out MILLISECOND extends number = number,
-    const out SECOND extends number = number, >
+export abstract class AbstractTime<const MILLISECOND extends number = number,
+    const SECOND extends number = number, >
     implements Time<MILLISECOND, SECOND> {
 
     //region -------------------- Fields --------------------

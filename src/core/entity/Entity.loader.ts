@@ -1,31 +1,29 @@
 import file from 'resources/compiled/Entity.json'
 
-import type {Lazy}                          from '@joookiwi/lazy'
-import type {Array, NullableString, NullOr} from '@joookiwi/type'
-import {forEachByArray}                     from '@joookiwi/collection'
-import {CommonLazy, lazy}                   from '@joookiwi/lazy'
+import type {Array, NullableString, NullOr}          from '@joookiwi/type'
+import type {CollectionHolder}                       from '@joookiwi/collection'
+import {forEachByArray, LazyGenericCollectionHolder} from '@joookiwi/collection'
 
-import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
-import type {LanguageContent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/_template/LanguageContent'
-import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, PossibleBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'core/behaviour/loader.types'
-import type {Entity, PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'core/entity/Entity'
-import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/entity/loader.types'
-import type {PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/Entities.types'
-import type {LCL_Play, OnlySomeVariants}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/entity/properties/loader.types'
-import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'core/entity/properties/instrument/loader.types'
-import type {LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimit, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                   from 'core/entity/properties/limit/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entityCategory/EntityCategories.types'
-import type {EntityCategory}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/entityCategory/EntityCategory'
-import type {GameContentFromAllGames,}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/Loader.types'
-import type {Instrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/instrument/Instrument'
-import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/instrument/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from 'core/limit/Limits.types'
-import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/version/Versions.types'
-import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'util/loader/Loader'
-import type {Name}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'lang/name/Name'
+import type {CanBeBrokenOrKilledByABobOmb, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
+import type {LanguageContent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/_template/LanguageContent'
+import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, PossibleBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'core/behaviour/loader.types'
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/entity/Entity'
+import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/loader.types'
+import type {PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'core/entity/Entities.types'
+import type {LCL_Play, OnlySomeVariants}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/properties/loader.types'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'core/entity/properties/instrument/loader.types'
+import type {LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimit, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                          from 'core/entity/properties/limit/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'core/entityCategory/EntityCategories.types'
+import type {EntityCategory}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from 'core/entityCategory/EntityCategory'
+import type {GameContentFromAllGames,}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'core/game/Loader.types'
+import type {Instrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/instrument/Instrument'
+import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'core/instrument/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/limit/Limits.types'
+import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/version/Versions.types'
+import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'util/loader/Loader'
+import type {Name}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/name/Name'
 
 import {isInProduction}        from 'variables'
-import {EmptyEntity}           from 'core/entity/EmptyEntity'
 import {EntityContainer}       from 'core/entity/Entity.container'
 import {Entities}              from 'core/entity/Entities'
 import {ReferenceLinks}        from 'core/entity/ReferenceLinks'
@@ -35,9 +33,12 @@ import {Instruments}           from 'core/instrument/Instruments'
 import {Limits}                from 'core/limit/Limits'
 import {NOT_APPLICABLE}        from 'util/commonVariables'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
+import {Empty}                 from 'util/emptyVariables'
+import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
 
-import LimitCompanion =      Limits.Companion
-import InstrumentCompanion = Instruments.Companion
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import LimitCompanion =          Limits.Companion
+import InstrumentCompanion =     Instruments.Companion
 
 /**
  * @dependsOn<{@link EntityCategoryLoader}>
@@ -194,7 +195,9 @@ interface Content
     readonly canIgniteABobOmb: CanIgniteABobOmb
     readonly canBeBrokenOrKilledByABobOmb: CanBeBrokenOrKilledByABobOmb
 
-    readonly canBeAffectedByATwister: CanBeAffectedByATwister
+    readonly canBeAffectedByATwister: boolean
+    readonly canBeAffectedByATwister_parachute: boolean
+    readonly canBeAffectedByATwister_falling: boolean
 
     readonly canGoThroughWalls: CanGoThroughWalls
     readonly canGoThroughWalls_SM3DW: CanGoThroughWallsInSM3DW
@@ -229,20 +232,20 @@ interface Content
     readonly editorLimit_SMM2: NullOr<| PossibleEnglishName_Limit | NotApplicable>
     readonly editorLimit_SMM2_isUnknown: boolean
 
-    readonly whilePlaying_isInGEL: BooleanOrNotApplicable
+    readonly whilePlaying_isInGEL: boolean
     readonly whilePlaying_isInGEL_comment: NullOr<PossibleGeneralLimitComment>
-    readonly whilePlaying_isInGEL_isSuperGlobal: BooleanOrNotApplicable
+    readonly whilePlaying_isInGEL_isSuperGlobal: boolean
     readonly whilePlaying_isInGEL_isSuperGlobal_comment: NullOr<PossibleGeneralGlobalLimitComment>
 
-    readonly whilePlaying_isInPL: BooleanOrNotApplicable
+    readonly whilePlaying_isInPL: boolean
 
-    readonly whilePlaying_isInPJL: BooleanOrNotApplicable
+    readonly whilePlaying_isInPJL: boolean
     readonly whilePlaying_isInPJL_comment: NullOr<PossibleProjectileLimitComment>
 
-    readonly whilePlaying_isInObjectRenderedLimit: BooleanOrNotApplicable
+    readonly whilePlaying_isInObjectRenderedLimit: boolean
     readonly whilePlaying_isInObjectRenderedLimit_comment: NullOr<PossibleRenderedObjectLimitTypeComment>
 
-    readonly whilePlaying_isInCollectedCoinLimit: BooleanOrNotApplicable
+    readonly whilePlaying_isInCollectedCoinLimit: boolean
 
     readonly whilePlaying_otherLimit: NullOr<PossibleOtherLimit>
     readonly whilePlaying_otherLimit_comment: NullOr<PossibleOtherLimitComment>
@@ -314,22 +317,14 @@ type EntityCategoryMap = ReadonlyMap<PossibleEnglishName_Category, EntityCategor
 
 //region -------------------- Create reference --------------------
 
-const EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
-
 function createReference(content: Content, referenceLinks: ReferenceLinks, entityCategoryMap: EntityCategoryMap,): Entity {
     const englishName = (content.english ?? content.americanEnglish)!
 
-    let everyGameStyleReferences: Lazy<Array<Entity>>
-    let everyThemeReferences: Lazy<Array<Entity>>
-    let everyTimeReferences: Lazy<Array<Entity>>
-    let everyReferences: Lazy<Array<Entity>>
-    if (referenceLinks.hasAnyReferences(englishName,)) {
-        everyGameStyleReferences = getOrCreateGroupReference(referenceLinks.getGameStyleReferenceLinks(englishName,),)
-        everyThemeReferences = getOrCreateGroupReference(referenceLinks.getThemeReferenceLinks(englishName,),)
-        everyTimeReferences = getOrCreateGroupReference(referenceLinks.getTimeReferenceLinks(englishName,),)
-        everyReferences = getOrCreateGroupReference(referenceLinks.getEveryReferenceLinks(englishName,),)
-    } else
-        everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = CommonLazy.EMPTY_ARRAY
+    const isInReferences = referenceLinks.hasAnyReferences(englishName,)
+    const everyGameStyleReferences = isInReferences ? getReferences(referenceLinks.getGameStyleReferenceLinks(englishName,),) : EMPTY_COLLECTION_HOLDER
+    const everyThemeReferences = isInReferences ? getReferences(referenceLinks.getThemeReferenceLinks(englishName,),) : EMPTY_COLLECTION_HOLDER
+    const everyTimeReferences = isInReferences ? getReferences(referenceLinks.getTimeReferenceLinks(englishName,),) : EMPTY_COLLECTION_HOLDER
+    const everyReferences = isInReferences ? getReferences(referenceLinks.getEveryReferenceLinks(englishName,),) : EMPTY_COLLECTION_HOLDER
 
     return new EntityContainer(
         createName(content,),
@@ -347,6 +342,8 @@ function createReference(content: Content, referenceLinks: ReferenceLinks, entit
         content.canBePutInALakituCloud,
         content.canBePutInAClownCar,
         content.canBeFiredOutOfABulletLauncher, content.canComeOutOfABlock, content.canBePutInATree,
+
+        content.canBeAffectedByATwister, content.canBeAffectedByATwister_parachute, content.canBeAffectedByATwister_falling,
 
         content.canBeStacked,
         content.isGlobalGroundOrGlobal, content.isGlobalGroundOrGlobal_SM3DW,
@@ -366,9 +363,9 @@ function createReference(content: Content, referenceLinks: ReferenceLinks, entit
 
         createInstruments(content,), content.canMakeASoundOutOfAMusicBlock, content.canMakeASoundOutOfAMusicBlock_comment,
 
-        getOtherEntityReferences(content.inSMBGameStyle, englishName,), getOtherEntityReferences(content.inSMB3GameStyle, englishName,), getOtherEntityReferences(content.inSMWGameStyle, englishName,), getOtherEntityReferences(content.inNSMBUGameStyle, englishName,), getOtherEntityReferences(content.inSM3DWGameStyle, englishName,),
-        getOtherEntityReferences(content.inGroundTheme, englishName,), getOtherEntityReferences(content.inUndergroundTheme, englishName,), getOtherEntityReferences(content.inUnderwaterTheme, englishName,), getOtherEntityReferences(content.inDesertTheme, englishName,), getOtherEntityReferences(content.inSnowTheme, englishName,), getOtherEntityReferences(content.inSkyTheme, englishName,), getOtherEntityReferences(content.inForestTheme, englishName,), getOtherEntityReferences(content.inGhostHouseTheme, englishName,), getOtherEntityReferences(content.inAirshipTheme, englishName,), getOtherEntityReferences(content.inCastleTheme, englishName,),
-        getOtherEntityReferences(content.inDayTime, englishName,), getOtherEntityReferences(content.inNightTime, englishName,),
+        getReferencesFromLink(content.inSMBGameStyle, englishName,), getReferencesFromLink(content.inSMB3GameStyle, englishName,), getReferencesFromLink(content.inSMWGameStyle, englishName,), getReferencesFromLink(content.inNSMBUGameStyle, englishName,), getReferencesFromLink(content.inSM3DWGameStyle, englishName,),
+        getReferencesFromLink(content.inGroundTheme, englishName,), getReferencesFromLink(content.inUndergroundTheme, englishName,), getReferencesFromLink(content.inUnderwaterTheme, englishName,), getReferencesFromLink(content.inDesertTheme, englishName,), getReferencesFromLink(content.inSnowTheme, englishName,), getReferencesFromLink(content.inSkyTheme, englishName,), getReferencesFromLink(content.inForestTheme, englishName,), getReferencesFromLink(content.inGhostHouseTheme, englishName,), getReferencesFromLink(content.inAirshipTheme, englishName,), getReferencesFromLink(content.inCastleTheme, englishName,),
+        getReferencesFromLink(content.inDayTime, englishName,), getReferencesFromLink(content.inNightTime, englishName,),
         everyGameStyleReferences, everyThemeReferences, everyTimeReferences, everyReferences,
     )
 }
@@ -413,7 +410,9 @@ function getCategory(content: Content, entityCategoryMap: EntityCategoryMap,): E
 //endregion -------------------- Get entity category --------------------
 //region -------------------- Create limit --------------------
 
-function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,): NullOr<| Limits | NotApplicable> {
+function getLimit(value: NullableString<PossibleEnglishName_Limit>,): NullOr<Limits>
+function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,): NullOr<| Limits | NotApplicable>
+function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>,) {
     if (value == null)
         return null
     if (value === NOT_APPLICABLE)
@@ -424,17 +423,15 @@ function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplica
 //endregion -------------------- Create limit --------------------
 //region -------------------- Create instrument --------------------
 
-function createInstruments(content: Content,): Lazy<Array<Instrument>> {
+function createInstruments(content: Content,): CollectionHolder<Instrument> {
     const value = content.instrument
     if (value == null)
-        return CommonLazy.EMPTY_ARRAY
-    return lazy(() => {
+        return EMPTY_COLLECTION_HOLDER
+    return new LazyGenericCollectionHolder(() => {
         const singleInstrument = InstrumentCompanion.getValueByName(value,)
         if (singleInstrument != null)
-            return [singleInstrument.reference,]
-        return InstrumentCompanion.values.filter(it => value.includes(it.englishName,),)
-            .map(it => it.reference,)
-            .toArray()
+            return new ArrayAsCollection([singleInstrument.reference,],)
+        return InstrumentCompanion.values.filter(it => value.includes(it.englishName,),).map(it => it.reference,)
     },)
 }
 
@@ -442,24 +439,26 @@ function createInstruments(content: Content,): Lazy<Array<Instrument>> {
 //region -------------------- Create references --------------------
 
 /**
- * Create a {@link Lazy} entity with returning type 1 or 2 entity.
- * It can contain 'this' that will return itself in the callback.
+ * Get the {@link Entity} from the {@link link} value
  *
  * @param link the entity link or null
  * @param name The entity name
  */
-function getOtherEntityReferences(link: NullableString<EntityLink>, name: PossibleEnglishName,): Lazy<PossibleOtherEntities> {
+function getReferencesFromLink(link: NullableString<EntityLink>, name: PossibleEnglishName,): CollectionHolder<Entity> {
     if (link == null)
-        return EMPTY_ENTITIES
+        return EMPTY_COLLECTION_HOLDER
     if (link === 'this')
-        return lazy(() => Entities.Companion.getValueByName(name,).reference as unknown as PossibleOtherEntities,)
-    return lazy(() => (link.split(' / ').map(splitLink => Entities.Companion.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
+        return new LazyGenericCollectionHolder(() => [Entities.Companion.getValueByName(name,).reference],)
+    return new ArrayAsCollection(link.split(' / ',),).map(it => Entities.Companion.getValueByName(it,).reference,)
 }
 
-function getOrCreateGroupReference(references: Array<PossibleEnglishName>,): Lazy<Array<Entity>> {
-    if (references == null)
-        return CommonLazy.EMPTY_ARRAY
-    return lazy(() => references.map(it => Entities.Companion.getValueByName(it,).reference,),)
+/**
+ * Get the {@link Entity} from the {@link reference}
+ *
+ * @param references A collection of {@link Entity} names
+ */
+function getReferences(references: CollectionHolder<PossibleEnglishName>,): CollectionHolder<Entity> {
+    return references.map(it => Entities.Companion.getValueByName(it,).reference,)
 }
 
 //endregion -------------------- Create reference --------------------

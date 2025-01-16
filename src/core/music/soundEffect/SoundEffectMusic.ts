@@ -11,9 +11,9 @@ export interface SoundEffectMusic<out ALL extends PossibleSoundEffectMusicFileNa
     out EDITOR_SOUND_EFFECT extends PossibleSoundEffectMusicEditorName = PossibleSoundEffectMusicEditorName, >
     extends Music<ALL> {
 
-    get soundEffect(): SOUND_EFFECT
+    readonly soundEffect: SOUND_EFFECT
 
-    get editorSoundEffect(): EDITOR_SOUND_EFFECT
+    readonly editorSoundEffect: EDITOR_SOUND_EFFECT
 
 }
 

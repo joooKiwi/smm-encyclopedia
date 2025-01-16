@@ -1,17 +1,8 @@
-#gameStyle-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-  .description-container .game-image,
-  .description-container .gameStyle-image, { height: var(--bs-font-size-lg) }
-
-}
+#gameStyle-app-container {}
 
 #gameStyle-list img { max-height: 3rem }
 
-.cardListElement-container img { max-height: 5rem }
+#gameStyle-cardList img { max-height: 5rem }
 
 #gameStyle-table {
   width: auto;

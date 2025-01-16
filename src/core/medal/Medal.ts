@@ -5,10 +5,8 @@ import type {NameTrait}                                                         
 export interface Medal
     extends NameTrait<string> {
 
-    get imageName(): PossibleEnglishName
-
-    get maximumAmountAllowedToUploadALevel(): PossibleMaximumAmountAllowedToUploadALevel
-
-    get amountOfStarReceivedToUnlockIt(): PossibleAmountOfStarReceivedToUnlockIt
+    readonly imageName: PossibleEnglishName
+    readonly maximumAmountAllowedToUploadALevel: PossibleMaximumAmountAllowedToUploadALevel
+    readonly amountOfStarReceivedToUnlockIt: PossibleAmountOfStarReceivedToUnlockIt
 
 }

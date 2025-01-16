@@ -1,5 +1,5 @@
-import type {Array, StringArray}   from '@joookiwi/type'
-import {filterNotNull, mapByArray} from '@joookiwi/collection'
+import type {Array, StringArray} from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'core/behaviour/EntityBehaviours.types'
@@ -59,6 +59,7 @@ import {Themes}                from 'core/theme/Themes'
 import {Versions}              from 'core/version/Versions'
 import {CourseTags}            from 'core/courseTag/CourseTags'
 import {INFINITY}              from 'util/commonVariables'
+import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
 
 import ALL_GAME_STYLES =      GameStyles.ALL
 import ALL_GAME_STYLES_SMM1 = GameStyles.ALL_SMM1
@@ -213,11 +214,11 @@ export class EveryTypes {
     //region -------------------- Game style --------------------
 
     public get everyPossibleAcronym_gameStyle() {
-        return this.#everyPossibleAcronym_gameStyle ??= mapByArray(ALL_GAME_STYLES, it => it.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameStyle ??= ALL_GAME_STYLES.map(it => it.acronym,).toArray()
     }
 
     public get everyPossibleAcronym_gameStyle_smm1() {
-        return this.#everyPossibleAcronym_gameStyle_smm1 ??= mapByArray(ALL_GAME_STYLES_SMM1, it => it.acronym,).toArray()
+        return this.#everyPossibleAcronym_gameStyle_smm1 ??= ALL_GAME_STYLES_SMM1.map(it => it.acronym,).toArray()
     }
 
     //endregion -------------------- Game style --------------------
@@ -313,11 +314,11 @@ export class EveryTypes {
     //region -------------------- Theme --------------------
 
     public get everyPossibleName_theme() {
-        return this.#everyPossibleName_theme ??= mapByArray(ALL_THEMES, it => it.englishName,).toArray()
+        return this.#everyPossibleName_theme ??= new ArrayAsCollection(ALL_THEMES,).map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_courseTheme_smm1() {
-        return this.#everyPossibleName_courseTheme_smm1 ??= mapByArray(COURSE_THEMES_SMM1, it => it.englishName,).toArray()
+        return this.#everyPossibleName_courseTheme_smm1 ??= new ArrayAsCollection(COURSE_THEMES_SMM1,).map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Theme --------------------
@@ -338,11 +339,11 @@ export class EveryTypes {
     //region -------------------- Limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...Limits.Companion.values.map(it => it.acronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= new GenericCollectionHolder(Limits.Companion.values.map(it => it.acronym,).filterNotNull().toSet(),).toArray()
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.Companion.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= new GenericCollectionHolder(Limits.Companion.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),).toArray()
     }
 
 
@@ -351,11 +352,11 @@ export class EveryTypes {
     }
 
     public get everyPossibleName_editorLimit() {
-        return this.#everyPossibleName_editorLimit ??= mapByArray(Limits.EDITOR, it => it.englishName,).toArray()
+        return this.#everyPossibleName_editorLimit ??= new ArrayAsCollection(Limits.EDITOR,).map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_playLimit() {
-        return this.#everyPossibleName_playLimit ??= mapByArray(Limits.PLAY, it => it.englishName,).toArray()
+        return this.#everyPossibleName_playLimit ??= new ArrayAsCollection(Limits.PLAY,).map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleAlternativeName_limit() {
@@ -579,7 +580,7 @@ export class EveryTypes {
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification() {
-        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.Companion.values.map(it => [it.englishName, it.additionalEnglishName,],).toArray().flat(2,)
+        return this.#everyPossibleNameWithAmount_officialNotification ??= OfficialNotifications.Companion.values.map(it => [it.englishName, it.additionalEnglishName.toArray(),],).toArray().flat(2,)
     }
 
     //endregion -------------------- Official notification --------------------
@@ -611,7 +612,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleMixedName_instrument() {
-        return this.#everyPossibleMixedName_instrument ??= ['Unchain Chomp → Piano 1\nStump → Mokugyo', 'Regular → Cymbal\nSideway → Hi-hat', 'Bottom → Hello\nTop → Ok',]
+        return this.#everyPossibleMixedName_instrument ??= ['Unchain Chomp → Piano 1\nStump → Mokugyo', 'Bottom → Hello\nTop → Ok',]
     }
 
     //endregion -------------------- Instrument --------------------
@@ -637,7 +638,7 @@ export class EveryTypes {
     //region -------------------- Other word in the game --------------------
 
     public get everyPossibleName_otherWordInTheGame() {
-        return this.#everyPossibleName_otherWordInTheGame ??= filterNotNull(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),).toArray()
+        return this.#everyPossibleName_otherWordInTheGame ??= new ArrayAsCollection(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),).filterNotNull().toArray()
     }
 
     public get everyPossibleSingularName_otherWordInTheGame() {

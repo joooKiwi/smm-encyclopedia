@@ -7,10 +7,10 @@ import type {Time}                                  from 'util/file/sound/time/T
 import {AbstractExternalFile} from 'util/file/AbstractExternalFile'
 
 /** The base of every "external" {@link SoundFile} implementations */
-export abstract class AbstractExternalSoundFile<const out PATH extends string = string,
-    const out NAME extends string = string,
-    const out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
-    const out REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
+export abstract class AbstractExternalSoundFile<const PATH extends string = string,
+    const NAME extends string = string,
+    const EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
+    const REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
     extends AbstractExternalFile<PATH, NAME, EXTENSION>
     implements SoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
 

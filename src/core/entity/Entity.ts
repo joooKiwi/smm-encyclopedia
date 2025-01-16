@@ -1,4 +1,5 @@
-import type {Array, EmptyArray, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
+import type {NullOr, NullOrString} from '@joookiwi/type'
 
 import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {GameProperty}                                                                                                                                                      from 'core/entity/properties/game/GameProperty'
@@ -47,7 +48,7 @@ export interface Entity
     readonly canBeThrownByALakitu: BooleanOrUnknownCharacter
     readonly canBePutInALakituCloud: BooleanOrUnknownCharacter
     readonly canBePutInAClownCar: boolean
-    readonly canBeFiredOutOfABulletLauncher: boolean//TODO add amount in a bunch + maximum amount
+    readonly canBeFiredOutOfABillBlaster: boolean//TODO add amount in a bunch + maximum amount
     readonly canComeOutOfABlock: boolean//TODO add maximum amount
     readonly canBePutInATree: boolean
 
@@ -62,7 +63,10 @@ export interface Entity
     // can survive in the lava or poison
     // can ignite a Bob-omb
     // can be broken or killed by a Bob-omb
-    // can be affected by a Twister
+
+    readonly canBeAffectedByATwister: boolean
+    readonly canBeAffectedByATwisterWhenItIsWithAParachute: boolean
+    readonly canBeAffectedByATwisterWhenInAFallingState: boolean
 
     // can go through walls
     // can go through walls (in SM3DW)
@@ -79,30 +83,30 @@ export interface Entity
     readonly editorLimit_smm2: NullOr<| Limits | NotApplicable>
     readonly isUnknown_editorLimit_smm2: boolean
 
-    readonly isInGeneralLimit: BooleanOrNotApplicable
+    readonly isInGeneralLimit: boolean
     readonly isInGeneralLimitComment: NullOrString<PossibleGeneralLimitComment>
 
-    readonly isInGlobalGeneralLimit: BooleanOrNotApplicable
+    readonly isInGlobalGeneralLimit: boolean
     readonly isInGlobalGeneralLimitComment: NullOrString<PossibleGeneralGlobalLimitComment>
 
-    readonly isInPowerUpLimit: NullOrBooleanOrNotApplicable
+    readonly isInPowerUpLimit: boolean
 
-    readonly isInProjectileLimit: NullOrBooleanOrNotApplicable
+    readonly isInProjectileLimit: boolean
     readonly isInProjectileLimitComment: NullOrString<PossibleProjectileLimitComment>
 
-    readonly isInRenderedObjectLimit: NullOrBooleanOrNotApplicable
-    readonly isInRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>
+    readonly isInDynamicRenderedObjectLimit: boolean
+    readonly isInDynamicRenderedObjectLimitComment: NullOrString<PossibleRenderedObjectLimitTypeComment>
 
-    readonly isInCollectedCoinLimit: NullOrBooleanOrNotApplicable
+    readonly isInCollectedLooseCoinLimit: boolean
 
-    readonly otherLimit: NullOr<| Limits | NotApplicable>
+    readonly otherLimit: NullOr<Limits>
     readonly otherLimitComment: NullOrString<PossibleOtherLimitComment>
     readonly isUnknown_otherLimit: boolean
 
     //endregion -------------------- Limit properties --------------------
     //region -------------------- Instrument properties --------------------
 
-    readonly instruments: Array<Instrument>
+    readonly instruments: CollectionHolder<Instrument>
 
     readonly canMakeASoundOutOfAMusicBlock: boolean
     readonly canMakeASoundOutOfAMusicBlockComment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
@@ -110,39 +114,39 @@ export interface Entity
     //endregion -------------------- Instrument properties --------------------
     //region -------------------- Reference properties --------------------
 
-    readonly referenceInSuperMarioBrosStyle: PossibleOtherEntities
-    readonly referenceInSuperMarioBros3Style: PossibleOtherEntities
-    readonly referenceInSuperMarioWorldStyle: PossibleOtherEntities
-    readonly referenceInNewSuperMarioBrosUStyle: PossibleOtherEntities
-    readonly referenceInSuperMario3DWorldStyle: PossibleOtherEntities
+    readonly referencesInSuperMarioBrosStyle: CollectionHolder<Entity>
+    readonly referencesInSuperMarioBros3Style: CollectionHolder<Entity>
+    readonly referencesInSuperMarioWorldStyle: CollectionHolder<Entity>
+    readonly referencesInNewSuperMarioBrosUStyle: CollectionHolder<Entity>
+    readonly referencesInSuperMario3DWorldStyle: CollectionHolder<Entity>
 
-    readonly referenceInGroundTheme: PossibleOtherEntities
-    readonly referenceInUndergroundTheme: PossibleOtherEntities
-    readonly referenceInUnderwaterTheme: PossibleOtherEntities
-    readonly referenceInDesertTheme: PossibleOtherEntities
-    readonly referenceInSnowTheme: PossibleOtherEntities
-    readonly referenceInSkyTheme: PossibleOtherEntities
-    readonly referenceInForestTheme: PossibleOtherEntities
-    readonly referenceInGhostHouseTheme: PossibleOtherEntities
-    readonly referenceInAirshipTheme: PossibleOtherEntities
-    readonly referenceInCastleTheme: PossibleOtherEntities
+    readonly referencesInGroundTheme: CollectionHolder<Entity>
+    readonly referencesInUndergroundTheme: CollectionHolder<Entity>
+    readonly referencesInUnderwaterTheme: CollectionHolder<Entity>
+    readonly referencesInDesertTheme: CollectionHolder<Entity>
+    readonly referencesInSnowTheme: CollectionHolder<Entity>
+    readonly referencesInSkyTheme: CollectionHolder<Entity>
+    readonly referencesInForestTheme: CollectionHolder<Entity>
+    readonly referencesInGhostHouseTheme: CollectionHolder<Entity>
+    readonly referencesInAirshipTheme: CollectionHolder<Entity>
+    readonly referencesInCastleTheme: CollectionHolder<Entity>
 
-    readonly referenceInDayTheme: PossibleOtherEntities
-    readonly referenceInNightTheme: PossibleOtherEntities
+    readonly referencesInDayTheme: CollectionHolder<Entity>
+    readonly referencesInNightTheme: CollectionHolder<Entity>
 
-    getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
+    getReferencesFrom(gameStyle: GameStyles,): CollectionHolder<Entity>
 
-    getReferenceFrom(theme: Themes,): PossibleOtherEntities
+    getReferencesFrom(theme: Themes,): CollectionHolder<Entity>
 
-    getReferenceFrom(time: Times,): PossibleOtherEntities
+    getReferencesFrom(time: Times,): CollectionHolder<Entity>
 
-    getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
+    getReferencesFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): CollectionHolder<Entity>
 
 
-    readonly everyReferences: Array<Entity>
-    readonly everyGameStyleReferences: Array<Entity>
-    readonly everyThemeReferences: Array<Entity>
-    readonly everyTimeReferences: Array<Entity>
+    readonly everyReferences: CollectionHolder<Entity>
+    readonly everyGameStyleReferences: CollectionHolder<Entity>
+    readonly everyThemeReferences: CollectionHolder<Entity>
+    readonly everyTimeReferences: CollectionHolder<Entity>
 
     //endregion -------------------- Reference properties --------------------
 
@@ -176,5 +180,3 @@ export interface Entity
     //endregion -------------------- Conversion properties --------------------
 
 }
-
-export type PossibleOtherEntities = | EmptyArray | readonly [Entity,] | readonly [Entity, Entity,]

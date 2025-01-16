@@ -1,11 +1,11 @@
 import type {Nullable}           from '@joookiwi/type'
-import type {LoaderFunctionArgs} from 'react-router/dist'
-import {redirect}                from 'react-router/dist'
+import type {LoaderFunctionArgs} from 'react-router'
+import {redirect}                from 'react-router'
 
-import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
 import {Games}            from 'core/game/Games'
 import {GameStyles}       from 'core/gameStyle/GameStyles'
 import {Times}            from 'core/time/Times'
+import {ViewDisplays}     from 'display/ViewDisplays'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import {EveryRoutes}      from 'route/EveryRoutes'
 

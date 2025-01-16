@@ -7,10 +7,8 @@ import type {NameTrait}                from 'lang/name/NameTrait'
 export interface CourseTag
     extends NameTrait<string> {
 
-    get isAnOfficialTag(): boolean
-
-    get makerCentralName(): NullOrString<PossibleMakerCentralName>
-
-    get firstAppearance(): NullOr<Versions>
+    readonly isAnOfficialTag: boolean
+    readonly makerCentralName: NullOrString<PossibleMakerCentralName>
+    readonly firstAppearance: NullOr<Versions>
 
 }

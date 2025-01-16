@@ -1,19 +1,8 @@
 //TODO find better colors
-#entityCategory-terrain-container .cardListElement-container {
-  background-color: var(--entityCategory-terrain-bg-color)
-}
-
-#entityCategory-item-container .cardListElement-container {
-  background-color: var(--entityCategory-item-bg-color)
-}
-
-#entityCategory-enemy-container .cardListElement-container {
-  background-color: var(--entityCategory-ennemy-bg-color)
-}
-
-#entityCategory-gizmo-container .cardListElement-container {
-  background-color: var(--entityCategory-gizmo-bg-color)
-}
+#entityCategory-terrain-container .cardListElement-container { background-color: var(--entityCategory-terrain-bg-color) }
+#entityCategory-item-container    .cardListElement-container { background-color: var(--entityCategory-item-bg-color) }
+#entityCategory-enemy-container   .cardListElement-container { background-color: var(--entityCategory-ennemy-bg-color) }
+#entityCategory-gizmo-container   .cardListElement-container { background-color: var(--entityCategory-gizmo-bg-color) }
 
 #entityCategory-table {
   width: auto;

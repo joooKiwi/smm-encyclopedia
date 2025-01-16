@@ -2,7 +2,7 @@ import type {CourseTagTypes}       from 'app/property/CourseTagTypes'
 import type {LimitTypes}           from 'app/property/LimitTypes'
 import type {PowerUpPriorityTypes} from 'app/property/PowerUpPriorityTypes'
 import type {ThemeTypes}           from 'app/property/ThemeTypes'
-import type {ViewDisplays}         from 'app/withInterpreter/ViewDisplays'
+import type {ViewDisplays}         from 'display/ViewDisplays'
 import type {GameCollection}       from 'util/collection/GameCollection'
 import type {GameStyleCollection}  from 'util/collection/GameStyleCollection'
 import type {TimeCollection}       from 'util/collection/TimeCollection'
@@ -31,8 +31,8 @@ interface AppWithInterpreter_Games_GameStyle_TimeProperties
 
 //region -------------------- Specific properties --------------------
 
-export interface PowerUpAndRidePriorityProperties
-    extends AppPropertiesWithType<PowerUpPriorityTypes>, AppWithGamesProperties {}
+export interface PriorityProperties
+    extends AppPropertiesWithType<PowerUpPriorityTypes>, AppWithInterpreter_Games_GameStyle_TimeProperties {}
 
 export interface CharacterNameProperties
     extends AppWithInterpreter_Games_GameStyle_TimeProperties {}

@@ -1,21 +1,20 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
 import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/SoundEffectAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
-import {CommonOptions}                          from 'app/options/CommonOptions'
-import UnfinishedText, {unfinishedText}         from 'app/tools/text/UnfinishedText'
-import {Games}                                  from 'core/game/Games'
-import SMM1And3DSOnlySoundEffectSoundsComponent from 'core/soundEffect/SMM1And3DSOnlySoundEffectSounds.component'
-import SMM2OnlySoundEffectSoundsComponent       from 'core/soundEffect/SMM2OnlySoundEffectSounds.component'
-import SoundEffectComponent                     from 'core/soundEffect/SoundEffect.component'
-import SoundEffectSoundsComponent               from 'core/soundEffect/SoundEffectSounds.component'
-import {SoundEffectCategories}                  from 'core/soundEffectCategory/SoundEffectCategories'
-import SoundEffectCategoryIcon                  from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
-import {Empty}                                  from 'util/emptyVariables'
+import {CommonOptions}            from 'app/options/CommonOptions'
+import {TableOption}              from 'app/tools/table/TableOption'
+import {unfinishedText}           from 'app/tools/text/UnfinishedText'
+import {Games}                    from 'core/game/Games'
+import SoundEffectComponent       from 'core/soundEffect/SoundEffect.component'
+import Smm1Or3dsSoundEffectSounds from 'core/soundEffect/component/Smm1Or3dsSoundEffectSounds'
+import Smm2SoundEffectSounds      from 'core/soundEffect/component/Smm2SoundEffectSounds'
+import {SoundEffectCategories}    from 'core/soundEffectCategory/SoundEffectCategories'
+import SoundEffectCategoryIcon    from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
+import {Empty}                    from 'util/emptyVariables'
 
 import CategoryCompanion = SoundEffectCategories.Companion
 import EMPTY_STRING =      Empty.EMPTY_STRING
@@ -23,99 +22,111 @@ import SMM1 =              Games.SMM1
 import SMM2 =              Games.SMM2
 
 export abstract class SoundEffectAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<SoundEffects> {
+    extends TableOption<SoundEffects, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly SMM1_AND_SMM3DS_ICON = new class GameStyleAppOption_SMM1AndSMM3DSIcon extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
+        public override renderContent(enumeration: SoundEffects,) {
             return SoundEffectAppOption.renderSMM1And3DSImage(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.smm1And3dsGameHeader
         }
 
     }('smm1AndSmm3ds-icon',)
     public static readonly SMM2_ICON =            new class GameStyleAppOption_SMM2Icon extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
+        public override renderContent(enumeration: SoundEffects,) {
             return SoundEffectAppOption.renderSMM2Image(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.smm2GameHeader
         }
 
     }('smm2-icon',)
+
     public static readonly NAME =                 new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
+        public override renderContent(enumeration: SoundEffects,) {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly CATEGORY =             new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
+        public override renderContent(enumeration: SoundEffects,) {
             const name = enumeration.reference.categoryAmericanEnglish
             if (name === EMPTY_STRING)
                 return null
             return <SoundEffectCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.categoryHeader
         }
 
     }('category',)
     public static readonly PLAYER_BEHAVIOUR =     new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
+        public override renderContent(enumeration: SoundEffects,) {
             return enumeration.reference.playerSoundEffectTrigger.createNewComponent(enumeration.englishName,)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {key: 'player behaviour', element: unfinishedText('Player behaviour',),}//TODO add Player behaviour
         }
 
     }('playerBehaviour',)
-    public static readonly SOUNDS =               new class GameStyleAppOption_Sounds extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
-            return <SoundEffectSoundsComponent reference={enumeration}/>
+    public static readonly SOUNDS_IN_SMM1_AND_3DS = new class GameStyleAppOption_SoundsInSMM1And3DSOnly extends SoundEffectAppOption {
+
+        public override renderContent(enumeration: SoundEffects,) {
+            return <Smm1Or3dsSoundEffectSounds value={enumeration}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
+        public override renderHeader(): SingleHeaderContent {
+            return CommonOptions.get.soundsInSmm1And3dsHeader
         }
 
-    }('sounds',)
+    }('smm1And3ds-sounds',)
     public static readonly SOUNDS_IN_SMM1_AND_3DS_ONLY = new class GameStyleAppOption_SoundsInSMM1And3DSOnly extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
-            return <SMM1And3DSOnlySoundEffectSoundsComponent reference={enumeration}/>
+        public override renderContent(enumeration: SoundEffects,) {
+            return <Smm1Or3dsSoundEffectSounds value={enumeration}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
+        public override renderHeader(): SingleHeaderContent {
+            return CommonOptions.get.soundsHeader
         }
 
     }('sounds',)
-    public static readonly SOUNDS_IN_SMM2_ONLY = new class GameStyleAppOption_SoundsInSMM2Only extends SoundEffectAppOption {
+    public static readonly SOUNDS_IN_SMM2 = new class GameStyleAppOption_SoundsInSMM2Only extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,) {
-            return <SMM2OnlySoundEffectSoundsComponent reference={enumeration}/>
+        public override renderContent(enumeration: SoundEffects,) {
+            return <Smm2SoundEffectSounds value={enumeration}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
+        public override renderHeader(): SingleHeaderContent {
+            return CommonOptions.get.soundsInSmm2Header
+        }
+
+    }('smm2-sounds',)
+    public static readonly SOUNDS_IN_SMM2_ONLY = new class GameStyleAppOption_SoundsInSMM2Only extends SoundEffectAppOption {
+
+        public override renderContent(enumeration: SoundEffects,) {
+            return <Smm2SoundEffectSounds value={enumeration}/>
+        }
+
+        public override renderHeader(): SingleHeaderContent {
+            return CommonOptions.get.soundsHeader
         }
 
     }('sounds',)
@@ -144,51 +155,17 @@ export abstract class SoundEffectAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: SoundEffects,): ReactElement
-
-    public renderContent(enumeration: SoundEffects,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

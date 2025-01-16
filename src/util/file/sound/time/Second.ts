@@ -1,6 +1,6 @@
 import {AbstractTime} from 'util/file/sound/time/AbstractTime'
 
-export class Second<const out TIME extends number = number, >
+export class Second<const TIME extends number = number, >
     extends AbstractTime<number, TIME> {
 
     public constructor(second: TIME,) {

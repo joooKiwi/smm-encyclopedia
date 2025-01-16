@@ -3,10 +3,11 @@ import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from 'util/ClassW
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 export class EmptyUnusedImage_BigMushroom
-    implements UnusedImage_BigMushroom, ClassWithNullObjectPattern<EmptyUnusedImageName> {
+    implements UnusedImage_BigMushroom,
+        ClassWithNullObjectPattern<EmptyUnusedImageName> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -20,7 +21,7 @@ export class EmptyUnusedImage_BigMushroom
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly all = EMPTY_ARRAY
+    public readonly images = EMPTY_COLLECTION_HOLDER
 
     public toString(): EmptyUnusedImageName {
         return 'Empty unused image'

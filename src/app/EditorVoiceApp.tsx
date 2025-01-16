@@ -2,20 +2,13 @@ import 'app/_GameAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './EditorVoiceApp.scss'
 
-import type {Array, NullOr, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}            from '@joookiwi/collection'
-import {filterByArray}                    from '@joookiwi/collection'
+import type {NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}     from '@joookiwi/collection'
 
-import type {EditorVoiceProperties}   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {TimeCollection}          from 'util/collection/TimeCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {EditorVoiceProperties} from 'app/AppProperties.types'
+import type {ReactProperties}       from 'util/react/ReactProperties'
+import type {PossibleRouteName}     from 'route/EveryRoutes.types'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
 import {EditorVoiceTimes}                           from 'app/property/EditorVoiceTimes'
@@ -24,11 +17,16 @@ import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import AppTitle                                     from 'app/util/AppTitle'
+import CardList                                     from 'app/util/CardList'
+import ContentBeingDisplayed                        from 'app/util/ContentBeingDisplayed'
+import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import PageTitle                                    from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
-import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -36,92 +34,31 @@ import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
 import {Themes}                                     from 'core/theme/Themes'
 import ThemeImage                                   from 'core/theme/component/ThemeImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =    EditorVoices.ALL
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
-class EditorVoiceAppInterpreter
-    implements AppInterpreterWithTable<EditorVoices, EditorVoiceAppOption> {
+//region -------------------- Import from deconstruction --------------------
 
-    //region -------------------- Fields --------------------
+const {ENTITY,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
-    readonly #games
-    readonly #times
+//endregion -------------------- Import from deconstruction --------------------
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection, times: TimeCollection,) {
-        this.#games = games
-        this.#times = times
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        const times = this.#times
-        return filterByArray(ALL, ({reference,},) =>
-            games.hasAnyIn(reference,)
-            && (times.hasAllTimes || times.hasAnyIn(reference,)),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 3,
-            medium: 4,
-            large: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: EditorVoices,) {
-        return <div className="editorVoices-container">
-            <EditorVoiceSoundComponent editorVoiceSound={enumerable.editorVoiceSoundFileHolder} name={enumerable.englishName}/>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('editor voice.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<EditorVoiceAppOption> {
-        return [EditorVoiceAppOption.NAME, EditorVoiceAppOption.EDITOR_VOICE,]
-    }
-
-
-    public getAdditionalClass(option: EditorVoiceAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: EditorVoices, option: EditorVoiceAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: EditorVoiceAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
-
-}
-
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyEditorVoice (list)',],
-    [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
-    [ViewDisplays.TABLE, 'everyEditorVoice (table)',],
-] as const satisfies Array<ViewAndRouteName>
+const all = new ArrayAsCollection(ALL,)
+const options = EditorVoiceAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
+    //region -------------------- Game selection --------------------
+
     const game = games.hasAllGames
         ? EditorVoiceGames.ALL_GAMES
         : games.hasSmm2
@@ -129,6 +66,10 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
             : games.hasSmm1
                 ? EditorVoiceGames.SUPER_MARIO_MAKER
                 : EditorVoiceGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    //endregion -------------------- Game selection --------------------
+    //region -------------------- Time selection --------------------
+
     const time = games.hasNotSmm2AndSmm1Or3ds
         ? null
         : times.hasAllTimes
@@ -137,28 +78,40 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
                 ? EditorVoiceTimes.DAY
                 : EditorVoiceTimes.NIGHT
 
-    return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('editor voice.all',)}
-                             description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
-                             asideContent={<EditorVoiceAsideContent game={times.hasOnlyNight ? null : game} time={time}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
-    </SubMainContainer>
+    //endregion -------------------- Time selection --------------------
+
+    return <SubMain partial-id="editorVoice" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('editor voice.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('editor voice.singular',)}/>
+        <PageViewChanger>
+            <GameAsideContent game={game}/>
+            <TimeAsideContent time={time}/>
+            <DisplayButtonGroup list="everyEditorVoice (list)" card="everyEditorVoice (card)" table="everyEditorVoice (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>
+        <section id="editorVoice-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} games={games} times={times}/>
+        </section>
+    </SubMain>
 }
+
+//region -------------------- Sub content --------------------
 
 /** @reactComponent */
 function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'gameStyles'>,) {
-    const appInterpreter = new EditorVoiceAppInterpreter(games, times,)
+    const items = all.filter(({reference,},) =>
+        games.hasAnyIn(reference,)
+        && (times.hasAllTimes || times.hasAnyIn(reference,)),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <EditorVoiceList items={appInterpreter.content}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
-    return <Table id="editorVoice-table" interpreter={appInterpreter}/>
+    if (viewDisplay === LIST)
+        return <EditorVoiceList items={items}/>
+    if (viewDisplay === CARD)
+        return <EditorVoiceCardList items={items}/>
+    return <EditorVoiceTable items={items}/>
 }
 
-//region -------------------- List --------------------
 
-interface EditorVoice_ListProperties
+interface EditorVoice_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<EditorVoices>
@@ -166,16 +119,31 @@ interface EditorVoice_ListProperties
 }
 
 /** @reactComponent */
-function EditorVoiceList({items,}: EditorVoice_ListProperties,) {
-    return <List partialId="editorVoice" items={items} withSeparator>{it =>
+function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
+    return <List partial-id="editorVoice" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
-            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.englishName}/>
+            <EditorVoiceSound editorVoice={it}/>
         </div>
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function EditorVoiceCardList({items,}: EditorVoice_SubContentProperties,) {
+    return <CardList partial-id="editorVoice" items={items} default={1} small={3} medium={4} large={6}>{it =>
+        <>
+            <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="left"/>
+            <EditorVoiceSound editorVoice={it}/>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function EditorVoiceTable({items,}: EditorVoice_SubContentProperties,) {
+    return <Table id="editorVoice-table" items={items} options={options} caption={gameContentTranslation('editor voice.all',)} headersColor="info"/>
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Description content --------------------
 
 interface EditorVoiceDescriptionProperties
@@ -189,17 +157,13 @@ interface EditorVoiceDescriptionProperties
 
 /** @reactComponent */
 function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProperties,) {
-    const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
+    const entity = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName.toLowerCase(),)
 
     const smm1Link = game.smm1RouteName satisfies NullOrString<PossibleRouteName>
     const smm3dsLink = game.smm3dsRouteName satisfies NullOrString<PossibleRouteName>
     const smm2Link = game.smm2RouteName satisfies NullOrString<PossibleRouteName>
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyEditorVoice (list)' satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyEditorVoice (card)' satisfies PossibleRouteName
-    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyEditorVoice (table)' satisfies PossibleRouteName
-
-    return <>
+    return <Description>
         <p>
             {gameContentTranslation('editor voice.description.intro page',)}
             {gameContentTranslation('editor voice.description.intro games', {
@@ -215,25 +179,20 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
             {gameContentTranslation('editor voice.description.intro variants', {
                 //TODO change the underwater link to a different link
                 //TODO change the european link to a different link
-                entityLink: <LinkText key="entityLink" partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
-                underwaterLink: <LinkText key="underwaterLink" partialId="underwaterEntityLink" routeName="everyEntity" color="primary"><ThemeImage reference={Themes.UNDERWATER}
+                entityLink: <LinkText key="entityLink" partial-id="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
+                underwaterLink: <LinkText key="underwaterLink" partial-id="underwaterEntityLink" routeName="everyEntity" color="primary"><ThemeImage reference={Themes.UNDERWATER}
                                                                                                                                                     isSmallPath/></LinkText>,
-                europeanVariantLink: <LinkText key="europeanVariantLink" partialId="europeanEntityLink" routeName="everyEntity" color="primary">{contentTranslation('variant.European',)}</LinkText>,
+                europeanVariantLink: <LinkText key="europeanVariantLink" partial-id="europeanEntityLink" routeName="everyEntity" color="primary">{contentTranslation('variant.European',)}</LinkText>,
             },)}
         </p>
-        <p>{gameContentTranslation('editor voice.description.viewable', {
-            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
-        },)}</p>
-    </>
+        <ContentBeingDisplayed viewDisplay={viewDisplay} routeName="everyEditorVoice"/>
+    </Description>
 }
 
 //endregion -------------------- Description content --------------------
 //region -------------------- Aside content --------------------
 
-interface EditorVoiceAsideContentProperties
+interface EditorVoice_AsideContentProperties
     extends ReactProperties {
 
     readonly game: NullOr<EditorVoiceGames>
@@ -242,39 +201,30 @@ interface EditorVoiceAsideContentProperties
 }
 
 /** @reactComponent */
-function EditorVoiceAsideContent({game, time,}: EditorVoiceAsideContentProperties,) {
-    return <div id="editorVoice-asideContent-container">
-        <GameAsideContent game={game}/>
-        {time == null ? null : <div className="d-inline mx-1"/>}
-        <TimeAsideContent time={time}/>
-    </div>
-}
-
-/** @reactComponent */
-function GameAsideContent({game,}: Pick<EditorVoiceAsideContentProperties, 'game'>,) {
+function GameAsideContent({game,}: Pick<EditorVoice_AsideContentProperties, 'game'>,) {
     if (game == null)
         return null
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
+            <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}><GameImage reference={SMM1}/></LinkButton>
+            <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}><GameImage reference={SMM3DS}/></LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}><GameImage reference={SMM2}/></LinkButton>
         </div>
     </div>
 }
 
 /** @reactComponent */
-function TimeAsideContent({time,}: Pick<EditorVoiceAsideContentProperties, 'time'>,) {
+function TimeAsideContent({time,}: Pick<EditorVoice_AsideContentProperties, 'time'>,) {
     if (time == null)
         return null
     return <div id="editorVoice-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
         <div className="btn-group btn-group-sm">
-            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+            <LinkButton partial-id="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
                 <TimeImage reference={Times.DAY}/>
             </LinkButton>
-            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+            <LinkButton partial-id="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
                 <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>

@@ -10,7 +10,7 @@ export default function TopLanguageChangerButton() {
     const htmlElement = useRef<HTMLButtonElement>(null,)
 
     return <Tooltip option={({title: contentTranslation('Change the language',), placement: 'left',})} reference={htmlElement}>
-        <ModalButton ref={htmlElement} id="topLanguageChanger-button" className="btn btn-outline-primary btn-navigation icon-link gap-0" elementToShow={LANGUAGE_CHANGER_MODAL_ID}>
+        <ModalButton ref={htmlElement} id="topLanguageChanger-button" className="btn btn-outline-primary btn-navigation gap-0" elementToShow={LANGUAGE_CHANGER_MODAL_ID}>
             <TranslateIcon/>
             <span className="btn-navigation-text d-none d-xl-inline-block">{contentTranslation('Change the language',)}</span>
         </ModalButton>

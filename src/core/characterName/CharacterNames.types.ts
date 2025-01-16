@@ -1,5 +1,7 @@
 import type {EmptyString} from '@joookiwi/type'
 
+import type {PossibleEnglishName_PlayableCharacter} from 'core/entity/Entities.types'
+
 enum Enum {
 
     MARIO,
@@ -89,17 +91,6 @@ export type Names = keyof typeof Enum
 //region -------------------- English name --------------------
 
 export type PossibleUniqueEnglishName = Exclude<PossibleEnglishName, | 'Undodog' | 'Soundfrog'> | `${| 'Undodog' | 'Soundfrog'} (SMM${| EmptyString | 2})`
-export type PossibleEnglishName_PlayableCharacter = | `${| EmptyString | `${| 'Small' | 'Super'
-                                                                       | 'Fire' | 'Superball'
-                                                                       | 'Giant' | 'SMB2'
-                                                                       | 'Raccoon' | 'Frog'
-                                                                       | 'Cape' | 'Balloon'
-                                                                       | 'Propeller' | 'Flying Squirrel'
-                                                                       | 'Cat' | 'Builder' | 'Boomerang'
-                                                                       | 'Buzzy' | 'Spiny'} `}${| 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`
-                                                    | `${| 'Weird' | 'Costume'} Mario`
-
-                                                    | 'Link'
 export type PossibleEnglishName =
     | PossibleEnglishName_PlayableCharacter | 'Zelda'
 

@@ -89,7 +89,7 @@ export class PredefinedMessages
      * @semiAsynchronously
      */
     public get reference(): PredefinedMessage {
-        return this.#reference ??= PredefinedMessages.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= PredefinedMessages.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

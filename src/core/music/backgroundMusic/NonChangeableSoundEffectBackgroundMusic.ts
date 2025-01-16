@@ -6,7 +6,7 @@ import type {MusicSoundFile}                                      from 'core/mus
  * A "sound effect" "background music" that is not changeable depending on the {@link Themes theme}.
  *
  * It only has a regular & a fast variation.
- * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
+ * @deprecated The use {@link Tracks} is used and better
  */
 export interface NonChangeableSoundEffectBackgroundMusic<out MUSIC extends MusicSoundFile<PossibleOther_RegularMusic> = MusicSoundFile<PossibleOther_RegularMusic>,
     out FAST_MUSIC extends MusicSoundFile<PossibleOther_FastMusic> = MusicSoundFile<PossibleOther_FastMusic>, >

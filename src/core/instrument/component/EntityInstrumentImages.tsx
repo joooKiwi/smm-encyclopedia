@@ -1,7 +1,5 @@
 import './EntityInstrumentImages.scss'
 
-import {getFirstOrNullByArray, mapByArray} from '@joookiwi/collection'
-
 import type {ReactProperties} from 'util/react/ReactProperties'
 import type {Instruments}     from 'core/instrument/Instruments'
 
@@ -24,12 +22,13 @@ interface EntityInstrumentImagesProperties
 
 export default function EntityInstrumentImages({value,}: EntityInstrumentImagesProperties,) {
     return <div className="instrument-entity-images-container text-center mb-1">{
-        mapByArray(value.reference.entities,
-            it => EntityCompanion.getValueByName(it.americanEnglish,).image,)
-            .map(it => getFirstOrNullByArray(it.get(SMW,),)
-                ?? getFirstOrNullByArray(it.get(NSMBU,),)
-                ?? getFirstOrNullByArray(it.get(SMB3,),)
-                ?? getFirstOrNullByArray(it.get(SMB,),),)
+        value.reference.entities
+            .map(it => EntityCompanion.getValueByName(it.americanEnglish,).image,)
+            .map(it =>
+                it.get(SMW,).getFirstOrNull()
+                ?? it.get(NSMBU,).getFirstOrNull()
+                ?? it.get(SMB3,).getFirstOrNull()
+                ?? it.get(SMB,).getFirstOrNull(),)
             .filterNotNull()
             .map(it =>
                 <Image key={`Instrument entity image (${it.path}/${it.name})`} file={it}/>,)

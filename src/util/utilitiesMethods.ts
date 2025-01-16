@@ -1,6 +1,7 @@
 import type {CollectionHolder}                                   from '@joookiwi/collection'
 import type {CompanionEnumDeclaration}                           from '@joookiwi/enumerable'
 import type {Array, EmptyString, MutableArray, Nullable, NullOr} from '@joookiwi/type'
+import type {Touch, TouchList}                                   from 'react'
 import {isArray, isCollectionHolder}                             from '@joookiwi/collection'
 import {AssertionError}                                          from 'assert'
 
@@ -10,7 +11,7 @@ import type {CompanionEnumRetrievableInUrl}                                     
 import {isInProduction} from 'variables'
 import {Empty}          from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_ARRAY =  Empty.EMPTY_ARRAY
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 //region -------------------- is --------------------
@@ -113,12 +114,12 @@ export function forEach<const K, const V,>(values: ReadonlyMap<K, V>, action: (k
         action(it[0], it[1],)
 }
 
-export function forEachKey<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K,) => void,) {
+export function forEachKey<const K, const V,>(values: ReadonlyMap<K, V>, action: (key: K,) => void,): void {
     for (const it of values)
         action(it[0],)
 }
 
-export function forEachValue<const K, const V,>(values: ReadonlyMap<K, V>, action: (value: V,) => void,) {
+export function forEachValue<const K, const V,>(values: ReadonlyMap<K, V>, action: (value: V,) => void,): void {
     for (const it of values)
         action(it[1],)
 }
@@ -152,7 +153,7 @@ export function mapKey<const K1, const K2, const V, >(values: ReadonlyMap<K1, V>
 //endregion -------------------- map --------------------
 //region -------------------- join --------------------
 
-export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,) {
+export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second: | CollectionHolder<T> | Array<T>,): MutableArray<T> {
     const firstSize = first.length
     const secondSize = second.length
     const finalSize = firstSize + secondSize
@@ -160,8 +161,9 @@ export function join<const T, >(first: | CollectionHolder<T> | Array<T>, second:
 
     let index = finalSize
     while (index-- > firstSize)
-        newArray[index] = second.at(index,) as T
+        newArray[index] = second.at(index - firstSize,) as T
 
+    index++
     while (index-- > 0)
         newArray[index] = first.at(index,) as T
 
@@ -297,6 +299,24 @@ export function intersect<const T, >(first: | CollectionHolder<T> | Array<T>, se
 // }
 //
 // //endregion -------------------- filter --------------------
+//endregion -------------------- find --------------------
+
+export function getOrNullByTouchList(list: Nullable<TouchList>, identifier: number,): NullOr<Touch> {
+    if (list == null)
+        return null
+    if (Number.isNaN(identifier,))
+        return null
+
+    const size = list.length
+    for (let i = 0; i < size; i++) {
+        const value = list.item(i,)
+        if (value.identifier === identifier)
+            return value
+    }
+    return null
+}
+
+//endregion -------------------- find --------------------
 //region -------------------- assert --------------------
 
 export function assert(condition: boolean, message: string,): asserts condition {

@@ -8,9 +8,7 @@
 
     "description": {
       "intro page":       "Sur cette page, tous les noms sont référencés ou utilisé dans les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
-      "intro references": "Ces derniers sont utilisés dans le {{StoryMode}} ({{smm2Link}} exclusif), par un {{mysteryMushroom}} ({{smm1Link}} exclusif) ou dans l'éditeur (en général).",
-
-      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+      "intro references": "Ces derniers sont utilisés dans le {{StoryMode}} ({{smm2Link}} exclusif), par un {{mysteryMushroom}} ({{smm1Link}} exclusif) ou dans l'éditeur (en général)."
     }
   },
   "course tag": {
@@ -26,8 +24,6 @@
 
 
 
-
-      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
   "editor voice": {
@@ -42,9 +38,7 @@
       "intro games":       "Elles sont aussi sur tous les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
       "intro smm1" :       "Il y en a certaines qui sont dans {{smm1Link}}, mais qui ne sont plus utilisé dans {{smm2Link}}. ",
       "intro characters" : "Il y en a d'autres qui ne sont qu'applicable au personnages. ",
-      "intro variants":    "Il y a au travers de ces derniers des variant d'une même {{entityLink}} dans l'{{underwaterLink}} ou en tant qu'un {{europeanVariantLink}}.",
-
-      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+      "intro variants":    "Il y a au travers de ces derniers des variant d'une même {{entityLink}} dans l'{{underwaterLink}} ou en tant qu'un {{europeanVariantLink}}."
     }
   },
   "entity": {
@@ -99,9 +93,7 @@
     "description": {
       "intro page":   "Sur cette page, tous les {{gameStyles}} sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
       "intro sm3dw":  "Mais, il y a seulement {{smm3dwLink}} qui est spécifique à {{smm2Link}}. ",
-      "intro entity": "Aussi, il a des {{entitiesLink}} spécifiques à des styles de jeux ({{smbLink}}, {{smb3Link}}, {{smwLink}}, {{nsmbuLink}}, {{sm3dwLink}}).",
-
-      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+      "intro entity": "Aussi, il a des {{entitiesLink}} spécifiques à des styles de jeux ({{smbLink}}, {{smb3Link}}, {{smwLink}}, {{nsmbuLink}}, {{sm3dwLink}})."
     }
   },
   "instrument": {
@@ -115,9 +107,7 @@
 
     "description": {
       "intro page":     "Sur cette page, tous les instruments sont présent dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
-      "intro variants": "Et quelques instruments dans {{smm2Link}} sont les mêmes que dans {{smm1Link}} / {{smm3dsLink}}.",
-
-      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+      "intro variants": "Et quelques instruments dans {{smm2Link}} sont les mêmes que dans {{smm1Link}} / {{smm3dsLink}}."
     }
   },
   "limit": {
@@ -211,9 +201,7 @@
       "intro page (play)":    "Sur cette page, toutes les limites en jouant sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
       "intro game changes":   "De {{smm1Link}} et {{smm3dsLink}} à {{smm2Link}}, des limites ont été ajoutées. ",
       "intro other entities": "Et d'autres entités ont différentes limites qui leur sont associés. ",
-      "intro references":     "Ces dernières sont utilités pour représenter les limites qui sont {{playLink}} ou {{editorLink}}.",
-
-      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+      "intro references":     "Ces dernières sont utilités pour représenter les limites qui sont {{playLink}} ou {{editorLink}}."
     }
   },
   "medal": {
@@ -371,6 +359,12 @@
 
   "Category": "Catégorie",
   "Group":    "Groupe",
+  "sound": {
+    "singular in Smm2":     "Son ({{Name}})",
+    "singular in Smm1&3ds": "Son ({{Name1}} & {{Name3ds}})",
+    "plural in Smm2":       "Sons ({{Name}})",
+    "plural in Smm1&3ds":   "Sons ({{Name1}} & {{Name3ds}})"
+  },
 
   "power-up": {"singular": "Amélioration", "plural": "Améliorations" },
   "ride":     {"singular": "Monture",      "plural": "Montures" },

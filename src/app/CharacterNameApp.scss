@@ -1,17 +1,7 @@
-#characterName-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-  .description-container .game-image {
-    height: var(--bs-font-size-lg)
-  }
-
-}
+#characterName-app-container {}
 
 #characterName-list {
-  .listItem {
+  .list-group-item {
     min-height: 2.5rem;
     .single-editorVoiceSound-container { margin-left: var(--bs-spacer-sm) }
   }

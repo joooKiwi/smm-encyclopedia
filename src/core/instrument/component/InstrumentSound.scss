@@ -1,3 +1,9 @@
-.grouped-instrumentSound-container .audio-state-container:not(:last-child) {
-  margin-bottom: var(--bs-spacer-sm);
+.grouped-instrumentSound-container {
+  --spacer: calc(var(--bs-spacer-sm) / 2);
+  margin-right: calc(-1 * var(--spacer));
+  margin-bottom: calc(-1 * var(--spacer));
+  > * {
+    margin-right: var(--spacer);
+    margin-bottom: var(--spacer);
+  }
 }

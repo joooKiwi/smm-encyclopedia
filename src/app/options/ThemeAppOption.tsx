@@ -1,11 +1,11 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/ThemeAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
+import {TableOption}            from 'app/tools/table/TableOption'
 import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
@@ -21,36 +21,35 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
  * @fixme if the yes/no is still in used after the change, use Texts.renderYesNoComponent() instead.
  */
 export abstract class ThemeAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<Themes> {
+    extends TableOption<Themes, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ICON =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
-        protected override _createContentOption(enumeration: Themes,) {
+        public override renderContent(enumeration: Themes,) {
             return <ThemeImage reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return CommonOptions.get.iconHeader
         }
 
-    }()
+    }('icon',)
     public static readonly ENDLESS_MARIO_ICON =    new class ThemeAppOption_EndlessMarioImage extends ThemeAppOption {
 
-        protected override _createContentOption({endlessMarioImageFile,}: Themes,) {
+        public override renderContent({endlessMarioImageFile,}: Themes,) {
             return <Image file={endlessMarioImageFile}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario',),}//TODO add Endless Mario
         }
 
-    }()
+    }('endlessMarioIcon',)
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
-        protected override _createContentOption(enumeration: Themes,) {
+        public override renderContent(enumeration: Themes,) {
             return <div className="nameWithContent-container">
                 <div className="col-10">
                     {CommonOptions.get.getGameContent(enumeration,)}
@@ -60,18 +59,18 @@ export abstract class ThemeAppOption
             </div>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
-    }()
+    }('name',)
     public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
-        protected override _createContentOption({reference: {courseTheme,},}: Themes,) {
+        public override renderContent({reference: {courseTheme,},}: Themes,) {
             return <NightEffectComponent theme={courseTheme}/>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        public override renderHeader(): SingleHeaderContent {
             return {
                 key: 'effect', element: <div className="nightDesert-header-image-container position-relative mx-auto">
                     <ThemeImage reference={Themes.DESERT}/>
@@ -81,7 +80,7 @@ export abstract class ThemeAppOption
             }
         }
 
-    }()
+    }('nightEffect',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -110,34 +109,14 @@ export abstract class ThemeAppOption
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
-        super()
+    private constructor(associatedClass: string,) {
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: Themes,): ReactElement
-
-    public renderContent(enumeration: Themes,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

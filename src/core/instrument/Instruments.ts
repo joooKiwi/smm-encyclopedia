@@ -1,6 +1,6 @@
-import type {Array} from '@joookiwi/type'
-import {mapByArray} from '@joookiwi/collection'
-import {Enum}       from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Array}            from '@joookiwi/type'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from 'core/instrument/Instruments.types'
@@ -11,6 +11,7 @@ import type {CompanionEnumByNameSingleton}                                      
 import {instrumentSound}                from 'core/instrument/file/fileCreator'
 import {Import}                         from 'util/DynamicImporter'
 import {StringContainer}                from 'util/StringContainer'
+import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class Instruments
@@ -136,7 +137,7 @@ export class Instruments
     #reference?: Instrument
     readonly #englishName
     readonly #fileNames
-    #sounds?: Array<InstrumentSoundFile>
+    #sounds?: CollectionHolder<InstrumentSoundFile>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -164,7 +165,7 @@ export class Instruments
      * @semiAsynchronously
      */
     public get reference(): Instrument {
-        return this.#reference ??= Instruments.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Instruments.REFERENCE_MAP.get(this.englishName,)!
     }
 
 
@@ -180,8 +181,8 @@ export class Instruments
         return this.#fileNames
     }
 
-    public get sounds(): Array<InstrumentSoundFile> {
-        return this.#sounds ??= mapByArray(this.fileNames, it => instrumentSound(it,),).toArray()
+    public get sounds(): CollectionHolder<InstrumentSoundFile> {
+        return this.#sounds ??= new ArrayAsCollection(this.fileNames,).map(it => instrumentSound(it,),)
     }
 
     //endregion -------------------- Getter methods --------------------

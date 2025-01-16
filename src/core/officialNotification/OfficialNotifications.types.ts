@@ -73,18 +73,18 @@ export type PossibleAmount =
     | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert
     | PossibleAmount_XStampInNinjiSpeedrun | PossibleAmount_ClearXSuperWorld
 
-export type PossibleAmount_ReceiveXPlay = | 100 | 500 | 1000 | 2000 | 5000
-export type PossibleAmount_X1stClear = | 1 | 10 | 100
-export type PossibleAmount_ClearXCourse = | 1 | 10 | 100 | 500 | 1000 | 3000 | 5000 | 10000
-export type PossibleAmount_PlayXCourse = | 10 | 100 | 500 | 1000 | 3000
-export type PossibleAmount_HoldXWorldRecord = | 10 | 100 | 500
-export type PossibleAmount_WinXMatchInVS = | 1 | 2 | 5 | 10
-export type PossibleAmount_ClearCourseInCoop = | 1 | 10 | 100
-export type PossibleAmount_EarnMakerPoint = | 2000 | 5000 | 7000
-export type PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal = | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | 300 | 500 | 1000
-export type PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert = | 10 | 100
-export type PossibleAmount_XStampInNinjiSpeedrun = | 1 | 4 | 7 | 10 | 11 | 14 | 17 | 20
-export type PossibleAmount_ClearXSuperWorld = | 1 | 2 | 3 | 4 | 5 | 10
+type PossibleAmount_ReceiveXPlay = | 100 | 500 | 1000 | 2000 | 5000
+type PossibleAmount_X1stClear = | 1 | 10 | 100
+type PossibleAmount_ClearXCourse = | 1 | 10 | 100 | 500 | 1000 | 3000 | 5000 | 10000
+type PossibleAmount_PlayXCourse = | 10 | 100 | 500 | 1000 | 3000
+type PossibleAmount_HoldXWorldRecord = | 10 | 100 | 500
+type PossibleAmount_WinXMatchInVS = | 1 | 2 | 5 | 10
+type PossibleAmount_ClearCourseInCoop = | 1 | 10 | 100
+type PossibleAmount_EarnMakerPoint = | 2000 | 5000 | 7000
+type PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal = | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | 300 | 500 | 1000
+type PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert = | 10 | 100
+type PossibleAmount_XStampInNinjiSpeedrun = | 1 | 4 | 7 | 10 | 11 | 14 | 17 | 20
+type PossibleAmount_ClearXSuperWorld = | 1 | 2 | 3 | 4 | 5 | 10
 
 //endregion -------------------- Amount --------------------
 //region -------------------- English name --------------------

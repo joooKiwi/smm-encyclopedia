@@ -26,6 +26,7 @@ enum Enum {
     SUPER_WORLD,
 
     KOOPA_TROOPA, BEACH_KOOPA, KOOPA_SHELL,
+    CHEEP_CHEEP,
 
     MYSTERY_MUSHROOM,
     MII_COSTUME, MII,
@@ -90,6 +91,7 @@ export type PossibleEnglishName_Singular =
     | 'Koopa Troopa'
     | 'Beach Koopa'
     | 'Koopa Shell'
+    | 'Cheep Cheep'
     | 'Mystery Mushroom'
     | 'Mii costume'
     | 'Mii'

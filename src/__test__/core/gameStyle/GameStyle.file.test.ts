@@ -21,7 +21,8 @@ describe('Game style (file test)', () => {
             if (isSM3DW) {
                 test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS,).toBeFalse(),)
 
-                test('Is available from the start (in SMM)', () => expect(it.isAvailableFromTheStart_SMM1,).toBeNull(),)
+                test('Is available from the start (in Smm1)', () => expect(it.isAvailableFromTheStart_Smm1,).toBeNull(),)
+                test('Is available from the start (in Smm3ds)', () => expect(it.isAvailableFromTheStart_Smm3ds,).toBeNull(),)
 
                 test('Night desert wind direction', () => expect(it.nightDesertWindDirection,).toBeNull(),)
                 test('Night desert wind frequency', () => expect(it.nightDesertWindFrequency,).toBeNull(),)
@@ -29,7 +30,8 @@ describe('Game style (file test)', () => {
                 /* eslint-disable jest/no-identical-title */
                 test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS,).toBeTrue(),)
 
-                test('Is available from the start (in SMM)', () => expect(it.isAvailableFromTheStart_SMM1,).toBeBoolean(),)
+                test('Is available from the start (in Smm1)', () => expect(it.isAvailableFromTheStart_Smm1,).toBeBoolean(),)
+                test('Is available from the start (in Smm3ds)', () => expect(it.isAvailableFromTheStart_Smm3ds,).toBeTrue(),)
 
                 test('Night desert wind direction', () => expect(it.nightDesertWindDirection,).toBeOneOf(possibleNightWindDirection,),)
                 test('Night desert wind frequency', () => expect(it.nightDesertWindFrequency,).toBeOneOf(possibleNightWindFrequency,),)

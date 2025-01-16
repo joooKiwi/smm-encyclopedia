@@ -1,5 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
-import type {Array, Nullable}  from '@joookiwi/type'
+import type {Nullable}         from '@joookiwi/type'
 
 import type {Games}                                                  from 'core/game/Games'
 import type {GroupUrlName, GroupUrlValue}                            from 'core/game/Games.types'
@@ -44,7 +44,7 @@ export interface CompanionEnumDeclaration_Games
      * @param url The url to find the {@link Games} present
      * @arrayReutilization
      */
-    findInUrl(url: string,): Array<Games>
+    findInUrl(url: string,): CollectionHolder<Games>
 
     /**
      * Find all the {@link Games games} present in the {@link name} received
@@ -53,7 +53,7 @@ export interface CompanionEnumDeclaration_Games
      * @throws ReferenceError No games could be found in the name <i>(this should normally never happen)</i>
      * @arrayReutilization
      */
-    findInName(name: string,): Array<Games>
+    findInName(name: string,): CollectionHolder<Games>
 
 
     /**
@@ -61,13 +61,13 @@ export interface CompanionEnumDeclaration_Games
      *
      * @param games The given {@link Games}
      */
-    getGroupUrlValue(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlValue
+    getGroupUrlValue(games: CollectionHolder<Games>,): GroupUrlValue
 
     /**
      * Generate a {@link GroupUrlName} for the {@link Games} from the {@link games} received
      *
      * @param games The given {@link Games}
      */
-    getGroupUrlName(games: | Array<Games> | CollectionHolder<Games>,): GroupUrlName
+    getGroupUrlName(games: CollectionHolder<Games>,): GroupUrlName
 
 }

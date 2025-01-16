@@ -1,31 +1,25 @@
 import './AnimatedImages.scss'
 import './VariableImage.scss'
 
-import {getFirstByArray} from '@joookiwi/collection'
-
 import type {AnimatedImagesProperties}    from 'app/tools/images/properties/AnimatedImagesProperties'
 import type {ImageFromFileProperties}     from 'app/tools/images/properties/ImageFromFileProperties'
 import type {ImageFromVariableProperties} from 'app/tools/images/properties/ImageFromVariableProperties'
 import type {ImageProperties}             from 'app/tools/images/properties/ImageProperties'
 
-import {Empty}  from 'util/emptyVariables'
-import {assert} from 'util/utilitiesMethods'
+import {Empty}             from 'util/emptyVariables'
+import {assert}            from 'util/utilitiesMethods'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
-/**
- *
- * @param properties
- * @reactComponent
- */
+/** @reactComponent */
 export default function Image(properties: | ImageFromVariableProperties | ImageProperties | ImageFromFileProperties | AnimatedImagesProperties,) {
-    return 'variable' in properties
-        ? <ImageFromVariable {...properties}/>
-        : 'file' in properties
-            ? <ImageFromFile {...properties}/>
-            : 'source' in properties
-                ? <SingleImage {...properties}/>
-                : <AnimatedImages {...properties}/>
+    if ('variable' in properties)
+        return <ImageFromVariable {...properties}/>
+    if ('file' in properties)
+        return <ImageFromFile {...properties}/>
+    if ('source' in properties)
+        return <SingleImage {...properties}/>
+    return <AnimatedImages {...properties}/>
 }
 
 
@@ -48,17 +42,14 @@ function SingleImage({source, fallbackName, ...imageProperties}: ImageProperties
 }
 
 
-const MINIMUM_AMOUNT_OF_IMAGES = 2
-const MAXIMUM_AMOUNT_OF_IMAGES = 10
-
-function AnimatedImages({partialId, className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
-    assert(images.length >= MINIMUM_AMOUNT_OF_IMAGES && images.length <= MAXIMUM_AMOUNT_OF_IMAGES, `The array received for "${partialId}" is required to have between than ${MINIMUM_AMOUNT_OF_IMAGES} & ${MAXIMUM_AMOUNT_OF_IMAGES} items. The length received is ${images.length}.`,)
+function AnimatedImages({id, className = EMPTY_STRING, images, displayAnimations = true, displayEveryImages = true, ...otherParameters}: AnimatedImagesProperties,) {
+    assert(images.size >= 2 && images.size <= 10, `The array received for “${id}” is required to have between than 2 & 10 items. The length received is ${images.size}.`,)
 
     if (!displayEveryImages)
-        return <div key={`${partialId} - 1st image`} id={partialId} className={`${className} non-animated-image`} {...otherParameters}><Image {...getFirstByArray(images,)}/></div>
+        return <div id={id} className={`${className} non-animated-image`} {...otherParameters}><Image {...images.getFirst()}/></div>
 
     if (!displayAnimations)
-        return <div key={`${partialId} - not animated`} id={partialId} className={`${className} non-animated-image non-animated-image-${images.length}`} {...otherParameters}>
+        return <div id={id} className={`${className} non-animated-image non-animated-image-${images.size}`} {...otherParameters}>
             {images.map((properties, index,) =>
                 'file' in properties
                     ? <ImageFromFile className={`image image-${index + 1}`} file={properties.file}/>
@@ -68,5 +59,5 @@ function AnimatedImages({partialId, className = EMPTY_STRING, images, displayAni
     const {style = {}, ...otherParametersExcludingStyle} = otherParameters
     images.forEach((properties, index) =>
         style[`--image-${index + 1}`] = `url('${'file' in properties ? properties.file?.fullName : properties.source}')`)
-    return <div key={`${partialId} - animated`} id={partialId} className={`${className} animated-image animated-image-${images.length}`} style={style} {...otherParametersExcludingStyle}/>
+    return <div id={id} className={`${className} animated-image animated-image-${images.length}`} style={style} {...otherParametersExcludingStyle}/>
 }

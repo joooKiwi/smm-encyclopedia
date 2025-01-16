@@ -1,51 +1,20 @@
 #limit-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-  .description-container .game-image { height: var(--bs-font-size-lg) }
-
   .course-theme-image {
     background-image: none;
     padding: 0;
   }
 
-  .cardListElement-container {
-    position: relative;
-
-    .course-theme-image {
-      height: 2cm;
-      width: 2cm;
-      opacity: 20%;
-    }
-  }
-
   .entity-image:where(.yoshi-image, .redYoshi-image){ --image-width: 2rem }
 }
 
-#limit-list .listItem {
+#limit-list .list-group-item {
   margin-right: var(--bs-spacer-md);
   > * > :last-child { margin-left: var(--bs-spacer-md) }
 }
 
-.card-body {
-  [id^="limit-alternativeName"] { text-decoration: {
-    // It is to be similar the the .cardListElement styling
-    line: underline;
-    style: dotted;
-    color: var(--bs-secondary);
-    thickness: 1px;
-  } }
-  span {
-    &::before {
-      color: var(--bs-body-color);
-    }
-
-    &:first-child::before {
-      content: none;
-    }
-  }
+#limit-cardList {
+  &:has(.asEditorLimit) > * { position: relative }
+  .course-theme-image { height: 4rem }
 }
 
 #limit-table {
@@ -56,4 +25,17 @@
   .tcell {
     &.description { max-width: 15cm }
   }
+
+  .names-container .horizontal-separator {
+    width: 2.5cm;
+  }
+
+  .nameWithImage-container .course-theme-image {
+    display: initial;
+    margin-top: var(--bs-negative-spacer-md);
+    margin-left: var(--bs-negative-spacer-md);
+    height: 0.5cm;
+    width: 0.5cm;
+  }
+
 }

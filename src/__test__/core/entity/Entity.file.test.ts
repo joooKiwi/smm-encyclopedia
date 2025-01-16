@@ -2,15 +2,15 @@ import file from 'resources/compiled/Entity.json'
 
 import type {Array, NullOr} from '@joookiwi/type'
 
-import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                                                                                                                        from '__test__/helperMethods.types'
-import type {CanRespawnType}                                                                                                                                                                                                                                                                                                                                                                   from 'core/behaviour/loader.types'
-import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasAReferenceInMarioMaker, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleWeight} from 'core/entityTypes'
-import type {LCL_Play, OnlySomeVariants}                                                                                                                                                                                                                                                                                                                                                       from 'core/entity/properties/loader.types'
-import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                    from 'core/entity/properties/instrument/loader.types'
-import type {LimitAmountType, OffscreenSpawningAndDespawningReferencePoint, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                                                                                 from 'core/entity/properties/limit/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                              from 'core/entityCategory/EntityCategories.types'
-import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                 from 'core/limit/Limits.types'
-import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                                                                                                                                             from 'core/version/Versions.types'
+import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                                                                                               from '__test__/helperMethods.types'
+import type {CanRespawnType}                                                                                                                                                                                                                                                                                                                                          from 'core/behaviour/loader.types'
+import type {CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasAReferenceInMarioMaker, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleWeight} from 'core/entityTypes'
+import type {LCL_Play, OnlySomeVariants}                                                                                                                                                                                                                                                                                                                              from 'core/entity/properties/loader.types'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                           from 'core/entity/properties/instrument/loader.types'
+import type {LimitAmountType, OffscreenSpawningAndDespawningReferencePoint, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                                                        from 'core/entity/properties/limit/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                     from 'core/entityCategory/EntityCategories.types'
+import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                        from 'core/limit/Limits.types'
+import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                                                                                                                    from 'core/version/Versions.types'
 
 import {EveryTypes}                                  from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages}  from '__test__/helperMethods'
@@ -25,11 +25,11 @@ describe('Entity (file test)', () => {
     const possibleFirstAppearance = [1, 2,]                                                                                                                              as const satisfies Array<PossibleFirstAppearanceInMarioMaker>
     const everyVersion = [null, ...types.everyPossibleName_version,]                                                                                                     as const satisfies Array<NullOr<PossibleName_Version>>
     const everyPossibleCategory = [null, ...types.everyPossibleName_entityCategory,]                                                                                     as const satisfies Array<NullOr<PossibleEnglishName_Category>>
-    // const everyEditorLimits = types.everyPossibleName_editorLimit,
+    // const everyEditorLimits = types.everyPossibleName_editorLimit
     const everyEditorLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_editorLimit,]                                                    as const satisfies Array<NullOr<| NotApplicable | PossibleEnglishName_Limit>>
-    // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,],
-    const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]
-    const everyPlayLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_playLimit,]                                                        as const satisfies Array<NullOr<| NotApplicable | PossibleEnglishName_Limit>>
+    // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,]                                   as const
+    const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]                                                           as const
+    const everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,]                                                                                        as const satisfies Array<NullOr<PossibleEnglishName_Limit>>
     const possibleBasicPropertyComment = [null, 'While playing → LCL',]                                                                                                  as const satisfies Array<NullOr<LCL_Play>>
     const possibleAffectedByOnOffStateComment = [null, 'Only some variants',]                                                                                            as const satisfies Array<NullOr<OnlySomeVariants>>
     const everyWeight = [null, UNKNOWN_CHARACTER, ...types.everyPossibleWeight_entity,]                                                                                  as const satisfies Array<PossibleWeight>
@@ -37,7 +37,6 @@ describe('Entity (file test)', () => {
     const everySurviveConditionsInDeadlyLiquid = [true, false, UNKNOWN_CHARACTER, ...types.everyPossibleSurviveConditionInDeadlyLiquid_entity,]                          as const satisfies Array<CanSurviveInTheLavaOrThePoison>
     const possibleCanIgniteByBobOmb = [true, false, 'NSMBU', 'Castle',]                                                                                                  as const satisfies Array<CanIgniteABobOmb>
     const possibleCanBeBrokenOrKilledByBobOmb = [true, false, 'Koopa Troopa', 'Unchained Chomp', 'Standing on top of block that get destroyed',]                         as const satisfies Array<CanBeBrokenOrKilledByABobOmb>
-    const possibleAffectedByTwister = [null, NOT_APPLICABLE, true, false, 'When falling', 'Parachute',]                                                                  as const satisfies Array<CanBeAffectedByATwister>
     const possibleCanGoThroughWallsInSM3DW = [null, true, false, 'on down curve',]                                                                                       as const satisfies Array<CanGoThroughWallsInSM3DW>
     const everyInstruments = [null, ...types.everyPossibleName_instrument, ...types.everyPossibleMixedName_instrument,]                                                  as const
     const possibleCanMakeASoundOutOfMusicBlockComment = [null, 'Excluding the top 3 notes',]                                                                             as const satisfies Array<NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>>
@@ -103,12 +102,12 @@ describe('Entity (file test)', () => {
                 describe('Can be in a parachute', () => {
                     test('value', () => expect(it.canBeInAParachute,).toBeBoolean(),)
                     test('comment', () => expect(it.canBeInAParachute_comment,).toBeOneOf(possibleBasicPropertyComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.canBeInAParachute_comment,).toBeCoherentWith(it.canBeInAParachute,),)
                 },)
                 describe('Can have wings', () => {
                     test('value', () => expect(it.canHaveWings,).toBeBoolean(),)
                     test('comment', () => expect(it.canHaveWings_comment,).toBeOneOf(possibleBasicPropertyComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.canHaveWings_comment,).toBeCoherentWith(it.canHaveWings,),)
                 },)
             },)
             describe('Specific properties', () => {
@@ -116,7 +115,7 @@ describe('Entity (file test)', () => {
                 describe('Is directly affected by an ON/OFF state', () => {
                     test('value', () => expect(it.isAffectedDirectlyByAnOnOrOffState,).toBeBoolean(),)
                     test('comment', () => expect(it.isAffectedDirectlyByAnOnOrOffState_comment,).toBeOneOf(possibleAffectedByOnOffStateComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.isAffectedDirectlyByAnOnOrOffState_comment,).toBeCoherentWith(it.isAffectedDirectlyByAnOnOrOffState,),)
                 },)
                 describe('Can be put on a Track', () => {
                     test('value', () => expect(it.canBePutOnATrack,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
@@ -143,9 +142,13 @@ describe('Entity (file test)', () => {
                     test('Can ignite', () => expect(it.canIgniteABobOmb,).toBeOneOf(possibleCanIgniteByBobOmb,),)
                     test('Can be broken / killed', () => expect(it.canBeBrokenOrKilledByABobOmb,).toBeOneOf(possibleCanBeBrokenOrKilledByBobOmb,),)
                 },)
-                test('Can be affected by a Twister', () => expect(it.canBeAffectedByATwister,).toBeOneOf(possibleAffectedByTwister,),)
+                describe('Can be affected by a Twister', () => {
+                    test('value',           () => expect(it.canBeAffectedByATwister,).toBeBoolean(),)
+                    test('in a parachute',  () => expect(it.canBeAffectedByATwister_parachute,).toBeBoolean(),)
+                    test('falling state',   () => expect(it.canBeAffectedByATwister_falling,).toBeBoolean(),)
+                },)
                 describe('Can go through a wall', () => {
-                    test('value', () => expect(it.canGoThroughWalls,).toBeBooleanOrNull(),)
+                    test('value', () => expect(it.canGoThroughWalls,).toBeBoolean(),)
                     test('in SM3DW', () => expect(it.canGoThroughWalls_SM3DW,).toBeOneOf(possibleCanGoThroughWallsInSM3DW,),)
                     //TODO add coherence test
                 },)
@@ -159,7 +162,7 @@ describe('Entity (file test)', () => {
                 describe('Can make a sound out of a Music Block', () => {
                     test('value', () => expect(it.canMakeASoundOutOfAMusicBlock,).toBeBoolean(),)
                     test('comment', () => expect(it.canMakeASoundOutOfAMusicBlock_comment,).toBeOneOf(possibleCanMakeASoundOutOfMusicBlockComment,),)
-                    //TODO add coherence test
+                    test('coherence', () => expect(it.canMakeASoundOutOfAMusicBlock_comment,).toBeCoherentWith(it.canMakeASoundOutOfAMusicBlock,),)
                 },)
             },)
             describe('Bowser / Bowser Jr. / Magikoopa properties', () => {
@@ -171,7 +174,7 @@ describe('Entity (file test)', () => {
                 test('Can be spawned by Magikoopa', () => expect(it.canBeSpawnedByMagikoopa,).toBeBooleanOrNull(),)
                 test('Can be spawned by Winged Magikoopa', () => expect(it.canBeSpawnedByWingedMagikoopa,).toBeOneOf(possibleCanBeSpawnedByWingedMagikoopa,),)
             },)
-            describe('Entity limit properties', () => {
+            describe('Limit properties', () => {
                 test('Amount', () => expect(it.limitAmount,).toBeOneOf(everyLimitAmountType,),)
                 describe('Editor', () => {
                     test('SMM & SMM3DW', () => expect(it.editorLimit_SMM1And3DS,).toBeOneOf(everyEditorLimitsWithNullAndNotApplicable,),)
@@ -181,32 +184,35 @@ describe('Entity (file test)', () => {
                 })
                 describe('Play', () => {
                     describe('General Entity (GEL)', () => {
-                        test('value', () => expect(it.whilePlaying_isInGEL,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInGEL,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInGEL_comment,).toBeOneOf(everyGELComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInGEL_comment,).toBeCoherentWith(it.whilePlaying_isInGEL,),)
                     },)
                     describe('Global General Entity (GEL)', () => {
-                        test('value', () => expect(it.whilePlaying_isInGEL,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInGEL_isSuperGlobal,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInGEL_isSuperGlobal_comment,).toBeOneOf(everyGELGlobalComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInGEL_isSuperGlobal_comment,).toBeCoherentWith(it.whilePlaying_isInGEL_isSuperGlobal,),)
                     },)
-                    test('Power-up (PL)', () => expect(it.whilePlaying_isInPL,).toBeBooleanOrNotApplicable(),)
+                    test('Power-up (PL)', () => expect(it.whilePlaying_isInPL,).toBeBoolean(),)
                     describe('Projectile (PJL)', () => {
-                        test('value', () => expect(it.whilePlaying_isInPJL,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInPJL,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInPJL_comment,).toBeOneOf(everyPJLComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInPJL_comment,).toBeCoherentWith(it.whilePlaying_isInPJL,),)
                     },)
                     describe('Object rendered', () => {
-                        test('value', () => expect(it.whilePlaying_isInObjectRenderedLimit,).toBeBooleanOrNotApplicable(),)
+                        test('value', () => expect(it.whilePlaying_isInObjectRenderedLimit,).toBeBoolean(),)
                         test('comment', () => expect(it.whilePlaying_isInObjectRenderedLimit_comment,).toBeOneOf(everyObjectRenderedLimitComment,),)
-                        //TODO add coherence test
+                        test('coherence', () => expect(it.whilePlaying_isInObjectRenderedLimit_comment,).toBeCoherentWith(it.whilePlaying_isInObjectRenderedLimit,),)
                     },)
-                    test('Collected Coin', () => expect(it.whilePlaying_isInCollectedCoinLimit,).toBeBooleanOrNotApplicable(),)
+                    test('Collected Coin', () => expect(it.whilePlaying_isInCollectedCoinLimit,).toBeBoolean(),)
                     describe('Other', () => {
-                        test('value', () => expect(it.whilePlaying_otherLimit,).toBeOneOf(everyPlayLimitsWithNullAndNotApplicable,),)
+                        test('value', () => expect(it.whilePlaying_otherLimit,).toBeOneOf(everyPlayLimitsWithNull,),)
                         test('comment', () => expect(it.whilePlaying_otherLimit_comment,).toBeOneOf(everyOtherLimitComment,),)
                         test('is unknown', () => expect(it.whilePlaying_otherLimit_isUnknown,).toBeBoolean(),)
-                        //TODO add coherence test
+                        describe('coherence', () => {
+                            test('with comment', () => expect(it.whilePlaying_otherLimit_comment,).toBeCoherentWith(it.whilePlaying_otherLimit,),)
+                            //TODO add unknown coherence test
+                        },)
                     },)
                 })
             },)

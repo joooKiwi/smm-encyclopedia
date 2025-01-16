@@ -1,6 +1,6 @@
 import './PageProgress.scss'
 
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router'
 
 import type {PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}   from 'util/react/ReactProperties'

@@ -1,5 +1,4 @@
 import type {UndefinedOr} from '@joookiwi/type'
-import {mapByArray}       from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -9,7 +8,7 @@ import {GameStyles} from 'core/gameStyle/GameStyles'
  * A map made to be handled the same way as a {@link Map},
  * but with a specification about the {@link GameStyles}
  */
-export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameStyleProperty, >
+export class GameStyleMap<const REFERENCE extends GameStyleProperty = GameStyleProperty, >
     implements ReadonlyMap<GameStyles, boolean> {
 
     //region -------------------- Fields --------------------
@@ -23,7 +22,7 @@ export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameSt
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(mapByArray(GameStyles.ALL, it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(GameStyles.ALL.map(it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

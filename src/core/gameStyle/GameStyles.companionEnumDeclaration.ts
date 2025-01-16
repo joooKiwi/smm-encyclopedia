@@ -44,7 +44,7 @@ export interface CompanionEnumDeclaration_GameStyles
      * @param url The url to find the {@link GameStyles} present
      * @arrayReutilization
      */
-    findInUrl(url: string,): Array<GameStyles>
+    findInUrl(url: string,): CollectionHolder<GameStyles>
 
     /**
      * Find the {@link GameStyles game styles} present in the {@link name} received
@@ -52,7 +52,7 @@ export interface CompanionEnumDeclaration_GameStyles
      * @param name The name to find the {@link GameStyles} present
      * @arrayReutilization
      */
-    findInName(name: string,): Array<GameStyles>
+    findInName(name: string,): CollectionHolder<GameStyles>
 
 
     /**
@@ -60,13 +60,13 @@ export interface CompanionEnumDeclaration_GameStyles
      *
      * @param gameStyles The given {@link GameStyles}
      */
-    getGroupUrlValue(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlValue
+    getGroupUrlValue(gameStyles: CollectionHolder<GameStyles>,): GroupUrlValue
 
     /**
      * Generate a {@link GroupUrlName} for the {@link GameStyles} from the {@link gameStyles} received
      *
      * @param gameStyles The given {@link GameStyles}
      */
-    getGroupUrlName(gameStyles: | Array<GameStyles> | CollectionHolder<GameStyles>,): GroupUrlName
+    getGroupUrlName(gameStyles: CollectionHolder<GameStyles>,): GroupUrlName
 
 }

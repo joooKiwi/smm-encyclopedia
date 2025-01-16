@@ -10,16 +10,6 @@ enum Enum {
     IMAGE_ANIMATIONS,
     SOUNDS,
 
-    SMM1,
-    SMM3DS,
-    SMM2,
-
-    SMB,
-    SMB3,
-    SMW,
-    NSMBU,
-    SM3DW,
-
     GROUND,
     UNDERGROUND,
     UNDERWATER,
@@ -30,9 +20,6 @@ enum Enum {
     GHOST_HOUSE,
     AIRSHIP,
     CASTLE,
-
-    DAY,
-    NIGHT,
 
 }
 

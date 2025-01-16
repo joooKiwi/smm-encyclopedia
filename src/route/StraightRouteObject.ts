@@ -1,12 +1,13 @@
-import type {LoaderFunctionArgs, NonIndexRouteObject} from 'react-router/dist'
+import type {LoaderFunctionArgs, NonIndexRouteObject} from 'react-router'
 
 /**
- * An implementation of a {@link import('react-router/dist').RouteObject route object}
+ * An implementation of a {@link import('react-router').RouteObject route object}
  * that is straight to the path it needs to go.
  *
  * Meaning it only has a {@link path} and a redirection action.
  */
-export class StraightRouteObject<const out PATH extends string, const CONTEXT = unknown, >
+export class StraightRouteObject<const PATH extends string,
+    const CONTEXT = unknown, >
     implements NonIndexRouteObject {
 
     public readonly path

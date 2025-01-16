@@ -9,7 +9,7 @@ import {Themes} from 'core/theme/Themes'
  * A map made to be handled the same way as a {@link Map},
  * but with a specification about the {@link Themes}
  */
-export class ThemeMap<const out REFERENCE extends ThemeProperty = ThemeProperty, >
+export class ThemeMap<const REFERENCE extends ThemeProperty = ThemeProperty, >
     implements ReadonlyMap<Themes, boolean> {
 
     //region -------------------- Fields --------------------

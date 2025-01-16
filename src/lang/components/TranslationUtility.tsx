@@ -1,12 +1,13 @@
 import type {MutableArray, StringOrNumeric, UndefinedOr} from '@joookiwi/type'
+import type {CollectionHolder}                           from '@joookiwi/collection'
 import type {TOptions}                                   from 'i18next'
-import {filterByArray, hasByArray, joinByArray}          from '@joookiwi/collection'
 
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
-import {isInProduction} from 'variables'
-import {Empty}          from 'util/emptyVariables'
-import {assert}         from 'util/utilitiesMethods'
+import {isInProduction}    from 'variables'
+import {Empty}             from 'util/emptyVariables'
+import {assert}            from 'util/utilitiesMethods'
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
@@ -46,36 +47,42 @@ export namespace TranslationUtility {
             argumentsFound.push(value.substring(startingIndex + STARTING_LENGTH, endingIndex,),)
         }
 
-        let containsOnlyStringOrNumeric = true
-        for (const it of argumentsFound) {
+        const argumentsFound2 = new ArrayAsCollection(argumentsFound,)
+        const splitArguments = new ArrayAsCollection(value.split(STARTING_OR_ENDING_REGEX,),).filter(it => !argumentsFound2.has(it,),)
+        const splitArgumentsSize = splitArguments.size
+        const argumentsFoundSize = argumentsFound2.size
+        let finalArguments: MutableArray<ReactElementOrStringOrNumber> = []
+        for (let i = 0, j = 0; i < argumentsFoundSize || j < splitArgumentsSize; i++, j++)
+            __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound2.getOrNull(i,) ?? EMPTY_STRING],)
+
+        if (__containsOnlyStringOrNumber(keyMap, argumentsFound2,))
+            return new ArrayAsCollection(finalArguments,).joinToString(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)
+        return <>{finalArguments}</>
+    }
+
+    /**
+     * Tell that the {@link keyMap} has only {@link String} or {@link Number}
+     *
+     * @param keyMap The {@link Object} that has all the keys
+     * @param keys   The values that are to verify in the {@link keyMap}
+     */
+    function __containsOnlyStringOrNumber(keyMap: TranslationReplaceKeysMap, keys: CollectionHolder<string>,) {
+        for (const it of keys) {
             const value = keyMap[it]
-            if (value == null) {
-                containsOnlyStringOrNumeric = false
-                break
-            }
+            if (value == null)
+                return false
 
             const typeOfValue = typeof value
             if (typeOfValue === 'string')
                 continue
             if (typeOfValue === 'number')
                 continue
-            if (typeOfValue === 'bigint')
-                continue
+            // if (typeOfValue === 'bigint')
+            //     continue
 
-            containsOnlyStringOrNumeric = false
-            break
+            return false
         }
-
-        const splitArguments = filterByArray(value.split(STARTING_OR_ENDING_REGEX,), it => !hasByArray(argumentsFound, it,),)
-        const splitArgumentsSize = splitArguments.size
-        const argumentsFoundSize = argumentsFound.length
-        let finalArguments: MutableArray<ReactElementOrStringOrNumeric> = []
-        for (let i = 0, j = 0; i < argumentsFoundSize || j < splitArgumentsSize; i++, j++)
-            __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound[i]!],)
-
-        if (containsOnlyStringOrNumeric)
-            return joinByArray(finalArguments, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)
-        return <>{finalArguments}</>
+        return true
     }
 
     /**
@@ -84,9 +91,9 @@ export namespace TranslationUtility {
      * The split argument is always added.
      * But the replacement argument can be null (& is not added).
      *
-     * @param finalArguments the final array of arguments without any null values
-     * @param splitArgument the split argument
-     * @param replacementArgument the replacement argument
+     * @param finalArguments      The final array of arguments without any null values
+     * @param splitArgument       The split argument
+     * @param replacementArgument The replacement argument
      */
     function __addArgumentToArray(finalArguments: MutableArray<ReactElementOrStringOrNumeric>, splitArgument: string, replacementArgument: UndefinedOr<ReactElementOrStringOrNumeric>,): void {
         finalArguments.push(splitArgument,)

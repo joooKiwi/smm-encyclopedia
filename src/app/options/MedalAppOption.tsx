@@ -1,38 +1,36 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Medals}              from 'core/medal/Medals'
-import type {Names, Ordinals}     from 'app/options/MedalAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {AppOption}           from 'app/options/AppOption'
+import type {Medals}          from 'core/medal/Medals'
+import type {Names, Ordinals} from 'app/options/MedalAppOption.types'
 
 import {CommonOptions} from 'app/options/CommonOptions'
+import {TableOption}   from 'app/tools/table/TableOption'
 import MedalIcon       from 'core/medal/component/MedalIcon'
 
 export abstract class MedalAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<Medals> {
+    extends TableOption<Medals, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ICON = new class MedalAppOption_Icon extends MedalAppOption {
 
-        protected override _createContentOption(enumeration: Medals,) {
+        public override renderContent(enumeration: Medals,) {
             return <MedalIcon reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME = new class MedalAppOption_Name extends MedalAppOption {
 
-        protected override _createContentOption(enumeration: Medals,) {
+        public override renderContent(enumeration: Medals,) {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
@@ -63,51 +61,17 @@ export abstract class MedalAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected abstract _createContentOption(enumeration: Medals,): ReactElement
-
-    public renderContent(enumeration: Medals,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected abstract _createTableHeaderOption(): SingleHeaderContent
-
-    public renderTableHeader(): SingleHeaderContent {
-        return this._createTableHeaderOption()
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

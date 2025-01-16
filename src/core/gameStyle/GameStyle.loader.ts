@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Game style.json'
 
-import type {Array, NullOrBoolean} from '@joookiwi/type'
-import {forEachByArray}            from '@joookiwi/collection'
-import {lazy}                      from '@joookiwi/lazy'
+import type {Array, NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+import {forEachByArray}                        from '@joookiwi/collection'
+import {lazy}                                  from '@joookiwi/lazy'
 
 import type {GameContentFrom1And2}                                               from 'core/game/Loader.types'
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'
@@ -71,7 +71,8 @@ interface Content
 
     readonly isInSuperMarioMaker2: true
 
-    readonly isAvailableFromTheStart_SMM1: NullOrBoolean
+    readonly isAvailableFromTheStart_Smm1: NullOrBoolean
+    readonly isAvailableFromTheStart_Smm3ds: NullOrTrue
     readonly reference: PossibleAcronym
     readonly nightDesertWindDirection: PossibleNightDesertWindDirection
     readonly nightDesertWindFrequency: PossibleNightDesertWindFrequency
@@ -81,13 +82,14 @@ interface Content
 function createReference(content: Content,): GameStyle {
     return new GameStyleContainer(
         GameReferenceCompanion.getValueByAcronym(content.reference,).reference.nameContainer,
-        content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
+        content.isInSuperMarioMaker1And3DS,
+        content.isAvailableFromTheStart_Smm1,
+        content.isAvailableFromTheStart_Smm3ds,
         lazy(() => {
             const gameStyle = Import.GameStyles.Companion.getValueByAcronym(content.reference,)
 
             return Import.Entities.Companion.values.map(it => it.reference,)
                 .filter(reference => gameStyle.get(reference,),)
-                .toArray()
         },),
         createNightDesertWindTranslationKey(content,),
     )

@@ -1,10 +1,7 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import type {NullOr}                 from '@joookiwi/type'
-import {forEachByArray}              from '@joookiwi/collection'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
-import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Entities}            from 'core/entity/Entities'
@@ -12,8 +9,11 @@ import type {Entities}            from 'core/entity/Entities'
 import {isInProduction}                 from 'variables'
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import Image                            from 'app/tools/images/Image'
+import ImageAs3dModel                   from 'app/tools/images/ImageAs3dModel'
+import {TableOption}                    from 'app/tools/table/TableOption'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
-import EditorVoiceSoundComponent        from 'core/editorVoice/EditorVoiceSound.component'
+import EditorVoiceSound                 from 'core/editorVoice/component/EditorVoiceSound'
+import CanBeAffectedByATwister          from 'core/entity/properties/component/CanBeAffectedByATwister'
 import CanBeFiredOutOfABulletLauncher   from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
 import CanBeInAParachute                from 'core/entity/properties/component/CanBeInAParachute'
 import CanBePutInABlock                 from 'core/entity/properties/component/CanBePutInABlock'
@@ -50,113 +50,127 @@ import SMB3 =              GameStyles.SMB3
 import SMW =               GameStyles.SMW
 import SM3DW =             GameStyles.SM3DW
 
-export class EntityAppOption
-    extends Enum<Ordinals, Names>
-    implements AppOption<Entities> {
+export abstract class EntityAppOption
+    extends TableOption<Entities, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMB = new class EntityAppOption_ImageInSmb extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SMB,)
-            if (imageFiles == null) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+            const images = image.get(SMB,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SMB images", image,)
                 return null
             }
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                images[i] = <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            // if (images.length === 0)
+            //     if (reference.isInSuperMarioBrosStyle)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: `image-smb`, element: <GameStyleImage reference={SMB}/>,} as const satisfies SingleHeaderContent
         }
 
     }('smb-images',)
-    public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_ImageInSmb3 extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SMB3,)
-            if (imageFiles == null) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+            const images = image.get(SMB3,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SMB3 images", image,)
                 return null
             }
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                images[i] = <Image key={`Entity image (${englishName} - SMB3 - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            // if (images.isEmpty)
+            //     if (reference.isInSuperMarioBros3Style)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SMB3 - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: `image-smb3`, element: <GameStyleImage reference={SMB3}/>,} as const satisfies SingleHeaderContent
         }
 
     }('smb3-images',)
-    public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMW = new class EntityAppOption_ImageInSmw extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SMW,)
-            if (imageFiles == null) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+            const images = image.get(SMW,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SMW images", image,)
                 return null
             }
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                images[i] = <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            // if (images.isEmpty)
+            //     if (reference.isInSuperMarioWorldStyle)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: `image-smw`, element: <GameStyleImage reference={SMW}/>,} as const satisfies SingleHeaderContent
         }
 
     }('smw-images',)
-    public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_ImageInNsmbu extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(NSMBU,)
-            if (imageFiles == null) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+            const images = image.get(NSMBU,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the NSMBU images", image,)
                 return null
             }
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                    images[i] = <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            // if (images.isEmpty)
+            //     if (reference.isInNewSuperMarioBrosUStyle)
+            //         return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i) =>
+                <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: `image-nsmbu`, element: <GameStyleImage reference={NSMBU}/>,} as const satisfies SingleHeaderContent
         }
 
     }('nsmbu-images',)
-    public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_ImageInSm3dw extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(SM3DW,)
-            if (imageFiles == null) {
+        public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,) {
+            const images = image.get(SM3DW,)
+            if (images == null) {
                 if (!isInProduction)
                     console.warn("The images were null when attempting to retrieve the SM3DW images", image,)
                 return null
             }
 
-            const images = new Array<ReactJSXElement>(imageFiles.length,)
-            forEachByArray(imageFiles, (it, i,) =>
-                    images[i] = <Image key={`Entity image (${englishName} - SM3DW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
-            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
+            if (images.isEmpty)
+                if (reference.isInSuperMario3DWorldStyle)
+                    return <ImageAs3dModel key={`unique image (${englishName})`}/>
+
+            return <Fragment key={`unique image (${englishName})`}>{images.map((it, i,) =>
+                <Image key={`Entity image (${englishName} - SM3DW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>
+            ,)}</Fragment>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: `image-sm3dw`, element: <GameStyleImage reference={SM3DW}/>,} as const satisfies SingleHeaderContent
         }
 
@@ -164,7 +178,7 @@ export class EntityAppOption
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             return <div className="nameAndEditorVoiceSound-container container">
                 <div className="nameAndEditorVoiceSound-nameAndProperties-container">
                     <div className="properties">
@@ -182,73 +196,74 @@ export class EntityAppOption
                         <CanBeFiredOutOfABulletLauncher value={enumeration}/>
                         <CanBePutInABlock value={enumeration}/>
                         <CanBePutInATree value={enumeration}/>
+                        <CanBeAffectedByATwister value={enumeration}/>
                         <CanBeStacked value={enumeration}/>
                     </div>
                     {CommonOptions.get.getNameContent(enumeration,)}
                 </div>
-                <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
+                <EditorVoiceSound editorVoice={enumeration.editorVoiceReference} name={enumeration.englishName}/>
             </div>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-        protected override _createContentOption({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,) {
             return <GameComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.gameHeader
         }
 
     }('game',)
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
-        protected override _createContentOption({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,) {
             return <GameStyleComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: 'gameStyle', element: gameContentTranslation('game style.singular',),} satisfies SingleHeaderContent
         }
 
     }('gameStyle',)
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
-        protected override _createContentOption({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,) {
             return <CourseThemeComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular',),} satisfies SingleHeaderContent
         }
 
     }('courseTheme',)
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
-        protected override _createContentOption({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,) {
             return <TimeComponent reference={reference} name={reference} displayAllAsText={false}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return {key: 'time', element: gameContentTranslation('time.singular',),} satisfies SingleHeaderContent
         }
 
     }('time',)
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             const name = enumeration.reference.categoryAmericanEnglish
             if (name === EMPTY_STRING)
                 return null
             return <EntityCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.categoryHeader
         }
 
@@ -256,57 +271,58 @@ export class EntityAppOption
 
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.completeEditorLimitInSmm1And3dsHeader
         }
 
     }('smm1And3ds-editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.completeEditorLimitHeader
         }
 
     }('editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             return <SMM2EditorLimitComponent reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.completeEditorLimitInSmm2Header
         }
 
     }('smm2-editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             return <SMM2EditorLimitComponent reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.completeEditorLimitHeader
         }
 
     }('editorLimit',)
     public static readonly PLAY_LIMIT = new class EntityAppOption_PlayLimit extends EntityAppOption {
 
-        protected override _createContentOption(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,) {
             return <PlayLimitComponent reference={enumeration}/>
         }
 
-        protected override _createTableHeaderOption() {
+        public override renderHeader() {
             return CommonOptions.get.completePlayLimitHeader
         }
+
     }('playLimit',)
 
     //endregion -------------------- Enum instances --------------------
@@ -333,58 +349,17 @@ export class EntityAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    readonly #associatedClass
-    readonly #additionalClasses
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     private constructor(associatedClass: string,) {
-        super()
-        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
+        super(associatedClass,)
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    public get associatedClass(): string {
-        return this.#associatedClass
-    }
-
-    public get additionalClasses(): readonly [string,] {
-        return this.#additionalClasses
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    //region -------------------- App option - content --------------------
-
-    protected _createContentOption(enumeration: Entities,): ReactElement {
-        throw new ReferenceError(`The EntityAppOption.${this.name} cannot create a content option`,)
-    }
-
-    public renderContent(enumeration: Entities,): readonly [ReactElement,] {
-        return [this._createContentOption(enumeration,),]
-    }
-
-    //endregion -------------------- App option - content --------------------
-    //region -------------------- App option - table --------------------
-
-    protected _createTableHeaderOption(): NullOr<SingleHeaderContent> {
-        throw new ReferenceError(`The EntityAppOption.${this.name} cannot create a table header option`,)
-    }
-
-    public renderTableHeader(): NullOr<SingleHeaderContent> {
-        const content = this._createTableHeaderOption()
-        if (content == null)
-            return null
-        return content
-    }
-
-    //endregion -------------------- App option - table --------------------
-
     //endregion -------------------- Methods --------------------
 
 }

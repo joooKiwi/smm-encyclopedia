@@ -1,33 +1,32 @@
 import type {Nullable, NullOr, UndefinedOr} from '@joookiwi/type'
-import {hasByArray}                         from '@joookiwi/collection'
 import {Enum}                               from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                        from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                          from 'core/ClassWithReference'
-import type {ClassWithNullableEditorVoiceSoundFileHolder} from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
-import type {EditorVoiceSound}                            from 'core/editorVoice/sound/EditorVoiceSound'
-import type {Names, Ordinals, PossibleEnglishName}        from 'core/entity/Entities.types'
-import type {Entity}                                      from 'core/entity/Entity'
-import type {EntityImage}                                 from 'core/entity/images/EntityImage'
-import type {ClearConditionImage}                         from 'core/entity/images/clearCondition/ClearConditionImage'
-import type {EditorImage}                                 from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}                                 from 'core/entity/images/inGame/InGameImage'
-import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
-import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
-import type {ClassWithImage}                              from 'util/ClassWithImage'
-import type {CompanionEnumByNameWithValidationSingleton}  from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                   from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
+import type {Entity}                               from 'core/entity/Entity'
+import type {EntityImage}                          from 'core/entity/images/EntityImage'
+import type {ClearConditionImage}                  from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}                          from 'core/entity/images/editor/EditorImage'
+import type {InGameImage_BigMushroom}              from 'core/entity/images/inGame/InGameImage_BigMushroom'
+import type {InGameImage_Regular}                  from 'core/entity/images/inGame/InGameImage_Regular'
+import type {UnusedImage_BigMushroom}              from 'core/entity/images/unused/UnusedImage_BigMushroom'
+import type {UnusedImage_Regular}                  from 'core/entity/images/unused/UnusedImage_Regular'
+import type {ClassWithImage}                       from 'util/ClassWithImage'
+import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
-import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
-import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
-import type {EditorEntityImages}           from 'core/entity/EditorEntityImages'
-import type {EntityImages}                 from 'core/entity/EntityImages'
-import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
-import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
-import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
-import {StringContainer}                   from 'util/StringContainer'
-import {Import}                            from 'util/DynamicImporter'
-import {getValueByEnglishName}             from 'util/utilitiesMethods'
-import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+import {EditorVoices}                  from 'core/editorVoice/EditorVoices'
+import {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}       from 'core/entity/EditorEntityImages'
+import type {EntityImages}             from 'core/entity/EntityImages'
+import {InGameBigMushroomEntityImages} from 'core/entity/InGameBigMushroomEntityImages'
+import {InGameEntityImages}            from 'core/entity/InGameEntityImages'
+import {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
+import {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
+import {StringContainer}               from 'util/StringContainer'
+import {Import}                        from 'util/DynamicImporter'
+import {getValueByEnglishName}         from 'util/utilitiesMethods'
+import {CompanionEnumByName}           from 'util/enumerable/companion/CompanionEnumByName'
 
 import EditorVoiceCompanion = EditorVoices.Companion
 
@@ -35,9 +34,11 @@ import EditorVoiceCompanion = EditorVoices.Companion
  * A class encapsulating all the information associated to
  * its name ({@link PossibleEnglishName}),
  * image ({@link EntityImage}, {@link EditorImage editor},
- * {@link ClearConditionImage clear condition}, {@link InGameImage in game}, {@link UnusedImage_Regular unused (regular form)}
- * and {@link UnusedImage_BigMushroom unused (Big Mushroom form)}),
- * sound ({@link EditorVoiceSound})
+ * {@link ClearConditionImage clear condition},
+ * {@link InGameImage_Regular in game (regular form)},
+ * {@link InGameImage_BigMushroom in game (Big Mushroom form)},
+ * {@link UnusedImage_Regular unused (regular form)}
+ * and {@link UnusedImage_BigMushroom unused (Big Mushroom form)})
  * and data ({@link Entity})
  *
  * @recursiveReference<{@link ClearConditionEntityImages}>
@@ -46,6 +47,7 @@ import EditorVoiceCompanion = EditorVoices.Companion
  * @recursiveReference<{@link EntityImages}>
  * @recursiveReference<{@link EntityLoader}>
  * @recursiveReference<{@link InGameEntityImages}>
+ * @recursiveReference<{@link InGameBigMushroomEntityImages}>
  * @recursiveReference<{@link UnusedEntityImages}>
  * @recursiveReference<{@link UnusedBigMushroomEntityImages}>
  */
@@ -53,8 +55,7 @@ export class Entities
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithReference<Entity>,
-        ClassWithImage<EntityImage>,
-        ClassWithNullableEditorVoiceSoundFileHolder {
+        ClassWithImage<EntityImage> {
 
     //region -------------------- Enum instances --------------------
 
@@ -244,9 +245,10 @@ export class Entities
 
     public static readonly STINGBY =                                       new Entities('Stingby',)
 
-    public static readonly CHEEP_CHEEP =                                   new Entities('Cheep Cheep',)
+    public static readonly GREEN_CHEEP_CHEEP =                             new Entities('Green Cheep Cheep',)
     public static readonly BLURPS =                                        new Entities('Blurps',)
     public static readonly DEEP_CHEEP =                                    new Entities('Deep Cheep',)
+    public static readonly RED_CHEEP_CHEEP =                               new Entities('Red Cheep Cheep',)
     public static readonly FISH_BONE =                                     new Entities('Fish Bone',)
 
     public static readonly BLOOPER =                                       new Entities('Blooper',)
@@ -288,6 +290,7 @@ export class Entities
     public static readonly SNOW_POKEY =                                    new Entities('Snow Pokey',)
 
     public static readonly THWOMP =                                        new Entities('Thwomp',)
+    public static readonly SIDEWAYS_THWOMP =                               new Entities('Sideways Thwomp',)
 
     public static readonly MONTY_MOLE =                                    new Entities('Monty Mole',)
     public static readonly ROCKY_WRENCH =                                  new Entities('Rocky Wrench',)
@@ -360,6 +363,7 @@ export class Entities
     public static readonly MEOWSER =                                       new Entities('Meowser',)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new Entities('Fire thrown by a Bowser',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new Entities('Falling Fire thrown by a Bowser',)
+    public static readonly HAMMER_THROWN_BY_A_BOWSER =                     new Entities('Hammer thrown by a Bowser',)
 
     public static readonly BOWSER_JR =                                     new Entities('Bowser Jr.',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new Entities('Fire thrown by a Bowser Jr.',)
@@ -456,6 +460,7 @@ export class Entities
     public static readonly PHANTO =                                        new Entities('Phanto',)
 
     public static readonly TRAMPOLINE =                                    new Entities('Trampoline',)
+    public static readonly SIDEWAYS_TRAMPOLINE =                           new Entities('Sideways Trampoline',)
     public static readonly HOP_CHOPS =                                     new Entities('Hop-Chops',)
 
     public static readonly POW_BLOCK =                                     new Entities('POW Block',)
@@ -485,8 +490,8 @@ export class Entities
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByNameWithValidationSingleton<Entities, typeof Entities> = class CompanionEnum_Entities
-        extends CompanionEnumByNameWithValidation<Entities, typeof Entities> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Entities, typeof Entities> = class CompanionEnum_Entities
+        extends CompanionEnumByName<Entities, typeof Entities> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -506,14 +511,6 @@ export class Entities
             return getValueByEnglishName(value, this,)
         }
 
-        public override hasValueByName(value: Nullable<| Entities | string>,): boolean {
-            if (value == null)
-                return false
-            if (value instanceof this.instance)
-                return true
-            return hasByArray(this.instance.everyEnglishNames, value,)
-        }
-
     }
 
     //endregion -------------------- Companion enum --------------------
@@ -526,17 +523,17 @@ export class Entities
     #image?: EntityImage
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
-    #inGameImage?: InGameImage
+    #inGameRegularImage?: InGameImage_Regular
+    #inGameBigMushroomImage?: InGameImage_BigMushroom
     #unusedRegularImage?: UnusedImage_Regular
     #unusedBigMushroomImage?: UnusedImage_BigMushroom
-
-    #editorVoiceSound?: NullOr<EditorVoiceSound>
 
     #editorVoiceReference?: NullOr<EditorVoices>
     #entityImageReference?: EntityImages
     #editorEntityImageReference?: EditorEntityImages
     #clearConditionEntityImageReference?: ClearConditionEntityImages
     #inGameEntityImageReference?: InGameEntityImages
+    #inGameBigMushroomEntityImageReference?: InGameBigMushroomEntityImages
     #unusedEntityImageReference?: UnusedEntityImages
     #unusedBigMushroomEntityImageReference?: UnusedBigMushroomEntityImages
 
@@ -562,7 +559,7 @@ export class Entities
      * @semiAsynchronously
      */
     public get reference(): Entity {
-        return this.#reference ??= Entities.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= Entities.REFERENCE_MAP.get(this.englishName,)!
     }
 
     //endregion -------------------- Getter methods (reference) --------------------
@@ -585,27 +582,15 @@ export class Entities
 
     public get clearConditionImage(): ClearConditionImage { return this.#clearConditionImage ??= this.clearConditionEntityImageReference.image }
 
-    public get inGameImage(): InGameImage { return this.#inGameImage ??= this.inGameEntityImageReference.image }
+    public get inGameImage(): InGameImage_Regular { return this.#inGameRegularImage ??= this.inGameEntityImageReference.image }
+
+    public get inGameBigMushroomImage(): InGameImage_BigMushroom { return this.#inGameBigMushroomImage ??= this.inGameBigMushroomEntityImageReference.image }
 
     public get unusedImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.image }
 
     public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedBigMushroomEntityImageReference.image }
 
     //endregion -------------------- Getter methods (image) --------------------
-    //region -------------------- Getter methods (sound) --------------------
-
-    //region -------------------- editor sound --------------------
-
-    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
-        const value = this.#editorVoiceSound
-        if (value !== undefined)
-            return value
-        return this.#editorVoiceSound = this.editorVoiceReference?.editorVoiceSoundFileHolder ?? null
-    }
-
-    //endregion -------------------- editor sound --------------------
-
-    //endregion -------------------- Getter methods (sound) --------------------
     //region -------------------- Getter methods (linked reference) --------------------
 
     public get editorVoiceReference(): NullOr<EditorVoices> {
@@ -629,6 +614,8 @@ export class Entities
     public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= ClearConditionEntityImages[this.name] }
 
     public get inGameEntityImageReference(): InGameEntityImages { return this.#inGameEntityImageReference ??= InGameEntityImages[this.name] }
+
+    public get inGameBigMushroomEntityImageReference(): InGameBigMushroomEntityImages { return this.#inGameBigMushroomEntityImageReference ??= InGameBigMushroomEntityImages[this.name] }
 
     public get unusedEntityImageReference(): UnusedEntityImages { return this.#unusedEntityImageReference ??= UnusedEntityImages[this.name] }
 
@@ -658,7 +645,7 @@ export namespace Entities {
 // Entities.values.filter(it => it.uniqueImage !== EmptyUniqueImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, Array.from(it.uniqueImage.map.values(), it => it.map(it => it.name,),).flat(),),)
 // Entities.values.filter(it => it.editorImage !== EmptyEditorImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, it.editorImage.all.map(it => it.name,),),)
 // Entities.values.filter(it => it.clearConditionImage !== EmptyClearConditionImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, GameStyles.values.map(it2 => it.clearConditionImage.get(it2,),).toArray().flat().map(it => it.name,),),)
-// Entities.values.filter(it => it.inGameImage !== EmptyInGameImage.get,).map(it => console.log(`${it.englishName}\n\t`, it.inGameImage,),)
+// Entities.values.filter(it => it.inGameImage !== EmptyInGameImage_Regular.get,).map(it => console.log(`${it.englishName}\n\t`, it.inGameImage,),)
 // Entities.values.filter(it => it.unusedImage.all.size !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, [...it.unusedImage.all.entries(),].map(it => it[1]).flat(2),),)
 // Entities.values.filter(it => it.unusedBigMushroomImage.all.length !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, it.unusedBigMushroomImage.all.flat(),),)
 

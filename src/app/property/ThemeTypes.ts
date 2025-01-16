@@ -1,12 +1,17 @@
-import type {Array, NullOr} from '@joookiwi/type'
-import {Enum}               from '@joookiwi/enumerable'
+import type {NullOr}           from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
 import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
 import {Themes}              from 'core/theme/Themes'
+import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
+
+import COURSE_THEMES = Themes.COURSE_THEMES
+import WORLD_THEMES =  Themes.WORLD_THEMES
 
 /** @usedByTheRouting */
 export abstract class ThemeTypes
@@ -18,7 +23,7 @@ export abstract class ThemeTypes
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
         public override get content() {
-            return Themes.ALL
+            return new ArrayAsCollection(Themes.ALL,)
         }
 
 
@@ -30,7 +35,7 @@ export abstract class ThemeTypes
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
         public override get content() {
-            return Themes.COURSE_THEMES
+            return new ArrayAsCollection(COURSE_THEMES,)
         }
 
 
@@ -50,7 +55,7 @@ export abstract class ThemeTypes
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
         public override get content() {
-            return Themes.WORLD_THEMES
+            return new ArrayAsCollection(WORLD_THEMES,)
         }
 
 
@@ -116,12 +121,8 @@ export abstract class ThemeTypes
         return this.#routeName
     }
 
-    /**
-     * Retrieve the content applicable to the {@link ThemeTypes}
-     *
-     * @see AppInterpreter.content
-     */
-    public abstract get content(): Array<Themes>
+    /** Retrieve the content applicable to the {@link ThemeTypes} */
+    public abstract get content(): CollectionHolder<Themes>
 
     //region -------------------- Link button methods --------------------
 

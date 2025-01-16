@@ -1,23 +1,24 @@
-import type {Nullable}                                  from '@joookiwi/type'
-import type {TooltipEvents}                             from 'bootstrap/tooltip/TooltipEvents'
-import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
-import {RefObject, useEffect}                           from 'react'
+import type {Nullable}                        from '@joookiwi/type'
+import type {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
+import {RefObject, useEffect}                 from 'react'
 
-import {BootstrapInstanceHandler}        from 'bootstrap/BootstrapInstanceHandler'
-import {TooltipInstance}                 from 'bootstrap/tooltip/TooltipInstance'
-import {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
-import {Empty}                           from 'util/emptyVariables'
+import type {TooltipEvents}                       from 'bootstrap/tooltip/TooltipEvents'
+import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+
+import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
+import {TooltipInstance}          from 'bootstrap/tooltip/TooltipInstance'
+import {Empty}                    from 'util/emptyVariables'
 
 import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
 
 interface TooltipProperties
-    extends SimpleReactPropertiesWithOptionalChildren<ReactElement> {
+    extends ReactPropertiesWithOptionalChildren<ReactElement> {
 
     readonly option: Partial<TooltipFromBootstrap.Options>
 
     readonly on?: Nullable<Partial<TooltipEvents<any>>>
 
-    readonly reference: Nullable<| RefObject<HTMLElement> | HTMLElement | string>
+    readonly reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>
 
 }
 
@@ -39,7 +40,7 @@ export default function Tooltip({children, option, on: triggers, reference,}: To
     return children ?? null
 }
 
-function getReference(reference: Nullable<| RefObject<HTMLElement> | HTMLElement | string>,) {
+function getReference(reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>,) {
     if (reference == null)
         return null
 

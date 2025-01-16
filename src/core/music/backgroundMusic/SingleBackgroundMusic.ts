@@ -8,7 +8,7 @@ import type {MusicSoundFile}                                                    
  *
  * The return value used in {@link SingleBackgroundMusic.all all()} returns the values with the null excluded.
  *
- * @deprecated The use of a more simplistic structure on {@link IndividualMusics} is used
+ * @deprecated The use of {@link Tracks} is used
  */
 export interface SingleBackgroundMusic<out SMB_MUSIC extends PossibleSMB_Music_SingleContainer = PossibleSMB_Music_SingleContainer,
     out SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer = PossibleSMB3_Music_SingleContainer,
@@ -16,26 +16,21 @@ export interface SingleBackgroundMusic<out SMB_MUSIC extends PossibleSMB_Music_S
     out NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer = PossibleNSMBU_Music_SingleContainer,
     out SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer = PossibleSM3DW_Music_SingleContainer, > {
 
-    get all(): PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
+    readonly all: PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
 
-
-    get smb(): SMB_MUSIC
-
-    get smb3(): SMB3_MUSIC
-
-    get smw(): SMW_MUSIC
-
-    get nsmbu(): NSMBU_MUSIC
-
-    get sm3dw(): SM3DW_MUSIC
+    readonly smb: SMB_MUSIC
+    readonly smb3: SMB3_MUSIC
+    readonly smw: SMW_MUSIC
+    readonly nsmbu: NSMBU_MUSIC
+    readonly sm3dw: SM3DW_MUSIC
 
 }
 
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMB_Music | PossibleLink_Music | PossibleSMB2_Music | PossibleOther_Music>>
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB3_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMB3_Music | PossibleOther_Music>>
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMW_Music | PossibleSMW_YoshiSound | PossibleOther_Music>>
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleNSMBU_Music | PossibleNSMBU_YoshiSound | PossibleOther_Music>>
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSM3DW_Music | PossibleSM3DW_UnderwaterMusic | PossibleOther_Music>>
+/** @deprecated The use of {@link Tracks} is used */export type PossibleSMB_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMB_Music | PossibleLink_Music | PossibleSMB2_Music | PossibleOther_Music>>
+/** @deprecated The use of {@link Tracks} is used */export type PossibleSMB3_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMB3_Music | PossibleOther_Music>>
+/** @deprecated The use of {@link Tracks} is used */export type PossibleSMW_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMW_Music | PossibleSMW_YoshiSound | PossibleOther_Music>>
+/** @deprecated The use of {@link Tracks} is used */export type PossibleNSMBU_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleNSMBU_Music | PossibleNSMBU_YoshiSound | PossibleOther_Music>>
+/** @deprecated The use of {@link Tracks} is used */export type PossibleSM3DW_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSM3DW_Music | PossibleSM3DW_UnderwaterMusic | PossibleOther_Music>>
 
 type PossibleArray = readonly [
     NullOr<MusicSoundFile<Possible_Music>>,
@@ -49,7 +44,7 @@ type PossibleArray = readonly [
  * applicable to any possible {@link SingleBackgroundMusic}.
  *
  * @todo convert to maybe a non-null array type (to be created too)
- * @deprecated The use of a more simplistic structure on {@link IndividualMusics} is used
+ * @deprecated The use of {@link Tracks} is used
  */
 export type PossibleMusicArray<MUSIC extends PossibleArray = PossibleArray, > = readonly [
     ...MUSIC[0] extends null ? EmptyArray : [MUSIC[0],],

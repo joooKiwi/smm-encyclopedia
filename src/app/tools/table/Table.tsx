@@ -1,31 +1,47 @@
 import './Table.scss'
 
-import type {CollectionHolder}                                                                    from '@joookiwi/collection'
-import type {Enumerable}                                                                          from '@joookiwi/enumerable'
-import type {MutableArray}                                                                        from '@joookiwi/type'
-import {dropByArray, filterNotNull, forEachByArray, GenericCollectionHolder, joinToStringByArray} from '@joookiwi/collection'
+import type {CollectionHolder}                from '@joookiwi/collection'
+import type {Enumerable}                      from '@joookiwi/enumerable'
+import type {NullableString}                  from '@joookiwi/type'
+import type {default as TooltipFromBootstrap} from 'bootstrap/js/dist/tooltip'
+import {useRef}                               from 'react'
 
-import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
-import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
-import type {SingleTableContent}                                                              from 'app/tools/table/Table.types'
-import type {ReactProperties, ReactPropertiesWithChildren, SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {SingleHeaderContent}                          from 'app/tools/table/SimpleHeader'
+import type {TableOption}                                  from 'app/tools/table/TableOption'
+import type {ClassWithEnglishName}                         from 'core/ClassWithEnglishName'
+import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
-import Image             from 'app/tools/images/Image'
-import Tooltip           from 'bootstrap/tooltip/Tooltip'
-import {Empty}           from 'util/emptyVariables'
-import {SPACE}           from 'util/commonVariables'
-import {StringContainer} from 'util/StringContainer'
-import {assert}          from 'util/utilitiesMethods'
+import Image               from 'app/tools/images/Image'
+import Tooltip             from 'bootstrap/tooltip/Tooltip'
+import {Empty}             from 'util/emptyVariables'
 
-import EMPTY_STRING = Empty.EMPTY_STRING
-import getInHtml =    StringContainer.getInHtml
+import EMPTY_CALLBACK = Empty.EMPTY_CALLBACK
+import EMPTY_STRING =   Empty.EMPTY_STRING
 
-interface TableProperties
+type ContentOnATable = Enumerable & ClassWithEnglishName<string>
+
+interface TableProperties<out CONTENT extends ContentOnATable,
+    out OPTION extends TableOption<CONTENT>, >
     extends ReactProperties {
 
+    /** The element id */
     readonly id: string
 
-    readonly interpreter: AppInterpreterWithTable
+    /** The content to be displayed in a {@link HTMLTableElement} form */
+    readonly items: CollectionHolder<CONTENT>
+
+    /** The option displayed in the {@link HTMLTableElement} */
+    readonly options: CollectionHolder<OPTION>
+
+    /** The {@link HTMLTableCaptionElement} applicable to the table */
+    readonly caption: ReactElementOrString
+
+    /** The table base colour */
+    readonly color?: NullableString<BootstrapThemeColor>
+    /** The colour that will be used in both {@link HTMLTableSectionElement} (thead and tfoot) */
+    readonly headersColor?: NullableString<BootstrapThemeColor>
+
+    onRowClicked?(content: CONTENT,): void
 
 }
 
@@ -36,97 +52,123 @@ interface TableProperties
  *  - footer
  *  - caption
  *
- * @param id The element id
- * @param interpreter The interpreter to retrieve its content
  * @reactComponent
  */
-export default function Table({id, interpreter,}: TableProperties,) {
-    const options = filterNotNull(interpreter.tableOptions,)
-    const color = interpreter.tableColor
-    const headersColor = interpreter.tableHeadersColor
-    const caption = interpreter.tableCaption
-    const additionalClasses = retrieveAdditionalClasses(interpreter, options,)
-    const contents = retrieveContent(interpreter, options,)
-    const headers = retrieveHeader(interpreter, options,)
+export default function Table<const CONTENT extends ContentOnATable, const OPTION extends TableOption<CONTENT>, >({id, items, options, caption, color, headersColor, onRowClicked = EMPTY_CALLBACK,}: TableProperties<CONTENT, OPTION>,) {
+    const associatedClass = retrieveAssociatedClass(options,)
+    const contents = retrieveContent(items, options,)
+    const headers = retrieveHeader(options,)
 
     return <div id={id} className={`ttable ${color == null ? EMPTY_STRING : `table-${color}`} ${headersColor == null ? EMPTY_STRING : `headers-${headersColor}`} w-100`}>
-        <TableHeader>{additionalClasses}{headers}</TableHeader>
-        <TableContent>{additionalClasses}{contents}</TableContent>
-        <TableFooter>{additionalClasses}{headers}</TableFooter>
+        <TableHeader associatedClass={associatedClass} headers={headers}/>
+        <TableContent associatedClass={associatedClass} items={items} contents={contents} onRowClicked={onRowClicked}/>
+        <TableFooter associatedClass={associatedClass} headers={headers}/>
         <TableCaption>{caption}</TableCaption>
     </div>
 }
 
-function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
-    const columns = new Array<ReactJSXElement>(headers.length,)
-    headers.forEach((it, i,) => {
-        const elementId = `${getHeaderKey(it,)}-header`
-        columns[i] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses.get(i,)}`}>
-            <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
-            <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
-        </div>
-    },)
-    return <div className="theader">{columns}</div>
+
+interface TableHeaderProperties
+    extends ReactProperties {
+
+    readonly associatedClass: CollectionHolder<string>
+    readonly headers: CollectionHolder<SingleHeaderContent>
+
 }
 
-function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleTableContent>]>,) {
-    const tableContent = new Array<ReactJSXElement>(contents.length,)
-    contents.forEach((content, i,) => {
-        const rowContentKey = content[0]
-        const rowContent = new Array<ReactJSXElement>(content.length - 1,)
-        dropByArray(content, 1,).forEach((rowColumnContent, j,) => {
-            if (rowColumnContent == null)
-                rowContent[j] = <div key={`table content (empty ${rowContentKey} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
-            else
-                rowContent[j] = <div key={`table content (${rowContentKey} ${i + 1}-${j + 2})`} className={`tcell${additionalClasses.get(j,)}`}>{rowColumnContent}</div>
-        },)
-
-        tableContent[i] =
-            <div key={`table row content (${rowContentKey} ${i + 1})`} className={`trow table-row-${getInHtml(rowContentKey,)}`}>{rowContent}</div>
-    },)
-    return <div className="tcontent">{tableContent}</div>
+/** @reactComponent */
+function TableHeader({associatedClass, headers,}: TableHeaderProperties,) {
+    return <div className="theader sticky-top">{headers.map((it, i,) =>
+        <HeaderOrFooterContent key={`table header # ${i}`} type="header" content={it} associatedClass={associatedClass.get(i,)} tooltip-placement="bottom"/>
+    ,)}</div>
 }
 
-function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [CollectionHolder<string>, CollectionHolder<SingleHeaderContent>,]>,) {
-    const columns = new Array<ReactJSXElement>(headers.length,)
-    headers.forEach((it, i,) => {
-        const elementId = `${getHeaderKey(it,)}-footer`
-        columns[i] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses.get(i,)}`}>
-            <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
-            <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
-        </div>
-    },)
 
-    return <div className="tfooter mb-2">{columns}</div>
+interface TableContentProperties<CONTENT extends ContentOnATable, >
+    extends ReactProperties {
+
+    readonly associatedClass: CollectionHolder<string>
+    readonly items: CollectionHolder<CONTENT>
+    readonly contents: CollectionHolder<CollectionHolder<ReactElement>>
+    readonly onRowClicked: (content: CONTENT,) => void
+
 }
 
-function HeaderTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
-    assert(typeof children != 'string', 'No tooltip can be displayed on a header that is a string.',)
+/** @reactComponent */
+function TableContent<const CONTENT extends ContentOnATable, >({associatedClass, items, contents, onRowClicked,}: TableContentProperties<CONTENT>,) {
+    return <div className="tcontent">{contents.map((content, i,) => {
+        const {englishName, englishNameInHtml,} = items.get(i,)
 
-    const tooltip = children.tooltip
+        return <div key={`table row content (${englishName} ${i + 1})`} className={`trow table-row-${englishNameInHtml}`}
+                    onClick={() => onRowClicked(items.get(i,),)}>{content.map((rowColumnContent, j,) =>
+            rowColumnContent == null
+                ? <div key={`table content (empty ${englishName} ${i + 1}-${j + 2})`} className="tcell empty-table-rowColumn-content-container"/>
+                : <div key={`table content (${englishName} ${i + 1}-${j + 2})`} className={`tcell ${associatedClass.get(j,)}`}>{rowColumnContent}</div>,)
+        }</div>
+    },)}</div>
+}
+
+
+interface TableFooterProperties
+    extends ReactProperties {
+
+    readonly associatedClass: CollectionHolder<string>
+    readonly headers: CollectionHolder<SingleHeaderContent>
+
+}
+
+/** @reactComponent */
+function TableFooter({associatedClass, headers,}: TableFooterProperties,) {
+    return <div className="tfooter mb-2">{headers.map((it, i,) =>
+        <HeaderOrFooterContent key={`table footer #${i + 1}`} type="footer" content={it} associatedClass={associatedClass.get(i,)} tooltip-placement="top"/>
+    ,)}</div>
+}
+
+
+interface HeaderOrFooterContentProperties
+    extends ReactProperties {
+
+    readonly type: | 'header' | 'footer'
+
+    readonly content: SingleHeaderContent
+
+    readonly associatedClass: string
+
+    readonly 'tooltip-placement': Extract<TooltipFromBootstrap.PopoverPlacement, | 'top' | 'bottom'>
+
+}
+
+/** @reactComponent */
+function HeaderOrFooterContent(properties: HeaderOrFooterContentProperties,) {
+    const htmlElement = useRef<HTMLDivElement>(null,)
+    const {content, associatedClass,} = properties
+    if (typeof content === 'string')
+        return <div id={content} className={`tcell ${associatedClass}`}>{content}</div>
+
+    const {key, tooltip,} = content
     if (tooltip == null)
-        return null
-    return <Tooltip option={{title: tooltip, placement: 'bottom',}} reference={elementId}/>
+        if ('element' in content)
+            return <div id={key} className={`tcell ${associatedClass}`}>{content.element}</div>
+        else
+            return <div id={key} className={`tcell ${associatedClass}`}>
+                <Image source={content.path} fallbackName={content.alt}/>
+            </div>
+
+    const tooltipPlacement = properties['tooltip-placement']
+    if ('element' in content)
+        return <div ref={htmlElement} id={key} className={`tcell ${associatedClass}`}>
+            <Tooltip option={{title: tooltip, placement: tooltipPlacement,}} reference={htmlElement}/>
+            {content.element}
+        </div>
+    return <div ref={htmlElement} id={key} className={`tcell ${associatedClass}`}>
+        <Tooltip option={{title: tooltip, placement: tooltipPlacement,}} reference={htmlElement}/>
+        <Image source={content.path} fallbackName={content.alt}/>
+    </div>
 }
 
-function FooterTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
-    assert(typeof children != 'string', 'No tooltip can be displayed on a footer that is a string.',)
 
-    const tooltip = children.tooltip
-    if (tooltip == null)
-        return null
-    return <Tooltip option={{title: tooltip, placement: 'top',}} reference={elementId}/>
-}
-
-function HeaderOrFooterContent({children,}: SimpleReactPropertiesWithChildren<SingleHeaderContent>,) {
-    if (typeof children == 'string')
-        return <>{children}</>
-    if ('element' in children)
-        return children.element
-    return <Image source={children.path} fallbackName={children.alt}/>
-}
-
-function TableCaption({children,}: SimpleReactPropertiesWithChildren<ReactElementOrString>,) {
+/** @reactComponent */
+function TableCaption({children,}: ReactPropertiesWithChildren<ReactElementOrString>,) {
     if (children == null)
         return null
     return <small className="tcaption alert alert-info flex-grow-1 py-2" role="alert">{children}</small>
@@ -134,58 +176,32 @@ function TableCaption({children,}: SimpleReactPropertiesWithChildren<ReactElemen
 
 
 /**
- * Get the header key from either a {@link String} or a {@link SimpleHeader}
- *
- * @param header The header to retrieve its key
- */
-function getHeaderKey(header: SingleHeaderContent,): string {
-    return typeof header == 'string' ? header : header.key
-}
-
-/**
  * Get the classes with a space before and between the values
  *
- * @param interpreter The {@link AppInterpreterWithTable} to retrieve its possible classes
  * @param options The displayed options in the table
  * @private
  */
-function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<string> {
-    if (getAdditionalClass == null)
-        return new GenericCollectionHolder(Array.from({length: options.length,}, () => EMPTY_STRING,),)
-    return options.map(it => joinToStringByArray(getAdditionalClass(it,), SPACE, SPACE, EMPTY_STRING,),)
+function retrieveAssociatedClass<const OPTION extends TableOption, >(options: CollectionHolder<OPTION>,): CollectionHolder<string> {
+    return options.map(it => it.associatedClass,)
 }
 
 /**
  * Retrieve the {@link SingleTableContent content} of the {@link interpreter} into a {@link CollectionHolder}
  *
- * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
+ * @param items   The values to generate the table content
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleTableContent> {
-    return content.map(contentValue => {
-        const tableContent: SingleTableContent = [contentValue.englishName,]
-        options.forEach(option =>
-            forEachByArray(createTableContent(contentValue, option,), it => tableContent.push(it,),),)
-        return tableContent
-    },)
+function retrieveContent<const CONTENT extends ContentOnATable, const OPTION extends TableOption<CONTENT>, >(items: CollectionHolder<CONTENT>, options: CollectionHolder<OPTION>,): CollectionHolder<CollectionHolder<ReactElement>> {
+    return items.map(contentValue => options.map(option => option.renderContent(contentValue,),),)
 }
 
 /**
- * Retrieve the {@link SingleHeaderContent header} of the {@link interpreter} into an{@link ReadonlyArray array}
+ * Retrieve the {@link SingleHeaderContent header} from the given {@link options}
  *
- *
- * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
  * @param options The displayed options in the table
  * @private
  */
-function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: CollectionHolder<Enumerable>,): CollectionHolder<SingleHeaderContent> {
-    const headerContent: MutableArray<SingleHeaderContent> = []
-    options.forEach(it => {
-        const tableHeader = createTableHeader(it,)
-        if (tableHeader == null)
-            return
-        headerContent.push(tableHeader,)
-    },)
-    return new GenericCollectionHolder(headerContent,)
+function retrieveHeader<const OPTION extends TableOption, >(options: CollectionHolder<OPTION>,): CollectionHolder<SingleHeaderContent> {
+    return options.map(it => it.renderHeader(),)
 }

@@ -1,9 +1,7 @@
-import type {MutableArray, NullOrString}    from '@joookiwi/type'
-import type {RouteObject}                   from 'react-router/dist'
-import {findFirstOrNullByArray, mapByArray} from '@joookiwi/collection'
-import {RouterProvider}                     from 'react-router/dist'
-import {createHashRouter}                   from 'react-router-dom/dist'
-import {Suspense}                           from 'react'
+import type {MutableArray, NullOrString}  from '@joookiwi/type'
+import type {RouteObject}                 from 'react-router'
+import {createHashRouter, RouterProvider} from 'react-router'
+import {Suspense}                         from 'react'
 
 import PageLayout                    from 'app/_PageLayout'
 import LoadingApp                    from 'app/LoadingApp'
@@ -17,6 +15,7 @@ import {redirectToByUrl}             from 'route/method/redirectTo.byUrl'
 import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
 import {Empty}                       from 'util/emptyVariables'
+import {ArrayAsCollection}           from 'util/collection/ArrayAsCollection'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
@@ -30,7 +29,9 @@ import GameStyleCompanion = GameStyles.Companion
 import LanguageCompanion =  ProjectLanguages.Companion
 import TimeCompanion =      Times.Companion
 
-const homeRoute = EveryRoutes.HOME
+const home =         EveryRoutes.HOME
+const all =          new ArrayAsCollection(ALL,)
+const allLanguages = new ArrayAsCollection(ALL_LANGUAGES,)
 
 // const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
@@ -43,7 +44,7 @@ const homeRoute = EveryRoutes.HOME
  *
  * At the root it has a "/"
  * and then the {@link ProjectLanguages project language} {@link ProjectLanguages.acronym acronym}
- * in parallel to the {@link EveryRoutes route instances} {@link SimpleRoute.path basic path}.
+ * in parallel to the {@link EveryRoutes route instances} {@link Route.path path}.
  *
  * If the path is correct for the {@link ProjectLanguages language},
  * then the {@link EveryRoutes route instances}'s values are processed with the mutation
@@ -56,27 +57,25 @@ const router = createHashRouter([{
     path: '/',
     id: 'root',
     element: <PageLayout/>,
+    HydrateFallback: LoadingApp,//TODO change the loading app to have a different visual than afterward
     children: [
-        new StraightRouteObject('/', () => redirectTo(homeRoute,),),
+        new StraightRouteObject('/', () => redirectTo(home,),),
         //region -------------------- Path from route path --------------------
 
-        ...mapByArray(ALL, it => new StraightRouteObject(it.urlValue, () => redirectTo(it,),),),
+        ...all.map(it => new StraightRouteObject(it.urlValue, () => redirectTo(it,),),),
 
         //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
 
-        ...mapByArray<ProjectLanguages, RouteObject>(ALL_LANGUAGES, language => {
-            const pathFromLanguage = `/${language.projectAcronym}` as const
-            return {
-                path: pathFromLanguage,
-                id: `language-${language.projectAcronym}`,
-                children: mapByArray(ALL, it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
-                loader() {
-                    LanguageCompanion.current = language
-                    return null
-                },
-            }
-        },),
+        ...allLanguages.map<RouteObject>(language => ({
+            path: language.projectAcronym,
+            id: `language-${language.projectAcronym}`,
+            children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
+            loader() {
+                LanguageCompanion.current = language
+                return null
+            },
+        }),),
 
         //endregion -------------------- Path from language --------------------
         new StraightFallbackRouteObject(EMPTY_STRING, it => redirectToByUrl(it,),),
@@ -84,16 +83,23 @@ const router = createHashRouter([{
 } satisfies RouteObject,], {
     basename: '/',
     patchRoutesOnNavigation: it => resolveLazyRoute(it.path, it.patch,),
+    future: {
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_relativeSplatPath: true,
+        v7_skipActionErrorRevalidation: true,
+    },
 },)
 
 /**
- * Add the {@link SimpleRoute route found} if it exists by the {@link path} received
+ * Add the {@link Route} if it exists by the {@link path} received
  *
  * @param path   The path to find a route
- * @param action The action to add a {@link RouteObject} for the {@link SimpleRoute route found}
+ * @param action The action to add a {@link RouteObject} for the {@link Route}
  */
 function resolveLazyRoute(path: string, action: (routeId: NullOrString, children: MutableArray<RouteObject>,) => void,): void {
-    const route = findFirstOrNullByArray(ALL_ROUTES, it => path.endsWith(it.path,),)
+    const route = new ArrayAsCollection(ALL_ROUTES,).findFirstOrNull(it => path.endsWith(it.path,),)
     if (route == null)
         return
 
@@ -124,7 +130,7 @@ function resolveLazyRoute(path: string, action: (routeId: NullOrString, children
 
 /** @reactComponent */
 export default function Routes() {
-    return <RouterProvider router={router} fallbackElement={<LoadingApp/>}/>//TODO change the loading app to have a different visual than afterward
+    return <RouterProvider router={router}/>
 }
 
 // @ts-ignore: TODO remove once the application is more complete

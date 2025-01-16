@@ -1,19 +1,13 @@
 import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
-import type {Array}            from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
-import {filterByArray}         from '@joookiwi/collection'
 
-import type {ThemeAppProperties}      from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {Themes}                  from 'core/theme/Themes'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {ThemeAppProperties} from 'app/AppProperties.types'
+import type {Themes}             from 'core/theme/Themes'
+import type {GameCollection}     from 'util/collection/GameCollection'
+import type {ReactProperties}    from 'util/react/ReactProperties'
 
-import SubMainContainer                                  from 'app/_SubMainContainer'
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
@@ -21,15 +15,21 @@ import {ThemeGames}                                      from 'app/property/Them
 import {ThemeTypes}                                      from 'app/property/ThemeTypes'
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
+import UnfinishedText                                    from 'app/tools/text/UnfinishedText'
 import Table                                             from 'app/tools/table/Table'
+import AppTitle                                          from 'app/util/AppTitle'
+import CardList                                          from 'app/util/CardList'
 import List                                              from 'app/util/List'
-import CardList                                          from 'app/withInterpreter/CardList'
-import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
+import PageTitle                                         from 'app/util/PageTitle'
+import PageViewChanger                                   from 'app/util/PageViewChanger'
+import SubMain                                           from 'app/util/SubMain'
 import {Games}                                           from 'core/game/Games'
 import GameImage                                         from 'core/game/component/GameImage'
 import EndlessMarioImage                                 from 'core/theme/component/EndlessMarioImage'
 import ThemeImage                                        from 'core/theme/component/ThemeImage'
 import ThemeTypeImages                                   from 'core/theme/component/ThemeTypeImages'
+import DisplayButtonGroup                                from 'display/DisplayButtonGroup'
+import {ViewDisplays}                                    from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import NameComponent                                     from 'lang/name/component/Name.component'
 
@@ -37,133 +37,60 @@ import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
 
-class ThemeAppInterpreter
-    implements AppInterpreterWithTable<Themes, ThemeAppOption> {
+//region -------------------- Import from deconstruction --------------------
 
-    //region -------------------- Fields --------------------
+const {LIST, CARD,} = ViewDisplays
 
-    readonly #type
-    readonly #games
+//endregion -------------------- Import from deconstruction --------------------
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(type: ThemeTypes, games: GameCollection,) {
-        this.#type = type
-        this.#games = games
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        return filterByArray(this.#type.content, ({reference,},) =>
-            games.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        const type = this.#type
-        if (type === ThemeTypes.COURSE)
-            return {
-                default: 1,
-                small: 2,
-                medium: 5,
-            } as const satisfies DimensionOnList
-        if (type === ThemeTypes.WORLD)
-            return {
-                default: 1,
-                small: 2,
-                medium: 4,
-            } as const satisfies DimensionOnList
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(enumerable: Themes,) {
-        return <div className="card-body" id={`theme-${enumerable.englishNameInHtml}`}>
-            <div className="col-2">{CommonOptions.get.getGameContent(enumerable,)}</div>
-            <div className="images-container col-7">
-                <ThemeImage reference={enumerable} isSmallPath/>
-                <EndlessMarioImage reference={enumerable}/>
-            </div>
-            <div className="col-2"><ThemeTypeImages reference={enumerable}/></div>
-        </div>
-    }
-
-    //endregion -------------------- Card  --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableCaption = gameContentTranslation('theme.all.all',) satisfies ReactElementOrString
-
-    public get tableOptions(): Array<ThemeAppOption> {
-        return [
-            ThemeAppOption.ICON,
-            ThemeAppOption.ENDLESS_MARIO_ICON,
-            ThemeAppOption.NAME,
-            ThemeAppOption.NIGHT_EFFECT,
-        ]
-    }
-
-
-    public createTableContent(content: Themes, option: ThemeAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: ThemeAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
-
-}
+const options = ThemeAppOption.CompanionEnum.get.values
 
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {
     const routeName = type.routeName
-    const viewDisplayAndRouteName = [
-        [ViewDisplays.SIMPLE_LIST, `${routeName} (list)`,],
-        [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
-        [ViewDisplays.TABLE, `${routeName} (table)`,],
-    ] as const satisfies Array<ViewAndRouteName>
 
-    return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('theme.all.all',)}
-                             asideContent={<ThemeAsideContent type={type} games={games}/>}>
-        <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
-    </SubMainContainer>
+    return <SubMain partial-id="theme" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('theme.all.all',)}</AppTitle>
+        <PageTitle value={gameContentTranslation('theme.singular',)}/>
+        <PageViewChanger>
+            <TypeAsideContent type={type}/>
+            <GameAsideContent type={type} games={games}/>
+            <DisplayButtonGroup list={`${routeName} (list)`} card={`${routeName} (card)`} table={`${routeName} (table)`} current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>theme description</UnfinishedText>{/*TODO add description*/}
+        <section id="theme-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
+        </section>
+    </SubMain>
 }
+
+//region -------------------- Sub content --------------------
 
 /** @reactComponent */
 function SubContent({viewDisplay, type, games,}: Omit<ThemeAppProperties, | 'gameStyles' | 'times'>,) {
-    const appInterpreter = new ThemeAppInterpreter(type, games,)
+    const items = type.content.filter(({reference,},) =>
+        games.hasAnyIn(reference,),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <ThemeList items={appInterpreter.content}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="theme" interpreter={appInterpreter}/>
-    return <Table id="theme-table" interpreter={appInterpreter}/>
+    if (viewDisplay === LIST)
+        return <ThemeList items={items}/>
+    if (viewDisplay === CARD)
+        return <ThemeCardList items={items} type={type}/>
+    return <ThemeTable items={items}/>
 }
 
-//region -------------------- List --------------------
 
-interface Theme_ListProperties
+interface Theme_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<Themes>
 
+    readonly type: ThemeTypes
+
 }
 
 /** @reactComponent */
-function ThemeList({items,}: Theme_ListProperties,) {
-    return <List partialId="theme" items={items} withSeparator>{it =>
+function ThemeList({items,}: Pick<Theme_SubContentProperties, 'items'>,) {
+    return <List partial-id="theme" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between align-items-center">
             <NameComponent id="theme-name" name={it.reference} popoverOrientation="right"/>
             <div className="images-container ms-1">
@@ -175,7 +102,50 @@ function ThemeList({items,}: Theme_ListProperties,) {
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function ThemeCardList({items, type,}: Theme_SubContentProperties,) {
+    if (type === ThemeTypes.COURSE)
+        return <CardList partial-id="courseTheme" items={items} default={1} small={2} medium={5}>{it =>
+            <>
+                <NameComponent id="course-theme-name" name={it.reference} popoverOrientation="left"/>
+                {CommonOptions.get.getGameContent(it,)}
+                <div className="d-flex flex-row flex-md-column flex-lg-row">
+                    <ThemeImage reference={it} isSmallPath/>
+                    <EndlessMarioImage reference={it}/>
+                </div>
+            </>
+        }</CardList>
+
+    if (type === ThemeTypes.WORLD)
+        return <CardList partial-id="worldTheme" items={items} default={1} small={2} medium={4}>{it =>
+            <>
+                <NameComponent id="world-theme-name" name={it.reference} popoverOrientation="left"/>
+                {CommonOptions.get.getGameContent(it,)}
+                <ThemeImage reference={it} isSmallPath/>
+            </>
+        }</CardList>
+
+    return <CardList partial-id="theme" items={items} default={1} small={2} medium={3} large={4} extra-extra-large={6}>{it =>
+        <>
+            <NameComponent id="theme-name" name={it.reference} popoverOrientation="left"/>
+            <div className="d-flex align-items-center justify-content-between">
+                <div className="col-2">{CommonOptions.get.getGameContent(it,)}</div>
+                <div className="col-7 d-flex flex-row flex-sm-column align-items-center justify-content-center">
+                    <ThemeImage reference={it} isSmallPath/>
+                    <EndlessMarioImage reference={it}/>
+                </div>
+                <div className="col-2"><ThemeTypeImages reference={it}/></div>
+            </div>
+        </>
+    }</CardList>
+}
+
+/** @reactComponent */
+function ThemeTable({items,}: Pick<Theme_SubContentProperties, 'items'>,) {
+    return <Table id="theme-table" items={items} options={options} caption={gameContentTranslation('theme.all.all',)} headersColor="info"/>
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Aside content --------------------
 
 interface ThemeAsideContentProperties
@@ -188,23 +158,14 @@ interface ThemeAsideContentProperties
 }
 
 /** @reactComponent */
-function ThemeAsideContent({type, games,}: ThemeAsideContentProperties,) {
-    return <div className="theme-asideContent-container">
-        <TypeAsideContent type={type}/>
-        <div className="d-inline mx-1"/>
-        <GameAsideContent type={type} games={games}/>
-    </div>
-}
-
-/** @reactComponent */
 function TypeAsideContent({type,}: Pick<ThemeAsideContentProperties, 'type'>,) {
-    return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTheme" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+    return <div id="theme-linkButton-container" className="btn-group-vertical btn-group-sm">
+        <LinkButton partial-id="allTheme" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="courseTheme" routeName={type.courseRouteName} color={type.courseColor}>
+            <LinkButton partial-id="courseTheme" routeName={type.courseRouteName} color={type.courseColor}>
                 <Image id="courseTheme-button-image" file={COURSE_THEME_IMAGE_FILE} className="theme-button-image"/>
             </LinkButton>
-            <LinkButton partialId="worldTheme" routeName={type.worldRouteName} color={type.worldColor}>
+            <LinkButton partial-id="worldTheme" routeName={type.worldRouteName} color={type.worldColor}>
                 <Image id="worldTheme-button-image" file={WORLD_THEME_IMAGE_FILE} className="theme-button-image"/>
             </LinkButton>
         </div>
@@ -218,11 +179,11 @@ function GameAsideContent({type, games,}: ThemeAsideContentProperties,) {
         : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="theme-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type,)} color={themeGame.smm1Or3dsColor}>
+        <LinkButton partial-id="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type,)} color={themeGame.smm1Or3dsColor}>
             <GameImage reference={SMM1}/>
             <GameImage reference={SMM3DS}/>
         </LinkButton>
-        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type,)} color={themeGame.smm2Color}>
+        <LinkButton partial-id="smm2Game" routeName={themeGame.getSmm2RouteName(type,)} color={themeGame.smm2Color}>
             <GameImage reference={SMM2}/>
         </LinkButton>
     </div>

@@ -1,11 +1,13 @@
-import type {Array, NullOr} from '@joookiwi/type'
-import {Enum}               from '@joookiwi/enumerable'
+import type {NullOr}           from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
 import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
 import {Limits}              from 'core/limit/Limits'
+import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
 import ALL_LIMITS =    Limits.ALL
@@ -22,7 +24,7 @@ export abstract class LimitTypes
     public static readonly ALL = new class LimitTypes_All extends LimitTypes {
 
         public override get content() {
-            return ALL_LIMITS
+            return new ArrayAsCollection(ALL_LIMITS,)
         }
 
 
@@ -34,7 +36,7 @@ export abstract class LimitTypes
     public static readonly PLAY = new class LimitTypes_Play extends LimitTypes {
 
         public override get content() {
-            return PLAY_LIMITS
+            return new ArrayAsCollection(PLAY_LIMITS,)
         }
 
 
@@ -54,7 +56,7 @@ export abstract class LimitTypes
     public static readonly EDITOR = new class LimitTypes_Editor extends LimitTypes {
 
         public override get content() {
-            return EDITOR_LIMITS
+            return new ArrayAsCollection(EDITOR_LIMITS,)
         }
 
 
@@ -120,12 +122,8 @@ export abstract class LimitTypes
         return this.#routeName
     }
 
-    /**
-     * Retrieve the content applicable to the {@link LimitTypes}
-     *
-     * @see AppInterpreter.content
-     */
-    public abstract get content(): Array<Limits>
+    /** Retrieve the content applicable to the {@link LimitTypes} */
+    public abstract get content(): CollectionHolder<Limits>
 
     //region -------------------- Link button methods --------------------
 

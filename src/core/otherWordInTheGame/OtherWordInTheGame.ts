@@ -5,9 +5,10 @@ import type {OtherPluralWordInTheGame} from 'core/otherWordInTheGame/OtherPlural
 import type {NameTrait}                from 'lang/name/NameTrait'
 
 export interface OtherWordInTheGame
-    extends NameTrait<string>, GameProperty {
+    extends NameTrait<string>,
+        GameProperty {
 
-    get pluralForm(): NullOr<OtherPluralWordInTheGame>
+    readonly pluralForm: NullOr<OtherPluralWordInTheGame>
 
 }
 

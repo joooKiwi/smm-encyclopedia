@@ -5,10 +5,10 @@ import type {BootstrapInstanceDeclaration}                                from '
 
 import {assert} from 'util/utilitiesMethods'
 
-export abstract class BootstrapInstance<const out INSTANCE extends BaseComponent,
-    const out OPTION extends ComponentOptions,
-    const out ELEMENT extends HTMLElement = HTMLElement,
-    const out ID extends string = string, >
+export abstract class BootstrapInstance<const INSTANCE extends BaseComponent,
+    const OPTION extends ComponentOptions,
+    const ELEMENT extends HTMLElement = HTMLElement,
+    const ID extends string = string, >
     implements BootstrapInstanceDeclaration<INSTANCE, ELEMENT, ID> {
 
     //region -------------------- Fields --------------------

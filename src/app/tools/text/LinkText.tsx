@@ -1,15 +1,15 @@
 import type {NullableString} from '@joookiwi/type'
-import {Link}                from 'react-router-dom'
+import {Link}                from 'react-router'
 
-import type {PossibleRouteName}                            from 'route/EveryRoutes.types'
-import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {PossibleRouteName}           from 'route/EveryRoutes.types'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {routeFromName} from 'route/method/route.fromName'
 
 interface LinkTextProperties
-    extends ReactProperties {
+    extends ReactPropertiesWithChildren<ReactElementOrStringOrArray> {
 
-    readonly partialId: string
+    readonly 'partial-id': string
 
     readonly routeName: NullableString<PossibleRouteName>
 
@@ -22,8 +22,9 @@ interface LinkTextProperties
  *
  * @reactComponent
  */
-export default function LinkText({partialId, routeName, color, children,}: ReactPropertiesWithChildren<LinkTextProperties, ReactElementOrStringOrArray>,) {
-    const id = `${partialId}-text`
+export default function LinkText(properties: LinkTextProperties,) {
+    const {routeName, color, children,} = properties
+    const id = `${properties['partial-id']}-text`
 
     if (routeName == null)
         return <span id={id} className="text-decoration-underline">{children}</span>

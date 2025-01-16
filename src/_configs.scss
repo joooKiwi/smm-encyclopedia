@@ -1,3 +1,6 @@
+@import "~bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
 @import "functions";
 @import "variables";
 @import "~bootstrap/scss/maps";
@@ -7,7 +10,7 @@
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
+//@import "~bootstrap/scss/images";
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 //@import "~bootstrap/scss/tables";
@@ -25,18 +28,30 @@
 @import "~bootstrap/scss/badge";
 @import "~bootstrap/scss/alert";
 //@import "~bootstrap/scss/progress";
-//@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/list-group";
 @import "~bootstrap/scss/close";
 //@import "~bootstrap/scss/toasts";
 @import "~bootstrap/scss/modal";
 @import "~bootstrap/scss/tooltip";
 @import "~bootstrap/scss/popover";
 //@import "~bootstrap/scss/carousel";
-//@import "~bootstrap/scss/spinners";
-//@import "~bootstrap/scss/offcanvas";
+@import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/offcanvas";
 //@import "~bootstrap/scss/placeholders";
 
-@import "~bootstrap/scss/helpers";
+//Originally in: "~bootstrap/scss/helpers"
+//@import "~bootstrap/scss/helpers/clearfix";
+@import "~bootstrap/scss/helpers/color-bg";
+@import "~bootstrap/scss/helpers/colored-links";
+//@import "~bootstrap/scss/helpers/focus-ring";
+//@import "~bootstrap/scss/helpers/icon-link";
+//@import "~bootstrap/scss/helpers/ratio";
+@import "~bootstrap/scss/helpers/position";
+//@import "~bootstrap/scss/helpers/stacks";
+@import "~bootstrap/scss/helpers/visually-hidden";
+//@import "~bootstrap/scss/helpers/stretched-link";
+//@import "~bootstrap/scss/helpers/text-truncation";
+@import "~bootstrap/scss/helpers/vr";
 
 @import "~bootstrap/scss/utilities/api";
 
@@ -103,6 +118,7 @@
 
   --pipe-image:                 url('resources/images/Pipe.tiff');
   --bullet-launcher-image:      url('resources/images/Bullet Launcher.tiff');
+  --twister-image:              url('resources/images/Twister.tiff');
   --tree-image:                 url('resources/images/Tree.tiff');
 
   --super-mushroom-image:       url('resources/images/Super Mushroom.tiff');
@@ -198,9 +214,17 @@
   //endregion -------------------- Z-index --------------------
   //region -------------------- Font-size --------------------
 
-  --bs-font-size-base:    #{$font-size-base};
+  --bs-font-size-base:    #{$font-size-base-original};
   --bs-font-size-sm:      #{$font-size-sm-original};
   --bs-font-size-lg:      #{$font-size-lg-original};
+
+  //--bs-h1-font-size:      #{$h1-font-size-original};
+  //--bs-h2-font-size:      #{$h2-font-size-original};
+  //--bs-h3-font-size:      #{$h3-font-size-original};
+  //--bs-h4-font-size:      #{$h4-font-size-original};
+  //--bs-h5-font-size:      #{$h5-font-size-original};
+  //--bs-h6-font-size:      #{$h6-font-size-original};
+
   --bs-small-font-size:   #{$small-font-size-original};
   --bs-sub-sup-font-size: #{$sub-sup-font-size-original};
 
@@ -1134,7 +1158,8 @@
   border-radius: var(--bs-border-circle-radius);
 }
 
-.btn.bi::before, .btn .bi, { margin-right: var(--bs-spacer-sm) }
+.btn.bi:has(span)::before,
+.btn .bi, { margin-right: var(--bs-spacer-sm) }
 
 //region -------------------- Button colors --------------------
 

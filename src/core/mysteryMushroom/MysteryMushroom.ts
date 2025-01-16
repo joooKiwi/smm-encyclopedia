@@ -9,93 +9,44 @@ import type {NameTrait}                                                         
 export interface MysteryMushroom
     extends NameTrait<string> {
 
-    get games(): MysteryMushroomGames
+    readonly games: MysteryMushroomGames
 
-    //region -------------------- Unlock properties --------------------
+    readonly conditionToUnlockIt: PossibleConditionToUnlockIt
+    readonly canBeUnlockedByAnAmiibo: boolean
 
-    get conditionToUnlockIt(): PossibleConditionToUnlockIt
+    readonly haveASoundEffectWhenCollected: BooleanOrNotApplicable
+    readonly gameOnSoundEffectWhenCollected: NullOr<GameReferences>
 
-    get canBeUnlockedByAnAmiibo(): boolean
+    readonly haveASoundEffectOnTaunt: BooleanOrNotApplicable
+    readonly gameOnSoundEffectOnTaunt: NullOr<GameReferences>
 
-    //endregion -------------------- Unlock properties --------------------
-    //region -------------------- Sound effect (when collected) --------------------
+    readonly haveASoundEffectOnMovement: BooleanOrNotApplicable
+    readonly translationKeyOnSoundEffectOnMovement: NullOr<SoundEffectOnMovement>
 
-    get haveASoundEffectWhenCollected(): BooleanOrNotApplicable
+    readonly haveASoundEffectOnJump: BooleanOrNotApplicable
+    readonly amountOnSoundEffectOnJump: NullOr<PossibleAmountOfSoundEffectOnJump>
+    readonly haveMultipleImagesOnJump: BooleanOrNotApplicable
+    readonly gameOnSoundEffectOnJump: NullOr<GameReferences>
 
-    get gameOnSoundEffectWhenCollected(): NullOr<GameReferences>
+    readonly haveASoundEffectOnGroundAfterJump: BooleanOrNotApplicable
+    readonly gameOnSoundEffectOnGroundAfterJump: NullOr<GameReferences>
 
-    //endregion -------------------- Sound effect (when collected) --------------------
-    //region -------------------- Sound effect (taunt) --------------------
+    readonly haveASoundEffectOnTurnAfterRun: BooleanOrNotApplicable
 
-    get haveASoundEffectOnTaunt(): BooleanOrNotApplicable
+    readonly haveASpecialMusicInStarMode: BooleanOrNotApplicable
+    readonly translationKeyOnSpecialMusicInStarMode: NullOr<SpecialMusicInStarMode>
+    readonly gameOnSpecialMusicInStarMode: NullOr<GameReferences>
 
-    get gameOnSoundEffectOnTaunt(): NullOr<GameReferences>
+    readonly haveASoundEffectOnGoalPole: BooleanOrNotApplicable
+    readonly simpleTranslationKeyOnSoundEffectOnGoalPole: NullOr<AdditionalSoundOnGoalPole>
+    readonly translationKeyOnSoundEffectOnGoalPole: PossibleTranslationKeyOnGoalPole
+    readonly typeOfMusicOnGoalPole: NullOr<TypeOfSoundOnGoalPole>
+    readonly gameOnSoundEffectOnGoalPole: NullOr<GameReferences>
 
-    //endregion -------------------- Sound effect (taunt) --------------------
-    //region -------------------- Sound effect (movement) --------------------
-
-    get haveASoundEffectOnMovement(): BooleanOrNotApplicable
-
-    get translationKeyOnSoundEffectOnMovement(): NullOr<SoundEffectOnMovement>
-
-    //endregion -------------------- Sound effect (movement) --------------------
-    //region -------------------- Sound effect (jump) --------------------
-
-    get haveASoundEffectOnJump(): BooleanOrNotApplicable
-
-    get amountOnSoundEffectOnJump(): NullOr<PossibleAmountOfSoundEffectOnJump>
-
-    get haveMultipleImagesOnJump(): BooleanOrNotApplicable
-
-    get gameOnSoundEffectOnJump(): NullOr<GameReferences>
-
-    //endregion -------------------- Sound effect (jump) --------------------
-    //region -------------------- Sound effect (ground after jump) --------------------
-
-    get haveASoundEffectOnGroundAfterJump(): BooleanOrNotApplicable
-
-    get gameOnSoundEffectOnGroundAfterJump(): NullOr<GameReferences>
-
-    //endregion -------------------- Sound effect (ground after jump) --------------------
-    //region -------------------- Sound effect (turn after run) --------------------
-
-    get haveASoundEffectOnTurnAfterRun(): BooleanOrNotApplicable
-
-    //endregion -------------------- Sound effect (turn after run) --------------------
-    //region -------------------- Special music (star mode) --------------------
-
-    get haveASpecialMusicInStarMode(): BooleanOrNotApplicable
-
-    get translationKeyOnSpecialMusicInStarMode(): NullOr<SpecialMusicInStarMode>
-
-    get gameOnSpecialMusicInStarMode(): NullOr<GameReferences>
-
-    //endregion -------------------- Special music (star mode) --------------------
-    //region -------------------- Sound effect (goal pole) --------------------
-
-    get haveASoundEffectOnGoalPole(): BooleanOrNotApplicable
-
-    get simpleTranslationKeyOnSoundEffectOnGoalPole(): NullOr<AdditionalSoundOnGoalPole>
-
-    get translationKeyOnSoundEffectOnGoalPole(): PossibleTranslationKeyOnGoalPole
-
-    get typeOfMusicOnGoalPole(): NullOr<TypeOfSoundOnGoalPole>
-
-    get gameOnSoundEffectOnGoalPole(): NullOr<GameReferences>
-
-    //endregion -------------------- Sound effect (goal pole) --------------------
-    //region -------------------- Sound effect (death) --------------------
-
-    get haveASoundEffectOnDeath(): BooleanOrNotApplicable
-
-    get simpleTranslationKeyOnSoundEffectOnDeath(): NullOr<AdditionalSoundOnDeath>
-
-    get translationKeyOnSoundEffectOnDeath(): PossibleTranslationKeyOnDeath
-
-    get typeOfSoundEffectOnDeath(): NullOr<TypeOfSoundOnDeath>
-
-    get gameOnSoundEffectOnDeath(): NullOr<GameReferences>
-
-    //endregion -------------------- Sound effect (death) --------------------
+    readonly haveASoundEffectOnDeath: BooleanOrNotApplicable
+    readonly simpleTranslationKeyOnSoundEffectOnDeath: NullOr<AdditionalSoundOnDeath>
+    readonly translationKeyOnSoundEffectOnDeath: PossibleTranslationKeyOnDeath
+    readonly typeOfSoundEffectOnDeath: NullOr<TypeOfSoundOnDeath>
+    readonly gameOnSoundEffectOnDeath: NullOr<GameReferences>
 
 }

@@ -1,9 +1,10 @@
 import type {UndefinedOrBoolean} from '@joookiwi/type'
-import {mapByArray}              from '@joookiwi/collection'
 
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
 import {Games} from 'core/game/Games'
+
+import ALL = Games.ALL
 
 /**
  * A map made to be handled the same way as a {@link Map},
@@ -11,7 +12,7 @@ import {Games} from 'core/game/Games'
  *
  * @see GameCollection
  */
-export class GameMap<const out REFERENCE extends GameProperty = GameProperty, >
+export class GameMap<const REFERENCE extends GameProperty = GameProperty, >
     implements ReadonlyMap<Games, boolean> {
 
     //region -------------------- Fields --------------------
@@ -25,7 +26,7 @@ export class GameMap<const out REFERENCE extends GameProperty = GameProperty, >
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(mapByArray(Games.ALL, it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(ALL.map(it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

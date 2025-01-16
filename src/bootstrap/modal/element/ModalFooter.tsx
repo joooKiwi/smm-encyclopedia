@@ -1,8 +1,6 @@
-import type {ReactNode} from 'react'
-
-import type {ReactProperties}      from 'util/react/ReactProperties'
-import type {HTMLButtonProperties} from 'util/react/html/HTMLButtonProperties'
-import type {HTMLDivProperties}    from 'util/react/html/HTMLDivProperties'
+import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {HTMLButtonProperties}                         from 'util/react/html/HTMLButtonProperties'
+import type {HTMLDivProperties}                            from 'util/react/html/HTMLDivProperties'
 
 import {contentTranslation} from 'lang/components/translationMethods'
 import {Empty}              from 'util/emptyVariables'
@@ -20,9 +18,10 @@ interface ModalFooterProperties
 }
 
 interface ModalSuccessButtonProperties
-    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
+    extends ReactPropertiesWithChildren<NonNullReactElement>,
+        Omit<HTMLButtonProperties, 'type'> {
 
-    readonly children: ReactNode
+    readonly children: NonNullReactElement
 
 }
 

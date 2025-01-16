@@ -12,7 +12,7 @@ import type {PossibleSoundEffectName as PossibleSoundEffectName_SingleSoundEffec
  */
 export interface Music<out ALL extends Array<MusicSoundFile> = Array<MusicSoundFile>, > {
 
-    get everyMusics(): ALL
+    readonly everyMusics: ALL
 
 }
 

@@ -1,37 +1,38 @@
 import type {Array, MutableArray, Nullable} from '@joookiwi/type'
-import {forEachByArray, hasByArray}         from '@joookiwi/collection'
+import {forEachByArray}                     from '@joookiwi/collection'
 
 import type {BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer} from 'core/music/backgroundMusic/BackgroundMusic'
 import type {SingleBackgroundMusic}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 import {SingleBackgroundMusicFactory} from 'core/music/backgroundMusic/SingleBackgroundMusic.factory'
+import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
-/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used and better */
-export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer,
-    const out SMB_MUSIC extends PossibleSMB_RegularMusic_GroupContainer,
-    const out SMB_FAST_MUSIC extends PossibleSMB_FastMusic_GroupContainer,
-    const out LINK_MUSIC extends PossibleLink_RegularMusic_GroupContainer,
-    const out LINK_FAST_MUSIC extends PossibleLink_FastMusic_GroupContainer,
-    const out SMB2_MUSIC extends PossibleSMB2_RegularMusic_GroupContainer,
-    const out SMB2_FAST_MUSIC extends PossibleSMB2_FastMusic_GroupContainer,
-    const out SMB3_EDITOR_MUSIC extends PossibleSMB3_EditorMusic_GroupContainer,
-    const out SMB3_MUSIC extends PossibleSMB3_RegularMusic_GroupContainer,
-    const out SMB3_FAST_MUSIC extends PossibleSMB3_FastMusic_GroupContainer,
-    const out SMW_EDITOR_MUSIC extends PossibleSMW_EditorMusic_GroupContainer,
-    const out SMW_MUSIC extends PossibleSMW_RegularMusic_GroupContainer,
-    const out SMW_YOSHI_SOUND extends PossibleSMW_RegularYoshiSound_GroupContainer,
-    const out SMW_FAST_MUSIC extends PossibleSMW_FastMusic_GroupContainer,
-    const out SMW_FAST_YOSHI_SOUND extends PossibleSMW_FastYoshiSound_GroupContainer,
-    const out NSMBU_EDITOR_MUSIC extends PossibleNSMBU_EditorMusic_GroupContainer,
-    const out NSMBU_MUSIC extends PossibleNSMBU_RegularMusic_GroupContainer,
-    const out NSMBU_YOSHI_SOUND extends PossibleNSMBU_RegularYoshiSound_GroupContainer,
-    const out NSMBU_FAST_MUSIC extends PossibleNSMBU_FastMusic_GroupContainer,
-    const out NSMBU_FAST_YOSHI_SOUND extends PossibleNSMBU_FastYoshiSound_GroupContainer,
-    const out SM3DW_EDITOR_MUSIC extends PossibleSM3DW_EditorMusic_GroupContainer,
-    const out SM3DW_MUSIC extends PossibleSM3DW_RegularMusic_GroupContainer,
-    const out SM3DW_UNDERWATER_MUSIC extends PossibleSM3DW_UnderwaterMusic_GroupContainer,
-    const out SM3DW_FAST_MUSIC extends PossibleSM3DW_FastMusic_GroupContainer,
-    const out SM3DW_FAST_UNDERWATER_MUSIC extends PossibleSM3DW_FastUnderwaterMusic_GroupContainer, >
+/** @deprecated The use of {@link Tracks} should be used instead */
+export class BackgroundMusicContainer<const SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer,
+    const SMB_MUSIC extends PossibleSMB_RegularMusic_GroupContainer,
+    const SMB_FAST_MUSIC extends PossibleSMB_FastMusic_GroupContainer,
+    const LINK_MUSIC extends PossibleLink_RegularMusic_GroupContainer,
+    const LINK_FAST_MUSIC extends PossibleLink_FastMusic_GroupContainer,
+    const SMB2_MUSIC extends PossibleSMB2_RegularMusic_GroupContainer,
+    const SMB2_FAST_MUSIC extends PossibleSMB2_FastMusic_GroupContainer,
+    const SMB3_EDITOR_MUSIC extends PossibleSMB3_EditorMusic_GroupContainer,
+    const SMB3_MUSIC extends PossibleSMB3_RegularMusic_GroupContainer,
+    const SMB3_FAST_MUSIC extends PossibleSMB3_FastMusic_GroupContainer,
+    const SMW_EDITOR_MUSIC extends PossibleSMW_EditorMusic_GroupContainer,
+    const SMW_MUSIC extends PossibleSMW_RegularMusic_GroupContainer,
+    const SMW_YOSHI_SOUND extends PossibleSMW_RegularYoshiSound_GroupContainer,
+    const SMW_FAST_MUSIC extends PossibleSMW_FastMusic_GroupContainer,
+    const SMW_FAST_YOSHI_SOUND extends PossibleSMW_FastYoshiSound_GroupContainer,
+    const NSMBU_EDITOR_MUSIC extends PossibleNSMBU_EditorMusic_GroupContainer,
+    const NSMBU_MUSIC extends PossibleNSMBU_RegularMusic_GroupContainer,
+    const NSMBU_YOSHI_SOUND extends PossibleNSMBU_RegularYoshiSound_GroupContainer,
+    const NSMBU_FAST_MUSIC extends PossibleNSMBU_FastMusic_GroupContainer,
+    const NSMBU_FAST_YOSHI_SOUND extends PossibleNSMBU_FastYoshiSound_GroupContainer,
+    const SM3DW_EDITOR_MUSIC extends PossibleSM3DW_EditorMusic_GroupContainer,
+    const SM3DW_MUSIC extends PossibleSM3DW_RegularMusic_GroupContainer,
+    const SM3DW_UNDERWATER_MUSIC extends PossibleSM3DW_UnderwaterMusic_GroupContainer,
+    const SM3DW_FAST_MUSIC extends PossibleSM3DW_FastMusic_GroupContainer,
+    const SM3DW_FAST_UNDERWATER_MUSIC extends PossibleSM3DW_FastUnderwaterMusic_GroupContainer, >
     implements BackgroundMusic<SMB_EDITOR_MUSIC, SMB_MUSIC, SMB_FAST_MUSIC, LINK_MUSIC, LINK_FAST_MUSIC, SMB2_MUSIC, SMB2_FAST_MUSIC, SMB3_EDITOR_MUSIC, SMB3_MUSIC, SMB3_FAST_MUSIC, SMW_EDITOR_MUSIC,
         SMW_MUSIC, SMW_YOSHI_SOUND, SMW_FAST_MUSIC, SMW_FAST_YOSHI_SOUND, NSMBU_EDITOR_MUSIC, NSMBU_MUSIC, NSMBU_YOSHI_SOUND, NSMBU_FAST_MUSIC, NSMBU_FAST_YOSHI_SOUND, SM3DW_EDITOR_MUSIC,
         SM3DW_MUSIC, SM3DW_UNDERWATER_MUSIC, SM3DW_FAST_MUSIC, SM3DW_FAST_UNDERWATER_MUSIC> {
@@ -102,13 +103,13 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
         const regularMusic = this.regularMusic
-        const regularMusics = regularMusic.all
+        const regularMusics = new ArrayAsCollection(regularMusic.all,)
         forEachByArray(this.editorMusic.all, it => {
             if (it == null)
                 return
-            if (hasByArray(regularMusics, it,))
+            if (regularMusics.has(it,))
                 return
-            if (hasByArray(all, it,))
+            if (new ArrayAsCollection(all,).has(it,))
                 return
             all.push(it,)
         },)
@@ -126,7 +127,7 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
         function add<const T, >(array: MutableArray<T>, value: Nullable<T>,) {
             if (value == null)
                 return
-            if (hasByArray(array, value,))
+            if (new ArrayAsCollection(array,).has(value,))
                 return
             array.push(value,)
         }

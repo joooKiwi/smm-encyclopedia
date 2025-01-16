@@ -1,10 +1,10 @@
-import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleChevrons_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
+import type {PossibleBraces_Collection, PossibleBrackets_Collection, PossibleChevrons_Collection, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingChevron, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Collection, PossibleNumbers_Collection, PossibleParentheses_Collection, PossiblePoint, PossiblePoints_Collection, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Collection, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingChevron, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Collection, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 
 export interface CharactersTrait<B extends boolean = boolean, > {
 
     //region -------------------- Getter methods --------------------
 
-    get points(): PossiblePoints_Array
+    get points(): PossiblePoints_Collection
 
     get point(): PossiblePoint
 
@@ -24,47 +24,47 @@ export interface CharactersTrait<B extends boolean = boolean, > {
     get commercialAnd(): PossibleCommercialAnd
 
 
-    get parentheses(): PossibleParentheses_Array
+    get parentheses(): PossibleParentheses_Collection
 
     get startingParenthesis(): PossibleStartingParentheses
 
     get endingParenthesis(): PossibleEndingParentheses
 
 
-    get brackets(): PossibleBrackets_Array
+    get brackets(): PossibleBrackets_Collection
 
     get startingBrackets(): PossibleStartingBracket
 
     get endingBrackets(): PossibleEndingBracket
 
 
-    get braces(): PossibleBraces_Array
+    get braces(): PossibleBraces_Collection
 
     get startingBraces(): PossibleStartingBrace
 
     get endingBraces(): PossibleEndingBrace
 
 
-    get chevrons(): PossibleChevrons_Array
+    get chevrons(): PossibleChevrons_Collection
 
     get startingChevrons(): PossibleStartingChevron
 
     get endingChevrons(): PossibleEndingChevron
 
 
-    get slashes(): PossibleSlashes_Array
+    get slashes(): PossibleSlashes_Collection
 
     get slash(): PossibleSlash
 
     get verticalSlash(): PossibleVerticalSlash
 
 
-    get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Array
+    get romainLowercaseAlphabet(): PossibleLowercaseRomainAlphabet_Collection
 
-    get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Array
+    get romainUppercaseAlphabet(): PossibleUppercaseRomainAlphabet_Collection
 
 
-    get numbers(): PossibleNumbers_Array
+    get numbers(): PossibleNumbers_Collection
 
 
     character<C extends PossibleSingleCharacter, >(character: C,): VariableCharacterByCharacter<B, C>

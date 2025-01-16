@@ -9,13 +9,16 @@ import type {SingleSoundEffectMusic}                                   from 'cor
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 import type {CompanionEnumByReferenceSingleton}                        from 'util/enumerable/Singleton.types'
 
-import {IndividualMusics}         from 'core/music/IndividualMusics'
-import * as MusicCreator          from 'core/music/musicCreator'
-import * as FileCreator           from 'core/music/file/fileCreator'
-import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
-import type {Themes}              from 'core/theme/Themes'
-import {Import}                   from 'util/DynamicImporter'
-import {CompanionEnumByReference} from 'util/enumerable/companion/CompanionEnumByReference'
+import {BackgroundMusicContainer}                                          from 'core/music/backgroundMusic/BackgroundMusic.container'
+import {NonChangeableSoundEffectBackgroundMusicContainer}                  from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'
+import {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer} from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect.container'
+import {SingleSoundEffectMusicContainer}                                   from 'core/music/soundEffect/SingleSoundEffectMusic.container'
+import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
+import type {SoundEffects}                                                 from 'core/soundEffect/SoundEffects'
+import type {Themes}                                                       from 'core/theme/Themes'
+import {Tracks}                                                            from 'core/track/Tracks'
+import {Import}                                                            from 'util/DynamicImporter'
+import {CompanionEnumByReference}                                          from 'util/enumerable/companion/CompanionEnumByReference'
 
 /**
  * @todo add other musics (from title screen, theme, star, p-switch)
@@ -124,7 +127,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.separatedSoundEffectMusic('BGM_Otoasobi_Dtbt_Murasame', 'BGM_Otoasobi_Dtbt_MurasameIcon',)
+            return new SoundEffectMusicWithDifferentEditorContainer(Tracks.NINJA_ATTACK.file, Tracks.NINJA_ATTACK_EDITOR.file,)
         }
 
     }()
@@ -135,7 +138,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.singleSoundEffectMusic('se_otoasobi_clowd',)
+            return new SingleSoundEffectMusicContainer(Tracks.AUDIENCE.file,)
         }
 
     }()
@@ -146,7 +149,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.singleSoundEffectMusic('otoasobi_scat',)
+            return new SingleSoundEffectMusicContainer(Tracks.SCATTING.file,)
         }
 
     }()
@@ -157,7 +160,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.singleSoundEffectMusic('se_otoasobi_ohayashi',)
+            return new SingleSoundEffectMusicContainer(Tracks.TRADITIONAL.file,)
         }
 
     }()
@@ -168,7 +171,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.linkAndSmb2BackgroundMusic(IndividualMusics.PEACEFUL_LINK.file, IndividualMusics.PEACEFUL_SMB2.file,)
+            return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer(Tracks.PEACEFUL_LINK.file, Tracks.PEACEFUL_SMB2.file,)
         }
 
     }()
@@ -180,37 +183,37 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.backgroundMusic(
-                FileCreator.nonRepeatable('M1_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                IndividualMusics.BONUS_SMB.file,
-                IndividualMusics.BONUS_SMB_FAST.file,
+            return new BackgroundMusicContainer(
+                Tracks.BONUS_SMB_EDITOR.file,
+                Tracks.BONUS_SMB.file,
+                Tracks.BONUS_SMB_FAST.file,
 
-                IndividualMusics.BONUS_LINK.file,
-                IndividualMusics.BONUS_LINK_FAST.file,
+                Tracks.BONUS_LINK.file,
+                Tracks.BONUS_LINK_FAST.file,
 
-                IndividualMusics.BONUS_SMB2.file,
-                IndividualMusics.BONUS_SMB2_FAST.file,
+                Tracks.BONUS_SMB2.file,
+                Tracks.BONUS_SMB2_FAST.file,
 
-                FileCreator.nonRepeatable('M3_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                IndividualMusics.BONUS_SMB3.file,
-                IndividualMusics.BONUS_SMB3_FAST.file,
+                Tracks.BONUS_SMB3_EDITOR.file,
+                Tracks.BONUS_SMB3.file,
+                Tracks.BONUS_SMB3_FAST.file,
 
-                FileCreator.nonRepeatable('MW_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                IndividualMusics.BONUS_SMW.file,
+                Tracks.BONUS_SMW_EDITOR.file,
+                Tracks.BONUS_SMW.file,
                 null,
-                IndividualMusics.BONUS_SMW_FAST.file,
+                Tracks.BONUS_SMW_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),//TODO replace with specific time interval
-                IndividualMusics.BONUS_NSMBU.file,
-                IndividualMusics.BONUS_NSMBU_YOSHI.file,
-                IndividualMusics.BONUS_NSMBU_FAST.file,
-                IndividualMusics.BONUS_NSMBU_YOSHI_FAST.file,
+                Tracks.BONUS_NSMBU_EDITOR.file,
+                Tracks.BONUS_NSMBU.file,
+                Tracks.BONUS_NSMBU_YOSHI.file,
+                Tracks.BONUS_NSMBU_FAST.file,
+                Tracks.BONUS_NSMBU_YOSHI_FAST.file,
 
-                FileCreator.nonRepeatable('3W_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                IndividualMusics.BONUS_SM3DW.file,
+                Tracks.BONUS_SM3DW_EDITOR.file,
+                Tracks.BONUS_SM3DW.file,
                 null,
-                IndividualMusics.BONUS_SM3DW_FAST.file,
+                Tracks.BONUS_SM3DW_FAST.file,
                 null,
             )
         }
@@ -223,37 +226,37 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.backgroundMusic(
-                FileCreator.nonRepeatable('M1_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                IndividualMusics.BOSS_SMB.file,
-                IndividualMusics.BOSS_SMB_FAST.file,
+            return new BackgroundMusicContainer(
+                Tracks.BOSS_SMB_EDITOR.file,
+                Tracks.BOSS_SMB.file,
+                Tracks.BOSS_SMB_FAST.file,
 
-                IndividualMusics.BOSS_LINK.file,
-                IndividualMusics.BOSS_LINK_FAST.file,
+                Tracks.BOSS_LINK.file,
+                Tracks.BOSS_LINK_FAST.file,
 
-                IndividualMusics.BOSS_SMB2.file,
-                IndividualMusics.BOSS_SMB2_FAST.file,
+                Tracks.BOSS_SMB2.file,
+                Tracks.BOSS_SMB2_FAST.file,
 
-                FileCreator.nonRepeatable('M3_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                IndividualMusics.BOSS_SMB3.file,
-                IndividualMusics.BOSS_SMB3_FAST.file,
+                Tracks.BOSS_SMB3_EDITOR.file,
+                Tracks.BOSS_SMB3.file,
+                Tracks.BOSS_SMB3_FAST.file,
 
-                FileCreator.nonRepeatable('MW_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                IndividualMusics.BOSS_SMW.file,
+                Tracks.BOSS_SMW.file,
+                Tracks.BOSS_SMW.file,
                 null,
-                IndividualMusics.BOSS_SMW_FAST.file,
-                null,
-
-                FileCreator.nonRepeatable('WU_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                IndividualMusics.BOSS_NSMBU.file,
-                null,
-                IndividualMusics.BOSS_NSMBU_FAST.file,
+                Tracks.BOSS_SMW_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('3W_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                IndividualMusics.BOSS_SM3DW.file,
+                Tracks.BOSS_NSMBU_EDITOR.file,
+                Tracks.BOSS_NSMBU.file,
                 null,
-                IndividualMusics.BOSS_SM3DW_FAST.file,
+                Tracks.BOSS_NSMBU_FAST.file,
+                null,
+
+                Tracks.BOSS_SM3DW_EDITOR.file,
+                Tracks.BOSS_SM3DW.file,
+                null,
+                Tracks.BOSS_SM3DW_FAST.file,
                 null,
             )
         }
@@ -266,41 +269,41 @@ export class Musics
         }
 
         protected override _createMusic() {
-            const smb3Editor = FileCreator.nonRepeatable('M3_BGM_Otoasobi_LastBoss',)//TODO replace with specific time interval
-            const smb3 = IndividualMusics.FINAL_BOSS_SMB3.file
-            const smb3Fast = IndividualMusics.FINAL_BOSS_SMB3_FAST.file
+            const smb3Editor = Tracks.FINAL_BOSS_SMB3_EDITOR.file
+            const smb3 = Tracks.FINAL_BOSS_SMB3.file
+            const smb3Fast = Tracks.FINAL_BOSS_SMB3_FAST.file
 
-            return MusicCreator.backgroundMusic(
+            return new BackgroundMusicContainer(
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                IndividualMusics.FINAL_BOSS_LINK.file,
-                IndividualMusics.FINAL_BOSS_LINK_FAST.file,
+                Tracks.FINAL_BOSS_LINK.file,
+                Tracks.FINAL_BOSS_LINK_FAST.file,
 
-                IndividualMusics.FINAL_BOSS_SMB2.file,
-                IndividualMusics.FINAL_BOSS_SMB2_FAST.file,
+                Tracks.FINAL_BOSS_SMB2.file,
+                Tracks.FINAL_BOSS_SMB2_FAST.file,
 
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                FileCreator.nonRepeatable('MW_BGM_Otoasobi_LastBossIcon',),//README for some reason, it is set at 1 in the files (but it is ignored)
-                IndividualMusics.FINAL_BOSS_SMW.file,
+                Tracks.FINAL_BOSS_SMW_EDITOR.file,
+                Tracks.FINAL_BOSS_SMW.file,
                 null,
-                IndividualMusics.FINAL_BOSS_SMW_FAST.file,
-                null,
-
-                FileCreator.nonRepeatable('WU_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                IndividualMusics.FINAL_BOSS_NSMBU.file,
-                null,
-                IndividualMusics.FINAL_BOSS_NSMBU_FAST.file,
+                Tracks.FINAL_BOSS_SMW_FAST.file,
                 null,
 
-                FileCreator.nonRepeatable('3W_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                IndividualMusics.FINAL_BOSS_SM3DW.file,
+                Tracks.FINAL_BOSS_NSMBU_EDITOR.file,
+                Tracks.FINAL_BOSS_NSMBU.file,
                 null,
-                IndividualMusics.FINAL_BOSS_SM3DW_FAST.file,
+                Tracks.FINAL_BOSS_NSMBU_FAST.file,
+                null,
+
+                Tracks.FINAL_BOSS_SM3DW_EDITOR.file,
+                Tracks.FINAL_BOSS_SM3DW.file,
+                null,
+                Tracks.FINAL_BOSS_SM3DW_FAST.file,
                 null,
             )
         }
@@ -314,7 +317,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SMK.file, IndividualMusics.SMK_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SMK.file, Tracks.SMK_FAST.file,)
         }
 
     }()
@@ -325,7 +328,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SM64.file, IndividualMusics.SM64_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SM64.file, Tracks.SM64_FAST.file,)
         }
 
     }()
@@ -336,7 +339,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SMS.file, IndividualMusics.SMS_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SMS.file, Tracks.SMS_FAST.file,)
         }
 
     }()
@@ -347,7 +350,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return MusicCreator.nonChangeableBackgroundMusic(IndividualMusics.SMG.file, IndividualMusics.SMG_FAST.file,)
+            return new NonChangeableSoundEffectBackgroundMusicContainer(Tracks.SMG.file, Tracks.SMG_FAST.file,)
         }
 
     }()

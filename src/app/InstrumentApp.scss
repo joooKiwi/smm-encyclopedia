@@ -1,14 +1,13 @@
-#instrument-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
+#instrument-app-container {}
+
+#instrument-list {}
+
+#instrument-cardList {
+  .grouped-instrumentSound-container {
+    display: flex;
+    flex-wrap: wrap;
   }
-
-  .description-container .game-image { height: var(--bs-font-size-lg) }
-
 }
-
-#instrument-hihat-container, .table-row-hihat { img { rotate: 90deg } } //To rotate the Trampoline side-way
 
 #instrument-table {
   width: auto;

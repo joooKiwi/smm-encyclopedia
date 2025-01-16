@@ -220,7 +220,7 @@ export class GameReferences
     }
 
     public get reference(): GameReference {
-        return this.#reference ??= GameReferences.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= GameReferences.REFERENCE_MAP.get(this.englishName,)!
     }
 
     public get acronym(): PossibleAcronym {

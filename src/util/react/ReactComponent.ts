@@ -13,7 +13,8 @@ export interface ReactComponent<T extends ReactNode = ReactJSXElement, > {
 
 }
 
-export interface ReactComponentWithState<S extends ReactState, > {
+export interface ReactComponentWithState<S extends ReactState, >
+    extends ReactComponent {
 
     get state(): Readonly<S>
 

@@ -5,9 +5,9 @@ import {BASE_PATH}    from 'variables'
 import {AbstractFile} from 'util/file/AbstractFile'
 
 /** The base class of every {@link InternalFile} implementations */
-export abstract class AbstractInternalFile<const out PATH extends string = string,
-    const out NAME extends string = string,
-    const out EXTENSION extends PossibleFileExtension = PossibleFileExtension, >
+export abstract class AbstractInternalFile<const PATH extends string = string,
+    const NAME extends string = string,
+    const EXTENSION extends PossibleFileExtension = PossibleFileExtension, >
     extends AbstractFile<PATH, NAME, EXTENSION>
     implements InternalFile<PATH, NAME, EXTENSION> {
 

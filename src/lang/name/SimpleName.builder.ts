@@ -7,7 +7,7 @@ import {SimpleNameContainer} from 'lang/name/SimpleName.container'
 import {assert}              from 'util/utilitiesMethods'
 
 /** @deprecated Use the class directly or a child name instead */
-export class SimpleNameBuilder<const out T extends NonNullable<unknown>, >
+export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
     implements Builder<SimpleNameContainer<T>> {
 
     //region -------------------- Fields --------------------

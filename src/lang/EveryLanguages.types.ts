@@ -28,8 +28,8 @@ export type Names = keyof typeof Enum
 
 //region -------------------- Acronyms --------------------
 
-export type BasicAcronym = | 'en' | 'fr' | 'es' | 'pt' | 'zh'
-export type AdditionalAcronym = | 'he' | 'pl' | 'uk' | 'el'
+type BasicAcronym = | 'en' | 'fr' | 'es' | 'pt' | 'zh'
+type AdditionalAcronym = | 'he' | 'pl' | 'uk' | 'el'
 export type PossibleAcronym = | BasicAcronym | PossibleAcronym_Project | AdditionalAcronym
 
 export type PossibleInternationalAcronym = | BasicAcronym | PossibleInternationalAcronym_Project | AdditionalAcronym
@@ -37,12 +37,12 @@ export type PossibleInternationalAcronym = | BasicAcronym | PossibleInternationa
 //endregion -------------------- Acronyms --------------------
 //region -------------------- Names --------------------
 
-export type BasicEnglishName = | 'English' | 'French' | 'Spanish' | 'Portuguese' | 'Chinese'
-export type AdditionalEnglishName = | 'Hebrew' | 'Polish' | 'Ukrainian' | 'Greek'
+type BasicEnglishName = | 'English' | 'French' | 'Spanish' | 'Portuguese' | 'Chinese'
+type AdditionalEnglishName = | 'Hebrew' | 'Polish' | 'Ukrainian' | 'Greek'
 export type PossibleEnglishName = | BasicEnglishName | PossibleEnglishName_Project | AdditionalEnglishName
 
-export type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人'
-export type AdditionalOriginalName = | 'עִברִית' | 'Polski' | 'Український' | 'ελληνικά'
+type BasicOriginalName = | 'English' | 'Français' | 'Español' | 'Português' | '中国人'
+type AdditionalOriginalName = | 'עִברִית' | 'Polski' | 'Український' | 'ελληνικά'
 export type PossibleOriginalName = | BasicOriginalName | PossibleOriginalName_Project | AdditionalOriginalName
 
 //endregion -------------------- Names --------------------

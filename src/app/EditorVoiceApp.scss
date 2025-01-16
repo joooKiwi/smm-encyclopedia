@@ -1,20 +1,7 @@
-#editorVoice-app-container {
-  .viewChanger-container {
-    //TODO change the view changer default position to not have be absolute
-    position: initial;
-  }
-
-  .description-container .game-image,
-  .description-container .theme-image, { height: var(--bs-font-size-lg) }
-
-}
+#editorVoice-app-container {}
 
 #editorVoice-list {
-  .listItem {
-    min-height: 3rem;
-    :has(.double-editorVoiceSound-container) { min-height: 5.5rem }
-    > * > :where(.single-editorVoiceSound-container, .double-editorVoiceSound-container) { margin-left: var(--bs-spacer-sm) }
-  }
+  .list-group-item > * > :where(.single-editorVoiceSound-container, .double-editorVoiceSound-container) { margin-left: var(--bs-spacer-sm) }
 }
 
 #editorVoice-table {

@@ -1,10 +1,12 @@
-import type {Singleton}       from '@joookiwi/enumerable'
-import type {Array, Nullable} from '@joookiwi/type'
-import {mapByArray}           from '@joookiwi/collection'
-import {CompanionEnum, Enum}  from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
+import type {Nullable}         from '@joookiwi/type'
+import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
 
 import type {CharactersEquivalencesMap, Names, Ordinals, PossibleSingleCharacter, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString, VariableValueByBoolean, SpaceUnevenCharacter, SpaceEvenCharacter, TextInChevrons} from 'lang/Characters.types'
 import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                 from 'lang/Characters.companionEnumDeclaration'
+
+import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacter = SpaceUnevenCharacter,
     const SPACE_EVEN_CHARACTER extends SpaceEvenCharacter = SpaceEvenCharacter,>
@@ -205,25 +207,19 @@ export namespace Characters {
 
     //region -------------------- Utility methods --------------------
 
-    function __getBothEvenAndUnevenCharacters<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceUnevenCharacter'], T['spaceEvenCharacter'], U['spaceUnevenCharacter'], U['spaceEvenCharacter'],]
-    function __getBothEvenAndUnevenCharacters<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceEvenCharacter'], T['spaceUnevenCharacter'], U['spaceEvenCharacter'], U['spaceUnevenCharacter'], V['spaceEvenCharacter'], V['spaceUnevenCharacter'], W['spaceEvenCharacter'], W['spaceUnevenCharacter'], X['spaceEvenCharacter'], X['spaceUnevenCharacter'],]
-    function __getBothEvenAndUnevenCharacters<const T extends Characters, >(array: Array<T>,): Array<T[| 'spaceEvenCharacter' | 'spaceUnevenCharacter']>
-    function __getBothEvenAndUnevenCharacters(array: Array<Characters>,): Array<PossibleSingleCharacter> {
-        return mapByArray(array, it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).toArray().flat()
+    function __getBothEvenAndUnevenCharacters<const T extends Characters, >(characters: CollectionHolder<T>,): CollectionHolder<T[| 'spaceEvenCharacter' | 'spaceUnevenCharacter']>
+    function __getBothEvenAndUnevenCharacters(characters: CollectionHolder<Characters>,): CollectionHolder<PossibleSingleCharacter> {
+        return new ArrayAsCollection(characters.map(it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).toArray().flat(),)
     }
 
-    function __getOnlyUnevenCharacter<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceUnevenCharacter'], U['spaceUnevenCharacter'],]
-    function __getOnlyUnevenCharacter<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceUnevenCharacter'], U['spaceUnevenCharacter'], V['spaceUnevenCharacter'], W['spaceUnevenCharacter'], X['spaceUnevenCharacter'],]
-    function __getOnlyUnevenCharacter<const T extends Characters, >(array: Array<T>,): Array<T['spaceUnevenCharacter']>
-    function __getOnlyUnevenCharacter(array: Array<Characters>,): Array<SpaceUnevenCharacter> {
-        return mapByArray(array, it => it.spaceUnevenCharacter,).toArray()
+    function __getOnlyUnevenCharacter<const T extends Characters, >(characters: CollectionHolder<T>,): CollectionHolder<T['spaceUnevenCharacter']>
+    function __getOnlyUnevenCharacter(characters: CollectionHolder<Characters>,): CollectionHolder<SpaceUnevenCharacter> {
+        return characters.map(it => it.spaceUnevenCharacter,)
     }
 
-    function __getOnlyEvenCharacter<const T extends Characters, const U extends Characters, >(array: readonly [T, U,],): readonly [T['spaceEvenCharacter'], U['spaceEvenCharacter'],]
-    function __getOnlyEvenCharacter<const T extends Characters, const U extends Characters, const V extends Characters, const W extends Characters, const X extends Characters, >(array: readonly [T, U, V, W, X,],): readonly [T['spaceEvenCharacter'], U['spaceEvenCharacter'], V['spaceEvenCharacter'], W['spaceEvenCharacter'], X['spaceEvenCharacter'],]
-    function __getOnlyEvenCharacter<const T extends Characters, >(array: Array<T>,): Array<T['spaceEvenCharacter']>
-    function __getOnlyEvenCharacter(array: Array<Characters>,): Array<SpaceEvenCharacter> {
-        return mapByArray(array, it => it.spaceEvenCharacter,).toArray()
+    function __getOnlyEvenCharacter<const T extends Characters, >(characters: CollectionHolder<T>,): CollectionHolder<T['spaceEvenCharacter']>
+    function __getOnlyEvenCharacter(characters: CollectionHolder<Characters>,): CollectionHolder<SpaceEvenCharacter> {
+        return characters.map(it => it.spaceEvenCharacter,)
     }
 
 
@@ -236,8 +232,8 @@ export namespace Characters {
 
     //region -------------------- Specific characters (point) --------------------
 
-    export const POINTS = [Characters.POINT, Characters.INTERROGATION_POINT, Characters.EXCLAMATION_POINT, Characters.COLON, Characters.SEMICOLON,] as const
-    export const POINTS_ARRAY =        __getBothEvenAndUnevenCharacters(POINTS,)
+    export const POINTS = new ArrayAsCollection([Characters.POINT, Characters.INTERROGATION_POINT, Characters.EXCLAMATION_POINT, Characters.COLON, Characters.SEMICOLON,],)
+    export const ALL_POINTS =          __getBothEvenAndUnevenCharacters(POINTS,)
     export const POINTS_SPACE_EVEN =   __getOnlyEvenCharacter(POINTS,)
     export const POINTS_SPACE_UNEVEN = __getOnlyUnevenCharacter(POINTS,)
 
@@ -249,8 +245,8 @@ export namespace Characters {
     //endregion -------------------- Specific characters (point) --------------------
     //region -------------------- Specific characters (parentheses) --------------------
 
-    export const PARENTHESES = [Characters.STARTING_PARENTHESIS, Characters.ENDING_PARENTHESIS,] as const
-    export const PARENTHESES_ARRAY =        __getBothEvenAndUnevenCharacters(PARENTHESES,)
+    export const PARENTHESES = new ArrayAsCollection([Characters.STARTING_PARENTHESIS, Characters.ENDING_PARENTHESIS,],)
+    export const ALL_PARENTHESES =          __getBothEvenAndUnevenCharacters(PARENTHESES,)
     export const PARENTHESES_SPACE_EVEN =   __getOnlyEvenCharacter(PARENTHESES,)
     export const PARENTHESES_SPACE_UNEVEN = __getOnlyUnevenCharacter(PARENTHESES,)
 
@@ -262,8 +258,8 @@ export namespace Characters {
     //endregion -------------------- Specific characters (parentheses) --------------------
     //region -------------------- Specific characters (bracket) --------------------
 
-    export const BRACKETS = [Characters.STARTING_BRACKET, Characters.ENDING_BRACKET,] as const
-    export const BRACKETS_ARRAY =        __getBothEvenAndUnevenCharacters(BRACKETS,)
+    export const BRACKETS = new ArrayAsCollection([Characters.STARTING_BRACKET, Characters.ENDING_BRACKET,],)
+    export const ALL_BRACKETS =          __getBothEvenAndUnevenCharacters(BRACKETS,)
     export const BRACKETS_SPACE_EVEN =   __getOnlyEvenCharacter(BRACKETS,)
     export const BRACKETS_SPACE_UNEVEN = __getOnlyUnevenCharacter(BRACKETS,)
 
@@ -275,8 +271,8 @@ export namespace Characters {
     //endregion -------------------- Specific characters (bracket) --------------------
     //region -------------------- Specific characters (brace) --------------------
 
-    export const BRACES = [Characters.STARTING_BRACE, Characters.ENDING_BRACE,] as const
-    export const BRACES_ARRAY =        __getBothEvenAndUnevenCharacters(BRACES,)
+    export const BRACES = new ArrayAsCollection([Characters.STARTING_BRACE, Characters.ENDING_BRACE,],)
+    export const ALL_BRACES =          __getBothEvenAndUnevenCharacters(BRACES,)
     export const BRACES_SPACE_EVEN =   __getOnlyEvenCharacter(BRACES,)
     export const BRACES_SPACE_UNEVEN = __getOnlyUnevenCharacter(BRACES,)
 
@@ -288,8 +284,8 @@ export namespace Characters {
     //endregion -------------------- Specific characters (brace) --------------------
     //region -------------------- Specific characters (chevron) --------------------
 
-    export const CHEVRONS = [Characters.STARTING_CHEVRON, Characters.ENDING_CHEVRON,] as const
-    export const CHEVRONS_ARRAY =        __getBothEvenAndUnevenCharacters(CHEVRONS,)
+    export const CHEVRONS = new ArrayAsCollection([Characters.STARTING_CHEVRON, Characters.ENDING_CHEVRON,],)
+    export const ALL_CHEVRONS =          __getBothEvenAndUnevenCharacters(CHEVRONS,)
     export const CHEVRONS_SPACE_EVEN =   __getOnlyEvenCharacter(CHEVRONS,)
     export const CHEVRONS_SPACE_UNEVEN = __getOnlyUnevenCharacter(CHEVRONS,)
 
@@ -301,8 +297,8 @@ export namespace Characters {
     //endregion -------------------- Specific characters (chevron) --------------------
     //region -------------------- Specific characters (slash) --------------------
 
-    export const SLASHES = [Characters.SLASH, Characters.VERTICAL_SLASH,] as const
-    export const SLASHES_ARRAY =        __getBothEvenAndUnevenCharacters(SLASHES,)
+    export const SLASHES = new ArrayAsCollection([Characters.SLASH, Characters.VERTICAL_SLASH,],)
+    export const ALL_SLASHES =          __getBothEvenAndUnevenCharacters(SLASHES,)
     export const SLASHES_SPACE_EVEN =   __getOnlyEvenCharacter(SLASHES,)
     export const SLASHES_SPACE_UNEVEN = __getOnlyUnevenCharacter(SLASHES,)
 
@@ -314,7 +310,7 @@ export namespace Characters {
     //endregion -------------------- Specific characters (slash) --------------------
     //region -------------------- Specific characters (letter) --------------------
 
-    export const LETTERS = [
+    export const LETTERS = new ArrayAsCollection([
         Characters.UPPER_LETTER_A, Characters.LOWER_LETTER_A,
         Characters.UPPER_LETTER_B, Characters.LOWER_LETTER_B,
         Characters.UPPER_LETTER_C, Characters.LOWER_LETTER_C,
@@ -341,44 +337,44 @@ export namespace Characters {
         Characters.UPPER_LETTER_X, Characters.LOWER_LETTER_X,
         Characters.UPPER_LETTER_Y, Characters.LOWER_LETTER_Y,
         Characters.UPPER_LETTER_Z, Characters.LOWER_LETTER_Z,
-    ] as const
-    export const LETTERS_ARRAY =        __getBothEvenAndUnevenCharacters(LETTERS,) as unknown as readonly ['A', 'Ａ', 'a', 'ａ', 'B', 'Ｂ', 'b', 'ｂ', 'C', 'Ｃ', 'c', 'ｃ', 'D', 'Ｄ', 'd', 'ｄ', 'E', 'Ｅ', 'e', 'ｅ', 'F', 'Ｆ', 'f', 'ｆ', 'G', 'Ｇ', 'g', 'ｇ', 'H', 'Ｈ', 'h', 'ｈ', 'I', 'Ｉ', 'i', 'ｉ', 'J', 'Ｊ', 'j', 'ｊ', 'K', 'Ｋ', 'k', 'ｋ', 'L', 'Ｌ', 'l', 'ｌ', 'M', 'Ｍ', 'm', 'ｍ', 'N', 'Ｎ', 'n', 'ｎ', 'O', 'Ｏ', 'o', 'ｏ', 'P', 'Ｐ', 'p', 'ｐ', 'Q', 'Ｑ', 'q', 'ｑ', 'R', 'Ｒ', 'r', 'ｒ', 'S', 'Ｓ', 's', 'ｓ', 'T', 'Ｔ', 't', 'ｔ', 'U', 'Ｕ', 'u', 'ｕ', 'V', 'Ｖ', 'v', 'ｖ', 'W', 'Ｗ', 'w', 'ｗ', 'X', 'Ｘ', 'x', 'ｘ', 'Y', 'Ｙ', 'y', 'ｙ', 'Z', 'Ｚ', 'z', 'ｚ',]
-    export const LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(LETTERS,)           as unknown as readonly ['Ａ', 'ａ', 'Ｂ', 'ｂ', 'Ｃ', 'ｃ', 'Ｄ', 'ｄ', 'Ｅ', 'ｅ', 'Ｆ', 'ｆ', 'Ｇ', 'ｇ', 'Ｈ', 'ｈ', 'Ｉ', 'ｉ', 'Ｊ', 'ｊ', 'Ｋ', 'ｋ', 'Ｌ', 'ｌ', 'Ｍ', 'ｍ', 'Ｎ', 'ｎ', 'Ｏ', 'ｏ', 'Ｐ', 'ｐ', 'Ｑ', 'ｑ', 'Ｒ', 'ｒ', 'Ｓ', 'ｓ', 'Ｔ', 'ｔ', 'Ｕ', 'ｕ', 'Ｖ', 'ｖ', 'Ｗ', 'ｗ', 'Ｘ', 'ｘ', 'Ｙ', 'ｙ', 'Ｚ', 'ｚ',]
-    export const LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(LETTERS,)         as unknown as readonly ['A',  'a',  'B', 'b',  'C',  'c',  'D', 'd',  'E',  'e',  'F', 'f',  'G', 'g',  'H',  'h',  'I', 'i',  'J',  'j',  'K', 'k',  'L',  'l',  'M', 'm',  'N',  'n',  'O', 'o',  'P',  'p',  'Q', 'q',  'R',  'r',  'S', 's',  'T',  't',  'U', 'u',  'V',  'v',  'W', 'w',  'X',  'x',  'Y', 'y',  'Z',  'z',]
+    ],)
+    export const ALL_LETTERS =          __getBothEvenAndUnevenCharacters(LETTERS,)
+    export const LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(LETTERS,)
+    export const LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(LETTERS,)
 
     export function getLetters<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof LETTERS_SPACE_EVEN, typeof LETTERS_SPACE_UNEVEN>
     export function getLetters(isSpaceEven: boolean,) {
         return isSpaceEven ? LETTERS_SPACE_EVEN : LETTERS_SPACE_UNEVEN
     }
 
-    export const UPPER_LETTERS = [
+    export const UPPER_LETTERS = new ArrayAsCollection([
         Characters.UPPER_LETTER_A, Characters.UPPER_LETTER_B, Characters.UPPER_LETTER_C, Characters.UPPER_LETTER_D, Characters.UPPER_LETTER_E,
         Characters.UPPER_LETTER_F, Characters.UPPER_LETTER_G, Characters.UPPER_LETTER_H, Characters.UPPER_LETTER_I, Characters.UPPER_LETTER_J,
         Characters.UPPER_LETTER_K, Characters.UPPER_LETTER_L, Characters.UPPER_LETTER_M, Characters.UPPER_LETTER_N, Characters.UPPER_LETTER_O,
         Characters.UPPER_LETTER_P, Characters.UPPER_LETTER_Q, Characters.UPPER_LETTER_R, Characters.UPPER_LETTER_S, Characters.UPPER_LETTER_T,
         Characters.UPPER_LETTER_U, Characters.UPPER_LETTER_V, Characters.UPPER_LETTER_W, Characters.UPPER_LETTER_X, Characters.UPPER_LETTER_Y,
         Characters.UPPER_LETTER_Z,
-    ] as const
-    export const UPPER_LETTERS_ARRAY =        __getBothEvenAndUnevenCharacters(UPPER_LETTERS,) as unknown as readonly ['A', 'Ａ', 'B', 'Ｂ', 'C', 'Ｃ', 'D', 'Ｄ', 'E', 'Ｅ', 'F', 'Ｆ', 'G', 'Ｇ', 'H', 'Ｈ', 'I', 'Ｉ', 'J', 'Ｊ', 'K', 'Ｋ', 'L', 'Ｌ', 'M', 'Ｍ', 'N', 'Ｎ', 'O', 'Ｏ', 'P', 'Ｐ', 'Q', 'Ｑ', 'R', 'Ｒ', 'S', 'Ｓ', 'T', 'Ｔ', 'U', 'Ｕ', 'V', 'Ｖ', 'W', 'Ｗ', 'X', 'Ｘ', 'Y', 'Ｙ', 'Z', 'Ｚ']
-    export const UPPER_LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(UPPER_LETTERS,)           as unknown as readonly ['Ａ', 'Ｂ', 'Ｃ', 'Ｄ', 'Ｅ', 'Ｆ', 'Ｇ', 'Ｈ', 'Ｉ', 'Ｊ', 'Ｋ', 'Ｌ', 'Ｍ', 'Ｎ', 'Ｏ', 'Ｐ', 'Ｑ', 'Ｒ', 'Ｓ', 'Ｔ', 'Ｕ', 'Ｖ', 'Ｗ', 'Ｘ', 'Ｙ', 'Ｚ',]
-    export const UPPER_LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(UPPER_LETTERS,)         as unknown as readonly ['A',  'B',  'C', 'D',  'E',  'F', 'G',  'H',  'I',  'J', 'K',  'L',  'M',  'N', 'O',  'P',  'Q',  'R', 'S',  'T',  'U',  'V', 'W',  'X',  'Y',  'Z',]
+    ],)
+    export const ALL_UPPER_LETTERS =          __getBothEvenAndUnevenCharacters(UPPER_LETTERS,)
+    export const UPPER_LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(UPPER_LETTERS,)
+    export const UPPER_LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(UPPER_LETTERS,)
 
     export function getUppercaseLetters<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof UPPER_LETTERS_SPACE_EVEN, typeof UPPER_LETTERS_SPACE_UNEVEN>
     export function getUppercaseLetters(isSpaceEven: boolean,) {
         return isSpaceEven ? UPPER_LETTERS_SPACE_EVEN : UPPER_LETTERS_SPACE_UNEVEN
     }
 
-    export const LOWER_LETTERS = [
+    export const LOWER_LETTERS = new ArrayAsCollection([
         Characters.LOWER_LETTER_A, Characters.LOWER_LETTER_B, Characters.LOWER_LETTER_C, Characters.LOWER_LETTER_D, Characters.LOWER_LETTER_E,
         Characters.LOWER_LETTER_F, Characters.LOWER_LETTER_G, Characters.LOWER_LETTER_H, Characters.LOWER_LETTER_I, Characters.LOWER_LETTER_J,
         Characters.LOWER_LETTER_K, Characters.LOWER_LETTER_L, Characters.LOWER_LETTER_M, Characters.LOWER_LETTER_N, Characters.LOWER_LETTER_O,
         Characters.LOWER_LETTER_P, Characters.LOWER_LETTER_Q, Characters.LOWER_LETTER_R, Characters.LOWER_LETTER_S, Characters.LOWER_LETTER_T,
         Characters.LOWER_LETTER_U, Characters.LOWER_LETTER_V, Characters.LOWER_LETTER_W, Characters.LOWER_LETTER_X, Characters.LOWER_LETTER_Y,
         Characters.LOWER_LETTER_Z,
-    ] as const
-    export const LOWER_LETTERS_ARRAY =        __getBothEvenAndUnevenCharacters(LOWER_LETTERS,) as unknown as readonly ['a', 'ａ', 'b', 'ｂ', 'c', 'ｃ', 'd', 'ｄ', 'e', 'ｅ', 'f', 'ｆ', 'g', 'ｇ', 'h', 'ｈ', 'i', 'ｉ', 'j', 'ｊ', 'k', 'ｋ', 'l', 'ｌ', 'm', 'ｍ', 'n', 'ｎ', 'o', 'ｏ', 'p', 'ｐ', 'q', 'ｑ', 'r', 'ｒ', 's', 'ｓ', 't', 'ｔ', 'u', 'ｕ', 'v', 'ｖ', 'w', 'ｗ', 'x', 'ｘ', 'y', 'ｙ', 'z', 'ｚ']
-    export const LOWER_LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(LOWER_LETTERS,)           as unknown as readonly ['ａ', 'ｂ', 'ｃ', 'ｄ', 'ｅ', 'ｆ', 'ｇ', 'ｈ', 'ｉ', 'ｊ', 'ｋ', 'ｌ', 'ｍ', 'ｎ', 'ｏ', 'ｐ', 'ｑ', 'ｒ', 'ｓ', 'ｔ', 'ｕ', 'ｖ', 'ｗ', 'ｘ', 'ｙ', 'ｚ',]
-    export const LOWER_LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(LOWER_LETTERS,)         as unknown as readonly ['a',  'b',  'c', 'd',  'e',  'f', 'g',  'h',  'i',  'j', 'k',  'l',  'm',  'n', 'o',  'p',  'q',  'r', 's',  't',  'u',  'v', 'w',  'x',  'y',  'z',]
+    ],)
+    export const ALL_LOWER_LETTERS =          __getBothEvenAndUnevenCharacters(LOWER_LETTERS,)
+    export const LOWER_LETTERS_SPACE_EVEN =   __getOnlyEvenCharacter(LOWER_LETTERS,)
+    export const LOWER_LETTERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(LOWER_LETTERS,)
 
     export function getLowercaseLetters<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof LOWER_LETTERS_SPACE_EVEN, typeof LOWER_LETTERS_SPACE_UNEVEN>
     export function getLowercaseLetters(isSpaceEven: boolean,) {
@@ -388,13 +384,13 @@ export namespace Characters {
     //endregion -------------------- Specific characters (letter) --------------------
     //region -------------------- Specific characters (number) --------------------
 
-    export const NUMBERS = [
+    export const NUMBERS = new ArrayAsCollection([
         Characters.NUMBER_0, Characters.NUMBER_1, Characters.NUMBER_2, Characters.NUMBER_3, Characters.NUMBER_4,
         Characters.NUMBER_5, Characters.NUMBER_6, Characters.NUMBER_7, Characters.NUMBER_8, Characters.NUMBER_9,
-    ] as const
-    export const NUMBERS_ARRAY =        __getBothEvenAndUnevenCharacters(NUMBERS,) as unknown as readonly ['0', '０', '1', '１', '2', '２', '3', '３', '4', '４', '5', '５', '6', '６', '7', '７', '8', '８', '9', '９',]
-    export const NUMBERS_SPACE_EVEN =   __getOnlyEvenCharacter(NUMBERS,) as unknown as readonly ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',]
-    export const NUMBERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(NUMBERS,) as unknown as readonly ['０', '１', '２', '３', '４', '５', '６', '７', '８', '９',]
+    ],)
+    export const NUMBERS_ARRAY =        __getBothEvenAndUnevenCharacters(NUMBERS,)
+    export const NUMBERS_SPACE_EVEN =   __getOnlyEvenCharacter(NUMBERS,)
+    export const NUMBERS_SPACE_UNEVEN = __getOnlyUnevenCharacter(NUMBERS,)
 
     export function getNumbers<const B extends boolean, >(isSpaceEven: B,): VariableValueByBoolean<B, typeof NUMBERS_SPACE_EVEN, typeof NUMBERS_SPACE_UNEVEN>
     export function getNumbers(isSpaceEven: boolean,) {

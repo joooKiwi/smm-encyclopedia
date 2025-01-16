@@ -21,6 +21,7 @@ const logger = Logger.get;
 
     new ImageTemplate('public/entity/editor',                              'MW_Lyt_P_Dokan_00',                  'Pipe',                               'tiff',),
     new ImageTemplate('public/entity/editor',                              'MW_Lyt_P_KillerHoudai_00',           'Bullet Launcher',                    'tiff',),
+    new ImageTemplate('public/entity/editor',                              'MW_Lyt_P_Tornado_00',                'Twister',                            'tiff',),
     new ImageTemplate('public/entity/editor',                              '3W_Lyt_P_BellTree_00',               'Tree',                               'tiff',),
 
     new ImageTemplate('public/entity/editor',                              'MW_Lyt_P_SuperKinoko_00',            'Super Mushroom',                     'tiff',),

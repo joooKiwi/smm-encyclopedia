@@ -7,132 +7,61 @@ import type {NameTrait}      from 'lang/name/NameTrait'
  */
 export interface NameTraitFromACategory<out T, out CATEGORY extends NameTrait<T>, > {
 
-    get categoryContainer(): CATEGORY
+    readonly categoryContainer: CATEGORY
 
-    //region -------------------- Properties --------------------
+    readonly categoryNameContainer: this['categoryContainer']['nameContainer']
+    readonly categoryLanguageValue: this['categoryNameContainer']['languageValue']
 
-    get categoryNameContainer(): this['categoryContainer']['nameContainer']
+    readonly categoryOriginalEnglish: this['categoryNameContainer']['originalEnglish']
+    readonly categoryEnglish: this['categoryNameContainer']['english']
+    readonly categoryAmericanEnglish: this['categoryNameContainer']['americanEnglish']
+    readonly categoryEuropeanEnglish: this['categoryNameContainer']['europeanEnglish']
 
+    readonly categoryOriginalFrench: this['categoryNameContainer']['originalFrench']
+    readonly categoryFrench: this['categoryNameContainer']['french']
+    readonly categoryCanadianFrench: this['categoryNameContainer']['canadianFrench']
+    readonly categoryEuropeanFrench: this['categoryNameContainer']['europeanFrench']
 
-    get categoryLanguageValue(): this['categoryNameContainer']['languageValue']
+    readonly categoryGerman: this['categoryNameContainer']['german']
 
-    //region -------------------- English properties --------------------
+    readonly categoryOriginalSpanish: this['categoryNameContainer']['originalSpanish']
+    readonly categorySpanish: this['categoryNameContainer']['spanish']
+    readonly categoryAmericanSpanish: this['categoryNameContainer']['americanSpanish']
+    readonly categoryEuropeanSpanish: this['categoryNameContainer']['europeanSpanish']
 
-    get categoryOriginalEnglish(): this['categoryNameContainer']['originalEnglish']
+    readonly categoryItalian: this['categoryNameContainer']['italian']
 
-    get categoryEnglish(): this['categoryNameContainer']['english']
+    readonly categoryDutch: this['categoryNameContainer']['dutch']
 
-    get categoryAmericanEnglish(): this['categoryNameContainer']['americanEnglish']
+    readonly categoryOriginalPortuguese: this['categoryNameContainer']['originalPortuguese']
+    readonly categoryPortuguese: this['categoryNameContainer']['portuguese']
+    readonly categoryAmericanPortuguese: this['categoryNameContainer']['americanPortuguese']
+    readonly categoryEuropeanPortuguese: this['categoryNameContainer']['europeanPortuguese']
 
-    get categoryEuropeanEnglish(): this['categoryNameContainer']['europeanEnglish']
+    readonly categoryRussian: this['categoryNameContainer']['russian']
 
-    //endregion -------------------- English properties --------------------
-    //region -------------------- French properties --------------------
+    readonly categoryJapanese: this['categoryNameContainer']['japanese']
 
-    get categoryOriginalFrench(): this['categoryNameContainer']['originalFrench']
+    readonly categoryOriginalChinese: this['categoryNameContainer']['originalChinese']
+    readonly categoryChinese: this['categoryNameContainer']['chinese']
+    readonly categoryTraditionalChinese: this['categoryNameContainer']['traditionalChinese']
+    readonly categorySimplifiedChinese: this['categoryNameContainer']['simplifiedChinese']
 
-    get categoryFrench(): this['categoryNameContainer']['french']
+    readonly categoryKorean: this['categoryNameContainer']['korean']
 
-    get categoryCanadianFrench(): this['categoryNameContainer']['canadianFrench']
+    readonly categoryIsHebrewUsed: this['categoryNameContainer']['isHebrewUsed']
+    readonly categoryHebrew: this['categoryNameContainer']['hebrew']
 
-    get categoryEuropeanFrench(): this['categoryNameContainer']['europeanFrench']
+    readonly categoryIsPolishUsed: this['categoryNameContainer']['isPolishUsed']
+    readonly categoryPolish: this['categoryNameContainer']['polish']
 
-    //endregion -------------------- French properties --------------------
-    //region -------------------- German properties --------------------
+    readonly categoryIsUkrainianUsed: this['categoryNameContainer']['isUkrainianUsed']
+    readonly categoryUkrainian: this['categoryNameContainer']['ukrainian']
 
-    get categoryGerman(): this['categoryNameContainer']['german']
+    readonly categoryIsGreekUsed: this['categoryNameContainer']['isGreekUsed']
+    readonly categoryGreek: this['categoryNameContainer']['greek']
 
-    //endregion -------------------- German properties --------------------
-    //region -------------------- Spanish properties --------------------
-
-    get categoryOriginalSpanish(): this['categoryNameContainer']['originalSpanish']
-
-    get categorySpanish(): this['categoryNameContainer']['spanish']
-
-    get categoryAmericanSpanish(): this['categoryNameContainer']['americanSpanish']
-
-    get categoryEuropeanSpanish(): this['categoryNameContainer']['europeanSpanish']
-
-    //endregion -------------------- Spanish properties --------------------
-    //region -------------------- Italian properties --------------------
-
-    get categoryItalian(): this['categoryNameContainer']['italian']
-
-    //endregion -------------------- Italian properties --------------------
-    //region -------------------- Dutch properties --------------------
-
-    get categoryDutch(): this['categoryNameContainer']['dutch']
-
-    //endregion -------------------- Dutch properties --------------------
-    //region -------------------- Portuguese properties --------------------
-
-    get categoryOriginalPortuguese(): this['categoryNameContainer']['originalPortuguese']
-
-    get categoryPortuguese(): this['categoryNameContainer']['portuguese']
-
-    get categoryAmericanPortuguese(): this['categoryNameContainer']['americanPortuguese']
-
-    get categoryEuropeanPortuguese(): this['categoryNameContainer']['europeanPortuguese']
-
-    //endregion -------------------- Portuguese properties --------------------
-    //region -------------------- Russian properties --------------------
-
-    get categoryRussian(): this['categoryNameContainer']['russian']
-
-    //endregion -------------------- Russian properties --------------------
-    //region -------------------- Japanese properties --------------------
-
-    get categoryJapanese(): this['categoryNameContainer']['japanese']
-
-    //endregion -------------------- Japanese properties --------------------
-    //region -------------------- Chinese properties --------------------
-
-    get categoryOriginalChinese(): this['categoryNameContainer']['originalChinese']
-
-    get categoryChinese(): this['categoryNameContainer']['chinese']
-
-    get categoryTraditionalChinese(): this['categoryNameContainer']['traditionalChinese']
-
-    get categorySimplifiedChinese(): this['categoryNameContainer']['simplifiedChinese']
-
-    //endregion -------------------- Chinese properties --------------------
-    //region -------------------- Korean properties --------------------
-
-    get categoryKorean(): this['categoryNameContainer']['korean']
-
-    //endregion -------------------- Korean properties --------------------
-    //region -------------------- Hebrew properties --------------------
-
-    get categoryIsHebrewUsed(): this['categoryNameContainer']['isHebrewUsed']
-
-    get categoryHebrew(): this['categoryNameContainer']['hebrew']
-
-    //endregion -------------------- Hebrew properties --------------------
-    //region -------------------- Polish properties --------------------
-
-    get categoryIsPolishUsed(): this['categoryNameContainer']['isPolishUsed']
-
-    get categoryPolish(): this['categoryNameContainer']['polish']
-
-    //endregion -------------------- Polish properties --------------------
-    //region -------------------- Ukrainian properties --------------------
-
-    get categoryIsUkrainianUsed(): this['categoryNameContainer']['isUkrainianUsed']
-
-    get categoryUkrainian(): this['categoryNameContainer']['ukrainian']
-
-    //endregion -------------------- Ukrainian properties --------------------
-    //region -------------------- Greek properties --------------------
-
-    get categoryIsGreekUsed(): this['categoryNameContainer']['isGreekUsed']
-
-    get categoryGreek(): this['categoryNameContainer']['greek']
-
-    //endregion -------------------- Greek properties --------------------
-
-    get categoryOriginalLanguages(): this['categoryNameContainer']['originalLanguages']
-
-    //endregion -------------------- Properties --------------------
+    readonly categoryOriginalLanguages: this['categoryNameContainer']['originalLanguages']
 
     toCategoryNameMap(): ReadonlyMap<EveryLanguages, T>
 

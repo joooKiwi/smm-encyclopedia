@@ -6,8 +6,8 @@ import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 import {EmptyStringName}      from 'lang/name/EmptyStringName'
 import {Empty}                from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
-import EMPTY_MAP =   Empty.EMPTY_MAP
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_MAP =               Empty.EMPTY_MAP
 
 export class EmptyInstrument
     extends ClassContainingAName<string>
@@ -27,7 +27,7 @@ export class EmptyInstrument
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly entities = EMPTY_ARRAY
+    public readonly entities = EMPTY_COLLECTION_HOLDER
     public readonly isInSuperMarioMaker1 = false
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false

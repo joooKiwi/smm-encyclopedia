@@ -1,4 +1,5 @@
-import type {EmptyArray, EmptyMap} from '@joookiwi/type'
+import type {EmptyCollectionHolder} from '@joookiwi/collection'
+import type {EmptyMap}              from '@joookiwi/type'
 
 import type {Entity}                                      from 'core/entity/Entity'
 import type {EmptyEntityCategory}                         from 'core/entityCategory/EmptyEntityCategory'
@@ -10,8 +11,8 @@ import {EmptyStringName}                  from 'lang/name/EmptyStringName'
 import {NOT_APPLICABLE}                   from 'util/commonVariables'
 import {Empty}                            from 'util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
-import EMPTY_MAP =   Empty.EMPTY_MAP
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_MAP =               Empty.EMPTY_MAP
 
 /**
  * An empty entity with the default values of nothing
@@ -59,12 +60,16 @@ export class EmptyEntity
     public readonly canBeThrownByALakitu = false
     public readonly canBePutInALakituCloud = false
     public readonly canBePutInAClownCar = false
-    public readonly canBeFiredOutOfABulletLauncher = false
+    public readonly canBeFiredOutOfABillBlaster = false
     public readonly canComeOutOfABlock = false
     public readonly canBePutInATree = false
 
     //endregion -------------------- Directly affected --------------------
     //region -------------------- Indirect --------------------
+
+    public readonly canBeAffectedByATwister = false
+    public readonly canBeAffectedByATwisterWhenItIsWithAParachute = false
+    public readonly canBeAffectedByATwisterWhenInAFallingState = false
 
     public readonly canBeStacked = false
 
@@ -114,65 +119,65 @@ export class EmptyEntity
     public readonly editorLimit_smm2 = NOT_APPLICABLE
     public readonly isUnknown_editorLimit_smm2 = false
 
-    public readonly isInGeneralLimit = NOT_APPLICABLE
+    public readonly isInGeneralLimit = false
     public readonly isInGeneralLimitComment = null
 
-    public readonly isInGlobalGeneralLimit = NOT_APPLICABLE
+    public readonly isInGlobalGeneralLimit = false
     public readonly isInGlobalGeneralLimitComment = null
 
-    public readonly isInPowerUpLimit = NOT_APPLICABLE
+    public readonly isInPowerUpLimit = false
 
-    public readonly isInProjectileLimit = NOT_APPLICABLE
+    public readonly isInProjectileLimit = false
     public readonly isInProjectileLimitComment = null
 
-    public readonly isInRenderedObjectLimit = NOT_APPLICABLE
-    public readonly isInRenderedObjectLimitComment = null
+    public readonly isInDynamicRenderedObjectLimit = false
+    public readonly isInDynamicRenderedObjectLimitComment = null
 
-    public readonly isInCollectedCoinLimit = NOT_APPLICABLE
+    public readonly isInCollectedLooseCoinLimit = false
 
-    public readonly otherLimit = NOT_APPLICABLE
+    public readonly otherLimit = null
     public readonly otherLimitComment = null
     public readonly isUnknown_otherLimit = false
 
     //endregion -------------------- Limit --------------------
     //region -------------------- Instrument --------------------
 
-    public readonly instruments = EMPTY_ARRAY
+    public readonly instruments = EMPTY_COLLECTION_HOLDER
     public readonly canMakeASoundOutOfAMusicBlock = false
     public readonly canMakeASoundOutOfAMusicBlockComment = null
 
     //endregion -------------------- Instrument --------------------
     //region -------------------- References --------------------
 
-    public readonly referenceInSuperMarioBrosStyle = EMPTY_ARRAY
-    public readonly referenceInSuperMarioBros3Style = EMPTY_ARRAY
-    public readonly referenceInSuperMarioWorldStyle = EMPTY_ARRAY
-    public readonly referenceInNewSuperMarioBrosUStyle = EMPTY_ARRAY
-    public readonly referenceInSuperMario3DWorldStyle = EMPTY_ARRAY
+    public readonly referencesInSuperMarioBrosStyle = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInSuperMarioBros3Style = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInSuperMarioWorldStyle = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInNewSuperMarioBrosUStyle = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInSuperMario3DWorldStyle = EMPTY_COLLECTION_HOLDER
 
-    public readonly referenceInGroundTheme = EMPTY_ARRAY
-    public readonly referenceInUndergroundTheme = EMPTY_ARRAY
-    public readonly referenceInUnderwaterTheme = EMPTY_ARRAY
-    public readonly referenceInDesertTheme = EMPTY_ARRAY
-    public readonly referenceInSnowTheme = EMPTY_ARRAY
-    public readonly referenceInSkyTheme = EMPTY_ARRAY
-    public readonly referenceInForestTheme = EMPTY_ARRAY
-    public readonly referenceInGhostHouseTheme = EMPTY_ARRAY
-    public readonly referenceInAirshipTheme = EMPTY_ARRAY
-    public readonly referenceInCastleTheme = EMPTY_ARRAY
+    public readonly referencesInGroundTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInUndergroundTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInUnderwaterTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInDesertTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInSnowTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInSkyTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInForestTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInGhostHouseTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInAirshipTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInCastleTheme = EMPTY_COLLECTION_HOLDER
 
 
-    public readonly referenceInDayTheme = EMPTY_ARRAY
-    public readonly referenceInNightTheme = EMPTY_ARRAY
+    public readonly referencesInDayTheme = EMPTY_COLLECTION_HOLDER
+    public readonly referencesInNightTheme = EMPTY_COLLECTION_HOLDER
 
-    public getReferenceFrom(): EmptyArray {
-        return EMPTY_ARRAY
+    public getReferencesFrom(): EmptyCollectionHolder {
+        return EMPTY_COLLECTION_HOLDER
     }
 
-    public readonly everyGameStyleReferences = EMPTY_ARRAY
-    public readonly everyThemeReferences = EMPTY_ARRAY
-    public readonly everyTimeReferences = EMPTY_ARRAY
-    public readonly everyReferences = EMPTY_ARRAY
+    public readonly everyGameStyleReferences = EMPTY_COLLECTION_HOLDER
+    public readonly everyThemeReferences = EMPTY_COLLECTION_HOLDER
+    public readonly everyTimeReferences = EMPTY_COLLECTION_HOLDER
+    public readonly everyReferences = EMPTY_COLLECTION_HOLDER
 
     //endregion -------------------- References --------------------
 

@@ -17,8 +17,7 @@
     .internal-arrow-container {
       > .arrow-container,
       > .arrows-container > .arrow-container, {
-        --line-size: calc(var(--group-height) - (var(--group-top-height) + var(--group-bottom-height)) * #{math.cos(45deg)} - 2 * var(--arrow-size));
-        //--line-size: calc(var(--group-height) - (var(--group-top-size) + var(--group-bottom-size)) * cos(45deg) - 2 * var(--arrow-size))
+        --line-size: calc(var(--group-height) - (var(--group-top-height) + var(--group-bottom-height)) * cos(45deg) - 2 * var(--arrow-size))
       }
     }
 

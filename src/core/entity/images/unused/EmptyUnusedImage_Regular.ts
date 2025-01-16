@@ -1,9 +1,11 @@
+import type {EmptyCollectionHolder} from '@joookiwi/collection'
+
 import type {UnusedImage_Regular}                              from 'core/entity/images/unused/UnusedImage_Regular'
 import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from 'util/ClassWithNullObjectPattern'
 
 import {Empty} from 'util/emptyVariables'
 
-import EMPTY_MAP = Empty.EMPTY_MAP
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 export class EmptyUnusedImage_Regular
     implements UnusedImage_Regular, ClassWithNullObjectPattern<EmptyUnusedImageName> {
@@ -20,7 +22,10 @@ export class EmptyUnusedImage_Regular
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly all = EMPTY_MAP
+    public readonly images = EMPTY_COLLECTION_HOLDER
+    public readonly imagesWithAssociation = EMPTY_COLLECTION_HOLDER
+
+    public get(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
 
     public toString(): EmptyUnusedImageName {
         return 'Empty unused image'

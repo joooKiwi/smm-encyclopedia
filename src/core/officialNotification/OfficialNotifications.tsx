@@ -1,17 +1,17 @@
 import './OfficialNotifications.scss'
 
+import type {CollectionHolder}                                     from '@joookiwi/collection'
 import type {Lazy}                                                 from '@joookiwi/lazy'
 import type {Array, EmptyString, Nullable, NullableNumber, NullOr} from '@joookiwi/type'
-import {hasByArray}                                                from '@joookiwi/collection'
 import {Enum}                                                      from '@joookiwi/enumerable'
 import {lazy}                                                      from '@joookiwi/lazy'
 import {Fragment}                                                  from 'react'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
-import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
-import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from 'lang/ClassWithTranslationKey'
-import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from 'lang/components/TranslationProperty'
-import type {CompanionEnumByNameSingleton}                                                                                                                                                                                                                                                                           from 'util/enumerable/Singleton.types'
+import type {ClassWithEnglishName}                                                                                                                                                              from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
+import type {ClassWithTranslationKey}                                                                                                                                                           from 'lang/ClassWithTranslationKey'
+import type {TranslationReplaceKeysMap}                                                                                                                                                         from 'lang/components/TranslationProperty'
+import type {CompanionEnumByNameSingleton}                                                                                                                                                      from 'util/enumerable/Singleton.types'
 
 import Image                                                                     from 'app/tools/images/Image'
 import TextComponent                                                             from 'app/tools/text/TextComponent'
@@ -23,26 +23,11 @@ import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                      
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {Empty}                                                                   from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
+import {ArrayAsCollection}                                                       from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
 
-import EMPTY_ARRAY  = Empty.EMPTY_ARRAY
-import EMPTY_STRING = Empty.EMPTY_STRING
-
-//region -------------------- Constructor constants --------------------
-
-const translationKey_finishAllCharacterJob = 'finish all 3 job (character)' satisfies PossibleTranslationKey
-const translationKey_finishSelectedPeachJob = 'finish X job (Peach)'        satisfies PossibleTranslationKey
-const translationKey_receiveFeedback = 'course.receive feedback (a lot)'    satisfies PossibleTranslationKey
-const translationKey_rank = 'rank'                                          satisfies PossibleTranslationKey
-const translationKey_highScore = 'high score'                               satisfies PossibleTranslationKey
-const translationKey_medal = 'medal'                                        satisfies PossibleTranslationKey
-const translationKey_place = 'place'                                        satisfies PossibleTranslationKey
-const translationKey_stamp = 'stamp'                                        satisfies PossibleTranslationKey
-
-const possibleAmountInEndlessMarioEasyOrNormal = [10, 100, 300, 500, 1000,] as const satisfies Array<PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal>
-const possibleAmountInEndlessMarioExpertOrSuperExpert = [10, 100,]          as const satisfies Array<PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert>
-
-//endregion -------------------- Constructor constants --------------------
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
+import EMPTY_STRING =            Empty.EMPTY_STRING
 
 export class OfficialNotifications
     extends Enum<Ordinals, Names>
@@ -66,7 +51,7 @@ export class OfficialNotifications
                     this._addJobs(key, keyMap,),),)
         }
 
-    }('Finish all jobs (Undodog)', translationKey_finishAllCharacterJob,)
+    }('Finish all jobs (Undodog)', 'finish all 3 job (character)',)
     public static readonly FINISH_ALL_JOBS_YAMAMURA =                          new class OfficialNotifications_FinishAllJobsYamamura extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -75,7 +60,7 @@ export class OfficialNotifications
                     this._addJobs(key, keyMap,),),)
         }
 
-    }('Finish all jobs (Yamamura)', translationKey_finishAllCharacterJob,)
+    }('Finish all jobs (Yamamura)', 'finish all 3 job (character)',)
     public static readonly FINISH_ALL_JOBS_PARTRICK =                          new class OfficialNotifications_FinishAllJobsPartrick extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -84,7 +69,7 @@ export class OfficialNotifications
                     this._addJobs(key, keyMap,),),)
         }
 
-    }('Finish all jobs (Partrick)', translationKey_finishAllCharacterJob,)
+    }('Finish all jobs (Partrick)', 'finish all 3 job (character)',)
     public static readonly FINISH_ALL_JOBS_SOUNDFROG =                         new class OfficialNotifications_FinishAllJobsSoundfrog extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -93,7 +78,7 @@ export class OfficialNotifications
                     this._addJobs(key, keyMap,),),)
         }
 
-    }('Finish all jobs (Soundfrog)', translationKey_finishAllCharacterJob,)
+    }('Finish all jobs (Soundfrog)', 'finish all 3 job (character)',)
     public static readonly FINISH_ALL_JOBS_MR_ERASER =                         new class OfficialNotifications_FinishAllJobsMrEraser extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -102,7 +87,7 @@ export class OfficialNotifications
                     this._addJobs(key, keyMap,),),)
         }
 
-    }('Finish all jobs (Mr. Eraser)', translationKey_finishAllCharacterJob,)
+    }('Finish all jobs (Mr. Eraser)', 'finish all 3 job (character)',)
     public static readonly FINISH_1ST_JOB_PEACH =                              new class OfficialNotifications_Finish1stJobPeach extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -113,7 +98,7 @@ export class OfficialNotifications
                             this._addJob(key, keyMap),),),),)
         }
 
-    }('Finish 1st job (Peach)', translationKey_finishSelectedPeachJob,)
+    }('Finish 1st job (Peach)', 'finish X job (Peach)',)
     public static readonly FINISH_2ND_JOB_PEACH =                              new class OfficialNotifications_Finish2ndJobPeach extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -124,7 +109,7 @@ export class OfficialNotifications
                             this._addJob(key, keyMap),),),),)
         }
 
-    }('Finish 2nd job (Peach)', translationKey_finishSelectedPeachJob,)
+    }('Finish 2nd job (Peach)', 'finish X job (Peach)',)
     public static readonly FINISH_3RD_JOB_PEACH =                              new class OfficialNotifications_Finish3rdJobPeach extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -135,7 +120,7 @@ export class OfficialNotifications
                             this._addJob(key, keyMap),),),),)
         }
 
-    }('Finish 3rd job (Peach)', translationKey_finishSelectedPeachJob,)
+    }('Finish 3rd job (Peach)', 'finish X job (Peach)',)
     public static readonly HIT_MIDDLE_QUESTION_BLOCK_NEAR_PURPLE_TOAD =        new class OfficialNotifications_HitMiddleQuestionBlockNearPurpleToad extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -168,14 +153,14 @@ export class OfficialNotifications
             return this._addCourse(key, keyMap,)
         }
 
-    }('Receive a lot of feedback - 1', translationKey_receiveFeedback,)
+    }('Receive a lot of feedback - 1', 'course.receive feedback (a lot)',)
     public static readonly RECEIVE_A_LOT_OF_FEEDBACK_2 =                       new class OfficialNotifications_ReceiveALotOfFeedback2 extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
-    }('Receive a lot of feedback - 2', translationKey_receiveFeedback,)
+    }('Receive a lot of feedback - 2', 'course.receive feedback (a lot)',)
     public static readonly RECEIVE_X_PLAY =                                    new class OfficialNotifications_ReceiveXPlay extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -290,7 +275,7 @@ export class OfficialNotifications
                 this._addRank('C', key, keyMap,),)
         }
 
-    }('Rank C in Multiplayer VS', translationKey_rank,)
+    }('Rank C in Multiplayer VS', 'rank',)
     public static readonly RANK_B_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankBInMultiplayerVS extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -298,7 +283,7 @@ export class OfficialNotifications
                 this._addRank('B', key, keyMap,),)
         }
 
-    }('Rank B in Multiplayer VS', translationKey_rank,)
+    }('Rank B in Multiplayer VS', 'rank',)
     public static readonly RANK_A_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankAInMultiplayerVS extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -306,7 +291,7 @@ export class OfficialNotifications
                 this._addRank('A', key, keyMap,),)
         }
 
-    }('Rank A in Multiplayer VS', translationKey_rank,)
+    }('Rank A in Multiplayer VS', 'rank',)
     public static readonly RANK_S_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankSInMultiplayerVS extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -314,7 +299,7 @@ export class OfficialNotifications
                 this._addRank('S', key, keyMap,),)
         }
 
-    }('Rank S in Multiplayer VS', translationKey_rank,)
+    }('Rank S in Multiplayer VS', 'rank',)
     public static readonly RANK_S_PLUS_IN_MULTIPLAYER_VS =                     new class OfficialNotifications_RankSPlusInMultiplayerVS extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -322,7 +307,7 @@ export class OfficialNotifications
                 this._addRank('S⁺', key, keyMap,),)
         }
 
-    }('Rank S⁺ in Multiplayer VS', translationKey_rank,)
+    }('Rank S⁺ in Multiplayer VS', 'rank',)
 
     public static readonly CLEAR_1_COURSE_IN_MULTIPLAYER_COOP =                new class OfficialNotifications_Clear1CourseInMultiplayerCoop extends OfficialNotifications {
 
@@ -357,7 +342,7 @@ export class OfficialNotifications
                     this._addDifficulty('easy', key, keyMap,),),)
         }
 
-    }('High score of # in Endless Challenge (easy)', translationKey_highScore, ...possibleAmountInEndlessMarioEasyOrNormal,)
+    }('High score of # in Endless Challenge (easy)', 'high score', 10, 100, 300, 500, 1000,)
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_NORMAL =       new class OfficialNotifications_HighScoreOfXInEndlessChallengeNormal extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -366,7 +351,7 @@ export class OfficialNotifications
                     this._addDifficulty('normal', key, keyMap,),),)
         }
 
-    }('High score of # in Endless Challenge (normal)', translationKey_highScore, ...possibleAmountInEndlessMarioEasyOrNormal,)
+    }('High score of # in Endless Challenge (normal)', 'high score', 10, 100, 300, 500, 1000,)
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EXPERT =       new class OfficialNotifications_HighScoreOfXInEndlessChallengeExpert extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -375,7 +360,7 @@ export class OfficialNotifications
                     this._addDifficulty('expert', key, keyMap,),),)
         }
 
-    }('High score of # in Endless Challenge (expert)', translationKey_highScore, ...possibleAmountInEndlessMarioExpertOrSuperExpert,)
+    }('High score of # in Endless Challenge (expert)', 'high score', 10, 100,)
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_SUPER_EXPERT = new class OfficialNotifications_HighScoreOfXInEndlessChallengeSuperExpert extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -384,7 +369,7 @@ export class OfficialNotifications
                     this._addDifficulty('super expert', key, keyMap,),),)
         }
 
-    }('High score of # in Endless Challenge (super expert)', translationKey_highScore, ...possibleAmountInEndlessMarioExpertOrSuperExpert,)
+    }('High score of # in Endless Challenge (super expert)', 'high score', 10, 100,)
 
     public static readonly GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_GoldMedalOnTheLeaderboard extends OfficialNotifications {
 
@@ -393,7 +378,7 @@ export class OfficialNotifications
             return this._addLeaderboard(key, keyMap,)
         }
 
-    }('Gold medal on the leaderboard', translationKey_medal,)
+    }('Gold medal on the leaderboard', 'medal',)
     public static readonly SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_SilverMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -401,7 +386,7 @@ export class OfficialNotifications
             return this._addLeaderboard(key, keyMap,)
         }
 
-    }('Silver medal on the leaderboard', translationKey_medal,)
+    }('Silver medal on the leaderboard', 'medal',)
     public static readonly BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_BronzeMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -409,7 +394,7 @@ export class OfficialNotifications
             return this._addLeaderboard(key, keyMap,)
         }
 
-    }('Bronze medal on the leaderboard', translationKey_medal,)
+    }('Bronze medal on the leaderboard', 'medal',)
     public static readonly FIRST_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_1stPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -418,7 +403,7 @@ export class OfficialNotifications
                 this._addPosition(1, 'place', key, keyMap,),)
         }
 
-    }('1st place on the leaderboard', translationKey_place,)
+    }('1st place on the leaderboard', 'place',)
     public static readonly SECOND_PLACE_ON_THE_LEADERBOARD =                   new class OfficialNotifications_2ndPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -427,7 +412,7 @@ export class OfficialNotifications
                 this._addPosition(2, 'place', key, keyMap,),)
         }
 
-    }('2nd place on the leaderboard', translationKey_place,)
+    }('2nd place on the leaderboard', 'place',)
     public static readonly THIRD_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_3rdPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -436,7 +421,7 @@ export class OfficialNotifications
                 this._addPosition(3, 'place', key, keyMap,),)
         }
 
-    }('3rd place on the leaderboard', translationKey_place,)
+    }('3rd place on the leaderboard', 'place',)
 
     public static readonly COLLECT_1_STAMP_IN_THE_NINJI_SPEEDRUNS =            new class OfficialNotifications_Collect1StampInTheNinjiSpeedruns extends OfficialNotifications {
 
@@ -445,7 +430,7 @@ export class OfficialNotifications
                 this._addNinjiSpeedruns(key, keyMap,),)
         }
 
-    }('Collect 1 stamp in the Ninji Speedruns', translationKey_stamp, 1,)
+    }('Collect 1 stamp in the Ninji Speedruns', 'stamp', 1,)
     public static readonly COLLECT_X_STAMP_IN_THE_NINJI_SPEEDRUNS =            new class OfficialNotifications_CollectXStampInTheNinjiSpeedruns extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
@@ -453,7 +438,7 @@ export class OfficialNotifications
                 this._addNinjiSpeedruns(key, keyMap,),)
         }
 
-    }('Collect # stamp in the Ninji Speedruns', translationKey_stamp, 4, 7, 10, 11, 14, 17, 20,)
+    }('Collect # stamp in the Ninji Speedruns', 'stamp', 4, 7, 10, 11, 14, 17, 20,)
 
     public static readonly UPLOAD_A_SUPER_WORLD =                              new class OfficialNotifications_UploadASuperWorld extends OfficialNotifications {
 
@@ -504,7 +489,7 @@ export class OfficialNotifications
                 return value
             const valueFound = this.values.findFirstOrNull(it =>
                 it.englishName === value
-                || hasByArray(it.additionalEnglishName, value,),)
+                || (it.additionalEnglishName as CollectionHolder<string>).has(value,),)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
@@ -516,7 +501,7 @@ export class OfficialNotifications
     //region -------------------- Fields --------------------
 
     readonly #englishName
-    readonly #additionalEnglishName: Array<PossibleEnglishNameWithEveryAmount>
+    readonly #additionalEnglishName: CollectionHolder<PossibleEnglishNameWithEveryAmount>
 
     readonly #translationKey
     #additionalTranslationKeyHolder: Lazy<NullOr<PossibleAdditionalTranslationKey>>
@@ -531,7 +516,7 @@ export class OfficialNotifications
         super()
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
-        this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : amount.map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount)
+        this.#additionalEnglishName = amount[0] === 1 ? EMPTY_COLLECTION_HOLDER : new ArrayAsCollection(amount,).map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount)
         this.#additionalTranslationKeyHolder = lazy(() => this._createAdditionalTranslationKey,)
     }
 
@@ -548,7 +533,7 @@ export class OfficialNotifications
         return this.#englishName.getInHtml
     }
 
-    public get additionalEnglishName(): Array<PossibleEnglishNameWithEveryAmount> {
+    public get additionalEnglishName(): CollectionHolder<PossibleEnglishNameWithEveryAmount> {
         return this.#additionalEnglishName
     }
 

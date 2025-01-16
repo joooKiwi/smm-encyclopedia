@@ -2,33 +2,33 @@ import 'app/_GameAsideContent.scss'
 import 'app/_GameStyleAsideContent.scss'
 import 'app/_TimeAsideContent.scss'
 import './EntityApp.scss'
-import 'app/options/EntityAppOption.scss'
 
-import type {Array, MutableArray, NullOr} from '@joookiwi/type'
-import type {CollectionHolder}            from '@joookiwi/collection'
-import {filterByArray}                    from '@joookiwi/collection'
+import type {MutableArray, NullOr}     from '@joookiwi/type'
+import type {CollectionHolder}         from '@joookiwi/collection'
+import type {Dispatch, SetStateAction} from 'react'
+import {useState}                      from 'react'
 
-import type {EntityProperties}        from 'app/AppProperties.types'
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {TimeCollection}          from 'util/collection/TimeCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {EntityProperties}    from 'app/AppProperties.types'
+import type {GameCollection}      from 'util/collection/GameCollection'
+import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import type {ReactProperties}     from 'util/react/ReactProperties'
 
-import SubMainContainer                             from 'app/_SubMainContainer'
 import {EntityAppOption}                            from 'app/options/EntityAppOption'
 import {EntityGames}                                from 'app/property/EntityGames'
 import {EntityGameStyles}                           from 'app/property/EntityGameStyles'
 import {EntityTimes}                                from 'app/property/EntityTimes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Table                                        from 'app/tools/table/Table'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
+import EntitySideContent                            from 'app/side/EntitySideContent'
+import AppTitle                                     from 'app/util/AppTitle'
+import CardList                                     from 'app/util/CardList'
 import List                                         from 'app/util/List'
-import CardList                                     from 'app/withInterpreter/CardList'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import PageTitle                                    from 'app/util/PageTitle'
+import PageViewChanger                              from 'app/util/PageViewChanger'
+import SubMain                                      from 'app/util/SubMain'
+import {BootstrapInstanceHandler}                   from 'bootstrap/BootstrapInstanceHandler'
+import EditorVoiceSound                             from 'core/editorVoice/component/EditorVoiceSound'
 import {Entities}                                   from 'core/entity/Entities'
 import SingleEntityImage                            from 'core/entity/component/SingleEntityImage'
 import {Games}                                      from 'core/game/Games'
@@ -38,10 +38,15 @@ import GameStyleImage                               from 'core/gameStyle/compone
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {Times}                                      from 'core/time/Times'
 import TimeImage                                    from 'core/time/component/TimeImage'
+import DisplayButtonGroup                           from 'display/DisplayButtonGroup'
+import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
+import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
+import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
+import {TimeCollection}                             from 'util/collection/TimeCollection'
 
 import ALL =             Entities.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
@@ -55,134 +60,22 @@ import SMM3DS =          Games.SMM3DS
 import SMW =             GameStyles.SMW
 import SM3DW =           GameStyles.SM3DW
 
-class EntityAppInterpreter
-    implements AppInterpreterWithTable<Entities, EntityAppOption> {
+//region -------------------- Import from deconstruction --------------------
 
-    //region -------------------- Fields --------------------
+const {ENTITY,} = OtherWordInTheGames
+const {LIST, CARD,} = ViewDisplays
 
-    readonly #games
-    readonly #gameStyles
-    readonly #times
+//endregion -------------------- Import from deconstruction --------------------
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(games: GameCollection, gameStyles: GameStyleCollection, times: TimeCollection) {
-        this.#games = games
-        this.#gameStyles = gameStyles
-        this.#times = times
-    }
-
-    //endregion -------------------- Constructor --------------------
-
-    public get content() {
-        const games = this.#games
-        const gameStyles = this.#gameStyles
-        const times = this.#times
-        return filterByArray(ALL, ({reference,},) =>
-            games.hasAnyIn(reference,)
-            && gameStyles.hasAnyIn(reference,)
-            && times.hasAnyIn(reference,),)
-    }
-
-    //region -------------------- Card --------------------
-
-    public createCardListDimension() {
-        return {
-            default: 1,
-            small: 2,
-            medium: 3,
-            large: 4,
-            extraLarge: 6,
-        } as const satisfies DimensionOnList
-    }
-
-    public createCardListContent(entity: Entities,) {
-        const reference = entity.reference
-        const category = reference.categoryEnglish === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
-        //TODO encapsulate the voiceSound into a sound interpreter.
-        return <div className={`${category}`}>
-            <SingleEntityImage reference={entity} gameStyles={this.#gameStyles}/>
-            <EditorVoiceSoundComponent editorVoiceSound={entity.editorVoiceSoundFileHolder} name={entity.englishName}/>
-        </div>
-    }
-
-    //endregion -------------------- Card --------------------
-    //region -------------------- Table --------------------
-
-    public readonly tableHeadersColor = 'secondary' satisfies BootstrapThemeColor
-
-    public get tableCaption() {
-        const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-        const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-        return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
-    }
-
-    public get tableOptions(): Array<EntityAppOption> {
-        const games = this.#games
-        const gameStyles = this.#gameStyles
-        const hasSmm2 = games.hasSmm2
-
-        const options: MutableArray<EntityAppOption> = []
-        if (gameStyles.hasSmb)
-            options.push(EntityAppOption.IMAGE_IN_SMB,)
-        if (gameStyles.hasSmb3)
-            options.push(EntityAppOption.IMAGE_IN_SMB3,)
-        if (gameStyles.hasSmw)
-            options.push(EntityAppOption.IMAGE_IN_SMW,)
-        if (gameStyles.hasNsmbu)
-            options.push(EntityAppOption.IMAGE_IN_NSMBU,)
-        if (gameStyles.hasSm3dw && hasSmm2) // The SMM2 validation is a fail-safe
-            options.push(EntityAppOption.IMAGE_IN_SM3DW,)
-        options.push(
-            EntityAppOption.NAME,
-            // EntityAppOption.GAME,
-            // EntityAppOption.GAME_STYLE,
-            // EntityAppOption.COURSE_THEME,
-            // EntityAppOption.TIME,
-            EntityAppOption.CATEGORY,
-        )
-        if (games.hasAllGames)
-            options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
-        else {
-            if (games.hasSmm1Or3ds)
-                options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
-            if (hasSmm2)
-                options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
-        }
-        options.push(EntityAppOption.PLAY_LIMIT,)
-        return options
-    }
-
-
-    public getAdditionalClass(option: EntityAppOption,) {
-        return option.additionalClasses
-    }
-
-    public createTableContent(content: Entities, option: EntityAppOption,) {
-        return option.renderContent(content,)
-    }
-
-    public createTableHeader(option: EntityAppOption,) {
-        return option.renderTableHeader()
-    }
-
-    //endregion -------------------- Table --------------------
-
-}
-
-const viewDisplayAndRouteName = [
-    [ViewDisplays.SIMPLE_LIST, 'everyEntity (list)',],
-    [ViewDisplays.CARD_LIST, 'everyEntity (card)',],
-    [ViewDisplays.TABLE, 'everyEntity (table)',],
-] as const satisfies Array<ViewAndRouteName>
+const all = new ArrayAsCollection(ALL,)
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
-    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
-    const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
-    const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
+    const [sideEntity, setSideEntity,] = useState<NullOr<Entities>>(null,)
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const entities = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName,)
+    const entitiesAsLowerCase = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
 
     //region -------------------- Game selection --------------------
 
@@ -237,51 +130,137 @@ export default function EntityApp({viewDisplay, games, gameStyles, times,}: Enti
 
     //endregion -------------------- Time selection --------------------
 
-    return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
-                             titleContent={gameContentTranslation('entity.all', {
-                                 Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
-                             },)}
-                             asideContent={<EntityAsideContent game={game} gameStyle={gameStyle} time={time} games={games} gameStyles={gameStyles}/>}>
-        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
-    </SubMainContainer>
+    return <SubMain partial-id="entity" viewDisplay={viewDisplay}>
+        <AppTitle>{gameContentTranslation('entity.all', {
+            Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
+        },)}</AppTitle>
+        <PageTitle value={entity}/>
+        <aside id="entity-side-content">
+            {sideEntity == null ? null : <EntitySideContent reference={sideEntity} games={games}/>}
+        </aside>
+        <PageViewChanger>
+            <GameAsideContent game={game} gameStyles={gameStyles} times={times}/>
+            <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
+            <TimeAsideContent time={time}/>
+            <DisplayButtonGroup list="everyEntity (list)" card="everyEntity (card)" table="everyEntity (table)" current={viewDisplay}/>
+        </PageViewChanger>
+        <UnfinishedText type="paragraph" isHidden>entity description</UnfinishedText>{/*TODO add description*/}
+        <section id="entity-app-content" className="app-content">
+            <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} displaySideContent={it => displaySideContent(setSideEntity, it,)}/>
+        </section>
+    </SubMain>
 }
+
+function displaySideContent(action: Dispatch<SetStateAction<NullOr<Entities>>>, entity: Entities,) {
+    action(entity,)
+    BootstrapInstanceHandler.get.getOffcanvasInstanceOrNull(ENTITY_SIDE_CONTENT,)?.instance.show()
+}
+
+//region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
-    const appInterpreter = new EntityAppInterpreter(games, gameStyles, times,)
+function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityProperties & { displaySideContent(entity: Entities,): void, },) {
+    const items = all.filter(({reference,},) =>
+        games.hasAnyIn(reference,)
+        && gameStyles.hasAnyIn(reference,)
+        && times.hasAnyIn(reference,),)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <EntityList items={appInterpreter.content} gameStyles={gameStyles}/>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <CardList reactKey="entity" interpreter={appInterpreter}/>
-    return <Table id="entity-table" interpreter={appInterpreter}/>
+    if (viewDisplay === LIST)
+        return <EntityList items={items} gameStyles={gameStyles}/>
+    if (viewDisplay === CARD)
+        return <EntityCardList items={items} gameStyles={gameStyles}/>
+    return <EntityTable items={items} games={games} gameStyles={gameStyles} displaySideContent={displaySideContent}/>
 }
 
-//region -------------------- List --------------------
 
-interface Entity_ListProperties
+interface Entity_SubContentProperties
     extends ReactProperties {
 
     readonly items: CollectionHolder<Entities>
 
+    readonly games: GameCollection
+
     readonly gameStyles: GameStyleCollection
+
+    displaySideContent(entity: Entities,): void
 
 }
 
 /** @reactComponent */
-function EntityList({items, gameStyles,}: Entity_ListProperties,) {
-    return <List partialId="entity" items={items} withSeparator>{it =>
+function EntityList({items, gameStyles,}: Pick<Entity_SubContentProperties, | 'items' | 'gameStyles'>,) {
+    return <List partial-id="entity" items={items} withSeparator>{it =>
         <div className="d-flex justify-content-between">
             <div className="d-flex">
                 <NameComponent id="entity-name" name={it.reference} popoverOrientation="top"/>
                 <SingleEntityImage reference={it} gameStyles={gameStyles}/>
             </div>
-            <EditorVoiceSoundComponent editorVoiceSound={it.editorVoiceSoundFileHolder} name={it.englishName}/>
+            <EditorVoiceSound editorVoice={it.editorVoiceReference} name={it.englishName}/>
         </div>
     }</List>
 }
 
-//endregion -------------------- List --------------------
+/** @reactComponent */
+function EntityCardList({items, gameStyles,}: Pick<Entity_SubContentProperties, | 'items' | 'gameStyles'>,) {
+    return <CardList partial-id="entity" items={items} default={1} small={2} medium={3} large={4} extra-large={5} extra-extra-large={6}>{it => {
+
+        const reference = it.reference
+        const categoryName = reference.categoryEnglish
+        //TODO encapsulate the voiceSound into a sound interpreter.
+        return <div className={categoryName === EMPTY_STRING ? EMPTY_STRING : `entityCategory-${categoryName}`}>
+            <NameComponent id="entity-name" name={it.reference} popoverOrientation="left"/>
+            <SingleEntityImage reference={it} gameStyles={gameStyles}/>
+            <EditorVoiceSound editorVoice={it.editorVoiceReference} name={it.englishName}/>
+        </div>
+    }}</CardList>
+}
+
+/** @reactComponent */
+function EntityTable({items, games, gameStyles, displaySideContent,}: Entity_SubContentProperties,) {
+    return <Table id="entity-table" items={items} options={getOptions(games, gameStyles,)} caption={getCaption()} onRowClicked={displaySideContent} headersColor="secondary"/>
+}
+
+function getOptions(games: GameCollection, gameStyles: GameStyleCollection,): CollectionHolder<EntityAppOption> {
+    const {hasSmm2,} = games
+    const options: MutableArray<EntityAppOption> = []
+    if (gameStyles.hasSmb)
+        options.push(EntityAppOption.IMAGE_IN_SMB,)
+    if (gameStyles.hasSmb3)
+        options.push(EntityAppOption.IMAGE_IN_SMB3,)
+    if (gameStyles.hasSmw)
+        options.push(EntityAppOption.IMAGE_IN_SMW,)
+    if (gameStyles.hasNsmbu)
+        options.push(EntityAppOption.IMAGE_IN_NSMBU,)
+    if (gameStyles.hasSm3dw && hasSmm2) // The SMM2 validation is a fail-safe
+        options.push(EntityAppOption.IMAGE_IN_SM3DW,)
+    options.push(
+        EntityAppOption.NAME,
+        // EntityAppOption.GAME,
+        // EntityAppOption.GAME_STYLE,
+        // EntityAppOption.COURSE_THEME,
+        // EntityAppOption.TIME,
+        EntityAppOption.CATEGORY,
+    )
+    if (games.hasAllGames)
+        options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
+    else {
+        if (games.hasSmm1Or3ds)
+            options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
+        if (hasSmm2)
+            options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
+    }
+    options.push(EntityAppOption.PLAY_LIMIT,)
+    return new ArrayAsCollection(options,)
+}
+
+function getCaption() {
+    const {ENTITY,} = OtherWordInTheGames
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+
+    return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},)
+}
+
+//endregion -------------------- Sub content --------------------
 //region -------------------- Aside content --------------------
 
 interface EntityAsideContentProperties
@@ -293,42 +272,32 @@ interface EntityAsideContentProperties
 
     readonly games: GameCollection
     readonly gameStyles: GameStyleCollection
+    readonly times: TimeCollection
 
 }
 
 /** @reactComponent */
-function EntityAsideContent({games, gameStyles, time, game, gameStyle,}: EntityAsideContentProperties,) {
-    return <div className="entity-asideContent-container">
-        <GameAsideContent game={game} gameStyles={gameStyles}/>
-        {game == null ? null : <div className="d-inline mx-1"/>}
-        <GameStyleAsideContent gameStyle={gameStyle} games={games} gameStyles={gameStyles}/>
-        {time == null ? null : <div className="d-inline mx-1"/>}
-        <TimeAsideContent time={time}/>
-    </div>
-}
-
-/** @reactComponent */
-function GameAsideContent({game, gameStyles,}: Pick<EntityAsideContentProperties, | 'game' | 'gameStyles'>,) {
+function GameAsideContent({game, gameStyles, times,}: Pick<EntityAsideContentProperties, | 'game' | 'gameStyles' | 'times'>,) {
     if (game == null)
         return null
-    if (gameStyles.hasSm3dwAndSizeOfNot4Or5)
+    if (gameStyles.hasOnlySm3dw || times.hasOnlyNight)
         return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-            <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+            <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
                 <GameImage reference={SMM2}/>
             </LinkButton>
         </div>
 
     return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allGameLimit" routeName={game.allRouteName} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
+            <LinkButton partial-id="smm1Game" routeName={game.smm1RouteName} color={game.smm1Color}>
                 <GameImage reference={SMM1}/>
             </LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
+            <LinkButton partial-id="smm3dsGame" routeName={game.smm3dsRouteName} color={game.smm3dsColor}>
                 <GameImage reference={SMM3DS}/>
             </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
+            <LinkButton partial-id="smm2Game" routeName={game.smm2RouteName} color={game.smm2Color}>
                 <GameImage reference={SMM2}/>
             </LinkButton>
         </div>
@@ -340,43 +309,45 @@ function GameStyleAsideContent({gameStyle, games, gameStyles,}: Pick<EntityAside
     if (games.hasSmm2)
         //The game styles are in SMM2
         return <div id="entity-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
-            <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+            <LinkButton partial-id="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
             <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
+                <LinkButton partial-id="smbGameStyleEntity" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
                     <GameStyleImage reference={SMB}/>
                 </LinkButton>
-                <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
+                <LinkButton partial-id="smb3GameStyleEntity" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
                     <GameStyleImage reference={SMB3}/>
                 </LinkButton>
-                <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
+            </div>
+            <div id="entity-gameStylesButton-singularGameStyle-center-container" className="btn-group btn-group-sm">
+                <LinkButton partial-id="smwGameStyleEntity" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
                     <GameStyleImage reference={SMW}/>
+                </LinkButton>
+                <LinkButton partial-id="nsmbuGameStyleEntity" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
+                    <GameStyleImage reference={NSMBU}/>
                 </LinkButton>
             </div>
             <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
-                    <GameStyleImage reference={NSMBU}/>
-                </LinkButton>
-                <LinkButton partialId="sm3dwGameStyleLimit" routeName={gameStyle.sm3dwRouteName} color={gameStyle.sm3dwColor(gameStyles.hasSm3dw,)}>
+                <LinkButton partial-id="sm3dwGameStyleEntity" routeName={gameStyle.sm3dwRouteName} color={gameStyle.sm3dwColor(gameStyles.hasSm3dw,)}>
                     <GameStyleImage reference={SM3DW}/>
                 </LinkButton>
             </div>
         </div>
     //The game styles are in SMM1 / SMM3DS
     return <div id="entity-gameStylesButton-container" className="gameStyleAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allGameStyleLimit" routeName={gameStyle.allRouteName} color={gameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smbGameStyleLimit" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
+            <LinkButton partial-id="smbGameStyleEntity" routeName={gameStyle.smbRouteName} color={gameStyle.smbColor(gameStyles.hasSmb,)}>
                 <GameStyleImage reference={SMB}/>
             </LinkButton>
-            <LinkButton partialId="smb3GameStyleLimit" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
+            <LinkButton partial-id="smb3GameStyleEntity" routeName={gameStyle.smb3RouteName} color={gameStyle.smb3Color(gameStyles.hasSmb3,)}>
                 <GameStyleImage reference={SMB3}/>
             </LinkButton>
         </div>
         <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smwGameStyleLimit" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
+            <LinkButton partial-id="smwGameStyleEntity" routeName={gameStyle.smwRouteName} color={gameStyle.smwColor(gameStyles.hasSmw,)}>
                 <GameStyleImage reference={SMW}/>
             </LinkButton>
-            <LinkButton partialId="nsmbuGameStyleLimit" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
+            <LinkButton partial-id="nsmbuGameStyleEntity" routeName={gameStyle.nsmbuRouteName} color={gameStyle.nsmbuColor(gameStyles.hasNsmbu,)}>
                 <GameStyleImage reference={NSMBU}/>
             </LinkButton>
         </div>
@@ -388,12 +359,12 @@ function TimeAsideContent({time,}: Pick<EntityAsideContentProperties, 'time'>,) 
     if (time == null)
         return null
     return <div id="entity-timesButton-container" className="timeAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partial-id="allTime" routeName={time.allRouteName} color={time.allColor}>{contentTranslation('All',)}</LinkButton>
         <div className="btn-group btn-group-sm">
-            <LinkButton partialId="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
+            <LinkButton partial-id="dayTime" routeName={time.dayRouteName} color={time.dayColor}>
                 <TimeImage reference={Times.DAY}/>
             </LinkButton>
-            <LinkButton partialId="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
+            <LinkButton partial-id="nightTime" routeName={time.nightRouteName} color={time.nightColor}>
                 <TimeImage reference={Times.NIGHT}/>
             </LinkButton>
         </div>

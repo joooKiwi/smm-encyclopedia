@@ -1,5 +1,6 @@
-import type {Lazy}                             from '@joookiwi/lazy'
-import type {Array, NullOrBoolean, NullOrTrue} from '@joookiwi/type'
+import type {CollectionHolder}          from '@joookiwi/collection'
+import type {Lazy}                      from '@joookiwi/lazy'
+import type {NullOrBoolean, NullOrTrue} from '@joookiwi/type'
 
 import type {Entity}                                           from 'core/entity/Entity'
 import type {Games}                                            from 'core/game/Games'
@@ -16,9 +17,9 @@ export class GameStyleContainer
     //region -------------------- Fields --------------------
 
     readonly #isInSuperMarioMaker1And3DS
-    readonly #entitiesHolder
+    readonly #entities
     readonly #isAvailableFromTheStartInSuperMarioMaker1
-    readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue
+    readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS
     readonly #nightDesertWindTranslationKey
     #gameMap?: GameMap<GameStyle>
 
@@ -27,16 +28,14 @@ export class GameStyleContainer
 
     public constructor(name: Name<string>,
                        isInSuperMarioMaker1And3DS: boolean,
-                       isAvailableFromTheStartInSuperMarioMaker1: NullOrBoolean,
-                       entities: Lazy<Array<Entity>>,
+                       isAvailableFromTheStartInSuperMarioMaker1: NullOrBoolean, isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue,
+                       entities: Lazy<CollectionHolder<Entity>>,
                        nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,)
         this.#isInSuperMarioMaker1And3DS = isInSuperMarioMaker1And3DS
-        if ((this.#isAvailableFromTheStartInSuperMarioMaker1 = isAvailableFromTheStartInSuperMarioMaker1) == null)
-            this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = null
-        else
-            this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = true
-        this.#entitiesHolder = entities
+        this.#isAvailableFromTheStartInSuperMarioMaker1 = isAvailableFromTheStartInSuperMarioMaker1
+        this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = isAvailableFromTheStartInSuperMarioMakerFor3DS
+        this.#entities = entities
         this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey
     }
 
@@ -75,7 +74,7 @@ export class GameStyleContainer
     //endregion -------------------- "Is available from the start" properties --------------------
 
     public get entities() {
-        return this.#entitiesHolder.value
+        return this.#entities.value
     }
 
     public get nightDesertWindTranslationKey() {

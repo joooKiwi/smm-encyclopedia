@@ -1,4 +1,4 @@
-import type {Array} from '@joookiwi/type'
+import type {CollectionHolder} from '@joookiwi/collection'
 
 import type {Entity}            from 'core/entity/Entity'
 import type {GameProperty}      from 'core/entity/properties/game/GameProperty'
@@ -12,7 +12,7 @@ export interface Instrument
         GameStyleProperty,
         TimeProperty {
 
-    readonly entities: Array<Entity>
+    readonly entities: CollectionHolder<Entity>
 
     readonly isInSuperMario3DWorldStyle: false
 

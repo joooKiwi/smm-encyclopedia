@@ -19,7 +19,7 @@ import getInHtml = StringContainer.getInHtml
  * @todo move the name structure into the popover
  */
 export default function NameComponent({id, ...otherProperties}: NameProperties,) {
-    const [doesDisplayPopover, setDoesDisplayPopover,] = useState(false)
+    const [doesDisplayPopover, setDoesDisplayPopover,] = useState(false,)
     const {name,} = otherProperties
 
     const elementId = `${id}-${getInHtml(name.english,)}`
@@ -27,6 +27,6 @@ export default function NameComponent({id, ...otherProperties}: NameProperties,)
 
     return <div id={`${elementId}-container`} className="name-container">
         <NamePopoverComponent id={elementId} listId={listId} setDoesDisplayPopover={setDoesDisplayPopover} otherProperties={otherProperties}/>
-        <NameListComponent name={name} id={elementId} listId={listId} doesDisplayPopover={doesDisplayPopover}/>
+        <NameListComponent name={name} id={listId} doesDisplayPopover={doesDisplayPopover}/>
     </div>
 }

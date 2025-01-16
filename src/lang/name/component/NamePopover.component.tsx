@@ -1,11 +1,12 @@
-import type {NullableString, UndefinedOr} from '@joookiwi/type'
-import type {Dispatch, SetStateAction}    from 'react'
-import Popover                            from 'bootstrap/js/dist/popover'
-import {Component}                        from 'react'
+import type {NullableString}           from '@joookiwi/type'
+import type {Dispatch, SetStateAction} from 'react'
+import Popover                         from 'bootstrap/js/dist/popover'
+import {Component}                     from 'react'
 
-import type {Name}                                                     from 'lang/name/Name'
-import type {NamePopoverProperties, NamePopoverStates, NameProperties} from 'lang/name/component/Name.properties'
-import type {ReactComponent}                                           from 'util/react/ReactComponent'
+import type {NameProperties}  from 'lang/name/component/Name.properties'
+import type {ReactComponent}  from 'util/react/ReactComponent'
+import type {ReactProperties} from 'util/react/ReactProperties'
+import type {ReactState}      from 'util/react/ReactState'
 
 import TextComponent        from 'app/tools/text/TextComponent'
 import TextPopover          from 'bootstrap/popover/TextPopover'
@@ -13,6 +14,26 @@ import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
 
 import Companion = ProjectLanguages.Companion
+
+interface NamePopoverProperties
+    extends ReactProperties {
+
+    readonly id: string
+
+    readonly listId: string
+
+    readonly setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>
+
+    readonly otherProperties: Omit<NameProperties, 'id'>
+
+}
+
+interface NamePopoverStates
+    extends ReactState {
+
+    readonly element: NonNullReactElement
+
+}
 
 /** @reactComponent */
 export default class NamePopoverComponent
@@ -28,48 +49,23 @@ export default class NamePopoverComponent
 
     constructor(props: NamePopoverProperties,) {
         super(props,)
-        this.#currentLanguageTextContent = Companion.current.get<string>(this.name,)
+        this.#currentLanguageTextContent = Companion.current.get<string>(props.otherProperties.name,)
         this.state = {
-            element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
+            element: <TextComponent key={`${this.props.id} - temporary`} content={this.#currentLanguageTextContent}/>,
         }
     }
 
     //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter methods --------------------
-
-    public get id(): string {
-        return this.props.id
-    }
-
-    public get listId(): string {
-        return this.props.listId
-    }
-
-    public get setDoesDisplayPopover(): Dispatch<SetStateAction<boolean>> {
-        return this.props.setDoesDisplayPopover
-    }
-
-    public get otherProperties(): Omit<NameProperties, 'id'> {
-        return this.props.otherProperties
-    }
-
-    public get name(): Name<string> {
-        return this.otherProperties.name
-    }
-
-    public get popoverOrientation(): UndefinedOr<PossiblePopoverOrientation> {
-        return this.otherProperties.popoverOrientation
-    }
-
-    //endregion -------------------- Getter methods --------------------
 
     public override componentDidMount(): void {
-        const id = this.id
-        const setDoesDisplayPopover = this.setDoesDisplayPopover
+        const properties = this.props
+        const id = properties.id
+        const otherProperties = properties.otherProperties
+        const setDoesDisplayPopover = properties.setDoesDisplayPopover
 
         this.setState({
-            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, contentTranslation('In other languages',),)}
-                                  {...this.otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
+            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(properties.listId, otherProperties.popoverOrientation, contentTranslation('In other languages',),)}
+                                  {...otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
                 {this.#currentLanguageTextContent}
             </TextPopover>,
         })

@@ -223,7 +223,7 @@ export class MiiCostumes
      * @semiAsynchronously
      */
     public get reference(): MiiCostume {
-        return this.#reference ??= MiiCostumes.REFERENCE_MAP.get(this.englishName)!
+        return this.#reference ??= MiiCostumes.REFERENCE_MAP.get(this.englishName,)!
     }
 
 

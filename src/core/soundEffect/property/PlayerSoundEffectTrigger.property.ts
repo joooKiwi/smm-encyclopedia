@@ -6,29 +6,23 @@ export interface PlayerSoundEffectTriggerProperty
 
     //region -------------------- Movement triggers --------------------
 
-    get doesTriggerOnPlayerWhenJumpingAfterLanding(): boolean
-
-    get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): boolean
-
-    get doesTriggerOnPlayerWhenCrouching(): boolean
-
-    get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): boolean
+    readonly doesTriggerOnPlayerWhenJumpingAfterLanding: boolean
+    readonly doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed: boolean
+    readonly doesTriggerOnPlayerWhenCrouching: boolean
+    readonly doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly: boolean
 
     //endregion -------------------- Movement triggers --------------------
     //region -------------------- Interaction triggers --------------------
 
-    get doesTriggerOnPlayerWhenCollectingAPowerUp(): boolean
-
-    get doesTriggerOnPlayerWhenGettingIntoAEntity(): boolean
+    readonly doesTriggerOnPlayerWhenCollectingAPowerUp: boolean
+    readonly doesTriggerOnPlayerWhenGettingIntoAEntity: boolean
 
     //endregion -------------------- Interaction triggers --------------------
     //region -------------------- Environment triggers --------------------
 
-    get doesTriggerOnPlayerAtSpawn(): boolean
-
-    get doesTriggerOnPlayerWhenTakingDamage(): boolean
-
-    get doesTriggerOnPlayerWhenLosingALife(): boolean
+    readonly doesTriggerOnPlayerAtSpawn: boolean
+    readonly doesTriggerOnPlayerWhenTakingDamage: boolean
+    readonly doesTriggerOnPlayerWhenLosingALife: boolean
 
     //endregion -------------------- Environment triggers --------------------
 
