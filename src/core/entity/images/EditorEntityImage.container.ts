@@ -8,38 +8,25 @@ import type {GameStyles}        from 'core/gameStyle/GameStyles'
 import type {Themes}            from 'core/theme/Themes'
 import type {Times}             from 'core/time/Times'
 
-export class EditorEntityImageContainer<const T extends EditorImageFile, >
-    implements EditorEntityImage<T> {
+import {AbstractEntityImage} from 'core/entity/images/AbstractEntityImage'
 
-    //region -------------------- Fields --------------------
+export class EditorEntityImageContainer<const T extends EditorImageFile, >
+    extends AbstractEntityImage<T>
+    implements EditorEntityImage<T> {
 
     readonly #reference
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
     public constructor(reference: EditorImage<T>,) {
+        super()
         this.#reference = reference
     }
 
-    //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter methods --------------------
+    public get images(): CollectionHolder<T> { return this.#reference.images }
 
-    public get images(): CollectionHolder<T> {
-        return this.#reference.images
-    }
+    public get imagesWithAssociation(): CollectionHolder<readonly [Times, GameStyles, Themes, T,]> { return this.#reference.imagesWithAssociation }
 
-    public get imagesWithAssociation(): CollectionHolder<readonly [Times, GameStyles, Themes, T,]> {
-        return this.#reference.imagesWithAssociation
-    }
-
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
-
-    public get(gameStyle?: Nullable<GameStyles>,): CollectionHolder<T> {
+    public override _get(gameStyle?: Nullable<GameStyles>,): CollectionHolder<T> {
         return this.#reference.getFromGameStyle(gameStyle,)
     }
-
-    //endregion -------------------- Methods --------------------
 
 }

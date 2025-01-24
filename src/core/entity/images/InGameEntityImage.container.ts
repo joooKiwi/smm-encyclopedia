@@ -5,38 +5,25 @@ import type {InGameEntityImage}   from 'core/entity/images/InGameEntityImage'
 import type {InGameImage_Regular} from 'core/entity/images/inGame/InGameImage_Regular'
 import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-export class InGameEntityImageContainer<const T extends InGameImageFile, >
-    implements InGameEntityImage<T> {
+import {AbstractEntityImage} from 'core/entity/images/AbstractEntityImage'
 
-    //region -------------------- Fields --------------------
+export class InGameEntityImageContainer<const T extends InGameImageFile, >
+    extends AbstractEntityImage<T>
+    implements InGameEntityImage<T> {
 
     readonly #reference
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
     public constructor(reference: InGameImage_Regular<T>,) {
+        super()
         this.#reference = reference
     }
 
-    //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter methods --------------------
+    public override get images(): CollectionHolder<T> { return this.#reference.images }
 
-    public get images(): CollectionHolder<T> {
-        return this.#reference.images
-    }
+    public get imagesWithAssociation(): CollectionHolder<readonly [GameStyles, T,]> { return this.#reference.imagesWithAssociation }
 
-    public get imagesWithAssociation(): CollectionHolder<readonly [GameStyles, T,]> {
-        return this.#reference.imagesWithAssociation
-    }
-
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
-
-    public get(gameStyle: GameStyles,): CollectionHolder<T> {
+    public override _get(gameStyle: GameStyles,): CollectionHolder<T> {
         return this.#reference.get(gameStyle,)
     }
-
-    //endregion -------------------- Methods --------------------
 
 }
