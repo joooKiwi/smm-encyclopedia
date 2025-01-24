@@ -56,3 +56,4 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
           repository: ${{ github.repository }}
+          publish_dir: ./dist

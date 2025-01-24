@@ -4,6 +4,7 @@ import './CharacterNameApp.scss'
 
 import type {NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
+import {Fragment}                  from 'react'
 
 import type {CharacterNameProperties} from 'app/AppProperties.types'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
@@ -118,7 +119,7 @@ interface CharacterName_SubContentProperties
 /** @reactComponent */
 function CharacterNameList({items,}: CharacterName_SubContentProperties,) {
     return <List partial-id="characterName" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
+        <div key={`Character name list (${it.name})`} className="d-flex justify-content-between">
             <NameComponent id="characterName-name" name={it.reference} popoverOrientation="top"/>
             <EditorVoiceSound editorVoice={it.editorVoice} name={it.uniqueEnglishName}/>
         </div>
@@ -128,10 +129,10 @@ function CharacterNameList({items,}: CharacterName_SubContentProperties,) {
 /** @reactComponent */
 function CharacterNameCardList({items,}: CharacterName_SubContentProperties,) {
     return <CardList partial-id="characterName" items={items} default={1} small={2} medium={4} large={6}>{it =>
-        <>
+        <Fragment key={`Character name card list (${it.name})`}>
             <NameComponent id="characterName-name" name={it.reference} popoverOrientation="left"/>
             <EditorVoiceSound editorVoice={it.editorVoice} name={it.uniqueEnglishName}/>
-        </>
+        </Fragment>
     }</CardList>
 }
 

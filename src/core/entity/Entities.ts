@@ -15,18 +15,18 @@ import type {UnusedImage_Regular}                  from 'core/entity/images/unus
 import type {ClassWithImage}                       from 'util/ClassWithImage'
 import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
-import {EditorVoices}                  from 'core/editorVoice/EditorVoices'
-import {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
-import type {EditorEntityImages}       from 'core/entity/EditorEntityImages'
-import type {EntityImages}             from 'core/entity/EntityImages'
-import {InGameBigMushroomEntityImages} from 'core/entity/InGameBigMushroomEntityImages'
-import {InGameEntityImages}            from 'core/entity/InGameEntityImages'
-import {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
-import {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
-import {StringContainer}               from 'util/StringContainer'
-import {Import}                        from 'util/DynamicImporter'
-import {getValueByEnglishName}         from 'util/utilitiesMethods'
-import {CompanionEnumByName}           from 'util/enumerable/companion/CompanionEnumByName'
+import {EditorVoices}                    from 'core/editorVoice/EditorVoices'
+import type {ClearConditionEntityImages} from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}         from 'core/entity/EditorEntityImages'
+import type {EntityImages}               from 'core/entity/EntityImages'
+import {InGameBigMushroomEntityImages}   from 'core/entity/InGameBigMushroomEntityImages'
+import type {InGameEntityImages}         from 'core/entity/InGameEntityImages'
+import {UnusedBigMushroomEntityImages}   from 'core/entity/UnusedBigMushroomEntityImages'
+import type {UnusedEntityImages}         from 'core/entity/UnusedEntityImages'
+import {StringContainer}                 from 'util/StringContainer'
+import {Import}                          from 'util/DynamicImporter'
+import {getValueByEnglishName}           from 'util/utilitiesMethods'
+import {CompanionEnumByName}             from 'util/enumerable/companion/CompanionEnumByName'
 
 import EditorVoiceCompanion = EditorVoices.Companion
 
@@ -611,13 +611,13 @@ export class Entities
 
     public get entityEditorImageReference(): EditorEntityImages { return this.#editorEntityImageReference ??= Import.EditorEntityImages[this.name] }
 
-    public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= ClearConditionEntityImages[this.name] }
+    public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= Import.ClearConditionEntityImages[this.name] }
 
-    public get inGameEntityImageReference(): InGameEntityImages { return this.#inGameEntityImageReference ??= InGameEntityImages[this.name] }
+    public get inGameEntityImageReference(): InGameEntityImages { return this.#inGameEntityImageReference ??= Import.InGameEntityImages[this.name] }
 
     public get inGameBigMushroomEntityImageReference(): InGameBigMushroomEntityImages { return this.#inGameBigMushroomEntityImageReference ??= InGameBigMushroomEntityImages[this.name] }
 
-    public get unusedEntityImageReference(): UnusedEntityImages { return this.#unusedEntityImageReference ??= UnusedEntityImages[this.name] }
+    public get unusedEntityImageReference(): UnusedEntityImages { return this.#unusedEntityImageReference ??= Import.UnusedEntityImages[this.name] }
 
     public get unusedBigMushroomEntityImageReference(): UnusedBigMushroomEntityImages { return this.#unusedBigMushroomEntityImageReference ??= UnusedBigMushroomEntityImages[this.name] }
 

@@ -14,6 +14,7 @@ import {PowerUpPriorityTypes}  from 'app/property/PowerUpPriorityTypes'
 import {ThemeTypes}            from 'app/property/ThemeTypes'
 import {Games}                 from 'core/game/Games'
 import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {GameStylesPossibility} from 'core/gameStyle/GameStyles.possibility'
 import {Times}                 from 'core/time/Times'
 import {ViewDisplays}          from 'display/ViewDisplays'
 import {ProjectLanguages}      from 'lang/ProjectLanguages'
@@ -25,65 +26,32 @@ import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
 import {TimeCollection}        from 'util/collection/TimeCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
-import ALL_GAME_STYLES =            GameStyles.ALL
-import ALL_GAMES =                  Games.ALL
-import ALL_GAME_STYLES_COLLECTION = GameStyleCollection.ALL
-import ALL_GAMES_COLLECTION =       GameCollection.ALL
-import ALL_TIMES =                  Times.ALL
-import ALL_TIMES_COLLECTION =       TimeCollection.ALL
-import ALL_VIEW_DISPLAY =           ViewDisplayCollection.ALL
-import DAY_ONLY =                   Times.DAY_ONLY
-import EMPTY_STRING =               Empty.EMPTY_STRING
-import GameCompanion =              Games.Companion
-import GameStyleCompanion =         GameStyles.Companion
-import LanguageCompanion =          ProjectLanguages.Companion
-import NIGHT_ONLY =                 Times.NIGHT_ONLY
-import NO_GAME_STYLES =             GameStyleCollection.EMPTY
-import NO_GAMES =                   GameCollection.EMPTY
-import NO_TIMES =                   TimeCollection.EMPTY
-import NO_VIEW_DISPLAY =            ViewDisplayCollection.EMPTY
-import NOT_NSMBU =                  GameStyles.NOT_NSMBU
-import NOT_SMB =                    GameStyles.NOT_SMB
-import NOT_SMB3 =                   GameStyles.NOT_SMB3
-import NOT_SMW =                    GameStyles.NOT_SMW
-import NOT_SM3DW =                  GameStyles.NOT_SM3DW
-import NSMBU_AND_SM3DW =            GameStyles.NSMBU_AND_SM3DW
-import NSMBU_ONLY =                 GameStyles.NSMBU_ONLY
-import SMB_AND_NSMBU =              GameStyles.SMB_AND_NSMBU
-import SMB_AND_NSMBU_AND_SM3DW =    GameStyles.SMB_AND_NSMBU_AND_SM3DW
-import SMB_AND_SMB3 =               GameStyles.SMB_AND_SMB3
-import SMB_AND_SMB3_AND_NSMBU =     GameStyles.SMB_AND_SMB3_AND_NSMBU
-import SMB_AND_SMB3_AND_SMW =       GameStyles.SMB_AND_SMB3_AND_SMW
-import SMB_AND_SMB3_AND_SM3DW =     GameStyles.SMB_AND_SMB3_AND_SM3DW
-import SMB_AND_SMW =                GameStyles.SMB_AND_SMW
-import SMB_AND_SMW_AND_NSMBU =      GameStyles.SMB_AND_SMW_AND_NSMBU
-import SMB_AND_SMW_AND_SM3DW =      GameStyles.SMB_AND_SMW_AND_SM3DW
-import SMB_AND_SM3DW =              GameStyles.SMB_AND_SM3DW
-import SMB_ONLY =                   GameStyles.SMB_ONLY
-import SMB3_AND_NSMBU =             GameStyles.SMB3_AND_NSMBU
-import SMB3_AND_NSMBU_AND_SM3DW =   GameStyles.SMB3_AND_NSMBU_AND_SM3DW
-import SMB3_AND_SMW =               GameStyles.SMB3_AND_SMW
-import SMB3_AND_SMW_AND_NSMBU =     GameStyles.SMB3_AND_SMW_AND_NSMBU
-import SMB3_AND_SMW_AND_SM3DW =     GameStyles.SMB3_AND_SMW_AND_SM3DW
-import SMB3_AND_SM3DW =             GameStyles.SMB3_AND_SM3DW
-import SMB3_ONLY =                  GameStyles.SMB3_ONLY
-import SMW_AND_NSMBU =              GameStyles.SMW_AND_NSMBU
-import SMW_AND_NSMBU_AND_SM3DW =    GameStyles.SMW_AND_NSMBU_AND_SM3DW
-import SMW_AND_SM3DW =              GameStyles.SMW_AND_SM3DW
-import SMW_ONLY =                   GameStyles.SMW_ONLY
-import SMM1 =                       Games.SMM1
-import SMM1_AND_3DS =               Games.SMM1_AND_3DS
-import SMM1_AND_2 =                 Games.SMM1_AND_2
-import SMM1_GAMES_COLLECTION =      GameCollection.SMM1_ONLY
-import SMM1_ONLY =                  Games.SMM1_ONLY
-import SMM2 =                       Games.SMM2
-import SMM2_GAMES_COLLECTION =      GameCollection.SMM2_ONLY
-import SMM2_ONLY =                  Games.SMM2_ONLY
-import SMM3DS_AND_2 =               Games.SMM3DS_AND_2
-import SMM3DS_ONLY =                Games.SMM3DS_ONLY
-import SM3DW_ONLY =                 GameStyles.SM3DW_ONLY
-import TimeCompanion =              Times.Companion
-import ViewDisplayCompanion =       ViewDisplays.Companion
+import ALL_GAMES =             Games.ALL
+import ALL_GAMES_COLLECTION =  GameCollection.ALL
+import ALL_TIMES =             Times.ALL
+import ALL_TIMES_COLLECTION =  TimeCollection.ALL
+import ALL_VIEW_DISPLAY =      ViewDisplayCollection.ALL
+import DAY_ONLY =              Times.DAY_ONLY
+import EMPTY_STRING =          Empty.EMPTY_STRING
+import GameCompanion =         Games.Companion
+import LanguageCompanion =     ProjectLanguages.Companion
+import NIGHT_ONLY =            Times.NIGHT_ONLY
+import NO_GAME_STYLES =        GameStyleCollection.EMPTY
+import NO_GAMES =              GameCollection.EMPTY
+import NO_TIMES =              TimeCollection.EMPTY
+import NO_VIEW_DISPLAY =       ViewDisplayCollection.EMPTY
+import SMM1 =                  Games.SMM1
+import SMM1_AND_3DS =          Games.SMM1_AND_3DS
+import SMM1_AND_2 =            Games.SMM1_AND_2
+import SMM1_GAMES_COLLECTION = GameCollection.SMM1_ONLY
+import SMM1_ONLY =             Games.SMM1_ONLY
+import SMM2 =                  Games.SMM2
+import SMM2_GAMES_COLLECTION = GameCollection.SMM2_ONLY
+import SMM2_ONLY =             Games.SMM2_ONLY
+import SMM3DS_AND_2 =          Games.SMM3DS_AND_2
+import SMM3DS_ONLY =           Games.SMM3DS_ONLY
+import TimeCompanion =         Times.Companion
+import ViewDisplayCompanion =  ViewDisplays.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -124,61 +92,61 @@ const RouteApp =               lazy(() => import('app/RouteApp'))
 
 // //region -------------------- Possibility group constants --------------------
 //
-// /** Every {@link GameStyles} possibilities applicable to the {@link SMM2} game group */
+// /** Every {@link GameStylesPossibility} applicable to the {@link SMM2} game group */
 // const gameStylePossibilitiesWithSmm2 = [
-//     [ALL_GAME_STYLES,          'GameStyle=all',       'game-style-all',],
-//     [SMB_ONLY,                 'GameStyle=1',         'game-style-1',],
-//     [SMB3_ONLY,                'GameStyle=3',         'game-style-3',],
-//     [SMW_ONLY,                 'GameStyle=W',         'game-style-w',],
-//     [NSMBU_ONLY,               'GameStyle=U',         'game-style-u',],
-//     [SM3DW_ONLY,               'GameStyle=3DW',       'game-style-3dw',],
-//     [SMB_AND_SMB3,             'GameStyle=1&3',       'game-style-1,3',],
-//     [SMB_AND_SMW,              'GameStyle=1&W',       'game-style-1,w',],
-//     [SMB_AND_NSMBU,            'GameStyle=1&U',       'game-style-1,u',],
-//     [SMB_AND_SM3DW,            'GameStyle=1&3DW',     'game-style-1,3dw',],
-//     [SMB3_AND_SMW,             'GameStyle=3&W',       'game-style-3,w',],
-//     [SMB3_AND_NSMBU,           'GameStyle=3&U',       'game-style-3,u',],
-//     [SMB3_AND_SM3DW,           'GameStyle=3&3DW',     'game-style-3,3dw',],
-//     [SMW_AND_NSMBU,            'GameStyle=W&U',       'game-style-w,u',],
-//     [SMW_AND_SM3DW,            'GameStyle=W&3DW',     'game-style-w,3dw',],
-//     [NSMBU_AND_SM3DW,          'GameStyle=U&3DW',     'game-style-u,3dw',],
-//     [SMB_AND_SMB3_AND_SMW,     'GameStyle=1&3&W',     'game-style-1,3,w',],
-//     [SMB_AND_SMB3_AND_NSMBU,   'GameStyle=1&3&U',     'game-style-1,3,u',],
-//     [SMB_AND_SMB3_AND_SM3DW,   'GameStyle=1&3&3DW',   'game-style-1,3,3dw',],
-//     [SMB_AND_SMW_AND_NSMBU,    'GameStyle=1&W&U',     'game-style-1,w,u',],
-//     [SMB_AND_SMW_AND_SM3DW,    'GameStyle=1&W&3DW',   'game-style-1,w,3dw',],
-//     [SMB_AND_NSMBU_AND_SM3DW,  'GameStyle=1&U&3DW',   'game-style-1,u,3dw',],
-//     [SMB3_AND_SMW_AND_NSMBU,   'GameStyle=3&W&U',     'game-style-3,w,u',],
-//     [SMB3_AND_SMW_AND_SM3DW,   'GameStyle=3&W&3DW',   'game-style-3,w,3dw',],
-//     [SMB3_AND_NSMBU_AND_SM3DW, 'GameStyle=3&U&3DW',   'game-style-3,u,3dw',],
-//     [SMW_AND_NSMBU_AND_SM3DW,  'GameStyle=W&U&3DW',   'game-style-w,u,3dw',],
-//     [NOT_SM3DW,                'GameStyle=1&3&W&U',   'game-style-1,3,w,u',],
-//     [NOT_NSMBU,                'GameStyle=1&3&W&3DW', 'game-style-1,3,w,3dw',],
-//     [NOT_SMW,                  'GameStyle=1&3&U&3DW', 'game-style-1,3,u,3dw',],
-//     [NOT_SMB3,                 'GameStyle=1&W&U&3DW', 'game-style-1,w,u,3dw',],
-//     [NOT_SMB,                  'GameStyle=3&W&U&3DW', 'game-style-3,w,u,3dw',],
+//     [GameStylesPossibility.ALL,          'GameStyle=all',       'game-style-all',],
+//     [GameStylesPossibility.SMB_ONLY,                 'GameStyle=1',         'game-style-1',],
+//     [GameStylesPossibility.SMB3_ONLY,                'GameStyle=3',         'game-style-3',],
+//     [GameStylesPossibility.SMW_ONLY,                 'GameStyle=W',         'game-style-w',],
+//     [GameStylesPossibility.NSMBU_ONLY,               'GameStyle=U',         'game-style-u',],
+//     [GameStylesPossibility.SM3DW_ONLY,               'GameStyle=3DW',       'game-style-3dw',],
+//     [GameStylesPossibility.SMB_AND_SMB3,             'GameStyle=1&3',       'game-style-1,3',],
+//     [GameStylesPossibility.SMB_AND_SMW,              'GameStyle=1&W',       'game-style-1,w',],
+//     [GameStylesPossibility.SMB_AND_NSMBU,            'GameStyle=1&U',       'game-style-1,u',],
+//     [GameStylesPossibility.SMB_AND_SM3DW,            'GameStyle=1&3DW',     'game-style-1,3dw',],
+//     [GameStylesPossibility.SMB3_AND_SMW,             'GameStyle=3&W',       'game-style-3,w',],
+//     [GameStylesPossibility.SMB3_AND_NSMBU,           'GameStyle=3&U',       'game-style-3,u',],
+//     [GameStylesPossibility.SMB3_AND_SM3DW,           'GameStyle=3&3DW',     'game-style-3,3dw',],
+//     [GameStylesPossibility.SMW_AND_NSMBU,            'GameStyle=W&U',       'game-style-w,u',],
+//     [GameStylesPossibility.SMW_AND_SM3DW,            'GameStyle=W&3DW',     'game-style-w,3dw',],
+//     [GameStylesPossibility.NSMBU_AND_SM3DW,          'GameStyle=U&3DW',     'game-style-u,3dw',],
+//     [GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     'GameStyle=1&3&W',     'game-style-1,3,w',],
+//     [GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   'GameStyle=1&3&U',     'game-style-1,3,u',],
+//     [GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   'GameStyle=1&3&3DW',   'game-style-1,3,3dw',],
+//     [GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    'GameStyle=1&W&U',     'game-style-1,w,u',],
+//     [GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    'GameStyle=1&W&3DW',   'game-style-1,w,3dw',],
+//     [GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  'GameStyle=1&U&3DW',   'game-style-1,u,3dw',],
+//     [GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   'GameStyle=3&W&U',     'game-style-3,w,u',],
+//     [GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   'GameStyle=3&W&3DW',   'game-style-3,w,3dw',],
+//     [GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, 'GameStyle=3&U&3DW',   'game-style-3,u,3dw',],
+//     [GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  'GameStyle=W&U&3DW',   'game-style-w,u,3dw',],
+//     [GameStylesPossibility.NOT_SM3DW,                'GameStyle=1&3&W&U',   'game-style-1,3,w,u',],
+//     [GameStylesPossibility.NOT_NSMBU,                'GameStyle=1&3&W&3DW', 'game-style-1,3,w,3dw',],
+//     [GameStylesPossibility.NOT_SMW,                  'GameStyle=1&3&U&3DW', 'game-style-1,3,u,3dw',],
+//     [GameStylesPossibility.NOT_SMB3,                 'GameStyle=1&W&U&3DW', 'game-style-1,w,u,3dw',],
+//     [GameStylesPossibility.NOT_SMB,                  'GameStyle=3&W&U&3DW', 'game-style-3,w,u,3dw',],
 // ] as const
 // /**
-//  * Every {@link GameStyles} possibilities applicable not related to the {@link SMM2} game group.
+//  * Every {@link GameStylesPossibility} applicable not related to the {@link SMM2} game group.
 //  * Meaning, it does not contain the {@link SM3DW} game style.
 //  */
 // const gameStylePossibilitiesWithNotSmm2 = [
-//     [ALL_GAME_STYLES,        'GameStyle=all',     'game-style-all',],
-//     [SMB_ONLY,               'GameStyle=1',       'game-style-1',],
-//     [SMB3_ONLY,              'GameStyle=3',       'game-style-3',],
-//     [SMW_ONLY,               'GameStyle=W',       'game-style-w',],
-//     [NSMBU_ONLY,             'GameStyle=U',       'game-style-u',],
-//     [SMB_AND_SMB3,           'GameStyle=1&3',     'game-style-1,3',],
-//     [SMB_AND_SMW,            'GameStyle=1&W',     'game-style-1,w',],
-//     [SMB_AND_NSMBU,          'GameStyle=1&U',     'game-style-1,u',],
-//     [SMB3_AND_SMW,           'GameStyle=3&W',     'game-style-3,w',],
-//     [SMB3_AND_NSMBU,         'GameStyle=3&U',     'game-style-3,u',],
-//     [SMW_AND_NSMBU,          'GameStyle=W&U',     'game-style-w,u',],
-//     [SMB_AND_SMB3_AND_SMW,   'GameStyle=1&3&W',   'game-style-1,3,w',],
-//     [SMB_AND_SMB3_AND_NSMBU, 'GameStyle=1&3&U',   'game-style-1,3,u',],
-//     [SMB_AND_SMW_AND_NSMBU,  'GameStyle=1&W&U',   'game-style-1,w,u',],
-//     [SMB3_AND_SMW_AND_NSMBU, 'GameStyle=3&W&U',   'game-style-3,w,u',],
-//     [NOT_SM3DW,              'GameStyle=1&3&W&U', 'game-style-1,3,w,u',],
+//     [GameStylesPossibility.ALL,        'GameStyle=all',     'game-style-all',],
+//     [GameStylesPossibility.SMB_ONLY,               'GameStyle=1',       'game-style-1',],
+//     [GameStylesPossibility.SMB3_ONLY,              'GameStyle=3',       'game-style-3',],
+//     [GameStylesPossibility.SMW_ONLY,               'GameStyle=W',       'game-style-w',],
+//     [GameStylesPossibility.NSMBU_ONLY,             'GameStyle=U',       'game-style-u',],
+//     [GameStylesPossibility.SMB_AND_SMB3,           'GameStyle=1&3',     'game-style-1,3',],
+//     [GameStylesPossibility.SMB_AND_SMW,            'GameStyle=1&W',     'game-style-1,w',],
+//     [GameStylesPossibility.SMB_AND_NSMBU,          'GameStyle=1&U',     'game-style-1,u',],
+//     [GameStylesPossibility.SMB3_AND_SMW,           'GameStyle=3&W',     'game-style-3,w',],
+//     [GameStylesPossibility.SMB3_AND_NSMBU,         'GameStyle=3&U',     'game-style-3,u',],
+//     [GameStylesPossibility.SMW_AND_NSMBU,          'GameStyle=W&U',     'game-style-w,u',],
+//     [GameStylesPossibility.SMB_AND_SMB3_AND_SMW,   'GameStyle=1&3&W',   'game-style-1,3,w',],
+//     [GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU, 'GameStyle=1&3&U',   'game-style-1,3,u',],
+//     [GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,  'GameStyle=1&W&U',   'game-style-1,w,u',],
+//     [GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU, 'GameStyle=3&W&U',   'game-style-3,w,u',],
+//     [GameStylesPossibility.NOT_SM3DW,              'GameStyle=1&3&W&U', 'game-style-1,3,w,u',],
 // ] as const
 //
 // /** Every {@link Games} possibilities */
@@ -255,7 +223,15 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: ViewDisplays, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay, ALL_GAMES_COLLECTION, SMM2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, ALL_TIMES_COLLECTION, ALL_TIMES, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay, ALL_GAMES_COLLECTION, SMM2, GameStyleCollection.ALL, null, ALL_TIMES_COLLECTION, ALL_TIMES, routeCallback,)
+        }
+
+        public override get gameStyles(): GameStyleCollection {
+            return GameStyleCollection.ALL
+        }
+
+        public override get defaultGameStyles(): CollectionHolder<GameStyles> {
+            return GameStylesPossibility.ALL
         }
 
         protected override _createEveryRoutes(): Array<Route> {
@@ -269,708 +245,708 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
                 //region -------------------- Game style (all) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=all Time=all)`,          `/game-all/game-style-all/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=all Time=all)`,            `/game-1/game-style-all/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=all Time=all)`,          `/game-3ds/game-style-all/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=all Time=all)`,            `/game-2/game-style-all/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=all Time=all)`,        `/game-1,3ds/game-style-all/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=all Time=all)`,          `/game-1,2/game-style-all/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=all Time=all)`,        `/game-3ds,2/game-style-all/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=all Time=all)`,          `/game-all/game-style-all/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=all Time=all)`,            `/game-1/game-style-all/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=all Time=all)`,          `/game-3ds/game-style-all/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=all Time=all)`,            `/game-2/game-style-all/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=all Time=all)`,        `/game-1,3ds/game-style-all/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=all Time=all)`,          `/game-1,2/game-style-all/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=all Time=all)`,        `/game-3ds,2/game-style-all/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.ALL,          LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=all Time=all)`,          `/game-all/game-style-all/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=all Time=all)`,            `/game-1/game-style-all/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=all Time=all)`,          `/game-3ds/game-style-all/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=all Time=all)`,            `/game-2/game-style-all/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=all Time=all)`,        `/game-1,3ds/game-style-all/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=all Time=all)`,          `/game-1,2/game-style-all/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=all Time=all)`,        `/game-3ds,2/game-style-all/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=all Time=all)`,          `/game-all/game-style-all/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=all Time=all)`,            `/game-1/game-style-all/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=all Time=all)`,          `/game-3ds/game-style-all/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=all Time=all)`,            `/game-2/game-style-all/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=all Time=all)`,        `/game-1,3ds/game-style-all/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=all Time=all)`,          `/game-1,2/game-style-all/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=all Time=all)`,        `/game-3ds,2/game-style-all/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.ALL,          CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=all Time=all)`,         `/game-all/game-style-all/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=all Time=all)`,           `/game-1/game-style-all/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=all Time=all)`,         `/game-3ds/game-style-all/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=all Time=all)`,           `/game-2/game-style-all/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=all Time=all)`,       `/game-1,3ds/game-style-all/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=all Time=all)`,         `/game-1,2/game-style-all/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=all Time=all)`,       `/game-3ds,2/game-style-all/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=all Time=all)`,         `/game-all/game-style-all/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=all Time=all)`,           `/game-1/game-style-all/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=all Time=all)`,         `/game-3ds/game-style-all/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=all Time=all)`,           `/game-2/game-style-all/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=all Time=all)`,       `/game-1,3ds/game-style-all/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=all Time=all)`,         `/game-1,2/game-style-all/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=all Time=all)`,       `/game-3ds,2/game-style-all/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.ALL,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (all) --------------------
 
                 //region -------------------- Game style (smb) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1 Time=all)`,            `/game-all/game-style-1/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1 Time=all)`,              `/game-1/game-style-1/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1 Time=all)`,            `/game-3ds/game-style-1/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1 Time=all)`,              `/game-2/game-style-1/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1 Time=all)`,          `/game-1,3ds/game-style-1/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1 Time=all)`,            `/game-1,2/game-style-1/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1 Time=all)`,          `/game-3ds,2/game-style-1/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1 Time=all)`,            `/game-all/game-style-1/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1 Time=all)`,              `/game-1/game-style-1/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1 Time=all)`,            `/game-3ds/game-style-1/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1 Time=all)`,              `/game-2/game-style-1/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1 Time=all)`,          `/game-1,3ds/game-style-1/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1 Time=all)`,            `/game-1,2/game-style-1/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1 Time=all)`,          `/game-3ds,2/game-style-1/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1 Time=all)`,            `/game-all/game-style-1/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1 Time=all)`,              `/game-1/game-style-1/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1 Time=all)`,            `/game-3ds/game-style-1/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1 Time=all)`,              `/game-2/game-style-1/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1 Time=all)`,          `/game-1,3ds/game-style-1/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1 Time=all)`,            `/game-1,2/game-style-1/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1 Time=all)`,          `/game-3ds,2/game-style-1/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1 Time=all)`,            `/game-all/game-style-1/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1 Time=all)`,              `/game-1/game-style-1/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1 Time=all)`,            `/game-3ds/game-style-1/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1 Time=all)`,              `/game-2/game-style-1/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1 Time=all)`,          `/game-1,3ds/game-style-1/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1 Time=all)`,            `/game-1,2/game-style-1/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1 Time=all)`,          `/game-3ds,2/game-style-1/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1 Time=all)`,           `/game-all/game-style-1/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1 Time=all)`,             `/game-1/game-style-1/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1 Time=all)`,           `/game-3ds/game-style-1/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1 Time=all)`,             `/game-2/game-style-1/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1 Time=all)`,         `/game-1,3ds/game-style-1/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1 Time=all)`,           `/game-1,2/game-style-1/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1 Time=all)`,         `/game-3ds,2/game-style-1/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1 Time=all)`,           `/game-all/game-style-1/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1 Time=all)`,             `/game-1/game-style-1/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1 Time=all)`,           `/game-3ds/game-style-1/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1 Time=all)`,             `/game-2/game-style-1/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1 Time=all)`,         `/game-1,3ds/game-style-1/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1 Time=all)`,           `/game-1,2/game-style-1/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1 Time=all)`,         `/game-3ds,2/game-style-1/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb) --------------------
                 //region -------------------- Game style (smb3) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3 Time=all)`,            `/game-all/game-style-3/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3 Time=all)`,              `/game-1/game-style-3/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3 Time=all)`,            `/game-3ds/game-style-3/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3 Time=all)`,              `/game-2/game-style-3/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=3 Time=all)`,          `/game-1,3ds/game-style-3/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3 Time=all)`,            `/game-1,2/game-style-3/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3 Time=all)`,          `/game-3ds,2/game-style-3/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3 Time=all)`,            `/game-all/game-style-3/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3 Time=all)`,              `/game-1/game-style-3/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3 Time=all)`,            `/game-3ds/game-style-3/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3 Time=all)`,              `/game-2/game-style-3/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=3 Time=all)`,          `/game-1,3ds/game-style-3/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3 Time=all)`,            `/game-1,2/game-style-3/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3 Time=all)`,          `/game-3ds,2/game-style-3/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3 Time=all)`,            `/game-all/game-style-3/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3 Time=all)`,              `/game-1/game-style-3/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3 Time=all)`,            `/game-3ds/game-style-3/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3 Time=all)`,              `/game-2/game-style-3/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=3 Time=all)`,          `/game-1,3ds/game-style-3/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3 Time=all)`,            `/game-1,2/game-style-3/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3 Time=all)`,          `/game-3ds,2/game-style-3/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3 Time=all)`,            `/game-all/game-style-3/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3 Time=all)`,              `/game-1/game-style-3/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3 Time=all)`,            `/game-3ds/game-style-3/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3 Time=all)`,              `/game-2/game-style-3/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=3 Time=all)`,          `/game-1,3ds/game-style-3/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3 Time=all)`,            `/game-1,2/game-style-3/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3 Time=all)`,          `/game-3ds,2/game-style-3/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3 Time=all)`,           `/game-all/game-style-3/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3 Time=all)`,             `/game-1/game-style-3/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3 Time=all)`,           `/game-3ds/game-style-3/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3 Time=all)`,             `/game-2/game-style-3/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=3 Time=all)`,         `/game-1,3ds/game-style-3/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3 Time=all)`,           `/game-1,2/game-style-3/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3 Time=all)`,         `/game-3ds,2/game-style-3/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3 Time=all)`,           `/game-all/game-style-3/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3 Time=all)`,             `/game-1/game-style-3/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3 Time=all)`,           `/game-3ds/game-style-3/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3 Time=all)`,             `/game-2/game-style-3/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=3 Time=all)`,         `/game-1,3ds/game-style-3/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3 Time=all)`,           `/game-1,2/game-style-3/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3 Time=all)`,         `/game-3ds,2/game-style-3/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3) --------------------
                 //region -------------------- Game style (smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W Time=all)`,            `/game-all/game-style-w/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=W Time=all)`,              `/game-1/game-style-w/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=W Time=all)`,            `/game-3ds/game-style-w/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W Time=all)`,              `/game-2/game-style-w/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=W Time=all)`,          `/game-1,3ds/game-style-w/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W Time=all)`,            `/game-1,2/game-style-w/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W Time=all)`,          `/game-3ds,2/game-style-w/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W Time=all)`,            `/game-all/game-style-w/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=W Time=all)`,              `/game-1/game-style-w/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=W Time=all)`,            `/game-3ds/game-style-w/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W Time=all)`,              `/game-2/game-style-w/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=W Time=all)`,          `/game-1,3ds/game-style-w/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W Time=all)`,            `/game-1,2/game-style-w/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W Time=all)`,          `/game-3ds,2/game-style-w/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W Time=all)`,            `/game-all/game-style-w/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=W Time=all)`,              `/game-1/game-style-w/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=W Time=all)`,            `/game-3ds/game-style-w/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W Time=all)`,              `/game-2/game-style-w/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=W Time=all)`,          `/game-1,3ds/game-style-w/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W Time=all)`,            `/game-1,2/game-style-w/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W Time=all)`,          `/game-3ds,2/game-style-w/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W Time=all)`,            `/game-all/game-style-w/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=W Time=all)`,              `/game-1/game-style-w/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=W Time=all)`,            `/game-3ds/game-style-w/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W Time=all)`,              `/game-2/game-style-w/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=W Time=all)`,          `/game-1,3ds/game-style-w/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W Time=all)`,            `/game-1,2/game-style-w/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W Time=all)`,          `/game-3ds,2/game-style-w/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W Time=all)`,           `/game-all/game-style-w/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=W Time=all)`,             `/game-1/game-style-w/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=W Time=all)`,           `/game-3ds/game-style-w/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W Time=all)`,             `/game-2/game-style-w/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=W Time=all)`,         `/game-1,3ds/game-style-w/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W Time=all)`,           `/game-1,2/game-style-w/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W Time=all)`,         `/game-3ds,2/game-style-w/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W Time=all)`,           `/game-all/game-style-w/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=W Time=all)`,             `/game-1/game-style-w/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=W Time=all)`,           `/game-3ds/game-style-w/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W Time=all)`,             `/game-2/game-style-w/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=W Time=all)`,         `/game-1,3ds/game-style-w/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W Time=all)`,           `/game-1,2/game-style-w/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W Time=all)`,         `/game-3ds,2/game-style-w/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw) --------------------
                 //region -------------------- Game style (nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=U Time=all)`,            `/game-all/game-style-u/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=U Time=all)`,              `/game-1/game-style-u/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=U Time=all)`,            `/game-3ds/game-style-u/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=U Time=all)`,              `/game-2/game-style-u/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=U Time=all)`,          `/game-1,3ds/game-style-u/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=U Time=all)`,            `/game-1,2/game-style-u/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=U Time=all)`,          `/game-3ds,2/game-style-u/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=U Time=all)`,            `/game-all/game-style-u/time-all/list${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=U Time=all)`,              `/game-1/game-style-u/time-all/list${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=U Time=all)`,            `/game-3ds/game-style-u/time-all/list${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=U Time=all)`,              `/game-2/game-style-u/time-all/list${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=U Time=all)`,          `/game-1,3ds/game-style-u/time-all/list${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=U Time=all)`,            `/game-1,2/game-style-u/time-all/list${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=U Time=all)`,          `/game-3ds,2/game-style-u/time-all/list${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=U Time=all)`,            `/game-all/game-style-u/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=U Time=all)`,              `/game-1/game-style-u/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=U Time=all)`,            `/game-3ds/game-style-u/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=U Time=all)`,              `/game-2/game-style-u/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=U Time=all)`,          `/game-1,3ds/game-style-u/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=U Time=all)`,            `/game-1,2/game-style-u/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=U Time=all)`,          `/game-3ds,2/game-style-u/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=U Time=all)`,            `/game-all/game-style-u/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=U Time=all)`,              `/game-1/game-style-u/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=U Time=all)`,            `/game-3ds/game-style-u/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=U Time=all)`,              `/game-2/game-style-u/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=U Time=all)`,          `/game-1,3ds/game-style-u/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=U Time=all)`,            `/game-1,2/game-style-u/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=U Time=all)`,          `/game-3ds,2/game-style-u/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=U Time=all)`,           `/game-all/game-style-u/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=U Time=all)`,             `/game-1/game-style-u/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=U Time=all)`,           `/game-3ds/game-style-u/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=U Time=all)`,             `/game-2/game-style-u/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=U Time=all)`,         `/game-1,3ds/game-style-u/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=U Time=all)`,           `/game-1,2/game-style-u/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=U Time=all)`,         `/game-3ds,2/game-style-u/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=U Time=all)`,           `/game-all/game-style-u/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=U Time=all)`,             `/game-1/game-style-u/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=U Time=all)`,           `/game-3ds/game-style-u/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=U Time=all)`,             `/game-2/game-style-u/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=U Time=all)`,         `/game-1,3ds/game-style-u/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=U Time=all)`,           `/game-1,2/game-style-u/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=U Time=all)`,         `/game-3ds,2/game-style-u/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu) --------------------
                 //region -------------------- Game style (sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3DW Time=all)`,          `/game-all/game-style-3dw/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3DW Time=all)`,            `/game-2/game-style-3dw/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3DW Time=all)`,          `/game-1,2/game-style-3dw/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3DW Time=all)`,        `/game-3ds,2/game-style-3dw/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3DW Time=all)`,         `/game-all/game-style-3dw/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3DW Time=all)`,           `/game-2/game-style-3dw/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3DW Time=all)`,         `/game-1,2/game-style-3dw/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3DW Time=all)`,       `/game-3ds,2/game-style-3dw/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3DW Time=all)`,         `/game-all/game-style-3dw/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3DW Time=all)`,           `/game-2/game-style-3dw/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3DW Time=all)`,         `/game-1,2/game-style-3dw/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3DW Time=all)`,       `/game-3ds,2/game-style-3dw/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3 Time=all)`,          `/game-all/game-style-1,3/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3 Time=all)`,            `/game-1/game-style-1,3/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3 Time=all)`,          `/game-3ds/game-style-1,3/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3 Time=all)`,            `/game-2/game-style-1,3/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3 Time=all)`,        `/game-1,3ds/game-style-1,3/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3 Time=all)`,          `/game-1,2/game-style-1,3/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3 Time=all)`,        `/game-3ds,2/game-style-1,3/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3 Time=all)`,          `/game-all/game-style-1,3/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3 Time=all)`,            `/game-1/game-style-1,3/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3 Time=all)`,          `/game-3ds/game-style-1,3/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3 Time=all)`,            `/game-2/game-style-1,3/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3 Time=all)`,        `/game-1,3ds/game-style-1,3/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3 Time=all)`,          `/game-1,2/game-style-1,3/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3 Time=all)`,        `/game-3ds,2/game-style-1,3/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3 Time=all)`,          `/game-all/game-style-1,3/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3 Time=all)`,            `/game-1/game-style-1,3/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3 Time=all)`,          `/game-3ds/game-style-1,3/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3 Time=all)`,            `/game-2/game-style-1,3/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3 Time=all)`,        `/game-1,3ds/game-style-1,3/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3 Time=all)`,          `/game-1,2/game-style-1,3/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3 Time=all)`,        `/game-3ds,2/game-style-1,3/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3 Time=all)`,          `/game-all/game-style-1,3/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3 Time=all)`,            `/game-1/game-style-1,3/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3 Time=all)`,          `/game-3ds/game-style-1,3/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3 Time=all)`,            `/game-2/game-style-1,3/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3 Time=all)`,        `/game-1,3ds/game-style-1,3/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3 Time=all)`,          `/game-1,2/game-style-1,3/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3 Time=all)`,        `/game-3ds,2/game-style-1,3/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3 Time=all)`,         `/game-all/game-style-1,3/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3 Time=all)`,           `/game-1/game-style-1,3/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3 Time=all)`,         `/game-3ds/game-style-1,3/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3 Time=all)`,           `/game-2/game-style-1,3/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3 Time=all)`,       `/game-1,3ds/game-style-1,3/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3 Time=all)`,         `/game-1,2/game-style-1,3/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3 Time=all)`,       `/game-3ds,2/game-style-1,3/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3 Time=all)`,         `/game-all/game-style-1,3/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3 Time=all)`,           `/game-1/game-style-1,3/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3 Time=all)`,         `/game-3ds/game-style-1,3/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3 Time=all)`,           `/game-2/game-style-1,3/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3 Time=all)`,       `/game-1,3ds/game-style-1,3/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3 Time=all)`,         `/game-1,2/game-style-1,3/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3 Time=all)`,       `/game-3ds,2/game-style-1,3/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3) --------------------
                 //region -------------------- Game style (smb + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W Time=all)`,          `/game-all/game-style-1,w/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&W Time=all)`,            `/game-1/game-style-1,w/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&W Time=all)`,          `/game-3ds/game-style-1,w/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W Time=all)`,            `/game-2/game-style-1,w/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&W Time=all)`,        `/game-1,3ds/game-style-1,w/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W Time=all)`,          `/game-1,2/game-style-1,w/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W Time=all)`,        `/game-3ds,2/game-style-1,w/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W Time=all)`,          `/game-all/game-style-1,w/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&W Time=all)`,            `/game-1/game-style-1,w/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&W Time=all)`,          `/game-3ds/game-style-1,w/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W Time=all)`,            `/game-2/game-style-1,w/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&W Time=all)`,        `/game-1,3ds/game-style-1,w/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W Time=all)`,          `/game-1,2/game-style-1,w/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W Time=all)`,        `/game-3ds,2/game-style-1,w/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W Time=all)`,          `/game-all/game-style-1,w/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&W Time=all)`,            `/game-1/game-style-1,w/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&W Time=all)`,          `/game-3ds/game-style-1,w/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W Time=all)`,            `/game-2/game-style-1,w/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&W Time=all)`,        `/game-1,3ds/game-style-1,w/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W Time=all)`,          `/game-1,2/game-style-1,w/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W Time=all)`,        `/game-3ds,2/game-style-1,w/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W Time=all)`,          `/game-all/game-style-1,w/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&W Time=all)`,            `/game-1/game-style-1,w/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&W Time=all)`,          `/game-3ds/game-style-1,w/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W Time=all)`,            `/game-2/game-style-1,w/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&W Time=all)`,        `/game-1,3ds/game-style-1,w/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W Time=all)`,          `/game-1,2/game-style-1,w/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W Time=all)`,        `/game-3ds,2/game-style-1,w/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W Time=all)`,         `/game-all/game-style-1,w/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&W Time=all)`,           `/game-1/game-style-1,w/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&W Time=all)`,         `/game-3ds/game-style-1,w/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W Time=all)`,           `/game-2/game-style-1,w/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&W Time=all)`,       `/game-1,3ds/game-style-1,w/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W Time=all)`,         `/game-1,2/game-style-1,w/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W Time=all)`,       `/game-3ds,2/game-style-1,w/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W Time=all)`,         `/game-all/game-style-1,w/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&W Time=all)`,           `/game-1/game-style-1,w/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&W Time=all)`,         `/game-3ds/game-style-1,w/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W Time=all)`,           `/game-2/game-style-1,w/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&W Time=all)`,       `/game-1,3ds/game-style-1,w/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W Time=all)`,         `/game-1,2/game-style-1,w/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W Time=all)`,       `/game-3ds,2/game-style-1,w/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw) --------------------
                 //region -------------------- Game style (smb + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&U Time=all)`,          `/game-all/game-style-1,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&U Time=all)`,            `/game-1/game-style-1,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&U Time=all)`,          `/game-3ds/game-style-1,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&U Time=all)`,            `/game-2/game-style-1,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&U Time=all)`,        `/game-1,3ds/game-style-1,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&U Time=all)`,          `/game-1,2/game-style-1,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&U Time=all)`,        `/game-3ds,2/game-style-1,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&U Time=all)`,          `/game-all/game-style-1,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&U Time=all)`,            `/game-1/game-style-1,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&U Time=all)`,          `/game-3ds/game-style-1,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&U Time=all)`,            `/game-2/game-style-1,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&U Time=all)`,        `/game-1,3ds/game-style-1,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&U Time=all)`,          `/game-1,2/game-style-1,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&U Time=all)`,        `/game-3ds,2/game-style-1,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&U Time=all)`,          `/game-all/game-style-1,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&U Time=all)`,            `/game-1/game-style-1,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&U Time=all)`,          `/game-3ds/game-style-1,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&U Time=all)`,            `/game-2/game-style-1,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&U Time=all)`,        `/game-1,3ds/game-style-1,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&U Time=all)`,          `/game-1,2/game-style-1,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&U Time=all)`,        `/game-3ds,2/game-style-1,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&U Time=all)`,          `/game-all/game-style-1,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&U Time=all)`,            `/game-1/game-style-1,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&U Time=all)`,          `/game-3ds/game-style-1,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&U Time=all)`,            `/game-2/game-style-1,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&U Time=all)`,        `/game-1,3ds/game-style-1,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&U Time=all)`,          `/game-1,2/game-style-1,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&U Time=all)`,        `/game-3ds,2/game-style-1,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&U Time=all)`,         `/game-all/game-style-1,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&U Time=all)`,           `/game-1/game-style-1,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&U Time=all)`,         `/game-3ds/game-style-1,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&U Time=all)`,           `/game-2/game-style-1,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&U Time=all)`,       `/game-1,3ds/game-style-1,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&U Time=all)`,         `/game-1,2/game-style-1,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&U Time=all)`,       `/game-3ds,2/game-style-1,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&U Time=all)`,         `/game-all/game-style-1,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&U Time=all)`,           `/game-1/game-style-1,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&U Time=all)`,         `/game-3ds/game-style-1,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&U Time=all)`,           `/game-2/game-style-1,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&U Time=all)`,       `/game-1,3ds/game-style-1,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&U Time=all)`,         `/game-1,2/game-style-1,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&U Time=all)`,       `/game-3ds,2/game-style-1,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu) --------------------
                 //region -------------------- Game style (smb + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3DW Time=all)`,        `/game-all/game-style-1,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3DW Time=all)`,          `/game-2/game-style-1,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3DW Time=all)`,        `/game-1,2/game-style-1,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3DW Time=all)`,      `/game-3ds,2/game-style-1,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3DW Time=all)`,        `/game-all/game-style-1,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3DW Time=all)`,          `/game-2/game-style-1,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3DW Time=all)`,        `/game-1,2/game-style-1,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3DW Time=all)`,      `/game-3ds,2/game-style-1,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3DW Time=all)`,        `/game-all/game-style-1,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3DW Time=all)`,          `/game-2/game-style-1,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3DW Time=all)`,        `/game-1,2/game-style-1,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3DW Time=all)`,      `/game-3ds,2/game-style-1,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3DW Time=all)`,        `/game-all/game-style-1,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3DW Time=all)`,          `/game-2/game-style-1,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3DW Time=all)`,        `/game-1,2/game-style-1,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3DW Time=all)`,      `/game-3ds,2/game-style-1,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3DW Time=all)`,       `/game-all/game-style-1,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3DW Time=all)`,         `/game-2/game-style-1,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3DW Time=all)`,       `/game-1,2/game-style-1,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3DW Time=all)`,     `/game-3ds,2/game-style-1,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3DW Time=all)`,       `/game-all/game-style-1,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3DW Time=all)`,         `/game-2/game-style-1,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3DW Time=all)`,       `/game-1,2/game-style-1,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3DW Time=all)`,     `/game-3ds,2/game-style-1,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W Time=all)`,          `/game-all/game-style-3,w/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3&W Time=all)`,            `/game-1/game-style-3,w/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3&W Time=all)`,          `/game-3ds/game-style-3,w/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W Time=all)`,            `/game-2/game-style-3,w/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3&3DS GameStyle=3&W Time=all)`,        `/game-3,3ds/game-style-3,w/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W Time=all)`,          `/game-1,2/game-style-3,w/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W Time=all)`,        `/game-3ds,2/game-style-3,w/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W Time=all)`,          `/game-all/game-style-3,w/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3&W Time=all)`,            `/game-1/game-style-3,w/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3&W Time=all)`,          `/game-3ds/game-style-3,w/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W Time=all)`,            `/game-2/game-style-3,w/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3&3DS GameStyle=3&W Time=all)`,        `/game-3,3ds/game-style-3,w/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W Time=all)`,          `/game-1,2/game-style-3,w/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W Time=all)`,        `/game-3ds,2/game-style-3,w/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W Time=all)`,          `/game-all/game-style-3,w/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3&W Time=all)`,            `/game-1/game-style-3,w/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3&W Time=all)`,          `/game-3ds/game-style-3,w/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W Time=all)`,            `/game-2/game-style-3,w/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3&3DS GameStyle=3&W Time=all)`,        `/game-3,3ds/game-style-3,w/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W Time=all)`,          `/game-1,2/game-style-3,w/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W Time=all)`,        `/game-3ds,2/game-style-3,w/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W Time=all)`,          `/game-all/game-style-3,w/time-all/card${path}`,             ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3&W Time=all)`,            `/game-1/game-style-3,w/time-all/card${path}`,               SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3&W Time=all)`,          `/game-3ds/game-style-3,w/time-all/card${path}`,             SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W Time=all)`,            `/game-2/game-style-3,w/time-all/card${path}`,               SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3&3DS GameStyle=3&W Time=all)`,        `/game-3,3ds/game-style-3,w/time-all/card${path}`,           SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W Time=all)`,          `/game-1,2/game-style-3,w/time-all/card${path}`,             SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W Time=all)`,        `/game-3ds,2/game-style-3,w/time-all/card${path}`,           SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W Time=all)`,         `/game-all/game-style-3,w/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3&W Time=all)`,           `/game-1/game-style-3,w/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3&W Time=all)`,         `/game-3ds/game-style-3,w/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W Time=all)`,           `/game-2/game-style-3,w/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3&3DS GameStyle=3&W Time=all)`,       `/game-3,3ds/game-style-3,w/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W Time=all)`,         `/game-1,2/game-style-3,w/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W Time=all)`,       `/game-3ds,2/game-style-3,w/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W Time=all)`,         `/game-all/game-style-3,w/time-all/table${path}`,            ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3&W Time=all)`,           `/game-1/game-style-3,w/time-all/table${path}`,              SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3&W Time=all)`,         `/game-3ds/game-style-3,w/time-all/table${path}`,            SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W Time=all)`,           `/game-2/game-style-3,w/time-all/table${path}`,              SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3&3DS GameStyle=3&W Time=all)`,       `/game-3,3ds/game-style-3,w/time-all/table${path}`,          SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W Time=all)`,         `/game-1,2/game-style-3,w/time-all/table${path}`,            SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W Time=all)`,       `/game-3ds,2/game-style-3,w/time-all/table${path}`,          SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&U Time=all)`,          `/game-all/game-style-3,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3&U Time=all)`,            `/game-1/game-style-3,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3&U Time=all)`,          `/game-3ds/game-style-3,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&U Time=all)`,            `/game-2/game-style-3,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=3&U Time=all)`,        `/game-3,3ds/game-style-3,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&U Time=all)`,          `/game-3,2/game-style-3,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&U Time=all)`,        `/game-3ds,2/game-style-3,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&U Time=all)`,          `/game-all/game-style-3,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3&U Time=all)`,            `/game-1/game-style-3,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3&U Time=all)`,          `/game-3ds/game-style-3,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&U Time=all)`,            `/game-2/game-style-3,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=3&U Time=all)`,        `/game-3,3ds/game-style-3,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&U Time=all)`,          `/game-3,2/game-style-3,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&U Time=all)`,        `/game-3ds,2/game-style-3,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&U Time=all)`,          `/game-all/game-style-3,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3&U Time=all)`,            `/game-1/game-style-3,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3&U Time=all)`,          `/game-3ds/game-style-3,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&U Time=all)`,            `/game-2/game-style-3,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=3&U Time=all)`,        `/game-3,3ds/game-style-3,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&U Time=all)`,          `/game-3,2/game-style-3,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&U Time=all)`,        `/game-3ds,2/game-style-3,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&U Time=all)`,          `/game-all/game-style-3,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3&U Time=all)`,            `/game-1/game-style-3,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3&U Time=all)`,          `/game-3ds/game-style-3,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&U Time=all)`,            `/game-2/game-style-3,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=3&U Time=all)`,        `/game-3,3ds/game-style-3,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&U Time=all)`,          `/game-3,2/game-style-3,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&U Time=all)`,        `/game-3ds,2/game-style-3,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&U Time=all)`,         `/game-all/game-style-3,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3&U Time=all)`,           `/game-1/game-style-3,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3&U Time=all)`,         `/game-3ds/game-style-3,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&U Time=all)`,           `/game-2/game-style-3,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=3&U Time=all)`,       `/game-3,3ds/game-style-3,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&U Time=all)`,         `/game-3,2/game-style-3,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&U Time=all)`,       `/game-3ds,2/game-style-3,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&U Time=all)`,         `/game-all/game-style-3,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3&U Time=all)`,           `/game-1/game-style-3,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3&U Time=all)`,         `/game-3ds/game-style-3,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&U Time=all)`,           `/game-2/game-style-3,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=3&U Time=all)`,       `/game-3,3ds/game-style-3,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&U Time=all)`,         `/game-3,2/game-style-3,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&U Time=all)`,       `/game-3ds,2/game-style-3,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&3DW Time=all)`,        `/game-all/game-style-3,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&3DW Time=all)`,          `/game-2/game-style-3,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&3DW Time=all)`,        `/game-3,2/game-style-3,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&3DW Time=all)`,      `/game-3ds,2/game-style-3,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&3DW Time=all)`,        `/game-all/game-style-3,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&3DW Time=all)`,          `/game-2/game-style-3,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&3DW Time=all)`,        `/game-3,2/game-style-3,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&3DW Time=all)`,      `/game-3ds,2/game-style-3,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&3DW Time=all)`,        `/game-all/game-style-3,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&3DW Time=all)`,          `/game-2/game-style-3,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&3DW Time=all)`,        `/game-3,2/game-style-3,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&3DW Time=all)`,      `/game-3ds,2/game-style-3,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&3DW Time=all)`,        `/game-all/game-style-3,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&3DW Time=all)`,          `/game-2/game-style-3,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&3DW Time=all)`,        `/game-3,2/game-style-3,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&3DW Time=all)`,      `/game-3ds,2/game-style-3,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&3DW Time=all)`,       `/game-all/game-style-3,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&3DW Time=all)`,         `/game-2/game-style-3,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&3DW Time=all)`,       `/game-3,2/game-style-3,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&3DW Time=all)`,     `/game-3ds,2/game-style-3,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&3DW Time=all)`,       `/game-all/game-style-3,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&3DW Time=all)`,         `/game-2/game-style-3,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&3DW Time=all)`,       `/game-3,2/game-style-3,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&3DW Time=all)`,     `/game-3ds,2/game-style-3,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + sm3dw) --------------------
                 //region -------------------- Game style (smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&U Time=all)`,          `/game-all/game-style-w,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=W&U Time=all)`,            `/game-1/game-style-w,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=W&U Time=all)`,          `/game-3ds/game-style-w,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&U Time=all)`,            `/game-2/game-style-w,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=W&U Time=all)`,        `/game-1,3ds/game-style-w,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&U Time=all)`,          `/game-1,2/game-style-w,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&U Time=all)`,        `/game-3ds,2/game-style-w,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&U Time=all)`,          `/game-all/game-style-w,u/time-all/list${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=W&U Time=all)`,            `/game-1/game-style-w,u/time-all/list${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=W&U Time=all)`,          `/game-3ds/game-style-w,u/time-all/list${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&U Time=all)`,            `/game-2/game-style-w,u/time-all/list${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=W&U Time=all)`,        `/game-1,3ds/game-style-w,u/time-all/list${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&U Time=all)`,          `/game-1,2/game-style-w,u/time-all/list${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&U Time=all)`,        `/game-3ds,2/game-style-w,u/time-all/list${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&U Time=all)`,          `/game-all/game-style-w,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=W&U Time=all)`,            `/game-1/game-style-w,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=W&U Time=all)`,          `/game-3ds/game-style-w,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&U Time=all)`,            `/game-2/game-style-w,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=W&U Time=all)`,        `/game-1,3ds/game-style-w,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&U Time=all)`,          `/game-1,2/game-style-w,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&U Time=all)`,        `/game-3ds,2/game-style-w,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&U Time=all)`,          `/game-all/game-style-w,u/time-all/card${path}`,           ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=W&U Time=all)`,            `/game-1/game-style-w,u/time-all/card${path}`,             SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=W&U Time=all)`,          `/game-3ds/game-style-w,u/time-all/card${path}`,           SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&U Time=all)`,            `/game-2/game-style-w,u/time-all/card${path}`,             SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=W&U Time=all)`,        `/game-1,3ds/game-style-w,u/time-all/card${path}`,         SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&U Time=all)`,          `/game-1,2/game-style-w,u/time-all/card${path}`,           SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&U Time=all)`,        `/game-3ds,2/game-style-w,u/time-all/card${path}`,         SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&U Time=all)`,         `/game-all/game-style-w,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=W&U Time=all)`,           `/game-1/game-style-w,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=W&U Time=all)`,         `/game-3ds/game-style-w,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&U Time=all)`,           `/game-2/game-style-w,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=W&U Time=all)`,       `/game-1,3ds/game-style-w,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&U Time=all)`,         `/game-1,2/game-style-w,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&U Time=all)`,       `/game-3ds,2/game-style-w,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&U Time=all)`,         `/game-all/game-style-w,u/time-all/table${path}`,          ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=W&U Time=all)`,           `/game-1/game-style-w,u/time-all/table${path}`,            SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=W&U Time=all)`,         `/game-3ds/game-style-w,u/time-all/table${path}`,          SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&U Time=all)`,           `/game-2/game-style-w,u/time-all/table${path}`,            SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=W&U Time=all)`,       `/game-1,3ds/game-style-w,u/time-all/table${path}`,        SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&U Time=all)`,         `/game-1,2/game-style-w,u/time-all/table${path}`,          SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&U Time=all)`,       `/game-3ds,2/game-style-w,u/time-all/table${path}`,        SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu) --------------------
                 //region -------------------- Game style (smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&3DW Time=all)`,        `/game-all/game-style-w,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&3DW Time=all)`,          `/game-2/game-style-w,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&3DW Time=all)`,        `/game-1,2/game-style-w,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&3DW Time=all)`,      `/game-3ds,2/game-style-w,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&3DW Time=all)`,        `/game-all/game-style-w,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&3DW Time=all)`,          `/game-2/game-style-w,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&3DW Time=all)`,        `/game-1,2/game-style-w,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&3DW Time=all)`,      `/game-3ds,2/game-style-w,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&3DW Time=all)`,        `/game-all/game-style-w,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&3DW Time=all)`,          `/game-2/game-style-w,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&3DW Time=all)`,        `/game-1,2/game-style-w,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&3DW Time=all)`,      `/game-3ds,2/game-style-w,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&3DW Time=all)`,        `/game-all/game-style-w,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&3DW Time=all)`,          `/game-2/game-style-w,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&3DW Time=all)`,        `/game-1,2/game-style-w,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&3DW Time=all)`,      `/game-3ds,2/game-style-w,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&3DW Time=all)`,       `/game-all/game-style-w,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&3DW Time=all)`,         `/game-2/game-style-w,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&3DW Time=all)`,       `/game-1,2/game-style-w,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&3DW Time=all)`,     `/game-3ds,2/game-style-w,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&3DW Time=all)`,       `/game-all/game-style-w,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&3DW Time=all)`,         `/game-2/game-style-w,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&3DW Time=all)`,       `/game-1,2/game-style-w,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&3DW Time=all)`,     `/game-3ds,2/game-style-w,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + sm3dw) --------------------
                 //region -------------------- Game style (nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=U&3DW Time=all)`,        `/game-all/game-style-u,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=U&3DW Time=all)`,          `/game-2/game-style-u,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=U&3DW Time=all)`,        `/game-1,2/game-style-u,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=U&3DW Time=all)`,      `/game-3ds,2/game-style-u,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=U&3DW Time=all)`,        `/game-all/game-style-u,3dw/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=U&3DW Time=all)`,          `/game-2/game-style-u,3dw/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=U&3DW Time=all)`,        `/game-1,2/game-style-u,3dw/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=U&3DW Time=all)`,      `/game-3ds,2/game-style-u,3dw/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=U&3DW Time=all)`,        `/game-all/game-style-u,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=U&3DW Time=all)`,          `/game-2/game-style-u,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=U&3DW Time=all)`,        `/game-1,2/game-style-u,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=U&3DW Time=all)`,      `/game-3ds,2/game-style-u,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=U&3DW Time=all)`,        `/game-all/game-style-u,3dw/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=U&3DW Time=all)`,          `/game-2/game-style-u,3dw/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=U&3DW Time=all)`,        `/game-1,2/game-style-u,3dw/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=U&3DW Time=all)`,      `/game-3ds,2/game-style-u,3dw/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=U&3DW Time=all)`,       `/game-all/game-style-u,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=U&3DW Time=all)`,         `/game-2/game-style-u,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=U&3DW Time=all)`,       `/game-1,2/game-style-u,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=U&3DW Time=all)`,     `/game-3ds,2/game-style-u,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=U&3DW Time=all)`,       `/game-all/game-style-u,3dw/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=U&3DW Time=all)`,         `/game-2/game-style-u,3dw/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=U&3DW Time=all)`,       `/game-1,2/game-style-u,3dw/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=U&3DW Time=all)`,     `/game-3ds,2/game-style-u,3dw/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu + sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W Time=all)`,        `/game-all/game-style-1,3,w/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3&W Time=all)`,          `/game-1/game-style-1,3,w/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3&W Time=all)`,        `/game-3ds/game-style-1,3,w/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W Time=all)`,          `/game-2/game-style-1,3,w/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W Time=all)`,      `/game-1,3ds/game-style-1,3,w/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W Time=all)`,        `/game-1,2/game-style-1,3,w/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=all)`,      `/game-3ds,2/game-style-1,3,w/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W Time=all)`,        `/game-all/game-style-1,3,w/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3&W Time=all)`,          `/game-1/game-style-1,3,w/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3&W Time=all)`,        `/game-3ds/game-style-1,3,w/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W Time=all)`,          `/game-2/game-style-1,3,w/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W Time=all)`,      `/game-1,3ds/game-style-1,3,w/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W Time=all)`,        `/game-1,2/game-style-1,3,w/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=all)`,      `/game-3ds,2/game-style-1,3,w/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W Time=all)`,        `/game-all/game-style-1,3,w/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3&W Time=all)`,          `/game-1/game-style-1,3,w/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3&W Time=all)`,        `/game-3ds/game-style-1,3,w/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W Time=all)`,          `/game-2/game-style-1,3,w/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W Time=all)`,      `/game-1,3ds/game-style-1,3,w/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W Time=all)`,        `/game-1,2/game-style-1,3,w/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=all)`,      `/game-3ds,2/game-style-1,3,w/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W Time=all)`,        `/game-all/game-style-1,3,w/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3&W Time=all)`,          `/game-1/game-style-1,3,w/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3&W Time=all)`,        `/game-3ds/game-style-1,3,w/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W Time=all)`,          `/game-2/game-style-1,3,w/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W Time=all)`,      `/game-1,3ds/game-style-1,3,w/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W Time=all)`,        `/game-1,2/game-style-1,3,w/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=all)`,      `/game-3ds,2/game-style-1,3,w/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W Time=all)`,       `/game-all/game-style-1,3,w/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3&W Time=all)`,         `/game-1/game-style-1,3,w/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3&W Time=all)`,       `/game-3ds/game-style-1,3,w/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W Time=all)`,         `/game-2/game-style-1,3,w/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W Time=all)`,     `/game-1,3ds/game-style-1,3,w/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W Time=all)`,       `/game-1,2/game-style-1,3,w/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=all)`,     `/game-3ds,2/game-style-1,3,w/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W Time=all)`,       `/game-all/game-style-1,3,w/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3&W Time=all)`,         `/game-1/game-style-1,3,w/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3&W Time=all)`,       `/game-3ds/game-style-1,3,w/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W Time=all)`,         `/game-2/game-style-1,3,w/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W Time=all)`,     `/game-1,3ds/game-style-1,3,w/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W Time=all)`,       `/game-1,2/game-style-1,3,w/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=all)`,     `/game-3ds,2/game-style-1,3,w/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&U Time=all)`,        `/game-all/game-style-1,3,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3&U Time=all)`,          `/game-1/game-style-1,3,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3&U Time=all)`,        `/game-3ds/game-style-1,3,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&U Time=all)`,          `/game-2/game-style-1,3,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3&U Time=all)`,      `/game-1,3ds/game-style-1,3,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&U Time=all)`,        `/game-1,2/game-style-1,3,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=all)`,      `/game-3ds,2/game-style-1,3,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&U Time=all)`,        `/game-all/game-style-1,3,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3&U Time=all)`,          `/game-1/game-style-1,3,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3&U Time=all)`,        `/game-3ds/game-style-1,3,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&U Time=all)`,          `/game-2/game-style-1,3,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3&U Time=all)`,      `/game-1,3ds/game-style-1,3,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&U Time=all)`,        `/game-1,2/game-style-1,3,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=all)`,      `/game-3ds,2/game-style-1,3,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&U Time=all)`,        `/game-all/game-style-1,3,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3&U Time=all)`,          `/game-1/game-style-1,3,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3&U Time=all)`,        `/game-3ds/game-style-1,3,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&U Time=all)`,          `/game-2/game-style-1,3,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3&U Time=all)`,      `/game-1,3ds/game-style-1,3,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&U Time=all)`,        `/game-1,2/game-style-1,3,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=all)`,      `/game-3ds,2/game-style-1,3,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&U Time=all)`,        `/game-all/game-style-1,3,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3&U Time=all)`,          `/game-1/game-style-1,3,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3&U Time=all)`,        `/game-3ds/game-style-1,3,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&U Time=all)`,          `/game-2/game-style-1,3,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3&U Time=all)`,      `/game-1,3ds/game-style-1,3,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&U Time=all)`,        `/game-1,2/game-style-1,3,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=all)`,      `/game-3ds,2/game-style-1,3,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&U Time=all)`,       `/game-all/game-style-1,3,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3&U Time=all)`,         `/game-1/game-style-1,3,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3&U Time=all)`,       `/game-3ds/game-style-1,3,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&U Time=all)`,         `/game-2/game-style-1,3,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3&U Time=all)`,     `/game-1,3ds/game-style-1,3,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&U Time=all)`,       `/game-1,2/game-style-1,3,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=all)`,     `/game-3ds,2/game-style-1,3,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&U Time=all)`,       `/game-all/game-style-1,3,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3&U Time=all)`,         `/game-1/game-style-1,3,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3&U Time=all)`,       `/game-3ds/game-style-1,3,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&U Time=all)`,         `/game-2/game-style-1,3,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3&U Time=all)`,     `/game-1,3ds/game-style-1,3,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&U Time=all)`,       `/game-1,2/game-style-1,3,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=all)`,     `/game-3ds,2/game-style-1,3,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb + smb3 + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&3DW Time=all)`,      `/game-all/game-style-1,3,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&3DW Time=all)`,        `/game-2/game-style-1,3,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&3DW Time=all)`,      `/game-1,2/game-style-1,3,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&3DW Time=all)`,    `/game-3ds,2/game-style-1,3,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&3DW Time=all)`,      `/game-all/game-style-1,3,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&3DW Time=all)`,        `/game-2/game-style-1,3,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&3DW Time=all)`,      `/game-1,2/game-style-1,3,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&3DW Time=all)`,    `/game-3ds,2/game-style-1,3,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&3DW Time=all)`,      `/game-all/game-style-1,3,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&3DW Time=all)`,        `/game-2/game-style-1,3,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&3DW Time=all)`,      `/game-1,2/game-style-1,3,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&3DW Time=all)`,    `/game-3ds,2/game-style-1,3,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&3DW Time=all)`,      `/game-all/game-style-1,3,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&3DW Time=all)`,        `/game-2/game-style-1,3,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&3DW Time=all)`,      `/game-1,2/game-style-1,3,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&3DW Time=all)`,    `/game-3ds,2/game-style-1,3,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&3DW Time=all)`,     `/game-all/game-style-1,3,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&3DW Time=all)`,       `/game-2/game-style-1,3,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&3DW Time=all)`,     `/game-1,2/game-style-1,3,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&3DW Time=all)`,   `/game-3ds,2/game-style-1,3,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&3DW Time=all)`,     `/game-all/game-style-1,3,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&3DW Time=all)`,       `/game-2/game-style-1,3,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&3DW Time=all)`,     `/game-1,2/game-style-1,3,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&3DW Time=all)`,   `/game-3ds,2/game-style-1,3,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + sm3dw) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&U Time=all)`,        `/game-all/game-style-1,w,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&W&U Time=all)`,          `/game-1/game-style-1,w,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&W&U Time=all)`,        `/game-3ds/game-style-1,w,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&U Time=all)`,          `/game-2/game-style-1,w,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&W&U Time=all)`,      `/game-1,3ds/game-style-1,w,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&U Time=all)`,        `/game-1,2/game-style-1,w,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=all)`,      `/game-3ds,2/game-style-1,w,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&U Time=all)`,        `/game-all/game-style-1,w,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&W&U Time=all)`,          `/game-1/game-style-1,w,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&W&U Time=all)`,        `/game-3ds/game-style-1,w,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&U Time=all)`,          `/game-2/game-style-1,w,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&W&U Time=all)`,      `/game-1,3ds/game-style-1,w,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&U Time=all)`,        `/game-1,2/game-style-1,w,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=all)`,      `/game-3ds,2/game-style-1,w,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&U Time=all)`,        `/game-all/game-style-1,w,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&W&U Time=all)`,          `/game-1/game-style-1,w,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&W&U Time=all)`,        `/game-3ds/game-style-1,w,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&U Time=all)`,          `/game-2/game-style-1,w,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&W&U Time=all)`,      `/game-1,3ds/game-style-1,w,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&U Time=all)`,        `/game-1,2/game-style-1,w,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=all)`,      `/game-3ds,2/game-style-1,w,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&U Time=all)`,        `/game-all/game-style-1,w,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&W&U Time=all)`,          `/game-1/game-style-1,w,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&W&U Time=all)`,        `/game-3ds/game-style-1,w,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&U Time=all)`,          `/game-2/game-style-1,w,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&W&U Time=all)`,      `/game-1,3ds/game-style-1,w,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&U Time=all)`,        `/game-1,2/game-style-1,w,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=all)`,      `/game-3ds,2/game-style-1,w,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&U Time=all)`,       `/game-all/game-style-1,w,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&W&U Time=all)`,         `/game-1/game-style-1,w,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&W&U Time=all)`,       `/game-3ds/game-style-1,w,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&U Time=all)`,         `/game-2/game-style-1,w,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&W&U Time=all)`,     `/game-1,3ds/game-style-1,w,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&U Time=all)`,       `/game-1,2/game-style-1,w,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=all)`,     `/game-3ds,2/game-style-1,w,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&U Time=all)`,       `/game-all/game-style-1,w,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&W&U Time=all)`,         `/game-1/game-style-1,w,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&W&U Time=all)`,       `/game-3ds/game-style-1,w,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&U Time=all)`,         `/game-2/game-style-1,w,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&W&U Time=all)`,     `/game-1,3ds/game-style-1,w,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&U Time=all)`,       `/game-1,2/game-style-1,w,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=all)`,     `/game-3ds,2/game-style-1,w,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb + smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&3DW Time=all)`,      `/game-all/game-style-1,w,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&3DW Time=all)`,        `/game-2/game-style-1,w,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&3DW Time=all)`,      `/game-1,2/game-style-1,w,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&3DW Time=all)`,    `/game-3ds,2/game-style-1,w,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&3DW Time=all)`,      `/game-all/game-style-1,w,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&3DW Time=all)`,        `/game-2/game-style-1,w,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&3DW Time=all)`,      `/game-1,2/game-style-1,w,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&3DW Time=all)`,    `/game-3ds,2/game-style-1,w,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&3DW Time=all)`,      `/game-all/game-style-1,w,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&3DW Time=all)`,        `/game-2/game-style-1,w,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&3DW Time=all)`,      `/game-1,2/game-style-1,w,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&3DW Time=all)`,    `/game-3ds,2/game-style-1,w,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&3DW Time=all)`,      `/game-all/game-style-1,w,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&3DW Time=all)`,        `/game-2/game-style-1,w,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&3DW Time=all)`,      `/game-1,2/game-style-1,w,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&3DW Time=all)`,    `/game-3ds,2/game-style-1,w,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&3DW Time=all)`,     `/game-all/game-style-1,w,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&3DW Time=all)`,       `/game-2/game-style-1,w,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&3DW Time=all)`,     `/game-1,2/game-style-1,w,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&3DW Time=all)`,   `/game-3ds,2/game-style-1,w,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&3DW Time=all)`,     `/game-all/game-style-1,w,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&3DW Time=all)`,       `/game-2/game-style-1,w,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&3DW Time=all)`,     `/game-1,2/game-style-1,w,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&3DW Time=all)`,   `/game-3ds,2/game-style-1,w,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + sm3dw) --------------------
                 //region -------------------- Game style (smb + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&U&3DW Time=all)`,      `/game-all/game-style-1,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&U&3DW Time=all)`,        `/game-2/game-style-1,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&U&3DW Time=all)`,      `/game-1,2/game-style-1,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&U&3DW Time=all)`,    `/game-3ds,2/game-style-1,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&U&3DW Time=all)`,      `/game-all/game-style-1,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&U&3DW Time=all)`,        `/game-2/game-style-1,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&U&3DW Time=all)`,      `/game-1,2/game-style-1,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&U&3DW Time=all)`,    `/game-3ds,2/game-style-1,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&U&3DW Time=all)`,      `/game-all/game-style-1,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&U&3DW Time=all)`,        `/game-2/game-style-1,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&U&3DW Time=all)`,      `/game-1,2/game-style-1,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&U&3DW Time=all)`,    `/game-3ds,2/game-style-1,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&U&3DW Time=all)`,      `/game-all/game-style-1,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&U&3DW Time=all)`,        `/game-2/game-style-1,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&U&3DW Time=all)`,      `/game-1,2/game-style-1,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&U&3DW Time=all)`,    `/game-3ds,2/game-style-1,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&U&3DW Time=all)`,     `/game-all/game-style-1,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&U&3DW Time=all)`,       `/game-2/game-style-1,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&U&3DW Time=all)`,     `/game-1,2/game-style-1,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&U&3DW Time=all)`,   `/game-3ds,2/game-style-1,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&U&3DW Time=all)`,     `/game-all/game-style-1,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&U&3DW Time=all)`,       `/game-2/game-style-1,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&U&3DW Time=all)`,     `/game-1,2/game-style-1,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&U&3DW Time=all)`,   `/game-3ds,2/game-style-1,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&U Time=all)`,        `/game-all/game-style-3,w,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3&W&U Time=all)`,          `/game-1/game-style-3,w,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3&W&U Time=all)`,        `/game-3ds/game-style-3,w,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&U Time=all)`,          `/game-2/game-style-3,w,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=3&W&U Time=all)`,      `/game-1,3ds/game-style-3,w,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&U Time=all)`,        `/game-1,2/game-style-3,w,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=all)`,      `/game-3ds,2/game-style-3,w,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&U Time=all)`,        `/game-all/game-style-3,w,u/time-all/list${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3&W&U Time=all)`,          `/game-1/game-style-3,w,u/time-all/list${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3&W&U Time=all)`,        `/game-3ds/game-style-3,w,u/time-all/list${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&U Time=all)`,          `/game-2/game-style-3,w,u/time-all/list${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=3&W&U Time=all)`,      `/game-1,3ds/game-style-3,w,u/time-all/list${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&U Time=all)`,        `/game-1,2/game-style-3,w,u/time-all/list${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=all)`,      `/game-3ds,2/game-style-3,w,u/time-all/list${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&U Time=all)`,        `/game-all/game-style-3,w,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3&W&U Time=all)`,          `/game-1/game-style-3,w,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3&W&U Time=all)`,        `/game-3ds/game-style-3,w,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&U Time=all)`,          `/game-2/game-style-3,w,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=3&W&U Time=all)`,      `/game-1,3ds/game-style-3,w,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&U Time=all)`,        `/game-1,2/game-style-3,w,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=all)`,      `/game-3ds,2/game-style-3,w,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&U Time=all)`,        `/game-all/game-style-3,w,u/time-all/card${path}`,         ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3&W&U Time=all)`,          `/game-1/game-style-3,w,u/time-all/card${path}`,           SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3&W&U Time=all)`,        `/game-3ds/game-style-3,w,u/time-all/card${path}`,         SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&U Time=all)`,          `/game-2/game-style-3,w,u/time-all/card${path}`,           SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=3&W&U Time=all)`,      `/game-1,3ds/game-style-3,w,u/time-all/card${path}`,       SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&U Time=all)`,        `/game-1,2/game-style-3,w,u/time-all/card${path}`,         SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=all)`,      `/game-3ds,2/game-style-3,w,u/time-all/card${path}`,       SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&U Time=all)`,       `/game-all/game-style-3,w,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3&W&U Time=all)`,         `/game-1/game-style-3,w,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3&W&U Time=all)`,       `/game-3ds/game-style-3,w,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&U Time=all)`,         `/game-2/game-style-3,w,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=3&W&U Time=all)`,     `/game-1,3ds/game-style-3,w,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&U Time=all)`,       `/game-1,2/game-style-3,w,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=all)`,     `/game-3ds,2/game-style-3,w,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&U Time=all)`,       `/game-all/game-style-3,w,u/time-all/table${path}`,        ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3&W&U Time=all)`,         `/game-1/game-style-3,w,u/time-all/table${path}`,          SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3&W&U Time=all)`,       `/game-3ds/game-style-3,w,u/time-all/table${path}`,        SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&U Time=all)`,         `/game-2/game-style-3,w,u/time-all/table${path}`,          SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=3&W&U Time=all)`,     `/game-1,3ds/game-style-3,w,u/time-all/table${path}`,      SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&U Time=all)`,       `/game-1,2/game-style-3,w,u/time-all/table${path}`,        SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=all)`,     `/game-3ds,2/game-style-3,w,u/time-all/table${path}`,      SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&3DW Time=all)`,      `/game-all/game-style-3,w,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&3DW Time=all)`,        `/game-2/game-style-3,w,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&3DW Time=all)`,      `/game-1,2/game-style-3,w,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&3DW Time=all)`,    `/game-3ds,2/game-style-3,w,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&3DW Time=all)`,      `/game-all/game-style-3,w,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&3DW Time=all)`,        `/game-2/game-style-3,w,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&3DW Time=all)`,      `/game-1,2/game-style-3,w,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&3DW Time=all)`,    `/game-3ds,2/game-style-3,w,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&3DW Time=all)`,      `/game-all/game-style-3,w,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&3DW Time=all)`,        `/game-2/game-style-3,w,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&3DW Time=all)`,      `/game-1,2/game-style-3,w,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&3DW Time=all)`,    `/game-3ds,2/game-style-3,w,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&3DW Time=all)`,      `/game-all/game-style-3,w,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&3DW Time=all)`,        `/game-2/game-style-3,w,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&3DW Time=all)`,      `/game-1,2/game-style-3,w,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&3DW Time=all)`,    `/game-3ds,2/game-style-3,w,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&3DW Time=all)`,     `/game-all/game-style-3,w,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&3DW Time=all)`,       `/game-2/game-style-3,w,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&3DW Time=all)`,     `/game-1,2/game-style-3,w,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&3DW Time=all)`,   `/game-3ds,2/game-style-3,w,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&3DW Time=all)`,     `/game-all/game-style-3,w,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&3DW Time=all)`,       `/game-2/game-style-3,w,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&3DW Time=all)`,     `/game-1,2/game-style-3,w,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&3DW Time=all)`,   `/game-3ds,2/game-style-3,w,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&U&3DW Time=all)`,      `/game-all/game-style-3,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&U&3DW Time=all)`,        `/game-2/game-style-3,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&U&3DW Time=all)`,      `/game-1,2/game-style-3,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&U&3DW Time=all)`,    `/game-3ds,2/game-style-3,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&U&3DW Time=all)`,      `/game-all/game-style-3,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&U&3DW Time=all)`,        `/game-2/game-style-3,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&U&3DW Time=all)`,      `/game-1,2/game-style-3,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&U&3DW Time=all)`,    `/game-3ds,2/game-style-3,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&U&3DW Time=all)`,      `/game-all/game-style-3,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&U&3DW Time=all)`,        `/game-2/game-style-3,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&U&3DW Time=all)`,      `/game-1,2/game-style-3,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&U&3DW Time=all)`,    `/game-3ds,2/game-style-3,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&U&3DW Time=all)`,      `/game-all/game-style-3,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&U&3DW Time=all)`,        `/game-2/game-style-3,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&U&3DW Time=all)`,      `/game-1,2/game-style-3,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&U&3DW Time=all)`,    `/game-3ds,2/game-style-3,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&U&3DW Time=all)`,     `/game-all/game-style-3,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&U&3DW Time=all)`,       `/game-2/game-style-3,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&U&3DW Time=all)`,     `/game-1,2/game-style-3,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&U&3DW Time=all)`,   `/game-3ds,2/game-style-3,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&U&3DW Time=all)`,     `/game-all/game-style-3,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&U&3DW Time=all)`,       `/game-2/game-style-3,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&U&3DW Time=all)`,     `/game-1,2/game-style-3,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&U&3DW Time=all)`,   `/game-3ds,2/game-style-3,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smw + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&U&3DW Time=all)`,      `/game-all/game-style-w,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&U&3DW Time=all)`,        `/game-2/game-style-w,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&U&3DW Time=all)`,      `/game-1,2/game-style-w,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&U&3DW Time=all)`,    `/game-3ds,2/game-style-w,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&U&3DW Time=all)`,      `/game-all/game-style-w,u,3dw/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&U&3DW Time=all)`,        `/game-2/game-style-w,u,3dw/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&U&3DW Time=all)`,      `/game-1,2/game-style-w,u,3dw/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&U&3DW Time=all)`,    `/game-3ds,2/game-style-w,u,3dw/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&U&3DW Time=all)`,      `/game-all/game-style-w,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&U&3DW Time=all)`,        `/game-2/game-style-w,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&U&3DW Time=all)`,      `/game-1,2/game-style-w,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&U&3DW Time=all)`,    `/game-3ds,2/game-style-w,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&U&3DW Time=all)`,      `/game-all/game-style-w,u,3dw/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&U&3DW Time=all)`,        `/game-2/game-style-w,u,3dw/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&U&3DW Time=all)`,      `/game-1,2/game-style-w,u,3dw/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&U&3DW Time=all)`,    `/game-3ds,2/game-style-w,u,3dw/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&U&3DW Time=all)`,     `/game-all/game-style-w,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&U&3DW Time=all)`,       `/game-2/game-style-w,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&U&3DW Time=all)`,     `/game-1,2/game-style-w,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&U&3DW Time=all)`,   `/game-3ds,2/game-style-w,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&U&3DW Time=all)`,     `/game-all/game-style-w,u,3dw/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&U&3DW Time=all)`,       `/game-2/game-style-w,u,3dw/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&U&3DW Time=all)`,     `/game-1,2/game-style-w,u,3dw/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&U&3DW Time=all)`,   `/game-3ds,2/game-style-w,u,3dw/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu + sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W&U Time=all)`,      `/game-all/game-style-1,3,w,u/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3&W&U Time=all)`,        `/game-1/game-style-1,3,w,u/time-all/list${path}`,         SMM1_ONLY,    ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3&W&U Time=all)`,      `/game-3ds/game-style-1,3,w,u/time-all/list${path}`,       SMM3DS_ONLY,  ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W&U Time=all)`,        `/game-2/game-style-1,3,w,u/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W&U Time=all)`,    `/game-1,3ds/game-style-1,3,w,u/time-all/list${path}`,     SMM1_AND_3DS, ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=all)`,      `/game-1,2/game-style-1,3,w,u/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=all)`,    `/game-3ds,2/game-style-1,3,w,u/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W&U Time=all)`,      `/game-all/game-style-1,3,w,u/time-all/list${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3&W&U Time=all)`,        `/game-1/game-style-1,3,w,u/time-all/list${path}`,         SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3&W&U Time=all)`,      `/game-3ds/game-style-1,3,w,u/time-all/list${path}`,       SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W&U Time=all)`,        `/game-2/game-style-1,3,w,u/time-all/list${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W&U Time=all)`,    `/game-1,3ds/game-style-1,3,w,u/time-all/list${path}`,     SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=all)`,      `/game-1,2/game-style-1,3,w,u/time-all/list${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=all)`,    `/game-3ds,2/game-style-1,3,w,u/time-all/list${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W&U Time=all)`,      `/game-all/game-style-1,3,w,u/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3&W&U Time=all)`,        `/game-1/game-style-1,3,w,u/time-all/card${path}`,         SMM1_ONLY,    ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3&W&U Time=all)`,      `/game-3ds/game-style-1,3,w,u/time-all/card${path}`,       SMM3DS_ONLY,  ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W&U Time=all)`,        `/game-2/game-style-1,3,w,u/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W&U Time=all)`,    `/game-1,3ds/game-style-1,3,w,u/time-all/card${path}`,     SMM1_AND_3DS, ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=all)`,      `/game-1,2/game-style-1,3,w,u/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=all)`,    `/game-3ds,2/game-style-1,3,w,u/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W&U Time=all)`,      `/game-all/game-style-1,3,w,u/time-all/card${path}`,       ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3&W&U Time=all)`,        `/game-1/game-style-1,3,w,u/time-all/card${path}`,         SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3&W&U Time=all)`,      `/game-3ds/game-style-1,3,w,u/time-all/card${path}`,       SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W&U Time=all)`,        `/game-2/game-style-1,3,w,u/time-all/card${path}`,         SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W&U Time=all)`,    `/game-1,3ds/game-style-1,3,w,u/time-all/card${path}`,     SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=all)`,      `/game-1,2/game-style-1,3,w,u/time-all/card${path}`,       SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=all)`,    `/game-3ds,2/game-style-1,3,w,u/time-all/card${path}`,     SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W&U Time=all)`,     `/game-all/game-style-1,3,w,u/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3&W&U Time=all)`,       `/game-1/game-style-1,3,w,u/time-all/table${path}`,        SMM1_ONLY,    ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3&W&U Time=all)`,     `/game-3ds/game-style-1,3,w,u/time-all/table${path}`,      SMM3DS_ONLY,  ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W&U Time=all)`,       `/game-2/game-style-1,3,w,u/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W&U Time=all)`,   `/game-1,3ds/game-style-1,3,w,u/time-all/table${path}`,    SMM1_AND_3DS, ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=all)`,     `/game-1,2/game-style-1,3,w,u/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=all)`,   `/game-3ds,2/game-style-1,3,w,u/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W&U Time=all)`,     `/game-all/game-style-1,3,w,u/time-all/table${path}`,      ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3&W&U Time=all)`,       `/game-1/game-style-1,3,w,u/time-all/table${path}`,        SMM1_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3&W&U Time=all)`,     `/game-3ds/game-style-1,3,w,u/time-all/table${path}`,      SMM3DS_ONLY,  ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W&U Time=all)`,       `/game-2/game-style-1,3,w,u/time-all/table${path}`,        SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W&U Time=all)`,   `/game-1,3ds/game-style-1,3,w,u/time-all/table${path}`,    SMM1_AND_3DS, ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=all)`,     `/game-1,2/game-style-1,3,w,u/time-all/table${path}`,      SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=all)`,   `/game-3ds,2/game-style-1,3,w,u/time-all/table${path}`,    SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&U&3DW Time=all)`,    `/game-all/game-style-3,w,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&U&3DW Time=all)`,      `/game-2/game-style-3,w,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&U&3DW Time=all)`,    `/game-1,2/game-style-3,w,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&U&3DW Time=all)`,    `/game-all/game-style-3,w,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&U&3DW Time=all)`,      `/game-2/game-style-3,w,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&U&3DW Time=all)`,    `/game-1,2/game-style-3,w,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&U&3DW Time=all)`,    `/game-all/game-style-3,w,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&U&3DW Time=all)`,      `/game-2/game-style-3,w,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&U&3DW Time=all)`,    `/game-1,2/game-style-3,w,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&U&3DW Time=all)`,    `/game-all/game-style-3,w,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&U&3DW Time=all)`,      `/game-2/game-style-3,w,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&U&3DW Time=all)`,    `/game-1,2/game-style-3,w,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&U&3DW Time=all)`,   `/game-all/game-style-3,w,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&U&3DW Time=all)`,     `/game-2/game-style-3,w,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&U&3DW Time=all)`,   `/game-1,2/game-style-3,w,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`, `/game-3ds,2/game-style-3,w,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&U&3DW Time=all)`,   `/game-all/game-style-3,w,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&U&3DW Time=all)`,     `/game-2/game-style-3,w,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&U&3DW Time=all)`,   `/game-1,2/game-style-3,w,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW Time=all)`, `/game-3ds,2/game-style-3,w,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&U&3DW Time=all)`,    `/game-all/game-style-1,w,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&U&3DW Time=all)`,      `/game-2/game-style-1,w,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&U&3DW Time=all)`,    `/game-1,2/game-style-1,w,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&U&3DW Time=all)`,    `/game-all/game-style-1,w,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&U&3DW Time=all)`,      `/game-2/game-style-1,w,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&U&3DW Time=all)`,    `/game-1,2/game-style-1,w,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&U&3DW Time=all)`,    `/game-all/game-style-1,w,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&U&3DW Time=all)`,      `/game-2/game-style-1,w,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&U&3DW Time=all)`,    `/game-1,2/game-style-1,w,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&U&3DW Time=all)`,    `/game-all/game-style-1,w,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&U&3DW Time=all)`,      `/game-2/game-style-1,w,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&U&3DW Time=all)`,    `/game-1,2/game-style-1,w,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&U&3DW Time=all)`,   `/game-all/game-style-1,w,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&U&3DW Time=all)`,     `/game-2/game-style-1,w,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&U&3DW Time=all)`,   `/game-1,2/game-style-1,w,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`, `/game-3ds,2/game-style-1,w,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&U&3DW Time=all)`,   `/game-all/game-style-1,w,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&U&3DW Time=all)`,     `/game-2/game-style-1,w,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&U&3DW Time=all)`,   `/game-1,2/game-style-1,w,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW Time=all)`, `/game-3ds,2/game-style-1,w,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&U&3DW Time=all)`,    `/game-all/game-style-1,3,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&U&3DW Time=all)`,      `/game-2/game-style-1,3,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&U&3DW Time=all)`,    `/game-1,2/game-style-1,3,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&U&3DW Time=all)`,    `/game-all/game-style-1,3,u,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&U&3DW Time=all)`,      `/game-2/game-style-1,3,u,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&U&3DW Time=all)`,    `/game-1,2/game-style-1,3,u,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&U&3DW Time=all)`,    `/game-all/game-style-1,3,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&U&3DW Time=all)`,      `/game-2/game-style-1,3,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&U&3DW Time=all)`,    `/game-1,2/game-style-1,3,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&U&3DW Time=all)`,    `/game-all/game-style-1,3,u,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&U&3DW Time=all)`,      `/game-2/game-style-1,3,u,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&U&3DW Time=all)`,    `/game-1,2/game-style-1,3,u,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&U&3DW Time=all)`,   `/game-all/game-style-1,3,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&U&3DW Time=all)`,     `/game-2/game-style-1,3,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&U&3DW Time=all)`,   `/game-1,2/game-style-1,3,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`, `/game-3ds,2/game-style-1,3,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&U&3DW Time=all)`,   `/game-all/game-style-1,3,u,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&U&3DW Time=all)`,     `/game-2/game-style-1,3,u,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&U&3DW Time=all)`,   `/game-1,2/game-style-1,3,u,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW Time=all)`, `/game-3ds,2/game-style-1,3,u,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W&3DW Time=all)`,    `/game-all/game-style-1,3,w,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W&3DW Time=all)`,      `/game-2/game-style-1,3,w,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&3DW Time=all)`,    `/game-1,2/game-style-1,3,w,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W&3DW Time=all)`,    `/game-all/game-style-1,3,w,3dw/time-all/list${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W&3DW Time=all)`,      `/game-2/game-style-1,3,w,3dw/time-all/list${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&3DW Time=all)`,    `/game-1,2/game-style-1,3,w,3dw/time-all/list${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-all/list${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W&3DW Time=all)`,    `/game-all/game-style-1,3,w,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W&3DW Time=all)`,      `/game-2/game-style-1,3,w,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&3DW Time=all)`,    `/game-1,2/game-style-1,3,w,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W&3DW Time=all)`,    `/game-all/game-style-1,3,w,3dw/time-all/card${path}`,     ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W&3DW Time=all)`,      `/game-2/game-style-1,3,w,3dw/time-all/card${path}`,       SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&3DW Time=all)`,    `/game-1,2/game-style-1,3,w,3dw/time-all/card${path}`,     SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-all/card${path}`,   SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W&3DW Time=all)`,   `/game-all/game-style-1,3,w,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W&3DW Time=all)`,     `/game-2/game-style-1,3,w,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&3DW Time=all)`,   `/game-1,2/game-style-1,3,w,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`, `/game-3ds,2/game-style-1,3,w,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W&3DW Time=all)`,   `/game-all/game-style-1,3,w,3dw/time-all/table${path}`,    ALL_GAMES,    ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W&3DW Time=all)`,     `/game-2/game-style-1,3,w,3dw/time-all/table${path}`,      SMM2_ONLY,    ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&3DW Time=all)`,   `/game-1,2/game-style-1,3,w,3dw/time-all/table${path}`,    SMM1_AND_2,   ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW Time=all)`, `/game-3ds,2/game-style-1,3,w,3dw/time-all/table${path}`,  SMM3DS_AND_2, ALL_TIMES, GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
 
@@ -979,708 +955,708 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
                 //region -------------------- Game style (all) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=all Time=day)`,          `/game-all/game-style-all/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=all Time=day)`,            `/game-1/game-style-all/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=all Time=day)`,          `/game-3ds/game-style-all/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=all Time=day)`,            `/game-2/game-style-all/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=all Time=day)`,        `/game-1,3ds/game-style-all/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=all Time=day)`,          `/game-1,2/game-style-all/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=all Time=day)`,        `/game-3ds,2/game-style-all/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  ALL_GAME_STYLES,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=all Time=day)`,          `/game-all/game-style-all/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=all Time=day)`,            `/game-1/game-style-all/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=all Time=day)`,          `/game-3ds/game-style-all/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=all Time=day)`,            `/game-2/game-style-all/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=all Time=day)`,        `/game-1,3ds/game-style-all/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=all Time=day)`,          `/game-1,2/game-style-all/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=all Time=day)`,        `/game-3ds,2/game-style-all/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.ALL,          LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=all Time=day)`,          `/game-all/game-style-all/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=all Time=day)`,            `/game-1/game-style-all/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=all Time=day)`,          `/game-3ds/game-style-all/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=all Time=day)`,            `/game-2/game-style-all/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=all Time=day)`,        `/game-1,3ds/game-style-all/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=all Time=day)`,          `/game-1,2/game-style-all/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=all Time=day)`,        `/game-3ds,2/game-style-all/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  ALL_GAME_STYLES,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=all Time=day)`,          `/game-all/game-style-all/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=all Time=day)`,            `/game-1/game-style-all/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=all Time=day)`,          `/game-3ds/game-style-all/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=all Time=day)`,            `/game-2/game-style-all/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=all Time=day)`,        `/game-1,3ds/game-style-all/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=all Time=day)`,          `/game-1,2/game-style-all/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=all Time=day)`,        `/game-3ds,2/game-style-all/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.ALL,          CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=all Time=day)`,         `/game-all/game-style-all/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=all Time=day)`,           `/game-1/game-style-all/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=all Time=day)`,         `/game-3ds/game-style-all/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=all Time=day)`,           `/game-2/game-style-all/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=all Time=day)`,       `/game-1,3ds/game-style-all/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=all Time=day)`,         `/game-1,2/game-style-all/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=all Time=day)`,       `/game-3ds,2/game-style-all/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  ALL_GAME_STYLES,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=all Time=day)`,         `/game-all/game-style-all/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=all Time=day)`,           `/game-1/game-style-all/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=all Time=day)`,         `/game-3ds/game-style-all/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=all Time=day)`,           `/game-2/game-style-all/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=all Time=day)`,       `/game-1,3ds/game-style-all/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=all Time=day)`,         `/game-1,2/game-style-all/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=all Time=day)`,       `/game-3ds,2/game-style-all/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.ALL,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (all) --------------------
 
                 //region -------------------- Game style (smb) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1 Time=day)`,            `/game-all/game-style-1/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1 Time=day)`,              `/game-1/game-style-1/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1 Time=day)`,            `/game-3ds/game-style-1/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1 Time=day)`,              `/game-2/game-style-1/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1 Time=day)`,          `/game-1,3ds/game-style-1/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1 Time=day)`,            `/game-1,2/game-style-1/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1 Time=day)`,          `/game-3ds,2/game-style-1/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1 Time=day)`,            `/game-all/game-style-1/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1 Time=day)`,              `/game-1/game-style-1/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1 Time=day)`,            `/game-3ds/game-style-1/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1 Time=day)`,              `/game-2/game-style-1/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1 Time=day)`,          `/game-1,3ds/game-style-1/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1 Time=day)`,            `/game-1,2/game-style-1/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1 Time=day)`,          `/game-3ds,2/game-style-1/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1 Time=day)`,            `/game-all/game-style-1/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1 Time=day)`,              `/game-1/game-style-1/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1 Time=day)`,            `/game-3ds/game-style-1/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1 Time=day)`,              `/game-2/game-style-1/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1 Time=day)`,          `/game-1,3ds/game-style-1/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1 Time=day)`,            `/game-1,2/game-style-1/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1 Time=day)`,          `/game-3ds,2/game-style-1/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1 Time=day)`,            `/game-all/game-style-1/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1 Time=day)`,              `/game-1/game-style-1/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1 Time=day)`,            `/game-3ds/game-style-1/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1 Time=day)`,              `/game-2/game-style-1/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1 Time=day)`,          `/game-1,3ds/game-style-1/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1 Time=day)`,            `/game-1,2/game-style-1/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1 Time=day)`,          `/game-3ds,2/game-style-1/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1 Time=day)`,           `/game-all/game-style-1/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1 Time=day)`,             `/game-1/game-style-1/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1 Time=day)`,           `/game-3ds/game-style-1/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1 Time=day)`,             `/game-2/game-style-1/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1 Time=day)`,         `/game-1,3ds/game-style-1/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1 Time=day)`,           `/game-1,2/game-style-1/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1 Time=day)`,         `/game-3ds,2/game-style-1/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1 Time=day)`,           `/game-all/game-style-1/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1 Time=day)`,             `/game-1/game-style-1/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1 Time=day)`,           `/game-3ds/game-style-1/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1 Time=day)`,             `/game-2/game-style-1/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1 Time=day)`,         `/game-1,3ds/game-style-1/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1 Time=day)`,           `/game-1,2/game-style-1/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1 Time=day)`,         `/game-3ds,2/game-style-1/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_ONLY,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb) --------------------
                 //region -------------------- Game style (smb3) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3 Time=day)`,            `/game-all/game-style-3/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3 Time=day)`,              `/game-1/game-style-3/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3 Time=day)`,            `/game-3ds/game-style-3/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3 Time=day)`,              `/game-2/game-style-3/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=3 Time=day)`,          `/game-1,3ds/game-style-3/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3 Time=day)`,            `/game-1,2/game-style-3/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3 Time=day)`,          `/game-3ds,2/game-style-3/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3 Time=day)`,            `/game-all/game-style-3/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3 Time=day)`,              `/game-1/game-style-3/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3 Time=day)`,            `/game-3ds/game-style-3/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3 Time=day)`,              `/game-2/game-style-3/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=3 Time=day)`,          `/game-1,3ds/game-style-3/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3 Time=day)`,            `/game-1,2/game-style-3/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3 Time=day)`,          `/game-3ds,2/game-style-3/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3 Time=day)`,            `/game-all/game-style-3/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3 Time=day)`,              `/game-1/game-style-3/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3 Time=day)`,            `/game-3ds/game-style-3/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3 Time=day)`,              `/game-2/game-style-3/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=3 Time=day)`,          `/game-1,3ds/game-style-3/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3 Time=day)`,            `/game-1,2/game-style-3/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3 Time=day)`,          `/game-3ds,2/game-style-3/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3 Time=day)`,            `/game-all/game-style-3/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3 Time=day)`,              `/game-1/game-style-3/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3 Time=day)`,            `/game-3ds/game-style-3/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3 Time=day)`,              `/game-2/game-style-3/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=3 Time=day)`,          `/game-1,3ds/game-style-3/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3 Time=day)`,            `/game-1,2/game-style-3/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3 Time=day)`,          `/game-3ds,2/game-style-3/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3 Time=day)`,           `/game-all/game-style-3/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3 Time=day)`,             `/game-1/game-style-3/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3 Time=day)`,           `/game-3ds/game-style-3/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3 Time=day)`,             `/game-2/game-style-3/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=3 Time=day)`,         `/game-1,3ds/game-style-3/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3 Time=day)`,           `/game-1,2/game-style-3/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3 Time=day)`,         `/game-3ds,2/game-style-3/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3 Time=day)`,           `/game-all/game-style-3/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3 Time=day)`,             `/game-1/game-style-3/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3 Time=day)`,           `/game-3ds/game-style-3/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3 Time=day)`,             `/game-2/game-style-3/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=3 Time=day)`,         `/game-1,3ds/game-style-3/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3 Time=day)`,           `/game-1,2/game-style-3/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3 Time=day)`,         `/game-3ds,2/game-style-3/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_ONLY,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3) --------------------
                 //region -------------------- Game style (smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W Time=day)`,            `/game-all/game-style-w/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=W Time=day)`,              `/game-1/game-style-w/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=W Time=day)`,            `/game-3ds/game-style-w/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W Time=day)`,              `/game-2/game-style-w/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=W Time=day)`,          `/game-1,3ds/game-style-w/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W Time=day)`,            `/game-1,2/game-style-w/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W Time=day)`,          `/game-3ds,2/game-style-w/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W Time=day)`,            `/game-all/game-style-w/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=W Time=day)`,              `/game-1/game-style-w/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=W Time=day)`,            `/game-3ds/game-style-w/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W Time=day)`,              `/game-2/game-style-w/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=W Time=day)`,          `/game-1,3ds/game-style-w/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W Time=day)`,            `/game-1,2/game-style-w/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W Time=day)`,          `/game-3ds,2/game-style-w/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W Time=day)`,            `/game-all/game-style-w/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=W Time=day)`,              `/game-1/game-style-w/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=W Time=day)`,            `/game-3ds/game-style-w/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W Time=day)`,              `/game-2/game-style-w/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=W Time=day)`,          `/game-1,3ds/game-style-w/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W Time=day)`,            `/game-1,2/game-style-w/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W Time=day)`,          `/game-3ds,2/game-style-w/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W Time=day)`,            `/game-all/game-style-w/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=W Time=day)`,              `/game-1/game-style-w/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=W Time=day)`,            `/game-3ds/game-style-w/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W Time=day)`,              `/game-2/game-style-w/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=W Time=day)`,          `/game-1,3ds/game-style-w/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W Time=day)`,            `/game-1,2/game-style-w/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W Time=day)`,          `/game-3ds,2/game-style-w/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W Time=day)`,           `/game-all/game-style-w/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=W Time=day)`,             `/game-1/game-style-w/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=W Time=day)`,           `/game-3ds/game-style-w/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W Time=day)`,             `/game-2/game-style-w/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=W Time=day)`,         `/game-1,3ds/game-style-w/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W Time=day)`,           `/game-1,2/game-style-w/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W Time=day)`,         `/game-3ds,2/game-style-w/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W Time=day)`,           `/game-all/game-style-w/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=W Time=day)`,             `/game-1/game-style-w/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=W Time=day)`,           `/game-3ds/game-style-w/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W Time=day)`,             `/game-2/game-style-w/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=W Time=day)`,         `/game-1,3ds/game-style-w/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W Time=day)`,           `/game-1,2/game-style-w/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W Time=day)`,         `/game-3ds,2/game-style-w/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_ONLY,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw) --------------------
                 //region -------------------- Game style (nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=U Time=day)`,            `/game-all/game-style-u/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=U Time=day)`,              `/game-1/game-style-u/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=U Time=day)`,            `/game-3ds/game-style-u/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=U Time=day)`,              `/game-2/game-style-u/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=U Time=day)`,          `/game-1,3ds/game-style-u/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=U Time=day)`,            `/game-1,2/game-style-u/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=U Time=day)`,          `/game-3ds,2/game-style-u/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=U Time=day)`,            `/game-all/game-style-u/time-day/list${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=U Time=day)`,              `/game-1/game-style-u/time-day/list${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=U Time=day)`,            `/game-3ds/game-style-u/time-day/list${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=U Time=day)`,              `/game-2/game-style-u/time-day/list${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=U Time=day)`,          `/game-1,3ds/game-style-u/time-day/list${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=U Time=day)`,            `/game-1,2/game-style-u/time-day/list${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=U Time=day)`,          `/game-3ds,2/game-style-u/time-day/list${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=U Time=day)`,            `/game-all/game-style-u/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=U Time=day)`,              `/game-1/game-style-u/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=U Time=day)`,            `/game-3ds/game-style-u/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=U Time=day)`,              `/game-2/game-style-u/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=U Time=day)`,          `/game-1,3ds/game-style-u/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=U Time=day)`,            `/game-1,2/game-style-u/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=U Time=day)`,          `/game-3ds,2/game-style-u/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=U Time=day)`,            `/game-all/game-style-u/time-day/card${path}`,             ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=U Time=day)`,              `/game-1/game-style-u/time-day/card${path}`,               SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=U Time=day)`,            `/game-3ds/game-style-u/time-day/card${path}`,             SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=U Time=day)`,              `/game-2/game-style-u/time-day/card${path}`,               SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=U Time=day)`,          `/game-1,3ds/game-style-u/time-day/card${path}`,           SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=U Time=day)`,            `/game-1,2/game-style-u/time-day/card${path}`,             SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=U Time=day)`,          `/game-3ds,2/game-style-u/time-day/card${path}`,           SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=U Time=day)`,           `/game-all/game-style-u/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=U Time=day)`,             `/game-1/game-style-u/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=U Time=day)`,           `/game-3ds/game-style-u/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=U Time=day)`,             `/game-2/game-style-u/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=U Time=day)`,         `/game-1,3ds/game-style-u/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=U Time=day)`,           `/game-1,2/game-style-u/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=U Time=day)`,         `/game-3ds,2/game-style-u/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=U Time=day)`,           `/game-all/game-style-u/time-day/table${path}`,            ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=U Time=day)`,             `/game-1/game-style-u/time-day/table${path}`,              SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=U Time=day)`,           `/game-3ds/game-style-u/time-day/table${path}`,            SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=U Time=day)`,             `/game-2/game-style-u/time-day/table${path}`,              SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=U Time=day)`,         `/game-1,3ds/game-style-u/time-day/table${path}`,          SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=U Time=day)`,           `/game-1,2/game-style-u/time-day/table${path}`,            SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=U Time=day)`,         `/game-3ds,2/game-style-u/time-day/table${path}`,          SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NSMBU_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu) --------------------
                 //region -------------------- Game style (sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3DW Time=day)`,          `/game-all/game-style-3dw/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3DW Time=day)`,            `/game-2/game-style-3dw/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3DW Time=day)`,          `/game-1,2/game-style-3dw/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3DW Time=day)`,        `/game-3ds,2/game-style-3dw/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3DW Time=day)`,          `/game-all/game-style-3dw/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3DW Time=day)`,            `/game-2/game-style-3dw/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3DW Time=day)`,          `/game-1,2/game-style-3dw/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3DW Time=day)`,        `/game-3ds,2/game-style-3dw/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3DW Time=day)`,          `/game-all/game-style-3dw/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3DW Time=day)`,            `/game-2/game-style-3dw/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3DW Time=day)`,          `/game-1,2/game-style-3dw/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3DW Time=day)`,        `/game-3ds,2/game-style-3dw/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3DW Time=day)`,          `/game-all/game-style-3dw/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3DW Time=day)`,            `/game-2/game-style-3dw/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3DW Time=day)`,          `/game-1,2/game-style-3dw/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3DW Time=day)`,        `/game-3ds,2/game-style-3dw/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3DW Time=day)`,         `/game-all/game-style-3dw/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3DW Time=day)`,           `/game-2/game-style-3dw/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3DW Time=day)`,         `/game-1,2/game-style-3dw/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3DW Time=day)`,       `/game-3ds,2/game-style-3dw/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3DW Time=day)`,         `/game-all/game-style-3dw/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3DW Time=day)`,           `/game-2/game-style-3dw/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3DW Time=day)`,         `/game-1,2/game-style-3dw/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3DW Time=day)`,       `/game-3ds,2/game-style-3dw/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SM3DW_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3 Time=day)`,          `/game-all/game-style-1,3/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3 Time=day)`,            `/game-1/game-style-1,3/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3 Time=day)`,          `/game-3ds/game-style-1,3/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3 Time=day)`,            `/game-2/game-style-1,3/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3 Time=day)`,        `/game-1,3ds/game-style-1,3/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3 Time=day)`,          `/game-1,2/game-style-1,3/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3 Time=day)`,        `/game-3ds,2/game-style-1,3/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3 Time=day)`,          `/game-all/game-style-1,3/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3 Time=day)`,            `/game-1/game-style-1,3/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3 Time=day)`,          `/game-3ds/game-style-1,3/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3 Time=day)`,            `/game-2/game-style-1,3/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3 Time=day)`,        `/game-1,3ds/game-style-1,3/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3 Time=day)`,          `/game-1,2/game-style-1,3/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3 Time=day)`,        `/game-3ds,2/game-style-1,3/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3 Time=day)`,          `/game-all/game-style-1,3/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3 Time=day)`,            `/game-1/game-style-1,3/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3 Time=day)`,          `/game-3ds/game-style-1,3/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3 Time=day)`,            `/game-2/game-style-1,3/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3 Time=day)`,        `/game-1,3ds/game-style-1,3/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3 Time=day)`,          `/game-1,2/game-style-1,3/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3 Time=day)`,        `/game-3ds,2/game-style-1,3/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3 Time=day)`,          `/game-all/game-style-1,3/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3 Time=day)`,            `/game-1/game-style-1,3/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3 Time=day)`,          `/game-3ds/game-style-1,3/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3 Time=day)`,            `/game-2/game-style-1,3/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3 Time=day)`,        `/game-1,3ds/game-style-1,3/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3 Time=day)`,          `/game-1,2/game-style-1,3/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3 Time=day)`,        `/game-3ds,2/game-style-1,3/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3 Time=day)`,         `/game-all/game-style-1,3/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3 Time=day)`,           `/game-1/game-style-1,3/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3 Time=day)`,         `/game-3ds/game-style-1,3/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3 Time=day)`,           `/game-2/game-style-1,3/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3 Time=day)`,       `/game-1,3ds/game-style-1,3/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3 Time=day)`,         `/game-1,2/game-style-1,3/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3 Time=day)`,       `/game-3ds,2/game-style-1,3/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3 Time=day)`,         `/game-all/game-style-1,3/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3 Time=day)`,           `/game-1/game-style-1,3/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3 Time=day)`,         `/game-3ds/game-style-1,3/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3 Time=day)`,           `/game-2/game-style-1,3/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3 Time=day)`,       `/game-1,3ds/game-style-1,3/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3 Time=day)`,         `/game-1,2/game-style-1,3/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3 Time=day)`,       `/game-3ds,2/game-style-1,3/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3,             TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3) --------------------
                 //region -------------------- Game style (smb + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W Time=day)`,          `/game-all/game-style-1,w/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&W Time=day)`,            `/game-1/game-style-1,w/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&W Time=day)`,          `/game-3ds/game-style-1,w/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W Time=day)`,            `/game-2/game-style-1,w/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&W Time=day)`,        `/game-1,3ds/game-style-1,w/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W Time=day)`,          `/game-1,2/game-style-1,w/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W Time=day)`,        `/game-3ds,2/game-style-1,w/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W Time=day)`,          `/game-all/game-style-1,w/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&W Time=day)`,            `/game-1/game-style-1,w/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&W Time=day)`,          `/game-3ds/game-style-1,w/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W Time=day)`,            `/game-2/game-style-1,w/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&W Time=day)`,        `/game-1,3ds/game-style-1,w/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W Time=day)`,          `/game-1,2/game-style-1,w/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W Time=day)`,        `/game-3ds,2/game-style-1,w/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W Time=day)`,          `/game-all/game-style-1,w/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&W Time=day)`,            `/game-1/game-style-1,w/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&W Time=day)`,          `/game-3ds/game-style-1,w/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W Time=day)`,            `/game-2/game-style-1,w/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&W Time=day)`,        `/game-1,3ds/game-style-1,w/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W Time=day)`,          `/game-1,2/game-style-1,w/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W Time=day)`,        `/game-3ds,2/game-style-1,w/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W Time=day)`,          `/game-all/game-style-1,w/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&W Time=day)`,            `/game-1/game-style-1,w/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&W Time=day)`,          `/game-3ds/game-style-1,w/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W Time=day)`,            `/game-2/game-style-1,w/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&W Time=day)`,        `/game-1,3ds/game-style-1,w/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W Time=day)`,          `/game-1,2/game-style-1,w/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W Time=day)`,        `/game-3ds,2/game-style-1,w/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W Time=day)`,         `/game-all/game-style-1,w/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&W Time=day)`,           `/game-1/game-style-1,w/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&W Time=day)`,         `/game-3ds/game-style-1,w/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W Time=day)`,           `/game-2/game-style-1,w/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&W Time=day)`,       `/game-1,3ds/game-style-1,w/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W Time=day)`,         `/game-1,2/game-style-1,w/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W Time=day)`,       `/game-3ds,2/game-style-1,w/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W Time=day)`,         `/game-all/game-style-1,w/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&W Time=day)`,           `/game-1/game-style-1,w/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&W Time=day)`,         `/game-3ds/game-style-1,w/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W Time=day)`,           `/game-2/game-style-1,w/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&W Time=day)`,       `/game-1,3ds/game-style-1,w/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W Time=day)`,         `/game-1,2/game-style-1,w/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W Time=day)`,       `/game-3ds,2/game-style-1,w/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW,              TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw) --------------------
                 //region -------------------- Game style (smb + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&U Time=day)`,          `/game-all/game-style-1,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&U Time=day)`,            `/game-1/game-style-1,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&U Time=day)`,          `/game-3ds/game-style-1,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&U Time=day)`,            `/game-2/game-style-1,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&U Time=day)`,        `/game-1,3ds/game-style-1,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&U Time=day)`,          `/game-1,2/game-style-1,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&U Time=day)`,        `/game-3ds,2/game-style-1,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&U Time=day)`,          `/game-all/game-style-1,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&U Time=day)`,            `/game-1/game-style-1,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&U Time=day)`,          `/game-3ds/game-style-1,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&U Time=day)`,            `/game-2/game-style-1,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&U Time=day)`,        `/game-1,3ds/game-style-1,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&U Time=day)`,          `/game-1,2/game-style-1,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&U Time=day)`,        `/game-3ds,2/game-style-1,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&U Time=day)`,          `/game-all/game-style-1,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&U Time=day)`,            `/game-1/game-style-1,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&U Time=day)`,          `/game-3ds/game-style-1,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&U Time=day)`,            `/game-2/game-style-1,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&U Time=day)`,        `/game-1,3ds/game-style-1,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&U Time=day)`,          `/game-1,2/game-style-1,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&U Time=day)`,        `/game-3ds,2/game-style-1,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&U Time=day)`,          `/game-all/game-style-1,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&U Time=day)`,            `/game-1/game-style-1,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&U Time=day)`,          `/game-3ds/game-style-1,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&U Time=day)`,            `/game-2/game-style-1,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&U Time=day)`,        `/game-1,3ds/game-style-1,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&U Time=day)`,          `/game-1,2/game-style-1,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&U Time=day)`,        `/game-3ds,2/game-style-1,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&U Time=day)`,         `/game-all/game-style-1,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&U Time=day)`,           `/game-1/game-style-1,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&U Time=day)`,         `/game-3ds/game-style-1,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&U Time=day)`,           `/game-2/game-style-1,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&U Time=day)`,       `/game-1,3ds/game-style-1,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&U Time=day)`,         `/game-1,2/game-style-1,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&U Time=day)`,       `/game-3ds,2/game-style-1,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&U Time=day)`,         `/game-all/game-style-1,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&U Time=day)`,           `/game-1/game-style-1,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&U Time=day)`,         `/game-3ds/game-style-1,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&U Time=day)`,           `/game-2/game-style-1,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&U Time=day)`,       `/game-1,3ds/game-style-1,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&U Time=day)`,         `/game-1,2/game-style-1,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&U Time=day)`,       `/game-3ds,2/game-style-1,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu) --------------------
                 //region -------------------- Game style (smb + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3DW Time=day)`,        `/game-all/game-style-1,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3DW Time=day)`,          `/game-2/game-style-1,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3DW Time=day)`,        `/game-1,2/game-style-1,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3DW Time=day)`,      `/game-3ds,2/game-style-1,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3DW Time=day)`,        `/game-all/game-style-1,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3DW Time=day)`,          `/game-2/game-style-1,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3DW Time=day)`,        `/game-1,2/game-style-1,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3DW Time=day)`,      `/game-3ds,2/game-style-1,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3DW Time=day)`,        `/game-all/game-style-1,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3DW Time=day)`,          `/game-2/game-style-1,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3DW Time=day)`,        `/game-1,2/game-style-1,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3DW Time=day)`,      `/game-3ds,2/game-style-1,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3DW Time=day)`,        `/game-all/game-style-1,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3DW Time=day)`,          `/game-2/game-style-1,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3DW Time=day)`,        `/game-1,2/game-style-1,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3DW Time=day)`,      `/game-3ds,2/game-style-1,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3DW Time=day)`,       `/game-all/game-style-1,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3DW Time=day)`,         `/game-2/game-style-1,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3DW Time=day)`,       `/game-1,2/game-style-1,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3DW Time=day)`,     `/game-3ds,2/game-style-1,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3DW Time=day)`,       `/game-all/game-style-1,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3DW Time=day)`,         `/game-2/game-style-1,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3DW Time=day)`,       `/game-1,2/game-style-1,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3DW Time=day)`,     `/game-3ds,2/game-style-1,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SM3DW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W Time=day)`,          `/game-all/game-style-3,w/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3&W Time=day)`,            `/game-1/game-style-3,w/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3&W Time=day)`,          `/game-3ds/game-style-3,w/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W Time=day)`,            `/game-2/game-style-3,w/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3&3DS GameStyle=3&W Time=day)`,        `/game-3,3ds/game-style-3,w/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W Time=day)`,          `/game-1,2/game-style-3,w/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W Time=day)`,        `/game-3ds,2/game-style-3,w/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W Time=day)`,          `/game-all/game-style-3,w/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3&W Time=day)`,            `/game-1/game-style-3,w/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3&W Time=day)`,          `/game-3ds/game-style-3,w/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W Time=day)`,            `/game-2/game-style-3,w/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3&3DS GameStyle=3&W Time=day)`,        `/game-3,3ds/game-style-3,w/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W Time=day)`,          `/game-1,2/game-style-3,w/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W Time=day)`,        `/game-3ds,2/game-style-3,w/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W Time=day)`,          `/game-all/game-style-3,w/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3&W Time=day)`,            `/game-1/game-style-3,w/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3&W Time=day)`,          `/game-3ds/game-style-3,w/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W Time=day)`,            `/game-2/game-style-3,w/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3&3DS GameStyle=3&W Time=day)`,        `/game-3,3ds/game-style-3,w/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W Time=day)`,          `/game-1,2/game-style-3,w/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W Time=day)`,        `/game-3ds,2/game-style-3,w/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W Time=day)`,          `/game-all/game-style-3,w/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3&W Time=day)`,            `/game-1/game-style-3,w/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3&W Time=day)`,          `/game-3ds/game-style-3,w/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W Time=day)`,            `/game-2/game-style-3,w/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3&3DS GameStyle=3&W Time=day)`,        `/game-3,3ds/game-style-3,w/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W Time=day)`,          `/game-1,2/game-style-3,w/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W Time=day)`,        `/game-3ds,2/game-style-3,w/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W Time=day)`,         `/game-all/game-style-3,w/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3&W Time=day)`,           `/game-1/game-style-3,w/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3&W Time=day)`,         `/game-3ds/game-style-3,w/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W Time=day)`,           `/game-2/game-style-3,w/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3&3DS GameStyle=3&W Time=day)`,       `/game-3,3ds/game-style-3,w/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W Time=day)`,         `/game-1,2/game-style-3,w/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W Time=day)`,       `/game-3ds,2/game-style-3,w/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W Time=day)`,         `/game-all/game-style-3,w/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3&W Time=day)`,           `/game-1/game-style-3,w/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3&W Time=day)`,         `/game-3ds/game-style-3,w/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W Time=day)`,           `/game-2/game-style-3,w/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3&3DS GameStyle=3&W Time=day)`,       `/game-3,3ds/game-style-3,w/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W Time=day)`,         `/game-1,2/game-style-3,w/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W Time=day)`,       `/game-3ds,2/game-style-3,w/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW,             TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&U Time=day)`,          `/game-all/game-style-3,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3&U Time=day)`,            `/game-1/game-style-3,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3&U Time=day)`,          `/game-3ds/game-style-3,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&U Time=day)`,            `/game-2/game-style-3,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=3&U Time=day)`,        `/game-3,3ds/game-style-3,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&U Time=day)`,          `/game-3,2/game-style-3,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&U Time=day)`,        `/game-3ds,2/game-style-3,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&U Time=day)`,          `/game-all/game-style-3,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3&U Time=day)`,            `/game-1/game-style-3,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3&U Time=day)`,          `/game-3ds/game-style-3,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&U Time=day)`,            `/game-2/game-style-3,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=3&U Time=day)`,        `/game-3,3ds/game-style-3,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&U Time=day)`,          `/game-3,2/game-style-3,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&U Time=day)`,        `/game-3ds,2/game-style-3,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&U Time=day)`,          `/game-all/game-style-3,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3&U Time=day)`,            `/game-1/game-style-3,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3&U Time=day)`,          `/game-3ds/game-style-3,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&U Time=day)`,            `/game-2/game-style-3,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=3&U Time=day)`,        `/game-3,3ds/game-style-3,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&U Time=day)`,          `/game-3,2/game-style-3,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&U Time=day)`,        `/game-3ds,2/game-style-3,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&U Time=day)`,          `/game-all/game-style-3,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3&U Time=day)`,            `/game-1/game-style-3,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3&U Time=day)`,          `/game-3ds/game-style-3,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&U Time=day)`,            `/game-2/game-style-3,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=3&U Time=day)`,        `/game-3,3ds/game-style-3,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&U Time=day)`,          `/game-3,2/game-style-3,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&U Time=day)`,        `/game-3ds,2/game-style-3,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&U Time=day)`,         `/game-all/game-style-3,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3&U Time=day)`,           `/game-1/game-style-3,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3&U Time=day)`,         `/game-3ds/game-style-3,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&U Time=day)`,           `/game-2/game-style-3,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=3&U Time=day)`,       `/game-3,3ds/game-style-3,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&U Time=day)`,         `/game-3,2/game-style-3,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&U Time=day)`,       `/game-3ds,2/game-style-3,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&U Time=day)`,         `/game-all/game-style-3,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3&U Time=day)`,           `/game-1/game-style-3,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3&U Time=day)`,         `/game-3ds/game-style-3,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&U Time=day)`,           `/game-2/game-style-3,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=3&U Time=day)`,       `/game-3,3ds/game-style-3,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&U Time=day)`,         `/game-3,2/game-style-3,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&U Time=day)`,       `/game-3ds,2/game-style-3,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&3DW Time=day)`,        `/game-all/game-style-3,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&3DW Time=day)`,          `/game-2/game-style-3,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&3DW Time=day)`,        `/game-3,2/game-style-3,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&3DW Time=day)`,      `/game-3ds,2/game-style-3,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&3DW Time=day)`,        `/game-all/game-style-3,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&3DW Time=day)`,          `/game-2/game-style-3,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&3DW Time=day)`,        `/game-3,2/game-style-3,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&3DW Time=day)`,      `/game-3ds,2/game-style-3,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&3DW Time=day)`,        `/game-all/game-style-3,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&3DW Time=day)`,          `/game-2/game-style-3,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&3DW Time=day)`,        `/game-3,2/game-style-3,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&3DW Time=day)`,      `/game-3ds,2/game-style-3,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&3DW Time=day)`,        `/game-all/game-style-3,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&3DW Time=day)`,          `/game-2/game-style-3,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&3DW Time=day)`,        `/game-3,2/game-style-3,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&3DW Time=day)`,      `/game-3ds,2/game-style-3,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&3DW Time=day)`,       `/game-all/game-style-3,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&3DW Time=day)`,         `/game-2/game-style-3,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&3DW Time=day)`,       `/game-3,2/game-style-3,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&3DW Time=day)`,     `/game-3ds,2/game-style-3,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&3DW Time=day)`,       `/game-all/game-style-3,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&3DW Time=day)`,         `/game-2/game-style-3,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&3DW Time=day)`,       `/game-3,2/game-style-3,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&3DW Time=day)`,     `/game-3ds,2/game-style-3,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SM3DW,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + sm3dw) --------------------
                 //region -------------------- Game style (smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&U Time=day)`,          `/game-all/game-style-w,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=W&U Time=day)`,            `/game-1/game-style-w,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=W&U Time=day)`,          `/game-3ds/game-style-w,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&U Time=day)`,            `/game-2/game-style-w,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=W&U Time=day)`,        `/game-1,3ds/game-style-w,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&U Time=day)`,          `/game-1,2/game-style-w,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&U Time=day)`,        `/game-3ds,2/game-style-w,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&U Time=day)`,          `/game-all/game-style-w,u/time-day/list${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=W&U Time=day)`,            `/game-1/game-style-w,u/time-day/list${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=W&U Time=day)`,          `/game-3ds/game-style-w,u/time-day/list${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&U Time=day)`,            `/game-2/game-style-w,u/time-day/list${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=W&U Time=day)`,        `/game-1,3ds/game-style-w,u/time-day/list${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&U Time=day)`,          `/game-1,2/game-style-w,u/time-day/list${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&U Time=day)`,        `/game-3ds,2/game-style-w,u/time-day/list${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&U Time=day)`,          `/game-all/game-style-w,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=W&U Time=day)`,            `/game-1/game-style-w,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=W&U Time=day)`,          `/game-3ds/game-style-w,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&U Time=day)`,            `/game-2/game-style-w,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=W&U Time=day)`,        `/game-1,3ds/game-style-w,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&U Time=day)`,          `/game-1,2/game-style-w,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&U Time=day)`,        `/game-3ds,2/game-style-w,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&U Time=day)`,          `/game-all/game-style-w,u/time-day/card${path}`,           ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=W&U Time=day)`,            `/game-1/game-style-w,u/time-day/card${path}`,             SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=W&U Time=day)`,          `/game-3ds/game-style-w,u/time-day/card${path}`,           SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&U Time=day)`,            `/game-2/game-style-w,u/time-day/card${path}`,             SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=W&U Time=day)`,        `/game-1,3ds/game-style-w,u/time-day/card${path}`,         SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&U Time=day)`,          `/game-1,2/game-style-w,u/time-day/card${path}`,           SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&U Time=day)`,        `/game-3ds,2/game-style-w,u/time-day/card${path}`,         SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&U Time=day)`,         `/game-all/game-style-w,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=W&U Time=day)`,           `/game-1/game-style-w,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=W&U Time=day)`,         `/game-3ds/game-style-w,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&U Time=day)`,           `/game-2/game-style-w,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=W&U Time=day)`,       `/game-1,3ds/game-style-w,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&U Time=day)`,         `/game-1,2/game-style-w,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&U Time=day)`,       `/game-3ds,2/game-style-w,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&U Time=day)`,         `/game-all/game-style-w,u/time-day/table${path}`,          ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=W&U Time=day)`,           `/game-1/game-style-w,u/time-day/table${path}`,            SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=W&U Time=day)`,         `/game-3ds/game-style-w,u/time-day/table${path}`,          SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&U Time=day)`,           `/game-2/game-style-w,u/time-day/table${path}`,            SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=W&U Time=day)`,       `/game-1,3ds/game-style-w,u/time-day/table${path}`,        SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&U Time=day)`,         `/game-1,2/game-style-w,u/time-day/table${path}`,          SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&U Time=day)`,       `/game-3ds,2/game-style-w,u/time-day/table${path}`,        SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu) --------------------
                 //region -------------------- Game style (smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&3DW Time=day)`,        `/game-all/game-style-w,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&3DW Time=day)`,          `/game-2/game-style-w,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&3DW Time=day)`,        `/game-1,2/game-style-w,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&3DW Time=day)`,      `/game-3ds,2/game-style-w,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&3DW Time=day)`,        `/game-all/game-style-w,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&3DW Time=day)`,          `/game-2/game-style-w,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&3DW Time=day)`,        `/game-1,2/game-style-w,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&3DW Time=day)`,      `/game-3ds,2/game-style-w,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&3DW Time=day)`,        `/game-all/game-style-w,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&3DW Time=day)`,          `/game-2/game-style-w,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&3DW Time=day)`,        `/game-1,2/game-style-w,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&3DW Time=day)`,      `/game-3ds,2/game-style-w,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&3DW Time=day)`,        `/game-all/game-style-w,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&3DW Time=day)`,          `/game-2/game-style-w,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&3DW Time=day)`,        `/game-1,2/game-style-w,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&3DW Time=day)`,      `/game-3ds,2/game-style-w,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&3DW Time=day)`,       `/game-all/game-style-w,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&3DW Time=day)`,         `/game-2/game-style-w,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&3DW Time=day)`,       `/game-1,2/game-style-w,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&3DW Time=day)`,     `/game-3ds,2/game-style-w,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&3DW Time=day)`,       `/game-all/game-style-w,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&3DW Time=day)`,         `/game-2/game-style-w,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&3DW Time=day)`,       `/game-1,2/game-style-w,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&3DW Time=day)`,     `/game-3ds,2/game-style-w,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_SM3DW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + sm3dw) --------------------
                 //region -------------------- Game style (nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=U&3DW Time=day)`,        `/game-all/game-style-u,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=U&3DW Time=day)`,          `/game-2/game-style-u,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=U&3DW Time=day)`,        `/game-1,2/game-style-u,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=U&3DW Time=day)`,      `/game-3ds,2/game-style-u,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=U&3DW Time=day)`,        `/game-all/game-style-u,3dw/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=U&3DW Time=day)`,          `/game-2/game-style-u,3dw/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=U&3DW Time=day)`,        `/game-1,2/game-style-u,3dw/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=U&3DW Time=day)`,      `/game-3ds,2/game-style-u,3dw/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=U&3DW Time=day)`,        `/game-all/game-style-u,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=U&3DW Time=day)`,          `/game-2/game-style-u,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=U&3DW Time=day)`,        `/game-1,2/game-style-u,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=U&3DW Time=day)`,      `/game-3ds,2/game-style-u,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=U&3DW Time=day)`,        `/game-all/game-style-u,3dw/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=U&3DW Time=day)`,          `/game-2/game-style-u,3dw/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=U&3DW Time=day)`,        `/game-1,2/game-style-u,3dw/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=U&3DW Time=day)`,      `/game-3ds,2/game-style-u,3dw/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=U&3DW Time=day)`,       `/game-all/game-style-u,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=U&3DW Time=day)`,         `/game-2/game-style-u,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=U&3DW Time=day)`,       `/game-1,2/game-style-u,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=U&3DW Time=day)`,     `/game-3ds,2/game-style-u,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=U&3DW Time=day)`,       `/game-all/game-style-u,3dw/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=U&3DW Time=day)`,         `/game-2/game-style-u,3dw/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=U&3DW Time=day)`,       `/game-1,2/game-style-u,3dw/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=U&3DW Time=day)`,     `/game-3ds,2/game-style-u,3dw/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NSMBU_AND_SM3DW,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu + sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W Time=day)`,        `/game-all/game-style-1,3,w/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3&W Time=day)`,          `/game-1/game-style-1,3,w/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3&W Time=day)`,        `/game-3ds/game-style-1,3,w/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W Time=day)`,          `/game-2/game-style-1,3,w/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W Time=day)`,      `/game-1,3ds/game-style-1,3,w/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W Time=day)`,        `/game-1,2/game-style-1,3,w/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=day)`,      `/game-3ds,2/game-style-1,3,w/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W Time=day)`,        `/game-all/game-style-1,3,w/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3&W Time=day)`,          `/game-1/game-style-1,3,w/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3&W Time=day)`,        `/game-3ds/game-style-1,3,w/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W Time=day)`,          `/game-2/game-style-1,3,w/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W Time=day)`,      `/game-1,3ds/game-style-1,3,w/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W Time=day)`,        `/game-1,2/game-style-1,3,w/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=day)`,      `/game-3ds,2/game-style-1,3,w/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W Time=day)`,        `/game-all/game-style-1,3,w/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3&W Time=day)`,          `/game-1/game-style-1,3,w/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3&W Time=day)`,        `/game-3ds/game-style-1,3,w/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W Time=day)`,          `/game-2/game-style-1,3,w/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W Time=day)`,      `/game-1,3ds/game-style-1,3,w/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W Time=day)`,        `/game-1,2/game-style-1,3,w/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=day)`,      `/game-3ds,2/game-style-1,3,w/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W Time=day)`,        `/game-all/game-style-1,3,w/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3&W Time=day)`,          `/game-1/game-style-1,3,w/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3&W Time=day)`,        `/game-3ds/game-style-1,3,w/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W Time=day)`,          `/game-2/game-style-1,3,w/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W Time=day)`,      `/game-1,3ds/game-style-1,3,w/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W Time=day)`,        `/game-1,2/game-style-1,3,w/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=day)`,      `/game-3ds,2/game-style-1,3,w/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W Time=day)`,       `/game-all/game-style-1,3,w/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3&W Time=day)`,         `/game-1/game-style-1,3,w/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3&W Time=day)`,       `/game-3ds/game-style-1,3,w/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W Time=day)`,         `/game-2/game-style-1,3,w/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W Time=day)`,     `/game-1,3ds/game-style-1,3,w/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W Time=day)`,       `/game-1,2/game-style-1,3,w/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=day)`,     `/game-3ds,2/game-style-1,3,w/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W Time=day)`,       `/game-all/game-style-1,3,w/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3&W Time=day)`,         `/game-1/game-style-1,3,w/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3&W Time=day)`,       `/game-3ds/game-style-1,3,w/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W Time=day)`,         `/game-2/game-style-1,3,w/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W Time=day)`,     `/game-1,3ds/game-style-1,3,w/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W Time=day)`,       `/game-1,2/game-style-1,3,w/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=day)`,     `/game-3ds,2/game-style-1,3,w/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SMW,     TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&U Time=day)`,        `/game-all/game-style-1,3,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3&U Time=day)`,          `/game-1/game-style-1,3,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3&U Time=day)`,        `/game-3ds/game-style-1,3,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&U Time=day)`,          `/game-2/game-style-1,3,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3&U Time=day)`,      `/game-1,3ds/game-style-1,3,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&U Time=day)`,        `/game-1,2/game-style-1,3,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=day)`,      `/game-3ds,2/game-style-1,3,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&U Time=day)`,        `/game-all/game-style-1,3,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3&U Time=day)`,          `/game-1/game-style-1,3,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3&U Time=day)`,        `/game-3ds/game-style-1,3,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&U Time=day)`,          `/game-2/game-style-1,3,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3&U Time=day)`,      `/game-1,3ds/game-style-1,3,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&U Time=day)`,        `/game-1,2/game-style-1,3,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=day)`,      `/game-3ds,2/game-style-1,3,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&U Time=day)`,        `/game-all/game-style-1,3,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3&U Time=day)`,          `/game-1/game-style-1,3,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3&U Time=day)`,        `/game-3ds/game-style-1,3,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&U Time=day)`,          `/game-2/game-style-1,3,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3&U Time=day)`,      `/game-1,3ds/game-style-1,3,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&U Time=day)`,        `/game-1,2/game-style-1,3,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=day)`,      `/game-3ds,2/game-style-1,3,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&U Time=day)`,        `/game-all/game-style-1,3,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3&U Time=day)`,          `/game-1/game-style-1,3,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3&U Time=day)`,        `/game-3ds/game-style-1,3,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&U Time=day)`,          `/game-2/game-style-1,3,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3&U Time=day)`,      `/game-1,3ds/game-style-1,3,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&U Time=day)`,        `/game-1,2/game-style-1,3,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=day)`,      `/game-3ds,2/game-style-1,3,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&U Time=day)`,       `/game-all/game-style-1,3,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3&U Time=day)`,         `/game-1/game-style-1,3,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3&U Time=day)`,       `/game-3ds/game-style-1,3,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&U Time=day)`,         `/game-2/game-style-1,3,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3&U Time=day)`,     `/game-1,3ds/game-style-1,3,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&U Time=day)`,       `/game-1,2/game-style-1,3,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=day)`,     `/game-3ds,2/game-style-1,3,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&U Time=day)`,       `/game-all/game-style-1,3,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3&U Time=day)`,         `/game-1/game-style-1,3,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3&U Time=day)`,       `/game-3ds/game-style-1,3,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&U Time=day)`,         `/game-2/game-style-1,3,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3&U Time=day)`,     `/game-1,3ds/game-style-1,3,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&U Time=day)`,       `/game-1,2/game-style-1,3,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=day)`,     `/game-3ds,2/game-style-1,3,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb + smb3 + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&3DW Time=day)`,      `/game-all/game-style-1,3,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&3DW Time=day)`,        `/game-2/game-style-1,3,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&3DW Time=day)`,      `/game-1,2/game-style-1,3,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&3DW Time=day)`,    `/game-3ds,2/game-style-1,3,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&3DW Time=day)`,      `/game-all/game-style-1,3,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&3DW Time=day)`,        `/game-2/game-style-1,3,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&3DW Time=day)`,      `/game-1,2/game-style-1,3,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&3DW Time=day)`,    `/game-3ds,2/game-style-1,3,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&3DW Time=day)`,      `/game-all/game-style-1,3,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&3DW Time=day)`,        `/game-2/game-style-1,3,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&3DW Time=day)`,      `/game-1,2/game-style-1,3,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&3DW Time=day)`,    `/game-3ds,2/game-style-1,3,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&3DW Time=day)`,      `/game-all/game-style-1,3,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&3DW Time=day)`,        `/game-2/game-style-1,3,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&3DW Time=day)`,      `/game-1,2/game-style-1,3,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&3DW Time=day)`,    `/game-3ds,2/game-style-1,3,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&3DW Time=day)`,     `/game-all/game-style-1,3,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&3DW Time=day)`,       `/game-2/game-style-1,3,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&3DW Time=day)`,     `/game-1,2/game-style-1,3,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&3DW Time=day)`,   `/game-3ds,2/game-style-1,3,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&3DW Time=day)`,     `/game-all/game-style-1,3,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&3DW Time=day)`,       `/game-2/game-style-1,3,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&3DW Time=day)`,     `/game-1,2/game-style-1,3,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&3DW Time=day)`,   `/game-3ds,2/game-style-1,3,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMB3_AND_SM3DW,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + sm3dw) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&U Time=day)`,        `/game-all/game-style-1,w,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&W&U Time=day)`,          `/game-1/game-style-1,w,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&W&U Time=day)`,        `/game-3ds/game-style-1,w,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&U Time=day)`,          `/game-2/game-style-1,w,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&W&U Time=day)`,      `/game-1,3ds/game-style-1,w,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&U Time=day)`,        `/game-1,2/game-style-1,w,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=day)`,      `/game-3ds,2/game-style-1,w,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&U Time=day)`,        `/game-all/game-style-1,w,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&W&U Time=day)`,          `/game-1/game-style-1,w,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&W&U Time=day)`,        `/game-3ds/game-style-1,w,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&U Time=day)`,          `/game-2/game-style-1,w,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&W&U Time=day)`,      `/game-1,3ds/game-style-1,w,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&U Time=day)`,        `/game-1,2/game-style-1,w,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=day)`,      `/game-3ds,2/game-style-1,w,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&U Time=day)`,        `/game-all/game-style-1,w,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&W&U Time=day)`,          `/game-1/game-style-1,w,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&W&U Time=day)`,        `/game-3ds/game-style-1,w,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&U Time=day)`,          `/game-2/game-style-1,w,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&W&U Time=day)`,      `/game-1,3ds/game-style-1,w,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&U Time=day)`,        `/game-1,2/game-style-1,w,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=day)`,      `/game-3ds,2/game-style-1,w,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&U Time=day)`,        `/game-all/game-style-1,w,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&W&U Time=day)`,          `/game-1/game-style-1,w,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&W&U Time=day)`,        `/game-3ds/game-style-1,w,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&U Time=day)`,          `/game-2/game-style-1,w,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&W&U Time=day)`,      `/game-1,3ds/game-style-1,w,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&U Time=day)`,        `/game-1,2/game-style-1,w,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=day)`,      `/game-3ds,2/game-style-1,w,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&U Time=day)`,       `/game-all/game-style-1,w,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&W&U Time=day)`,         `/game-1/game-style-1,w,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&W&U Time=day)`,       `/game-3ds/game-style-1,w,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&U Time=day)`,         `/game-2/game-style-1,w,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&W&U Time=day)`,     `/game-1,3ds/game-style-1,w,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&U Time=day)`,       `/game-1,2/game-style-1,w,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=day)`,     `/game-3ds,2/game-style-1,w,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&U Time=day)`,       `/game-all/game-style-1,w,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&W&U Time=day)`,         `/game-1/game-style-1,w,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&W&U Time=day)`,       `/game-3ds/game-style-1,w,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&U Time=day)`,         `/game-2/game-style-1,w,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&W&U Time=day)`,     `/game-1,3ds/game-style-1,w,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&U Time=day)`,       `/game-1,2/game-style-1,w,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=day)`,     `/game-3ds,2/game-style-1,w,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb + smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&3DW Time=day)`,      `/game-all/game-style-1,w,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&3DW Time=day)`,        `/game-2/game-style-1,w,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&3DW Time=day)`,      `/game-1,2/game-style-1,w,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&3DW Time=day)`,    `/game-3ds,2/game-style-1,w,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&3DW Time=day)`,      `/game-all/game-style-1,w,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&3DW Time=day)`,        `/game-2/game-style-1,w,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&3DW Time=day)`,      `/game-1,2/game-style-1,w,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&3DW Time=day)`,    `/game-3ds,2/game-style-1,w,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&3DW Time=day)`,      `/game-all/game-style-1,w,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&3DW Time=day)`,        `/game-2/game-style-1,w,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&3DW Time=day)`,      `/game-1,2/game-style-1,w,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&3DW Time=day)`,    `/game-3ds,2/game-style-1,w,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&3DW Time=day)`,      `/game-all/game-style-1,w,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&3DW Time=day)`,        `/game-2/game-style-1,w,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&3DW Time=day)`,      `/game-1,2/game-style-1,w,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&3DW Time=day)`,    `/game-3ds,2/game-style-1,w,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&3DW Time=day)`,     `/game-all/game-style-1,w,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&3DW Time=day)`,       `/game-2/game-style-1,w,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&3DW Time=day)`,     `/game-1,2/game-style-1,w,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&3DW Time=day)`,   `/game-3ds,2/game-style-1,w,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&3DW Time=day)`,     `/game-all/game-style-1,w,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&3DW Time=day)`,       `/game-2/game-style-1,w,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&3DW Time=day)`,     `/game-1,2/game-style-1,w,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&3DW Time=day)`,   `/game-3ds,2/game-style-1,w,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_SMW_AND_SM3DW,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + sm3dw) --------------------
                 //region -------------------- Game style (smb + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&U&3DW Time=day)`,      `/game-all/game-style-1,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&U&3DW Time=day)`,        `/game-2/game-style-1,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&U&3DW Time=day)`,      `/game-1,2/game-style-1,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&U&3DW Time=day)`,    `/game-3ds,2/game-style-1,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&U&3DW Time=day)`,      `/game-all/game-style-1,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&U&3DW Time=day)`,        `/game-2/game-style-1,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&U&3DW Time=day)`,      `/game-1,2/game-style-1,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&U&3DW Time=day)`,    `/game-3ds,2/game-style-1,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&U&3DW Time=day)`,      `/game-all/game-style-1,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&U&3DW Time=day)`,        `/game-2/game-style-1,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&U&3DW Time=day)`,      `/game-1,2/game-style-1,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&U&3DW Time=day)`,    `/game-3ds,2/game-style-1,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&U&3DW Time=day)`,      `/game-all/game-style-1,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&U&3DW Time=day)`,        `/game-2/game-style-1,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&U&3DW Time=day)`,      `/game-1,2/game-style-1,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&U&3DW Time=day)`,    `/game-3ds,2/game-style-1,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&U&3DW Time=day)`,     `/game-all/game-style-1,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&U&3DW Time=day)`,       `/game-2/game-style-1,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&U&3DW Time=day)`,     `/game-1,2/game-style-1,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&U&3DW Time=day)`,   `/game-3ds,2/game-style-1,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&U&3DW Time=day)`,     `/game-all/game-style-1,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&U&3DW Time=day)`,       `/game-2/game-style-1,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&U&3DW Time=day)`,     `/game-1,2/game-style-1,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&U&3DW Time=day)`,   `/game-3ds,2/game-style-1,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&U Time=day)`,        `/game-all/game-style-3,w,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=3&W&U Time=day)`,          `/game-1/game-style-3,w,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=3&W&U Time=day)`,        `/game-3ds/game-style-3,w,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&U Time=day)`,          `/game-2/game-style-3,w,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=3&W&U Time=day)`,      `/game-1,3ds/game-style-3,w,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&U Time=day)`,        `/game-1,2/game-style-3,w,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=day)`,      `/game-3ds,2/game-style-3,w,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&U Time=day)`,        `/game-all/game-style-3,w,u/time-day/list${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=3&W&U Time=day)`,          `/game-1/game-style-3,w,u/time-day/list${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=3&W&U Time=day)`,        `/game-3ds/game-style-3,w,u/time-day/list${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&U Time=day)`,          `/game-2/game-style-3,w,u/time-day/list${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=3&W&U Time=day)`,      `/game-1,3ds/game-style-3,w,u/time-day/list${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&U Time=day)`,        `/game-1,2/game-style-3,w,u/time-day/list${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=day)`,      `/game-3ds,2/game-style-3,w,u/time-day/list${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&U Time=day)`,        `/game-all/game-style-3,w,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=3&W&U Time=day)`,          `/game-1/game-style-3,w,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=3&W&U Time=day)`,        `/game-3ds/game-style-3,w,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&U Time=day)`,          `/game-2/game-style-3,w,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=3&W&U Time=day)`,      `/game-1,3ds/game-style-3,w,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&U Time=day)`,        `/game-1,2/game-style-3,w,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=day)`,      `/game-3ds,2/game-style-3,w,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&U Time=day)`,        `/game-all/game-style-3,w,u/time-day/card${path}`,         ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=3&W&U Time=day)`,          `/game-1/game-style-3,w,u/time-day/card${path}`,           SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=3&W&U Time=day)`,        `/game-3ds/game-style-3,w,u/time-day/card${path}`,         SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&U Time=day)`,          `/game-2/game-style-3,w,u/time-day/card${path}`,           SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=3&W&U Time=day)`,      `/game-1,3ds/game-style-3,w,u/time-day/card${path}`,       SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&U Time=day)`,        `/game-1,2/game-style-3,w,u/time-day/card${path}`,         SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=day)`,      `/game-3ds,2/game-style-3,w,u/time-day/card${path}`,       SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&U Time=day)`,       `/game-all/game-style-3,w,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=3&W&U Time=day)`,         `/game-1/game-style-3,w,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=3&W&U Time=day)`,       `/game-3ds/game-style-3,w,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&U Time=day)`,         `/game-2/game-style-3,w,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=3&W&U Time=day)`,     `/game-1,3ds/game-style-3,w,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&U Time=day)`,       `/game-1,2/game-style-3,w,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=day)`,     `/game-3ds,2/game-style-3,w,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&U Time=day)`,       `/game-all/game-style-3,w,u/time-day/table${path}`,        ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=3&W&U Time=day)`,         `/game-1/game-style-3,w,u/time-day/table${path}`,          SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=3&W&U Time=day)`,       `/game-3ds/game-style-3,w,u/time-day/table${path}`,        SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&U Time=day)`,         `/game-2/game-style-3,w,u/time-day/table${path}`,          SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=3&W&U Time=day)`,     `/game-1,3ds/game-style-3,w,u/time-day/table${path}`,      SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&U Time=day)`,       `/game-1,2/game-style-3,w,u/time-day/table${path}`,        SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=day)`,     `/game-3ds,2/game-style-3,w,u/time-day/table${path}`,      SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&3DW Time=day)`,      `/game-all/game-style-3,w,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&3DW Time=day)`,        `/game-2/game-style-3,w,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&3DW Time=day)`,      `/game-1,2/game-style-3,w,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&3DW Time=day)`,    `/game-3ds,2/game-style-3,w,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&3DW Time=day)`,      `/game-all/game-style-3,w,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&3DW Time=day)`,        `/game-2/game-style-3,w,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&3DW Time=day)`,      `/game-1,2/game-style-3,w,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&3DW Time=day)`,    `/game-3ds,2/game-style-3,w,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&3DW Time=day)`,      `/game-all/game-style-3,w,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&3DW Time=day)`,        `/game-2/game-style-3,w,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&3DW Time=day)`,      `/game-1,2/game-style-3,w,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&3DW Time=day)`,    `/game-3ds,2/game-style-3,w,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&3DW Time=day)`,      `/game-all/game-style-3,w,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&3DW Time=day)`,        `/game-2/game-style-3,w,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&3DW Time=day)`,      `/game-1,2/game-style-3,w,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&3DW Time=day)`,    `/game-3ds,2/game-style-3,w,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&3DW Time=day)`,     `/game-all/game-style-3,w,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&3DW Time=day)`,       `/game-2/game-style-3,w,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&3DW Time=day)`,     `/game-1,2/game-style-3,w,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&3DW Time=day)`,   `/game-3ds,2/game-style-3,w,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&3DW Time=day)`,     `/game-all/game-style-3,w,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&3DW Time=day)`,       `/game-2/game-style-3,w,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&3DW Time=day)`,     `/game-1,2/game-style-3,w,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&3DW Time=day)`,   `/game-3ds,2/game-style-3,w,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_SMW_AND_SM3DW,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + sm3dw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&U&3DW Time=day)`,      `/game-all/game-style-3,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&U&3DW Time=day)`,        `/game-2/game-style-3,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&U&3DW Time=day)`,      `/game-1,2/game-style-3,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&U&3DW Time=day)`,    `/game-3ds,2/game-style-3,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&U&3DW Time=day)`,      `/game-all/game-style-3,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&U&3DW Time=day)`,        `/game-2/game-style-3,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&U&3DW Time=day)`,      `/game-1,2/game-style-3,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&U&3DW Time=day)`,    `/game-3ds,2/game-style-3,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&U&3DW Time=day)`,      `/game-all/game-style-3,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&U&3DW Time=day)`,        `/game-2/game-style-3,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&U&3DW Time=day)`,      `/game-1,2/game-style-3,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&U&3DW Time=day)`,    `/game-3ds,2/game-style-3,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&U&3DW Time=day)`,      `/game-all/game-style-3,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&U&3DW Time=day)`,        `/game-2/game-style-3,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&U&3DW Time=day)`,      `/game-1,2/game-style-3,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&U&3DW Time=day)`,    `/game-3ds,2/game-style-3,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&U&3DW Time=day)`,     `/game-all/game-style-3,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&U&3DW Time=day)`,       `/game-2/game-style-3,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&U&3DW Time=day)`,     `/game-1,2/game-style-3,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&U&3DW Time=day)`,   `/game-3ds,2/game-style-3,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&U&3DW Time=day)`,     `/game-all/game-style-3,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&U&3DW Time=day)`,       `/game-2/game-style-3,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&U&3DW Time=day)`,     `/game-1,2/game-style-3,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&U&3DW Time=day)`,   `/game-3ds,2/game-style-3,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMB3_AND_NSMBU_AND_SM3DW, TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smw + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&U&3DW Time=day)`,      `/game-all/game-style-w,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&U&3DW Time=day)`,        `/game-2/game-style-w,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&U&3DW Time=day)`,      `/game-1,2/game-style-w,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&U&3DW Time=day)`,    `/game-3ds,2/game-style-w,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&U&3DW Time=day)`,      `/game-all/game-style-w,u,3dw/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&U&3DW Time=day)`,        `/game-2/game-style-w,u,3dw/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&U&3DW Time=day)`,      `/game-1,2/game-style-w,u,3dw/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&U&3DW Time=day)`,    `/game-3ds,2/game-style-w,u,3dw/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&U&3DW Time=day)`,      `/game-all/game-style-w,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&U&3DW Time=day)`,        `/game-2/game-style-w,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&U&3DW Time=day)`,      `/game-1,2/game-style-w,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&U&3DW Time=day)`,    `/game-3ds,2/game-style-w,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&U&3DW Time=day)`,      `/game-all/game-style-w,u,3dw/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&U&3DW Time=day)`,        `/game-2/game-style-w,u,3dw/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&U&3DW Time=day)`,      `/game-1,2/game-style-w,u,3dw/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&U&3DW Time=day)`,    `/game-3ds,2/game-style-w,u,3dw/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&U&3DW Time=day)`,     `/game-all/game-style-w,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&U&3DW Time=day)`,       `/game-2/game-style-w,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&U&3DW Time=day)`,     `/game-1,2/game-style-w,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&U&3DW Time=day)`,   `/game-3ds,2/game-style-w,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&U&3DW Time=day)`,     `/game-all/game-style-w,u,3dw/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&U&3DW Time=day)`,       `/game-2/game-style-w,u,3dw/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&U&3DW Time=day)`,     `/game-1,2/game-style-w,u,3dw/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&U&3DW Time=day)`,   `/game-3ds,2/game-style-w,u,3dw/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.SMW_AND_NSMBU_AND_SM3DW,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu + sm3dw) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W&U Time=day)`,      `/game-all/game-style-1,3,w,u/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1 GameStyle=1&3&W&U Time=day)`,        `/game-1/game-style-1,3,w,u/time-day/list${path}`,         SMM1_ONLY,    DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS GameStyle=1&3&W&U Time=day)`,      `/game-3ds/game-style-1,3,w,u/time-day/list${path}`,       SMM3DS_ONLY,  DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W&U Time=day)`,        `/game-2/game-style-1,3,w,u/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W&U Time=day)`,    `/game-1,3ds/game-style-1,3,w,u/time-day/list${path}`,     SMM1_AND_3DS, DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=day)`,      `/game-1,2/game-style-1,3,w,u/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=day)`,    `/game-3ds,2/game-style-1,3,w,u/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W&U Time=day)`,      `/game-all/game-style-1,3,w,u/time-day/list${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1 GameStyle=1&3&W&U Time=day)`,        `/game-1/game-style-1,3,w,u/time-day/list${path}`,         SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS GameStyle=1&3&W&U Time=day)`,      `/game-3ds/game-style-1,3,w,u/time-day/list${path}`,       SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W&U Time=day)`,        `/game-2/game-style-1,3,w,u/time-day/list${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&3DS GameStyle=1&3&W&U Time=day)`,    `/game-1,3ds/game-style-1,3,w,u/time-day/list${path}`,     SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=day)`,      `/game-1,2/game-style-1,3,w,u/time-day/list${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=day)`,    `/game-3ds,2/game-style-1,3,w,u/time-day/list${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W&U Time=day)`,      `/game-all/game-style-1,3,w,u/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1 GameStyle=1&3&W&U Time=day)`,        `/game-1/game-style-1,3,w,u/time-day/card${path}`,         SMM1_ONLY,    DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS GameStyle=1&3&W&U Time=day)`,      `/game-3ds/game-style-1,3,w,u/time-day/card${path}`,       SMM3DS_ONLY,  DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W&U Time=day)`,        `/game-2/game-style-1,3,w,u/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W&U Time=day)`,    `/game-1,3ds/game-style-1,3,w,u/time-day/card${path}`,     SMM1_AND_3DS, DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=day)`,      `/game-1,2/game-style-1,3,w,u/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=day)`,    `/game-3ds,2/game-style-1,3,w,u/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W&U Time=day)`,      `/game-all/game-style-1,3,w,u/time-day/card${path}`,       ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1 GameStyle=1&3&W&U Time=day)`,        `/game-1/game-style-1,3,w,u/time-day/card${path}`,         SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS GameStyle=1&3&W&U Time=day)`,      `/game-3ds/game-style-1,3,w,u/time-day/card${path}`,       SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W&U Time=day)`,        `/game-2/game-style-1,3,w,u/time-day/card${path}`,         SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&3DS GameStyle=1&3&W&U Time=day)`,    `/game-1,3ds/game-style-1,3,w,u/time-day/card${path}`,     SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=day)`,      `/game-1,2/game-style-1,3,w,u/time-day/card${path}`,       SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=day)`,    `/game-3ds,2/game-style-1,3,w,u/time-day/card${path}`,     SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W&U Time=day)`,     `/game-all/game-style-1,3,w,u/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1 GameStyle=1&3&W&U Time=day)`,       `/game-1/game-style-1,3,w,u/time-day/table${path}`,        SMM1_ONLY,    DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS GameStyle=1&3&W&U Time=day)`,     `/game-3ds/game-style-1,3,w,u/time-day/table${path}`,      SMM3DS_ONLY,  DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W&U Time=day)`,       `/game-2/game-style-1,3,w,u/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W&U Time=day)`,   `/game-1,3ds/game-style-1,3,w,u/time-day/table${path}`,    SMM1_AND_3DS, DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=day)`,     `/game-1,2/game-style-1,3,w,u/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=day)`,   `/game-3ds,2/game-style-1,3,w,u/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W&U Time=day)`,     `/game-all/game-style-1,3,w,u/time-day/table${path}`,      ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1 GameStyle=1&3&W&U Time=day)`,       `/game-1/game-style-1,3,w,u/time-day/table${path}`,        SMM1_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS GameStyle=1&3&W&U Time=day)`,     `/game-3ds/game-style-1,3,w,u/time-day/table${path}`,      SMM3DS_ONLY,  DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W&U Time=day)`,       `/game-2/game-style-1,3,w,u/time-day/table${path}`,        SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&3DS GameStyle=1&3&W&U Time=day)`,   `/game-1,3ds/game-style-1,3,w,u/time-day/table${path}`,    SMM1_AND_3DS, DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=day)`,     `/game-1,2/game-style-1,3,w,u/time-day/table${path}`,      SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=day)`,   `/game-3ds,2/game-style-1,3,w,u/time-day/table${path}`,    SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SM3DW,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&U&3DW Time=day)`,    `/game-all/game-style-3,w,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&U&3DW Time=day)`,      `/game-2/game-style-3,w,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&U&3DW Time=day)`,    `/game-1,2/game-style-3,w,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&U&3DW Time=day)`,    `/game-all/game-style-3,w,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&U&3DW Time=day)`,      `/game-2/game-style-3,w,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&U&3DW Time=day)`,    `/game-1,2/game-style-3,w,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&U&3DW Time=day)`,    `/game-all/game-style-3,w,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&U&3DW Time=day)`,      `/game-2/game-style-3,w,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&U&3DW Time=day)`,    `/game-1,2/game-style-3,w,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&U&3DW Time=day)`,    `/game-all/game-style-3,w,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&U&3DW Time=day)`,      `/game-2/game-style-3,w,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&U&3DW Time=day)`,    `/game-1,2/game-style-3,w,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-3,w,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&U&3DW Time=day)`,   `/game-all/game-style-3,w,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&U&3DW Time=day)`,     `/game-2/game-style-3,w,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&U&3DW Time=day)`,   `/game-1,2/game-style-3,w,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`, `/game-3ds,2/game-style-3,w,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&U&3DW Time=day)`,   `/game-all/game-style-3,w,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&U&3DW Time=day)`,     `/game-2/game-style-3,w,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&U&3DW Time=day)`,   `/game-1,2/game-style-3,w,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U&3DW Time=day)`, `/game-3ds,2/game-style-3,w,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMB,                  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&U&3DW Time=day)`,    `/game-all/game-style-1,w,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&U&3DW Time=day)`,      `/game-2/game-style-1,w,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&U&3DW Time=day)`,    `/game-1,2/game-style-1,w,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&U&3DW Time=day)`,    `/game-all/game-style-1,w,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&U&3DW Time=day)`,      `/game-2/game-style-1,w,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&U&3DW Time=day)`,    `/game-1,2/game-style-1,w,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&U&3DW Time=day)`,    `/game-all/game-style-1,w,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&U&3DW Time=day)`,      `/game-2/game-style-1,w,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&U&3DW Time=day)`,    `/game-1,2/game-style-1,w,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&U&3DW Time=day)`,    `/game-all/game-style-1,w,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&U&3DW Time=day)`,      `/game-2/game-style-1,w,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&U&3DW Time=day)`,    `/game-1,2/game-style-1,w,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,w,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&U&3DW Time=day)`,   `/game-all/game-style-1,w,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&U&3DW Time=day)`,     `/game-2/game-style-1,w,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&U&3DW Time=day)`,   `/game-1,2/game-style-1,w,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`, `/game-3ds,2/game-style-1,w,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&U&3DW Time=day)`,   `/game-all/game-style-1,w,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&U&3DW Time=day)`,     `/game-2/game-style-1,w,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&U&3DW Time=day)`,   `/game-1,2/game-style-1,w,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U&3DW Time=day)`, `/game-3ds,2/game-style-1,w,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMB3,                 TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&U&3DW Time=day)`,    `/game-all/game-style-1,3,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&U&3DW Time=day)`,      `/game-2/game-style-1,3,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&U&3DW Time=day)`,    `/game-1,2/game-style-1,3,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&U&3DW Time=day)`,    `/game-all/game-style-1,3,u,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&U&3DW Time=day)`,      `/game-2/game-style-1,3,u,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&U&3DW Time=day)`,    `/game-1,2/game-style-1,3,u,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&U&3DW Time=day)`,    `/game-all/game-style-1,3,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&U&3DW Time=day)`,      `/game-2/game-style-1,3,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&U&3DW Time=day)`,    `/game-1,2/game-style-1,3,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&U&3DW Time=day)`,    `/game-all/game-style-1,3,u,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&U&3DW Time=day)`,      `/game-2/game-style-1,3,u,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&U&3DW Time=day)`,    `/game-1,2/game-style-1,3,u,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,u,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&U&3DW Time=day)`,   `/game-all/game-style-1,3,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&U&3DW Time=day)`,     `/game-2/game-style-1,3,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&U&3DW Time=day)`,   `/game-1,2/game-style-1,3,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`, `/game-3ds,2/game-style-1,3,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&U&3DW Time=day)`,   `/game-all/game-style-1,3,u,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&U&3DW Time=day)`,     `/game-2/game-style-1,3,u,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&U&3DW Time=day)`,   `/game-1,2/game-style-1,3,u,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U&3DW Time=day)`, `/game-3ds,2/game-style-1,3,u,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_SMW,                  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu + sm3dw) --------------------
                 //region -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W&3DW Time=day)`,    `/game-all/game-style-1,3,w,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W&3DW Time=day)`,      `/game-2/game-style-1,3,w,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&3DW Time=day)`,    `/game-1,2/game-style-1,3,w,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W&3DW Time=day)`,    `/game-all/game-style-1,3,w,3dw/time-day/list${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W&3DW Time=day)`,      `/game-2/game-style-1,3,w,3dw/time-day/list${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&3DW Time=day)`,    `/game-1,2/game-style-1,3,w,3dw/time-day/list${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-day/list${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W&3DW Time=day)`,    `/game-all/game-style-1,3,w,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W&3DW Time=day)`,      `/game-2/game-style-1,3,w,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&3DW Time=day)`,    `/game-1,2/game-style-1,3,w,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W&3DW Time=day)`,    `/game-all/game-style-1,3,w,3dw/time-day/card${path}`,     ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W&3DW Time=day)`,      `/game-2/game-style-1,3,w,3dw/time-day/card${path}`,       SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&3DW Time=day)`,    `/game-1,2/game-style-1,3,w,3dw/time-day/card${path}`,     SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`,  `/game-3ds,2/game-style-1,3,w,3dw/time-day/card${path}`,   SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W&3DW Time=day)`,   `/game-all/game-style-1,3,w,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W&3DW Time=day)`,     `/game-2/game-style-1,3,w,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&3DW Time=day)`,   `/game-1,2/game-style-1,3,w,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`, `/game-3ds,2/game-style-1,3,w,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W&3DW Time=day)`,   `/game-all/game-style-1,3,w,3dw/time-day/table${path}`,    ALL_GAMES,    DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W&3DW Time=day)`,     `/game-2/game-style-1,3,w,3dw/time-day/table${path}`,      SMM2_ONLY,    DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&3DW Time=day)`,   `/game-1,2/game-style-1,3,w,3dw/time-day/table${path}`,    SMM1_AND_2,   DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&3DW Time=day)`, `/game-3ds,2/game-style-1,3,w,3dw/time-day/table${path}`,  SMM3DS_AND_2, DAY_ONLY,  GameStylesPossibility.NOT_NSMBU,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + sm3dw) --------------------
 
@@ -1689,294 +1665,294 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
                 //region -------------------- Game style (all) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=all Time=night)`,         `/game-all/game-style-all/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=all Time=night)`,           `/game-2/game-style-all/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=all Time=night)`,         `/game-1,2/game-style-all/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=all Time=night)`,       `/game-3ds,2/game-style-all/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, ALL_GAME_STYLES,         LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=all Time=night)`,         `/game-all/game-style-all/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.ALL,         LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=all Time=night)`,           `/game-2/game-style-all/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.ALL,         LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=all Time=night)`,         `/game-1,2/game-style-all/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.ALL,         LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=all Time=night)`,       `/game-3ds,2/game-style-all/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.ALL,         LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=all Time=night)`,         `/game-all/game-style-all/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=all Time=night)`,           `/game-2/game-style-all/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=all Time=night)`,         `/game-1,2/game-style-all/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=all Time=night)`,       `/game-3ds,2/game-style-all/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, ALL_GAME_STYLES,         CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=all Time=night)`,         `/game-all/game-style-all/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.ALL,         CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=all Time=night)`,           `/game-2/game-style-all/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.ALL,         CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=all Time=night)`,         `/game-1,2/game-style-all/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.ALL,         CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=all Time=night)`,       `/game-3ds,2/game-style-all/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.ALL,         CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=all Time=night)`,        `/game-all/game-style-all/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=all Time=night)`,          `/game-2/game-style-all/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=all Time=night)`,        `/game-1,2/game-style-all/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=all Time=night)`,      `/game-3ds,2/game-style-all/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, ALL_GAME_STYLES,         TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=all Time=night)`,        `/game-all/game-style-all/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.ALL,         TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=all Time=night)`,          `/game-2/game-style-all/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.ALL,         TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=all Time=night)`,        `/game-1,2/game-style-all/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.ALL,         TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=all Time=night)`,      `/game-3ds,2/game-style-all/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.ALL,         TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (all) --------------------
 
                 //region -------------------- Game style (smb) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1 Time=night)`,           `/game-all/game-style-1/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1 Time=night)`,             `/game-2/game-style-1/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1 Time=night)`,           `/game-1,2/game-style-1/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1 Time=night)`,         `/game-3ds,2/game-style-1/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1 Time=night)`,           `/game-all/game-style-1/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1 Time=night)`,             `/game-2/game-style-1/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1 Time=night)`,           `/game-1,2/game-style-1/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1 Time=night)`,         `/game-3ds,2/game-style-1/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1 Time=night)`,           `/game-all/game-style-1/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1 Time=night)`,             `/game-2/game-style-1/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1 Time=night)`,           `/game-1,2/game-style-1/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1 Time=night)`,         `/game-3ds,2/game-style-1/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1 Time=night)`,           `/game-all/game-style-1/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1 Time=night)`,             `/game-2/game-style-1/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1 Time=night)`,           `/game-1,2/game-style-1/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1 Time=night)`,         `/game-3ds,2/game-style-1/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1 Time=night)`,          `/game-all/game-style-1/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1 Time=night)`,            `/game-2/game-style-1/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1 Time=night)`,          `/game-1,2/game-style-1/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1 Time=night)`,        `/game-3ds,2/game-style-1/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, SMB_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1 Time=night)`,          `/game-all/game-style-1/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1 Time=night)`,            `/game-2/game-style-1/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1 Time=night)`,          `/game-1,2/game-style-1/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1 Time=night)`,        `/game-3ds,2/game-style-1/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_ONLY,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb) --------------------
                 //region -------------------- Game style (smb3) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3 Time=night)`,           `/game-all/game-style-3/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3 Time=night)`,             `/game-2/game-style-3/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3 Time=night)`,           `/game-1,2/game-style-3/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3 Time=night)`,         `/game-3ds,2/game-style-3/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB3_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3 Time=night)`,           `/game-all/game-style-3/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3 Time=night)`,             `/game-2/game-style-3/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3 Time=night)`,           `/game-1,2/game-style-3/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3 Time=night)`,         `/game-3ds,2/game-style-3/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3 Time=night)`,           `/game-all/game-style-3/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3 Time=night)`,             `/game-2/game-style-3/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3 Time=night)`,           `/game-1,2/game-style-3/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3 Time=night)`,         `/game-3ds,2/game-style-3/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMB3_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3 Time=night)`,           `/game-all/game-style-3/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3 Time=night)`,             `/game-2/game-style-3/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3 Time=night)`,           `/game-1,2/game-style-3/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3 Time=night)`,         `/game-3ds,2/game-style-3/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3 Time=night)`,          `/game-all/game-style-3/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3 Time=night)`,            `/game-2/game-style-3/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3 Time=night)`,          `/game-1,2/game-style-3/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3 Time=night)`,        `/game-3ds,2/game-style-3/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, SMB3_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3 Time=night)`,          `/game-all/game-style-3/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3 Time=night)`,            `/game-2/game-style-3/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3 Time=night)`,          `/game-1,2/game-style-3/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3 Time=night)`,        `/game-3ds,2/game-style-3/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_ONLY,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3) --------------------
                 //region -------------------- Game style (smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W Time=night)`,           `/game-all/game-style-w/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W Time=night)`,             `/game-2/game-style-w/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W Time=night)`,           `/game-1,2/game-style-w/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W Time=night)`,         `/game-3ds,2/game-style-w/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMW_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W Time=night)`,           `/game-all/game-style-w/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W Time=night)`,             `/game-2/game-style-w/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W Time=night)`,           `/game-1,2/game-style-w/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W Time=night)`,         `/game-3ds,2/game-style-w/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W Time=night)`,           `/game-all/game-style-w/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W Time=night)`,             `/game-2/game-style-w/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W Time=night)`,           `/game-1,2/game-style-w/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W Time=night)`,         `/game-3ds,2/game-style-w/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, SMW_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W Time=night)`,           `/game-all/game-style-w/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W Time=night)`,             `/game-2/game-style-w/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W Time=night)`,           `/game-1,2/game-style-w/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W Time=night)`,         `/game-3ds,2/game-style-w/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W Time=night)`,          `/game-all/game-style-w/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W Time=night)`,            `/game-2/game-style-w/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W Time=night)`,          `/game-1,2/game-style-w/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W Time=night)`,        `/game-3ds,2/game-style-w/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, SMW_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W Time=night)`,          `/game-all/game-style-w/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W Time=night)`,            `/game-2/game-style-w/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W Time=night)`,          `/game-1,2/game-style-w/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W Time=night)`,        `/game-3ds,2/game-style-w/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMW_ONLY,                TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw) --------------------
                 //region -------------------- Game style (nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=U Time=night)`,           `/game-all/game-style-u/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=U Time=night)`,             `/game-2/game-style-u/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=U Time=night)`,           `/game-1,2/game-style-u/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=U Time=night)`,         `/game-3ds,2/game-style-u/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, NSMBU_ONLY,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=U Time=night)`,           `/game-all/game-style-u/time-night/list${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=U Time=night)`,             `/game-2/game-style-u/time-night/list${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=U Time=night)`,           `/game-1,2/game-style-u/time-night/list${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=U Time=night)`,         `/game-3ds,2/game-style-u/time-night/list${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=U Time=night)`,           `/game-all/game-style-u/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=U Time=night)`,             `/game-2/game-style-u/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=U Time=night)`,           `/game-1,2/game-style-u/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=U Time=night)`,         `/game-3ds,2/game-style-u/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, NSMBU_ONLY,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=U Time=night)`,           `/game-all/game-style-u/time-night/card${path}`,          ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=U Time=night)`,             `/game-2/game-style-u/time-night/card${path}`,            SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=U Time=night)`,           `/game-1,2/game-style-u/time-night/card${path}`,          SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=U Time=night)`,         `/game-3ds,2/game-style-u/time-night/card${path}`,        SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=U Time=night)`,          `/game-all/game-style-u/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=U Time=night)`,            `/game-2/game-style-u/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=U Time=night)`,          `/game-1,2/game-style-u/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=U Time=night)`,        `/game-3ds,2/game-style-u/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, NSMBU_ONLY,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=U Time=night)`,          `/game-all/game-style-u/time-night/table${path}`,         ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=U Time=night)`,            `/game-2/game-style-u/time-night/table${path}`,           SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=U Time=night)`,          `/game-1,2/game-style-u/time-night/table${path}`,         SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=U Time=night)`,        `/game-3ds,2/game-style-u/time-night/table${path}`,       SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.NSMBU_ONLY,              TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (nsmbu) --------------------
 
                 //region -------------------- Game style (smb + smb3) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3 Time=night)`,         `/game-all/game-style-1,3/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3 Time=night)`,           `/game-2/game-style-1,3/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3 Time=night)`,         `/game-1,2/game-style-1,3/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3 Time=night)`,       `/game-3ds,2/game-style-1,3/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3 Time=night)`,         `/game-all/game-style-1,3/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3 Time=night)`,           `/game-2/game-style-1,3/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3 Time=night)`,         `/game-1,2/game-style-1,3/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3 Time=night)`,       `/game-3ds,2/game-style-1,3/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3 Time=night)`,         `/game-all/game-style-1,3/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3 Time=night)`,           `/game-2/game-style-1,3/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3 Time=night)`,         `/game-1,2/game-style-1,3/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3 Time=night)`,       `/game-3ds,2/game-style-1,3/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3 Time=night)`,         `/game-all/game-style-1,3/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3 Time=night)`,           `/game-2/game-style-1,3/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3 Time=night)`,         `/game-1,2/game-style-1,3/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3 Time=night)`,       `/game-3ds,2/game-style-1,3/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3 Time=night)`,        `/game-all/game-style-1,3/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3 Time=night)`,          `/game-2/game-style-1,3/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3 Time=night)`,        `/game-1,2/game-style-1,3/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3 Time=night)`,      `/game-3ds,2/game-style-1,3/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3 Time=night)`,        `/game-all/game-style-1,3/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3 Time=night)`,          `/game-2/game-style-1,3/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3 Time=night)`,        `/game-1,2/game-style-1,3/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3 Time=night)`,      `/game-3ds,2/game-style-1,3/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3) --------------------
                 //region -------------------- Game style (smb + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W Time=night)`,         `/game-all/game-style-1,w/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W Time=night)`,           `/game-2/game-style-1,w/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W Time=night)`,         `/game-1,2/game-style-1,w/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W Time=night)`,       `/game-3ds,2/game-style-1,w/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W Time=night)`,         `/game-all/game-style-1,w/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W Time=night)`,           `/game-2/game-style-1,w/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W Time=night)`,         `/game-1,2/game-style-1,w/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W Time=night)`,       `/game-3ds,2/game-style-1,w/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W Time=night)`,         `/game-all/game-style-1,w/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W Time=night)`,           `/game-2/game-style-1,w/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W Time=night)`,         `/game-1,2/game-style-1,w/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W Time=night)`,       `/game-3ds,2/game-style-1,w/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W Time=night)`,         `/game-all/game-style-1,w/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W Time=night)`,           `/game-2/game-style-1,w/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W Time=night)`,         `/game-1,2/game-style-1,w/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W Time=night)`,       `/game-3ds,2/game-style-1,w/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W Time=night)`,        `/game-all/game-style-1,w/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W Time=night)`,          `/game-2/game-style-1,w/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W Time=night)`,        `/game-1,2/game-style-1,w/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W Time=night)`,      `/game-3ds,2/game-style-1,w/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W Time=night)`,        `/game-all/game-style-1,w/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W Time=night)`,          `/game-2/game-style-1,w/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W Time=night)`,        `/game-1,2/game-style-1,w/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W Time=night)`,      `/game-3ds,2/game-style-1,w/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW,             TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw) --------------------
                 //region -------------------- Game style (smb + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&U Time=night)`,         `/game-all/game-style-1,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&U Time=night)`,           `/game-2/game-style-1,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&U Time=night)`,         `/game-1,2/game-style-1,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&U Time=night)`,       `/game-3ds,2/game-style-1,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&U Time=night)`,         `/game-all/game-style-1,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&U Time=night)`,           `/game-2/game-style-1,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&U Time=night)`,         `/game-1,2/game-style-1,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&U Time=night)`,       `/game-3ds,2/game-style-1,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&U Time=night)`,         `/game-all/game-style-1,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&U Time=night)`,           `/game-2/game-style-1,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&U Time=night)`,         `/game-1,2/game-style-1,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&U Time=night)`,       `/game-3ds,2/game-style-1,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&U Time=night)`,         `/game-all/game-style-1,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&U Time=night)`,           `/game-2/game-style-1,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&U Time=night)`,         `/game-1,2/game-style-1,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&U Time=night)`,       `/game-3ds,2/game-style-1,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&U Time=night)`,        `/game-all/game-style-1,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&U Time=night)`,          `/game-2/game-style-1,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&U Time=night)`,        `/game-1,2/game-style-1,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&U Time=night)`,      `/game-3ds,2/game-style-1,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&U Time=night)`,        `/game-all/game-style-1,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&U Time=night)`,          `/game-2/game-style-1,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&U Time=night)`,        `/game-1,2/game-style-1,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&U Time=night)`,      `/game-3ds,2/game-style-1,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_NSMBU,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W Time=night)`,         `/game-all/game-style-3,w/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W Time=night)`,           `/game-2/game-style-3,w/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W Time=night)`,         `/game-1,2/game-style-3,w/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W Time=night)`,       `/game-3ds,2/game-style-3,w/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W Time=night)`,         `/game-all/game-style-3,w/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W Time=night)`,           `/game-2/game-style-3,w/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W Time=night)`,         `/game-1,2/game-style-3,w/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W Time=night)`,       `/game-3ds,2/game-style-3,w/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W Time=night)`,         `/game-all/game-style-3,w/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W Time=night)`,           `/game-2/game-style-3,w/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W Time=night)`,         `/game-1,2/game-style-3,w/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W Time=night)`,       `/game-3ds,2/game-style-3,w/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W Time=night)`,         `/game-all/game-style-3,w/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W Time=night)`,           `/game-2/game-style-3,w/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W Time=night)`,         `/game-1,2/game-style-3,w/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W Time=night)`,       `/game-3ds,2/game-style-3,w/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W Time=night)`,        `/game-all/game-style-3,w/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W Time=night)`,          `/game-2/game-style-3,w/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W Time=night)`,        `/game-1,2/game-style-3,w/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W Time=night)`,      `/game-3ds,2/game-style-3,w/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W Time=night)`,        `/game-all/game-style-3,w/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W Time=night)`,          `/game-2/game-style-3,w/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W Time=night)`,        `/game-1,2/game-style-3,w/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W Time=night)`,      `/game-3ds,2/game-style-3,w/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW,            TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw) --------------------
                 //region -------------------- Game style (smb3 + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&U Time=night)`,         `/game-all/game-style-3,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&U Time=night)`,           `/game-2/game-style-3,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&U Time=night)`,         `/game-3,2/game-style-3,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&U Time=night)`,       `/game-3ds,2/game-style-3,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&U Time=night)`,         `/game-all/game-style-3,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&U Time=night)`,           `/game-2/game-style-3,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&U Time=night)`,         `/game-3,2/game-style-3,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&U Time=night)`,       `/game-3ds,2/game-style-3,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&U Time=night)`,         `/game-all/game-style-3,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&U Time=night)`,           `/game-2/game-style-3,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&U Time=night)`,         `/game-3,2/game-style-3,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&U Time=night)`,       `/game-3ds,2/game-style-3,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&U Time=night)`,         `/game-all/game-style-3,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&U Time=night)`,           `/game-2/game-style-3,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&U Time=night)`,         `/game-3,2/game-style-3,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&U Time=night)`,       `/game-3ds,2/game-style-3,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&U Time=night)`,        `/game-all/game-style-3,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&U Time=night)`,          `/game-2/game-style-3,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&U Time=night)`,        `/game-3,2/game-style-3,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&U Time=night)`,      `/game-3ds,2/game-style-3,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&U Time=night)`,        `/game-all/game-style-3,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&U Time=night)`,          `/game-2/game-style-3,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&U Time=night)`,        `/game-3,2/game-style-3,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&U Time=night)`,      `/game-3ds,2/game-style-3,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_NSMBU,          TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=W&U Time=night)`,         `/game-all/game-style-w,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=W&U Time=night)`,           `/game-2/game-style-w,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=W&U Time=night)`,         `/game-1,2/game-style-w,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=W&U Time=night)`,       `/game-3ds,2/game-style-w,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=W&U Time=night)`,         `/game-all/game-style-w,u/time-night/list${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=W&U Time=night)`,           `/game-2/game-style-w,u/time-night/list${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=W&U Time=night)`,         `/game-1,2/game-style-w,u/time-night/list${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=W&U Time=night)`,       `/game-3ds,2/game-style-w,u/time-night/list${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=W&U Time=night)`,         `/game-all/game-style-w,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=W&U Time=night)`,           `/game-2/game-style-w,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=W&U Time=night)`,         `/game-1,2/game-style-w,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=W&U Time=night)`,       `/game-3ds,2/game-style-w,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=W&U Time=night)`,         `/game-all/game-style-w,u/time-night/card${path}`,        ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=W&U Time=night)`,           `/game-2/game-style-w,u/time-night/card${path}`,          SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=W&U Time=night)`,         `/game-1,2/game-style-w,u/time-night/card${path}`,        SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=W&U Time=night)`,       `/game-3ds,2/game-style-w,u/time-night/card${path}`,      SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=W&U Time=night)`,        `/game-all/game-style-w,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=W&U Time=night)`,          `/game-2/game-style-w,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=W&U Time=night)`,        `/game-1,2/game-style-w,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=W&U Time=night)`,      `/game-3ds,2/game-style-w,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=W&U Time=night)`,        `/game-all/game-style-w,u/time-night/table${path}`,       ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=W&U Time=night)`,          `/game-2/game-style-w,u/time-night/table${path}`,         SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=W&U Time=night)`,        `/game-1,2/game-style-w,u/time-night/table${path}`,       SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=W&U Time=night)`,      `/game-3ds,2/game-style-w,u/time-night/table${path}`,     SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMW_AND_NSMBU,           TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smw + nsmbu) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W Time=night)`,       `/game-all/game-style-1,3,w/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W Time=night)`,         `/game-2/game-style-1,3,w/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W Time=night)`,       `/game-1,2/game-style-1,3,w/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=night)`,     `/game-3ds,2/game-style-1,3,w/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W Time=night)`,       `/game-all/game-style-1,3,w/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W Time=night)`,         `/game-2/game-style-1,3,w/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W Time=night)`,       `/game-1,2/game-style-1,3,w/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W Time=night)`,     `/game-3ds,2/game-style-1,3,w/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W Time=night)`,       `/game-all/game-style-1,3,w/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W Time=night)`,         `/game-2/game-style-1,3,w/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W Time=night)`,       `/game-1,2/game-style-1,3,w/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=night)`,     `/game-3ds,2/game-style-1,3,w/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W Time=night)`,       `/game-all/game-style-1,3,w/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W Time=night)`,         `/game-2/game-style-1,3,w/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W Time=night)`,       `/game-1,2/game-style-1,3,w/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W Time=night)`,     `/game-3ds,2/game-style-1,3,w/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W Time=night)`,      `/game-all/game-style-1,3,w/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W Time=night)`,        `/game-2/game-style-1,3,w/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W Time=night)`,      `/game-1,2/game-style-1,3,w/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=night)`,    `/game-3ds,2/game-style-1,3,w/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W Time=night)`,      `/game-all/game-style-1,3,w/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W Time=night)`,        `/game-2/game-style-1,3,w/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W Time=night)`,      `/game-1,2/game-style-1,3,w/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W Time=night)`,    `/game-3ds,2/game-style-1,3,w/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_SMW,    TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw) --------------------
                 //region -------------------- Game style (smb + smb3 + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&U Time=night)`,       `/game-all/game-style-1,3,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&U Time=night)`,         `/game-2/game-style-1,3,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&U Time=night)`,       `/game-1,2/game-style-1,3,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=night)`,     `/game-3ds,2/game-style-1,3,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&U Time=night)`,       `/game-all/game-style-1,3,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&U Time=night)`,         `/game-2/game-style-1,3,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&U Time=night)`,       `/game-1,2/game-style-1,3,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&U Time=night)`,     `/game-3ds,2/game-style-1,3,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&U Time=night)`,       `/game-all/game-style-1,3,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&U Time=night)`,         `/game-2/game-style-1,3,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&U Time=night)`,       `/game-1,2/game-style-1,3,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=night)`,     `/game-3ds,2/game-style-1,3,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&U Time=night)`,       `/game-all/game-style-1,3,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&U Time=night)`,         `/game-2/game-style-1,3,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&U Time=night)`,       `/game-1,2/game-style-1,3,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&U Time=night)`,     `/game-3ds,2/game-style-1,3,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&U Time=night)`,      `/game-all/game-style-1,3,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&U Time=night)`,        `/game-2/game-style-1,3,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&U Time=night)`,      `/game-1,2/game-style-1,3,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=night)`,    `/game-3ds,2/game-style-1,3,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&U Time=night)`,      `/game-all/game-style-1,3,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&U Time=night)`,        `/game-2/game-style-1,3,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&U Time=night)`,      `/game-1,2/game-style-1,3,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&U Time=night)`,    `/game-3ds,2/game-style-1,3,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMB3_AND_NSMBU,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + nsmbu) --------------------
                 //region -------------------- Game style (smb + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&W&U Time=night)`,       `/game-all/game-style-1,w,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&W&U Time=night)`,         `/game-2/game-style-1,w,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&W&U Time=night)`,       `/game-1,2/game-style-1,w,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=night)`,     `/game-3ds,2/game-style-1,w,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&W&U Time=night)`,       `/game-all/game-style-1,w,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&W&U Time=night)`,         `/game-2/game-style-1,w,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&W&U Time=night)`,       `/game-1,2/game-style-1,w,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&W&U Time=night)`,     `/game-3ds,2/game-style-1,w,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&W&U Time=night)`,       `/game-all/game-style-1,w,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&W&U Time=night)`,         `/game-2/game-style-1,w,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&W&U Time=night)`,       `/game-1,2/game-style-1,w,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=night)`,     `/game-3ds,2/game-style-1,w,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&W&U Time=night)`,       `/game-all/game-style-1,w,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&W&U Time=night)`,         `/game-2/game-style-1,w,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&W&U Time=night)`,       `/game-1,2/game-style-1,w,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&W&U Time=night)`,     `/game-3ds,2/game-style-1,w,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&W&U Time=night)`,      `/game-all/game-style-1,w,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&W&U Time=night)`,        `/game-2/game-style-1,w,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&W&U Time=night)`,      `/game-1,2/game-style-1,w,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=night)`,    `/game-3ds,2/game-style-1,w,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&W&U Time=night)`,      `/game-all/game-style-1,w,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&W&U Time=night)`,        `/game-2/game-style-1,w,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&W&U Time=night)`,      `/game-1,2/game-style-1,w,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&W&U Time=night)`,    `/game-3ds,2/game-style-1,w,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB_AND_SMW_AND_NSMBU,   TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smw + nsmbu) --------------------
                 //region -------------------- Game style (smb3 + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=3&W&U Time=night)`,       `/game-all/game-style-3,w,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=3&W&U Time=night)`,         `/game-2/game-style-3,w,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=3&W&U Time=night)`,       `/game-1,2/game-style-3,w,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=night)`,     `/game-3ds,2/game-style-3,w,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=3&W&U Time=night)`,       `/game-all/game-style-3,w,u/time-night/list${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=3&W&U Time=night)`,         `/game-2/game-style-3,w,u/time-night/list${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=3&W&U Time=night)`,       `/game-1,2/game-style-3,w,u/time-night/list${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=3&W&U Time=night)`,     `/game-3ds,2/game-style-3,w,u/time-night/list${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=3&W&U Time=night)`,       `/game-all/game-style-3,w,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=3&W&U Time=night)`,         `/game-2/game-style-3,w,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=3&W&U Time=night)`,       `/game-1,2/game-style-3,w,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=night)`,     `/game-3ds,2/game-style-3,w,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=3&W&U Time=night)`,       `/game-all/game-style-3,w,u/time-night/card${path}`,      ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=3&W&U Time=night)`,         `/game-2/game-style-3,w,u/time-night/card${path}`,        SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=3&W&U Time=night)`,       `/game-1,2/game-style-3,w,u/time-night/card${path}`,      SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=3&W&U Time=night)`,     `/game-3ds,2/game-style-3,w,u/time-night/card${path}`,    SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=3&W&U Time=night)`,      `/game-all/game-style-3,w,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=3&W&U Time=night)`,        `/game-2/game-style-3,w,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=3&W&U Time=night)`,      `/game-1,2/game-style-3,w,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=night)`,    `/game-3ds,2/game-style-3,w,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=3&W&U Time=night)`,      `/game-all/game-style-3,w,u/time-night/table${path}`,     ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=3&W&U Time=night)`,        `/game-2/game-style-3,w,u/time-night/table${path}`,       SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=3&W&U Time=night)`,      `/game-1,2/game-style-3,w,u/time-night/table${path}`,     SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=3&W&U Time=night)`,    `/game-3ds,2/game-style-3,w,u/time-night/table${path}`,   SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.SMB3_AND_SMW_AND_NSMBU,  TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb3 + smw + nsmbu) --------------------
 
                 //region -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
 
-                new Route(`${name} (list Game=all GameStyle=1&3&W&U Time=night)`,     `/game-all/game-style-1,3,w,u/time-night/list${path}`,    ALL_GAMES,    NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=2 GameStyle=1&3&W&U Time=night)`,       `/game-2/game-style-1,3,w,u/time-night/list${path}`,      SMM2_ONLY,    NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=night)`,     `/game-1,2/game-style-1,3,w,u/time-night/list${path}`,    SMM1_AND_2,   NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
-                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=night)`,   `/game-3ds,2/game-style-1,3,w,u/time-night/list${path}`,  SMM3DS_AND_2, NIGHT_ONLY, NOT_SM3DW,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=all GameStyle=1&3&W&U Time=night)`,     `/game-all/game-style-1,3,w,u/time-night/list${path}`,    ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=2 GameStyle=1&3&W&U Time=night)`,       `/game-2/game-style-1,3,w,u/time-night/list${path}`,      SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=1&2 GameStyle=1&3&W&U Time=night)`,     `/game-1,2/game-style-1,3,w,u/time-night/list${path}`,    SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               LIST,  routeCallback,),
+                new Route(`${name} (list Game=3DS&2 GameStyle=1&3&W&U Time=night)`,   `/game-3ds,2/game-style-1,3,w,u/time-night/list${path}`,  SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               LIST,  routeCallback,),
 
-                new Route(`${name} (card Game=all GameStyle=1&3&W&U Time=night)`,     `/game-all/game-style-1,3,w,u/time-night/card${path}`,    ALL_GAMES,    NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=2 GameStyle=1&3&W&U Time=night)`,       `/game-2/game-style-1,3,w,u/time-night/card${path}`,      SMM2_ONLY,    NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=night)`,     `/game-1,2/game-style-1,3,w,u/time-night/card${path}`,    SMM1_AND_2,   NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
-                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=night)`,   `/game-3ds,2/game-style-1,3,w,u/time-night/card${path}`,  SMM3DS_AND_2, NIGHT_ONLY, NOT_SM3DW,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=all GameStyle=1&3&W&U Time=night)`,     `/game-all/game-style-1,3,w,u/time-night/card${path}`,    ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=2 GameStyle=1&3&W&U Time=night)`,       `/game-2/game-style-1,3,w,u/time-night/card${path}`,      SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=1&2 GameStyle=1&3&W&U Time=night)`,     `/game-1,2/game-style-1,3,w,u/time-night/card${path}`,    SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               CARD,  routeCallback,),
+                new Route(`${name} (card Game=3DS&2 GameStyle=1&3&W&U Time=night)`,   `/game-3ds,2/game-style-1,3,w,u/time-night/card${path}`,  SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               CARD,  routeCallback,),
 
-                new Route(`${name} (table Game=all GameStyle=1&3&W&U Time=night)`,    `/game-all/game-style-1,3,w,u/time-night/table${path}`,   ALL_GAMES,    NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=2 GameStyle=1&3&W&U Time=night)`,      `/game-2/game-style-1,3,w,u/time-night/table${path}`,     SMM2_ONLY,    NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=night)`,    `/game-1,2/game-style-1,3,w,u/time-night/table${path}`,   SMM1_AND_2,   NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
-                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=night)`,  `/game-3ds,2/game-style-1,3,w,u/time-night/table${path}`, SMM3DS_AND_2, NIGHT_ONLY, NOT_SM3DW,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=all GameStyle=1&3&W&U Time=night)`,    `/game-all/game-style-1,3,w,u/time-night/table${path}`,   ALL_GAMES,    NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=2 GameStyle=1&3&W&U Time=night)`,      `/game-2/game-style-1,3,w,u/time-night/table${path}`,     SMM2_ONLY,    NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=1&2 GameStyle=1&3&W&U Time=night)`,    `/game-1,2/game-style-1,3,w,u/time-night/table${path}`,   SMM1_AND_2,   NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               TABLE, routeCallback,),
+                new Route(`${name} (table Game=3DS&2 GameStyle=1&3&W&U Time=night)`,  `/game-3ds,2/game-style-1,3,w,u/time-night/table${path}`, SMM3DS_AND_2, NIGHT_ONLY, GameStylesPossibility.NOT_SM3DW,               TABLE, routeCallback,),
 
                 //endregion -------------------- Game style (smb + smb3 + smw + nsmbu) --------------------
 
@@ -2215,7 +2191,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                 if (name.startsWith(`${urlName} `,)) {
                     const pathToFind = `${
                         value._getPathFromGames(GameCompanion.findInName(name,),)}${
-                        value._getPathFromGameStyles(GameStyleCompanion.findInName(name,),)}${
+                        value._getPathFromGameStyles(GameStyles.Companion.findInName(name,),)}${
                         value._getPathFromTimes(TimeCompanion.findInName(name,),)}${
                         value._getPathFromViewDisplay(ViewDisplayCompanion.findInName(name,),)}${
                         value.urlValue}`
@@ -2416,22 +2392,22 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      */
     protected _getPathFromGameStyles(values: Nullable<CollectionHolder<GameStyles>> = null,): PossibleGameStylePath {
         if (values == null) {
-            const currentGameStyles = GameStyleCompanion.currentOrNull
+            const currentGameStyles = GameStyles.Companion.currentOrNull
             if (currentGameStyles == null) {
                 const defaultGameStyles = this.defaultGameStyles
                 if (defaultGameStyles == null)
                     return EMPTY_STRING
-                return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
+                return `/game-style-${GameStyles.Companion.getGroupUrlValue(defaultGameStyles,)}`
             }
-            return `/game-style-${GameStyleCompanion.getGroupUrlValue(currentGameStyles,)}`
+            return `/game-style-${GameStyles.Companion.getGroupUrlValue(currentGameStyles,)}`
         }
         if (values.isEmpty) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
                 return EMPTY_STRING
-            return `/game-style-${GameStyleCompanion.getGroupUrlValue(defaultGameStyles,)}`
+            return `/game-style-${GameStyles.Companion.getGroupUrlValue(defaultGameStyles,)}`
         }
-        return `/game-style-${GameStyleCompanion.getGroupUrlValue(values,)}`
+        return `/game-style-${GameStyles.Companion.getGroupUrlValue(values,)}`
     }
 
     /**

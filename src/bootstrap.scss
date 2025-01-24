@@ -1,0 +1,1323 @@
+@use "bootstrap/scss/mixins/banner" as *;
+@include bsBanner("");
+
+@import "functions";
+@import "variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+//@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+//@import "bootstrap/scss/tables";
+//@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+//@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+//@import "bootstrap/scss/nav";
+//@import "bootstrap/scss/navbar";
+//@import "bootstrap/scss/card";
+//@import "bootstrap/scss/accordion";
+//@import "bootstrap/scss/breadcrumb";
+//@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+//@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+//@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+//@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+//@import "bootstrap/scss/placeholders";
+
+//Originally in: "bootstrap/scss/helpers"
+//@import "bootstrap/scss/helpers/clearfix";
+@import "bootstrap/scss/helpers/color-bg";
+@import "bootstrap/scss/helpers/colored-links";
+//@import "bootstrap/scss/helpers/focus-ring";
+//@import "bootstrap/scss/helpers/icon-link";
+//@import "bootstrap/scss/helpers/ratio";
+@import "bootstrap/scss/helpers/position";
+//@import "bootstrap/scss/helpers/stacks";
+@import "bootstrap/scss/helpers/visually-hidden";
+//@import "bootstrap/scss/helpers/stretched-link";
+//@import "bootstrap/scss/helpers/text-truncation";
+@import "bootstrap/scss/helpers/vr";
+
+@import "bootstrap/scss/utilities/api";
+
+:root {
+  --entityCategory-terrain-bg-color: var(--bs-blue);
+  --entityCategory-item-bg-color:    var(--bs-pink);
+  --entityCategory-ennemy-bg-color:  var(--bs-green);
+  --entityCategory-gizmo-bg-color:   var(--bs-yellow);
+
+  --soundEffectCategory-feelings-bg-color:   var(--bs-yellow);
+  --soundEffectCategory-stingers-bg-color:   var(--bs-orange);
+  --soundEffectCategory-reactions-bg-color:  var(--bs-green);
+  --soundEffectCategory-animations-bg-color: var(--bs-pink);
+  --soundEffectCategory-music-bg-color:      var(--bs-blue);
+}
+:root {
+  //https://domysee.com/blogposts/coloring-white-images-css-filter
+  //https://isotropic.co/tool/hex-color-to-css-filter/
+  --filter-white-to-red:    invert(69%) sepia(51%) saturate(2632%) hue-rotate(331deg) brightness(88%)  contrast(96%);
+  --filter-white-to-orange: invert(26%) sepia(55%) saturate(6138%) hue-rotate(351deg) brightness(102%) contrast(98%);
+  --filter-white-to-yellow: invert(28%) sepia(41%) saturate(1584%) hue-rotate(351deg) brightness(108%) contrast(107%);
+  --filter-white-to-green:  invert(70%) sepia(52%) saturate(3308%) hue-rotate(140deg) brightness(85%)  contrast(80%);
+  --filter-white-to-teal:   invert(41%) sepia(43%) saturate(715%)  hue-rotate(111deg) brightness(101%) contrast(89%);
+  --filter-white-to-cyan:   invert(37%) sepia(90%) saturate(1325%) hue-rotate(145deg) brightness(96%)  contrast(95%);
+  --filter-white-to-blue:   invert(69%) sepia(48%) saturate(3939%) hue-rotate(208deg) brightness(98%)  contrast(102%);
+  --filter-white-to-indigo: invert(88%) sepia(98%) saturate(5914%) hue-rotate(266deg) brightness(90%)  contrast(111%);
+  --filter-white-to-purple: invert(76%) sepia(87%) saturate(2267%) hue-rotate(250deg) brightness(81%)  contrast(82%);
+  --filter-white-to-pink:   invert(66%) sepia(40%) saturate(2873%) hue-rotate(301deg) brightness(85%)  contrast(97%);
+  //--filter-white-to-red:    brightness(50%) sepia(100%) hue-rotate(315deg) saturate(750%);
+  //--filter-white-to-orange: brightness(50%) sepia(100%) hue-rotate(340deg) saturate(750%);
+  //--filter-white-to-yellow: brightness(70%) sepia(100%) hue-rotate(15deg)  saturate(750%);
+  //--filter-white-to-green:  brightness(40%) sepia(100%) hue-rotate(90deg)  saturate(750%);
+  //--filter-white-to-cyan:   brightness(50%) sepia(100%) hue-rotate(135deg) saturate(750%);
+  //--filter-white-to-blue:   brightness(50%) sepia(100%) hue-rotate(180deg) saturate(750%);
+  //--filter-white-to-pink:   brightness(50%) sepia(100%) hue-rotate(255deg) saturate(750%);
+  //--filter-white-to-purple: brightness(50%) sepia(100%) hue-rotate(205deg) saturate(750%);
+
+  --filter-black-to-red:    invert(100%) var(--filter-white-to-red);
+  --filter-black-to-orange: invert(100%) var(--filter-white-to-orange);
+  --filter-black-to-yellow: invert(100%) var(--filter-white-to-yellow);
+  --filter-black-to-green:  invert(100%) var(--filter-white-to-green);
+  --filter-black-to-teal:   invert(100%) var(--filter-white-to-teal);
+  --filter-black-to-cyan:   invert(100%) var(--filter-white-to-cyan);
+  --filter-black-to-blue:   invert(100%) var(--filter-white-to-blue);
+  --filter-black-to-indigo: invert(100%) var(--filter-white-to-indigo);
+  --filter-black-to-purple: invert(100%) var(--filter-white-to-purple);
+  --filter-black-to-pink:   invert(100%) var(--filter-white-to-pink);
+}
+
+:root {
+  --smm1-image:                 url('/src/resources/images/Super Mario Maker.svg');
+  --smm3ds-image:               url('/src/resources/images/Super Mario Maker for Nintendo 3DS.svg');
+  --smm2-image:                 url('/src/resources/images/Super Mario Maker 2.svg');
+
+  --parachute-image:            url('/src/resources/images/Parachute.tiff');
+  --wing-image:                 url('/src/resources/images/Wing.tiff');
+
+  --key-image:                  url('/src/resources/images/Key.tiff');
+
+  --music-block-image:          url('/src/resources/images/Music Block.tiff');
+  --question-block-image:       url('/src/resources/images/？ Block.tiff');
+  --question-block-sm3dw-image: url('/src/resources/images/？ Block (SM3DW).tiff');
+  --on-off-block-image:         url('/src/resources/images/ON／OFF Block.tiff');
+
+  --pipe-image:                 url('/src/resources/images/Pipe.tiff');
+  --bullet-launcher-image:      url('/src/resources/images/Bullet Launcher.tiff');
+  --twister-image:              url('/src/resources/images/Twister.tiff');
+  --tree-image:                 url('/src/resources/images/Tree.tiff');
+
+  --super-mushroom-image:       url('/src/resources/images/Super Mushroom.tiff');
+  --weird-mushroom-image:       url('/src/resources/images/Weird Mushroom.tiff');
+  --fire-flower-image:          url('/src/resources/images/Fire Flower.tiff');
+  --superball-flower-image:     url('/src/resources/images/Superball Flower.tiff');
+  --mystery-mushroom-image:     url('/src/resources/images/Mystery Mushroom.tiff');
+  --master-sword-image:         url('/src/resources/images/Master Sword.tiff');
+  --big-mushroom-image:         url('/src/resources/images/Big Mushroom.tiff');
+  --big-mushroom-classic-image: url('/src/resources/images/Big Mushroom (classic).tiff');
+  --smb2-mushroom-image:        url('/src/resources/images/SMB2 Mushroom.tiff');
+  --super-leaf-image:           url('/src/resources/images/Super Leaf.tiff');
+  --frog-suit-image:            url('/src/resources/images/Frog Suit.tiff');
+  --cape-feather-image:         url('/src/resources/images/Cape Feather.tiff');
+  --power-balloon-image:        url('/src/resources/images/Power Balloon.tiff');
+  --propeller-mushroom-image:   url('/src/resources/images/Propeller Mushroom.tiff');
+  --super-acorn-image:          url('/src/resources/images/Super Acorn.tiff');
+  --super-bell-image:           url('/src/resources/images/Super Bell.tiff');
+  --super-hammer-image:         url('/src/resources/images/Super Hammer.tiff');
+  --boomerang-flower-image:     url('/src/resources/images/Boomerang Flower.tiff');
+  --shoe-image:                 url('/src/resources/images/Shoe.tiff');
+  --stiletto-image:             url('/src/resources/images/Stiletto.tiff');
+  --yoshi-image:                url('/src/resources/images/Yoshi.png');
+  --red-yoshi-image:            url('/src/resources/images/Red Yoshi.png');
+  --dry-bones-shell-image:      url('/src/resources/images/Dry Bones Shell.tiff');
+  --buzzy-shell-image:          url('/src/resources/images/Buzzy Shell.tiff');
+  --spiny-shell-image:          url('/src/resources/images/Spiny Shell.tiff');
+  --lakitu-cloud-image:         url('/src/resources/images/Lakitu Cloud.tiff');
+  --clown-car-image:            url('/src/resources/images/Clown Car.tiff');
+
+  --swinging-claw-image:        url('/src/resources/images/Swinging Claw.png');
+  --lakitu-throwing-image:      url('/src/resources/images/Lakitu (throwing).png');
+  --stacked-goomba-image:       url('/src/resources/images/Stacked Goomba.png');
+
+}
+
+:root {
+
+  //region -------------------- Spacer --------------------
+
+  --bs-gutter-0:            var(--bs-spacer-xs);
+  --bs-gutter-1:            var(--bs-spacer-sm);
+  --bs-gutter-2:            var(--bs-spacer-md);
+  --bs-gutter-3:            var(--bs-spacer-lg);
+  --bs-gutter-4:            var(--bs-spacer-xl);
+  --bs-gutter-5:            var(--bs-spacer-xxl);
+
+  --bs-spacer-xs:           #{map-get($spacers-original, 0)};
+  --bs-spacer-sm:           #{map-get($spacers-original, 1)};
+  --bs-spacer-md:           #{map-get($spacers-original, 2)};
+  --bs-spacer-lg:           #{map-get($spacers-original, 3)};
+  --bs-spacer-xl:           #{map-get($spacers-original, 4)};
+  --bs-spacer-xxl:          #{map-get($spacers-original, 5)};
+
+  --bs-negative-spacer-xs:  calc(var(--bs-spacer-xs) * -1);
+  --bs-negative-spacer-sm:  calc(var(--bs-spacer-sm) * -1);
+  --bs-negative-spacer-md:  calc(var(--bs-spacer-md) * -1);
+  --bs-negative-spacer-lg:  calc(var(--bs-spacer-lg) * -1);
+  --bs-negative-spacer-xl:  calc(var(--bs-spacer-xl) * -1);
+  --bs-negative-spacer-xxl: calc(var(--bs-spacer-xxl) * -1);
+
+  //endregion -------------------- Spacer --------------------
+  //region -------------------- Border --------------------
+
+  --bs-border-width-1: #{$border-width-1};
+  --bs-border-width-2: #{$border-width-2};
+  --bs-border-width-3: #{$border-width-3};
+  --bs-border-width-4: #{$border-width-4};
+  --bs-border-width-5: #{$border-width-5};
+
+  --bs-border-radius:        #{$border-radius-original};
+  --bs-border-sm-radius:     #{$border-radius-sm-original};
+  --bs-border-lg-radius:     #{$border-radius-lg-original};
+  --bs-border-xl-radius:     #{$border-radius-xl-original};
+  --bs-border-xxl-radius:    #{$border-radius-xxl-original};
+  --bs-border-pill-radius:   #{$border-radius-pill-original};
+  --bs-border-circle-radius: #{$border-radius-circle-original};
+
+  //endregion -------------------- Border --------------------
+  //region -------------------- Z-index --------------------
+
+  --bs-z-index-dropdown:           #{$z-index-dropdown-original};
+  --bs-z-index-sticky:             #{$z-index-sticky-original};
+  --bs-z-index-fixed:              #{$z-index-fixed-original};
+  --bs-z-index-offcanvas-backdrop: #{$z-index-offcanvas-backdrop-original};
+  --bs-z-index-offcanvas:          #{$z-index-offcanvas-original};
+  --bs-z-index-modal-backdrop:     #{$z-index-modal-backdrop-original};
+  --bs-z-index-modal:              #{$z-index-modal-original};
+  --bs-z-index-popover:            #{$z-index-popover-original};
+  --bs-z-index-tooltip:            #{$z-index-tooltip-original};
+  --bs-z-index-toast:              #{$z-index-toast-original};
+
+  //endregion -------------------- Z-index --------------------
+  //region -------------------- Font-size --------------------
+
+  --bs-font-size-base:    #{$font-size-base-original};
+  --bs-font-size-sm:      #{$font-size-sm-original};
+  --bs-font-size-lg:      #{$font-size-lg-original};
+
+  //--bs-h1-font-size:      #{$h1-font-size-original};
+  //--bs-h2-font-size:      #{$h2-font-size-original};
+  //--bs-h3-font-size:      #{$h3-font-size-original};
+  //--bs-h4-font-size:      #{$h4-font-size-original};
+  //--bs-h5-font-size:      #{$h5-font-size-original};
+  //--bs-h6-font-size:      #{$h6-font-size-original};
+
+  --bs-small-font-size:   #{$small-font-size-original};
+  --bs-sub-sup-font-size: #{$sub-sup-font-size-original};
+
+  //endregion -------------------- Font-size --------------------
+  //region -------------------- Font-weight --------------------
+
+  --bs-font-weight-lighter: #{$font-weight-lighter-original};
+  --bs-font-weight-light:   #{$font-weight-light-original};
+  --bs-font-weight-normal:  #{$font-weight-normal-original};
+  --bs-font-weight-bold:    #{$font-weight-bold-original};
+  --bs-font-weight-bolder:  #{$font-weight-bolder-original};
+
+  //endregion -------------------- Font-weight --------------------
+
+  --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+}
+
+:root {
+  //region -------------------- Blue --------------------
+
+  --bs-blue:          var(--bs-blue-500);
+  --bs-blue-rgb:      var(--bs-blue-500-rgb);
+  --bs-blue-050:  rgb(var(--bs-blue-050-rgb));
+  --bs-blue-050-rgb: #{to-rgb($blue-050)};
+  --bs-blue-100:  rgb(var(--bs-blue-100-rgb));
+  --bs-blue-100-rgb: #{to-rgb($blue-100)};
+  --bs-blue-150:  rgb(var(--bs-blue-150-rgb));
+  --bs-blue-150-rgb: #{to-rgb($blue-150)};
+  --bs-blue-200:  rgb(var(--bs-blue-200-rgb));
+  --bs-blue-200-rgb: #{to-rgb($blue-200)};
+  --bs-blue-250:  rgb(var(--bs-blue-250-rgb));
+  --bs-blue-250-rgb: #{to-rgb($blue-250)};
+  --bs-blue-300:  rgb(var(--bs-blue-300-rgb));
+  --bs-blue-300-rgb: #{to-rgb($blue-300)};
+  --bs-blue-350:  rgb(var(--bs-blue-350-rgb));
+  --bs-blue-350-rgb: #{to-rgb($blue-350)};
+  --bs-blue-400:  rgb(var(--bs-blue-400-rgb));
+  --bs-blue-400-rgb: #{to-rgb($blue-400)};
+  --bs-blue-450:  rgb(var(--bs-blue-450-rgb));
+  --bs-blue-450-rgb: #{to-rgb($blue-450)};
+  --bs-blue-500:  rgb(var(--bs-blue-500-rgb));
+  --bs-blue-500-rgb: #{to-rgb($blue-500)};
+  --bs-blue-550:  rgb(var(--bs-blue-550-rgb));
+  --bs-blue-550-rgb: #{to-rgb($blue-550)};
+  --bs-blue-600:  rgb(var(--bs-blue-600-rgb));
+  --bs-blue-600-rgb: #{to-rgb($blue-600)};
+  --bs-blue-650:  rgb(var(--bs-blue-650-rgb));
+  --bs-blue-650-rgb: #{to-rgb($blue-650)};
+  --bs-blue-700:  rgb(var(--bs-blue-700-rgb));
+  --bs-blue-700-rgb: #{to-rgb($blue-700)};
+  --bs-blue-750:  rgb(var(--bs-blue-750-rgb));
+  --bs-blue-750-rgb: #{to-rgb($blue-750)};
+  --bs-blue-800:  rgb(var(--bs-blue-800-rgb));
+  --bs-blue-800-rgb: #{to-rgb($blue-800)};
+  --bs-blue-850:  rgb(var(--bs-blue-850-rgb));
+  --bs-blue-850-rgb: #{to-rgb($blue-850)};
+  --bs-blue-900:  rgb(var(--bs-blue-900-rgb));
+  --bs-blue-900-rgb: #{to-rgb($blue-900)};
+  --bs-blue-950:  rgb(var(--bs-blue-950-rgb));
+  --bs-blue-950-rgb: #{to-rgb($blue-950)};
+
+  //endregion -------------------- Blue --------------------
+  //region -------------------- Indigo --------------------
+
+  --bs-indigo:          var(--bs-indigo-500);
+  --bs-indigo-rgb:      var(--bs-indigo-500-rgb);
+  --bs-indigo-050:  rgb(var(--bs-indigo-050-rgb));
+  --bs-indigo-050-rgb: #{to-rgb($indigo-050)};
+  --bs-indigo-100:  rgb(var(--bs-indigo-100-rgb));
+  --bs-indigo-100-rgb: #{to-rgb($indigo-100)};
+  --bs-indigo-150:  rgb(var(--bs-indigo-150-rgb));
+  --bs-indigo-150-rgb: #{to-rgb($indigo-150)};
+  --bs-indigo-200:  rgb(var(--bs-indigo-200-rgb));
+  --bs-indigo-200-rgb: #{to-rgb($indigo-200)};
+  --bs-indigo-250:  rgb(var(--bs-indigo-250-rgb));
+  --bs-indigo-250-rgb: #{to-rgb($indigo-250)};
+  --bs-indigo-300:  rgb(var(--bs-indigo-300-rgb));
+  --bs-indigo-300-rgb: #{to-rgb($indigo-300)};
+  --bs-indigo-350:  rgb(var(--bs-indigo-350-rgb));
+  --bs-indigo-350-rgb: #{to-rgb($indigo-350)};
+  --bs-indigo-400:  rgb(var(--bs-indigo-400-rgb));
+  --bs-indigo-400-rgb: #{to-rgb($indigo-400)};
+  --bs-indigo-450:  rgb(var(--bs-indigo-450-rgb));
+  --bs-indigo-450-rgb: #{to-rgb($indigo-450)};
+  --bs-indigo-500:  rgb(var(--bs-indigo-500-rgb));
+  --bs-indigo-500-rgb: #{to-rgb($indigo-500)};
+  --bs-indigo-550:  rgb(var(--bs-indigo-550-rgb));
+  --bs-indigo-550-rgb: #{to-rgb($indigo-550)};
+  --bs-indigo-600:  rgb(var(--bs-indigo-600-rgb));
+  --bs-indigo-600-rgb: #{to-rgb($indigo-600)};
+  --bs-indigo-650:  rgb(var(--bs-indigo-650-rgb));
+  --bs-indigo-650-rgb: #{to-rgb($indigo-650)};
+  --bs-indigo-700:  rgb(var(--bs-indigo-700-rgb));
+  --bs-indigo-700-rgb: #{to-rgb($indigo-700)};
+  --bs-indigo-750:  rgb(var(--bs-indigo-750-rgb));
+  --bs-indigo-750-rgb: #{to-rgb($indigo-750)};
+  --bs-indigo-800:  rgb(var(--bs-indigo-800-rgb));
+  --bs-indigo-800-rgb: #{to-rgb($indigo-800)};
+  --bs-indigo-850:  rgb(var(--bs-indigo-850-rgb));
+  --bs-indigo-850-rgb: #{to-rgb($indigo-850)};
+  --bs-indigo-900:  rgb(var(--bs-indigo-900-rgb));
+  --bs-indigo-900-rgb: #{to-rgb($indigo-900)};
+  --bs-indigo-950:  rgb(var(--bs-indigo-950-rgb));
+  --bs-indigo-950-rgb: #{to-rgb($indigo-950)};
+
+  //endregion -------------------- Indigo --------------------
+  //region -------------------- Purple --------------------
+
+  --bs-purple:          var(--bs-purple-500);
+  --bs-purple-rgb:      var(--bs-purple-500-rgb);
+  --bs-purple-050:  rgb(var(--bs-purple-050-rgb));
+  --bs-purple-050-rgb: #{to-rgb($purple-050)};
+  --bs-purple-100:  rgb(var(--bs-purple-100-rgb));
+  --bs-purple-100-rgb: #{to-rgb($purple-100)};
+  --bs-purple-150:  rgb(var(--bs-purple-150-rgb));
+  --bs-purple-150-rgb: #{to-rgb($purple-150)};
+  --bs-purple-200:  rgb(var(--bs-purple-200-rgb));
+  --bs-purple-200-rgb: #{to-rgb($purple-200)};
+  --bs-purple-250:  rgb(var(--bs-purple-250-rgb));
+  --bs-purple-250-rgb: #{to-rgb($purple-250)};
+  --bs-purple-300:  rgb(var(--bs-purple-300-rgb));
+  --bs-purple-300-rgb: #{to-rgb($purple-300)};
+  --bs-purple-350:  rgb(var(--bs-purple-350-rgb));
+  --bs-purple-350-rgb: #{to-rgb($purple-350)};
+  --bs-purple-400:  rgb(var(--bs-purple-400-rgb));
+  --bs-purple-400-rgb: #{to-rgb($purple-400)};
+  --bs-purple-450:  rgb(var(--bs-purple-450-rgb));
+  --bs-purple-450-rgb: #{to-rgb($purple-450)};
+  --bs-purple-500:  rgb(var(--bs-purple-500-rgb));
+  --bs-purple-500-rgb: #{to-rgb($purple-500)};
+  --bs-purple-550:  rgb(var(--bs-purple-550-rgb));
+  --bs-purple-550-rgb: #{to-rgb($purple-550)};
+  --bs-purple-600:  rgb(var(--bs-purple-600-rgb));
+  --bs-purple-600-rgb: #{to-rgb($purple-600)};
+  --bs-purple-650:  rgb(var(--bs-purple-650-rgb));
+  --bs-purple-650-rgb: #{to-rgb($purple-650)};
+  --bs-purple-700:  rgb(var(--bs-purple-700-rgb));
+  --bs-purple-700-rgb: #{to-rgb($purple-700)};
+  --bs-purple-750:  rgb(var(--bs-purple-750-rgb));
+  --bs-purple-750-rgb: #{to-rgb($purple-750)};
+  --bs-purple-800:  rgb(var(--bs-purple-800-rgb));
+  --bs-purple-800-rgb: #{to-rgb($purple-800)};
+  --bs-purple-850:  rgb(var(--bs-purple-850-rgb));
+  --bs-purple-850-rgb: #{to-rgb($purple-850)};
+  --bs-purple-900:  rgb(var(--bs-purple-900-rgb));
+  --bs-purple-900-rgb: #{to-rgb($purple-900)};
+  --bs-purple-950:  rgb(var(--bs-purple-950-rgb));
+  --bs-purple-950-rgb: #{to-rgb($purple-950)};
+
+  //endregion -------------------- Purple --------------------
+  //region -------------------- Pink --------------------
+
+  --bs-pink:          var(--bs-pink-500);
+  --bs-pink-rgb:      var(--bs-pink-500-rgb);
+  --bs-pink-050:  rgb(var(--bs-pink-050-rgb));
+  --bs-pink-050-rgb: #{to-rgb($pink-050)};
+  --bs-pink-100:  rgb(var(--bs-pink-100-rgb));
+  --bs-pink-100-rgb: #{to-rgb($pink-100)};
+  --bs-pink-150:  rgb(var(--bs-pink-150-rgb));
+  --bs-pink-150-rgb: #{to-rgb($pink-150)};
+  --bs-pink-200:  rgb(var(--bs-pink-200-rgb));
+  --bs-pink-200-rgb: #{to-rgb($pink-200)};
+  --bs-pink-250:  rgb(var(--bs-pink-250-rgb));
+  --bs-pink-250-rgb: #{to-rgb($pink-250)};
+  --bs-pink-300:  rgb(var(--bs-pink-300-rgb));
+  --bs-pink-300-rgb: #{to-rgb($pink-300)};
+  --bs-pink-350:  rgb(var(--bs-pink-350-rgb));
+  --bs-pink-350-rgb: #{to-rgb($pink-350)};
+  --bs-pink-400:  rgb(var(--bs-pink-400-rgb));
+  --bs-pink-400-rgb: #{to-rgb($pink-400)};
+  --bs-pink-450:  rgb(var(--bs-pink-450-rgb));
+  --bs-pink-450-rgb: #{to-rgb($pink-450)};
+  --bs-pink-500:  rgb(var(--bs-pink-500-rgb));
+  --bs-pink-500-rgb: #{to-rgb($pink-500)};
+  --bs-pink-550:  rgb(var(--bs-pink-550-rgb));
+  --bs-pink-550-rgb: #{to-rgb($pink-550)};
+  --bs-pink-600:  rgb(var(--bs-pink-600-rgb));
+  --bs-pink-600-rgb: #{to-rgb($pink-600)};
+  --bs-pink-650:  rgb(var(--bs-pink-650-rgb));
+  --bs-pink-650-rgb: #{to-rgb($pink-650)};
+  --bs-pink-700:  rgb(var(--bs-pink-700-rgb));
+  --bs-pink-700-rgb: #{to-rgb($pink-700)};
+  --bs-pink-750:  rgb(var(--bs-pink-750-rgb));
+  --bs-pink-750-rgb: #{to-rgb($pink-750)};
+  --bs-pink-800:  rgb(var(--bs-pink-800-rgb));
+  --bs-pink-800-rgb: #{to-rgb($pink-800)};
+  --bs-pink-850:  rgb(var(--bs-pink-850-rgb));
+  --bs-pink-850-rgb: #{to-rgb($pink-850)};
+  --bs-pink-900:  rgb(var(--bs-pink-900-rgb));
+  --bs-pink-900-rgb: #{to-rgb($pink-900)};
+  --bs-pink-950:  rgb(var(--bs-pink-950-rgb));
+  --bs-pink-950-rgb: #{to-rgb($pink-950)};
+
+  //endregion -------------------- Pink --------------------
+  //region -------------------- Red --------------------
+
+  --bs-red:          var(--bs-red-500);
+  --bs-red-rgb:      var(--bs-red-500-rgb);
+  --bs-red-050:  rgb(var(--bs-red-050-rgb));
+  --bs-red-050-rgb: #{to-rgb($red-050)};
+  --bs-red-100:  rgb(var(--bs-red-100-rgb));
+  --bs-red-100-rgb: #{to-rgb($red-100)};
+  --bs-red-150:  rgb(var(--bs-red-150-rgb));
+  --bs-red-150-rgb: #{to-rgb($red-150)};
+  --bs-red-200:  rgb(var(--bs-red-200-rgb));
+  --bs-red-200-rgb: #{to-rgb($red-200)};
+  --bs-red-250:  rgb(var(--bs-red-250-rgb));
+  --bs-red-250-rgb: #{to-rgb($red-250)};
+  --bs-red-300:  rgb(var(--bs-red-300-rgb));
+  --bs-red-300-rgb: #{to-rgb($red-300)};
+  --bs-red-350:  rgb(var(--bs-red-350-rgb));
+  --bs-red-350-rgb: #{to-rgb($red-350)};
+  --bs-red-400:  rgb(var(--bs-red-400-rgb));
+  --bs-red-400-rgb: #{to-rgb($red-400)};
+  --bs-red-450:  rgb(var(--bs-red-450-rgb));
+  --bs-red-450-rgb: #{to-rgb($red-450)};
+  --bs-red-500:  rgb(var(--bs-red-500-rgb));
+  --bs-red-500-rgb: #{to-rgb($red-500)};
+  --bs-red-550:  rgb(var(--bs-red-550-rgb));
+  --bs-red-550-rgb: #{to-rgb($red-550)};
+  --bs-red-600:  rgb(var(--bs-red-600-rgb));
+  --bs-red-600-rgb: #{to-rgb($red-600)};
+  --bs-red-650:  rgb(var(--bs-red-650-rgb));
+  --bs-red-650-rgb: #{to-rgb($red-650)};
+  --bs-red-700:  rgb(var(--bs-red-700-rgb));
+  --bs-red-700-rgb: #{to-rgb($red-700)};
+  --bs-red-750:  rgb(var(--bs-red-750-rgb));
+  --bs-red-750-rgb: #{to-rgb($red-750)};
+  --bs-red-800:  rgb(var(--bs-red-800-rgb));
+  --bs-red-800-rgb: #{to-rgb($red-800)};
+  --bs-red-850:  rgb(var(--bs-red-850-rgb));
+  --bs-red-850-rgb: #{to-rgb($red-850)};
+  --bs-red-900:  rgb(var(--bs-red-900-rgb));
+  --bs-red-900-rgb: #{to-rgb($red-900)};
+  --bs-red-950:  rgb(var(--bs-red-950-rgb));
+  --bs-red-950-rgb: #{to-rgb($red-950)};
+
+  //endregion -------------------- Red --------------------
+  //region -------------------- Orange --------------------
+
+  --bs-orange:          var(--bs-orange-500);
+  --bs-orange-rgb:      var(--bs-orange-500-rgb);
+  --bs-orange-050:  rgb(var(--bs-orange-050-rgb));
+  --bs-orange-050-rgb: #{to-rgb($orange-050)};
+  --bs-orange-100:  rgb(var(--bs-orange-100-rgb));
+  --bs-orange-100-rgb: #{to-rgb($orange-100)};
+  --bs-orange-150:  rgb(var(--bs-orange-150-rgb));
+  --bs-orange-150-rgb: #{to-rgb($orange-150)};
+  --bs-orange-200:  rgb(var(--bs-orange-200-rgb));
+  --bs-orange-200-rgb: #{to-rgb($orange-200)};
+  --bs-orange-250:  rgb(var(--bs-orange-250-rgb));
+  --bs-orange-250-rgb: #{to-rgb($orange-250)};
+  --bs-orange-300:  rgb(var(--bs-orange-300-rgb));
+  --bs-orange-300-rgb: #{to-rgb($orange-300)};
+  --bs-orange-350:  rgb(var(--bs-orange-350-rgb));
+  --bs-orange-350-rgb: #{to-rgb($orange-350)};
+  --bs-orange-400:  rgb(var(--bs-orange-400-rgb));
+  --bs-orange-400-rgb: #{to-rgb($orange-400)};
+  --bs-orange-450:  rgb(var(--bs-orange-450-rgb));
+  --bs-orange-450-rgb: #{to-rgb($orange-450)};
+  --bs-orange-500:  rgb(var(--bs-orange-500-rgb));
+  --bs-orange-500-rgb: #{to-rgb($orange-500)};
+  --bs-orange-550:  rgb(var(--bs-orange-550-rgb));
+  --bs-orange-550-rgb: #{to-rgb($orange-550)};
+  --bs-orange-600:  rgb(var(--bs-orange-600-rgb));
+  --bs-orange-600-rgb: #{to-rgb($orange-600)};
+  --bs-orange-650:  rgb(var(--bs-orange-650-rgb));
+  --bs-orange-650-rgb: #{to-rgb($orange-650)};
+  --bs-orange-700:  rgb(var(--bs-orange-700-rgb));
+  --bs-orange-700-rgb: #{to-rgb($orange-700)};
+  --bs-orange-750:  rgb(var(--bs-orange-750-rgb));
+  --bs-orange-750-rgb: #{to-rgb($orange-750)};
+  --bs-orange-800:  rgb(var(--bs-orange-800-rgb));
+  --bs-orange-800-rgb: #{to-rgb($orange-800)};
+  --bs-orange-850:  rgb(var(--bs-orange-850-rgb));
+  --bs-orange-850-rgb: #{to-rgb($orange-850)};
+  --bs-orange-900:  rgb(var(--bs-orange-900-rgb));
+  --bs-orange-900-rgb: #{to-rgb($orange-900)};
+  --bs-orange-950:  rgb(var(--bs-orange-950-rgb));
+  --bs-orange-950-rgb: #{to-rgb($orange-950)};
+
+  //endregion -------------------- Orange --------------------
+  //region -------------------- Yellow --------------------
+
+  --bs-yellow:          var(--bs-yellow-500);
+  --bs-yellow-rgb:      var(--bs-yellow-500-rgb);
+  --bs-yellow-050:  rgb(var(--bs-yellow-050-rgb));
+  --bs-yellow-050-rgb: #{to-rgb($yellow-050)};
+  --bs-yellow-100:  rgb(var(--bs-yellow-100-rgb));
+  --bs-yellow-100-rgb: #{to-rgb($yellow-100)};
+  --bs-yellow-150:  rgb(var(--bs-yellow-150-rgb));
+  --bs-yellow-150-rgb: #{to-rgb($yellow-150)};
+  --bs-yellow-200:  rgb(var(--bs-yellow-200-rgb));
+  --bs-yellow-200-rgb: #{to-rgb($yellow-200)};
+  --bs-yellow-250:  rgb(var(--bs-yellow-250-rgb));
+  --bs-yellow-250-rgb: #{to-rgb($yellow-250)};
+  --bs-yellow-300:  rgb(var(--bs-yellow-300-rgb));
+  --bs-yellow-300-rgb: #{to-rgb($yellow-300)};
+  --bs-yellow-350:  rgb(var(--bs-yellow-350-rgb));
+  --bs-yellow-350-rgb: #{to-rgb($yellow-350)};
+  --bs-yellow-400:  rgb(var(--bs-yellow-400-rgb));
+  --bs-yellow-400-rgb: #{to-rgb($yellow-400)};
+  --bs-yellow-450:  rgb(var(--bs-yellow-450-rgb));
+  --bs-yellow-450-rgb: #{to-rgb($yellow-450)};
+  --bs-yellow-500:  rgb(var(--bs-yellow-500-rgb));
+  --bs-yellow-500-rgb: #{to-rgb($yellow-500)};
+  --bs-yellow-550:  rgb(var(--bs-yellow-550-rgb));
+  --bs-yellow-550-rgb: #{to-rgb($yellow-550)};
+  --bs-yellow-600:  rgb(var(--bs-yellow-600-rgb));
+  --bs-yellow-600-rgb: #{to-rgb($yellow-600)};
+  --bs-yellow-650:  rgb(var(--bs-yellow-650-rgb));
+  --bs-yellow-650-rgb: #{to-rgb($yellow-650)};
+  --bs-yellow-700:  rgb(var(--bs-yellow-700-rgb));
+  --bs-yellow-700-rgb: #{to-rgb($yellow-700)};
+  --bs-yellow-750:  rgb(var(--bs-yellow-750-rgb));
+  --bs-yellow-750-rgb: #{to-rgb($yellow-750)};
+  --bs-yellow-800:  rgb(var(--bs-yellow-800-rgb));
+  --bs-yellow-800-rgb: #{to-rgb($yellow-800)};
+  --bs-yellow-850:  rgb(var(--bs-yellow-850-rgb));
+  --bs-yellow-850-rgb: #{to-rgb($yellow-850)};
+  --bs-yellow-900:  rgb(var(--bs-yellow-900-rgb));
+  --bs-yellow-900-rgb: #{to-rgb($yellow-900)};
+  --bs-yellow-950:  rgb(var(--bs-yellow-950-rgb));
+  --bs-yellow-950-rgb: #{to-rgb($yellow-950)};
+
+  //endregion -------------------- Yellow --------------------
+  //region -------------------- Green --------------------
+
+  --bs-green:          var(--bs-green-500);
+  --bs-green-rgb:      var(--bs-green-500-rgb);
+  --bs-green-050:  rgb(var(--bs-green-050-rgb));
+  --bs-green-050-rgb: #{to-rgb($green-050)};
+  --bs-green-100:  rgb(var(--bs-green-100-rgb));
+  --bs-green-100-rgb: #{to-rgb($green-100)};
+  --bs-green-150:  rgb(var(--bs-green-150-rgb));
+  --bs-green-150-rgb: #{to-rgb($green-150)};
+  --bs-green-200:  rgb(var(--bs-green-200-rgb));
+  --bs-green-200-rgb: #{to-rgb($green-200)};
+  --bs-green-250:  rgb(var(--bs-green-250-rgb));
+  --bs-green-250-rgb: #{to-rgb($green-250)};
+  --bs-green-300:  rgb(var(--bs-green-300-rgb));
+  --bs-green-300-rgb: #{to-rgb($green-300)};
+  --bs-green-350:  rgb(var(--bs-green-350-rgb));
+  --bs-green-350-rgb: #{to-rgb($green-350)};
+  --bs-green-400:  rgb(var(--bs-green-400-rgb));
+  --bs-green-400-rgb: #{to-rgb($green-400)};
+  --bs-green-450:  rgb(var(--bs-green-450-rgb));
+  --bs-green-450-rgb: #{to-rgb($green-450)};
+  --bs-green-500:  rgb(var(--bs-green-500-rgb));
+  --bs-green-500-rgb: #{to-rgb($green-500)};
+  --bs-green-550:  rgb(var(--bs-green-550-rgb));
+  --bs-green-550-rgb: #{to-rgb($green-550)};
+  --bs-green-600:  rgb(var(--bs-green-600-rgb));
+  --bs-green-600-rgb: #{to-rgb($green-600)};
+  --bs-green-650:  rgb(var(--bs-green-650-rgb));
+  --bs-green-650-rgb: #{to-rgb($green-650)};
+  --bs-green-700:  rgb(var(--bs-green-700-rgb));
+  --bs-green-700-rgb: #{to-rgb($green-700)};
+  --bs-green-750:  rgb(var(--bs-green-750-rgb));
+  --bs-green-750-rgb: #{to-rgb($green-750)};
+  --bs-green-800:  rgb(var(--bs-green-800-rgb));
+  --bs-green-800-rgb: #{to-rgb($green-800)};
+  --bs-green-850:  rgb(var(--bs-green-850-rgb));
+  --bs-green-850-rgb: #{to-rgb($green-850)};
+  --bs-green-900:  rgb(var(--bs-green-900-rgb));
+  --bs-green-900-rgb: #{to-rgb($green-900)};
+  --bs-green-950:  rgb(var(--bs-green-950-rgb));
+  --bs-green-950-rgb: #{to-rgb($green-950)};
+
+  //endregion -------------------- Green --------------------
+  //region -------------------- Teal --------------------
+
+  --bs-teal:          var(--bs-teal-500);
+  --bs-teal-rgb:      var(--bs-teal-500-rgb);
+  --bs-teal-050:  rgb(var(--bs-teal-050-rgb));
+  --bs-teal-050-rgb: #{to-rgb($teal-050)};
+  --bs-teal-100:  rgb(var(--bs-teal-100-rgb));
+  --bs-teal-100-rgb: #{to-rgb($teal-100)};
+  --bs-teal-150:  rgb(var(--bs-teal-150-rgb));
+  --bs-teal-150-rgb: #{to-rgb($teal-150)};
+  --bs-teal-200:  rgb(var(--bs-teal-200-rgb));
+  --bs-teal-200-rgb: #{to-rgb($teal-200)};
+  --bs-teal-250:  rgb(var(--bs-teal-250-rgb));
+  --bs-teal-250-rgb: #{to-rgb($teal-250)};
+  --bs-teal-300:  rgb(var(--bs-teal-300-rgb));
+  --bs-teal-300-rgb: #{to-rgb($teal-300)};
+  --bs-teal-350:  rgb(var(--bs-teal-350-rgb));
+  --bs-teal-350-rgb: #{to-rgb($teal-350)};
+  --bs-teal-400:  rgb(var(--bs-teal-400-rgb));
+  --bs-teal-400-rgb: #{to-rgb($teal-400)};
+  --bs-teal-450:  rgb(var(--bs-teal-450-rgb));
+  --bs-teal-450-rgb: #{to-rgb($teal-450)};
+  --bs-teal-500:  rgb(var(--bs-teal-500-rgb));
+  --bs-teal-500-rgb: #{to-rgb($teal-500)};
+  --bs-teal-550:  rgb(var(--bs-teal-550-rgb));
+  --bs-teal-550-rgb: #{to-rgb($teal-550)};
+  --bs-teal-600:  rgb(var(--bs-teal-600-rgb));
+  --bs-teal-600-rgb: #{to-rgb($teal-600)};
+  --bs-teal-650:  rgb(var(--bs-teal-650-rgb));
+  --bs-teal-650-rgb: #{to-rgb($teal-650)};
+  --bs-teal-700:  rgb(var(--bs-teal-700-rgb));
+  --bs-teal-700-rgb: #{to-rgb($teal-700)};
+  --bs-teal-750:  rgb(var(--bs-teal-750-rgb));
+  --bs-teal-750-rgb: #{to-rgb($teal-750)};
+  --bs-teal-800:  rgb(var(--bs-teal-800-rgb));
+  --bs-teal-800-rgb: #{to-rgb($teal-800)};
+  --bs-teal-850:  rgb(var(--bs-teal-850-rgb));
+  --bs-teal-850-rgb: #{to-rgb($teal-850)};
+  --bs-teal-900:  rgb(var(--bs-teal-900-rgb));
+  --bs-teal-900-rgb: #{to-rgb($teal-900)};
+  --bs-teal-950:  rgb(var(--bs-teal-950-rgb));
+  --bs-teal-950-rgb: #{to-rgb($teal-950)};
+
+  //endregion -------------------- Teal --------------------
+  //region -------------------- Cyan --------------------
+
+  --bs-cyan:          var(--bs-cyan-500);
+  --bs-cyan-rgb:      var(--bs-cyan-500-rgb);
+  --bs-cyan-050:  rgb(var(--bs-cyan-050-rgb));
+  --bs-cyan-050-rgb: #{to-rgb($cyan-050)};
+  --bs-cyan-100:  rgb(var(--bs-cyan-100-rgb));
+  --bs-cyan-100-rgb: #{to-rgb($cyan-100)};
+  --bs-cyan-150:  rgb(var(--bs-cyan-150-rgb));
+  --bs-cyan-150-rgb: #{to-rgb($cyan-150)};
+  --bs-cyan-200:  rgb(var(--bs-cyan-200-rgb));
+  --bs-cyan-200-rgb: #{to-rgb($cyan-200)};
+  --bs-cyan-250:  rgb(var(--bs-cyan-250-rgb));
+  --bs-cyan-250-rgb: #{to-rgb($cyan-250)};
+  --bs-cyan-300:  rgb(var(--bs-cyan-300-rgb));
+  --bs-cyan-300-rgb: #{to-rgb($cyan-300)};
+  --bs-cyan-350:  rgb(var(--bs-cyan-350-rgb));
+  --bs-cyan-350-rgb: #{to-rgb($cyan-350)};
+  --bs-cyan-400:  rgb(var(--bs-cyan-400-rgb));
+  --bs-cyan-400-rgb: #{to-rgb($cyan-400)};
+  --bs-cyan-450:  rgb(var(--bs-cyan-450-rgb));
+  --bs-cyan-450-rgb: #{to-rgb($cyan-450)};
+  --bs-cyan-500:  rgb(var(--bs-cyan-500-rgb));
+  --bs-cyan-500-rgb: #{to-rgb($cyan-500)};
+  --bs-cyan-550:  rgb(var(--bs-cyan-550-rgb));
+  --bs-cyan-550-rgb: #{to-rgb($cyan-550)};
+  --bs-cyan-600:  rgb(var(--bs-cyan-600-rgb));
+  --bs-cyan-600-rgb: #{to-rgb($cyan-600)};
+  --bs-cyan-650:  rgb(var(--bs-cyan-650-rgb));
+  --bs-cyan-650-rgb: #{to-rgb($cyan-650)};
+  --bs-cyan-700:  rgb(var(--bs-cyan-700-rgb));
+  --bs-cyan-700-rgb: #{to-rgb($cyan-700)};
+  --bs-cyan-750:  rgb(var(--bs-cyan-750-rgb));
+  --bs-cyan-750-rgb: #{to-rgb($cyan-750)};
+  --bs-cyan-800:  rgb(var(--bs-cyan-800-rgb));
+  --bs-cyan-800-rgb: #{to-rgb($cyan-800)};
+  --bs-cyan-850:  rgb(var(--bs-cyan-850-rgb));
+  --bs-cyan-850-rgb: #{to-rgb($cyan-850)};
+  --bs-cyan-900:  rgb(var(--bs-cyan-900-rgb));
+  --bs-cyan-900-rgb: #{to-rgb($cyan-900)};
+  --bs-cyan-950:  rgb(var(--bs-cyan-950-rgb));
+  --bs-cyan-950-rgb: #{to-rgb($cyan-950)};
+
+  //endregion -------------------- Cyan --------------------
+
+  //region -------------------- White --------------------
+
+  --bs-white:  rgb(var(--bs-white-rgb));
+  --bs-white-rgb: #{to-rgb($white)}; //It override the Bootstrap CSS
+
+  //endregion -------------------- White --------------------
+  //region -------------------- Gray --------------------
+
+  --bs-gray:          var(--bs-gray-600);
+  --bs-gray-rgb:      var(--bs-gray-600-rgb);
+  --bs-gray-dark:     var(--bs-gray-800);
+  --bs-gray-dark-rgb: var(--bs-gray-800-rgb);
+  --bs-gray-050:  rgb(var(--bs-gray-050-rgb));
+  --bs-gray-050-rgb: #{to-rgb($gray-050)};
+  --bs-gray-100:  rgb(var(--bs-gray-100-rgb));
+  --bs-gray-100-rgb: #{to-rgb($gray-100)};
+  --bs-gray-150:  rgb(var(--bs-gray-150-rgb));
+  --bs-gray-150-rgb: #{to-rgb($gray-150)};
+  --bs-gray-200:  rgb(var(--bs-gray-200-rgb));
+  --bs-gray-200-rgb: #{to-rgb($gray-200)};
+  --bs-gray-250:  rgb(var(--bs-gray-250-rgb));
+  --bs-gray-250-rgb: #{to-rgb($gray-250)};
+  --bs-gray-300:  rgb(var(--bs-gray-300-rgb));
+  --bs-gray-300-rgb: #{to-rgb($gray-300)};
+  --bs-gray-350:  rgb(var(--bs-gray-350-rgb));
+  --bs-gray-350-rgb: #{to-rgb($gray-350)};
+  --bs-gray-400:  rgb(var(--bs-gray-400-rgb));
+  --bs-gray-400-rgb: #{to-rgb($gray-400)};
+  --bs-gray-450:  rgb(var(--bs-gray-450-rgb));
+  --bs-gray-450-rgb: #{to-rgb($gray-450)};
+  --bs-gray-500:  rgb(var(--bs-gray-500-rgb));
+  --bs-gray-500-rgb: #{to-rgb($gray-500)};
+  --bs-gray-550:  rgb(var(--bs-gray-550-rgb));
+  --bs-gray-550-rgb: #{to-rgb($gray-550)};
+  --bs-gray-600:  rgb(var(--bs-gray-600-rgb));
+  --bs-gray-600-rgb: #{to-rgb($gray-600)};
+  --bs-gray-650:  rgb(var(--bs-gray-650-rgb));
+  --bs-gray-650-rgb: #{to-rgb($gray-650)};
+  --bs-gray-700:  rgb(var(--bs-gray-700-rgb));
+  --bs-gray-700-rgb: #{to-rgb($gray-700)};
+  --bs-gray-750:  rgb(var(--bs-gray-750-rgb));
+  --bs-gray-750-rgb: #{to-rgb($gray-750)};
+  --bs-gray-800:  rgb(var(--bs-gray-800-rgb));
+  --bs-gray-800-rgb: #{to-rgb($gray-800)};
+  --bs-gray-850:  rgb(var(--bs-gray-850-rgb));
+  --bs-gray-850-rgb: #{to-rgb($gray-850)};
+  --bs-gray-900:  rgb(var(--bs-gray-900-rgb));
+  --bs-gray-900-rgb: #{to-rgb($gray-900)};
+  --bs-gray-950:  rgb(var(--bs-gray-950-rgb));
+  --bs-gray-950-rgb: #{to-rgb($gray-950)};
+
+  //endregion -------------------- Gray --------------------
+  //region -------------------- Black --------------------
+
+  --bs-black:  rgb(var(--bs-black-rgb));
+  --bs-black-rgb: #{to-rgb($black)}; //It override the Bootstrap CSS
+
+  //endregion -------------------- Black --------------------
+
+  //region -------------------- Primary --------------------
+
+  --bs-primary:          var(--bs-primary-500);
+  --bs-primary-rgb:      var(--bs-primary-500-rgb);
+  --bs-primary-050:  rgb(var(--bs-primary-050-rgb));
+  --bs-primary-050-rgb: #{to-rgb($primary-050)};
+  --bs-primary-100:  rgb(var(--bs-primary-100-rgb));
+  --bs-primary-100-rgb: #{to-rgb($primary-100)};
+  --bs-primary-150:  rgb(var(--bs-primary-150-rgb));
+  --bs-primary-150-rgb: #{to-rgb($primary-150)};
+  --bs-primary-200:  rgb(var(--bs-primary-200-rgb));
+  --bs-primary-200-rgb: #{to-rgb($primary-200)};
+  --bs-primary-250:  rgb(var(--bs-primary-250-rgb));
+  --bs-primary-250-rgb: #{to-rgb($primary-250)};
+  --bs-primary-300:  rgb(var(--bs-primary-300-rgb));
+  --bs-primary-300-rgb: #{to-rgb($primary-300)};
+  --bs-primary-350:  rgb(var(--bs-primary-350-rgb));
+  --bs-primary-350-rgb: #{to-rgb($primary-350)};
+  --bs-primary-400:  rgb(var(--bs-primary-400-rgb));
+  --bs-primary-400-rgb: #{to-rgb($primary-400)};
+  --bs-primary-450:  rgb(var(--bs-primary-450-rgb));
+  --bs-primary-450-rgb: #{to-rgb($primary-450)};
+  --bs-primary-500:  rgb(var(--bs-primary-500-rgb));
+  --bs-primary-500-rgb: #{to-rgb($primary-500)};
+  --bs-primary-550:  rgb(var(--bs-primary-550-rgb));
+  --bs-primary-550-rgb: #{to-rgb($primary-550)};
+  --bs-primary-600:  rgb(var(--bs-primary-600-rgb));
+  --bs-primary-600-rgb: #{to-rgb($primary-600)};
+  --bs-primary-650:  rgb(var(--bs-primary-650-rgb));
+  --bs-primary-650-rgb: #{to-rgb($primary-650)};
+  --bs-primary-700:  rgb(var(--bs-primary-700-rgb));
+  --bs-primary-700-rgb: #{to-rgb($primary-700)};
+  --bs-primary-750:  rgb(var(--bs-primary-750-rgb));
+  --bs-primary-750-rgb: #{to-rgb($primary-750)};
+  --bs-primary-800:  rgb(var(--bs-primary-800-rgb));
+  --bs-primary-800-rgb: #{to-rgb($primary-800)};
+  --bs-primary-850:  rgb(var(--bs-primary-850-rgb));
+  --bs-primary-850-rgb: #{to-rgb($primary-850)};
+  --bs-primary-900:  rgb(var(--bs-primary-900-rgb));
+  --bs-primary-900-rgb: #{to-rgb($primary-900)};
+  --bs-primary-950:  rgb(var(--bs-primary-950-rgb));
+  --bs-primary-950-rgb: #{to-rgb($primary-950)};
+
+  --bs-primary-text-emphasis:     var(--bs-primary-800);
+  --bs-primary-text-emphasis-rgb: var(--bs-primary-800-rgb);
+  --bs-primary-bg-subtle:         var(--bs-primary-100);
+  --bs-primary-bg-subtle-rgb:     var(--bs-primary-100-rgb);
+  --bs-primary-border-subtle:     var(--bs-primary-200);
+  --bs-primary-border-subtle-rgb: var(--bs-primary-200-rgb);
+
+  //endregion -------------------- Primary --------------------
+  //region -------------------- Secondary --------------------
+
+  --bs-secondary:          var(--bs-secondary-500);
+  --bs-secondary-rgb:      var(--bs-secondary-500-rgb);
+  --bs-secondary-050:  rgb(var(--bs-secondary-050-rgb));
+  --bs-secondary-050-rgb: #{to-rgb($secondary-050)};
+  --bs-secondary-100:  rgb(var(--bs-secondary-100-rgb));
+  --bs-secondary-100-rgb: #{to-rgb($secondary-100)};
+  --bs-secondary-150:  rgb(var(--bs-secondary-150-rgb));
+  --bs-secondary-150-rgb: #{to-rgb($secondary-150)};
+  --bs-secondary-200:  rgb(var(--bs-secondary-200-rgb));
+  --bs-secondary-200-rgb: #{to-rgb($secondary-200)};
+  --bs-secondary-250:  rgb(var(--bs-secondary-250-rgb));
+  --bs-secondary-250-rgb: #{to-rgb($secondary-250)};
+  --bs-secondary-300:  rgb(var(--bs-secondary-300-rgb));
+  --bs-secondary-300-rgb: #{to-rgb($secondary-300)};
+  --bs-secondary-350:  rgb(var(--bs-secondary-350-rgb));
+  --bs-secondary-350-rgb: #{to-rgb($secondary-350)};
+  --bs-secondary-400:  rgb(var(--bs-secondary-400-rgb));
+  --bs-secondary-400-rgb: #{to-rgb($secondary-400)};
+  --bs-secondary-450:  rgb(var(--bs-secondary-450-rgb));
+  --bs-secondary-450-rgb: #{to-rgb($secondary-450)};
+  --bs-secondary-500:  rgb(var(--bs-secondary-500-rgb));
+  --bs-secondary-500-rgb: #{to-rgb($secondary-500)};
+  --bs-secondary-550:  rgb(var(--bs-secondary-550-rgb));
+  --bs-secondary-550-rgb: #{to-rgb($secondary-550)};
+  --bs-secondary-600:  rgb(var(--bs-secondary-600-rgb));
+  --bs-secondary-600-rgb: #{to-rgb($secondary-600)};
+  --bs-secondary-650:  rgb(var(--bs-secondary-650-rgb));
+  --bs-secondary-650-rgb: #{to-rgb($secondary-650)};
+  --bs-secondary-700:  rgb(var(--bs-secondary-700-rgb));
+  --bs-secondary-700-rgb: #{to-rgb($secondary-700)};
+  --bs-secondary-750:  rgb(var(--bs-secondary-750-rgb));
+  --bs-secondary-750-rgb: #{to-rgb($secondary-750)};
+  --bs-secondary-800:  rgb(var(--bs-secondary-800-rgb));
+  --bs-secondary-800-rgb: #{to-rgb($secondary-800)};
+  --bs-secondary-850:  rgb(var(--bs-secondary-850-rgb));
+  --bs-secondary-850-rgb: #{to-rgb($secondary-850)};
+  --bs-secondary-900:  rgb(var(--bs-secondary-900-rgb));
+  --bs-secondary-900-rgb: #{to-rgb($secondary-900)};
+  --bs-secondary-950:  rgb(var(--bs-secondary-950-rgb));
+  --bs-secondary-950-rgb: #{to-rgb($secondary-950)};
+
+  --bs-secondary-text-emphasis:     var(--bs-secondary-800);
+  --bs-secondary-text-emphasis-rgb: var(--bs-secondary-800-rgb);
+  --bs-secondary-bg-subtle:         var(--bs-secondary-100);
+  --bs-secondary-bg-subtle-rgb:     var(--bs-secondary-100-rgb);
+  --bs-secondary-border-subtle:     var(--bs-secondary-200);
+  --bs-secondary-border-subtle-rgb: var(--bs-secondary-200-rgb);
+
+  //endregion -------------------- Secondary --------------------
+  //region -------------------- Success --------------------
+
+  --bs-success:          var(--bs-success-500);
+  --bs-success-rgb:      var(--bs-success-500-rgb);
+  --bs-success-050:  rgb(var(--bs-success-050-rgb));
+  --bs-success-050-rgb: #{to-rgb($success-050)};
+  --bs-success-100:  rgb(var(--bs-success-100-rgb));
+  --bs-success-100-rgb: #{to-rgb($success-100)};
+  --bs-success-150:  rgb(var(--bs-success-150-rgb));
+  --bs-success-150-rgb: #{to-rgb($success-150)};
+  --bs-success-200:  rgb(var(--bs-success-200-rgb));
+  --bs-success-200-rgb: #{to-rgb($success-200)};
+  --bs-success-250:  rgb(var(--bs-success-250-rgb));
+  --bs-success-250-rgb: #{to-rgb($success-250)};
+  --bs-success-300:  rgb(var(--bs-success-300-rgb));
+  --bs-success-300-rgb: #{to-rgb($success-300)};
+  --bs-success-350:  rgb(var(--bs-success-350-rgb));
+  --bs-success-350-rgb: #{to-rgb($success-350)};
+  --bs-success-400:  rgb(var(--bs-success-400-rgb));
+  --bs-success-400-rgb: #{to-rgb($success-400)};
+  --bs-success-450:  rgb(var(--bs-success-450-rgb));
+  --bs-success-450-rgb: #{to-rgb($success-450)};
+  --bs-success-500:  rgb(var(--bs-success-500-rgb));
+  --bs-success-500-rgb: #{to-rgb($success-500)};
+  --bs-success-550:  rgb(var(--bs-success-550-rgb));
+  --bs-success-550-rgb: #{to-rgb($success-550)};
+  --bs-success-600:  rgb(var(--bs-success-600-rgb));
+  --bs-success-600-rgb: #{to-rgb($success-600)};
+  --bs-success-650:  rgb(var(--bs-success-650-rgb));
+  --bs-success-650-rgb: #{to-rgb($success-650)};
+  --bs-success-700:  rgb(var(--bs-success-700-rgb));
+  --bs-success-700-rgb: #{to-rgb($success-700)};
+  --bs-success-750:  rgb(var(--bs-success-750-rgb));
+  --bs-success-750-rgb: #{to-rgb($success-750)};
+  --bs-success-800:  rgb(var(--bs-success-800-rgb));
+  --bs-success-800-rgb: #{to-rgb($success-800)};
+  --bs-success-850:  rgb(var(--bs-success-850-rgb));
+  --bs-success-850-rgb: #{to-rgb($success-850)};
+  --bs-success-900:  rgb(var(--bs-success-900-rgb));
+  --bs-success-900-rgb: #{to-rgb($success-900)};
+  --bs-success-950:  rgb(var(--bs-success-950-rgb));
+  --bs-success-950-rgb: #{to-rgb($success-950)};
+
+  --bs-success-text-emphasis:     var(--bs-success-800);
+  --bs-success-text-emphasis-rgb: var(--bs-success-800-rgb);
+  --bs-success-bg-subtle:         var(--bs-success-100);
+  --bs-success-bg-subtle-rgb:     var(--bs-success-100-rgb);
+  --bs-success-border-subtle:     var(--bs-success-200);
+  --bs-success-border-subtle-rgb: var(--bs-success-200-rgb);
+
+  //endregion -------------------- Success --------------------
+  //region -------------------- Danger --------------------
+
+  --bs-danger:          var(--bs-danger-500);
+  --bs-danger-rgb:      var(--bs-danger-500-rgb);
+  --bs-danger-050:  rgb(var(--bs-danger-050-rgb));
+  --bs-danger-050-rgb: #{to-rgb($danger-050)};
+  --bs-danger-100:  rgb(var(--bs-danger-100-rgb));
+  --bs-danger-100-rgb: #{to-rgb($danger-100)};
+  --bs-danger-150:  rgb(var(--bs-danger-150-rgb));
+  --bs-danger-150-rgb: #{to-rgb($danger-150)};
+  --bs-danger-200:  rgb(var(--bs-danger-200-rgb));
+  --bs-danger-200-rgb: #{to-rgb($danger-200)};
+  --bs-danger-250:  rgb(var(--bs-danger-250-rgb));
+  --bs-danger-250-rgb: #{to-rgb($danger-250)};
+  --bs-danger-300:  rgb(var(--bs-danger-300-rgb));
+  --bs-danger-300-rgb: #{to-rgb($danger-300)};
+  --bs-danger-350:  rgb(var(--bs-danger-350-rgb));
+  --bs-danger-350-rgb: #{to-rgb($danger-350)};
+  --bs-danger-400:  rgb(var(--bs-danger-400-rgb));
+  --bs-danger-400-rgb: #{to-rgb($danger-400)};
+  --bs-danger-450:  rgb(var(--bs-danger-450-rgb));
+  --bs-danger-450-rgb: #{to-rgb($danger-450)};
+  --bs-danger-500:  rgb(var(--bs-danger-500-rgb));
+  --bs-danger-500-rgb: #{to-rgb($danger-500)};
+  --bs-danger-550:  rgb(var(--bs-danger-550-rgb));
+  --bs-danger-550-rgb: #{to-rgb($danger-550)};
+  --bs-danger-600:  rgb(var(--bs-danger-600-rgb));
+  --bs-danger-600-rgb: #{to-rgb($danger-600)};
+  --bs-danger-650:  rgb(var(--bs-danger-650-rgb));
+  --bs-danger-650-rgb: #{to-rgb($danger-650)};
+  --bs-danger-700:  rgb(var(--bs-danger-700-rgb));
+  --bs-danger-700-rgb: #{to-rgb($danger-700)};
+  --bs-danger-750:  rgb(var(--bs-danger-750-rgb));
+  --bs-danger-750-rgb: #{to-rgb($danger-750)};
+  --bs-danger-800:  rgb(var(--bs-danger-800-rgb));
+  --bs-danger-800-rgb: #{to-rgb($danger-800)};
+  --bs-danger-850:  rgb(var(--bs-danger-850-rgb));
+  --bs-danger-850-rgb: #{to-rgb($danger-850)};
+  --bs-danger-900:  rgb(var(--bs-danger-900-rgb));
+  --bs-danger-900-rgb: #{to-rgb($danger-900)};
+  --bs-danger-950:  rgb(var(--bs-danger-950-rgb));
+  --bs-danger-950-rgb: #{to-rgb($danger-950)};
+
+  --bs-danger-text-emphasis:     var(--bs-danger-800);
+  --bs-danger-text-emphasis-rgb: var(--bs-danger-800-rgb);
+  --bs-danger-bg-subtle:         var(--bs-danger-100);
+  --bs-danger-bg-subtle-rgb:     var(--bs-danger-100-rgb);
+  --bs-danger-border-subtle:     var(--bs-danger-200);
+  --bs-danger-border-subtle-rgb: var(--bs-danger-200-rgb);
+
+  //endregion -------------------- Danger --------------------
+  //region -------------------- Warning --------------------
+
+  --bs-warning:          var(--bs-warning-500);
+  --bs-warning-rgb:      var(--bs-warning-500-rgb);
+  --bs-warning-050:  rgb(var(--bs-warning-050-rgb));
+  --bs-warning-050-rgb: #{to-rgb($warning-050)};
+  --bs-warning-100:  rgb(var(--bs-warning-100-rgb));
+  --bs-warning-100-rgb: #{to-rgb($warning-100)};
+  --bs-warning-150:  rgb(var(--bs-warning-150-rgb));
+  --bs-warning-150-rgb: #{to-rgb($warning-150)};
+  --bs-warning-200:  rgb(var(--bs-warning-200-rgb));
+  --bs-warning-200-rgb: #{to-rgb($warning-200)};
+  --bs-warning-250:  rgb(var(--bs-warning-250-rgb));
+  --bs-warning-250-rgb: #{to-rgb($warning-250)};
+  --bs-warning-300:  rgb(var(--bs-warning-300-rgb));
+  --bs-warning-300-rgb: #{to-rgb($warning-300)};
+  --bs-warning-350:  rgb(var(--bs-warning-350-rgb));
+  --bs-warning-350-rgb: #{to-rgb($warning-350)};
+  --bs-warning-400:  rgb(var(--bs-warning-400-rgb));
+  --bs-warning-400-rgb: #{to-rgb($warning-400)};
+  --bs-warning-450:  rgb(var(--bs-warning-450-rgb));
+  --bs-warning-450-rgb: #{to-rgb($warning-450)};
+  --bs-warning-500:  rgb(var(--bs-warning-500-rgb));
+  --bs-warning-500-rgb: #{to-rgb($warning-500)};
+  --bs-warning-550:  rgb(var(--bs-warning-550-rgb));
+  --bs-warning-550-rgb: #{to-rgb($warning-550)};
+  --bs-warning-600:  rgb(var(--bs-warning-600-rgb));
+  --bs-warning-600-rgb: #{to-rgb($warning-600)};
+  --bs-warning-650:  rgb(var(--bs-warning-650-rgb));
+  --bs-warning-650-rgb: #{to-rgb($warning-650)};
+  --bs-warning-700:  rgb(var(--bs-warning-700-rgb));
+  --bs-warning-700-rgb: #{to-rgb($warning-700)};
+  --bs-warning-750:  rgb(var(--bs-warning-750-rgb));
+  --bs-warning-750-rgb: #{to-rgb($warning-750)};
+  --bs-warning-800:  rgb(var(--bs-warning-800-rgb));
+  --bs-warning-800-rgb: #{to-rgb($warning-800)};
+  --bs-warning-850:  rgb(var(--bs-warning-850-rgb));
+  --bs-warning-850-rgb: #{to-rgb($warning-850)};
+  --bs-warning-900:  rgb(var(--bs-warning-900-rgb));
+  --bs-warning-900-rgb: #{to-rgb($warning-900)};
+  --bs-warning-950:  rgb(var(--bs-warning-950-rgb));
+  --bs-warning-950-rgb: #{to-rgb($warning-950)};
+
+  --bs-warning-text-emphasis:     var(--bs-warning-800);
+  --bs-warning-text-emphasis-rgb: var(--bs-warning-800-rgb);
+  --bs-warning-bg-subtle:         var(--bs-warning-100);
+  --bs-warning-bg-subtle-rgb:     var(--bs-warning-100-rgb);
+  --bs-warning-border-subtle:     var(--bs-warning-200);
+  --bs-warning-border-subtle-rgb: var(--bs-warning-200-rgb);
+
+  //endregion -------------------- Warning --------------------
+  //region -------------------- Info --------------------
+
+  --bs-info:          var(--bs-info-500);
+  --bs-info-rgb:      var(--bs-info-500-rgb);
+  --bs-info-050:  rgb(var(--bs-info-050-rgb));
+  --bs-info-050-rgb: #{to-rgb($info-050)};
+  --bs-info-100:  rgb(var(--bs-info-100-rgb));
+  --bs-info-100-rgb: #{to-rgb($info-100)};
+  --bs-info-150:  rgb(var(--bs-info-150-rgb));
+  --bs-info-150-rgb: #{to-rgb($info-150)};
+  --bs-info-200:  rgb(var(--bs-info-200-rgb));
+  --bs-info-200-rgb: #{to-rgb($info-200)};
+  --bs-info-250:  rgb(var(--bs-info-250-rgb));
+  --bs-info-250-rgb: #{to-rgb($info-250)};
+  --bs-info-300:  rgb(var(--bs-info-300-rgb));
+  --bs-info-300-rgb: #{to-rgb($info-300)};
+  --bs-info-350:  rgb(var(--bs-info-350-rgb));
+  --bs-info-350-rgb: #{to-rgb($info-350)};
+  --bs-info-400:  rgb(var(--bs-info-400-rgb));
+  --bs-info-400-rgb: #{to-rgb($info-400)};
+  --bs-info-450:  rgb(var(--bs-info-450-rgb));
+  --bs-info-450-rgb: #{to-rgb($info-450)};
+  --bs-info-500:  rgb(var(--bs-info-500-rgb));
+  --bs-info-500-rgb: #{to-rgb($info-500)};
+  --bs-info-550:  rgb(var(--bs-info-550-rgb));
+  --bs-info-550-rgb: #{to-rgb($info-550)};
+  --bs-info-600:  rgb(var(--bs-info-600-rgb));
+  --bs-info-600-rgb: #{to-rgb($info-600)};
+  --bs-info-650:  rgb(var(--bs-info-650-rgb));
+  --bs-info-650-rgb: #{to-rgb($info-650)};
+  --bs-info-700:  rgb(var(--bs-info-700-rgb));
+  --bs-info-700-rgb: #{to-rgb($info-700)};
+  --bs-info-750:  rgb(var(--bs-info-750-rgb));
+  --bs-info-750-rgb: #{to-rgb($info-750)};
+  --bs-info-800:  rgb(var(--bs-info-800-rgb));
+  --bs-info-800-rgb: #{to-rgb($info-800)};
+  --bs-info-850:  rgb(var(--bs-info-850-rgb));
+  --bs-info-850-rgb: #{to-rgb($info-850)};
+  --bs-info-900:  rgb(var(--bs-info-900-rgb));
+  --bs-info-900-rgb: #{to-rgb($info-900)};
+  --bs-info-950:  rgb(var(--bs-info-950-rgb));
+  --bs-info-950-rgb: #{to-rgb($info-950)};
+
+  --bs-info-text-emphasis:     var(--bs-info-800);
+  --bs-info-text-emphasis-rgb: var(--bs-info-800-rgb);
+  --bs-info-bg-subtle:         var(--bs-info-100);
+  --bs-info-bg-subtle-rgb:     var(--bs-info-100-rgb);
+  --bs-info-border-subtle:     var(--bs-info-200);
+  --bs-info-border-subtle-rgb: var(--bs-info-200-rgb);
+
+  //endregion -------------------- Info --------------------
+  //region -------------------- Light --------------------
+
+  --bs-light:          var(--bs-light-500);
+  --bs-light-rgb:      var(--bs-light-500-rgb);
+  --bs-light-050:  rgb(var(--bs-light-050-rgb));
+  --bs-light-050-rgb: #{to-rgb($light-050)};
+  --bs-light-100:  rgb(var(--bs-light-100-rgb));
+  --bs-light-100-rgb: #{to-rgb($light-100)};
+  --bs-light-150:  rgb(var(--bs-light-150-rgb));
+  --bs-light-150-rgb: #{to-rgb($light-150)};
+  --bs-light-200:  rgb(var(--bs-light-200-rgb));
+  --bs-light-200-rgb: #{to-rgb($light-200)};
+  --bs-light-250:  rgb(var(--bs-light-250-rgb));
+  --bs-light-250-rgb: #{to-rgb($light-250)};
+  --bs-light-300:  rgb(var(--bs-light-300-rgb));
+  --bs-light-300-rgb: #{to-rgb($light-300)};
+  --bs-light-350:  rgb(var(--bs-light-350-rgb));
+  --bs-light-350-rgb: #{to-rgb($light-350)};
+  --bs-light-400:  rgb(var(--bs-light-400-rgb));
+  --bs-light-400-rgb: #{to-rgb($light-400)};
+  --bs-light-450:  rgb(var(--bs-light-450-rgb));
+  --bs-light-450-rgb: #{to-rgb($light-450)};
+  --bs-light-500:  rgb(var(--bs-light-500-rgb));
+  --bs-light-500-rgb: #{to-rgb($light-500)};
+  --bs-light-550:  rgb(var(--bs-light-550-rgb));
+  --bs-light-550-rgb: #{to-rgb($light-550)};
+  --bs-light-600:  rgb(var(--bs-light-600-rgb));
+  --bs-light-600-rgb: #{to-rgb($light-600)};
+  --bs-light-650:  rgb(var(--bs-light-650-rgb));
+  --bs-light-650-rgb: #{to-rgb($light-650)};
+  --bs-light-700:  rgb(var(--bs-light-700-rgb));
+  --bs-light-700-rgb: #{to-rgb($light-700)};
+  --bs-light-750:  rgb(var(--bs-light-750-rgb));
+  --bs-light-750-rgb: #{to-rgb($light-750)};
+  --bs-light-800:  rgb(var(--bs-light-800-rgb));
+  --bs-light-800-rgb: #{to-rgb($light-800)};
+  --bs-light-850:  rgb(var(--bs-light-850-rgb));
+  --bs-light-850-rgb: #{to-rgb($light-850)};
+  --bs-light-900:  rgb(var(--bs-light-900-rgb));
+  --bs-light-900-rgb: #{to-rgb($light-900)};
+  --bs-light-950:  rgb(var(--bs-light-950-rgb));
+  --bs-light-950-rgb: #{to-rgb($light-950)};
+
+  --bs-light-text-emphasis:     var(--bs-light-700);
+  --bs-light-text-emphasis-rgb: var(--bs-light-700-rgb);
+  --bs-light-bg-subtle:         var(--bs-light-100);
+  --bs-light-bg-subtle-rgb:     var(--bs-light-100-rgb);
+  --bs-light-border-subtle:     var(--bs-light-200);
+  --bs-light-border-subtle-rgb: var(--bs-light-200-rgb);
+
+  //endregion -------------------- Light --------------------
+  //region -------------------- Dark --------------------
+
+  --bs-dark:          var(--bs-dark-500);
+  --bs-dark-rgb:      var(--bs-dark-500-rgb);
+  --bs-dark-050:  rgb(var(--bs-dark-050-rgb));
+  --bs-dark-050-rgb: #{to-rgb($dark-050)};
+  --bs-dark-100:  rgb(var(--bs-dark-100-rgb));
+  --bs-dark-100-rgb: #{to-rgb($dark-100)};
+  --bs-dark-150:  rgb(var(--bs-dark-150-rgb));
+  --bs-dark-150-rgb: #{to-rgb($dark-150)};
+  --bs-dark-200:  rgb(var(--bs-dark-200-rgb));
+  --bs-dark-200-rgb: #{to-rgb($dark-200)};
+  --bs-dark-250:  rgb(var(--bs-dark-250-rgb));
+  --bs-dark-250-rgb: #{to-rgb($dark-250)};
+  --bs-dark-300:  rgb(var(--bs-dark-300-rgb));
+  --bs-dark-300-rgb: #{to-rgb($dark-300)};
+  --bs-dark-350:  rgb(var(--bs-dark-350-rgb));
+  --bs-dark-350-rgb: #{to-rgb($dark-350)};
+  --bs-dark-400:  rgb(var(--bs-dark-400-rgb));
+  --bs-dark-400-rgb: #{to-rgb($dark-400)};
+  --bs-dark-450:  rgb(var(--bs-dark-450-rgb));
+  --bs-dark-450-rgb: #{to-rgb($dark-450)};
+  --bs-dark-500:  rgb(var(--bs-dark-500-rgb));
+  --bs-dark-500-rgb: #{to-rgb($dark-500)};
+  --bs-dark-550:  rgb(var(--bs-dark-550-rgb));
+  --bs-dark-550-rgb: #{to-rgb($dark-550)};
+  --bs-dark-600:  rgb(var(--bs-dark-600-rgb));
+  --bs-dark-600-rgb: #{to-rgb($dark-600)};
+  --bs-dark-650:  rgb(var(--bs-dark-650-rgb));
+  --bs-dark-650-rgb: #{to-rgb($dark-650)};
+  --bs-dark-700:  rgb(var(--bs-dark-700-rgb));
+  --bs-dark-700-rgb: #{to-rgb($dark-700)};
+  --bs-dark-750:  rgb(var(--bs-dark-750-rgb));
+  --bs-dark-750-rgb: #{to-rgb($dark-750)};
+  --bs-dark-800:  rgb(var(--bs-dark-800-rgb));
+  --bs-dark-800-rgb: #{to-rgb($dark-800)};
+  --bs-dark-850:  rgb(var(--bs-dark-850-rgb));
+  --bs-dark-850-rgb: #{to-rgb($dark-850)};
+  --bs-dark-900:  rgb(var(--bs-dark-900-rgb));
+  --bs-dark-900-rgb: #{to-rgb($dark-900)};
+  --bs-dark-950:  rgb(var(--bs-dark-950-rgb));
+  --bs-dark-950-rgb: #{to-rgb($dark-950)};
+
+  --bs-dark-text-emphasis:     var(--bs-dark-800);
+  --bs-dark-text-emphasis-rgb: var(--bs-dark-800-rgb);
+  --bs-dark-bg-subtle:         var(--bs-dark-100);
+  --bs-dark-bg-subtle-rgb:     var(--bs-dark-100-rgb);
+  --bs-dark-border-subtle:     var(--bs-dark-200);
+  --bs-dark-border-subtle-rgb: var(--bs-dark-200-rgb);
+
+  //endregion -------------------- Dark --------------------
+}
+
+.rounded-circle {
+  border-radius: var(--bs-border-circle-radius);
+}
+
+.btn.bi:has(span)::before,
+.btn .bi, { margin-right: var(--bs-spacer-sm) }
+
+//region -------------------- Button colors --------------------
+
+@each $color, $value in $theme-colors {
+
+  $text-color: null;
+  $hover-background-color-amount: null;
+  $hover-border-color-amount: null;
+  $active-background-color-amount: null;
+  $active-border-color-amount: null;
+  @if ($color == 'light') {
+    $text-color: var(--bs-black);
+    $hover-background-color-amount:  1000 * to-decimal($btn-hover-bg-shade-amount);
+    $hover-border-color-amount:      1000 * to-decimal($btn-hover-border-shade-amount);
+    $active-background-color-amount: 1000 * to-decimal($btn-active-bg-shade-amount);
+    $active-border-color-amount:     1000 * to-decimal($btn-active-border-shade-amount);
+  } @else if ($color == 'dark') {
+    $text-color: var(--bs-white);
+    $hover-background-color-amount:  -1000 * to-decimal($btn-hover-bg-tint-amount);
+    $hover-border-color-amount:      -1000 * to-decimal($btn-hover-border-tint-amount);
+    $active-background-color-amount: -1000 * to-decimal($btn-active-bg-tint-amount);
+    $active-border-color-amount:     -1000 * to-decimal($btn-active-border-tint-amount);
+  } @else if ($color == 'warning' or $color == 'info') {
+    $text-color: var(--bs-black);
+    $hover-background-color-amount:  -1000 * to-decimal($btn-hover-bg-tint-amount);
+    $hover-border-color-amount:      -1000 * to-decimal($btn-hover-border-tint-amount);
+    $active-background-color-amount: -1000 * to-decimal($btn-active-bg-tint-amount);
+    $active-border-color-amount:     -1000 * to-decimal($btn-active-border-tint-amount);
+  } @else {
+    $text-color: var(--bs-white);
+    $hover-background-color-amount:  1000 * to-decimal($btn-hover-bg-shade-amount);
+    $hover-border-color-amount:      1000 * to-decimal($btn-hover-border-shade-amount);
+    $active-background-color-amount: 1000 * to-decimal($btn-active-bg-shade-amount);
+    $active-border-color-amount:     1000 * to-decimal($btn-active-border-shade-amount);
+  }
+
+  .btn-#{$color} {
+    --bs-btn-color:                 #{$text-color};
+    --bs-btn-bg:                    var(--bs-#{$color}-500);
+    --bs-btn-border-color:          var(--bs-#{$color}-500);
+    --bs-btn-hover-color:           #{$text-color};
+    --bs-btn-hover-bg:              var(--bs-#{$color}-#{500 + $hover-background-color-amount});
+    --bs-btn-hover-border-color:    var(--bs-#{$color}-#{500 + $hover-border-color-amount});
+    --bs-btn-focus-shadow-rgb:      var(--bs-#{$color}-500-rgb);
+    --bs-btn-active-color:          #{$text-color};
+    --bs-btn-active-bg:             var(--bs-#{$color}-#{500 + $active-background-color-amount});
+    --bs-btn-active-border-color:   var(--bs-#{$color}-#{500 + $active-border-color-amount});
+    --bs-btn-disabled-color:        #{$text-color};
+    --bs-btn-disabled-bg:           var(--bs-#{$color}-500);
+    --bs-btn-disabled-border-color: var(--bs-#{$color}-500);
+  }
+
+  .btn-outline-#{$color} {
+    --bs-btn-color:                 var(--bs-#{$color}-500);
+    --bs-btn-border-color:          var(--bs-#{$color}-500);
+    --bs-btn-hover-color:           #{$text-color};
+    --bs-btn-hover-bg:              var(--bs-#{$color}-500);
+    --bs-btn-hover-border-color:    var(--bs-#{$color}-500);
+    --bs-btn-active-color:          #{$text-color};
+    --bs-btn-active-bg:             var(--bs-#{$color}-500);
+    --bs-btn-active-border-color:   var(--bs-#{$color}-500);
+    --bs-btn-disabled-color:        var(--bs-#{$color}-500);
+    --bs-btn-disabled-border-color: var(--bs-#{$color}-500);
+  }
+
+}
+
+.btn-check + .btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+
+//endregion -------------------- Button colors --------------------
+//region -------------------- Dual colors --------------------
+
+//@each $color1, $value1 in $colors {
+//  @each $color2, $value2 in $colors {
+//    @if($color1 != $color2) {
+//      .text-#{$color1}-#{$color2} {
+//        --bs-text-opacity: 1;
+//
+//        background-image: linear-gradient(
+//          135deg,
+//          rgba(var(--bs-#{$color1}-rgb), var(--bs-text-opacity)),
+//          rgba(var(--bs-#{$color2}-rgb), var(--bs-text-opacity))
+//        );
+//      }
+//    }
+//  }
+//}
+
+@each $color1, $value1 in $colors {
+  @each $color2, $value2 in $colors {
+    @if($color1 != $color2) {
+      .bg-#{$color1}-#{$color2} {
+        --bs-bg-opacity: 1;
+
+        background-image: linear-gradient(
+          135deg,
+          rgba(var(--bs-#{$color1}-rgb), var(--bs-bg-opacity)) 50%,
+          rgba(var(--bs-#{$color2}-rgb), var(--bs-bg-opacity))
+        );
+      }
+    }
+  }
+}
+
+
+//endregion -------------------- Dual colors --------------------
+//region -------------------- Text space --------------------
+
+.space-normal {
+  white-space: normal;
+}
+
+.space-nowrap {
+  white-space: nowrap;
+}
+
+.space-pre {
+  white-space: pre;
+}
+
+.space-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.space-pre-line {
+  white-space: pre-line;
+}
+
+.space-break-spaces {
+  white-space: break-spaces;
+}
+
+//endregion -------------------- Text space --------------------
+////region -------------------- Accordion --------------------
+//
+//.accordion {
+//  --bs-accordion-color: var(--bs-dark);
+//  --bs-accordion-bg: var(--bs-white);
+//  --bs-accordion-btn-color: var(--bs-dark);
+//  --bs-accordion-btn-focus-border-color: var(--bs-primary-250);
+//  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+//  --bs-accordion-active-color: var(--bs-primary-550);
+//  --bs-accordion-active-bg: var(--bs-primary-050);
+//}
+//
+////endregion -------------------- Accordion --------------------
+//region -------------------- Additional column --------------------
+
+//@each $breakpoint in map-keys($grid-breakpoints) {
+//  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+//  @include media-breakpoint-up($breakpoint, $grid-breakpoints) { .col#{$infix}-theme {
+//    flex: 0 0 auto;
+//    width: calc(100% / 5);
+//  } }
+//}
+
+//endregion -------------------- Additional column --------------------

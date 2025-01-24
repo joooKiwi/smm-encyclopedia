@@ -17,11 +17,6 @@ import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {join}                         from 'util/utilitiesMethods'
 import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-
 /**
  * An {@link Entities} class made to hold a {@link UnusedImage_Regular}
  *
@@ -38,7 +33,7 @@ export abstract class UnusedEntityImages
      * A subclass of an {@link UnusedEntityImages} to hold
      * a non-existant {@link UnusedImage_Regular} ({@link EmptyUnusedImage_Regular})
      */
-    private static readonly Null = class NullEditorEntityImages extends UnusedEntityImages {
+    private static readonly Null = class Null_UnusedEntityImages extends UnusedEntityImages {
 
         readonly #regularImage
 
@@ -53,7 +48,7 @@ export abstract class UnusedEntityImages
 
     /** An abstract subclass of an {@link UnusedEntityImages} to hold a specific {@link PossibleEnglishName} */
     private static readonly Existant = (() => {
-        abstract class ExistantUnusedEntityImages<const NAME extends PossibleEnglishName, > extends UnusedEntityImages {
+        abstract class Existant_UnusedEntityImages<const NAME extends PossibleEnglishName, > extends UnusedEntityImages {
 
             readonly #englishName
 
@@ -66,16 +61,17 @@ export abstract class UnusedEntityImages
 
         }
 
-        return ExistantUnusedEntityImages
+        return Existant_UnusedEntityImages
     })()
 
+    //region -------------------- Sub class (1 game style) --------------------
 
     /**
      * A subclass of an {@link UnusedEntityImages} to hold
-     * an existant {@link UnusedImage_Regular} in only 1 {@link GameStyles}
+     * an existant {@link UnusedImage_Regular} in only only {@link SMB}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly ExistantIn1GameStyle = class ExistantIn1GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
+    private static readonly ExistantInSmb = class ExistantInSmb_UnusedEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
         extends UnusedEntityImages.Existant<NAME> {
@@ -83,7 +79,7 @@ export abstract class UnusedEntityImages
         #image?: UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>>
         readonly #fileNames
 
-        public constructor(englishName: NAME, private readonly gameStyle: GameStyles, private readonly folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
             super(englishName,)
             this.#fileNames = fileNames
         }
@@ -93,103 +89,163 @@ export abstract class UnusedEntityImages
             if (value != null)
                 return value
 
-            const gameStyle = this.gameStyle
             const folderName = this.folderName
-            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [gameStyle, unusedImage(this, folderName, it,),],),)
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [GameStyles.SMB, unusedImage(this, folderName, it,),],),)
         }
 
     }
 
     /**
      * A subclass of an {@link UnusedEntityImages} to hold
-     * an existant {@link UnusedImage_Regular} in only 2 {@link GameStyles}
+     * an existant {@link UnusedImage_Regular} in only only {@link SMB3}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly ExistantIn2GameStyle = class ExistantIn2GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME_1 extends string,
-        const FILE_NAME_1 extends string,
-        const FOLDER_NAME_2 extends string,
-        const FILE_NAME_2 extends string, >
+    private static readonly ExistantInSmb3 = class ExistantInSmb3_UnusedEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
         extends UnusedEntityImages.Existant<NAME> {
 
-        #image?: UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>>
+        #image?: UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>>
+        readonly #fileNames
 
-        public constructor(englishName: NAME,
-                           private readonly gameStyle1: GameStyles, private readonly folderName1: FOLDER_NAME_1, private readonly fileNames1: Array<FILE_NAME_1>,
-                           private readonly gameStyle2: GameStyles, private readonly folderName2: FOLDER_NAME_2, private readonly fileNames2: Array<FILE_NAME_2>,) {
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
             super(englishName,)
+            this.#fileNames = fileNames
         }
 
-        public override get image(): UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>> {
+        public override get image(): UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const gameStyle1 = this.gameStyle1
-            const gameStyle2 = this.gameStyle2
-            const folderName1 = this.folderName1
-            const folderName2 = this.folderName2
+            const folderName = this.folderName
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [GameStyles.SMB3, unusedImage(this, folderName, it,),],),)
+        }
 
-            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(join<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>,]>(
-                new ArrayAsCollection(this.fileNames1,).map(it => [gameStyle1, unusedImage(this, folderName1, it,),],),
-                new ArrayAsCollection(this.fileNames2,).map(it => [gameStyle2, unusedImage(this, folderName2, it,),],),
+    }
+
+    /**
+     * A subclass of an {@link UnusedEntityImages} to hold
+     * an existant {@link UnusedImage_Regular} in only only {@link SMW}
+     * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
+     */
+    private static readonly ExistantInSmw = class ExistantInSmw_UnusedEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends UnusedEntityImages.Existant<NAME> {
+
+        #image?: UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>>
+        readonly #fileNames
+
+        public constructor(englishName: NAME, private readonly folderName: FOLDER_NAME, ...fileNames: Array<FILE_NAME>) {
+            super(englishName,)
+            this.#fileNames = fileNames
+        }
+
+        public override get image(): UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const folderName = this.folderName
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [GameStyles.SMW, unusedImage(this, folderName, it,),],),)
+        }
+
+    }
+
+    //endregion -------------------- Sub class (1 game style) --------------------
+    //region -------------------- Sub class (2 game style) --------------------
+
+    /**
+     * A subclass of an {@link UnusedEntityImages} to hold
+     * an existant {@link UnusedImage_Regular} in only {@link SMB} and {@link NSMBU}
+     * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
+     */
+    private static readonly ExistantInSmbNsmbu = class ExistantInSmbNsmbu_UnusedEntityImages<const NAME extends PossibleEnglishName,
+        const SMB_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const NSMBU_FOLDER_NAME extends string,
+        const NSMBU_FILE_NAME extends string, >
+        extends UnusedEntityImages.Existant<NAME> {
+
+        #image?: UnusedImage_Regular<| UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<NSMBU_FOLDER_NAME, NSMBU_FILE_NAME, NAME>>
+
+        public constructor(englishName: NAME,
+                           private readonly smbFolderName: SMB_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>,
+                           private readonly nsmbuFolderName: NSMBU_FOLDER_NAME, private readonly nsmbuFileNames: Array<NSMBU_FILE_NAME>,) {
+            super(englishName,)
+        }
+
+        public override get image(): UnusedImage_Regular<| UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<NSMBU_FOLDER_NAME, NSMBU_FILE_NAME, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const folderName_smb = this.smbFolderName
+            const folderName_nsmbu = this.nsmbuFolderName
+
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(join<readonly [GameStyles, | UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<NSMBU_FOLDER_NAME, NSMBU_FILE_NAME, NAME>,]>(
+                new ArrayAsCollection(this.smbFileNames,).map(it => [GameStyles.SMB, unusedImage(this, folderName_smb, it,),],),
+                new ArrayAsCollection(this.nsmbuFileNames,).map(it => [GameStyles.NSMBU, unusedImage(this, folderName_nsmbu, it,),],),
             ),),)
         }
 
     }
 
+    //endregion -------------------- Sub class (2 game style) --------------------
+    //region -------------------- Sub class (3 game style) --------------------
+
     /**
      * A subclass of an {@link UnusedEntityImages} to hold
-     * an existant {@link UnusedImage_Regular} in only 3 {@link GameStyles}
+     * an existant {@link UnusedImage_Regular} in only {@link SMB}, {@link SMB3} and {@link SMW}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly ExistantIn3GameStyle = class ExistantIn3GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
-        const FOLDER_NAME_1 extends string,
-        const FILE_NAME_1 extends string,
-        const FOLDER_NAME_2 extends string,
-        const FILE_NAME_2 extends string,
-        const FOLDER_NAME_3 extends string,
-        const FILE_NAME_3 extends string, >
+    private static readonly ExistantInSmbSmb3Smw = class ExistantInSmbSmb3Smw_UnusedEntityImages<const NAME extends PossibleEnglishName,
+        const SMB_FOLDER_NAME extends string,
+        const SMB_FILE_NAME extends string,
+        const SMB3_FOLDER_NAME extends string,
+        const SMB3_FILE_NAME extends string,
+        const SMW_FOLDER_NAME extends string,
+        const SMW_FILE_NAME extends string, >
         extends UnusedEntityImages.Existant<NAME> {
 
-        #image?: UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>>
+        #image?: UnusedImage_Regular<| UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<SMB3_FOLDER_NAME, SMB3_FILE_NAME, NAME> | UnusedImageFile<SMW_FOLDER_NAME, SMW_FILE_NAME, NAME>>
 
         public constructor(englishName: NAME,
-                           private readonly gameStyle1: GameStyles, private readonly folderName1: FOLDER_NAME_1, private readonly fileNames1: Array<FILE_NAME_1>,
-                           private readonly gameStyle2: GameStyles, private readonly folderName2: FOLDER_NAME_2, private readonly fileNames2: Array<FILE_NAME_2>,
-                           private readonly gameStyle3: GameStyles, private readonly folderName3: FOLDER_NAME_3, private readonly fileNames3: Array<FILE_NAME_3>,) {
+                           private readonly smbFolderName: SMB_FOLDER_NAME, private readonly smbFileNames: Array<SMB_FILE_NAME>,
+                           private readonly smb3FolderName: SMB3_FOLDER_NAME, private readonly smb3FileNames: Array<SMB3_FILE_NAME>,
+                           private readonly smwFolderName: SMW_FOLDER_NAME, private readonly smwFileNames: Array<SMW_FILE_NAME>,) {
             super(englishName,)
         }
 
-        public override get image(): UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>> {
+        public override get image(): UnusedImage_Regular<| UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<SMB3_FOLDER_NAME, SMB3_FILE_NAME, NAME> | UnusedImageFile<SMW_FOLDER_NAME, SMW_FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
 
-            const fileNames1 = this.fileNames1
-            const fileNames2 = this.fileNames2
-            const fileNames3 = this.fileNames3
-            const images = new Array<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>,]>(
-                fileNames1.length + fileNames2.length + fileNames3.length,)
+            const fileNames_smb = this.smbFileNames
+            const fileNames_smb3 = this.smb3FileNames
+            const fileNames_smw = this.smwFileNames
+            const images = new Array<readonly [GameStyles, | UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<SMB3_FOLDER_NAME, SMB3_FILE_NAME, NAME> | UnusedImageFile<SMW_FOLDER_NAME, SMW_FILE_NAME, NAME>,]>(
+                fileNames_smb.length + fileNames_smb3.length + fileNames_smw.length,)
 
             let index = -1
 
-            const gameStyle1 = this.gameStyle1
-            const folderName1 = this.folderName1
-            forEachByArray(fileNames1, it => images[++index] = [gameStyle1, unusedImage(this, folderName1, it,),],)
+            const folderName_smb = this.smbFolderName
+            forEachByArray(fileNames_smb, it => images[++index] = [GameStyles.SMB, unusedImage(this, folderName_smb, it,),],)
 
-            const gameStyle2 = this.gameStyle2
-            const folderName2 = this.folderName2
-            forEachByArray(fileNames2, it => images[++index] = [gameStyle2, unusedImage(this, folderName2, it,),],)
+            const folderName_smb3 = this.smb3FolderName
+            forEachByArray(fileNames_smb3, it => images[++index] = [GameStyles.SMB3, unusedImage(this, folderName_smb3, it,),],)
 
-            const folderName3 = this.folderName3
-            const gameStyle3 = this.gameStyle3
-            forEachByArray(fileNames3, it => images[++index] = [gameStyle3, unusedImage(this, folderName3, it,),],)
+            const folderName_smw = this.smwFolderName
+            forEachByArray(fileNames_smw, it => images[++index] = [GameStyles.SMW, unusedImage(this, folderName_smw, it,),],)
 
             return new UnusedImage_RegularContainer(new ArrayAsCollection(images,),)
         }
 
     }
+
+    //endregion -------------------- Sub class (3 game style) --------------------
 
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
@@ -260,7 +316,7 @@ export abstract class UnusedEntityImages
     public static readonly TEN_COIN =                                      new UnusedEntityImages.Null()
     public static readonly THIRTY_COIN =                                   new UnusedEntityImages.Null()
     public static readonly FIFTY_COIN =                                    new UnusedEntityImages.Null()
-    public static readonly PINK_COIN =                                     new UnusedEntityImages.ExistantIn3GameStyle('Pink Coin', SMB, 'M1 Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], SMB3, 'M3 Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], SMW, 'MW Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
+    public static readonly PINK_COIN =                                     new UnusedEntityImages.ExistantInSmbSmb3Smw('Pink Coin', 'M1 Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], 'M3 Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], 'MW Object - CoinRotatePink', ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
 
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectile --------------------
@@ -413,7 +469,7 @@ export abstract class UnusedEntityImages
     public static readonly LAKITU_CLOUD =                                  new UnusedEntityImages.Null()
 
     public static readonly BOO =                                           new UnusedEntityImages.Null()
-    public static readonly STRETCH =                                       new UnusedEntityImages.ExistantIn3GameStyle('Stretch', SMB, 'M1 Enemy - Necchi', ['wait.0', 'out.4',], SMB3, 'M3 Enemy - Necchi', ['wait.0', 'out.4',], SMW, 'MW Enemy - Necchi', ['wait.0', 'out.4',],)
+    public static readonly STRETCH =                                       new UnusedEntityImages.ExistantInSmbSmb3Smw('Stretch', 'M1 Enemy - Necchi', ['wait.0', 'out.4',], 'M3 Enemy - Necchi', ['wait.0', 'out.4',], 'MW Enemy - Necchi', ['wait.0', 'out.4',],)
     public static readonly BOO_BUDDIES =                                   new UnusedEntityImages.Null()
     public static readonly PEEPA =                                         new UnusedEntityImages.Null()
 
@@ -476,7 +532,7 @@ export abstract class UnusedEntityImages
 
     public static readonly SKEWER =                                        new UnusedEntityImages.Null()
 
-    public static readonly KOOPA_CLOWN_CAR =                               new UnusedEntityImages.ExistantIn1GameStyle('Koopa Clown Car', SMW, 'MW Enemy - KoopaClown', 'weep.4', 'weep.5', 'weep.6', 'weep.7',)
+    public static readonly KOOPA_CLOWN_CAR =                               new UnusedEntityImages.ExistantInSmw('Koopa Clown Car', 'MW Enemy - KoopaClown', 'weep.4', 'weep.5', 'weep.6', 'weep.7',)
     public static readonly JUNIOR_CLOWN_CAR =                              new UnusedEntityImages.Null()
     public static readonly FIRE_KOOPA_CLOWN_CAR =                          new UnusedEntityImages.Null()
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new UnusedEntityImages.Null()
@@ -507,34 +563,34 @@ export abstract class UnusedEntityImages
     public static readonly POM_POM_CLONE =                                 new UnusedEntityImages.Null()
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new UnusedEntityImages.Null()
 
-    public static readonly LARRY =                                         new UnusedEntityImages.ExistantIn1GameStyle('Larry', SMB, 'M1 Enemy - Larry', 'wait.3',)
+    public static readonly LARRY =                                         new UnusedEntityImages.ExistantInSmb('Larry', 'M1 Enemy - Larry', 'wait.3',)
     public static readonly LARRY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly LARRY_PROJECTILE =                              new UnusedEntityImages.Null()
 
-    public static readonly IGGY =                                          new UnusedEntityImages.ExistantIn1GameStyle('Iggy', SMB, 'M1 Enemy - Iggy', 'wait.3',)
+    public static readonly IGGY =                                          new UnusedEntityImages.ExistantInSmb('Iggy', 'M1 Enemy - Iggy', 'wait.3',)
     public static readonly IGGY_WAND =                                     new UnusedEntityImages.Null()
     public static readonly IGGY_PROJECTILE =                               new UnusedEntityImages.Null()
 
-    public static readonly WENDY =                                         new UnusedEntityImages.ExistantIn1GameStyle('Wendy', SMB, 'M1 Enemy - Wendy', 'wait.3',)
+    public static readonly WENDY =                                         new UnusedEntityImages.ExistantInSmb('Wendy', 'M1 Enemy - Wendy', 'wait.3',)
     public static readonly WENDY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new UnusedEntityImages.Null()
-    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantIn3GameStyle('(Wendy’s projectile)', SMB, 'M1 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMB3, 'M3 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], SMW, 'MW Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
+    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantInSmbSmb3Smw('(Wendy’s projectile)', 'M1 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], 'M3 Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], 'MW Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
 
-    public static readonly LEMMY =                                         new UnusedEntityImages.ExistantIn1GameStyle('Lemmy', SMB, 'M1 Enemy - Lemmy', 'wait.3',)
+    public static readonly LEMMY =                                         new UnusedEntityImages.ExistantInSmb('Lemmy', 'M1 Enemy - Lemmy', 'wait.3',)
     public static readonly LEMMY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new UnusedEntityImages.Null()
-    public static readonly LEMMY_PROJECTILE =                              new UnusedEntityImages.ExistantIn1GameStyle('(Lemmy’s projectile)', SMB, 'M1 Enemy - Lemmy', 'effect.1', 'effect.2',)
+    public static readonly LEMMY_PROJECTILE =                              new UnusedEntityImages.ExistantInSmb('(Lemmy’s projectile)', 'M1 Enemy - Lemmy', 'effect.1', 'effect.2',)
 
-    public static readonly ROY =                                           new UnusedEntityImages.ExistantIn1GameStyle('Roy', SMB, 'M1 Enemy - Roy', 'wait.3',)
+    public static readonly ROY =                                           new UnusedEntityImages.ExistantInSmb('Roy', 'M1 Enemy - Roy', 'wait.3',)
     public static readonly ROY_WAND =                                      new UnusedEntityImages.Null()
     public static readonly ROY_PROJECTILE =                                new UnusedEntityImages.Null()
 
-    public static readonly MORTON =                                        new UnusedEntityImages.ExistantIn1GameStyle('Morton', SMB, 'M1 Enemy - Morton', 'wait.3',)
+    public static readonly MORTON =                                        new UnusedEntityImages.ExistantInSmb('Morton', 'M1 Enemy - Morton', 'wait.3',)
     public static readonly MORTON_WAND =                                   new UnusedEntityImages.Null()
     public static readonly MORTON_THROWN_PROJECTILE =                      new UnusedEntityImages.Null()
-    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantIn1GameStyle('(Morton’s Ground projectile)', SMB3, 'M3 Enemy - Morton', 'fire.2',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantInSmb3('(Morton’s Ground projectile)', 'M3 Enemy - Morton', 'fire.2',)
 
-    public static readonly LUDWIG =                                        new UnusedEntityImages.ExistantIn1GameStyle('Ludwig', SMB, 'M1 Enemy - Ludwig', 'wait.3',)
+    public static readonly LUDWIG =                                        new UnusedEntityImages.ExistantInSmb('Ludwig', 'M1 Enemy - Ludwig', 'wait.3',)
     public static readonly LUDWIG_WAND =                                   new UnusedEntityImages.Null()
     public static readonly LUDWIG_PROJECTILE =                             new UnusedEntityImages.Null()
 
@@ -552,14 +608,14 @@ export abstract class UnusedEntityImages
     public static readonly TRACK =                                         new UnusedEntityImages.Null()
     public static readonly TRACK_BLOCK =                                   new UnusedEntityImages.Null()
 
-    public static readonly VINE =                                          new UnusedEntityImages.ExistantIn3GameStyle('Vine', SMB, 'M1 Object Block - Tuta', ['wait.1',], SMB3,  'M3 Object Block - Tuta', ['wait.2',], SMW, 'MW Object Block - Tuta', ['wait.2',],)
+    public static readonly VINE =                                          new UnusedEntityImages.ExistantInSmbSmb3Smw('Vine', 'M1 Object Block - Tuta', ['wait.1',], 'M3 Object Block - Tuta', ['wait.2',], 'MW Object Block - Tuta', ['wait.2',],)
     public static readonly TREE =                                          new UnusedEntityImages.Null()
 
     public static readonly STARTING_ARROW =                                new UnusedEntityImages.Null()
     public static readonly ARROW_SIGN =                                    new UnusedEntityImages.Null()
 
     public static readonly CHECKPOINT_FLAG =                               new UnusedEntityImages.Null()
-    public static readonly GOAL_POLE =                                     new UnusedEntityImages.ExistantIn1GameStyle('Goal Pole', SMB, 'M1 Object - Goalpole', 'goalpole.1',)
+    public static readonly GOAL_POLE =                                     new UnusedEntityImages.ExistantInSmb('Goal Pole', 'M1 Object - Goalpole', 'goalpole.1',)
     public static readonly GOAL_WITH_CARDS =                               new UnusedEntityImages.Null()
     public static readonly GIANT_GATE =                                    new UnusedEntityImages.Null()
 
@@ -600,7 +656,7 @@ export abstract class UnusedEntityImages
     public static readonly POW_BLOCK =                                     new UnusedEntityImages.Null()
     public static readonly RED_POW_BLOCK =                                 new UnusedEntityImages.Null()
 
-    public static readonly P_SWITCH =                                      new UnusedEntityImages.ExistantIn2GameStyle('P Switch', SMB, 'M1 Object - PSwitch', ['wait.0', 'wait.1', 'wait.2',], NSMBU, 'WU Object - PSwitch', ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],)
+    public static readonly P_SWITCH =                                      new UnusedEntityImages.ExistantInSmbNsmbu('P Switch', 'M1 Object - PSwitch', ['wait.0', 'wait.1', 'wait.2',], 'WU Object - PSwitch', ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],)
 
     public static readonly STONE =                                         new UnusedEntityImages.Null()
 

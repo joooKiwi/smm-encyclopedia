@@ -4,6 +4,7 @@ import './EditorVoiceApp.scss'
 
 import type {NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
+import {Fragment}                  from 'react'
 
 import type {EditorVoiceProperties} from 'app/AppProperties.types'
 import type {ReactProperties}       from 'util/react/ReactProperties'
@@ -121,7 +122,7 @@ interface EditorVoice_SubContentProperties
 /** @reactComponent */
 function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
     return <List partial-id="editorVoice" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
+        <div key={`Editor voice list ${it.name}`} className="d-flex justify-content-between">
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
             <EditorVoiceSound editorVoice={it}/>
         </div>
@@ -131,10 +132,10 @@ function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
 /** @reactComponent */
 function EditorVoiceCardList({items,}: EditorVoice_SubContentProperties,) {
     return <CardList partial-id="editorVoice" items={items} default={1} small={3} medium={4} large={6}>{it =>
-        <>
+        <Fragment key={`Editor voice card list (${it.name})`}>
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="left"/>
             <EditorVoiceSound editorVoice={it}/>
-        </>
+        </Fragment>
     }</CardList>
 }
 

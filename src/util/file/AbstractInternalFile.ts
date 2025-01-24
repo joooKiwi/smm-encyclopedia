@@ -1,7 +1,6 @@
 import type {PossibleFileExtension}                    from 'util/file/File'
 import type {FullFileName, FullFilePath, InternalFile} from 'util/file/InternalFile'
 
-import {BASE_PATH}    from 'variables'
 import {AbstractFile} from 'util/file/AbstractFile'
 
 /** The base class of every {@link InternalFile} implementations */
@@ -15,7 +14,7 @@ export abstract class AbstractInternalFile<const PATH extends string = string,
     #fullName?: FullFileName<PATH, NAME, EXTENSION>
 
     public get fullPath(): FullFilePath<PATH> {
-        return this.#fullPath ??= `/${BASE_PATH}/${this.path}`
+        return this.#fullPath ??= `/${this.path}`
     }
 
     public get fullName(): FullFileName<PATH, NAME, EXTENSION> {

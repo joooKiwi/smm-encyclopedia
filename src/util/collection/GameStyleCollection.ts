@@ -1,27 +1,18 @@
 import type {CollectionHolder, PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
 import type {Nullable}                                                                                   from '@joookiwi/type'
-import {GenericCollectionHolder}                                                                         from '@joookiwi/collection'
+import {LazyGenericCollectionHolder}                                                                     from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
-import {GameStyles} from 'core/gameStyle/GameStyles'
-import {Empty}      from 'util/emptyVariables'
+import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {GameStylesPossibility} from 'core/gameStyle/GameStyles.possibility'
+import {Empty}                 from 'util/emptyVariables'
 
-import ALL =             GameStyles.ALL
-import ALL_GAME_STYLES = GameStyles.ALL
-import ALL_SMM1 =        GameStyles.ALL_SMM1
-import EMPTY_ARRAY =     Empty.EMPTY_ARRAY
-import NSMBU =           GameStyles.NSMBU
-import SMB =             GameStyles.SMB
-import SMB_AND_SMB3 =    GameStyles.SMB_AND_SMB3
-import SMB3 =            GameStyles.SMB3
-import SMW =             GameStyles.SMW
-import SMW_AND_NSMBU =   GameStyles.SMW_AND_NSMBU
-import SM3DW =           GameStyles.SM3DW
+import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class GameStyleCollection<const T extends GameStyles = GameStyles,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>>
-    extends GenericCollectionHolder<T, REFERENCE> {
+    extends LazyGenericCollectionHolder<T, REFERENCE> {
 
     //region -------------------- Fields --------------------
 
@@ -43,6 +34,8 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     #hasOnlySmbOrSmb3?: boolean
     #hasOnlySmwOrNsmbu?: boolean
 
+    static #ALL?: GameStyleCollection
+
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
@@ -52,7 +45,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStyles(): boolean {
-        return this.#hasAllGameStyles ??= this._hasAllByCollectionHolder(ALL as unknown as CollectionHolder<T>,)
+        return this.#hasAllGameStyles ??= this._hasAllByCollectionHolder(GameStylesPossibility.ALL as unknown as CollectionHolder<T>,)
     }
 
     /**
@@ -61,43 +54,43 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStylesInSmm1(): boolean {
-        return this.#hasAllGameStylesInSmm1 ??= this._hasAllByCollectionHolder(ALL_SMM1 as unknown as CollectionHolder<T>,)
+        return this.#hasAllGameStylesInSmm1 ??= this._hasAllByCollectionHolder(GameStylesPossibility.ALL_SMM1 as unknown as CollectionHolder<T>,)
     }
 
 
     /** The collection has the {@link SMB} type in its values */
     public get hasSmb(): boolean {
-        return this.#hasSmb ??= this.has(SMB as T,)
+        return this.#hasSmb ??= this.has(GameStyles.SMB as T,)
     }
 
     /** The collection has the {@link SMB3} type in its values */
     public get hasSmb3(): boolean {
-        return this.#hasSmb3 ??= this.has(SMB3 as T,)
+        return this.#hasSmb3 ??= this.has(GameStyles.SMB3 as T,)
     }
 
     /** The collection has the {@link SMW} type in its values */
     public get hasSmw(): boolean {
-        return this.#hasSmw ??= this.has(SMW as T,)
+        return this.#hasSmw ??= this.has(GameStyles.SMW as T,)
     }
 
     /** The collection has the {@link NSMBU} type in its values */
     public get hasNsmbu(): boolean {
-        return this.#hasNsmbu ??= this.has(NSMBU as T,)
+        return this.#hasNsmbu ??= this.has(GameStyles.NSMBU as T,)
     }
 
     /** The collection has the {@link SM3DW} type in its values */
     public get hasSm3dw(): boolean {
-        return this.#hasSm3dw ??= this.has(SM3DW as T,)
+        return this.#hasSm3dw ??= this.has(GameStyles.SM3DW as T,)
     }
 
     /** The collection has the {@link SMB} or {@link SMB3} type in its values */
     public get hasSmbOrSmb3(): boolean {
-        return this.#hasSmbOrSmb3 ??= this._hasAllByCollectionHolder(SMB_AND_SMB3 as unknown as CollectionHolder<T>,)
+        return this.#hasSmbOrSmb3 ??= this._hasAllByCollectionHolder(GameStylesPossibility.SMB_AND_SMB3 as unknown as CollectionHolder<T>,)
     }
 
     /** The collection has the {@link SMW} or {@link NSMBU} type in its values */
     public get hasSmwOrNsmbu(): boolean {
-        return this.#hasSmwOrNsmbu ??= this._hasAllByCollectionHolder(SMW_AND_NSMBU as unknown as CollectionHolder<T>,)
+        return this.#hasSmwOrNsmbu ??= this._hasAllByCollectionHolder(GameStylesPossibility.SMW_AND_NSMBU as unknown as CollectionHolder<T>,)
     }
 
 
@@ -166,6 +159,9 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
         return this.#hasOnlySmwOrNsmbu = this.hasSmw && this.hasNsmbu
     }
 
+
+    public static get ALL(): GameStyleCollection { return GameStyleCollection.#ALL ??= new GameStyleCollection(() => GameStylesPossibility.ALL,) }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
@@ -185,7 +181,6 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
 export namespace GameStyleCollection {
 
     export const EMPTY = new GameStyleCollection(EMPTY_ARRAY,)
-    export const ALL =   new GameStyleCollection(ALL_GAME_STYLES,)
 
 
     /**
@@ -194,14 +189,14 @@ export namespace GameStyleCollection {
      *
      * @param values The values to create a new {@link GameStyleCollection}
      */
-    export function of<const T extends GameStyles,>(values: Nullable<CollectionHolder<T>>,): GameStyleCollection<T>
+    export function of<const T extends GameStyles, >(values: Nullable<CollectionHolder<T>>,): GameStyleCollection<T>
     export function of(values: Nullable<CollectionHolder<GameStyles>>,): GameStyleCollection {
         if (values == null)
             return EMPTY
         if (values.isEmpty)
             return EMPTY
-        if (values.hasAll(ALL,))
-            return ALL
+        if (values.hasAll(GameStyleCollection.ALL,))
+            return GameStyleCollection.ALL
         return new GameStyleCollection(values,)
     }
 
