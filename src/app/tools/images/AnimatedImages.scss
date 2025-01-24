@@ -1,5 +1,6 @@
+@use "sass:list";
+@use "sass:string";
 @use "sass:math";
-@import '../../../mixin';
 
 $last-possible-amount-of-frames: 10;
 
@@ -8,10 +9,10 @@ $last-possible-amount-of-frames: 10;
 @function list-to-string($list, $glue: ', ',) {
   $result: '';
 
-  @for $i from 1 through length($list) {
-    $element: nth($list, $i);
+  @for $i from 1 through list.length($list) {
+    $element: list.nth($list, $i);
 
-    $result: '#{$result}#{$element}#{if($i != length($list),$glue,'')}';
+    $result: '#{$result}#{$element}#{if($i != list.length($list),$glue,'')}';
   }
 
   @return $result;
@@ -20,17 +21,17 @@ $last-possible-amount-of-frames: 10;
 @mixin list-of-variable-of-background-image($size,) {
   $every-images: [];
   @for $i from 1 to ($size + 1) {
-    $every-images: append($every-images, 'var(--image-#{$i})',);
+    $every-images: list.append($every-images, 'var(--image-#{$i})',);
   }
-  background-image: unquote(list-to-string($every-images));
+  background-image: string.unquote(list-to-string($every-images));
 }
 
 @mixin list-of-background-size($size, $index,) {
   $returned-string: [];
   @for $i from 1 to ($size + 1) {
-    $returned-string: append($returned-string, if($index == $i, auto, 0,),);
+    $returned-string: list.append($returned-string, if($index == $i, auto, 0,),);
   }
-  background-size: unquote(list-to-string($returned-string));
+  background-size: string.unquote(list-to-string($returned-string));
 }
 
 //endregion -------------------- Methods & Mixins --------------------

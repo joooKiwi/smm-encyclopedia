@@ -1,20 +1,20 @@
 #music-app-container {
   img { object-fit: contain }
 
-  .musics-container { img, :is(> div > img), > img, {
+  .musics-container { img, > :is(div > img), > img, {
     height: 2cm
   } }
-  .musics-container :where(.musics-container) { img, :is(> div > img), > img, {
+  .musics-container :where(.musics-container) { img, > :is(div > img), > img, {
     height: 1.5cm
   } }
-  .musics-container :where(.musics-container) :where(.musics-container) { img, :is(> div > img), > img, {
+  .musics-container :where(.musics-container) :where(.musics-container) { img, > :is(div > img), > img, {
     height: 1cm
   } }
 
-  //.musics-container.medium-images { img, :is(> div > img), > img, {
+  //.musics-container.medium-images { img, > :is(div > img), > img, {
   //  height: 1.5cm
   //} }
-  .musics-container.small-images { img, :is(> div > img), > img, {
+  .musics-container.small-images { img, > :is(div > img), > img, {
     height: 1cm
   } }
 
