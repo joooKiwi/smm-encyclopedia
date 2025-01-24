@@ -6,7 +6,7 @@ import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Entities}            from 'core/entity/Entities'
 
-import {isInProduction}                 from 'variables'
+import {isInDevelopment}                from 'variables'
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import Image                            from 'app/tools/images/Image'
 import ImageAs3dModel                   from 'app/tools/images/ImageAs3dModel'
@@ -60,7 +60,7 @@ export abstract class EntityAppOption
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(SMB,)
             if (images == null) {
-                if (!isInProduction)
+                if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SMB images", image,)
                 return null
             }
@@ -84,7 +84,7 @@ export abstract class EntityAppOption
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(SMB3,)
             if (images == null) {
-                if (!isInProduction)
+                if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SMB3 images", image,)
                 return null
             }
@@ -108,7 +108,7 @@ export abstract class EntityAppOption
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(SMW,)
             if (images == null) {
-                if (!isInProduction)
+                if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SMW images", image,)
                 return null
             }
@@ -132,7 +132,7 @@ export abstract class EntityAppOption
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
             const images = image.get(NSMBU,)
             if (images == null) {
-                if (!isInProduction)
+                if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the NSMBU images", image,)
                 return null
             }
@@ -156,7 +156,7 @@ export abstract class EntityAppOption
         public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,) {
             const images = image.get(SM3DW,)
             if (images == null) {
-                if (!isInProduction)
+                if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SM3DW images", image,)
                 return null
             }

@@ -7,7 +7,7 @@ import type {PredefinedMessage}   from 'core/predefinedMessage/PredefinedMessage
 import type {PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}             from 'variables'
+import {isInDevelopment}            from 'variables'
 import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
 import {createNameFromContent}      from 'lang/name/createNameFromContent'
 import {LanguageContent}            from 'core/_template/LanguageContent'
@@ -40,7 +40,7 @@ export class PredefinedMessageLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "predefined message" has been loaded --------------------\n',
                 references,

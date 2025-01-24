@@ -9,7 +9,7 @@ import type {PossibleEnglishName, PossibleMakerCentralName} from 'core/courseTag
 import type {PossibleFirstAppearanceInMarioMaker}           from 'core/courseTag/loader.types'
 import type {Loader}                                        from 'util/loader/Loader'
 
-import {isInProduction}        from 'variables'
+import {isInDevelopment}       from 'variables'
 import {CourseTagContainer}    from 'core/courseTag/CourseTag.container'
 import {Versions}              from 'core/version/Versions'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
@@ -47,7 +47,7 @@ export class CourseTagLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "course tag" has been loaded --------------------\n',
                 references,

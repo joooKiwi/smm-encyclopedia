@@ -8,7 +8,7 @@ import type {PossibleEnglishName} from 'core/entityCategory/EntityCategories.typ
 import type {EntityCategory}      from 'core/entityCategory/EntityCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
+import {isInDevelopment}         from 'variables'
 import {EntityCategoryContainer} from 'core/entityCategory/EntityCategory.container'
 import {createNameFromContent}   from 'lang/name/createNameFromContent'
 
@@ -45,7 +45,7 @@ export class EntityCategoryLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "entity category" has been loaded --------------------\n',
                 references,

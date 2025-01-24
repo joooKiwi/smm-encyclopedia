@@ -16,6 +16,9 @@ export const BASE_PATH = 'smm-encyclopedia'
  */
 export type BasePath = typeof BASE_PATH
 
+/** Define if the application is in development */
+export const isInDevelopment = import.meta.env.DEV
+
 /** Define if the application is in production */
 export const isInProduction = import.meta.env.PROD
 

@@ -8,7 +8,7 @@ import type {PossibleEnglishName} from 'core/soundEffectCategory/SoundEffectCate
 import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}               from 'variables'
+import {isInDevelopment}              from 'variables'
 import {SoundEffectCategoryContainer} from 'core/soundEffectCategory/SoundEffectCategory.container'
 import {createNameFromContent}        from 'lang/name/createNameFromContent'
 
@@ -40,7 +40,7 @@ export class SoundEffectCategoryLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "sound effect category" has been loaded --------------------\n',
                 references,

@@ -10,7 +10,7 @@ import type {PossibleAcronym, PossibleEnglishName}                              
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 import type {Loader}                                                             from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
+import {isInDevelopment}    from 'variables'
 import {GameStyleContainer} from 'core/gameStyle/GameStyle.container'
 import {GameReferences}     from 'core/gameReference/GameReferences'
 import {Import}             from 'util/DynamicImporter'
@@ -53,7 +53,7 @@ export class GameStyleLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "game style" has been loaded --------------------\n',
                 references,

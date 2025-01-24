@@ -8,7 +8,7 @@ import type {PossibleEnglishName} from 'core/miiCostumeCategory/MiiCostumeCatego
 import type {MiiCostumeCategory}  from 'core/miiCostumeCategory/MiiCostumeCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}              from 'variables'
+import {isInDevelopment}             from 'variables'
 import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
 import {createNameFromContent}       from 'lang/name/createNameFromContent'
 
@@ -40,7 +40,7 @@ export class MiiCostumeCategoryLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "Mii costume category" has been loaded --------------------\n',
                 references,

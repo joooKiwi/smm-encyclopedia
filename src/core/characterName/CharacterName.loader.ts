@@ -10,7 +10,7 @@ import type {UniqueNameContent}         from 'core/_template/UniqueNameContent'
 import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 
-import {isInProduction}         from 'variables'
+import {isInDevelopment}        from 'variables'
 import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
 import {createNameFromContent}  from 'lang/name/createNameFromContent'
 
@@ -39,7 +39,7 @@ export class CharacterNameLoader
         forEachByArray(file as Array<Content>, content =>
             references.set(content.uniqueName, createReference(content,),),)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "character name" has been loaded --------------------\n',
                 references,

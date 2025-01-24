@@ -2,9 +2,9 @@ import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleAppOptionValue} from 'app/options/global/GlobalAppOption.types'
-import type {ReactState}        from 'util/react/ReactState'
+import type {ReactState}                              from 'util/react/ReactState'
 
-import {isInProduction}    from 'variables'
+import {isInDevelopment}   from 'variables'
 import {ImageAnimations}   from 'app/options/global/ImageAnimations'
 import {Images}            from 'app/options/global/Images'
 import {GlobalThemeOption} from 'app/options/global/GlobalThemeOption'
@@ -88,7 +88,7 @@ export class GlobalAppOption<T extends PossibleAppOptionValue = PossibleAppOptio
     //region -------------------- Getter methods --------------------
 
     /**@deprecated The method should no longer be used*/public get get(): T {
-        if (!isInProduction)
+        if (isInDevelopment)
             console.warn(`The get method in "${this.constructor.name}" is deprecated.`)
         return this.#defaultValue
     }
@@ -97,7 +97,7 @@ export class GlobalAppOption<T extends PossibleAppOptionValue = PossibleAppOptio
     /**@deprecated The method should no longer be used*/public set(value: T,): this
     /**@deprecated The method should no longer be used*/public set(value: T, nextState: ReactState,): this
     public set(): this {
-        if (!isInProduction)
+        if (isInDevelopment)
             console.warn(`The set value in "${this.constructor.name}" is deprecated, a new method will be under its way!`)
         return this
     }

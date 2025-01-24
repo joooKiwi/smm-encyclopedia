@@ -13,7 +13,7 @@ import type {PossibleEnglishName}                                               
 import type {PossibleEnglishName_CourseTheme_SMM1}                                           from 'core/theme/Themes.types'
 import type {Loader}                                                                         from 'util/loader/Loader'
 
-import {isInProduction}                                          from 'variables'
+import {isInDevelopment}                                         from 'variables'
 import {GameStyles}                                              from 'core/gameStyle/GameStyles'
 import {MysteryMushrooms}                                        from 'core/mysteryMushroom/MysteryMushrooms'
 import {OfficialCourseContainer}                                 from 'core/officialCourse/OfficialCourse.container'
@@ -56,7 +56,7 @@ export class OfficialCourseLoader
         forEachByArray(file as Array<Content>, content =>
                 references.set(content.english, createReference(content,),),)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "official course" has been loaded --------------------\n',
                 references,

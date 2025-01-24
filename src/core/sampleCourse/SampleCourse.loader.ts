@@ -11,7 +11,7 @@ import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, 
 import type {PossibleEnglishName}                                                                    from 'core/sampleCourse/SampleCourses.types'
 import type {Loader}                                                                                 from 'util/loader/Loader'
 
-import {isInProduction}        from 'variables'
+import {isInDevelopment}       from 'variables'
 import {GameStyles}            from 'core/gameStyle/GameStyles'
 import {SampleCourseContainer} from 'core/sampleCourse/SampleCourse.container'
 import {Themes}                from 'core/theme/Themes'
@@ -50,7 +50,7 @@ export class SampleCourseLoader
         forEachByArray(file as Array<Content>, content =>
             references.set(`Level ${content.worldNumber}`, createReference(content,),),)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "sample course" has been loaded --------------------\n',
                 references,

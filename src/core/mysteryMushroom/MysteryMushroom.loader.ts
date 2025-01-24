@@ -12,7 +12,7 @@ import type {PossibleUniqueEnglishName}                                         
 import type {Loader}                                                                                                                                                                                                                                                                                from 'util/loader/Loader'
 import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, GameInStarMode, MysteryMushroomGames, PossibleAmountOfSoundEffectOnJump, PossibleTranslationKeyOnDeath, PossibleTranslationKeyOnGoalPole, SoundEffectOnMovement, SpecialMusicInStarMode, TypeOfSoundOnDeath, TypeOfSoundOnGoalPole} from 'core/mysteryMushroom/MysteryMushroom.types'
 
-import {isInProduction}           from 'variables'
+import {isInDevelopment}          from 'variables'
 import {GameReferences}           from 'core/gameReference/GameReferences'
 import {MysteryMushroomContainer} from 'core/mysteryMushroom/MysteryMushroom.container'
 import {createNameFromContent}    from 'lang/name/createNameFromContent'
@@ -49,7 +49,7 @@ export class MysteryMushroomLoader
         forEachByArray(file as Array<Content>, content =>
             references.set(content.uniqueName, createReference(content,),),)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "mystery mushroom" has been loaded --------------------\n',
                 references,

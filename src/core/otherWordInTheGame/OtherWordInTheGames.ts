@@ -7,7 +7,7 @@ import type {OtherWordInTheGame}                                                
 import type {ClassWithEnglishName}                                                      from 'core/ClassWithEnglishName'
 import type {CompanionEnumByNameSingleton}                                              from 'util/enumerable/Singleton.types'
 
-import {isInProduction}           from 'variables'
+import {isInDevelopment}          from 'variables'
 import {OtherWordInTheGameLoader} from 'core/otherWordInTheGame/OtherWordInTheGame.loader'
 import {EveryLanguages}           from 'lang/EveryLanguages'
 import {StringContainer}          from 'util/StringContainer'
@@ -43,26 +43,26 @@ export class OtherWordInTheGames<const SINGULAR extends PossibleEnglishName_Sing
 
 
         public override get singularNameOnReferenceOrNull(): this['singularNameOnReference'] {
-            if (!isInProduction)
+            if (isInDevelopment)
                 console.warn(`Calling the ${this.name}.singularNameOnReferenceOrNull should be replaced with ${this.name}.singularNameOnReference.`)
             return this.singularNameOnReference
         }
 
         public override get singularLowerCaseNameOnReferenceOrNull(): this['singularLowerCaseNameOnReference'] {
-            if (!isInProduction)
+            if (isInDevelopment)
                 console.warn(`Calling the ${this.name}.singularLowerCaseOnReferenceOrNull should be replaced with ${this.name}.singularLowerCaseOnReference.`)
             return this.singularLowerCaseNameOnReference
         }
 
 
         public override get pluralNameOnReferenceOrNull(): this['pluralNameOnReference'] {
-            if (!isInProduction)
+            if (isInDevelopment)
                 console.warn(`Calling the ${this.name}.singularNameOnReferenceOrNull should be replaced with ${this.name}.singularNameOnReference.`)
             return this.pluralNameOnReference
         }
 
         public override get pluralLowerCaseNameOnReferenceOrNull(): NullOr<string> {
-            if (!isInProduction)
+            if (isInDevelopment)
                 console.warn(`Calling the ${this.name}.pluralLowerCaseOnReferenceOrNull should be replaced with ${this.name}.pluralLowerCaseOnReference.`)
             return this.pluralLowerCaseNameOnReference
         }

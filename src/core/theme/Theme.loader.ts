@@ -13,7 +13,7 @@ import type {PossibleEffectInNightTheme} from 'core/theme/loader.types'
 import type {Name}                       from 'lang/name/Name'
 import type {Loader}                     from 'util/loader/Loader'
 
-import {isInProduction}               from 'variables'
+import {isInDevelopment}              from 'variables'
 import {Entities}                     from 'core/entity/Entities'
 import {CourseAndWorldThemeContainer} from 'core/theme/CourseAndWorldTheme.container'
 import {CourseOnlyThemeContainer}     from 'core/theme/CourseOnlyTheme.container'
@@ -60,7 +60,7 @@ export class ThemeLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "theme" has been loaded --------------------\n',
                 references,

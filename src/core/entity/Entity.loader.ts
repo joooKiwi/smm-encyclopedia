@@ -23,7 +23,7 @@ import type {PossibleName as PossibleMarioMakerVersion}                         
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'util/loader/Loader'
 import type {Name}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/name/Name'
 
-import {isInProduction}        from 'variables'
+import {isInDevelopment}       from 'variables'
 import {EntityContainer}       from 'core/entity/Entity.container'
 import {Entities}              from 'core/entity/Entities'
 import {ReferenceLinks}        from 'core/entity/ReferenceLinks'
@@ -98,7 +98,7 @@ export class EntityLoader
             references.set(englishName, createReference(content, referenceLinks, entityCategoryMap,),)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "entity" has been loaded --------------------\n',
                 references,

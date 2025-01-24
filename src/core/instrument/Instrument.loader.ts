@@ -12,7 +12,7 @@ import type {Instrument}                                        from 'core/instr
 import type {PossibleEnglishName}                               from 'core/instrument/Instruments.types'
 import type {Loader}                                            from 'util/loader/Loader'
 
-import {isInProduction}        from 'variables'
+import {isInDevelopment}       from 'variables'
 import {EntityLoader}          from 'core/entity/Entity.loader'
 import {InstrumentContainer}   from 'core/instrument/Instrument.container'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
@@ -50,7 +50,7 @@ export class InstrumentLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "instrument" has been loaded --------------------\n',
                 references,
