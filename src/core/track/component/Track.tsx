@@ -13,7 +13,7 @@ interface TrackProperties
 export default function Track({value,}: TrackProperties,) {
     const file = value.file
     const titleName = value.titleName
-    if (file == null || titleName == null)
+    if (file == null)
         return <NonPresentMusicAudio/> //FIXME: Remove once the file are all present
     return <StandaloneSound file={file} title={titleName}/>
 }
