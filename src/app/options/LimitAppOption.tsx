@@ -1,10 +1,11 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOr}                 from '@joookiwi/type'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}     from 'app/options/LimitAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {Limit}               from 'core/limit/Limit'
-import type {Limits}              from 'core/limit/Limits'
+import type {Names, Ordinals}   from 'app/options/LimitAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {Limit}             from 'core/limit/Limit'
+import type {Limits}            from 'core/limit/Limits'
 
 import {CommonOptions}                              from 'app/options/CommonOptions'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
@@ -26,7 +27,7 @@ export abstract class LimitAppOption
 
     public static readonly ACRONYM = new class LimitAppOption_Acronym extends LimitAppOption {
 
-        public override renderContent({acronym, alternativeAcronym,}: Limits,) {
+        public override renderContent({acronym, alternativeAcronym,}: Limits,): NullOr<ReactJSXElement> {
             if (alternativeAcronym == null) {
                 if (acronym == null)
                     return null
@@ -40,14 +41,14 @@ export abstract class LimitAppOption
             </div>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {key: 'acronym', element: contentTranslation('Acronym(s)',),}
         }
 
     }('acronym',)
     public static readonly NAME = new class LimitAppOption_Name extends LimitAppOption {
 
-        public override renderContent({reference, isEditorLimit,}: Limits,) {
+        public override renderContent({reference, isEditorLimit,}: Limits,): ReactJSXElement {
             const alternativeContainer = reference.alternativeContainer
             if (alternativeContainer instanceof EmptyAlternativeLimit)
                 return this.#createNameComponent(reference, isEditorLimit,)
@@ -59,7 +60,7 @@ export abstract class LimitAppOption
             </div>
         }
 
-        #createNameComponent(reference: Limit, isEditorLimit: boolean,): ReactElement {
+        #createNameComponent(reference: Limit, isEditorLimit: boolean,): ReactJSXElement {
             if (isEditorLimit)
                 return <div className="nameWithImage-container d-flex position-relative">
                     <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image badge bg-transparent position-absolute top-0 start-0"/>
@@ -69,25 +70,25 @@ export abstract class LimitAppOption
         }
 
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly DESCRIPTION = new class LimitAppOption_Description extends LimitAppOption {
 
-        public override renderContent({reference: {description,}, descriptionForTranslation,}: Limits,) {
+        public override renderContent({reference: {description,}, descriptionForTranslation,}: Limits,): ReactJSXElement {
             return <TextComponent content={gameContentTranslation(`limit.description.${description}`, descriptionForTranslation,)}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {key: 'description', element: contentTranslation('Description',),}
         }
 
     }('description',)
     public static readonly AMOUNT_IN_ALL_GAMES = new class LimitAppOption_Amount extends LimitAppOption {
 
-        public override renderContent(enumeration: Limits,) {
+        public override renderContent(enumeration: Limits,): ReactJSXElement {
             const reference = enumeration.reference
             const amountInSMM2 = reference.limitAmountInSMM2
             const {englishName,} = enumeration
@@ -104,35 +105,35 @@ export abstract class LimitAppOption
             </LimitWithPossibleTooltipOnNote>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.limitHeader
         }
 
     }('allGame-amount',)
     public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class LimitAppOption_AmountInSMM1AndSMM3DS extends LimitAppOption {
 
-        public override renderContent(enumeration: Limits,) {
+        public override renderContent(enumeration: Limits,): ReactJSXElement {
             const reference = enumeration.reference
             return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM1 & SMM3DS`}>
                 <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
             </LimitWithPossibleTooltipOnNote>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.limitHeader
         }
 
     }('smm1-amount',)
     public static readonly AMOUNT_IN_SMM2 = new class LimitAppOption_AmountInSMM2 extends LimitAppOption {
 
-        public override renderContent(enumeration: Limits,) {
+        public override renderContent(enumeration: Limits,): ReactJSXElement {
             const reference = enumeration.reference
             return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM2`}>
                 <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
             </LimitWithPossibleTooltipOnNote>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.limitHeader
         }
 

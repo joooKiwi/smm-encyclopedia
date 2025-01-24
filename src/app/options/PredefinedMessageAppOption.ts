@@ -2,6 +2,7 @@ import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}    from 'app/options/PredefinedMessageAppOption.types'
+import type {SimpleReactHeader}  from 'app/tools/table/SimpleHeader'
 import type {PredefinedMessages} from 'core/predefinedMessage/PredefinedMessages'
 
 import {CommonOptions} from 'app/options/CommonOptions'
@@ -14,11 +15,11 @@ export abstract class PredefinedMessageAppOption
 
     public static readonly NAME = new class PredefinedMessageAppOption_Name extends PredefinedMessageAppOption {
 
-        public override renderContent(enumeration: PredefinedMessages,) {
+        public override renderContent(enumeration: PredefinedMessages,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 

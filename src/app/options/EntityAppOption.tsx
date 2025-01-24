@@ -1,10 +1,11 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {NullOr}                 from '@joookiwi/type'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
-import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {Entities}            from 'core/entity/Entities'
+import type {Names, Ordinals}   from 'app/options/EntityAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {Entities}          from 'core/entity/Entities'
 
 import {isInDevelopment}                from 'variables'
 import {CommonOptions}                  from 'app/options/CommonOptions'
@@ -57,7 +58,7 @@ export abstract class EntityAppOption
 
     public static readonly IMAGE_IN_SMB = new class EntityAppOption_ImageInSmb extends EntityAppOption {
 
-        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
             const images = image.get(SMB,)
             if (images == null) {
                 if (isInDevelopment)
@@ -74,14 +75,14 @@ export abstract class EntityAppOption
             ,)}</Fragment>
         }
 
-        public override renderHeader() {
-            return {key: `image-smb`, element: <GameStyleImage reference={SMB}/>,} as const satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: `image-smb`, element: <GameStyleImage reference={SMB}/>,}
         }
 
     }('smb-images',)
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_ImageInSmb3 extends EntityAppOption {
 
-        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
             const images = image.get(SMB3,)
             if (images == null) {
                 if (isInDevelopment)
@@ -98,14 +99,14 @@ export abstract class EntityAppOption
             ,)}</Fragment>
         }
 
-        public override renderHeader() {
-            return {key: `image-smb3`, element: <GameStyleImage reference={SMB3}/>,} as const satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: `image-smb3`, element: <GameStyleImage reference={SMB3}/>,}
         }
 
     }('smb3-images',)
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_ImageInSmw extends EntityAppOption {
 
-        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
             const images = image.get(SMW,)
             if (images == null) {
                 if (isInDevelopment)
@@ -122,14 +123,14 @@ export abstract class EntityAppOption
             ,)}</Fragment>
         }
 
-        public override renderHeader() {
-            return {key: `image-smw`, element: <GameStyleImage reference={SMW}/>,} as const satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: `image-smw`, element: <GameStyleImage reference={SMW}/>,}
         }
 
     }('smw-images',)
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_ImageInNsmbu extends EntityAppOption {
 
-        public override renderContent({englishName, englishNameInHtml, image,}: Entities,) {
+        public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
             const images = image.get(NSMBU,)
             if (images == null) {
                 if (isInDevelopment)
@@ -146,14 +147,14 @@ export abstract class EntityAppOption
             ,)}</Fragment>
         }
 
-        public override renderHeader() {
-            return {key: `image-nsmbu`, element: <GameStyleImage reference={NSMBU}/>,} as const satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: `image-nsmbu`, element: <GameStyleImage reference={NSMBU}/>,}
         }
 
     }('nsmbu-images',)
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_ImageInSm3dw extends EntityAppOption {
 
-        public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,) {
+        public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,): NullOr<ReactJSXElement> {
             const images = image.get(SM3DW,)
             if (images == null) {
                 if (isInDevelopment)
@@ -170,15 +171,15 @@ export abstract class EntityAppOption
             ,)}</Fragment>
         }
 
-        public override renderHeader() {
-            return {key: `image-sm3dw`, element: <GameStyleImage reference={SM3DW}/>,} as const satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: `image-sm3dw`, element: <GameStyleImage reference={SM3DW}/>,}
         }
 
     }('sm3dw-images',)
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): ReactJSXElement {
             return <div className="nameAndEditorVoiceSound-container container">
                 <div className="nameAndEditorVoiceSound-nameAndProperties-container">
                     <div className="properties">
@@ -205,65 +206,65 @@ export abstract class EntityAppOption
             </div>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-        public override renderContent({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,): ReactJSXElement {
             return <GameComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.gameHeader
         }
 
     }('game',)
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
-        public override renderContent({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,): ReactJSXElement {
             return <GameStyleComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        public override renderHeader() {
-            return {key: 'gameStyle', element: gameContentTranslation('game style.singular',),} satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: 'gameStyle', element: gameContentTranslation('game style.singular',),}
         }
 
     }('gameStyle',)
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
-        public override renderContent({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,): ReactJSXElement {
             return <CourseThemeComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        public override renderHeader() {
-            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular',),} satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular',),}
         }
 
     }('courseTheme',)
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
-        public override renderContent({reference,}: Entities,) {
+        public override renderContent({reference,}: Entities,): ReactJSXElement {
             return <TimeComponent reference={reference} name={reference} displayAllAsText={false}/>
         }
 
-        public override renderHeader() {
-            return {key: 'time', element: gameContentTranslation('time.singular',),} satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: 'time', element: gameContentTranslation('time.singular',),}
         }
 
     }('time',)
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): NullOr<ReactJSXElement> {
             const name = enumeration.reference.categoryAmericanEnglish
             if (name === EMPTY_STRING)
                 return null
             return <EntityCategoryIcon reference={CategoryCompanion.getValueByName(name,)}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.categoryHeader
         }
 
@@ -271,55 +272,55 @@ export abstract class EntityAppOption
 
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): ReactJSXElement {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.completeEditorLimitInSmm1And3dsHeader
         }
 
     }('smm1And3ds-editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): ReactJSXElement {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.completeEditorLimitHeader
         }
 
     }('editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): ReactJSXElement {
             return <SMM2EditorLimitComponent reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.completeEditorLimitInSmm2Header
         }
 
     }('smm2-editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): ReactJSXElement {
             return <SMM2EditorLimitComponent reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.completeEditorLimitHeader
         }
 
     }('editorLimit',)
     public static readonly PLAY_LIMIT = new class EntityAppOption_PlayLimit extends EntityAppOption {
 
-        public override renderContent(enumeration: Entities,) {
+        public override renderContent(enumeration: Entities,): ReactJSXElement {
             return <PlayLimitComponent reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.completePlayLimitHeader
         }
 

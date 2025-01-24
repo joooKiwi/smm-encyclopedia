@@ -699,7 +699,7 @@ export class OfficialNotifications
 
     //endregion -------------------- Add argument to "key map" --------------------
 
-    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): NonNullReactElement {
+    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): ReactJSXElement {
         const keyMap: TranslationReplaceKeysMap = {}
         if (amount != null)
             keyMap['amount'] = <Fragment key={`${key} - amount`}>{amount}</Fragment>

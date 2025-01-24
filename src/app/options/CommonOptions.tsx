@@ -1,10 +1,10 @@
 import type {Enumerable} from '@joookiwi/enumerable'
 
-import type {SimpleImageHeader, SimpleReactHeader, SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {ClassWithEnglishName}                                      from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                        from 'core/ClassWithReference'
-import type {ClassInAnySuperMarioMakerGame}                             from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {Name}                                                      from 'lang/name/Name'
+import type {SimpleImageHeader, SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                   from 'core/ClassWithReference'
+import type {ClassInAnySuperMarioMakerGame}        from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Name}                                 from 'lang/name/Name'
 
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
@@ -45,8 +45,8 @@ export class CommonOptions {
     #limitHeader?: SimpleReactHeader
     #completePlayLimitHeader?: SimpleReactHeader
     #completeEditorLimitHeader?: SimpleReactHeader
-    #completeEditorLimitInSmm1And3dsHeader?: SingleHeaderContent
-    #completeEditorLimitInSmm2Header?: SingleHeaderContent
+    #completeEditorLimitInSmm1And3dsHeader?: SimpleReactHeader
+    #completeEditorLimitInSmm2Header?: SimpleReactHeader
 
     //endregion -------------------- Fields --------------------
 
@@ -54,7 +54,7 @@ export class CommonOptions {
         return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name',),}
     }
 
-    public getNameContent(enumeration: EnumerationWithReference,): NonNullReactElement {
+    public getNameContent(enumeration: EnumerationWithReference,): ReactJSXElement {
         return <NameComponent id="name" name={enumeration.reference} popoverOrientation="left"/>
     }
 
@@ -104,7 +104,7 @@ export class CommonOptions {
      *
      * @param enumeration The enumerable to retrieve the {@link Games} properties & {@link ClassWithEnglishName english name}.
      */
-    public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): NonNullReactElement {
+    public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): ReactJSXElement {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
@@ -126,7 +126,7 @@ export class CommonOptions {
         return this.#completeEditorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.complete',),}
     }
 
-    public get completeEditorLimitInSmm1And3dsHeader(): SingleHeaderContent {
+    public get completeEditorLimitInSmm1And3dsHeader(): SimpleReactHeader {
         return this.#completeEditorLimitInSmm1And3dsHeader ??= {
             key: 'limit-editor-smm1-and-smm3ds', element: gameContentTranslation('limit.editor.complete in SMM1&3DS', {
                 Name1: SMM1.acronym,
@@ -135,7 +135,7 @@ export class CommonOptions {
         }
     }
 
-    public get completeEditorLimitInSmm2Header(): SingleHeaderContent {
+    public get completeEditorLimitInSmm2Header(): SimpleReactHeader {
         return this.#completeEditorLimitInSmm2Header ??= { key: 'limit-editor-smm2', element: gameContentTranslation('limit.editor.complete in SMM2', { Name: SMM2.acronym, }), }
     }
 

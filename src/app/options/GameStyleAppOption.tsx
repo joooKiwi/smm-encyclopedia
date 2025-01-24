@@ -1,9 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}     from 'app/options/GameStyleAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {GameStyles}          from 'core/gameStyle/GameStyles'
+import type {Names, Ordinals}   from 'app/options/GameStyleAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {GameStyles}        from 'core/gameStyle/GameStyles'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
 import {TableOption}            from 'app/tools/table/TableOption'
@@ -26,33 +26,33 @@ export abstract class GameStyleAppOption
 
     public static readonly ICON =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-        public override renderContent(enumeration: GameStyles,) {
+        public override renderContent(enumeration: GameStyles,): ReactJSXElement {
             return <GameStyleImage reference={enumeration}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-        public override renderContent(enumeration: GameStyles,) {
+        public override renderContent(enumeration: GameStyles,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-        public override renderContent({reference,}: GameStyles,) {
+        public override renderContent({reference,}: GameStyles,): ReactJSXElement {
             return <NightEffectComponent gameStyle={reference}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {
                 key: 'nightDesertWind',
                 element: <div className="night-desert-wind-effect-container">

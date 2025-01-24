@@ -1,9 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}     from 'app/options/SampleCourseAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {SampleCourses}       from 'core/sampleCourse/SampleCourses'
+import type {Names, Ordinals}   from 'app/options/SampleCourseAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {SampleCourses}     from 'core/sampleCourse/SampleCourses'
 
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import {TableOption}                    from 'app/tools/table/TableOption'
@@ -21,13 +21,13 @@ export abstract class SampleCourseAppOption
 
     public static readonly LEVEL_NUMBER = new class SampleCourseAppOption_Number extends SampleCourseAppOption {
 
-        public override renderContent({reference: {worldNumber, firstNumberInFirst10MarioChallenges,}}: SampleCourses,): NonNullReactElement {
+        public override renderContent({reference: {worldNumber, firstNumberInFirst10MarioChallenges,}}: SampleCourses,): ReactJSXElement {
             if (firstNumberInFirst10MarioChallenges == null)
                 return <span className="number-container">{worldNumber}</span>
             return <span className="number-container">{worldNumber}<sub className="opacity-75">({firstNumberInFirst10MarioChallenges})</sub></span>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {
                 key: 'levelNumber', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">{LanguageCompanion.current.textInParentheses(unfinishedText('with 1st-time in 10 Mario Challenges',),)}</sub></span>,
             }
@@ -36,33 +36,33 @@ export abstract class SampleCourseAppOption
     }('levelNumber',)
     public static readonly NAME = new class SampleCourseAppOption_Name extends SampleCourseAppOption {
 
-        public override renderContent(enumeration: SampleCourses,): ReactElement {
+        public override renderContent(enumeration: SampleCourses,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly GAME_STYLE_AND_AREAS = new class SampleCourseAppOption_GameStyleAndAreas extends SampleCourseAppOption {
 
-        public override renderContent({reference,}: SampleCourses,): NonNullReactElement {
+        public override renderContent({reference,}: SampleCourses,): ReactJSXElement {
             return <LevelGameStyleAndTheme gameStyle={reference.gameStyle} mainArea={reference.themeInMainArea} subArea={reference.themeInSubArea} in2Line/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
-            return {key: 'gameStyleAndAreas', element: unfinishedText(gameContentTranslation('game style.singular',) + unfinishedText(' & areas'),),} satisfies SingleHeaderContent
+        public override renderHeader(): SimpleReactHeader {
+            return {key: 'gameStyleAndAreas', element: unfinishedText(gameContentTranslation('game style.singular',) + unfinishedText(' & areas'),),}
         }
 
     }('gameStyleAndAreas')
     public static readonly TIME = new class SampleCourseAppOption_Time extends SampleCourseAppOption {
 
-        public override renderContent({reference,}: SampleCourses,): NonNullReactElement {
+        public override renderContent({reference,}: SampleCourses,): ReactJSXElement {
             return <span>{reference.amountOfTime} <UnfinishedText>seconds</UnfinishedText></span>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {key: 'time', element: gameContentTranslation('time.singular',),}
         }
 
