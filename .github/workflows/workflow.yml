@@ -34,16 +34,16 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Conversion from CSV to Json
-        run: npm run convert-csv-to-json
+        run: npm run convert-csv-to-json --ignore-scripts
 
       - name: Copying the images for the CSS
-        run: npm run copy-images-for-css
+        run: npm run copy-images-for-css --ignore-scripts
 
       - name: Copying the locale on the "/src" folder
-        run: npm run copy-locale-to-src
+        run: npm run copy-locale-to-src --ignore-scripts
 
       - name: Building of the application
-        run: npm run build
+        run: npm run build --ignore-scripts
 
       - name: Deployment of the application
         run: |
