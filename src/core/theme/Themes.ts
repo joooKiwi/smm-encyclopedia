@@ -21,6 +21,7 @@ import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/Companio
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
+/** @recursiveReference <{@link ThemeLoader}> */
 export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEnglishName,
     const NAME_IN_FILE extends PossibleName_InFile = PossibleName_InFile, >
     extends Enum<Ordinals, Names>

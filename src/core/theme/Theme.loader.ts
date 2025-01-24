@@ -30,7 +30,7 @@ import NightEffectCompanion = NightEffects.Companion
 /**
  * @dependsOn<{@link Entities}>
  * @indirectlyDependsOn<{@link EntityLoader}>
- * @dependsOn<{@link Themes}>
+ * @recursiveReference<{@link Themes}>
  * @singleton
  */
 export class ThemeLoader
