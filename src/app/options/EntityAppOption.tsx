@@ -36,9 +36,9 @@ import GameComponent                    from 'core/game/Game.component'
 import {GameStyles}                     from 'core/gameStyle/GameStyles'
 import GameStyleComponent               from 'core/gameStyle/GameStyle.component'
 import GameStyleImage                   from 'core/gameStyle/component/GameStyleImage'
-import PlayLimitComponent               from 'core/limit/PlayLimit.component'
-import SMM1And3DSEditorLimitComponent   from 'core/limit/SMM1And3DSEditorLimit.component'
-import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.component'
+import PlayLimit                        from 'core/limit/component/PlayLimit'
+import Smm1And3dsEditorLimit            from 'core/limit/component/Smm1And3dsEditorLimit'
+import Smm2EditorLimit                  from 'core/limit/component/Smm2EditorLimit'
 import CourseThemeComponent             from 'core/theme/CourseTheme.component'
 import TimeComponent                    from 'core/time/Time.component'
 import {Empty}                          from 'util/emptyVariables'
@@ -273,7 +273,7 @@ export abstract class EntityAppOption
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         public override renderContent(enumeration: Entities,): ReactJSXElement {
-            return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
+            return <Smm1And3dsEditorLimit reference={enumeration}/>
         }
 
         public override renderHeader(): SimpleReactHeader {
@@ -284,7 +284,7 @@ export abstract class EntityAppOption
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         public override renderContent(enumeration: Entities,): ReactJSXElement {
-            return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
+            return <Smm1And3dsEditorLimit reference={enumeration}/>
         }
 
         public override renderHeader(): SimpleReactHeader {
@@ -295,7 +295,7 @@ export abstract class EntityAppOption
     public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         public override renderContent(enumeration: Entities,): ReactJSXElement {
-            return <SMM2EditorLimitComponent reference={enumeration}/>
+            return <Smm2EditorLimit reference={enumeration}/>
         }
 
         public override renderHeader(): SimpleReactHeader {
@@ -306,7 +306,7 @@ export abstract class EntityAppOption
     public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         public override renderContent(enumeration: Entities,): ReactJSXElement {
-            return <SMM2EditorLimitComponent reference={enumeration}/>
+            return <Smm2EditorLimit reference={enumeration}/>
         }
 
         public override renderHeader(): SimpleReactHeader {
@@ -317,7 +317,7 @@ export abstract class EntityAppOption
     public static readonly PLAY_LIMIT = new class EntityAppOption_PlayLimit extends EntityAppOption {
 
         public override renderContent(enumeration: Entities,): ReactJSXElement {
-            return <PlayLimitComponent reference={enumeration}/>
+            return <PlayLimit reference={enumeration}/>
         }
 
         public override renderHeader(): SimpleReactHeader {
