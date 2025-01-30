@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     JUMP_AFTER_LANDING,
     TURN_AROUND_AFTER_BEING_AT_FULL_SPEED,

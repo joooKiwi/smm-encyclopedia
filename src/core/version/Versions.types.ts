@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     SMM_V1_00, SMM_V1_01,
     SMM_V1_10,

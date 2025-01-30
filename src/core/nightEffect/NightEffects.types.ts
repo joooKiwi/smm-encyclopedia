@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     SPECIAL_EFFECT_ON_ENTITIES,
     SCREEN_UPSIDE_DOWN,

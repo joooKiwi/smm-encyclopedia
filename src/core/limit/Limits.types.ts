@@ -2,7 +2,7 @@ import type {EmptyArray, EmptyString} from '@joookiwi/type'
 
 import type {Entity} from 'core/entity/Entity'
 
-enum Enum {
+declare const enum Enum {
 
     GENERAL_ENTITY_LIMIT, POWER_UP_LIMIT,
 

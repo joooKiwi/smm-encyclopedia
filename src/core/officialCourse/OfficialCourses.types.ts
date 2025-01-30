@@ -1,6 +1,6 @@
 import type {EmptyString} from '@joookiwi/type'
 
-enum Enum {
+declare const enum Enum {
     NWC_2017,
     DR_KAWASHIMA_ATHLETIC_TRAINING,
     WALKIN_WITH_UNDODOG,

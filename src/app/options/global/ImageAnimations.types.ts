@@ -1,6 +1,6 @@
 import type {ImageAnimations} from 'app/options/global/ImageAnimations'
 
-enum Enum {
+declare const enum Enum {
 
     SEPARATED,
     YES,

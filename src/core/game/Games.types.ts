@@ -1,6 +1,6 @@
 import type {PossibleAcronym_Game, PossibleEnglishName_Game} from 'core/gameReference/GameReferences.types'
 
-enum Enum {
+declare const enum Enum {
 
     SUPER_MARIO_MAKER_1,
     SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,

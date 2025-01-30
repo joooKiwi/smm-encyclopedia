@@ -4,7 +4,7 @@ import type {CharacterName}                                                     
 import type {Entity}                                                                 from 'core/entity/Entity'
 import type {PossibleEnglishName_EditorVoice, PossibleEnglishName_PlayableCharacter} from 'core/entity/Entities.types'
 
-enum Enum {
+declare const enum Enum {
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 

@@ -1,6 +1,6 @@
 import type {EmptyString} from '@joookiwi/type'
 
-enum Enum {
+declare const enum Enum {
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 

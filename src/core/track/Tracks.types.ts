@@ -1,6 +1,6 @@
 import type {Tracks} from 'core/track/Tracks'
 
-enum Enum {
+declare const enum Enum {
     TITLE_SCREEN, //TODO add other "title" musics
 
     GROUND_SMB_EDITOR_1, GROUND_SMB_EDITOR_2, GROUND_SMB_EDITOR_3, GROUND_SMB_EDITOR_4, GROUND_SMB_EDITOR_5, GROUND_SMB_EDITOR_6, GROUND_SMB_EDITOR_7,

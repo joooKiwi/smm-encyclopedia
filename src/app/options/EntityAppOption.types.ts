@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     IMAGE_IN_SMB,
     IMAGE_IN_SMB3,

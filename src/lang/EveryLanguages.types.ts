@@ -2,7 +2,7 @@ import type {EmptyString} from '@joookiwi/type'
 
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from 'lang/ProjectLanguages.types'
 
-enum Enum {
+declare const enum Enum {
 
     ENGLISH, AMERICAN_ENGLISH, EUROPEAN_ENGLISH,
     FRENCH, CANADIAN_FRENCH, EUROPEAN_FRENCH,

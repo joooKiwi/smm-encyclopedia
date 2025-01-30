@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     ICON,
     ENDLESS_MARIO_ICON,

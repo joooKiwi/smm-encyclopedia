@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
     NAME,
     REFERENCE_SMB,
     REFERENCE_SMB3,

@@ -2,7 +2,7 @@ import type {EmptyString} from '@joookiwi/type'
 
 import type {PossibleEnglishName_PlayableCharacter} from 'core/entity/Entities.types'
 
-enum Enum {
+declare const enum Enum {
 
     MARIO,
     SMALL_MARIO, SUPER_MARIO,

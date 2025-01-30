@@ -4,7 +4,7 @@ import type {Images}            from 'app/options/global/Images'
 import type {Sounds}            from 'app/options/global/Sounds'
 import type {Texts}             from 'app/options/global/Texts'
 
-enum Enum {
+declare const enum Enum {
 
     IMAGES,
     IMAGE_ANIMATIONS,

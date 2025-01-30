@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
     ALL,
     SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,
     SUPER_MARIO_MAKER_2,

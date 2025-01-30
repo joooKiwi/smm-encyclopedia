@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW,
     SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,

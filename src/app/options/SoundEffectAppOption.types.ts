@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     SMM1_AND_SMM3DS_ICON,
     SMM2_ICON,

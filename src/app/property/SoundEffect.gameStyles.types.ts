@@ -1,6 +1,6 @@
 import type {PossibleSimpleValue} from 'core/gameStyle/GameStyles.types'
 
-enum Enum {
+declare const enum Enum {
     ALL_GAME_STYLES,
     SMB,
     SMB3,

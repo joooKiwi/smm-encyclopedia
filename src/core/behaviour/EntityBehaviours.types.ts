@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
 
     RESPAWN_WITH_VINE,
     RESPAWN_AS_QUESTION_MARK_BLOCK,

@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
     LEVEL_NUMBER,
     NAME,
     GAME_STYLE_AND_AREAS,

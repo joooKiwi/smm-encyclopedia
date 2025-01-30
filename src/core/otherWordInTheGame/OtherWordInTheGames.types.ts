@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {
     FLYDAY, HAPPY_SUNDAY, LET_GET_MAKING,
 
     GAME_STYLE, EXTRA_GAME_STYLE,

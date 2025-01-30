@@ -1,6 +1,6 @@
 import type {GroupUrl} from 'core/time/Times.types'
 
-enum Enum {
+declare const enum Enum {
     ALL_TIMES,
     DAY,
     NIGHT,

@@ -11,7 +11,7 @@ import type {GameCollection}                                                    
 import type {GameStyleCollection}                                                                                                                                                           from 'util/collection/GameStyleCollection'
 import type {TimeCollection}                                                                                                                                                                from 'util/collection/TimeCollection'
 
-enum Enum {
+declare const enum Enum {
     HOME,
     ABOUT,
     SOURCES,
