@@ -82,7 +82,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -105,7 +105,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,   SNOW, editorImage(this, fileName, GameStyles.SMB,),],
@@ -128,7 +128,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([[DAY, GameStyles.SMB, GROUND, editorImage(this, this.fileName, GameStyles.SMB,),],],)
         }
 
@@ -143,7 +143,7 @@ export abstract class EditorEntityImages
             super(englishName,)
         }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([[DAY, GameStyles.SMB3, UNDERWATER, editorImage(this, this.fileName, GameStyles.SMB3,),],],)
         }
 
@@ -156,7 +156,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([[DAY, GameStyles.SMW, GROUND, editorImage(this, this.fileName, GameStyles.SMW,),],],)
         }
 
@@ -171,7 +171,7 @@ export abstract class EditorEntityImages
             super(englishName,)
         }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([[DAY, GameStyles.SMW, UNDERWATER, editorImage(this, this.fileName, GameStyles.SMW,),],],)
         }
 
@@ -184,7 +184,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([[DAY, GameStyles.NSMBU, GROUND, editorImage(this, this.fileName, GameStyles.NSMBU,),],],)
         }
 
@@ -197,7 +197,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([[DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName, GameStyles.SM3DW,),],],)
         }
 
@@ -216,7 +216,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,  GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -236,7 +236,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
@@ -259,7 +259,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -280,7 +280,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -301,7 +301,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB, GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -325,7 +325,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -346,7 +346,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -375,7 +375,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName:FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
@@ -403,7 +403,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName: FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY,         GameStyles.SMB,   GROUND,      editorImage(this, fileName, GameStyles.SMB,),],
@@ -431,7 +431,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName: FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const nightSnowFileName = this.nightSnowFileName
             return new ArrayAsCollection([
@@ -461,7 +461,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName: FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const nightSnowFileName = this.nightSnowFileName
             return new ArrayAsCollection([
@@ -494,7 +494,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME, private readonly number: NUMBER,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const number = this.number
             return new ArrayAsCollection([
@@ -547,7 +547,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME, private readonly number: NUMBER,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const number = this.number
             return new ArrayAsCollection([
@@ -593,7 +593,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
             return new ArrayAsCollection([
@@ -622,7 +622,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB, GROUND, editorImage(this, this.fileName1, GameStyles.SMB,),],
                 [DAY, GameStyles.SMB, GROUND, editorImage(this, this.fileName2, GameStyles.SMB,),],
@@ -638,7 +638,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB3, GROUND, editorImage(this, this.fileName1, GameStyles.SMB3,),],
                 [DAY, GameStyles.SMB3, GROUND, editorImage(this, this.fileName2, GameStyles.SMB3,),],
@@ -654,7 +654,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMW, GROUND, editorImage(this, this.fileName1, GameStyles.SMW,),],
                 [DAY, GameStyles.SMW, GROUND, editorImage(this, this.fileName2, GameStyles.SMW,),],
@@ -670,7 +670,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.NSMBU, GROUND, editorImage(this, this.fileName1, GameStyles.NSMBU,),],
                 [DAY, GameStyles.NSMBU, GROUND, editorImage(this, this.fileName2, GameStyles.NSMBU,),],
@@ -686,7 +686,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName1, GameStyles.SM3DW,),],
                 [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName2, GameStyles.SM3DW,),],
@@ -708,7 +708,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
             return new ArrayAsCollection([
@@ -735,7 +735,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName1, GameStyles.SM3DW,),],
                 [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName2, GameStyles.SM3DW,),],
@@ -759,7 +759,7 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, `${fileName}_00`, GameStyles.SMB,),],
@@ -836,7 +836,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Pipe',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND, editorImage(this, 'Dokan_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   GROUND, editorImage(this, 'Dokan_01', GameStyles.SMB,),],
@@ -877,7 +877,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Mushroom Platform',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'GroundMushroom_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'GroundMushroom_01', GameStyles.SMB,),],
@@ -955,7 +955,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Semisolid Platform',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'GroundBox_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'GroundBox_01', GameStyles.SMB,),],
@@ -1118,7 +1118,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Bridge',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'Bridge_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'Bridge_snow_00', GameStyles.SMB,),],
@@ -1160,7 +1160,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Brick Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'RengaBlock_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', GameStyles.SMB,),],
@@ -1188,7 +1188,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Cristal Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SM3DW, UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', GameStyles.SM3DW,),],
                 [DAY, GameStyles.SM3DW, FOREST,      editorImage(this, 'RengaBlock_woods_00', GameStyles.SM3DW,),],
@@ -1206,7 +1206,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Hard Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'HardBlock_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'HardBlock_underground_00', GameStyles.SMB,),],
@@ -1247,7 +1247,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Cloud Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'KumoBlock_00', GameStyles.SMB,),],
                 [DAY,   GameStyles.SMB,   UNDERWATER, editorImage(this, 'KumoBlock_water_00', GameStyles.SMB,),],
@@ -1275,7 +1275,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Spike Ball',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'Gabon_01', GameStyles.SMB,),],
                 [NIGHT, GameStyles.SMB,   GROUND,      editorImage(this, 'Gabon_plain_night_01', GameStyles.SMB,),],
@@ -1315,7 +1315,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Track',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'Rail_00', GameStyles.SMB,),],
                 [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailU_00', GameStyles.SMB,),],
@@ -1387,7 +1387,7 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Tree',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
                 [DAY, GameStyles.SM3DW, GROUND,      editorImage(this, 'BellTree_00', GameStyles.SM3DW,),],
                 [DAY, GameStyles.SM3DW, UNDERGROUND, editorImage(this, 'BellTree_underground_00', GameStyles.SM3DW,),],

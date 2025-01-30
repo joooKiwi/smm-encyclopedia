@@ -448,7 +448,7 @@ function getReferencesFromLink(link: NullableString<EntityLink>, name: PossibleE
     if (link == null)
         return EMPTY_COLLECTION_HOLDER
     if (link === 'this')
-        return new LazyGenericCollectionHolder(() => [Entities.Companion.getValueByName(name,).reference],)
+        return new LazyGenericCollectionHolder(() => [Entities.Companion.getValueByName(name,).reference,],)
     return new ArrayAsCollection(link.split(' / ',),).map(it => Entities.Companion.getValueByName(it,).reference,)
 }
 
