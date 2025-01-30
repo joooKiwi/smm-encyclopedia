@@ -3,10 +3,10 @@ import type {MutableArray, Nullable} from '@joookiwi/type'
 
 import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
 import type {EditorImage}     from 'core/entity/images/editor/EditorImage'
-import type {GameStyles}      from 'core/gameStyle/GameStyles'
 import type {Themes}          from 'core/theme/Themes'
 import type {Times}           from 'core/time/Times'
 
+import {GameStyles}        from 'core/gameStyle/GameStyles'
 import {Empty}             from 'util/emptyVariables'
 import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
@@ -18,6 +18,11 @@ export class EditorImageContainer<const T extends EditorImageFile, >
     //region -------------------- Fields --------------------
 
     #images?: CollectionHolder<T>
+    #smbImages?: CollectionHolder<T>
+    #smb3Images?: CollectionHolder<T>
+    #smwImages?: CollectionHolder<T>
+    #nsmbuImages?: CollectionHolder<T>
+    #sm3dwImages?: CollectionHolder<T>
     readonly #imagesWithAssociation
 
     //endregion -------------------- Fields --------------------
@@ -42,8 +47,11 @@ export class EditorImageContainer<const T extends EditorImageFile, >
     //region -------------------- Methods --------------------
 
     public get(gameStyle?: Nullable<GameStyles>, theme?: Nullable<Themes>, time?: Nullable<Times>,): CollectionHolder<T> {
-        if (gameStyle == null && theme == null && time == null)
-            return EMPTY_COLLECTION_HOLDER
+        if (theme == null && time == null)
+            if (gameStyle == null)
+                return EMPTY_COLLECTION_HOLDER
+            else
+                return this.getFromGameStyle(gameStyle,)
 
         const images = this.imagesWithAssociation
         if (images.isEmpty)
@@ -89,6 +97,18 @@ export class EditorImageContainer<const T extends EditorImageFile, >
     public getFromGameStyle(gameStyle: Nullable<GameStyles>,): CollectionHolder<T> {
         if (gameStyle == null)
             return EMPTY_COLLECTION_HOLDER
+        if (gameStyle === GameStyles.SMB)
+            return this.getSmb()
+        if (gameStyle === GameStyles.SMB3)
+            return this.getSmb3()
+        if (gameStyle === GameStyles.SMW)
+            return this.getSmw()
+        if (gameStyle === GameStyles.NSMBU)
+            return this.getNsmbu()
+        return this.getSm3dw()
+    }
+
+    protected _getFromGameStyle(gameStyle: GameStyles,): CollectionHolder<T> {
         return this.imagesWithAssociation.filter(it => it[1] === gameStyle,).map(it => it[3],)
     }
 
@@ -103,6 +123,13 @@ export class EditorImageContainer<const T extends EditorImageFile, >
             return EMPTY_COLLECTION_HOLDER
         return this.imagesWithAssociation.filter(it => it[0] === time,).map(it => it[3],)
     }
+
+
+    public getSmb(): CollectionHolder<T> { return this.#smbImages ??= this._getFromGameStyle(GameStyles.SMB,) }
+    public getSmb3(): CollectionHolder<T> { return this.#smb3Images ??= this._getFromGameStyle(GameStyles.SMB3,) }
+    public getSmw(): CollectionHolder<T> { return this.#smwImages ??= this._getFromGameStyle(GameStyles.SMW,) }
+    public getNsmbu(): CollectionHolder<T> { return this.#nsmbuImages ??= this._getFromGameStyle(GameStyles.NSMBU,) }
+    public getSm3dw(): CollectionHolder<T> { return this.#sm3dwImages ??= this._getFromGameStyle(GameStyles.SM3DW,) }
 
     //endregion -------------------- Methods --------------------
 

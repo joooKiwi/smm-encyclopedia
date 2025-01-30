@@ -25,4 +25,20 @@ export interface EditorImage<out T extends EditorImageFile = EditorImageFile, > 
     /** Get the images from a possible {@link Times} */
     getFromTime(time: Nullable<Times>,): CollectionHolder<T>
 
+
+    /** An alias method to {@link get}({@link SMB}) */
+    getSmb(): CollectionHolder<T>
+
+    /** An alias method to {@link get}({@link SMB3}) */
+    getSmb3(): CollectionHolder<T>
+
+    /** An alias method to {@link get}({@link SMW}) */
+    getSmw(): CollectionHolder<T>
+
+    /** An alias method to {@link get}({@link NSMBU}) */
+    getNsmbu(): CollectionHolder<T>
+
+    /** An alias method to {@link get}({@link SM3DW}) */
+    getSm3dw(): CollectionHolder<T>
+
 }

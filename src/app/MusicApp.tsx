@@ -9,7 +9,8 @@ import Image                                             from 'app/tools/images/
 import UnfinishedText                                    from 'app/tools/text/UnfinishedText'
 import PageTitle                                         from 'app/util/PageTitle'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
-import {Entities}                                        from 'core/entity/Entities'
+import {ClearConditionEntityImages}                      from 'core/entity/ClearConditionEntityImages'
+import {EditorEntityImages}                              from 'core/entity/EditorEntityImages'
 import {GameStyles}                                      from 'core/gameStyle/GameStyles'
 import GameStyleImage                                    from 'core/gameStyle/component/GameStyleImage'
 import {Themes}                                          from 'core/theme/Themes'
@@ -1014,18 +1015,18 @@ export default function MusicApp() {
 //region -------------------- Get image --------------------
 
 function getLinkImage() {
-    return Entities.MASTER_SWORD.editorImage.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
+    return EditorEntityImages.MASTER_SWORD.image.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
 }
 
 function getSmb2Image() {
-    return Entities.SMB2_MUSHROOM.editorImage.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
+    return EditorEntityImages.SMB2_MUSHROOM.image.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
 }
 
 function getYoshiImage(gameStyle: GameStyles,) {
     if (gameStyle === GameStyles.SMW)
-        return Entities.YOSHI_EGG.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
+        return EditorEntityImages.YOSHI_EGG.image.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
     if (gameStyle === GameStyles.NSMBU)
-        return Entities.YOSHI_EGG.clearConditionImage.get(gameStyle,)
+        return ClearConditionEntityImages.YOSHI_EGG.image.get(gameStyle,)
     throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)
 }
 

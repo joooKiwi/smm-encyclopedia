@@ -59,7 +59,7 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SMB = new class EntityAppOption_ImageInSmb extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
-            const images = image.get(SMB,)
+            const images = image.getSmb()
             if (images == null) {
                 if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SMB images", image,)
@@ -83,7 +83,7 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_ImageInSmb3 extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
-            const images = image.get(SMB3,)
+            const images = image.getSmb3()
             if (images == null) {
                 if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SMB3 images", image,)
@@ -107,7 +107,7 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_ImageInSmw extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
-            const images = image.get(SMW,)
+            const images = image.getSmw()
             if (images == null) {
                 if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SMW images", image,)
@@ -131,7 +131,7 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_ImageInNsmbu extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image,}: Entities,): NullOr<ReactJSXElement> {
-            const images = image.get(NSMBU,)
+            const images = image.getNsmbu()
             if (images == null) {
                 if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the NSMBU images", image,)
@@ -155,7 +155,7 @@ export abstract class EntityAppOption
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_ImageInSm3dw extends EntityAppOption {
 
         public override renderContent({englishName, englishNameInHtml, image, reference,}: Entities,): NullOr<ReactJSXElement> {
-            const images = image.get(SM3DW,)
+            const images = image.getSm3dw()
             if (images == null) {
                 if (isInDevelopment)
                     console.warn("The images were null when attempting to retrieve the SM3DW images", image,)

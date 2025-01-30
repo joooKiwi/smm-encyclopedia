@@ -27,9 +27,12 @@ export class EmptyInGameImage_Regular
     public readonly images = EMPTY_COLLECTION_HOLDER
     public readonly imagesWithAssociation = EMPTY_COLLECTION_HOLDER
 
-    public get(): EmptyCollectionHolder {
-        return EMPTY_COLLECTION_HOLDER
-    }
+    public get(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSmb(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSmb3(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSmw(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getNsmbu(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSm3dw(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
 
     public toString(): EmptyInGameImageName {
         return 'Empty "in game" image'

@@ -22,7 +22,8 @@ import AppTitle                                     from 'app/util/AppTitle'
 import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
 import SubMain                                      from 'app/util/SubMain'
-import {Entities}                                   from 'core/entity/Entities'
+import {EditorEntityImages}                         from 'core/entity/EditorEntityImages'
+import {InGameEntityImages}                         from 'core/entity/InGameEntityImages'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
@@ -44,7 +45,6 @@ import SM3DW =  GameStyles.SM3DW
 
 const {
     SUPER_MUSHROOM, FIRE_FLOWER, SUPERBALL_FLOWER,
-    MYSTERY_MUSHROOM, WEIRD_MUSHROOM,
     MASTER_SWORD, BIG_MUSHROOM, BIG_MUSHROOM_CLASSIC, BIG_MUSHROOM_MODERN, SMB2_MUSHROOM,
     SUPER_LEAF, FROG_SUIT,
     CAPE_FEATHER, POWER_BALLOON,
@@ -52,108 +52,107 @@ const {
     SUPER_BELL, SUPER_HAMMER, BOOMERANG_FLOWER,
     CANNON_BOX, PROPELLER_BOX, GOOMBA_MASK, BULLET_BILL_MASK, RED_POW_BOX,
     SUPER_STAR,
-    SHOE, STILETTO,
-    YOSHI_EGG, RED_YOSHI_EGG,
     KOOPA_CLOWN_CAR, JUNIOR_CLOWN_CAR, FIRE_KOOPA_CLOWN_CAR, FIRE_JUNIOR_CLOWN_CAR,
     KOOPA_TROOPA_CAR,
     BUZZY_SHELL, SPINY_SHELL, DRY_BONES_SHELL,
     LAKITU_CLOUD,
-} = Entities
+} = EditorEntityImages
+const {MYSTERY_MUSHROOM, WEIRD_MUSHROOM, SHOE, STILETTO,} = InGameEntityImages
 const {POWER_UP,} = OtherWordInTheGames
 const {DOWN, RIGHT,} = Arrows
 
 //endregion -------------------- Import from deconstruction --------------------
 //region -------------------- Helper constants --------------------
 
-const superMushroom_smbImages =   SUPER_MUSHROOM.editorImage.get(SMB,)
-const superMushroom_smb3Images =  SUPER_MUSHROOM.editorImage.get(SMB3,)
-const superMushroom_smwImages =   SUPER_MUSHROOM.editorImage.get(SMW,)
-const superMushroom_nsmbuImages = SUPER_MUSHROOM.editorImage.get(NSMBU,)
-const superMushroom_sm3dwImages = SUPER_MUSHROOM.editorImage.get(SM3DW,)
+const superMushroom_smbImages =   SUPER_MUSHROOM.image.getSmb()
+const superMushroom_smb3Images =  SUPER_MUSHROOM.image.getSmb3()
+const superMushroom_smwImages =   SUPER_MUSHROOM.image.getSmw()
+const superMushroom_nsmbuImages = SUPER_MUSHROOM.image.getNsmbu()
+const superMushroom_sm3dwImages = SUPER_MUSHROOM.image.getSm3dw()
 
-const fireFlower_smbImages =   FIRE_FLOWER.editorImage.get(SMB,).take(1,)
-const fireFlower_smb3Images =  FIRE_FLOWER.editorImage.get(SMB3,).take(1,)
-const fireFlower_smwImages =   FIRE_FLOWER.editorImage.get(SMW,).take(1,)
-const fireFlower_nsmbuImages = FIRE_FLOWER.editorImage.get(NSMBU,).take(1,)
-const fireFlower_sm3dwImages = FIRE_FLOWER.editorImage.get(SM3DW,).take(1,)
+const fireFlower_smbImages =   FIRE_FLOWER.image.getSmb().take(1,)
+const fireFlower_smb3Images =  FIRE_FLOWER.image.getSmb3().take(1,)
+const fireFlower_smwImages =   FIRE_FLOWER.image.getSmw().take(1,)
+const fireFlower_nsmbuImages = FIRE_FLOWER.image.getNsmbu().take(1,)
+const fireFlower_sm3dwImages = FIRE_FLOWER.image.getSm3dw().take(1,)
 
-const mysteryMushroom_images =    MYSTERY_MUSHROOM.inGameImage.get(SMB,)
-const weirdMushroom_images =      WEIRD_MUSHROOM.inGameImage.get(SMB,)
-const masterSword_images =        MASTER_SWORD.editorImage.get(SMB,)
-const superballFlower_images =    SUPERBALL_FLOWER.editorImage.images.take(1,)
-const bigMushroom_images =        BIG_MUSHROOM.editorImage.images.take(1,)
-const bigMushroomClassic_images = BIG_MUSHROOM_CLASSIC.editorImage.images.take(1,)
-const bigMushroomModern_images =  BIG_MUSHROOM_MODERN.editorImage.images.take(1,)
-const smb2Mushroom_images =       SMB2_MUSHROOM.editorImage.images.take(1,)
+const mysteryMushroom_images =    MYSTERY_MUSHROOM.image.getSmb()
+const weirdMushroom_images =      WEIRD_MUSHROOM.image.getSmb()
+const masterSword_images =        MASTER_SWORD.image.getSmb()
+const superballFlower_images =    SUPERBALL_FLOWER.image.images.take(1,)
+const bigMushroom_images =        BIG_MUSHROOM.image.images.take(1,)
+const bigMushroomClassic_images = BIG_MUSHROOM_CLASSIC.image.images.take(1,)
+const bigMushroomModern_images =  BIG_MUSHROOM_MODERN.image.images.take(1,)
+const smb2Mushroom_images =       SMB2_MUSHROOM.image.images.take(1,)
 
-const superLeaf_images = SUPER_LEAF.editorImage.images.take(1,)
-const frogSuit_images =  FROG_SUIT.editorImage.images.take(1,)
+const superLeaf_images = SUPER_LEAF.image.images.take(1,)
+const frogSuit_images =  FROG_SUIT.image.images.take(1,)
 
-const capeFeather_images =  CAPE_FEATHER.editorImage.images.take(1,)
-const powerBalloon_images = POWER_BALLOON.editorImage.images.take(1,)
+const capeFeather_images =  CAPE_FEATHER.image.images.take(1,)
+const powerBalloon_images = POWER_BALLOON.image.images.take(1,)
 
-const propellerMushroom_images = PROPELLER_MUSHROOM.editorImage.images.take(1,)
-const superAcorn_images =        SUPER_ACORN.editorImage.images.take(1,)
+const propellerMushroom_images = PROPELLER_MUSHROOM.image.images.take(1,)
+const superAcorn_images =        SUPER_ACORN.image.images.take(1,)
 
-const superBell_images =       SUPER_BELL.editorImage.images.take(1,)
-const superHammer_images =     SUPER_HAMMER.editorImage.images.take(1,)
-const boomerangFlower_images = BOOMERANG_FLOWER.editorImage.images.take(1,)
+const superBell_images =       SUPER_BELL.image.images.take(1,)
+const superHammer_images =     SUPER_HAMMER.image.images.take(1,)
+const boomerangFlower_images = BOOMERANG_FLOWER.image.images.take(1,)
 
-const cannonBox_images =      CANNON_BOX.editorImage.images
-const propellerBox_images =   PROPELLER_BOX.editorImage.images
-const goombaMask_images =     GOOMBA_MASK.editorImage.images
-const bulletBillMask_images = BULLET_BILL_MASK.editorImage.images
-const redPowBox_images =      RED_POW_BOX.editorImage.images
+const cannonBox_images =      CANNON_BOX.image.images
+const propellerBox_images =   PROPELLER_BOX.image.images
+const goombaMask_images =     GOOMBA_MASK.image.images
+const bulletBillMask_images = BULLET_BILL_MASK.image.images
+const redPowBox_images =      RED_POW_BOX.image.images
 
-const superStar_smbImages =   SUPER_STAR.editorImage.get(SMB,)
-const superStar_smb3Images =  SUPER_STAR.editorImage.get(SMB3,)
-const superStar_smwImages =   SUPER_STAR.editorImage.get(SMW,)
-const superStar_nsmbuImages = SUPER_STAR.editorImage.get(NSMBU,)
-const superStar_sm3dwImages = SUPER_STAR.editorImage.get(SM3DW,)
+const superStar_smbImages =   SUPER_STAR.image.getSmb()
+const superStar_smb3Images =  SUPER_STAR.image.getSmb3()
+const superStar_smwImages =   SUPER_STAR.image.getSmw()
+const superStar_nsmbuImages = SUPER_STAR.image.getNsmbu()
+const superStar_sm3dwImages = SUPER_STAR.image.getSm3dw()
 
-const shoe_smbImages =  SHOE.inGameImage.get(SMB,).take(1,)
-const shoe_smb3Images = SHOE.inGameImage.get(SMB3,).take(1,)
+const shoe_smbImages =  SHOE.image.getSmb().take(1,)
+const shoe_smb3Images = SHOE.image.getSmb3().take(1,)
 
-const stiletto_smbImages =  STILETTO.inGameImage.get(SMB,).take(1,)
-const stiletto_smb3Images = STILETTO.inGameImage.get(SMB3,).take(1,)
+const stiletto_smbImages =  STILETTO.image.getSmb().take(1,)
+const stiletto_smb3Images = STILETTO.image.getSmb3().take(1,)
 
-const yoshi_smwImages =   YOSHI_EGG.inGameImage.get(SMW,).take(1,)
-const yoshi_nsmbuImages = YOSHI_EGG.editorImage.get(NSMBU,).take(1,)
+const yoshi_smwImages =   InGameEntityImages.YOSHI_EGG.image.getSmw().take(1,)
+const yoshi_nsmbuImages = EditorEntityImages.YOSHI_EGG.image.getNsmbu().take(1,)
 
-const redYoshi_smwImages =   RED_YOSHI_EGG.inGameImage.get(SMW,).take(1,)
-const redYoshi_nsmbuImages = RED_YOSHI_EGG.editorImage.get(NSMBU,).take(1,)
+const redYoshi_smwImages =   InGameEntityImages.RED_YOSHI_EGG.image.getSmw().take(1,)
+const redYoshi_nsmbuImages = EditorEntityImages.RED_YOSHI_EGG.image.getNsmbu().take(1,)
 
-const buzzyShell_smbImages =   BUZZY_SHELL.editorImage.get(SMB,).take(1,)
-const buzzyShell_smb3Images =  BUZZY_SHELL.editorImage.get(SMB3,).take(1,)
-const buzzyShell_smwImages =   BUZZY_SHELL.editorImage.get(SMW,)
-const buzzyShell_nsmbuImages = BUZZY_SHELL.editorImage.get(NSMBU,)
+const buzzyShell_smbImages =   BUZZY_SHELL.image.getSmb().take(1,)
+const buzzyShell_smb3Images =  BUZZY_SHELL.image.getSmb3().take(1,)
+const buzzyShell_smwImages =   BUZZY_SHELL.image.getSmw()
+const buzzyShell_nsmbuImages = BUZZY_SHELL.image.getNsmbu()
 
-const spinyShell_smbImages =   SPINY_SHELL.editorImage.get(SMB,)
-const spinyShell_smb3Images =  SPINY_SHELL.editorImage.get(SMB3,)
-const spinyShell_smwImages =   SPINY_SHELL.editorImage.get(SMW,)
-const spinyShell_nsmbuImages = SPINY_SHELL.editorImage.get(NSMBU,)
+const spinyShell_smbImages =   SPINY_SHELL.image.getSmb()
+const spinyShell_smb3Images =  SPINY_SHELL.image.getSmb3()
+const spinyShell_smwImages =   SPINY_SHELL.image.getSmw()
+const spinyShell_nsmbuImages = SPINY_SHELL.image.getNsmbu()
 
-const dryBonesShell_smbImages =   DRY_BONES_SHELL.editorImage.get(SMB,)
-const dryBonesShell_smb3Images =  DRY_BONES_SHELL.editorImage.get(SMB3,)
-const dryBonesShell_smwImages =   DRY_BONES_SHELL.editorImage.get(SMW,)
-const dryBonesShell_nsmbuImages = DRY_BONES_SHELL.editorImage.get(NSMBU,)
+const dryBonesShell_smbImages =   DRY_BONES_SHELL.image.getSmb()
+const dryBonesShell_smb3Images =  DRY_BONES_SHELL.image.getSmb3()
+const dryBonesShell_smwImages =   DRY_BONES_SHELL.image.getSmw()
+const dryBonesShell_nsmbuImages = DRY_BONES_SHELL.image.getNsmbu()
 
-const clownCar_smbImages =   KOOPA_CLOWN_CAR.editorImage.get(SMB,)
-const clownCar_smb3Images =  KOOPA_CLOWN_CAR.editorImage.get(SMB3,)
-const clownCar_smwImages =   KOOPA_CLOWN_CAR.editorImage.get(SMW,)
-const clownCar_nsmbuImages = JUNIOR_CLOWN_CAR.editorImage.images
+const clownCar_smbImages =   KOOPA_CLOWN_CAR.image.getSmb()
+const clownCar_smb3Images =  KOOPA_CLOWN_CAR.image.getSmb3()
+const clownCar_smwImages =   KOOPA_CLOWN_CAR.image.getSmw()
+const clownCar_nsmbuImages = JUNIOR_CLOWN_CAR.image.images
 
-const fireClownCar_smbImages =   FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMB,)
-const fireClownCar_smb3Images =  FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMB3,)
-const fireClownCar_smwImages =   FIRE_KOOPA_CLOWN_CAR.editorImage.get(SMW,)
-const fireClownCar_nsmbuImages = FIRE_JUNIOR_CLOWN_CAR.editorImage.images
+const fireClownCar_smbImages =   FIRE_KOOPA_CLOWN_CAR.image.getSmb()
+const fireClownCar_smb3Images =  FIRE_KOOPA_CLOWN_CAR.image.getSmb3()
+const fireClownCar_smwImages =   FIRE_KOOPA_CLOWN_CAR.image.getSmw()
+const fireClownCar_nsmbuImages = FIRE_JUNIOR_CLOWN_CAR.image.images
 
-const car_images = KOOPA_TROOPA_CAR.editorImage.images
+const car_images = KOOPA_TROOPA_CAR.image.images
 
-const lakituCloud_smbImages =  LAKITU_CLOUD.editorImage.get(SMB,)
-const lakituCloud_smb3Images =  LAKITU_CLOUD.editorImage.get(SMB3,)
-const lakituCloud_smwImages =   LAKITU_CLOUD.editorImage.get(SMW,)
-const lakituCloud_nsmbuImages = LAKITU_CLOUD.editorImage.get(NSMBU,)
+const lakituCloud_smbImages =  LAKITU_CLOUD.image.getSmb()
+const lakituCloud_smb3Images =  LAKITU_CLOUD.image.getSmb3()
+const lakituCloud_smwImages =   LAKITU_CLOUD.image.getSmw()
+const lakituCloud_nsmbuImages = LAKITU_CLOUD.image.getNsmbu()
 
 //endregion -------------------- Helper constants --------------------
 
