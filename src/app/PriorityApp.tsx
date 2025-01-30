@@ -2,8 +2,9 @@ import 'app/_GameAsideContent.scss'
 import 'app/_GameStyleAsideContent.scss'
 import './PriorityApp.scss'
 
-import type {PriorityProperties}                                                             from 'app/AppProperties.types'
+import type {AppPropertiesWithType}                                                          from 'app/AppProperties.types'
 import type {GroupOf5PowerUpPriorityArrowProperties, GroupOf6PowerUpPriorityArrowProperties} from 'app/powerUp/group/GroupPriority.types'
+import type {PowerUpPriorityTypes}                                                           from 'app/property/PowerUpPriorityTypes'
 import type {GameCollection}                                                                 from 'util/collection/GameCollection'
 import type {ReactProperties}                                                                from 'util/react/ReactProperties'
 
@@ -156,12 +157,15 @@ const lakituCloud_nsmbuImages = LAKITU_CLOUD.editorImage.get(NSMBU,)
 
 //endregion -------------------- Helper constants --------------------
 
+interface PriorityAppProperties
+    extends AppPropertiesWithType<PowerUpPriorityTypes> {}
+
 /**
  * @TODO Restructure the application to have a re-designed visual approach
  * @TODO Replace the state with a property
  * @reactComponent
  */
-export default function PriorityApp({type, games, gameStyles,}: PriorityProperties,) {
+export default function PriorityApp({type, games, gameStyles,}: PriorityAppProperties,) {
     return <SubMain partial-id="priority" viewDisplay={ViewDisplays.NONE}>
         <AppTitle>{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
             powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
@@ -193,7 +197,7 @@ export default function PriorityApp({type, games, gameStyles,}: PriorityProperti
 //region -------------------- Aside content --------------------
 
 /** @reactComponent */
-function GameAsideContent({type, games, gameStyles,}: Pick<PriorityProperties, | 'type' | 'games' | 'gameStyles'>, ) {
+function GameAsideContent({type, games, gameStyles,}: Pick<PriorityAppProperties, | 'type' | 'games' | 'gameStyles'>, ) {
     const routeName = type.routeName
     const {hasAllGames,} = games
     const allRoute = hasAllGames ? null : `${routeName} (Game=all)` as const
@@ -217,7 +221,7 @@ function GameAsideContent({type, games, gameStyles,}: Pick<PriorityProperties, |
 }
 
 /** @reactComponent */
-function GameStyleAsideContent({type, games, gameStyles,}: Pick<PriorityProperties, | 'type' | 'games' | 'gameStyles'>,) {
+function GameStyleAsideContent({type, games, gameStyles,}: Pick<PriorityAppProperties, | 'type' | 'games' | 'gameStyles'>,) {
     const routeName = type.routeName
     const {hasAllGameStyles,} = gameStyles
     const allRoute = hasAllGameStyles ? null : `${routeName} (GameStyle=all)` as const
@@ -256,7 +260,7 @@ function GameStyleAsideContent({type, games, gameStyles,}: Pick<PriorityProperti
 }
 
 /** @reactComponent */
-// function OtherPathAsideContent({type,}: Pick<PriorityProperties, 'type'>,) {
+// function OtherPathAsideContent({type,}: Pick<PriorityAppProperties, 'type'>,) {
 function OtherPathAsideContent() {
     return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
         <button className="btn" disabled>{contentTranslation('All',)}</button>

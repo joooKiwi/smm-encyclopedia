@@ -4,9 +4,9 @@ import './GameStyleApp.scss'
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {NullOrString}     from '@joookiwi/type'
 
-import type {GameStyleProperties} from 'app/AppProperties.types'
-import type {ReactProperties}     from 'util/react/ReactProperties'
-import type {PossibleRouteName}   from 'route/EveryRoutes.types'
+import type {AppProperties}     from 'app/AppProperties.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {GameStyleGames}         from 'app/property/GameStyleGames'
@@ -52,8 +52,11 @@ const {LIST, CARD,} = ViewDisplays
 
 const options = GameStyleAppOption.CompanionEnum.get.values
 
+interface GameStyleAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
+export default function GameStyleApp({viewDisplay, games,}: GameStyleAppProperties,) {
     const game = games.hasSmm2
         ? GameStyleGames.SUPER_MARIO_MAKER_2
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
@@ -75,7 +78,7 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: Omit<GameStyleProperties, | 'gameStyles' | 'times'>,) {
+function SubContent({viewDisplay, games,}: Omit<GameStyleAppProperties, | 'gameStyles' | 'times'>,) {
     const items = ALL.filter(({reference,},) =>
         games.hasAnyIn(reference,),)
 

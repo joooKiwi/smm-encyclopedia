@@ -39,6 +39,11 @@
       "Not created":                 "Non créé"
     }
   },
+  "alert": {
+    "smm1 only":   "Cette page est seulement applicable au jeu de SMM.",
+    "smm3ds only": "Cette page est seulement applicable au jeu de SMM3DS.",
+    "smm2 only":   "Cette page est seulement applicable au jeu de SMM2."
+  },
   "music": {
     "singular": "Musique",
     "plural":   "Musiques",

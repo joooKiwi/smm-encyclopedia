@@ -7,10 +7,10 @@ import type {MutableArray, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}                   from '@joookiwi/collection'
 import {Fragment}                                from 'react'
 
-import type {InstrumentAppProperties} from 'app/AppProperties.types'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {AppProperties}       from 'app/AppProperties.types'
+import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import type {ReactProperties}     from 'util/react/ReactProperties'
+import type {PossibleRouteName}   from 'route/EveryRoutes.types'
 
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
@@ -60,6 +60,9 @@ const {LIST, CARD,} = ViewDisplays
 //endregion -------------------- Import from deconstruction --------------------
 
 const all = new ArrayAsCollection(ALL,)
+
+interface InstrumentAppProperties
+    extends AppProperties {}
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {

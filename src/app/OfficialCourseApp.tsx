@@ -2,8 +2,8 @@ import './OfficialCourseApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {OfficialCourseProperties} from 'app/AppProperties.types'
-import type {ReactProperties}          from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {OfficialCourseAppOption}        from 'app/options/OfficialCourseAppOption'
 import Table                            from 'app/tools/table/Table'
@@ -39,8 +39,11 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = OfficialCourseAppOption.CompanionEnum.get.values
 
+interface OfficialCourseAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperties,) {
+export default function OfficialCourseApp({viewDisplay,}: OfficialCourseAppProperties,) {
     const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
     const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
     const coursesAsLowerCase = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName.toLowerCase(),)
@@ -61,7 +64,7 @@ export default function OfficialCourseApp({viewDisplay,}: OfficialCourseProperti
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: Pick<OfficialCourseProperties, 'viewDisplay'>,) {
+function SubContent({viewDisplay,}: Pick<OfficialCourseAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <OfficialCourseList items={items}/>
     if (viewDisplay === CARD)

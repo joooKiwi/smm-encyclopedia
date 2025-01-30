@@ -1,12 +1,13 @@
-import type {CollectionHolder}                                    from '@joookiwi/collection'
-import type {Singleton}                                           from '@joookiwi/enumerable'
-import type {Array, MutableArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
-import {CompanionEnum, Enum}                                      from '@joookiwi/enumerable'
-import {lazy}                                                     from 'react'
+import type {CollectionHolder}                                                 from '@joookiwi/collection'
+import type {Singleton}                                                        from '@joookiwi/enumerable'
+import type {Array, EmptyString, MutableArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
+import {forEachByArray}                                                        from '@joookiwi/collection'
+import {CompanionEnum, Enum}                                                   from '@joookiwi/enumerable'
+import {lazy}                                                                  from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                                                                                     from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRoute, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback, RouteCallbackWithOnlyViewDisplay} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                                                                                 from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                                from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRoute, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                            from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -21,37 +22,28 @@ import {ProjectLanguages}      from 'lang/ProjectLanguages'
 import {Route}                 from 'route/Route'
 import {Empty}                 from 'util/emptyVariables'
 import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
-import {GameCollection}        from 'util/collection/GameCollection'
 import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
-import {TimeCollection}        from 'util/collection/TimeCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
-import ALL_GAMES =             Games.ALL
-import ALL_GAMES_COLLECTION =  GameCollection.ALL
-import ALL_TIMES =             Times.ALL
-import ALL_TIMES_COLLECTION =  TimeCollection.ALL
-import ALL_VIEW_DISPLAY =      ViewDisplayCollection.ALL
-import DAY_ONLY =              Times.DAY_ONLY
-import EMPTY_STRING =          Empty.EMPTY_STRING
-import GameCompanion =         Games.Companion
-import LanguageCompanion =     ProjectLanguages.Companion
-import NIGHT_ONLY =            Times.NIGHT_ONLY
-import NO_GAME_STYLES =        GameStyleCollection.EMPTY
-import NO_GAMES =              GameCollection.EMPTY
-import NO_TIMES =              TimeCollection.EMPTY
-import NO_VIEW_DISPLAY =       ViewDisplayCollection.EMPTY
-import SMM1 =                  Games.SMM1
-import SMM1_AND_3DS =          Games.SMM1_AND_3DS
-import SMM1_AND_2 =            Games.SMM1_AND_2
-import SMM1_GAMES_COLLECTION = GameCollection.SMM1_ONLY
-import SMM1_ONLY =             Games.SMM1_ONLY
-import SMM2 =                  Games.SMM2
-import SMM2_GAMES_COLLECTION = GameCollection.SMM2_ONLY
-import SMM2_ONLY =             Games.SMM2_ONLY
-import SMM3DS_AND_2 =          Games.SMM3DS_AND_2
-import SMM3DS_ONLY =           Games.SMM3DS_ONLY
-import TimeCompanion =         Times.Companion
-import ViewDisplayCompanion =  ViewDisplays.Companion
+import ALL_GAMES =            Games.ALL
+import ALL_TIMES =            Times.ALL
+import ALL_VIEW_DISPLAY =     ViewDisplayCollection.ALL
+import DAY_ONLY =             Times.DAY_ONLY
+import EMPTY_STRING =         Empty.EMPTY_STRING
+import GameCompanion =        Games.Companion
+import LanguageCompanion =    ProjectLanguages.Companion
+import NIGHT_ONLY =           Times.NIGHT_ONLY
+import NO_VIEW_DISPLAY =      ViewDisplayCollection.EMPTY
+import SMM1 =                 Games.SMM1
+import SMM1_AND_3DS =         Games.SMM1_AND_3DS
+import SMM1_AND_2 =           Games.SMM1_AND_2
+import SMM1_ONLY =            Games.SMM1_ONLY
+import SMM2 =                 Games.SMM2
+import SMM2_ONLY =            Games.SMM2_ONLY
+import SMM3DS_AND_2 =         Games.SMM3DS_AND_2
+import SMM3DS_ONLY =          Games.SMM3DS_ONLY
+import TimeCompanion =        Times.Companion
+import ViewDisplayCompanion = ViewDisplays.Companion
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -183,34 +175,31 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      * A representation of an {@link EveryRoutes} instance with nothing in its route.
      * Meaning no {@link ViewDisplays}, {@link GameCollection}, {@link GameStyleCollection} and {@link TimeCollection}.
      */
-    private static readonly Straight_EveryRoutes = class Straight_EveryRoutes<const URL_NAME extends string,
+    private static readonly Straight = class Straight_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
         constructor(name: URL_NAME, path: URL_PATH, routeCallback: NothingRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES, null, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
+            super(name, path, routeCallback,)
         }
 
+        public override get viewDisplays(): ViewDisplayCollection { return NO_VIEW_DISPLAY }
+        public override get defaultViewDisplay(): null { return null }
+
+        public override get defaultGame(): null { return null }
+
+        public override get defaultGameStyles(): null { return null }
+
+        public override get defaultTimes(): NullOrArray<Times> { return null }
 
         protected override _createEveryRoutes(): Array<Route> {
             return [new Route(this.urlName, this.urlValue, null, null, null, null, this.routeCallback,),]
         }
 
-        protected override _getPathFromGames() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromTimes() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromGameStyles() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromViewDisplay() {
-            return EMPTY_STRING
-        }
+        protected override _getPathFromGames(): EmptyString { return EMPTY_STRING }
+        protected override _getPathFromTimes(): EmptyString { return EMPTY_STRING }
+        protected override _getPathFromGameStyles(): EmptyString { return EMPTY_STRING }
+        protected override _getPathFromViewDisplay(): EmptyString { return EMPTY_STRING }
 
     }
 
@@ -218,21 +207,27 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
      * A representation of an {@link EveryRoutes} instance with everything in its route
      * ({@link ViewDisplays}, {@link GameCollection}, {@link GameStyleCollection} and {@link TimeCollection})
      */
-    private static readonly AllGames_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const URL_NAME extends string,
+    private static readonly All = class All_EveryRoutes<const URL_NAME extends string,
         const URL_PATH extends string, >
         extends EveryRoutes<URL_NAME, URL_PATH> {
 
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: ViewDisplays, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay, ALL_GAMES_COLLECTION, SMM2, GameStyleCollection.ALL, null, ALL_TIMES_COLLECTION, ALL_TIMES, routeCallback,)
+        readonly #defaultViewDisplay
+        readonly #defaultGame
+
+        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: ViewDisplays, defaultGame: Games, routeCallback: RouteCallback,) {
+            super(name, path, routeCallback,)
+            this.#defaultViewDisplay = defaultViewDisplay
+            this.#defaultGame = defaultGame
         }
 
-        public override get gameStyles(): GameStyleCollection {
-            return GameStyleCollection.ALL
-        }
+        public override get viewDisplays(): ViewDisplayCollection { return ALL_VIEW_DISPLAY }
+        public override get defaultViewDisplay(): ViewDisplays { return this.#defaultViewDisplay }
 
-        public override get defaultGameStyles(): CollectionHolder<GameStyles> {
-            return GameStylesPossibility.ALL
-        }
+        public override get defaultGame(): Games { return this.#defaultGame }
+
+        public override get defaultGameStyles(): CollectionHolder<GameStyles> { return GameStylesPossibility.ALL }
+
+        public override get defaultTimes(): Array<Times> { return ALL_TIMES }
 
         protected override _createEveryRoutes(): Array<Route> {
             const name = this.urlName
@@ -1962,181 +1957,69 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
     }
 
-    /** A representation of an {@link EveryRoutes} instance with only the {@link GameCollection} in its route */
-    private static readonly AnyGame_EveryRoutes = class AnyGame_EveryRoutes<const URL_NAME extends string,
-        const URL_PATH extends string, >
-        extends EveryRoutes<URL_NAME, URL_PATH> {
-
-        constructor(name: URL_NAME, path: URL_PATH, routeCallback: GameRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, (_, games,) => routeCallback(games,),)
-        }
-
-
-        protected override _createEveryRoutes(): Array<Route> {
-            const name = this.urlName
-            const path = this.urlValue
-            const routeCallback = this.routeCallback
-
-            return [
-                new Route(`${name} (Game=all)`,   `/game-all${path}`,   ALL_GAMES,    null, null, null, routeCallback,),
-                new Route(`${name} (Game=1)`,     `/game-1${path}`,     SMM1_ONLY,    null, null, null, routeCallback,),
-                new Route(`${name} (Game=3DS)`,   `/game-3ds${path}`,   SMM3DS_ONLY,  null, null, null, routeCallback,),
-                new Route(`${name} (Game=2)`,     `/game-2${path}`,     SMM2_ONLY,    null, null, null, routeCallback,),
-                new Route(`${name} (Game=1&3DS)`, `/game-1,3ds${path}`, SMM1_AND_3DS, null, null, null, routeCallback,),
-                new Route(`${name} (Game=1&2)`,   `/game-1,2${path}`,   SMM1_AND_2,   null, null, null, routeCallback,),
-                new Route(`${name} (Game=3DS&2)`, `/game-3ds,2${path}`, SMM3DS_AND_2, null, null, null, routeCallback,),
-            ]
-        }
-
-        protected override _getPathFromTimes() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromGameStyles() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromViewDisplay() {
-            return EMPTY_STRING
-        }
-
-    }
-
-    /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM1} */
-    private static readonly OnlySmm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const URL_NAME extends string,
-        const URL_PATH extends string, >
-        extends EveryRoutes<URL_NAME, URL_PATH> {
-
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: ViewDisplays, routeCallback: RouteCallbackWithOnlyViewDisplay,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay, SMM1_GAMES_COLLECTION, SMM1, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
-        }
-
-
-        protected override _createEveryRoutes(): Array<Route> {
-            const name = this.urlName
-            const path = this.urlValue
-            const routeCallback = this.routeCallback
-
-            return [
-                new Route(`${name} (list Game=1)`,  `/game-1/list${path}`,  SMM1_ONLY, null, null, LIST,  routeCallback,),
-                new Route(`${name} (card Game=1)`,  `/game-1/card${path}`,  SMM1_ONLY, null, null, CARD,  routeCallback,),
-                new Route(`${name} (table Game=1)`, `/game-1/table${path}`, SMM1_ONLY, null, null, TABLE, routeCallback,),
-            ]
-        }
-
-        protected override _getPathFromGames() {
-            return '/game-1' as const satisfies PossibleGamePath
-        }
-
-        protected override _getPathFromTimes() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromGameStyles() {
-            return EMPTY_STRING
-        }
-
-    }
-
-    /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link SMM2} */
-    private static readonly OnlySmm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const URL_NAME extends string,
-        const URL_PATH extends string, >
-        extends EveryRoutes<URL_NAME, URL_PATH> {
-
-        constructor(name: URL_NAME, path: URL_PATH, defaultViewDisplay: ViewDisplays, routeCallback: RouteCallbackWithOnlyViewDisplay,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay, SMM2_GAMES_COLLECTION, SMM2, NO_GAME_STYLES, null, NO_TIMES, null, routeCallback,)
-        }
-
-
-        protected override _createEveryRoutes(): Array<Route> {
-            const name = this.urlName
-            const path = this.urlValue
-            const routeCallback = this.routeCallback
-
-            return [
-                new Route(`${name} (list Game=2)`,  `/game-2/list${path}`,  SMM2_ONLY, null, null, LIST,  routeCallback,),
-                new Route(`${name} (card Game=2)`,  `/game-2/card${path}`,  SMM2_ONLY, null, null, CARD,  routeCallback,),
-                new Route(`${name} (table Game=2)`, `/game-2/table${path}`, SMM2_ONLY, null, null, TABLE, routeCallback,),
-            ]
-        }
-
-        protected override _getPathFromGames() {
-            return `/game-2` as const satisfies PossibleGamePath
-        }
-
-        protected override _getPathFromTimes() {
-            return EMPTY_STRING
-        }
-
-        protected override _getPathFromGameStyles() {
-            return EMPTY_STRING
-        }
-
-    }
-
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
 
-    public static readonly HOME = new EveryRoutes.Straight_EveryRoutes('home', '/home', () => <HomeApp/>,)
-    public static readonly ABOUT = new EveryRoutes.Straight_EveryRoutes('about', '/about', () => <AboutApp/>,)
-    public static readonly SOURCES = new EveryRoutes.Straight_EveryRoutes('sources', '/sources', () => <SourcesApp/>,)
+    public static readonly HOME = new EveryRoutes.Straight('home', '/home', () => <HomeApp/>,)
+    public static readonly ABOUT = new EveryRoutes.Straight('about', '/about', () => <AboutApp/>,)
+    public static readonly SOURCES = new EveryRoutes.Straight('sources', '/sources', () => <SourcesApp/>,)
 
-    public static readonly EVERY_MUSIC = new EveryRoutes.Straight_EveryRoutes('everyMusic', '/every/music', () => <MusicApp/>,)//TODO make the application doable with the game, game style, theme and time
+    public static readonly EVERY_MUSIC = new EveryRoutes.Straight('everyMusic', '/every/music', () => <MusicApp/>,)//TODO make the application doable with the game, game style, theme and time
 
-    public static readonly EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyPowerUp&Ride&HatPriority', '/every/power-up+ride+hat/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.ALL} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_POWER_UP_AND_RIDE_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyPowerUp&RidePriority', '/every/power-up+ride/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.POWER_UP_AND_RIDE} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_POWER_UP_AND_HAT_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyPowerUp&HatPriority', '/every/power-up+hat/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.POWER_UP_AND_HAT} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_RIDE_AND_HAT_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyRide&HatPriority', '/every/ride+hat/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.RIDE_AND_HAT} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_POWER_UP_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyPowerUpPriority', '/every/power-up/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.POWER_UP} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_RIDE_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyRidePriority', '/every/ride/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.RIDE} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly EVERY_HAT_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('everyHatPriority', '/every/hat/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.HAT} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
-    public static readonly NO_PRIORITY = new EveryRoutes.AllGames_EveryRoutes('noPriority', '/no/priority', CARD, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.NONE} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY = new EveryRoutes.All('everyPowerUp&Ride&HatPriority', '/every/power-up+ride+hat/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.ALL} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_POWER_UP_AND_RIDE_PRIORITY = new EveryRoutes.All('everyPowerUp&RidePriority', '/every/power-up+ride/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.POWER_UP_AND_RIDE} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_POWER_UP_AND_HAT_PRIORITY = new EveryRoutes.All('everyPowerUp&HatPriority', '/every/power-up+hat/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.POWER_UP_AND_HAT} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_RIDE_AND_HAT_PRIORITY = new EveryRoutes.All('everyRide&HatPriority', '/every/ride+hat/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.RIDE_AND_HAT} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_POWER_UP_PRIORITY = new EveryRoutes.All('everyPowerUpPriority', '/every/power-up/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.POWER_UP} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_RIDE_PRIORITY = new EveryRoutes.All('everyRidePriority', '/every/ride/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.RIDE} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_HAT_PRIORITY = new EveryRoutes.All('everyHatPriority', '/every/hat/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.HAT} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly NO_PRIORITY = new EveryRoutes.All('noPriority', '/no/priority', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <PriorityApp type={PowerUpPriorityTypes.NONE} viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.AllGames_EveryRoutes('everyCharacterName', '/every/character-name', CARD, (viewDisplay, games, gameStyles, times,) => <CharacterNameApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.All('everyCharacterName', '/every/character-name', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <CharacterNameApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
-    public static readonly EVERY_GAME_STYLE = new EveryRoutes.AllGames_EveryRoutes('everyGameStyle', '/every/game-style', CARD, (viewDisplay, games, gameStyles, times,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.All('everyGameReference', '/every/game-reference', LIST, SMM2, () => <GameReferenceApp/>,)//README: This has the view display (list) to be similar to the other routes
+    public static readonly EVERY_GAME_STYLE = new EveryRoutes.All('everyGameStyle', '/every/game-style', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <GameStyleApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_ENTITY = new EveryRoutes.AllGames_EveryRoutes('everyEntity', '/every/entity', TABLE, (viewDisplay, games, gameStyles, times,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_ENTITY = new EveryRoutes.All('everyEntity', '/every/entity', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
     //TODO add "entity" on specific category
-    public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everyEntityCategory', '/every/entity-category', CARD, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
+    public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.All('everyEntityCategory', '/every/entity-category', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <EntityCategoryApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_GROUP = new EveryRoutes.Straight('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
-    public static readonly EVERY_LIMIT = new EveryRoutes.AllGames_EveryRoutes('everyLimit', '/every/limit', TABLE, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.ALL}/>,)
-    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.AllGames_EveryRoutes('playLimit', '/play/limit', TABLE, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.PLAY}/>,)
-    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.AllGames_EveryRoutes('editorLimit', '/editor/limit', TABLE, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.EDITOR}/>,)
+    public static readonly EVERY_LIMIT = new EveryRoutes.All('everyLimit', '/every/limit', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.ALL}/>,)
+    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.All('playLimit', '/play/limit', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.PLAY}/>,)
+    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.All('editorLimit', '/editor/limit', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <LimitApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={LimitTypes.EDITOR}/>,)
 
-    public static readonly EVERY_THEME = new EveryRoutes.AllGames_EveryRoutes('everyTheme', '/every/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.ALL}/>,)
-    public static readonly EVERY_COURSE_THEME = new EveryRoutes.AllGames_EveryRoutes('courseTheme', '/course/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.COURSE}/>,)
-    public static readonly EVERY_WORLD_THEME = new EveryRoutes.AllGames_EveryRoutes('worldTheme', '/world/theme', CARD, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.WORLD}/>,)
+    public static readonly EVERY_THEME = new EveryRoutes.All('everyTheme', '/every/theme', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.ALL}/>,)
+    public static readonly EVERY_COURSE_THEME = new EveryRoutes.All('courseTheme', '/course/theme', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.COURSE}/>,)
+    public static readonly EVERY_WORLD_THEME = new EveryRoutes.All('worldTheme', '/world/theme', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <ThemeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times} type={ThemeTypes.WORLD}/>,)
 
-    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.AllGames_EveryRoutes('everySoundEffect', '/every/sound-effect', TABLE, (viewDisplay, games, gameStyles, times,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.All('everySoundEffect', '/every/sound-effect', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
     //TODO add "sound effect" on specific category
-    public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', CARD, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
+    public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.All('everySoundEffectCategory', '/every/sound-effect-category', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <SoundEffectCategoryApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>)
 
-    public static readonly EVERY_MII_COSTUME = new EveryRoutes.OnlySmm2_EveryRoutes('everyMiiCostume', '/every/mii-costume', TABLE, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MII_COSTUME = new EveryRoutes.All('everyMiiCostume', '/every/mii-costume', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <MiiCostumeApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
     //TODO add "mii costume" on specific category
-    public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.OnlySmm2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', CARD, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.All('everyMiiCostumeCategory', '/every/mii-costume-category', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <MiiCostumeCategoryApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.OnlySmm1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', CARD, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.All('everyMysteryMushroom', '/every/mystery-mushroom', CARD, SMM1, (viewDisplay, games, gameStyles, times,) => <MysteryMushroomApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.OnlySmm2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', LIST, viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.All('everyPredefinedMessage', '/every/predefined-message', LIST, SMM2, (viewDisplay, games, gameStyles, times,) => <PredefinedMessageApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.OnlySmm1_EveryRoutes('everySampleCourse', '/every/sample-course', TABLE, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.AllGames_EveryRoutes('everyOfficialCourse', '/every/official-course', TABLE, (viewDisplay, games, gameStyles, times,) => <OfficialCourseApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.All('everySampleCourse', '/every/sample-course', TABLE, SMM1, (viewDisplay, games, gameStyles, times,) => <SampleCourseApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.All('everyOfficialCourse', '/every/official-course', TABLE, SMM2, (viewDisplay, games, gameStyles, times,) => <OfficialCourseApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_MEDAL = new EveryRoutes.OnlySmm1_EveryRoutes('everyMedal', '/every/medal', CARD, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MEDAL = new EveryRoutes.All('everyMedal', '/every/medal', CARD, SMM1, (viewDisplay, games, gameStyles, times,) => <MedalApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('everyCourseTag', '/every/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.ALL}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('officialCourseTag', '/official/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.OFFICIAL}/>,)
-    public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
-    public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.OnlySmm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', CARD, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
+    public static readonly EVERY_COURSE_TAG = new EveryRoutes.All('everyCourseTag', '/every/course-tag', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.ALL} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE_TAG = new EveryRoutes.All('officialCourseTag', '/official/course-tag', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.OFFICIAL} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.All('unofficialCourseTag', '/unofficial/course-tag', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.All('makerCentralCourseTag', '/maker-central/course-tag', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_INSTRUMENT = new EveryRoutes.AllGames_EveryRoutes('everyInstrument', '/every/instrument', CARD, (viewDisplay, games, gameStyles, times,) => <InstrumentApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_INSTRUMENT = new EveryRoutes.All('everyInstrument', '/every/instrument', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <InstrumentApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.AllGames_EveryRoutes('everyEditorVoice', '/every/editor-voice', CARD, (viewDisplay, games, gameStyles, times,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
+    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.All('everyEditorVoice', '/every/editor-voice', CARD, SMM2, (viewDisplay, games, gameStyles, times,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>,)
 
-    public static readonly EVERY_ROUTE = new EveryRoutes.Straight_EveryRoutes('everyRoute', '/debug/every-route', () => <RouteApp/>,)
+    public static readonly EVERY_ROUTE = new EveryRoutes.Straight('everyRoute', '/debug/every-route', () => <RouteApp/>,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -2238,14 +2121,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     readonly #urlName
     readonly #urlPath
 
-    readonly #viewDisplays
-    readonly #defaultViewDisplay
-    readonly #games
-    readonly #gameStyles
-    readonly #times
-    readonly #defaultGame
-    readonly #defaultGameStyles
-    readonly #defaultTimes
     readonly #routeCallback
 
     #everyRoutes?: Array<Route>
@@ -2253,23 +2128,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(name: URL_NAME, path: URL_PATH,
-                        viewDisplays: ViewDisplayCollection, defaultViewDisplay: NullOr<ViewDisplays>,
-                        games: GameCollection, defaultGame: NullOr<Games>,
-                        gameStyles: GameStyleCollection, defaultGameStyles: NullOr<CollectionHolder<GameStyles>>,
-                        times: TimeCollection, defaultTimes: NullOrArray<Times>,
-                        routeCallback: RouteCallback,) {
+    private constructor(name: URL_NAME, path: URL_PATH, routeCallback: RouteCallback,) {
         super()
         this.#urlName = name
         this.#urlPath = path
-        this.#viewDisplays = viewDisplays
-        this.#defaultViewDisplay = defaultViewDisplay
-        this.#games = games
-        this.#defaultGame = defaultGame
-        this.#gameStyles = gameStyles
-        this.#defaultGameStyles = defaultGameStyles
-        this.#times = times
-        this.#defaultTimes = defaultTimes
         this.#routeCallback = routeCallback
     }
 
@@ -2285,40 +2147,14 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
     }
 
 
-    public get viewDisplays(): ViewDisplayCollection {
-        return this.#viewDisplays
-    }
+    public abstract get viewDisplays(): ViewDisplayCollection
+    public abstract get defaultViewDisplay(): NullOr<ViewDisplays>
 
-    public get defaultViewDisplay(): NullOr<ViewDisplays> {
-        return this.#defaultViewDisplay
-    }
+    public abstract get defaultGame(): NullOr<Games>
 
+    public abstract get defaultGameStyles(): NullOr<CollectionHolder<GameStyles>>
 
-    public get games(): GameCollection {
-        return this.#games
-    }
-
-    public get defaultGame(): NullOr<Games> {
-        return this.#defaultGame
-    }
-
-
-    public get gameStyles(): GameStyleCollection {
-        return this.#gameStyles
-    }
-
-    public get defaultGameStyles(): NullOr<CollectionHolder<GameStyles>> {
-        return this.#defaultGameStyles
-    }
-
-
-    public get times(): TimeCollection {
-        return this.#times
-    }
-
-    public get defaultTimes(): NullOrArray<Times> {
-        return this.#defaultTimes
-    }
+    public abstract get defaultTimes(): NullOrArray<Times>
 
 
     public get routeCallback(): RouteCallback {
@@ -2444,7 +2280,7 @@ export namespace EveryRoutes {
 
     function __retrieveAllRoutes() {
         const routes: MutableArray<Route> = []
-        Companion.values.forEach(it => new ArrayAsCollection(it.everyRoute,).forEach(it => routes.push(it,),),)
+        Companion.values.forEach(it => forEachByArray(it.everyRoute, it => routes.push(it,),),)
         return routes
     }
 

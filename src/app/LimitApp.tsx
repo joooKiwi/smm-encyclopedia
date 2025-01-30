@@ -5,13 +5,13 @@ import './LimitApp.scss'
 import type {CollectionHolder}           from '@joookiwi/collection'
 import type {MutableArray, NullOrString} from '@joookiwi/type'
 
-import type {LimitAppProperties}  from 'app/AppProperties.types'
-import type {LimitTypes}          from 'app/property/LimitTypes'
-import type {Limits}              from 'core/limit/Limits'
-import type {PossibleRouteName}   from 'route/EveryRoutes.types'
-import type {GameCollection}      from 'util/collection/GameCollection'
-import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
-import type {ReactProperties}     from 'util/react/ReactProperties'
+import type {AppPropertiesWithType} from 'app/AppProperties.types'
+import type {LimitTypes}            from 'app/property/LimitTypes'
+import type {Limits}                from 'core/limit/Limits'
+import type {PossibleRouteName}     from 'route/EveryRoutes.types'
+import type {GameCollection}        from 'util/collection/GameCollection'
+import type {GameStyleCollection}   from 'util/collection/GameStyleCollection'
+import type {ReactProperties}       from 'util/react/ReactProperties'
 
 import {LimitAppOption}                             from 'app/options/LimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
@@ -59,6 +59,9 @@ import SM3DW =           GameStyles.SM3DW
 const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
+
+interface LimitAppProperties
+    extends AppPropertiesWithType<LimitTypes> {}
 
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitAppProperties,) {

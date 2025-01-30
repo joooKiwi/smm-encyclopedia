@@ -8,7 +8,7 @@ import type {CollectionHolder}         from '@joookiwi/collection'
 import type {Dispatch, SetStateAction} from 'react'
 import {useState}                      from 'react'
 
-import type {EntityProperties}    from 'app/AppProperties.types'
+import type {AppProperties}       from 'app/AppProperties.types'
 import type {GameCollection}      from 'util/collection/GameCollection'
 import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
 import type {ReactProperties}     from 'util/react/ReactProperties'
@@ -69,8 +69,11 @@ const {LIST, CARD,} = ViewDisplays
 
 const all = new ArrayAsCollection(ALL,)
 
+interface EntityAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityProperties,) {
+export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityAppProperties,) {
     const [sideEntity, setSideEntity,] = useState<NullOr<Entities>>(null,)
     const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
     const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
@@ -159,7 +162,7 @@ function displaySideContent(action: Dispatch<SetStateAction<NullOr<Entities>>>, 
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityProperties & { displaySideContent(entity: Entities,): void, },) {
+function SubContent({viewDisplay, games, gameStyles, times, displaySideContent,}: EntityAppProperties & { displaySideContent(entity: Entities,): void, },) {
     const items = all.filter(({reference,},) =>
         games.hasAnyIn(reference,)
         && gameStyles.hasAnyIn(reference,)

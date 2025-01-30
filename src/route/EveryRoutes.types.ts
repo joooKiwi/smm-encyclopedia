@@ -254,10 +254,6 @@ export type PossibleRoute = Route<PossibleRouteName, PossibleRoutePath>
 
 
 export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection, time: TimeCollection,) => ReactJSXElement
-/** A type-alias of {@link RouteCallback} with only the {@link ViewDisplays} as an argument */
-export type RouteCallbackWithOnlyViewDisplay = (viewDisplay: ViewDisplays,) => ReactJSXElement
-/** A close relative to {@link RouteCallback} with only the {@link Games} as an argument */
-export type GameRouteCallback = (games: GameCollection,) => ReactJSXElement
 /** A type-alias of {@link RouteCallback} with no arguments */
 export type NothingRouteCallback = () => ReactJSXElement
 

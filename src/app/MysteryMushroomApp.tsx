@@ -2,8 +2,8 @@ import './MysteryMushroomApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {MysteryMushroomAppOption}            from 'app/options/MysteryMushroomAppOption'
 import Table                                 from 'app/tools/table/Table'
@@ -13,6 +13,7 @@ import CardList                              from 'app/util/CardList'
 import List                                  from 'app/util/List'
 import PageTitle                             from 'app/util/PageTitle'
 import PageViewChanger                       from 'app/util/PageViewChanger'
+import Smm1OnlyAlert                         from 'app/util/Smm1OnlyAlert'
 import SubMain                               from 'app/util/SubMain'
 import {MysteryMushrooms}                    from 'core/mysteryMushroom/MysteryMushrooms'
 import MysteryMushroomClimbingImage          from 'core/mysteryMushroom/component/MysteryMushroom.climbing.image'
@@ -49,8 +50,11 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = MysteryMushroomAppOption.CompanionEnum.get.values
 
+interface MysteryMushroomAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function MysteryMushroomApp({viewDisplay, games,}: MysteryMushroomAppProperties,) {
     const mysteryMushroom = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName,)
     const mysteryMushroomAsLowerCase = mysteryMushroom.toLowerCase()
     const mysteryMushroomsAsLowerCase = MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
@@ -58,6 +62,7 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
     return <SubMain partial-id="mysteryMushroom" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroomAsLowerCase, pluralName: mysteryMushroomsAsLowerCase,},)}</AppTitle>
         <PageTitle value={mysteryMushroom}/>
+        <Smm1OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMysteryMushroom (list)" card="everyMysteryMushroom (card)" table="everyMysteryMushroom (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -71,7 +76,7 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<MysteryMushroomAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <MysteryMushroomList items={items}/>
     if (viewDisplay === CARD)

@@ -2,8 +2,8 @@ import './MiiCostumeApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {MiiCostumeAppOption}            from 'app/options/MiiCostumeAppOption'
 import Table                            from 'app/tools/table/Table'
@@ -14,6 +14,7 @@ import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
 import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
+import Smm2OnlyAlert                    from 'app/util/Smm2OnlyAlert'
 import SubMain                          from 'app/util/SubMain'
 import {MiiCostumes}                    from 'core/miiCostume/MiiCostumes'
 import MiiCostumeImage                  from 'core/miiCostume/component/MiiCostumeImage'
@@ -41,8 +42,11 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = MiiCostumeAppOption.CompanionEnum.get.values
 
+interface MiiCostumeAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function MiiCostumeApp({viewDisplay, games,}: MiiCostumeAppProperties,) {
     const miiCostume = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
     const miiCostumeAsLowerCase = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName,)
     const miiCostumesAsLowerCase = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName,)
@@ -50,6 +54,7 @@ export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperti
     return <SubMain partial-id="miiCostume" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('mii costume.all', {singularName: miiCostumeAsLowerCase, pluralName: miiCostumesAsLowerCase,},)}</AppTitle>
         <PageTitle value={miiCostume}/>
+        <Smm2OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMiiCostume (list)" card="everyMiiCostume (card)" table="everyMiiCostume (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -63,7 +68,7 @@ export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperti
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<MiiCostumeAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <MiiCostumeList items={items}/>
     if (viewDisplay === CARD)

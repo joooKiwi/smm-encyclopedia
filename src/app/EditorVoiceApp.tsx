@@ -6,9 +6,9 @@ import type {NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
 import {Fragment}                  from 'react'
 
-import type {EditorVoiceProperties} from 'app/AppProperties.types'
-import type {ReactProperties}       from 'util/react/ReactProperties'
-import type {PossibleRouteName}     from 'route/EveryRoutes.types'
+import type {AppProperties}     from 'app/AppProperties.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
 
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
@@ -56,8 +56,11 @@ const {LIST, CARD,} = ViewDisplays
 const all = new ArrayAsCollection(ALL,)
 const options = EditorVoiceAppOption.CompanionEnum.get.values
 
+interface EditorVoiceAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
+export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceAppProperties,) {
     //region -------------------- Game selection --------------------
 
     const game = games.hasAllGames
@@ -99,7 +102,7 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'gameStyles'>,) {
+function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceAppProperties, 'gameStyles'>,) {
     const items = all.filter(({reference,},) =>
         games.hasAnyIn(reference,)
         && (times.hasAllTimes || times.hasAnyIn(reference,)),)

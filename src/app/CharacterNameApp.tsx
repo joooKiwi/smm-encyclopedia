@@ -6,9 +6,9 @@ import type {NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
 import {Fragment}                  from 'react'
 
-import type {CharacterNameProperties} from 'app/AppProperties.types'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {AppProperties}     from 'app/AppProperties.types'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
 
 import {CharacterNameAppOption}                     from 'app/options/CharacterNameAppOption'
 import {CharacterNameGames}                         from 'app/property/CharacterNameGames'
@@ -53,8 +53,11 @@ const {LIST, CARD,} = ViewDisplays
 const all = new ArrayAsCollection(ALL,)
 const options = CharacterNameAppOption.CompanionEnum.get.values
 
+interface CharacterNameAppProperties
+    extends AppProperties {}
+
 /** @reactComponent */
-export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameProperties,) {
+export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameAppProperties,) {
     //region -------------------- Game selection --------------------
 
     const game = games.hasAllGames
@@ -96,7 +99,7 @@ export default function CharacterNameApp({viewDisplay, games, times,}: Character
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: Omit<CharacterNameProperties, 'gameStyles'>,) {
+function SubContent({viewDisplay, games, times,}: Omit<CharacterNameAppProperties, 'gameStyles'>,) {
     const items = all.filter(({reference,},) =>
         games.hasAnyIn(reference,)
         && (times.hasAllTimes || times.hasAnyIn(reference,)),)
