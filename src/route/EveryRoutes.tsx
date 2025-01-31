@@ -22,7 +22,6 @@ import {ProjectLanguages}      from 'lang/ProjectLanguages'
 import {Route}                 from 'route/Route'
 import {Empty}                 from 'util/emptyVariables'
 import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
-import {GameStyleCollection}   from 'util/collection/GameStyleCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
 import ALL_GAMES =            Games.ALL

@@ -5,8 +5,8 @@ import {NullOr}      from '@joookiwi/type'
 
 const all = new Map<SoundFile, SoundPlayer>()
 
-export function getSoundPlayer<const FILE extends SoundFile = SoundFile, const TITLE extends string = string, >(file: FILE, title: TITLE,): NullOr<SoundPlayer<FILE, TITLE>>
-export function getSoundPlayer(file: SoundFile, title: string,) {
+export function getSoundPlayer<const FILE extends SoundFile = SoundFile,>(file: FILE,): NullOr<SoundPlayer<FILE>>
+export function getSoundPlayer(file: SoundFile,) {
     if (all.has(file,))
         return all.get(file,)
     return null

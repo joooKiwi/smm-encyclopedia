@@ -73,7 +73,7 @@ interface ProgressBarProperties
  */
 export default function StandaloneSound({file, title,}: StandaloneSoundProperties,) {
     useEffect(() => () => {
-        const soundPlayer = getSoundPlayer(file, title,)
+        const soundPlayer = getSoundPlayer(file,)
         if (soundPlayer == null)
             return
         // if (!soundPlayer.isPaused)

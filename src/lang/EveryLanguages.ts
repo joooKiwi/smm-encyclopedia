@@ -47,7 +47,7 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
             extends EveryLanguages<ACRONYM, INTERNATIONAL_ACRONYM> {
 
             constructor(projectAcronym: ACRONYM, internationalAcronym: INTERNATIONAL_ACRONYM, englishName: PossibleEnglishName, originalName: PossibleOriginalName,) {
-                super(true, projectAcronym, internationalAcronym, englishName, originalName, null, null,)
+                super(true, projectAcronym, internationalAcronym, englishName, originalName,)
             }
 
             public override get differentWords(): null { return null }
@@ -70,7 +70,7 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
             readonly #differentWords
 
             constructor(projectAcronym: ACRONYM, internationalAcronym: INTERNATIONAL_ACRONYM, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: PossibleDifferentWord, parent: EveryLanguages,) {
-                super(true, projectAcronym, internationalAcronym, englishName, originalName, differenceWords,)
+                super(true, projectAcronym, internationalAcronym, englishName, originalName,)
                 this.#parent = parent
                 this.#differentWords = differenceWords
             }
@@ -122,7 +122,7 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
             readonly #differentWords
 
             constructor(projectAcronym: ACRONYM, internationalAcronym: INTERNATIONAL_ACRONYM, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: PossibleDifferentWord, parent: EveryLanguages,) {
-                super(false, projectAcronym, internationalAcronym, englishName, originalName, differenceWords,)
+                super(false, projectAcronym, internationalAcronym, englishName, originalName,)
                 this.#parent = parent
                 this.#differentWords = differenceWords
             }
@@ -646,7 +646,7 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(isACompleteLanguage: boolean, projectAcronym: ACRONYM, internationalAcronym: INTERNATIONAL_ACRONYM, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: NullOrString<PossibleDifferentWord> = null, parent: NullOr<EveryLanguages> = null,) {
+    private constructor(isACompleteLanguage: boolean, projectAcronym: ACRONYM, internationalAcronym: INTERNATIONAL_ACRONYM, englishName: PossibleEnglishName, originalName: PossibleOriginalName,) {
         super()
         this.#isACompleteLanguage = isACompleteLanguage
         this.#projectAcronym = projectAcronym
