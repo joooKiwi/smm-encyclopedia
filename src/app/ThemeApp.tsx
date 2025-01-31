@@ -45,8 +45,7 @@ const {LIST, CARD,} = ViewDisplays
 
 const options = ThemeAppOption.CompanionEnum.get.values
 
-interface ThemeAppProperties
-    extends AppPropertiesWithType<ThemeTypes> {}
+type ThemeAppProperties = AppPropertiesWithType<ThemeTypes>
 
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {

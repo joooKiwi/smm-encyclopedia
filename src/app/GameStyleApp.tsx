@@ -52,8 +52,7 @@ const {LIST, CARD,} = ViewDisplays
 
 const options = GameStyleAppOption.CompanionEnum.get.values
 
-interface GameStyleAppProperties
-    extends AppProperties {}
+type GameStyleAppProperties = AppProperties
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleAppProperties,) {

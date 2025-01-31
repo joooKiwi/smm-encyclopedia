@@ -38,8 +38,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = SampleCourseAppOption.CompanionEnum.get.values
 
-interface SampleCourseAppProperties
-    extends AppProperties {}
+type SampleCourseAppProperties = AppProperties
 
 /** @reactComponent */
 export default function SampleCourseApp({viewDisplay, games,}: SampleCourseAppProperties,) {

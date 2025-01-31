@@ -35,8 +35,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = MedalAppOption.CompanionEnum.get.values
 
-interface MedalAppProperties
-    extends AppProperties {}
+type MedalAppProperties = AppProperties
 
 /** @reactComponent */
 export default function MedalApp({viewDisplay, games,}: MedalAppProperties,) {

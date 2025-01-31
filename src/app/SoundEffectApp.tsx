@@ -60,8 +60,7 @@ const {LIST, CARD,} = ViewDisplays
 
 const all = new ArrayAsCollection(ALL,)
 
-interface SoundEffectAppProperties
-    extends AppProperties {}
+type SoundEffectAppProperties = AppProperties
 
 /** @reactComponent */
 export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}: SoundEffectAppProperties,) {

@@ -36,8 +36,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = SoundEffectCategoryAppOption.CompanionEnum.get.values
 
-interface SoundEffectCategoryAppProperties
-    extends AppProperties {}
+type SoundEffectCategoryAppProperties = AppProperties
 
 /** @reactComponent */
 export default function SoundEffectCategoryApp({viewDisplay, games,}: SoundEffectCategoryAppProperties,) {

@@ -39,8 +39,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = OfficialCourseAppOption.CompanionEnum.get.values
 
-interface OfficialCourseAppProperties
-    extends AppProperties {}
+type OfficialCourseAppProperties = AppProperties
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: OfficialCourseAppProperties,) {

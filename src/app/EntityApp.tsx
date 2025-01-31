@@ -69,8 +69,7 @@ const {LIST, CARD,} = ViewDisplays
 
 const all = new ArrayAsCollection(ALL,)
 
-interface EntityAppProperties
-    extends AppProperties {}
+type EntityAppProperties = AppProperties
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles, times,}: EntityAppProperties,) {

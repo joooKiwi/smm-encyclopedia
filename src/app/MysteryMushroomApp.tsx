@@ -50,8 +50,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = MysteryMushroomAppOption.CompanionEnum.get.values
 
-interface MysteryMushroomAppProperties
-    extends AppProperties {}
+type MysteryMushroomAppProperties = AppProperties
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay, games,}: MysteryMushroomAppProperties,) {

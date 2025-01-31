@@ -61,8 +61,7 @@ const {LIST, CARD,} = ViewDisplays
 
 const all = new ArrayAsCollection(ALL,)
 
-interface InstrumentAppProperties
-    extends AppProperties {}
+type InstrumentAppProperties = AppProperties
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {

@@ -37,8 +37,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = EntityCategoryAppOption.CompanionEnum.get.values
 
-interface EntityCategoryAppProperties
-    extends AppProperties {}
+type EntityCategoryAppProperties = AppProperties
 
 /** @reactComponent */
 export default function EntityCategoryApp({viewDisplay, games,}: EntityCategoryAppProperties,) {

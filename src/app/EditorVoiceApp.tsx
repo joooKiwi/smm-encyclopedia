@@ -56,8 +56,7 @@ const {LIST, CARD,} = ViewDisplays
 const all = new ArrayAsCollection(ALL,)
 const options = EditorVoiceAppOption.CompanionEnum.get.values
 
-interface EditorVoiceAppProperties
-    extends AppProperties {}
+type EditorVoiceAppProperties = AppProperties
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceAppProperties,) {

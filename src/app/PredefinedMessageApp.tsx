@@ -35,8 +35,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = PredefinedMessageAppOption.CompanionEnum.get.values
 
-interface PredefinedMessageAppProperties
-    extends AppProperties {}
+type PredefinedMessageAppProperties = AppProperties
 
 /** @reactComponent */
 export default function PredefinedMessageApp({viewDisplay, games,}: PredefinedMessageAppProperties,) {

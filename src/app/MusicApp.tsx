@@ -1047,8 +1047,7 @@ function getYoshiImage(gameStyle: GameStyles,) {
 interface MusicsProperties<out FILES extends ArrayOf1To8<Tracks>, >
     extends ReactProperties { readonly files: FILES }
 
-interface GroupedMusicsProperties
-    extends ReactPropertiesWithChildren<ReactElementOrArray> {}
+type GroupedMusicsProperties = ReactPropertiesWithChildren<ReactElementOrArray>
 
 // /** @reactComponent */
 // function MusicsContainer({type, files,}: MusicsProperties,) {
@@ -1153,7 +1152,7 @@ function ThemeGroupedMusicsContainer({theme, children,}: ThemeGroupedMusicsPrope
 
 //region -------------------- Editor musics --------------------
 
-interface EditorMusicsProperties extends MusicsProperties<ArrayOf7<Tracks>> {}
+type EditorMusicsProperties  = MusicsProperties<ArrayOf7<Tracks>>
 
 /** @reactComponent */
 function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
@@ -1168,7 +1167,7 @@ function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
 //endregion -------------------- Editor musics --------------------
 //region -------------------- Lesson editor musics --------------------
 
-interface LessonEditorMusicsProperties extends MusicsProperties<ArrayOf4<Tracks>> {}
+type LessonEditorMusicsProperties = MusicsProperties<ArrayOf4<Tracks>>
 
 /** @reactComponent */
 function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
@@ -1211,7 +1210,7 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 // }
 //
 
-interface BonusBossAndFinalBossMusicsProperties extends MusicsProperties<ArrayOf6<Tracks>> {}
+type BonusBossAndFinalBossMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
 function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMusicsProperties,) {
@@ -1265,7 +1264,7 @@ function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMus
 //endregion -------------------- Sound effect musics --------------------
 //region -------------------- Peaceful musics --------------------
 
-interface PeacefulMusicsProperties extends MusicsProperties<ArrayOf2<Tracks>> {}
+type PeacefulMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
 
 /** @reactComponent */
 function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
@@ -1284,7 +1283,7 @@ function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
 //endregion -------------------- Peaceful musics --------------------
 //region -------------------- Bonus musics --------------------
 
-interface BonusMusicsProperties extends MusicsProperties<ArrayOf6<Tracks>> {}
+type BonusMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
 function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
@@ -1313,7 +1312,7 @@ function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
 //endregion -------------------- Bonus musics --------------------
 //region -------------------- Boss musics --------------------
 
-interface BossMusicsProperties extends MusicsProperties<ArrayOf6<Tracks>> {}
+type BossMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
 function BossMusicsContainer({files,}: BossMusicsProperties,) {
@@ -1399,7 +1398,7 @@ function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {
 }
 
 
-interface TimeWithLinkAndSmb2MusicsProperties extends MusicsProperties<ArrayOf8<Tracks>> {}
+type TimeWithLinkAndSmb2MusicsProperties = MusicsProperties<ArrayOf8<Tracks>>
 
 /** @reactComponent */
 function TimeWithLinkAndSmb2MusicsContainer({files,}: TimeWithLinkAndSmb2MusicsProperties,) {
@@ -1456,7 +1455,7 @@ function TimeWithYoshiMusicsContainer({files, gameStyle,}: TimeWithYoshiMusicsPr
 }
 
 
-interface TimeWithUnderwaterMusicsProperties extends MusicsProperties<ArrayOf4<Tracks>> {}
+type TimeWithUnderwaterMusicsProperties = MusicsProperties<ArrayOf4<Tracks>>
 
 /** @reactComponent */
 function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsProperties,) {
@@ -1478,7 +1477,7 @@ function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsPro
 //endregion -------------------- Time musics --------------------
 //region -------------------- Day musics --------------------
 
-interface DayMusicsProperties extends MusicsProperties<ArrayOf2<Tracks>> {}
+type DayMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
 
 /** @reactComponent */
 function DayMusicsContainer({files,}: DayMusicsProperties,) {

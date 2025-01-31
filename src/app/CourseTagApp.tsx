@@ -46,8 +46,7 @@ const {LIST, CARD,} = ViewDisplays
 
 const options = CourseTagAppOption.CompanionEnum.get.values
 
-interface CourseTagAppProperties
-    extends AppPropertiesWithType<CourseTagTypes> {}
+type CourseTagAppProperties = AppPropertiesWithType<CourseTagTypes>
 
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type, games,}: CourseTagAppProperties,) {

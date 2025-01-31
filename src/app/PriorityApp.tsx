@@ -156,8 +156,7 @@ const lakituCloud_nsmbuImages = LAKITU_CLOUD.image.getNsmbu()
 
 //endregion -------------------- Helper constants --------------------
 
-interface PriorityAppProperties
-    extends AppPropertiesWithType<PowerUpPriorityTypes> {}
+type PriorityAppProperties = AppPropertiesWithType<PowerUpPriorityTypes>
 
 /**
  * @TODO Restructure the application to have a re-designed visual approach

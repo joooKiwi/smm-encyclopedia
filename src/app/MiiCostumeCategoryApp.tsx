@@ -38,8 +38,7 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = MiiCostumeCategoryAppOption.CompanionEnum.get.values
 
-interface MiiCostumeCategoryAppProperties
-    extends AppProperties {}
+type MiiCostumeCategoryAppProperties = AppProperties
 
 /** @reactComponent */
 export default function MiiCostumeCategoryApp({viewDisplay, games,}: MiiCostumeCategoryAppProperties,) {

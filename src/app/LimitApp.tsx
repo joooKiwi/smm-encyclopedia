@@ -60,8 +60,7 @@ const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-interface LimitAppProperties
-    extends AppPropertiesWithType<LimitTypes> {}
+type LimitAppProperties = AppPropertiesWithType<LimitTypes>
 
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games, gameStyles,}: LimitAppProperties,) {

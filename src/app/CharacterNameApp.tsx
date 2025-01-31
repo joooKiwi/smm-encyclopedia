@@ -53,8 +53,7 @@ const {LIST, CARD,} = ViewDisplays
 const all = new ArrayAsCollection(ALL,)
 const options = CharacterNameAppOption.CompanionEnum.get.values
 
-interface CharacterNameAppProperties
-    extends AppProperties {}
+type CharacterNameAppProperties = AppProperties
 
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games, times,}: CharacterNameAppProperties,) {
