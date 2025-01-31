@@ -16,6 +16,6 @@ export interface InternalFile<out PATH extends string = string,
 
 }
 
-export type FullFilePath<PATH extends string = string, > = `/${PATH}`
+export type FullFilePath<PATH extends string = string, > = `/${BasePath}/${PATH}`
 export type FullFileName<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleFileExtension = PossibleFileExtension, > = `${FullFilePath<PATH>}/${NAME}.${EXTENSION}`
 
