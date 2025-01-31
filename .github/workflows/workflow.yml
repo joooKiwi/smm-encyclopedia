@@ -42,6 +42,10 @@ jobs:
       - name: Copying the locale on the "/src" folder
         run: npm run copy-locale-to-src --ignore-scripts
 
+# TODO: remove comment once typescript can build normally
+#      - name: Building typescript
+#        run: npm run typescript-build --ignore-scripts
+
       - name: Building of the application
         run: npm run build --ignore-scripts
 
