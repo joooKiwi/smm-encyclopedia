@@ -1,7 +1,7 @@
 import type {PossibleAcronym_GameStyle, PossibleEnglishName_GameStyle} from 'core/gameReference/GameReferences.types'
 import type {GameStyles}                                               from 'core/gameStyle/GameStyles'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     SUPER_MARIO_BROS,
     SUPER_MARIO_BROS_3,

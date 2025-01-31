@@ -11,7 +11,7 @@ import type {GameCollection}                                                    
 import type {GameStyleCollection}                                                                                                                                                           from 'util/collection/GameStyleCollection'
 import type {TimeCollection}                                                                                                                                                                from 'util/collection/TimeCollection'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     HOME,
     ABOUT,
     SOURCES,

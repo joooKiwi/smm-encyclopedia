@@ -2,7 +2,7 @@ import type {EmptyString} from '@joookiwi/type'
 
 import type {PossibleEnglishName_PlayableCharacter} from 'core/entity/Entities.types'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     MARIO,
     SMALL_MARIO, SUPER_MARIO,

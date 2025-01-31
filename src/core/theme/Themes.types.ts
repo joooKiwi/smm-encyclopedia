@@ -1,4 +1,4 @@
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW,
     SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,

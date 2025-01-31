@@ -1,6 +1,6 @@
 import type {PossibleSimpleValue} from 'core/game/Games.types'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     SUPER_MARIO_MAKER,
     SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,
     SUPER_MARIO_MAKER_2,

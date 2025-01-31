@@ -4,7 +4,7 @@ import type {CharacterName}                                                     
 import type {Entity}                                                                 from 'core/entity/Entity'
 import type {PossibleEnglishName_EditorVoice, PossibleEnglishName_PlayableCharacter} from 'core/entity/Entities.types'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 

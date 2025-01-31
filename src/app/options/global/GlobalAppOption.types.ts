@@ -4,7 +4,7 @@ import type {Images}            from 'app/options/global/Images'
 import type {Sounds}            from 'app/options/global/Sounds'
 import type {Texts}             from 'app/options/global/Texts'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     IMAGES,
     IMAGE_ANIMATIONS,

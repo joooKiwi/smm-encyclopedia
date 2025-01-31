@@ -1,6 +1,6 @@
 import type {EmptyString} from '@joookiwi/type'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     NONE,
     NINTENDO_SHIRT, NINTENDO_UNIFORM,

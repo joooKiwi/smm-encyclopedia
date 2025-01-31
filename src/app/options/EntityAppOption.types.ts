@@ -1,4 +1,4 @@
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     IMAGE_IN_SMB,
     IMAGE_IN_SMB3,

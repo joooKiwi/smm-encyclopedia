@@ -1,6 +1,6 @@
 import type {GroupUrl} from 'core/time/Times.types'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     ALL_TIMES,
     DAY,
     NIGHT,

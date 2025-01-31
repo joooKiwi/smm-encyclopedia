@@ -1,4 +1,4 @@
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     THANKS, HERE_WE_GO, NICE_WORK,
     IM_DONE_FOR, SORRY, NO_WORRIES,

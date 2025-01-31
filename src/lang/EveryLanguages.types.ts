@@ -2,7 +2,7 @@ import type {EmptyString} from '@joookiwi/type'
 
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from 'lang/ProjectLanguages.types'
 
-declare const enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     ENGLISH, AMERICAN_ENGLISH, EUROPEAN_ENGLISH,
     FRENCH, CANADIAN_FRENCH, EUROPEAN_FRENCH,
