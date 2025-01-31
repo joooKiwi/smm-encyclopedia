@@ -87,9 +87,9 @@ export class ReferenceLinks {
                            castleReferences: NullOrString<EntityLink>,
     ): void {
         const allLinks: MutableSet<PossibleEnglishName> = new Set()
-        let timeLinks: MutableSet<PossibleEnglishName> = new Set()
-        let themeLinks: MutableSet<PossibleEnglishName> = new Set()
-        let gameStyleLinks: MutableSet<PossibleEnglishName> = new Set()
+        const timeLinks: MutableSet<PossibleEnglishName> = new Set()
+        const themeLinks: MutableSet<PossibleEnglishName> = new Set()
+        const gameStyleLinks: MutableSet<PossibleEnglishName> = new Set()
 
         this._addReferenceTo(dayReferences, allLinks, timeLinks,)
         this._addReferenceTo(nightReferences, allLinks, timeLinks,)
