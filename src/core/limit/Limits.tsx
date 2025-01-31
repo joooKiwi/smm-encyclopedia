@@ -192,7 +192,7 @@ export class Limits
     public static readonly EXCLAMATION_BLOCK_LIMIT =                        new class Limits_ExclamationBlockLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([Import.Entities.EXCLAMATION_MARK_BLOCK,],)
+            return new ArrayAsCollection([instance.EXCLAMATION_MARK_BLOCK,],)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -203,7 +203,7 @@ export class Limits
     public static readonly TRACK_BLOCK_LIMIT =                              new class Limits_TrackBlockLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([Import.Entities.TRACK_BLOCK,],)
+            return new ArrayAsCollection([instance.TRACK_BLOCK,],)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -246,7 +246,7 @@ export class Limits
     public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                 new class Limits_EntityHeldByATwisterLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([Import.Entities.TWISTER,],)
+            return new ArrayAsCollection([instance.TWISTER,],)
         }
 
         protected override _createReferenceMapForDescription() {
