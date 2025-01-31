@@ -1,5 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
-import type {Array, Nullable}  from '@joookiwi/type'
+import type {Nullable}         from '@joookiwi/type'
 
 import type {GameStyles}                                             from 'core/gameStyle/GameStyles'
 import type {GroupUrlName, GroupUrlValue}                            from 'core/gameStyle/GameStyles.types'
