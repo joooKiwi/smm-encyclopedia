@@ -1,5 +1,3 @@
-import type {EmptyString} from '@joookiwi/type'
-
 declare const enum Enum {
     UP,
     DOWN,
@@ -13,5 +11,3 @@ declare const enum Enum {
 
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
-
-export type PossibleContainer = `arrow${| EmptyString | 's'}-container`
