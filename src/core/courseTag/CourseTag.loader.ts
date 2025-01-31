@@ -63,6 +63,14 @@ export class CourseTagLoader
 interface Content
     extends LanguageContent {
 
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    //endregion -------------------- Language --------------------
+
     readonly isAnOfficialTag: boolean
     readonly makerCentralName: NullOrString<PossibleMakerCentralName>
     readonly firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker

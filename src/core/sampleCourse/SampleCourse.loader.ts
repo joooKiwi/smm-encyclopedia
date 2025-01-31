@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Sample course (SMM).json'
 
-import type {Array, NullOr} from '@joookiwi/type'
-import {forEachByArray}     from '@joookiwi/collection'
+import type {Array, NullOr, NullOrString} from '@joookiwi/type'
+import {forEachByArray}                   from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                        from 'core/_template/LanguageContent'
 import type {PossibleAcronym_GameStyle_SMM1}                                                         from 'core/gameReference/GameReferences.types'
@@ -63,6 +63,33 @@ export class SampleCourseLoader
 
 interface Content
     extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: string
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly chinese: null
+    readonly traditionalChinese: null
+    readonly simplifiedChinese: null
+
+    readonly korean: null
+
+    //endregion -------------------- Language --------------------
 
     readonly worldNumber: PossibleWorldNumber
     readonly courseNumberInFirst10MarioChallenge: PossibleFirstNumberInFirst10MarioChallenges

@@ -76,8 +76,13 @@ export class LimitLoader
 interface Content
     extends LanguageContent {
 
-    readonly english: NullOrString<PossibleEnglishName>
-    readonly americanEnglish: NullOrString<PossibleEnglishName>
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    //endregion -------------------- Language --------------------
 
     readonly isAlternativeLimit: boolean
     readonly alternative: NullOrString<PossibleAlternativeEnglishName>

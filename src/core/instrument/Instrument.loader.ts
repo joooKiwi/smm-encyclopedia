@@ -66,6 +66,8 @@ export class InstrumentLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
+    //region -------------------- Language --------------------
+
     readonly english: PossibleEnglishName
     readonly americanEnglish: null
     readonly europeanEnglish: null
@@ -73,6 +75,8 @@ interface Content
     readonly french: string
     readonly canadianFrench: null
     readonly europeanFrench: null
+
+    //endregion -------------------- Language --------------------
 
     // readonly isToDetermine: boolean
 

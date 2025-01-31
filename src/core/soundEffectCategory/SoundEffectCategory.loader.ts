@@ -54,7 +54,37 @@ export class SoundEffectCategoryLoader
 
 
 interface Content
-    extends LanguageContent {}
+    extends LanguageContent {
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly french: string
+    readonly canadianFrench: null
+    readonly europeanFrench: null
+
+    readonly german: string
+
+    readonly spanish: string
+    readonly americanSpanish: null
+    readonly europeanSpanish: null
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: null
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+}
 
 function createReference(content: Content,): SoundEffectCategory {
     return new SoundEffectCategoryContainer(createNameFromContent(content, 2, false,),)

@@ -54,7 +54,33 @@ export class PredefinedMessageLoader
 
 
 interface Content
-    extends LanguageContent {}
+    extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: null
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
+
+}
 
 function createReference(content: Content,): PredefinedMessage {
     return new PredefinedMessageContainer(createNameFromContent(content, 2, true,),)

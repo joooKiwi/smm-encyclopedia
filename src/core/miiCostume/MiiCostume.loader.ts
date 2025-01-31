@@ -73,6 +73,29 @@ export class MiiCostumeLoader
 interface Content
     extends LanguageContent {
 
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: null
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
+
     readonly notificationIfUnlocked: NullOrString<PossibleEnglishName_OfficialNotification>
 
     readonly MM2_version: PossibleMarioMakerVersion

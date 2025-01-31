@@ -76,6 +76,30 @@ export class ThemeLoader
 interface Content
     extends LanguageContent, GameContentFrom1And2 {
 
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: string
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
+
     readonly isInSuperMarioMaker2: true
 
     readonly isInCourseTheme: boolean

@@ -64,8 +64,12 @@ export class OtherWordInTheGameLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
+    //region -------------------- Language --------------------
+
     readonly english: NullOrString<PossibleEnglishName>
     readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    //endregion -------------------- Language --------------------
 
     readonly isPlural: boolean
     readonly pluralForm: NullOrString<PossibleEnglishName_Plural>

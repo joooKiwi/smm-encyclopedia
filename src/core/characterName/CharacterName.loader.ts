@@ -1,14 +1,14 @@
 import file from 'resources/compiled/Character name.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
 
-import type {Loader}                    from 'util/loader/Loader'
-import type {CharacterName}             from 'core/characterName/CharacterName'
-import type {LanguageContent}           from 'core/_template/LanguageContent'
-import type {UniqueNameContent}         from 'core/_template/UniqueNameContent'
-import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
-import type {GameContentFromAllGames}   from 'core/game/Loader.types'
+import type {Loader}                                         from 'util/loader/Loader'
+import type {CharacterName}                                  from 'core/characterName/CharacterName'
+import type {LanguageContent}                                from 'core/_template/LanguageContent'
+import type {UniqueNameContent}                              from 'core/_template/UniqueNameContent'
+import type {PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
+import type {GameContentFromAllGames}                        from 'core/game/Loader.types'
 
 import {isInDevelopment}        from 'variables'
 import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
@@ -55,6 +55,21 @@ interface Content
     extends LanguageContent,
         GameContentFromAllGames,
         UniqueNameContent<PossibleUniqueEnglishName> {
+
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly greek: NullOrString
+
+    readonly hebrew: NullOrString
+
+    readonly polish: NullOrString
+
+    readonly ukrainian: NullOrString
+
+    //endregion -------------------- Language --------------------
 
     readonly isInDayTime: boolean
     readonly isInNightTime: boolean

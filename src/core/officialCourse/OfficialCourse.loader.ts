@@ -71,6 +71,60 @@ export class OfficialCourseLoader
 interface Content
     extends LanguageContent, DescriptionLanguageContent {
 
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: UnknownReference
+
+    readonly portuguese: UnknownReference
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly chinese: null
+    readonly traditionalChinese: null
+    readonly simplifiedChinese: null
+
+    readonly korean: null
+
+    //endregion -------------------- Language --------------------
+    //region -------------------- Description --------------------
+
+    readonly americanEnglish_description: null
+    readonly europeanEnglish_description: null
+
+    readonly german_description: UnknownReference
+
+    readonly italian_description: UnknownReference
+
+    readonly dutch_description: UnknownReference
+
+    readonly portuguese_description: UnknownReference
+    readonly americanPortuguese_description: null
+    readonly europeanPortuguese_description: null
+
+    readonly russian_description: UnknownReference
+
+    readonly japanese_description: UnknownReference
+
+    readonly chinese_description: null
+    readonly traditionalChinese_description: null
+    readonly simplifiedChinese_description: null
+
+    readonly korean_description: null
+
+    //endregion -------------------- Description --------------------
+
     readonly reward: PossibleReward
 
     readonly releaseDate: PossibleReleaseDate
@@ -81,38 +135,6 @@ interface Content
     readonly courseTheme_subArea: NullOr<PossibleEnglishName_CourseTheme_SMM1>
 
     readonly amountOfTime: PossibleAmountOfTime
-
-
-    readonly english: PossibleEnglishName
-    readonly americanEnglish: null
-    readonly europeanEnglish: null
-    readonly german: string
-    readonly italian: string
-    readonly dutch: UnknownReference
-    readonly portuguese: UnknownReference
-    readonly americanPortuguese: null
-    readonly europeanPortuguese: null
-    readonly russian: string
-    readonly japanese: string
-    readonly chinese: null
-    readonly traditionalChinese: null
-    readonly simplifiedChinese: null
-    readonly korean: null
-
-    readonly americanEnglish_description: null
-    readonly europeanEnglish_description: null
-    readonly german_description: UnknownReference
-    readonly italian_description: UnknownReference
-    readonly dutch_description: UnknownReference
-    readonly portuguese_description: UnknownReference
-    readonly americanPortuguese_description: null
-    readonly europeanPortuguese_description: null
-    readonly russian_description: UnknownReference
-    readonly japanese_description: UnknownReference
-    readonly chinese_description: null
-    readonly traditionalChinese_description: null
-    readonly simplifiedChinese_description: null
-    readonly korean_description: null
 
 }
 

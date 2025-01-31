@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Game reference.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
 
 import type {LanguageContent}                      from 'core/_template/LanguageContent'
 import type {GameReference}                        from 'core/gameReference/GameReference'
@@ -54,6 +54,16 @@ export class GameReferenceLoader
 
 interface Content
     extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    //endregion -------------------- Language --------------------
 
     readonly acronym: PossibleAcronym
 

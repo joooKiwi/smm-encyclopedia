@@ -54,7 +54,41 @@ export class MiiCostumeCategoryLoader
 
 
 interface Content
-    extends LanguageContent {}
+    extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly french: string
+    readonly canadianFrench: null
+    readonly europeanFrench: null
+
+    readonly german: string
+
+    readonly spanish: string
+    readonly americanSpanish: null
+    readonly europeanSpanish: null
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: string
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
+
+}
 
 function createReference(content: Content,): MiiCostumeCategory {
     return new MiiCostumeCategoryContainer(createNameFromContent(content, 2, false,),)
