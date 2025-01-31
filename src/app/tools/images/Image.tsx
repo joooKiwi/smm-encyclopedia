@@ -31,9 +31,8 @@ function ImageFromFile({file, ...imageProperties}: ImageFromFileProperties,) {
     return <SingleImage key={key} source={fullName} fallbackName={fallbackName} {...imageProperties}/>
 }
 
-function ImageFromVariable({variable, isSquared, className = EMPTY_STRING, style, ...imagesProperties}: ImageFromVariableProperties,) {
-    const appliedStyle = style ?? {}
-    appliedStyle['--image-source'] = `var(--${variable}-image)`
+function ImageFromVariable({variable, isSquared, className = EMPTY_STRING, style = {}, ...imagesProperties}: ImageFromVariableProperties,) {
+    const appliedStyle = {...style, '--image-source': `var(--${variable}-image`,}
     return <em className={`image-from-variable ${isSquared ? 'square-image-from-variable' : EMPTY_STRING} ${className}`} style={appliedStyle} {...imagesProperties}/>
 }
 
