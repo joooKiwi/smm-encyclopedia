@@ -10,7 +10,11 @@ import {defineConfig} from 'vitest/config'
 
 export default defineConfig({
     base: '/',
-    plugins: [react(), tsconfigPaths(), commonjs(),],
+    plugins: [
+        react({babel: {plugins: [['babel-plugin-react-compiler',],],},},),
+        tsconfigPaths(),
+        commonjs(),
+    ],
     define: {'process.env': process.env,},
     resolve: { alias: {
         src:  '/src',
