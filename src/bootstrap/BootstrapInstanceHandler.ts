@@ -52,29 +52,29 @@ export class BootstrapInstanceHandler {
         const iterator = map.entries()
         let value = iterator.next()
         if (typeof type == 'string') {
-            while (!value.done) {
+            while (!value.done)
                 if (value.value[1].id === type)
                     return value.value[0]
-                value = iterator.next()
-            }
+                else
+                    value = iterator.next()
             return null
         }
-        while (!value.done) {
+        while (!value.done)
             if (value.value[1].element === type)
                 return value.value[0]
-            value = iterator.next()
-        }
+            else
+                value = iterator.next()
         return null
     }
 
 
-    public add<T extends TooltipInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<T extends PopoverInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<T extends OffcanvasInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<T extends ModalInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<T extends PossibleBootstrapInstance, >(type: StringOrHTMLElement, instance: T,): T {
+    public add<const T extends TooltipInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
+    public add<const T extends PopoverInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
+    public add<const T extends OffcanvasInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
+    public add<const T extends ModalInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
+    public add<const T extends PossibleBootstrapInstance, >(type: StringOrHTMLElement, instance: T,): T {
         const template = typeof type == 'string'
-            ? {id: type, element: document.getElementById(type,)!}
+            ? {id: type, element: document.getElementById(type,)!,}
             : {id: type.id, element: type,} satisfies Template
 
         if (instance instanceof TooltipInstance)
@@ -94,26 +94,26 @@ export class BootstrapInstanceHandler {
      *
      * @param instance The instance to remove
      */
-    public remove<T extends TooltipInstance<any, any>, >(instance: T,): T
+    public remove<const T extends TooltipInstance<any, any>, >(instance: T,): T
     /**
      * Remove the {@link PopoverInstance} instance from the instance handled
      *
      * @param instance The instance to remove
      */
-    public remove<T extends PopoverInstance<any, any>, >(instance: T,): T
+    public remove<const T extends PopoverInstance<any, any>, >(instance: T,): T
     /**
      * Remove the {@link OffcanvasInstance} instance from the instance handled
      *
      * @param instance The instance to remove
      */
-    public remove<T extends OffcanvasInstance<any, any>, >(instance: T,): T
+    public remove<const T extends OffcanvasInstance<any, any>, >(instance: T,): T
     /**
      * Remove the {@link ModalInstance} instance from the instance handled
      *
      * @param instance The instance to remove
      */
-    public remove<T extends ModalInstance<any, any>, >(instance: T,): T
-    public remove<T extends PossibleBootstrapInstance, >(instance: T,): T {
+    public remove<const T extends ModalInstance<any, any>, >(instance: T,): T
+    public remove<const T extends PossibleBootstrapInstance, >(instance: T,): T {
         if (instance instanceof TooltipInstance)
             this.#tooltipMap?.delete(instance,)
         else if (instance instanceof PopoverInstance)
