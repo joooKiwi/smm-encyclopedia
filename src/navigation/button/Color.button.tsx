@@ -10,9 +10,9 @@ import {COLOR_MODAL_ID}     from 'navigation/button/modalIds'
 export default function ColorButton() {
     const htmlElement = useRef<HTMLButtonElement>(null,)
 
-    return <Tooltip option={({title: contentTranslation('color.plural',), placement: 'left',})} reference={htmlElement}>
-        <ModalButton ref={htmlElement} id="color-button" className="btn btn-outline-primary btn-navigation bi bi-palette-fill" disabled aria-disabled elementToShow={COLOR_MODAL_ID}>
-            <span className={`btn-navigation-text d-none d-md-inline-block`}>{contentTranslation('color.plural',)}</span>
+    return <Tooltip option={({title: contentTranslation('Change the color modes',), placement: 'left',})} reference={htmlElement}>
+        <ModalButton ref={htmlElement} id="color-button" className="btn btn-outline-primary btn-navigation bi bi-palette-fill" elementToShow={COLOR_MODAL_ID}>
+            <span className="btn-navigation-text d-none d-lg-inline-block">{contentTranslation('color.plural',)}</span>
         </ModalButton>
     </Tooltip>
 }

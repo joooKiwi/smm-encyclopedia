@@ -18,6 +18,7 @@ import {Times}                    from 'core/time/Times'
 import TimeImage                  from 'core/time/component/TimeImage'
 import {contentTranslation}       from 'lang/components/translationMethods'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
+import ParameterToColorButton     from 'navigation/button/ParameterToColor.button'
 import ParameterToLanguageButton  from 'navigation/button/ParameterToLanguage.button'
 import {EveryRoutes}              from 'route/EveryRoutes'
 import {Empty}                    from 'util/emptyVariables'
@@ -120,7 +121,7 @@ export default function ParameterModal() {
 
     const route = EveryRoutes.Companion.getValueInUrl(currentPath,)
     assert(route != null, `The route was not expected to be null with the path ${currentPath}.`,)
-    const pathToGo = route.getPath(null, selectedGames, selectedGameStyles, selectedTimes.toArray(),)
+    const pathToGo = route.getPath(null, null, selectedGames, selectedGameStyles, selectedTimes.toArray(),)
 
     //endregion -------------------- Route fields --------------------
 
@@ -131,7 +132,7 @@ export default function ParameterModal() {
                 <div className="modal-content">
                     <div className="modal-header">
                         <div className="btn-group" role="group">
-                            <button className="btn btn-outline-primary rounded-pill bi bi-palette-fill" disabled/>
+                            <ParameterToColorButton/>
                             <ParameterToLanguageButton/>
                         </div>
                         <h4 className="modal-title w-100 text-center">{contentTranslation('Options',)}</h4>

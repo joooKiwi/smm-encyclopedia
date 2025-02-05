@@ -13,6 +13,7 @@ import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
 import {PowerUpPriorityTypes}  from 'app/property/PowerUpPriorityTypes'
 import {ThemeTypes}            from 'app/property/ThemeTypes'
+import {ColorThemes}           from 'color/ColorThemes'
 import {Games}                 from 'core/game/Games'
 import {GameStyles}            from 'core/gameStyle/GameStyles'
 import {GameStylesPossibility} from 'core/gameStyle/GameStyles.possibility'
@@ -28,6 +29,7 @@ import ALL_GAMES =            Games.ALL
 import ALL_TIMES =            Times.ALL
 import ALL_VIEW_DISPLAY =     ViewDisplayCollection.ALL
 import DAY_ONLY =             Times.DAY_ONLY
+import ColorCompanion =       ColorThemes.Companion
 import EMPTY_STRING =         Empty.EMPTY_STRING
 import GameCompanion =        Games.Companion
 import LanguageCompanion =    ProjectLanguages.Companion
@@ -2045,14 +2047,14 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             return this.values.findFirstOrNull(it => url.endsWith(it.urlValue,),)
         }
 
-        public getRouteFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>,): EveryPossibleRoutes {
+        public getRouteFromName(name: PossibleRouteName, language?: Nullable<ProjectLanguages>, color?: Nullable<ColorThemes>,): EveryPossibleRoutes {
             for (const value of this.values) {
                 const urlName = value.urlName
                 if (urlName === name) {
                     const everyRoute = new ArrayAsCollection(value.everyRoute,)
                     const routeFoundByName = everyRoute.findFirstOrNull(it => it.name === name,)
                     if (routeFoundByName != null)
-                        return value.getPath(language, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.times, routeFoundByName.viewDisplay,)
+                        return value.getPath(language, color, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.times, routeFoundByName.viewDisplay,)
 
                     const pathToFind = `${
                         value._getPathFromGames()}${
@@ -2062,11 +2064,11 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                         value.urlValue}`
                     const routeFoundByPath = everyRoute.findFirstOrNull(it => it.path === pathToFind,)
                     if (routeFoundByPath != null)
-                        return value.getPath(language, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.times, routeFoundByPath.viewDisplay,)
+                        return value.getPath(language, color, routeFoundByPath.games, routeFoundByPath.gameStyles, routeFoundByPath.times, routeFoundByPath.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the direct name "${name}".`,)
                 }
 
-                const routeFromOnlyViewDisplay = this.#getRouteFromOnlyViewDisplay(value, name, language,)
+                const routeFromOnlyViewDisplay = this.#getRouteFromOnlyViewDisplay(value, name, language, color,)
                 if (routeFromOnlyViewDisplay != null)
                     return routeFromOnlyViewDisplay
 
@@ -2079,7 +2081,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                         value.urlValue}`
                     const routeFound = new ArrayAsCollection(value.everyRoute,).findFirstOrNull(it => it.path === pathToFind,)
                     if (routeFound != null)
-                        return value.getPath(language, routeFound.games, routeFound.gameStyles, routeFound.times, routeFound.viewDisplay,)
+                        return value.getPath(language, color, routeFound.games, routeFound.gameStyles, routeFound.times, routeFound.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the name starting by "${name}".`,)
                 }
             }
@@ -2090,11 +2092,12 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         /**
          * Get a route (if applicable) from a {@link ViewDisplays} directly
          *
-         * @param value The current {@link EveryRoutes} instance
-         * @param name The name to find
+         * @param value    The current {@link EveryRoutes} instance
+         * @param name     The name to find
          * @param language The language in the route
+         * @param color    The colour in the route
          */
-        #getRouteFromOnlyViewDisplay(value: EveryRoutes, name: PossibleRouteName, language: Nullable<ProjectLanguages>,): NullOrString<EveryPossibleRoutes> {
+        #getRouteFromOnlyViewDisplay(value: EveryRoutes, name: PossibleRouteName, language: Nullable<ProjectLanguages>, color: Nullable<ColorThemes>,): NullOrString<EveryPossibleRoutes> {
             const viewDisplays = value.viewDisplays
             if (viewDisplays.isEmpty)
                 return null
@@ -2102,13 +2105,13 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             const urlName = value.urlName
             if (viewDisplays.hasSimpleList)
                 if (`${urlName} (list)` === name)
-                    return value.getPath(language, null, null, null, LIST,)
+                    return value.getPath(language, color, null, null, null, LIST,)
             if (viewDisplays.hasCardList)
                 if (`${urlName} (card)` === name)
-                    return value.getPath(language, null, null, null, CARD,)
+                    return value.getPath(language, color, null, null, null, CARD,)
             if (viewDisplays.hasCardList)
                 if (`${urlName} (table)` === name)
-                    return value.getPath(language, null, null, null, TABLE,)
+                    return value.getPath(language, color, null, null, null, TABLE,)
             return null
         }
 
@@ -2260,9 +2263,10 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: Nullable<ProjectLanguages>, games: Nullable<CollectionHolder<Games>> = null, gameStyles: Nullable<CollectionHolder<GameStyles>> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
+    public getPath(language: Nullable<ProjectLanguages>, color: Nullable<ColorThemes>, games: Nullable<CollectionHolder<Games>> = null, gameStyles: Nullable<CollectionHolder<GameStyles>> = null, times: NullableArray<Times> = null, viewDisplay: Nullable<ViewDisplays> = null,): EveryPossibleRoutes {
         language ??= LanguageCompanion.current
-        return `/${language.projectAcronym}${this._getPathFromGames(games,)}${this._getPathFromGameStyles(gameStyles,)}${this._getPathFromTimes(times,)}${this._getPathFromViewDisplay(viewDisplay,)}${this.urlValue}`
+        color ??= ColorCompanion.current
+        return `/${language.projectAcronym}/${ColorCompanion.PREFIX}${color.colorMode}${this._getPathFromGames(games,)}${this._getPathFromGameStyles(gameStyles,)}${this._getPathFromTimes(times,)}${this._getPathFromViewDisplay(viewDisplay,)}${this.urlValue}`
     }
 
     //endregion -------------------- Methods --------------------

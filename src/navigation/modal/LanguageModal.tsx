@@ -4,6 +4,7 @@ import Modal                       from 'bootstrap/modal/Modal'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import {contentTranslation}        from 'lang/components/translationMethods'
 import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
+import LanguageToColorButton       from 'navigation/button/LanguageToColor.button'
 import LanguageToParameterButton   from 'navigation/button/LanguageToParameter.button'
 import {LanguageChangerSingleLink} from 'navigation/modal/LanguageChanger.single.link'
 import {BootstrapInstanceHandler}  from 'bootstrap/BootstrapInstanceHandler'
@@ -23,7 +24,7 @@ export default function LanguageModal() {
                 <div className="modal-content">
                     <div className="modal-header">
                         <div className="btn-group" role="group">
-                            <button className="btn btn-outline-primary rounded-pill bi bi-palette-fill" disabled/>
+                            <LanguageToColorButton/>
                             <LanguageToParameterButton/>
                         </div>
                         <h4 className="modal-title w-100 text-center">{contentTranslation('Change the language',)}</h4>
