@@ -1,9 +1,9 @@
-import type {Entities}        from 'core/entity/Entities.ts'
-import type {ReactProperties} from 'util/react/ReactProperties.ts'
+import type {Entities}        from 'core/entity/Entities'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import TextComponent    from 'app/tools/text/TextComponent.tsx'
-import LimitComponent   from 'core/limit/Limit.component.tsx'
-import {NOT_APPLICABLE} from 'util/commonVariables.ts'
+import TextComponent    from 'app/tools/text/TextComponent'
+import LimitComponent   from 'core/limit/Limit.component'
+import {NOT_APPLICABLE} from 'util/commonVariables'
 
 interface Smm1And3dsEditorLimitProperties
     extends ReactProperties {

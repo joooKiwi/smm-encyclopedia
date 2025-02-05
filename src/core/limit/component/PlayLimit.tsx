@@ -1,7 +1,7 @@
-import type {Entities}        from 'core/entity/Entities.ts'
-import type {ReactProperties} from 'util/react/ReactProperties.ts'
+import type {Entities}        from 'core/entity/Entities'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import LimitComponent from 'core/limit/Limit.component.tsx'
+import LimitComponent from 'core/limit/Limit.component'
 
 interface PlayLimitProperties
     extends ReactProperties {
