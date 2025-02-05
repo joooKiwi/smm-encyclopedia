@@ -107,7 +107,7 @@ export class PredefinedMessages
 
 }
 
-export namespace PredefinedMessages {
+export namespace PredefinedMessages {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link PredefinedMessages} */
     export const Companion = PredefinedMessages.CompanionEnum.get

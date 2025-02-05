@@ -17,7 +17,7 @@ export class TranslationUtility {
 
 }
 
-export namespace TranslationUtility {
+export namespace TranslationUtility {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const STARTING_CHARACTER = '{'
     export const STARTING_CHARACTER_LENGTH = STARTING_CHARACTER.length

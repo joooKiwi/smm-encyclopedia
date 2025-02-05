@@ -241,7 +241,7 @@ export class GameReferences
 
 }
 
-export namespace GameReferences {
+export namespace GameReferences {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const Companion = GameReferences.CompanionEnum.get
 

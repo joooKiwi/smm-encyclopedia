@@ -593,7 +593,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
 
 }
 
-export namespace GameStyles {
+export namespace GameStyles {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link GameStyles} */
     export const Companion = GameStyles.CompanionEnum.get

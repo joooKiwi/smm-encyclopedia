@@ -153,7 +153,7 @@ export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 }
 
-export namespace ModalInstance {
+export namespace ModalInstance {// eslint-disable-line @typescript-eslint/no-namespace
 
     // export let DEFAULT_OPTIONS: Modal.Options = Modal.Default
     /** @see Modal.Events.show */

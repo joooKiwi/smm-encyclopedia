@@ -171,7 +171,7 @@ export abstract class SoundEffectAppOption
 
 }
 
-export namespace SoundEffectAppOption {
+export namespace SoundEffectAppOption {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** @deprecated This should be replaced with something else */
     export function renderSMM1And3DSImage(enumerable: SoundEffects,): NullOr<ReactJSXElement> {

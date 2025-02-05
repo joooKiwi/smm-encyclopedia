@@ -250,7 +250,7 @@ export class MiiCostumes
 
 }
 
-export namespace MiiCostumes {
+export namespace MiiCostumes {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link MiiCostumes} */
     export const Companion = MiiCostumes.CompanionEnum.get

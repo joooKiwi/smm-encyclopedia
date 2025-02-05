@@ -88,7 +88,7 @@ export class LimitTypes
 
 }
 
-export namespace LimitTypes {
+export namespace LimitTypes {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link LimitTypes} */
     export const Companion = LimitTypes.CompanionEnum.get

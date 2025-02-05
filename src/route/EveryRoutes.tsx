@@ -2269,7 +2269,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
 
 }
 
-export namespace EveryRoutes {
+export namespace EveryRoutes {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link EveryRoutes} */
     export const Companion = EveryRoutes.CompanionEnum.get

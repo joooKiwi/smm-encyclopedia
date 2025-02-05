@@ -178,7 +178,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
 
 }
 
-export namespace GameStyleCollection {
+export namespace GameStyleCollection {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const EMPTY = new GameStyleCollection(EMPTY_ARRAY,)
 

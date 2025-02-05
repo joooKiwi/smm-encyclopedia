@@ -117,7 +117,7 @@ export class Versions
 
 }
 
-export namespace Versions {
+export namespace Versions {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Versions} */
     export const Companion = Versions.CompanionEnum.get

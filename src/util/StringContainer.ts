@@ -23,7 +23,7 @@ export class StringContainer<T extends string, T_HTML extends string = string, >
 
 }
 
-export namespace StringContainer {
+export namespace StringContainer {// eslint-disable-line @typescript-eslint/no-namespace
 
     /**
      * A regex containing the characters that should be removed direclty

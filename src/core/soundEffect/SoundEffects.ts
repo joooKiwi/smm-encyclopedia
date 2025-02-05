@@ -1275,7 +1275,7 @@ export abstract class SoundEffects
 
 }
 
-export namespace SoundEffects {
+export namespace SoundEffects {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link SoundEffects} */
     export const Companion = SoundEffects.CompanionEnum.get

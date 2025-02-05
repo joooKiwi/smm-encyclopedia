@@ -272,7 +272,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
 
 }
 
-export namespace Themes {
+export namespace Themes {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Themes} */
     export const Companion = Themes.CompanionEnum.get

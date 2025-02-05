@@ -861,7 +861,7 @@ export class Tracks<const FILE extends NullOr<SoundFile> = NullOr<SoundFile>,
 
 }
 
-export namespace Tracks {
+export namespace Tracks {// eslint-disable-line @typescript-eslint/no-namespace
 
     //region -------------------- Fields (editor) --------------------
 

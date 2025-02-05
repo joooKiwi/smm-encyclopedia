@@ -188,7 +188,7 @@ export class NightEffects
 
 }
 
-export namespace NightEffects {
+export namespace NightEffects {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link NightEffects} */
     export const Companion = NightEffects.CompanionEnum.get

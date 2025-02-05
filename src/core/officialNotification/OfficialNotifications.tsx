@@ -711,7 +711,7 @@ export class OfficialNotifications
 
 }
 
-export namespace OfficialNotifications {
+export namespace OfficialNotifications {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link OfficialNotifications} */
     export const Companion = OfficialNotifications.CompanionEnum.get

@@ -437,7 +437,7 @@ export class ProjectLanguages<const ACRONYM extends PossibleAcronym = PossibleAc
 
 }
 
-export namespace ProjectLanguages {
+export namespace ProjectLanguages {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link ProjectLanguages} */
     export const Companion = ProjectLanguages.CompanionEnum.get

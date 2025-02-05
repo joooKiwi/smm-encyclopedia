@@ -120,7 +120,7 @@ export class CourseTags
 
 }
 
-export namespace CourseTags {
+export namespace CourseTags {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link CourseTags} */
     export const Companion = CourseTags.CompanionEnum.get

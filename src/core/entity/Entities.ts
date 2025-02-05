@@ -629,7 +629,7 @@ export class Entities
 
 }
 
-export namespace Entities {
+export namespace Entities {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Entities} */
     export const Companion = Entities.CompanionEnum.get

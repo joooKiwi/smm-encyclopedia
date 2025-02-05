@@ -103,7 +103,7 @@ export class EntityCategories<const NAME extends PossibleEnglishName = PossibleE
 
 }
 
-export namespace EntityCategories {
+export namespace EntityCategories {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link EntityCategories} */
     export const Companion = EntityCategories.CompanionEnum.get

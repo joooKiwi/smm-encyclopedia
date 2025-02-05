@@ -458,7 +458,7 @@ export class Musics
 
 }
 
-export namespace Musics {
+export namespace Musics {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** An alias of {@link Musics.SUPER_MARIO_KART} */
     export const SMK = Musics.SUPER_MARIO_KART

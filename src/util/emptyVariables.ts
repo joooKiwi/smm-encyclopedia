@@ -2,7 +2,7 @@ import type {EmptyObject, EmptyString} from '@joookiwi/type'
 import {CollectionConstants}           from '@joookiwi/collection'
 
 /** A zone to encapculate the empty fields and to be used directly in an "import" statement */
-export namespace Empty {
+export namespace Empty {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** An empty string */
     export const EMPTY_STRING: EmptyString  = ''

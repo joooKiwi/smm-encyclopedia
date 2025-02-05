@@ -219,7 +219,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
 
 }
 
-export namespace Times {
+export namespace Times {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Times} */
     export const Companion = Times.CompanionEnum.get

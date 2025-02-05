@@ -526,7 +526,7 @@ export class MysteryMushrooms
 
 }
 
-export namespace MysteryMushrooms {
+export namespace MysteryMushrooms {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link MysteryMushrooms} */
     export const Companion = MysteryMushrooms.CompanionEnum.get

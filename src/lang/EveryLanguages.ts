@@ -906,7 +906,7 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
 
 }
 
-export namespace EveryLanguages {
+export namespace EveryLanguages {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link EveryLanguages} */
     export const Companion = EveryLanguages.CompanionEnum.get

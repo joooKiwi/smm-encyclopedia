@@ -134,7 +134,7 @@ export class OffcanvasInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 }
 
-export namespace OffcanvasInstance {
+export namespace OffcanvasInstance {// eslint-disable-line @typescript-eslint/no-namespace
 
     // export let DEFAULT_OPTIONS: Partial<Offcanvas.Options> = {}
     /** @see Offcanvas.Events.show */

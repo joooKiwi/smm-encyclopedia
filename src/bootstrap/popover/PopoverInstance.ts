@@ -158,7 +158,7 @@ export class PopoverInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 }
 
-export namespace PopoverInstance {
+export namespace PopoverInstance {// eslint-disable-line @typescript-eslint/no-namespace
 
     // export let DEFAULT_OPTIONS: Partial<Popover.Options> = {}
     /** @see Popover.Events.show */

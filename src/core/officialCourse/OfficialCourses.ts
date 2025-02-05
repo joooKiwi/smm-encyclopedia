@@ -131,7 +131,7 @@ export class OfficialCourses
 
 }
 
-export namespace OfficialCourses {
+export namespace OfficialCourses {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link OfficialCourses} */
     export const Companion = OfficialCourses.CompanionEnum.get
