@@ -577,7 +577,7 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
         protected override _onSetCurrent(value: EveryLanguages,) {
             super._onSetCurrent(value,)
             void i18n.changeLanguage(value.projectAcronym,)
-            document.querySelector('html[lang]',)?.setAttribute('lang', value.projectAcronym,)
+            document.documentElement.setAttribute('lang', value.projectAcronym,)
         }
 
 

@@ -211,7 +211,7 @@ export class ProjectLanguages<const ACRONYM extends PossibleAcronym = PossibleAc
     }
 
     public get urlName(): never {
-        throw new ReferenceError('No language name can exist in a url.',)
+        throw new ReferenceError('No language name can exist in an url.',)
     }
 
     public get projectAcronym(): ACRONYM {
