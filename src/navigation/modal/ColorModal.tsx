@@ -10,7 +10,7 @@ import {COLOR_MODAL_ID}           from 'navigation/button/modalIds'
 import ColorModeChangerSingleLink from 'navigation/modal/ColorModeChanger.single.link'
 
 import Companion = ColorThemes.Companion
-import ColorToParameterButton     from 'navigation/button/ColorToParameter.button.tsx'
+import ColorToParameterButton     from 'navigation/button/ColorToParameter.button'
 
 /** @reactComponent */
 export default function ColorModal() {

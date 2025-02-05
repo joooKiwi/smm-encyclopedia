@@ -9,6 +9,7 @@ export default function LanguageToParameterButton() {
     const htmlElement = useRef<HTMLButtonElement>(null,)
 
     return <Tooltip option={{title: contentTranslation('Option',), placement: 'right',}} reference={htmlElement}>
-        <ModalButton ref={htmlElement} id="languageChanger-to-parameter-button" className="btn btn-outline-primary bi bi-gear-fill rounded-pill" elementToShow={PARAMETER_MODAL_ID} elementToHide={LANGUAGE_CHANGER_MODAL_ID}/>
+        <ModalButton ref={htmlElement} id="languageChanger-to-parameter-button" className="btn btn-outline-primary bi bi-gear-fill rounded-pill"
+                     elementToShow={PARAMETER_MODAL_ID} elementToHide={LANGUAGE_CHANGER_MODAL_ID}/>
     </Tooltip>
 }
