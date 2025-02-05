@@ -1,13 +1,6 @@
 #navigation-container {
-  //position: fixed;
-
-  padding-top: var(--bs-spacer-lg);
-  padding-bottom: var(--bs-spacer-md);
+  //position: sticky;
 
   top: 0;
-  z-index: var(--bs-z-index-fixed);
-}
-#navigation-sub-container {
-  display: flex;
-  justify-content: space-between;
+  z-index: var(--bs-z-index-sticky);
 }

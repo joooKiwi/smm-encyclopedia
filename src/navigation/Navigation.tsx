@@ -9,8 +9,8 @@ import TopLanguageChangerButton from 'navigation/button/TopLanguageChanger.butto
 
 /** @reactComponent */
 export default function Navigation() {
-    return <nav id="navigation-container" className="container-fluid bg-light bg-gradient">
-        <div id="navigation-sub-container" className="position-relative">
+    return <nav id="navigation-container" className="container-fluid bg-body bg-opacity-75 pt-3 pb-2">
+        <div id="navigation-sub-container" className="d-flex justify-content-between">
             <HomeButton/>
             <DisplayViewButton/>
             <SearchButton/>
