@@ -1,4 +1,3 @@
-import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'

@@ -1,5 +1,3 @@
-import './_GameAsideContent.scss'
-import './_GameStyleAsideContent.scss'
 import './LimitApp.scss'
 
 import type {CollectionHolder}           from '@joookiwi/collection'

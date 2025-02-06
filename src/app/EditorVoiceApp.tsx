@@ -1,5 +1,3 @@
-import './_GameAsideContent.scss'
-import './_TimeAsideContent.scss'
 import './EditorVoiceApp.scss'
 
 import type {NullOr, NullOrString} from '@joookiwi/type'

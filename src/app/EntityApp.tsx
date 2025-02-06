@@ -1,6 +1,3 @@
-import './_GameAsideContent.scss'
-import './_GameStyleAsideContent.scss'
-import './_TimeAsideContent.scss'
 import './EntityApp.scss'
 
 import type {MutableArray, NullOr}     from '@joookiwi/type'
