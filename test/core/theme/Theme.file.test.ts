@@ -29,9 +29,10 @@ describe('Theme (file test)', () => {
             test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS,).toBeBoolean(),)
             test('Is in SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
             test('Is available from the start (SMM1)', () => expect(it.isAvailableFromTheStart_SMM1,).toBeBooleanOrNull(),)
-            isWorldOnly
-                ? test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeNull(),)
-                : test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeOneOf(everyNames_nightEffect,),)// eslint-disable-line jest/no-identical-title
+            if (isWorldOnly)
+                test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeNull(),)
+            else
+                test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeOneOf(everyNames_nightEffect,),) 
             testOnlyEnglish(it, everyNames,)
         },)
     },)},)

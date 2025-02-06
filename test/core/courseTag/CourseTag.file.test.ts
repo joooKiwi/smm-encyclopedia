@@ -18,9 +18,10 @@ describe('Course tag (file test)', () => {
 
     file.forEach(it => {
     describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
-        it.isAnOfficialTag
-            ? testLanguages(it, excludedNames,)
-            : testOnlyEnglishAndFrench(it)
+        if (it.isAnOfficialTag)
+            testLanguages(it, excludedNames,)
+        else
+            testOnlyEnglishAndFrench(it)
 
         describe('Type validations', () => {
             test('Is an official tag', () => expect(it.isAnOfficialTag,).toBeBoolean(),)
