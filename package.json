@@ -30,6 +30,10 @@
     "prebuild": "npm run typescript-build",
     "build": "vite build",
     "typescript-build": "tsc --build",
+
+    "prepreview": "npm run build",
+    "preview": "vite preview",
+
     "deploy": "gh-pages -m \"Deployment of the version 0.27 (beta)\" -d build"
   },
   "keywords": [
