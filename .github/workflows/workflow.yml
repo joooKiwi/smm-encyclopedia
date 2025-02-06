@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - name: Checkout of the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configuration of the Node v${{matrix.node-version}} setup
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{matrix.node-version}}
           cache: 'npm'
@@ -49,15 +49,27 @@ jobs:
       - name: Building of the application
         run: npm run build --ignore-scripts
 
-      - name: Deployment of the application
-        run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
-          git remote set-url origin https://${github_token}@github.com/${repository}
-          npm run deploy
-        env:
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
-          repository: ${{ github.repository }}
-          publish_dir: ./dist
+      - name: Setting up of the pages
+        run: actions/configure-pages@v4
+
+      - name: Artifact upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deployment to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+#      - name: Deployment of the application
+#        run: |
+#          git config --global user.name $user_name
+#          git config --global user.email $user_email
+#          git remote set-url origin https://${github_token}@github.com/${repository}
+#          npm run deploy
+#        env:
+#          user_name: 'github-actions[bot]'
+#          user_email: 'github-actions[bot]@users.noreply.github.com'
+#          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
+#          repository: ${{ github.repository }}
+#          publish_dir: ./dist
