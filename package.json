@@ -34,7 +34,7 @@
     "prepreview": "npm run build",
     "preview": "vite preview",
 
-    "deploy": "gh-pages -m \"Deployment of the version 0.27 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Deployment of the version 0.27 (beta)\" -d dist"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",

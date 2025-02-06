@@ -50,29 +50,29 @@ jobs:
       - name: Building of the application
         run: npm run build --ignore-scripts
 
-      - name: Setting up of the pages
-        uses: actions/configure-pages@v4
-
-      - name: Artifact upload
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-
-      - name: Deployment to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        env:
-          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
-
-#      - name: Deployment of the application
-#        run: |
-#          git config --global user.name $user_name
-#          git config --global user.email $user_email
-#          git remote set-url origin https://${github_token}@github.com/${repository}
-#          npm run deploy
+#      - name: Setting up of the pages
+#        uses: actions/configure-pages@v4
+#
+#      - name: Artifact upload
+#        uses: actions/upload-pages-artifact@v3
+#        with:
+#          path: './dist'
+#
+#      - name: Deployment to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v4
 #        env:
-#          user_name: 'github-actions[bot]'
-#          user_email: 'github-actions[bot]@users.noreply.github.com'
 #          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
-#          repository: ${{ github.repository }}
-#          publish_dir: ./dist
+
+      - name: Deployment of the application
+        run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+        env:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
+          repository: ${{ github.repository }}
+          publish_dir: ./dist
