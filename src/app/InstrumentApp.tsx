@@ -1,6 +1,6 @@
-import 'app/_GameAsideContent.scss'
-import 'app/_GameStyleAsideContent.scss'
-import 'app/_TimeAsideContent.scss'
+import './_GameAsideContent.scss'
+import './_GameStyleAsideContent.scss'
+import './_TimeAsideContent.scss'
 import './InstrumentApp.scss'
 
 import type {MutableArray, NullOr, NullOrString} from '@joookiwi/type'

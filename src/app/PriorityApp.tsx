@@ -1,5 +1,5 @@
-import 'app/_GameAsideContent.scss'
-import 'app/_GameStyleAsideContent.scss'
+import './_GameAsideContent.scss'
+import './_GameStyleAsideContent.scss'
 import './PriorityApp.scss'
 
 import type {AppPropertiesWithType}                                                          from 'app/AppProperties.types'

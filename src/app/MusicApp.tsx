@@ -1,4 +1,4 @@
-import 'app/MusicApp.scss'
+import './MusicApp.scss'
 
 import {Link} from 'react-router'
 
