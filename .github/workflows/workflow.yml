@@ -60,6 +60,8 @@ jobs:
       - name: Deployment to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        env:
+          github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
 
 #      - name: Deployment of the application
 #        run: |
