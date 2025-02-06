@@ -1,1 +1,0 @@
-import{c as l,j as a,b as s}from"./index-0VkZSUzO.js";function o(n){const t=l.c(1),{value:r}=n;if(r.hasSmm1)return null;let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=a.jsx("div",{className:"container-sm alert alert-warning small text-center",role:"alert",children:s("alert.smm2 only")}),t[0]=e):e=t[0],e}export{o as S};

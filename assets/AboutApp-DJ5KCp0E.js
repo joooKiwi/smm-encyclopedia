@@ -1,0 +1,1 @@
+import{c as r,j as o}from"./index-DVkXFDDB.js";function s(){const t=r.c(1);let e;return t[0]===Symbol.for("react.memo_cache_sentinel")?(e=o.jsx(o.Fragment,{children:"About page"}),t[0]=e):e=t[0],e}export{s as default};
