@@ -3,7 +3,7 @@ import type {Nullable, NullOr} from '@joookiwi/type'
 import type {SoundFile}                                             from 'util/file/sound/SoundFile'
 import type {EventCallback, ExceptionCallback, SoundPlayerCallback} from 'util/file/sound/SoundPlayer.types'
 import {PASSIVE_AND_ONCE_OPTION, PASSIVE_ONLY_OPTION}               from 'util/EventListener.options'
-import {isInProduction}                                             from 'variables'
+import {isInDevelopment}                                            from 'variables'
 
 /**
  *
@@ -492,7 +492,7 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
      * @param reason The reason that was thrown when an exception was caught
      */
     protected _onExceptionCaught(reason: unknown,) {
-        if (!isInProduction)
+        if (isInDevelopment)
             console.error(reason,)
 
         this.onExceptionCaught?.(this, reason,)

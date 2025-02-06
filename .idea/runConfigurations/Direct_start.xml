@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Direct start" type="js.build_tools.npm" folderName="Start">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="fast-start" />
+    </scripts>
+    <node-interpreter value="project" />
+    <node-options value="--max_old_space_size=8196" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

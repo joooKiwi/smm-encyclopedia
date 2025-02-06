@@ -67,7 +67,7 @@ export class TimeCollection<const T extends Times = Times,
 
 }
 
-export namespace TimeCollection {
+export namespace TimeCollection {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const EMPTY = new TimeCollection(EMPTY_ARRAY,)
     export const ALL =   new TimeCollection(ALL_TIMES,)

@@ -1,6 +1,6 @@
-import type {NullOr}                         from '@joookiwi/type'
-import type {MutableRefObject, ReactElement} from 'react'
-import {useEffect}                           from 'react'
+import type {NullOr}    from '@joookiwi/type'
+import type {RefObject} from 'react'
+import {useEffect}      from 'react'
 
 import type {ModalConfiguration}                  from 'bootstrap/modal/Modal.types'
 import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
@@ -8,12 +8,12 @@ import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperti
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {ModalInstance}            from 'bootstrap/modal/ModalInstance'
 
-interface ModalProperties<out T extends ReactElement, >
+interface ModalProperties
     extends Omit<ModalConfiguration, 'elementId'>,
-        ReactPropertiesWithOptionalChildren<T> {
+        ReactPropertiesWithOptionalChildren<ReactElement> {
 
     /** The reference to initialize a {@link ModalInstance} */
-    readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>
+    readonly modalReference: RefObject<NullOr<HTMLDivElement>>
 
 }
 
@@ -24,7 +24,7 @@ interface ModalProperties<out T extends ReactElement, >
  * @param properties the properties received (containing the content, the option, the triggers & the id)
  * @see https://getbootstrap.com/docs/5.2/components/modals
  */
-export default function Modal<const T extends ReactElement = ReactElement, >({modalReference, children, option, on: triggers,}: ModalProperties<T>,) {
+export default function Modal({modalReference, children, option, on: triggers,}: ModalProperties,) {
     useEffect(() => {
         const reference = modalReference.current
         if (reference == null)

@@ -13,7 +13,7 @@ import type {PossibleEffectInNightTheme} from 'core/theme/loader.types'
 import type {Name}                       from 'lang/name/Name'
 import type {Loader}                     from 'util/loader/Loader'
 
-import {isInProduction}               from 'variables'
+import {isInDevelopment}              from 'variables'
 import {Entities}                     from 'core/entity/Entities'
 import {CourseAndWorldThemeContainer} from 'core/theme/CourseAndWorldTheme.container'
 import {CourseOnlyThemeContainer}     from 'core/theme/CourseOnlyTheme.container'
@@ -30,7 +30,7 @@ import NightEffectCompanion = NightEffects.Companion
 /**
  * @dependsOn<{@link Entities}>
  * @indirectlyDependsOn<{@link EntityLoader}>
- * @dependsOn<{@link Themes}>
+ * @recursiveReference<{@link Themes}>
  * @singleton
  */
 export class ThemeLoader
@@ -60,7 +60,7 @@ export class ThemeLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "theme" has been loaded --------------------\n',
                 references,
@@ -75,6 +75,30 @@ export class ThemeLoader
 
 interface Content
     extends LanguageContent, GameContentFrom1And2 {
+
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: string
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
 
     readonly isInSuperMarioMaker2: true
 

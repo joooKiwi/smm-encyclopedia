@@ -10,6 +10,13 @@ import Tooltip                  from 'bootstrap/tooltip/Tooltip'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
+//region -------------------- Import from deconstruction --------------------
+
+const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
+
+
 /** @reactComponent */
 export default function IsAffectedDirectlyByAnOnOffState({value,}: EntityOnlyProperties,) {
     const htmlElement = useRef<HTMLElement>(null,)
@@ -21,8 +28,8 @@ export default function IsAffectedDirectlyByAnOnOffState({value,}: EntityOnlyPro
     if (comment == null)
         return <em className="isAffectDirectlyByAnOnOffState-property onOffBlock-image-property"/>
 
-    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
+    const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
     return <Tooltip option={{title: gameContentTranslation(`entity.property.${comment}`, {entity: entityAsLowerCase,},),}} reference={htmlElement}>
         <em ref={htmlElement} className="isAffectDirectlyByAnOnOffState-property onOffBlock-image-property property-with-comment"/>
     </Tooltip>

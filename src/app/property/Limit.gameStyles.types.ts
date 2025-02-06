@@ -1,6 +1,6 @@
 import type {PossibleRouteName as PossibleRouteName_Type} from 'app/property/LimitTypes.types'
 
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     ALL_GAME_STYLES,
     SMB,
     SMB3,

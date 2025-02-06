@@ -11,7 +11,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Category} from 'core/sou
 import type {Loader}                                              from 'util/loader/Loader'
 import type {SoundEffectCategory}                                 from 'core/soundEffectCategory/SoundEffectCategory'
 
-import {isInProduction}            from 'variables'
+import {isInDevelopment}           from 'variables'
 import {SoundEffectContainer}      from 'core/soundEffect/SoundEffect.container'
 import {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 import {EmptySoundEffectCategory}  from 'core/soundEffectCategory/EmptySoundEffectCategory'
@@ -51,7 +51,7 @@ export class SoundEffectLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "sound effect" has been loaded --------------------\n',
                 references,
@@ -67,6 +67,16 @@ export class SoundEffectLoader
 interface Content
     extends LanguageContent, GameContentFrom1And2 {
 
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    //endregion -------------------- Language --------------------
     //region -------------------- Triggers --------------------
 
     readonly doesTrigger_player_jumpAfterLanding: boolean

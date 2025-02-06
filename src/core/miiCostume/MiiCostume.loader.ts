@@ -12,7 +12,7 @@ import type {MiiCostumeCategory}                                                
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
-import {isInProduction}           from 'variables'
+import {isInDevelopment}          from 'variables'
 import {MiiCostumeContainer}      from 'core/miiCostume/MiiCostume.container'
 import {MiiCostumeCategoryLoader} from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
 import {OfficialNotifications}    from 'core/officialNotification/OfficialNotifications'
@@ -58,7 +58,7 @@ export class MiiCostumeLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "Mii costume" has been loaded --------------------\n',
                 references,
@@ -72,6 +72,29 @@ export class MiiCostumeLoader
 
 interface Content
     extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: null
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
 
     readonly notificationIfUnlocked: NullOrString<PossibleEnglishName_OfficialNotification>
 

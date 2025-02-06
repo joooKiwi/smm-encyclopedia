@@ -1,8 +1,8 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}     from 'app/options/ThemeAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {Names, Ordinals}   from 'app/options/ThemeAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
 import {TableOption}            from 'app/tools/table/TableOption'
@@ -27,29 +27,29 @@ export abstract class ThemeAppOption
 
     public static readonly ICON =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
-        public override renderContent(enumeration: Themes,) {
+        public override renderContent(enumeration: Themes,): ReactJSXElement {
             return <ThemeImage reference={enumeration}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly ENDLESS_MARIO_ICON =    new class ThemeAppOption_EndlessMarioImage extends ThemeAppOption {
 
-        public override renderContent({endlessMarioImageFile,}: Themes,) {
+        public override renderContent({endlessMarioImageFile,}: Themes,): ReactJSXElement {
             return <Image file={endlessMarioImageFile}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario',),}//TODO add Endless Mario
         }
 
     }('endlessMarioIcon',)
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
-        public override renderContent(enumeration: Themes,) {
+        public override renderContent(enumeration: Themes,): ReactJSXElement {
             return <div className="nameWithContent-container">
                 <div className="col-10">
                     {CommonOptions.get.getGameContent(enumeration,)}
@@ -59,18 +59,18 @@ export abstract class ThemeAppOption
             </div>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
-        public override renderContent({reference: {courseTheme,},}: Themes,) {
+        public override renderContent({reference: {courseTheme,},}: Themes,): ReactJSXElement {
             return <NightEffectComponent theme={courseTheme}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {
                 key: 'effect', element: <div className="nightDesert-header-image-container position-relative mx-auto">
                     <ThemeImage reference={Themes.DESERT}/>

@@ -15,6 +15,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
 
     strategy:
       matrix:
@@ -22,10 +23,10 @@ jobs:
 
     steps:
       - name: Checkout of the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configuration of the Node v${{matrix.node-version}} setup
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{matrix.node-version}}
           cache: 'npm'
@@ -34,16 +35,20 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Conversion from CSV to Json
-        run: npm run convert-csv-to-json
+        run: npm run convert-csv-to-json --ignore-scripts
 
       - name: Copying the images for the CSS
-        run: npm run copy-images-for-css
+        run: npm run copy-images-for-css --ignore-scripts
 
       - name: Copying the locale on the "/src" folder
-        run: npm run copy-locale-to-src
+        run: npm run copy-locale-to-src --ignore-scripts
+
+# TODO: remove comment once typescript can build normally
+#      - name: Building typescript
+#        run: npm run typescript-build --ignore-scripts
 
       - name: Building of the application
-        run: npm run build
+        run: npm run build --ignore-scripts
 
       - name: Deployment of the application
         run: |
@@ -56,3 +61,4 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN_SMM_ENCYCLOPEDIA }}
           repository: ${{ github.repository }}
+          publish_dir: ./dist

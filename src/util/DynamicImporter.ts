@@ -173,6 +173,7 @@ export class DynamicImporter {
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
+    /* eslint-disable @typescript-eslint/no-require-imports */
     //region -------------------- Character name getter methods --------------------
 
     public get CharacterNames(): typeof CharacterNames {
@@ -363,6 +364,7 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Version" getter methods --------------------
+    /* eslint-enable @typescript-eslint/no-require-imports */
 
     //endregion -------------------- Getter methods --------------------
 

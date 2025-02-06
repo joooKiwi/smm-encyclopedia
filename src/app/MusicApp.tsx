@@ -1,4 +1,4 @@
-import 'app/MusicApp.scss'
+import './MusicApp.scss'
 
 import {Link} from 'react-router'
 
@@ -9,7 +9,8 @@ import Image                                             from 'app/tools/images/
 import UnfinishedText                                    from 'app/tools/text/UnfinishedText'
 import PageTitle                                         from 'app/util/PageTitle'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
-import {Entities}                                        from 'core/entity/Entities'
+import {ClearConditionEntityImages}                      from 'core/entity/ClearConditionEntityImages'
+import {EditorEntityImages}                              from 'core/entity/EditorEntityImages'
 import {GameStyles}                                      from 'core/gameStyle/GameStyles'
 import GameStyleImage                                    from 'core/gameStyle/component/GameStyleImage'
 import {Themes}                                          from 'core/theme/Themes'
@@ -36,7 +37,6 @@ import FINAL_BOSS_NSMBU_FAST =                 Tracks.FINAL_BOSS_NSMBU_FAST
 import FOREST_LESSON_EDITORS =                 Tracks.FOREST_LESSON_EDITORS
 import GHOST_HOUSE_LESSON_EDITORS =            Tracks.GHOST_HOUSE_LESSON_EDITORS
 import GROUND_LESSON_EDITORS =                 Tracks.GROUND_LESSON_EDITORS
-import NSMBU =                                 GameStyles.NSMBU
 import NSMBU_AIRSHIP_EDITORS =                 Tracks.NSMBU_AIRSHIP_EDITORS
 import NSMBU_AIRSHIP_TIMES =                   Tracks.NSMBU_AIRSHIP_TIMES
 import NSMBU_CASTLE_EDITORS =                  Tracks.NSMBU_CASTLE_EDITORS
@@ -58,7 +58,6 @@ import NSMBU_UNDERGROUND_TIMES =               Tracks.NSMBU_UNDERGROUND_TIMES
 import NSMBU_UNDERWATER_EDITORS =              Tracks.NSMBU_UNDERWATER_EDITORS
 import NSMBU_UNDERWATER_TIMES =                Tracks.NSMBU_UNDERWATER_TIMES
 import PEACEFUL =                              Tracks.PEACEFUL
-import SMB =                                   GameStyles.SMB
 import SMB_AIRSHIP_EDITORS =                   Tracks.SMB_AIRSHIP_EDITORS
 import SMB_AIRSHIP_TIMES =                     Tracks.SMB_AIRSHIP_TIMES
 import SMB_BONUSES =                           Tracks.SMB_BONUSES
@@ -82,7 +81,6 @@ import SMB_UNDERGROUND_EDITORS =               Tracks.SMB_UNDERGROUND_EDITORS
 import SMB_UNDERGROUND_TIMES =                 Tracks.SMB_UNDERGROUND_TIMES
 import SMB_UNDERWATER_EDITORS =                Tracks.SMB_UNDERWATER_EDITORS
 import SMB_UNDERWATER_TIMES =                  Tracks.SMB_UNDERWATER_TIMES
-import SMB3 =                                  GameStyles.SMB3
 import SMB3_AIRSHIP_EDITORS =                  Tracks.SMB3_AIRSHIP_EDITORS
 import SMB3_AIRSHIP_TIMES =                    Tracks.SMB3_AIRSHIP_TIMES
 import SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES =  Tracks.SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES
@@ -105,7 +103,6 @@ import SMB3_UNDERWATER_TIMES =                 Tracks.SMB3_UNDERWATER_TIMES
 import SMG =                                   SoundEffects.SMG
 import SMK =                                   SoundEffects.SMK
 import SMS =                                   SoundEffects.SMS
-import SMW =                                   GameStyles.SMW
 import SMW_AIRSHIP_EDITORS =                   Tracks.SMW_AIRSHIP_EDITORS
 import SMW_AIRSHIP_TIMES =                     Tracks.SMW_AIRSHIP_TIMES
 import SMW_BONUSES_BOSSES_AND_FINAL_BOSSES =   Tracks.SMW_BONUSES_BOSSES_AND_FINAL_BOSSES
@@ -127,7 +124,6 @@ import SMW_UNDERGROUND_EDITORS =               Tracks.SMW_UNDERGROUND_EDITORS
 import SMW_UNDERGROUND_TIMES =                 Tracks.SMW_UNDERGROUND_TIMES
 import SMW_UNDERWATER_EDITORS =                Tracks.SMW_UNDERWATER_EDITORS
 import SMW_UNDERWATER_TIMES =                  Tracks.SMW_UNDERWATER_TIMES
-import SM3DW =                                 GameStyles.SM3DW
 import SM3DW_AIRSHIP_EDITORS =                 Tracks.SM3DW_AIRSHIP_EDITORS
 import SM3DW_AIRSHIP_TIMES =                   Tracks.SM3DW_AIRSHIP_TIMES
 import SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES = Tracks.SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES
@@ -172,13 +168,13 @@ export default function MusicApp() {
         {/*<div id="selector-container">
             <div id="gameStyle-selector-buttonGroup" className="btn-group-vertical">
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={SMB}/></button>
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={SMB3}/></button>
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={SMW}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SMB}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SMB3}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SMW}/></button>
                 </div>
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={NSMBU}/></button>
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={SM3DW}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.NSMBU}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SM3DW}/></button>
                 </div>
             </div>
             <div id="courseTheme-selector-buttonGroup" className="btn-group-vertical">
@@ -213,13 +209,13 @@ export default function MusicApp() {
             </div>
             <div id="powerUp-selector-buttonGroup" className="btn-group-vertical">
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><Image file={Entities.MASTER_SWORD.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
-                    <button className="btn btn-outline-primary"><Image file={Entities.SMB2_MUSHROOM.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
-                    <button className="btn btn-outline-primary"><Image file={Entities.SUPERBALL_FLOWER.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.MASTER_SWORD.editorImage.get(GameStyles.SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.SMB2_MUSHROOM.editorImage.get(GameStyles.SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.SUPERBALL_FLOWER.editorImage.get(GameStyles.SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
                 </div>
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><Image file={Entities.YOSHI_EGG.editorImage.get(SMW, Themes.GROUND, Times.DAY,)[0]}/></button>
-                    <button className="btn btn-outline-primary"><Image file={Entities.SUPER_STAR.editorImage.get(SMW, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.YOSHI_EGG.editorImage.get(GameStyles.SMW, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.SUPER_STAR.editorImage.get(GameStyles.SMW, Themes.GROUND, Times.DAY,)[0]}/></button>
                 </div>
             </div>
             <div id="soundEffect-selector-buttonGroup" className="btn-group-vertical">
@@ -239,7 +235,7 @@ export default function MusicApp() {
         </div>*/}
 
         <div id="smb-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={SMB}/>
+            <GameStyleImage reference={GameStyles.SMB}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={SMB_GROUND_EDITORS}/>
@@ -288,7 +284,7 @@ export default function MusicApp() {
             <FinalBossMusicsContainer files={SMB_FINAL_BOSSES} asSmb3/>
         </div>
         <div id="smb3-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={SMB3}/>
+            <GameStyleImage reference={GameStyles.SMB3}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={SMB3_GROUND_EDITORS}/>
@@ -334,7 +330,7 @@ export default function MusicApp() {
             <BonusBossAndFinalBossMusicsContainer files={SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
         </div>
         <div id="smw-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={SMW}/>
+            <GameStyleImage reference={GameStyles.SMW}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={SMW_GROUND_EDITORS}/>
@@ -380,7 +376,7 @@ export default function MusicApp() {
             <BonusBossAndFinalBossMusicsContainer files={SMW_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
         </div>
         <div id="nsmbu-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={NSMBU}/>
+            <GameStyleImage reference={GameStyles.NSMBU}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={NSMBU_GROUND_EDITORS}/>
@@ -437,7 +433,7 @@ export default function MusicApp() {
                 <Track value={BONUS_NSMBU}/>
                 <Track value={BONUS_NSMBU_FAST}/>
 
-                <Image file={getYoshiImage(NSMBU,)} className="yoshi-image"/>
+                <Image file={getYoshiImage(GameStyles.NSMBU,)} className="yoshi-image"/>
                 <Track value={BONUS_NSMBU_YOSHI}/>
                 <Track value={BONUS_NSMBU_YOSHI_FAST}/>
 
@@ -451,7 +447,7 @@ export default function MusicApp() {
             </div>
         </div>
         <div id="sm3dw-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={SM3DW}/>
+            <GameStyleImage reference={GameStyles.SM3DW}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={SM3DW_GROUND_EDITORS}/>
@@ -500,24 +496,24 @@ export default function MusicApp() {
         {/*<div id="ground-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.GROUND}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_GROUND_EDITORS}/>
                 <TimeMusicsContainer files={SMB_GROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_GROUND_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_GROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_GROUND_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_GROUND_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_GROUND_EDITORS}/>
                 <LessonEditorMusicsContainer files={GROUND_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_GROUND_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_GROUND_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_GROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -528,23 +524,23 @@ export default function MusicApp() {
         <div id="underground-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.UNDERGROUND}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_UNDERGROUND_EDITORS}/>
                 <TimeMusicsContainer files={SMB_UNDERGROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_UNDERGROUND_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_UNDERGROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_UNDERGROUND_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_UNDERGROUND_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_UNDERGROUND_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_UNDERGROUND_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_UNDERGROUND_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_UNDERGROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -555,24 +551,24 @@ export default function MusicApp() {
         <div id="underwater-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.UNDERWATER}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_UNDERWATER_EDITORS}/>
                 <TimeMusicsContainer files={SMB_UNDERWATER_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_UNDERWATER_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_UNDERWATER_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_UNDERWATER_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_UNDERWATER_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_UNDERWATER_EDITORS}/>
                 <LessonEditorMusicsContainer files={UNDERWATER_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_UNDERGROUND_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_UNDERWATER_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_UNDERWATER_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -580,23 +576,23 @@ export default function MusicApp() {
         <div id="desert-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.DESERT}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_DESERT_EDITORS}/>
                 <TimeMusicsContainer files={SMB_DESERT_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_DESERT_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_GROUND_TIMES}><ThemeImage reference={Themes.GROUND} isSmallPath/></TimeMusicsContainer>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_DESERT_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_DESERT_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_DESERT_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_DESERT_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_DESERT_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_DESERT_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -604,23 +600,23 @@ export default function MusicApp() {
         <div id="snow-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.SNOW}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_SNOW_EDITORS}/>
                 <TimeMusicsContainer files={SMB_SNOW_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_SNOW_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_SNOW_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_SNOW_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_SNOW_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_SNOW_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_SNOW_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_SNOW_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_SNOW_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -628,23 +624,23 @@ export default function MusicApp() {
         <div id="sky-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.SKY}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_SKY_EDITORS}/>
                 <TimeMusicsContainer files={SMB_SKY_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_SKY_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_SKY_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_SKY_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_SKY_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_SKY_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_SKY_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_SKY_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_SKY_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -652,24 +648,24 @@ export default function MusicApp() {
         <div id="forest-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.FOREST}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_FOREST_EDITORS}/>
                 <TimeMusicsContainer files={SMB_FOREST_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_FOREST_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_GROUND_TIMES}><ThemeImage reference={Themes.GROUND} isSmallPath/></TimeMusicsContainer>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_FOREST_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_FOREST_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_FOREST_EDITORS}/>
                 <LessonEditorMusicsContainer files={FOREST_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_FOREST_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_FOREST_EDITORS}/>
                 <TimeWithUnderwaterMusicsContainer files={SM3DW_FOREST_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -677,24 +673,24 @@ export default function MusicApp() {
         <div id="ghostHouse-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.GHOST_HOUSE}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_GHOST_HOUSE_EDITORS}/>
                 <TimeMusicsContainer files={SMB_GHOST_HOUSE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_GHOST_HOUSE_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_GHOST_HOUSE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_GHOST_HOUSE_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_GHOST_HOUSE_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_GHOST_HOUSE_EDITORS}/>
                 <LessonEditorMusicsContainer files={GHOST_HOUSE_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_GHOST_HOUSE_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_GHOST_HOUSE_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_GHOST_HOUSE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -702,23 +698,23 @@ export default function MusicApp() {
         <div id="airship-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.AIRSHIP}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_AIRSHIP_EDITORS}/>
                 <TimeMusicsContainer files={SMB_AIRSHIP_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_AIRSHIP_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_AIRSHIP_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_AIRSHIP_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_AIRSHIP_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_AIRSHIP_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_AIRSHIP_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_AIRSHIP_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_AIRSHIP_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -726,24 +722,24 @@ export default function MusicApp() {
         <div id="castle-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.CASTLE}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB}>
                 <EditorMusicsContainer files={SMB_CASTLE_EDITORS}/>
                 <TimeMusicsContainer files={SMB_CASTLE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMB3}>
                 <EditorMusicsContainer files={SMB3_CASTLE_EDITORS}/>
                 <TimeMusicsContainer files={SMB3_CASTLE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SMW}>
                 <EditorMusicsContainer files={SMW_CASTLE_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={SMW_CASTLE_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NSMBU}>
                 <EditorMusicsContainer files={NSMBU_CASTLE_EDITORS}/>
                 <LessonEditorMusicsContainer files={CASTLE_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={NSMBU_CASTLE_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
+            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_CASTLE_EDITORS}/>
                 <DayMusicsContainer files={SM3DW_CASTLE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -883,27 +879,27 @@ export default function MusicApp() {
                 <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
                 <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-                <GameStyleImage reference={SMB}/>
+                <GameStyleImage reference={GameStyles.SMB}/>
                 <Track value={BONUS_SMB}/>
                 <Track value={BONUS_SMB_FAST}/>
 
-                <GameStyleImage reference={SMB3}/>
+                <GameStyleImage reference={GameStyles.SMB3}/>
                 <Track value={BONUS_SMB3}/>
                 <Track value={BONUS_SMB3_FAST}/>
 
-                <GameStyleImage reference={SMW}/>
+                <GameStyleImage reference={GameStyles.SMW}/>
                 <Track value={BONUS_SMW}/>
                 <Track value={BONUS_SMW_FAST}/>
 
-                <GameStyleImage reference={NSMBU}/>
+                <GameStyleImage reference={GameStyles.NSMBU}/>
                 <Track value={BONUS_NSMBU}/>
                 <Track value={BONUS_NSMBU_FAST}/>
 
-                <Image file={getYoshiImage(NSMBU,)} className="yoshi-image"/>
+                <Image file={getYoshiImage(GameStyles.NSMBU,)} className="yoshi-image"/>
                 <Track value={BONUS_NSMBU_YOSHI}/>
                 <Track value={BONUS_NSMBU_YOSHI_FAST}/>
 
-                <GameStyleImage reference={SM3DW}/>
+                <GameStyleImage reference={GameStyles.SM3DW}/>
                 <Track value={BONUS_SM3DW}/>
                 <Track value={BONUS_SM3DW_FAST}/>
 
@@ -924,23 +920,23 @@ export default function MusicApp() {
                 <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
                 <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-                <GameStyleImage reference={SMB}/>
+                <GameStyleImage reference={GameStyles.SMB}/>
                 <Track value={BOSS_SMB}/>
                 <Track value={BOSS_SMB_FAST}/>
 
-                <GameStyleImage reference={SMB3}/>
+                <GameStyleImage reference={GameStyles.SMB3}/>
                 <Track value={BOSS_SMB3}/>
                 <Track value={BOSS_SMB3_FAST}/>
 
-                <GameStyleImage reference={SMW}/>
+                <GameStyleImage reference={GameStyles.SMW}/>
                 <Track value={BOSS_SMW}/>
                 <Track value={BOSS_SMW_FAST}/>
 
-                <GameStyleImage reference={NSMBU}/>
+                <GameStyleImage reference={GameStyles.NSMBU}/>
                 <Track value={BOSS_NSMBU}/>
                 <Track value={BOSS_NSMBU_FAST}/>
 
-                <GameStyleImage reference={SM3DW}/>
+                <GameStyleImage reference={GameStyles.SM3DW}/>
                 <Track value={BOSS_SM3DW}/>
                 <Track value={BOSS_SM3DW_FAST}/>
 
@@ -961,23 +957,23 @@ export default function MusicApp() {
                 <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
                 <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-                <GameStyleImage reference={SMB}/>
+                <GameStyleImage reference={GameStyles.SMB}/>
                 <div/>
                 <div/>
 
-                <GameStyleImage reference={SMB3}/>
+                <GameStyleImage reference={GameStyles.SMB3}/>
                 <Track value={FINAL_BOSS_SMB3}/>
                 <Track value={FINAL_BOSS_SMB3_FAST}/>
 
-                <GameStyleImage reference={SMW}/>
+                <GameStyleImage reference={GameStyles.SMW}/>
                 <Track value={FINAL_BOSS_SMW}/>
                 <Track value={FINAL_BOSS_SMW_FAST}/>
 
-                <GameStyleImage reference={NSMBU}/>
+                <GameStyleImage reference={GameStyles.NSMBU}/>
                 <Track value={FINAL_BOSS_NSMBU}/>
                 <Track value={FINAL_BOSS_NSMBU_FAST}/>
 
-                <GameStyleImage reference={SM3DW}/>
+                <GameStyleImage reference={GameStyles.SM3DW}/>
                 <Track value={FINAL_BOSS_SM3DW}/>
                 <Track value={FINAL_BOSS_SM3DW_FAST}/>
 
@@ -1019,18 +1015,18 @@ export default function MusicApp() {
 //region -------------------- Get image --------------------
 
 function getLinkImage() {
-    return Entities.MASTER_SWORD.editorImage.get(SMB, Themes.GROUND, Times.DAY,).getFirst()
+    return EditorEntityImages.MASTER_SWORD.image.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
 }
 
 function getSmb2Image() {
-    return Entities.SMB2_MUSHROOM.editorImage.get(SMB, Themes.GROUND, Times.DAY,).getFirst()
+    return EditorEntityImages.SMB2_MUSHROOM.image.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
 }
 
 function getYoshiImage(gameStyle: GameStyles,) {
-    if (gameStyle === SMW)
-        return Entities.YOSHI_EGG.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
-    if (gameStyle === NSMBU)
-        return Entities.YOSHI_EGG.clearConditionImage.get(gameStyle,)
+    if (gameStyle === GameStyles.SMW)
+        return EditorEntityImages.YOSHI_EGG.image.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
+    if (gameStyle === GameStyles.NSMBU)
+        return ClearConditionEntityImages.YOSHI_EGG.image.get(gameStyle,)
     throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)
 }
 
@@ -1051,8 +1047,7 @@ function getYoshiImage(gameStyle: GameStyles,) {
 interface MusicsProperties<out FILES extends ArrayOf1To8<Tracks>, >
     extends ReactProperties { readonly files: FILES }
 
-interface GroupedMusicsProperties
-    extends ReactPropertiesWithChildren<ReactElementOrArray> {}
+type GroupedMusicsProperties = ReactPropertiesWithChildren<ReactElementOrArray>
 
 // /** @reactComponent */
 // function MusicsContainer({type, files,}: MusicsProperties,) {
@@ -1157,7 +1152,7 @@ function ThemeGroupedMusicsContainer({theme, children,}: ThemeGroupedMusicsPrope
 
 //region -------------------- Editor musics --------------------
 
-interface EditorMusicsProperties extends MusicsProperties<ArrayOf7<Tracks>> {}
+type EditorMusicsProperties  = MusicsProperties<ArrayOf7<Tracks>>
 
 /** @reactComponent */
 function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
@@ -1172,7 +1167,7 @@ function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
 //endregion -------------------- Editor musics --------------------
 //region -------------------- Lesson editor musics --------------------
 
-interface LessonEditorMusicsProperties extends MusicsProperties<ArrayOf4<Tracks>> {}
+type LessonEditorMusicsProperties = MusicsProperties<ArrayOf4<Tracks>>
 
 /** @reactComponent */
 function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
@@ -1215,7 +1210,7 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 // }
 //
 
-interface BonusBossAndFinalBossMusicsProperties extends MusicsProperties<ArrayOf6<Tracks>> {}
+type BonusBossAndFinalBossMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
 function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMusicsProperties,) {
@@ -1252,7 +1247,7 @@ function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMus
 //         <Track value={files[0]}/>
 //         <Track value={files[1]}/>
 //
-//         <Image file={getYoshiImage(NSMBU,)} className="yoshi-image"/>
+//         <Image file={getYoshiImage(GameStyles.NSMBU,)} className="yoshi-image"/>
 //         <Track value={files[2]}/>
 //         <Track value={files[3]}/>
 //
@@ -1269,7 +1264,7 @@ function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMus
 //endregion -------------------- Sound effect musics --------------------
 //region -------------------- Peaceful musics --------------------
 
-interface PeacefulMusicsProperties extends MusicsProperties<ArrayOf2<Tracks>> {}
+type PeacefulMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
 
 /** @reactComponent */
 function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
@@ -1288,7 +1283,7 @@ function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
 //endregion -------------------- Peaceful musics --------------------
 //region -------------------- Bonus musics --------------------
 
-interface BonusMusicsProperties extends MusicsProperties<ArrayOf6<Tracks>> {}
+type BonusMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
 function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
@@ -1317,7 +1312,7 @@ function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
 //endregion -------------------- Bonus musics --------------------
 //region -------------------- Boss musics --------------------
 
-interface BossMusicsProperties extends MusicsProperties<ArrayOf6<Tracks>> {}
+type BossMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
 function BossMusicsContainer({files,}: BossMusicsProperties,) {
@@ -1363,7 +1358,7 @@ function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsPrope
             <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
             <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-            {asSmb3 ? <div><GameStyleImage reference={SMB3}/></div> : <div/>}
+            {asSmb3 ? <div><GameStyleImage reference={GameStyles.SMB3}/></div> : <div/>}
             <Track value={files[0]}/>
             <Track value={files[1]}/>
 
@@ -1403,7 +1398,7 @@ function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {
 }
 
 
-interface TimeWithLinkAndSmb2MusicsProperties extends MusicsProperties<ArrayOf8<Tracks>> {}
+type TimeWithLinkAndSmb2MusicsProperties = MusicsProperties<ArrayOf8<Tracks>>
 
 /** @reactComponent */
 function TimeWithLinkAndSmb2MusicsContainer({files,}: TimeWithLinkAndSmb2MusicsProperties,) {
@@ -1453,14 +1448,14 @@ function TimeWithYoshiMusicsContainer({files, gameStyle,}: TimeWithYoshiMusicsPr
         <Track value={files[2]}/>
         <Track value={files[3]}/>
 
-        <Image file={getYoshiImage(gameStyle === 'SMW' ? SMW : NSMBU,)} className="yoshi-image"/>
+        <Image file={getYoshiImage(gameStyle === 'SMW' ? GameStyles.SMW : GameStyles.NSMBU,)} className="yoshi-image"/>
         <Track value={files[4]}/>
         <Track value={files[5]}/>
     </div>
 }
 
 
-interface TimeWithUnderwaterMusicsProperties extends MusicsProperties<ArrayOf4<Tracks>> {}
+type TimeWithUnderwaterMusicsProperties = MusicsProperties<ArrayOf4<Tracks>>
 
 /** @reactComponent */
 function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsProperties,) {
@@ -1482,7 +1477,7 @@ function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsPro
 //endregion -------------------- Time musics --------------------
 //region -------------------- Day musics --------------------
 
-interface DayMusicsProperties extends MusicsProperties<ArrayOf2<Tracks>> {}
+type DayMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
 
 /** @reactComponent */
 function DayMusicsContainer({files,}: DayMusicsProperties,) {

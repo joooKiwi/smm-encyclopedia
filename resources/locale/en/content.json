@@ -39,6 +39,11 @@
       "Not created":                 "Not created"
     }
   },
+  "alert": {
+    "smm1 only":   "This page is only applicable to the SMM game.",
+    "smm3ds only": "This page is only applicable to the SMM3DS game.",
+    "smm2 only":   "This page is only applicable to the SMM2 game."
+  },
   "music": {
     "singular": "Music",
     "plural":   "Musics",
@@ -61,7 +66,21 @@
   "Yes": "Yes",
   "No":  "No",
 
-  "color": { "singular": "Color", "plural": "Colors" },
+  "language": {
+    "singular": "Language",
+    "plural":   "Languages"
+  },
+  "color":  {
+    "singular": "Color",
+    "plural":   "Colors"
+  },
+
+  "color mode": {
+    "auto":  "Automatic",
+    "light": "Light",
+    "dark":  "Dark"
+  },
+
   "White":  { "m": "White",  "f": "White" },
   "Black":  { "m": "Black",  "f": "Black" },
   "Red":    { "m": "Red",    "f": "Red" },
@@ -119,6 +138,7 @@
 
   "In other languages":          "In other languages",
   "Change the language":         "Change the language",
+  "Change the color modes":      "Change the color modes",
   "Discord server":              "Discord server",
   "Join the Discord server":     "Join the Discord server",
   "GitHub repository":           "GitHub repository",

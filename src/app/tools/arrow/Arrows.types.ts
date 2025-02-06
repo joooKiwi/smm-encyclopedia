@@ -1,6 +1,4 @@
-import type {EmptyString} from '@joookiwi/type'
-
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     UP,
     DOWN,
     LEFT,
@@ -13,5 +11,3 @@ enum Enum {
 
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
-
-export type PossibleContainer = `arrow${| EmptyString | 's'}-container`

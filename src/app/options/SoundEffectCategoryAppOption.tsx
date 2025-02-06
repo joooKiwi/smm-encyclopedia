@@ -2,6 +2,7 @@ import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}       from 'app/options/SoundEffectCategoryAppOption.types'
+import type {SimpleReactHeader}     from 'app/tools/table/SimpleHeader'
 import type {SoundEffectCategories} from 'core/soundEffectCategory/SoundEffectCategories'
 
 import {CommonOptions}         from 'app/options/CommonOptions'
@@ -15,22 +16,22 @@ export abstract class SoundEffectCategoryAppOption
 
     public static readonly ICON = new class SoundEffectCategoryAppOption_Icon extends SoundEffectCategoryAppOption {
 
-        public override renderContent(enumeration: SoundEffectCategories,) {
+        public override renderContent(enumeration: SoundEffectCategories,): ReactJSXElement {
             return <SoundEffectCategoryIcon reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME = new class SoundEffectCategoryAppOption_Name extends SoundEffectCategoryAppOption {
 
-        public override renderContent(enumeration: SoundEffectCategories,) {
+        public override renderContent(enumeration: SoundEffectCategories,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 

@@ -1,6 +1,6 @@
+@use '../../mixin' as *;
 @import '../../functions';
 @import '../../variables';
-@import '../../mixin';
 
 @include media-breakpoint-up($grid-breakpoint-sm) {
   #bottomLanguageChanger-button {

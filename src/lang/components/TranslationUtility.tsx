@@ -17,7 +17,7 @@ export class TranslationUtility {
 
 }
 
-export namespace TranslationUtility {
+export namespace TranslationUtility {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const STARTING_CHARACTER = '{'
     export const STARTING_CHARACTER_LENGTH = STARTING_CHARACTER.length
@@ -40,7 +40,7 @@ export namespace TranslationUtility {
     export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): NonNullReactElement
     export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
     export function replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
-        let argumentsFound: MutableArray<string> = []
+        const argumentsFound: MutableArray<string> = []
         for (const replaceKey of value.matchAll(STARTING_REGEX,)) {
             const startingIndex = replaceKey.index!
             const endingIndex = value.indexOf(ENDING_CHARACTER, startingIndex,)
@@ -51,7 +51,7 @@ export namespace TranslationUtility {
         const splitArguments = new ArrayAsCollection(value.split(STARTING_OR_ENDING_REGEX,),).filter(it => !argumentsFound2.has(it,),)
         const splitArgumentsSize = splitArguments.size
         const argumentsFoundSize = argumentsFound2.size
-        let finalArguments: MutableArray<ReactElementOrStringOrNumber> = []
+        const finalArguments: MutableArray<ReactElementOrStringOrNumber> = []
         for (let i = 0, j = 0; i < argumentsFoundSize || j < splitArgumentsSize; i++, j++)
             __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound2.getOrNull(i,) ?? EMPTY_STRING],)
 

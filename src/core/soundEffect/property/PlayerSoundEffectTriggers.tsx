@@ -311,7 +311,7 @@ export class PlayerSoundEffectTriggers
         return keyMap
     }
 
-    public createNewComponent(key: string,): NonNullReactElement {
+    public createNewComponent(key: string,): ReactJSXElement {
         const keyMap: TranslationReplaceKeysMap = {}
 
         return <TextComponent className="playerSoundEffectTrigger-container"

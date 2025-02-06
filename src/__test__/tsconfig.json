@@ -1,9 +1,0 @@
-{
-    "extends": "../../tsconfig",
-//    "compilerOptions": {
-//        "baseUrl": "./src/__test__"
-//    },
-    "files": [
-        "jestExtended.d.ts"
-    ]
-}

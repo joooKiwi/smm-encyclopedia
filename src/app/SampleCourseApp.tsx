@@ -2,8 +2,8 @@ import './SampleCourseApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {SampleCourseAppOption}          from 'app/options/SampleCourseAppOption'
 import Table                            from 'app/tools/table/Table'
@@ -13,6 +13,7 @@ import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
 import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
+import Smm1OnlyAlert                    from 'app/util/Smm1OnlyAlert'
 import SubMain                          from 'app/util/SubMain'
 import LevelGameStyleAndTheme           from 'core/_component/LevelGameStyleAndTheme'
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -37,14 +38,17 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = SampleCourseAppOption.CompanionEnum.get.values
 
+type SampleCourseAppProperties = AppProperties
+
 /** @reactComponent */
-export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function SampleCourseApp({viewDisplay, games,}: SampleCourseAppProperties,) {
     const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
     const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
 
     return <SubMain partial-id="sampleCourse" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)}</AppTitle>
         <PageTitle value={gameContentTranslation('sample course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}/>
+        <Smm1OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everySampleCourse (list)" card="everySampleCourse (card)" table="everySampleCourse (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -58,7 +62,7 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<SampleCourseAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <SampleCourseList items={items}/>
     if (viewDisplay === CARD)

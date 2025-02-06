@@ -188,12 +188,12 @@ export class NightEffects
 
 }
 
-export namespace NightEffects {
+export namespace NightEffects {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link NightEffects} */
     export const Companion = NightEffects.CompanionEnum.get
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).NightEffects = NightEffects

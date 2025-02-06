@@ -104,7 +104,7 @@ export class MiiCostumeCategories
 
 }
 
-export namespace MiiCostumeCategories {
+export namespace MiiCostumeCategories {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link MiiCostumeCategories} */
     export const Companion = MiiCostumeCategories.CompanionEnum.get
@@ -113,5 +113,5 @@ export namespace MiiCostumeCategories {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).MiiCostumeCategories = MiiCostumeCategories

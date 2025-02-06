@@ -219,7 +219,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
 
 }
 
-export namespace Times {
+export namespace Times {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Times} */
     export const Companion = Times.CompanionEnum.get
@@ -234,5 +234,5 @@ export namespace Times {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).Times = Times

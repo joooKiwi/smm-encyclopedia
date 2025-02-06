@@ -2,6 +2,7 @@ import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}      from 'app/options/MiiCostumeCategoryAppOption.types'
+import type {SimpleReactHeader}    from 'app/tools/table/SimpleHeader'
 import type {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
 
 import {CommonOptions}        from 'app/options/CommonOptions'
@@ -15,22 +16,22 @@ export abstract class MiiCostumeCategoryAppOption
 
     public static readonly ICON = new class MiiCostumeCategoryAppOption_Icon extends MiiCostumeCategoryAppOption {
 
-        public override renderContent(enumeration: MiiCostumeCategories,) {
+        public override renderContent(enumeration: MiiCostumeCategories,): ReactJSXElement {
             return <MiiCostumeCategoryIcon reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME = new class MiiCostumeCategoryAppOption_Name extends MiiCostumeCategoryAppOption {
 
-        public override renderContent(enumeration: MiiCostumeCategories,) {
+        public override renderContent(enumeration: MiiCostumeCategories,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 

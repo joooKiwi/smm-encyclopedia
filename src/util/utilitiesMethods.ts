@@ -329,7 +329,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
 //endregion -------------------- assert --------------------
 //region -------------------- get value by … --------------------
 
-export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {// eslint-disable-line @typescript-eslint/no-explicit-any
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null name.`,)
     if (value instanceof companionEnum.instance)
@@ -340,7 +340,7 @@ export function getValueByEnglishName<const T extends EnumerableWithEnglishName,
     return valueFound
 }
 
-export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {// eslint-disable-line @typescript-eslint/no-explicit-any
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null acronym.`,)
     if (value instanceof companionEnum.instance)
@@ -351,7 +351,7 @@ export function getValueByAcronym<const T extends EnumerableWithNullableAcronym,
     return valueFound
 }
 
-export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<NoInfer<| T | T['type']>>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<NoInfer<| T | T['type']>>, companionEnum: CompanionEnumDeclaration<T, any>,): T {// eslint-disable-line @typescript-eslint/no-explicit-any
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null type.`,)
     if (value instanceof companionEnum.instance)
@@ -362,7 +362,7 @@ export function getValueByType<const T extends EnumerableWithType<unknown>, >(va
     return valueFound
 }
 
-export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {// eslint-disable-line @typescript-eslint/no-explicit-any
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url value.`,)
     if (value instanceof companionEnum.instance)
@@ -373,7 +373,7 @@ export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(valu
     return valueFound
 }
 
-export function getValueByUrlName<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {
+export function getValueByUrlName<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumDeclaration<T, any>,): T {// eslint-disable-line @typescript-eslint/no-explicit-any
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url name.`,)
     if (value instanceof companionEnum.instance)
@@ -384,7 +384,7 @@ export function getValueByUrlName<const T extends EnumerableUsedInRoute, >(value
     return valueFound
 }
 
-export function getValueInUrl<const T extends EnumerableUsedInRoute, >(url: string, companionEnum: CompanionEnumRetrievableInUrl<T, any>,): NullOr<T> {
+export function getValueInUrl<const T extends EnumerableUsedInRoute, >(url: string, companionEnum: CompanionEnumRetrievableInUrl<T, any>,): NullOr<T> {// eslint-disable-line @typescript-eslint/no-explicit-any
     if (!companionEnum.URL_REGEX.test(url,))
         return null
 

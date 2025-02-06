@@ -2,8 +2,8 @@ import './EntityCategoryApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {EntityCategoryAppOption}        from 'app/options/EntityCategoryAppOption'
 import Table                            from 'app/tools/table/Table'
@@ -13,6 +13,7 @@ import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
 import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
+import Smm2OnlyAlert                    from 'app/util/Smm2OnlyAlert'
 import SubMain                          from 'app/util/SubMain'
 import {EntityCategories}               from 'core/entityCategory/EntityCategories'
 import EntityCategoryIcon               from 'core/entityCategory/component/EntityCategoryIcon'
@@ -36,14 +37,17 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = EntityCategoryAppOption.CompanionEnum.get.values
 
+type EntityCategoryAppProperties = AppProperties
+
 /** @reactComponent */
-export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function EntityCategoryApp({viewDisplay, games,}: EntityCategoryAppProperties,) {
     const entity = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName,)
     const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
 
     return <SubMain partial-id="entityCategory" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)}</AppTitle>
         <PageTitle value={gameContentTranslation('entity category.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
+        <Smm2OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyEntityCategory (list)" card="everyEntityCategory (card)" table="everyEntityCategory (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -57,7 +61,7 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<EntityCategoryAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <EntityCategoryList items={items}/>
     if (viewDisplay === CARD)

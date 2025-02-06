@@ -2,8 +2,8 @@ import './SoundEffectCategoryApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {SoundEffectCategoryAppOption} from 'app/options/SoundEffectCategoryAppOption'
 import AppTitle                       from 'app/util/AppTitle'
@@ -11,6 +11,7 @@ import CardList                       from 'app/util/CardList'
 import List                           from 'app/util/List'
 import PageTitle                      from 'app/util/PageTitle'
 import PageViewChanger                from 'app/util/PageViewChanger'
+import Smm2OnlyAlert                  from 'app/util/Smm2OnlyAlert'
 import SubMain                        from 'app/util/SubMain'
 import Table                          from 'app/tools/table/Table'
 import UnfinishedText                 from 'app/tools/text/UnfinishedText'
@@ -35,11 +36,14 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = SoundEffectCategoryAppOption.CompanionEnum.get.values
 
+type SoundEffectCategoryAppProperties = AppProperties
+
 /** @reactComponent */
-export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function SoundEffectCategoryApp({viewDisplay, games,}: SoundEffectCategoryAppProperties,) {
     return <SubMain partial-id="soundEffectCategory" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('sound effect category.all',)}</AppTitle>
         <PageTitle value={gameContentTranslation('sound effect category.singular',)}/>
+        <Smm2OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everySoundEffectCategory (list)" card="everySoundEffectCategory (card)" table="everySoundEffectCategory (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -53,7 +57,7 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<SoundEffectCategoryAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <SoundEffectCategoryList items={items}/>
     if (viewDisplay === CARD)

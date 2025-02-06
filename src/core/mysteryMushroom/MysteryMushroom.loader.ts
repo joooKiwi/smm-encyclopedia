@@ -8,11 +8,11 @@ import type {UniqueNameContent}                                                 
 import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                                                                                      from 'core/gameReference/GameReferences.types'
 import type {PokemonGeneration, PossibleConditionToUnlockIt, PossibleFirstAppearance}                                                                                                                                                                                                               from 'core/mysteryMushroom/loader.types'
 import type {MysteryMushroom}                                                                                                                                                                                                                                                                       from 'core/mysteryMushroom/MysteryMushroom'
-import type {PossibleUniqueEnglishName}                                                                                                                                                                                                                                                             from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {PossibleEnglishName, PossibleUniqueEnglishName}                                                                                                                                                                                                                                        from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {Loader}                                                                                                                                                                                                                                                                                from 'util/loader/Loader'
 import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, GameInStarMode, MysteryMushroomGames, PossibleAmountOfSoundEffectOnJump, PossibleTranslationKeyOnDeath, PossibleTranslationKeyOnGoalPole, SoundEffectOnMovement, SpecialMusicInStarMode, TypeOfSoundOnDeath, TypeOfSoundOnGoalPole} from 'core/mysteryMushroom/MysteryMushroom.types'
 
-import {isInProduction}           from 'variables'
+import {isInDevelopment}          from 'variables'
 import {GameReferences}           from 'core/gameReference/GameReferences'
 import {MysteryMushroomContainer} from 'core/mysteryMushroom/MysteryMushroom.container'
 import {createNameFromContent}    from 'lang/name/createNameFromContent'
@@ -49,7 +49,7 @@ export class MysteryMushroomLoader
         forEachByArray(file as Array<Content>, content =>
             references.set(content.uniqueName, createReference(content,),),)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "mystery mushroom" has been loaded --------------------\n',
                 references,
@@ -64,6 +64,23 @@ export class MysteryMushroomLoader
 
 interface Content
     extends LanguageContent, UniqueNameContent<PossibleUniqueEnglishName> {
+
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly german: string
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    //endregion -------------------- Language --------------------
 
     readonly conditionToUnlockIt: PossibleConditionToUnlockIt
     readonly canBeUnlockedByAnAmiibo: boolean

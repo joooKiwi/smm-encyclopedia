@@ -8,35 +8,19 @@ import type {GameStyles}          from 'core/gameStyle/GameStyles'
 export class InGameEntityImageContainer<const T extends InGameImageFile, >
     implements InGameEntityImage<T> {
 
-    //region -------------------- Fields --------------------
-
     readonly #reference
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
+    public constructor(reference: InGameImage_Regular<T>,) { this.#reference = reference }
 
-    public constructor(reference: InGameImage_Regular<T>,) {
-        this.#reference = reference
-    }
+    public get images(): CollectionHolder<T> { return this.#reference.images }
 
-    //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter methods --------------------
+    public get imagesWithAssociation(): CollectionHolder<readonly [GameStyles, T,]> { return this.#reference.imagesWithAssociation }
 
-    public get images(): CollectionHolder<T> {
-        return this.#reference.images
-    }
-
-    public get imagesWithAssociation(): CollectionHolder<readonly [GameStyles, T,]> {
-        return this.#reference.imagesWithAssociation
-    }
-
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
-
-    public get(gameStyle: GameStyles,): CollectionHolder<T> {
-        return this.#reference.get(gameStyle,)
-    }
-
-    //endregion -------------------- Methods --------------------
+    public get(gameStyle: GameStyles,): CollectionHolder<T> { return this.#reference.get(gameStyle,) }
+    public getSmb(): CollectionHolder<T> { return this.#reference.getSmb() }
+    public getSmb3(): CollectionHolder<T> { return this.#reference.getSmb3() }
+    public getSmw(): CollectionHolder<T> { return this.#reference.getSmw() }
+    public getNsmbu(): CollectionHolder<T> { return this.#reference.getNsmbu() }
+    public getSm3dw(): CollectionHolder<T> { return this.#reference.getSm3dw() }
 
 }

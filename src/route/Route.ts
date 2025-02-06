@@ -16,8 +16,7 @@ import type {RouteCallback} from 'route/EveryRoutes.types'
  *
  * @see EveryRoutes
  */
-export class Route<const NAME extends string = string,
-    const PATH extends string = string, > {
+export class Route {
 
     //region -------------------- Fields --------------------
 
@@ -32,7 +31,7 @@ export class Route<const NAME extends string = string,
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: NAME, path: PATH, games: NullOr<CollectionHolder<Games>>, times: NullOrArray<Times>, gameStyles: NullOr<CollectionHolder<GameStyles>>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
+    public constructor(name: string, path: string, games: NullOr<CollectionHolder<Games>>, times: NullOrArray<Times>, gameStyles: NullOr<CollectionHolder<GameStyles>>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay
@@ -45,31 +44,31 @@ export class Route<const NAME extends string = string,
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get name() {
+    public get name(): string {
         return this.#name
     }
 
-    public get path() {
+    public get path(): string {
         return this.#path
     }
 
-    public get viewDisplay() {
+    public get viewDisplay(): NullOr<ViewDisplays> {
         return this.#viewDisplay
     }
 
-    public get games() {
+    public get games(): NullOr<CollectionHolder<Games>> {
         return this.#games
     }
 
-    public get times() {
+    public get times(): NullOrArray<Times> {
         return this.#times
     }
 
-    public get gameStyles() {
+    public get gameStyles(): NullOr<CollectionHolder<GameStyles>> {
         return this.#gameStyles
     }
 
-    public get renderCallback() {
+    public get renderCallback(): RouteCallback {
         return this.#renderCallback
     }
 

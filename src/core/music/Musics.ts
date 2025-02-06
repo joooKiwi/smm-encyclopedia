@@ -458,7 +458,7 @@ export class Musics
 
 }
 
-export namespace Musics {
+export namespace Musics {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** An alias of {@link Musics.SUPER_MARIO_KART} */
     export const SMK = Musics.SUPER_MARIO_KART
@@ -471,7 +471,7 @@ export namespace Musics {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).Musics = Musics
 
 type PossibleMusic = | SingleSoundEffectMusic | SoundEffectMusicWithDifferentEditor | BackgroundMusic | NonChangeableSoundEffectBackgroundMusic | SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect

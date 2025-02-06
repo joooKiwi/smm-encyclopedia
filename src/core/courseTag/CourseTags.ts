@@ -120,7 +120,7 @@ export class CourseTags
 
 }
 
-export namespace CourseTags {
+export namespace CourseTags {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link CourseTags} */
     export const Companion = CourseTags.CompanionEnum.get
@@ -155,5 +155,5 @@ export namespace CourseTags {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).CourseTags = CourseTags

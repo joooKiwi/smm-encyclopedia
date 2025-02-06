@@ -1,5 +1,5 @@
-import type {NullOr}           from '@joookiwi/type'
-import type {MutableRefObject} from 'react'
+import type {NullOr}    from '@joookiwi/type'
+import type {RefObject} from 'react'
 
 import type {PossibleModalSize}                   from 'bootstrap/modal/ModalInstance.declaration'
 import type {HTMLDivProperties}                   from 'util/react/html/HTMLDivProperties'
@@ -17,7 +17,7 @@ interface ModalContainerProperties
     readonly children?: NonNullReactElementOrArray
 
     /** The reference to associate on the div having the {@link id} received */
-    readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>
+    readonly modalReference: RefObject<NullOr<HTMLDivElement>>
 
     readonly id: string
 
@@ -39,7 +39,7 @@ const DEFAULT_SIZE = 'md' satisfies PossibleModalSize
  * @reactComponent
  * @param properties
  */
-export default function ModalContainer({modalReference, id, className = EMPTY_STRING, title, children, verticallyCentered = DEFAULT_VERTICALLY_CENTERED, modalSize = DEFAULT_SIZE,
+export default function ModalContainer({modalReference, id, className = EMPTY_STRING, children, verticallyCentered = DEFAULT_VERTICALLY_CENTERED, modalSize = DEFAULT_SIZE,
                                            modalDialogProperties: {className: modalDialogClassName = EMPTY_STRING, ...otherModalDialogProperties} = EMPTY_OBJECT,
                                            modalContentProperties: {className: modalContentClassName = EMPTY_STRING, ...otherModalContentProperties} = EMPTY_OBJECT,
                                            ...otherProperties}: ModalContainerProperties,) {

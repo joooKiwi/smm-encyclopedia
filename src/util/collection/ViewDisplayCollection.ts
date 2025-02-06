@@ -61,7 +61,7 @@ export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
 
 }
 
-export namespace ViewDisplayCollection {
+export namespace ViewDisplayCollection {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const EMPTY = new ViewDisplayCollection(EMPTY_ARRAY,)
     export const ALL =   new ViewDisplayCollection(ALL_VIEW_DISPLAYS,)

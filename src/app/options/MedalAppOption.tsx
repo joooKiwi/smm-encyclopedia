@@ -1,8 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Medals}          from 'core/medal/Medals'
-import type {Names, Ordinals} from 'app/options/MedalAppOption.types'
+import type {Names, Ordinals}   from 'app/options/MedalAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {Medals}            from 'core/medal/Medals'
 
 import {CommonOptions} from 'app/options/CommonOptions'
 import {TableOption}   from 'app/tools/table/TableOption'
@@ -15,22 +16,22 @@ export abstract class MedalAppOption
 
     public static readonly ICON = new class MedalAppOption_Icon extends MedalAppOption {
 
-        public override renderContent(enumeration: Medals,) {
+        public override renderContent(enumeration: Medals,): ReactJSXElement {
             return <MedalIcon reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME = new class MedalAppOption_Name extends MedalAppOption {
 
-        public override renderContent(enumeration: Medals,) {
+        public override renderContent(enumeration: Medals,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 

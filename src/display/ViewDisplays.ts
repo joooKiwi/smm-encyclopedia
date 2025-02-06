@@ -121,7 +121,7 @@ export class ViewDisplays<const TYPE extends Type = Type,
 
 }
 
-export namespace ViewDisplays {
+export namespace ViewDisplays {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link ViewDisplays} */
     export const Companion = ViewDisplays.CompanionEnum.get

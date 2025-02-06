@@ -2,7 +2,7 @@ import type {Characters} from 'lang/Characters'
 
 export type PossibleSingleCharacter = | SpaceEvenCharacter | SpaceUnevenCharacter
 
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     POINT, INTERROGATION_POINT, EXCLAMATION_POINT,
     COLON, SEMICOLON,
     COMMA,

@@ -21,6 +21,7 @@ import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/Companio
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
+/** @recursiveReference <{@link ThemeLoader}> */
 export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEnglishName,
     const NAME_IN_FILE extends PossibleName_InFile = PossibleName_InFile, >
     extends Enum<Ordinals, Names>
@@ -263,7 +264,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
 
     public abstract get(property: ThemeProperty,): boolean
 
-    public getReference(entity: Entity,): CollectionHolder<Entity> {
+    public getReference(entity: Entity,): CollectionHolder<Entity> {// eslint-disable-line @typescript-eslint/no-unused-vars
         return EMPTY_COLLECTION_HOLDER
     }
 
@@ -271,7 +272,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
 
 }
 
-export namespace Themes {
+export namespace Themes {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Themes} */
     export const Companion = Themes.CompanionEnum.get
@@ -311,5 +312,5 @@ export namespace Themes {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).Themes = Themes

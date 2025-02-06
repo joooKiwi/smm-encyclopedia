@@ -2,8 +2,8 @@ import './PredefinedMessageApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Table                            from 'app/tools/table/Table'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
@@ -13,6 +13,7 @@ import CardList                         from 'app/util/CardList'
 import List                             from 'app/util/List'
 import PageTitle                        from 'app/util/PageTitle'
 import PageViewChanger                  from 'app/util/PageViewChanger'
+import Smm2OnlyAlert                    from 'app/util/Smm2OnlyAlert'
 import SubMain                          from 'app/util/SubMain'
 import {PredefinedMessages}             from 'core/predefinedMessage/PredefinedMessages'
 import DisplayButtonGroup               from 'display/DisplayButtonGroup'
@@ -34,14 +35,17 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = PredefinedMessageAppOption.CompanionEnum.get.values
 
+type PredefinedMessageAppProperties = AppProperties
+
 /** @reactComponent */
-export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function PredefinedMessageApp({viewDisplay, games,}: PredefinedMessageAppProperties,) {
     return <SubMain partial-id="predefinedMessage" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('predefined message.all', {
             singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
             pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
         },)}</AppTitle>
         <PageTitle value={unfinishedText('Predefined message',)}/>
+        <Smm2OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyPredefinedMessage (list)" card="everyPredefinedMessage (card)" table="everyPredefinedMessage (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -55,7 +59,7 @@ export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterP
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<PredefinedMessageAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <PredefinedMessageList items={items}/>
     if (viewDisplay === CARD)

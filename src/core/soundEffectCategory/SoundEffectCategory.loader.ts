@@ -8,7 +8,7 @@ import type {PossibleEnglishName} from 'core/soundEffectCategory/SoundEffectCate
 import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}               from 'variables'
+import {isInDevelopment}              from 'variables'
 import {SoundEffectCategoryContainer} from 'core/soundEffectCategory/SoundEffectCategory.container'
 import {createNameFromContent}        from 'lang/name/createNameFromContent'
 
@@ -40,7 +40,7 @@ export class SoundEffectCategoryLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "sound effect category" has been loaded --------------------\n',
                 references,
@@ -54,7 +54,37 @@ export class SoundEffectCategoryLoader
 
 
 interface Content
-    extends LanguageContent {}
+    extends LanguageContent {
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly french: string
+    readonly canadianFrench: null
+    readonly europeanFrench: null
+
+    readonly german: string
+
+    readonly spanish: string
+    readonly americanSpanish: null
+    readonly europeanSpanish: null
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: null
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+}
 
 function createReference(content: Content,): SoundEffectCategory {
     return new SoundEffectCategoryContainer(createNameFromContent(content, 2, false,),)

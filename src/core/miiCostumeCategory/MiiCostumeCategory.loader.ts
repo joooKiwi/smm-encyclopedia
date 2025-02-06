@@ -8,7 +8,7 @@ import type {PossibleEnglishName} from 'core/miiCostumeCategory/MiiCostumeCatego
 import type {MiiCostumeCategory}  from 'core/miiCostumeCategory/MiiCostumeCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}              from 'variables'
+import {isInDevelopment}             from 'variables'
 import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
 import {createNameFromContent}       from 'lang/name/createNameFromContent'
 
@@ -40,7 +40,7 @@ export class MiiCostumeCategoryLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "Mii costume category" has been loaded --------------------\n',
                 references,
@@ -54,7 +54,41 @@ export class MiiCostumeCategoryLoader
 
 
 interface Content
-    extends LanguageContent {}
+    extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    readonly french: string
+    readonly canadianFrench: null
+    readonly europeanFrench: null
+
+    readonly german: string
+
+    readonly spanish: string
+    readonly americanSpanish: null
+    readonly europeanSpanish: null
+
+    readonly italian: string
+
+    readonly dutch: string
+
+    readonly portuguese: string
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    readonly russian: string
+
+    readonly japanese: string
+
+    readonly korean: string
+
+    //endregion -------------------- Language --------------------
+
+}
 
 function createReference(content: Content,): MiiCostumeCategory {
     return new MiiCostumeCategoryContainer(createNameFromContent(content, 2, false,),)

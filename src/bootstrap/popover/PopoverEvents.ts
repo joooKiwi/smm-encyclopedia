@@ -5,7 +5,7 @@ import type {PopoverEventCallback, PopoverInstanceDeclaration} from 'bootstrap/p
  *
  * @see https://getbootstrap.com/docs/5.2/components/popovers/#events
  */
-export interface PopoverEvents<I extends PopoverInstanceDeclaration<any, any> = PopoverInstanceDeclaration, > {
+export interface PopoverEvents<I extends PopoverInstanceDeclaration<any, any> = PopoverInstanceDeclaration, > {// eslint-disable-line @typescript-eslint/no-explicit-any
 
     /** @see Popover.Events.show*/
     readonly show: PopoverEventCallback<I>

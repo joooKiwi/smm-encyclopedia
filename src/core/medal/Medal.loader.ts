@@ -8,9 +8,9 @@ import type {Medal}                                                             
 import type {PossibleEnglishName}                                                                from 'core/medal/Medals.types'
 import type {Loader}                                                                             from 'util/loader/Loader'
 
-import {isInProduction}      from 'variables'
-import {MedalContainer}      from 'core/medal/Medal.container'
-import {Medals}              from 'core/medal/Medals'
+import {isInDevelopment} from 'variables'
+import {MedalContainer}  from 'core/medal/Medal.container'
+import {Medals}          from 'core/medal/Medals'
 
 /**
  * @dependsOn<{@link Medals}>
@@ -46,7 +46,7 @@ export class MedalLoader
         forEachByArray(file as Array<Content>, content =>
             references.set(content.image, createReference(content,),),)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "medal" has been loaded --------------------\n',
                 references,

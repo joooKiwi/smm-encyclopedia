@@ -5,6 +5,7 @@ import {Suspense}                         from 'react'
 
 import PageLayout                    from 'app/_PageLayout'
 import LoadingApp                    from 'app/LoadingApp'
+import {ColorThemes}                 from 'color/ColorThemes'
 import {Games}                       from 'core/game/Games'
 import {GameStyles}                  from 'core/gameStyle/GameStyles'
 import {Times}                       from 'core/time/Times'
@@ -21,8 +22,10 @@ import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
 
 import ALL =                EveryRoutes.ALL
+import ALL_COLORS =         ColorThemes.ALL
 import ALL_LANGUAGES =      ProjectLanguages.ALL
 import ALL_ROUTES =         EveryRoutes.ALL_ROUTES
+import ColorCompanion =     ColorThemes.Companion
 import EMPTY_STRING =       Empty.EMPTY_STRING
 import GameCompanion =      Games.Companion
 import GameStyleCompanion = GameStyles.Companion
@@ -60,17 +63,27 @@ const router = createHashRouter([{
     HydrateFallback: LoadingApp,//TODO change the loading app to have a different visual than afterward
     children: [
         new StraightRouteObject('/', () => redirectTo(home,),),
-        //region -------------------- Path from route path --------------------
-
         ...all.map(it => new StraightRouteObject(it.urlValue, () => redirectTo(it,),),),
-
-        //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
 
         ...allLanguages.map<RouteObject>(language => ({
             path: language.projectAcronym,
-            id: `language-${language.projectAcronym}`,
-            children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),).toMutableArray(),
+            children: [
+                ...all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language,),),),
+                //region -------------------- Path from language + colour --------------------
+
+                ...ALL_COLORS.map<RouteObject>(color => ({
+                    path: `${ColorCompanion.PREFIX}${color.colorMode}`,
+                    id: `language=${language.projectAcronym},color=${color.colorMode}`,
+                    children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, language, color,),),).toMutableArray(),
+                    loader() {
+                        ColorCompanion.current = color
+                        return null
+                    },
+                }),),
+
+                //endregion -------------------- Path from language + colour --------------------
+            ],
             loader() {
                 LanguageCompanion.current = language
                 return null
@@ -78,6 +91,18 @@ const router = createHashRouter([{
         }),),
 
         //endregion -------------------- Path from language --------------------
+        //region -------------------- Path from colour --------------------
+
+        ...ALL_COLORS.map<RouteObject>(color => ({
+            path: `${ColorCompanion.PREFIX}${color.colorMode}`,
+            children: all.map(it => new StraightFallbackRouteObject(it.urlName, () => redirectTo(it, null, color,),),).toMutableArray(),
+            loader() {
+                ColorCompanion.current = color
+                return null
+            },
+        }),),
+
+        //endregion -------------------- Path from colour --------------------
         new StraightFallbackRouteObject(EMPTY_STRING, it => redirectToByUrl(it,),),
     ],
 } satisfies RouteObject,], {
@@ -106,13 +131,18 @@ function resolveLazyRoute(path: string, action: (routeId: NullOrString, children
     const language = LanguageCompanion.getValueInUrl(path,)
     if (language == null)
         return // We are not expecting to have no language by the url
+    const color = ColorCompanion.getValueInUrl(path,)
+    if (color == null)
+        return // We are not expecting to have no colour by the url
     const viewDisplay = route.viewDisplay!
     const games = route.games
     const gameStyles = route.gameStyles
     const times = route.times
 
-    action(`language-${language.projectAcronym}`, [{
-        path: `/${language.projectAcronym}${route.path}`,
+    const languageAcronym = language.projectAcronym
+    const colorMode = color.colorMode
+    action(`language=${languageAcronym},color=${colorMode}`, [{
+        path: `/${languageAcronym}/${ColorCompanion.PREFIX}${colorMode}${route.path}`,
         element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(viewDisplay, GameCollection.of(games,), GameStyleCollection.of(gameStyles,), TimeCollection.of(times,),)}</Suspense>,
         loader() {
             if (games != null)
@@ -133,7 +163,6 @@ export default function Routes() {
     return <RouterProvider router={router}/>
 }
 
-// @ts-ignore: TODO remove once the application is more complete
+//TODO remove once the application is more complete
 (window.test ??= {}).router = router
-// @ts-ignore: TODO remove once the application is more complete
 window.test.routes = router.routes[0]!.children

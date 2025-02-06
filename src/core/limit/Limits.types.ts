@@ -1,8 +1,6 @@
-import type {EmptyArray, EmptyString} from '@joookiwi/type'
+import type {EmptyString} from '@joookiwi/type'
 
-import type {Entity} from 'core/entity/Entity'
-
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     GENERAL_ENTITY_LIMIT, POWER_UP_LIMIT,
 

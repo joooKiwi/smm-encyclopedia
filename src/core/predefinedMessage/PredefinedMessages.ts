@@ -107,7 +107,7 @@ export class PredefinedMessages
 
 }
 
-export namespace PredefinedMessages {
+export namespace PredefinedMessages {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link PredefinedMessages} */
     export const Companion = PredefinedMessages.CompanionEnum.get
@@ -116,5 +116,5 @@ export namespace PredefinedMessages {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).PredefinedMessages = PredefinedMessages

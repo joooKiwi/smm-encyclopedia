@@ -15,12 +15,12 @@ interface SingleLanguageChangerLinkProperties
 
     readonly language: ProjectLanguages
 
-    readonly callbackToSetLanguage: (language: ProjectLanguages,) => void
+    changeLanguage(language: ProjectLanguages,): void
 
 }
 
 /** @reactComponent */
-export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: SingleLanguageChangerLinkProperties,) {
+export function LanguageChangerSingleLink({language, changeLanguage,}: SingleLanguageChangerLinkProperties,) {
     const location = useLocation()
     const englishNameAsId = getInHtml(language.englishName,)
     const buttonId = `single-languageChanger-${englishNameAsId}`
@@ -32,6 +32,6 @@ export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: Si
 
     return <Tooltip option={({title: languageTranslation(language.englishName), placement: 'top',})} reference={buttonId} >
         <Link id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
-              onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>
+              onClick={() => changeLanguage(language)}>{language.originalName}</Link>
     </Tooltip>
 }

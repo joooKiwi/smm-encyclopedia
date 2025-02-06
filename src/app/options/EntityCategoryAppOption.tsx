@@ -1,8 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}  from 'app/options/EntityCategoryAppOption.types'
-import type {EntityCategories} from 'core/entityCategory/EntityCategories'
+import type {Names, Ordinals}   from 'app/options/EntityCategoryAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {EntityCategories}  from 'core/entityCategory/EntityCategories'
 
 import {CommonOptions}    from 'app/options/CommonOptions'
 import {TableOption}      from 'app/tools/table/TableOption'
@@ -15,22 +16,22 @@ export abstract class EntityCategoryAppOption
 
     public static readonly ICON = new class EntityCategoryAppOption_Icon extends EntityCategoryAppOption {
 
-        public override renderContent(enumeration: EntityCategories,) {
+        public override renderContent(enumeration: EntityCategories,): ReactJSXElement {
             return <EntityCategoryIcon reference={enumeration}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.iconHeader
         }
 
     }('icon',)
     public static readonly NAME = new class EntityCategoryAppOption_Name extends EntityCategoryAppOption {
 
-        public override renderContent(enumeration: EntityCategories,) {
+        public override renderContent(enumeration: EntityCategories,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 

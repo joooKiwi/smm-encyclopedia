@@ -1,15 +1,12 @@
-import 'app/_GameAsideContent.scss'
-import 'app/_GameStyleAsideContent.scss'
-import 'app/_TimeAsideContent.scss'
 import './SoundEffectApp.scss'
 
 import type {MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
 
-import type {SoundEffectProperties} from 'app/AppProperties.types'
-import type {GameCollection}        from 'util/collection/GameCollection'
-import type {GameStyleCollection}   from 'util/collection/GameStyleCollection'
-import type {ReactProperties}       from 'util/react/ReactProperties'
+import type {AppProperties}       from 'app/AppProperties.types'
+import type {GameCollection}      from 'util/collection/GameCollection'
+import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import type {ReactProperties}     from 'util/react/ReactProperties'
 
 import {SoundEffectAppOption}                       from 'app/options/SoundEffectAppOption'
 import LinkButton                                   from 'app/tools/button/LinkButton'
@@ -60,8 +57,10 @@ const {LIST, CARD,} = ViewDisplays
 
 const all = new ArrayAsCollection(ALL,)
 
+type SoundEffectAppProperties = AppProperties
+
 /** @reactComponent */
-export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}: SoundEffectProperties,) {
+export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}: SoundEffectAppProperties,) {
     //region -------------------- Game selection --------------------
 
     const game = games.hasAllGames
@@ -124,7 +123,7 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
         </PageViewChanger>
         <UnfinishedText type="paragraph" isHidden>sound effect description</UnfinishedText>{/*TODO add description*/}
         <section id="soundEffect-app-content" className="app-content">
-            <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles} times={times}/>
+            <SubContent viewDisplay={viewDisplay} games={games}/>
         </section>
     </SubMain>
 }
@@ -132,7 +131,7 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles, times,}:
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: SoundEffectProperties,) {
+function SubContent({viewDisplay, games,}: Pick<SoundEffectAppProperties, | 'viewDisplay' | 'games'>,) {
     const items = all.filter(({reference,},) =>
         games.hasAnyIn(reference,),)
 

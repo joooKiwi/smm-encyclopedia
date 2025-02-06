@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     AMERICAN_ENGLISH, EUROPEAN_ENGLISH,
     CANADIAN_FRENCH, EUROPEAN_FRENCH,

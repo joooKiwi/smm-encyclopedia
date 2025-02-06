@@ -221,23 +221,23 @@ export class EntityGameStyles
         return 'success'
     }
 
-    public smbColor(isSelected: boolean,): PossibleColor {
+    public smbColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public smb3Color(isSelected: boolean,): PossibleColor {
+    public smb3Color(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public smwColor(isSelected: boolean,): PossibleColor {
+    public smwColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public nsmbuColor(isSelected: boolean,): PossibleColor {
+    public nsmbuColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public sm3dwColor(isSelected: boolean,): PossibleColor {
+    public sm3dwColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 

@@ -4,10 +4,10 @@ import type {NullOrString}     from '@joookiwi/type'
 import type {CollectionHolder} from '@joookiwi/collection'
 import {Link}                  from 'react-router'
 
-import type {CourseTagAppProperties} from 'app/AppProperties.types'
-import type {CourseTags}             from 'core/courseTag/CourseTags'
-import type {PossibleRouteName}      from 'route/EveryRoutes.types'
-import type {ReactProperties}        from 'util/react/ReactProperties'
+import type {AppPropertiesWithType} from 'app/AppProperties.types'
+import type {CourseTags}            from 'core/courseTag/CourseTags'
+import type {PossibleRouteName}     from 'route/EveryRoutes.types'
+import type {ReactProperties}       from 'util/react/ReactProperties'
 
 import {CourseTagAppOption}                         from 'app/options/CourseTagAppOption'
 import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
@@ -22,6 +22,7 @@ import Description                                  from 'app/util/Description'
 import List                                         from 'app/util/List'
 import PageTitle                                    from 'app/util/PageTitle'
 import PageViewChanger                              from 'app/util/PageViewChanger'
+import Smm2OnlyAlert                                from 'app/util/Smm2OnlyAlert'
 import SubMain                                      from 'app/util/SubMain'
 import FirstAppearance                              from 'core/courseTag/component/FirstAppearance'
 import {Games}                                      from 'core/game/Games'
@@ -45,8 +46,10 @@ const {LIST, CARD,} = ViewDisplays
 
 const options = CourseTagAppOption.CompanionEnum.get.values
 
+type CourseTagAppProperties = AppPropertiesWithType<CourseTagTypes>
+
 /** @reactComponent */
-export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {
+export default function CourseTagApp({viewDisplay, type, games,}: CourseTagAppProperties,) {
     const course = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,)
     const courseAsLowerCase = COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
     const coursesAsLowerCase = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase()
@@ -57,6 +60,7 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
     return <SubMain partial-id="courseTag" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('course tag.all', {course: courseAsLowerCase, courses: coursesAsLowerCase, tag: tagAsLowerCase, tags: tagsAsLowerCase,},)}</AppTitle>
         <PageTitle value={gameContentTranslation('course tag.singular', {Course: course, course: courseAsLowerCase, Tag: tag, tag: tagAsLowerCase,},)}/>
+        <Smm2OnlyAlert value={games}/>
         <PageViewChanger>
             <CourseTagAsideContent type={type}/>
             <DisplayButtonGroup list={`${type.routeName} (list)`} card={`${type.routeName} (card)`} table={`${type.routeName} (table)`} current={viewDisplay}/>
@@ -71,7 +75,7 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, type,}: CourseTagAppProperties,) {
+function SubContent({viewDisplay, type,}: Pick<CourseTagAppProperties, | 'viewDisplay' | 'type'>,) {
     const items = type.content
 
     if (viewDisplay === LIST)

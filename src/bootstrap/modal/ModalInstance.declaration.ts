@@ -127,4 +127,4 @@ export interface ModalInstanceDeclaration<ELEMENT extends Element = Element,
 
 export type PossibleModalSize = | 'sm' | 'md' | 'lg' | 'xl'
 
-export type ModalEventCallback<I extends ModalInstanceDeclaration<any, any> = ModalInstanceDeclaration, > = (instance: I, event: Event,) => void
+export type ModalEventCallback<I extends ModalInstanceDeclaration<any, any> = ModalInstanceDeclaration, > = (instance: I, event: Event,) => void// eslint-disable-line @typescript-eslint/no-explicit-any

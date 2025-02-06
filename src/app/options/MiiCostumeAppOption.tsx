@@ -1,9 +1,10 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import type {UndefinedOr}            from '@joookiwi/type'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}     from 'app/options/MiiCostumeAppOption.types'
-import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {MiiCostumes}         from 'core/miiCostume/MiiCostumes'
+import type {Names, Ordinals}   from 'app/options/MiiCostumeAppOption.types'
+import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
+import type {MiiCostumes}       from 'core/miiCostume/MiiCostumes'
 
 import {CommonOptions}        from 'app/options/CommonOptions'
 import {TableOption}          from 'app/tools/table/TableOption'
@@ -21,34 +22,34 @@ export abstract class MiiCostumeAppOption
 
     public static readonly IMAGE =                 new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-        public override renderContent(enumeration: MiiCostumes,) {
+        public override renderContent(enumeration: MiiCostumes,): ReactJSXElement {
             return <MiiCostumeImage reference={enumeration}/>
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             return {key: 'image', element: contentTranslation('Image',),}
         }
 
     }('image',)
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
-        public override renderContent(enumeration: MiiCostumes,) {
+        public override renderContent(enumeration: MiiCostumes,): ReactJSXElement {
             return CommonOptions.get.getNameContent(enumeration,)
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.nameHeader
         }
 
     }('name',)
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
-        public override renderContent(enumeration: MiiCostumes,) {
+        public override renderContent(enumeration: MiiCostumes,): UndefinedOr<ReactJSXElement> {
             const miiCostume = enumeration.reference
             return miiCostume.officialNotification?.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,)
         }
 
-        public override renderHeader(): SingleHeaderContent {
+        public override renderHeader(): SimpleReactHeader {
             //TODO add new translation to the header value.
             return {key: 'officialNotification', element: '--Official notification--',}
         }
@@ -57,11 +58,11 @@ export abstract class MiiCostumeAppOption
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
-        public override renderContent(enumeration: MiiCostumes,) {
+        public override renderContent(enumeration: MiiCostumes,): ReactJSXElement {
             return <MiiCostumeCategoryIcon reference={CategoryCompanion.getValueByName(enumeration.reference.categoryAmericanEnglish,)}/>
         }
 
-        public override renderHeader() {
+        public override renderHeader(): SimpleReactHeader {
             return CommonOptions.get.categoryHeader
         }
 

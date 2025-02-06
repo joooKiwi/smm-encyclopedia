@@ -1,5 +1,4 @@
 import type {CollectionHolder} from '@joookiwi/collection'
-import type {Nullable}         from '@joookiwi/type'
 
 import type {EditorImageFile}   from 'core/entity/file/EntityImageFile'
 import type {EditorEntityImage} from 'core/entity/images/EditorEntityImage'
@@ -11,35 +10,19 @@ import type {Times}             from 'core/time/Times'
 export class EditorEntityImageContainer<const T extends EditorImageFile, >
     implements EditorEntityImage<T> {
 
-    //region -------------------- Fields --------------------
-
     readonly #reference
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
+    public constructor(reference: EditorImage<T>,) { this.#reference = reference }
 
-    public constructor(reference: EditorImage<T>,) {
-        this.#reference = reference
-    }
+    public get images(): CollectionHolder<T> { return this.#reference.images }
 
-    //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter methods --------------------
+    public get imagesWithAssociation(): CollectionHolder<readonly [Times, GameStyles, Themes, T,]> { return this.#reference.imagesWithAssociation }
 
-    public get images(): CollectionHolder<T> {
-        return this.#reference.images
-    }
-
-    public get imagesWithAssociation(): CollectionHolder<readonly [Times, GameStyles, Themes, T,]> {
-        return this.#reference.imagesWithAssociation
-    }
-
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
-
-    public get(gameStyle?: Nullable<GameStyles>,): CollectionHolder<T> {
-        return this.#reference.getFromGameStyle(gameStyle,)
-    }
-
-    //endregion -------------------- Methods --------------------
+    public get(gameStyle: GameStyles,): CollectionHolder<T> { return this.#reference.getFromGameStyle(gameStyle,) }
+    public getSmb(): CollectionHolder<T> { return this.#reference.getSmb() }
+    public getSmb3(): CollectionHolder<T> { return this.#reference.getSmb3() }
+    public getSmw(): CollectionHolder<T> { return this.#reference.getSmw() }
+    public getNsmbu(): CollectionHolder<T> { return this.#reference.getNsmbu() }
+    public getSm3dw(): CollectionHolder<T> { return this.#reference.getSm3dw() }
 
 }

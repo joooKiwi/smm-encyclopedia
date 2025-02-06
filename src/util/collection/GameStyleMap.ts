@@ -1,8 +1,9 @@
 import type {UndefinedOr} from '@joookiwi/type'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyles}        from 'core/gameStyle/GameStyles'
 
-import {GameStyles} from 'core/gameStyle/GameStyles'
+import {GameStylesPossibility} from 'core/gameStyle/GameStyles.possibility'
 
 /**
  * A map made to be handled the same way as a {@link Map},
@@ -22,7 +23,7 @@ export class GameStyleMap<const REFERENCE extends GameStyleProperty = GameStyleP
 
     public constructor(reference: REFERENCE,) {
         this.#reference = reference
-        this.size = (this.#internalStructure = new Map(GameStyles.ALL.map(it => [it, it.get(reference,),],),)).size
+        this.size = (this.#internalStructure = new Map(GameStylesPossibility.ALL.map(it => [it, it.get(reference,),],),)).size
     }
 
     //endregion -------------------- Constructor --------------------

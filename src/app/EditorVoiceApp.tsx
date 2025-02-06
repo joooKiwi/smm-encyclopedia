@@ -1,13 +1,12 @@
-import 'app/_GameAsideContent.scss'
-import 'app/_TimeAsideContent.scss'
 import './EditorVoiceApp.scss'
 
 import type {NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
+import {Fragment}                  from 'react'
 
-import type {EditorVoiceProperties} from 'app/AppProperties.types'
-import type {ReactProperties}       from 'util/react/ReactProperties'
-import type {PossibleRouteName}     from 'route/EveryRoutes.types'
+import type {AppProperties}     from 'app/AppProperties.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
 
 import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
@@ -55,8 +54,10 @@ const {LIST, CARD,} = ViewDisplays
 const all = new ArrayAsCollection(ALL,)
 const options = EditorVoiceAppOption.CompanionEnum.get.values
 
+type EditorVoiceAppProperties = AppProperties
+
 /** @reactComponent */
-export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceProperties,) {
+export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoiceAppProperties,) {
     //region -------------------- Game selection --------------------
 
     const game = games.hasAllGames
@@ -98,7 +99,7 @@ export default function EditorVoiceApp({viewDisplay, games, times,}: EditorVoice
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceProperties, 'gameStyles'>,) {
+function SubContent({viewDisplay, games, times,}: Omit<EditorVoiceAppProperties, 'gameStyles'>,) {
     const items = all.filter(({reference,},) =>
         games.hasAnyIn(reference,)
         && (times.hasAllTimes || times.hasAnyIn(reference,)),)
@@ -121,7 +122,7 @@ interface EditorVoice_SubContentProperties
 /** @reactComponent */
 function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
     return <List partial-id="editorVoice" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
+        <div key={`Editor voice list ${it.name}`} className="d-flex justify-content-between">
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="top"/>
             <EditorVoiceSound editorVoice={it}/>
         </div>
@@ -131,10 +132,10 @@ function EditorVoiceList({items,}: EditorVoice_SubContentProperties,) {
 /** @reactComponent */
 function EditorVoiceCardList({items,}: EditorVoice_SubContentProperties,) {
     return <CardList partial-id="editorVoice" items={items} default={1} small={3} medium={4} large={6}>{it =>
-        <>
+        <Fragment key={`Editor voice card list (${it.name})`}>
             <NameComponent id="editorVoice-name" name={it.reference} popoverOrientation="left"/>
             <EditorVoiceSound editorVoice={it}/>
-        </>
+        </Fragment>
     }</CardList>
 }
 

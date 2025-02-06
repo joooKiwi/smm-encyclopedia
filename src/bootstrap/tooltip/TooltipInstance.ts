@@ -158,7 +158,7 @@ export class TooltipInstance<const ELEMENT extends HTMLElement = HTMLElement,
 
 }
 
-export namespace TooltipInstance {
+export namespace TooltipInstance {// eslint-disable-line @typescript-eslint/no-namespace
 
     // export let DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
     /** @see Tooltip.Events.show */

@@ -4,6 +4,7 @@ import Modal                       from 'bootstrap/modal/Modal'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import {contentTranslation}        from 'lang/components/translationMethods'
 import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
+import LanguageToColorButton       from 'navigation/button/LanguageToColor.button'
 import LanguageToParameterButton   from 'navigation/button/LanguageToParameter.button'
 import {LanguageChangerSingleLink} from 'navigation/modal/LanguageChanger.single.link'
 import {BootstrapInstanceHandler}  from 'bootstrap/BootstrapInstanceHandler'
@@ -14,7 +15,7 @@ import Companion = ProjectLanguages.Companion
 export default function LanguageModal() {
     const modal = useRef<HTMLDivElement>(null,)
     const [, setCurrentLanguage,] = useState(Companion.current,)
-    const callbackToSetLanguage = (it: ProjectLanguages,) => setLanguage(it, setCurrentLanguage,)
+    const callbackToSetLanguage: (language: ProjectLanguages,) => void = it => setLanguage(it, setCurrentLanguage,)
 
     return <>
         <Modal modalReference={modal}/>
@@ -23,7 +24,7 @@ export default function LanguageModal() {
                 <div className="modal-content">
                     <div className="modal-header">
                         <div className="btn-group" role="group">
-                            <button className="btn btn-outline-primary rounded-pill bi bi-palette-fill" disabled/>
+                            <LanguageToColorButton/>
                             <LanguageToParameterButton/>
                         </div>
                         <h4 className="modal-title w-100 text-center">{contentTranslation('Change the language',)}</h4>
@@ -32,43 +33,43 @@ export default function LanguageModal() {
                     <div className="modal-body">
                         <div id="languageChanger-body" className="container d-flex flex-wrap justify-content-between justify-content-xl-evenly">
                             <div id="double-languageChanger-english" className="languageChanger-link-container btn-group btn-group-lg col-12 col-xl-5 my-2" role="group">
-                                <LanguageChangerSingleLink language={ProjectLanguages.AMERICAN_ENGLISH} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.AMERICAN_ENGLISH} changeLanguage={callbackToSetLanguage}/>
                                 {/*TODO Separate the american into 2 groups (canadian and united state)*/}
-                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_ENGLISH} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_ENGLISH} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="double-languageChanger-french" className="languageChanger-link-container btn-group btn-group-lg col-12 col-xl-5 my-2" role="group">
-                                <LanguageChangerSingleLink language={ProjectLanguages.CANADIAN_FRENCH} callbackToSetLanguage={callbackToSetLanguage}/>
-                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_FRENCH} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.CANADIAN_FRENCH} changeLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_FRENCH} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="single-languageChanger-german" className="languageChanger-link-container col-12 col-lg-5 col-xxl-3 mx-auto mx-xl-0 my-2">
-                                <LanguageChangerSingleLink language={ProjectLanguages.GERMAN} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.GERMAN} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="double-languageChanger-spanish" className="languageChanger-link-container btn-group btn-group-lg col-12 col-xl-5 my-2" role="group">
-                                <LanguageChangerSingleLink language={ProjectLanguages.AMERICAN_SPANISH} callbackToSetLanguage={callbackToSetLanguage}/>
-                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_SPANISH} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.AMERICAN_SPANISH} changeLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_SPANISH} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="single-languageChanger-italian" className="languageChanger-link-container col-12 col-sm-5 col-xxl-3 my-2">
-                                <LanguageChangerSingleLink language={ProjectLanguages.ITALIAN} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.ITALIAN} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="single-languageChanger-dutch" className="languageChanger-link-container col-12 col-sm-5 col-xxl-3 my-2">
-                                <LanguageChangerSingleLink language={ProjectLanguages.DUTCH} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.DUTCH} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="double-languageChanger-portuguese" className="languageChanger-link-container btn-group btn-group-lg col-12 col-xl-5 my-2" role="group">
-                                <LanguageChangerSingleLink language={ProjectLanguages.AMERICAN_PORTUGUESE} callbackToSetLanguage={callbackToSetLanguage}/>
-                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_PORTUGUESE} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.AMERICAN_PORTUGUESE} changeLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.EUROPEAN_PORTUGUESE} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="single-languageChanger-russian" className="languageChanger-link-container col-12 col-sm-5 col-xxl-3 my-2">
-                                <LanguageChangerSingleLink language={ProjectLanguages.RUSSIAN} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.RUSSIAN} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="single-languageChanger-japanese" className="languageChanger-link-container col-12 col-sm-5 col-xxl-3 my-2">
-                                <LanguageChangerSingleLink language={ProjectLanguages.JAPANESE} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.JAPANESE} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="double-languageChanger-chinese" className="languageChanger-link-container btn-group btn-group-lg col-12 col-xl-5 my-2" role="group">
-                                <LanguageChangerSingleLink language={ProjectLanguages.TRADITIONAL_CHINESE} callbackToSetLanguage={callbackToSetLanguage}/>
-                                <LanguageChangerSingleLink language={ProjectLanguages.SIMPLIFIED_CHINESE} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.TRADITIONAL_CHINESE} changeLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.SIMPLIFIED_CHINESE} changeLanguage={callbackToSetLanguage}/>
                             </div>
                             <div id="single-languageChanger-korean" className="languageChanger-link-container col-12 col-lg-5 col-xxl-3 mx-auto mx-xxl-0 my-2">
-                                <LanguageChangerSingleLink language={ProjectLanguages.KOREAN} callbackToSetLanguage={callbackToSetLanguage}/>
+                                <LanguageChangerSingleLink language={ProjectLanguages.KOREAN} changeLanguage={callbackToSetLanguage}/>
                             </div>
                         </div>
                     </div>

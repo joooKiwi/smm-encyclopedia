@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Entity.json'
 
-import type {Array, NullableString, NullOr}          from '@joookiwi/type'
-import type {CollectionHolder}                       from '@joookiwi/collection'
-import {forEachByArray, LazyGenericCollectionHolder} from '@joookiwi/collection'
+import type {Array, NullableString, NullOr, NullOrString} from '@joookiwi/type'
+import type {CollectionHolder}                            from '@joookiwi/collection'
+import {forEachByArray, LazyGenericCollectionHolder}      from '@joookiwi/collection'
 
 import type {CanBeBrokenOrKilledByABobOmb, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
 import type {LanguageContent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/_template/LanguageContent'
@@ -23,7 +23,7 @@ import type {PossibleName as PossibleMarioMakerVersion}                         
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'util/loader/Loader'
 import type {Name}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/name/Name'
 
-import {isInProduction}        from 'variables'
+import {isInDevelopment}       from 'variables'
 import {EntityContainer}       from 'core/entity/Entity.container'
 import {Entities}              from 'core/entity/Entities'
 import {ReferenceLinks}        from 'core/entity/ReferenceLinks'
@@ -98,7 +98,7 @@ export class EntityLoader
             references.set(englishName, createReference(content, referenceLinks, entityCategoryMap,),)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "entity" has been loaded --------------------\n',
                 references,
@@ -114,8 +114,12 @@ export class EntityLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
-    readonly english: NullOr<PossibleEnglishName>
-    readonly americanEnglish: NullOr<PossibleEnglishName>
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    //endregion -------------------- Language --------------------
 
     readonly entityType: PossibleEntityType
 
@@ -148,15 +152,15 @@ interface Content
     //endregion -------------------- Is in properties --------------------
     //region -------------------- Basic properties --------------------
 
-    readonly categoryInTheEditor: NullOr<PossibleEnglishName_Category>
+    readonly categoryInTheEditor: NullOrString<PossibleEnglishName_Category>
 
     readonly hasAMushroomVariant: boolean
 
     readonly canBeInAParachute: boolean
-    readonly canBeInAParachute_comment: NullOr<LCL_Play>
+    readonly canBeInAParachute_comment: NullOrString<LCL_Play>
 
     readonly canHaveWings: boolean
-    readonly canHaveWings_comment: NullOr<LCL_Play>
+    readonly canHaveWings_comment: NullOrString<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
     //region -------------------- Specific properties --------------------
@@ -164,11 +168,11 @@ interface Content
     readonly canContainOrSpawnAKey: boolean
 
     readonly isAffectedDirectlyByAnOnOrOffState: boolean
-    readonly isAffectedDirectlyByAnOnOrOffState_comment: NullOr<OnlySomeVariants>
+    readonly isAffectedDirectlyByAnOnOrOffState_comment: NullOrString<OnlySomeVariants>
 
     readonly canBePutOnATrack: CanBePutOnATrack
-    readonly editorLimit_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>
-    readonly whilePlaying_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>
+    readonly editorLimit_canBePutOnATrack: NullOrString<PossibleEnglishName_Limit>
+    readonly whilePlaying_canBePutOnATrack: NullOrString<PossibleEnglishName_Limit>
 
     readonly canSpawnOutOfAPipe: boolean
 
@@ -209,7 +213,7 @@ interface Content
 
     readonly instrument: PossibleInstrument
     readonly canMakeASoundOutOfAMusicBlock: boolean
-    readonly canMakeASoundOutOfAMusicBlock_comment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
+    readonly canMakeASoundOutOfAMusicBlock_comment: NullOrString<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
 
     //endregion -------------------- Specific properties --------------------
     //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
@@ -228,27 +232,27 @@ interface Content
 
     readonly limitAmount: LimitAmountType
 
-    readonly editorLimit_SMM1And3DS: NullOr<| PossibleEnglishName_Limit | NotApplicable>
-    readonly editorLimit_SMM2: NullOr<| PossibleEnglishName_Limit | NotApplicable>
+    readonly editorLimit_SMM1And3DS: NullOrString<| PossibleEnglishName_Limit | NotApplicable>
+    readonly editorLimit_SMM2: NullOrString<| PossibleEnglishName_Limit | NotApplicable>
     readonly editorLimit_SMM2_isUnknown: boolean
 
     readonly whilePlaying_isInGEL: boolean
-    readonly whilePlaying_isInGEL_comment: NullOr<PossibleGeneralLimitComment>
+    readonly whilePlaying_isInGEL_comment: NullOrString<PossibleGeneralLimitComment>
     readonly whilePlaying_isInGEL_isSuperGlobal: boolean
-    readonly whilePlaying_isInGEL_isSuperGlobal_comment: NullOr<PossibleGeneralGlobalLimitComment>
+    readonly whilePlaying_isInGEL_isSuperGlobal_comment: NullOrString<PossibleGeneralGlobalLimitComment>
 
     readonly whilePlaying_isInPL: boolean
 
     readonly whilePlaying_isInPJL: boolean
-    readonly whilePlaying_isInPJL_comment: NullOr<PossibleProjectileLimitComment>
+    readonly whilePlaying_isInPJL_comment: NullOrString<PossibleProjectileLimitComment>
 
     readonly whilePlaying_isInObjectRenderedLimit: boolean
-    readonly whilePlaying_isInObjectRenderedLimit_comment: NullOr<PossibleRenderedObjectLimitTypeComment>
+    readonly whilePlaying_isInObjectRenderedLimit_comment: NullOrString<PossibleRenderedObjectLimitTypeComment>
 
     readonly whilePlaying_isInCollectedCoinLimit: boolean
 
-    readonly whilePlaying_otherLimit: NullOr<PossibleOtherLimit>
-    readonly whilePlaying_otherLimit_comment: NullOr<PossibleOtherLimitComment>
+    readonly whilePlaying_otherLimit: NullOrString<PossibleOtherLimit>
+    readonly whilePlaying_otherLimit_comment: NullOrString<PossibleOtherLimitComment>
     readonly whilePlaying_otherLimit_isUnknown: boolean
 
     //endregion -------------------- Limit properties --------------------
@@ -286,25 +290,25 @@ interface Content
     //endregion -------------------- Dimension properties --------------------
     //region -------------------- Reference on specific condition properties -------------------
 
-    readonly inDayTime: NullOr<EntityLink>
-    readonly inNightTime: NullOr<EntityLink>
+    readonly inDayTime: NullOrString<EntityLink>
+    readonly inNightTime: NullOrString<EntityLink>
 
-    readonly inGroundTheme: NullOr<EntityLink>
-    readonly inUndergroundTheme: NullOr<EntityLink>
-    readonly inUnderwaterTheme: NullOr<EntityLink>
-    readonly inDesertTheme: NullOr<EntityLink>
-    readonly inSnowTheme: NullOr<EntityLink>
-    readonly inSkyTheme: NullOr<EntityLink>
-    readonly inForestTheme: NullOr<EntityLink>
-    readonly inGhostHouseTheme: NullOr<EntityLink>
-    readonly inAirshipTheme: NullOr<EntityLink>
-    readonly inCastleTheme: NullOr<EntityLink>
+    readonly inGroundTheme: NullOrString<EntityLink>
+    readonly inUndergroundTheme: NullOrString<EntityLink>
+    readonly inUnderwaterTheme: NullOrString<EntityLink>
+    readonly inDesertTheme: NullOrString<EntityLink>
+    readonly inSnowTheme: NullOrString<EntityLink>
+    readonly inSkyTheme: NullOrString<EntityLink>
+    readonly inForestTheme: NullOrString<EntityLink>
+    readonly inGhostHouseTheme: NullOrString<EntityLink>
+    readonly inAirshipTheme: NullOrString<EntityLink>
+    readonly inCastleTheme: NullOrString<EntityLink>
 
-    readonly inSMBGameStyle: NullOr<EntityLink>
-    readonly inSMB3GameStyle: NullOr<EntityLink>
-    readonly inSMWGameStyle: NullOr<EntityLink>
-    readonly inNSMBUGameStyle: NullOr<EntityLink>
-    readonly inSM3DWGameStyle: NullOr<EntityLink>
+    readonly inSMBGameStyle: NullOrString<EntityLink>
+    readonly inSMB3GameStyle: NullOrString<EntityLink>
+    readonly inSMWGameStyle: NullOrString<EntityLink>
+    readonly inNSMBUGameStyle: NullOrString<EntityLink>
+    readonly inSM3DWGameStyle: NullOrString<EntityLink>
 
     //endregion -------------------- Reference on specific condition properties --------------------
 
@@ -448,7 +452,7 @@ function getReferencesFromLink(link: NullableString<EntityLink>, name: PossibleE
     if (link == null)
         return EMPTY_COLLECTION_HOLDER
     if (link === 'this')
-        return new LazyGenericCollectionHolder(() => [Entities.Companion.getValueByName(name,).reference],)
+        return new LazyGenericCollectionHolder(() => [Entities.Companion.getValueByName(name,).reference,],)
     return new ArrayAsCollection(link.split(' / ',),).map(it => Entities.Companion.getValueByName(it,).reference,)
 }
 

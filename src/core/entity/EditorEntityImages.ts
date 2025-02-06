@@ -19,12 +19,6 @@ import {Themes}               from 'core/theme/Themes'
 import {Times}                from 'core/time/Times'
 import {ArrayAsCollection}    from 'util/collection/ArrayAsCollection'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
-
 const {GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE,} = Themes
 const {DAY, NIGHT,} = Times
 
@@ -88,14 +82,14 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [DAY, SMW,   GROUND, editorImage(this, fileName, SMW,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
-                [DAY, SM3DW, GROUND, editorImage(this, fileName, SM3DW,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, fileName, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -111,14 +105,14 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,   SNOW, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3,  SNOW, editorImage(this, fileName, SMB3,),],
-                [DAY, SMW,   SNOW, editorImage(this, fileName, SMW,),],
-                [DAY, NSMBU, SNOW, editorImage(this, fileName, NSMBU,),],
-                [DAY, SM3DW, SNOW, editorImage(this, fileName, SM3DW,),],
+                [DAY, GameStyles.SMB,   SNOW, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  SNOW, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMW,   SNOW, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY, GameStyles.NSMBU, SNOW, editorImage(this, fileName, GameStyles.NSMBU,),],
+                [DAY, GameStyles.SM3DW, SNOW, editorImage(this, fileName, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -127,24 +121,6 @@ export abstract class EditorEntityImages
     //endregion -------------------- Sub class (1 in all game style) --------------------
     //region -------------------- Sub class (1 in 1 specific game style) --------------------
 
-    /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in 1 {@link GameStyles} */
-    private static readonly ExistantAs1In1GameStyle = class ExistantAs1In1_GameStyleEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string,
-        const GAME_STYLE extends GameStyles, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFile<GAME_STYLE, FILE_NAME, NAME>> {
-
-        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,
-                           private readonly gameStyle: GAME_STYLE, private readonly theme: Themes,) {
-            super(englishName,)
-        }
-
-        public override _createImageFiles() {
-            const gameStyle = this.gameStyle
-            return new ArrayAsCollection([[DAY, gameStyle, this.theme, editorImage(this, this.fileName, gameStyle,),],],)
-        }
-
-    }
-
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link SMB} */
     private static readonly ExistantAs1InOnlySmb = class ExistantAs1InOnlySmb_EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
@@ -152,8 +128,23 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
-            return new ArrayAsCollection([[DAY, SMB, GROUND, editorImage(this, this.fileName, SMB,),],],)
+        protected override _createImageFiles() {
+            return new ArrayAsCollection([[DAY, GameStyles.SMB, GROUND, editorImage(this, this.fileName, GameStyles.SMB,),],],)
+        }
+
+    }
+
+    /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link SMB3} in {@link UNDERWATER} */
+    private static readonly ExistantAs1InOnlySmb3Underwater = class ExistantAs1InOnlySmb3Underwater_GameStyleEditorEntityImages<const NAME extends PossibleEnglishName,
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<GameStyles_SMB3, FILE_NAME, NAME>> {
+
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            return new ArrayAsCollection([[DAY, GameStyles.SMB3, UNDERWATER, editorImage(this, this.fileName, GameStyles.SMB3,),],],)
         }
 
     }
@@ -165,8 +156,23 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
-            return new ArrayAsCollection([[DAY, SMW, GROUND, editorImage(this, this.fileName, SMW,),],],)
+        protected override _createImageFiles() {
+            return new ArrayAsCollection([[DAY, GameStyles.SMW, GROUND, editorImage(this, this.fileName, GameStyles.SMW,),],],)
+        }
+
+    }
+
+    /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link SMW} in {@link UNDERWATER} */
+    private static readonly ExistantAs1InOnlySmwUnderwater = class ExistantAs1InOnlySmwUnderwater_GameStyleEditorEntityImages<const NAME extends PossibleEnglishName,
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<GameStyles_SMW, FILE_NAME, NAME>> {
+
+        public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) {
+            super(englishName,)
+        }
+
+        protected override _createImageFiles() {
+            return new ArrayAsCollection([[DAY, GameStyles.SMW, UNDERWATER, editorImage(this, this.fileName, GameStyles.SMW,),],],)
         }
 
     }
@@ -178,8 +184,8 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
-            return new ArrayAsCollection([[DAY, NSMBU, GROUND, editorImage(this, this.fileName, NSMBU,),],],)
+        protected override _createImageFiles() {
+            return new ArrayAsCollection([[DAY, GameStyles.NSMBU, GROUND, editorImage(this, this.fileName, GameStyles.NSMBU,),],],)
         }
 
     }
@@ -191,8 +197,8 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
-            return new ArrayAsCollection([[DAY, SM3DW, GROUND, editorImage(this, this.fileName, SM3DW,),],],)
+        protected override _createImageFiles() {
+            return new ArrayAsCollection([[DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName, GameStyles.SM3DW,),],],)
         }
 
     }
@@ -210,11 +216,11 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,  GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3, GROUND, editorImage(this, fileName, SMB3,),],
+                [DAY, GameStyles.SMB,  GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3, GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
             ],)
         }
 
@@ -230,11 +236,11 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMW,   GROUND, editorImage(this, fileName, SMW,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -253,12 +259,12 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -274,12 +280,12 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [DAY, SM3DW, GROUND, editorImage(this, fileName, SM3DW,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, fileName, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -295,12 +301,12 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB, GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3, GROUND, editorImage(this, fileName, SMB3,),],
-                [DAY, SMW, GROUND, editorImage(this, fileName, SMW,),],
+                [DAY, GameStyles.SMB, GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3, GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMW, GROUND, editorImage(this, fileName, GameStyles.SMW,),],
             ],)
         }
 
@@ -319,13 +325,13 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
-                [DAY, SM3DW, GROUND, editorImage(this, fileName, SM3DW,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, fileName, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -340,13 +346,13 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [DAY, SMW,   GROUND, editorImage(this, fileName, SMW,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -369,15 +375,15 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName:FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [DAY,   SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, this.nightSnowFileName, SMB3,),],
-                [DAY,   SMW,   GROUND, editorImage(this, fileName, SMW,),],
-                [DAY,   NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
-                [DAY,   SM3DW, GROUND, editorImage(this, fileName, SM3DW,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, this.nightSnowFileName, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.SM3DW, GROUND, editorImage(this, fileName, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -397,14 +403,14 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName: FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY,         SMB,   GROUND,      editorImage(this, fileName, SMB,),],
-                [DAY,         SMB3,  GROUND,      editorImage(this, fileName, SMB3,),],
-                [Times.NIGHT, SMB3,  Themes.SNOW, editorImage(this, this.nightSnowFileName, SMB3,),],
-                [DAY,         SMW,   GROUND,      editorImage(this, fileName, SMW,),],
-                [DAY,         NSMBU, GROUND,      editorImage(this, fileName, NSMBU,),],
+                [DAY,         GameStyles.SMB,   GROUND,      editorImage(this, fileName, GameStyles.SMB,),],
+                [DAY,         GameStyles.SMB3,  GROUND,      editorImage(this, fileName, GameStyles.SMB3,),],
+                [Times.NIGHT, GameStyles.SMB3,  Themes.SNOW, editorImage(this, this.nightSnowFileName, GameStyles.SMB3,),],
+                [DAY,         GameStyles.SMW,   GROUND,      editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY,         GameStyles.NSMBU, GROUND,      editorImage(this, fileName, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -425,17 +431,17 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName: FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const nightSnowFileName = this.nightSnowFileName
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [NIGHT, SMB,   SNOW,   editorImage(this, nightSnowFileName, SMB,),],
-                [DAY,   SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, nightSnowFileName, SMB3,),],
-                [DAY,   SMW,   GROUND, editorImage(this, fileName, SMW,),],
-                [DAY,   NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
-                [DAY,   SM3DW, GROUND, editorImage(this, fileName, SM3DW,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,   editorImage(this, nightSnowFileName, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, nightSnowFileName, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.SM3DW, GROUND, editorImage(this, fileName, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -455,16 +461,16 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME_1, private readonly nightSnowFileName: FILE_NAME_2,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const nightSnowFileName = this.nightSnowFileName
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND, editorImage(this, fileName, SMB,),],
-                [NIGHT, SMB,   SNOW,   editorImage(this, nightSnowFileName, SMB,),],
-                [DAY,   SMB3,  GROUND, editorImage(this, fileName, SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, nightSnowFileName, SMB3,),],
-                [DAY,   SMW,   GROUND, editorImage(this, fileName, SMW,),],
-                [DAY,   NSMBU, GROUND, editorImage(this, fileName, NSMBU,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, fileName, GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,   editorImage(this, nightSnowFileName, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, fileName, GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, nightSnowFileName, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, fileName, GameStyles.SMW,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, fileName, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -488,39 +494,39 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME, private readonly number: NUMBER,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const number = this.number
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,       editorImage(this, `${fileName}_0${number}`, SMB,)],
-                [NIGHT, SMB,   GROUND,       editorImage(this, `${fileName}_plain_night_0${number}`, SMB,)],
-                [DAY,   SMB,   UNDERGROUND,  editorImage(this, `${fileName}_underground_0${number}`, SMB,)],
-                [NIGHT, SMB,   UNDERWATER,   editorImage(this, `${fileName}_water_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   DESERT,       editorImage(this, `${fileName}_desert_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   SNOW,         editorImage(this, `${fileName}_snow_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   SKY,          editorImage(this, `${fileName}_athletic_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   FOREST,       editorImage(this, `${fileName}_woods_night_0${number}`, SMB,)],
-                [DAY,   SMB,   GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, SMB,)],
-                [NIGHT, SMB,   AIRSHIP,      editorImage(this, `${fileName}_airship_night_0${number}`, SMB,)],
-                [DAY,   SMB,   CASTLE,       editorImage(this, `${fileName}_castle_0${number}`, SMB,)],
+                [DAY,   GameStyles.SMB,   GROUND,       editorImage(this, `${fileName}_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   GROUND,       editorImage(this, `${fileName}_plain_night_0${number}`, GameStyles.SMB,)],
+                [DAY,   GameStyles.SMB,   UNDERGROUND,  editorImage(this, `${fileName}_underground_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   UNDERWATER,   editorImage(this, `${fileName}_water_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   DESERT,       editorImage(this, `${fileName}_desert_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   SNOW,         editorImage(this, `${fileName}_snow_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   SKY,          editorImage(this, `${fileName}_athletic_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   FOREST,       editorImage(this, `${fileName}_woods_night_0${number}`, GameStyles.SMB,)],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   AIRSHIP,      editorImage(this, `${fileName}_airship_night_0${number}`, GameStyles.SMB,)],
+                [DAY,   GameStyles.SMB,   CASTLE,       editorImage(this, `${fileName}_castle_0${number}`, GameStyles.SMB,)],
 
-                [DAY,   SMB3,  GROUND,       editorImage(this, `${fileName}_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  GROUND,       editorImage(this, `${fileName}_plain_night_0${number}`, SMB3,)],
-                [DAY,   SMB3,  UNDERGROUND,  editorImage(this, `${fileName}_underground_0${number}`, SMB3,)],
-                [DAY,   SMB3,  UNDERWATER,   editorImage(this, `${fileName}_water_0${number}`, SMB3,)],
-                [DAY,   SMB3,  DESERT,       editorImage(this, `${fileName}_desert_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  SNOW,         editorImage(this, `${fileName}_snow_night_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  SKY,          editorImage(this, `${fileName}_athletic_night_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  FOREST,       editorImage(this, `${fileName}_woods_night_0${number}`, SMB3,)],
-                [DAY,   SMB3,  GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  AIRSHIP,      editorImage(this, `${fileName}_airship_night_0${number}`, SMB3,)],
-                [DAY,   SMB3,  CASTLE,       editorImage(this, `${fileName}_castle_0${number}`, SMB3,)],
+                [DAY,   GameStyles.SMB3,  GROUND,       editorImage(this, `${fileName}_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  GROUND,       editorImage(this, `${fileName}_plain_night_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND,  editorImage(this, `${fileName}_underground_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,   editorImage(this, `${fileName}_water_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  DESERT,       editorImage(this, `${fileName}_desert_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  SNOW,         editorImage(this, `${fileName}_snow_night_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  SKY,          editorImage(this, `${fileName}_athletic_night_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  FOREST,       editorImage(this, `${fileName}_woods_night_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  AIRSHIP,      editorImage(this, `${fileName}_airship_night_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  CASTLE,       editorImage(this, `${fileName}_castle_0${number}`, GameStyles.SMB3,)],
 
-                [DAY,   SMW,   GROUND,       editorImage(this, `${fileName}_0${number}`, SMW,)],
+                [DAY,   GameStyles.SMW,   GROUND,       editorImage(this, `${fileName}_0${number}`, GameStyles.SMW,)],
 
-                [DAY,   NSMBU, GROUND,       editorImage(this, `${fileName}_0${number}`, NSMBU,)],
+                [DAY,   GameStyles.NSMBU, GROUND,       editorImage(this, `${fileName}_0${number}`, GameStyles.NSMBU,)],
 
-                [DAY,   SM3DW, GROUND,       editorImage(this, `${fileName}_0${number}`, SM3DW,)],
+                [DAY,   GameStyles.SM3DW, GROUND,       editorImage(this, `${fileName}_0${number}`, GameStyles.SM3DW,)],
             ],)
         }
 
@@ -541,37 +547,37 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME, private readonly number: NUMBER,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             const number = this.number
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, `${fileName}_0${number}`, SMB,)],
-                [NIGHT, SMB,   GROUND,      editorImage(this, `${fileName}_plain_night_0${number}`, SMB,)],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, `${fileName}_underground_0${number}`, SMB,)],
-                [NIGHT, SMB,   UNDERWATER,  editorImage(this, `${fileName}_water_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   DESERT,      editorImage(this, `${fileName}_desert_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   SNOW,        editorImage(this, `${fileName}_snow_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   SKY,         editorImage(this, `${fileName}_athletic_night_0${number}`, SMB,)],
-                [NIGHT, SMB,   FOREST,      editorImage(this, `${fileName}_woods_night_0${number}`, SMB,)],
-                [DAY,   SMB,   GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, SMB,)],
-                [NIGHT, SMB,   AIRSHIP,     editorImage(this, `${fileName}_airship_night_0${number}`, SMB,)],
-                [DAY,   SMB,   CASTLE,      editorImage(this, `${fileName}_castle_0${number}`, SMB,)],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, `${fileName}_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   GROUND,      editorImage(this, `${fileName}_plain_night_0${number}`, GameStyles.SMB,)],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, `${fileName}_underground_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   UNDERWATER,  editorImage(this, `${fileName}_water_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   DESERT,      editorImage(this, `${fileName}_desert_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, `${fileName}_snow_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   SKY,         editorImage(this, `${fileName}_athletic_night_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   FOREST,      editorImage(this, `${fileName}_woods_night_0${number}`, GameStyles.SMB,)],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, GameStyles.SMB,)],
+                [NIGHT, GameStyles.SMB,   AIRSHIP,     editorImage(this, `${fileName}_airship_night_0${number}`, GameStyles.SMB,)],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, `${fileName}_castle_0${number}`, GameStyles.SMB,)],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, `${fileName}_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  GROUND,      editorImage(this, `${fileName}_plain_night_0${number}`, SMB3,)],
-                [DAY,   SMB3,  UNDERGROUND, editorImage(this, `${fileName}_underground_0${number}`, SMB3,)],
-                [DAY,   SMB3,  UNDERWATER,  editorImage(this, `${fileName}_water_0${number}`, SMB3,)],
-                [DAY,   SMB3,  DESERT,      editorImage(this, `${fileName}_desert_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, `${fileName}_snow_night_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  SKY,         editorImage(this, `${fileName}_athletic_night_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  FOREST,      editorImage(this, `${fileName}_woods_night_0${number}`, SMB3,)],
-                [DAY,   SMB3,  GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, SMB3,)],
-                [NIGHT, SMB3,  AIRSHIP,     editorImage(this, `${fileName}_airship_night_0${number}`, SMB3,)],
-                [DAY,   SMB3,  CASTLE,      editorImage(this, `${fileName}_castle_0${number}`, SMB3,)],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, `${fileName}_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  GROUND,      editorImage(this, `${fileName}_plain_night_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND, editorImage(this, `${fileName}_underground_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,  editorImage(this, `${fileName}_water_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  DESERT,      editorImage(this, `${fileName}_desert_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, `${fileName}_snow_night_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  SKY,         editorImage(this, `${fileName}_athletic_night_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  FOREST,      editorImage(this, `${fileName}_woods_night_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE,  editorImage(this, `${fileName}_hauntedhouse_0${number}`, GameStyles.SMB3,)],
+                [NIGHT, GameStyles.SMB3,  AIRSHIP,     editorImage(this, `${fileName}_airship_night_0${number}`, GameStyles.SMB3,)],
+                [DAY,   GameStyles.SMB3,  CASTLE,      editorImage(this, `${fileName}_castle_0${number}`, GameStyles.SMB3,)],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, `${fileName}_0${number}`, SMW,)],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, `${fileName}_0${number}`, GameStyles.SMW,)],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, `${fileName}_0${number}`, NSMBU,)],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, `${fileName}_0${number}`, GameStyles.NSMBU,)],
             ],)
         }
 
@@ -587,20 +593,20 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName1, SMB,),],
-                [DAY, SMB,   GROUND, editorImage(this, fileName2, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName1, SMB3,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName2, SMB3,),],
-                [DAY, SMW,   GROUND, editorImage(this, fileName1, SMW,),],
-                [DAY, SMW,   GROUND, editorImage(this, fileName2, SMW,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName1, NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName2, NSMBU,),],
-                [DAY, SM3DW, GROUND, editorImage(this, fileName1, SM3DW,),],
-                [DAY, SM3DW, GROUND, editorImage(this, fileName2, SM3DW,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName1, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName2, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName1, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName2, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName1, GameStyles.SMW,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName2, GameStyles.SMW,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName1, GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName2, GameStyles.NSMBU,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, fileName1, GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, fileName2, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -616,10 +622,10 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SMB, GROUND, editorImage(this, this.fileName1, SMB,),],
-                [DAY, SMB, GROUND, editorImage(this, this.fileName2, SMB,),],
+                [DAY, GameStyles.SMB, GROUND, editorImage(this, this.fileName1, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND, editorImage(this, this.fileName2, GameStyles.SMB,),],
             ],)
         }
 
@@ -632,10 +638,10 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SMB3, GROUND, editorImage(this, this.fileName1, SMB3,),],
-                [DAY, SMB3, GROUND, editorImage(this, this.fileName2, SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND, editorImage(this, this.fileName1, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND, editorImage(this, this.fileName2, GameStyles.SMB3,),],
             ],)
         }
 
@@ -648,10 +654,10 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SMW, GROUND, editorImage(this, this.fileName1, SMW,),],
-                [DAY, SMW, GROUND, editorImage(this, this.fileName2, SMW,),],
+                [DAY, GameStyles.SMW, GROUND, editorImage(this, this.fileName1, GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND, editorImage(this, this.fileName2, GameStyles.SMW,),],
             ],)
         }
 
@@ -664,10 +670,10 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, NSMBU, GROUND, editorImage(this, this.fileName1, NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, this.fileName2, NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, this.fileName1, GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, this.fileName2, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -680,10 +686,10 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SM3DW, GROUND, editorImage(this, this.fileName1, SM3DW,),],
-                [DAY, SM3DW, GROUND, editorImage(this, this.fileName2, SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName1, GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName2, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -702,18 +708,18 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
             return new ArrayAsCollection([
-                [DAY, SMB,   GROUND, editorImage(this, fileName1, SMB,),],
-                [DAY, SMB,   GROUND, editorImage(this, fileName2, SMB,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName1, SMB3,),],
-                [DAY, SMB3,  GROUND, editorImage(this, fileName2, SMB3,),],
-                [DAY, SMW,   GROUND, editorImage(this, fileName1, SMW,),],
-                [DAY, SMW,   GROUND, editorImage(this, fileName2, SMW,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName1, NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, fileName2, NSMBU,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName1, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB,   GROUND, editorImage(this, fileName2, GameStyles.SMB,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName1, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3,  GROUND, editorImage(this, fileName2, GameStyles.SMB3,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName1, GameStyles.SMW,),],
+                [DAY, GameStyles.SMW,   GROUND, editorImage(this, fileName2, GameStyles.SMW,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName1, GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, fileName2, GameStyles.NSMBU,),],
             ],)
         }
 
@@ -729,11 +735,11 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName1: FILE_NAME, private readonly fileName2: FILE_NAME, private readonly fileName3: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SM3DW, GROUND, editorImage(this, this.fileName1, SM3DW,),],
-                [DAY, SM3DW, GROUND, editorImage(this, this.fileName2, SM3DW,),],
-                [DAY, SM3DW, GROUND, editorImage(this, this.fileName3, SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName1, GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName2, GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND, editorImage(this, this.fileName3, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -753,71 +759,71 @@ export abstract class EditorEntityImages
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             const fileName = this.fileName
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, `${fileName}_00`, SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, `${fileName}_underground_00`, SMB,),],
-                [DAY,   SMB,   UNDERWATER,  editorImage(this, `${fileName}_water_00`, SMB,),],
-                [DAY,   SMB,   DESERT,      editorImage(this, `${fileName}_desert_00`, SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, `${fileName}_snow_00`, SMB,),],
-                [DAY,   SMB,   SKY,         editorImage(this, `${fileName}_athletic_00`, SMB,),],
-                [DAY,   SMB,   FOREST,      editorImage(this, `${fileName}_woods_00`, SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, SMB,),],
-                [DAY,   SMB,   AIRSHIP,     editorImage(this, `${fileName}_airship_00`, SMB,),],
-                [NIGHT, SMB,   AIRSHIP,     editorImage(this, `${fileName}_airship_night_00`, SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, `${fileName}_castle_00`, SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, `${fileName}_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, `${fileName}_underground_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER,  editorImage(this, `${fileName}_water_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   DESERT,      editorImage(this, `${fileName}_desert_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, `${fileName}_snow_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SKY,         editorImage(this, `${fileName}_athletic_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   FOREST,      editorImage(this, `${fileName}_woods_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,     editorImage(this, `${fileName}_airship_00`, GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   AIRSHIP,     editorImage(this, `${fileName}_airship_night_00`, GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, `${fileName}_castle_00`, GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, `${fileName}_00`, SMB3,),],
-                [DAY,   SMB3,  UNDERGROUND, editorImage(this, `${fileName}_underground_00`, SMB3,),],
-                [DAY,   SMB3,  UNDERWATER,  editorImage(this, `${fileName}_water_00`, SMB3,),],
-                [DAY,   SMB3,  DESERT,      editorImage(this, `${fileName}_desert_00`, SMB3,),],
-                [DAY,   SMB3,  SNOW,        editorImage(this, `${fileName}_snow_00`, SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, `${fileName}_snow_night_00`, SMB3,),],
-                [DAY,   SMB3,  SKY,         editorImage(this, `${fileName}_athletic_00`, SMB3,),],
-                [DAY,   SMB3,  FOREST,      editorImage(this, `${fileName}_woods_00`, SMB3,),],
-                [DAY,   SMB3,  GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,     editorImage(this, `${fileName}_airship_00`, SMB3,),],
-                [NIGHT, SMB3,  AIRSHIP,     editorImage(this, `${fileName}_airship_night_00`, SMB3,),],
-                [DAY,   SMB3,  CASTLE,      editorImage(this, `${fileName}_castle_00`, SMB3,),],
-                [NIGHT, SMB3,  CASTLE,      editorImage(this, `${fileName}_castle_night_00`, SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, `${fileName}_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND, editorImage(this, `${fileName}_underground_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,  editorImage(this, `${fileName}_water_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  DESERT,      editorImage(this, `${fileName}_desert_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,        editorImage(this, `${fileName}_snow_00`, GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, `${fileName}_snow_night_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SKY,         editorImage(this, `${fileName}_athletic_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  FOREST,      editorImage(this, `${fileName}_woods_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,     editorImage(this, `${fileName}_airship_00`, GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  AIRSHIP,     editorImage(this, `${fileName}_airship_night_00`, GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  CASTLE,      editorImage(this, `${fileName}_castle_00`, GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  CASTLE,      editorImage(this, `${fileName}_castle_night_00`, GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, `${fileName}_00`, SMW,),],
-                [DAY,   SMW,   UNDERGROUND, editorImage(this, `${fileName}_underground_00`, SMW,),],
-                [DAY,   SMW,   UNDERWATER,  editorImage(this, `${fileName}_water_00`, SMW,),],
-                [NIGHT, SMW,   UNDERWATER,  editorImage(this, `${fileName}_water_night_00`, SMW,),],
-                [DAY,   SMW,   DESERT,      editorImage(this, `${fileName}_desert_00`, SMW,),],
-                [DAY,   SMW,   SNOW,        editorImage(this, `${fileName}_snow_00`, SMW,),],
-                [NIGHT, SMW,   SNOW,        editorImage(this, `${fileName}_snow_night_00`, SMW,),],
-                [DAY,   SMW,   SKY,         editorImage(this, `${fileName}_athletic_00`, SMW,),],
-                [DAY,   SMW,   FOREST,      editorImage(this, `${fileName}_woods_00`, SMW,),],
-                [DAY,   SMW,   GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, SMW,),],
-                [DAY,   SMW,   AIRSHIP,     editorImage(this, `${fileName}_airship_00`, SMW,),],
-                [DAY,   SMW,   CASTLE,      editorImage(this, `${fileName}_castle_00`, SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, `${fileName}_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERGROUND, editorImage(this, `${fileName}_underground_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER,  editorImage(this, `${fileName}_water_00`, GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   UNDERWATER,  editorImage(this, `${fileName}_water_night_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   DESERT,      editorImage(this, `${fileName}_desert_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,        editorImage(this, `${fileName}_snow_00`, GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,        editorImage(this, `${fileName}_snow_night_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SKY,         editorImage(this, `${fileName}_athletic_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   FOREST,      editorImage(this, `${fileName}_woods_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,     editorImage(this, `${fileName}_airship_00`, GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   CASTLE,      editorImage(this, `${fileName}_castle_00`, GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, `${fileName}_00`, NSMBU,),],
-                [DAY,   NSMBU, UNDERGROUND, editorImage(this, `${fileName}_underground_00`, NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER,  editorImage(this, `${fileName}_water_00`, NSMBU,),],
-                [DAY,   NSMBU, DESERT,      editorImage(this, `${fileName}_desert_00`, NSMBU,),],
-                [DAY,   NSMBU, SNOW,        editorImage(this, `${fileName}_snow_00`, NSMBU,),],
-                [NIGHT, NSMBU, SNOW,        editorImage(this, `${fileName}_snow_night_00`, NSMBU,),],
-                [DAY,   NSMBU, SKY,         editorImage(this, `${fileName}_athletic_00`, NSMBU,),],
-                [DAY,   NSMBU, FOREST,      editorImage(this, `${fileName}_woods_00`, NSMBU,),],
-                [DAY,   NSMBU, GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,     editorImage(this, `${fileName}_airship_00`, NSMBU,),],
-                [NIGHT, NSMBU, AIRSHIP,     editorImage(this, `${fileName}_airship_night_00`, NSMBU,),],
-                [DAY,   NSMBU, CASTLE,      editorImage(this, `${fileName}_castle_00`, NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, `${fileName}_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERGROUND, editorImage(this, `${fileName}_underground_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER,  editorImage(this, `${fileName}_water_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, DESERT,      editorImage(this, `${fileName}_desert_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,        editorImage(this, `${fileName}_snow_00`, GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,        editorImage(this, `${fileName}_snow_night_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SKY,         editorImage(this, `${fileName}_athletic_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, FOREST,      editorImage(this, `${fileName}_woods_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,     editorImage(this, `${fileName}_airship_00`, GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, AIRSHIP,     editorImage(this, `${fileName}_airship_night_00`, GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, CASTLE,      editorImage(this, `${fileName}_castle_00`, GameStyles.NSMBU,),],
 
-                [DAY,   SM3DW, GROUND,      editorImage(this, `${fileName}_00`, SM3DW,),],
-                [DAY,   SM3DW, UNDERGROUND, editorImage(this, `${fileName}_underground_00`, SM3DW,),],
-                [DAY,   SM3DW, UNDERWATER,  editorImage(this, `${fileName}_water_00`, SM3DW,),],
-                [DAY,   SM3DW, DESERT,      editorImage(this, `${fileName}_desert_00`, SM3DW,),],
-                [DAY,   SM3DW, SNOW,        editorImage(this, `${fileName}_snow_00`, SM3DW,),],
-                [DAY,   SM3DW, SKY,         editorImage(this, `${fileName}_athletic_00`, SM3DW,),],
-                [DAY,   SM3DW, FOREST,      editorImage(this, `${fileName}_woods_00`, SM3DW,),],
-                [DAY,   SM3DW, GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, SM3DW,),],
-                [DAY,   SM3DW, AIRSHIP,     editorImage(this, `${fileName}_airship_00`, SM3DW,),],
-                [DAY,   SM3DW, CASTLE,      editorImage(this, `${fileName}_castle_00`, SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND,      editorImage(this, `${fileName}_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, UNDERGROUND, editorImage(this, `${fileName}_underground_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, UNDERWATER,  editorImage(this, `${fileName}_water_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, DESERT,      editorImage(this, `${fileName}_desert_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, SNOW,        editorImage(this, `${fileName}_snow_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, SKY,         editorImage(this, `${fileName}_athletic_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, FOREST,      editorImage(this, `${fileName}_woods_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GHOST_HOUSE, editorImage(this, `${fileName}_hauntedhouse_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, AIRSHIP,     editorImage(this, `${fileName}_airship_00`, GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, CASTLE,      editorImage(this, `${fileName}_castle_00`, GameStyles.SM3DW,),],
             ],)
         }
 
@@ -830,36 +836,36 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Pipe',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND, editorImage(this, 'Dokan_00', SMB,),],
-                [DAY,   SMB,   GROUND, editorImage(this, 'Dokan_01', SMB,),],
-                [DAY,   SMB,   GROUND, editorImage(this, 'Dokan_02', SMB,),],
-                [DAY,   SMB,   GROUND, editorImage(this, 'Dokan_03', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, 'Dokan_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, 'Dokan_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, 'Dokan_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND, editorImage(this, 'Dokan_03', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND, editorImage(this, 'Dokan_00', SMB3,),],
-                [DAY,   SMB3,  GROUND, editorImage(this, 'Dokan_01', SMB3,),],
-                [DAY,   SMB3,  GROUND, editorImage(this, 'Dokan_02', SMB3,),],
-                [DAY,   SMB3,  GROUND, editorImage(this, 'Dokan_03', SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_01', SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_02', SMB3,),],
-                [NIGHT, SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_03', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, 'Dokan_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, 'Dokan_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, 'Dokan_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND, editorImage(this, 'Dokan_03', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_02', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,   editorImage(this, 'Dokan_snow_night_03', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND, editorImage(this, 'Dokan_00', SMW,),],
-                [DAY,   SMW,   GROUND, editorImage(this, 'Dokan_01', SMW,),],
-                [DAY,   SMW,   GROUND, editorImage(this, 'Dokan_02', SMW,),],
-                [DAY,   SMW,   GROUND, editorImage(this, 'Dokan_03', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, 'Dokan_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, 'Dokan_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, 'Dokan_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND, editorImage(this, 'Dokan_03', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND, editorImage(this, 'Dokan_00', NSMBU,),],
-                [DAY,   NSMBU, GROUND, editorImage(this, 'Dokan_01', NSMBU,),],
-                [DAY,   NSMBU, GROUND, editorImage(this, 'Dokan_02', NSMBU,),],
-                [DAY,   NSMBU, GROUND, editorImage(this, 'Dokan_03', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, 'Dokan_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, 'Dokan_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, 'Dokan_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND, editorImage(this, 'Dokan_03', GameStyles.NSMBU,),],
 
-                [DAY,   SM3DW, GROUND, editorImage(this, 'Dokan_00', SM3DW,),],
-                [DAY,   SM3DW, GROUND, editorImage(this, 'Dokan_01', SM3DW,),],
-                [DAY,   SM3DW, GROUND, editorImage(this, 'Dokan_02', SM3DW,),],
-                [DAY,   SM3DW, GROUND, editorImage(this, 'Dokan_03', SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND, editorImage(this, 'Dokan_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND, editorImage(this, 'Dokan_01', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND, editorImage(this, 'Dokan_02', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND, editorImage(this, 'Dokan_03', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -871,71 +877,71 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Mushroom Platform',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,     editorImage(this, 'GroundMushroom_00', SMB,),],
-                [DAY,   SMB,   GROUND,     editorImage(this, 'GroundMushroom_01', SMB,),],
-                [DAY,   SMB,   GROUND,     editorImage(this, 'GroundMushroom_02', SMB,),],
-                [DAY,   SMB,   UNDERWATER, editorImage(this, 'GroundMushroom_water_00', SMB,),],
-                [DAY,   SMB,   UNDERWATER, editorImage(this, 'GroundMushroom_water_01', SMB,),],
-                [DAY,   SMB,   UNDERWATER, editorImage(this, 'GroundMushroom_water_02', SMB,),],
-                [DAY,   SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_00', SMB,),],
-                [DAY,   SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_01', SMB,),],
-                [DAY,   SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_02', SMB,),],
-                [NIGHT, SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', SMB,),],
-                [NIGHT, SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', SMB,),],
-                [NIGHT, SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', SMB,),],
-                [DAY,   SMB,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', SMB,),],
-                [DAY,   SMB,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', SMB,),],
-                [DAY,   SMB,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'GroundMushroom_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'GroundMushroom_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'GroundMushroom_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER, editorImage(this, 'GroundMushroom_water_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER, editorImage(this, 'GroundMushroom_water_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER, editorImage(this, 'GroundMushroom_water_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_02', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,     editorImage(this, 'GroundMushroom_00', SMB3,),],
-                [DAY,   SMB3,  GROUND,     editorImage(this, 'GroundMushroom_01', SMB3,),],
-                [DAY,   SMB3,  GROUND,     editorImage(this, 'GroundMushroom_02', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER, editorImage(this, 'GroundMushroom_water_00', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER, editorImage(this, 'GroundMushroom_water_01', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER, editorImage(this, 'GroundMushroom_water_02', SMB3,),],
-                [DAY,   SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_00', SMB3,),],
-                [DAY,   SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_01', SMB3,),],
-                [DAY,   SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_02', SMB3,),],
-                [NIGHT, SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', SMB3,),],
-                [NIGHT, SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,     editorImage(this, 'GroundMushroom_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,     editorImage(this, 'GroundMushroom_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,     editorImage(this, 'GroundMushroom_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER, editorImage(this, 'GroundMushroom_water_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER, editorImage(this, 'GroundMushroom_water_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER, editorImage(this, 'GroundMushroom_water_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_02', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,     editorImage(this, 'GroundMushroom_00', SMW,),],
-                [DAY,   SMW,   GROUND,     editorImage(this, 'GroundMushroom_01', SMW,),],
-                [DAY,   SMW,   GROUND,     editorImage(this, 'GroundMushroom_02', SMW,),],
-                [DAY,   SMW,   UNDERWATER, editorImage(this, 'GroundMushroom_water_00', SMW,),],
-                [DAY,   SMW,   UNDERWATER, editorImage(this, 'GroundMushroom_water_01', SMW,),],
-                [DAY,   SMW,   UNDERWATER, editorImage(this, 'GroundMushroom_water_02', SMW,),],
-                [DAY,   SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_00', SMW,),],
-                [DAY,   SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_01', SMW,),],
-                [DAY,   SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_02', SMW,),],
-                [NIGHT, SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', SMW,),],
-                [NIGHT, SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', SMW,),],
-                [NIGHT, SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', SMW,),],
-                [DAY,   SMW,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', SMW,),],
-                [DAY,   SMW,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', SMW,),],
-                [DAY,   SMW,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,     editorImage(this, 'GroundMushroom_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,     editorImage(this, 'GroundMushroom_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,     editorImage(this, 'GroundMushroom_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER, editorImage(this, 'GroundMushroom_water_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER, editorImage(this, 'GroundMushroom_water_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER, editorImage(this, 'GroundMushroom_water_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_02', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,     editorImage(this, 'GroundMushroom_00', NSMBU,),],
-                [DAY,   NSMBU, GROUND,     editorImage(this, 'GroundMushroom_01', NSMBU,),],
-                [DAY,   NSMBU, GROUND,     editorImage(this, 'GroundMushroom_02', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER, editorImage(this, 'GroundMushroom_water_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER, editorImage(this, 'GroundMushroom_water_01', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER, editorImage(this, 'GroundMushroom_water_02', NSMBU,),],
-                [DAY,   NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_00', NSMBU,),],
-                [DAY,   NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_01', NSMBU,),],
-                [DAY,   NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_02', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,     editorImage(this, 'GroundMushroom_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,     editorImage(this, 'GroundMushroom_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,     editorImage(this, 'GroundMushroom_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER, editorImage(this, 'GroundMushroom_water_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER, editorImage(this, 'GroundMushroom_water_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER, editorImage(this, 'GroundMushroom_water_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_02', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_night_00', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_night_01', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,       editorImage(this, 'GroundMushroom_snow_night_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,    editorImage(this, 'GroundMushroom_airship_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,    editorImage(this, 'GroundMushroom_airship_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,    editorImage(this, 'GroundMushroom_airship_02', GameStyles.NSMBU,),],
             ],)
         }
 
@@ -949,155 +955,155 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Semisolid Platform',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, 'GroundBox_00', SMB,),],
-                [DAY,   SMB,   GROUND,      editorImage(this, 'GroundBox_01', SMB,),],
-                [DAY,   SMB,   GROUND,      editorImage(this, 'GroundBox_02', SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, 'GroundBox_underground_00', SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, 'GroundBox_underground_01', SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, 'GroundBox_underground_02', SMB,),],
-                [DAY,   SMB,   UNDERWATER,  editorImage(this, 'GroundBox_water_00', SMB,),],
-                [DAY,   SMB,   UNDERWATER,  editorImage(this, 'GroundBox_water_01', SMB,),],
-                [DAY,   SMB,   UNDERWATER,  editorImage(this, 'GroundBox_water_02', SMB,),],
-                [DAY,   SMB,   DESERT,      editorImage(this, 'GroundBox_desert_00', SMB,),],
-                [DAY,   SMB,   DESERT,      editorImage(this, 'GroundBox_desert_01', SMB,),],
-                [DAY,   SMB,   DESERT,      editorImage(this, 'GroundBox_desert_02', SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, 'GroundBox_snow_00', SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, 'GroundBox_snow_01', SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, 'GroundBox_snow_02', SMB,),],
-                [NIGHT, SMB,   SNOW,        editorImage(this, 'GroundBox_snow_night_00', SMB,),],
-                [NIGHT, SMB,   SNOW,        editorImage(this, 'GroundBox_snow_night_01', SMB,),],
-                [NIGHT, SMB,   SNOW,        editorImage(this, 'GroundBox_snow_night_02', SMB,),],
-                [DAY,   SMB,   SKY,         editorImage(this, 'GroundBox_athletic_00', SMB,),],
-                [DAY,   SMB,   SKY,         editorImage(this, 'GroundBox_athletic_01', SMB,),],
-                [DAY,   SMB,   SKY,         editorImage(this, 'GroundBox_athletic_02', SMB,),],
-                [DAY,   SMB,   FOREST,      editorImage(this, 'GroundBox_woods_00', SMB,),],
-                [DAY,   SMB,   FOREST,      editorImage(this, 'GroundBox_woods_01', SMB,),],
-                [DAY,   SMB,   FOREST,      editorImage(this, 'GroundBox_woods_02', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', SMB,),],
-                [DAY,   SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_00', SMB,),],
-                [DAY,   SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_01', SMB,),],
-                [DAY,   SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_02', SMB,),],
-                [NIGHT, SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_night_01', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'GroundBox_castle_00', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'GroundBox_castle_01', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'GroundBox_castle_02', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'GroundBox_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'GroundBox_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'GroundBox_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'GroundBox_underground_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'GroundBox_underground_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'GroundBox_underground_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER,  editorImage(this, 'GroundBox_water_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER,  editorImage(this, 'GroundBox_water_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER,  editorImage(this, 'GroundBox_water_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   DESERT,      editorImage(this, 'GroundBox_desert_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   DESERT,      editorImage(this, 'GroundBox_desert_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   DESERT,      editorImage(this, 'GroundBox_desert_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'GroundBox_snow_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'GroundBox_snow_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'GroundBox_snow_02', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, 'GroundBox_snow_night_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, 'GroundBox_snow_night_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, 'GroundBox_snow_night_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SKY,         editorImage(this, 'GroundBox_athletic_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SKY,         editorImage(this, 'GroundBox_athletic_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SKY,         editorImage(this, 'GroundBox_athletic_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   FOREST,      editorImage(this, 'GroundBox_woods_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   FOREST,      editorImage(this, 'GroundBox_woods_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   FOREST,      editorImage(this, 'GroundBox_woods_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_02', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   AIRSHIP,     editorImage(this, 'GroundBox_airship_night_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'GroundBox_castle_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'GroundBox_castle_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'GroundBox_castle_02', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'GroundBox_00', SMB3,),],
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'GroundBox_01', SMB3,),],
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'GroundBox_02', SMB3,),],
-                [DAY,   SMB3,  UNDERGROUND, editorImage(this, 'GroundBox_underground_00', SMB3,),],
-                [DAY,   SMB3,  UNDERGROUND, editorImage(this, 'GroundBox_underground_01', SMB3,),],
-                [DAY,   SMB3,  UNDERGROUND, editorImage(this, 'GroundBox_underground_02', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER,  editorImage(this, 'GroundBox_water_00', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER,  editorImage(this, 'GroundBox_water_01', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER,  editorImage(this, 'GroundBox_water_02', SMB3,),],
-                [DAY,   SMB3,  DESERT,      editorImage(this, 'GroundBox_desert_00', SMB3,),],
-                [DAY,   SMB3,  DESERT,      editorImage(this, 'GroundBox_desert_01', SMB3,),],
-                [DAY,   SMB3,  DESERT,      editorImage(this, 'GroundBox_desert_02', SMB3,),],
-                [DAY,   SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_00', SMB3,),],
-                [DAY,   SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_01', SMB3,),],
-                [DAY,   SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_02', SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_night_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_night_01', SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_night_02', SMB3,),],
-                [DAY,   SMB3,  SKY,         editorImage(this, 'GroundBox_athletic_00', SMB3,),],
-                [DAY,   SMB3,  SKY,         editorImage(this, 'GroundBox_athletic_01', SMB3,),],
-                [DAY,   SMB3,  SKY,         editorImage(this, 'GroundBox_athletic_02', SMB3,),],
-                [DAY,   SMB3,  FOREST,      editorImage(this, 'GroundBox_woods_00', SMB3,),],
-                [DAY,   SMB3,  FOREST,      editorImage(this, 'GroundBox_woods_01', SMB3,),],
-                [DAY,   SMB3,  FOREST,      editorImage(this, 'GroundBox_woods_02', SMB3,),],
-                [DAY,   SMB3,  GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', SMB3,),],
-                [DAY,   SMB3,  GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', SMB3,),],
-                [DAY,   SMB3,  GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,     editorImage(this, 'GroundBox_airship_00', SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,     editorImage(this, 'GroundBox_airship_01', SMB3,),],
-                [DAY,   SMB3,  AIRSHIP,     editorImage(this, 'GroundBox_airship_02', SMB3,),],
-                [DAY,   SMB3,  CASTLE,      editorImage(this, 'GroundBox_castle_00', SMB3,),],
-                [DAY,   SMB3,  CASTLE,      editorImage(this, 'GroundBox_castle_01', SMB3,),],
-                [DAY,   SMB3,  CASTLE,      editorImage(this, 'GroundBox_castle_02', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'GroundBox_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'GroundBox_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'GroundBox_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND, editorImage(this, 'GroundBox_underground_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND, editorImage(this, 'GroundBox_underground_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND, editorImage(this, 'GroundBox_underground_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,  editorImage(this, 'GroundBox_water_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,  editorImage(this, 'GroundBox_water_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,  editorImage(this, 'GroundBox_water_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  DESERT,      editorImage(this, 'GroundBox_desert_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  DESERT,      editorImage(this, 'GroundBox_desert_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  DESERT,      editorImage(this, 'GroundBox_desert_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_02', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_night_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_night_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, 'GroundBox_snow_night_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SKY,         editorImage(this, 'GroundBox_athletic_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SKY,         editorImage(this, 'GroundBox_athletic_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SKY,         editorImage(this, 'GroundBox_athletic_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  FOREST,      editorImage(this, 'GroundBox_woods_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  FOREST,      editorImage(this, 'GroundBox_woods_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  FOREST,      editorImage(this, 'GroundBox_woods_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,     editorImage(this, 'GroundBox_airship_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,     editorImage(this, 'GroundBox_airship_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  AIRSHIP,     editorImage(this, 'GroundBox_airship_02', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  CASTLE,      editorImage(this, 'GroundBox_castle_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  CASTLE,      editorImage(this, 'GroundBox_castle_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  CASTLE,      editorImage(this, 'GroundBox_castle_02', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, 'GroundBox_00', SMW,),],
-                [DAY,   SMW,   GROUND,      editorImage(this, 'GroundBox_01', SMW,),],
-                [DAY,   SMW,   GROUND,      editorImage(this, 'GroundBox_02', SMW,),],
-                [DAY,   SMW,   UNDERGROUND, editorImage(this, 'GroundBox_underground_00', SMW,),],
-                [DAY,   SMW,   UNDERGROUND, editorImage(this, 'GroundBox_underground_01', SMW,),],
-                [DAY,   SMW,   UNDERGROUND, editorImage(this, 'GroundBox_underground_02', SMW,),],
-                [DAY,   SMW,   UNDERWATER,  editorImage(this, 'GroundBox_water_00', SMW,),],
-                [DAY,   SMW,   UNDERWATER,  editorImage(this, 'GroundBox_water_01', SMW,),],
-                [DAY,   SMW,   UNDERWATER,  editorImage(this, 'GroundBox_water_02', SMW,),],
-                [DAY,   SMW,   DESERT,      editorImage(this, 'GroundBox_desert_00', SMW,),],
-                [DAY,   SMW,   DESERT,      editorImage(this, 'GroundBox_desert_01', SMW,),],
-                [DAY,   SMW,   DESERT,      editorImage(this, 'GroundBox_desert_02', SMW,),],
-                [DAY,   SMW,   SNOW,        editorImage(this, 'GroundBox_snow_00', SMW,),],
-                [DAY,   SMW,   SNOW,        editorImage(this, 'GroundBox_snow_01', SMW,),],
-                [DAY,   SMW,   SNOW,        editorImage(this, 'GroundBox_snow_02', SMW,),],
-                [NIGHT, SMW,   SNOW,        editorImage(this, 'GroundBox_snow_night_00', SMW,),],
-                [NIGHT, SMW,   SNOW,        editorImage(this, 'GroundBox_snow_night_01', SMW,),],
-                [NIGHT, SMW,   SNOW,        editorImage(this, 'GroundBox_snow_night_02', SMW,),],
-                [DAY,   SMW,   SKY,         editorImage(this, 'GroundBox_athletic_00', SMW,),],
-                [DAY,   SMW,   SKY,         editorImage(this, 'GroundBox_athletic_01', SMW,),],
-                [DAY,   SMW,   SKY,         editorImage(this, 'GroundBox_athletic_02', SMW,),],
-                [DAY,   SMW,   FOREST,      editorImage(this, 'GroundBox_woods_00', SMW,),],
-                [DAY,   SMW,   FOREST,      editorImage(this, 'GroundBox_woods_01', SMW,),],
-                [DAY,   SMW,   FOREST,      editorImage(this, 'GroundBox_woods_02', SMW,),],
-                [DAY,   SMW,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', SMW,),],
-                [DAY,   SMW,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', SMW,),],
-                [DAY,   SMW,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', SMW,),],
-                [DAY,   SMW,   AIRSHIP,     editorImage(this, 'GroundBox_airship_00', SMW,),],
-                [DAY,   SMW,   AIRSHIP,     editorImage(this, 'GroundBox_airship_01', SMW,),],
-                [DAY,   SMW,   AIRSHIP,     editorImage(this, 'GroundBox_airship_02', SMW,),],
-                [DAY,   SMW,   CASTLE,      editorImage(this, 'GroundBox_castle_00', SMW,),],
-                [DAY,   SMW,   CASTLE,      editorImage(this, 'GroundBox_castle_01', SMW,),],
-                [DAY,   SMW,   CASTLE,      editorImage(this, 'GroundBox_castle_02', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'GroundBox_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'GroundBox_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'GroundBox_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERGROUND, editorImage(this, 'GroundBox_underground_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERGROUND, editorImage(this, 'GroundBox_underground_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERGROUND, editorImage(this, 'GroundBox_underground_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER,  editorImage(this, 'GroundBox_water_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER,  editorImage(this, 'GroundBox_water_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER,  editorImage(this, 'GroundBox_water_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   DESERT,      editorImage(this, 'GroundBox_desert_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   DESERT,      editorImage(this, 'GroundBox_desert_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   DESERT,      editorImage(this, 'GroundBox_desert_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,        editorImage(this, 'GroundBox_snow_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,        editorImage(this, 'GroundBox_snow_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,        editorImage(this, 'GroundBox_snow_02', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,        editorImage(this, 'GroundBox_snow_night_00', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,        editorImage(this, 'GroundBox_snow_night_01', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,        editorImage(this, 'GroundBox_snow_night_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SKY,         editorImage(this, 'GroundBox_athletic_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SKY,         editorImage(this, 'GroundBox_athletic_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SKY,         editorImage(this, 'GroundBox_athletic_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   FOREST,      editorImage(this, 'GroundBox_woods_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   FOREST,      editorImage(this, 'GroundBox_woods_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   FOREST,      editorImage(this, 'GroundBox_woods_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,     editorImage(this, 'GroundBox_airship_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,     editorImage(this, 'GroundBox_airship_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,     editorImage(this, 'GroundBox_airship_02', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   CASTLE,      editorImage(this, 'GroundBox_castle_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   CASTLE,      editorImage(this, 'GroundBox_castle_01', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   CASTLE,      editorImage(this, 'GroundBox_castle_02', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'GroundBox_00', NSMBU,),],
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'GroundBox_01', NSMBU,),],
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'GroundBox_02', NSMBU,),],
-                [DAY,   NSMBU, UNDERGROUND, editorImage(this, 'GroundBox_underground_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERGROUND, editorImage(this, 'GroundBox_underground_01', NSMBU,),],
-                [DAY,   NSMBU, UNDERGROUND, editorImage(this, 'GroundBox_underground_02', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER,  editorImage(this, 'GroundBox_water_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER,  editorImage(this, 'GroundBox_water_01', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER,  editorImage(this, 'GroundBox_water_02', NSMBU,),],
-                [DAY,   NSMBU, DESERT,      editorImage(this, 'GroundBox_desert_00', NSMBU,),],
-                [DAY,   NSMBU, DESERT,      editorImage(this, 'GroundBox_desert_01', NSMBU,),],
-                [DAY,   NSMBU, DESERT,      editorImage(this, 'GroundBox_desert_02', NSMBU,),],
-                [DAY,   NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_00', NSMBU,),],
-                [DAY,   NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_01', NSMBU,),],
-                [DAY,   NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_02', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_night_00', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_night_01', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_night_02', NSMBU,),],
-                [DAY,   NSMBU, SKY,         editorImage(this, 'GroundBox_athletic_00', NSMBU,),],
-                [DAY,   NSMBU, SKY,         editorImage(this, 'GroundBox_athletic_01', NSMBU,),],
-                [DAY,   NSMBU, SKY,         editorImage(this, 'GroundBox_athletic_02', NSMBU,),],
-                [DAY,   NSMBU, FOREST,      editorImage(this, 'GroundBox_woods_00', NSMBU,),],
-                [DAY,   NSMBU, FOREST,      editorImage(this, 'GroundBox_woods_01', NSMBU,),],
-                [DAY,   NSMBU, FOREST,      editorImage(this, 'GroundBox_woods_02', NSMBU,),],
-                [DAY,   NSMBU, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', NSMBU,),],
-                [DAY,   NSMBU, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', NSMBU,),],
-                [DAY,   NSMBU, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,     editorImage(this, 'GroundBox_airship_00', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,     editorImage(this, 'GroundBox_airship_01', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,     editorImage(this, 'GroundBox_airship_02', NSMBU,),],
-                [DAY,   NSMBU, CASTLE,      editorImage(this, 'GroundBox_castle_00', NSMBU,),],
-                [DAY,   NSMBU, CASTLE,      editorImage(this, 'GroundBox_castle_01', NSMBU,),],
-                [DAY,   NSMBU, CASTLE,      editorImage(this, 'GroundBox_castle_02', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'GroundBox_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'GroundBox_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'GroundBox_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERGROUND, editorImage(this, 'GroundBox_underground_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERGROUND, editorImage(this, 'GroundBox_underground_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERGROUND, editorImage(this, 'GroundBox_underground_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER,  editorImage(this, 'GroundBox_water_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER,  editorImage(this, 'GroundBox_water_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER,  editorImage(this, 'GroundBox_water_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, DESERT,      editorImage(this, 'GroundBox_desert_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, DESERT,      editorImage(this, 'GroundBox_desert_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, DESERT,      editorImage(this, 'GroundBox_desert_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_02', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_night_00', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_night_01', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,        editorImage(this, 'GroundBox_snow_night_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SKY,         editorImage(this, 'GroundBox_athletic_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SKY,         editorImage(this, 'GroundBox_athletic_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SKY,         editorImage(this, 'GroundBox_athletic_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, FOREST,      editorImage(this, 'GroundBox_woods_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, FOREST,      editorImage(this, 'GroundBox_woods_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, FOREST,      editorImage(this, 'GroundBox_woods_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,     editorImage(this, 'GroundBox_airship_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,     editorImage(this, 'GroundBox_airship_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,     editorImage(this, 'GroundBox_airship_02', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, CASTLE,      editorImage(this, 'GroundBox_castle_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, CASTLE,      editorImage(this, 'GroundBox_castle_01', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, CASTLE,      editorImage(this, 'GroundBox_castle_02', GameStyles.NSMBU,),],
 
-                [DAY,   SM3DW, GROUND,      editorImage(this, 'GroundBox_00', SM3DW,),],
-                [DAY,   SM3DW, UNDERGROUND, editorImage(this, 'GroundBox_underground_00', SM3DW,),],
-                [DAY,   SM3DW, UNDERWATER,  editorImage(this, 'GroundBox_water_00', SM3DW,),],
-                [DAY,   SM3DW, DESERT,      editorImage(this, 'GroundBox_desert_00', SM3DW,),],
-                [DAY,   SM3DW, SNOW,        editorImage(this, 'GroundBox_snow_00', SM3DW,),],
-                [DAY,   SM3DW, SKY,         editorImage(this, 'GroundBox_athletic_00', SM3DW,),],
-                [DAY,   SM3DW, FOREST,      editorImage(this, 'GroundBox_woods_00', SM3DW,),],
-                [DAY,   SM3DW, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', SM3DW,),],
-                [DAY,   SM3DW, AIRSHIP,     editorImage(this, 'GroundBox_airship_00', SM3DW,),],
-                [DAY,   SM3DW, CASTLE,      editorImage(this, 'GroundBox_castle_00', SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND,      editorImage(this, 'GroundBox_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, UNDERGROUND, editorImage(this, 'GroundBox_underground_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, UNDERWATER,  editorImage(this, 'GroundBox_water_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, DESERT,      editorImage(this, 'GroundBox_desert_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, SNOW,        editorImage(this, 'GroundBox_snow_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, SKY,         editorImage(this, 'GroundBox_athletic_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, FOREST,      editorImage(this, 'GroundBox_woods_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GHOST_HOUSE, editorImage(this, 'GroundBox_hauntedhouse_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, AIRSHIP,     editorImage(this, 'GroundBox_airship_00', GameStyles.SM3DW,),],
+                [DAY,   GameStyles.SM3DW, CASTLE,      editorImage(this, 'GroundBox_castle_00', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -1112,35 +1118,35 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Bridge',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, 'Bridge_00', SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, 'Bridge_snow_00', SMB,),],
-                [NIGHT, SMB,   SNOW,        editorImage(this, 'Bridge_snow_night_00', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'Bridge_hauntedhouse_00', SMB,),],
-                [DAY,   SMB,   AIRSHIP,     editorImage(this, 'Bridge_airship_00', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'Bridge_castle_00', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'Bridge_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'Bridge_snow_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, 'Bridge_snow_night_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'Bridge_hauntedhouse_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,     editorImage(this, 'Bridge_airship_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'Bridge_castle_00', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'Bridge_00', SMB3,),],
-                [DAY,   SMB3,  SNOW,        editorImage(this, 'Bridge_snow_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, 'Bridge_snow_night_00', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'Bridge_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,        editorImage(this, 'Bridge_snow_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, 'Bridge_snow_night_00', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, 'Bridge_00', SMW,),],
-                [DAY,   SMW,   DESERT,      editorImage(this, 'Bridge_desert_00', SMW,),],
-                [DAY,   SMW,   SNOW,        editorImage(this, 'Bridge_snow_00', SMW,),],
-                [NIGHT, SMW,   SNOW,        editorImage(this, 'Bridge_snow_night_00', SMW,),],
-                [DAY,   SMW,   SKY,         editorImage(this, 'Bridge_athletic_00', SMW,),],
-                [DAY,   SMW,   FOREST,      editorImage(this, 'Bridge_woods_00', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'Bridge_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   DESERT,      editorImage(this, 'Bridge_desert_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SNOW,        editorImage(this, 'Bridge_snow_00', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   SNOW,        editorImage(this, 'Bridge_snow_night_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   SKY,         editorImage(this, 'Bridge_athletic_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   FOREST,      editorImage(this, 'Bridge_woods_00', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'Bridge_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERGROUND, editorImage(this, 'Bridge_underground_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER,  editorImage(this, 'Bridge_water_00', NSMBU,),],
-                [DAY,   NSMBU, SNOW,        editorImage(this, 'Bridge_snow_00', NSMBU,),],
-                [NIGHT, NSMBU, SNOW,        editorImage(this, 'Bridge_snow_night_00', NSMBU,),],
-                [DAY,   NSMBU, FOREST,      editorImage(this, 'Bridge_woods_00', NSMBU,),],
-                [DAY,   NSMBU, GHOST_HOUSE, editorImage(this, 'Bridge_hauntedhouse_00', NSMBU,),],
-                [DAY,   NSMBU, AIRSHIP,     editorImage(this, 'Bridge_airship_00', NSMBU,),],
-                [DAY,   NSMBU, CASTLE,      editorImage(this, 'Bridge_castle_00', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'Bridge_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERGROUND, editorImage(this, 'Bridge_underground_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER,  editorImage(this, 'Bridge_water_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,        editorImage(this, 'Bridge_snow_00', GameStyles.NSMBU,),],
+                [NIGHT, GameStyles.NSMBU, SNOW,        editorImage(this, 'Bridge_snow_night_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, FOREST,      editorImage(this, 'Bridge_woods_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GHOST_HOUSE, editorImage(this, 'Bridge_hauntedhouse_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, AIRSHIP,     editorImage(this, 'Bridge_airship_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, CASTLE,      editorImage(this, 'Bridge_castle_00', GameStyles.NSMBU,),],
             ],)
         }
 
@@ -1154,23 +1160,23 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Brick Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, 'RengaBlock_00', SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, 'RengaBlock_snow_00', SMB,),],
-                [NIGHT, SMB,   SNOW,        editorImage(this, 'RengaBlock_snow_night_00', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'RengaBlock_hauntedhouse_00', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'RengaBlock_castle_00', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'RengaBlock_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'RengaBlock_snow_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, 'RengaBlock_snow_night_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'RengaBlock_hauntedhouse_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'RengaBlock_castle_00', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'RengaBlock_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, 'RengaBlock_snow_night_00', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'RengaBlock_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, 'RengaBlock_snow_night_00', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, 'RengaBlock_00', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'RengaBlock_00', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'RengaBlock_00', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'RengaBlock_00', GameStyles.NSMBU,),],
 
-                [DAY,   SM3DW, GROUND,      editorImage(this, 'RengaBlock_00', SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND,      editorImage(this, 'RengaBlock_00', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -1182,10 +1188,10 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Cristal Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SM3DW, UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', SM3DW,),],
-                [DAY, SM3DW, FOREST,      editorImage(this, 'RengaBlock_woods_00', SM3DW,),],
+                [DAY, GameStyles.SM3DW, UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, FOREST,      editorImage(this, 'RengaBlock_woods_00', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -1200,34 +1206,34 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Hard Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, 'HardBlock_00', SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, 'HardBlock_underground_00', SMB,),],
-                [NIGHT, SMB,   UNDERGROUND, editorImage(this, 'HardBlock_underground_night_00', SMB,),],
-                [DAY,   SMB,   UNDERWATER,  editorImage(this, 'HardBlock_water_00', SMB,),],
-                [DAY,   SMB,   SNOW,        editorImage(this, 'HardBlock_snow_00', SMB,),],
-                [NIGHT, SMB,   SNOW,        editorImage(this, 'HardBlock_snow_night_00', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'HardBlock_hauntedhouse_00', SMB,),],
-                [DAY,   SMB,   AIRSHIP,     editorImage(this, 'HardBlock_airship_00', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'HardBlock_castle_00', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'HardBlock_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'HardBlock_underground_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   UNDERGROUND, editorImage(this, 'HardBlock_underground_night_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER,  editorImage(this, 'HardBlock_water_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   SNOW,        editorImage(this, 'HardBlock_snow_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,        editorImage(this, 'HardBlock_snow_night_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'HardBlock_hauntedhouse_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   AIRSHIP,     editorImage(this, 'HardBlock_airship_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'HardBlock_castle_00', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'HardBlock_00', SMB3,),],
-                [DAY,   SMB3,  SNOW,        editorImage(this, 'HardBlock_snow_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,        editorImage(this, 'HardBlock_snow_night_00', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'HardBlock_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  SNOW,        editorImage(this, 'HardBlock_snow_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,        editorImage(this, 'HardBlock_snow_night_00', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, 'HardBlock_00', SMW,),],
-                [DAY,   SMW,   GHOST_HOUSE, editorImage(this, 'HardBlock_hauntedhouse_00', SMW,),],
-                [DAY,   SMW,   AIRSHIP,     editorImage(this, 'HardBlock_airship_00', SMW,),],
-                [NIGHT, SMW,   AIRSHIP,     editorImage(this, 'HardBlock_airship_night_00', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'HardBlock_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   GHOST_HOUSE, editorImage(this, 'HardBlock_hauntedhouse_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   AIRSHIP,     editorImage(this, 'HardBlock_airship_00', GameStyles.SMW,),],
+                [NIGHT, GameStyles.SMW,   AIRSHIP,     editorImage(this, 'HardBlock_airship_night_00', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'HardBlock_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERGROUND, editorImage(this, 'HardBlock_underground_00', NSMBU,),],
-                [DAY,   NSMBU, UNDERWATER,  editorImage(this, 'HardBlock_water_00', NSMBU,),],
-                [DAY,   NSMBU, SNOW,        editorImage(this, 'HardBlock_snow_00', NSMBU,),],
-                [DAY,   NSMBU, SKY,         editorImage(this, 'HardBlock_athletic_00', NSMBU,),],
-                [DAY,   NSMBU, FOREST,      editorImage(this, 'HardBlock_woods_00', NSMBU,),],
-                [DAY,   NSMBU, CASTLE,      editorImage(this, 'HardBlock_castle_00', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'HardBlock_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERGROUND, editorImage(this, 'HardBlock_underground_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, UNDERWATER,  editorImage(this, 'HardBlock_water_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SNOW,        editorImage(this, 'HardBlock_snow_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, SKY,         editorImage(this, 'HardBlock_athletic_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, FOREST,      editorImage(this, 'HardBlock_woods_00', GameStyles.NSMBU,),],
+                [DAY,   GameStyles.NSMBU, CASTLE,      editorImage(this, 'HardBlock_castle_00', GameStyles.NSMBU,),],
             ],)
         }
 
@@ -1241,22 +1247,22 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Cloud Block',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,     editorImage(this, 'KumoBlock_00', SMB,),],
-                [DAY,   SMB,   UNDERWATER, editorImage(this, 'KumoBlock_water_00', SMB,),],
-                [NIGHT, SMB,   SNOW,       editorImage(this, 'KumoBlock_snow_night_00', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,     editorImage(this, 'KumoBlock_00', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER, editorImage(this, 'KumoBlock_water_00', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SNOW,       editorImage(this, 'KumoBlock_snow_night_00', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,     editorImage(this, 'KumoBlock_00', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER, editorImage(this, 'KumoBlock_water_00', SMB3,),],
-                [NIGHT, SMB3,  SNOW,       editorImage(this, 'KumoBlock_snow_night_00', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,     editorImage(this, 'KumoBlock_00', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER, editorImage(this, 'KumoBlock_water_00', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SNOW,       editorImage(this, 'KumoBlock_snow_night_00', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,     editorImage(this, 'KumoBlock_00', SMW,),],
-                [DAY,   SMW,   UNDERWATER, editorImage(this, 'KumoBlock_water_00', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,     editorImage(this, 'KumoBlock_00', GameStyles.SMW,),],
+                [DAY,   GameStyles.SMW,   UNDERWATER, editorImage(this, 'KumoBlock_water_00', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,     editorImage(this, 'KumoBlock_00', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,     editorImage(this, 'KumoBlock_00', GameStyles.NSMBU,),],
 
-                [DAY,   SM3DW, GROUND,     editorImage(this, 'KumoBlock_00', SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND,     editorImage(this, 'KumoBlock_00', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -1269,35 +1275,35 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Spike Ball',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY,   SMB,   GROUND,      editorImage(this, 'Gabon_01', SMB,),],
-                [NIGHT, SMB,   GROUND,      editorImage(this, 'Gabon_plain_night_01', SMB,),],
-                [DAY,   SMB,   UNDERGROUND, editorImage(this, 'Gabon_underground_01', SMB,),],
-                [DAY,   SMB,   UNDERWATER,  editorImage(this, 'Gabon_water_01', SMB,),],
-                [NIGHT, SMB,   DESERT,      editorImage(this, 'Gabon_desert_night_01', SMB,),],
-                [NIGHT, SMB,   SKY,         editorImage(this, 'Gabon_athletic_night_01', SMB,),],
-                [NIGHT, SMB,   FOREST,      editorImage(this, 'Gabon_woods_night_01', SMB,),],
-                [DAY,   SMB,   GHOST_HOUSE, editorImage(this, 'Gabon_hauntedhouse_01', SMB,),],
-                [NIGHT, SMB,   AIRSHIP,     editorImage(this, 'Gabon_airship_night_01', SMB,),],
-                [DAY,   SMB,   CASTLE,      editorImage(this, 'Gabon_castle_01', SMB,),],
+                [DAY,   GameStyles.SMB,   GROUND,      editorImage(this, 'Gabon_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   GROUND,      editorImage(this, 'Gabon_plain_night_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERGROUND, editorImage(this, 'Gabon_underground_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   UNDERWATER,  editorImage(this, 'Gabon_water_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   DESERT,      editorImage(this, 'Gabon_desert_night_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   SKY,         editorImage(this, 'Gabon_athletic_night_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   FOREST,      editorImage(this, 'Gabon_woods_night_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   GHOST_HOUSE, editorImage(this, 'Gabon_hauntedhouse_01', GameStyles.SMB,),],
+                [NIGHT, GameStyles.SMB,   AIRSHIP,     editorImage(this, 'Gabon_airship_night_01', GameStyles.SMB,),],
+                [DAY,   GameStyles.SMB,   CASTLE,      editorImage(this, 'Gabon_castle_01', GameStyles.SMB,),],
 
-                [DAY,   SMB3,  GROUND,      editorImage(this, 'Gabon_01', SMB3,),],
-                [NIGHT, SMB3,  GROUND,      editorImage(this, 'Gabon_plain_night_01', SMB3,),],
-                [DAY,   SMB3,  UNDERGROUND, editorImage(this, 'Gabon_underground_01', SMB3,),],
-                [DAY,   SMB3,  UNDERWATER,  editorImage(this, 'Gabon_water_01', SMB3,),],
-                [NIGHT, SMB3,  DESERT,      editorImage(this, 'Gabon_desert_night_01', SMB3,),],
-                [NIGHT, SMB3,  SKY,         editorImage(this, 'Gabon_athletic_night_01', SMB3,),],
-                [NIGHT, SMB3,  FOREST,      editorImage(this, 'Gabon_woods_night_01', SMB3,),],
-                [DAY,   SMB3,  GHOST_HOUSE, editorImage(this, 'Gabon_hauntedhouse_01', SMB3,),],
-                [NIGHT, SMB3,  AIRSHIP,     editorImage(this, 'Gabon_airship_night_01', SMB3,),],
-                [DAY,   SMB3,  CASTLE,      editorImage(this, 'Gabon_castle_01', SMB3,),],
+                [DAY,   GameStyles.SMB3,  GROUND,      editorImage(this, 'Gabon_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  GROUND,      editorImage(this, 'Gabon_plain_night_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERGROUND, editorImage(this, 'Gabon_underground_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  UNDERWATER,  editorImage(this, 'Gabon_water_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  DESERT,      editorImage(this, 'Gabon_desert_night_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  SKY,         editorImage(this, 'Gabon_athletic_night_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  FOREST,      editorImage(this, 'Gabon_woods_night_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  GHOST_HOUSE, editorImage(this, 'Gabon_hauntedhouse_01', GameStyles.SMB3,),],
+                [NIGHT, GameStyles.SMB3,  AIRSHIP,     editorImage(this, 'Gabon_airship_night_01', GameStyles.SMB3,),],
+                [DAY,   GameStyles.SMB3,  CASTLE,      editorImage(this, 'Gabon_castle_01', GameStyles.SMB3,),],
 
-                [DAY,   SMW,   GROUND,      editorImage(this, 'Gabon_01', SMW,),],
+                [DAY,   GameStyles.SMW,   GROUND,      editorImage(this, 'Gabon_01', GameStyles.SMW,),],
 
-                [DAY,   NSMBU, GROUND,      editorImage(this, 'Gabon_01', NSMBU,),],
+                [DAY,   GameStyles.NSMBU, GROUND,      editorImage(this, 'Gabon_01', GameStyles.NSMBU,),],
 
-                [DAY,   SM3DW, GROUND,      editorImage(this, 'Gabon_01', SM3DW,),],
+                [DAY,   GameStyles.SM3DW, GROUND,      editorImage(this, 'Gabon_01', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -1309,67 +1315,67 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Track',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SMB, GROUND,   editorImage(this, 'Rail_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailU_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailCurveLD_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailCurveLU_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailCurveRD_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailCurveRU_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchDL_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchDR_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchUL_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchUR_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchLD_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchLU_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchRD_00', SMB,),],
-                [DAY, SMB, GROUND,   editorImage(this, 'RailBranchRU_00', SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'Rail_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailU_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailCurveLD_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailCurveLU_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailCurveRD_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailCurveRU_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchDL_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchDR_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchUL_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchUR_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchLD_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchLU_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchRD_00', GameStyles.SMB,),],
+                [DAY, GameStyles.SMB, GROUND,   editorImage(this, 'RailBranchRU_00', GameStyles.SMB,),],
 
-                [DAY, SMB3, GROUND,  editorImage(this, 'Rail_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailU_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailCurveLD_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailCurveLU_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailCurveRD_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailCurveRU_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchDL_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchDR_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchUL_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchUR_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchLD_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchLU_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchRD_00', SMB3,),],
-                [DAY, SMB3, GROUND,  editorImage(this, 'RailBranchRU_00', SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'Rail_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailU_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailCurveLD_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailCurveLU_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailCurveRD_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailCurveRU_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchDL_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchDR_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchUL_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchUR_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchLD_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchLU_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchRD_00', GameStyles.SMB3,),],
+                [DAY, GameStyles.SMB3, GROUND,  editorImage(this, 'RailBranchRU_00', GameStyles.SMB3,),],
 
-                [DAY, SMW, GROUND,   editorImage(this, 'Rail_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailU_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailCurveLD_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailCurveLU_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailCurveRD_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailCurveRU_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchDL_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchDR_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchUL_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchUR_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchLD_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchLU_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchRD_00', SMW,),],
-                [DAY, SMW, GROUND,   editorImage(this, 'RailBranchRU_00', SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'Rail_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailU_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailCurveLD_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailCurveLU_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailCurveRD_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailCurveRU_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchDL_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchDR_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchUL_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchUR_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchLD_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchLU_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchRD_00', GameStyles.SMW,),],
+                [DAY, GameStyles.SMW, GROUND,   editorImage(this, 'RailBranchRU_00', GameStyles.SMW,),],
 
-                [DAY, NSMBU, GROUND, editorImage(this, 'Rail_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailU_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailCurveLD_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailCurveLU_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailCurveRD_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailCurveRU_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchDL_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchDR_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchUL_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchUR_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchLD_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchLU_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchRD_00', NSMBU,),],
-                [DAY, NSMBU, GROUND, editorImage(this, 'RailBranchRU_00', NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'Rail_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailU_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailCurveLD_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailCurveLU_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailCurveRD_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailCurveRU_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchDL_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchDR_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchUL_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchUR_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchLD_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchLU_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchRD_00', GameStyles.NSMBU,),],
+                [DAY, GameStyles.NSMBU, GROUND, editorImage(this, 'RailBranchRU_00', GameStyles.NSMBU,),],
             ],)
         }
 
@@ -1381,14 +1387,14 @@ export abstract class EditorEntityImages
 
         public constructor() { super('Tree',) }
 
-        public override _createImageFiles() {
+        protected override _createImageFiles() {
             return new ArrayAsCollection([
-                [DAY, SM3DW, GROUND,      editorImage(this, 'BellTree_00', SM3DW,),],
-                [DAY, SM3DW, UNDERGROUND, editorImage(this, 'BellTree_underground_00', SM3DW,),],
-                [DAY, SM3DW, UNDERWATER,  editorImage(this, 'BellTree_water_00', SM3DW,),],
-                [DAY, SM3DW, DESERT,      editorImage(this, 'BellTree_desert_00', SM3DW,),],
-                [DAY, SM3DW, SNOW,        editorImage(this, 'BellTree_snow_00', SM3DW,),],
-                [DAY, SM3DW, FOREST,      editorImage(this, 'BellTree_woods_00', SM3DW,),],
+                [DAY, GameStyles.SM3DW, GROUND,      editorImage(this, 'BellTree_00', GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, UNDERGROUND, editorImage(this, 'BellTree_underground_00', GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, UNDERWATER,  editorImage(this, 'BellTree_water_00', GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, DESERT,      editorImage(this, 'BellTree_desert_00', GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, SNOW,        editorImage(this, 'BellTree_snow_00', GameStyles.SM3DW,),],
+                [DAY, GameStyles.SM3DW, FOREST,      editorImage(this, 'BellTree_woods_00', GameStyles.SM3DW,),],
             ],)
         }
 
@@ -1419,8 +1425,8 @@ export abstract class EditorEntityImages
     public static readonly CLEAR_PIPE =                                    new EditorEntityImages.ExistantAs1InOnlySm3dw('Clear Pipe', 'ToumeiDokan_00',)
 
     public static readonly SPIKE_TRAP =                                    new EditorEntityImages.ExistantAs1Plus1NightSnowInSmbAndSmb3ButNotSm3dw('Spike Trap', 'Toge_00', 'Toge_snow_night_00',)
-    public static readonly JELECTRO =                                      new EditorEntityImages.ExistantAs1In1GameStyle('Jelectro', 'Toge_water_00', SMB3, Themes.UNDERWATER,)
-    public static readonly SEA_URCHIN =                                    new EditorEntityImages.ExistantAs1In1GameStyle('Sea Urchin',  'Toge_water_00', SMW, Themes.UNDERWATER,)
+    public static readonly JELECTRO =                                      new EditorEntityImages.ExistantAs1InOnlySmb3Underwater('Jelectro', 'Toge_water_00',)
+    public static readonly SEA_URCHIN =                                    new EditorEntityImages.ExistantAs1InOnlySmwUnderwater('Sea Urchin',  'Toge_water_00',)
     public static readonly SPIKE_BLOCK =                                   new EditorEntityImages.ExistantAs3InOnlySm3dw('Spike Block', 'TogeBlock_00', 'TogeBlock_01', 'TogeBlock_02',)
 
     public static readonly MUSHROOM_PLATFORM =                             new EditorEntityImages.ExistantAsMushroomPlatform()

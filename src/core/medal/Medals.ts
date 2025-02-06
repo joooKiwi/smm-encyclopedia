@@ -118,7 +118,7 @@ export class Medals
 
 }
 
-export namespace Medals {
+export namespace Medals {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Medals} */
     export const Companion = Medals.CompanionEnum.get
@@ -127,5 +127,5 @@ export namespace Medals {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).Medals = Medals

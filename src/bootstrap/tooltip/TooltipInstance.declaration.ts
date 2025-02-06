@@ -124,4 +124,4 @@ export interface TooltipInstanceDeclaration<ELEMENT extends Element = Element,
 
 }
 
-export type TooltipEventCallback<INSTANCE extends TooltipInstanceDeclaration<any, any> = TooltipInstanceDeclaration, > = (instance: INSTANCE, event: Event,) => void
+export type TooltipEventCallback<INSTANCE extends TooltipInstanceDeclaration<any, any> = TooltipInstanceDeclaration, > = (instance: INSTANCE, event: Event,) => void// eslint-disable-line @typescript-eslint/no-explicit-any

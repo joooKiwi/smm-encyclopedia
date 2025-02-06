@@ -8,7 +8,7 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  *
  * @param value The {@link Themes} to retrieve its {@link Themes.gameName game} and {@link Themes.englishName english} name
  */
-export function smallImageFile<const T extends PossibleName_InFile, >(value: Themes<any, T>,): SmallThemeImageFile<T> {
+export function smallImageFile<const T extends PossibleName_InFile, >(value: Themes<any, T>,): SmallThemeImageFile<T> {// eslint-disable-line @typescript-eslint/no-explicit-any
     return new SimpleImageFile('theme', `Lyt_E_SceneSmall_${value.nameInFile}_00`, 'tiff', `${value.englishName} (small)`,)
 }
 
@@ -17,7 +17,7 @@ export function smallImageFile<const T extends PossibleName_InFile, >(value: The
  *
  * @param value The {@link Themes} to retrieve its {@link Themes.gameName game} and {@link Themes.englishName english} name
  */
-export function largeImageFile<const T extends PossibleName_InFile, >(value: Themes<any, T>,): LargeThemeImageFile<T> {
+export function largeImageFile<const T extends PossibleName_InFile, >(value: Themes<any, T>,): LargeThemeImageFile<T> {// eslint-disable-line @typescript-eslint/no-explicit-any
     return new SimpleImageFile('theme', `Lyt_E_Scene_${value.nameInFile}_00`, 'tiff', `${value.englishName} (large)`,)
 }
 

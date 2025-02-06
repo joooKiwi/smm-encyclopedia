@@ -106,7 +106,7 @@ export class GameCollection<const T extends Games = Games,
 
 }
 
-export namespace GameCollection {
+export namespace GameCollection {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const EMPTY =       new GameCollection(EMPTY_ARRAY,)
     export const SMM1_ONLY =   new GameCollection(SMM1_ONLY_GAMES,)

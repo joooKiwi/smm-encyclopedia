@@ -32,6 +32,12 @@ export class EmptyEditorImage
     public getFromGameStyle(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
     public getFromTime(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
 
+    public getSmb(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSmb3(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSmw(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getNsmbu(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+    public getSm3dw(): EmptyCollectionHolder { return EMPTY_COLLECTION_HOLDER }
+
     public toString(): EmptyEditorImageName { return 'Empty editor image' }
 
 }

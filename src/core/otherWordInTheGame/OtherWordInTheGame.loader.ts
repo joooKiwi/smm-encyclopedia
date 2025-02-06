@@ -10,7 +10,7 @@ import type {OtherWordInTheGame}                                                
 import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
-import {isInProduction}                      from 'variables'
+import {isInDevelopment}                   from 'variables'
 import {OtherPluralWordInTheGameContainer} from 'core/otherWordInTheGame/OtherPluralWordInTheGame.container'
 import {OtherWordInTheGameContainer}       from 'core/otherWordInTheGame/OtherWordInTheGame.container'
 import {createNameFromContent}             from 'lang/name/createNameFromContent'
@@ -50,7 +50,7 @@ export class OtherWordInTheGameLoader
             references.set(englishName as PossibleEnglishName_Singular, createSingularContent(content, pluralReferences,),)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "other word in the game" has been loaded --------------------\n',
                 references,
@@ -64,8 +64,12 @@ export class OtherWordInTheGameLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
+    //region -------------------- Language --------------------
+
     readonly english: NullOrString<PossibleEnglishName>
     readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    //endregion -------------------- Language --------------------
 
     readonly isPlural: boolean
     readonly pluralForm: NullOrString<PossibleEnglishName_Plural>

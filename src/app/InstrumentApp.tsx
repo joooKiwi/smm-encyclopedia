@@ -1,15 +1,13 @@
-import 'app/_GameAsideContent.scss'
-import 'app/_GameStyleAsideContent.scss'
-import 'app/_TimeAsideContent.scss'
 import './InstrumentApp.scss'
 
 import type {MutableArray, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}                   from '@joookiwi/collection'
+import {Fragment}                                from 'react'
 
-import type {InstrumentAppProperties} from 'app/AppProperties.types'
-import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
-import type {ReactProperties}         from 'util/react/ReactProperties'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {AppProperties}       from 'app/AppProperties.types'
+import type {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import type {ReactProperties}     from 'util/react/ReactProperties'
+import type {PossibleRouteName}   from 'route/EveryRoutes.types'
 
 import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
@@ -59,6 +57,8 @@ const {LIST, CARD,} = ViewDisplays
 //endregion -------------------- Import from deconstruction --------------------
 
 const all = new ArrayAsCollection(ALL,)
+
+type InstrumentAppProperties = AppProperties
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games, gameStyles, times,}: InstrumentAppProperties,) {
@@ -144,7 +144,7 @@ interface Instrument_SubContentProperties
 /** @reactComponent */
 function InstrumentList({items,}: Pick<Instrument_SubContentProperties, 'items'>,) {
     return <List partial-id="instrument" items={items} withSeparator>{it =>
-        <div className="d-flex justify-content-between">
+        <div key={`Instrument list (${it.name})`} className="d-flex justify-content-between">
             <div className="d-flex">
                 <NameComponent id="instrument-name" name={it.reference} popoverOrientation="top"/>
                 <EntityInstrumentImages value={it}/>
@@ -157,11 +157,11 @@ function InstrumentList({items,}: Pick<Instrument_SubContentProperties, 'items'>
 /** @reactComponent */
 function InstrumentCard({items,}: Pick<Instrument_SubContentProperties, 'items'>,) {
     return <CardList partial-id="instrument" items={items} default={1} small={3} medium={4} large={5} extra-large={6}>{it =>
-        <>
+        <Fragment key={`Instrument card list (${it.name})`}>
             <NameComponent id="instrument-name" name={it.reference} popoverOrientation="left"/>
             <EntityInstrumentImages value={it}/>
             <InstrumentSound value={it}/>
-        </>
+        </Fragment>
     }</CardList>
 }
 

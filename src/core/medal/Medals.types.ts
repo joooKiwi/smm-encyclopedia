@@ -1,4 +1,4 @@
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     GOOMBA,
     KOOPA_TROOPA,
     PIRANHA_PLANT,

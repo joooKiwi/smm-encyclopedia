@@ -7,7 +7,7 @@ import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {PopoverInstance}          from 'bootstrap/popover/PopoverInstance'
 
 interface PopoverProperties
-    extends ReactPropertiesWithOptionalChildren<NonNullReactElement>, PopoverConfiguration {}
+    extends ReactPropertiesWithOptionalChildren<ReactElement>, PopoverConfiguration {}
 
 /**
  * Create a new {@link bootstrap.Popover Popover} instance

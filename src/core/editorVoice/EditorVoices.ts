@@ -681,7 +681,7 @@ export abstract class EditorVoices<const FILE_NAME extends string = string, >
 
 }
 
-export namespace EditorVoices {
+export namespace EditorVoices {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link EditorVoices} */
     export const Companion = EditorVoices.CompanionEnum.get
@@ -690,5 +690,5 @@ export namespace EditorVoices {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).EditorVoices = EditorVoices

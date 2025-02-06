@@ -3,7 +3,7 @@ import type {EmptyString, NullOr} from '@joookiwi/type'
 import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
 import type {SMM1SoundEffectImageFile}        from 'core/soundEffect/file/SoundEffectImageFile'
 
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
 
     SHOCK, SCREAM, LAUGHTER, GUFFAW, BOOO,
     CHEER, BABY, PARTY_POPPER, APPLAUSE, NEAR_MISS,

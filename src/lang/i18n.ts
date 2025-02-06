@@ -67,7 +67,7 @@ import type {Resource}    from 'i18next'
 import i18n               from 'i18next'
 import {initReactI18next} from 'react-i18next'
 
-import {isInProduction} from 'variables'
+import {isInDevelopment} from 'variables'
 
 declare module 'react-i18next' {
     interface Resources {
@@ -247,7 +247,7 @@ void i18n
         },
         ns: ['language', 'content', 'gameContent', 'entityContent',],
         resources,
-        debug: !isInProduction,
+        debug: isInDevelopment,
 
         interpolation: {
             escapeValue: false,

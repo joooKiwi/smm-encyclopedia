@@ -200,7 +200,7 @@ export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacte
 
 }
 
-export namespace Characters {
+export namespace Characters {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Characters} */
     export const Companion = Characters.CompanionEnum.get

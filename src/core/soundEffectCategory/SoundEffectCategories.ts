@@ -103,7 +103,7 @@ export class SoundEffectCategories<const NAME extends PossibleEnglishName = Poss
 
 }
 
-export namespace SoundEffectCategories {
+export namespace SoundEffectCategories {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link SoundEffectCategories} */
     export const Companion = SoundEffectCategories.CompanionEnum.get
@@ -112,5 +112,5 @@ export namespace SoundEffectCategories {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).SoundEffectCategories = SoundEffectCategories

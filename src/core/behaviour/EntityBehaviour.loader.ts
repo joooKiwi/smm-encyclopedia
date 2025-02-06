@@ -10,7 +10,7 @@ import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
 
-import {isInProduction}           from 'variables'
+import {isInDevelopment}          from 'variables'
 import {EntityBehaviourContainer} from 'core/behaviour/EntityBehaviour.container'
 import {Import}                   from 'util/DynamicImporter'
 
@@ -45,7 +45,7 @@ export class EntityBehaviourLoader
             references.set(reference.translationKey, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "entity behaviour" has been loaded --------------------\n',
                 references,

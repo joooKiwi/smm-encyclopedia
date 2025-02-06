@@ -25,7 +25,7 @@ export default function Footer() {
                     },)}
                 </small>
                 <small className="text-center text-light">
-                    {contentTranslation('Last update',)}: <em><SimpleDate day={16} month={1} year={2025}/></em>
+                    {contentTranslation('Last update',)}: <em><SimpleDate day={5} month={2} year={2025}/></em>
                 </small>
                 <small className="text-center text-light">
                     {contentTranslation('Version',)} 0.27 <sub className="opacity-50">beta</sub>

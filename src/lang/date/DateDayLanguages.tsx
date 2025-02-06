@@ -226,7 +226,7 @@ export abstract class DateDayLanguages
 
 }
 
-export namespace DateDayLanguages {
+export namespace DateDayLanguages {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link DateDayLanguages} */
     export const Companion = DateDayLanguages.CompanionEnum.get

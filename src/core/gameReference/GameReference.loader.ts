@@ -1,14 +1,14 @@
 import file from 'resources/compiled/Game reference.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array, NullOrString} from '@joookiwi/type'
+import {forEachByArray}           from '@joookiwi/collection'
 
 import type {LanguageContent}                      from 'core/_template/LanguageContent'
 import type {GameReference}                        from 'core/gameReference/GameReference'
 import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
 import type {Loader}                               from 'util/loader/Loader'
 
-import {isInProduction}         from 'variables'
+import {isInDevelopment}        from 'variables'
 import {GameReferenceContainer} from 'core/gameReference/GameReference.container'
 import {createNameFromContent}  from 'lang/name/createNameFromContent'
 
@@ -40,7 +40,7 @@ export class GameReferenceLoader
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "game references" has been loaded (start) --------------------\n',
                 references,
@@ -54,6 +54,16 @@ export class GameReferenceLoader
 
 interface Content
     extends LanguageContent {
+
+    //region -------------------- Language --------------------
+
+    readonly english: NullOrString<PossibleEnglishName>
+    readonly americanEnglish: NullOrString<PossibleEnglishName>
+
+    readonly americanPortuguese: null
+    readonly europeanPortuguese: null
+
+    //endregion -------------------- Language --------------------
 
     readonly acronym: PossibleAcronym
 

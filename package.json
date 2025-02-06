@@ -1,8 +1,9 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.27.0-beta",
+  "version": "0.27.2-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joooKiwi/smm-encyclopedia.git"
@@ -12,20 +13,28 @@
   },
 
   "scripts": {
-    "convert-csv-to-json": "node ./src/scripts/ConvertCSVToJson",
-    "copy-images-for-css": "node ./src/scripts/CopyImagesForCSS",
-    "copy-locale-to-src":  "node ./src/scripts/CopyLocaleToSrc",
+    "convert-csv-to-json": "node scripts/ConvertCSVToJson.cjs",
+    "copy-images-for-css": "node scripts/CopyImagesForCSS.cjs",
+    "copy-locale-to-src": "node scripts/CopyLocaleToSrc.cjs",
     "prepare-project": "npm-run-all -p convert-csv-to-json copy-locale-to-src copy-images-for-css",
 
     "prestart": "npm run prepare-project",
-    "start": "react-scripts start",
-    "fast-start": "react-scripts start",
+    "start": "vite --host",
+    "fast-start": "vite --host",
 
-    "test": "react-scripts test",
-    "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
+    "lint": "eslint .",
 
-    "build": "react-scripts build",
-    "deploy": "gh-pages -m \"Deployment of the version 0.26 (beta)\" -d build"
+    "test": "vitest --run",
+    "test-file": "vitest --run --testNamePattern=\"(file test)\"",
+
+    "prebuild": "npm run typescript-build",
+    "build": "vite build",
+    "typescript-build": "tsc --build",
+
+    "prepreview": "npm run build",
+    "preview": "vite preview",
+
+    "deploy": "gh-pages -m \"Deployment of the version 0.27.2 (beta)\" -d dist"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
@@ -40,12 +49,6 @@
     "wiki", "encyclopedia"
   ],
 
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -59,52 +62,54 @@
     ]
   },
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@joookiwi/collection": "^1.12.0",
     "@joookiwi/enumerable": "^3.9.0",
     "@joookiwi/lazy":       "^1.7.0",
     "@joookiwi/type":       "^1.2.0",
     "assert":               "^2.1.0",
-    "audit":                "^0.0.6",
     "bootstrap":            "^5.3.3",
     "bootstrap-icons":      "^1.11.3",
-    "fix":                  "^0.0.6",
-    "i18next":              "^24.2.1",
+    "i18next":              "^24.2.2",
     "react":                "^19.0.0",
     "react-dom":            "^19.0.0",
     "react-i18next":        "^15.4.0",
-    "react-intl":           "^7.1.0",
-    "react-router":         "^7.1.2",
-    "react-scripts":        "^5.0.1",
-    "sass":                 "^1.83.4",
+    "react-intl":           "^7.1.5",
+    "react-router":         "^7.1.5",
     "web-vitals":           "^4.2.4"
   },
   "devDependencies": {
-    "@testing-library/jest-dom":   "^6.6.3",
-    "@testing-library/react":      "^16.2.0",
-    "@testing-library/user-event": "^14.6.0",
-    "@types/bootstrap":            "^5.2.10",
-    "@types/jest":                 "^29.5.14",
-    "@types/node":                 "^22.10.7",
-    "@types/react":                "^19.0.7",
-    "@types/react-dom":            "^19.0.3",
-    "@types/react-router":         "^5.1.20",
-    "fs-extra":                    "^11.3.0",
-    "gh-pages":                    "^6.3.0",
-    "jest-extended":               "^4.0.2",
-    "npm-run-all":                 "^4.1.5",
-    "papaparse":                   "^5.5.1",
-    "typescript":                  "^5.7.3"
-  },
-  "overrides": {
-    "@babel/plugin-proposal-class-properties":            "https://registry.npmjs.org/@babel/plugin-transform-class-properties/-/plugin-transform-class-properties-7.25.9.tgz",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "https://registry.npmjs.org/@babel/plugin-transform-nullish-coalescing-operator/-/plugin-transform-nullish-coalescing-operator-7.25.9.tgz",
-    "@babel/plugin-proposal-numeric-separator":           "https://registry.npmjs.org/@babel/plugin-transform-numeric-separator/-/plugin-transform-numeric-separator-7.25.9.tgz",
-    "@babel/plugin-proposal-optional-chaining":           "https://registry.npmjs.org/@babel/plugin-transform-optional-chaining/-/plugin-transform-optional-chaining-7.25.9.tgz",
-    "@babel/plugin-proposal-private-methods":             "https://registry.npmjs.org/@babel/plugin-transform-private-methods/-/plugin-transform-private-methods-7.25.9.tgz",
-    "@humanwhocodes/config-array":                        "https://registry.npmjs.org/@eslint/config-array/-/config-array-0.19.1.tgz",
-    "@humanwhocodes/object-schema":                       "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-2.1.5.tgz",
-
-    "typescript": "^5.7.3"
+    "@eslint/js":                   "^9.19.0",
+    "@testing-library/jest-dom":    "^6.6.3",
+    "@testing-library/react":       "^16.2.0",
+    "@testing-library/user-event":  "^14.6.1",
+    "@types/bootstrap":             "^5.2.10",
+    "@types/node":                  "^22.13.1",
+    "@types/react":                 "^19.0.8",
+    "@types/react-dom":             "^19.0.3",
+    "@types/react-router":          "^5.1.20",
+    "@vitejs/plugin-react":         "^4.3.4",
+    "@vitest/coverage-v8":          "^3.0.5",
+    "babel-plugin-react-compiler":  "^19.0.0-beta-e552027-20250112",
+    "cross-env":                    "^7.0.3",
+    "eslint":                       "^9.19.0",
+    "eslint-plugin-jest":           "^28.11.0",
+    "eslint-plugin-jest-extended":  "^3.0.0",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-714736e-20250131",
+    "eslint-plugin-react-hooks":    "^5.1.0",
+    "eslint-plugin-react-refresh":  "^0.4.18",
+    "fs-extra":                     "^11.3.0",
+    "gh-pages":                     "^6.3.0",
+    "globals":                      "^15.14.0",
+    "jest-extended":                "^4.0.2",
+    "npm-run-all":                  "^4.1.5",
+    "papaparse":                    "^5.5.2",
+    "sass":                         "^1.83.4",
+    "ts-node":                      "^10.9.2",
+    "typescript":                   "^5.7.3",
+    "typescript-eslint":            "^8.23.0",
+    "vite":                         "^6.1.0",
+    "vite-tsconfig-paths":          "^5.1.4",
+    "vite-plugin-commonjs":         "^0.10.4",
+    "vitest":                       "^3.0.5"
   }
 }

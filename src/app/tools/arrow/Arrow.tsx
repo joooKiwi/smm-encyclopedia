@@ -3,7 +3,7 @@ import './Arrow.scss'
 import type {Arrows}          from 'app/tools/arrow/Arrows'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
-interface SingleArrowProperties
+interface ArrowProperties
     extends ReactProperties {
 
     readonly value: Arrows
@@ -11,6 +11,6 @@ interface SingleArrowProperties
 }
 
 /** @reactComponent */
-export default function Arrow({value,}: SingleArrowProperties,) {
+export default function Arrow({value,}: ArrowProperties,) {
     return value.createArrow()
 }

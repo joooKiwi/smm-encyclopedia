@@ -11,7 +11,7 @@ import type {PossibleEnglishName as PossibleEnglishName_LimitType}              
 import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount, PossibleLimitDescription} from 'core/limit/loader.types'
 import type {Loader}                                                                                                                        from 'util/loader/Loader'
 
-import {isInProduction}            from 'variables'
+import {isInDevelopment}           from 'variables'
 import {AlternativeLimitContainer} from 'core/limit/AlternativeLimit.container'
 import {EmptyAlternativeLimit}     from 'core/limit/EmptyAlternativeLimit'
 import {LimitContainer}            from 'core/limit/Limit.container'
@@ -52,7 +52,7 @@ export class LimitLoader
         toReversedByArray(file as Array<Content>,).forEach(content => {
             const englishName = (content.english ?? content.americanEnglish)!
             if (content.type == null)
-                alternativeReferences.set(englishName as PossibleAlternativeEnglishName, createAlternativeReference(content, regularReferences,),)
+                alternativeReferences.set(englishName as PossibleAlternativeEnglishName, createAlternativeReference(content,),)
             else {
                 const reference = createReference(content, alternativeReferences,)
                 references.set(englishName, reference,)
@@ -60,7 +60,7 @@ export class LimitLoader
             }
         },)
 
-        if (!isInProduction)
+        if (isInDevelopment)
             console.info(
                 '-------------------- "limit" has been loaded --------------------\n',
                 references,
@@ -76,8 +76,13 @@ export class LimitLoader
 interface Content
     extends LanguageContent {
 
-    readonly english: NullOrString<PossibleEnglishName>
-    readonly americanEnglish: NullOrString<PossibleEnglishName>
+    //region -------------------- Language --------------------
+
+    readonly english: PossibleEnglishName
+    readonly americanEnglish: null
+    readonly europeanEnglish: null
+
+    //endregion -------------------- Language --------------------
 
     readonly isAlternativeLimit: boolean
     readonly alternative: NullOrString<PossibleAlternativeEnglishName>
@@ -109,7 +114,7 @@ function createReference(content: Content, alternativeReferences: ReadonlyMap<Po
     )
 }
 
-function createAlternativeReference(content: Content, regularReferences: Map<PossibleEnglishName, Limit>,): AlternativeLimit {
+function createAlternativeReference(content: Content,): AlternativeLimit {
     return new AlternativeLimitContainer(
         createNameFromContent(content, 2, false,),
         content.acronym as NullOrString<PossibleAlternativeAcronym>,

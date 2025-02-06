@@ -241,11 +241,11 @@ export class GameReferences
 
 }
 
-export namespace GameReferences {
+export namespace GameReferences {// eslint-disable-line @typescript-eslint/no-namespace
 
     export const Companion = GameReferences.CompanionEnum.get
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).GameReferences = GameReferences

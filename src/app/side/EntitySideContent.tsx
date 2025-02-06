@@ -2,6 +2,8 @@ import './EntitySideContent.scss'
 
 import {useRef} from 'react'
 
+import type {Entities}        from 'core/entity/Entities'
+import type {Entity}          from 'core/entity/Entity'
 import type {GameCollection}  from 'util/collection/GameCollection'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
@@ -9,13 +11,12 @@ import Image                                        from 'app/tools/images/Image
 import TextComponent                                from 'app/tools/text/TextComponent'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import Offcanvas                                    from 'bootstrap/offcanvas/Offcanvas'
-import {Entities}                                   from 'core/entity/Entities'
-import {Entity}                                     from 'core/entity/Entity'
+import {EntityImages}                               from 'core/entity/EntityImages'
+import {InGameEntityImages}                         from 'core/entity/InGameEntityImages'
 import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
 import EntityCategoryIcon                           from 'core/entityCategory/component/EntityCategoryIcon'
 import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
-import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {Instruments}                                from 'core/instrument/Instruments'
 import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
 import {Limits}                                     from 'core/limit/Limits'
@@ -29,16 +30,17 @@ import {Empty}                                      from 'util/emptyVariables'
 import CategoryCompanion =   EntityCategories.Companion
 import EMPTY_STRING =        Empty.EMPTY_STRING
 import InstrumentCompanion = Instruments.Companion
-import SMW =                 GameStyles.SMW
 import SMM1 =                Games.SMM1
 import SMM2 =                Games.SMM2
 import SMM3DS =              Games.SMM3DS
 
 //region -------------------- Import from deconstruction --------------------
 
-const {BILL_BLASTER, KOOPA_CLOWN_CAR, KEY, GALOOMBA, LAKITU,
-    LAKITU_CLOUD, MUSIC_BLOCK, ON_OFF_SWITCH, PARACHUTE, PIPE,
-    SUPER_MUSHROOM, QUESTION_MARK_BLOCK, SWINGING_CLAW, TWISTER, TREE, WING,} = Entities
+const {BILL_BLASTER, KEY, MUSIC_BLOCK,
+    ON_OFF_SWITCH, PARACHUTE, PIPE,
+    QUESTION_MARK_BLOCK, SUPER_MUSHROOM, TREE,WING,} = EntityImages
+const {GALOOMBA, KOOPA_CLOWN_CAR, LAKITU,
+    LAKITU_CLOUD, SWINGING_CLAW, TWISTER,} = InGameEntityImages
 const {COLLECTED_LOOSE_COIN_LIMIT, DYNAMIC_RENDERED_OBJECT_LIMIT, GENERAL_ENTITY_LIMIT,
     LOOSE_COIN_LIMIT, POWER_UP_ENTITY_LIMIT, PROJECTILE_LIMIT,} = Limits
 const {ENTITY,} = OtherWordInTheGames
@@ -141,7 +143,7 @@ function HasAMushroomVariantListItem({reference,}: EntitySideContentReferencePro
         return null
 
     return <li id="hasAMushroomVariant-listItem" className="list-group-item">
-        <Image file={SUPER_MUSHROOM.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={SUPER_MUSHROOM.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Has a mushroom variant',)}</span>
     </li>
 }
@@ -153,7 +155,7 @@ function CanBeInAParachuteListItem({reference,}: EntitySideContentReferencePrope
 
     const comment = reference.canBeInAParachuteComment
     return <li id="canBeInAParachute-listItem" className="list-group-item">
-        <Image file={PARACHUTE.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={PARACHUTE.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be put in a parachute',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {acronym: LOOSE_COIN_LIMIT.acronym!, limit: LOOSE_COIN_LIMIT.reference.languageValue,},)
@@ -168,7 +170,7 @@ function CanHaveWingsListItem({reference,}: EntitySideContentReferenceProperties
 
     const comment = reference.canHaveWingsComment
     return <li id="canHaveWings-listItem" className="list-group-item">
-        <Image file={WING.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={WING.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can have wings',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {acronym: LOOSE_COIN_LIMIT.acronym!, limit: LOOSE_COIN_LIMIT.reference.languageValue,},)
@@ -183,7 +185,7 @@ function CanMakeASoundOutOfAMusicBlockListItem({reference,}: EntitySideContentRe
 
     const comment = reference.canMakeASoundOutOfAMusicBlockComment
     return <li id="canMakeASoundOutOfAMusicBlock-listItem" className="list-group-item">
-        <Image file={MUSIC_BLOCK.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={MUSIC_BLOCK.image.getSmw().getFirst()} className="entity-image"/>
         <div id="instrument-sounds" className="d-inline-block">
             {reference.instruments.map(it => InstrumentCompanion.getValueByName(it.americanEnglish,),).map((it, i,) =>
                 <InstrumentSound key={`Instrument sound #${i + 1} (${it.englishName})`} value={it}/>,)}
@@ -200,7 +202,7 @@ function CanContainOrSpawnAKeyListItem({reference,}: EntitySideContentReferenceP
     if (!reference.canContainOrSpawnAKey)
         return null
     return <li id="canContainOrSpawnAKey-listItem" className="list-group-item">
-        <Image file={KEY.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={KEY.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can contain or spawn a Key',)}</span>
     </li>
 }
@@ -214,7 +216,7 @@ function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideConten
     const entityAsLowerCase = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
     const comment = reference.isAffectDirectlyByAnOnOffStateComment
     return <li id="isAffectDirectlyByAnOnOffState-listItem" className="list-group-item">
-        <Image file={ON_OFF_SWITCH.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={ON_OFF_SWITCH.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Is affected directly by an ON/OFF state',)}</span>
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {entity: entityAsLowerCase,},)
@@ -227,7 +229,7 @@ function CanSpawnOutOfAPipeListItem({reference,}: EntitySideContentReferenceProp
     if (!reference.canSpawnOutOfAPipe)
         return null
     return <li id="canSpawnOutOfAPipe-listItem" className="list-group-item">
-        <Image file={PIPE.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={PIPE.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can spawn out of a Pipe',)}</span>
     </li>
 }
@@ -237,7 +239,7 @@ function CanBePutOnASwingingClawListItem({reference,}: EntitySideContentReferenc
     if (!reference.canBePutOnASwingingClaw)
         return null
 
-    const images = SWINGING_CLAW.inGameImage.get(SMW,)
+    const images = SWINGING_CLAW.image.getSmw()
     return <li id="canBePutOnASwingingClaw-listItem" className="list-group-item">
         <div id="swingingClaw-groupImage" className="d-inline-flex flex-column align-items-center">
             {images.slice([0, 1, 1, 1, 1, 2,],).map((it, i,) =>
@@ -253,10 +255,8 @@ function CanBeThrownByALakituListItem({reference,}: EntitySideContentReferencePr
         return null
     return <li id="canBeThrownByALakitu-listItem" className="list-group-item">
         <div id="lakitu-groupImage" className="d-inline-flex">
-            <Image id="animated-lakitu" images={LAKITU.inGameImage.get(SMW,).map( it => ({file: it,}),)}/>
-            <Image id="animated-lakituCloud" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),)}/>
-            {/*<Image file={new ArrayAsCollection(LAKITU.inGameImage.get(SMW,),).get(2,)} className="entity-image top-0"/>*/}
-            {/*<Image file={new ArrayAsCollection(LAKITU_CLOUD.image.get(SMW,),).getFirst()} className="entity-image bottom-0"/>*/}
+            <Image id="animated-lakitu" images={LAKITU.image.getSmw().map( it => ({file: it,}),)}/>
+            <Image id="animated-lakituCloud" images={LAKITU_CLOUD.image.getSmw().map(it => ({file: it,}),)}/>
         </div>
         <span>{unfinishedText('Can be thrown by a Lakitu',)}</span>
     </li>
@@ -267,8 +267,7 @@ function CanBePutInALakituCloudListItem({reference,}: EntitySideContentReference
     if (!reference.canBePutInALakituCloud)
         return null
     return <li id="canBePutInALakituCloud-listItem" className="list-group-item">
-        <Image id="animated-cloud" className="d-inline-block" images={LAKITU_CLOUD.inGameImage.get(SMW,).map(it => ({file: it,}),)}/>
-        {/*<Image file={LAKITU_CLOUD.image.get(SMW,).getFirst()} className="entity-image"/>*/}
+        <Image id="animated-cloud" className="d-inline-block" images={LAKITU_CLOUD.image.getSmw().map(it => ({file: it,}),)}/>
         <span>{unfinishedText('Can be put in a Lakitu’s Cloud',)}</span>
     </li>
 }
@@ -278,8 +277,7 @@ function CanBePutInAClownCarListItem({reference,}: EntitySideContentReferencePro
     if (!reference.canBePutInAClownCar)
         return null
     return <li id="canBePutInAClownCar-listItem" className="list-group-item">
-        <Image id="animated-clownCar" className="d-inline-block" images={KOOPA_CLOWN_CAR.inGameImage.get(SMW,).slice(8, 11,).map(it => ({file: it,}),)}/>
-        {/*<Image file={KOOPA_CLOWN_CAR.image.get(SMW,).getFirst()} className="entity-image"/>*/}
+        <Image id="animated-clownCar" className="d-inline-block" images={KOOPA_CLOWN_CAR.image.getSmw().slice(8, 11,).map(it => ({file: it,}),)}/>
         <span>{unfinishedText('Can be put in a Clown Car',)}</span>
     </li>
 }
@@ -289,7 +287,7 @@ function CanBeFiredOutOfABulletLauncherListItem({reference,}: EntitySideContentR
     if (!reference.canBeFiredOutOfABillBlaster)
         return null
     return <li id="canBeFiredOutOfABillBlaster-listItem" className="list-group-item">
-        <Image file={BILL_BLASTER.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={BILL_BLASTER.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can be fired out of a Bill Blaster',)}</span>
     </li>
 }
@@ -299,7 +297,7 @@ function CanComeOutOfABlockListItem({reference,}: EntitySideContentReferenceProp
     if (!reference.canComeOutOfABlock)
         return null
     return <li id="canComeOutOfABlock-listItem" className="list-group-item">
-        <Image file={QUESTION_MARK_BLOCK.image.get(SMW,).getFirst()} className="entity-image"/>
+        <Image file={QUESTION_MARK_BLOCK.image.getSmw().getFirst()} className="entity-image"/>
         <span>{unfinishedText('Can come out of a Block',)}</span>
     </li>
 }
@@ -326,7 +324,7 @@ function CanBeAffectedByATwisterListItem({reference,}: EntitySideContentReferenc
         return null
 
     return <li id="canBeAffectedByATwister-listItem" className="list-group-item">
-        <Image id="animated-twister" className="d-inline-block" images={TWISTER.inGameImage.get(SMW,).map(it => ({file: it,}),)}/>
+        <Image id="animated-twister" className="d-inline-block" images={TWISTER.image.getSmw().map(it => ({file: it,}),)}/>
         <span>{unfinishedText('Can be affected by a Twister',)}</span>
     </li>
 }
@@ -336,14 +334,12 @@ function CanBeStackedListItem({reference,}: EntitySideContentReferenceProperties
     if (!reference.canBeStacked)
         return null
 
-    const images = GALOOMBA.inGameImage.get(SMW,).slice(3, 4,)
+    const images = GALOOMBA.image.getSmw().slice(3, 4,)
     return <li id="canBeStacked-listItem" className="list-group-item">
         <div id="stackedGaloomba-groupImage" className="d-inline-flex flex-column">
             <Image id="animated-galoomba1" images={images.map(it => ({file: it,}),)}/>
             <Image id="animated-galoomba2" images={images.map(it => ({file: it,}),)}/>
         </div>
-        {/*<Image file={images.getFirst()} className="entity-image"/>*/}
-        {/*<Image file={images.getFirst()} className="entity-image"/>*/}
         <span>{unfinishedText('Can be stacked',)}</span>
     </li>
 }

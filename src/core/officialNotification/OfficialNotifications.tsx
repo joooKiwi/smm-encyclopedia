@@ -699,7 +699,7 @@ export class OfficialNotifications
 
     //endregion -------------------- Add argument to "key map" --------------------
 
-    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): NonNullReactElement {
+    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): ReactJSXElement {
         const keyMap: TranslationReplaceKeysMap = {}
         if (amount != null)
             keyMap['amount'] = <Fragment key={`${key} - amount`}>{amount}</Fragment>
@@ -711,12 +711,12 @@ export class OfficialNotifications
 
 }
 
-export namespace OfficialNotifications {
+export namespace OfficialNotifications {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link OfficialNotifications} */
     export const Companion = OfficialNotifications.CompanionEnum.get
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).OfficialNotifications = OfficialNotifications

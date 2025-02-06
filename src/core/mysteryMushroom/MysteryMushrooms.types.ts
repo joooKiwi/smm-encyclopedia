@@ -2,7 +2,7 @@ import type {EmptyString}      from '@joookiwi/type'
 import {MysteryMushroomSounds} from 'core/mysteryMushroom/MysteryMushroomSounds'
 import {MysteryMushroomImages} from 'core/mysteryMushroom/MysteryMushroomImages'
 
-enum Enum {
+declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-vars
     MYSTERY_MUSHROOM,
 
     YAMAMURA, MARY_O, UNDODOG,

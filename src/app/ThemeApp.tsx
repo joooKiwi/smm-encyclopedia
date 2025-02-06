@@ -1,12 +1,11 @@
-import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {ThemeAppProperties} from 'app/AppProperties.types'
-import type {Themes}             from 'core/theme/Themes'
-import type {GameCollection}     from 'util/collection/GameCollection'
-import type {ReactProperties}    from 'util/react/ReactProperties'
+import type {AppPropertiesWithType} from 'app/AppProperties.types'
+import type {Themes}                from 'core/theme/Themes'
+import type {GameCollection}        from 'util/collection/GameCollection'
+import type {ReactProperties}       from 'util/react/ReactProperties'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
@@ -44,6 +43,8 @@ const {LIST, CARD,} = ViewDisplays
 //endregion -------------------- Import from deconstruction --------------------
 
 const options = ThemeAppOption.CompanionEnum.get.values
+
+type ThemeAppProperties = AppPropertiesWithType<ThemeTypes>
 
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {

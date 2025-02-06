@@ -1,7 +1,7 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
+import type {Names, Ordinals} from 'app/tools/arrow/Arrows.types'
 
 import {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
 
@@ -22,76 +22,98 @@ export abstract class Arrows
 
     public static readonly UP =                   new class ArrowDirections_Up extends Arrows {
 
-        public override createCardinalArrow(): NonNullReactElement {
-            return <div className="arrow up"/>
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrow-container vertical">
+                <div className="arrow up"/>
+                <div className="line"/>
+            </div>
         }
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [this.createCardinalArrow(), null,]
-        }
-
-    }('arrow-container', ArrowDirections.VERTICAL, true,)
+    }(ArrowDirections.VERTICAL,)
     public static readonly DOWN =                 new class ArrowDirections_Down extends Arrows {
 
-        public override createCardinalArrow(): NonNullReactElement {
-            return <div className="arrow down"/>
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrow-container vertical">
+                <div className="line"/>
+                <div className="arrow down"/>
+            </div>
         }
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [null, this.createCardinalArrow(),]
-        }
-
-    }('arrow-container', ArrowDirections.VERTICAL, true,)
+    }(ArrowDirections.VERTICAL,)
     public static readonly LEFT =                 new class ArrowDirections_Left extends Arrows {
 
-        public override createCardinalArrow(): NonNullReactElement {
-            return <div className="arrow left"/>
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrow-container horizontal">
+                <div className="arrow left"/>
+                <div className="line"/>
+            </div>
         }
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [this.createCardinalArrow(), null,]
-        }
-
-    }('arrow-container', ArrowDirections.HORIZONTAL, true,)
+    }(ArrowDirections.HORIZONTAL,)
     public static readonly RIGHT =                new class ArrowDirections_Right extends Arrows {
 
-        public override createCardinalArrow(): NonNullReactElement {
-            return <div className="arrow right"/>
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrow-container horizontal">
+                <div className="line"/>
+                <div className="arrow right"/>
+            </div>
         }
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [null, this.createCardinalArrow(),]
-        }
-
-    }('arrow-container', ArrowDirections.HORIZONTAL, true,)
+    }(ArrowDirections.HORIZONTAL,)
     public static readonly VERTICAL_JOINED =      new class ArrowDirections_Vertical extends Arrows {
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),]
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrow-container vertical">
+                <div className="arrow up"/>
+                <div className="line"/>
+                <div className="arrow down"/>
+            </div>
         }
 
-    }('arrow-container', ArrowDirections.VERTICAL, true,)
+    }(ArrowDirections.VERTICAL,)
     public static readonly VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),]
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrows-container vertical">
+                <div className="arrow-container vertical">
+                    <div className="arrow up"/>
+                    <div className="line"/>
+                </div>
+                <div className="arrow-container vertical">
+                    <div className="line"/>
+                    <div className="arrow down"/>
+                </div>
+            </div>
         }
 
-    }('arrows-container', ArrowDirections.VERTICAL, false,)
+    }(ArrowDirections.VERTICAL,)
     public static readonly HORIZONTAL_JOINED =    new class ArrowDirections_Horizontal extends Arrows {
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),]
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrow-container horizontal">
+                <div className="arrow left"/>
+                <div className="line"/>
+                <div className="arrow right"/>
+            </div>
         }
 
-    }('arrow-container', ArrowDirections.HORIZONTAL, true,)
+    }(ArrowDirections.HORIZONTAL,)
     public static readonly HORIZONTAL_SEPARATED = new class ArrowDirections_HorizontalSeparated extends Arrows {
 
-        protected override _createArrow(): PossibleArrowCreation {
-            return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),]
+        public override createArrow(): ReactJSXElement {
+            return <div className="arrows-container horizontal">
+                <div className="arrow-container horizontal">
+                    <div className="arrow left"/>
+                    <div className="line"/>
+                </div>
+                <div className="arrow-container horizontal">
+                    <div className="line"/>
+                    <div className="arrow right"/>
+                </div>
+            </div>
         }
 
-    }('arrows-container', ArrowDirections.HORIZONTAL, false,)
+    }(ArrowDirections.HORIZONTAL,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -118,27 +140,18 @@ export abstract class Arrows
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    readonly #container
     readonly #direction
-    readonly #doesDisplayLine
-    #arrows?: PossibleArrowCreation
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(container: PossibleContainer, direction: ArrowDirections, doesDisplayLine: boolean,) {
+    private constructor(direction: ArrowDirections,) {
         super()
         this.#direction = direction
-        this.#container = container
-        this.#doesDisplayLine = doesDisplayLine
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    private get __container(): PossibleContainer {
-        return this.#container
-    }
 
     /**
      * Get the arrow direction object.
@@ -147,46 +160,15 @@ export abstract class Arrows
         return this.#direction
     }
 
-    private get __doesDisplayLine(): boolean {
-        return this.#doesDisplayLine
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    /**
-     * Create a cardinal arrow. Meaning that it can be {@link Arrows.UP up}, {@link Arrows.DOWN down},
-     * {@link Arrows.LEFT left} & {@link Arrows.RIGHT right}.<br/>
-     * The other combinations (vertical & horizontal) will throw an {@link EvalError}.
-     *
-     * @throws EvalError if the arrow contained is not {@link Arrows.UP up}, {@link Arrows.DOWN down}, {@link Arrows.LEFT left} or {@link Arrows.RIGHT right}.
-     */
-    public createCardinalArrow(): NonNullReactElement {
-        throw new EvalError('This method should never be called from a non-cardinal direction.')
-    }
-
-    private get __arrows(): PossibleArrowCreation {
-        return this.#arrows ??= this._createArrow()
-    }
-
-    protected abstract _createArrow(): PossibleArrowCreation
 
     /**
      * Create an arrow contained in a {@link HTMLDivElement div} having the class "arrow-container" or "arrows-container"
      * combined with the {@link ArrowDirections direction}.
      */
-    public createArrow(): NonNullReactElement {
-        const [firstArrow, secondArrow,] = this.__arrows
-
-        return <div className={`${this.__container} ${this.direction.value}`}>
-            {firstArrow}
-            {this.__doesDisplayLine ? <div className="line"/> : null}
-            {secondArrow}
-        </div>
-    }
+    public abstract createArrow(): ReactJSXElement
 
     //endregion -------------------- Methods --------------------
 
 }
-
-type PossibleArrowCreation = | readonly [ReactElement, null,] | readonly [null, ReactElement,] | readonly [ReactElement, ReactElement,]

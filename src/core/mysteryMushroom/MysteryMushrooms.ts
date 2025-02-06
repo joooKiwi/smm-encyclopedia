@@ -526,7 +526,7 @@ export class MysteryMushrooms
 
 }
 
-export namespace MysteryMushrooms {
+export namespace MysteryMushrooms {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link MysteryMushrooms} */
     export const Companion = MysteryMushrooms.CompanionEnum.get
@@ -535,5 +535,5 @@ export namespace MysteryMushrooms {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).MysteryMushrooms = MysteryMushrooms

@@ -191,7 +191,7 @@ export class Instruments
 
 }
 
-export namespace Instruments {
+export namespace Instruments {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Instruments} */
     export const Companion = Instruments.CompanionEnum.get
@@ -240,5 +240,5 @@ export namespace Instruments {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).Instruments = Instruments

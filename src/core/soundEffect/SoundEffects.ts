@@ -1223,7 +1223,7 @@ export abstract class SoundEffects
     //region -------------------- Getter methods (sound) --------------------
 
     public get soundsInNoSpecificGameStyleInSmm1(): CollectionHolder<SoundFile> { return this.#soundsInNoSpecificGameStyleInSmm1 ??= this._createSoundsInNoSpecificGameStyleInSmm1(this.soundsInNoSpecificGameStyleInSmm2,) }
-    protected _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
+    protected _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }// eslint-disable-line @typescript-eslint/no-unused-vars
 
     public get soundsInNoSpecificGameStyleInSmm2(): CollectionHolder<SoundFile> { return this.#soundsInNoSpecificGameStyleInSmm2 ??= this._createSoundsInNoSpecificGameStyleInSmm2() }
     protected _createSoundsInNoSpecificGameStyleInSmm2(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
@@ -1275,7 +1275,7 @@ export abstract class SoundEffects
 
 }
 
-export namespace SoundEffects {
+export namespace SoundEffects {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link SoundEffects} */
     export const Companion = SoundEffects.CompanionEnum.get
@@ -1296,7 +1296,7 @@ export namespace SoundEffects {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).SoundEffects = SoundEffects
 
 /** The {@link SMM2SoundEffectSoundFile} associated to both {@link SoundEffects.TWISTY_TURNY} and {@link SoundEffects.WOOZY} */

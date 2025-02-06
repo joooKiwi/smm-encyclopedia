@@ -1,6 +1,6 @@
-import type {NullOr}           from '@joookiwi/type'
-import type {MutableRefObject} from 'react'
-import {useEffect}             from 'react'
+import type {NullOr}    from '@joookiwi/type'
+import type {RefObject} from 'react'
+import {useEffect}      from 'react'
 
 import type {OffcanvasConfiguration}              from 'bootstrap/offcanvas/Offcanvas.types'
 import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
@@ -8,11 +8,11 @@ import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperti
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {OffcanvasInstance}        from 'bootstrap/offcanvas/OffcanvasInstance'
 
-interface OffcanvasProperties<out T extends ReactElement, >
+interface OffcanvasProperties
     extends Omit<OffcanvasConfiguration, 'elementId'>,
-        ReactPropertiesWithOptionalChildren<T> {
+        ReactPropertiesWithOptionalChildren<ReactElement> {
 
-    readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>
+    readonly modalReference: RefObject<NullOr<HTMLDivElement>>
 
 }
 
@@ -23,7 +23,7 @@ interface OffcanvasProperties<out T extends ReactElement, >
  * @reactComponent
  * @see https://getbootstrap.com/docs/5.2/components/offcanvas
  */
-export default function Offcanvas<const T extends ReactElement = ReactElement, >({modalReference, children, option, on: triggers,}: OffcanvasProperties<T>,) {
+export default function Offcanvas({modalReference, children, option, on: triggers,}: OffcanvasProperties,) {
     useEffect(() => {
         const reference = modalReference.current
         if (reference == null)

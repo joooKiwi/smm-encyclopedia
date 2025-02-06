@@ -2,8 +2,8 @@ import './MedalApp.scss'
 
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {ReactProperties}              from 'util/react/ReactProperties'
+import type {AppProperties}   from 'app/AppProperties.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {MedalAppOption}         from 'app/options/MedalAppOption'
 import Table                    from 'app/tools/table/Table'
@@ -13,6 +13,7 @@ import CardList                 from 'app/util/CardList'
 import List                     from 'app/util/List'
 import PageTitle                from 'app/util/PageTitle'
 import PageViewChanger          from 'app/util/PageViewChanger'
+import Smm1OnlyAlert            from 'app/util/Smm1OnlyAlert'
 import SubMain                  from 'app/util/SubMain'
 import {Medals}                 from 'core/medal/Medals'
 import MedalIcon                from 'core/medal/component/MedalIcon'
@@ -34,12 +35,15 @@ const all = new ArrayAsCollection(ALL,)
 const items = all
 const options = MedalAppOption.CompanionEnum.get.values
 
+type MedalAppProperties = AppProperties
+
 /** @reactComponent */
-export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function MedalApp({viewDisplay, games,}: MedalAppProperties,) {
 
     return <SubMain partial-id="medal" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('medal.all',)}</AppTitle>
         <PageTitle value={gameContentTranslation('medal.singular',)}/>
+        <Smm1OnlyAlert value={games}/>
         <PageViewChanger>
             <DisplayButtonGroup list="everyMedal (list)" card="everyMedal (card)" table="everyMedal (table)" current={viewDisplay}/>
         </PageViewChanger>
@@ -53,7 +57,7 @@ export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) 
 //region -------------------- Sub content --------------------
 
 /** @reactComponent */
-function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+function SubContent({viewDisplay,}: Pick<MedalAppProperties, 'viewDisplay'>,) {
     if (viewDisplay === LIST)
         return <MedalList items={items}/>
     if (viewDisplay === CARD)

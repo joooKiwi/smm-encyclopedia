@@ -288,7 +288,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
 
 }
 
-export namespace Games {
+export namespace Games {// eslint-disable-line @typescript-eslint/no-namespace
 
     /** The companion instance of a {@link Games} */
     export const Companion = Games.CompanionEnum.get
@@ -345,5 +345,5 @@ export namespace Games {
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).Games = Games

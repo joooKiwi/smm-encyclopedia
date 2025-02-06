@@ -28,12 +28,6 @@ import {InGameImage_RegularContainer}       from 'core/entity/images/inGame/InGa
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
 import {ArrayAsCollection}                  from 'util/collection/ArrayAsCollection'
 
-import NSMBU = GameStyles.NSMBU
-import SMB =   GameStyles.SMB
-import SMB3 =  GameStyles.SMB3
-import SMW =   GameStyles.SMW
-import SM3DW = GameStyles.SM3DW
-
 /**
  * The images used in the main page of {@link EntityApp}
  *
@@ -237,11 +231,11 @@ export abstract class EntityImages
             const clearConditionReference = this.clearConditionReference
             const inGameImages = this.inGameReference.image
             return new ArrayAsCollection([
-                [SMB,   inGameImages.get(SMB,),],
-                [SMB3,  inGameImages.get(SMB3,),],
-                [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, inGameImages.get(NSMBU,).take(1,),],
-                [SM3DW, new ArrayAsCollection([clearConditionReference.image.get(SM3DW,),],), ],
+                [GameStyles.SMB,   inGameImages.get(GameStyles.SMB,),],
+                [GameStyles.SMB3,  inGameImages.get(GameStyles.SMB3,),],
+                [GameStyles.SMW,   inGameImages.get(GameStyles.SMW,),],
+                [GameStyles.NSMBU, inGameImages.get(GameStyles.NSMBU,).take(1,),],
+                [GameStyles.SM3DW, new ArrayAsCollection([clearConditionReference.image.get(GameStyles.SM3DW,),],), ],
             ],)
         }
 
@@ -263,11 +257,11 @@ export abstract class EntityImages
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
             return new ArrayAsCollection([
-                [SMB,   inGameImages.get(SMB,),],
-                [SMB3,  inGameImages.get(SMB3,),],
-                [SMW,   inGameImages.get(SMW,),],
-                [NSMBU, inGameImages.get(NSMBU,).slice([0, -1,],),],
-                [SM3DW, editorReference.image.get(SM3DW,),],
+                [GameStyles.SMB,   inGameImages.get(GameStyles.SMB,),],
+                [GameStyles.SMB3,  inGameImages.get(GameStyles.SMB3,),],
+                [GameStyles.SMW,   inGameImages.get(GameStyles.SMW,),],
+                [GameStyles.NSMBU, inGameImages.get(GameStyles.NSMBU,).slice([0, -1,],),],
+                [GameStyles.SM3DW, editorReference.image.get(GameStyles.SM3DW,),],
             ],)
         }
 
@@ -289,11 +283,11 @@ export abstract class EntityImages
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
             return new ArrayAsCollection([
-                [SMB,   inGameImages.get(SMB,).slice(0, 1,),],
-                [SMB3,  inGameImages.get(SMB3,).slice(0, 1,),],
-                [SMW,   inGameImages.get(SMW,).slice(0, 1,),],
-                [NSMBU, inGameImages.get(NSMBU,).slice([0, -1,],),],
-                [SM3DW, editorReference.image.get(SM3DW,),],
+                [GameStyles.SMB,   inGameImages.get(GameStyles.SMB,).slice(0, 1,),],
+                [GameStyles.SMB3,  inGameImages.get(GameStyles.SMB3,).slice(0, 1,),],
+                [GameStyles.SMW,   inGameImages.get(GameStyles.SMW,).slice(0, 1,),],
+                [GameStyles.NSMBU, inGameImages.get(GameStyles.NSMBU,).slice([0, -1,],),],
+                [GameStyles.SM3DW, editorReference.image.get(GameStyles.SM3DW,),],
             ],)
         }
 
@@ -313,8 +307,8 @@ export abstract class EntityImages
         protected override _createImage(image: EditorImage<IMAGE>) {
             const images = image.imagesWithAssociation
             const size = images.length
-            const smb3ImageIndex = images.indexOfFirst(it => it[1] === SMB3,)
-            const smwImageIndex = images.indexOfFirst(it => it[1] === SMW,)
+            const smb3ImageIndex = images.indexOfFirst(it => it[1] === GameStyles.SMB3,)
+            const smwImageIndex = images.indexOfFirst(it => it[1] === GameStyles.SMW,)
             if (size === smwImageIndex + 2) //without sm3dw
                 return new EditorImageContainer(images.slice([
                     0, 1,
@@ -415,11 +409,11 @@ export abstract class EntityImages
             const clearConditionReference = this.#clearConditionReference
             const inGameReference = this.#inGameReference
             return new ArrayAsCollection([
-                [SMB,   inGameReference.image.get(SMB,),],
-                [SMB3,  inGameReference.image.get(SMB3,),],
-                [SMW,   inGameReference.image.get(SMW,),],
-                [NSMBU, inGameReference.image.get(NSMBU,),],
-                [SM3DW, new ArrayAsCollection([clearConditionReference.image.get(SM3DW,),],),],
+                [GameStyles.SMB,   inGameReference.image.get(GameStyles.SMB,),],
+                [GameStyles.SMB3,  inGameReference.image.get(GameStyles.SMB3,),],
+                [GameStyles.SMW,   inGameReference.image.get(GameStyles.SMW,),],
+                [GameStyles.NSMBU, inGameReference.image.get(GameStyles.NSMBU,),],
+                [GameStyles.SM3DW, new ArrayAsCollection([clearConditionReference.image.get(GameStyles.SM3DW,),],),],
             ],)
         }
 
