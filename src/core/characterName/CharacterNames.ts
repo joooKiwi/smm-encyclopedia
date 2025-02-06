@@ -272,5 +272,5 @@ export namespace CharacterNames {// eslint-disable-line @typescript-eslint/no-na
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).CharacterNames = CharacterNames

@@ -163,7 +163,6 @@ export default function Routes() {
     return <RouterProvider router={router}/>
 }
 
-// @ts-ignore: TODO remove once the application is more complete
+//TODO remove once the application is more complete
 (window.test ??= {}).router = router
-// @ts-ignore: TODO remove once the application is more complete
 window.test.routes = router.routes[0]!.children

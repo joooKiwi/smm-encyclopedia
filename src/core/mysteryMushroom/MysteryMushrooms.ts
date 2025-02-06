@@ -535,5 +535,5 @@ export namespace MysteryMushrooms {// eslint-disable-line @typescript-eslint/no-
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).MysteryMushrooms = MysteryMushrooms

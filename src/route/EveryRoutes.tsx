@@ -2295,7 +2295,7 @@ export namespace EveryRoutes {// eslint-disable-line @typescript-eslint/no-names
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).EveryRoutes = EveryRoutes
 
 // console.info(EveryRoutes.ALL_ROUTES.map(it => ({name: it.name, path: it.path,}),),)

@@ -259,5 +259,5 @@ export namespace MiiCostumes {// eslint-disable-line @typescript-eslint/no-names
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).MiiCostumes = MiiCostumes

@@ -1296,7 +1296,7 @@ export namespace SoundEffects {// eslint-disable-line @typescript-eslint/no-name
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).SoundEffects = SoundEffects
 
 /** The {@link SMM2SoundEffectSoundFile} associated to both {@link SoundEffects.TWISTY_TURNY} and {@link SoundEffects.WOOZY} */

@@ -140,5 +140,5 @@ export namespace OfficialCourses {// eslint-disable-line @typescript-eslint/no-n
 
 }
 
-// @ts-ignore: TODO remove this test variable when the application will be complete
+//TODO remove this test variable when the application will be complete
 (window.test ??= {}).OfficialCourses = OfficialCourses
