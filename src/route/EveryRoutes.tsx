@@ -5,9 +5,9 @@ import {forEachByArray}                                                        f
 import {CompanionEnum, Enum}                                                   from '@joookiwi/enumerable'
 import {lazy}                                                                  from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                                                                from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRoute, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                                            from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                 from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleTimePath, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                             from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}        from 'app/property/CourseTagTypes'
 import {LimitTypes}            from 'app/property/LimitTypes'
@@ -235,7 +235,6 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             const path = this.urlValue
             const routeCallback = this.routeCallback
 
-            //@ts-ignore: The 1124 routes have their types handled elsewhere
             return [
                 //region -------------------- Time (all) --------------------
 
@@ -2291,7 +2290,7 @@ export namespace EveryRoutes {// eslint-disable-line @typescript-eslint/no-names
      * All the possible {@link Route} possible in a 1-dimensional {@link ReadonlyArray Array}
      * ordered by the {@link EveryRoutes.ordinal ordinal} order of {@link EveryRoutes}
      */
-    export const ALL_ROUTES = __retrieveAllRoutes() as Array<PossibleRoute>
+    export const ALL_ROUTES = __retrieveAllRoutes() as Array<Route>
 
 }
 
