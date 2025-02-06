@@ -5,6 +5,7 @@ import commonjs       from 'vite-plugin-commonjs'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: '/smm-encyclopedia',
     plugins: [
         react({babel: {plugins: [['babel-plugin-react-compiler',],],},},),
         tsconfigPaths(),
