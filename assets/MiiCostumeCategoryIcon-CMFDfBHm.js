@@ -1,0 +1,1 @@
+import{c as s,j as m,I as a}from"./index-0VkZSUzO.js";function c(o){const e=s.c(2),{reference:t}=o;let i;return e[0]!==t.imageFile?(i=m.jsx(a,{file:t.imageFile,className:"miiCostumeCategory-icon"}),e[0]=t.imageFile,e[1]=i):i=e[1],i}export{c as M};

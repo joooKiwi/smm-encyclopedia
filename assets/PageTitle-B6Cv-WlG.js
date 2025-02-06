@@ -1,0 +1,1 @@
+import{c as s,j as c}from"./index-0VkZSUzO.js";function a(r){const t=s.c(2),{value:i}=r,o=`${i} | Super Mario Maker Encyclopedia`;let e;return t[0]!==o?(e=c.jsx("title",{children:o}),t[0]=o,t[1]=e):e=t[1],e}export{a as P};

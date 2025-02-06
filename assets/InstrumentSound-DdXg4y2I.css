@@ -1,0 +1,1 @@
+.grouped-instrumentSound-container{--spacer: calc(var(--bs-spacer-sm) / 2);margin-right:calc(-1 * var(--spacer));margin-bottom:calc(-1 * var(--spacer))}.grouped-instrumentSound-container>*{margin-right:var(--spacer);margin-bottom:var(--spacer)}

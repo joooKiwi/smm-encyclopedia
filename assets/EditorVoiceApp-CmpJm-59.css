@@ -1,0 +1,1 @@
+#editorVoice-list .list-group-item>*>:where(.single-editorVoiceSound-container,.double-editorVoiceSound-container){margin-left:var(--bs-spacer-sm)}#editorVoice-table{width:auto;margin-left:auto;margin-right:auto}
