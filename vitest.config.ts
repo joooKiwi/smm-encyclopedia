@@ -9,7 +9,6 @@ import tsconfigPaths  from 'vite-tsconfig-paths'
 import {defineConfig} from 'vitest/config'
 
 export default defineConfig({
-    base: '/smm-encyclopedia',
     plugins: [
         react({babel: {plugins: [['babel-plugin-react-compiler',],],},},),
         tsconfigPaths(),
