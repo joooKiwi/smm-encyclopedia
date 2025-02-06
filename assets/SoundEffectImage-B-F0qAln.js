@@ -1,1 +1,0 @@
-import{c,j as i,I as f}from"./index-DVkXFDDB.js";function l(o){const e=c.c(3),{reference:m,file:a}=o,s=a??m.SMM2ImageFile,n=`soundEffect-image ${m.englishNameInHtml}-image`;let t;return e[0]!==s||e[1]!==n?(t=i.jsx(f,{file:s,className:n}),e[0]=s,e[1]=n,e[2]=t):t=e[2],t}export{l as S};
