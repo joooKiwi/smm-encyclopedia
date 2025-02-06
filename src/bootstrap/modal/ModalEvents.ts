@@ -5,7 +5,7 @@ import type {ModalEventCallback, ModalInstanceDeclaration} from 'bootstrap/modal
  *
  * @see https://getbootstrap.com/docs/5.2/components/modal/#events
  */
-export interface ModalEvents<I extends ModalInstanceDeclaration<any, any> = ModalInstanceDeclaration, > {
+export interface ModalEvents<I extends ModalInstanceDeclaration<any, any> = ModalInstanceDeclaration, > {// eslint-disable-line @typescript-eslint/no-explicit-any
 
     /** @see Modal.Events.show */
     readonly show: ModalEventCallback<I>

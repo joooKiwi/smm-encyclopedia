@@ -68,10 +68,10 @@ export class BootstrapInstanceHandler {
     }
 
 
-    public add<const T extends TooltipInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<const T extends PopoverInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<const T extends OffcanvasInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
-    public add<const T extends ModalInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T
+    public add<const T extends TooltipInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
+    public add<const T extends PopoverInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
+    public add<const T extends OffcanvasInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
+    public add<const T extends ModalInstance<any, any>, >(type: StringOrHTMLElement, instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
     public add<const T extends PossibleBootstrapInstance, >(type: StringOrHTMLElement, instance: T,): T {
         const template = typeof type == 'string'
             ? {id: type, element: document.getElementById(type,)!,}
@@ -94,25 +94,25 @@ export class BootstrapInstanceHandler {
      *
      * @param instance The instance to remove
      */
-    public remove<const T extends TooltipInstance<any, any>, >(instance: T,): T
+    public remove<const T extends TooltipInstance<any, any>, >(instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
     /**
      * Remove the {@link PopoverInstance} instance from the instance handled
      *
      * @param instance The instance to remove
      */
-    public remove<const T extends PopoverInstance<any, any>, >(instance: T,): T
+    public remove<const T extends PopoverInstance<any, any>, >(instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
     /**
      * Remove the {@link OffcanvasInstance} instance from the instance handled
      *
      * @param instance The instance to remove
      */
-    public remove<const T extends OffcanvasInstance<any, any>, >(instance: T,): T
+    public remove<const T extends OffcanvasInstance<any, any>, >(instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
     /**
      * Remove the {@link ModalInstance} instance from the instance handled
      *
      * @param instance The instance to remove
      */
-    public remove<const T extends ModalInstance<any, any>, >(instance: T,): T
+    public remove<const T extends ModalInstance<any, any>, >(instance: T,): T// eslint-disable-line @typescript-eslint/no-explicit-any
     public remove<const T extends PossibleBootstrapInstance, >(instance: T,): T {
         if (instance instanceof TooltipInstance)
             this.#tooltipMap?.delete(instance,)
@@ -135,5 +135,5 @@ export interface Template {
 
 }
 
-type PossibleBootstrapInstance = | TooltipInstance<any, any> | PopoverInstance<any, any> | OffcanvasInstance<any, any> | ModalInstance<any, any>
+type PossibleBootstrapInstance = | TooltipInstance<any, any> | PopoverInstance<any, any> | OffcanvasInstance<any, any> | ModalInstance<any, any>// eslint-disable-line @typescript-eslint/no-explicit-any
 type StringOrHTMLElement = | string | HTMLElement

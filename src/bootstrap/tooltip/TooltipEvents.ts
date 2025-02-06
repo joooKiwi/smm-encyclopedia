@@ -5,7 +5,7 @@ import type {TooltipEventCallback, TooltipInstanceDeclaration} from 'bootstrap/t
  *
  * @see https://getbootstrap.com/docs/5.2/components/tooltips/#events
  */
-export interface TooltipEvents<I extends TooltipInstanceDeclaration<any, any> = TooltipInstanceDeclaration, > {
+export interface TooltipEvents<I extends TooltipInstanceDeclaration<any, any> = TooltipInstanceDeclaration, > {// eslint-disable-line @typescript-eslint/no-explicit-any
 
     /** @see Tooltip.Events.show */
     readonly show: TooltipEventCallback<I>

@@ -101,4 +101,4 @@ export interface OffcanvasInstanceDeclaration<ELEMENT extends Element = Element,
 
 }
 
-export type OffcanvasEventCallback<I extends OffcanvasInstanceDeclaration<any, any> = OffcanvasInstanceDeclaration, > = (instance: I, event: Event,) => void
+export type OffcanvasEventCallback<I extends OffcanvasInstanceDeclaration<any, any> = OffcanvasInstanceDeclaration, > = (instance: I, event: Event,) => void// eslint-disable-line @typescript-eslint/no-explicit-any

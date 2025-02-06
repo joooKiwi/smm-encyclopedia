@@ -126,4 +126,4 @@ export interface PopoverInstanceDeclaration<ELEMENT extends HTMLElement = HTMLEl
 }
 
 
-export type PopoverEventCallback<I extends PopoverInstanceDeclaration<any, any> = PopoverInstanceDeclaration, > = (instance: I, event: Event,) => void
+export type PopoverEventCallback<I extends PopoverInstanceDeclaration<any, any> = PopoverInstanceDeclaration, > = (instance: I, event: Event,) => void// eslint-disable-line @typescript-eslint/no-explicit-any

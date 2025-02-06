@@ -53,7 +53,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
         this.#current = selectedValue
     }
 
-    protected _onSetCurrent(value: ENUM,): void {}
+    protected _onSetCurrent(value: ENUM,): void {}// eslint-disable-line @typescript-eslint/no-unused-vars
 
     //region -------------------- Current --------------------
     //region -------------------- Event --------------------

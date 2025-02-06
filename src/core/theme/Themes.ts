@@ -264,7 +264,7 @@ export abstract class Themes<const NAME extends PossibleEnglishName = PossibleEn
 
     public abstract get(property: ThemeProperty,): boolean
 
-    public getReference(entity: Entity,): CollectionHolder<Entity> {
+    public getReference(entity: Entity,): CollectionHolder<Entity> {// eslint-disable-line @typescript-eslint/no-unused-vars
         return EMPTY_COLLECTION_HOLDER
     }
 

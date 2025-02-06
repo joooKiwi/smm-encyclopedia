@@ -161,19 +161,19 @@ export class LimitGameStyles
         return 'success'
     }
 
-    public smbColor(isSelected: boolean,): PossibleColor {
+    public smbColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public smb3Color(isSelected: boolean,): PossibleColor {
+    public smb3Color(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public smwOrNsmbuColor(isSelected: boolean,): PossibleColor {
+    public smwOrNsmbuColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 
-    public sm3dwColor(isSelected: boolean,): PossibleColor {
+    public sm3dwColor(isSelected: boolean,): PossibleColor {// eslint-disable-line @typescript-eslint/no-unused-vars
         return 'success'
     }
 

@@ -16,7 +16,7 @@ interface TooltipProperties
 
     readonly option: Partial<TooltipFromBootstrap.Options>
 
-    readonly on?: Nullable<Partial<TooltipEvents<any>>>
+    readonly on?: Nullable<Partial<TooltipEvents<any>>>// eslint-disable-line @typescript-eslint/no-explicit-any
 
     readonly reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>
 

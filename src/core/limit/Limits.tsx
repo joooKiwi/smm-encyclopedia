@@ -839,7 +839,7 @@ export class Limits
     //endregion -------------------- Group link --------------------
     //region -------------------- Entity link --------------------
 
-    protected _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
+    protected _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {// eslint-disable-line @typescript-eslint/no-unused-vars
         return EMPTY_COLLECTION_HOLDER
     }
 

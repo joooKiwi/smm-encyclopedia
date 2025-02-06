@@ -19,7 +19,7 @@ export type TranslationMethod<N extends Namespace, > = TFunction<N, N>
  * @see SingleTranslationKey
  * @todo possibly add the possible values (if typescript doesn't fail)
  */
-export type TranslationReturnValue<N extends Namespace, V extends string = string, > = string
+export type TranslationReturnValue<N extends Namespace, V extends string = string, > = string// eslint-disable-line @typescript-eslint/no-unused-vars
 
 /**
  * A single translation key used for a translation

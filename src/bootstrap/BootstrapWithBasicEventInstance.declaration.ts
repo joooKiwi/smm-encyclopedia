@@ -42,4 +42,4 @@ export interface BootstrapWithBasicEventInstanceDeclaration<out INSTANCE extends
 
 }
 
-export type InstanceWithEventCallback<INSTANCE extends BootstrapWithBasicEventInstanceDeclaration<any, any, any, any, any, any, any> = BootstrapWithBasicEventInstanceDeclaration, > = (instance: INSTANCE, event: Event,) => void
+export type InstanceWithEventCallback<INSTANCE extends BootstrapWithBasicEventInstanceDeclaration<any, any, any, any, any, any, any> = BootstrapWithBasicEventInstanceDeclaration, > = (instance: INSTANCE, event: Event,) => void// eslint-disable-line @typescript-eslint/no-explicit-any

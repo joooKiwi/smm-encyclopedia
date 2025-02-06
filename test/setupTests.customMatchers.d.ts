@@ -33,9 +33,12 @@ interface CustomMatchers<out R = void, > {
 }
 
 declare module 'vitest' {
+
+    /* eslint-disable */
     interface Assertion extends CustomMatchers {}
 
     interface AsymmetricMatchersContaining<out R, > extends CustomMatchers<R> {}
 
     interface ExpectStatic extends CustomMatchers {}
+    /* eslint-enable */
 }

@@ -1223,7 +1223,7 @@ export abstract class SoundEffects
     //region -------------------- Getter methods (sound) --------------------
 
     public get soundsInNoSpecificGameStyleInSmm1(): CollectionHolder<SoundFile> { return this.#soundsInNoSpecificGameStyleInSmm1 ??= this._createSoundsInNoSpecificGameStyleInSmm1(this.soundsInNoSpecificGameStyleInSmm2,) }
-    protected _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
+    protected _createSoundsInNoSpecificGameStyleInSmm1(smm2: CollectionHolder<SoundFile>,): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }// eslint-disable-line @typescript-eslint/no-unused-vars
 
     public get soundsInNoSpecificGameStyleInSmm2(): CollectionHolder<SoundFile> { return this.#soundsInNoSpecificGameStyleInSmm2 ??= this._createSoundsInNoSpecificGameStyleInSmm2() }
     protected _createSoundsInNoSpecificGameStyleInSmm2(): CollectionHolder<SoundFile> { return EMPTY_COLLECTION_HOLDER }
