@@ -299,7 +299,7 @@ export function intersect<const T, >(first: | CollectionHolder<T> | Array<T>, se
 // }
 //
 // //endregion -------------------- filter --------------------
-//endregion -------------------- find --------------------
+//region -------------------- find --------------------
 
 export function getOrNullByTouchList(list: Nullable<TouchList>, identifier: number,): NullOr<Touch> {
     if (list == null)
