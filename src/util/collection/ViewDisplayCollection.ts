@@ -1,5 +1,4 @@
-import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {ViewDisplays} from 'display/ViewDisplays'
 import {Empty}        from 'util/emptyVariables'
@@ -13,9 +12,8 @@ const {LIST, CARD, TABLE,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
-    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
-    extends GenericCollectionHolder<T, REFERENCE> {
+export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays, >
+    extends GenericCollectionHolder<T> {
 
     //region -------------------- Fields --------------------
 

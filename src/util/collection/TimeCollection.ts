@@ -1,6 +1,5 @@
-import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Array}                                                                    from '@joookiwi/type'
-import {GenericCollectionHolder, hasAllWithCollectionHolderByArray, isEmptyByArray}    from '@joookiwi/collection'
+import type {Array}                                                                 from '@joookiwi/type'
+import {GenericCollectionHolder, hasAllWithCollectionHolderByArray, isEmptyByArray} from '@joookiwi/collection'
 
 import {Times} from 'core/time/Times'
 import {Empty} from 'util/emptyVariables'
@@ -10,9 +9,8 @@ import ALL_TIMES =   Times.ALL
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 import {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
-export class TimeCollection<const T extends Times = Times,
-    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
-    extends GenericCollectionHolder<T, REFERENCE> {
+export class TimeCollection<const T extends Times = Times, >
+    extends GenericCollectionHolder<T> {
 
     //region -------------------- Fields --------------------
 

@@ -1,6 +1,6 @@
-import type {CollectionHolder, PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import type {Nullable}                                                                                   from '@joookiwi/type'
-import {LazyGenericCollectionHolder}                                                                     from '@joookiwi/collection'
+import type {CollectionHolder}       from '@joookiwi/collection'
+import type {Nullable}               from '@joookiwi/type'
+import {LazyGenericCollectionHolder} from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -10,9 +10,8 @@ import {Empty}                 from 'util/emptyVariables'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
-export class GameStyleCollection<const T extends GameStyles = GameStyles,
-    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>>
-    extends LazyGenericCollectionHolder<T, REFERENCE> {
+export class GameStyleCollection<const T extends GameStyles = GameStyles, >
+    extends LazyGenericCollectionHolder<T> {
 
     //region -------------------- Fields --------------------
 

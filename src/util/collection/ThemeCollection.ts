@@ -1,6 +1,5 @@
-import type {Array}                                                                    from '@joookiwi/type'
-import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
-import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
+import type {Array}              from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {Themes} from 'core/theme/Themes'
 
@@ -8,9 +7,8 @@ import ALL =           Themes.ALL
 import COURSE_THEMES = Themes.COURSE_THEMES
 import WORLD_THEMES =  Themes.WORLD_THEMES
 
-export class ThemeCollection<const T extends Themes = Themes,
-    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
-    extends GenericCollectionHolder<T, REFERENCE> {
+export class ThemeCollection<const T extends Themes = Themes, >
+    extends GenericCollectionHolder<T> {
 
     //region -------------------- Fields --------------------
 

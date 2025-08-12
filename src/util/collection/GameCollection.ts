@@ -1,6 +1,6 @@
-import type {CollectionHolder, PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
- import type {Nullable, NullOr}                                                                           from '@joookiwi/type'
-import {GenericCollectionHolder}                                                                         from '@joookiwi/collection'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import type {Nullable}           from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
@@ -17,9 +17,8 @@ import SMM2_ONLY_GAMES =   Games.SMM2_ONLY
 import SMM3DS =            Games.SMM3DS
 import SMM3DS_ONLY_GAMES = Games.SMM3DS_ONLY
 
-export class GameCollection<const T extends Games = Games,
-    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
-    extends GenericCollectionHolder<T, REFERENCE> {
+export class GameCollection<const T extends Games = Games, >
+    extends GenericCollectionHolder<T> {
 
     //region -------------------- Fields --------------------
 
@@ -140,8 +139,8 @@ export namespace GameCollection {// eslint-disable-line @typescript-eslint/no-na
      *
      * @param value The value to get a defined {@link GameCollection}
      */
-    export function of1<const T extends Games,>(value: NullOr<T>,): GameCollection<T>
-    export function of1(value: NullOr<Games>,) {
+    export function of1<const T extends Games,>(value: Nullable<T>,): GameCollection<T>
+    export function of1(value: Nullable<Games>,) {
         if (value === SMM2)
             return SMM2_ONLY
         if (value === SMM1)
