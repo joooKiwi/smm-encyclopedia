@@ -65,35 +65,35 @@ export function testLanguages({
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
         test('French (Canada)', () => expect(french ?? canadianFrench).not.toBeNull(),)
         test('French (Europe)', () => expect(french ?? europeanFrench).not.toBeNull(),)
-        if (!excludedLanguages2.has('german',))
+        if (excludedLanguages2.hasNot('german',))
             test('German', () => expect(german).not.toBeNull(),)
-        if (!excludedLanguages2.has('spanish',)) {
-            if (!excludedLanguages2.has('spanish (america)',))
+        if (excludedLanguages2.hasNot('spanish',)) {
+            if (excludedLanguages2.hasNot('spanish (america)',))
                 test('Spanish (America)', () => expect(spanish ?? americanSpanish).not.toBeNull(),)
-            if (!excludedLanguages2.has('spanish (europe)',))
+            if (excludedLanguages2.hasNot('spanish (europe)',))
                 test('Spanish (Europe)', () => expect(spanish ?? europeanSpanish).not.toBeNull(),)
         }
-        if (!excludedLanguages2.has('italian',))
+        if (excludedLanguages2.hasNot('italian',))
             test('Italian', () => expect(italian).not.toBeNull(),)
-        if (!excludedLanguages2.has('dutch',))
+        if (excludedLanguages2.hasNot('dutch',))
             test('Dutch', () => expect(dutch).not.toBeNull(),)
-        if (!excludedLanguages2.has('portuguese',)) {
-            if (!excludedLanguages2.has('portuguese (america)',))
+        if (excludedLanguages2.hasNot('portuguese',)) {
+            if (excludedLanguages2.hasNot('portuguese (america)',))
                 test('Portuguese (America)', () => expect(portuguese ?? americanPortuguese).not.toBeNull(),)
-            if (!excludedLanguages2.has('portuguese (europe)',))
+            if (excludedLanguages2.hasNot('portuguese (europe)',))
                 test('Portuguese (Europe)', () => expect(portuguese ?? europeanPortuguese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.has('russian',))
+        if (excludedLanguages2.hasNot('russian',))
             test('Russian', () => expect(russian).not.toBeNull(),)
-        if (!excludedLanguages2.has('japanese',))
+        if (excludedLanguages2.hasNot('japanese',))
             test('Japanese', () => expect(japanese).not.toBeNull(),)
-        if (!(excludedLanguages2.has('chinese',))) {
-            if (!excludedLanguages2.has('traditional chinese',))
+        if (excludedLanguages2.hasNot('chinese',)) {
+            if (excludedLanguages2.hasNot('traditional chinese',))
                 test('Traditional chinese', () => expect(chinese ?? traditionalChinese).not.toBeNull(),)
-            if (!excludedLanguages2.has('simplified chinese',))
+            if (excludedLanguages2.hasNot('simplified chinese',))
                 test('Simplified chinese', () => expect(chinese ?? simplifiedChinese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.has('korean',))
+        if (excludedLanguages2.hasNot('korean',))
             test('Korean', () => expect(korean).not.toBeNull(),)
     },)
 }
@@ -124,35 +124,35 @@ export function testLanguagesDescription({
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
         test('French (Canada)', () => expect(french ?? canadianFrench).not.toBeNull(),)
         test('French (Europe)', () => expect(french ?? europeanFrench).not.toBeNull(),)
-        if (!excludedLanguages2.has('german',))
+        if (excludedLanguages2.hasNot('german',))
             test('German', () => expect(german).not.toBeNull(),)
-        if (!excludedLanguages2.has('spanish',)) {
-            if (!excludedLanguages2.has('spanish (america)',))
+        if (excludedLanguages2.hasNot('spanish',)) {
+            if (excludedLanguages2.hasNot('spanish (america)',))
                 test('Spanish (America)', () => expect(spanish ?? americanSpanish).not.toBeNull(),)
-            if (!excludedLanguages2.has('spanish (europe)',))
+            if (excludedLanguages2.hasNot('spanish (europe)',))
                 test('Spanish (Europe)', () => expect(spanish ?? europeanSpanish).not.toBeNull(),)
         }
-        if (!excludedLanguages2.has('italian',))
+        if (excludedLanguages2.hasNot('italian',))
             test('Italian', () => expect(italian).not.toBeNull(),)
-        if (!excludedLanguages2.has('dutch',))
+        if (excludedLanguages2.hasNot('dutch',))
             test('Dutch', () => expect(dutch).not.toBeNull(),)
-        if (!excludedLanguages2.has('portuguese',)) {
-            if (!excludedLanguages2.has('portuguese (america)',))
+        if (excludedLanguages2.hasNot('portuguese',)) {
+            if (excludedLanguages2.hasNot('portuguese (america)',))
                 test('Portuguese (America)', () => expect(portuguese ?? americanPortuguese).not.toBeNull(),)
-            if (!excludedLanguages2.has('portuguese (europe)',))
+            if (excludedLanguages2.hasNot('portuguese (europe)',))
                 test('Portuguese (Europe)', () => expect(portuguese ?? europeanPortuguese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.has('russian',))
+        if (excludedLanguages2.hasNot('russian',))
             test('Russian', () => expect(russian).not.toBeNull(),)
-        if (!excludedLanguages2.has('japanese',))
+        if (excludedLanguages2.hasNot('japanese',))
             test('Japanese', () => expect(japanese).not.toBeNull(),)
-        if (!excludedLanguages2.has('chinese',)) {
-            if (!excludedLanguages2.has('traditional chinese',))
+        if (excludedLanguages2.hasNot('chinese',)) {
+            if (excludedLanguages2.hasNot('traditional chinese',))
                 test('Traditional chinese', () => expect(chinese ?? traditionalChinese).not.toBeNull(),)
-            if (!excludedLanguages2.has('simplified chinese',))
+            if (excludedLanguages2.hasNot('simplified chinese',))
                 test('Simplified chinese', () => expect(chinese ?? simplifiedChinese).not.toBeNull(),)
         }
-        if (!excludedLanguages2.has('korean',))
+        if (excludedLanguages2.hasNot('korean',))
             test('Korean', () => expect(korean).not.toBeNull(),)
     },)
 }

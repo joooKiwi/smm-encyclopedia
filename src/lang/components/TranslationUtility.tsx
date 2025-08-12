@@ -48,7 +48,7 @@ export namespace TranslationUtility {// eslint-disable-line @typescript-eslint/n
         }
 
         const argumentsFound2 = new ArrayAsCollection(argumentsFound,)
-        const splitArguments = new ArrayAsCollection(value.split(STARTING_OR_ENDING_REGEX,),).filter(it => !argumentsFound2.has(it,),)
+        const splitArguments = new ArrayAsCollection(value.split(STARTING_OR_ENDING_REGEX,),).filter(it => argumentsFound2.hasNot(it,),)
         const splitArgumentsSize = splitArguments.size
         const argumentsFoundSize = argumentsFound2.size
         const finalArguments: MutableArray<ReactElementOrStringOrNumber> = []
