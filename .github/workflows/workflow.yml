@@ -22,16 +22,16 @@ jobs:
         node-version: [24.x]
 
     steps:
-      - name: Checkout of the repository
         uses: actions/checkout@v4
+      - name: Repository checkout
 
-      - name: Configuration of the Node v${{matrix.node-version}} setup
+      - name: Node v${{matrix.node-version}} configuration
         uses: actions/setup-node@v4
         with:
           node-version: ${{matrix.node-version}}
           cache: 'npm'
 
-      - name: Installation of the dependencies (for NPM)
+      - name: Dependencies installation
         run: npm ci --ignore-scripts
 
       - name: Conversion from CSV to Json
@@ -47,10 +47,10 @@ jobs:
 #      - name: Building typescript
 #        run: npm run typescript-build --ignore-scripts
 
-      - name: Building of the application
+      - name: Application building
         run: npm run build --ignore-scripts
 
-      - name: Deployment of the application
+      - name: Application deployment (with Git token)
         run: |
           git config --global user.name $user_name
           git config --global user.email $user_email
