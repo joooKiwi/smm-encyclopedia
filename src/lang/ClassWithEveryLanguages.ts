@@ -8,7 +8,7 @@ import type {EveryLanguages}                from 'lang/EveryLanguages'
  * The English & French are included in the first type
  * since they are always complete in the current project.
  *
- * As a reference, this class utilise the simple language without the region as well
+ * As a reference, this class utilize the simple language without the region as well
  * as every language included inside {@link ClassWithOnlyProjectLanguages}
  */
 export interface ClassWithEveryLanguages<out T,
