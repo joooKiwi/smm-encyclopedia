@@ -4,7 +4,6 @@ import type {CharactersTrait}                                                   
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                              from 'lang/ClassWithEveryLanguages'
 import type {PossibleAcronym as PossibleAcronym_All, PossibleEnglishName as PossibleEnglishName_All, PossibleInternationalAcronym as PossibleInternationalAcronym_All, PossibleOriginalName as PossibleOriginalName_All, PossibleSpaceCharacter}                from 'lang/EveryLanguages.types'
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from 'lang/ProjectLanguages.types'
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                           from 'lang/name/containers/Language'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                from 'util/enumerable/ClassWithIsCurrent'
 
 export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_All | PossibleAcronym_Project,
@@ -57,11 +56,11 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
     get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T
 
 
-    original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
+    original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | ArrayOf2<T>
 
-    original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
+    original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | ArrayOf2<T>>
 
-    original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
+    original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): NullOr<| T | ArrayOf2<T>>
 
     //endregion -------------------- Methods --------------------
 

@@ -1,14 +1,14 @@
 import type {NullOrString}  from '@joookiwi/type'
 import type {GameStructure} from 'core/game/GameStructure'
 
-import {SimpleNameBuilder} from 'lang/name/SimpleName.builder'
+import {UniqueValueNameBuilder} from 'lang/name/UniqueValueName.builder'
 
 type MarioWikiLinkOnSMM1 = `${MarioWikiStartingUrl}.${MarioWikiDomain}/Super_Mario_Maker`
 type MarioWikiLinkOnSMM3DS = NullOrString<`${MarioWikiStartingUrl}.${Exclude<MarioWikiDomain, 'net'>}/Super_Mario_Maker_for_Nintendo_3DS`>
 type MarioWikiLinkOnSMM2 = `${MarioWikiStartingUrl}.${MarioWikiDomain}/Super_Mario_Maker_2`
 type MarioWikiStartingUrl = 'https://www.mariowiki'
 type MarioWikiDomain = | 'com' | 'net' | 'it'
-export const SUPER_MARIO_WIKI_LINK = new SimpleNameBuilder<GameStructure<MarioWikiLinkOnSMM1, MarioWikiLinkOnSMM3DS, MarioWikiLinkOnSMM2>>()
+export const SUPER_MARIO_WIKI_LINK = new UniqueValueNameBuilder<GameStructure<MarioWikiLinkOnSMM1, MarioWikiLinkOnSMM3DS, MarioWikiLinkOnSMM2>>()
     .setEnglish({superMarioMaker: 'https://www.mariowiki.com/Super_Mario_Maker', superMarioMakerForNintendo3DS: 'https://www.mariowiki.com/Super_Mario_Maker_for_Nintendo_3DS', superMarioMaker2: 'https://www.mariowiki.com/Super_Mario_Maker_2',},)
     .setGerman({superMarioMaker: 'https://www.mariowiki.net/Super_Mario_Maker', superMarioMakerForNintendo3DS: null, superMarioMaker2: 'https://www.mariowiki.net/Super_Mario_Maker_2',},)
     .setItalian({superMarioMaker: 'https://www.mariowiki.it/Super_Mario_Maker', superMarioMakerForNintendo3DS: 'https://www.mariowiki.it/Super_Mario_Maker_for_Nintendo_3DS', superMarioMaker2: 'https://www.mariowiki.it/Super_Mario_Maker_2',},)

@@ -1,43 +1,43 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
 
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
-import type {Builder}                                                                 from 'util/builder/Builder'
+import type {Builder} from 'util/builder/Builder'
 
-import {SimpleNameContainer} from 'lang/name/SimpleName.container'
-import {assert}              from 'util/utilitiesMethods'
+import {UniqueValueNameContainer} from 'lang/name/UniqueValueName.container'
+import {assert}                   from 'util/utilitiesMethods'
 
-/** @deprecated Use the class directly or a child name instead */
-export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
-    implements Builder<SimpleNameContainer<T>> {
+/**
+ * A {@link Builder} class that will eventually create a {@link UniqueValueNameContainer}
+ *
+ * @typeParam T The non-null type to be applied
+ * @see UniqueValueNameContainer
+ */
+export class UniqueValueNameBuilder<const T extends NonNullable<unknown>, >
+    implements Builder<UniqueValueNameContainer<T>> {
 
     //region -------------------- Fields --------------------
 
-    #english?: NullOr<AmericanOrEuropeanOriginal<T>>
-    #french?: NullOr<CanadianOrEuropeanOriginal<T>>
+    #english?: NullOr<T>
+    #french?: NullOr<T>
     #german?: NullOr<T>
-    #spanish?: NullOr<AmericanOrEuropeanOriginal<T>>
+    #spanish?: NullOr<T>
     #italian?: NullOr<T>
     #dutch?: NullOr<T>
-    #portuguese?: NullOr<AmericanOrEuropeanOriginal<T>>
+    #portuguese?: NullOr<T>
     #russian?: NullOr<T>
     #japanese?: NullOr<T>
-    #chinese?: NullOr<ChineseOriginal<T>>
+    #chinese?: NullOr<T>
     #korean?: NullOr<T>
-    #hebrew?: NullOr<T>
-    #polish?: NullOr<T>
-    #ukrainian?: NullOr<T>
-    #greek?: NullOr<T>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter & setter methods --------------------
 
     //region -------------------- English getter & setter methods --------------------
 
-    public get english(): NullOr<AmericanOrEuropeanOriginal<T>> {
+    public get english(): NullOr<T> {
         return this.#english ?? null
     }
 
-    public setEnglish(value: Nullable<AmericanOrEuropeanOriginal<T>>,): this {
+    public setEnglish(value: Nullable<T>,): this {
         this.#english = value ?? null
         return this
     }
@@ -45,11 +45,11 @@ export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
     //endregion -------------------- English getter & setter methods --------------------
     //region -------------------- French getter & setter methods --------------------
 
-    public get french(): NullOr<CanadianOrEuropeanOriginal<T>> {
+    public get french(): NullOr<T> {
         return this.#french ?? null
     }
 
-    public setFrench(value: Nullable<CanadianOrEuropeanOriginal<T>>,): this {
+    public setFrench(value: Nullable<T>,): this {
         this.#french = value ?? null
         return this
     }
@@ -69,11 +69,11 @@ export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
     //endregion -------------------- German getter & setter methods --------------------
     //region -------------------- Spanish getter & setter methods --------------------
 
-    public get spanish(): NullOr<AmericanOrEuropeanOriginal<T>> {
+    public get spanish(): NullOr<T> {
         return this.#spanish ?? null
     }
 
-    public setSpanish(value: Nullable<AmericanOrEuropeanOriginal<T>>,): this {
+    public setSpanish(value: Nullable<T>,): this {
         this.#spanish = value ?? null
         return this
     }
@@ -105,11 +105,11 @@ export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
     //endregion -------------------- Dutch getter & setter methods --------------------
     //region -------------------- Portuguese getter & setter methods --------------------
 
-    public get portuguese(): NullOr<AmericanOrEuropeanOriginal<T>> {
+    public get portuguese(): NullOr<T> {
         return this.#portuguese ?? null
     }
 
-    public setPortuguese(value: Nullable<AmericanOrEuropeanOriginal<T>>,): this {
+    public setPortuguese(value: Nullable<T>,): this {
         this.#portuguese = value ?? null
         return this
     }
@@ -141,11 +141,11 @@ export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
     //endregion -------------------- Japanese getter & setter methods --------------------
     //region -------------------- Chinese getter & setter methods --------------------
 
-    public get chinese(): NullOr<ChineseOriginal<T>> {
+    public get chinese(): NullOr<T> {
         return this.#chinese ?? null
     }
 
-    public setChinese(value: Nullable<ChineseOriginal<T>>,): this {
+    public setChinese(value: Nullable<T>,): this {
         this.#chinese = value ?? null
         return this
     }
@@ -163,62 +163,14 @@ export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
     }
 
     //endregion -------------------- Korean getter & setter methods --------------------
-    //region -------------------- Hebrew getter & setter methods --------------------
-
-    public get hebrew(): NullOr<T> {
-        return this.#hebrew ?? null
-    }
-
-    public setHebrew(value: Nullable<T>,): this {
-        this.#hebrew = value ?? null
-        return this
-    }
-
-    //endregion -------------------- Hebrew getter & setter methods --------------------
-    //region -------------------- Polish getter & setter methods --------------------
-
-    public get polish(): NullOr<T> {
-        return this.#polish ?? null
-    }
-
-    public setPolish(value: Nullable<T>,): this {
-        this.#polish = value ?? null
-        return this
-    }
-
-    //endregion -------------------- Polish getter & setter methods --------------------
-    //region -------------------- Ukrainian getter & setter methods --------------------
-
-    public get ukrainian(): NullOr<T> {
-        return this.#ukrainian ?? null
-    }
-
-    public setUkrainian(value: Nullable<T>,): this {
-        this.#ukrainian = value ?? null
-        return this
-    }
-
-    //endregion -------------------- Ukrainian getter & setter methods --------------------
-    //region -------------------- Greek getter & setter methods --------------------
-
-    public get greek(): NullOr<T> {
-        return this.#greek ?? null
-    }
-
-    public setGreek(value: Nullable<T>,): this {
-        this.#greek = value ?? null
-        return this
-    }
-
-    //endregion -------------------- Greek getter & setter methods --------------------
 
     //endregion -------------------- Getter & setter methods --------------------
 
-    public build(): SimpleNameContainer<T> {
+    public build(): UniqueValueNameContainer<T> {
         const {english,} = this
         assert(english != null, 'The english reference has not been initialized.',)
 
-        return new SimpleNameContainer(
+        return new UniqueValueNameContainer(
             english,
             this.french,
             this.german,
@@ -230,10 +182,6 @@ export class SimpleNameBuilder<const T extends NonNullable<unknown>, >
             this.japanese,
             this.chinese,
             this.korean,
-            this.hebrew,
-            this.polish,
-            this.ukrainian,
-            this.greek,
         )
     }
 }
