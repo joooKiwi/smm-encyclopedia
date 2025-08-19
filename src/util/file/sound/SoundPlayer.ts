@@ -155,6 +155,19 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
     public get isMuted(): boolean { return this._audio?.muted ?? false }
 
     /**
+     * Change the {@link audio audio element} {@link HTMLAudioElement.muted muted}
+     *
+     * @note If the {@link audio audio element} {@link hasBeenLoaded has not been loaded},
+     *       then nothing is done
+     */
+    public set isMuted(value: boolean,) {
+        const audio = this._audio
+        if (audio == null)
+            return
+        audio.muted = value
+    }
+
+    /**
      * The {@link audio audio element} is {@link HTMLAudioElement.paused paused}
      *
      * @note If the {@link audio audio element} {@link hasBeenLoaded has not been loaded},
@@ -211,7 +224,7 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
      * The {@link audio audio element} {@link HTMLAudioElement.volume volume}
      *
      * @note If the {@link audio audio element} {@link hasBeenLoaded has not been loaded},
-     *       then only <b>false</b> is returned
+     *       then only {@link Number.NaN NaN} is returned
      */
     public get volume(): number { return this._audio?.volume ?? Number.NaN }
 
