@@ -49,11 +49,6 @@ export type EmptyCourseAndWorldThemeName = 'Empty course & world theme'
 export type EmptyNameName = 'Empty name'
 
 //endregion -------------------- Name types --------------------
-//region -------------------- Sound effect types --------------------
-
-export type EmptySMMSoundEffectSoundName = 'Empty sound effect sound'
-
-//endregion -------------------- Sound effect types --------------------
 //region -------------------- Sound effect category types --------------------
 
 export type EmptySoundEffectCategoryName = 'Empty sound effect category'
@@ -76,11 +71,6 @@ export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category'
 export type EmptyPredefinedMessageName = 'Empty predefined message'
 
 //endregion -------------------- Predefined message types --------------------
-//region -------------------- Music types --------------------
-
-export type EmptySingleBackgroundMusicName = 'Empty single "background music"'
-
-//endregion -------------------- Music types --------------------
 
 export type EveryPossibleEmptyName =
     | EmptyEntityName
@@ -96,14 +86,11 @@ export type EveryPossibleEmptyName =
 
     | EmptyNameName
 
-    | EmptySMMSoundEffectSoundName
     | EmptySoundEffectCategoryName
 
     | EmptyMiiCostumeName
     | EmptyMiiCostumeCategoryName
 
     | EmptyPredefinedMessageName
-
-    | EmptySingleBackgroundMusicName
 
 //endregion -------------------- Empty names types --------------------
