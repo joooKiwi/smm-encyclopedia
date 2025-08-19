@@ -26,7 +26,6 @@ import {Games}                                      from 'core/game/Games'
 import GameImage                                    from 'core/game/component/GameImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import GameStyleImage                               from 'core/gameStyle/component/GameStyleImage'
-import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
@@ -56,7 +55,6 @@ const {
     LAKITU_CLOUD,
 } = EditorEntityImages
 const {MYSTERY_MUSHROOM, WEIRD_MUSHROOM, SHOE, STILETTO,} = InGameEntityImages
-const {POWER_UP,} = OtherWordInTheGames
 const {DOWN, RIGHT,} = Arrows
 
 //endregion -------------------- Import from deconstruction --------------------
@@ -163,14 +161,7 @@ type PriorityAppProperties = AppPropertiesWithType<PowerUpPriorityTypes>
  */
 export default function PriorityApp({type, games, gameStyles,}: PriorityAppProperties,) {
     return <SubMain partial-id="priority" viewDisplay={ViewDisplays.NONE}>
-        <AppTitle>{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
-            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
-            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
-            ride: gameContentTranslation('ride.singular',).toLowerCase(),
-            rides: gameContentTranslation('ride.plural',).toLowerCase(),
-            hat: gameContentTranslation('hat.singular',).toLowerCase(),
-            hats: gameContentTranslation('hat.plural',).toLowerCase(),
-        },)}</AppTitle>
+        <AppTitle>{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`,)}</AppTitle>
         <PageTitle value={unfinishedText('Priority',)}/>
         <PageViewChanger>
             <GameAsideContent type={type} games={games} gameStyles={gameStyles}/>

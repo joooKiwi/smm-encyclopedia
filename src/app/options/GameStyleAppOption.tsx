@@ -7,7 +7,6 @@ import type {GameStyles}        from 'core/gameStyle/GameStyles'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
 import {TableOption}            from 'app/tools/table/TableOption'
-import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import GameStyleImage           from 'core/gameStyle/component/GameStyleImage'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
 import {Themes}                 from 'core/theme/Themes'
@@ -60,7 +59,7 @@ export abstract class GameStyleAppOption
                     <TimeImage reference={Times.NIGHT}/>
                 </div>,
                 tooltip: gameContentTranslation('Wind effect (night desert)', {
-                    night: unfinishedText('night'),//TODO add night reference
+                    night: gameContentTranslation('time.night'),
                     desert: LanguageCompanion.current.get(Themes.DESERT.reference)!.toLowerCase(),
                 },),
             }

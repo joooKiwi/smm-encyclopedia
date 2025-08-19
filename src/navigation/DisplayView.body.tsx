@@ -141,9 +141,8 @@ export default function DisplayViewBody() {
                                         tooltipValue={gameContentTranslation('course tag.display all', {course: courseAsLowerCase, courses: coursesAsLowerCase, tag: tagAsLowerCase, tags: tagsAsLowerCase,})}/>
             </div> : null}
             {isSMM2Selected ? <div key="button group (predefined message - SMM2)" id="predefinedMessage-buttonGroup" className="btn-group col-12 col-sm-6 col-lg-4" role="group">
-                <DisplayViewRouteButton routeName="everyPredefinedMessage" value={unfinishedText('predefined message')}//TODO add predefined message reference
-                                        tooltipValue={gameContentTranslation('predefined message.display all', {singularName: unfinishedText('predefined message'), pluralName: unfinishedText('predefined messages'),},)}/>
-                {/*TODO add predefined message (singular & plural)*/}
+                <DisplayViewRouteButton routeName="everyPredefinedMessage" value={gameContentTranslation('predefined message.singular')}
+                                        tooltipValue={gameContentTranslation('predefined message.display all',)}/>
             </div> : null}
         </div>
         <div id="display-other-container" className="container">

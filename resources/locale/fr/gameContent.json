@@ -239,49 +239,52 @@
   },
   "power-up, ride & hat priority": {
     "power-up": {
-      "all":         "Toutes les priorités d'{{powerUps}}",
-      "display all": "Afficher toutes les priorités d'{{powerUps}}"
+      "all":         "Toutes les priorités d'améliorations",
+      "display all": "Afficher toutes les priorités d'améliorations"
     },
     "ride": {
-      "all":         "Toutes les priorités de {{rides}}",
-      "display all": "Afficher toutes les priorités de {{rides}}"
+      "all":         "Toutes les priorités de montures",
+      "display all": "Afficher toutes les priorités de montures"
     },
     "hat": {
-      "all":         "Toutes les priorités de {{hats}}",
-      "display all": "Afficher toutes les priorités de {{hats}}"
+      "all":         "Toutes les priorités de chapeaux",
+      "display all": "Afficher toutes les priorités de chapeaux"
     },
     "power-up & ride": {
-      "singular": "{{PowerUp}} & {{ride}}",
-      "plural":   "{{PowerUps}} & {{rides}}",
+      "singular": "Amélioration & monture",
+      "plural":   "Améliorations & montures",
 
-      "all":         "Toutes les priorités d'{{powerUps}} & de {{rides}}",
-      "display all": "Afficher toutes les priorités d'{{powerUps}} & de {{rides}}"
+      "all":         "Toutes les priorités d'améliorations & de montures",
+      "display all": "Afficher toutes les priorités d'améliorations & de montures"
     },
     "power-up & hat": {
-      "singular": "{{PowerUp}} & {{hat}}",
-      "plural":   "{{PowerUps}} & {{hats}}",
+      "singular": "Amélioration & chapeau",
+      "plural":   "Améliorations & chapeaux",
 
-      "all":         "Toutes les priorités d'{{powerUps}} & de {{hats}}",
-      "display all": "Afficher toutes les priorités d'{{powerUps}} & de {{hats}}"
+      "all":         "Toutes les priorités d'améliorations & de chapeaux",
+      "display all": "Afficher toutes les priorités d'améliorations & de chapeaux"
     },
     "ride & hat": {
-      "singular": "{{Ride}} & {{hat}}",
-      "plural":   "{{Rides}} & {{hats}}",
+      "singular": "Monture & chapeau",
+      "plural":   "Montures & chapeaux",
 
-      "all":         "Toutes les priorités de {{rides}} & de {{hats}}",
-      "display all": "Afficher toutes les priorités de {{rides}} & de {{hats}}"
+      "all":         "Toutes les priorités de montures & de chapeaux",
+      "display all": "Afficher toutes les priorités de montures & de chapeaux"
     },
     "all": {
-      "singular": "{{PowerUp}}, {{ride}} & {{hat}}",
-      "plural":   "{{PowerUps}}, {{rides}} & {{hats}}",
+      "singular": "Amélioration, monture & chapeau",
+      "plural":   "Améliorations, montures & chapeaux",
 
-      "all":         "Toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}",
-      "display all": "Afficher toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}"
+      "all":         "Toutes les priorités d'améliorations, de montures & de chapeaux",
+      "display all": "Afficher toutes les priorités d'améliorations, de montures & de chapeaux"
     }
   },
   "predefined message": {
-    "all":         "Tous les {{pluralName}}",
-    "display all": "Afficher tous les {{pluralName}}"
+    "singular": "Message prédéfini",
+    "plural":   "Messages prédéfinis",
+
+    "all":         "Tous les messages prédéfinis",
+    "display all": "Afficher tous les messages prédéfinis"
   },
   "sample course": {
     "singular": "Échantillon de {{singularName}}",

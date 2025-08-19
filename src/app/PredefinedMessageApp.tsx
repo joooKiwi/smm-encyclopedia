@@ -40,10 +40,7 @@ type PredefinedMessageAppProperties = AppProperties
 /** @reactComponent */
 export default function PredefinedMessageApp({viewDisplay, games,}: PredefinedMessageAppProperties,) {
     return <SubMain partial-id="predefinedMessage" viewDisplay={viewDisplay}>
-        <AppTitle>{gameContentTranslation('predefined message.all', {
-            singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
-            pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
-        },)}</AppTitle>
+        <AppTitle>{gameContentTranslation('predefined message.all',)}</AppTitle>
         <PageTitle value={unfinishedText('Predefined message',)}/>
         <Smm2OnlyAlert value={games}/>
         <PageViewChanger>
@@ -95,10 +92,7 @@ function PredefinedMessageTable({items,}: PredefinedMessage_SubContentProperties
 }
 
 function getCaption() {
-    return gameContentTranslation('predefined message.all', {
-        singularName: unfinishedText('predefined message',),//TODO add predefined reference (singular form)
-        pluralName: unfinishedText('predefined messages',),//TODO add predefined reference (plural form)
-    },)
+    return gameContentTranslation('predefined message.all',)
 }
 
 //endregion -------------------- Sub content --------------------

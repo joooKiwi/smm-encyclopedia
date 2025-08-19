@@ -239,49 +239,52 @@
   },
   "power-up, ride & hat priority": {
     "power-up": {
-      "all":         "Every {{powerUp}} priority",
-      "display all": "Display every {{powerUp}} priority"
+      "all":         "Every power-up priority",
+      "display all": "Display every power-up priority"
     },
     "ride": {
-      "all":         "Every {{ride}} priority",
-      "display all": "Display every {{ride}} priority"
+      "all":         "Every ride priority",
+      "display all": "Display every ride priority"
     },
     "hat": {
-      "all":         "Every {{hat}} priority",
-      "display all": "Display every {{hat}} priority"
+      "all":         "Every hat priority",
+      "display all": "Display every hat priority"
     },
     "power-up & ride": {
-      "singular": "{{PowerUp}} & {{ride}}",
-      "plural":   "{{PowerUps}} & {{rides}}",
+      "singular": "Power-up & ride",
+      "plural":   "Power-ups & rides",
 
-      "all":         "Every {{powerUp}} & {{ride}} priority",
-      "display all": "Display every {{powerUp}} & {{ride}} priority"
+      "all":         "Every power-up & ride priority",
+      "display all": "Display every power-up & ride priority"
     },
     "power-up & hat": {
-      "singular": "{{PowerUp}} & {{hat}}",
-      "plural":   "{{PowerUps}} & {{hats}}",
+      "singular": "Power-up & hat",
+      "plural":   "Power-ups & hats",
 
-      "all":         "Every {{powerUp}} & {{hat}} priority",
-      "display all": "Display every {{powerUp}} & {{hat}} priority"
+      "all":         "Every power-up & hat priority",
+      "display all": "Display every power-up & hat priority"
     },
     "ride & hat": {
-      "singular": "{{Ride}} & {{hat}}",
-      "plural":   "{{Rides}} & {{hats}}",
+      "singular": "Ride & hat",
+      "plural":   "Rides & hats",
 
-      "all":         "Every {{ride}} & {{hat}} priority",
-      "display all": "Display every {{ride}} & {{hat}} priority"
+      "all":         "Every ride & hat priority",
+      "display all": "Display every ride & hat priority"
     },
     "all": {
-      "singular": "{{PowerUp}}, {{ride}} & {{hat}}",
-      "plural":   "{{PowerUps}}, {{rides}} & {{hats}}",
+      "singular": "Power-up, ride & hat",
+      "plural":   "Power-ups, rides & hats",
 
-      "all":         "Every {{powerUp}}, {{ride}} & {{hat}} priority",
-      "display all": "Display every {{powerUp}}, {{ride}} & {{hat}} priority"
+      "all":         "Every power-up, ride & hat priority",
+      "display all": "Display every power-up, ride & hat priority"
     }
   },
   "predefined message": {
-    "all":         "Every {{singularName}}",
-    "display all": "Display every {{singularName}}"
+    "singular": "Predefined message",
+    "plural":   "Predefined messages",
+
+    "all":         "Every predefined message",
+    "display all": "Display every predefined message"
   },
   "sample course": {
     "singular": "Sample {{singularName}}",
