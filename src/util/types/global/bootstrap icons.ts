@@ -2,7 +2,7 @@ export {}
 
 declare global {
 
-    export type PossibleBootstrapIcon = PossibleBootstrapIconV1_11
+    export type PossibleBootstrapIcon = PossibleBootstrapIconV1_13
 
     //region -------------------- 1.0 --------------------
 
@@ -1740,5 +1740,50 @@ declare global {
                                       | 'vignette'
 
     //endregion -------------------- 1.11 --------------------
+    //region -------------------- 1.12 --------------------
+
+    /**
+     * The possible Boostrap icons that were released in the **version 1.12**.
+     *
+     * @note There is 2051 icons (1 more than the version **1.11**)
+     *
+     * @see https://blog.getbootstrap.com/2025/05/09/bootstrap-icons-1-12-1-13 Bootstrap 1.12 (May 4th, 2025)
+     * @see PossibleBootstrapIconV1_11
+     */
+    type PossibleBootstrapIconV1_12 = | PossibleBootstrapIconV1_11
+                                      | 'bluesky'
+
+    //endregion -------------------- 1.12 --------------------
+    //region -------------------- 1.13 --------------------
+
+    /**
+     * The possible Boostrap icons that were released in the **version 1.13**.
+     *
+     * @note There is 2051 icons (31 more than the version **1.12**)
+     *
+     * @see https://blog.getbootstrap.com/2025/05/09/bootstrap-icons-1-12-1-13 Bootstrap 1.13 (May 9th, 2025)
+     * @see PossibleBootstrapIconV1_12
+     */
+    type PossibleBootstrapIconV1_13 = | PossibleBootstrapIconV1_12
+                                      | 'measuring-cup' | 'measuring-cup-fill'
+                                      | 'beaker' | 'beaker-fill'
+                                      | 'flask-florence' | 'flask-florence-fill'
+                                      | 'flask' | 'flask-fill'
+                                      | 'lock' | 'lock-fill'
+                                      | 'unlock' | 'unlock-fill'
+                                      | 'unlock2' | 'unlock2-fill'
+                                      | 'leaf' | 'leaf-fill'
+                                      | 'battery-low'
+                                      | 'openai'
+                                      | 'perplexity'
+                                      | 'css'| 'javascript' | 'typescript'
+                                      | 'claude'
+                                      | 'anthropic'
+                                      | 'apple-music'
+                                      | 'tux'
+                                      | 'fork-knife'
+                                      | 'globe-americas-fill' | 'globe-asia-australia-fill' | 'globe-central-south-asia-fill' | 'globe-europe-africa-fill'
+
+    //endregion -------------------- 1.13 --------------------
 
 }
