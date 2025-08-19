@@ -27,6 +27,7 @@ import type {SoundEffects}          from 'core/soundEffect/SoundEffects'
 import type {SoundEffectCategories} from 'core/soundEffectCategory/SoundEffectCategories'
 import type {Themes}                from 'core/theme/Themes'
 import type {Times}                 from 'core/time/Times'
+import type {Tracks}                from 'core/track/Tracks'
 import type {Versions}              from 'core/version/Versions'
 import type {EveryRoutes}           from 'route/EveryRoutes'
 
@@ -61,6 +62,7 @@ interface Test {
     SoundEffectCategories?: typeof SoundEffectCategories
     Themes?: typeof Themes
     Times?: typeof Times
+    Tracks?: typeof Tracks
     Versions?: typeof Versions
 
 

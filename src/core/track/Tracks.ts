@@ -9,6 +9,9 @@ import {nonRepeatable}           from 'core/track/file/nonRepeatable'
 import {repeatableAtTheEnd}      from 'core/track/file/repeatableAtTheEnd'
 import {repeatableDuringThePlay} from 'core/track/file/repeatableDuringThePlay'
 
+/**
+ * @todo add other musics (from title screen, world theme, star, p-switch)
+ */
 export class Tracks<const FILE extends NullOr<SoundFile> = NullOr<SoundFile>,
     const TITLE_NAME extends string = string, >
     extends Enum<Ordinals, Names> {
@@ -1070,3 +1073,6 @@ export namespace Tracks {// eslint-disable-line @typescript-eslint/no-namespace
     //endregion -------------------- Fields (sound effect) --------------------
 
 }
+
+//TODO remove this test variable when the application will be complete
+(window.test ??= {}).Tracks = Tracks
