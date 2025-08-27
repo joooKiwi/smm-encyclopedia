@@ -6,7 +6,7 @@ import type {SoundPlayer} from 'util/file/sound/SoundPlayer'
 
 import {getOrCreateSoundPlayer, getSoundPlayer} from 'util/file/sound/method/soundPlayer.retriever'
 
-export function useSoundPlayer(file: SoundFile, title: string,): readonly [hasExceptionCaught: boolean, isLoading: boolean, isPlaying: boolean, currentTime: NullOrNumber, setCurrentTime: (value: number) => void, totalTime: NullOrNumber, soundPlayer: SoundPlayer,] {
+export function useSoundPlayer(file: SoundFile, title: string,): readonly [hasExceptionCaught: boolean, isLoading: boolean, isPlaying: boolean, currentTime: NullOrNumber, setCurrentTime: (value: number,) => void, totalTime: NullOrNumber, isMuted: boolean, setMuted: (value: boolean,) => void, soundPlayer: SoundPlayer,] {
     useEffect(() => () => {
         const soundPlayer = getSoundPlayer(file,)
         if (soundPlayer == null)
@@ -19,6 +19,7 @@ export function useSoundPlayer(file: SoundFile, title: string,): readonly [hasEx
     const [isLoading, setLoading,] = useState(false,)
     const soundPlayer = useMemo(() => getOrCreateSoundPlayer(file, title,), [file, title,],)
     const [isPlaying, setPlaying,] = useState(false,)
+    const [isMuted, setMuted,] = useState(false,)
     const [currentTime, setCurrentTime,] = useState<NullOrNumber>(null,)
     const [totalTime, setTotalTime,] = useState<NullOrNumber>(null,)
     soundPlayer
@@ -30,5 +31,10 @@ export function useSoundPlayer(file: SoundFile, title: string,): readonly [hasEx
         .setOnPauseEvent(() => setPlaying(false,),)
         .setOnTimeChangedEvent(it => setCurrentTime(it.currentTime,),)
 
-    return [hasExceptionCaught, isLoading, isPlaying, currentTime, it => soundPlayer.currentTime = it, totalTime, soundPlayer,]
+    return [
+        hasExceptionCaught, isLoading, isPlaying,
+        currentTime, it => soundPlayer.currentTime = it, totalTime,
+        isMuted, it => setMuted(soundPlayer.isMuted = it,),
+        soundPlayer,
+    ]
 }

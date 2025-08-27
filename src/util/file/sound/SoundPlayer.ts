@@ -29,6 +29,8 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
     #onAfterPause?: NullOr<SoundPlayerCallback<this>>
     #onBeforeStop?: NullOr<SoundPlayerCallback<this>>
     #onAfterStop?: NullOr<SoundPlayerCallback<this>>
+    #onBeforeMute?: NullOr<SoundPlayerCallback<this>>
+    #onAfterMute?: NullOr<SoundPlayerCallback<this>>
 
     #onExceptionCaught?: NullOr<ExceptionCallback<this>>
 
@@ -140,10 +142,11 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
      *       then nothing is done
      */
     public set isMuted(value: boolean,) {
+        this.onBeforeMute?.(this,)
         const audio = this._audio
-        if (audio == null)
-            return
-        audio.muted = value
+        if (audio != null)
+            audio.muted = value
+        this.onAfterMute?.(this,)
     }
 
     /**
@@ -219,6 +222,20 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
     public set onAfterPlay(value: Nullable<SoundPlayerCallback<this>>,) { this.#onAfterPlay = value ?? null }
     public setOnAfterPlay(value: Nullable<SoundPlayerCallback<this>>,): this {
         this.onAfterPlay = value
+        return this
+    }
+
+    public get onBeforeMute(): NullOr<SoundPlayerCallback<this>> { return this.#onBeforeMute ?? null }
+    public set onBeforeMute(value: Nullable<SoundPlayerCallback<this>>,) { this.#onBeforeMute = value ?? null }
+    public setOnBeforeMute(value: Nullable<SoundPlayerCallback<this>>,): this {
+        this.onBeforeMute = value
+        return this
+    }
+
+    public get onAfterMute(): NullOr<SoundPlayerCallback<this>> { return this.#onAfterMute ?? null }
+    public set onAfterMute(value: Nullable<SoundPlayerCallback<this>>,) { this.#onAfterMute = value ?? null }
+    public setOnAfterMute(value: Nullable<SoundPlayerCallback<this>>,): this {
+        this.onAfterMute = value
         return this
     }
 
