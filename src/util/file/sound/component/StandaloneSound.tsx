@@ -36,6 +36,7 @@ export default function StandaloneSound(properties: StandaloneSoundProperties,) 
 /** @reactComponent */
 function SubContent({file, title,}: StandaloneSoundProperties,) {
     const [hasExceptionCaught, isLoading, isPlaying, currentTime, setCurrentTime, totalTime, isMuted, setMuted, soundPlayer,] = useSoundPlayer(file, title,)
+    const loopingTime = file.repeatableTime?.second
 
     if (hasExceptionCaught)
         return <ExceptionIcon/>
@@ -57,6 +58,6 @@ function SubContent({file, title,}: StandaloneSoundProperties,) {
         {isPlaying ? <PauseButton action={pauseAction}/> : <PlayButton action={playAction}/>}
         <StopButton action={stopAction}/>
         <MuteButton isMuted={isMuted} action={setMuted}/>
-        <SoundControls currentTime={currentTime} setCurrentTime={setCurrentTime} loopingTime={soundPlayer.file.repeatableTime?.second} totalTime={totalTime}/>
+        <SoundControls currentTime={currentTime} setCurrentTime={setCurrentTime} loopingTime={loopingTime} totalTime={totalTime}/>
     </>
 }
