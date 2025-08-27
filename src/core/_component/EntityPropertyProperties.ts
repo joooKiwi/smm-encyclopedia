@@ -1,5 +1,5 @@
-import {ReactProperties} from 'util/react/ReactProperties'
-import {Name}            from 'lang/name/Name'
+import type {ReactProperties} from 'util/react/ReactProperties'
+import type {Name}            from 'lang/name/Name'
 
 export interface EntityPropertyProperties<R>
     extends ReactProperties {

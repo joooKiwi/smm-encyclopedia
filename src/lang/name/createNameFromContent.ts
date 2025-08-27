@@ -1,5 +1,6 @@
 import type {NullableString, NullOr, NullOrString} from '@joookiwi/type'
 
+import type {PossibleEnglishName}        from 'lang/EveryLanguages.types'
 import type {Name}                       from 'lang/name/Name'
 import type {LanguageContent}            from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageContent'
@@ -10,7 +11,6 @@ import {StringNameContainer} from 'lang/name/StringName.container'
 import {DualValueLanguage}   from 'lang/name/container/DualValueLanguage'
 import {SingleValueLanguage} from 'lang/name/container/SingleValueLanguage'
 import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
-import {PossibleEnglishName} from 'lang/EveryLanguages.types.ts'
 
 type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' | 'notSMM3DS'
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean

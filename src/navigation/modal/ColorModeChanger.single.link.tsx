@@ -1,9 +1,10 @@
 import {Link, useLocation} from 'react-router'
 
-import {ColorThemes}        from 'color/ColorThemes'
+import type {ColorThemes}     from 'color/ColorThemes'
+import type {ReactProperties} from 'util/react/ReactProperties'
+
 import {contentTranslation} from 'lang/components/translationMethods'
 import {routeFromLocation}  from 'route/method/route.fromLocation'
-import {ReactProperties}    from 'util/react/ReactProperties'
 
 interface ColorModeChangerSingleLinkProperties
     extends ReactProperties {
