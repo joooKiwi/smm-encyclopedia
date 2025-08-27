@@ -1,1 +1,4 @@
-.play-button { --bs-btn-color: var(--bs-success) }
+.play-button {
+  --bs-gradient: none;
+  --bs-btn-color: var(--bs-success);
+}

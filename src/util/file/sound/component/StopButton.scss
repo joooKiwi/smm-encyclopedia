@@ -1,1 +1,4 @@
-.stop-button { --bs-btn-color: var(--bs-danger) }
+.stop-button {
+  --bs-gradient: none;
+  --bs-btn-color: var(--bs-danger);
+}
