@@ -385,6 +385,20 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
         audio.addEventListener('loadedmetadata', this.#handleLoadedMetadataEvent =         it => this.onLoadedMetadataEvent?.(this, it,),      PASSIVE_ONLY_OPTION,)
         audio.addEventListener('error',          this.#handleErrorEventOnExceptionCaught = it => this._onExceptionCaught(it,),                 PASSIVE_ONLY_OPTION,)
         audio.title = this.title
+
+        const repeatableType = file.repeatableType
+        if (repeatableType.doesLoopAtTheEnd) {
+            audio.loop = true
+            audio.addEventListener('ended', this.#handleLoopingAfterEndedEvent = () => audio.currentTime = 0, PASSIVE_ONLY_OPTION,)
+        } else if (repeatableType.doesLoopDuringThePlay) {
+            const repeatableTime = file.repeatableTime
+            if (repeatableTime != null) {
+                audio.addEventListener('ended', this.#handleLoopingAfterEndedEvent = () => {
+                    audio.currentTime = repeatableTime.second
+                    this._play(audio,)
+                }, PASSIVE_ONLY_OPTION,)
+            }
+        }
         this._hasBeenLoaded = true
         return this.#audio = audio
     }
@@ -398,7 +412,18 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
      */
     public play(): this {
         this.onBeforePlay?.(this,)
-        this.audio.play()
+        this._play(this.audio,)
+        this.onAfterPlay?.(this,)
+        return this
+    }
+
+    /**
+     * Do the action to {@link HTMLAudioElement.play play} and handle the exception if they happen
+     *
+     * @param audio The current audio file (either created or stored instance)
+     */
+    protected _play(audio: HTMLAudioElement,): void {
+        audio.play()
             .then(() => this._handleDurationValidity(),)
             .catch(it => {
                 if (it.name === 'AbortError')
@@ -406,8 +431,6 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
                         return // Is it now paused, then it was aborted normally
                 this._onExceptionCaught(it,)
             },)
-        this.onAfterPlay?.(this,)
-        return this
     }
 
     /**
