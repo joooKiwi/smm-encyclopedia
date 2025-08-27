@@ -74,7 +74,7 @@ export abstract class ThemeAppOption
             return {
                 key: 'effect', element: <div className="nightDesert-header-image-container position-relative mx-auto">
                     <ThemeImage reference={Themes.DESERT}/>
-                    <TimeImage reference={Times.NIGHT}/>
+                    <TimeImage reference={Times.NIGHT} className="position-absolute top-0 end-0"/>
                 </div>,
                 tooltip: gameContentTranslation('Effect (night)', {night: unfinishedText('night effect name',),},)//TODO add translation for the night effect name
             }
