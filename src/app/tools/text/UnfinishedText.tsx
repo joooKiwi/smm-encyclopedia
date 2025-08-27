@@ -9,7 +9,7 @@ interface UnfinishedTextProperties
     readonly isHidden?: boolean
 
     /** The type of text (by default it is a text)*/
-    readonly type?: | 'paragraph' | 'text'
+    readonly type?: | 'paragraph' | 'text' | 'small'
 
 }
 
@@ -21,6 +21,8 @@ export default function UnfinishedText({children, isHidden = false, type = 'text
 
     if (type === 'text')
         return <span>--{children}--</span>
+    if (type === 'small')
+        return <small>--{children}--</small>
     return <p>--{children}--</p>
 }
 
