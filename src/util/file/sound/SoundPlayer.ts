@@ -53,6 +53,7 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
     #handlePlayEvent?: (event: Event,) => void
     #handlePauseEvent?: (event: Event,) => void
     #handleEndedEvent?: (event: Event,) => void
+    #handleLoopingAfterEndedEvent?: () => void
     #handlePlaybackRateChangedEvent?: (event: Event,) => void
     #handleTimeChangedEvent?: (event: Event,) => void
     #handleVolumeChangedEvent?: (event: Event,) => void
@@ -91,29 +92,7 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
         const value = this.#audio
         if (value != null)
             return value
-
-        this._isLoading = true
-        const file = this.file
-        const audio = new Audio(file.fullName,)
-        audio.addEventListener('playing',        this.#handlePlayingEvent =                it => this.onPlayingEvent?.(this, it,),             PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('canplay',        this.#handleCanPlayEvent =                it => this.onCanPlayEvent?.(this, it,),             PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('canplay',        this.#handleCanPlayEventForLoading =      () => this._isLoading = false,                      PASSIVE_AND_ONCE_OPTION,)
-        audio.addEventListener('canplaythrough', this.#handleCanPlayThroughEvent =         it => this.onCanPlayThroughEvent?.(this, it,),      PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('play',           this.#handlePlayEvent =                   it => this.onPlayEvent?.(this, it,),                PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('pause',          this.#handlePauseEvent =                  it => this.onPauseEvent?.(this, it,),               PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('ended',          this.#handleEndedEvent =                  it => this.onEndedEvent?.(this, it,),               PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('ratechange',     this.#handlePlaybackRateChangedEvent =    it => this.onPlaybackRateChangedEvent?.(this, it,), PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('timeupdate',     this.#handleTimeChangedEvent =            it => this.onTimeChangedEvent?.(this, it,),         PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('volumechange',   this.#handleVolumeChangedEvent =          it => this.onVolumeChangedEvent?.(this, it,),       PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('loadstart',      this.#handleLoadStartEvent =              it => this.onLoadStartEvent?.(this, it,),           PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('progress',       this.#handleLoadProgressEvent =           it => this.onLoadProgressEvent?.(this, it,),        PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('loadeddata',     this.#handleLoadedDataEvent =             it => this.onLoadedDataEvent?.(this, it,),          PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('loadedmetadata', this.#handleLoadedMetadataEvent =         it => this.onLoadedMetadataEvent?.(this, it,),      PASSIVE_ONLY_OPTION,)
-        audio.addEventListener('error',          this.#handleErrorEventOnExceptionCaught = it => this._onExceptionCaught(it,),                 PASSIVE_ONLY_OPTION,)
-        audio.title = this.title
-        // audio.loop = file.repeatableType.doesLoopAtTheEnd
-        this._hasBeenLoaded = true
-        return this.#audio = audio
+        return this.#audio = this._createAudio()
     }
     protected get _audio(): NullOr<HTMLAudioElement> {
         return this.#audio ?? null
@@ -373,6 +352,44 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
+    /** Load the {@link audio audio element} in memory without doing any action on it */
+    public load(): this {
+        if (this.#audio != null)
+            return this
+        this.#audio = this._createAudio()
+        return this
+    }
+
+    /**
+     * Create the {@link HTMLAudioElement} with the associated events
+     * plus the {@link HTMLAudioElement.title title}, {@link HTMLAudioElement.loop loop}
+     * and {@link HTMLAudioElement.src source}
+     */
+    protected _createAudio(): HTMLAudioElement {
+        this._isLoading = true
+        const file = this.file
+        const audio = new Audio(file.fullName,)
+        audio.addEventListener('playing',        this.#handlePlayingEvent =                it => this.onPlayingEvent?.(this, it,),             PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('canplay',        this.#handleCanPlayEvent =                it => this.onCanPlayEvent?.(this, it,),             PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('canplay',        this.#handleCanPlayEventForLoading =      () => this._isLoading = false,                      PASSIVE_AND_ONCE_OPTION,)
+        audio.addEventListener('canplaythrough', this.#handleCanPlayThroughEvent =         it => this.onCanPlayThroughEvent?.(this, it,),      PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('play',           this.#handlePlayEvent =                   it => this.onPlayEvent?.(this, it,),                PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('pause',          this.#handlePauseEvent =                  it => this.onPauseEvent?.(this, it,),               PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('ended',          this.#handleEndedEvent =                  it => this.onEndedEvent?.(this, it,),               PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('ratechange',     this.#handlePlaybackRateChangedEvent =    it => this.onPlaybackRateChangedEvent?.(this, it,), PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('timeupdate',     this.#handleTimeChangedEvent =            it => this.onTimeChangedEvent?.(this, it,),         PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('volumechange',   this.#handleVolumeChangedEvent =          it => this.onVolumeChangedEvent?.(this, it,),       PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('loadstart',      this.#handleLoadStartEvent =              it => this.onLoadStartEvent?.(this, it,),           PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('progress',       this.#handleLoadProgressEvent =           it => this.onLoadProgressEvent?.(this, it,),        PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('loadeddata',     this.#handleLoadedDataEvent =             it => this.onLoadedDataEvent?.(this, it,),          PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('loadedmetadata', this.#handleLoadedMetadataEvent =         it => this.onLoadedMetadataEvent?.(this, it,),      PASSIVE_ONLY_OPTION,)
+        audio.addEventListener('error',          this.#handleErrorEventOnExceptionCaught = it => this._onExceptionCaught(it,),                 PASSIVE_ONLY_OPTION,)
+        audio.title = this.title
+        this._hasBeenLoaded = true
+        return this.#audio = audio
+    }
+
+
     /**
      * Call the {@link audio audio element} {@link HTMLAudioElement.play play method} while handling
      * if it was paused after it being triggered.
@@ -452,6 +469,10 @@ export class SoundPlayer<const FILE extends SoundFile = SoundFile,
         const handleEnded = this.#handleEndedEvent
         if (handleEnded != null)
             audio.removeEventListener('ended', handleEnded, PASSIVE_ONLY_OPTION,)
+
+        const handleLoopingAfterEnded = this.#handleLoopingAfterEndedEvent
+        if (handleLoopingAfterEnded != null)
+            audio.removeEventListener('ended', handleLoopingAfterEnded, PASSIVE_ONLY_OPTION,)
 
         const handlePlaybackRateChanged = this.#handlePlaybackRateChangedEvent
         if (handlePlaybackRateChanged != null)

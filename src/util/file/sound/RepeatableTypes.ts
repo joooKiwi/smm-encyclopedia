@@ -14,9 +14,9 @@ export abstract class RepeatableTypes
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly NONE =            new class RepeatableTypes_None extends RepeatableTypes {}(false, 'non repeatable',)
-    public static readonly AT_THE_END =      new class RepeatableTypes_AtTheEnd extends RepeatableTypes {}(true, 'repeatable (at the end)',)
-    public static readonly DURING_THE_PLAY = new class RepeatableTypes_DuringThePlay extends RepeatableTypes {}(false, 'repeatable (during the play)',)
+    public static readonly NONE =            new class RepeatableTypes_None extends RepeatableTypes {}(false, false, 'non repeatable',)
+    public static readonly AT_THE_END =      new class RepeatableTypes_AtTheEnd extends RepeatableTypes {}(true, false, 'repeatable (at the end)',)
+    public static readonly DURING_THE_PLAY = new class RepeatableTypes_DuringThePlay extends RepeatableTypes {}(false, true, 'repeatable (during the play)',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -55,22 +55,32 @@ export abstract class RepeatableTypes
     //region -------------------- Fields --------------------
 
     readonly #doesLoopAtTheEnd
+    readonly #doesLoopDuringThePlay
     readonly #simpleName
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(doesLoopAtTheEnd: boolean, simpleName: PossibleRepeatableName,) {
+    private constructor(doesLoopAtTheEnd: boolean, doesLoopDuringThePlay: boolean, simpleName: PossibleRepeatableName,) {
         super()
         this.#doesLoopAtTheEnd = doesLoopAtTheEnd
+        this.#doesLoopDuringThePlay = doesLoopDuringThePlay
         this.#simpleName = simpleName
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
+    public get doesLoop(): boolean {
+        return this.doesLoopAtTheEnd || this.doesLoopDuringThePlay
+    }
+
     public get doesLoopAtTheEnd(): boolean {
         return this.#doesLoopAtTheEnd
+    }
+
+    public get doesLoopDuringThePlay(): boolean {
+        return this.#doesLoopDuringThePlay
     }
 
     public get simpleName(): PossibleRepeatableName {
