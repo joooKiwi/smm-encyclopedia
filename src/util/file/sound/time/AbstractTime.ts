@@ -1,3 +1,5 @@
+import type {Nullable} from '@joookiwi/type'
+
 import type {Time} from 'util/file/sound/time/Time'
 
 export abstract class AbstractTime<const MILLISECOND extends number = number,
@@ -29,5 +31,17 @@ export abstract class AbstractTime<const MILLISECOND extends number = number,
     }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
+
+    public equals(other: Nullable<Time>,) {
+        if (this == other)
+            return true
+        if (other == null)
+            return false
+        return this.#millisecond == other.millisecond
+            && this.#second == other.second
+    }
+
+    //endregion -------------------- Methods --------------------
 
 }
