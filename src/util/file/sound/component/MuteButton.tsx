@@ -14,14 +14,16 @@ interface MuteButtonProperties
 
     readonly isMuted?: boolean
 
+    readonly isDisabled?: boolean
+
     action(isMuted: boolean, event: MouseEvent,): void
 
     readonly className?: NullableString
 
 }
 
-export default function MuteButton({isMuted = false, className, action,}: MuteButtonProperties,) {
+export default function MuteButton({isMuted = false, isDisabled = false, className, action,}: MuteButtonProperties,) {
     if (isMuted)
-        return <button type="button" className={`mute-button btn bi-volume-mute p-0 border-0${className == null ? EMPTY_STRING : ` ${className}`}`} onClick={it => action(false, it,)}/>
-    return <button type="button" className={`mute-button btn bi-volume-up p-0 border-0${className == null ? EMPTY_STRING : ` ${className}`}`} onClick={it => action(true, it,)}/>
+        return <button type="button" disabled={isDisabled} className={`mute-button btn bi-volume-mute p-0 border-0${className == null ? EMPTY_STRING : ` ${className}`}`} onClick={it => action(false, it,)}/>
+    return <button type="button" disabled={isDisabled} className={`mute-button btn bi-volume-up p-0 border-0${className == null ? EMPTY_STRING : ` ${className}`}`} onClick={it => action(true, it,)}/>
 }
