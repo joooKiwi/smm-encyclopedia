@@ -192,18 +192,15 @@ export default function MusicApp() {
     return <div id="music-app-container">
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('music.title',)}</h1>
         <PageTitle value={contentTranslation('music.singular',)}/>
-        <div className="container-md mb-3">
+        <p className="container-md mb-3">
             {contentTranslation('music.introduction.1. present',)}
             {contentTranslation('music.introduction.2. no sound effect', {
                 soundEffectsLink: <Link key="Sound Effect link" to={routeFromName('everySoundEffect',)}>{gameContentTranslation('sound effect.plural',).toLowerCase()}</Link>,
                 editorVoicesLink: <Link key="Editor Voice link" to={routeFromName('everyEditorVoice',)}>{gameContentTranslation('editor voice.plural',).toLowerCase()}</Link>,
             },)}
-            {contentTranslation('music.introduction.3. organization', {
-                gameStyleLink: <Link key="Game link" to={routeFromName('everyGameStyle',)}>{gameContentTranslation('game style.singular',).toLowerCase()}</Link>,
-                themeLink: <Link key="Theme link" to={routeFromName('everyTheme',)}>{gameContentTranslation('theme.singular',).toLowerCase()}</Link>,
-            },)}
-            {contentTranslation('music.introduction.4. editor',)}
-        </div>
+            {contentTranslation('music.introduction.3. organization',)}
+            {contentTranslation('music.introduction.4. organization',)}
+        </p>
         {/*<div id="selector-container">
             <div id="gameStyle-selector-buttonGroup" className="btn-group-vertical">
                 <div className="btn-group btn-group-sm">
