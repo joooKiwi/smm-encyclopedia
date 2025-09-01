@@ -975,6 +975,14 @@ export abstract class SoundEffects
             return new ArrayAsCollection([Tracks.BONUS_SMB_EDITOR.file, Tracks.BONUS_SMB.file, Tracks.BONUS_SMB_FAST.file,],)
         }
 
+        protected override _createSoundsInSmbOnLink() {
+            return new ArrayAsCollection([Tracks.BONUS_LINK.file, Tracks.BONUS_LINK_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmbOnSmb2() {
+            return new ArrayAsCollection([Tracks.BONUS_SMB2.file, Tracks.BONUS_SMB2_FAST.file,],)
+        }
+
         protected override _createSoundsInSmb3() {
             return new ArrayAsCollection([Tracks.BONUS_SMB3_EDITOR.file, Tracks.BONUS_SMB3.file, Tracks.BONUS_SMB3_FAST.file,],)
         }
@@ -1011,6 +1019,14 @@ export abstract class SoundEffects
             return new ArrayAsCollection([Tracks.BOSS_SMB_EDITOR.file, Tracks.BOSS_SMB.file, Tracks.BOSS_SMB_FAST.file,],)
         }
 
+        protected override _createSoundsInSmbOnLink() {
+            return new ArrayAsCollection([Tracks.BOSS_LINK.file, Tracks.BOSS_LINK_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmbOnSmb2() {
+            return new ArrayAsCollection([Tracks.BOSS_SMB2.file, Tracks.BOSS_SMB2_FAST.file,],)
+        }
+
         protected override _createSoundsInSmb3() {
             return new ArrayAsCollection([Tracks.BOSS_SMB3_EDITOR.file, Tracks.BOSS_SMB3.file, Tracks.BOSS_SMB3_FAST.file,],)
         }
@@ -1037,6 +1053,14 @@ export abstract class SoundEffects
 
         protected override _createSoundsInSmb() {
             return new ArrayAsCollection([Tracks.FINAL_BOSS_SMB3_EDITOR.file, Tracks.FINAL_BOSS_SMB3.file, Tracks.FINAL_BOSS_SMB3_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmbOnLink() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_LINK.file, Tracks.FINAL_BOSS_LINK_FAST.file,],)
+        }
+
+        protected override _createSoundsInSmbOnSmb2() {
+            return new ArrayAsCollection([Tracks.FINAL_BOSS_SMB2.file, Tracks.FINAL_BOSS_SMB2_FAST.file,],)
         }
 
         protected override _createSoundsInSmb3() {
