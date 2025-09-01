@@ -1,4 +1,4 @@
-import type {Nullable, NullableNumber, NullableString, NullOr, NullOrNumber, NullOrUndefined}                                                                                                                                                                                   from '@joookiwi/type'
+import type {Array, MutableArray, MutableNumberKeyMap, MutableSet, Nullable, NullableNumber, NullableString, NullOr, NullOrNumber, NullOrUndefined, NumberKeyMap, Set}                                                                                                          from '@joookiwi/type'
 import type {CollectionHolder}                                                                                                                                                                                                                                                  from '@joookiwi/collection'
 import type {MinimalistCollectionHolder}                                                                                                                                                                                                                                        from '@joookiwi/collection'
 import type {CollectionIterator}                                                                                                                                                                                                                                                from '@joookiwi/collection'
@@ -136,7 +136,7 @@ export class ArrayAsCollection<const T, >
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(reference: readonly T[],) {
+    public constructor(reference: Array<T>,) {
         super()
         this.#reference = reference
     }
@@ -144,7 +144,7 @@ export class ArrayAsCollection<const T, >
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get reference(): readonly T[] {
+    public get reference(): Array<T> {
         return this.#reference
     }
 
@@ -413,11 +413,11 @@ export class ArrayAsCollection<const T, >
     //endregion -------------------- Has not --------------------
     //region -------------------- Has one --------------------
 
-    protected override _hasOneByArray(values: readonly T[],): boolean {
+    protected override _hasOneByArray(values: Array<T>,): boolean {
         return hasOneWithArrayByArray(this.reference, values,)
     }
 
-    protected override _hasOneBySet(values: ReadonlySet<T>,): boolean {
+    protected override _hasOneBySet(values: Set<T>,): boolean {
         return hasOneWithSetByArray(this.reference, values,)
     }
 
@@ -444,11 +444,11 @@ export class ArrayAsCollection<const T, >
     //endregion -------------------- Has one --------------------
     //region -------------------- Has not one --------------------
 
-    protected override _hasNotOneByArray(values: readonly T[],): boolean {
+    protected override _hasNotOneByArray(values: Array<T>,): boolean {
         return hasNotOneWithArrayByArray(this.reference, values,)
     }
 
-    protected override _hasNotOneBySet(values: ReadonlySet<T>,): boolean {
+    protected override _hasNotOneBySet(values: Set<T>,): boolean {
         return hasNotOneWithSetByArray(this.reference, values,)
     }
 
@@ -475,11 +475,11 @@ export class ArrayAsCollection<const T, >
     //endregion -------------------- Has not one --------------------
     //region -------------------- Has all --------------------
 
-    protected override _hasAllByArray(values: readonly T[],): boolean {
+    protected override _hasAllByArray(values: Array<T>,): boolean {
         return hasAllWithArrayByArray(this.reference, values,)
     }
 
-    protected override _hasAllBySet(values: ReadonlySet<T>,): boolean {
+    protected override _hasAllBySet(values: Set<T>,): boolean {
         return hasAllWithSetByArray(this.reference, values,)
     }
 
@@ -506,11 +506,11 @@ export class ArrayAsCollection<const T, >
     //endregion -------------------- Has all --------------------
     //region -------------------- Has not all --------------------
 
-    protected override _hasNotAllByArray(values: readonly T[],): boolean {
+    protected override _hasNotAllByArray(values: Array<T>,): boolean {
         return hasNotAllWithArrayByArray(this.reference, values,)
     }
 
-    protected override _hasNotAllBySet(values: ReadonlySet<T>,): boolean {
+    protected override _hasNotAllBySet(values: Set<T>,): boolean {
         return hasNotAllWithSetByArray(this.reference, values,)
     }
 
@@ -617,11 +617,11 @@ export class ArrayAsCollection<const T, >
         return sliceWithARangeByArray(this.reference, fromIndex, toIndex,)
     }
 
-    protected override _sliceByArray(indices: readonly number[],): CollectionHolder<T> {
+    protected override _sliceByArray(indices: Array<number>,): CollectionHolder<T> {
         return sliceWithArrayByArray(this.reference, indices,)
     }
 
-    protected override _sliceBySet(indices: ReadonlySet<number>,): CollectionHolder<T> {
+    protected override _sliceBySet(indices: Set<number>,): CollectionHolder<T> {
         return sliceWithSetByArray(this.reference, indices,)
     }
 
@@ -791,27 +791,27 @@ export class ArrayAsCollection<const T, >
 
     //region -------------------- To other structure --------------------
 
-    public override toArray(): readonly T[] {
+    public override toArray(): Array<T> {
         return toArrayByArray(this.reference,)
     }
 
-    public override toMutableArray(): T[] {
+    public override toMutableArray(): MutableArray<T> {
         return toMutableArrayByArray(this.reference,)
     }
 
-    public override toSet(): ReadonlySet<T> {
+    public override toSet(): Set<T> {
         return toSetByArray(this.reference,)
     }
 
-    public override toMutableSet(): Set<T> {
+    public override toMutableSet(): MutableSet<T> {
         return toMutableSetByArray(this.reference,)
     }
 
-    public override toMap(): ReadonlyMap<number, T> {
+    public override toMap(): NumberKeyMap<T> {
         return toMapByArray(this.reference,)
     }
 
-    public override toMutableMap(): Map<number, T> {
+    public override toMutableMap(): MutableNumberKeyMap<T> {
         return toMutableMapByArray(this.reference,)
     }
 
