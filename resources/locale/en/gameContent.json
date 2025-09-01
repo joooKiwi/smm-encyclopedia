@@ -301,8 +301,8 @@
     "display all": "Display every sound effect",
 
     "trigger": {
-      "After land + jump":                          "After the {{player}} is landing & a jump is made",
-      "Turn after full speed":                      "After the {{player}} is turning around (after being at full speed)",
+      "After land + jump":                          "After a {{player}} is landing & a jump is made",
+      "Turn after full speed":                      "After a {{player}} is turning around (after being at full speed)",
       "Crouch":                                     "When a {{player}} is crouching",
       "After 3 seconds → no movement (continuous)": "After 3 seconds of non-movement (it repeat itself continuously)",
       "Power-up collected":                         "When a {{powerUp}} is collected ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
