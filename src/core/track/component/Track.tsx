@@ -10,14 +10,16 @@ interface TrackProperties
 
 }
 
-export default function Track({value,}: TrackProperties,) {
+/** @reactComponent */
+export default function Track(properties: TrackProperties,) {
+    const value = properties.value
     const file = value.file
-    const titleName = value.titleName
     if (file == null)
         return <NonPresentMusicAudio/> //FIXME: Remove once the file are all present
-    return <StandaloneSound file={file} title={titleName}/>
+    return <StandaloneSound file={file} title={value.titleName}/>
 }
 
+/** @reactComponent */
 function NonPresentMusicAudio() {
-    return <div className="nonPresent-music-audio bg-danger bg-opacity-25 rounded" style={{width: '2cm', height: '1cm',}}/>
+    return <div className="nonPresent-music-audio bg-danger bg-opacity-25 rounded" style={{minWidth: '5rem', height: '2rem',}}/>
 }
