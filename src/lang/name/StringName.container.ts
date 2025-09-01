@@ -187,9 +187,7 @@ export class StringNameContainer<const T extends string = string, >
             newValue.push(EveryLanguages.JAPANESE,)
 
         const chinese = this.#chinese.type
-        if (chinese == 'empty')
-            throw new EvalError('The chinese language was not expected to be empty',)
-        else if (chinese == 'single')
+        if (chinese == 'single')
             newValue.push(EveryLanguages.CHINESE,)
         else if (chinese == 'dual')
             newValue.push(EveryLanguages.TRADITIONAL_CHINESE, EveryLanguages.SIMPLIFIED_CHINESE,)
