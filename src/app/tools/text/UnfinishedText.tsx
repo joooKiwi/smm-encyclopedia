@@ -18,6 +18,12 @@ export default function UnfinishedText({children, isHidden = false, type = 'text
     if (isInProduction)
         if (isHidden)
             return null
+        else if (type == 'text')
+            return <span>{children}</span>
+        else if (type == 'small')
+            return <small>{children}</small>
+        else
+            return <p>{children}</p>
 
     if (type === 'text')
         return <span>--{children}--</span>
