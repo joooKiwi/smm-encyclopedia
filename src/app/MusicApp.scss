@@ -1,44 +1,11 @@
 #music-app-container {
   img { object-fit: contain }
 
-  .musics-container { img, > :is(div > img), > img, {
-    height: 2cm
-  } }
-  .musics-container :where(.musics-container) { img, > :is(div > img), > img, {
-    height: 1.5cm
-  } }
-  .musics-container :where(.musics-container) :where(.musics-container) { img, > :is(div > img), > img, {
-    height: 1cm
-  } }
+  .musics-container                                                     { img, > :is(div > img), > img, { height: 4.5rem } }
+  .musics-container :where(.musics-container)                           { img, > :is(div > img), > img, { height: 3rem } }
+  .musics-container :where(.musics-container) :where(.musics-container) { img, > :is(div > img), > img, { height: 1.75rem } }
 
-  //.musics-container.medium-images { img, > :is(div > img), > img, {
-  //  height: 1.5cm
-  //} }
-  .musics-container.small-images { img, > :is(div > img), > img, {
-    height: 1cm
-  } }
-
-  :where(.editor-music-container, .lessonEditor-music-container) > :not(:last-child) { margin-bottom: var(--bs-spacer-sm) }
-
-  //.musics-container:has(img) img { height: 1cm }
-
-  //.theme-image { width: 3cm }
-  //.soundEffect-image { width: 2cm }
-  //
-  //.gameStyle-image { width: 2.25cm }
-  //.game-image { width: 1cm }
-  //.time-image { width: 1.5cm }
-  //img[alt="Master Sword (Editor SMB)"],
-  //img[alt="Superball Flower (Editor SMB standalone)"],
-  //img[alt="SMB2 Mushroom (Editor SMB standalone)"],
-  //img[alt="Yoshi's Egg (Editor SMW)"],
-  //img[alt="Yoshi's Egg (Clear condition)"], { width: 1.5cm }
-
-  .game-musics-container> :first-child,
-  .theme-musics-container  > :first-child, {
-    padding-bottom: var(--bs-spacer-md);
-  }
-
+  .musics-container.small-images                                        { img, > :is(div > img), > img, { height: 1.75rem } }
 
   .musics-container {
     display: inline-flex;
@@ -63,34 +30,25 @@
       margin: 0;
     }
   }
-  :where(.peaceful-musics-container, .bonusMusic-musics-container, .bossMusic-musics-container,
-         .finalBossMusic-musics-container) > .musics-container {
-    border: 0;
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-  }
-  .finalBossMusic-musics-container .gameStyle-image {
-    width: .9cm
-  }
 
+  .finalBossMusic-musics-container .gameStyle-image { max-width: 2rem }
 
-  .grid-2 {
+  :is(.grid-2, .grid-3) {
+    --grid-width: 2.5rem;
     height: fit-content;
-    grid-template-columns: 1cm auto;
     display: grid;
     align-items: center;
     justify-items: center;
+  }
+
+  .grid-2 {
+    grid-template-columns: var(--grid-width) auto;
 
     > :nth-child(2n):not(:nth-child(2)) { margin-top: var(--bs-spacer-sm) }
   }
 
   .grid-3 {
-    height: fit-content;
-    grid-template-columns: 1cm auto auto;
-    display: grid;
-    align-items: center;
-    justify-items: center;
+    grid-template-columns: var(--grid-width) auto auto;
 
     > :nth-child(3n - 1):not(:nth-child(2)):not(:nth-child(5)),
     > :nth-child(3n):not(:nth-child(3)):not(:nth-child(6)) { margin-top: var(--bs-spacer-sm) }
@@ -98,40 +56,21 @@
     > :nth-child(3n - 1) { margin-right: var(--bs-spacer-sm) }
   }
 
-  .bonusMusicAndBossMusicAndFinalBossMusic-musics-container {
-    grid-template-columns: 1.5cm auto auto;
-  }
+  .pSwitchMusicAndSuperStarMusicAndBonusMusicAndBossMusicAndFinalBossMusic-musics-container { --grid-width: 4rem }
 
-  .bonusMusicWithYoshiAndBossMusicAndFinalBossMusic-musics-container {
-    grid-template-columns: 1.5cm auto auto;
-    .yoshi-image { height: 1cm }
-    :nth-child(7), :nth-child(8), :nth-child(9), { margin-bottom: var(--bs-spacer-md) } // The 3rd line with bottom margin
-  }
+  .viewable-trace-image-as-ground { scale: 75% }
 
 }
 
-#smb-musics-container, #smb3-musics-container, #smw-musics-container, #nsmbu-musics-container, #sm3dw-musics-container {  > :first-child {
-  margin-bottom: var(--bs-spacer-sm)
-} }
-
-#otherGames-musics-container > .musics-container { grid-template-columns: 1.5cm auto auto }
-
-#bonus-musics-container, #boss-musics-container, #finalBoss-musics-container, {
-  > .musics-container { grid-template-columns: 2cm auto auto }
-}
-#finalBoss-musics-container :is(:nth-child(8), :nth-child(9)) { margin-top: -50% }
+#link-musics-container       > .musics-container { --grid-width: 5rem }
+#smb2-musics-container       > .musics-container { --grid-width: 5rem }
+#otherGames-musics-container > .musics-container { --grid-width: 3rem }
+#bonus-musics-container      > .musics-container { --grid-width: 4rem }
+#boss-musics-container       > .musics-container { --grid-width: 4rem }
+#finalBoss-musics-container  > .musics-container { --grid-width: 5rem }
 
 #world-musics-container .theme-image {
   height: .9cm;
   margin-right: var(--bs-spacer-sm);
   &:not(:nth-last-child(3)) { margin-bottom: var(--bs-spacer-sm) }
-}
-
-
-#link-musics-container, #smb2-musics-container, {
-  .theme-image { height: .9cm }
-}
-
-#peaceful-musics-container, {
-  > .musics-container img { height: .9cm }
 }

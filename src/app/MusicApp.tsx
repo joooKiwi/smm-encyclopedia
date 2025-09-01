@@ -2,7 +2,8 @@ import './MusicApp.scss'
 
 import {Link} from 'react-router'
 
-import {ReactProperties, ReactPropertiesWithChildren, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {Array}                                        from '@joookiwi/type'
+import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
@@ -15,138 +16,176 @@ import {GameStyles}                                      from 'core/gameStyle/Ga
 import GameStyleImage                                    from 'core/gameStyle/component/GameStyleImage'
 import {Themes}                                          from 'core/theme/Themes'
 import ThemeImage                                        from 'core/theme/component/ThemeImage'
-import {Times}                                           from 'core/time/Times'
-import TimeImage                                         from 'core/time/component/TimeImage'
 import {Tracks}                                          from 'core/track/Tracks'
+import DayNightTrack                                     from 'core/track/component/DayNightTrack'
+import DayNightYoshiTrack                                from 'core/track/component/DayNightYoshiTrack'
+import EditorTrack                                       from 'core/track/component/EditorTrack'
+import LessonEditorTrack                                 from 'core/track/component/LessonEditorTrack'
 import Track                                             from 'core/track/component/Track'
+import UnderwaterTrack                                   from 'core/track/component/UnderwaterTrack'
+import YoshiTrack                                        from 'core/track/component/YoshiTrack'
 import SoundEffectImage                                  from 'core/soundEffect/SoundEffectImage'
 import {SoundEffects}                                    from 'core/soundEffect/SoundEffects'
 import {DONT_VIEW_TRACE_IMAGE, VIEW_TRACE_IMAGE}         from 'core/editor/viewTraceImages'
 import {routeFromName}                                   from 'route/method/route.fromName'
-import {ArrayAsCollection}                               from 'util/collection/ArrayAsCollection'
 
-import BONUS_NSMBU =                           Tracks.BONUS_NSMBU
-import BONUS_NSMBU_FAST =                      Tracks.BONUS_NSMBU_FAST
-import BONUS_NSMBU_YOSHI =                     Tracks.BONUS_NSMBU_YOSHI
-import BONUS_NSMBU_YOSHI_FAST =                Tracks.BONUS_NSMBU_YOSHI_FAST
-import BOSS_NSMBU =                            Tracks.BOSS_NSMBU
-import BOSS_NSMBU_FAST =                       Tracks.BOSS_NSMBU_FAST
-import CASTLE_LESSON_EDITORS =                 Tracks.CASTLE_LESSON_EDITORS
-import FINAL_BOSS_NSMBU =                      Tracks.FINAL_BOSS_NSMBU
-import FINAL_BOSS_NSMBU_FAST =                 Tracks.FINAL_BOSS_NSMBU_FAST
-import FOREST_LESSON_EDITORS =                 Tracks.FOREST_LESSON_EDITORS
-import GHOST_HOUSE_LESSON_EDITORS =            Tracks.GHOST_HOUSE_LESSON_EDITORS
-import GROUND_LESSON_EDITORS =                 Tracks.GROUND_LESSON_EDITORS
-import NSMBU_AIRSHIP_EDITORS =                 Tracks.NSMBU_AIRSHIP_EDITORS
-import NSMBU_AIRSHIP_TIMES =                   Tracks.NSMBU_AIRSHIP_TIMES
-import NSMBU_CASTLE_EDITORS =                  Tracks.NSMBU_CASTLE_EDITORS
-import NSMBU_CASTLE_TIMES =                    Tracks.NSMBU_CASTLE_TIMES
-import NSMBU_DESERT_EDITORS =                  Tracks.NSMBU_DESERT_EDITORS
-import NSMBU_DESERT_TIMES =                    Tracks.NSMBU_DESERT_TIMES
-import NSMBU_FOREST_EDITORS =                  Tracks.NSMBU_FOREST_EDITORS
-import NSMBU_FOREST_TIMES =                    Tracks.NSMBU_FOREST_TIMES
-import NSMBU_GHOST_HOUSE_EDITORS =             Tracks.NSMBU_GHOST_HOUSE_EDITORS
-import NSMBU_GHOST_HOUSE_TIMES =               Tracks.NSMBU_GHOST_HOUSE_TIMES
-import NSMBU_GROUND_EDITORS =                  Tracks.NSMBU_GROUND_EDITORS
-import NSMBU_GROUND_TIMES =                    Tracks.NSMBU_GROUND_TIMES
-import NSMBU_SNOW_EDITORS =                    Tracks.NSMBU_SNOW_EDITORS
-import NSMBU_SNOW_TIMES =                      Tracks.NSMBU_SNOW_TIMES
-import NSMBU_SKY_EDITORS =                     Tracks.NSMBU_SKY_EDITORS
-import NSMBU_SKY_TIMES =                       Tracks.NSMBU_SKY_TIMES
-import NSMBU_UNDERGROUND_EDITORS =             Tracks.NSMBU_UNDERGROUND_EDITORS
-import NSMBU_UNDERGROUND_TIMES =               Tracks.NSMBU_UNDERGROUND_TIMES
-import NSMBU_UNDERWATER_EDITORS =              Tracks.NSMBU_UNDERWATER_EDITORS
-import NSMBU_UNDERWATER_TIMES =                Tracks.NSMBU_UNDERWATER_TIMES
-import PEACEFUL =                              Tracks.PEACEFUL
-import SMB_AIRSHIP_EDITORS =                   Tracks.SMB_AIRSHIP_EDITORS
-import SMB_AIRSHIP_TIMES =                     Tracks.SMB_AIRSHIP_TIMES
-import SMB_BONUSES =                           Tracks.SMB_BONUSES
-import SMB_BOSSES =                            Tracks.SMB_BOSSES
-import SMB_CASTLE_EDITORS =                    Tracks.SMB_CASTLE_EDITORS
-import SMB_CASTLE_TIMES =                      Tracks.SMB_CASTLE_TIMES
-import SMB_DESERT_EDITORS =                    Tracks.SMB_DESERT_EDITORS
-import SMB_DESERT_TIMES =                      Tracks.SMB_DESERT_TIMES
-import SMB_FINAL_BOSSES =                      Tracks.SMB_FINAL_BOSSES
-import SMB_FOREST_EDITORS =                    Tracks.SMB_FOREST_EDITORS
-import SMB_FOREST_TIMES =                      Tracks.SMB_FOREST_TIMES
-import SMB_GHOST_HOUSE_EDITORS =               Tracks.SMB_GHOST_HOUSE_EDITORS
-import SMB_GHOST_HOUSE_TIMES =                 Tracks.SMB_GHOST_HOUSE_TIMES
-import SMB_GROUND_EDITORS =                    Tracks.SMB_GROUND_EDITORS
-import SMB_GROUND_TIMES =                      Tracks.SMB_GROUND_TIMES
-import SMB_SNOW_EDITORS =                      Tracks.SMB_SNOW_EDITORS
-import SMB_SNOW_TIMES =                        Tracks.SMB_SNOW_TIMES
-import SMB_SKY_EDITORS =                       Tracks.SMB_SKY_EDITORS
-import SMB_SKY_TIMES =                         Tracks.SMB_SKY_TIMES
-import SMB_UNDERGROUND_EDITORS =               Tracks.SMB_UNDERGROUND_EDITORS
-import SMB_UNDERGROUND_TIMES =                 Tracks.SMB_UNDERGROUND_TIMES
-import SMB_UNDERWATER_EDITORS =                Tracks.SMB_UNDERWATER_EDITORS
-import SMB_UNDERWATER_TIMES =                  Tracks.SMB_UNDERWATER_TIMES
-import SMB3_AIRSHIP_EDITORS =                  Tracks.SMB3_AIRSHIP_EDITORS
-import SMB3_AIRSHIP_TIMES =                    Tracks.SMB3_AIRSHIP_TIMES
-import SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES =  Tracks.SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES
-import SMB3_CASTLE_EDITORS =                   Tracks.SMB3_CASTLE_EDITORS
-import SMB3_CASTLE_TIMES =                     Tracks.SMB3_CASTLE_TIMES
-import SMB3_DESERT_EDITORS =                   Tracks.SMB3_DESERT_EDITORS
-import SMB3_FOREST_EDITORS =                   Tracks.SMB3_FOREST_EDITORS
-import SMB3_GHOST_HOUSE_EDITORS =              Tracks.SMB3_GHOST_HOUSE_EDITORS
-import SMB3_GHOST_HOUSE_TIMES =                Tracks.SMB3_GHOST_HOUSE_TIMES
-import SMB3_GROUND_EDITORS =                   Tracks.SMB3_GROUND_EDITORS
-import SMB3_GROUND_TIMES =                     Tracks.SMB3_GROUND_TIMES
-import SMB3_SNOW_EDITORS =                     Tracks.SMB3_SNOW_EDITORS
-import SMB3_SNOW_TIMES =                       Tracks.SMB3_SNOW_TIMES
-import SMB3_SKY_EDITORS =                      Tracks.SMB3_SKY_EDITORS
-import SMB3_SKY_TIMES =                        Tracks.SMB3_SKY_TIMES
-import SMB3_UNDERGROUND_EDITORS =              Tracks.SMB3_UNDERGROUND_EDITORS
-import SMB3_UNDERGROUND_TIMES =                Tracks.SMB3_UNDERGROUND_TIMES
-import SMB3_UNDERWATER_EDITORS =               Tracks.SMB3_UNDERWATER_EDITORS
-import SMB3_UNDERWATER_TIMES =                 Tracks.SMB3_UNDERWATER_TIMES
-import SMG =                                   SoundEffects.SMG
-import SMK =                                   SoundEffects.SMK
-import SMS =                                   SoundEffects.SMS
-import SMW_AIRSHIP_EDITORS =                   Tracks.SMW_AIRSHIP_EDITORS
-import SMW_AIRSHIP_TIMES =                     Tracks.SMW_AIRSHIP_TIMES
-import SMW_BONUSES_BOSSES_AND_FINAL_BOSSES =   Tracks.SMW_BONUSES_BOSSES_AND_FINAL_BOSSES
-import SMW_CASTLE_EDITORS =                    Tracks.SMW_CASTLE_EDITORS
-import SMW_CASTLE_TIMES =                      Tracks.SMW_CASTLE_TIMES
-import SMW_DESERT_EDITORS =                    Tracks.SMW_DESERT_EDITORS
-import SMW_DESERT_TIMES =                      Tracks.SMW_DESERT_TIMES
-import SMW_FOREST_EDITORS =                    Tracks.SMW_FOREST_EDITORS
-import SMW_FOREST_TIMES =                      Tracks.SMW_FOREST_TIMES
-import SMW_GHOST_HOUSE_EDITORS =               Tracks.SMW_GHOST_HOUSE_EDITORS
-import SMW_GHOST_HOUSE_TIMES =                 Tracks.SMW_GHOST_HOUSE_TIMES
-import SMW_GROUND_EDITORS =                    Tracks.SMW_GROUND_EDITORS
-import SMW_GROUND_TIMES =                      Tracks.SMW_GROUND_TIMES
-import SMW_SNOW_EDITORS =                      Tracks.SMW_SNOW_EDITORS
-import SMW_SNOW_TIMES =                        Tracks.SMW_SNOW_TIMES
-import SMW_SKY_EDITORS =                       Tracks.SMW_SKY_EDITORS
-import SMW_SKY_TIMES =                         Tracks.SMW_SKY_TIMES
-import SMW_UNDERGROUND_EDITORS =               Tracks.SMW_UNDERGROUND_EDITORS
-import SMW_UNDERGROUND_TIMES =                 Tracks.SMW_UNDERGROUND_TIMES
-import SMW_UNDERWATER_EDITORS =                Tracks.SMW_UNDERWATER_EDITORS
-import SMW_UNDERWATER_TIMES =                  Tracks.SMW_UNDERWATER_TIMES
-import SM3DW_AIRSHIP_EDITORS =                 Tracks.SM3DW_AIRSHIP_EDITORS
-import SM3DW_AIRSHIP_TIMES =                   Tracks.SM3DW_AIRSHIP_TIMES
-import SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES = Tracks.SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES
-import SM3DW_CASTLE_EDITORS =                  Tracks.SM3DW_CASTLE_EDITORS
-import SM3DW_CASTLE_TIMES =                    Tracks.SM3DW_CASTLE_TIMES
-import SM3DW_DESERT_EDITORS =                  Tracks.SM3DW_DESERT_EDITORS
-import SM3DW_DESERT_TIMES =                    Tracks.SM3DW_DESERT_TIMES
-import SM3DW_FOREST_EDITORS =                  Tracks.SM3DW_FOREST_EDITORS
-import SM3DW_FOREST_TIMES =                    Tracks.SM3DW_FOREST_TIMES
-import SM3DW_GHOST_HOUSE_EDITORS =             Tracks.SM3DW_GHOST_HOUSE_EDITORS
-import SM3DW_GHOST_HOUSE_TIMES =               Tracks.SM3DW_GHOST_HOUSE_TIMES
-import SM3DW_GROUND_EDITORS =                  Tracks.SM3DW_GROUND_EDITORS
-import SM3DW_GROUND_TIMES =                    Tracks.SM3DW_GROUND_TIMES
-import SM3DW_SNOW_EDITORS =                    Tracks.SM3DW_SNOW_EDITORS
-import SM3DW_SNOW_TIMES =                      Tracks.SM3DW_SNOW_TIMES
-import SM3DW_SKY_EDITORS =                     Tracks.SM3DW_SKY_EDITORS
-import SM3DW_SKY_TIMES =                       Tracks.SM3DW_SKY_TIMES
-import SM3DW_UNDERGROUND_EDITORS =             Tracks.SM3DW_UNDERGROUND_EDITORS
-import SM3DW_UNDERGROUND_TIMES =               Tracks.SM3DW_UNDERGROUND_TIMES
-import SM3DW_UNDERWATER_EDITORS =              Tracks.SM3DW_UNDERWATER_EDITORS
-import SM3DW_UNDERWATER_TIMES =                Tracks.SM3DW_UNDERWATER_TIMES
-import UNDERWATER_LESSON_EDITORS =             Tracks.UNDERWATER_LESSON_EDITORS
-import SM64 =                                  SoundEffects.SM64
+import BONUS_LINK =                                                   Tracks.BONUS_LINK
+import BONUS_LINK_FAST =                                              Tracks.BONUS_LINK_FAST
+import BONUS_NSMBU =                                                  Tracks.BONUS_NSMBU
+import BONUS_NSMBU_FAST =                                             Tracks.BONUS_NSMBU_FAST
+import BONUS_NSMBU_YOSHI =                                            Tracks.BONUS_NSMBU_YOSHI
+import BONUS_NSMBU_YOSHI_FAST =                                       Tracks.BONUS_NSMBU_YOSHI_FAST
+import BONUS_SMB =                                                    Tracks.BONUS_SMB
+import BONUS_SMB_FAST =                                               Tracks.BONUS_SMB_FAST
+import BONUS_SMB2 =                                                   Tracks.BONUS_SMB2
+import BONUS_SMB2_FAST =                                              Tracks.BONUS_SMB2_FAST
+import BONUS_SMB3 =                                                   Tracks.BONUS_SMB3
+import BONUS_SMB3_FAST =                                              Tracks.BONUS_SMB3_FAST
+import BONUS_SMW =                                                    Tracks.BONUS_SMW
+import BONUS_SMW_FAST =                                               Tracks.BONUS_SMW_FAST
+import BONUS_SM3DW =                                                  Tracks.BONUS_SM3DW
+import BONUS_SM3DW_FAST =                                             Tracks.BONUS_SM3DW_FAST
+import BOSS_LINK =                                                    Tracks.BOSS_LINK
+import BOSS_LINK_FAST =                                               Tracks.BOSS_LINK_FAST
+import BOSS_NSMBU =                                                   Tracks.BOSS_NSMBU
+import BOSS_NSMBU_FAST =                                              Tracks.BOSS_NSMBU_FAST
+import BOSS_SMB =                                                     Tracks.BOSS_SMB
+import BOSS_SMB_FAST =                                                Tracks.BOSS_SMB_FAST
+import BOSS_SMB3 =                                                    Tracks.BOSS_SMB3
+import BOSS_SMB3_FAST =                                               Tracks.BOSS_SMB3_FAST
+import BOSS_SMB2 =                                                    Tracks.BOSS_SMB2
+import BOSS_SMB2_FAST =                                               Tracks.BOSS_SMB2_FAST
+import BOSS_SMW =                                                     Tracks.BOSS_SMW
+import BOSS_SMW_FAST =                                                Tracks.BOSS_SMW_FAST
+import BOSS_SM3DW =                                                   Tracks.BOSS_SM3DW
+import BOSS_SM3DW_FAST =                                              Tracks.BOSS_SM3DW_FAST
+import CASTLE_LESSON_EDITORS =                                        Tracks.CASTLE_LESSON_EDITORS
+import FINAL_BOSS_LINK =                                              Tracks.FINAL_BOSS_LINK
+import FINAL_BOSS_LINK_FAST =                                         Tracks.FINAL_BOSS_LINK_FAST
+import FINAL_BOSS_NSMBU =                                             Tracks.FINAL_BOSS_NSMBU
+import FINAL_BOSS_NSMBU_FAST =                                        Tracks.FINAL_BOSS_NSMBU_FAST
+import FINAL_BOSS_SMB2 =                                              Tracks.FINAL_BOSS_SMB2
+import FINAL_BOSS_SMB2_FAST =                                         Tracks.FINAL_BOSS_SMB2_FAST
+import FINAL_BOSS_SMB3 =                                              Tracks.FINAL_BOSS_SMB3
+import FINAL_BOSS_SMB3_FAST =                                         Tracks.FINAL_BOSS_SMB3_FAST
+import FINAL_BOSS_SMW =                                               Tracks.FINAL_BOSS_SMW
+import FINAL_BOSS_SMW_FAST =                                          Tracks.FINAL_BOSS_SMW_FAST
+import FINAL_BOSS_SM3DW =                                             Tracks.FINAL_BOSS_SM3DW
+import FINAL_BOSS_SM3DW_FAST =                                        Tracks.FINAL_BOSS_SM3DW_FAST
+import FOREST_LESSON_EDITORS =                                        Tracks.FOREST_LESSON_EDITORS
+import GHOST_HOUSE_LESSON_EDITORS =                                   Tracks.GHOST_HOUSE_LESSON_EDITORS
+import GROUND_LESSON_EDITORS =                                        Tracks.GROUND_LESSON_EDITORS
+import NSMBU_AIRSHIP_EDITORS =                                        Tracks.NSMBU_AIRSHIP_EDITORS
+import NSMBU_AIRSHIP_TIMES =                                          Tracks.NSMBU_AIRSHIP_TIMES
+import NSMBU_CASTLE_EDITORS =                                         Tracks.NSMBU_CASTLE_EDITORS
+import NSMBU_CASTLE_TIMES =                                           Tracks.NSMBU_CASTLE_TIMES
+import NSMBU_DESERT_EDITORS =                                         Tracks.NSMBU_DESERT_EDITORS
+import NSMBU_DESERT_TIMES =                                           Tracks.NSMBU_DESERT_TIMES
+import NSMBU_FOREST_EDITORS =                                         Tracks.NSMBU_FOREST_EDITORS
+import NSMBU_FOREST_TIMES =                                           Tracks.NSMBU_FOREST_TIMES
+import NSMBU_GHOST_HOUSE_EDITORS =                                    Tracks.NSMBU_GHOST_HOUSE_EDITORS
+import NSMBU_GHOST_HOUSE_TIMES =                                      Tracks.NSMBU_GHOST_HOUSE_TIMES
+import NSMBU_GROUND_EDITORS =                                         Tracks.NSMBU_GROUND_EDITORS
+import NSMBU_GROUND_TIMES =                                           Tracks.NSMBU_GROUND_TIMES
+import NSMBU_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES = Tracks.NSMBU_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES
+import NSMBU_SNOW_EDITORS =                                           Tracks.NSMBU_SNOW_EDITORS
+import NSMBU_SNOW_TIMES =                                             Tracks.NSMBU_SNOW_TIMES
+import NSMBU_SKY_EDITORS =                                            Tracks.NSMBU_SKY_EDITORS
+import NSMBU_SKY_TIMES =                                              Tracks.NSMBU_SKY_TIMES
+import NSMBU_UNDERGROUND_EDITORS =                                    Tracks.NSMBU_UNDERGROUND_EDITORS
+import NSMBU_UNDERGROUND_TIMES =                                      Tracks.NSMBU_UNDERGROUND_TIMES
+import NSMBU_UNDERWATER_EDITORS =                                     Tracks.NSMBU_UNDERWATER_EDITORS
+import NSMBU_UNDERWATER_TIMES =                                       Tracks.NSMBU_UNDERWATER_TIMES
+import PEACEFUL =                                                     Tracks.PEACEFUL
+import SMB_AIRSHIP_EDITORS =                                          Tracks.SMB_AIRSHIP_EDITORS
+import SMB_AIRSHIP_TIMES =                                            Tracks.SMB_AIRSHIP_TIMES
+import SMB_BONUSES =                                                  Tracks.SMB_BONUSES
+import SMB_BOSSES =                                                   Tracks.SMB_BOSSES
+import SMB_CASTLE_EDITORS =                                           Tracks.SMB_CASTLE_EDITORS
+import SMB_CASTLE_TIMES =                                             Tracks.SMB_CASTLE_TIMES
+import SMB_DESERT_EDITORS =                                           Tracks.SMB_DESERT_EDITORS
+import SMB_DESERT_TIMES =                                             Tracks.SMB_DESERT_TIMES
+import SMB_FINAL_BOSSES =                                             Tracks.SMB_FINAL_BOSSES
+import SMB_FOREST_EDITORS =                                           Tracks.SMB_FOREST_EDITORS
+import SMB_FOREST_TIMES =                                             Tracks.SMB_FOREST_TIMES
+import SMB_GHOST_HOUSE_EDITORS =                                      Tracks.SMB_GHOST_HOUSE_EDITORS
+import SMB_GHOST_HOUSE_TIMES =                                        Tracks.SMB_GHOST_HOUSE_TIMES
+import SMB_GROUND_EDITORS =                                           Tracks.SMB_GROUND_EDITORS
+import SMB_GROUND_TIMES =                                             Tracks.SMB_GROUND_TIMES
+import SMB_SNOW_EDITORS =                                             Tracks.SMB_SNOW_EDITORS
+import SMB_SNOW_TIMES =                                               Tracks.SMB_SNOW_TIMES
+import SMB_SKY_EDITORS =                                              Tracks.SMB_SKY_EDITORS
+import SMB_SKY_TIMES =                                                Tracks.SMB_SKY_TIMES
+import SMB_UNDERGROUND_EDITORS =                                      Tracks.SMB_UNDERGROUND_EDITORS
+import SMB_UNDERGROUND_TIMES =                                        Tracks.SMB_UNDERGROUND_TIMES
+import SMB_UNDERWATER_EDITORS =                                       Tracks.SMB_UNDERWATER_EDITORS
+import SMB_UNDERWATER_TIMES =                                         Tracks.SMB_UNDERWATER_TIMES
+import SMB3_AIRSHIP_EDITORS =                                         Tracks.SMB3_AIRSHIP_EDITORS
+import SMB3_AIRSHIP_TIMES =                                           Tracks.SMB3_AIRSHIP_TIMES
+import SMB3_CASTLE_EDITORS =                                          Tracks.SMB3_CASTLE_EDITORS
+import SMB3_CASTLE_TIMES =                                            Tracks.SMB3_CASTLE_TIMES
+import SMB3_DESERT_EDITORS =                                          Tracks.SMB3_DESERT_EDITORS
+import SMB3_FOREST_EDITORS =                                          Tracks.SMB3_FOREST_EDITORS
+import SMB3_GHOST_HOUSE_EDITORS =                                     Tracks.SMB3_GHOST_HOUSE_EDITORS
+import SMB3_GHOST_HOUSE_TIMES =                                       Tracks.SMB3_GHOST_HOUSE_TIMES
+import SMB3_GROUND_EDITORS =                                          Tracks.SMB3_GROUND_EDITORS
+import SMB3_GROUND_TIMES =                                            Tracks.SMB3_GROUND_TIMES
+import SMB3_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES =  Tracks.SMB3_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES
+import SMB3_SNOW_EDITORS =                                            Tracks.SMB3_SNOW_EDITORS
+import SMB3_SNOW_TIMES =                                              Tracks.SMB3_SNOW_TIMES
+import SMB3_SKY_EDITORS =                                             Tracks.SMB3_SKY_EDITORS
+import SMB3_SKY_TIMES =                                               Tracks.SMB3_SKY_TIMES
+import SMB3_UNDERGROUND_EDITORS =                                     Tracks.SMB3_UNDERGROUND_EDITORS
+import SMB3_UNDERGROUND_TIMES =                                       Tracks.SMB3_UNDERGROUND_TIMES
+import SMB3_UNDERWATER_EDITORS =                                      Tracks.SMB3_UNDERWATER_EDITORS
+import SMB3_UNDERWATER_TIMES =                                        Tracks.SMB3_UNDERWATER_TIMES
+import SMG =                                                          SoundEffects.SMG
+import SMK =                                                          SoundEffects.SMK
+import SMS =                                                          SoundEffects.SMS
+import SMW_AIRSHIP_EDITORS =                                          Tracks.SMW_AIRSHIP_EDITORS
+import SMW_AIRSHIP_TIMES =                                            Tracks.SMW_AIRSHIP_TIMES
+import SMW_CASTLE_EDITORS =                                           Tracks.SMW_CASTLE_EDITORS
+import SMW_CASTLE_TIMES =                                             Tracks.SMW_CASTLE_TIMES
+import SMW_DESERT_EDITORS =                                           Tracks.SMW_DESERT_EDITORS
+import SMW_DESERT_TIMES =                                             Tracks.SMW_DESERT_TIMES
+import SMW_FOREST_EDITORS =                                           Tracks.SMW_FOREST_EDITORS
+import SMW_FOREST_TIMES =                                             Tracks.SMW_FOREST_TIMES
+import SMW_GHOST_HOUSE_EDITORS =                                      Tracks.SMW_GHOST_HOUSE_EDITORS
+import SMW_GHOST_HOUSE_TIMES =                                        Tracks.SMW_GHOST_HOUSE_TIMES
+import SMW_GROUND_EDITORS =                                           Tracks.SMW_GROUND_EDITORS
+import SMW_GROUND_TIMES =                                             Tracks.SMW_GROUND_TIMES
+import SMW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES =   Tracks.SMW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES
+import SMW_SNOW_EDITORS =                                             Tracks.SMW_SNOW_EDITORS
+import SMW_SNOW_TIMES =                                               Tracks.SMW_SNOW_TIMES
+import SMW_SKY_EDITORS =                                              Tracks.SMW_SKY_EDITORS
+import SMW_SKY_TIMES =                                                Tracks.SMW_SKY_TIMES
+import SMW_UNDERGROUND_EDITORS =                                      Tracks.SMW_UNDERGROUND_EDITORS
+import SMW_UNDERGROUND_TIMES =                                        Tracks.SMW_UNDERGROUND_TIMES
+import SMW_UNDERWATER_EDITORS =                                       Tracks.SMW_UNDERWATER_EDITORS
+import SMW_UNDERWATER_TIMES =                                         Tracks.SMW_UNDERWATER_TIMES
+import SM3DW_AIRSHIP_EDITORS =                                        Tracks.SM3DW_AIRSHIP_EDITORS
+import SM3DW_AIRSHIP_TIMES =                                          Tracks.SM3DW_AIRSHIP_TIMES
+import SM3DW_CASTLE_EDITORS =                                         Tracks.SM3DW_CASTLE_EDITORS
+import SM3DW_CASTLE_TIMES =                                           Tracks.SM3DW_CASTLE_TIMES
+import SM3DW_DESERT_EDITORS =                                         Tracks.SM3DW_DESERT_EDITORS
+import SM3DW_DESERT_TIMES =                                           Tracks.SM3DW_DESERT_TIMES
+import SM3DW_FOREST_EDITORS =                                         Tracks.SM3DW_FOREST_EDITORS
+import SM3DW_FOREST_TIMES =                                           Tracks.SM3DW_FOREST_TIMES
+import SM3DW_GHOST_HOUSE_EDITORS =                                    Tracks.SM3DW_GHOST_HOUSE_EDITORS
+import SM3DW_GHOST_HOUSE_TIMES =                                      Tracks.SM3DW_GHOST_HOUSE_TIMES
+import SM3DW_GROUND_EDITORS =                                         Tracks.SM3DW_GROUND_EDITORS
+import SM3DW_GROUND_TIMES =                                           Tracks.SM3DW_GROUND_TIMES
+import SM3DW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES = Tracks.SM3DW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES
+import SM3DW_SNOW_EDITORS =                                           Tracks.SM3DW_SNOW_EDITORS
+import SM3DW_SNOW_TIMES =                                             Tracks.SM3DW_SNOW_TIMES
+import SM3DW_SKY_EDITORS =                                            Tracks.SM3DW_SKY_EDITORS
+import SM3DW_SKY_TIMES =                                              Tracks.SM3DW_SKY_TIMES
+import SM3DW_UNDERGROUND_EDITORS =                                    Tracks.SM3DW_UNDERGROUND_EDITORS
+import SM3DW_UNDERGROUND_TIMES =                                      Tracks.SM3DW_UNDERGROUND_TIMES
+import SM3DW_UNDERWATER_EDITORS =                                     Tracks.SM3DW_UNDERWATER_EDITORS
+import SM3DW_UNDERWATER_TIMES =                                       Tracks.SM3DW_UNDERWATER_TIMES
+import UNDERWATER_LESSON_EDITORS =                                    Tracks.UNDERWATER_LESSON_EDITORS
+import SM64 =                                                         SoundEffects.SM64
 
 /** @reactComponent */
 export default function MusicApp() {
@@ -235,262 +274,190 @@ export default function MusicApp() {
         </div>*/}
 
         <div id="smb-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SMB}/>
+            <GameStyleImage reference={GameStyles.SMB} className="mb-1"/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
-                <EditorMusicsContainer files={SMB_GROUND_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_GROUND_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_GROUND_EDITORS} files={SMB_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERGROUND}>
-                <EditorMusicsContainer files={SMB_UNDERGROUND_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_UNDERGROUND_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_UNDERGROUND_EDITORS} files={SMB_UNDERGROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERWATER}>
-                <EditorMusicsContainer files={SMB_UNDERWATER_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_UNDERWATER_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_UNDERWATER_EDITORS} files={SMB_UNDERWATER_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.DESERT}>
-                <EditorMusicsContainer files={SMB_DESERT_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_DESERT_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_DESERT_EDITORS} files={SMB_DESERT_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SNOW}>
-                <EditorMusicsContainer files={SMB_SNOW_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_SNOW_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_SNOW_EDITORS} files={SMB_SNOW_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SKY}>
-                <EditorMusicsContainer files={SMB_SKY_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_SKY_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_SKY_EDITORS} files={SMB_SKY_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.FOREST}>
-                <EditorMusicsContainer files={SMB_FOREST_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_FOREST_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_FOREST_EDITORS} files={SMB_FOREST_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.GHOST_HOUSE}>
-                <EditorMusicsContainer files={SMB_GHOST_HOUSE_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_GHOST_HOUSE_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_GHOST_HOUSE_EDITORS} files={SMB_GHOST_HOUSE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.AIRSHIP}>
-                <EditorMusicsContainer files={SMB_AIRSHIP_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_AIRSHIP_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_AIRSHIP_EDITORS} files={SMB_AIRSHIP_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.CASTLE}>
-                <EditorMusicsContainer files={SMB_CASTLE_EDITORS}/>
-                <TimeWithLinkAndSmb2MusicsContainer files={SMB_CASTLE_TIMES}/>
+                <TimeWithLinkAndSmb2MusicsContainer editorFiles={SMB_CASTLE_EDITORS} files={SMB_CASTLE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <div className="w-100"/>
+            <SmlMusicsContainer files={[Tracks.SML, Tracks.SML_FAST,]}/>
+            <PSwitchMusicsContainer files={[Tracks.P_SWITCH_SMB, Tracks.P_SWITCH_SMB_FAST,]} gameStyle={GameStyles.SMB}/>
+            <SuperStarMusicsContainer files={[Tracks.SUPER_STAR_SMB, Tracks.SUPER_STAR_SMB_FAST,]} gameStyle={GameStyles.SMB}/>
             <PeacefulMusicsContainer files={PEACEFUL}/>
             <BonusMusicsContainer files={SMB_BONUSES}/>
             <BossMusicsContainer files={SMB_BOSSES}/>
             <FinalBossMusicsContainer files={SMB_FINAL_BOSSES} asSmb3/>
         </div>
         <div id="smb3-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SMB3}/>
+            <GameStyleImage reference={GameStyles.SMB3} className="mb-1"/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
-                <EditorMusicsContainer files={SMB3_GROUND_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_GROUND_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_GROUND_EDITORS} files={SMB3_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERGROUND}>
-                <EditorMusicsContainer files={SMB3_UNDERGROUND_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_UNDERGROUND_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_UNDERGROUND_EDITORS} files={SMB3_UNDERGROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERWATER}>
-                <EditorMusicsContainer files={SMB3_UNDERWATER_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_UNDERWATER_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_UNDERWATER_EDITORS} files={SMB3_UNDERWATER_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.DESERT}>
-                <EditorMusicsContainer files={SMB3_DESERT_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_GROUND_TIMES}><ThemeImage reference={Themes.GROUND} isSmallPath/></TimeMusicsContainer>
+                <TimeAsGroundMusicsContainer editorFiles={SMB3_DESERT_EDITORS} files={SMB3_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SNOW}>
-                <EditorMusicsContainer files={SMB3_SNOW_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_SNOW_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_SNOW_EDITORS} files={SMB3_SNOW_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SKY}>
-                <EditorMusicsContainer files={SMB3_SKY_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_SKY_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_SKY_EDITORS} files={SMB3_SKY_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.FOREST}>
-                <EditorMusicsContainer files={SMB3_FOREST_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_GROUND_TIMES}><ThemeImage reference={Themes.GROUND} isSmallPath/></TimeMusicsContainer>
+                <TimeAsGroundMusicsContainer editorFiles={SMB3_FOREST_EDITORS} files={SMB3_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.GHOST_HOUSE}>
-                <EditorMusicsContainer files={SMB3_GHOST_HOUSE_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_GHOST_HOUSE_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_GHOST_HOUSE_EDITORS} files={SMB3_GHOST_HOUSE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.AIRSHIP}>
-                <EditorMusicsContainer files={SMB3_AIRSHIP_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_AIRSHIP_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_AIRSHIP_EDITORS} files={SMB3_AIRSHIP_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.CASTLE}>
-                <EditorMusicsContainer files={SMB3_CASTLE_EDITORS}/>
-                <TimeMusicsContainer files={SMB3_CASTLE_TIMES}/>
+                <TimeMusicsContainer editorFiles={SMB3_CASTLE_EDITORS} files={SMB3_CASTLE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <div className="w-100"/>
-            <BonusBossAndFinalBossMusicsContainer files={SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
+            <PSwitchSuperStarBonusBossAndFinalBossMusicsContainer files={SMB3_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES} gameStyle={GameStyles.SMB3}/>
         </div>
         <div id="smw-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SMW}/>
+            <GameStyleImage reference={GameStyles.SMW} className="mb-1"/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
-                <EditorMusicsContainer files={SMW_GROUND_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_GROUND_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_GROUND_EDITORS} files={SMW_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERGROUND}>
-                <EditorMusicsContainer files={SMW_UNDERGROUND_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_UNDERGROUND_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_UNDERGROUND_EDITORS} files={SMW_UNDERGROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERWATER}>
-                <EditorMusicsContainer files={SMW_UNDERWATER_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_UNDERWATER_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_UNDERWATER_EDITORS} files={SMW_UNDERWATER_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.DESERT}>
-                <EditorMusicsContainer files={SMW_DESERT_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_DESERT_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_DESERT_EDITORS} files={SMW_DESERT_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SNOW}>
-                <EditorMusicsContainer files={SMW_SNOW_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_SNOW_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_SNOW_EDITORS} files={SMW_SNOW_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SKY}>
-                <EditorMusicsContainer files={SMW_SKY_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_SKY_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_SKY_EDITORS} files={SMW_SKY_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.FOREST}>
-                <EditorMusicsContainer files={SMW_FOREST_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_FOREST_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_FOREST_EDITORS} files={SMW_FOREST_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.GHOST_HOUSE}>
-                <EditorMusicsContainer files={SMW_GHOST_HOUSE_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_GHOST_HOUSE_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_GHOST_HOUSE_EDITORS} files={SMW_GHOST_HOUSE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.AIRSHIP}>
-                <EditorMusicsContainer files={SMW_AIRSHIP_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_AIRSHIP_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_AIRSHIP_EDITORS} files={SMW_AIRSHIP_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.CASTLE}>
-                <EditorMusicsContainer files={SMW_CASTLE_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={SMW_CASTLE_TIMES} gameStyle="SMW"/>
+                <TimeWithSmwYoshiMusicsContainer editorFiles={SMW_CASTLE_EDITORS} files={SMW_CASTLE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <div className="w-100"/>
-            <BonusBossAndFinalBossMusicsContainer files={SMW_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
+            <PSwitchSuperStarBonusBossAndFinalBossMusicsContainer files={SMW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES} gameStyle={GameStyles.SMW}/>
         </div>
         <div id="nsmbu-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.NSMBU}/>
+            <GameStyleImage reference={GameStyles.NSMBU} className="mb-1"/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
-                <EditorMusicsContainer files={NSMBU_GROUND_EDITORS}/>
-                <LessonEditorMusicsContainer files={GROUND_LESSON_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_GROUND_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiAndLessonEditorMusicsContainer editorFiles={NSMBU_GROUND_EDITORS} lessonEditorFiles={GROUND_LESSON_EDITORS} files={NSMBU_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERGROUND}>
-                <EditorMusicsContainer files={NSMBU_UNDERGROUND_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_UNDERGROUND_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiMusicsContainer editorFiles={NSMBU_UNDERGROUND_EDITORS} files={NSMBU_UNDERGROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERWATER}>
-                <EditorMusicsContainer files={NSMBU_UNDERWATER_EDITORS}/>
-                <LessonEditorMusicsContainer files={UNDERWATER_LESSON_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_UNDERWATER_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiAndLessonEditorMusicsContainer editorFiles={NSMBU_UNDERWATER_EDITORS} lessonEditorFiles={UNDERWATER_LESSON_EDITORS} files={NSMBU_UNDERWATER_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.DESERT}>
-                <EditorMusicsContainer files={NSMBU_DESERT_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_DESERT_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiMusicsContainer editorFiles={NSMBU_DESERT_EDITORS} files={NSMBU_DESERT_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SNOW}>
-                <EditorMusicsContainer files={NSMBU_SNOW_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_SNOW_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiMusicsContainer editorFiles={NSMBU_SNOW_EDITORS} files={NSMBU_SNOW_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SKY}>
-                <EditorMusicsContainer files={NSMBU_SKY_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_SKY_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiMusicsContainer editorFiles={NSMBU_SKY_EDITORS} files={NSMBU_SKY_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.FOREST}>
-                <EditorMusicsContainer files={NSMBU_FOREST_EDITORS}/>
-                <LessonEditorMusicsContainer files={FOREST_LESSON_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_FOREST_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiAndLessonEditorMusicsContainer editorFiles={NSMBU_FOREST_EDITORS} lessonEditorFiles={FOREST_LESSON_EDITORS} files={NSMBU_FOREST_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.GHOST_HOUSE}>
-                <EditorMusicsContainer files={NSMBU_GHOST_HOUSE_EDITORS}/>
-                <LessonEditorMusicsContainer files={GHOST_HOUSE_LESSON_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_GHOST_HOUSE_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiAndLessonEditorMusicsContainer editorFiles={NSMBU_GHOST_HOUSE_EDITORS} lessonEditorFiles={GHOST_HOUSE_LESSON_EDITORS} files={NSMBU_GHOST_HOUSE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.AIRSHIP}>
-                <EditorMusicsContainer files={NSMBU_AIRSHIP_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_AIRSHIP_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiMusicsContainer editorFiles={NSMBU_AIRSHIP_EDITORS} files={NSMBU_AIRSHIP_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.CASTLE}>
-                <EditorMusicsContainer files={NSMBU_CASTLE_EDITORS}/>
-                <LessonEditorMusicsContainer files={CASTLE_LESSON_EDITORS}/>
-                <TimeWithYoshiMusicsContainer files={NSMBU_CASTLE_TIMES} gameStyle="NSMBU"/>
+                <TimeWithNsmbuYoshiAndLessonEditorMusicsContainer editorFiles={NSMBU_CASTLE_EDITORS} lessonEditorFiles={CASTLE_LESSON_EDITORS} files={NSMBU_CASTLE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <div className="w-100"/>
-            <div id="bonusMusicWithYoshiAndBossMusicAndFinalBossMusic-musics-container" className="musics-container small-images grid-3">
-                <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
-
-                <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
-                <Track value={BONUS_NSMBU}/>
-                <Track value={BONUS_NSMBU_FAST}/>
-
-                <Image file={getYoshiImage(GameStyles.NSMBU,)} className="yoshi-image"/>
-                <Track value={BONUS_NSMBU_YOSHI}/>
-                <Track value={BONUS_NSMBU_YOSHI_FAST}/>
-
-                <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
-                <Track value={BOSS_NSMBU}/>
-                <Track value={BOSS_NSMBU_FAST}/>
-
-                <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
-                <Track value={FINAL_BOSS_NSMBU}/>
-                <Track value={FINAL_BOSS_NSMBU_FAST}/>
-            </div>
+            <PSwitchSuperStarBonusWithNsmbuYoshiBossAndFinalBossMusicsContainer files={NSMBU_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
         </div>
         <div id="sm3dw-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SM3DW}/>
+            <GameStyleImage reference={GameStyles.SM3DW} className="mb-1"/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
-                <EditorMusicsContainer files={SM3DW_GROUND_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_GROUND_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_GROUND_EDITORS} files={SM3DW_GROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERGROUND}>
-                <EditorMusicsContainer files={SM3DW_UNDERGROUND_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_UNDERGROUND_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_UNDERGROUND_EDITORS} files={SM3DW_UNDERGROUND_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.UNDERWATER}>
-                <EditorMusicsContainer files={SM3DW_UNDERWATER_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_UNDERWATER_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_UNDERWATER_EDITORS} files={SM3DW_UNDERWATER_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.DESERT}>
-                <EditorMusicsContainer files={SM3DW_DESERT_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_DESERT_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_DESERT_EDITORS} files={SM3DW_DESERT_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SNOW}>
-                <EditorMusicsContainer files={SM3DW_SNOW_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_SNOW_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_SNOW_EDITORS} files={SM3DW_SNOW_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.SKY}>
-                <EditorMusicsContainer files={SM3DW_SKY_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_SKY_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_SKY_EDITORS} files={SM3DW_SKY_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.FOREST}>
-                <EditorMusicsContainer files={SM3DW_FOREST_EDITORS}/>
-                <TimeWithUnderwaterMusicsContainer files={SM3DW_FOREST_TIMES}/>
+                <DayWithUnderwaterMusicsContainer editorFiles={SM3DW_FOREST_EDITORS} files={SM3DW_FOREST_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.GHOST_HOUSE}>
-                <EditorMusicsContainer files={SM3DW_GHOST_HOUSE_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_GHOST_HOUSE_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_GHOST_HOUSE_EDITORS} files={SM3DW_GHOST_HOUSE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.AIRSHIP}>
-                <EditorMusicsContainer files={SM3DW_AIRSHIP_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_AIRSHIP_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_AIRSHIP_EDITORS} files={SM3DW_AIRSHIP_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <ThemeGroupedMusicsContainer theme={Themes.CASTLE}>
-                <EditorMusicsContainer files={SM3DW_CASTLE_EDITORS}/>
-                <DayMusicsContainer files={SM3DW_CASTLE_TIMES}/>
+                <DayMusicsContainer editorFiles={SM3DW_CASTLE_EDITORS} files={SM3DW_CASTLE_TIMES}/>
             </ThemeGroupedMusicsContainer>
             <div className="w-100"/>
-            <BonusBossAndFinalBossMusicsContainer files={SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
+            <PSwitchSuperStarBonusBossAndFinalBossMusicsContainer files={SM3DW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES} gameStyle={GameStyles.SM3DW}/>
         </div>
 
         {/*<div id="ground-musics-container" className="theme-musics-container musics-container">
@@ -667,7 +634,7 @@ export default function MusicApp() {
             </GameStyleGroupedMusicsContainer>
             <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SM3DW}>
                 <EditorMusicsContainer files={SM3DW_FOREST_EDITORS}/>
-                <TimeWithUnderwaterMusicsContainer files={SM3DW_FOREST_TIMES}/>
+                <DayWithUnderwaterMusicsContainer files={SM3DW_FOREST_TIMES}/>
             </GameStyleGroupedMusicsContainer>
         </div>
         <div id="ghostHouse-musics-container" className="theme-musics-container musics-container">
@@ -753,7 +720,7 @@ export default function MusicApp() {
             <div className="musics-container no-style small-images grid-3">
                 <div/>
                 <Image file={WORLD_THEME_IMAGE_FILE}/>
-                <div/>
+                <DontViewTrace/>
 
                 <ThemeImage reference={Themes.GROUND} isSmallPath/>
                 <Track value={Tracks.GROUND_WORLD_EDITOR}/>
@@ -789,28 +756,46 @@ export default function MusicApp() {
             </div>
         </div>
 
-        {/*<div id="link-musics-container" className="powerUp-musics-container musics-container">
-            <Image file={getLinkImage()} className="link-image"/>
-
+        <div id="link-musics-container" className="powerUp-musics-container musics-container">
+            <LinkImage/>
             <div className="musics-container no-style small-images grid-3">
                 <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+                <DontViewTrace/>
+                <ViewTrace/>
 
-                <ThemeImage reference={Themes.GROUND} isSmallPath/>
-                <Track value={GROUND_LINK}/>
-                <Track value={GROUND_LINK_FAST}/>
+                <div className="d-flex flex-column border border-bottom-0 border-primary-subtle rounded-top p-1">
+                    <div className="d-flex mb-1">
+                        <ThemeImage reference={Themes.GROUND} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.UNDERWATER} isSmallPath/>
+                    </div>
+                    <div className="d-flex mb-1">
+                        <ThemeImage reference={Themes.DESERT} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.SNOW} isSmallPath/>
+                    </div>
+                    <div className="d-flex">
+                        <ThemeImage reference={Themes.SKY} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.FOREST} isSmallPath/>
+                    </div>
+                </div>
+                <Track value={Tracks.GROUND_LINK}/>
+                <Track value={Tracks.GROUND_LINK_FAST}/>
 
-                <ThemeImage reference={Themes.UNDERGROUND} isSmallPath/>
-                <Track value={UNDERGROUND_LINK}/>
-                <Track value={UNDERGROUND_LINK_FAST}/>
+                <div className="d-flex border border-bottom-0 border-primary-subtle p-1">
+                    <ThemeImage reference={Themes.UNDERGROUND} isSmallPath className="me-1"/>
+                    <ThemeImage reference={Themes.GHOST_HOUSE} isSmallPath/>
+                </div>
+                <Track value={Tracks.UNDERGROUND_LINK}/>
+                <Track value={Tracks.UNDERGROUND_LINK_FAST}/>
 
-                <ThemeImage reference={Themes.CASTLE} isSmallPath/>
-                <Track value={CASTLE_LINK}/>
-                <Track value={CASTLE_LINK_FAST}/>
+                <div className="d-flex border border-primary-subtle rounded-bottom p-1">
+                    <ThemeImage reference={Themes.AIRSHIP} isSmallPath className="me-1"/>
+                    <ThemeImage reference={Themes.CASTLE} isSmallPath/>
+                </div>
+                <Track value={Tracks.CASTLE_LINK}/>
+                <Track value={Tracks.CASTLE_LINK_FAST}/>
 
                 <SoundEffectImage reference={SoundEffects.PEACEFUL}/>
-                <Track value={PEACEFUL_LINK}/>
+                <Track value={Tracks.PEACEFUL_LINK}/>
                 <div/>
 
                 <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
@@ -827,23 +812,42 @@ export default function MusicApp() {
             </div>
         </div>
         <div id="smb2-musics-container" className="powerUp-musics-container musics-container">
-            <Image file={getSmb2Image()} className="smb2-image"/>
-
+            <Smb2Image/>
             <div className="musics-container no-style small-images grid-3">
                 <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+                <DontViewTrace/>
+                <ViewTrace/>
 
-                <ThemeImage reference={Themes.GROUND} isSmallPath/>
-                <Track value={GROUND_SMB2}/>
-                <Track value={GROUND_SMB2_FAST}/>
+                <div className="d-flex flex-column align-items-center border border-bottom-0 border-primary-subtle rounded-top p-1">
+                    <div className="d-flex mb-1">
+                        <ThemeImage reference={Themes.GROUND} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.UNDERWATER} isSmallPath/>
+                    </div>
+                    <div className="d-flex mb-1">
+                        <ThemeImage reference={Themes.DESERT} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.SNOW} isSmallPath/>
+                    </div>
+                    <div className="d-flex mb-1">
+                        <ThemeImage reference={Themes.SKY} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.FOREST} isSmallPath/>
+                    </div>
+                    <div><ThemeImage reference={Themes.AIRSHIP} isSmallPath/></div>
+                </div>
+                <Track value={Tracks.GROUND_SMB2}/>
+                <Track value={Tracks.GROUND_SMB2_FAST}/>
 
-                <ThemeImage reference={Themes.UNDERGROUND} isSmallPath/>
-                <Track value={UNDERGROUND_SMB2}/>
-                <Track value={UNDERGROUND_SMB2_FAST}/>
+                <div className="d-flex flex-column align-items-center border border-primary-subtle rounded-bottom p-1">
+                    <div className="d-flex mb-1">
+                        <ThemeImage reference={Themes.UNDERGROUND} isSmallPath className="me-1"/>
+                        <ThemeImage reference={Themes.GHOST_HOUSE} isSmallPath/>
+                    </div>
+                    <div><ThemeImage reference={Themes.CASTLE} isSmallPath/></div>
+                </div>
+                <Track value={Tracks.UNDERGROUND_SMB2}/>
+                <Track value={Tracks.UNDERGROUND_SMB2_FAST}/>
 
                 <SoundEffectImage reference={SoundEffects.PEACEFUL}/>
-                <Track value={PEACEFUL_SMB2}/>
+                <Track value={Tracks.PEACEFUL_SMB2}/>
                 <div/>
 
                 <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
@@ -858,17 +862,17 @@ export default function MusicApp() {
                 <Track value={FINAL_BOSS_SMB2}/>
                 <Track value={FINAL_BOSS_SMB2_FAST}/>
             </div>
-        </div>*/}
+        </div>
 
-        {/*<div id="peaceful-musics-container" className="soundEffect-musics-container musics-container">
+        <div id="peaceful-musics-container" className="soundEffect-musics-container musics-container">
             <SoundEffectImage reference={SoundEffects.PEACEFUL}/>
 
             <div className="musics-container no-style small-images grid-2">
-                <Image file={getLinkImage()}/>
-                <Track value={PEACEFUL_LINK}/>
+                <LinkImage/>
+                <Track value={Tracks.PEACEFUL_LINK}/>
 
-                <Image file={getSmb2Image()}/>
-                <Track value={PEACEFUL_SMB2}/>
+                <Smb2Image/>
+                <Track value={Tracks.PEACEFUL_SMB2}/>
             </div>
         </div>
         <div id="bonus-musics-container" className="soundEffect-musics-container musics-container">
@@ -876,8 +880,8 @@ export default function MusicApp() {
 
             <div className="musics-container no-style small-images grid-3">
                 <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+                <DontViewTrace/>
+                <ViewTrace/>
 
                 <GameStyleImage reference={GameStyles.SMB}/>
                 <Track value={BONUS_SMB}/>
@@ -892,22 +896,18 @@ export default function MusicApp() {
                 <Track value={BONUS_SMW_FAST}/>
 
                 <GameStyleImage reference={GameStyles.NSMBU}/>
-                <Track value={BONUS_NSMBU}/>
-                <Track value={BONUS_NSMBU_FAST}/>
-
-                <Image file={getYoshiImage(GameStyles.NSMBU,)} className="yoshi-image"/>
-                <Track value={BONUS_NSMBU_YOSHI}/>
-                <Track value={BONUS_NSMBU_YOSHI_FAST}/>
+                <YoshiTrack normal={BONUS_NSMBU} yoshi={BONUS_NSMBU_YOSHI} image={NSMBU_YOSHI_IMAGE}/>
+                <YoshiTrack normal={BONUS_NSMBU_FAST} yoshi={BONUS_NSMBU_YOSHI_FAST} image={NSMBU_YOSHI_IMAGE}/>
 
                 <GameStyleImage reference={GameStyles.SM3DW}/>
                 <Track value={BONUS_SM3DW}/>
                 <Track value={BONUS_SM3DW_FAST}/>
 
-                <Image file={getLinkImage()} className="link-image"/>
+                <LinkImage/>
                 <Track value={BONUS_LINK}/>
                 <Track value={BONUS_LINK_FAST}/>
 
-                <Image file={getSmb2Image()} className="smb2-image"/>
+                <Smb2Image/>
                 <Track value={BONUS_SMB2}/>
                 <Track value={BONUS_SMB2_FAST}/>
             </div>
@@ -917,8 +917,8 @@ export default function MusicApp() {
 
             <div className="musics-container no-style small-images grid-3">
                 <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+                <DontViewTrace/>
+                <ViewTrace/>
 
                 <GameStyleImage reference={GameStyles.SMB}/>
                 <Track value={BOSS_SMB}/>
@@ -940,11 +940,11 @@ export default function MusicApp() {
                 <Track value={BOSS_SM3DW}/>
                 <Track value={BOSS_SM3DW_FAST}/>
 
-                <Image file={getLinkImage()} className="link-image"/>
+                <LinkImage/>
                 <Track value={BOSS_LINK}/>
                 <Track value={BOSS_LINK_FAST}/>
 
-                <Image file={getSmb2Image()} className="smb2-image"/>
+                <Smb2Image/>
                 <Track value={BOSS_SMB2}/>
                 <Track value={BOSS_SMB2_FAST}/>
             </div>
@@ -954,14 +954,13 @@ export default function MusicApp() {
 
             <div className="musics-container no-style small-images grid-3">
                 <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+                <DontViewTrace/>
+                <ViewTrace/>
 
-                <GameStyleImage reference={GameStyles.SMB}/>
-                <div/>
-                <div/>
-
-                <GameStyleImage reference={GameStyles.SMB3}/>
+                <div className="d-flex flex-column align-items-center border border-primary-subtle rounded p-1">
+                    <GameStyleImage reference={GameStyles.SMB} className="mb-1"/>
+                    <GameStyleImage reference={GameStyles.SMB3}/>
+                </div>
                 <Track value={FINAL_BOSS_SMB3}/>
                 <Track value={FINAL_BOSS_SMB3_FAST}/>
 
@@ -977,20 +976,20 @@ export default function MusicApp() {
                 <Track value={FINAL_BOSS_SM3DW}/>
                 <Track value={FINAL_BOSS_SM3DW_FAST}/>
 
-                <Image file={getLinkImage()} className="link-image"/>
+                <LinkImage/>
                 <Track value={FINAL_BOSS_LINK}/>
                 <Track value={FINAL_BOSS_LINK_FAST}/>
 
-                <Image file={getSmb2Image()} className="smb2-image"/>
+                <Smb2Image/>
                 <Track value={FINAL_BOSS_SMB2}/>
                 <Track value={FINAL_BOSS_SMB2_FAST}/>
             </div>
-        </div>*/}
+        </div>
         <div id="otherGames-musics-container" className="musics-container">
             <div className="musics-container no-style small-images grid-3">
                 <div/>
-                <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-                <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+                <DontViewTrace/>
+                <ViewTrace/>
 
                 <SoundEffectImage reference={SMK}/>
                 <Track value={Tracks.SMK}/>
@@ -1012,49 +1011,41 @@ export default function MusicApp() {
     </div>
 }
 
-//region -------------------- Get image --------------------
+//region -------------------- Image --------------------
 
-function getLinkImage() {
-    return EditorEntityImages.MASTER_SWORD.image.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
+const LINK_IMAGE = EditorEntityImages.MASTER_SWORD.image.getSmb().getFirst()
+const SMB2_IMAGE = EditorEntityImages.SMB2_MUSHROOM.image.getSmb().getFirst()
+const SML_IMAGE = EditorEntityImages.SUPERBALL_FLOWER.image.getSmb().getFirst()
+const SMW_YOSHI_IMAGE = EditorEntityImages.YOSHI_EGG.image.getSmw().getFirst()
+const NSMBU_YOSHI_IMAGE = ClearConditionEntityImages.YOSHI_EGG.image.get(GameStyles.NSMBU,)
+
+
+function getPSwitchImage(gameStyle: GameStyles,) {
+    return EditorEntityImages.P_SWITCH.image.get(gameStyle,).getFirst()
 }
 
-function getSmb2Image() {
-    return EditorEntityImages.SMB2_MUSHROOM.image.get(GameStyles.SMB, Themes.GROUND, Times.DAY,).getFirst()
+function getSuperStarImage(gameStyle: GameStyles,) {
+    return EditorEntityImages.SUPER_STAR.image.get(gameStyle,).getFirst()
 }
 
-function getYoshiImage(gameStyle: GameStyles,) {
-    if (gameStyle === GameStyles.SMW)
-        return EditorEntityImages.YOSHI_EGG.image.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
-    if (gameStyle === GameStyles.NSMBU)
-        return ClearConditionEntityImages.YOSHI_EGG.image.get(gameStyle,)
-    throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)
-}
+// function getYoshiImage(gameStyle: GameStyles,) {
+//     if (gameStyle === GameStyles.SMW)
+//         return EditorEntityImages.YOSHI_EGG.image.get(gameStyle, Themes.GROUND, Times.DAY,).getFirst()
+//     if (gameStyle === GameStyles.NSMBU)
+//         return ClearConditionEntityImages.YOSHI_EGG.image.get(gameStyle,)
+//     throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)
+// }
 
-//endregion -------------------- Get image --------------------
+//endregion -------------------- Image --------------------
 //region -------------------- Musics --------------------
 
-//region -------------------- Musics types --------------------
-
-// type PossibleType = | 'peaceful' | 'bonus' | 'boss' | 'finalBoss'
-//                     | 'gameStyle' | 'theme'
-//                     | 'world' | 'volcano' | 'space'
-//                     | 'link' | 'smb2'
-//                     | 'ground' | 'underground' | 'underwater' | 'desert' | 'snow' | 'sky' | 'forest' | 'ghostHouse' | 'airship' | 'castle'
-
-//endregion -------------------- Musics types --------------------
 //region -------------------- Musics --------------------
 
-interface MusicsProperties<out FILES extends ArrayOf1To8<Tracks>, >
+interface MusicsProperties<out FILES extends Array<Tracks>, >
     extends ReactProperties { readonly files: FILES }
 
-type GroupedMusicsProperties = ReactPropertiesWithChildren<ReactElementOrArray>
-
-// /** @reactComponent */
-// function MusicsContainer({type, files,}: MusicsProperties,) {
-//     return <div className={`${type}-music-container music-container`}>{new ArrayAsCollection(files,).map(it =>
-//         <Track key={`Music (${it.titleName})`} value={it}/>,)
-//     }</div>
-// }
+interface MusicsWithEditorProperties<out FILES extends Array<Tracks>, >
+    extends MusicsProperties<FILES> { readonly editorFiles: ArrayOf7<Tracks> }
 
 //endregion -------------------- Musics --------------------
 
@@ -1138,7 +1129,8 @@ type GroupedMusicsProperties = ReactPropertiesWithChildren<ReactElementOrArray>
 // }
 //
 
-interface ThemeGroupedMusicsProperties extends GroupedMusicsProperties { readonly theme: Themes }
+interface ThemeGroupedMusicsProperties
+    extends ReactPropertiesWithChildren<ReactElementOrArray> { readonly theme: Themes }
 
 /** @reactComponent */
 function ThemeGroupedMusicsContainer({theme, children,}: ThemeGroupedMusicsProperties,) {
@@ -1149,37 +1141,6 @@ function ThemeGroupedMusicsContainer({theme, children,}: ThemeGroupedMusicsPrope
 }
 
 //endregion -------------------- Theme musics --------------------
-
-//region -------------------- Editor musics --------------------
-
-type EditorMusicsProperties  = MusicsProperties<ArrayOf7<Tracks>>
-
-/** @reactComponent */
-function EditorMusicsContainer({files,}: EditorMusicsProperties,) {
-    return <div className="editor-musics-container musics-container">
-        <Image file={COURSE_THEME_IMAGE_FILE}/>
-        <div className="editor-music-container music-container">{new ArrayAsCollection(files,).map(it =>
-            <Track key={`Editor music (${it.titleName})`} value={it}/>,)
-        }</div>
-    </div>
-}
-
-//endregion -------------------- Editor musics --------------------
-//region -------------------- Lesson editor musics --------------------
-
-type LessonEditorMusicsProperties = MusicsProperties<ArrayOf4<Tracks>>
-
-/** @reactComponent */
-function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
-    return <div className="lessonEditor-musics-container musics-container">
-        <UnfinishedText>Lesson editor</UnfinishedText>
-        <div className="lessonEditor-music-container music-container">{new ArrayAsCollection(files,).map(it =>
-            <Track key={`Lesson editor music (${it.titleName})`} value={it}/>,)
-        }</div>
-    </div>
-}
-
-//endregion -------------------- Lesson editor musics --------------------
 
 //region -------------------- Sound effect musics --------------------
 
@@ -1210,58 +1171,142 @@ function LessonEditorMusicsContainer({files,}: LessonEditorMusicsProperties,) {
 // }
 //
 
-type BonusBossAndFinalBossMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
+interface PSwitchSuperStarBonusBossAndFinalBossMusicsProperties
+    extends MusicsProperties<ArrayOf10<Tracks>> {
+
+    readonly gameStyle: GameStyles
+
+}
 
 /** @reactComponent */
-function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMusicsProperties,) {
-    return <div className="bonusMusicAndBossMusicAndFinalBossMusic-musics-container musics-container small-images grid-3">
+function PSwitchSuperStarBonusBossAndFinalBossMusicsContainer({files, gameStyle,}: PSwitchSuperStarBonusBossAndFinalBossMusicsProperties,) {
+    return <div className="pSwitchMusicAndSuperStarMusicAndBonusMusicAndBossMusicAndFinalBossMusic-musics-container musics-container small-images grid-3">
         <div/>
-        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+        <DontViewTrace/>
+        <ViewTrace/>
 
-        <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
+        <Image file={getPSwitchImage(gameStyle,)}/>
         <Track value={files[0]}/>
         <Track value={files[1]}/>
 
-        <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
+        <Image file={getSuperStarImage(gameStyle,)}/>
         <Track value={files[2]}/>
         <Track value={files[3]}/>
 
-        <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
+        <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
         <Track value={files[4]}/>
         <Track value={files[5]}/>
+
+        <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
+        <Track value={files[6]}/>
+        <Track value={files[7]}/>
+
+        <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
+        <Track value={files[8]}/>
+        <Track value={files[9]}/>
     </div>
 }
 
-//
-// interface BonusWithYoshiBossAndFinalBossMusicsProperties extends MusicsProperties<ArrayOf8<Tracks>> {}
-//
-// /** @reactComponent */
-// function BonusWithYoshiBossAndFinalBossMusicsContainer({files,}: BonusWithYoshiBossAndFinalBossMusicsProperties,) {
-//     return <div className="bonusMusicWithYoshiAndBossMusicAndFinalBossMusic-musics-container musics-container grid-3">
-//         <div/>
-//         <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-//         <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
-//
-//         <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
-//         <Track value={files[0]}/>
-//         <Track value={files[1]}/>
-//
-//         <Image file={getYoshiImage(GameStyles.NSMBU,)} className="yoshi-image"/>
-//         <Track value={files[2]}/>
-//         <Track value={files[3]}/>
-//
-//         <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
-//         <Track value={files[4]}/>
-//         <Track value={files[5]}/>
-//
-//         <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
-//         <Track value={files[6]}/>
-//         <Track value={files[7]}/>
-//     </div>
-// }
+
+type PSwitchSuperStarBonusWithYoshiBossAndFinalBossMusicsProperties = MusicsProperties<ArrayOf12<Tracks>>
+
+/** @reactComponent */
+function PSwitchSuperStarBonusWithNsmbuYoshiBossAndFinalBossMusicsContainer({files,}: PSwitchSuperStarBonusWithYoshiBossAndFinalBossMusicsProperties,) {
+    return <div className="pSwitchMusicAndSuperStarMusicAndBonusMusicAndBossMusicAndFinalBossMusic-nsmbu-musics-container pSwitchMusicAndSuperStarMusicAndBonusMusicAndBossMusicAndFinalBossMusic-musics-container musics-container small-images grid-3">
+        <div/>
+        <DontViewTrace/>
+        <ViewTrace/>
+
+        <Image file={getPSwitchImage(GameStyles.NSMBU,)} className="pSwitch-image"/>
+        <Track value={files[0]}/>
+        <Track value={files[1]}/>
+
+        <Image file={getSuperStarImage(GameStyles.NSMBU,)} className="superStar-image"/>
+        <Track value={files[2]}/>
+        <Track value={files[3]}/>
+
+        <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
+        <YoshiTrack normal={files[4]} yoshi={files[6]} image={NSMBU_YOSHI_IMAGE}/>
+        <YoshiTrack normal={files[5]} yoshi={files[7]} image={NSMBU_YOSHI_IMAGE}/>
+
+        <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
+        <Track value={files[8]}/>
+        <Track value={files[9]}/>
+
+        <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
+        <Track value={files[10]}/>
+        <Track value={files[11]}/>
+    </div>
+}
 
 //endregion -------------------- Sound effect musics --------------------
+//region -------------------- Sml musics --------------------
+
+type SmlMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
+
+/** @reactComponent */
+function SmlMusicsContainer({files,}: SmlMusicsProperties,) {
+    return <div className="sml-musics-container musics-container">
+        <SmlImage/>
+        <div className="musics-container no-style grid-2">
+            <DontViewTrace/>
+            <Track value={files[0]}/>
+
+            <ViewTrace/>
+            <Track value={files[1]}/>
+        </div>
+    </div>
+}
+
+//endregion -------------------- Sml musics --------------------
+//region -------------------- P-switch musics --------------------
+
+interface PSwitchMusicsProperties
+    extends MusicsProperties<ArrayOf2<Tracks>> {
+
+    readonly gameStyle: GameStyles
+
+}
+
+/** @reactComponent */
+function PSwitchMusicsContainer({files, gameStyle,}: PSwitchMusicsProperties,) {
+    return <div className="pSwitch-musics-container musics-container">
+        <Image file={getPSwitchImage(gameStyle,)}/>
+        <div className="musics-container no-style grid-2">
+            <DontViewTrace/>
+            <Track value={files[0]}/>
+
+            <ViewTrace/>
+            <Track value={files[1]}/>
+        </div>
+    </div>
+}
+
+//endregion -------------------- P-switch musics --------------------
+//region -------------------- Super star musics --------------------
+
+interface SuperStarMusicsProperties
+    extends MusicsProperties<ArrayOf2<Tracks>> {
+
+    readonly gameStyle: GameStyles
+
+}
+
+/** @reactComponent */
+function SuperStarMusicsContainer({files, gameStyle,}: SuperStarMusicsProperties,) {
+    return <div className="superStar-musics-container musics-container">
+        <Image file={getSuperStarImage(gameStyle,)}/>
+        <div className="musics-container no-style grid-2">
+            <DontViewTrace/>
+            <Track value={files[0]}/>
+
+            <ViewTrace/>
+            <Track value={files[1]}/>
+        </div>
+    </div>
+}
+
+//endregion -------------------- Super star musics --------------------
 //region -------------------- Peaceful musics --------------------
 
 type PeacefulMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
@@ -1270,11 +1315,11 @@ type PeacefulMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
 function PeacefulMusicsContainer({files,}: PeacefulMusicsProperties,) {
     return <div className="peaceful-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.PEACEFUL}/>
-        <div className="musics-container grid-2">
-            <Image file={getLinkImage()}/>
+        <div className="musics-container no-style grid-2">
+            <LinkImage/>
             <Track value={files[0]}/>
 
-            <Image file={getSmb2Image()}/>
+            <Smb2Image/>
             <Track value={files[1]}/>
         </div>
     </div>
@@ -1289,20 +1334,20 @@ type BonusMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 function BonusMusicsContainer({files,}: BonusMusicsProperties,) {
     return <div className="bonusMusic-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.BONUS_MUSIC}/>
-        <div className="musics-container grid-3">
+        <div className="musics-container no-style grid-3">
             <div/>
-            <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-            <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+            <DontViewTrace/>
+            <ViewTrace/>
 
             <div/>
             <Track value={files[0]}/>
             <Track value={files[1]}/>
 
-            <Image file={getLinkImage()}/>
+            <LinkImage/>
             <Track value={files[2]}/>
             <Track value={files[3]}/>
 
-            <Image file={getSmb2Image()}/>
+            <Smb2Image/>
             <Track value={files[4]}/>
             <Track value={files[5]}/>
         </div>
@@ -1318,20 +1363,20 @@ type BossMusicsProperties = MusicsProperties<ArrayOf6<Tracks>>
 function BossMusicsContainer({files,}: BossMusicsProperties,) {
     return <div className="bossMusic-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.BOSS_MUSIC}/>
-        <div className="musics-container grid-3">
+        <div className="musics-container no-style grid-3">
             <div/>
-            <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-            <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+            <DontViewTrace/>
+            <ViewTrace/>
 
             <div/>
             <Track value={files[0]}/>
             <Track value={files[1]}/>
 
-            <Image file={getLinkImage()} className="link-image"/>
+            <LinkImage/>
             <Track value={files[2]}/>
             <Track value={files[3]}/>
 
-            <Image file={getSmb2Image()} className="smb2-image"/>
+            <Smb2Image/>
             <Track value={files[4]}/>
             <Track value={files[5]}/>
         </div>
@@ -1344,7 +1389,7 @@ function BossMusicsContainer({files,}: BossMusicsProperties,) {
 interface FinalBossMusicsProperties
     extends MusicsProperties<ArrayOf6<Tracks>> {
 
-    /** Tell that the first 2 images are in {@link SMB3} */
+    /** Tell that the first 2 tracks are in {@link SMB3} */
     readonly asSmb3?: boolean
 
 }
@@ -1353,20 +1398,20 @@ interface FinalBossMusicsProperties
 function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsProperties,) {
     return <div className="finalBossMusic-musics-container musics-container">
         <SoundEffectImage reference={SoundEffects.FINAL_BOSS_MUSIC}/>
-        <div className="musics-container grid-3">
+        <div className="musics-container no-style grid-3">
             <div/>
-            <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-            <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+            <DontViewTrace/>
+            <ViewTrace/>
 
             {asSmb3 ? <div><GameStyleImage reference={GameStyles.SMB3}/></div> : <div/>}
             <Track value={files[0]}/>
             <Track value={files[1]}/>
 
-            <Image file={getLinkImage()} className="link-image"/>
+            <LinkImage/>
             <Track value={files[2]}/>
             <Track value={files[3]}/>
 
-            <Image file={getSmb2Image()} className="smb2-image"/>
+            <Smb2Image/>
             <Track value={files[4]}/>
             <Track value={files[5]}/>
         </div>
@@ -1377,116 +1422,159 @@ function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsPrope
 
 //region -------------------- Time musics --------------------
 
-interface TimeMusicsProperties
-    extends MusicsProperties<ArrayOf4<Tracks>>, ReactPropertiesWithOptionalChildren<ReactElement> {}
+type TimeMusicsProperties = MusicsWithEditorProperties<ArrayOf4<Tracks>>
 
 /** @reactComponent */
-function TimeMusicsContainer({files, children,}: TimeMusicsProperties,) {
-    return <div className="time-musics-container musics-container grid-3">
-        {children ?? <div/>}
-        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+function TimeMusicsContainer({editorFiles, files,}: TimeMusicsProperties,) {
+    return <div className="time-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
 
-        <TimeImage reference={Times.DAY}/>
-        <Track value={files[0]}/>
-        <Track value={files[1]}/>
+        <DontViewTrace/>
+        <DayNightTrack day={files[0]} night={files[2]}/>
 
-        <TimeImage reference={Times.NIGHT}/>
-        <Track value={files[2]}/>
-        <Track value={files[3]}/>
+        <ViewTrace/>
+        <DayNightTrack day={files[1]} night={files[3]}/>
     </div>
 }
 
 
-type TimeWithLinkAndSmb2MusicsProperties = MusicsProperties<ArrayOf8<Tracks>>
+type TimeAsGroundMusicsProperties = TimeMusicsProperties
 
 /** @reactComponent */
-function TimeWithLinkAndSmb2MusicsContainer({files,}: TimeWithLinkAndSmb2MusicsProperties,) {
-    return <div className="time-musics-container musics-container grid-3">
+function TimeAsGroundMusicsContainer({editorFiles, files,}: TimeAsGroundMusicsProperties,) {
+    return <div className="timeAsGround-musics-container time-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
+
+        <DontViewTraceAsGround/>
+        <DayNightTrack day={files[0]} night={files[2]}/>
+
+        <ViewTraceAsGround/>
+        <DayNightTrack day={files[1]} night={files[3]}/>
+    </div>
+}
+
+
+type TimeWithLinkAndSmb2MusicsProperties = MusicsWithEditorProperties<ArrayOf8<Tracks>>
+
+/** @reactComponent */
+function TimeWithLinkAndSmb2MusicsContainer({editorFiles, files,}: TimeWithLinkAndSmb2MusicsProperties,) {
+    return <div className="timeWithLinkAndSmb2-musics-container time-musics-container musics-container no-style grid-3">
         <div/>
-        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+        <DontViewTrace/>
+        <ViewTrace/>
 
-        <TimeImage reference={Times.DAY}/>
-        <Track value={files[0]}/>
-        <Track value={files[1]}/>
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
+        <div/>
 
-        <TimeImage reference={Times.NIGHT}/>
-        <Track value={files[2]}/>
-        <Track value={files[3]}/>
+        <div/>
+        <DayNightTrack day={files[0]} night={files[2]}/>
+        <DayNightTrack day={files[1]} night={files[3]}/>
 
-        <Image file={getLinkImage()} className="link-image"/>
+        <LinkImage/>
         <Track value={files[4]}/>
         <Track value={files[5]}/>
 
-        <Image file={getSmb2Image()} className="smb2-image"/>
+        <Smb2Image/>
         <Track value={files[6]}/>
         <Track value={files[7]}/>
     </div>
 }
 
 
-interface TimeWithYoshiMusicsProperties
-    extends MusicsProperties<ArrayOf6<Tracks>> {
-
-    readonly gameStyle: | 'SMW' | 'NSMBU'
-
-}
+type TimeWithSmwYoshiMusicsProperties = MusicsWithEditorProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
-function TimeWithYoshiMusicsContainer({files, gameStyle,}: TimeWithYoshiMusicsProperties,) {
-    return <div className={`timeWithYoshi-${gameStyle}-musics-container timeWithYoshi-musics-container musics-container grid-3`}>
-        <div/>
-        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+function TimeWithSmwYoshiMusicsContainer({editorFiles, files,}: TimeWithSmwYoshiMusicsProperties,) {
+    return <div className="timeWithYoshi-smw-musics-container timeWithYoshi-musics-container time-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
 
-        <TimeImage reference={Times.DAY}/>
-        <Track value={files[0]}/>
-        <Track value={files[1]}/>
+        <DontViewTrace/>
+        <DayNightYoshiTrack day={files[0]} night={files[2]} yoshi={files[4]} image={SMW_YOSHI_IMAGE}/>
 
-        <TimeImage reference={Times.NIGHT}/>
-        <Track value={files[2]}/>
-        <Track value={files[3]}/>
-
-        <Image file={getYoshiImage(gameStyle === 'SMW' ? GameStyles.SMW : GameStyles.NSMBU,)} className="yoshi-image"/>
-        <Track value={files[4]}/>
-        <Track value={files[5]}/>
+        <ViewTrace/>
+        <DayNightYoshiTrack day={files[1]} night={files[3]} yoshi={files[5]} image={SMW_YOSHI_IMAGE}/>
     </div>
 }
 
 
-type TimeWithUnderwaterMusicsProperties = MusicsProperties<ArrayOf4<Tracks>>
+type TimeWithNsmbuYoshiMusicsProperties = MusicsWithEditorProperties<ArrayOf6<Tracks>>
 
 /** @reactComponent */
-function TimeWithUnderwaterMusicsContainer({files,}: TimeWithUnderwaterMusicsProperties,) {
-    return <div className="timeWithUnderwater-musics-container musics-container grid-3">
-        <div/>
-        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
-        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+function TimeWithNsmbuYoshiMusicsContainer({editorFiles, files,}: TimeWithNsmbuYoshiMusicsProperties,) {
+    return <div className="timeWithYoshi-nsmbu-musics-container timeWithYoshi-musics-container time-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
 
-        <div/>
-        <Track value={files[0]}/>
-        <Track value={files[1]}/>
+        <DontViewTrace/>
+        <DayNightYoshiTrack day={files[0]} night={files[2]} yoshi={files[4]} image={NSMBU_YOSHI_IMAGE}/>
 
-        <ThemeImage reference={Themes.UNDERWATER} isSmallPath/>
-        <Track value={files[2]}/>
-        <Track value={files[3]}/>
+        <ViewTrace/>
+        <DayNightYoshiTrack day={files[1]} night={files[3]} yoshi={files[5]} image={NSMBU_YOSHI_IMAGE}/>
+    </div>
+}
+
+
+interface TimeWithNsmbuYoshiAndLessonEditorMusicsProperties
+    extends MusicsWithEditorProperties<ArrayOf6<Tracks>> {
+
+    readonly lessonEditorFiles: ArrayOf4<Tracks>
+
+}
+
+/** @reactComponent */
+function TimeWithNsmbuYoshiAndLessonEditorMusicsContainer({editorFiles, lessonEditorFiles, files,}: TimeWithNsmbuYoshiAndLessonEditorMusicsProperties,) {
+    return <div className="timeWithYoshiAndLessonEditor-nsmbu-musics-container timeWithYoshi-musics-container time-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
+
+        <LessonEditor/>
+        <LessonEditorTrack tracks={lessonEditorFiles}/>
+
+        <DontViewTrace/>
+        <DayNightYoshiTrack day={files[0]} night={files[2]} yoshi={files[4]} image={NSMBU_YOSHI_IMAGE}/>
+
+        <ViewTrace/>
+        <DayNightYoshiTrack day={files[1]} night={files[3]} yoshi={files[5]} image={NSMBU_YOSHI_IMAGE}/>
     </div>
 }
 
 //endregion -------------------- Time musics --------------------
 //region -------------------- Day musics --------------------
 
-type DayMusicsProperties = MusicsProperties<ArrayOf2<Tracks>>
+type DayMusicsProperties = MusicsWithEditorProperties<ArrayOf2<Tracks>>
 
 /** @reactComponent */
-function DayMusicsContainer({files,}: DayMusicsProperties,) {
-    return <div className="day-musics-container musics-container grid-2">
-        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
+function DayMusicsContainer({editorFiles, files,}: DayMusicsProperties,) {
+    return <div className="day-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
+
+        <DontViewTrace/>
         <Track value={files[0]}/>
 
-        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+        <ViewTrace/>
         <Track value={files[1]}/>
+    </div>
+}
+
+
+type DayWithUnderwaterMusicsProperties = MusicsWithEditorProperties<ArrayOf4<Tracks>>
+
+/** @reactComponent */
+function DayWithUnderwaterMusicsContainer({editorFiles, files,}: DayWithUnderwaterMusicsProperties,) {
+    return <div className="dayWithUnderwater-musics-container day-musics-container musics-container no-style grid-2">
+        <CourseThemeImage/>
+        <EditorTrack tracks={editorFiles}/>
+
+        <DontViewTrace/>
+        <UnderwaterTrack normal={files[0]} underwater={files[2]}/>
+
+        <ViewTrace/>
+        <UnderwaterTrack normal={files[1]} underwater={files[3]}/>
     </div>
 }
 
@@ -1524,3 +1612,50 @@ function DayMusicsContainer({files,}: DayMusicsProperties,) {
 //endregion -------------------- Smb2 musics --------------------
 
 //endregion -------------------- Musics --------------------
+//region -------------------- Other components --------------------
+
+function LinkImage() {
+    return <Image file={LINK_IMAGE} className="link-image"/>
+}
+
+function Smb2Image() {
+    return <Image file={SMB2_IMAGE} className="smb2-image"/>
+}
+
+function SmlImage() {
+    return <Image file={SML_IMAGE} className="sml-image"/>
+}
+
+
+function CourseThemeImage() {
+    return <Image file={COURSE_THEME_IMAGE_FILE} className="courseTheme-image"/>
+}
+
+function LessonEditor() {
+    return <UnfinishedText type="small">Lesson editor</UnfinishedText>
+}
+
+function DontViewTrace() {
+    return <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
+}
+
+function DontViewTraceAsGround() {
+    return <div className="dontView-trace-image-as-ground viewable-trace-image-as-ground position-relative z-0">
+        <ThemeImage reference={Themes.GROUND} isSmallPath className="position-absolute z-n1"/>
+        <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
+    </div>
+}
+
+
+function ViewTrace() {
+    return <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+}
+
+function ViewTraceAsGround() {
+    return <div className="view-trace-image-as-ground viewable-trace-image-as-ground position-relative z-0">
+        <ThemeImage reference={Themes.GROUND} isSmallPath className="position-absolute z-n1"/>
+        <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
+    </div>
+}
+
+//endregion -------------------- Other components --------------------

@@ -1,0 +1,10 @@
+.action-button {
+  --bs-btn-border-width: 0;
+  --bs-btn-bg: rgba(var(--bs-green-rgb), 50%);
+  --bs-btn-hover-bg: rgba(var(--bs-green-650-rgb), 50%);
+  --bs-btn-disabled-bg: rgba(var(--bs-red-rgb), 50%);
+  &.inactive {
+    --bs-btn-bg: rgba(var(--bs-blue-rgb), 25%);
+    --bs-btn-hover-bg: rgba(var(--bs-blue-650-rgb), 25%);
+  }
+}
