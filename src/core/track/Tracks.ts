@@ -691,9 +691,39 @@ export class Tracks<const FILE extends NullOr<SoundFile> = NullOr<SoundFile>,
 
     //endregion -------------------- Enum instances (world) --------------------
 
-    public static readonly P_SWITCH = new Tracks('p-switch', null,)
+    //region -------------------- Enum instances (p-switch) --------------------
 
-    public static readonly SUPER_STAR = new Tracks('super star', null,)
+    public static readonly P_SWITCH_SMB = new Tracks('p-switch music (SMB)', null,)
+    public static readonly P_SWITCH_SMB_FAST = new Tracks('fast p-switch music (SMB)', null,)
+
+    public static readonly P_SWITCH_SMB3 = new Tracks('p-switch music (SMB3)', null,)
+    public static readonly P_SWITCH_SMB3_FAST = new Tracks('fast p-switch music (SMB3)', null,)
+
+    public static readonly P_SWITCH_SMW = new Tracks('p-switch music (SMW)', null,)
+    public static readonly P_SWITCH_SMW_FAST = new Tracks('fast p-switch music (SMW)', null,)
+
+    public static readonly P_SWITCH_NSMBU = new Tracks('p-switch music (NSMBU)', null,)
+    public static readonly P_SWITCH_NSMBU_FAST = new Tracks('fast p-switch music (NSMBU)', null,)
+
+    //endregion -------------------- Enum instances (p-switch) --------------------
+    //region -------------------- Enum instances (super star) --------------------
+
+    public static readonly SUPER_STAR_SMB = new Tracks('super star music (SMB)', null,)
+    public static readonly SUPER_STAR_SMB_FAST = new Tracks('fast super star music (SMB)', null,)
+
+    public static readonly SUPER_STAR_SMB3 = new Tracks('super star music (SMB3)', null,)
+    public static readonly SUPER_STAR_SMB3_FAST = new Tracks('fast super star music (SMB3)', null,)
+
+    public static readonly SUPER_STAR_SMW = new Tracks('super star music (SMW)', null,)
+    public static readonly SUPER_STAR_SMW_FAST = new Tracks('fast super star music (SMW)', null,)
+
+    public static readonly SUPER_STAR_NSMBU = new Tracks('super star music (NSMBU)', null,)
+    public static readonly SUPER_STAR_NSMBU_FAST = new Tracks('fast super star music (NSMBU)', null,)
+
+    public static readonly SUPER_STAR_SM3DW = new Tracks('super star music (SM3DW)', null,)
+    public static readonly SUPER_STAR_SM3DW_FAST = new Tracks('fast super star music (SM3DW)', null,)
+
+    //endregion -------------------- Enum instances (super star) --------------------
 
     //region -------------------- Enum instances (ninja attack) --------------------
 
@@ -1071,6 +1101,15 @@ export namespace Tracks {// eslint-disable-line @typescript-eslint/no-namespace
     export const SM3DW_BONUSES_BOSSES_AND_FINAL_BOSSES = [Tracks.BONUS_SM3DW, Tracks.BONUS_SM3DW_FAST,                                                                              Tracks.BOSS_SM3DW, Tracks.BOSS_SM3DW_FAST, Tracks.FINAL_BOSS_SM3DW, Tracks.FINAL_BOSS_SM3DW_FAST,] as const
 
     //endregion -------------------- Fields (sound effect) --------------------
+    //region -------------------- Fields (other) --------------------
+
+
+    export const SMB3_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES =  [Tracks.P_SWITCH_SMB3,  Tracks.P_SWITCH_SMB3_FAST,  Tracks.SUPER_STAR_SMB3,    Tracks.SUPER_STAR_SMB3_FAST,    Tracks.BONUS_SMB3,  Tracks.BONUS_SMB3_FAST,                                                                               Tracks.BOSS_SMB3,  Tracks.BOSS_SMB3_FAST,  Tracks.FINAL_BOSS_SMB3,  Tracks.FINAL_BOSS_SMB3_FAST, ] as const
+    export const SMW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES =   [Tracks.P_SWITCH_SMW,   Tracks.P_SWITCH_SMW_FAST,   Tracks.SUPER_STAR_SMW,     Tracks.SUPER_STAR_SMW_FAST,     Tracks.BONUS_SMW,   Tracks.BONUS_SMW_FAST,                                                                                Tracks.BOSS_SMW,   Tracks.BOSS_SMW_FAST,   Tracks.FINAL_BOSS_SMW,   Tracks.FINAL_BOSS_SMW_FAST,  ] as const
+    export const NSMBU_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES = [Tracks.P_SWITCH_NSMBU, Tracks.P_SWITCH_NSMBU_FAST, Tracks.SUPER_STAR_NSMBU,   Tracks.SUPER_STAR_NSMBU_FAST,   Tracks.BONUS_NSMBU, Tracks.BONUS_NSMBU_FAST, Tracks.BONUS_NSMBU_YOSHI, Tracks.BONUS_NSMBU_YOSHI_FAST, Tracks.BOSS_NSMBU, Tracks.BOSS_NSMBU_FAST, Tracks.FINAL_BOSS_NSMBU, Tracks.FINAL_BOSS_NSMBU_FAST,] as const
+    export const SM3DW_P_SWITCHES_SUPER_STARS_BONUSES_BOSSES_AND_FINAL_BOSSES = [Tracks.P_SWITCH_NSMBU, Tracks.P_SWITCH_NSMBU_FAST, Tracks.SUPER_STAR_SM3DW,   Tracks.SUPER_STAR_SM3DW_FAST,   Tracks.BONUS_SM3DW, Tracks.BONUS_SM3DW_FAST,                                                                              Tracks.BOSS_SM3DW, Tracks.BOSS_SM3DW_FAST, Tracks.FINAL_BOSS_SM3DW, Tracks.FINAL_BOSS_SM3DW_FAST,] as const
+
+    //endregion -------------------- Fields (other) --------------------
 
 }
 
