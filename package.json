@@ -32,7 +32,7 @@
     "typescript-build": "tsc --build",
 
     "prepreview": "npm run build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
 
     "deploy": "gh-pages -m \"Deployment of the version 0.27.2 (beta)\" -d dist"
   },
