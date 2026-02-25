@@ -209,7 +209,12 @@
     "plural":   "Medals",
 
     "all":         "Every medal",
-    "display all": "Display every medal"
+    "display all": "Display every medal",
+
+    "Maximum amount of courses to be uploaded": "Maximum amount of {{courses}} to be uploaded",
+    "xx courses to be uploaded":                "{{number}} {{courses} to be uploaded",
+    "Amount of star to unlock":                 "Amount of ⭐ to unlock it",
+    "xx star to unlock":                        "{{number}} ⭐ to unlock"
   },
   "mii costume": {
     "all":         "Every {{singularName}}",

@@ -5,23 +5,25 @@ import type {CollectionHolder} from '@joookiwi/collection'
 import type {AppProperties}   from 'app/AppProperties.types'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {MedalAppOption}         from 'app/options/MedalAppOption'
-import Table                    from 'app/tools/table/Table'
-import UnfinishedText           from 'app/tools/text/UnfinishedText'
-import AppTitle                 from 'app/util/AppTitle'
-import CardList                 from 'app/util/CardList'
-import List                     from 'app/util/List'
-import PageTitle                from 'app/util/PageTitle'
-import PageViewChanger          from 'app/util/PageViewChanger'
-import Smm1OnlyAlert            from 'app/util/Smm1OnlyAlert'
-import SubMain                  from 'app/util/SubMain'
-import {Medals}                 from 'core/medal/Medals'
-import MedalIcon                from 'core/medal/component/MedalIcon'
-import DisplayButtonGroup       from 'display/DisplayButtonGroup'
-import {ViewDisplays}           from 'display/ViewDisplays'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import NameComponent            from 'lang/name/component/Name.component'
-import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
+import {MedalAppOption}                               from 'app/options/MedalAppOption'
+import Table                                          from 'app/tools/table/Table'
+import UnfinishedText                                 from 'app/tools/text/UnfinishedText'
+import AppTitle                                       from 'app/util/AppTitle'
+import CardList                                       from 'app/util/CardList'
+import List                                           from 'app/util/List'
+import PageTitle                                      from 'app/util/PageTitle'
+import PageViewChanger                                from 'app/util/PageViewChanger'
+import Smm1OnlyAlert                                  from 'app/util/Smm1OnlyAlert'
+import SubMain                                        from 'app/util/SubMain'
+import {Medals}                                       from 'core/medal/Medals'
+import AmountOfStarToUnlockWithPrefix                 from 'core/medal/component/AmountOfStarToUnlock.withPrefix'
+import MaximumQuantityOfCoursesToBeUploadedWithPrefix from 'core/medal/component/MaximumQuantityOfCoursesToBeUploaded.withPrefix'
+import MedalIcon                                      from 'core/medal/component/MedalIcon'
+import DisplayButtonGroup                             from 'display/DisplayButtonGroup'
+import {ViewDisplays}                                 from 'display/ViewDisplays'
+import {gameContentTranslation}                       from 'lang/components/translationMethods'
+import NameComponent                                  from 'lang/name/component/Name.component'
+import {ArrayAsCollection}                            from 'util/collection/ArrayAsCollection'
 
 import ALL = Medals.ALL
 
@@ -39,7 +41,6 @@ type MedalAppProperties = AppProperties
 
 /** @reactComponent */
 export default function MedalApp({viewDisplay, games,}: MedalAppProperties,) {
-
     return <SubMain partial-id="medal" viewDisplay={viewDisplay}>
         <AppTitle>{gameContentTranslation('medal.all',)}</AppTitle>
         <PageTitle value={gameContentTranslation('medal.singular',)}/>
@@ -79,6 +80,10 @@ function MedalList({items,}: Medal_SubContentProperties,) {
         <div className="d-flex align-items-center">
             <MedalIcon reference={it}/>
             <NameComponent id="medal-name" name={it.reference} popoverOrientation="top"/>
+            <small className="ms-1">
+                <MaximumQuantityOfCoursesToBeUploadedWithPrefix reference={it}/>
+                <AmountOfStarToUnlockWithPrefix reference={it}/>
+            </small>
         </div>
     }</List>
 }
@@ -89,6 +94,10 @@ function MedalCardList({items,}: Medal_SubContentProperties,) {
         <>
             <NameComponent id="medal-name" name={it.reference} popoverOrientation="left"/>
             <MedalIcon reference={it}/>
+            <small>
+                <MaximumQuantityOfCoursesToBeUploadedWithPrefix reference={it}/>
+                <AmountOfStarToUnlockWithPrefix reference={it}/>
+            </small>
         </>
     }</CardList>
 }

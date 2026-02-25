@@ -209,7 +209,12 @@
     "plural":   "Médailles",
 
     "all":         "Toutes les médailles",
-    "display all": "Afficher toutes les médailles"
+    "display all": "Afficher toutes les médailles",
+
+    "Maximum amount of courses to be uploaded": "Quantité maximale de {{courses}} pouvant être publiés",
+    "xx courses to be uploaded":                "{{number}} {{courses}} pouvant être publiés",
+    "Amount of star to unlock":                 "Quantité de ⭐ pour débloquer",
+    "xx star to unlock":                        "{{number}} ⭐ pour débloquer"
   },
   "mii costume": {
     "all":         "Tous les {{pluralName}}",
