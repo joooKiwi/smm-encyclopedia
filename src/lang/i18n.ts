@@ -71,11 +71,33 @@ import {isInDevelopment} from 'variables'
 
 declare module 'react-i18next' {
     interface Resources {
-        language: typeof englishLanguage
-        content: typeof englishContent
-        gameContent: typeof englishGameContent
-        entityContent: typeof englishEntityContent
+        readonly language: typeof englishLanguage
+        readonly content: typeof englishContent
+        readonly gameContent: typeof englishGameContent
+        readonly entityContent: typeof englishEntityContent
     }
+    // interface Resources {
+    //     readonly language: | typeof englishLanguage | typeof frenchLanguage | typeof germanLanguage | typeof spanishLanguage
+    //                        | typeof italianLanguage | typeof dutchLanguage | typeof portugueseLanguage | typeof russianLanguage
+    //                        | typeof japaneseLanguage | typeof chineseLanguage | typeof traditionalChineseLanguage | typeof simplifiedChineseLanguage
+    //                        | typeof koreanLanguage
+    //
+    //     readonly content: | typeof englishContent | typeof frenchContent | typeof canadianFrenchContent | typeof europeanFrenchContent
+    //                       | typeof germanContent | typeof spanishContent | typeof americanSpanishContent | typeof europeanSpanishContent
+    //                       | typeof italianContent | typeof dutchContent | typeof portugueseContent | typeof americanPortugueseContent
+    //                       | typeof europeanPortugueseContent | typeof russianContent | typeof japaneseContent | typeof chineseContent
+    //                       | typeof traditionalChineseContent | typeof simplifiedChineseContent | typeof koreanContent
+    //
+    //     readonly gameContent: | typeof englishGameContent | typeof frenchGameContent | typeof canadianFrenchGameContent | typeof europeanFrenchGameContent
+    //                           | typeof germanGameContent | typeof spanishGameContent | typeof italianGameContent | typeof dutchGameContent
+    //                           | typeof portugueseGameContent | typeof russianGameContent | typeof japaneseGameContent | typeof chineseGameContent
+    //                           | typeof traditionalChineseGameContent | typeof simplifiedChineseGameContent | typeof koreanGameContent
+    //
+    //     readonly entityContent: | typeof englishEntityContent | typeof frenchEntityContent | typeof germanEntityContent | typeof spanishEntityContent
+    //                             | typeof americanSpanishEntityContent | typeof europeanSpanishEntityContent | typeof italianEntityContent | typeof dutchEntityContent
+    //                             | typeof portugueseEntityContent | typeof russianEntityContent | typeof japaneseEntityContent | typeof chineseEntityContent
+    //                             | typeof traditionalChineseEntityContent | typeof simplifiedChineseEntityContent | typeof koreanEntityContent
+    // }
 }
 
 const resources: Resource = {
