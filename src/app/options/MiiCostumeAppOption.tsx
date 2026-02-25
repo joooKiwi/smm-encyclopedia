@@ -6,12 +6,12 @@ import type {Names, Ordinals}   from 'app/options/MiiCostumeAppOption.types'
 import type {SimpleReactHeader} from 'app/tools/table/SimpleHeader'
 import type {MiiCostumes}       from 'core/miiCostume/MiiCostumes'
 
-import {CommonOptions}        from 'app/options/CommonOptions'
-import {TableOption}          from 'app/tools/table/TableOption'
-import MiiCostumeImage        from 'core/miiCostume/component/MiiCostumeImage'
-import {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
-import MiiCostumeCategoryIcon from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
-import {contentTranslation}   from 'lang/components/translationMethods'
+import {CommonOptions}                              from 'app/options/CommonOptions'
+import {TableOption}                                from 'app/tools/table/TableOption'
+import MiiCostumeImage                              from 'core/miiCostume/component/MiiCostumeImage'
+import {MiiCostumeCategories}                       from 'core/miiCostumeCategory/MiiCostumeCategories'
+import MiiCostumeCategoryIcon                       from 'core/miiCostumeCategory/component/MiiCostumeCategoryIcon'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 import CategoryCompanion = MiiCostumeCategories.Companion
 
@@ -50,8 +50,7 @@ export abstract class MiiCostumeAppOption
         }
 
         public override renderHeader(): SimpleReactHeader {
-            //TODO add new translation to the header value.
-            return {key: 'officialNotification', element: '--Official notification--',}
+            return {key: 'officialNotification', element: gameContentTranslation('Official notification.singular',),}
         }
 
     }('officialNotification')

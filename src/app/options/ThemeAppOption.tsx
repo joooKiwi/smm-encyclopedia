@@ -13,8 +13,8 @@ import {Themes}                 from 'core/theme/Themes'
 import ThemeImage               from 'core/theme/component/ThemeImage'
 import ThemeTypeImages          from 'core/theme/component/ThemeTypeImages'
 import {Times}                  from 'core/time/Times'
-import TimeImage                from 'core/time/component/TimeImage'
-import {gameContentTranslation} from 'lang/components/translationMethods'
+import TimeImage                                    from 'core/time/component/TimeImage'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @todo change the SMM1 & SMM2 yes/no result into something different like the sounds or other things
@@ -76,7 +76,7 @@ export abstract class ThemeAppOption
                     <ThemeImage reference={Themes.DESERT}/>
                     <TimeImage reference={Times.NIGHT} className="position-absolute top-0 end-0"/>
                 </div>,
-                tooltip: gameContentTranslation('Effect (night)', {night: unfinishedText('night effect name',),},)//TODO add translation for the night effect name
+                tooltip: gameContentTranslation('Effect (night)', {night: contentTranslation('Night',).toLowerCase(),},)
             }
         }
 

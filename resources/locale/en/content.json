@@ -88,6 +88,9 @@
   "Blue":   { "m": "Blue",   "f": "Blue" },
   "Yellow": { "m": "Yellow", "f": "Yellow" },
 
+  "Day":   "Day",
+  "Night": "Night",
+
   "Name":             "Name",
   "Full name":        "Full name",
   "Alternative name": "Alternative name",

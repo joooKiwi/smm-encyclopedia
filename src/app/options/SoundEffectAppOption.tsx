@@ -8,13 +8,13 @@ import type {SoundEffects}                         from 'core/soundEffect/SoundE
 
 import {CommonOptions}            from 'app/options/CommonOptions'
 import {TableOption}              from 'app/tools/table/TableOption'
-import {unfinishedText}           from 'app/tools/text/UnfinishedText'
 import {Games}                    from 'core/game/Games'
 import SoundEffectComponent       from 'core/soundEffect/SoundEffect.component'
 import Smm1Or3dsSoundEffectSounds from 'core/soundEffect/component/Smm1Or3dsSoundEffectSounds'
 import Smm2SoundEffectSounds      from 'core/soundEffect/component/Smm2SoundEffectSounds'
 import {SoundEffectCategories}    from 'core/soundEffectCategory/SoundEffectCategories'
 import SoundEffectCategoryIcon    from 'core/soundEffectCategory/component/SoundEffectCategoryIcon'
+import {gameContentTranslation}   from 'lang/components/translationMethods'
 import {Empty}                    from 'util/emptyVariables'
 
 import CategoryCompanion = SoundEffectCategories.Companion
@@ -82,7 +82,7 @@ export abstract class SoundEffectAppOption
         }
 
         public override renderHeader(): SimpleReactHeader {
-            return {key: 'player behaviour', element: unfinishedText('Player behaviour',),}//TODO add Player behaviour
+            return {key: 'player behaviour', element: gameContentTranslation('Player behaviour.singular',),}
         }
 
     }('playerBehaviour',)

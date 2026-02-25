@@ -379,6 +379,8 @@
   "hat":      {"singular": "Hat",      "plural": "Hats" },
 
   "Official notification": {
+    "singular": "Official notification",
+    "plural":   "Official notifications",
     "position": {
       "place": {
         "1": "st",
@@ -446,6 +448,7 @@
       "clear":                           "Clear {{amount}} {{SuperWorlds}}."
     }
   },
+  "Player behaviour": {"singular": "Player behaviour", "plural": "Players behaviour" },
 
   "nightEffect": {
     "Special effect on entities": "Change the behaviour of some {{entities}}.",

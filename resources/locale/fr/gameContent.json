@@ -379,6 +379,8 @@
   "hat":      {"singular": "Chapeau",      "plural": "Chapeaux" },
 
   "Official notification": {
+    "singular": "Notification officiel",
+    "plural":   "Notifications officiels",
     "position": {
       "place": {
         "1": "ère",
@@ -446,6 +448,7 @@
       "clear":                           "Terminer {{amount}} {{SuperWorlds}}."
     }
   },
+  "Player behaviour": {"singular": "Comportement du joueur", "plural": "Comportements du joueur" },
 
   "nightEffect": {
     "Special effect on entities": "Change le comportement sur certaines {{entities}}.",
