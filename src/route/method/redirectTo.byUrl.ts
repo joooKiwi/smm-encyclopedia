@@ -2,6 +2,7 @@ import type {Nullable}           from '@joookiwi/type'
 import type {LoaderFunctionArgs} from 'react-router'
 import {redirect}                from 'react-router'
 
+import {ColorThemes}      from 'color/ColorThemes'
 import {Games}            from 'core/game/Games'
 import {GameStyles}       from 'core/gameStyle/GameStyles'
 import {Times}            from 'core/time/Times'
@@ -9,6 +10,7 @@ import {ViewDisplays}     from 'display/ViewDisplays'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import {EveryRoutes}      from 'route/EveryRoutes'
 
+import ColorCompanion =       ColorThemes.Companion
 import GameCompanion =        Games.Companion
 import GameStyleCompanion =   GameStyles.Companion
 import LanguageCompanion =    ProjectLanguages.Companion
@@ -28,6 +30,7 @@ export function redirectToByUrl<const CONTEXT = unknown, >(loaderArguments: Load
     throw redirect(
         (RouteCompanion.getValueInUrl(url,) ?? EveryRoutes.HOME).getPath(
             language ?? LanguageCompanion.getValueInUrl(url,),
+            ColorCompanion.getValueInUrl(url,),
             GameCompanion.findInUrl(url,),
             GameStyleCompanion.findInUrl(url,),
             TimeCompanion.findInUrl(url,),
