@@ -1,7 +1,7 @@
 import type {Nullable} from '@joookiwi/type'
 
-import {AbstractEventHolder} from 'bootstrap/event/AbstractEventHolder'
-import {onceEventOption}     from 'bootstrap/event/EventOptions'
+import {AbstractEventHolder} from 'event/AbstractEventHolder.ts'
+import {onceEventOption}     from 'event/EventOptions.ts'
 
 export class OnceEventHolder<const ELEMENT extends Element,
     const TYPE extends string, >

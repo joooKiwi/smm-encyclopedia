@@ -1,8 +1,8 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
 import type Tooltip            from 'bootstrap/js/dist/tooltip'
 
-import type {EventHolder}                                from 'bootstrap/event/EventHolder'
 import type {BootstrapWithBasicEventInstanceDeclaration} from 'bootstrap/BootstrapWithBasicEventInstance.declaration'
+import type {EventHolder}                                from 'event/EventHolder'
 
 export interface TooltipInstanceDeclaration<ELEMENT extends Element = Element,
     out ID extends string = string, >

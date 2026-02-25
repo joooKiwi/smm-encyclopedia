@@ -4,10 +4,10 @@ import Offcanvas               from 'bootstrap/js/dist/offcanvas'
 
 import type {OffcanvasEvents}                                      from 'bootstrap/offcanvas/OffcanvasEvents'
 import type {OffcanvasEventCallback, OffcanvasInstanceDeclaration} from 'bootstrap/offcanvas/OffcanvasInstance.declaration'
-import type {EventHolder}                                          from 'bootstrap/event/EventHolder'
+import type {EventHolder}                                          from 'event/EventHolder'
 
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
-import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
+import {PassiveEventHolder}               from 'event/PassiveEventHolder'
 
 /**
  * An instance holder for a {@link bootstrap.Offcanvas Offcanvas}

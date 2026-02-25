@@ -1,6 +1,6 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
 
-import {EventHolder} from 'bootstrap/event/EventHolder'
+import {EventHolder} from 'event/EventHolder.ts'
 
 export abstract class AbstractEventHolder<const ELEMENT extends Element,
     const TYPE extends string = string,

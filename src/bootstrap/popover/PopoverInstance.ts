@@ -1,12 +1,12 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
 import Popover                 from 'bootstrap/js/dist/popover'
 
-import type {EventHolder}                                      from 'bootstrap/event/EventHolder'
 import type {PopoverEvents}                                    from 'bootstrap/popover/PopoverEvents'
 import type {PopoverEventCallback, PopoverInstanceDeclaration} from 'bootstrap/popover/PopoverInstance.declaration'
+import type {EventHolder}                                      from 'event/EventHolder'
 
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
-import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
+import {PassiveEventHolder}               from 'event/PassiveEventHolder'
 
 /**
  * An instance holder for a {@link bootstrap.Popover Popover}

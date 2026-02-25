@@ -1,12 +1,12 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
 import Tooltip                 from 'bootstrap/js/dist/tooltip'
 
-import type {EventHolder}                                      from 'bootstrap/event/EventHolder'
 import type {TooltipEvents}                                    from 'bootstrap/tooltip/TooltipEvents'
 import type {TooltipEventCallback, TooltipInstanceDeclaration} from 'bootstrap/tooltip/TooltipInstance.declaration'
+import type {EventHolder}                                      from 'event/EventHolder'
 
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
-import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
+import {PassiveEventHolder}               from 'event/PassiveEventHolder'
 
 /**
  * An instance holder for a {@link bootstrap.Tooltip Tooltip}

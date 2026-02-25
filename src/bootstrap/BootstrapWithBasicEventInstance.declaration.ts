@@ -2,7 +2,7 @@ import type {Nullable, NullOr} from '@joookiwi/type'
 import type BaseComponent      from 'bootstrap/js/dist/base-component'
 
 import type {BootstrapInstanceDeclaration} from 'bootstrap/BootstrapInstance.declaration'
-import type {EventHolder}                  from 'bootstrap/event/EventHolder'
+import type {EventHolder}                  from 'event/EventHolder'
 
 export interface BootstrapWithBasicEventInstanceDeclaration<out INSTANCE extends BaseComponent = BaseComponent,
     ELEMENT extends Element = Element,

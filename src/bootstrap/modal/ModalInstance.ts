@@ -1,12 +1,12 @@
 import type {Nullable, NullOr} from '@joookiwi/type'
 import Modal                   from 'bootstrap/js/dist/modal'
 
-import type {EventHolder}                                  from 'bootstrap/event/EventHolder'
 import type {ModalEventCallback, ModalInstanceDeclaration} from 'bootstrap/modal/ModalInstance.declaration'
 import type {ModalEvents}                                  from 'bootstrap/modal/ModalEvents'
+import type {EventHolder}                                  from 'event/EventHolder'
 
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
-import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
+import {PassiveEventHolder}               from 'event/PassiveEventHolder'
 
 export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
     const ID extends string = string, >

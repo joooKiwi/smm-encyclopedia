@@ -2,7 +2,7 @@ import type {Nullable, NullOr} from '@joookiwi/type'
 import type Popover            from 'bootstrap/js/dist/popover'
 
 import type {BootstrapWithBasicEventInstanceDeclaration} from 'bootstrap/BootstrapWithBasicEventInstance.declaration'
-import type {EventHolder}                                from 'bootstrap/event/EventHolder'
+import type {EventHolder}                                from 'event/EventHolder'
 
 export interface PopoverInstanceDeclaration<ELEMENT extends HTMLElement = HTMLElement,
     out ID extends string = string, >

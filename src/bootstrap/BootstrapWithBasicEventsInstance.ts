@@ -3,7 +3,7 @@ import type BaseComponent      from 'bootstrap/js/dist/base-component'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
 import type {BootstrapWithBasicEventInstanceDeclaration, InstanceWithEventCallback} from 'bootstrap/BootstrapWithBasicEventInstance.declaration'
-import type {EventHolder}                                                           from 'bootstrap/event/EventHolder'
+import type {EventHolder}                                                           from 'event/EventHolder'
 
 import {BootstrapInstance} from 'bootstrap/BootstapInstance'
 
