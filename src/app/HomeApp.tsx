@@ -80,7 +80,7 @@ export default function HomeApp() {
             <PageProgress progress="completed"                   link="everyCourseTag"                exclusiveGame="SMM2"   content={gameContentTranslation('course tag.singular', {Course: course, course: courseAsLowerCase, Tag: tag, tag: tagAsLowerCase,},)}/>
             <PageProgress progress="completed"                   link="everyPredefinedMessage"        exclusiveGame="SMM2"   content={unfinishedText('Predefined message',)}/>
             <PageProgress progress="completed"                   link="everySampleCourse"             exclusiveGame="SMM1"   content={gameContentTranslation('sample course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}/>
-            <PageProgress progress="page almost done"            link="everyMedal"                    exclusiveGame="SMM1"   content={gameContentTranslation('medal.singular',)}/>
+            <PageProgress progress="completed"                   link="everyMedal"                    exclusiveGame="SMM1"   content={gameContentTranslation('medal.singular',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM3DS" content={unfinishedText('Super Mario Challenges levels',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Job',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Official notification',)}/>
