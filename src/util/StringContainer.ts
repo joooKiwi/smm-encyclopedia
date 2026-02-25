@@ -1,5 +1,5 @@
 import {Empty}             from 'util/emptyVariables'
-import {forEach}           from 'util/utilitiesMethods'
+import {forEachValue}      from 'util/utilitiesMethods'
 import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
@@ -62,7 +62,7 @@ export namespace StringContainer {// eslint-disable-line @typescript-eslint/no-n
             .map(it => REPLACE_CHARACTERS.get(it as never,) ?? it,)
             .map(it => {
                 let changeableValue = it
-                forEach(REPLACE_CHARACTERS, it => {
+                forEachValue(REPLACE_CHARACTERS, it => {
                     if (changeableValue.includes(it,))
                         changeableValue = changeableValue.replace(it, EMPTY_STRING,)
                 },)
