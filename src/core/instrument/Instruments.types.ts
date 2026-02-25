@@ -78,14 +78,14 @@ declare const enum Enum {// eslint-disable-line @typescript-eslint/no-unused-var
 
     DOG_BARK, //Green Naked Koopa
     CAT_MEOW,//Red Naked Koopa
-    CHICKEN,//Bomb thrown by a Link
+    CHICKEN_CLUCK,//Bomb thrown by a Link
     AH,//Magikoopa
     OK,//Lemmy
     HELLO,//Lemmy
     YEAH,//Magic Ball thrown by a Lemmy
 
     SQUARE_WAVE,//Super Mushroom
-    SOUND_EFFECT_1,//Wendy
+    FLYING_SAUCER,//Wendy
     NOISE,//Iggy
     BOMB,//Morton
 
@@ -124,10 +124,10 @@ export type PossibleEnglishName =
 
     | 'Orchestra hit'
 
-    | 'Dog’s bark' | 'Cat’s meow' | 'Chicken'
+    | 'Dog’s bark' | 'Cat’s meow' | 'Chicken’s cluck'
     | 'Ah' | 'Ok' | 'Hello' | 'Yeah'
 
-    | 'Square wave' | 'Sound effect 1?'
+    | 'Square wave' | 'Flying saucer'
     | 'Noise' | 'Bomb'
 
 //endregion -------------------- English name --------------------

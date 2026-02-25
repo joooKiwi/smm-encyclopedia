@@ -78,8 +78,6 @@ interface Content
 
     //endregion -------------------- Language --------------------
 
-    // readonly isToDetermine: boolean
-
     readonly isInSuperMarioMaker2: true
 
     readonly isInSmbGameStyle: boolean
@@ -126,6 +124,6 @@ function retrieveEntity(content: Content, entityMap: EntityMap,): CollectionHold
         entities.push(entityMap.get(content.indirectEntityReference,)!,)
 
     if (entities.length === 0)
-        return EMPTY_COLLECTION_HOLDER
+        return EMPTY_COLLECTION_HOLDER //FIXME throw an exception if it is empty (once the character group has been created)
     return new ArrayAsCollection(entities,)
 }

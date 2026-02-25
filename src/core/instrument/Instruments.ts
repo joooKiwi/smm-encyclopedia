@@ -14,6 +14,12 @@ import {StringContainer}                from 'util/StringContainer'
 import {ArrayAsCollection}              from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
+/**
+ * All the instruments present in both {@link SMM1}, {@link SMM3DS} and {@link SMM2}.
+ * The names may differ from the wikis referenced since they are based on the file name instead.
+ *
+ * @see https://www.mariowiki.com/Music_Block
+ */
 export class Instruments
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName> {
@@ -96,14 +102,14 @@ export class Instruments
 
     public static readonly DOG_BARK =               new Instruments('Dog’s bark',               'block_dog',)
     public static readonly CAT_MEOW =               new Instruments('Cat’s meow',               'SE_INST_CAT',)
-    public static readonly CHICKEN =                new Instruments('Chicken',                  'INST_Chicken',)
+    public static readonly CHICKEN_CLUCK =          new Instruments('Chicken’s cluck',          'INST_Chicken',)
     public static readonly AH =                     new Instruments('Ah',                       'INST_AH',)
     public static readonly OK =                     new Instruments('Ok',                       'INST_SE3_ok3',)
     public static readonly HELLO =                  new Instruments('Hello',                    'INST_SE2_hello',)
     public static readonly YEAH =                   new Instruments('Yeah',                     'INST_SE8_yeah',)
 
     public static readonly SQUARE_WAVE =            new Instruments('Square wave',              'INST_FCSQ',)
-    public static readonly SOUND_EFFECT_1 =         new Instruments('Sound effect 1?',          'INST_SE1',)
+    public static readonly FLYING_SAUCER =          new Instruments('Flying saucer',            'INST_SE1',)
     public static readonly NOISE =                  new Instruments('Noise',                    'INST_SE4_noise',)
     public static readonly BOMB =                   new Instruments('Bomb',                     'INST_SE5_Bomb',)
 
@@ -208,7 +214,7 @@ export namespace Instruments {// eslint-disable-line @typescript-eslint/no-names
 
         Instruments.SLEIGH_BELL, Instruments.SYNTHETIC_BELL, Instruments.WIND_CHIMES,
         Instruments.SQUARE_WAVE, Instruments.RECORDER, Instruments.PIPE_ORGAN,
-        Instruments.SYNTHETIC_BRASS, Instruments.CHICKEN, Instruments.SHAMISEN,
+        Instruments.SYNTHETIC_BRASS, Instruments.CHICKEN_CLUCK, Instruments.SHAMISEN,
         Instruments.STACCATO_STRING, Instruments.MUSIC_BOX, Instruments.ORGAN,
         Instruments.SYNTHETIC_BASS, Instruments.WOOD_BLOCK, Instruments.ACCORDION_BASS_SOUND,
         Instruments.ACCORDION_TREBLE_SOUND, Instruments.COWBELL, Instruments.ZURNA,
@@ -230,7 +236,7 @@ export namespace Instruments {// eslint-disable-line @typescript-eslint/no-names
 
         Instruments.ELECTRIC_GUITAR, Instruments.KAZOO, Instruments.SAXOPHONE,
         Instruments.HORN, Instruments.REVERSE_PIANO, Instruments.NOISE,
-        Instruments.SOUND_EFFECT_1, Instruments.OK, Instruments.HELLO,
+        Instruments.FLYING_SAUCER, Instruments.OK, Instruments.HELLO,
         Instruments.YEAH, Instruments.BASS_GLISSANDO, Instruments.BOMB,
         Instruments.TIMPANI_ROLL,
 
