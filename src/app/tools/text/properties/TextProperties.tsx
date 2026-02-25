@@ -4,7 +4,7 @@ import type {ReactProperties}    from 'util/react/ReactProperties'
 import type {HTMLSpanProperties} from 'util/react/html/HTMLSpanProperties'
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
-    extends ReactProperties, Omit<HTMLSpanProperties, | 'content'> {
+    extends ReactProperties, Omit<HTMLSpanProperties, 'content'> {
 
     /**
      * The content used for the {@link TextComponent}
