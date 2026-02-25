@@ -2,10 +2,12 @@ import './TextComponent.scss'
 
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
+import {ProjectLanguages}                  from 'lang/ProjectLanguages'
 import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
 import {Empty}                             from 'util/emptyVariables'
 import {ArrayAsCollection}                 from 'util/collection/ArrayAsCollection'
 
+import Companion =    ProjectLanguages.Companion
 import EMPTY_STRING = Empty.EMPTY_STRING
 
 /**
@@ -32,6 +34,11 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
     }
 
     if (className == null)
-        return <span {...otherProperties}>{content}</span>
+        if (typeof content == 'number')
+            return <span {...otherProperties}>{Companion.current.numbersAsString(content,)}</span>
+        else
+            return <span {...otherProperties}>{content}</span>
+    if (typeof content == 'number')
+        return <span className={className} {...otherProperties}>{Companion.current.numbersAsString(content,)}</span>
     return <span className={className} {...otherProperties}>{content}</span>
 }
