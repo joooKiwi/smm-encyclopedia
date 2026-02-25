@@ -400,6 +400,47 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (number) --------------------
     //region -------------------- Transformation methods --------------------
 
+    /**
+     * Convert the value (as a {@link Number}) to a {@link String} with the appropriate numeric character for the language
+     * with a space even/uneven character
+     *
+     * @param value       The {@link Number} to convert to a {@link String}
+     * @param isSpaceEven Tell if the character used will be space even or not
+     */
+    export function numbersAsString(value: number, isSpaceEven: boolean,): string {
+        let valueDiminishing = value
+        let valueConverted = ''
+        while (valueDiminishing > 0) {
+            // We get the remainder as a value between 0 and 9
+            const valueFound = (valueDiminishing % 10) as (| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
+            if (valueFound === 0)
+                valueConverted = Characters.NUMBER_0.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 1)
+                valueConverted = Characters.NUMBER_1.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 2)
+                valueConverted = Characters.NUMBER_2.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 3)
+                valueConverted = Characters.NUMBER_3.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 4)
+                valueConverted = Characters.NUMBER_4.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 5)
+                valueConverted = Characters.NUMBER_5.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 6)
+                valueConverted = Characters.NUMBER_6.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 7)
+                valueConverted = Characters.NUMBER_7.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 8)
+                valueConverted = Characters.NUMBER_8.getCharacter(isSpaceEven,) + valueConverted
+            else if (valueFound === 9)
+                valueConverted = Characters.NUMBER_9.getCharacter(isSpaceEven,) + valueConverted
+
+            // We divide the value by 10 to continue the loop
+            // The bitwise operation is there to remove the decimal part of the value
+            valueDiminishing = (valueDiminishing / 10) | 0
+        }
+        return valueConverted
+    }
+
     export function textInParentheses<const B extends boolean, const S extends string, >(isSpaceEven: B, text: S,): TextInParentheses<B, S>
     export function textInParentheses(isSpaceEven: boolean, text: string,) {
         return __textInBetween(isSpaceEven, Characters.STARTING_PARENTHESIS, text, Characters.ENDING_PARENTHESIS,)

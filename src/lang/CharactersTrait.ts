@@ -74,6 +74,13 @@ export interface CharactersTrait<B extends boolean = boolean, > {
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
+    /**
+     * Convert the value (as a {@link Number}) to a {@link String} with the appropriate numeric character for the language
+     *
+     * @param value The {@link Number} to convert to a {@link String}
+     */
+    numbersAsString(value: number,): string
+
     textInParentheses<S extends string, >(text: S,): TextInParentheses<B, S>
 
     textInBrackets<S extends string, >(text: S,): TextInBrackets<B, S>

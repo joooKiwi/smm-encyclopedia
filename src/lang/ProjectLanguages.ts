@@ -410,6 +410,10 @@ export class ProjectLanguages<const ACRONYM extends PossibleAcronym = PossibleAc
 
     //region -------------------- Transformation methods --------------------
 
+    public numbersAsString(value: number): string {
+        return this.language.numbersAsString(value,)
+    }
+
     public textInParentheses<S extends string, >(text: S,): TextInParentheses<this['isASpaceEvenLanguage'], S>
     public textInParentheses(text: string,) {
         return this.language.textInParentheses(text,)

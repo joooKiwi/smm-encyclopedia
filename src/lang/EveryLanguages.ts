@@ -26,6 +26,7 @@ import getNumbers =          Characters.getNumbers
 import getParentheses =      Characters.getParentheses
 import getSlashes =          Characters.getSlashes
 import getUppercaseLetters = Characters.getUppercaseLetters
+import numbersAsString =     Characters.numbersAsString
 import textInBraces =        Characters.textInBraces
 import textInBrackets =      Characters.textInBrackets
 import textInChevrons =      Characters.textInChevrons
@@ -878,6 +879,10 @@ export abstract class EveryLanguages<const ACRONYM extends PossibleAcronym = Pos
     }
 
     //region -------------------- Transformation methods --------------------
+
+    public numbersAsString(value: number,): string {
+        return numbersAsString(value, this.isASpaceEvenLanguage,)
+    }
 
     public textInParentheses<S extends string, >(text: S,): TextInParentheses<this['isASpaceEvenLanguage'], S>
     public textInParentheses(text: string,) {
