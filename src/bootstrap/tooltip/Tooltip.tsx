@@ -18,7 +18,7 @@ interface TooltipProperties
 
     readonly on?: Nullable<Partial<TooltipEvents<any>>>// eslint-disable-line @typescript-eslint/no-explicit-any
 
-    readonly reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>
+    readonly reference: RefObject<Nullable<HTMLElement>>
 
 }
 
@@ -31,26 +31,11 @@ interface TooltipProperties
  */
 export default function Tooltip({children, option, on: triggers, reference,}: TooltipProperties,) {
     useEffect(() => {
-        const referenceFound = getReference(reference,)
+        const referenceFound = reference.current
         if (referenceFound == null)
             return EMPTY_CALLBACK
         const instance = BootstrapInstanceHandler.get.add(referenceFound, new TooltipInstance(referenceFound, option, triggers,),)
         return () => BootstrapInstanceHandler.get.remove(instance,).destroy()
     },)
     return children ?? null
-}
-
-function getReference(reference: Nullable<| RefObject<Nullable<HTMLElement>> | HTMLElement | string>,) {
-    if (reference == null)
-        return null
-
-    if (typeof reference == 'string')
-        return reference
-    if (reference instanceof HTMLElement)
-        return reference
-
-    const referenceValue = reference.current
-    if (referenceValue == null)
-        return null
-    return referenceValue
 }
