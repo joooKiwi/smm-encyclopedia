@@ -1,16 +1,21 @@
-.text-withInformativeTooltip-container {
+.content-withInformativeTooltip-container {
+  --font-size: calc(var(--bs-font-size-sm) / 2);
+  --adjustment: calc(-1 * var(--font-size));
   position: relative;
+
+  &.tooltip-inside { --adjustment: calc(var(--font-size) / -2) }
 
   &::after {
     position: absolute;
-    top: -2px;
+    top: var(--adjustment);
+    right: var(--adjustment);
     content: var(--informative);
     color: var(--bs-black);
     background-color: rgba(var(--bs-red-500-rgb), 50%);
-    font-size: 0.4rem;
+    font-size: var(--font-size);
     font-weight: var(--bs-font-weight-bold);
     text-align: center;
-    width: .25cm;
+    width: calc(var(--font-size) * 1.25);
     border-radius: var(--bs-border-circle-radius);
   }
 
