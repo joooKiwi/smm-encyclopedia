@@ -101,6 +101,7 @@
   "Alternative acronym": "Acronyme alternatif",
 
   "Description": "Description",
+  "property": { "singular": "Propriété", "plural": "Propriétés"},
 
   "Other":          "Autre",
   "Icon":           "Icône",

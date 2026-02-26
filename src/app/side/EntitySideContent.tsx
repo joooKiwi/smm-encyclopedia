@@ -86,7 +86,7 @@ export default function EntitySideContent({reference, games,}: EntitySideContent
             </div>
             <div className="offcanvas-body pb-5">
                 <EntityCategorySideContent reference={entityReference}/>
-                <h2>{unfinishedText('Properties',)}</h2>
+                <h2>{contentTranslation('property.plural',)}</h2>
                 <ul className="list-group list-group-flush">
                     <HasAMushroomVariantListItem reference={entityReference}/>
                     <CanBeInAParachuteListItem reference={entityReference}/>
