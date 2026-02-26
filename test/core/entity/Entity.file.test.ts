@@ -27,6 +27,7 @@ describe('Entity (file test)', () => {
     const everyVersion = [null, ...types.everyPossibleName_version,]                                                                                                     as const satisfies Array<NullOr<PossibleName_Version>>
     const everyPossibleCategory = [null, ...types.everyPossibleName_entityCategory,]                                                                                     as const satisfies Array<NullOr<PossibleEnglishName_Category>>
     // const everyEditorLimits = types.everyPossibleName_editorLimit
+    const everyEditorLimitsWithNull = [null, ...types.everyPossibleName_editorLimit,]
     const everyEditorLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_editorLimit,]                                                    as const satisfies Array<NullOr<| NotApplicable | PossibleEnglishName_Limit>>
     // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,]                                   as const
     const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]                                                           as const
@@ -119,8 +120,8 @@ describe('Entity (file test)', () => {
                     test('coherence', () => expect(it.isAffectedDirectlyByAnOnOrOffState_comment,).toBeCoherentWith(it.isAffectedDirectlyByAnOnOrOffState,),)
                 },)
                 describe('Can be put on a Track', () => {
-                    test('value', () => expect(it.canBePutOnATrack,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
-                    test('editor limit', () => expect(it.editorLimit_canBePutOnATrack,).toBeOneOf(everyEditorLimitsWithNullAndNotApplicable,),)
+                    test('value', () => expect(it.canBePutOnATrack,).toBeBooleanOrUnknown(),)
+                    test('editor limit', () => expect(it.editor_canBePutOnATrack,).toBeOneOf(everyEditorLimitsWithNull,),)
                     test('play limit', () => expect(it.whilePlaying_canBePutOnATrack,).toBeOneOf(everyPlayLimitsWithNullAndUnknown,),)
                     //TODO add coherence test
                 },)

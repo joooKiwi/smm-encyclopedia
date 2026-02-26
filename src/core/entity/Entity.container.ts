@@ -53,6 +53,7 @@ export class EntityContainer
 
         public readonly canContainOrSpawnAKey: boolean,
         public readonly isAffectDirectlyByAnOnOffState: boolean, public readonly isAffectDirectlyByAnOnOffStateComment: NullOrString<OnlySomeVariants>,
+        public readonly canBePutOnATrack: BooleanOrUnknownCharacter, public readonly editorLimit_canBePutOnATrack: NullOr<Limits>, public readonly whilePlayingLimit_canBePutOnATrack: NullOr<| Limits | UnknownCharacter>,
         public readonly canSpawnOutOfAPipe: boolean,
         public readonly canBePutOnASwingingClaw: boolean,
         public readonly canBeThrownByALakitu: BooleanOrUnknownCharacter,

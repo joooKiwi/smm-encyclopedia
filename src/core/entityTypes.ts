@@ -1,15 +1,12 @@
 import type {NullOrBoolean, NullOr, EmptyString} from '@joookiwi/type'
 
-/** @temporaryVariable */
-export type PossibleGroupName = string
+/** @temporaryVariable */export type PossibleGroupName = string
 
 /** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Unused projectile' | 'Object'
 
 /** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker = | 1 | 2
 
 //region -------------------- Specific properties --------------------
-
-/** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
 /** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | '1 per segment (1 to 8)' | '2 (any height)' | UnknownCharacter>
 

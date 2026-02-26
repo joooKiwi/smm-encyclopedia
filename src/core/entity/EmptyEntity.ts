@@ -55,6 +55,10 @@ export class EmptyEntity
     public readonly isAffectDirectlyByAnOnOffState = false
     public readonly isAffectDirectlyByAnOnOffStateComment = null
 
+    public readonly canBePutOnATrack = false
+    public readonly editorLimit_canBePutOnATrack = null
+    public readonly whilePlayingLimit_canBePutOnATrack = null
+
     public readonly canSpawnOutOfAPipe = false
     public readonly canBePutOnASwingingClaw = false
     public readonly canBeThrownByALakitu = false

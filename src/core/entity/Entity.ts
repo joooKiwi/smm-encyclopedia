@@ -42,7 +42,10 @@ export interface Entity
     readonly isAffectDirectlyByAnOnOffState: boolean
     readonly isAffectDirectlyByAnOnOffStateComment: NullOrString<OnlySomeVariants>
 
-    // can be put on a Track (+ limit editor/in game)
+    readonly canBePutOnATrack: BooleanOrUnknownCharacter
+    readonly editorLimit_canBePutOnATrack: NullOr<Limits>
+    readonly whilePlayingLimit_canBePutOnATrack: NullOr<| Limits | UnknownCharacter>
+
     readonly canSpawnOutOfAPipe: boolean//TODO add amount in a bunch + maximum amount
     readonly canBePutOnASwingingClaw: boolean//TODO add when it has wing
     readonly canBeThrownByALakitu: BooleanOrUnknownCharacter
