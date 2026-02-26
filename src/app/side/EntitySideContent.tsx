@@ -24,7 +24,7 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
-import {NOT_APPLICABLE}                             from 'util/commonVariables'
+import {NOT_APPLICABLE, UNKNOWN_CHARACTER}          from 'util/commonVariables'
 import {Empty}                                      from 'util/emptyVariables'
 
 import CategoryCompanion =   EntityCategories.Companion
@@ -38,7 +38,8 @@ import SMM3DS =              Games.SMM3DS
 
 const {BILL_BLASTER, KEY, MUSIC_BLOCK,
     ON_OFF_SWITCH, PARACHUTE, PIPE,
-    QUESTION_MARK_BLOCK, SUPER_MUSHROOM, TREE,WING,} = EntityImages
+    QUESTION_MARK_BLOCK, SUPER_MUSHROOM, TRACK,
+    TREE, WING,} = EntityImages
 const {GALOOMBA, KOOPA_CLOWN_CAR, LAKITU,
     LAKITU_CLOUD, SWINGING_CLAW, TWISTER,} = InGameEntityImages
 const {COLLECTED_LOOSE_COIN_LIMIT, DYNAMIC_RENDERED_OBJECT_LIMIT, GENERAL_ENTITY_LIMIT,
@@ -93,6 +94,7 @@ export default function EntitySideContent({reference, games,}: EntitySideContent
                     <CanMakeASoundOutOfAMusicBlockListItem reference={entityReference}/>
                     <CanContainOrSpawnAKeyListItem reference={entityReference}/>
                     <IsAffectedDirectlyByAnOnOffStateListItem reference={entityReference}/>
+                    <CanBePutOnATrackListItem reference={entityReference}/>
                     <CanSpawnOutOfAPipeListItem reference={entityReference}/>
                     <CanBePutOnASwingingClawListItem reference={entityReference}/>
                     <CanBeThrownByALakituListItem reference={entityReference}/>
@@ -221,6 +223,31 @@ function IsAffectedDirectlyByAnOnOffStateListItem({reference,}: EntitySideConten
         {comment == null ? null : <small className="comment">{
             gameContentTranslation(`entity.property.${comment}`, {entity: entityAsLowerCase,},)
         }</small>}
+    </li>
+}
+
+/** @reactComponent */
+function CanBePutOnATrackListItem({reference,}: EntitySideContentReferenceProperties,) {
+    if (reference.canBePutOnATrack !== true)
+        return null
+
+    const editorLimit = reference.editorLimit_canBePutOnATrack
+    const whilePlayingLimit = reference.whilePlayingLimit_canBePutOnATrack
+    return <li id="canBePutOnATrack-listItem" className="list-group-item">
+        <Image file={TRACK.image.getSmw().get(1,)} className="entity-image"/>
+        <span>{unfinishedText('Can be put on a track',)}</span>
+        <small>
+            {editorLimit == null ? null :
+                <span>
+                    {unfinishedText('Editor: ')}
+                    <NameComponent id={`editorLimit-sideName-canBePutOnATrack-${editorLimit.englishNameInHtml}`} name={editorLimit.reference}/>
+                </span>}
+            {whilePlayingLimit == null || whilePlayingLimit === UNKNOWN_CHARACTER ? null :
+                <span>
+                    {unfinishedText('While playing: ')}
+                    <NameComponent id={`whilePlayingLimit-sideName-canBePutOnATrack-${whilePlayingLimit.englishNameInHtml}`} name={whilePlayingLimit.reference}/>
+                </span>}
+        </small>
     </li>
 }
 

@@ -22,6 +22,7 @@ import CanBePutInAClownCar              from 'core/entity/properties/component/C
 import CanBePutInALakituCloud           from 'core/entity/properties/component/CanBePutInALakituCloud'
 import CanBePutInATree                  from 'core/entity/properties/component/CanBePutInATree'
 import CanBePutOnASwingingClaw          from 'core/entity/properties/component/CanBePutOnASwingingClaw'
+import CanBePutOnATrack                 from 'core/entity/properties/component/CanBePutOnATrack'
 import CanBeStacked                     from 'core/entity/properties/component/CanBeStacked'
 import CanBeThrownByALakitu             from 'core/entity/properties/component/CanBeThrownByALakitu'
 import CanContainOrSpawnAKey            from 'core/entity/properties/component/CanContainOrSpawnAKey'
@@ -189,6 +190,7 @@ export abstract class EntityAppOption
                         <CanMakeASoundOutOfAMusicBlock value={enumeration}/>
                         <CanContainOrSpawnAKey value={enumeration}/>
                         <IsAffectedDirectlyByAnOnOffState value={enumeration}/>
+                        <CanBePutOnATrack value={enumeration}/>
                         <CanSpawnOutOfAPipe value={enumeration}/>
                         <CanBePutOnASwingingClaw value={enumeration}/>
                         <CanBeThrownByALakitu value={enumeration}/>
