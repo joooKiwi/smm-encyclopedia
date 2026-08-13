@@ -52,8 +52,8 @@ export class MiiCostumeLoader
 
         const miiCostumeCategoryMap = MiiCostumeCategoryLoader.get.load()
         const references = new Map<PossibleEnglishName, MiiCostume>()
-        forEachByArray(file as Array<Content>, content => {
-            const reference = createReference(content, miiCostumeCategoryMap,)
+        forEachByArray(file as Array<Content>, it => {
+            const reference = createReference(it, miiCostumeCategoryMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 

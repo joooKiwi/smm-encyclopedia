@@ -40,8 +40,8 @@ export class EntityBehaviourLoader
             return this.#map
 
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
-        forEachByArray(file as Array<Content>, content => {
-            const reference = createReference(content,)
+        forEachByArray(file as Array<Content>, it => {
+            const reference = createReference(it,)
             references.set(reference.translationKey, reference,)
         },)
 

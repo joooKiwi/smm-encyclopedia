@@ -44,8 +44,8 @@ export class InstrumentLoader
 
         const entityMap = EntityLoader.get.load()
         const references = new Map<PossibleEnglishName, Instrument>()
-        forEachByArray(file as Array<Content>, content => {
-            const reference = createReference(content, entityMap,)
+        forEachByArray(file as Array<Content>, it => {
+            const reference = createReference(it, entityMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 

@@ -36,8 +36,8 @@ export class CharacterNameLoader
             return this.#map
 
         const references = new Map<PossibleUniqueEnglishName, CharacterName>()
-        forEachByArray(file as Array<Content>, content =>
-            references.set(content.uniqueName, createReference(content,),),)
+        forEachByArray(file as Array<Content>, it =>
+            references.set(it.uniqueName, createReference(it,),),)
 
         if (isInDevelopment)
             console.info(

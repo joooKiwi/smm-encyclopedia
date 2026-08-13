@@ -47,8 +47,8 @@ export class SampleCourseLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, SampleCourse>()
-        forEachByArray(file as Array<Content>, content =>
-            references.set(`Level ${content.worldNumber}`, createReference(content,),),)
+        forEachByArray(file as Array<Content>, it =>
+            references.set(`Level ${it.worldNumber}`, createReference(it,),),)
 
         if (isInDevelopment)
             console.info(

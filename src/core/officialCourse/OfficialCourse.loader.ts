@@ -53,8 +53,8 @@ export class OfficialCourseLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, OfficialCourse>()
-        forEachByArray(file as Array<Content>, content =>
-                references.set(content.english, createReference(content,),),)
+        forEachByArray(file as Array<Content>, it =>
+                references.set(it.english, createReference(it,),),)
 
         if (isInDevelopment)
             console.info(

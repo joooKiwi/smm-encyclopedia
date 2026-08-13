@@ -71,30 +71,30 @@ export class EntityLoader
         const entityCategoryMap = EntityCategoryLoader.get.load()
         const references = new Map<PossibleEnglishName, Entity>()
         const referenceLinks = new ReferenceLinks()
-        forEachByArray(file as Array<Content>, content => {
-            const englishName = (content.english ?? content.americanEnglish) as PossibleEnglishName
+        forEachByArray(file as Array<Content>, it => {
+            const englishName = (it.english ?? it.americanEnglish) as PossibleEnglishName
 
             referenceLinks.addSubReference(
                 englishName,
-                content.inDayTime,
-                content.inNightTime,
-                content.inSMBGameStyle,
-                content.inSMB3GameStyle,
-                content.inSMWGameStyle,
-                content.inNSMBUGameStyle,
-                content.inSM3DWGameStyle,
-                content.inGroundTheme,
-                content.inUndergroundTheme,
-                content.inUnderwaterTheme,
-                content.inDesertTheme,
-                content.inSnowTheme,
-                content.inSkyTheme,
-                content.inForestTheme,
-                content.inGhostHouseTheme,
-                content.inAirshipTheme,
-                content.inCastleTheme,
+                it.inDayTime,
+                it.inNightTime,
+                it.inSMBGameStyle,
+                it.inSMB3GameStyle,
+                it.inSMWGameStyle,
+                it.inNSMBUGameStyle,
+                it.inSM3DWGameStyle,
+                it.inGroundTheme,
+                it.inUndergroundTheme,
+                it.inUnderwaterTheme,
+                it.inDesertTheme,
+                it.inSnowTheme,
+                it.inSkyTheme,
+                it.inForestTheme,
+                it.inGhostHouseTheme,
+                it.inAirshipTheme,
+                it.inCastleTheme,
             )
-            references.set(englishName, createReference(content, referenceLinks, entityCategoryMap,),)
+            references.set(englishName, createReference(it, referenceLinks, entityCategoryMap,),)
         },)
 
         if (isInDevelopment)

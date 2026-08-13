@@ -35,8 +35,8 @@ export class PredefinedMessageLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, PredefinedMessage>()
-        forEachByArray(file as Array<Content>, content => {
-            const reference = createReference(content,)
+        forEachByArray(file as Array<Content>, it => {
+            const reference = createReference(it,)
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 

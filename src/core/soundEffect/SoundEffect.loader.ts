@@ -46,8 +46,8 @@ export class SoundEffectLoader
 
         const soundEffectCategoryMap = SoundEffectCategoryLoader.get.load()
         const references = new Map<PossibleEnglishName, SoundEffect>()
-        forEachByArray(file as Array<Content>, content => {
-            const reference = createReference(content, soundEffectCategoryMap,)
+        forEachByArray(file as Array<Content>, it => {
+            const reference = createReference(it, soundEffectCategoryMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
         },)
 

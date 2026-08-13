@@ -43,8 +43,8 @@ export class MedalLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, Medal>()
-        forEachByArray(file as Array<Content>, content =>
-            references.set(content.image, createReference(content,),),)
+        forEachByArray(file as Array<Content>, it =>
+            references.set(it.image, createReference(it,),),)
 
         if (isInDevelopment)
             console.info(

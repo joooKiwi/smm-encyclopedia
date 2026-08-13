@@ -134,11 +134,11 @@ export class ReferenceLinks {
             return
         }
 
-        forEachByArray(content.split(' / ',) as Array<| PossibleEnglishName | 'this'>, value => {
-            if (value === 'this')
+        forEachByArray(content.split(' / ',) as Array<| PossibleEnglishName | 'this'>, it => {
+            if (it === 'this')
                 return
-            allLinks.add(value,)
-            links.add(value,)
+            allLinks.add(it,)
+            links.add(it,)
         },)
     }
 
