@@ -1,6 +1,7 @@
 import './LimitApp.scss'
 
 import type {CollectionHolder}           from '@joookiwi/collection'
+import {ArrayAsCollectionHolder}         from '@joookiwi/collection'
 import type {MutableArray, NullOrString} from '@joookiwi/type'
 
 import type {AppPropertiesWithType} from 'app/AppProperties.types'
@@ -39,7 +40,6 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import NameComponent                                from 'lang/name/component/Name.component'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL_GAME_STYLES = GameStyles.ALL
 import EMPTY_STRING =    Empty.EMPTY_STRING
@@ -210,7 +210,7 @@ function getOptions(games: GameCollection,): CollectionHolder<LimitAppOption> {
         if (games.hasSmm2)
             options.push(LimitAppOption.AMOUNT_IN_SMM2,)
     }
-    return new ArrayAsCollection(options,)
+    return new ArrayAsCollectionHolder(options,)
 }
 
 //endregion -------------------- Sub content --------------------

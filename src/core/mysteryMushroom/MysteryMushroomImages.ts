@@ -1,7 +1,8 @@
-import type {CollectionHolder}                   from '@joookiwi/collection'
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import type {NullOrString}                       from '@joookiwi/type'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CollectionHolder}                                             from '@joookiwi/collection'
+import type {CompanionEnumWithParentSingleton}                             from '@joookiwi/enumerable'
+import type {NullOrString}                                                 from '@joookiwi/type'
+import {ArrayAsCollectionHolder, CollectionHolderOf1, CollectionHolderOf2} from '@joookiwi/collection'
+import {CompanionEnumWithParent, EnumWithParent}                           from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
@@ -23,7 +24,6 @@ import {tripleJumpImages}       from 'core/mysteryMushroom/file/tripleJump.image
 import {waitingImage}           from 'core/mysteryMushroom/file/waiting.image'
 import {walkImages}             from 'core/mysteryMushroom/file/walk.images'
 import {Empty}                  from 'util/emptyVariables'
-import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
@@ -101,47 +101,47 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
         public get fileName2() { return null }
 
         public override get waiting() {
-            return this.#waiting ??= new ArrayAsCollection([waitingImage(this.englishName, this.fileName1,),],)
+            return this.#waiting ??= new CollectionHolderOf1(waitingImage(this.englishName, this.fileName1,),)
         }
 
         public override get taunt() {
-            return this.#taunt ??= new ArrayAsCollection([tauntImage(this.englishName, this.fileName1,),],)
+            return this.#taunt ??= new CollectionHolderOf1(tauntImage(this.englishName, this.fileName1,),)
         }
 
         public override get pressingDown() {
-            return this.#pressingDown ??= new ArrayAsCollection([pressingDownImage(this.englishName, this.fileName1,),],)
+            return this.#pressingDown ??= new CollectionHolderOf1(pressingDownImage(this.englishName, this.fileName1,),)
         }
 
         public override get walk() {
-            return this.#walk ??= new ArrayAsCollection([walkImages(this.englishName, this.fileName1,),],)
+            return this.#walk ??= new CollectionHolderOf1(walkImages(this.englishName, this.fileName1,),)
         }
 
         public override get running() {
-            return this.#running ??= new ArrayAsCollection([runningImages(this.englishName, this.fileName1,),],)
+            return this.#running ??= new CollectionHolderOf1(runningImages(this.englishName, this.fileName1,),)
         }
 
         public override get swimming() {
-            return this.#swimming ??= new ArrayAsCollection([swimmingImages(this.englishName, this.fileName1,),],)
+            return this.#swimming ??= new CollectionHolderOf1(swimmingImages(this.englishName, this.fileName1,),)
         }
 
         public override get jump() {
-            return this.#jump ??= new ArrayAsCollection([singleJumpImages(this.englishName, this.fileName1,),],)
+            return this.#jump ??= new CollectionHolderOf1(singleJumpImages(this.englishName, this.fileName1,),)
         }
 
         public override get fallingAfterAJump() {
-            return this.#fallingAfterAJump ??= new ArrayAsCollection([fallingAfterAJumpImage(this.englishName, this.fileName1,),],)
+            return this.#fallingAfterAJump ??= new CollectionHolderOf1(fallingAfterAJumpImage(this.englishName, this.fileName1,),)
         }
 
         public override get turning() {
-            return this.#turning ??= new ArrayAsCollection([turningImage(this.englishName, this.fileName1,),],)
+            return this.#turning ??= new CollectionHolderOf1(turningImage(this.englishName, this.fileName1,),)
         }
 
         public override get climbing() {
-            return this.#climbing ??= new ArrayAsCollection([climbingImages(this.englishName, this.fileName1,),],)
+            return this.#climbing ??= new CollectionHolderOf1(climbingImages(this.englishName, this.fileName1,),)
         }
 
         public override get goalPole() {
-            return this.#goalPole ??= new ArrayAsCollection([goalPoleImages(this.englishName, this.fileName1,),],)
+            return this.#goalPole ??= new CollectionHolderOf1(goalPoleImages(this.englishName, this.fileName1,),)
         }
 
     }
@@ -154,7 +154,7 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
         #jump?: CollectionHolder<CollectionHolder<JumpImageFile<FILE_NAME>>>
 
         public override get jump() {
-            return this.#jump ??= new ArrayAsCollection([tripleJumpImages(this.englishName, this.fileName1,),],)
+            return this.#jump ??= new ArrayAsCollectionHolder([tripleJumpImages(this.englishName, this.fileName1,),],)
         }
 
     }
@@ -191,10 +191,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#waiting = new ArrayAsCollection([
+            return this.#waiting = new CollectionHolderOf2(
                 waitingImage(englishName, this.fileName1,),
                 waitingImage(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get taunt() {
@@ -203,10 +203,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#taunt ??= new ArrayAsCollection([
+            return this.#taunt ??= new CollectionHolderOf2(
                 tauntImage(englishName, this.fileName1,),
                 tauntImage(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get pressingDown() {
@@ -215,10 +215,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#pressingDown ??= new ArrayAsCollection([
+            return this.#pressingDown ??= new CollectionHolderOf2(
                 pressingDownImage(englishName, this.fileName1,),
                 pressingDownImage(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get walk() {
@@ -227,10 +227,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#walk ??= new ArrayAsCollection([
+            return this.#walk ??= new CollectionHolderOf2(
                 walkImages(englishName, this.fileName1,),
                 walkImages(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get running() {
@@ -239,10 +239,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#running ??= new ArrayAsCollection([
+            return this.#running ??= new CollectionHolderOf2(
                 runningImages(englishName, this.fileName1,),
                 runningImages(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get swimming() {
@@ -251,10 +251,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#swimming ??= new ArrayAsCollection([
+            return this.#swimming ??= new CollectionHolderOf2(
                 swimmingImages(englishName, this.fileName1,),
                 swimmingImages(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get jump() {
@@ -263,10 +263,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#jump ??= new ArrayAsCollection([
+            return this.#jump ??= new CollectionHolderOf2(
                 singleJumpImages(englishName, this.fileName1,),
                 singleJumpImages(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get fallingAfterAJump() {
@@ -275,10 +275,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#fallingAfterAJump ??= new ArrayAsCollection([
+            return this.#fallingAfterAJump ??= new CollectionHolderOf2(
                 fallingAfterAJumpImage(englishName, this.fileName1,),
                 fallingAfterAJumpImage(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get turning() {
@@ -287,10 +287,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#turning ??= new ArrayAsCollection([
+            return this.#turning ??= new CollectionHolderOf2(
                 turningImage(englishName, this.fileName1,),
                 turningImage(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get climbing() {
@@ -299,10 +299,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#climbing ??= new ArrayAsCollection([
+            return this.#climbing ??= new CollectionHolderOf2(
                 climbingImages(englishName, this.fileName1,),
                 climbingImages(englishName, this.fileName2,),
-            ],)
+            )
         }
 
         public override get goalPole() {
@@ -311,10 +311,10 @@ export abstract class MysteryMushroomImages<const IMAGE_FILE_1 extends string = 
                 return value
 
             const englishName = this.englishName
-            return this.#goalPole ??= new ArrayAsCollection([
+            return this.#goalPole ??= new CollectionHolderOf2(
                 goalPoleImages(englishName, this.fileName1,),
                 goalPoleImages(englishName, this.fileName2,),
-            ],)
+            )
         }
 
     }

@@ -1,7 +1,7 @@
 import type {CollectionHolder}                                                 from '@joookiwi/collection'
 import type {Singleton}                                                        from '@joookiwi/enumerable'
 import type {Array, EmptyString, MutableArray, Nullable, NullOr, NullOrString} from '@joookiwi/type'
-import {forEachByArray}                                                        from '@joookiwi/collection'
+import {ArrayAsCollectionHolder, forEachByArray}                               from '@joookiwi/collection'
 import {CompanionEnum, Enum}                                                   from '@joookiwi/enumerable'
 import {lazy}                                                                  from 'react'
 
@@ -22,7 +22,6 @@ import {ViewDisplays}          from 'display/ViewDisplays'
 import {ProjectLanguages}      from 'lang/ProjectLanguages'
 import {Route}                 from 'route/Route'
 import {Empty}                 from 'util/emptyVariables'
-import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
 import {ViewDisplayCollection} from 'util/collection/ViewDisplayCollection'
 
 import ALL_GAMES =            Games.ALL
@@ -2050,7 +2049,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             for (const value of this.values) {
                 const urlName = value.urlName
                 if (urlName === name) {
-                    const everyRoute = new ArrayAsCollection(value.everyRoute,)
+                    const everyRoute = new ArrayAsCollectionHolder(value.everyRoute,)
                     const routeFoundByName = everyRoute.findFirstOrNull(it => it.name === name,)
                     if (routeFoundByName != null)
                         return value.getPath(language, color, routeFoundByName.games, routeFoundByName.gameStyles, routeFoundByName.times, routeFoundByName.viewDisplay,)
@@ -2078,7 +2077,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
                         value._getPathFromTimes(TimeCompanion.findInName(name,),)}${
                         value._getPathFromViewDisplay(ViewDisplayCompanion.findInName(name,),)}${
                         value.urlValue}`
-                    const routeFound = new ArrayAsCollection(value.everyRoute,).findFirstOrNull(it => it.path === pathToFind,)
+                    const routeFound = new ArrayAsCollectionHolder(value.everyRoute,).findFirstOrNull(it => it.path === pathToFind,)
                     if (routeFound != null)
                         return value.getPath(language, color, routeFound.games, routeFound.gameStyles, routeFound.times, routeFound.viewDisplay,)
                     throw new ReferenceError(`No route is findable by the name starting by "${name}".`,)
@@ -2213,7 +2212,7 @@ export abstract class EveryRoutes<const URL_NAME extends string = string,
             }
             return `/time-${TimeCompanion.getGroupUrl(currentTime,)}`
         }
-        if (new ArrayAsCollection(value,).isEmpty) {
+        if (new ArrayAsCollectionHolder(value,).isEmpty) {
             const defaultTimes = this.defaultTimes
             if (defaultTimes == null)
                 return EMPTY_STRING

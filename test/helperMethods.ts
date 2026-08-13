@@ -1,14 +1,14 @@
 import type {StringArray}       from '@joookiwi/type'
+import {ArrayAsCollectionHolder}   from '@joookiwi/collection'
 import {describe, expect, test} from 'vitest'
 
 import type {LanguageContent}            from 'src/core/_template/LanguageContent'
 import type {DescriptionLanguageContent} from 'src/core/_template/DescriptionLanguageContent'
 import type {PossibleExcludedLanguages}  from 'test/helperMethods.types'
 
-import {Empty}             from 'src/util/emptyVariables'
-import {ArrayAsCollection} from 'src/util/collection/ArrayAsCollection'
+import {Empty} from 'src/util/emptyVariables'
 
-import EMPTY_ARRAY = Empty.EMPTY_ARRAY
+import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
 /**
  * Retrieve the english name from the content to get final value for the reference
@@ -59,7 +59,7 @@ export function testLanguages({
                                   chinese, traditionalChinese, simplifiedChinese,
                                   korean,
                               }: LanguageContent, excludedLanguages?: NullableArray<PossibleExcludedLanguages>,) {
-    const excludedLanguages2 = new ArrayAsCollection(excludedLanguages ?? EMPTY_ARRAY,)
+    const excludedLanguages2 = excludedLanguages == null ? EMPTY_COLLECTION_HOLDER : new ArrayAsCollectionHolder(excludedLanguages,)
     describe('Not null language reference', () => {
         test('English (America)', () => expect(english ?? americanEnglish).not.toBeNull(),)
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
@@ -118,7 +118,7 @@ export function testLanguagesDescription({
                                              chinese_description: chinese, traditionalChinese_description: traditionalChinese, simplifiedChinese_description: simplifiedChinese,
                                              korean_description: korean,
                                          }: DescriptionLanguageContent, excludedLanguages?: NullableArray<PossibleExcludedLanguages>,) {
-    const excludedLanguages2 = new ArrayAsCollection(excludedLanguages ?? EMPTY_ARRAY,)
+    const excludedLanguages2 = excludedLanguages == null ? EMPTY_COLLECTION_HOLDER : new ArrayAsCollectionHolder(excludedLanguages,)
     describe('Not null language description reference', () => {
         test('English (America)', () => expect(english ?? americanEnglish).not.toBeNull(),)
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)

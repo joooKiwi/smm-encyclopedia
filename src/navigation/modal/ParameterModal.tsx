@@ -1,8 +1,9 @@
 import './ParameterModal.scss'
 
-import type {CollectionHolder} from '@joookiwi/collection'
-import {useRef, useState}      from 'react'
-import {Link, useLocation}     from 'react-router'
+import type {CollectionHolder}                        from '@joookiwi/collection'
+import {ArrayAsCollectionHolder, CollectionHolderOf2} from '@joookiwi/collection'
+import {useRef, useState}                             from 'react'
+import {Link, useLocation}                            from 'react-router'
 
 import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
@@ -23,7 +24,6 @@ import ParameterToLanguageButton  from 'navigation/button/ParameterToLanguage.bu
 import {EveryRoutes}              from 'route/EveryRoutes'
 import {Empty}                    from 'util/emptyVariables'
 import {assert}                   from 'util/utilitiesMethods'
-import {ArrayAsCollection}        from 'util/collection/ArrayAsCollection'
 
 import EMPTY_STRING =       Empty.EMPTY_STRING
 import GameCompanion =      Games.Companion
@@ -58,7 +58,7 @@ export default function ParameterModal() {
     const [hasSmm1, setSmm1,] =     useState(hasNoCurrentGames ? false : currentGames.has(SMM1,),)
     const [hasSmm3ds, setSmm3ds,] = useState(hasNoCurrentGames ? false : currentGames.has(SMM3DS,),)
     const [hasSmm2, setSmm2,] =     useState(hasNoCurrentGames ? true : currentGames.has(SMM2,),)
-    const selectedGames = new ArrayAsCollection([
+    const selectedGames = new ArrayAsCollectionHolder([
         hasSmm1 ? SMM1 : null,
         hasSmm3ds ? SMM3DS : null,
         hasSmm2 ? SMM2 : null,
@@ -81,7 +81,7 @@ export default function ParameterModal() {
     const [hasSmw, setSmw,] =     useState(hasNoCurrentGameStyles ? true : currentGameStyles.has(SMW,),)
     const [hasNsmbu, setNsmbu,] = useState(hasNoCurrentGameStyles ? true : currentGameStyles.has(NSMBU,),)
     const [hasSm3dw, setSm3dw,] = useState(hasNoCurrentGameStyles ? true : currentGameStyles.has(SM3DW,),)
-    const selectedGameStyles = new ArrayAsCollection([
+    const selectedGameStyles = new ArrayAsCollectionHolder([
         hasSmb ? SMB : null,
         hasSmb3 ? SMB3 : null,
         hasSmw ? SMW : null,
@@ -105,10 +105,10 @@ export default function ParameterModal() {
     const hasNoCurrentTimes = currentTimes.isEmpty
     const [hasDay, setDay,] =     useState(hasNoCurrentTimes ? true : currentTimes.has(DAY,),)
     const [hasNight, setNight,] = useState(hasNoCurrentTimes ? true : currentTimes.has(NIGHT,),)
-    const selectedTimes = new ArrayAsCollection([
+    const selectedTimes = new CollectionHolderOf2(
         hasDay ? DAY : null,
         hasNight ? NIGHT : null,
-    ],).filterNotNull()
+    ).filterNotNull()
     const hasAllTimes = hasDay && hasNight
     const hasNoTimes = !hasDay && !hasNight
     const setAllTimes: BooleanCallback = it => {

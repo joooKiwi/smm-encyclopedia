@@ -3,6 +3,7 @@ import './EntityApp.scss'
 import type {MutableArray, NullOr}     from '@joookiwi/type'
 import type {CollectionHolder}         from '@joookiwi/collection'
 import type {Dispatch, SetStateAction} from 'react'
+import {ArrayAsCollectionHolder}       from '@joookiwi/collection'
 import {useState}                      from 'react'
 
 import type {AppProperties}       from 'app/AppProperties.types'
@@ -42,7 +43,6 @@ import NameComponent                                from 'lang/name/component/Na
 import {ENTITY_SIDE_CONTENT}                        from 'navigation/offcanvas ids'
 import {Empty}                                      from 'util/emptyVariables'
 import {intersect}                                  from 'util/utilitiesMethods'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 import {TimeCollection}                             from 'util/collection/TimeCollection'
 
 import ALL =             Entities.ALL
@@ -64,7 +64,7 @@ const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-const all = new ArrayAsCollection(ALL,)
+const all = new ArrayAsCollectionHolder(ALL,)
 
 type EntityAppProperties = AppProperties
 
@@ -248,7 +248,7 @@ function getOptions(games: GameCollection, gameStyles: GameStyleCollection,): Co
             options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
     }
     options.push(EntityAppOption.PLAY_LIMIT,)
-    return new ArrayAsCollection(options,)
+    return new ArrayAsCollectionHolder(options,)
 }
 
 function getCaption() {

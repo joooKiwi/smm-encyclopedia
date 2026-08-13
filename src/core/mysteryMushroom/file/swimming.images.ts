@@ -1,14 +1,14 @@
-import type {CollectionHolder} from '@joookiwi/collection'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
 
 import type {PossibleEnglishName} from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {SwimmingImageFile}   from 'core/mysteryMushroom/file/MysteryMushroom.imageFile'
 
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
-import {SimpleImageFile}   from 'util/file/image/SimpleImageFile'
+import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /** Create 6 swimming images */
 export function swimmingImages<const IMAGE_FILE extends string, >(englishName: PossibleEnglishName, name: IMAGE_FILE,): CollectionHolder<SwimmingImageFile<IMAGE_FILE>> {
-    return new ArrayAsCollection([
+    return new ArrayAsCollectionHolder([
         new SimpleImageFile(`entity/in game/M1 Player Chara - ${name}`, `swim.0`, 'tiff', `${englishName} (swimming image #1)`,),
         new SimpleImageFile(`entity/in game/M1 Player Chara - ${name}`, `swim.1`, 'tiff', `${englishName} (swimming image #2)`,),
         new SimpleImageFile(`entity/in game/M1 Player Chara - ${name}`, `swim.2`, 'tiff', `${englishName} (swimming image #3)`,),

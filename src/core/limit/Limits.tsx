@@ -1,6 +1,6 @@
-import type {Nullable, NullOr, StringOrNumeric} from '@joookiwi/type'
-import type {CollectionHolder}                  from '@joookiwi/collection'
-import {Enum}                                   from '@joookiwi/enumerable'
+import type {Nullable, NullOr, StringOrNumeric}                                              from '@joookiwi/type'
+import {ArrayAsCollectionHolder, CollectionHolder, CollectionHolderOf1, CollectionHolderOf2} from '@joookiwi/collection'
+import {Enum}                                                                                from '@joookiwi/enumerable'
 
 import type {ClassWithNullableAcronym}                                                                                          from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                              from 'core/ClassWithEnglishName'
@@ -18,7 +18,6 @@ import {LimitLoader}         from 'core/limit/Limit.loader'
 import {Import}              from 'util/DynamicImporter'
 import {Empty}               from 'util/emptyVariables'
 import {StringContainer}     from 'util/StringContainer'
-import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
@@ -61,7 +60,7 @@ export class Limits
     public static readonly LOOSE_COIN_LIMIT =                               new class Limits_LooseCoinLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.COIN,],)
+            return new CollectionHolderOf1(instance.COIN,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -93,7 +92,7 @@ export class Limits
     public static readonly GROUND_LIMIT =                                   new class Limits_GroundLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.GROUND,],)
+            return new CollectionHolderOf1(instance.GROUND,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -105,7 +104,7 @@ export class Limits
     public static readonly EXTENDABLE_TERRAIN_LIMIT =                       new class Limits_ExtentableTerrainLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 instance.MUSHROOM_PLATFORM, instance.SEMISOLID_PLATFORM, instance.BRIDGE,
                 instance.STEEP_SLOPE, instance.GENTLE_SLOPE,
                 instance.CONVEYOR_BELT, instance.FAST_CONVEYOR_BELT,
@@ -136,7 +135,7 @@ export class Limits
     public static readonly CLEAR_PIPE_LIMIT =                               new class Limits_ClearPipeLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.CLEAR_PIPE,],)
+            return new CollectionHolderOf1(instance.CLEAR_PIPE,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -148,7 +147,7 @@ export class Limits
     public static readonly GROWN_VINE_LIMIT =                               new class Limits_GrownVineLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.VINE,],)
+            return new CollectionHolderOf1(instance.VINE,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -159,7 +158,7 @@ export class Limits
     public static readonly CHECKPOINT_FLAG_LIMIT =                          new class Limits_CheckpointFlagLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.CHECKPOINT_FLAG,],)
+            return new CollectionHolderOf1(instance.CHECKPOINT_FLAG,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -170,7 +169,7 @@ export class Limits
     public static readonly TRACK_LIMIT =                                    new class Limits_TrackLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.TRACK,],)
+            return new CollectionHolderOf1(instance.TRACK,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -181,7 +180,7 @@ export class Limits
     public static readonly SNAKE_BLOCK_LIMIT =                              new class Limits_SnakeBlockLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.SNAKE_BLOCK,],)
+            return new CollectionHolderOf1(instance.SNAKE_BLOCK,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -192,7 +191,7 @@ export class Limits
     public static readonly EXCLAMATION_BLOCK_LIMIT =                        new class Limits_ExclamationBlockLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.EXCLAMATION_MARK_BLOCK,],)
+            return new CollectionHolderOf1(instance.EXCLAMATION_MARK_BLOCK,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -203,7 +202,7 @@ export class Limits
     public static readonly TRACK_BLOCK_LIMIT =                              new class Limits_TrackBlockLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.TRACK_BLOCK,],)
+            return new CollectionHolderOf1(instance.TRACK_BLOCK,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -214,7 +213,7 @@ export class Limits
     public static readonly ICICLE_LIMIT =                                   new class Limits_IcicleLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.ICICLE,],)
+            return new CollectionHolderOf1(instance.ICICLE,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -225,7 +224,7 @@ export class Limits
     public static readonly ONE_WAY_WALL_OR_ARROW_SIGN_OR_DASH_BLOCK_LIMIT = new class Limits_OneWayWallOrArrowSignOrDashBlockLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.ONE_WAY_WALL, instance.ARROW_SIGN, instance.DASH_BLOCK,],)
+            return new ArrayAsCollectionHolder([instance.ONE_WAY_WALL, instance.ARROW_SIGN, instance.DASH_BLOCK,],)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -246,7 +245,7 @@ export class Limits
     public static readonly ENTITY_HELD_BY_A_TWISTER_LIMIT =                 new class Limits_EntityHeldByATwisterLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.TWISTER,],)
+            return new CollectionHolderOf1(instance.TWISTER,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -257,7 +256,7 @@ export class Limits
     public static readonly SNOWBALL_THROWN_BY_A_SPIKE_LIMIT =               new class Limits_SnowballThrownByASpikeLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.SNOWBALL, instance.SPIKE,],)
+            return new CollectionHolderOf2(instance.SNOWBALL, instance.SPIKE,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -275,7 +274,7 @@ export class Limits
     public static readonly BIG_COIN_LIMIT =                                 new class Limits_BigCoinLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.TEN_COIN, instance.THIRTY_COIN, instance.FIFTY_COIN,],)
+            return new ArrayAsCollectionHolder([instance.TEN_COIN, instance.THIRTY_COIN, instance.FIFTY_COIN,],)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -295,7 +294,7 @@ export class Limits
     public static readonly PINK_COIN_LIMIT =                                new class Limits_PinkCoinLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.PINK_COIN,],)
+            return new CollectionHolderOf1(instance.PINK_COIN,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -306,7 +305,7 @@ export class Limits
     public static readonly COLLECTED_LOOSE_COIN_LIMIT =                     new class Limits_CollectedLooseCoinLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.COIN,],)
+            return new CollectionHolderOf1(instance.COIN,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -317,7 +316,7 @@ export class Limits
     public static readonly COLLECTED_KEY_LIMIT =                            new class Limits_CollectedKeyLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.KEY, instance.CURSED_KEY,],)
+            return new CollectionHolderOf2(instance.KEY, instance.CURSED_KEY,)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -338,7 +337,7 @@ export class Limits
     public static readonly PLAYER_FIREBALL =                                new class Limits_PlayerFireballLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.FIREBALL_THROWN_BY_A_PLAYER,],)
+            return new CollectionHolderOf1(instance.FIREBALL_THROWN_BY_A_PLAYER,)
         }
 
         protected override _createReferenceMapForNote() {
@@ -357,7 +356,7 @@ export class Limits
     public static readonly PLAYER_SUPERBALL =                               new class Limits_PlayerSuperballLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.SUPERBALL_THROWN_BY_A_PLAYER,],)
+            return new CollectionHolderOf1(instance.SUPERBALL_THROWN_BY_A_PLAYER,)
         }
 
         protected override _createReferenceMapForNote() {
@@ -374,7 +373,7 @@ export class Limits
     public static readonly PLAYER_BOMB =                                    new class Limits_PlayerBombLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.BOMB_THROWN_BY_A_LINK,],)
+            return new CollectionHolderOf1(instance.BOMB_THROWN_BY_A_LINK,)
         }
 
         protected override _createReferenceMapForNote() {
@@ -391,7 +390,7 @@ export class Limits
     public static readonly PLAYER_BUILDER_BOX =                             new class Limits_PlayerBuilderBoxLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.BUILDER_BOX_THROWN_BY_A_PLAYER,],)
+            return new CollectionHolderOf1(instance.BUILDER_BOX_THROWN_BY_A_PLAYER,)
         }
 
         protected override _createReferenceMapForNote() {
@@ -410,7 +409,7 @@ export class Limits
     public static readonly PLAYER_BOOMERANG =                               new class Limits_PlayerBoomerangLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.BOOMERANG_THROWN_BY_A_PLAYER,],)
+            return new CollectionHolderOf1(instance.BOOMERANG_THROWN_BY_A_PLAYER,)
         }
 
         protected override _createReferenceMapForNote() {
@@ -429,7 +428,7 @@ export class Limits
     public static readonly PLAYER_CANNONBALL =                              new class Limits_PlayerCannonballLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.CANNONBALL_THROWN_BY_A_PLAYER,],)
+            return new CollectionHolderOf1(instance.CANNONBALL_THROWN_BY_A_PLAYER,)
         }
 
         protected override _createReferenceMapForNote() {
@@ -448,7 +447,7 @@ export class Limits
     public static readonly HATCHED_YOSHI_LIMIT =                            new class Limits_HatchedYoshiLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.YOSHI, instance.RED_YOSHI,],)
+            return new CollectionHolderOf2(instance.YOSHI, instance.RED_YOSHI,)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -477,7 +476,7 @@ export class Limits
     public static readonly CHARVAARGH_LIMIT =                               new class Limits_CharvaarghLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.CHARVAARGH,],)
+            return new CollectionHolderOf1(instance.CHARVAARGH,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -488,7 +487,7 @@ export class Limits
     public static readonly PIRANHA_CREEPER_LIMIT =                          new class Limits_PiranhaCreeperLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.PIRANHA_CREEPER,],)
+            return new CollectionHolderOf1(instance.PIRANHA_CREEPER,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -499,7 +498,7 @@ export class Limits
     public static readonly BOWSER_AND_BOWSER_JR_LIMIT =                     new class Limits_BowserAndBowserJrLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.BOWSER, instance.BOWSER_JR,],)
+            return new CollectionHolderOf2(instance.BOWSER, instance.BOWSER_JR,)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -518,7 +517,7 @@ export class Limits
     public static readonly BOOM_BOOM_AND_POM_POM_LIMIT =                    new class Limits_BoomBoomAndPomPomLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.BOOM_BOOM, instance.POM_POM,],)
+            return new CollectionHolderOf2(instance.BOOM_BOOM, instance.POM_POM,)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -537,7 +536,7 @@ export class Limits
     public static readonly KOOPALING_LIMIT =                                new class Limits_KoopalingLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.LARRY, instance.IGGY, instance.WENDY, instance.LEMMY, instance.ROY, instance.MORTON, instance.LUDWIG,],)
+            return new ArrayAsCollectionHolder([instance.LARRY, instance.IGGY, instance.WENDY, instance.LEMMY, instance.ROY, instance.MORTON, instance.LUDWIG,],)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -561,7 +560,7 @@ export class Limits
     public static readonly ANGRY_SUN_OR_MOON_LIMIT =                        new class Limits_AngrySunOrMoonLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.ANGRY_SUN, instance.MOON,],)
+            return new CollectionHolderOf2(instance.ANGRY_SUN, instance.MOON,)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -580,7 +579,7 @@ export class Limits
     public static readonly PHANTO_LIMIT =                                   new class Limits_PhantoLimit extends Limits.PlayLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.PHANTO,],)
+            return new CollectionHolderOf1(instance.PHANTO,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -591,7 +590,7 @@ export class Limits
     public static readonly KOOPA_TROOPA_CAR_LIMIT =                         new class Limits_KoopaTroopaCarLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.KOOPA_TROOPA_CAR,],)
+            return new CollectionHolderOf1(instance.KOOPA_TROOPA_CAR,)
         }
 
         protected override _createReferenceMapForDescription() {
@@ -603,7 +602,7 @@ export class Limits
     public static readonly WARP_DOOR_LIMIT =                                new class Limits_WarpDoorLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.WARP_DOOR, instance.P_WARP_DOOR, instance.KEY_DOOR,],)
+            return new ArrayAsCollectionHolder([instance.WARP_DOOR, instance.P_WARP_DOOR, instance.KEY_DOOR,],)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -623,7 +622,7 @@ export class Limits
     public static readonly WARP_BOX_LIMIT =                                 new class Limits_WarpBoxLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.WARP_BOX, instance.WARP_BOX_WITH_KEY,],)
+            return new CollectionHolderOf2(instance.WARP_BOX, instance.WARP_BOX_WITH_KEY,)
         }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
@@ -642,7 +641,7 @@ export class Limits
     public static readonly WARP_PIPE_LIMIT =                                new class Limits_WarpPipeLimit extends Limits.EditorLimits {
 
         protected override _entityLink(instance: typeof Entities,): CollectionHolder<Entities> {
-            return new ArrayAsCollection([instance.PIPE,],)
+            return new CollectionHolderOf1(instance.PIPE,)
         }
 
         protected override _createReferenceMapForDescription() {

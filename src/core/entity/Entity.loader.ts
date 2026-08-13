@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Entity.json'
 
-import type {Array, NullableString, NullOr, NullOrString} from '@joookiwi/type'
-import type {CollectionHolder}                            from '@joookiwi/collection'
-import {forEachByArray, LazyGenericCollectionHolder}      from '@joookiwi/collection'
+import type {Array, NullableString, NullOr, NullOrString}                                                            from '@joookiwi/type'
+import type {CollectionHolder}                                                                                       from '@joookiwi/collection'
+import {ArrayAsCollectionHolder, CollectionHolderOf1, forEachByArray, LazyCollectionHolder, LazyCollectionHolderOf1} from '@joookiwi/collection'
 
 import type {CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
 import type {LanguageContent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/_template/LanguageContent'
@@ -34,7 +34,6 @@ import {Limits}                            from 'core/limit/Limits'
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
 import {createNameFromContent}             from 'lang/name/createNameFromContent'
 import {Empty}                             from 'util/emptyVariables'
-import {ArrayAsCollection}                 from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 import LimitCompanion =          Limits.Companion
@@ -438,10 +437,10 @@ function createInstruments(content: Content,): CollectionHolder<Instrument> {
     const value = content.instrument
     if (value == null)
         return EMPTY_COLLECTION_HOLDER
-    return new LazyGenericCollectionHolder(() => {
+    return new LazyCollectionHolder(() => {
         const singleInstrument = InstrumentCompanion.getValueByName(value,)
         if (singleInstrument != null)
-            return new ArrayAsCollection([singleInstrument.reference,],)
+            return new CollectionHolderOf1(singleInstrument.reference,)
         return InstrumentCompanion.values.filter(it => value.includes(it.englishName,),).map(it => it.reference,)
     },)
 }
@@ -459,8 +458,8 @@ function getReferencesFromLink(link: NullableString<EntityLink>, name: PossibleE
     if (link == null)
         return EMPTY_COLLECTION_HOLDER
     if (link === 'this')
-        return new LazyGenericCollectionHolder(() => [Entities.Companion.getValueByName(name,).reference,],)
-    return new ArrayAsCollection(link.split(' / ',),).map(it => Entities.Companion.getValueByName(it,).reference,)
+        return new LazyCollectionHolderOf1(() => Entities.Companion.getValueByName(name,).reference,)
+    return new ArrayAsCollectionHolder(link.split(' / ',),).map(it => Entities.Companion.getValueByName(it,).reference,)
 }
 
 /**

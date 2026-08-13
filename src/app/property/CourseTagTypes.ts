@@ -1,13 +1,13 @@
-import type {NullOr}           from '@joookiwi/type'
-import type {CollectionHolder} from '@joookiwi/collection'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import type {NullOr}             from '@joookiwi/type'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
+import {Enum}                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
 import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
 import {CourseTags}          from 'core/courseTag/CourseTags'
-import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
 import ALL_COURSE_TAGS =           CourseTags.ALL
@@ -25,7 +25,7 @@ export abstract class CourseTagTypes
     public static readonly ALL =              new class CourseTagTypes_All extends CourseTagTypes {
 
         public override get content() {
-            return new ArrayAsCollection(ALL_COURSE_TAGS,)
+            return new ArrayAsCollectionHolder(ALL_COURSE_TAGS,)
         }
 
 
@@ -37,7 +37,7 @@ export abstract class CourseTagTypes
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
         public override get content() {
-            return new ArrayAsCollection(OFFICIAL_COURSE_TAGS,)
+            return new ArrayAsCollectionHolder(OFFICIAL_COURSE_TAGS,)
         }
 
 
@@ -61,7 +61,7 @@ export abstract class CourseTagTypes
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
         public override get content() {
-            return new ArrayAsCollection(UNOFFICIAL_COURSE_TAGS,)
+            return new ArrayAsCollectionHolder(UNOFFICIAL_COURSE_TAGS,)
         }
 
 
@@ -85,7 +85,7 @@ export abstract class CourseTagTypes
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
         public override get content() {
-            return new ArrayAsCollection(MAKER_CENTRAL_COURSE_TAGS,)
+            return new ArrayAsCollectionHolder(MAKER_CENTRAL_COURSE_TAGS,)
         }
 
 

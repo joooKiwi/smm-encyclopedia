@@ -1,4 +1,5 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {ArrayAsCollectionHolder}     from '@joookiwi/collection'
 import {CompanionEnum}               from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
@@ -30,7 +31,6 @@ import MysteryMushroomWaitingImage            from 'core/mysteryMushroom/compone
 import MysteryMushroomWalkImage               from 'core/mysteryMushroom/component/MysteryMushroom.walk.image'
 import {ProjectLanguages}                     from 'lang/ProjectLanguages'
 import NameComponent                          from 'lang/name/component/Name.component'
-import {ArrayAsCollection}                    from 'util/collection/ArrayAsCollection'
 
 import LanguageCompanion = ProjectLanguages.Companion
 
@@ -55,7 +55,7 @@ export abstract class MysteryMushroomAppOption
         public override renderContent(enumeration: MysteryMushrooms,): ReactJSXElement {
             const {uniqueEnglishName, englishNameInHtml, reference,} = enumeration
 
-            const games = new ArrayAsCollection(reference.games,)
+            const games = new ArrayAsCollectionHolder(reference.games,)
             return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{games.map((it, i,) =>
                     <Fragment key={`game (${i + 1}) - ${uniqueEnglishName}`}>
                         <NameComponent id={`game_${i + 1}_${englishNameInHtml}`} name={it.reference} popoverOrientation="right"/>

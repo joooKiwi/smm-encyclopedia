@@ -1,8 +1,8 @@
 import file from 'resources/compiled/Instrument.json'
 
-import type {CollectionHolder}                  from '@joookiwi/collection'
-import type {Array, MutableArray, NullOrString} from '@joookiwi/type'
-import {forEachByArray}                         from '@joookiwi/collection'
+import type {CollectionHolder}                   from '@joookiwi/collection'
+import type {Array, MutableArray, NullOrString}  from '@joookiwi/type'
+import {ArrayAsCollectionHolder, forEachByArray} from '@joookiwi/collection'
 
 import type {LanguageContent}                                   from 'core/_template/LanguageContent'
 import type {Entity}                                            from 'core/entity/Entity'
@@ -17,7 +17,6 @@ import {EntityLoader}          from 'core/entity/Entity.loader'
 import {InstrumentContainer}   from 'core/instrument/Instrument.container'
 import {createNameFromContent} from 'lang/name/createNameFromContent'
 import {Empty}                 from 'util/emptyVariables'
-import {ArrayAsCollection}     from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
@@ -125,5 +124,5 @@ function retrieveEntity(content: Content, entityMap: EntityMap,): CollectionHold
 
     if (entities.length === 0)
         return EMPTY_COLLECTION_HOLDER //FIXME throw an exception if it is empty (once the character group has been created)
-    return new ArrayAsCollection(entities,)
+    return new ArrayAsCollectionHolder(entities,)
 }

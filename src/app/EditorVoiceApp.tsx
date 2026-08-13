@@ -2,6 +2,7 @@ import './EditorVoiceApp.scss'
 
 import type {NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
+import {ArrayAsCollectionHolder}   from '@joookiwi/collection'
 import {Fragment}                  from 'react'
 
 import type {AppProperties}     from 'app/AppProperties.types'
@@ -37,7 +38,6 @@ import DisplayButtonGroup                           from 'display/DisplayButtonG
 import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =    EditorVoices.ALL
 import SMM1 =   Games.SMM1
@@ -51,7 +51,7 @@ const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-const all = new ArrayAsCollection(ALL,)
+const all = new ArrayAsCollectionHolder(ALL,)
 const options = EditorVoiceAppOption.CompanionEnum.get.values
 
 type EditorVoiceAppProperties = AppProperties

@@ -1,8 +1,9 @@
 import file from 'resources/compiled/Official course (SMM).json'
 
-import type {CollectionHolder} from '@joookiwi/collection'
-import type {Array, NullOr}    from '@joookiwi/type'
-import {forEachByArray}        from '@joookiwi/collection'
+import type {CollectionHolder}                                             from '@joookiwi/collection'
+import type {Array, NullOr}                                                from '@joookiwi/type'
+import {ArrayAsCollectionHolder, CollectionHolderOf1, CollectionHolderOf2} from '@joookiwi/collection'
+import {forEachByArray}                                                    from '@joookiwi/collection'
 
 import type {LanguageContent}                                                                from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent}                                                     from 'core/_template/DescriptionLanguageContent'
@@ -21,7 +22,6 @@ import {Themes}                                                  from 'core/them
 import {createNameFromContent, createNameFromContentDescription} from 'lang/name/createNameFromContent'
 import {UNKNOWN_REFERENCE}                                       from 'util/commonVariables'
 import {Empty}                                                   from 'util/emptyVariables'
-import {ArrayAsCollection}                                       from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER =  Empty.EMPTY_COLLECTION_HOLDER
 import GameStyleCompanion =       GameStyles.Companion
@@ -159,12 +159,12 @@ function retrieveReward(value: PossibleReward,): CollectionHolder<MysteryMushroo
     if (value == null)
         return EMPTY_COLLECTION_HOLDER
     if (value === 'Bulbasaur / Charmander / Squirtle')
-        return new ArrayAsCollection([MysteryMushrooms.BULBASAUR, MysteryMushrooms.CHARMANDER, MysteryMushrooms.SQUIRTLE,],)
+        return new ArrayAsCollectionHolder([MysteryMushrooms.BULBASAUR, MysteryMushrooms.CHARMANDER, MysteryMushrooms.SQUIRTLE,],)
     if (value === 'Kitty White / Melody')
-        return new ArrayAsCollection([MysteryMushrooms.KITTY_WHITE, MysteryMushrooms.MELODY,],)
+        return new CollectionHolderOf2(MysteryMushrooms.KITTY_WHITE, MysteryMushrooms.MELODY,)
     if (value === 'Callie / Marie')
-        return new ArrayAsCollection([MysteryMushrooms.CALLIE, MysteryMushrooms.MARIE,],)
-    return new ArrayAsCollection([MysteryMushroomCompanion.getValueByName(value,),],)
+        return new CollectionHolderOf2(MysteryMushrooms.CALLIE, MysteryMushrooms.MARIE,)
+    return new CollectionHolderOf1(MysteryMushroomCompanion.getValueByName(value,),)
 }
 
 function createReleaseDate(value: PossibleReleaseDate,): Date {

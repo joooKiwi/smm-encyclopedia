@@ -1,5 +1,6 @@
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}                             from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, EnumWithParent}                           from '@joookiwi/enumerable'
+import {ArrayAsCollectionHolder, CollectionHolderOf1, CollectionHolderOf2} from '@joookiwi/collection'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
@@ -13,7 +14,6 @@ import {clearConditionImage}          from 'core/entity/file/fileCreator'
 import {EmptyClearConditionImage}     from 'core/entity/images/clearCondition/EmptyClearConditionImage'
 import {ClearConditionImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
-import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 /**
  * An {@link Entities} class made to hold a {@link ClearConditionImage}
@@ -76,7 +76,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.SMW,   clearConditionImage(this, fileName, 'MW',),],
@@ -100,7 +100,7 @@ export abstract class ClearConditionEntityImages
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'M1', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[GameStyles.SMB, clearConditionImage(this, this.fileName, 'M1',),],],),)
+            return this.#image ??= new ClearConditionImageContainer(new CollectionHolderOf1([GameStyles.SMB, clearConditionImage(this, this.fileName, 'M1',),],),)
         }
 
     }
@@ -115,7 +115,7 @@ export abstract class ClearConditionEntityImages
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'M3', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[GameStyles.SMB3, clearConditionImage(this, this.fileName, 'M3',),],],),)
+            return this.#image ??= new ClearConditionImageContainer(new CollectionHolderOf1([GameStyles.SMB3, clearConditionImage(this, this.fileName, 'M3',),],),)
         }
 
     }
@@ -130,7 +130,7 @@ export abstract class ClearConditionEntityImages
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'MW', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[GameStyles.SMW, clearConditionImage(this, this.fileName, 'MW',),],],),)
+            return this.#image ??= new ClearConditionImageContainer(new CollectionHolderOf1([GameStyles.SMW, clearConditionImage(this, this.fileName, 'MW',),],),)
         }
 
     }
@@ -145,7 +145,7 @@ export abstract class ClearConditionEntityImages
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'WU', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[GameStyles.NSMBU, clearConditionImage(this, this.fileName, 'WU',),],],),)
+            return this.#image ??= new ClearConditionImageContainer(new CollectionHolderOf1([GameStyles.NSMBU, clearConditionImage(this, this.fileName, 'WU',),],),)
         }
 
     }
@@ -160,7 +160,7 @@ export abstract class ClearConditionEntityImages
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'3W', FILE_NAME, NAME>> {
-            return this.#image ??= new ClearConditionImageContainer(new ArrayAsCollection([[GameStyles.SM3DW, clearConditionImage(this, this.fileName, '3W',),],],),)
+            return this.#image ??= new ClearConditionImageContainer(new CollectionHolderOf1([GameStyles.SM3DW, clearConditionImage(this, this.fileName, '3W',),],),)
         }
 
     }
@@ -183,10 +183,10 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new CollectionHolderOf2(
                 [GameStyles.SMB,  clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3, clearConditionImage(this, fileName, 'M3',),],
-            ],),)
+            ),)
         }
 
     }
@@ -206,10 +206,10 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new CollectionHolderOf2(
                 [GameStyles.SMW,   clearConditionImage(this, fileName, 'MW',),],
                 [GameStyles.NSMBU, clearConditionImage(this, fileName, 'WU',),],
-            ],),)
+            ),)
         }
 
     }
@@ -235,7 +235,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.SM3DW, clearConditionImage(this, fileName, '3W',),],
@@ -262,7 +262,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.NSMBU, clearConditionImage(this, fileName, 'WU',),],
@@ -289,7 +289,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB,  clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3, clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.SMW,  clearConditionImage(this, fileName, 'MW',),],
@@ -316,7 +316,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.SMW,   clearConditionImage(this, fileName, 'MW',),],
                 [GameStyles.NSMBU, clearConditionImage(this, fileName, 'WU',),],
@@ -341,7 +341,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.NSMBU, clearConditionImage(this, fileName, 'WU',),],
@@ -366,7 +366,7 @@ export abstract class ClearConditionEntityImages
                 return value
 
             const fileName = this.fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>(new ArrayAsCollection([
+            return this.#image = new ClearConditionImageContainer(new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   clearConditionImage(this, fileName, 'M1',),],
                 [GameStyles.SMB3,  clearConditionImage(this, fileName, 'M3',),],
                 [GameStyles.SMW,   clearConditionImage(this, fileName, 'MW',),],

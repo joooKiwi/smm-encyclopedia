@@ -1,7 +1,8 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import type {Singleton}        from '@joookiwi/enumerable'
-import type {Array, Nullable}  from '@joookiwi/type'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import type {Singleton}          from '@joookiwi/enumerable'
+import type {Array, Nullable}    from '@joookiwi/type'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
+import {Enum}                    from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                              from 'core/ClassWithEnglishName'
@@ -23,7 +24,6 @@ import {StringContainer}                                                        
 import {Empty}                                                                           from 'util/emptyVariables'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlName, getValueByUrlValue} from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                          from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
-import {ArrayAsCollection}                                                               from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
@@ -173,7 +173,7 @@ export abstract class GameStyles<const ACRONYM extends PossibleAcronym = Possibl
                 return EMPTY_COLLECTION_HOLDER
 
             /** All the possible {@link GameStyles.urlValue} that could be found in the url */
-            const valuesFound = new ArrayAsCollection(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
+            const valuesFound = new ArrayAsCollectionHolder(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
             const withSmb = valuesFound.includes('smb',)
             const withSmb3 = valuesFound.includes('smb3',)
             const withSmw = valuesFound.includes('smw',)
@@ -599,7 +599,7 @@ export namespace GameStyles {// eslint-disable-line @typescript-eslint/no-namesp
     export const Companion = GameStyles.CompanionEnum.get
 
     export const ALL =      Companion.values
-    export const ALL_SMM1 = new ArrayAsCollection([GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,],)
+    export const ALL_SMM1 = new ArrayAsCollectionHolder([GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,],)
 
     /** An alias of {@link GameStyles.SUPER_MARIO_BROS} */
     export const SMB = GameStyles.SUPER_MARIO_BROS

@@ -1,11 +1,12 @@
 import './TextComponent.scss'
 
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
+
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
 import {ProjectLanguages}                  from 'lang/ProjectLanguages'
 import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
 import {Empty}                             from 'util/emptyVariables'
-import {ArrayAsCollection}                 from 'util/collection/ArrayAsCollection'
 
 import Companion =    ProjectLanguages.Companion
 import EMPTY_STRING = Empty.EMPTY_STRING
@@ -21,7 +22,7 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
 
     switch (content) {
         case null:
-            if (new ArrayAsCollection(Object.getOwnPropertyNames(otherProperties,),).isEmpty)
+            if (new ArrayAsCollectionHolder(Object.getOwnPropertyNames(otherProperties,),).isEmpty)
                 if (className == null)
                     return null
             if (className == null)

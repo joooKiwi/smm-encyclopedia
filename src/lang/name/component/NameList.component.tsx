@@ -1,4 +1,5 @@
-import type {MutableArray} from '@joookiwi/type'
+import type {MutableArray}       from '@joookiwi/type'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
 
 import type {Name}            from 'lang/name/Name'
 import type {ReactProperties} from 'util/react/ReactProperties'
@@ -7,7 +8,6 @@ import TextComponent         from 'app/tools/text/TextComponent'
 import {languageTranslation} from 'lang/components/translationMethods'
 import {ProjectLanguages}    from 'lang/ProjectLanguages'
 import {forEach}             from 'util/utilitiesMethods'
-import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 
 import Companion = ProjectLanguages.Companion
 
@@ -27,7 +27,7 @@ interface NameListProperties
 
 /** @reactComponent */
 export default function NameListComponent({id, name, doesDisplayPopover,}: NameListProperties,) {
-    const languagesToDisplay = new ArrayAsCollection(name.originalLanguages,).filterNot(it => it.isCurrent,)
+    const languagesToDisplay = new ArrayAsCollectionHolder(name.originalLanguages,).filterNot(it => it.isCurrent,)
     const content: MutableArray<NonNullReactElement> = []
     const currentLanguage = Companion.current
     forEach(name.toNameMap(), (language, value,) => {

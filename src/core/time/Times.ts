@@ -1,8 +1,8 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import type {Singleton}        from '@joookiwi/enumerable'
-import type {Array, Nullable}  from '@joookiwi/type'
-import {isArray}               from '@joookiwi/collection'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {CollectionHolder}            from '@joookiwi/collection'
+import type {Singleton}                   from '@joookiwi/enumerable'
+import type {Array, Nullable}             from '@joookiwi/type'
+import {ArrayAsCollectionHolder, isArray} from '@joookiwi/collection'
+import {Enum}                             from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
 import type {PropertyGetter, PropertyReferenceGetter}                                              from 'core/PropertyGetter'
@@ -19,7 +19,6 @@ import {StringContainer}                                        from 'util/Strin
 import {Empty}                                                  from 'util/emptyVariables'
 import {getValueByEnglishName, getValueByUrlValue}              from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
-import {ArrayAsCollection}                                      from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -111,7 +110,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
                 return EMPTY_ARRAY
 
             /** All the possible {@link Times.urlValue} that could be found in the url */
-            const valuesFound = new ArrayAsCollection(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
+            const valuesFound = new ArrayAsCollectionHolder(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
             const withDay = valuesFound.includes('day',)
             const withNight = valuesFound.includes('night',)
 
@@ -145,7 +144,7 @@ export abstract class Times<const NAME extends PossibleEnglishName = PossibleEng
 
 
         public getGroupUrl(times: | Array<Times> | CollectionHolder<Times>,): GroupUrl {
-            const times2 = isArray(times,) ? new ArrayAsCollection(times,) : times
+            const times2 = isArray(times,) ? new ArrayAsCollectionHolder(times,) : times
             const withDay = times2.has(Times.DAY,)
             const withNight = times2.has(Times.NIGHT,)
 

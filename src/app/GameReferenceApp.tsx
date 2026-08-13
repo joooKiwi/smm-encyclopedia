@@ -1,6 +1,7 @@
 import './GameReferenceApp.scss'
 
-import {Fragment} from 'react'
+import {Fragment}                from 'react'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
 
 import PageTitle                from 'app/util/PageTitle'
 import {Games}                  from 'core/game/Games'
@@ -13,7 +14,6 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 import {join}                   from 'util/utilitiesMethods'
-import {ArrayAsCollection}      from 'util/collection/ArrayAsCollection'
 
 import Companion =         GameReferences.Companion
 import ALL_GAMES =         Games.ALL
@@ -21,7 +21,7 @@ import ALL_GAME_STYLES =   GameStyles.ALL
 import soundEffect_games = SoundEffects.soundEffect_games
 
 /** Every {@link GameReferences} that will do a return of line after its rendering */
-const RETURN_OF_LINES = new ArrayAsCollection([
+const RETURN_OF_LINES = new ArrayAsCollectionHolder([
     GameReferences.MARIO_AND_LUIGI_PAPER_JAM, GameReferences.DONKEY_KONG_COUNTRY, GameReferences.KIRBY_ADVENTURE,
     GameReferences.KID_ICARIUS_UPRISING, GameReferences.MEGA_MAN, GameReferences.METROID_ZERO_MISSION,
     GameReferences.NINTENDO_ENTERTAINMENT_SYSTEM_ROB, GameReferences.FIRE_EMBLEM_AWAKENING,
@@ -40,10 +40,10 @@ const RETURN_OF_LINES = new ArrayAsCollection([
 ] as const,)
 
 const otherGameReferences = (() => {
-    const alreadyIncludedNames = new ArrayAsCollection<string>(join(join(
+    const alreadyIncludedNames = new ArrayAsCollectionHolder(join(join(
             ALL_GAMES.map(it => it.englishName,),
             ALL_GAME_STYLES.map(it => it.englishName,),),
-        new ArrayAsCollection(soundEffect_games,).map(it => it.englishName,),),)
+        new ArrayAsCollectionHolder(soundEffect_games,).map(it => it.englishName,),),)
     return Companion.values.filter(it => alreadyIncludedNames.hasNot(it.englishName,),)
 })()
 
@@ -79,7 +79,7 @@ export default function GameReferenceApp() {
         <div id="soundEffect-names-container" className="names-container">
             <h3 id="soundEffect-names-title" className="col-12 names-title">{gameContentTranslation('sound effect.plural',)}</h3>
             <div id="soundEffect-name-container" className="container-fluid name-container">{
-                new ArrayAsCollection(soundEffect_games,).map(it =>
+                new ArrayAsCollectionHolder(soundEffect_games,).map(it =>
                     <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <SoundEffectImage reference={it}/>

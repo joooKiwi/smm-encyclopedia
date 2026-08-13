@@ -2,6 +2,7 @@ import './SoundEffectApp.scss'
 
 import type {MutableArray, NullOr} from '@joookiwi/type'
 import type {CollectionHolder}     from '@joookiwi/collection'
+import {ArrayAsCollectionHolder}   from '@joookiwi/collection'
 
 import type {AppProperties}       from 'app/AppProperties.types'
 import type {GameCollection}      from 'util/collection/GameCollection'
@@ -33,7 +34,6 @@ import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 import {TimeCollection}                             from 'util/collection/TimeCollection'
 
 import ALL =                   SoundEffects.ALL
@@ -55,7 +55,7 @@ const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-const all = new ArrayAsCollection(ALL,)
+const all = new ArrayAsCollectionHolder(ALL,)
 
 type SoundEffectAppProperties = AppProperties
 
@@ -203,7 +203,7 @@ function getOptions(games: GameCollection,): CollectionHolder<SoundEffectAppOpti
         if (hasSmm2)
             options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
     }
-    return new ArrayAsCollection(options,)
+    return new ArrayAsCollectionHolder(options,)
 }
 
 //endregion -------------------- Sub content --------------------

@@ -1,14 +1,14 @@
-import {CollectionHolder}            from '@joookiwi/collection'
+import type {CollectionHolder}       from '@joookiwi/collection'
 import type {MutableArray, Nullable} from '@joookiwi/type'
+import {ArrayAsCollectionHolder}     from '@joookiwi/collection'
 
 import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
 import type {EditorImage}     from 'core/entity/images/editor/EditorImage'
 import type {Themes}          from 'core/theme/Themes'
 import type {Times}           from 'core/time/Times'
 
-import {GameStyles}        from 'core/gameStyle/GameStyles'
-import {Empty}             from 'util/emptyVariables'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
+import {GameStyles} from 'core/gameStyle/GameStyles'
+import {Empty}      from 'util/emptyVariables'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
@@ -91,7 +91,7 @@ export class EditorImageContainer<const T extends EditorImageFile, >
             if (value[0] === time)
                 imagesFound.push(value[3],)
         },)
-        return new ArrayAsCollection(imagesFound,)
+        return new ArrayAsCollectionHolder(imagesFound,)
     }
 
     public getFromGameStyle(gameStyle: Nullable<GameStyles>,): CollectionHolder<T> {

@@ -1,5 +1,6 @@
 import type {MutableArray, NullOrString}  from '@joookiwi/type'
 import type {RouteObject}                 from 'react-router'
+import {ArrayAsCollectionHolder}          from '@joookiwi/collection'
 import {createHashRouter, RouterProvider} from 'react-router'
 import {Suspense}                         from 'react'
 
@@ -16,7 +17,6 @@ import {redirectToByUrl}             from 'route/method/redirectTo.byUrl'
 import {StraightFallbackRouteObject} from 'route/StraightFallbackRouteObject'
 import {StraightRouteObject}         from 'route/StraightRouteObject'
 import {Empty}                       from 'util/emptyVariables'
-import {ArrayAsCollection}           from 'util/collection/ArrayAsCollection'
 import {GameCollection}              from 'util/collection/GameCollection'
 import {GameStyleCollection}         from 'util/collection/GameStyleCollection'
 import {TimeCollection}              from 'util/collection/TimeCollection'
@@ -33,8 +33,8 @@ import LanguageCompanion =  ProjectLanguages.Companion
 import TimeCompanion =      Times.Companion
 
 const home =         EveryRoutes.HOME
-const all =          new ArrayAsCollection(ALL,)
-const allLanguages = new ArrayAsCollection(ALL_LANGUAGES,)
+const all =          new ArrayAsCollectionHolder(ALL,)
+const allLanguages = new ArrayAsCollectionHolder(ALL_LANGUAGES,)
 
 // const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
@@ -117,7 +117,7 @@ const router = createHashRouter([{
  * @param action The action to add a {@link RouteObject} for the {@link Route}
  */
 function resolveLazyRoute(path: string, action: (routeId: NullOrString, children: MutableArray<RouteObject>,) => void,): void {
-    const route = new ArrayAsCollection(ALL_ROUTES,).findFirstOrNull(it => path.endsWith(it.path,),)
+    const route = new ArrayAsCollectionHolder(ALL_ROUTES,).findFirstOrNull(it => path.endsWith(it.path,),)
     if (route == null)
         return
 

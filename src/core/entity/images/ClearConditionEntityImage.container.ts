@@ -1,4 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
+import {CollectionHolderOf1}   from '@joookiwi/collection'
 
 import type {ClearConditionImageFile}   from 'core/entity/file/EntityImageFile'
 import type {ClearConditionEntityImage} from 'core/entity/images/ClearConditionEntityImage'
@@ -7,7 +8,6 @@ import type {GameStyles}                from 'core/gameStyle/GameStyles'
 
 import {AbstractEntityImage} from 'core/entity/images/AbstractEntityImage'
 import {Empty}               from 'util/emptyVariables'
-import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
 
@@ -30,7 +30,7 @@ export class ClearConditionEntityImageContainer<const T extends ClearConditionIm
         const value = this.imagesWithAssociation.findFirstOrNull(it => it[0] === gameStyle,)
         if (value == null)
             return EMPTY_COLLECTION_HOLDER
-        return new ArrayAsCollection([value[1],],)
+        return new CollectionHolderOf1(value[1],)
     }
 
 }

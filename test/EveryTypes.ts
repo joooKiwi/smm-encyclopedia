@@ -1,5 +1,5 @@
-import type {Array, StringArray} from '@joookiwi/type'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {Array, StringArray}                          from '@joookiwi/type'
+import {ArrayAsCollectionHolder, GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'src/core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'src/core/behaviour/EntityBehaviours.types'
@@ -59,7 +59,6 @@ import {Themes}                from 'src/core/theme/Themes'
 import {Versions}              from 'src/core/version/Versions'
 import {CourseTags}            from 'src/core/courseTag/CourseTags'
 import {INFINITY}              from 'src/util/commonVariables'
-import {ArrayAsCollection}     from 'src/util/collection/ArrayAsCollection'
 
 import ALL_GAME_STYLES =      GameStyles.ALL
 import ALL_GAME_STYLES_SMM1 = GameStyles.ALL_SMM1
@@ -314,11 +313,11 @@ export class EveryTypes {
     //region -------------------- Theme --------------------
 
     public get everyPossibleName_theme() {
-        return this.#everyPossibleName_theme ??= new ArrayAsCollection(ALL_THEMES,).map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_theme ??= new ArrayAsCollectionHolder(ALL_THEMES,).map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_courseTheme_smm1() {
-        return this.#everyPossibleName_courseTheme_smm1 ??= new ArrayAsCollection(COURSE_THEMES_SMM1,).map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_courseTheme_smm1 ??= new ArrayAsCollectionHolder(COURSE_THEMES_SMM1,).map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Theme --------------------
@@ -352,11 +351,11 @@ export class EveryTypes {
     }
 
     public get everyPossibleName_editorLimit() {
-        return this.#everyPossibleName_editorLimit ??= new ArrayAsCollection(Limits.EDITOR,).map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_editorLimit ??= new ArrayAsCollectionHolder(Limits.EDITOR,).map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_playLimit() {
-        return this.#everyPossibleName_playLimit ??= new ArrayAsCollection(Limits.PLAY,).map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_playLimit ??= new ArrayAsCollectionHolder(Limits.PLAY,).map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleAlternativeName_limit() {
@@ -638,7 +637,7 @@ export class EveryTypes {
     //region -------------------- Other word in the game --------------------
 
     public get everyPossibleName_otherWordInTheGame() {
-        return this.#everyPossibleName_otherWordInTheGame ??= new ArrayAsCollection(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),).filterNotNull().toArray()
+        return this.#everyPossibleName_otherWordInTheGame ??= new ArrayAsCollectionHolder(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),).filterNotNull().toArray()
     }
 
     public get everyPossibleSingularName_otherWordInTheGame() {

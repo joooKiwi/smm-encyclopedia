@@ -1,6 +1,7 @@
-import type {CollectionHolder}                   from '@joookiwi/collection'
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CollectionHolder}                        from '@joookiwi/collection'
+import type {CompanionEnumWithParentSingleton}        from '@joookiwi/enumerable'
+import {ArrayAsCollectionHolder, CollectionHolderOf1} from '@joookiwi/collection'
+import {CompanionEnumWithParent, EnumWithParent}      from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName}                                       from 'core/entity/Entities.types'
 import type {ClearConditionImageFile, EditorImageFile, EntityImageFile, InGameImageFile} from 'core/entity/file/EntityImageFile'
@@ -26,7 +27,6 @@ import {EditorImageContainer}               from 'core/entity/images/editor/Edit
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
 import {InGameImage_RegularContainer}       from 'core/entity/images/inGame/InGameImage_Regular.container'
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
-import {ArrayAsCollection}                  from 'util/collection/ArrayAsCollection'
 
 /**
  * The images used in the main page of {@link EntityApp}
@@ -230,12 +230,12 @@ export abstract class EntityImages
         protected override _createImage() {
             const clearConditionReference = this.clearConditionReference
             const inGameImages = this.inGameReference.image
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImages.get(GameStyles.SMB,),],
                 [GameStyles.SMB3,  inGameImages.get(GameStyles.SMB3,),],
                 [GameStyles.SMW,   inGameImages.get(GameStyles.SMW,),],
                 [GameStyles.NSMBU, inGameImages.get(GameStyles.NSMBU,).take(1,),],
-                [GameStyles.SM3DW, new ArrayAsCollection([clearConditionReference.image.get(GameStyles.SM3DW,),],), ],
+                [GameStyles.SM3DW, new CollectionHolderOf1(clearConditionReference.image.get(GameStyles.SM3DW,),), ],
             ],)
         }
 
@@ -256,7 +256,7 @@ export abstract class EntityImages
         protected override _createImage() {
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImages.get(GameStyles.SMB,),],
                 [GameStyles.SMB3,  inGameImages.get(GameStyles.SMB3,),],
                 [GameStyles.SMW,   inGameImages.get(GameStyles.SMW,),],
@@ -282,7 +282,7 @@ export abstract class EntityImages
         protected override _createImage() {
             const editorReference = this.editorReference
             const inGameImages = this.inGameReference.image
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImages.get(GameStyles.SMB,).slice(0, 1,),],
                 [GameStyles.SMB3,  inGameImages.get(GameStyles.SMB3,).slice(0, 1,),],
                 [GameStyles.SMW,   inGameImages.get(GameStyles.SMW,).slice(0, 1,),],
@@ -408,12 +408,12 @@ export abstract class EntityImages
         public override _createImage() {
             const clearConditionReference = this.#clearConditionReference
             const inGameReference = this.#inGameReference
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameReference.image.get(GameStyles.SMB,),],
                 [GameStyles.SMB3,  inGameReference.image.get(GameStyles.SMB3,),],
                 [GameStyles.SMW,   inGameReference.image.get(GameStyles.SMW,),],
                 [GameStyles.NSMBU, inGameReference.image.get(GameStyles.NSMBU,),],
-                [GameStyles.SM3DW, new ArrayAsCollection([clearConditionReference.image.get(GameStyles.SM3DW,),],),],
+                [GameStyles.SM3DW, new CollectionHolderOf1(clearConditionReference.image.get(GameStyles.SM3DW,),),],
             ],)
         }
 

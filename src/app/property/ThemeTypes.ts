@@ -1,13 +1,13 @@
-import type {NullOr}           from '@joookiwi/type'
-import type {CollectionHolder} from '@joookiwi/collection'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {NullOr}             from '@joookiwi/type'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
+import {Enum}                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
 import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
 import {Themes}              from 'core/theme/Themes'
-import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
 import COURSE_THEMES = Themes.COURSE_THEMES
@@ -23,7 +23,7 @@ export abstract class ThemeTypes
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
         public override get content() {
-            return new ArrayAsCollection(Themes.ALL,)
+            return new ArrayAsCollectionHolder(Themes.ALL,)
         }
 
 
@@ -35,7 +35,7 @@ export abstract class ThemeTypes
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
         public override get content() {
-            return new ArrayAsCollection(COURSE_THEMES,)
+            return new ArrayAsCollectionHolder(COURSE_THEMES,)
         }
 
 
@@ -55,7 +55,7 @@ export abstract class ThemeTypes
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
         public override get content() {
-            return new ArrayAsCollection(WORLD_THEMES,)
+            return new ArrayAsCollectionHolder(WORLD_THEMES,)
         }
 
 

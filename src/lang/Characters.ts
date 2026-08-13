@@ -1,12 +1,11 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import type {Singleton}        from '@joookiwi/enumerable'
-import type {Nullable}         from '@joookiwi/type'
-import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
+ import type {CollectionHolder}                        from '@joookiwi/collection'
+import type {Singleton}                               from '@joookiwi/enumerable'
+import type {Nullable}                                from '@joookiwi/type'
+import {ArrayAsCollectionHolder, CollectionHolderOf2} from '@joookiwi/collection'
+import {CompanionEnum, Enum}                          from '@joookiwi/enumerable'
 
 import type {CharactersEquivalencesMap, Names, Ordinals, PossibleSingleCharacter, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString, VariableValueByBoolean, SpaceUnevenCharacter, SpaceEvenCharacter, TextInChevrons} from 'lang/Characters.types'
 import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                 from 'lang/Characters.companionEnumDeclaration'
-
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
 
 export class Characters<const SPACE_UNEVEN_CHARACTER extends SpaceUnevenCharacter = SpaceUnevenCharacter,
     const SPACE_EVEN_CHARACTER extends SpaceEvenCharacter = SpaceEvenCharacter,>
@@ -209,7 +208,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
 
     function __getBothEvenAndUnevenCharacters<const T extends Characters, >(characters: CollectionHolder<T>,): CollectionHolder<T[| 'spaceEvenCharacter' | 'spaceUnevenCharacter']>
     function __getBothEvenAndUnevenCharacters(characters: CollectionHolder<Characters>,): CollectionHolder<PossibleSingleCharacter> {
-        return new ArrayAsCollection(characters.map(it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).toArray().flat(),)
+        return new ArrayAsCollectionHolder(characters.map(it => [it.spaceUnevenCharacter, it.spaceEvenCharacter,],).toArray().flat(),)
     }
 
     function __getOnlyUnevenCharacter<const T extends Characters, >(characters: CollectionHolder<T>,): CollectionHolder<T['spaceUnevenCharacter']>
@@ -232,7 +231,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
 
     //region -------------------- Specific characters (point) --------------------
 
-    export const POINTS = new ArrayAsCollection([Characters.POINT, Characters.INTERROGATION_POINT, Characters.EXCLAMATION_POINT, Characters.COLON, Characters.SEMICOLON,],)
+    export const POINTS = new ArrayAsCollectionHolder([Characters.POINT, Characters.INTERROGATION_POINT, Characters.EXCLAMATION_POINT, Characters.COLON, Characters.SEMICOLON,],)
     export const ALL_POINTS =          __getBothEvenAndUnevenCharacters(POINTS,)
     export const POINTS_SPACE_EVEN =   __getOnlyEvenCharacter(POINTS,)
     export const POINTS_SPACE_UNEVEN = __getOnlyUnevenCharacter(POINTS,)
@@ -245,7 +244,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (point) --------------------
     //region -------------------- Specific characters (parentheses) --------------------
 
-    export const PARENTHESES = new ArrayAsCollection([Characters.STARTING_PARENTHESIS, Characters.ENDING_PARENTHESIS,],)
+    export const PARENTHESES = new CollectionHolderOf2(Characters.STARTING_PARENTHESIS, Characters.ENDING_PARENTHESIS,)
     export const ALL_PARENTHESES =          __getBothEvenAndUnevenCharacters(PARENTHESES,)
     export const PARENTHESES_SPACE_EVEN =   __getOnlyEvenCharacter(PARENTHESES,)
     export const PARENTHESES_SPACE_UNEVEN = __getOnlyUnevenCharacter(PARENTHESES,)
@@ -258,7 +257,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (parentheses) --------------------
     //region -------------------- Specific characters (bracket) --------------------
 
-    export const BRACKETS = new ArrayAsCollection([Characters.STARTING_BRACKET, Characters.ENDING_BRACKET,],)
+    export const BRACKETS = new CollectionHolderOf2(Characters.STARTING_BRACKET, Characters.ENDING_BRACKET,)
     export const ALL_BRACKETS =          __getBothEvenAndUnevenCharacters(BRACKETS,)
     export const BRACKETS_SPACE_EVEN =   __getOnlyEvenCharacter(BRACKETS,)
     export const BRACKETS_SPACE_UNEVEN = __getOnlyUnevenCharacter(BRACKETS,)
@@ -271,7 +270,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (bracket) --------------------
     //region -------------------- Specific characters (brace) --------------------
 
-    export const BRACES = new ArrayAsCollection([Characters.STARTING_BRACE, Characters.ENDING_BRACE,],)
+    export const BRACES = new CollectionHolderOf2(Characters.STARTING_BRACE, Characters.ENDING_BRACE,)
     export const ALL_BRACES =          __getBothEvenAndUnevenCharacters(BRACES,)
     export const BRACES_SPACE_EVEN =   __getOnlyEvenCharacter(BRACES,)
     export const BRACES_SPACE_UNEVEN = __getOnlyUnevenCharacter(BRACES,)
@@ -284,7 +283,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (brace) --------------------
     //region -------------------- Specific characters (chevron) --------------------
 
-    export const CHEVRONS = new ArrayAsCollection([Characters.STARTING_CHEVRON, Characters.ENDING_CHEVRON,],)
+    export const CHEVRONS = new CollectionHolderOf2(Characters.STARTING_CHEVRON, Characters.ENDING_CHEVRON,)
     export const ALL_CHEVRONS =          __getBothEvenAndUnevenCharacters(CHEVRONS,)
     export const CHEVRONS_SPACE_EVEN =   __getOnlyEvenCharacter(CHEVRONS,)
     export const CHEVRONS_SPACE_UNEVEN = __getOnlyUnevenCharacter(CHEVRONS,)
@@ -297,7 +296,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (chevron) --------------------
     //region -------------------- Specific characters (slash) --------------------
 
-    export const SLASHES = new ArrayAsCollection([Characters.SLASH, Characters.VERTICAL_SLASH,],)
+    export const SLASHES = new CollectionHolderOf2(Characters.SLASH, Characters.VERTICAL_SLASH,)
     export const ALL_SLASHES =          __getBothEvenAndUnevenCharacters(SLASHES,)
     export const SLASHES_SPACE_EVEN =   __getOnlyEvenCharacter(SLASHES,)
     export const SLASHES_SPACE_UNEVEN = __getOnlyUnevenCharacter(SLASHES,)
@@ -310,7 +309,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (slash) --------------------
     //region -------------------- Specific characters (letter) --------------------
 
-    export const LETTERS = new ArrayAsCollection([
+    export const LETTERS = new ArrayAsCollectionHolder([
         Characters.UPPER_LETTER_A, Characters.LOWER_LETTER_A,
         Characters.UPPER_LETTER_B, Characters.LOWER_LETTER_B,
         Characters.UPPER_LETTER_C, Characters.LOWER_LETTER_C,
@@ -347,7 +346,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
         return isSpaceEven ? LETTERS_SPACE_EVEN : LETTERS_SPACE_UNEVEN
     }
 
-    export const UPPER_LETTERS = new ArrayAsCollection([
+    export const UPPER_LETTERS = new ArrayAsCollectionHolder([
         Characters.UPPER_LETTER_A, Characters.UPPER_LETTER_B, Characters.UPPER_LETTER_C, Characters.UPPER_LETTER_D, Characters.UPPER_LETTER_E,
         Characters.UPPER_LETTER_F, Characters.UPPER_LETTER_G, Characters.UPPER_LETTER_H, Characters.UPPER_LETTER_I, Characters.UPPER_LETTER_J,
         Characters.UPPER_LETTER_K, Characters.UPPER_LETTER_L, Characters.UPPER_LETTER_M, Characters.UPPER_LETTER_N, Characters.UPPER_LETTER_O,
@@ -364,7 +363,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
         return isSpaceEven ? UPPER_LETTERS_SPACE_EVEN : UPPER_LETTERS_SPACE_UNEVEN
     }
 
-    export const LOWER_LETTERS = new ArrayAsCollection([
+    export const LOWER_LETTERS = new ArrayAsCollectionHolder([
         Characters.LOWER_LETTER_A, Characters.LOWER_LETTER_B, Characters.LOWER_LETTER_C, Characters.LOWER_LETTER_D, Characters.LOWER_LETTER_E,
         Characters.LOWER_LETTER_F, Characters.LOWER_LETTER_G, Characters.LOWER_LETTER_H, Characters.LOWER_LETTER_I, Characters.LOWER_LETTER_J,
         Characters.LOWER_LETTER_K, Characters.LOWER_LETTER_L, Characters.LOWER_LETTER_M, Characters.LOWER_LETTER_N, Characters.LOWER_LETTER_O,
@@ -384,7 +383,7 @@ export namespace Characters {// eslint-disable-line @typescript-eslint/no-namesp
     //endregion -------------------- Specific characters (letter) --------------------
     //region -------------------- Specific characters (number) --------------------
 
-    export const NUMBERS = new ArrayAsCollection([
+    export const NUMBERS = new ArrayAsCollectionHolder([
         Characters.NUMBER_0, Characters.NUMBER_1, Characters.NUMBER_2, Characters.NUMBER_3, Characters.NUMBER_4,
         Characters.NUMBER_5, Characters.NUMBER_6, Characters.NUMBER_7, Characters.NUMBER_8, Characters.NUMBER_9,
     ],)

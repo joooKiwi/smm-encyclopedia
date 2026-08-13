@@ -1,8 +1,8 @@
-import type {CollectionHolder}                   from '@joookiwi/collection'
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import type {Array, EmptyString}                 from '@joookiwi/type'
-import {forEachByArray}                          from '@joookiwi/collection'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CollectionHolder}                                                             from '@joookiwi/collection'
+import type {CompanionEnumWithParentSingleton}                                             from '@joookiwi/enumerable'
+import type {Array, EmptyString}                                                           from '@joookiwi/type'
+import {ArrayAsCollectionHolder, CollectionHolderOf1, CollectionHolderOf2, forEachByArray} from '@joookiwi/collection'
+import {CompanionEnumWithParent, EnumWithParent}                                           from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
@@ -17,7 +17,6 @@ import {EmptyInGameImage_Regular}     from 'core/entity/images/inGame/EmptyInGam
 import {InGameImage_RegularContainer} from 'core/entity/images/inGame/InGameImage_Regular.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {Empty}                        from 'util/emptyVariables'
-import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
@@ -85,7 +84,7 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([[GameStyles.SMB, inGameImage(this, this.folderName, this.fileName,),],],)
+            return new CollectionHolderOf1([GameStyles.SMB, inGameImage(this, this.folderName, this.fileName,),],)
         }
 
     }
@@ -103,7 +102,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SMB, inGameImage(this, folderName, this.fileName2,),],
                 [GameStyles.SMB, inGameImage(this, folderName, this.fileName3,),],
@@ -126,7 +125,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SMB, inGameImage(this, folderName, this.fileName2,),],
                 [GameStyles.SMB, inGameImage(this, folderName, this.fileName3,),],
@@ -148,7 +147,7 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([[GameStyles.SMW, inGameImage(this, this.folderName, this.fileName,),],],)
+            return new CollectionHolderOf1([GameStyles.SMW, inGameImage(this, this.folderName, this.fileName,),],)
         }
 
     }
@@ -166,10 +165,10 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new CollectionHolderOf2(
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName2,),],
-            ],)
+            )
         }
 
     }
@@ -188,7 +187,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName2,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName3,),],
@@ -212,7 +211,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName2,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName3,),],
@@ -237,7 +236,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName2,),],
                 [GameStyles.SMW, inGameImage(this, folderName, this.fileName3,),],
@@ -264,7 +263,7 @@ export abstract class InGameEntityImages
         protected override _createImageFiles() {
             const folderName = this.folderName
 
-            return new ArrayAsCollection(this.fileNames,).map(it => [GameStyles.SMB, inGameImage(this, folderName, it,),],)
+            return new ArrayAsCollectionHolder(this.fileNames,).map(it => [GameStyles.SMB, inGameImage(this, folderName, it,),],)
         }
 
     }
@@ -281,7 +280,7 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([[GameStyles.SM3DW, inGameImage(this, this.folderName, this.fileName,),],],)
+            return new CollectionHolderOf1([GameStyles.SM3DW, inGameImage(this, this.folderName, this.fileName,),],)
         }
 
     }
@@ -300,7 +299,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SM3DW, inGameImage(this, folderName, this.fileName1,),],
                 [GameStyles.SM3DW, inGameImage(this, folderName, this.fileName2,),],
                 [GameStyles.SM3DW, inGameImage(this, folderName, this.fileName3,),],
@@ -325,10 +324,10 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([
+            return new CollectionHolderOf2(
                 [GameStyles.SMB, inGameImage(this, this.folderName, this.fileName,),],
                 [GameStyles.SMB, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
-            ],)
+            )
         }
 
     }
@@ -345,10 +344,10 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([
+            return new CollectionHolderOf2(
                 [GameStyles.SMB3, inGameImage(this, this.folderName,    this.fileName,),],
                 [GameStyles.SMB3, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
-            ],)
+            )
         }
 
     }
@@ -365,10 +364,10 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([
+            return new CollectionHolderOf2(
                 [GameStyles.SMW, inGameImage(this, this.folderName,    this.fileName,),],
                 [GameStyles.SMW, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
-            ],)
+            )
         }
 
     }
@@ -385,10 +384,10 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return new ArrayAsCollection([
+            return new CollectionHolderOf2(
                 [GameStyles.NSMBU, inGameImage(this, this.folderName,    this.fileName,),],
                 [GameStyles.NSMBU, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
-            ],)
+            )
         }
 
     }
@@ -410,7 +409,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const fileName = this.fileName
             const endingFolderName = this.endingFolderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [GameStyles.NSMBU, inGameImage(this, `WU ${endingFolderName}`, fileName,),],
@@ -435,7 +434,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const fileName = this.fileName
             const endingFolderName = this.endingFolderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,  inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMB3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMW,  inGameImage(this, `MW ${endingFolderName}`, fileName,),],
@@ -461,7 +460,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const fileName = this.fileName
             const endingFolderName = this.endingFolderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
@@ -491,7 +490,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const fileName = this.fileName
             const endingFolderName = this.endingFolderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
@@ -523,7 +522,7 @@ export abstract class InGameEntityImages
             const endingFolderName = this.endingFolderName
             const folderName_smw = `MW ${endingFolderName}` as const
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,  inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMB3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMW,  inGameImage(this, folderName_smw,           this.smwFileName1,),],
@@ -558,7 +557,7 @@ export abstract class InGameEntityImages
             const endingFolderName = this.endingFolderName
             const folderName_nsmbu = `WU ${endingFolderName}` as const
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
                 [GameStyles.SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
@@ -587,7 +586,7 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.folderName
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMW, inGameImage(this, folderName,         this.fileName1,),],
                 [GameStyles.SMW, inGameImage(this, folderName,         this.fileName2,),],
                 [GameStyles.SMW, inGameImage(this, this.folderNameAlt, this.fileNameAlt,),],
@@ -618,7 +617,7 @@ export abstract class InGameEntityImages
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,  inGameImage(this, folderName_smb, fileName1,),],
                 [GameStyles.SMB,  inGameImage(this, folderName_smb, fileName2,),],
                 [GameStyles.SMB3, inGameImage(this, folderName_smb3, fileName1,),],
@@ -651,7 +650,7 @@ export abstract class InGameEntityImages
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder<readonly [GameStyles, InGameImageFile<`${| 'M1' | 'M3' | 'MW'} ${ENDING_FOLDER_NAME}`, FILE_NAME>,]>([
                 [GameStyles.SMB,  inGameImage(this, folderName_smb, fileName1,),],
                 [GameStyles.SMB,  inGameImage(this, folderName_smb, fileName2,),],
                 [GameStyles.SMB3, inGameImage(this, folderName_smb3, fileName1,),],
@@ -701,7 +700,7 @@ export abstract class InGameEntityImages
             let index = 5
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -748,7 +747,7 @@ export abstract class InGameEntityImages
             let index = 5
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -779,7 +778,7 @@ export abstract class InGameEntityImages
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, folderName_smb, fileName1,),],
                 [GameStyles.SMB,   inGameImage(this, folderName_smb, fileName2,),],
                 [GameStyles.SMB3,  inGameImage(this, folderName_smb3, fileName1,),],
@@ -819,7 +818,7 @@ export abstract class InGameEntityImages
             const fileName1 = this.fileName1
             const fileName2 = this.fileName2
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, folderName_smb,   fileName1,),],
                 [GameStyles.SMB,   inGameImage(this, folderName_smb,   fileName2,),],
                 [GameStyles.SMB3,  inGameImage(this, folderName_smb3,  fileName1,),],
@@ -851,7 +850,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const folderName = this.folderName
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB, inGameImage(this, folderName,         this.fileName1,),],
                 [GameStyles.SMB, inGameImage(this, folderName,         this.fileName2,),],
                 [GameStyles.SMB, inGameImage(this, folderName,         this.fileName3,),],
@@ -876,7 +875,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const folderName = this.folderName
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB3, inGameImage(this, folderName,         this.fileName1,),],
                 [GameStyles.SMB3, inGameImage(this, folderName,         this.fileName2,),],
                 [GameStyles.SMB3, inGameImage(this, folderName,         this.fileName3,),],
@@ -910,7 +909,7 @@ export abstract class InGameEntityImages
             const fileName2 = this.fileName2
             const fileName3 = this.fileName3
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,  inGameImage(this, folderName_smb,  fileName1,),],
                 [GameStyles.SMB,  inGameImage(this, folderName_smb,  fileName2,),],
                 [GameStyles.SMB,  inGameImage(this, folderName_smb,  fileName3,),],
@@ -970,7 +969,7 @@ export abstract class InGameEntityImages
             let index = 8
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -994,7 +993,7 @@ export abstract class InGameEntityImages
         public override _createImageFiles() {
             const folderName = this.folderName
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.NSMBU, inGameImage(this, folderName,         this.fileName1,),],
                 [GameStyles.NSMBU, inGameImage(this, folderName,         this.fileName2,),],
                 [GameStyles.NSMBU, inGameImage(this, folderName,         this.fileName3,),],
@@ -1031,7 +1030,7 @@ export abstract class InGameEntityImages
             const fileName3 = this.fileName3
             const fileName4 = this.fileName4
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,  inGameImage(this, folderName_smb,  fileName1,),],
                 [GameStyles.SMB,  inGameImage(this, folderName_smb,  fileName2,),],
                 [GameStyles.SMB,  inGameImage(this, folderName_smb,  fileName3,),],
@@ -1074,7 +1073,7 @@ export abstract class InGameEntityImages
             const fileName3 = this.fileName3
             const fileName4 = this.fileName4
 
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB3,  inGameImage(this, folderName_smb3,  fileName1,),],
                 [GameStyles.SMB3,  inGameImage(this, folderName_smb3,  fileName2,),],
                 [GameStyles.SMB3,  inGameImage(this, folderName_smb3,  fileName3,),],
@@ -1143,7 +1142,7 @@ export abstract class InGameEntityImages
             let index = 11
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1206,7 +1205,7 @@ export abstract class InGameEntityImages
             let index = 14
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1266,7 +1265,7 @@ export abstract class InGameEntityImages
             let index = 11
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1330,7 +1329,7 @@ export abstract class InGameEntityImages
             let index = 17
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1402,7 +1401,7 @@ export abstract class InGameEntityImages
             let index = 20
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1478,7 +1477,7 @@ export abstract class InGameEntityImages
             let index = 23
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1529,7 +1528,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1584,7 +1583,7 @@ export abstract class InGameEntityImages
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
             imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, `WU ${endingFolderName2}`, this.nsmbuFileName2,),]
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1631,7 +1630,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1678,7 +1677,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1719,7 +1718,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1767,7 +1766,7 @@ export abstract class InGameEntityImages
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
             forEachByArray(fileNames_sm3dw, it => imageFiles[++index] = [GameStyles.SM3DW, inGameImage(this, folderName_sm3dw, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1830,7 +1829,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1877,7 +1876,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1924,7 +1923,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -1993,7 +1992,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -2050,7 +2049,7 @@ export abstract class InGameEntityImages
 
             forEachByArray(fileNames_nsmbu, it => imageFiles[++index] = [GameStyles.NSMBU, inGameImage(this, folderName_nsmbu, it,),],)
 
-            return new ArrayAsCollection(imageFiles,)
+            return new ArrayAsCollectionHolder(imageFiles,)
         }
 
     }
@@ -2068,7 +2067,7 @@ export abstract class InGameEntityImages
         public constructor() { super('Burner',) }
 
         protected override _createImageFiles() {
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, 'M1 Object - Burner',  'standB',),],
                 [GameStyles.SMB,   inGameImage(this, 'M1 Object - Burner',  'wait.0',),],
                 [GameStyles.SMB,   inGameImage(this, 'M1 Object - Burner',  'wait.1',),],
@@ -2146,7 +2145,7 @@ export abstract class InGameEntityImages
         public constructor() { super('Starting Arrow',) }
 
         protected override _createImageFiles() {
-            return new ArrayAsCollection([
+            return new ArrayAsCollectionHolder([
                 [GameStyles.SMB,   inGameImage(this, 'M1 Object - Yajirushi',    'yajirushi',),],
                 [GameStyles.SMB,   inGameImage(this, 'M1 Object - Yajirushi S',  'yajirushi',),],
                 [GameStyles.SMB3,  inGameImage(this, 'M3 Object - Yajirushi',    'yajirushi',),],

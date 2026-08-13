@@ -1,6 +1,7 @@
 import './MedalApp.scss'
 
-import type {CollectionHolder} from '@joookiwi/collection'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
 
 import type {AppProperties}   from 'app/AppProperties.types'
 import type {ReactProperties} from 'util/react/ReactProperties'
@@ -23,7 +24,6 @@ import DisplayButtonGroup                             from 'display/DisplayButto
 import {ViewDisplays}                                 from 'display/ViewDisplays'
 import {gameContentTranslation}                       from 'lang/components/translationMethods'
 import NameComponent                                  from 'lang/name/component/Name.component'
-import {ArrayAsCollection}                            from 'util/collection/ArrayAsCollection'
 
 import ALL = Medals.ALL
 
@@ -33,7 +33,7 @@ const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-const all = new ArrayAsCollection(ALL,)
+const all = new ArrayAsCollectionHolder(ALL,)
 const items = all
 const options = MedalAppOption.CompanionEnum.get.values
 

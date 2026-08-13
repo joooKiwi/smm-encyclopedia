@@ -1,4 +1,5 @@
 import type {NullableString, NullOr, NullOrString} from '@joookiwi/type'
+import {ArrayAsCollectionHolder}                   from '@joookiwi/collection'
 
 import type {PossibleEnglishName}        from 'lang/EveryLanguages.types'
 import type {Name}                       from 'lang/name/Name'
@@ -10,15 +11,14 @@ import {EveryLanguages}      from 'lang/EveryLanguages'
 import {StringNameContainer} from 'lang/name/StringName.container'
 import {DualValueLanguage}   from 'lang/name/container/DualValueLanguage'
 import {SingleValueLanguage} from 'lang/name/container/SingleValueLanguage'
-import {ArrayAsCollection}   from 'util/collection/ArrayAsCollection'
 
 type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' | 'notSMM3DS'
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean
 
 /** The exclusive {@link SMM1} or {@link SMM3DS} (excluding the complete & optional languages) languages */
-const SMM1_OR_SMM3DS_LANGUAGES = new ArrayAsCollection<EveryLanguages>([EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,] ,)
+const SMM1_OR_SMM3DS_LANGUAGES = new ArrayAsCollectionHolder<EveryLanguages>([EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,] ,)
 /** The exclusive {@link SMM2} (excluding the complete & optional languages) languages */
-const SMM2_LANGUAGES = new ArrayAsCollection<EveryLanguages>([EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,],)
+const SMM2_LANGUAGES = new ArrayAsCollectionHolder<EveryLanguages>([EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,],)
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM1_OR_SMM3DS: IsACompleteNameCallback = language => SMM1_OR_SMM3DS_LANGUAGES.has(language,)
 const IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM2: IsACompleteNameCallback = language => SMM2_LANGUAGES.has(language,)
 const IS_A_COMPLETE_NAME = () => true

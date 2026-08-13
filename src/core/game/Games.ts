@@ -1,7 +1,8 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import type {Singleton}        from '@joookiwi/enumerable'
-import type {Array, Nullable}  from '@joookiwi/type'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {CollectionHolder}                                             from '@joookiwi/collection'
+import {ArrayAsCollectionHolder, CollectionHolderOf1, CollectionHolderOf2} from '@joookiwi/collection'
+import type {Singleton}                                                    from '@joookiwi/enumerable'
+import type {Array, Nullable}                                              from '@joookiwi/type'
+import {Enum}                                                              from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                      from 'core/ClassWithEnglishName'
@@ -17,7 +18,6 @@ import {gameImage}                                                              
 import {StringContainer}                                                                 from 'util/StringContainer'
 import {Empty}                                                                           from 'util/emptyVariables'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlName, getValueByUrlValue} from 'util/utilitiesMethods'
-import {ArrayAsCollection}                                                               from 'util/collection/ArrayAsCollection'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                          from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
@@ -129,7 +129,7 @@ export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcro
                 return EMPTY_COLLECTION_HOLDER
 
             /** All the possible {@link Games.urlValue} that could be found in the url */
-            const valuesFound = new ArrayAsCollection(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
+            const valuesFound = new ArrayAsCollectionHolder(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),).getFirst()
             const withSmm1 = valuesFound.includes('1',)
             const withSmm3ds = valuesFound.includes('3ds',)
             const withSmm2 = valuesFound.includes('2',)
@@ -296,18 +296,18 @@ export namespace Games {// eslint-disable-line @typescript-eslint/no-namespace
     //region -------------------- Singular possibility --------------------
 
     /** A {@link CollectionHolder} representing the games with only {@link SMM1} */
-    export const SMM1_ONLY = new ArrayAsCollection([Games.SUPER_MARIO_MAKER_1,],)
+    export const SMM1_ONLY = new CollectionHolderOf1(Games.SUPER_MARIO_MAKER_1,)
     /** A {@link CollectionHolder} representing the games with only {@link SMM3DS} */
-    export const SMM3DS_ONLY = new ArrayAsCollection([Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,],)
+    export const SMM3DS_ONLY = new CollectionHolderOf1(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
     /** A {@link CollectionHolder} representing the games with only {@link SMM2} */
-    export const SMM2_ONLY = new ArrayAsCollection([Games.SUPER_MARIO_MAKER_2,],)
+    export const SMM2_ONLY = new CollectionHolderOf1(Games.SUPER_MARIO_MAKER_2,)
 
     /** A {@link CollectionHolder} representing the games with {@link SMM1} & {@link SMM3DS} */
-    export const SMM1_AND_3DS = new ArrayAsCollection([Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,],)
+    export const SMM1_AND_3DS = new CollectionHolderOf2(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
     /** A {@link CollectionHolder} representing the games with {@link SMM1} & {@link SMM2} */
-    export const SMM1_AND_2 = new ArrayAsCollection([Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,],)
+    export const SMM1_AND_2 = new CollectionHolderOf2(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,)
     /** A {@link CollectionHolder} representing the games with {@link SMM3DS} & {@link SMM2} */
-    export const SMM3DS_AND_2 = new ArrayAsCollection([Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,],)
+    export const SMM3DS_AND_2 = new CollectionHolderOf2(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,)
 
     /**
      * A {@link CollectionHolder} representing the games with every game
@@ -319,13 +319,13 @@ export namespace Games {// eslint-disable-line @typescript-eslint/no-namespace
     //region -------------------- Group possibility --------------------
 
     /** Every single (1x) {@link Games} fields in the {@link Games} possibilities */
-    export const EVERY_SINGLE_GAME = new ArrayAsCollection([SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,],)
+    export const EVERY_SINGLE_GAME = new ArrayAsCollectionHolder([SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,],)
 
     /** Every double (2x) {@link Games} fields in the {@link Games} possibilitiesGamePossibility} */
-    export const EVERY_DOUBLE_GAME = new ArrayAsCollection([SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,],)
+    export const EVERY_DOUBLE_GAME = new ArrayAsCollectionHolder([SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,],)
 
     /** Every {@link Games} fields in the {@link Games} possibilities */
-    export const EVERY_GAME = new ArrayAsCollection([
+    export const EVERY_GAME = new ArrayAsCollectionHolder([
         ALL_GAMES,
         SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,
         SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2,

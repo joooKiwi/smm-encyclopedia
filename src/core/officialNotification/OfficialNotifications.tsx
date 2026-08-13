@@ -3,6 +3,7 @@ import './OfficialNotifications.scss'
 import type {CollectionHolder}                                     from '@joookiwi/collection'
 import type {Lazy}                                                 from '@joookiwi/lazy'
 import type {Array, EmptyString, Nullable, NullableNumber, NullOr} from '@joookiwi/type'
+import {ArrayAsCollectionHolder}                                   from '@joookiwi/collection'
 import {Enum}                                                      from '@joookiwi/enumerable'
 import {lazy}                                                      from '@joookiwi/lazy'
 import {Fragment}                                                  from 'react'
@@ -23,7 +24,6 @@ import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                      
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {Empty}                                                                   from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
-import {ArrayAsCollection}                                                       from 'util/collection/ArrayAsCollection'
 import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
 
 import EMPTY_COLLECTION_HOLDER = Empty.EMPTY_COLLECTION_HOLDER
@@ -516,7 +516,7 @@ export class OfficialNotifications
         super()
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
-        this.#additionalEnglishName = amount[0] === 1 ? EMPTY_COLLECTION_HOLDER : new ArrayAsCollection(amount,).map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount)
+        this.#additionalEnglishName = amount[0] === 1 ? EMPTY_COLLECTION_HOLDER : new ArrayAsCollectionHolder(amount,).map(it => this.englishName.replace('#', it.toString(),) as PossibleEnglishNameWithEveryAmount)
         this.#additionalTranslationKeyHolder = lazy(() => this._createAdditionalTranslationKey,)
     }
 

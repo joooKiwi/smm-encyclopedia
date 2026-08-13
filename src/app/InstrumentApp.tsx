@@ -2,6 +2,7 @@ import './InstrumentApp.scss'
 
 import type {MutableArray, NullOr, NullOrString} from '@joookiwi/type'
 import type {CollectionHolder}                   from '@joookiwi/collection'
+import {ArrayAsCollectionHolder}                 from '@joookiwi/collection'
 import {Fragment}                                from 'react'
 
 import type {AppProperties}       from 'app/AppProperties.types'
@@ -38,7 +39,6 @@ import {ViewDisplays}                               from 'display/ViewDisplays'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
 import {intersect}                                  from 'util/utilitiesMethods'
-import {ArrayAsCollection}                          from 'util/collection/ArrayAsCollection'
 
 import ALL =             Instruments.ALL
 import ALL_GAME_STYLES = GameStyles.ALL
@@ -56,7 +56,7 @@ const {LIST, CARD,} = ViewDisplays
 
 //endregion -------------------- Import from deconstruction --------------------
 
-const all = new ArrayAsCollection(ALL,)
+const all = new ArrayAsCollectionHolder(ALL,)
 
 type InstrumentAppProperties = AppProperties
 
@@ -181,7 +181,7 @@ function getOptions(gameStyles: GameStyleCollection,): CollectionHolder<Instrume
     if (gameStyles.hasNsmbu)
         options.push(InstrumentAppOption.REFERENCE_NSMBU,)
     options.push(InstrumentAppOption.SOUND,)
-    return new ArrayAsCollection(options,)
+    return new ArrayAsCollectionHolder(options,)
 }
 
 //endregion -------------------- Sub content --------------------

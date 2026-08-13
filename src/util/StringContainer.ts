@@ -1,6 +1,7 @@
-import {Empty}             from 'util/emptyVariables'
-import {forEachValue}      from 'util/utilitiesMethods'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
+import {ArrayAsCollectionHolder} from '@joookiwi/collection'
+
+import {Empty}        from 'util/emptyVariables'
+import {forEachValue} from 'util/utilitiesMethods'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
@@ -56,7 +57,7 @@ export namespace StringContainer {// eslint-disable-line @typescript-eslint/no-n
         if (ALREADY_CONVERTED_VALUES.has(value))
             return ALREADY_CONVERTED_VALUES.get(value)!
 
-        const splitValues = new ArrayAsCollection(value.toLowerCase()
+        const splitValues = new ArrayAsCollectionHolder(value.toLowerCase()
                 .replaceAll(REMOVAL_REGEX, EMPTY_STRING,)
                 .split(WORD_SEPARATOR_REGEX,),)
             .map(it => REPLACE_CHARACTERS.get(it as never,) ?? it,)

@@ -1,6 +1,6 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import type {Array}                              from '@joookiwi/type'
-import {forEachByArray}                          from '@joookiwi/collection'
+import {ArrayAsCollectionHolder, forEachByArray} from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -15,7 +15,6 @@ import {EmptyUnusedImage_Regular}     from 'core/entity/images/unused/EmptyUnuse
 import {UnusedImage_RegularContainer} from 'core/entity/images/unused/UnusedImage_Regular.container'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {join}                         from 'util/utilitiesMethods'
-import {ArrayAsCollection}            from 'util/collection/ArrayAsCollection'
 
 /**
  * An {@link Entities} class made to hold a {@link UnusedImage_Regular}
@@ -90,7 +89,7 @@ export abstract class UnusedEntityImages
                 return value
 
             const folderName = this.folderName
-            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [GameStyles.SMB, unusedImage(this, folderName, it,),],),)
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollectionHolder(this.#fileNames,).map(it => [GameStyles.SMB, unusedImage(this, folderName, it,),],),)
         }
 
     }
@@ -119,7 +118,7 @@ export abstract class UnusedEntityImages
                 return value
 
             const folderName = this.folderName
-            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [GameStyles.SMB3, unusedImage(this, folderName, it,),],),)
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollectionHolder(this.#fileNames,).map(it => [GameStyles.SMB3, unusedImage(this, folderName, it,),],),)
         }
 
     }
@@ -148,7 +147,7 @@ export abstract class UnusedEntityImages
                 return value
 
             const folderName = this.folderName
-            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(this.#fileNames,).map(it => [GameStyles.SMW, unusedImage(this, folderName, it,),],),)
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollectionHolder(this.#fileNames,).map(it => [GameStyles.SMW, unusedImage(this, folderName, it,),],),)
         }
 
     }
@@ -184,9 +183,9 @@ export abstract class UnusedEntityImages
             const folderName_smb = this.smbFolderName
             const folderName_nsmbu = this.nsmbuFolderName
 
-            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollection(join<readonly [GameStyles, | UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<NSMBU_FOLDER_NAME, NSMBU_FILE_NAME, NAME>,]>(
-                new ArrayAsCollection(this.smbFileNames,).map(it => [GameStyles.SMB, unusedImage(this, folderName_smb, it,),],),
-                new ArrayAsCollection(this.nsmbuFileNames,).map(it => [GameStyles.NSMBU, unusedImage(this, folderName_nsmbu, it,),],),
+            return this.#image = new UnusedImage_RegularContainer(new ArrayAsCollectionHolder(join<readonly [GameStyles, | UnusedImageFile<SMB_FOLDER_NAME, SMB_FILE_NAME, NAME> | UnusedImageFile<NSMBU_FOLDER_NAME, NSMBU_FILE_NAME, NAME>,]>(
+                new ArrayAsCollectionHolder(this.smbFileNames,).map(it => [GameStyles.SMB, unusedImage(this, folderName_smb, it,),],),
+                new ArrayAsCollectionHolder(this.nsmbuFileNames,).map(it => [GameStyles.NSMBU, unusedImage(this, folderName_nsmbu, it,),],),
             ),),)
         }
 
@@ -240,7 +239,7 @@ export abstract class UnusedEntityImages
             const folderName_smw = this.smwFolderName
             forEachByArray(fileNames_smw, it => images[++index] = [GameStyles.SMW, unusedImage(this, folderName_smw, it,),],)
 
-            return new UnusedImage_RegularContainer(new ArrayAsCollection(images,),)
+            return new UnusedImage_RegularContainer(new ArrayAsCollectionHolder(images,),)
         }
 
     }

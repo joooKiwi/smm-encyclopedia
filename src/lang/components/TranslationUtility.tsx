@@ -1,13 +1,13 @@
 import type {MutableArray, StringOrNumeric, UndefinedOr} from '@joookiwi/type'
 import type {CollectionHolder}                           from '@joookiwi/collection'
+import {ArrayAsCollectionHolder}                         from '@joookiwi/collection'
 import type {TOptions}                                   from 'i18next'
 
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
-import {isInProduction}    from 'variables'
-import {Empty}             from 'util/emptyVariables'
-import {assert}            from 'util/utilitiesMethods'
-import {ArrayAsCollection} from 'util/collection/ArrayAsCollection'
+import {isInProduction} from 'variables'
+import {Empty}          from 'util/emptyVariables'
+import {assert}         from 'util/utilitiesMethods'
 
 import EMPTY_STRING = Empty.EMPTY_STRING
 
@@ -47,8 +47,8 @@ export namespace TranslationUtility {// eslint-disable-line @typescript-eslint/n
             argumentsFound.push(value.substring(startingIndex + STARTING_LENGTH, endingIndex,),)
         }
 
-        const argumentsFound2 = new ArrayAsCollection(argumentsFound,)
-        const splitArguments = new ArrayAsCollection(value.split(STARTING_OR_ENDING_REGEX,),).filter(it => argumentsFound2.hasNot(it,),)
+        const argumentsFound2 = new ArrayAsCollectionHolder(argumentsFound,)
+        const splitArguments = new ArrayAsCollectionHolder(value.split(STARTING_OR_ENDING_REGEX,),).filter(it => argumentsFound2.hasNot(it,),)
         const splitArgumentsSize = splitArguments.size
         const argumentsFoundSize = argumentsFound2.size
         const finalArguments: MutableArray<ReactElementOrStringOrNumber> = []
@@ -56,7 +56,7 @@ export namespace TranslationUtility {// eslint-disable-line @typescript-eslint/n
             __addArgumentToArray(finalArguments, splitArguments.get(j,), keyMap[argumentsFound2.getOrNull(i,) ?? EMPTY_STRING],)
 
         if (__containsOnlyStringOrNumber(keyMap, argumentsFound2,))
-            return new ArrayAsCollection(finalArguments,).joinToString(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)
+            return new ArrayAsCollectionHolder(finalArguments,).joinToString(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,)
         return <>{finalArguments}</>
     }
 
