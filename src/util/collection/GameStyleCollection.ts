@@ -1,6 +1,6 @@
-import type {CollectionHolder}       from '@joookiwi/collection'
-import type {Nullable}               from '@joookiwi/type'
-import {LazyGenericCollectionHolder} from '@joookiwi/collection'
+import type {CollectionHolder}   from '@joookiwi/collection'
+import type {Nullable}           from '@joookiwi/type'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -11,7 +11,7 @@ import {Empty}                 from 'util/emptyVariables'
 import EMPTY_ARRAY = Empty.EMPTY_ARRAY
 
 export class GameStyleCollection<const T extends GameStyles = GameStyles, >
-    extends LazyGenericCollectionHolder<T> {
+    extends GenericCollectionHolder<T> {
 
     //region -------------------- Fields --------------------
 
