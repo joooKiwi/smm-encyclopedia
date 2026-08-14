@@ -6,9 +6,8 @@ export default function reportWebVitals(handler?: ReportHandler,) {
     if (handler == null)
         return
 
-    import('web-vitals').then(({onCLS, onFID, onFCP, onLCP, onTTFB,},) => {
+    import('web-vitals').then(({onCLS, onFCP, onLCP, onTTFB,},) => {
         onCLS(handler,)
-        onFID(handler,)
         onFCP(handler,)
         onLCP(handler,)
         onTTFB(handler,)
