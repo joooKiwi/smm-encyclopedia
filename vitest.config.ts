@@ -5,21 +5,22 @@
 // import viteConfig from './vite.config'
 import react          from '@vitejs/plugin-react'
 import commonjs       from 'vite-plugin-commonjs'
-import tsconfigPaths  from 'vite-tsconfig-paths'
 import {defineConfig} from 'vitest/config'
 
 export default defineConfig({
     base: '/smm-encyclopedia/',
     plugins: [
         react({babel: {plugins: [['babel-plugin-react-compiler',],],},},),
-        tsconfigPaths(),
         commonjs(),
     ],
     define: {'process.env': process.env,},
-    resolve: { alias: {
-        src:  '/src',
-        test: '/test',
-    },},
+    resolve: {
+        tsconfigPaths: true,
+        alias: {
+            src:  '/src',
+            test: '/test',
+        },
+    },
     test: {
         environment: 'jsdom',
         dir: './test',
