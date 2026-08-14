@@ -252,11 +252,11 @@ export abstract class ClearConditionEntityImages
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages.Existant<NAME> {
 
-        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>>
+        #image?: ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3' | 'WU', FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>> {
+        public get image(): ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3' | 'WU', FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
@@ -279,11 +279,11 @@ export abstract class ClearConditionEntityImages
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages.Existant<NAME> {
 
-        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>>
+        #image?: ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3' | 'MW', FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, private readonly fileName: FILE_NAME,) { super(englishName,) }
 
-        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>> {
+        public get image(): ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3' | 'MW', FILE_NAME, NAME>> {
             const value = this.#image
             if (value != null)
                 return value
